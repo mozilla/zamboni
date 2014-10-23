@@ -47,6 +47,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertEquals(res.context['repo'], 'fireplace')
         self.assertContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
 
     def test_commbadge(self):
         res = self._test_url('/comm/')
@@ -54,6 +55,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertEquals(res.context['repo'], 'commbadge')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
 
     def test_rocketfuel(self):
         res = self._test_url('/curation/')
@@ -61,6 +63,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertEquals(res.context['repo'], 'rocketfuel')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
 
     def test_transonic(self):
         res = self._test_url('/curate/')
@@ -68,6 +71,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertEquals(res.context['repo'], 'transonic')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
 
     def test_discoplace(self):
         res = self._test_url('/discovery/')
@@ -75,6 +79,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertEquals(res.context['repo'], 'discoplace')
         self.assertContains(res, 'splash.css')
         self.assertNotContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
 
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
         for url in ('/server.html?mccs=blah',

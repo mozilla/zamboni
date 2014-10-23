@@ -9,6 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import resolve
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.views.decorators.cache import cache_control
 from django.views.decorators.gzip import gzip_page
 
 import jingo
@@ -93,6 +94,7 @@ def get_imgurls(repo):
 
 
 @gzip_page
+@cache_control(max_age=settings.CACHE_MIDDLEWARE_SECONDS)
 def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
         raise Http404
