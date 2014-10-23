@@ -1735,6 +1735,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         from mkt.reviewers.models import QUEUE_TARAKO
         return self.additionalreview_set.unreviewed(queue=QUEUE_TARAKO)
 
+    def in_china_queue(self):
+        china_queue = self.__class__.objects.pending_in_region(mkt.regions.CN)
+        return china_queue.filter(pk=self.pk).exists()
+
     def get_package_path(self):
         """Returns the `package_path` if the app is packaged."""
         if not self.is_packaged:
