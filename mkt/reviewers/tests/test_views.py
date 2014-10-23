@@ -2003,6 +2003,14 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         response = self.client.get(self.url)
         assert 'IDN domain!' in response.content
 
+    def test_xss_domain(self):
+        # It shouldn't be possible to have this in app domain, it will never
+        # validate, but better safe than sorry.
+        self.get_app().update(app_domain=u'<script>alert(42)</script>')
+        response = self.client.get(self.url)
+        assert '<script>alert(42)</script>' not in response.content
+        assert '&lt;script&gt;alert(42)&lt;/script&gt;' in response.content
+
     def test_priority_flag_cleared_for_public(self):
         self.get_app().update(priority_review=True)
         data = {'action': 'public', 'device_types': '', 'browsers': '',

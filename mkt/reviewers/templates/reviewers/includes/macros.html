@@ -64,6 +64,19 @@
   </div>
 {% endmacro %}
 
+{% macro app_origin(app) %}
+  <dt>{{ _('App origin') }}</dt>
+  <dd class="app_origin">
+    {{ product.app_domain }}
+    {% if product.punycode_app_domain != product.app_domain %}
+      <br>
+      {% trans punycode_app_domain=product.punycode_app_domain %}
+        <strong>IDN domain!</strong> punycode version: {{ punycode_app_domain }}
+      {% endtrans %}
+    {% endif %}
+  </dd>
+{% endmacro %}
+
 {% macro app_flags(app) %}
   {% if app.priority_review %}
     <div class="sprite-reviewer sprite-reviewer-priority" title="{{ _('Priority Review Needed') }}"></div>
