@@ -532,13 +532,15 @@ class AccountListForm(happyforms.Form):
     def save(self):
         if self.cleaned_data.get('accounts'):
             try:
-                log.info('[1@%s] Deleting app payment account' % self.addon.pk)
+                log.info('[1@%s] Attempting to delete app payment account'
+                         % self.addon.pk)
                 AddonPaymentAccount.objects.get(
                     addon=self.addon,
                     payment_account__provider=self.provider.provider
                 ).delete()
             except AddonPaymentAccount.DoesNotExist:
-                pass
+                log.info('[1@%s] Deleting failed, this is usually fine'
+                         % self.addon.pk)
 
             log.info('[1@%s] Creating new app payment account' % self.addon.pk)
 

@@ -84,6 +84,7 @@ class Provider(object):
             'public_id': self.get_or_create_public_id(app),
         }
 
+        log.info('Checking generic seller exists: {0}'.format(product_data))
         try:
             generic = self.generic.product.get_object_or_404(**product_data)
         except ObjectDoesNotExist:
