@@ -3,6 +3,7 @@ from nose.tools import eq_
 
 import amo.tests
 from mkt.ratings.models import check_spam, Review, Spam
+from mkt.ratings.tasks import addon_review_aggregates
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
@@ -25,9 +26,15 @@ class TestSpamTest(amo.tests.TestCase):
     def test_add(self):
         assert Spam().add(Review.objects.all()[0], 'numbers')
 
-    @patch('mkt.webapps.tasks.index_webapps.original_apply_async')
-    def test_refresh_triggers_reindex(self, index_webapps_apply_async):
-        index_webapps_apply_async.reset_mock()
+    @patch('mkt.ratings.tasks.addon_review_aggregates.delay')
+    def test_refresh_triggers_review_aggregates(self, addon_review_aggregates):
+        addon_review_aggregates.reset_mock()
         review = Review.objects.latest('pk')
         review.refresh()
-        assert index_webapps_apply_async.called
+        assert addon_review_aggregates.called
+
+    @patch('mkt.webapps.tasks.index_webapps.original_apply_async')
+    def test_review_aggregates_triggers_reindex(self, index_webapps):
+        index_webapps.reset_mock()
+        addon_review_aggregates(self.app.pk)
+        assert index_webapps.called

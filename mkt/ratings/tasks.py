@@ -5,6 +5,7 @@ from django.db.models import Count, Avg, F
 import caching.base as caching
 from celeryutils import task
 
+from lib.post_request_task.task import task as post_request_task
 from mkt.webapps.models import Webapp
 
 from .models import Review
@@ -37,7 +38,7 @@ def update_denorm(*pairs, **kw):
             review.save()
 
 
-@task
+@post_request_task
 def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
