@@ -675,6 +675,17 @@ class TestWebapp(amo.tests.WebappTestCase):
         eq_(sorted(self.get_app().get_regions()),
             sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
 
+    def test_get_regions_sort(self):
+        eq_(self.get_app().get_regions(),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.slug))
+        eq_(self.get_app().get_regions(sort_by='name'),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.name))
+        eq_(self.get_app().get_regions(sort_by='id'),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.id))
+
     def test_in_tarako_queue_pending_in_queue(self):
         app = self.get_app()
         app.update(status=amo.STATUS_PENDING)

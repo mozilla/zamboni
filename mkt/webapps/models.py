@@ -3,6 +3,7 @@ import datetime
 import hashlib
 import itertools
 import json
+import operator
 import os
 import re
 import time
@@ -1679,7 +1680,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return sorted(p['region'] for p in tier.prices() if p['paid'])
         return []
 
-    def get_regions(self, regions=None):
+    def get_regions(self, regions=None, sort_by='slug'):
         """
         Return a list of regions objects the app is available in, e.g.:
             [<class 'mkt.constants.regions.BR'>,
@@ -1693,7 +1694,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         regions_ids = regions or self.get_region_ids(restofworld=True)
         _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get, regions_ids)
-        return sorted(_regions, key=lambda x: x.slug)
+        return sorted(_regions, key=operator.attrgetter(sort_by))
 
     def listed_in(self, region=None, category=None):
         listed = []

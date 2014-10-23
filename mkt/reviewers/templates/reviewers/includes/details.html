@@ -135,6 +135,8 @@
       <dd> {{ product.categories|categories_names|join(', ') }} </dd>
       <dt>{{ _('Flags') }}</dt>
       <dd>{{ app_flags(product) }}</dd>
+      <dt>{{ _('Region Availability') }}</dt>
+      <dd>{{ product.get_regions(sort_by='name')|map(attribute='name')|join(', ') }}</dd>
     </dl>
     <div class="less-app-info-show"><a href="#less">{{ _('Show less') }}</a></div>
   </div>
