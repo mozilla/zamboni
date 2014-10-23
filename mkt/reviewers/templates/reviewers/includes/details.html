@@ -1,5 +1,5 @@
 {% from 'detail/includes/price.html' import price %}
-{% from 'reviewers/includes/macros.html' import app_flags with context %}
+{% from 'reviewers/includes/macros.html' import app_flags, app_origin with context %}
 
 <div id="summary">
   <h2>{{ _('Details') }}</h2>
@@ -34,6 +34,9 @@
          data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
         <b>{{ _('View') }}</b></a>
     </dd>
+    {% if product.is_packaged %}
+      {{ app_origin(product) }}
+    {% endif %}
     <dt>{{ _('Developer Name') }}</dt>
     <dd>{{ version.developer_name }}</dd>
     <dt>{{ _('Default Locale') }}</dt>
@@ -60,19 +63,10 @@
   </dl>
 
   <div class="more-app-info-show"><a href="#more">{{ _('Show more') }}</a></div>
-  <div class="more-app-info" class="hide">
+  <div class="more-app-info hide">
     <dl>
-      {% if product.app_domain %}
-      <dt>{{ _('App domain') }}</dt>
-      <dd>
-        {{ product.app_domain }}
-        {% if product.punycode_app_domain != product.app_domain %}
-          <br>
-          {% trans punycode_app_domain=product.punycode_app_domain %}
-            <strong>IDN domain!</strong> punycode version: {{ punycode_app_domain }}
-          {% endtrans %}
-        {% endif %}
-      </dd>
+      {% if not product.is_packaged %}
+        {{ app_origin(product) }}
       {% endif %}
       {% if product.is_packaged and product.latest_version %}
         <dt>{{ _('Signed Zip') }}</dt>
