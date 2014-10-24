@@ -2,13 +2,13 @@ import json
 
 from django import forms
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from rest_framework.request import Request
-from test_utils import RequestFactory
 
 import amo
 from amo.tests import app_factory, TestCase

@@ -1,7 +1,8 @@
+from django.test.client import RequestFactory
+
 import elasticsearch
 import mock
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
 from mkt.search.middleware import ElasticsearchExceptionMiddleware as ESM

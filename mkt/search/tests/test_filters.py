@@ -1,9 +1,9 @@
 import json
 
-import test_utils
 from nose.tools import eq_, ok_
 
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 
 import amo
 from mkt import regions
@@ -11,7 +11,7 @@ from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
-from mkt.search.forms import (ApiSearchForm, TARAKO_CATEGORIES_MAPPING)
+from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
 from mkt.search.views import _sort_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
@@ -22,7 +22,7 @@ class TestSearchFilters(BaseOAuth):
 
     def setUp(self):
         super(TestSearchFilters, self).setUp()
-        self.req = test_utils.RequestFactory().get('/')
+        self.req = RequestFactory().get('/')
         self.req.user = AnonymousUser()
 
         # Pick a region that has relatively few filters.

@@ -1,6 +1,8 @@
 import json
 from urllib import urlencode
 
+from django.test.client import RequestFactory
+
 from nose.tools import ok_
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
@@ -13,7 +15,6 @@ from mkt.collections.authorization import (CanBeHeroAuthorization,
                                            StrictCuratorAuthorization)
 from mkt.collections.tests import CollectionTestMixin
 from mkt.site.fixtures import fixture
-from test_utils import RequestFactory
 from mkt.users.models import UserProfile
 
 

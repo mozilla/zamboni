@@ -1,13 +1,14 @@
+from django.test.client import RequestFactory
+
 import mock
 from curling.lib import HttpClientError
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
 from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR)
+                                    PAYMENT_METHOD_OPERATOR)
 from mkt.developers import forms_payments, models
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_providers import Patcher

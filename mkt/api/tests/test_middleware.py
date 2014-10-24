@@ -3,18 +3,19 @@ from urlparse import parse_qs
 from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseServerError
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import mock
 from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo.tests
+import mkt.regions
 from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
                                 APIPinningMiddleware, AuthenticationMiddleware,
                                 CORSMiddleware, GZipMiddleware)
-import mkt.regions
+
 
 fireplace_url = 'http://firepla.ce:1234'
 

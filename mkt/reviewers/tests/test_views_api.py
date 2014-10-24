@@ -5,11 +5,11 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 import mock
 from cache_nuggets.lib import Token
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo
 import mkt.regions
@@ -23,8 +23,8 @@ from mkt.reviewers.models import (AdditionalReview, CannedResponse,
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
-from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 class TestReviewing(RestOAuth):

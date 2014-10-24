@@ -1,10 +1,10 @@
 from django.forms.fields import BooleanField
+from django.test.client import RequestFactory
 from django.utils.safestring import SafeText
 from django.utils.translation import ugettext_lazy as _
 
 import mock
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo
 import amo.tests

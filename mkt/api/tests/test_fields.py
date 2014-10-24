@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from django.core.exceptions import ValidationError
+from django.test.client import RequestFactory
+
 from mock import Mock
 from nose.tools import eq_, ok_
 from rest_framework.request import Request
 from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
-from test_utils import RequestFactory
-
-from django.core.exceptions import ValidationError
 
 import amo
 from amo.tests import TestCase

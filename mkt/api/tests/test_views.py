@@ -7,16 +7,14 @@ from nose.tools import eq_, ok_
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpRequest
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from test_utils import RequestFactory
-
 import amo.tests
-from amo.helpers import urlparams
-
 import mkt
+from amo.helpers import urlparams
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.api.views import ErrorViewSet, endpoint_removed
+from mkt.api.views import endpoint_removed, ErrorViewSet
 from mkt.site.fixtures import fixture
 
 

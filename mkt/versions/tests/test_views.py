@@ -1,12 +1,11 @@
 import json
 
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse as rest_reverse
-
-from test_utils import RequestFactory
 
 import amo
 from amo.tests import app_factory, file_factory

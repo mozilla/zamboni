@@ -2,13 +2,12 @@ from urlparse import urlparse
 
 from django.core.paginator import Paginator
 from django.http import QueryDict
+from django.test.client import RequestFactory
 
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 from amo.tests import ESTestCase, TestCase
-
-from mkt.api.paginator import MetaSerializer, ESPaginator
+from mkt.api.paginator import ESPaginator, MetaSerializer
 from mkt.webapps.indexers import WebappIndexer
 
 

@@ -1,12 +1,13 @@
+from django.test.client import RequestFactory
+
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
+from mkt.account.utils import purchase_list
 from mkt.constants import apps
-from mkt.webapps.models import Installed, Webapp
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from ..utils import purchase_list
+from mkt.webapps.models import Installed, Webapp
 
 
 class TestUtils(amo.tests.TestCase):

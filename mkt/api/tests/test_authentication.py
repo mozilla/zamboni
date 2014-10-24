@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 
 from mock import Mock, patch
 from multidb.pinning import this_thread_is_pinned, unpin_this_thread
@@ -15,9 +16,8 @@ from mkt.api.middleware import (APIBaseMiddleware, RestOAuthMiddleware,
                                 RestSharedSecretMiddleware)
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import OAuthClient
-from mkt.site.helpers import absolutify
 from mkt.site.fixtures import fixture
-from test_utils import RequestFactory
+from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 
 

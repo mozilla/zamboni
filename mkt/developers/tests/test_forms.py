@@ -7,10 +7,10 @@ from django import forms as django_forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo
 import amo.tests

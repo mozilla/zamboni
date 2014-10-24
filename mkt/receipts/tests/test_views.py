@@ -6,10 +6,10 @@ import uuid
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -20,10 +20,10 @@ from mkt.receipts.utils import create_test_receipt
 from mkt.receipts.views import devhub_verify
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 from services.verify import settings as verify_settings
 from services.verify import decode_receipt
-from mkt.users.models import UserProfile
 
 
 class TestInstall(amo.tests.TestCase):

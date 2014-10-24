@@ -2,6 +2,7 @@ from nose.tools import ok_
 from rest_framework.generics import GenericAPIView
 
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 
 from amo.tests import TestCase
 from mkt.access.middleware import ACLMiddleware
@@ -14,7 +15,6 @@ from mkt.operators.models import OperatorPermission
 from mkt.regions import REGIONS_DICT as REGIONS
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from test_utils import RequestFactory
 
 
 class BaseTestOperatorAuthorization(FeedTestMixin, TestCase):

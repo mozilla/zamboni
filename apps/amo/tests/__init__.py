@@ -18,7 +18,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.utils import translation
 
 import caching
@@ -32,7 +32,6 @@ from nose.exc import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 

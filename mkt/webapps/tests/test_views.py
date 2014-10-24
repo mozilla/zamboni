@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo.tests
 from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
@@ -14,7 +14,7 @@ from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
-from mkt.webapps.serializers import (AppSerializer, AppFeaturesSerializer,
+from mkt.webapps.serializers import (AppFeaturesSerializer, AppSerializer,
                                      SimpleAppSerializer)
 
 

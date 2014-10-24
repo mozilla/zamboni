@@ -3,15 +3,14 @@ from decimal import Decimal
 
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
-
 import mkt
 from mkt.constants import ratingsbodies, regions
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,

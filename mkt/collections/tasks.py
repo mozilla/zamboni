@@ -4,16 +4,17 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 
 from celeryutils import task
 from rest_framework import serializers
-from test_utils import RequestFactory
 
 from amo.utils import chunked, JSONEncoder
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
 from mkt.constants.regions import RESTOFWORLD
 from mkt.webapps.models import Webapp
+
 
 task_log = logging.getLogger('collections.tasks')
 

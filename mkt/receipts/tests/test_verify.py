@@ -6,6 +6,7 @@ from urllib import urlencode
 
 from django.db import connection
 from django.conf import settings
+from django.test.client import RequestFactory
 
 import jwt
 import M2Crypto
@@ -13,7 +14,6 @@ import mock
 from browserid.errors import ExpiredSignatureError
 from nose.tools import eq_, ok_
 from services import utils, verify
-from test_utils import RequestFactory
 
 import amo
 import amo.tests

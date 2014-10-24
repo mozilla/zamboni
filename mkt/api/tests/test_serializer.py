@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.core.handlers.wsgi import WSGIRequest
 from django.test import TestCase
+from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_, ok_
 from rest_framework.serializers import Serializer, ValidationError
-from test_utils import RequestFactory
 
-from mkt.users.models import UserProfile
 from mkt.api.serializers import PotatoCaptchaSerializer, URLSerializerMixin
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 
 
 class TestPotatoCaptchaSerializer(TestCase):
@@ -22,7 +22,6 @@ class TestPotatoCaptchaSerializer(TestCase):
         self.context = {'request': self.request}
         self.request.user.is_authenticated = lambda: False
         self.data = {'tuber': '', 'sprout': 'potato'}
-
 
     def test_success_authenticated(self):
         self.request.user = UserProfile.objects.get(id=999)
@@ -67,8 +66,8 @@ class TestURLSerializerMixin(TestCase):
                                          'url_basename': self.url_basename})
         self.request = RequestFactory().get('/')
         self.request.API_VERSION = 1
-        self.serializer = self.SerializerClass(context=
-            {'request': self.request})
+        self.serializer = self.SerializerClass(
+            context={'request': self.request})
         self.obj = self.Struct()
         self.obj.pk = 42
 
