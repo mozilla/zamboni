@@ -272,49 +272,64 @@ class TestDeviceMiddleware(amo.tests.TestCase):
 
 
 class TestCacheHeadersMiddleware(amo.tests.TestCase):
-    seconds = 60 * 2
+    CACHE_DURATION = 60 * 2
 
-    def _test_headers_set(self, res):
+    def _test_headers_set(self, res, max_age):
         eq_(res['Cache-Control'],
-            'must-revalidate, max-age=%s' % self.seconds)
+            'must-revalidate, max-age=%s' % max_age)
         assert res.has_header('ETag'), 'Missing ETag header'
 
         now = datetime.datetime.now(tzutc())
 
         self.assertCloseToNow(res['Expires'],
-            now=now + datetime.timedelta(seconds=self.seconds))
+            now=now + datetime.timedelta(seconds=max_age))
         self.assertCloseToNow(res['Last-Modified'], now=now)
 
     def _test_headers_missing(self, res):
         assert res.has_header('ETag'), 'Missing ETag header'
         for header in ['Cache-Control', 'Expires', 'Last-Modified']:
             assert not res.has_header(header), (
-                'Should not have header: %s' % header)
+                'Should not have header: %s: %s' % (header, res[header]))
 
-    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
     def test_no_headers_on_disallowed_statuses(self):
         res = self.client.get('/404')  # 404
         self._test_headers_missing(res)
 
-    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
     def test_no_headers_on_disallowed_methods(self):
         for method in ('delete', 'post', 'put'):
             res = getattr(self.client, method)('/robots.txt')
             self._test_headers_missing(res)
 
-    @override_settings(CACHE_MIDDLEWARE_SECONDS=0, USE_ETAGS=True)
-    def test_no_headers_no_max_age(self):
-        self._test_headers_missing(self.client.get('/robots.txt'))
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
+    def test_no_headers_querystring_says_no_cache(self):
+        self._test_headers_missing(self.client.get('/robots.txt?cache=0'))
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
+    def test_no_headers_querystring_says_garbage(self):
+        self._test_headers_missing(self.client.get('/robots.txt?cache=dummy'))
 
     @override_settings(CACHE_MIDDLEWARE_SECONDS=0, USE_ETAGS=True)
     def test_no_headers_no_querystring(self):
         self._test_headers_missing(self.client.get('/robots.txt'))
 
-    @override_settings(CACHE_MIDDLEWARE_SECONDS=seconds, USE_ETAGS=True)
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
     def test_headers_set(self):
         for method in ('get', 'head', 'options'):
             res = getattr(self.client, method)('/robots.txt?cache=1')
-            self._test_headers_set(res)
+            self._test_headers_set(res, max_age=self.CACHE_DURATION)
+
+            # We can never get a lower max-age than CACHE_MIDDLEWARE_SECONDS
+            # as long as we request caching headers to be set.
+            res = getattr(self.client, method)('/robots.txt?cache=60')
+            self._test_headers_set(res, max_age=self.CACHE_DURATION)
+
+    @override_settings(CACHE_MIDDLEWARE_SECONDS=CACHE_DURATION, USE_ETAGS=True)
+    def test_headers_set_and_long_cache_requested(self):
+        for method in ('get', 'head', 'options'):
+            res = getattr(self.client, method)('/robots.txt?cache=21600')
+            self._test_headers_set(res, max_age=21600)
 
 accept_check = lambda x, y: eq_(lang_from_accept_header(x), y)
 

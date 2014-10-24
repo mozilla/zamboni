@@ -1,7 +1,6 @@
 import contextlib
 from types import MethodType
 
-from django import http
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
@@ -14,11 +13,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 
 import tower
 from django_statsd.clients import statsd
-
-from amo.utils import urlparams
-
-import mkt
-import mkt.constants
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -233,12 +227,18 @@ class CacheHeadersMiddleware(object):
     def process_response(self, request, response):
         if (request.method in self.allowed_methods and
                 response.status_code in self.allowed_statuses and
-                request.REQUEST.get('cache') == '1'):
+                request.GET.get('cache', '').isdigit()):
+            # If there's already a `Cache-Control` header with a `max-age`,
+            # use that TTL before falling back to what the client requested.
             timeout = get_max_age(response)
             if timeout is None:
-                timeout = settings.CACHE_MIDDLEWARE_SECONDS or 0
+                timeout = int(request.GET['cache'])
+                # Never allow clients to choose positive timeouts below
+                # settings.CACHE_MIDDLEWARE_SECONDS.
+                if timeout > 0 and timeout < settings.CACHE_MIDDLEWARE_SECONDS:
+                    timeout = settings.CACHE_MIDDLEWARE_SECONDS
+            # Send caching headers, but only timeout is not 0.
             if timeout != 0:
-                # Only if max-age is 0 should we bother with caching.
                 patch_response_headers(response, timeout)
                 patch_cache_control(response, must_revalidate=True)
 
