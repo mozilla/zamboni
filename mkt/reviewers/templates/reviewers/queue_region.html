@@ -8,7 +8,7 @@
                                   (None, region.name)]) }}
 {% endblock %}
 
-{% set page_title = _('{region} Review Queue').format(region=region.name) %}
+{% set page_title = _('{region} Review Queue').format(region=region.name|string) %}
 
 {% block title %}
   {{ page_title }} | {{ super() }}

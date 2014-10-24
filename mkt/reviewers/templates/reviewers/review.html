@@ -36,6 +36,10 @@
           {% if product.in_tarako_queue() %}
             <li>&middot; <b id="queue-tarako">{{ _('In Tarako queue') }}</b></li>
           {% endif %}
+          {% if product.in_china_queue() %}
+            <li>&middot; <b id="queue-china">{{ _('In China queue') }}</b></li>
+          {% endif %}
+
         </ul>
       </li>
     </ul>

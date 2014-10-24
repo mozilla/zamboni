@@ -708,6 +708,27 @@ class TestWebapp(amo.tests.WebappTestCase):
         app.update(status=amo.STATUS_APPROVED)
         ok_(not app.in_tarako_queue())
 
+    def test_in_china_queue_pending_not_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=amo.STATUS_PENDING)
+        app.update(status=amo.STATUS_PENDING)
+        ok_(not app.in_china_queue())  # Need to be approved in general first.
+
+    def test_in_china_queue_approved_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=amo.STATUS_PENDING)
+        app.update(status=amo.STATUS_APPROVED)
+        ok_(app.in_china_queue())
+
+    def test_in_china_queue_approved_in_china_not_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=amo.STATUS_APPROVED)
+        app.update(status=amo.STATUS_APPROVED)
+        ok_(not app.in_china_queue())
+
 
 class TestWebappLight(amo.tests.TestCase):
     """
