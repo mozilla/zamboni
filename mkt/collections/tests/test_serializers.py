@@ -3,11 +3,11 @@ import hashlib
 import json
 
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 from rest_framework import serializers
-from test_utils import RequestFactory
 
 import amo
 import amo.tests
@@ -21,9 +21,9 @@ from mkt.collections.serializers import (CollectionMembershipField,
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import FeaturedSearchView
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser
 from mkt.webapps.serializers import SimpleAppSerializer
-from mkt.users.models import UserProfile
 
 
 class CollectionDataMixin(object):

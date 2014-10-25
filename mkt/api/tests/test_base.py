@@ -2,6 +2,7 @@ import urllib
 
 from django import forms
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 from mock import patch
 from nose.tools import eq_
@@ -9,7 +10,6 @@ from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from test_utils import RequestFactory
 
 from amo.tests import TestCase
 from mkt.api.base import cors_api_view, SubRouterWithFormat
@@ -82,10 +82,10 @@ class TestSubRouterWithFormat(TestCase):
         router = SubRouterWithFormat()
         router.register('foo', ModelViewSet, base_name='bar')
         expected = [
-            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
-            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/]+)/foo/$' },
+            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/]+)/foo/$'},
+            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/]+)/foo/$'},
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$' },
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
             {'name': 'bar-detail',
              'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
         ]
@@ -99,10 +99,10 @@ class TestSubRouterWithFormat(TestCase):
         router = SubRouterWithFormat(trailing_slash=False)
         router.register('foo', ModelViewSet, base_name='bar')
         expected = [
-            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
-            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo$' },
+            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo$'},
+            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo$'},
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$' },
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
             {'name': 'bar-detail',
              'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
         ]

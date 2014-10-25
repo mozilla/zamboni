@@ -5,8 +5,8 @@ import json
 import logging
 import os
 import random
-import StringIO
 import shutil
+import StringIO
 import subprocess
 import tempfile
 import time
@@ -16,6 +16,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template import Context, loader
+from django.test.client import RequestFactory
 
 import pytz
 import requests
@@ -24,7 +25,6 @@ from celery.exceptions import RetryTaskError
 from celeryutils import task
 from PIL import Image
 from requests.exceptions import RequestException
-from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
@@ -43,8 +43,8 @@ from mkt.files.utils import WebAppParser
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master, write
-from mkt.site.mail import send_mail_jinja
 from mkt.site.helpers import absolutify
+from mkt.site.mail import send_mail_jinja
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer

@@ -3,11 +3,11 @@ from urlparse import urlparse
 
 from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
+from django.test.client import RequestFactory
 
 from elasticsearch_dsl.search import Search
 from mock import patch
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 import mkt
 from amo.tests import app_factory, ESTestCase, TestCase
@@ -17,8 +17,8 @@ from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonUser, Installed, Webapp
 
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
@@ -149,9 +149,9 @@ class TestSearchView(RestOAuth, ESTestCase):
         data = objects[0]
         eq_(data['id'], 337141)
         assert_fireplace_app(data)
-        ok_(not 'featured' in res.json)
-        ok_(not 'collections' in res.json)
-        ok_(not 'operator' in res.json)
+        ok_('featured' not in res.json)
+        ok_('collections' not in res.json)
+        ok_('operator' not in res.json)
 
     def test_anonymous_user(self):
         res = self.anon.get(self.url)
@@ -210,7 +210,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'uk')
-        ok_(not 'apps' in data)
+        ok_('apps' not in data)
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_developed(self, region_from_request):

@@ -1,9 +1,9 @@
 from django import http
 from django.core.exceptions import PermissionDenied
+from django.test.client import RequestFactory
 
 import mock
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
 from mkt.webapps import decorators as dec

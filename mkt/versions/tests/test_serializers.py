@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
 
 from amo.tests import app_factory, TestCase
 from mkt.versions.models import Version
@@ -25,7 +25,7 @@ class TestVersionSerializer(TestCase):
         native = self.native()
         removed_keys = self.serializer.Meta.field_rename.keys()
         added_keys = self.serializer.Meta.field_rename.values()
-        ok_(all(not k in native for k in removed_keys))
+        ok_(all(k not in native for k in removed_keys))
         ok_(all(k in native for k in added_keys))
 
     def test_addon(self):

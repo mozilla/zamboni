@@ -7,11 +7,11 @@ from decimal import Decimal
 from StringIO import StringIO
 
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
 from mock import patch
 from nose.tools import eq_
 from rest_framework.request import Request
-from test_utils import RequestFactory
 
 import amo
 import mkt
@@ -820,7 +820,7 @@ class TestPriceTier(RestOAuth):
             'price': '0.99',
             'method': 'operator+card',
             'resource_uri': self.detail_url
-            })
+        })
 
     def test_detail(self):
         self.grant_permission(self.profile, self.permission)
@@ -832,7 +832,7 @@ class TestPriceTier(RestOAuth):
             'price': '0.99',
             'method': 'operator+card',
             'resource_uri': self.detail_url
-            })
+        })
 
     def test_post_unauthorized(self):
         res = self.client.post(self.list_url, '{}')

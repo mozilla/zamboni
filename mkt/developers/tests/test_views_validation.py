@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import codecs
-import collections
 import json
 import os
 import tempfile
@@ -8,11 +7,11 @@ import tempfile
 from django import forms
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
+from django.test.client import RequestFactory
 
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo
 import amo.tests

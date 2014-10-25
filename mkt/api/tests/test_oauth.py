@@ -6,7 +6,7 @@ from functools import partial
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
-from django.test.client import FakePayload
+from django.test.client import RequestFactory
 from django.utils.encoding import iri_to_uri, smart_str
 
 from django_browserid.tests import mock_browserid
@@ -14,7 +14,6 @@ from nose.tools import eq_, ok_
 from oauthlib import oauth1
 from pyquery import PyQuery as pq
 from rest_framework.request import Request
-from test_utils import RequestFactory
 
 from amo.helpers import urlparams
 from amo.tests import JSONClient, TestCase

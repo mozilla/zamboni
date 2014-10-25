@@ -1,18 +1,17 @@
 from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
 
-from rest_framework.permissions import AllowAny, BasePermission
 from mock import Mock
 from nose.tools import eq_, ok_
-from test_utils import RequestFactory
+from rest_framework.permissions import AllowAny, BasePermission
 
 from amo.tests import TestCase
-from mkt.users.models import UserProfile
-
-from mkt.api.authorization import (AllowAuthor, AllowAppOwner, AllowNone,
-                                   AllowOwner, AllowRelatedAppOwner,
-                                   AllowReadOnlyIfPublic, AllowSelf, AnyOf,
+from mkt.api.authorization import (AllowAppOwner, AllowAuthor, AllowNone,
+                                   AllowOwner, AllowReadOnlyIfPublic,
+                                   AllowRelatedAppOwner, AllowSelf, AnyOf,
                                    ByHttpMethod, flag, GroupPermission, switch)
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
