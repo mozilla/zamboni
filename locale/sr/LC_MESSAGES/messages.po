@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-19 07:48+0000\n"
+"PO-Revision-Date: 2014-10-25 08:32+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413704934.0\n"
+"X-POOTLE-MTIME: 1414225929.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2793,7 +2793,7 @@ msgstr "Није надоградња"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Име власника банковног рачуна"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2931,7 +2931,7 @@ msgstr "Моје доставе"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Донирај {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -4144,6 +4144,9 @@ msgstr "Информације о подршци за {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"Адреса е-поште која се користи да би Вас крајњи корисници контактирли у "
+"случају подршке. Ако имате различите адресе за сваки језик, могуће је додати "
+"више превода поља."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4970,7 +4973,7 @@ msgstr "Уреди Bango налог"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "Име које се односи на рачун на Marketplace-у, није послато Bango-у."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5788,7 +5791,7 @@ msgstr "Разлози нису наведени"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Нема захтеване дозволе"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6907,7 +6910,7 @@ msgstr "Предходна страница"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Учитавам историјат апликације &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
