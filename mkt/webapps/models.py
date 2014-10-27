@@ -1374,8 +1374,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         reasons = []
 
-        if not self.support_email:
-            reasons.append(_('You must provide a support email.'))
+        if not self.support_email and not self.support_url:
+            reasons.append(_('You must provide a support email or URL.'))
         if not self.name:
             reasons.append(_('You must provide an app name.'))
         if not self.device_types:

@@ -1886,6 +1886,14 @@ class TestDetailsComplete(amo.tests.TestCase):
         self.webapp.previews.create()
         eq_(self.webapp.details_complete(), True)
 
+        self.webapp.support_email = ''
+        self.webapp.save()
+        eq_(self.webapp.details_complete(), False)
+        self.fail('support email or URL')
+        self.webapp.support_url = 'http://test.com/'
+        self.webapp.save()
+        eq_(self.webapp.details_complete(), True)
+
 
 class TestAddonExcludedRegion(amo.tests.WebappTestCase):
 
