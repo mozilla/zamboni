@@ -625,7 +625,7 @@ def refresh_manifest(request, addon_id, addon):
 def _upload_manifest(request, is_standalone=False):
     form = forms.NewManifestForm(request.POST, is_standalone=is_standalone)
     if (not is_standalone and
-        waffle.switch_is_active('webapps-unique-by-domain')):
+            waffle.switch_is_active('webapps-unique-by-domain')):
         # Helpful error if user already submitted the same manifest.
         dup_msg = trap_duplicate(request, request.POST.get('manifest'))
         if dup_msg:
@@ -633,7 +633,8 @@ def _upload_manifest(request, is_standalone=False):
                     'messages': [{'type': 'error', 'message': dup_msg,
                                   'tier': 1}]}}
     if form.is_valid():
-        upload = FileUpload.objects.create(user=request.user)
+        user = request.user if request.user.is_authenticated() else None
+        upload = FileUpload.objects.create(user=user)
         fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
         if is_standalone:
             return redirect('mkt.developers.standalone_upload_detail',

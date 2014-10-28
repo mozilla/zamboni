@@ -799,6 +799,61 @@ class TestUpload(BaseUploadTest):
         self.assertRedirects(r, url)
 
 
+class TestStandaloneUpload(BaseUploadTest):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        super(TestStandaloneUpload, self).setUp()
+        self.package = self.packaged_app_path('mozball.zip')
+        self.hosted_url = reverse('mkt.developers.standalone_hosted_upload')
+        self.packaged_url = reverse(
+            'mkt.developers.standalone_packaged_upload')
+        fetch_manifest_patcher = mock.patch(
+            'mkt.developers.views.fetch_manifest')
+        self.fetch_manifest = fetch_manifest_patcher.start()
+        self.fetch_manifest.delay.return_value = '{}'
+        self.addCleanup(fetch_manifest_patcher.stop)
+
+    def post_packaged(self):
+        # Has to be a binary, non xpi file.
+        data = open(self.package, 'rb')
+        return self.client.post(self.packaged_url, {'upload': data})
+
+    def post_hosted(self):
+        manifest_url = 'https://mozilla.org/manifest.webapp'
+        return self.client.post(self.hosted_url, {'manifest': manifest_url})
+
+    def test_create_packaged(self):
+        self.post_packaged()
+        upload = FileUpload.objects.get(name='mozball.zip')
+        eq_(upload.name, 'mozball.zip')
+        eq_(upload.user, None)
+        data = open(self.package, 'rb').read()
+        eq_(storage.open(upload.path).read(), data)
+
+    def test_create_packaged_user(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        self.post_packaged()
+        upload = FileUpload.objects.get(name='mozball.zip')
+        eq_(upload.name, 'mozball.zip')
+        eq_(upload.user.pk, 999)
+        data = open(self.package, 'rb').read()
+        eq_(storage.open(upload.path).read(), data)
+
+    def test_create_hosted(self):
+        response = self.post_hosted()
+        pk = response['location'].split('/')[-1]
+        upload = FileUpload.objects.get(pk=pk)
+        eq_(upload.user, None)
+
+    def test_create_hosted_user(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        response = self.post_hosted()
+        pk = response['location'].split('/')[-1]
+        upload = FileUpload.objects.get(pk=pk)
+        eq_(upload.user.pk, 999)
+
+
 class TestUploadDetail(BaseUploadTest):
     fixtures = fixture('user_999')
 
