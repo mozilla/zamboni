@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import random
 import time
@@ -9,7 +10,7 @@ from decimal import Decimal
 from functools import partial, wraps
 from urlparse import SplitResult, urlsplit, urlunsplit
 
-from django import forms
+from django import forms, test
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
@@ -20,11 +21,11 @@ from django.forms.fields import Field
 from django.http import SimpleCookie
 from django.test.client import Client, RequestFactory
 from django.utils import translation
+from django.utils.translation import trans_real
 
 import caching
 import elasticsearch
 import mock
-import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
 from django_browserid.tests import mock_browserid
@@ -222,6 +223,7 @@ class JSONClient(TestClient):
 
 ES_patchers = [mock.patch('elasticsearch.Elasticsearch'),
                mock.patch('mkt.webapps.indexers.WebappIndexer', spec=True),
+               mock.patch('mkt.search.indexers.index', spec=True),
                mock.patch('mkt.search.indexers.Reindexing', spec=True,
                           side_effect=lambda i: [i])]
 
@@ -301,8 +303,10 @@ class MockBrowserIdMixin(object):
         self.client.login = fake_login
 
 
-class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
-               test_utils.TestCase):
+JINJA_INSTRUMENTED = False
+
+
+class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -312,8 +316,39 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
-        self.mock_browser_id()
+
+        # If we have a settings_test.py let's roll it into our settings.
+        try:
+            import settings_test
+            # Use setattr to update Django's proxies:
+            for k in dir(settings_test):
+                setattr(settings, k, getattr(settings_test, k))
+        except ImportError:
+            pass
+
+        # Clean the slate.
+        cache.clear()
         post_request_task._discard_tasks()
+
+        trans_real.deactivate()
+        trans_real._translations = {}  # Django fails to clear this cache.
+        trans_real.activate(settings.LANGUAGE_CODE)
+
+        self.mock_browser_id()
+
+        global JINJA_INSTRUMENTED
+        if not JINJA_INSTRUMENTED:
+            import jinja2
+            old_render = jinja2.Template.render
+
+            def instrumented_render(self, *args, **kwargs):
+                context = dict(*args, **kwargs)
+                test.signals.template_rendered.send(sender=self, template=self,
+                                                    context=context)
+                return old_render(self, *args, **kwargs)
+
+            jinja2.Template.render = instrumented_render
+            JINJA_INSTRUMENTED = True
 
     def _post_teardown(self):
         amo.set_user(None)

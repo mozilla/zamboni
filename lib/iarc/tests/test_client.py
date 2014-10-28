@@ -1,9 +1,9 @@
-import test_utils
+from django.test import TestCase
 
-from ..client import Client, MockClient, get_iarc_client
+from lib.iarc.client import Client, get_iarc_client, MockClient
 
 
-class TestClient(test_utils.TestCase):
+class TestClient(TestCase):
 
     def setUp(self):
         self.client = MockClient('services')
@@ -28,7 +28,7 @@ class TestClient(test_utils.TestCase):
         assert ' SERVICE_NAME="GET_RATING_CHANGES"' in xml
 
 
-class TestRightClient(test_utils.TestCase):
+class TestRightClient(TestCase):
 
     def test_no_mock(self):
         with self.settings(IARC_MOCK=False):

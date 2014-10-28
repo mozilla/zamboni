@@ -1,5 +1,3 @@
-import collections
-import json
 from datetime import datetime
 from urlparse import urlparse
 
@@ -32,6 +30,7 @@ class FakeResponse(object):
 
     def json(self):
         return self.data
+
 
 class TestPersonaLogin(amo.tests.TestCase):
     fixtures = ('users/test_backends',)

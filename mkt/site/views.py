@@ -9,7 +9,7 @@ from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound, HttpResponseServerError)
 from django.shortcuts import render
 from django.template import RequestContext
-from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 from django.views.decorators.http import etag, require_POST
 from django.views.generic.base import TemplateView
@@ -19,7 +19,6 @@ import jingo_minify
 import waffle
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
-from jingo import render_to_string
 
 from amo.helpers import media
 from amo.utils import log_cef, urlparams

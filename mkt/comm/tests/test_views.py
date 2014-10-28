@@ -401,7 +401,6 @@ class TestNote(NoteSetupMixin):
         self.assertCORS(res, 'get', 'post', 'patch')
 
 
-@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachments(NoteSetupMixin):
 
     def setUp(self):
@@ -422,6 +421,7 @@ class TestAttachments(NoteSetupMixin):
         return 'bacon.txt'
 
     @mock.patch('mkt.comm.utils._save_attachment')
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_create_attachment(self, _mock):
         _mock.side_effect = self._save_attachment_mock
 

@@ -18,9 +18,15 @@ def test_task():
 
 class TestTask(TestCase):
 
+    def setUp(self):
+        super(TestTask, self).setUp()
+        task_mock.reset_mock()
+        _discard_tasks()
+
     def tearDown(self):
         task_mock.reset_mock()
         _discard_tasks()
+        super(TestTask, self).tearDown()
 
     def _verify_task_filled(self):
         queue = _get_task_queue()

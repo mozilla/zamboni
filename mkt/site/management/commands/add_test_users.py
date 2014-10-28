@@ -2,14 +2,13 @@ import hashlib
 from datetime import datetime
 from optparse import make_option
 
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import amo
-from mkt.users.models import UserProfile
 from mkt.access.models import Group, GroupUser
 from mkt.api.models import Access
+from mkt.users.models import UserProfile
 
 
 @transaction.commit_on_success

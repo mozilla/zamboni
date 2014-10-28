@@ -1,9 +1,9 @@
+import multidb.pinning
 from mock import Mock
 from nose import SkipTest
 from nose.tools import eq_
 
-import amo
-import mkt.site.models
+from mkt.site import models
 from amo.tests import app_factory, TestCase
 from mkt.site import models as context
 from mkt.site.models import manual_order
@@ -33,6 +33,7 @@ def test_skip_cache():
 
 
 def test_use_master():
+    multidb.pinning.unpin_this_thread()
     local = context.multidb.pinning._locals
     eq_(getattr(local, 'pinned', False), False)
     with context.use_master():
@@ -44,25 +45,26 @@ def test_use_master():
 
 
 class TestModelBase(TestCase):
+
     def setUp(self):
-        self.saved_cb = mkt.site.models._on_change_callbacks.copy()
-        mkt.site.models._on_change_callbacks.clear()
+        self.saved_cb = models._on_change_callbacks.copy()
+        models._on_change_callbacks.clear()
         self.cb = Mock()
         self.cb.__name__ = 'testing_mock_callback'
         Webapp.on_change(self.cb)
         self.testapp = app_factory(public_stats=True)
 
     def tearDown(self):
-        mkt.site.models._on_change_callbacks = self.saved_cb
+        models._on_change_callbacks = self.saved_cb
 
     def test_multiple_ignored(self):
         cb = Mock()
         cb.__name__ = 'something'
-        old = len(mkt.site.models._on_change_callbacks[Webapp])
+        old = len(models._on_change_callbacks[Webapp])
         Webapp.on_change(cb)
-        eq_(len(mkt.site.models._on_change_callbacks[Webapp]), old + 1)
+        eq_(len(models._on_change_callbacks[Webapp]), old + 1)
         Webapp.on_change(cb)
-        eq_(len(mkt.site.models._on_change_callbacks[Webapp]), old + 1)
+        eq_(len(models._on_change_callbacks[Webapp]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
         # Broken by the extra update() in Webapp.save when creating.

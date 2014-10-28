@@ -2,8 +2,8 @@ import datetime
 import json
 
 from django.conf import settings
+from django.test import TestCase
 
-import test_utils
 from mock import patch
 from nose.tools import eq_
 
@@ -14,7 +14,7 @@ from mkt.users.models import UserProfile
 
 @patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))
 @patch.object(settings, 'DOMAIN', 'testy')
-class TestUtils(test_utils.TestCase):
+class TestUtils(TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create()

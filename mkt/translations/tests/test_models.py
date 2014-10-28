@@ -5,6 +5,7 @@ from contextlib import nested
 import django
 from django.conf import settings
 from django.db import connections, reset_queries
+from django.test import TransactionTestCase
 from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.functional import lazy
@@ -420,7 +421,7 @@ class TranslationTestCase(TestCase):
         eq_(obj.name.locale, 'de')
 
 
-class TranslationMultiDbTests(TestCase):
+class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
 
     def setUp(self):

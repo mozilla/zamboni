@@ -1,7 +1,6 @@
 import contextlib
 import threading
 
-from django.conf import settings
 from django.db import models, transaction
 from django.utils import encoding, translation
 

@@ -73,7 +73,7 @@ below but remember, if you're confused look at existing tests for examples.
 Unit/Functional Tests
 ~~~~~~~~~~~~~~~~~~~~~
 Most tests are in this category.  Our test classes extend
-:class:`test_utils.TestCase` and follow the standard rules for unit tests.
+:class:`django.test.TestCase` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
 External calls

@@ -222,7 +222,6 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             data={'vendorName': 'new vendor name'})
 
 
-@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestActivityLogAttachment(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
@@ -280,8 +279,9 @@ class TestActivityLogAttachment(amo.tests.TestCase):
     def test_is_image(self):
         msg = ('ActivityLogAttachment().is_image() not correctly detecting '
                'images.')
-        eq_(self.attachment1.is_image(), False, msg)
-        eq_(self.attachment2.is_image(), True, msg)
+        with self.settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR):
+            eq_(self.attachment1.is_image(), False, msg)
+            eq_(self.attachment2.is_image(), True, msg)
 
     def test_get_absolute_url(self):
         msg = ('ActivityLogAttachment().get_absolute_url() raising a '

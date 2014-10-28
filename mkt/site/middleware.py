@@ -161,6 +161,7 @@ class LocaleMiddleware(object):
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
         return lang_from_accept_header(accept)
 
+
 class DeviceDetectionMiddleware(object):
     """If the user has flagged that they are on a device. Store the device."""
     devices = ['mobile', 'gaia', 'tablet']

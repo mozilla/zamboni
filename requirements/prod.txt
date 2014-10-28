@@ -104,7 +104,6 @@ urllib3==1.8.2
 # Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
--e git+https://github.com/washort/test-utils.git@4917197a64b6d0f2068c9ad1bfea0427c3e412e1#egg=test-utils
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-cache-machine@b7a8d44ba60c44c5bd0aaae410b54d4712881f83#egg=django-cache-machine
 ## Forked.

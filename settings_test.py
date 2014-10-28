@@ -45,6 +45,10 @@ DUMPED_APPS_PATH = _polite_tmpdir()
 AUTHENTICATION_BACKENDS = (
     'django_browserid.auth.BrowserIDBackend',
 )
+CELERY_ALWAYS_EAGER = True
+DEBUG = False
+TEMPLATE_DEBUG = False
+
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 

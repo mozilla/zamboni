@@ -1,6 +1,7 @@
+from django.test import TestCase
+
 from nose.tools import raises
 from rest_framework.response import Response
-from test_utils import TestCase
 
 from mkt.api.exceptions import custom_exception_handler
 

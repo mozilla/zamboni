@@ -847,7 +847,8 @@ class TestPriceTier(RestOAuth):
                         'method': 'operator+card',
                         'active': True}))
         eq_(res.status_code, 201)
-        p = Price.objects.get(pk=3)
+        pk = res.json['resource_uri'].split('/')[-2]
+        p = Price.objects.get(pk=pk)
         eq_(p.name, '3')
         eq_(p.price, Decimal('3.14'))
         eq_(p.method, amo.PAYMENT_METHOD_ALL)

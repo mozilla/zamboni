@@ -69,7 +69,7 @@
             "rest_framework", "see", "session_csrf", "share", "simplejson",
             "six", "slumber", "sphinx", "sphinxcontrib", "sqlalchemy",
             "sqlparse", "statsd", "storages", "suds", "tastypie",
-            "tastypie_services", "test_utils", "tests", "tower", "tox",
+            "tastypie_services", "tests", "tower", "tox",
             "translate", "uritemplate", "uuidfield", "validator", "virtualenv",
             "virtualenv_support", "waffle"],
 

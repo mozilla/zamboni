@@ -1143,7 +1143,7 @@ TEST_INSTALLED_APPS = (
 )
 
 # Tests
-TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
+TEST_RUNNER = 'amo.runner.DiscoverRunnerWithExtraApps'
 
 TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}

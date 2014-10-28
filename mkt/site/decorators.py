@@ -40,6 +40,7 @@ def login_required(f=None, redirect=True):
     else:
         return decorator
 
+
 def permission_required(pairs):
     """
     Pairs of (app, action). If any permission passes, call the function.

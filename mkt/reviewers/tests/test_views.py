@@ -6,6 +6,7 @@ import time
 from itertools import cycle
 from os import path
 
+from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
@@ -1191,7 +1192,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
 
 class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
                             amo.tests.MockBrowserIdMixin,
-                            amo.tests.test_utils.TransactionTestCase):
+                            test.TransactionTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'webapp_337141')
 
@@ -3836,7 +3837,6 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         eq_(len(res.context['apps']), 2)
 
 
-@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachmentDownload(amo.tests.TestCase):
     fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
                        'user_999', 'webapp_337141')
@@ -3858,6 +3858,7 @@ class TestAttachmentDownload(amo.tests.TestCase):
                           self.version, user=editor)
         self.ala = self._attachment(self.al)
 
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_permissions_editor(self):
         self.client.login(username='editor@mozilla.com', password='password')
         response = self._response()
@@ -3868,6 +3869,7 @@ class TestAttachmentDownload(amo.tests.TestCase):
         response = self._response()
         eq_(response.status_code, 403, 'Regular user can access attachment')
 
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_headers(self):
         self.client.login(username='editor@mozilla.com', password='password')
         response = self._response()

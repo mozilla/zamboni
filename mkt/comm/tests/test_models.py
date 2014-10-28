@@ -178,7 +178,6 @@ class TestThreadTokenModel(amo.tests.TestCase):
         assert uuid != self.token.uuid
 
 
-@override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
     fixtures = fixture('webapp_337141')
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
@@ -226,6 +225,7 @@ class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
     def test_display_name_xss(self):
         ok_('<script>' not in self.attachment2.display_name())
 
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_is_image(self):
         msg = 'CommAttachment().is_image() not correctly detecting images.'
         eq_(self.attachment1.is_image(), False, msg)

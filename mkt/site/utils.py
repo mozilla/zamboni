@@ -11,9 +11,6 @@ from django.conf import settings
 from django.utils import encoding
 
 
-import amo
-
-
 def get_outgoing_url(url):
     """
     Bounce a URL off an outgoing URL redirector, such as outgoing.mozilla.org.
