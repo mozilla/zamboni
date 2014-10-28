@@ -483,6 +483,10 @@ class BaseFeedESView(CORSMixin, APIView):
         If a feed element does not have enough apps, return None.
         Else return the feed element.
         """
+        if not feed_element:
+            # Handle edge case where the ES index might get stale.
+            return None
+
         if request.QUERY_PARAMS.get('filtering', '1') == '0':
             # Without filtering
             return feed_element
