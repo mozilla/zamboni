@@ -4075,3 +4075,34 @@ class TestAdditionalReviewListingAccess(amo.tests.TestCase):
     def test_tarako_reviewer_has_access(self):
         self.grant_permission(self.user, 'Apps:ReviewTarako')
         eq_(self.listing().status_code, 200)
+
+
+class TestReviewHistory(amo.tests.TestCase):
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
+
+    def setUp(self):
+        self.app = app_factory()
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+        self.login('editor@mozilla.com')
+        self.create_switch('comm-dashboard')
+
+    def test_comm_url(self):
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
+            reverse('comm-thread-list') + '?limit=1&app=' + self.app.app_slug)
+
+    def test_comm_url_multiple_version(self):
+        version_factory(addon=self.app)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
+            reverse('comm-thread-list') + '?limit=2&app=' + self.app.app_slug)
+
+    def test_comm_url_no_encode(self):
+        app = app_factory(app_slug='&#21488;&#21271;')
+        url = reverse('reviewers.apps.review', args=[app.app_slug])
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
+            reverse('comm-thread-list') + '?limit=1&app=' + app.app_slug)
