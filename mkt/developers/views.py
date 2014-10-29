@@ -465,9 +465,9 @@ def version_edit(request, addon_id, addon, version_id):
         [f.save() for f in all_forms]
 
         if f.data.get('approvalnotes'):
-            create_comm_note(addon, version, request.user,
-                             f.data['approvalnotes'],
-                             note_type=comm.REVIEWER_COMMENT)
+            create_comm_note(
+                addon, version, request.user, f.data['approvalnotes'],
+                note_type=comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
 
         messages.success(request, _('Version successfully edited.'))
         return redirect(addon.get_dev_url('versions'))

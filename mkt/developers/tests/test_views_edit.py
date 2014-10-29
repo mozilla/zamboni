@@ -24,7 +24,7 @@ from amo.tests.test_helpers import get_image_path
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
-from mkt.constants import regions
+from mkt.constants import comm, regions
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
@@ -1503,7 +1503,7 @@ class TestEditVersion(TestEdit):
         eq_(version.approvalnotes, data['approvalnotes'])
         return version
 
-    def test_comm_thread(self):
+    def test_approval_notes_comm_thread(self):
         self.create_switch('comm-dashboard')
 
         # With empty note.
@@ -1514,6 +1514,7 @@ class TestEditVersion(TestEdit):
         notes = CommunicationNote.objects.all()
         eq_(notes.count(), 1)
         eq_(notes[0].body, 'abc')
+        eq_(notes[0].note_type, comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
 
     def test_existing_features_initial_form_data(self):
         features = self.webapp.current_version.features
