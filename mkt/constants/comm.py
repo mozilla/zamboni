@@ -115,7 +115,7 @@ EMAIL_SENIOR_REVIEWERS = [
 ]
 
 # Note types to email both senior reviewers and developer, but a different
-# email template to each on.
+# email template to each one.
 EMAIL_SENIOR_REVIEWERS_AND_DEV = {
     ESCALATION: {
         'reviewer': 'escalation_senior_reviewer',

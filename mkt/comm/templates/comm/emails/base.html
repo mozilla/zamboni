@@ -2,6 +2,8 @@
 
 You may reply to this email or post to {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
 
+If you wish to stop receiving email notifications for this thread, you can click 'Unsubscribe' at {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
+
 --
 {% block footer %}
 {{ note.author.name if note.author }}
