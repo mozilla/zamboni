@@ -1,7 +1,6 @@
 import urlparse
 
 from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
-from django.http import QueryDict
 from django.utils.http import urlencode
 
 from rest_framework import pagination, serializers
@@ -73,11 +72,13 @@ class MetaSerializer(serializers.Serializer):
     offset = serializers.SerializerMethodField('get_offset')
     limit = serializers.SerializerMethodField('get_limit')
 
-    def replace_query_params(self, url, params):
+    def replace_query_params(self, url, request_data, params):
         (scheme, netloc, path, query, fragment) = urlparse.urlsplit(url)
-        query_dict = QueryDict(query).dict()
-        query_dict.update(params)
-        query = urlencode(query_dict)
+        # We ignore urlsplit's `query` here as it is already urlencoded and we
+        # want to avoid double encoding query string parameters, so we use
+        # `request_data` which comes from `request.GET` instead..
+        request_data.update(params)
+        query = urlencode(request_data)
         return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
 
     def get_offset_link_for_page(self, page, number):
@@ -85,8 +86,9 @@ class MetaSerializer(serializers.Serializer):
         url = request and request.get_full_path() or ''
         number = number - 1  # Pages are 1-based, but offsets are 0-based.
         per_page = page.paginator.per_page
-        return self.replace_query_params(url, {'offset': number * per_page,
-                                               'limit': per_page})
+        params = {'offset': number * per_page, 'limit': per_page}
+        request_data = request and request.GET.dict() or {}
+        return self.replace_query_params(url, request_data, params)
 
     def get_next(self, page):
         if not page.has_next():

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from urlparse import urlparse
 
 from django.core.paginator import Paginator
@@ -139,3 +140,13 @@ class TestMetaSerializer(TestCase):
         eq_(next.path, '/api/whatever/')
         eq_(QueryDict(next.query),
             QueryDict('limit=2&offset=4&extra=&superfluous=yes'))
+
+    def test_urlencoded_query_string(self):
+        self.url = '/api/whatever/?q=yó'
+        self.request = RequestFactory().get(self.url)
+
+        data = ['a', 'b', 'c', 'd', 'e', 'f']
+        page = Paginator(data, 2).page(1)
+        serialized = self.get_serialized_data(page)
+        next = urlparse(serialized['next'])
+        assert 'q=y%C3%B3' in next.query
