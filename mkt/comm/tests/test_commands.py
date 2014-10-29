@@ -142,3 +142,36 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         note_attach2 = note.attachments.get(filepath='rofl')
         eq_(note_attach2.description, 'desc2')
         eq_(note_attach2.mimetype, 'txt')
+
+
+class TestMigrateApprovalNotes(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = amo.tests.app_factory()
+        self.version = self.app.latest_version
+        self.thread = CommunicationThread.objects.create(
+            addon=self.app, version=self.version)
+        self.user = amo.tests.user_factory()
+        self.app.addonuser_set.create(user=self.user)
+
+    def test_basic_migrate(self):
+        self.version.update(approvalnotes='susurrus')
+        call_command('migrate_approval_notes')
+        eq_(self.thread.notes.all()[0].body, 'susurrus')
+        eq_(self.thread.notes.all()[0].note_type,
+            cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+        eq_(self.thread.notes.all()[0].author, self.user)
+
+    def test_exists(self):
+        self.version.update(approvalnotes='geringdingding')
+        self.thread.notes.create(
+            body='no touching',
+            note_type=cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+        call_command('migrate_approval_notes')
+        eq_(self.thread.notes.all()[0].body, 'no touching')
+        eq_(self.thread.notes.all()[0].note_type,
+            cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+
+    def test_no_thread(self):
+        self.thread.delete()
+        call_command('migrate_approval_notes')
