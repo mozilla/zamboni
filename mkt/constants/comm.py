@@ -36,6 +36,8 @@ ESCALATION_PRERELEASE_APP = 23
 PRIORITY_REVIEW_REQUESTED = 24
 ADDITIONAL_REVIEW_PASSED = 25
 ADDITIONAL_REVIEW_FAILED = 26
+DEVELOPER_VERSION_NOTE_FOR_REVIEWER = 27
+REVIEWER_PUBLIC_COMMENT = 28
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -44,7 +46,7 @@ NOTE_TYPES = {
     DISABLED: _('Banned'),
     MORE_INFO_REQUIRED: _('More information requested'),
     ESCALATION: _('Escalated'),
-    REVIEWER_COMMENT: _('Reviewer comment'),
+    REVIEWER_COMMENT: _('Internal reviewer comment'),
     RESUBMISSION: _('App resubmission'),
     APPROVE_VERSION_PRIVATE: _('Approved but private'),
     ESCALATION_CLEARED: _('Escalation cleared'),
@@ -57,7 +59,7 @@ NOTE_TYPES = {
     REVIEW_FEATURES_OVERRIDE: _('Requirement(s) changed by reviewer'),
     REREVIEW_MANIFEST_CHANGE: _('Rereview due to Manifest Change'),
     REREVIEW_MANIFEST_URL_CHANGE: _('Rereview due to Manifest URL Change'),
-    REREVIEW_PREMIUM_TYPE_UPGRADE: _('Rrereview due to Premium Type Upgrade'),
+    REREVIEW_PREMIUM_TYPE_UPGRADE: _('Rereview due to Premium Type Upgrade'),
     REREVIEW_DEVICES_ADDED: _('Rereview due to Devices Added'),
     REREVIEW_FEATURES_CHANGED: _('Rereview due to Requirements Change'),
     REREVIEW_CONTENT_RATING_ADULT: _('Rereview due to Adult Content Rating'),
@@ -65,7 +67,9 @@ NOTE_TYPES = {
     ESCALATION_PRERELEASE_APP: _('Escalation due to Prelease App'),
     PRIORITY_REVIEW_REQUESTED: _('Priority review requested'),
     ADDITIONAL_REVIEW_PASSED: _('Additional review passed'),
-    ADDITIONAL_REVIEW_FAILED: _('Additional review failed')
+    ADDITIONAL_REVIEW_FAILED: _('Additional review failed'),
+    DEVELOPER_VERSION_NOTE_FOR_REVIEWER: _('Version notes for reviewer'),
+    REVIEWER_PUBLIC_COMMENT: _('Reviewer comment')
 }
 
 # Note types only visible by reviewers and not developers.
