@@ -545,18 +545,24 @@ def ownership(request, addon_id, addon):
             author.save()
             if action:
                 amo.log(action, author.user, author.get_role_display(), addon)
+
             if (author._original_user_id and
                 author.user_id != author._original_user_id):
                 amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
+                # Unsubscribe user from emails (Commbadge).
+                author.user.comm_thread_cc.filter(thread__addon=addon).delete()
 
         for author in user_form.deleted_objects:
             if author.user_id == request.user.id:
                 # The current user removed their own access to the app.
                 redirect_url = reverse('mkt.developers.apps')
+
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
+            # Unsubscribe user from emails (Commbadge).
+            author.user.comm_thread_cc.filter(thread__addon=addon).delete()
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect(redirect_url)
