@@ -1,5 +1,7 @@
 import base64
 import logging
+import quopri
+import re
 import urllib2
 from email import message_from_string
 from email.utils import parseaddr
@@ -157,16 +159,34 @@ class CommEmailParser(object):
                     payload = part.get_payload()
                     break
 
+        payload = quopri.decodestring(payload)  # Decode quoted-printable data.
+        payload = self.extra_email_reply_parse(payload)
         self.reply_text = EmailReplyParser.read(payload).reply
 
+    def extra_email_reply_parse(self, email):
+        """
+        Adds an extra case to the email reply parser where the reply is
+        followed by headers like "From: app-reviewers@mozilla.org" and strips
+        that part out.
+        """
+        email = email.replace('\xc2\xa0', ' ')  # Remove non-breaking spaces.
+        email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
+        email = email_header_re.split(email)
+        if email[0].startswith('From: '):
+            # In case, it's a bottom reply, return everything.
+            return email
+        else:
+            # Else just return the email reply portion.
+            return email[0]
+
     def _get_address_line(self):
-        return parseaddr(self.email['to'])
+        return parseaddr(self.email['to']) or parseaddr(self.email(['reply']))
 
     def get_uuid(self):
         name, addr = self._get_address_line()
 
         if addr.startswith(self.address_prefix):
-            # Strip everything between "reply+" and the "@" sign.
+            # Strip everything between "commreply+" and the "@" sign.
             uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
             log.info('TO: address missing or not related to comm. (%s)'
