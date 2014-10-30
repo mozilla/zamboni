@@ -6,7 +6,7 @@ from django.core import mail
 
 import mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 from amo.tests import app_factory, TestCase
@@ -21,11 +21,12 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
 
-sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
+sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
                             'email.txt')
-
-multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
+multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
                            'email_multipart.txt')
+quopri_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
+                           'email_quoted_printable.txt')
 
 
 class TestSendMailComm(TestCase, CommTestMixin):
@@ -223,15 +224,11 @@ class TestEmailReplySaving(TestCase):
 
 class TestEmailParser(TestCase):
 
-    def setUp(self):
+    def test_basic_email(self):
         email_text = open(sample_email).read()
-        self.parser = CommEmailParser(email_text)
-
-    def test_uuid(self):
-        eq_(self.parser.get_uuid(), '5a0b8a83d501412589cc5d562334b46b')
-
-    def test_body(self):
-        eq_(self.parser.get_body(), 'test note 5\n')
+        parser = CommEmailParser(email_text)
+        eq_(parser.get_uuid(), '5a0b8a83d501412589cc5d562334b46b')
+        eq_(parser.get_body(), 'test note 5\n')
 
     def test_multipart(self):
         multipart_email = open(multi_email).read()
@@ -239,3 +236,13 @@ class TestEmailParser(TestCase):
         parser = CommEmailParser(payload)
         eq_(parser.get_body(), 'this is the body text\n')
         eq_(parser.get_uuid(), 'abc123')
+
+    def test_quoted_printable(self):
+        quoted_printable_email = open(quopri_email).read()
+        payload = base64.standard_b64encode(quoted_printable_email)
+        parser = CommEmailParser(payload)
+
+        body = parser.get_body()
+        ok_('Yo,\n\nas it is open source' in body)
+        ok_('=20' not in body)
+        ok_('app-reviewers@mozilla.org' not in body)

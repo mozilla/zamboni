@@ -1,0 +1,26 @@
+Yo,
+
+as it is open source the whole source is available at https://github.com/=
+ngokevin/gogh/
+
+/Kevin
+
+=46rom:=C2=A0app-reviewers=40mozilla.org
+Reply:=C2=A0commreply+ac3ba1f2201d422da67b7faa4f674eaa=40marketplace.fire=
+fox.com .com>>
+Date:=C2=A0October 28, 2014 at 11:58:33 AM
+To:=C2=A0kngo=40mozilla.com >
+Subject:=C2=A0 More information requested: Telegram =20
+
+We need additional information to complete review of Telegram. =20
+
+Kevin wrote: =20
+
+=22Would you send the non-minified version of the code=3F you can reply b=
+ack to this e-mail.=22 =20
+
+App: Telegram =20
+URL: https://marketplace.firefox.com/app/telegram/ =20
+
+You may reply to this email or post to https://marketplace.firefox.com/co=
+mm/thread/24857 =20
