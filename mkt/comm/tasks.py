@@ -6,6 +6,7 @@ from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.comm.utils_mail import save_from_email_reply
 from mkt.developers.models import ActivityLog
 from mkt.site.decorators import write
+from mkt.versions.models import Version
 
 
 log = logging.getLogger('z.task')
@@ -66,3 +67,35 @@ def _migrate_activity_log(ids, **kwargs):
                 filepath=attachment.filepath, mimetype=attachment.mimetype,
                 description=attachment.description)
             note_attachment.update(created=attachment.created)
+
+
+@task
+@write
+def _migrate_approval_notes(ids):
+    """
+    Port Version.approvalnotes to
+    CommunicationNote(note_type=DEVELOPER_VERSION_NOTE_TO_REVIEWER).
+
+    Make the CommunicationNote.created the same time as the Version.created
+    since approvalnotes are created upon creation of a version.
+    """
+    for version in Version.objects.filter(pk__in=ids):
+        if not version.approvalnotes:
+            continue
+
+        try:
+            thread = CommunicationThread.objects.get(version=version)
+        except CommunicationThread.DoesNotExist:
+            continue
+
+        if (thread.notes.filter(
+            note_type=cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER).exists()):
+            # Don't need to do if it's already been done.
+            continue
+
+        note = thread.notes.create(
+            # Close enough. Don't want to dig through logs to get correct dev.
+            author=version.addon.authors.all()[0],
+            note_type=cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER,
+            body=version.approvalnotes)
+        note.update(created=version.created)
