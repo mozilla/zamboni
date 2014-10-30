@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.core import mail
 from django.core.mail import EmailMessage
@@ -9,7 +11,7 @@ from nose.tools import eq_
 import mkt.users.notifications
 from amo.tests import TestCase
 from mkt.site.fixtures import fixture
-from mkt.site.mail import send_mail, send_html_mail_jinja
+from mkt.site.mail import send_mail, send_html_mail_jinja, _real_email_regexes
 from mkt.site.models import FakeEmail
 from mkt.users.models import UserNotification, UserProfile
 from mkt.zadmin.models import set_config
@@ -64,21 +66,32 @@ class TestSendMail(TestCase):
         assert 'test_blacklist_flag_off' in mail.outbox[0].body
 
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
-    def test_real_list(self):
+    def test_real_regex_list(self):
         to = 'nooobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
         to3 = 'reallywantsemail@mozilla.org'
-        set_config('real_email_whitelist', to3)
+        to4 = 'reallywantsemail+testing@mozilla.org'
+        set_config('real_email_regex_whitelist',
+                   'reallywantsemail(\+[^@]+)?@mozilla.org')
         success = send_mail('test subject', 'test_real_list',
-                            recipient_list=[to, to2, to3], fail_silently=False)
+                            recipient_list=[to, to2, to3, to4],
+                            fail_silently=False)
         assert success
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].to, [to3])
+        eq_(mail.outbox[0].to, [to3, to4])
         assert 'test_real_list' in mail.outbox[0].body
-        eq_(FakeEmail.objects.count(), 1) # Only one mail, two recipients.
-        fakeemail = FakeEmail.objects.get()
-        eq_(fakeemail.message.endswith('test_real_list'), True)
-        assert ('To: %s, %s' % (to, to2)) in fakeemail.message
+        eq_(FakeEmail.objects.count(), 1)  # Only one mail, two recipients.
+        fake_email = FakeEmail.objects.get()
+        eq_(fake_email.message.endswith('test_real_list'), True)
+        assert ('To: %s, %s' % (to, to2)) in fake_email.message
+
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_bad_regexes(self):
+        set_config('real_email_regex_whitelist',
+                   'reallywantsemail(\+[^@]+)?@mozilla.org,bad(regex{3')
+        email_regexes = _real_email_regexes()
+        eq_(len(email_regexes), 1)
+        eq_(email_regexes[0].pattern, 'reallywantsemail(\+[^@]+)?@mozilla.org')
 
     def test_user_setting_default(self):
         user = UserProfile.objects.all()[0]

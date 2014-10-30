@@ -1,4 +1,5 @@
 import logging
+import re
 
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
@@ -78,21 +79,22 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 notblacklisted_list.append(email)
         recipient_list = notblacklisted_list
 
-    # We're going to call send_email twice, once for fake emails, the other real.
+    # We're going to call send_email twice, once for fake emails, the other
+    # real.
     if settings.SEND_REAL_EMAIL:
         # Send emails out to all recipients.
         fake_recipient_list = []
         real_recipient_list = recipient_list
     else:
-        # SEND_REAL_EMAIL is False so need to split out the fake from real mails.
-        real_email_cs_string = get_config('real_email_whitelist')
-        if real_email_cs_string is not None:
-            # We have a whitelist set in the config so use it.
-            real_white_list = [x.strip() for x in real_email_cs_string.split(',')]
+        # SEND_REAL_EMAIL is False so need to split out the fake from real
+        # mails.
+        real_email_regexes = _real_email_regexes()
+        if real_email_regexes:
             fake_recipient_list = []
             real_recipient_list = []
             for email in recipient_list:
-                if email and email.lower() in real_white_list:
+                if email and any(regex.match(email.lower())
+                                 for regex in real_email_regexes):
                     log.debug('Real email encountered: %s - sending.' % email)
                     real_recipient_list.append(email)
                 else:
@@ -179,3 +181,18 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     env.autoescape = autoescape_orig
 
     return msg
+
+
+def _real_email_regexes():
+    real_email_regexes = get_config('real_email_regex_whitelist')
+    # We have a whitelist set in the config so use it.
+    if real_email_regexes:
+        regexes = []
+        for regex in real_email_regexes.split(','):
+            try:
+                regexes.append(re.compile(regex.strip().lower()))
+            except re.error:
+                pass
+        return regexes
+    else:
+        return []
