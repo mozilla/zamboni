@@ -1,11 +1,11 @@
 from django.core.management import call_command
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-import mkt.constants.comm as cmb
 from mkt.comm.models import CommunicationNote, CommunicationThread
+from mkt.constants import comm
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
@@ -19,7 +19,7 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         self.version = self.app.latest_version
         self.user = UserProfile.objects.get()
 
-    def _assert(self, cmb_action):
+    def _assert(self, comm_action):
         call_command('migrate_activity_log')
         thread = CommunicationThread.objects.get()
         note = CommunicationNote.objects.get()
@@ -30,7 +30,7 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         eq_(note.thread, thread)
         eq_(note.author, self.user)
         eq_(note.body, 'something')
-        eq_(note.note_type, cmb_action)
+        eq_(note.note_type, comm_action)
 
         eq_(note.read_permission_staff, True)
         eq_(note.read_permission_reviewer, True)
@@ -42,62 +42,62 @@ class TestMigrateActivityLog(amo.tests.TestCase):
     def test_migrate(self):
         amo.log(amo.LOG.APPROVE_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.APPROVAL)
+        self._assert(comm.APPROVAL)
 
     def test_migrate_reject(self):
         amo.log(amo.LOG.REJECT_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.REJECTION)
+        self._assert(comm.REJECTION)
 
     def test_migrate_disable(self):
         amo.log(amo.LOG.APP_DISABLED, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.DISABLED)
+        self._assert(comm.DISABLED)
 
     def test_migrate_escalation(self):
         amo.log(amo.LOG.ESCALATE_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        thread, note = self._assert(cmb.ESCALATION)
+        thread, note = self._assert(comm.ESCALATION)
         assert not note.read_permission_developer
 
     def test_migrate_reviewer_comment(self):
         amo.log(amo.LOG.COMMENT_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        thread, note = self._assert(cmb.REVIEWER_COMMENT)
+        thread, note = self._assert(comm.REVIEWER_COMMENT)
         assert not note.read_permission_developer
 
     def test_migrate_info(self):
         amo.log(amo.LOG.REQUEST_INFORMATION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.MORE_INFO_REQUIRED)
+        self._assert(comm.MORE_INFO_REQUIRED)
 
     def test_migrate_noaction(self):
         amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.NO_ACTION)
+        self._assert(comm.NO_ACTION)
 
     def test_migrate_escalation_high_abuse(self):
         amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        thread, note = self._assert(cmb.ESCALATION_HIGH_ABUSE)
+        thread, note = self._assert(comm.ESCALATION_HIGH_ABUSE)
         assert not note.read_permission_developer
 
     def test_migrate_escalation_high_refunds(self):
         amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        thread, note = self._assert(cmb.ESCALATION_HIGH_REFUNDS)
+        thread, note = self._assert(comm.ESCALATION_HIGH_REFUNDS)
         assert not note.read_permission_developer
 
     def test_migrate_escalation_cleared(self):
         amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        thread, note = self._assert(cmb.ESCALATION_CLEARED)
+        thread, note = self._assert(comm.ESCALATION_CLEARED)
         assert not note.read_permission_developer
 
     def test_get_or_create(self):
         amo.log(amo.LOG.REQUEST_VERSION, self.app, self.version,
                 user=self.user, details={'comments': 'something'})
-        self._assert(cmb.NO_ACTION)
+        self._assert(comm.NO_ACTION)
         call_command('migrate_activity_log')
         call_command('migrate_activity_log')
         eq_(CommunicationNote.objects.count(), 1)
@@ -159,19 +159,59 @@ class TestMigrateApprovalNotes(amo.tests.TestCase):
         call_command('migrate_approval_notes')
         eq_(self.thread.notes.all()[0].body, 'susurrus')
         eq_(self.thread.notes.all()[0].note_type,
-            cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+            comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
         eq_(self.thread.notes.all()[0].author, self.user)
 
     def test_exists(self):
         self.version.update(approvalnotes='geringdingding')
         self.thread.notes.create(
             body='no touching',
-            note_type=cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+            note_type=comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
         call_command('migrate_approval_notes')
         eq_(self.thread.notes.all()[0].body, 'no touching')
         eq_(self.thread.notes.all()[0].note_type,
-            cmb.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+            comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
 
     def test_no_thread(self):
         self.thread.delete()
         call_command('migrate_approval_notes')
+
+
+class TestFixDeveloperVersionNotes(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        self.version = self.app.latest_version
+        self.thread = CommunicationThread.objects.create(
+            addon=self.app, version=self.version)
+        self.user = amo.tests.user_factory()
+        self.app.addonuser_set.create(user=self.user)
+
+    def test_basic_fix(self):
+        self.thread.notes.create(note_type=comm.REVIEWER_COMMENT,
+                                 author=self.user)
+        call_command('fix_developer_version_notes')
+        eq_(self.thread.notes.all()[0].note_type,
+            comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
+
+    def test_not_developer(self):
+        self.app.addonuser_set.all().delete()
+        self.thread.notes.create(note_type=comm.REVIEWER_COMMENT,
+                                 author=self.user)
+        call_command('fix_developer_version_notes')
+        eq_(self.thread.notes.all()[0].note_type,
+            comm.REVIEWER_COMMENT)
+
+    def test_not_first_note(self):
+        first_note = self.thread.notes.create(note_type=comm.SUBMISSION,
+                                              author=self.user)
+        first_note.update(created=self.days_ago(123))
+        self.thread.notes.create(note_type=comm.REVIEWER_COMMENT,
+                                 author=self.user)
+        call_command('fix_developer_version_notes')
+        ok_(self.thread.notes.filter(note_type=comm.REVIEWER_COMMENT).exists())
+
+    def test_not_reviewer_comment(self):
+        self.thread.notes.create(note_type=comm.SUBMISSION, author=self.user)
+        call_command('fix_developer_version_notes')
+        ok_(self.thread.notes.filter(note_type=comm.SUBMISSION).exists())
