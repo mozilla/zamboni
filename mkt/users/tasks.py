@@ -1,7 +1,10 @@
 from datetime import timedelta
 
 import commonware.log
+import Crypto
+from celery.signals import task_prerun
 from celeryutils import task
+
 
 from django.utils.encoding import force_text
 
@@ -51,3 +54,10 @@ def send_fxa_mail(user_ids, mail_type, send_link):
         'users/emails/{0}.html'.format(mail_type),
         'users/emails/{0}.ltxt'.format(mail_type),
         send_link)
+
+
+def fork(*args, **kwargs):
+    Crypto.Random.atfork()
+
+
+task_prerun.connect(fork)

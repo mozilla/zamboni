@@ -389,6 +389,8 @@ CELERY_ROUTES = {
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
     'lib.crypto.packaged.sign': {'queue': 'priority'},
+    'mkt.users.tasks.send_mail': {'queue': 'priority'},
+    'mkt.users.tasks.send_fxa_mail': {'queue': 'priority'},
     'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
     'mkt.versions.tasks.update_supported_locales_single': {'queue': 'priority'},
     'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
