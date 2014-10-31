@@ -509,7 +509,7 @@ class TestEmailApi(RestOAuth):
 
     def test_basic(self):
         sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
-                                    'email.txt')
+                                    'emails', 'email.txt')
         req = self.get_request(data={'body': open(sample_email).read()})
 
         app = app_factory()
