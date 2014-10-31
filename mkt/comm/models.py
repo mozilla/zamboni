@@ -174,8 +174,6 @@ class CommunicationNote(CommunicationPermissionModel):
                                null=True, blank=True)
     note_type = models.IntegerField(default=comm.NO_ACTION)
     body = models.TextField(null=True)
-    reply_to = models.ForeignKey(
-        'self', related_name='replies', null=True, blank=True)
 
     objects = CommunicationNoteManager()
 
