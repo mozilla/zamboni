@@ -126,6 +126,30 @@ class TestCommonplace(BaseCommonPlaceTests):
             res = self._test_url(url)
             self.assertContains(res, 'login.persona.org/include.js" defer')
 
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):
+        test_region = mock.Mock()
+        test_region.slug = 'testoland'
+        mock_region.return_value = test_region
+        for url in ('/server.html?mccs=blah',
+                    '/server.html?mcc=blah&mnc=blah'):
+            res = self._test_url(url)
+            ok_('geoip_region' not in res.context, url)
+            self.assertNotContains(res, 'data-region')
+
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_region_included_in_fireplace_if_sim_info(self, mock_region):
+        test_region = mock.Mock()
+        test_region.slug = 'testoland'
+        mock_region.return_value = test_region
+        for url in ('/server.html?nativepersona=true',
+                    '/server.html?mcc=blah',  # Incomplete info from SIM.
+                    '/server.html',
+                    '/server.html?'):
+            res = self._test_url(url)
+            self.assertEquals(res.context['geoip_region'], test_region)
+            self.assertContains(res, 'data-region="testoland"')
+
 
 class TestAppcacheManifest(BaseCommonPlaceTests):
 
