@@ -3,17 +3,16 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-29 22:17+0100\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
-"Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla."
-"org>\n"
+"PO-Revision-Date: 2014-11-02 09:42+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
+"Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
-"X-POOTLE-MTIME: 1414228969.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1414921322.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -1992,7 +1991,7 @@ msgstr "Granskad åter på grund av ändrad Manifest"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Manifest URL Change"
-msgstr "Granskad åter på grund av ändrad Manifest URL"
+msgstr "Granskad åter på grund av ändrad Manifest-URL"
 
 # Misspelled Rereview
 #: mkt/constants/comm.py:60
@@ -2781,7 +2780,7 @@ msgstr "Sluggen kan inte vara \"%s\". Välj en annan."
 
 #: mkt/developers/forms.py:632
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr "Manifest URL ändrad från {before_url} till {after_url}"
+msgstr "Manifest-URL ändrad från {before_url} till {after_url}"
 
 #: mkt/developers/forms.py:654
 msgid "Please specify your app's Privacy Policy"
@@ -3749,7 +3748,7 @@ msgid ""
 "or <code>https://</code>) and typically use the <code>.webapp</code> "
 "extension."
 msgstr ""
-"Manifest URL:ar måste börja med ett protokoll (till exempel <code>http://</"
+"Manifest-URL:ar måste börja med ett protokoll (till exempel <code>http://</"
 "code> eller <code>https://</code>) och använder oftast filändelsen <code>."
 "webapp</code>."
 
@@ -4442,22 +4441,25 @@ msgstr "Minimikrav"
 #: mkt/developers/templates/developers/apps/version_edit.html:54
 #: mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Funktioner på enheten som krävs för att denna app ska fungera."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
-msgstr ""
+msgstr "Lägg till en kampanj"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:25
 msgid "Mozilla Contact"
-msgstr ""
+msgstr "Kontakt på Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid ""
 "An e-mail address (or addresses separated by commas) of this app's Mozilla "
 "contact that will be CC'd on any reviewer emails."
 msgstr ""
+"En e-postadress (eller flera adresser separerade med kommatecken) för denna "
+"apps kontakt på Mozilla som kommer att få en kopia på all e-post från "
+"granskare."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -4472,6 +4474,8 @@ msgid ""
 "Is this a very important app that should always be handled by Mozilla Staff "
 "or Senior App Reviewers?"
 msgstr ""
+"Är detta en viktig app som alltid ska hanteras av personal från Mozilla "
+"eller seniora app-granskare?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -4485,6 +4489,7 @@ msgstr "Prioriterad granskning behövs"
 msgid ""
 "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Appen kommer att behandlas med prioritet och placeras överst i granskningskön"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
@@ -4498,6 +4503,7 @@ msgstr "Banderoll-meddelande"
 msgid ""
 "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Exklusiva meddelande som visas på listningssidan, endast i utvalda regioner."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
@@ -4517,6 +4523,9 @@ msgid ""
 "Tags help users find your app and should be short descriptors such as tabs, "
 "toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Etiketter hjälper användarna att hitta din app och ska vara korta "
+"beskrivningar som flikar, verktygsfält eller twitter. Du kan ha maximalt {0} "
+"etiketter."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
@@ -4526,7 +4535,7 @@ msgstr[1] "Kommaseparerad, minst {0} tecken."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Exempel: mörk, bio, svart. Högst 20."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:188
 msgid "Reserved tag:"
@@ -4581,18 +4590,18 @@ msgstr "API URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "URL:en för åtkomst till denna app använder Marketplace API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
-msgstr ""
+msgstr "Visa API-dokumentation"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76
 #: mkt/reviewers/templates/reviewers/includes/details.html:26
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:104
 msgid "Manifest URL"
-msgstr "Manifest URL"
+msgstr "Manifest-URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
@@ -4605,6 +4614,10 @@ msgid ""
 "URL. For more information, read the <a href=\"%(doc_url)s\" target=\"_blank"
 "\">documentation on Updating Apps</a>."
 msgstr ""
+"Försök inte att ändra ditt manifest-URL för ofta. Om du ändrar din manifest-"
+"URL kommer befintliga användare inte uppgraderas för att använda den nya "
+"manifest-URL:en. För mer information, läs <a href=\"%(doc_url)s\" target="
+"\"_blank\">dokumentationen för att uppdatera appar</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 #: mkt/reviewers/templates/reviewers/includes/details.html:151
@@ -4616,6 +4629,8 @@ msgid ""
 "An explanation of features, functionality, and other relevant information. "
 "This field is displayed on the app's details page."
 msgstr ""
+"En förklaring av funktioner, funktionalitet och annan relevant information. "
+"Det här fältet visas på appens detaljsida."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
@@ -4626,12 +4641,17 @@ msgid ""
 "Information about changes in the latest release, new features, known bugs, "
 "and other useful information specific to this release/version."
 msgstr ""
+"Information om förändringar i den senaste versionen, nya funktioner, kända "
+"buggar och annan nyttig information som är specifika för denna utgåva/"
+"version."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:147
 msgid ""
 "Categories are the primary way users browse through apps. Choose any that "
 "fit your app's functionality for the most exposure."
 msgstr ""
+"Kategorier är det främsta sättet användarna bläddra igenom appar. Välj något "
+"som passar din apps funktionalitet för mest exponering."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -4649,6 +4669,8 @@ msgid ""
 "Information about your app is displayed in this locale unless you override "
 "it with a locale-specific translation."
 msgstr ""
+"Information om din app visas i detta språk om du inte anger det med en "
+"språkspecifik översättning."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
@@ -4660,6 +4682,9 @@ msgid ""
 "localized into other languages multiple translations of this field can be "
 "added."
 msgstr ""
+"Om din app har en annan hemsida, skriver du in adressen här. Om din "
+"webbplats är översatt till andra språk, flera översättningar av detta fält "
+"kan läggas till."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:52
@@ -4673,6 +4698,8 @@ msgid ""
 "A privacy policy is required that explains what data is transmitted from a "
 "user's computer and how it is used."
 msgstr ""
+"En sekretesspolicy krävs för att förklara hur data skickas från en "
+"användares dator och hur den används."
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
@@ -4681,11 +4708,11 @@ msgstr "Land och språk"
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Land och språkdetaljer för {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Redigera landet på kompatibilitetssidan"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
@@ -4697,7 +4724,7 @@ msgstr "standard"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Redigera språk i din apps manifest-fil"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -4718,6 +4745,9 @@ msgid ""
 "you have different addresses for each language multiple translations of this "
 "field can be added."
 msgstr ""
+"Den e-postadress som används av slutanvändare för att kontakta dig med "
+"supportfrågor. Om du har olika adresser för varje språk, flera "
+"översättningar av detta fält kan läggas till."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39
 #: mkt/reviewers/templates/reviewers/includes/details.html:107
@@ -4731,6 +4761,9 @@ msgid ""
 "website is localized into other languages, multiple translations of this "
 "field can be added."
 msgstr ""
+"Om din app har en supportwebbplats eller forum, skriver du in adressen här. "
+"Om din webbplats är översatt till andra språk, kan flera översättningar av "
+"detta fält läggas till."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4750,28 +4783,32 @@ msgid ""
 "If your app uses Flash, it will be hidden from the Marketplace on devices "
 "without Flash support."
 msgstr ""
+"Om din app använder Flash, kommer den att döljas från Marketplace på enheter "
+"utan Flash-stöd."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:35
 msgid "Public Stats?"
-msgstr ""
+msgstr "Publik statistik?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid ""
 "Whether the install and usage stats of your app can be displayed in our "
 "online viewer."
 msgstr ""
+"Huruvida installations- och användningsstatistik för din app kan visas i vår "
+"visare online."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:40
 msgid "This app's stats are publicly viewable."
-msgstr ""
+msgstr "Det här appens statistik är publik."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:42
 msgid "No, this app's stats are not publicly viewable."
-msgstr ""
+msgstr "Nej, den här appens statistik är inte publik."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "This app does not require any device features"
-msgstr ""
+msgstr "Denna app kräver inga funktioner på enheten"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4783,10 +4820,13 @@ msgid ""
 "displayed nearly everywhere your app is. Uploaded images must be one of the "
 "following image types: .png, .jpg"
 msgstr ""
+"Ladda upp en ikon för din app eller välj en från våra. Ikonen visas nästan "
+"överallt där din app är. Uppladdade bilder måste vara ett av följande "
+"bildtyper: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "Välj en ikon för din app:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -4795,7 +4835,7 @@ msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
-msgstr ""
+msgstr "Används på söksidor, listsidor och hemsidan."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -4813,7 +4853,7 @@ msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
-msgstr ""
+msgstr "Används i listor över appar, som sökresultat och rekommenderade appar."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -5053,12 +5093,12 @@ msgstr "Hämta testplan"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Testning klar?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Skicka in din app för att förinstalleras"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -8318,7 +8358,7 @@ msgstr "Minikrav app"
 
 #: mkt/submit/templates/submit/manifest.html:107
 msgid "<b>What's next:</b> fill out the rest of your app's details"
-msgstr "<b>Vad händer nu:</b> fyll i resten av din apps detaljer"
+msgstr "<b>Vad är nästa steg:</b> fyll i resten av din apps detaljer"
 
 #: mkt/submit/templates/submit/manifest.html:121
 msgid "Learn more about <b>packaged apps</b> on MDN."
@@ -8402,11 +8442,11 @@ msgstr ""
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Vad är nästa steg:</strong> Konfigurera %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>What's next:</strong> Publicera din app"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
@@ -8494,6 +8534,8 @@ msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
 msgstr ""
+"Du har osparade ändringar i <b>{0}</b> språkversionen. Vill du spara "
+"ändringarna innan du byter språkversion?"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
