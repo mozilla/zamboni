@@ -147,6 +147,8 @@ def _fxa_authorize(fxa, client_secret, request, auth_response, userid):
             record_action('new-user', request)
 
         if profile.source != amo.LOGIN_SOURCE_FXA:
+            log.info('Set account to FxA for {0}'.format(email))
+            statsd.incr('z.mkt.user.fxa')
             profile.update(source=amo.LOGIN_SOURCE_FXA)
 
         auth.login(request, profile)
