@@ -337,7 +337,8 @@ class FeedShelfPublishView(CORSMixin, APIView):
     """
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
-    permission_classes = [GroupPermission('Feed', 'Curate')]
+    permission_classes = [AnyOf(OperatorShelfAuthorization,
+                                GroupPermission('Feed', 'Curate'))]
     cors_allowed_methods = ('delete', 'put',)
 
     def get_object(self, pk):
