@@ -38,7 +38,7 @@ def validate_settings():
             raise ImproperlyConfigured('{0} must be changed from default'
                                        .format(key))
 
-    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
+    for key in ('CSP_SCRIPT_SRC',):
         for url in getattr(settings, key):
             # We will allow loading of resources from the current site.
             if url.startswith('http://') and url != settings.SITE_URL:
@@ -78,7 +78,8 @@ def update_csp():
     """
     After settings, including DEBUG has loaded, see if we need to update CSP.
     """
-    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
+    # This list will expand as we implement more CSP enforcement
+    for key in ('CSP_SCRIPT_SRC',):
         values = getattr(settings, key)
         new = set()
         for value in values:

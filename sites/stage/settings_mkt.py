@@ -14,10 +14,7 @@ BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 
-CSP_STATIC_URL = STATIC_URL[:-1]
-CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
-CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
+CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'

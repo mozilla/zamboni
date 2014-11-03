@@ -575,35 +575,16 @@ COMMONPLACE_REPOS_APPCACHED = []
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
-CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
-CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = (
-    "'self'",
-    'https://*.google-analytics.com',
-    'https://*.newrelic.com',
-    'data:'
-)
+CSP_DEFAULT_SRC = ("*","data:")
 CSP_SCRIPT_SRC = (
     "'self'",
     'https://*.persona.org',
     'https://*.google-analytics.com',
     'https://*.newrelic.com',
 )
-CSP_STYLE_SRC = ("'self'",)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = (
-    "'self'",
-    "https://videos-cdn.mozilla.net"
-)
-CSP_FRAME_SRC = (
-    'https://s3.amazonaws.com',
-    'https://ssl.google-analytics.com',
-    'https://*.persona.org',
-    'https://www.youtube.com',
-)
-CSP_FONT_SRC = ("'self'", 'fonts.mozilla.org', 'www.mozilla.org',)
 
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
