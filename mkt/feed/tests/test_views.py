@@ -1227,9 +1227,9 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         super(TestFeedShelfPublishView, self).setUp()
         self.shelf = self.feed_shelf_factory()
         self.url = reverse('api-v2:feed-shelf-publish', args=[self.shelf.id])
-        self.feed_permission()
 
     def test_publish(self):
+        self.feed_permission()
         res = self.client.put(self.url)
         data = json.loads(res.content)
         eq_(res.status_code, 201)
@@ -1240,7 +1240,27 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
             mkt.regions.REGIONS_CHOICES_ID_DICT[self.shelf.region].slug)
         eq_(data['shelf']['id'], self.shelf.id)
 
+    def test_publish_anon(self):
+        res = self.client.put(self.url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 403)
+
+    def test_publish_no_obj_permission(self):
+        res = self.client.put(self.url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 403)
+
+    def test_publish_obj_permission(self):
+        carrier = mkt.carriers.CARRIER_CHOICE_DICT[self.shelf.carrier]
+        region = mkt.regions.REGIONS_CHOICES_ID_DICT[self.shelf.region]
+        OperatorPermission.objects.create(user=self.user, region=region.id,
+                                          carrier=carrier.id)
+        res = self.client.put(self.url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 201)
+
     def test_publish_overwrite(self):
+        self.feed_permission()
         self.client.put(self.url)
         eq_(FeedItem.objects.count(), 1)
         ok_(FeedItem.objects.filter(shelf_id=self.shelf.id).exists())
@@ -1252,6 +1272,7 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_(FeedItem.objects.filter(shelf_id=new_shelf.id).exists())
 
     def test_unpublish(self):
+        self.feed_permission()
         # Publish.
         self.client.put(self.url)
         eq_(FeedItem.objects.count(), 1)
@@ -1263,6 +1284,7 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         eq_(res.status_code, 204)
 
     def test_404(self):
+        self.feed_permission()
         self.url = reverse('api-v2:feed-shelf-publish', args=[8008135])
         res = self.client.put(self.url)
         eq_(res.status_code, 404)
