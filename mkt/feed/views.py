@@ -7,7 +7,7 @@ from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
 from PIL import Image
-from rest_framework import generics, response, status, viewsets
+from rest_framework import exceptions, generics, response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.response import Response
@@ -337,15 +337,25 @@ class FeedShelfPublishView(CORSMixin, APIView):
     """
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
-    permission_classes = [AnyOf(OperatorShelfAuthorization,
-                                GroupPermission('Feed', 'Curate'))]
+    permission_classes = []
     cors_allowed_methods = ('delete', 'put',)
 
     def get_object(self, pk):
         if pk.isdigit():
-            return FeedShelf.objects.get(pk=pk)
+            obj = FeedShelf.objects.get(pk=pk)
         else:
-            return FeedShelf.objects.get(slug=pk)
+            obj = FeedShelf.objects.get(slug=pk)
+
+        # Because APIView doesn't use object level permissions, we need to
+        # check them manually.
+        permission_classes = [OperatorShelfAuthorization,
+                              GroupPermission('Feed', 'Curate')]
+        if not any([c().has_object_permission(self.request, self, obj) for c
+                    in permission_classes]):
+            raise exceptions.PermissionDenied()
+
+        # self.check_object_permissions(self.request, obj)
+        return obj
 
     def put(self, request, *args, **kwargs):
         try:
