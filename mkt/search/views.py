@@ -17,7 +17,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
 from mkt.api.paginator import ESPaginator
-from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
+from mkt.search.forms import ApiSearchForm
 from mkt.translations.helpers import truncate
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,

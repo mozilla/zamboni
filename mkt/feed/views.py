@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 
+import commonware
 from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
@@ -38,6 +39,9 @@ from .serializers import (FeedAppESSerializer, FeedAppSerializer,
                           FeedCollectionESSerializer, FeedCollectionSerializer,
                           FeedItemESSerializer, FeedItemSerializer,
                           FeedShelfESSerializer, FeedShelfSerializer)
+
+
+log = commonware.log.getLogger('z.feed')
 
 
 class ImageURLUploadMixin(viewsets.ModelViewSet):
@@ -473,7 +477,8 @@ class BaseFeedESView(CORSMixin, APIView):
             }, app_ids=app_ids)
 
         # Store the apps to attach to feed elements later.
-        apps = sq.execute().hits
+        with statsd.timer('mkt.feed.views.apps_query'):
+            apps = sq.execute().hits
         return dict((app.id, app) for app in apps)
 
     def filter_feed_items(self, request, feed_items):
@@ -703,7 +708,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
                                     region=region, carrier=carrier,
                                     original_region=original_region)
-        feed_items = self.paginate_queryset(sq)
+        # The paginator triggers the ES request.
+        with statsd.timer('mkt.feed.view.feed_query'):
+            feed_items = self.paginate_queryset(sq)
         feed_ok = self._check_empty_feed(feed_items, rest_of_world)
         if feed_ok != 1:
             return self._handle_empty_feed(feed_ok, region, request, args,
@@ -725,7 +732,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         apps = []
         sq = self.get_es_feed_element_query(
             Search(using=es, index=self.get_feed_element_index()), feed_items)
-        for feed_elm in sq.execute().hits:
+        with statsd.timer('mkt.feed.view.feed_element_query'):
+            feed_elements = sq.execute().hits
+        for feed_elm in feed_elements:
             # Store the feed elements to attach to FeedItems later.
             feed_element_map[feed_elm['item_type']][feed_elm['id']] = feed_elm
             # Store the apps to retrieve later.
@@ -735,17 +744,21 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         app_map = self.get_apps(request, apps)
 
         # Super serialize.
-        feed_items = FeedItemESSerializer(feed_items, many=True, context={
-            'app_map': app_map,
-            'feed_element_map': feed_element_map,
-            'request': request
-        }).data
+        with statsd.timer('mkt.feed.view.serialize'):
+            feed_items = FeedItemESSerializer(feed_items, many=True, context={
+                'app_map': app_map,
+                'feed_element_map': feed_element_map,
+                'request': request
+            }).data
 
         # Filter excluded apps. If there are feed items that have all their
         # apps excluded, they will be removed from the feed.
         feed_items = self.filter_feed_items(request, feed_items)
         feed_ok = self._check_empty_feed(feed_items, rest_of_world)
         if feed_ok != 1:
+            if not rest_of_world:
+                log.warn('Feed empty for region {0}. Requerying feed with '
+                         'region=RESTOFWORLD'.format(region))
             return self._handle_empty_feed(feed_ok, region, request, args,
                                            kwargs)
 
