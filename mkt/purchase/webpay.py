@@ -43,7 +43,9 @@ def prepare_pay(request, addon):
     if addon.is_premium() and addon.has_purchased(request.user):
         log.info('Already purchased: %d' % addon.pk)
         raise AlreadyPurchased
+    return _prepare_pay(request, addon)
 
+def _prepare_pay(request, addon):
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
 

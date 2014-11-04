@@ -1587,6 +1587,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
+        from mkt.developers.providers import ALL_PROVIDERS
+        if not provider:
+            provider = ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider
+
         if self.has_premium() and self.premium.price:
             return self.premium.price.get_price(carrier=carrier, region=region,
                                                 provider=provider)

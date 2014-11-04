@@ -57,6 +57,7 @@ from mkt.developers.utils import (check_upload, escalate_prerelease_permissions,
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
+from mkt.purchase.webpay import _prepare_pay
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (json_view, login_required, permission_required,
                                  skip_cache, write)
@@ -1107,11 +1108,7 @@ def debug(request, addon):
     }
 
     if addon.is_premium():
-        contribution = Contribution.objects.create(addon=addon)
-        context['app_jwt'] = get_product_jwt(
-            WebAppProduct(addon),
-            contribution,
-        )['webpayJWT']
+        context['app_jwt'] = _prepare_pay(request, addon)['webpayJWT']
 
         for inapp in addon.inappproduct_set.all():
             contribution = Contribution.objects.create(
