@@ -100,29 +100,32 @@ def site_config(request):
     A resource that is designed to be exposed externally and contains
     settings or waffle flags that might be relevant to the client app.
     """
-    def data(cls):
+    def serialized_data(cls):
         as_list = cls(cls.Meta.model.objects.all().order_by('name'),
                       many=True).data
         return dict((d['name'], d) for d in as_list)
 
-    # For Commonplace, we just want a simple list of active switches.
-    switches = []
+    # For Commonplace, we don't need settings or version, we just want a simple
+    # list of active waffle switches, we don't even care about flags.
     if request.GET.get('serializer') == 'commonplace':
-        switches = [str(s) for s in
+        data = {
+            'waffle': {
+                'switches': list(
                     waffle.models.Switch.objects.filter(active=True)
-                                        .values_list('name', flat=True)]
+                                        .values_list('name', flat=True))
+            }
+        }
     else:
-        switches = data(SwitchSerializer)
+        data = {
+            'settings': get_settings(),
+            'version': getattr(settings, 'BUILD_ID_JS', ''),
+            'waffle': {
+                'switches': serialized_data(SwitchSerializer),
+                'flags': serialized_data(FlagSerializer)
+            }
+        }
 
-    data = {
-        'settings': get_settings(),  # Git commit on IT servers.
-        'version': getattr(settings, 'BUILD_ID_JS', ''),
-        'waffle': {
-            'flags': data(FlagSerializer),
-            'switches': switches
-        },
-    }
-
+    # Always include FxA info, all projects need it.
     if waffle.switch_is_active('firefox-accounts'):
         fxa_auth_state, fxa_auth_url = fxa_auth_info()
         data['fxa'] = {
