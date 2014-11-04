@@ -28,7 +28,6 @@ class Command(BaseCommand):
                     action='store_const',
                     const=domains['prod'],
                     dest='domain',
-                    default=domains['prod'],
                     help='Use prod as source of data.'),
         make_option('--stage',
                     action='store_const',
@@ -39,6 +38,7 @@ class Command(BaseCommand):
                     action='store_const',
                     const=domains['dev'],
                     dest='domain',
+                    default=domains['dev'],
                     help='Use use dev as source of data.'),
         make_option('--altpay',
                     action='store_const',
@@ -59,7 +59,7 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **kw):
-
+        print "Loading prices from: {0}".format(kw['domain'])
         data = requests.get(kw['domain'] + endpoint).json()
 
         if kw['delete']:
