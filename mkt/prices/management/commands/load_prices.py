@@ -59,7 +59,7 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **kw):
-        print "Loading prices from: {0}".format(kw['domain'])
+        print 'Loading prices from: {0}'.format(kw['domain'])
         data = requests.get(kw['domain'] + endpoint).json()
 
         if kw['delete']:
