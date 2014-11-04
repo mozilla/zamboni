@@ -37,6 +37,7 @@ from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm, MANIFEST_CONTENT_TYPE
 from mkt.constants.features import FeatureProfile
@@ -4078,14 +4079,15 @@ class TestAdditionalReviewListingAccess(amo.tests.TestCase):
         eq_(self.listing().status_code, 200)
 
 
-class TestReviewHistory(amo.tests.TestCase):
+class TestReviewHistory(amo.tests.TestCase, CommTestMixin):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.app = app_factory()
+        self.app = self.addon = app_factory()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.login('editor@mozilla.com')
         self.create_switch('comm-dashboard')
+        self._thread_factory()
 
     def test_comm_url(self):
         r = self.client.get(self.url)
@@ -4093,17 +4095,19 @@ class TestReviewHistory(amo.tests.TestCase):
         eq_(doc('#history .item-history').attr('data-comm-thread-url'),
             reverse('comm-thread-list') + '?limit=1&app=' + self.app.app_slug)
 
-    def test_comm_url_multiple_version(self):
-        version_factory(addon=self.app)
+    def test_comm_url_multiple_thread(self):
+        self._thread_factory()
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#history .item-history').attr('data-comm-thread-url'),
             reverse('comm-thread-list') + '?limit=2&app=' + self.app.app_slug)
 
     def test_comm_url_no_encode(self):
-        app = app_factory(app_slug='&#21488;&#21271;')
-        url = reverse('reviewers.apps.review', args=[app.app_slug])
+        self.addon = app_factory(app_slug='&#21488;&#21271;')
+        self._thread_factory()
+        url = reverse('reviewers.apps.review', args=[self.addon.app_slug])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('#history .item-history').attr('data-comm-thread-url'),
-            reverse('comm-thread-list') + '?limit=1&app=' + app.app_slug)
+            reverse('comm-thread-list') + '?limit=1&app=' +
+            self.addon.app_slug)
