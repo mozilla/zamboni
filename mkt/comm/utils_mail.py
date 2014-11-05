@@ -159,7 +159,9 @@ class CommEmailParser(object):
                     payload = part.get_payload()
                     break
 
-        payload = quopri.decodestring(payload)  # Decode quoted-printable data.
+        # Decode quoted-printable data and remove non-breaking spaces.
+        payload = (quopri.decodestring(payload)
+                         .replace('\xc2\xa0', ' '))
         payload = self.extra_email_reply_parse(payload)
         self.reply_text = EmailReplyParser.read(payload).reply
 
@@ -169,15 +171,14 @@ class CommEmailParser(object):
         followed by headers like "From: app-reviewers@mozilla.org" and strips
         that part out.
         """
-        email = email.replace('\xc2\xa0', ' ')  # Remove non-breaking spaces.
         email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
-        email = email_header_re.split(email)
-        if email[0].startswith('From: '):
+        split_email = email_header_re.split(email)
+        if split_email[0].startswith('From: '):
             # In case, it's a bottom reply, return everything.
             return email
         else:
             # Else just return the email reply portion.
-            return email[0]
+            return split_email[0]
 
     def _get_address_line(self):
         return parseaddr(self.email['to']) or parseaddr(self.email(['reply']))
