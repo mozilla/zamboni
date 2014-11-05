@@ -1,3 +1,4 @@
+from datetime import datetime
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
@@ -15,6 +16,7 @@ log = commonware.log.getLogger('z.users')
 
 def get_user_ids(is_developers):
     developer_ids = (AddonUser.objects
+                     .filter(user__last_login_attempt__gt=datetime(2014, 4, 30))
                      .values_list('user_id', flat=True)
                      .distinct())
     if is_developers:
@@ -22,6 +24,7 @@ def get_user_ids(is_developers):
 
     user_ids = (UserProfile.objects
                 .exclude(source=LOGIN_SOURCE_FXA)
+                .filter(last_login_attempt__gt=datetime(2014, 4, 30))
                 .values_list('id', flat=True))
     return list(set(user_ids).difference(set(developer_ids)))
 
