@@ -145,7 +145,7 @@ PRE_GENERATE_APK_URL = \
 BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'
 
 PREVERIFIED_ACCOUNT_KEY = private_mkt.PREVERIFIED_ACCOUNT_KEY
-FXA_AUTH_DOMAIN = 'accounts.firefox.com'
+FXA_AUTH_DOMAIN = 'api.accounts.firefox.com'
 FXA_OAUTH_URL = 'https://oauth.accounts.firefox.com'
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
 FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')
