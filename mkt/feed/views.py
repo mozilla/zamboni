@@ -757,8 +757,8 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         feed_ok = self._check_empty_feed(feed_items, rest_of_world)
         if feed_ok != 1:
             if not rest_of_world:
-                log.warn('Feed empty for region {0}. Requerying feed with '
-                         'region=RESTOFWORLD'.format(region))
+                log.warning('Feed empty for region {0}. Requerying feed with '
+                            'region=RESTOFWORLD'.format(region))
             return self._handle_empty_feed(feed_ok, region, request, args,
                                            kwargs)
 
