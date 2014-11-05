@@ -10,51 +10,10 @@
     <link rel="icon" href="{{ media('fireplace/img/logos/64.png') }}" sizes="64x64">
     <link rel="icon" href="{{ media('fireplace/img/logos/32.png') }}" sizes="32x32">
 
-    {% if settings.DEBUG and repo == 'fireplace' %}
-      <link rel="stylesheet" href="{{ media('fireplace/css/splash.styl.css') }}">
-
-      <!-- These styles need to come first. -->
-      <link rel="stylesheet" href="{{ media('fireplace/css/reset.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/typography.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/site.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/header.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/navbar.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/category-icons.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/listing.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/tiles.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/infobox.styl.css') }}">
-
-      <!-- These styles don't need to be in an order. -->
-      <link rel="stylesheet" href="{{ media('fireplace/css/account.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/app-list.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/buttons.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/categories.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/category-dropdown-desktop.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/compat-filtering.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/detail-content-ratings.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/detail.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/error-screens.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/feed.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/feedback.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/forms.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/form-modal.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/lightbox.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/menu.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/modal.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/nominate.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/notification.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/promo-grid.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/pretty-select.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/purchase.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/ratings.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/search.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/site-banner.styl.css') }}">
-    {% else %}
-      {% if include_splash -%}
-        <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
-      {% endif -%}
-      <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
-    {% endif %}
+    {% if include_splash -%}
+      <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
+    {% endif -%}
+    <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
 
     <link title="Firefox Apps"
           rel="search" type="application/opensearchdescription+xml"
@@ -102,11 +61,7 @@
       <script src="https://dme0ih8comzn4.cloudfront.net/js/feather.js"></script>
     {% endif %}
 
-    {% if settings.DEBUG and repo == 'fireplace' %}
-      <script type="text/javascript" data-main="/media/fireplace/js/main" src="{{ media('fireplace/js/lib/require.js') }}"></script>
-    {% else %}
-      <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
-    {% endif %}
+    <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
     {{ newrelic_footer()|safe if repo == 'fireplace' }}
   </body>
 </html>
