@@ -704,10 +704,9 @@ FXA_OAUTH_URL = 'https://oauth-' + FXA_AUTH_DOMAIN
 FXA_MIGRATION_URL = '/fxa-migration'
 FXA_CSS_PATH = 'fireplace/css/fxa.css'
 
-if DEBUG:
-    # In DEBUG mode, don't require HTTPS for FxA oauth redirects.
-    import os
-    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+# Development environments don't use HTTPS, so we disable oauthlib's URL check.
+# Production environments have HTTPS managed by ops so this check is unneeded.
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 # GeoIP server settings
 # This flag overrides the GeoIP server functions and will force the
