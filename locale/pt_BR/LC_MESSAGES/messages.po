@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-05-28 17:45+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-11-06 22:28+0000\n"
+"Last-Translator: Nanci <nancibonfim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1401299110.0\n"
+"X-POOTLE-MTIME: 1415312886.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -292,11 +292,11 @@ msgstr "Manifesto de {addon} atualizado."
 
 #: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} aprovado mas privado."
 
 #: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:49
 msgid "Approved but private"
-msgstr ""
+msgstr "Aprovado mas privado"
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
@@ -340,11 +340,11 @@ msgstr "Encaminhado para análise superior removido"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} banido."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "Aplicativo banido"
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
@@ -436,19 +436,21 @@ msgstr "VIP auto-escalado"
 
 #: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} revisado novamente devido à alteração da URL do manifesto."
 
 #: apps/amo/log.py:530
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Alteração da URL do manifesto"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"{addon} foi escalado automaticamente porque é um aplicativo em "
+"pré-lançamento."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Auto-escalamento de pré-lançamento"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
@@ -538,11 +540,11 @@ msgstr "Revisão Prioritária"
 
 #: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} passou na revisão {queue}."
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} falhou na revisão {queue}."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -606,7 +608,7 @@ msgstr "O campo deve ter pelo menos {num} caracteres."
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "O código do idioma {lang_code} é inválido."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -674,7 +676,7 @@ msgstr "Anexo excede o tamanho máximo de %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1728,7 +1730,7 @@ msgstr "Publicado"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Banido do Marketplace"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1740,7 +1742,7 @@ msgstr "Bloqueado"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Não listada"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -1912,11 +1914,11 @@ msgstr "Nenhuma ação"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "Banido"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Comentário do revisor"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1932,63 +1934,63 @@ msgstr "Encaminhamos devido aos altos pedidos de reembolso"
 
 #: mkt/constants/comm.py:54
 msgid "App submission notes"
-msgstr ""
+msgstr "Notas do envio do aplicativo"
 
 #: mkt/constants/comm.py:55
 msgid "Developer comment"
-msgstr ""
+msgstr "Comentário do desenvolvedor"
 
 #: mkt/constants/comm.py:56
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Dispositivo(s) alterado(s) pelo revisor"
 
 #: mkt/constants/comm.py:57
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Requisito(s) alterado(s) pelo revisor"
 
 #: mkt/constants/comm.py:58
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Nova revisão devido a alteração do manifesto"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Nova revisão devido a alteração da URL do manifesto"
 
 #: mkt/constants/comm.py:60
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Nova revisão devido à atualização tipo prémio"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Nova revisão devido à adição de dispositivos"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Nova revisão devido a Alteração dos Requisitos"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Nova revisão devido a classificaçao de conteúdo para adulto"
 
 #: mkt/constants/comm.py:64
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Escalado devido a Aplicativo VIP"
 
 #: mkt/constants/comm.py:65
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Escalado devido ao pré-lançamento do aplicativo"
 
 #: mkt/constants/comm.py:66
 msgid "Priority review requested"
-msgstr ""
+msgstr "Revisão prioritária solicitada"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "Passou na revisão adicional"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "Falhou na revisão adicional"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2570,6 +2572,8 @@ msgstr "Ops, parece que você já enviou esse manifesto para %s, que foi rejeita
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Ops, parece que já enviou esse manifesto para %s, que atualmente está banido "
+"no Marketplace. <a href=\"%s\">Editar aplicativo</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2613,7 +2617,7 @@ msgstr "O identificador não pode ser \"%s\". Por favor, escolha outro."
 
 #: mkt/developers/forms.py:632
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "A URL do manifesto foi alterada de {before_url} para {after_url}"
 
 #: mkt/developers/forms.py:654
 msgid "Please specify your app's Privacy Policy"
@@ -2630,18 +2634,22 @@ msgstr "Seus comentários"
 #: mkt/developers/forms.py:757
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Publicada</b>: Visível para todos no Marketplace e incluída em resultados "
+"de pesquisa e páginas de listagem."
 
 #: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Não listada</b>: Visível só para as pessoas com a URL e não aparece nos "
+"resultados de pesquisa e páginas de listagem."
 
 #: mkt/developers/forms.py:777
 msgid "App Visibility:"
-msgstr ""
+msgstr "Visibilidade do aplicativo:"
 
 #: mkt/developers/forms.py:780
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Limitar ao meu time</b>: Visível apenas a membros do time."
 
 #: mkt/developers/forms.py:821
 msgid "Choose the regions your app will be listed in:"
@@ -2723,15 +2731,17 @@ msgstr "Para"
 
 #: mkt/developers/forms.py:1113
 msgid "Web site"
-msgstr ""
+msgstr "Website"
 
 #: mkt/developers/forms.py:1114
 msgid "Command line"
-msgstr ""
+msgstr "Linha de comandos"
 
 #: mkt/developers/forms.py:1135
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Fazer esta a versão ativa do meu aplicativo assim que for revisado e "
+"aprovado."
 
 #: mkt/developers/forms.py:1162
 msgid ""
@@ -2755,7 +2765,7 @@ msgstr "Arquivo muito grande. Mantenha o tamanho abaixo de %s. Tamanho atual %s.
 
 #: mkt/developers/forms.py:1198
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "O tipo do arquivo {0} é inválido. Apenas arquivos {1} são suportados."
 
 #: mkt/developers/forms.py:1222
 msgid "Please enter a valid submission ID."
@@ -2811,7 +2821,7 @@ msgstr "Não é uma atualização"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Nome do titular da conta bancária "
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2949,7 +2959,7 @@ msgstr "Meus envios"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Doar para {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3095,7 +3105,7 @@ msgstr "Versão editada com sucesso."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "A versão for marcada como ativa com sucesso."
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3171,7 +3181,7 @@ msgstr "Nenhuma conta de pagamento para esse aplicativo."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "API do Marketplace"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3190,7 +3200,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Tipo de cliente"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3206,7 +3216,7 @@ msgstr "Criar"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Chaves OAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3228,11 +3238,13 @@ msgstr "Atualmente você não possui uma chave da API."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Exemplo OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemplo usando uma biblioteca Python na linha de comando no Mac OS X com "
+"as suas credenciais OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -3268,7 +3280,7 @@ msgstr "Mensagem do dia"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Atualizar Mensagem do Dia"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
@@ -3503,7 +3515,7 @@ msgstr "Membros da equipe"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Apenas o proprietário do aplicativo pode editar esta página."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -3547,7 +3559,7 @@ msgstr "Pode ver as configurações do aplicativo, mas não pode fazer nenhuma a
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Pode ver as configurações do aplicativo"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3586,11 +3598,13 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Este aplicativo foi <b>banido do Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Seu aplicativo foi banido por um administrado do site. Se tiver alguma "
+"dúvida, por favor contate %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3607,12 +3621,12 @@ msgstr "Esse aplicativo foi <b>rejeitado</b> por um editor do Firefox Marketplac
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "A versão <b>{0}</b> do seu aplicativo está <b>{1}</b> e <b>Ativo</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "A versão <b>{0}</b> do seu aplicativo está <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3624,31 +3638,38 @@ msgstr "Você receberá um e-mail quando a análise estiver completa."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Este aplicativo foi <b>publicado</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
 msgstr ""
+"Seu aplicativo foi <b>aprovado</b> e no momento <b>não está listado</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Apenas os usuários com a seguinte URL podem ver e instalar este "
+"aplicativo:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"Seu aplicativo foi <b>aprovado</b> e neste momento é visível apenas para os "
+"membros do time."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Apenas os <b>membros do time</b> com a seguinte URL podem ver e instalar "
+"este aplicativo:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Saiba mais sobre os critérios de revisão de aplicativos"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Atualizar visibilidade do aplicativo"
 
 #: mkt/developers/templates/developers/apps/status.html:148
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3688,7 +3709,7 @@ msgstr "Baixar"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
-msgstr ""
+msgstr "Ativar"
 
 #: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
@@ -3697,6 +3718,8 @@ msgstr "Enviar versão nova"
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
+"Enviar uma nova versão empacotada deste aplicativo. Novas versões têm de ser "
+"revisadas antes de serem disponibilizadas para instalação."
 
 #: mkt/developers/templates/developers/apps/status.html:259
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3709,23 +3732,23 @@ msgstr "Continuar"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "Seu aplicativo é mostrado em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "Seu aplicativo não é mostrado em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Você não pediu a revisão com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "Seu aplicativo está aguardando revisão."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
@@ -4064,6 +4087,10 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Por favor, tente não alterar frequentemente a sua URL do manifesto. Se mudar "
+"a URL do manifesto, os usuários existentes não serão atualizados para usar "
+"a nova URL do manifesto. Para mais informações, leia a <a href=\"%(doc_url)s\" "
+"target=\"_blank\">documentação sobre a atualização de aplicativos</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:151
 msgid "Description"
@@ -4438,7 +4465,7 @@ msgstr "Alterar aparelhos"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Definir a classificação de conteúdo</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4689,15 +4716,20 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Ativar"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Seu aplicativo deve estar empacotado e ter uma  <a href=\"%"
+"(origin)s\">origem</a> especificada para usar este sistema de pagamentos no "
+"aplicativo."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Seu aplicativo deve indicar uma <a href=\"%(origin)s\">origem</a> no seu "
+"manifesto para que os recibos possam ser devidamente verificados."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -4717,11 +4749,11 @@ msgstr "Faixa de Preço"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
-msgstr ""
+msgstr "ID do produto"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
-msgstr ""
+msgstr "Adicionar um produto"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -5103,15 +5135,19 @@ msgstr "Medalhas, banners e ícones"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "Desenvolva aplicativos web em HTML5 para uma loja aberta."
+msgstr "Desenvolva aplicativos web HTML5 para uma loja aberta."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Saiba como criar aplicativos que oferecam uma experiência ao usuário otimizada para o Firefox OS."
+msgstr ""
+"Saiba como criar aplicativos que oferecam uma experiência otimizada ao "
+"usuário do Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr "Todas as ferramentas, documentos e referências que você precisa para desenvolvimento e testar o seu aplicativo"
+msgstr ""
+"Todas as ferramentas, documentos e referências que precisa para desenvolver "
+"e testar o seu aplicativo"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
@@ -5135,7 +5171,10 @@ msgstr "Veja quem já está aqui"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "Você é uma companhia Web, de serviços ou fabricante procurando uma parceria com a Mozilla? <a href=\"%(partner_url)s\">Confira nossa página de Parcerias para mais informações.</a>"
+msgstr ""
+"Tem uma empresa web, de serviços ou  é um fabricante procurando parceria com "
+"a Mozilla? <a href=\"%(partner_url)s\">Confira nossa página de parceiros para "
+"mais informações.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -5162,20 +5201,28 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
-"O Firefox Marketplace oferece aos usuários a oportunidade de encontrar, experimentar e comprar aplicativos e conteúdo que mais importa para eles. Isso significa Aplicativos emocionante, úteis e de "
-"alta qualidade relevantes para os mercados locais em todas as categorias que os usuários podem usar para obter o máximo proveito de suas vidas diárias."
+"O Firefox Marketplace dá aos usuários a oportunidade de encontrar, "
+"experimentar e comprar aplicativos e conteúdo que mais lhe interessam. Isso "
+"significa Aplicativos emocionante, úteis e de alta qualidade, adaptados aos "
+"mercados locais em todas as categorias que os usuários podem usar no seu "
+"cotidiano."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
-"O alcance global da Mozilla estende-se a centenas de milhões de usuários do Firefox em todo o mundo. Através de uma curadoria inteligente e eficaz do Marketplace e utilização dos canais de "
-"marketing da Mozilla, a Mozilla pode ajudar os desenvolvedores a levarem os seua aplicativos para as mãos de seus usuários-alvo em todo o mundo."
+"O alcance global da Mozilla estende-se a centenas de milhões de usuários do "
+"Firefox em todo o mundo. Através de uma analise inteligente e eficaz do "
+"Marketplace e utilização dos canais de marketing, a Mozilla pode ajudar os "
+"desenvolvedores a levarem os seus aplicativos para as mãos de seus usuários "
+"alvo em todo o mundo."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr "O Firefox Marketplace está aberto agora e aceitar aplicativo. Envie o seu aplicativo para:"
+msgstr ""
+"O Firefox Marketplace está aberto e aceitando aplicativo. Envie o seu "
+"aplicativo para:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -5183,7 +5230,7 @@ msgstr "Teste seu aplicativo com um grupo comprometido de usuários."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
-msgstr "Criar uma base de usuários e ganhar popularidade."
+msgstr "Crie uma base de usuários e ganhe popularidade."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
@@ -5196,7 +5243,9 @@ msgstr "Aplicativos e Hacks"
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
-"Assine no nosso boletim informativo mensal sobre o Firefox OS, Marketplace e do ecossistema de aplicativos. <a href=\"%(dev_phone_url)s\">Confira o preview do aparelho para desenvolvedores</a>"
+"Assine o nosso boletim informativo mensal sobre o Firefox OS, Marketplace e "
+"o ecossistema de aplicativos. <a href=\"%(dev_phone_url)s\">Confira o "
+"pré-lançamento do aparelho para desenvolvedores</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -5212,7 +5261,9 @@ msgstr "Eventos e Encontros"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr "Concordo que a Mozilla lide com meus dados conforme explicado na <a href=\"%(privacy_link)s\">Política de privacidade</a>."
+msgstr ""
+"Concordo que a Mozilla trate essas informações conforme explicado na <a "
+"href=\"%(privacy_link)s\">política de privacidade</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
@@ -5764,7 +5815,7 @@ msgstr "Data de envio"
 
 #: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:173
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:76
 msgid "Review Prioritized"
@@ -6143,7 +6194,7 @@ msgstr "Apagar análise"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Ainda não revisado"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6387,6 +6438,7 @@ msgstr "Aprovar"
 #: mkt/reviewers/utils.py:454
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr ""
+"Isto irá aprovar o aplicativo e permitir que o(s) autor(es) o publiquem."
 
 #: mkt/reviewers/utils.py:458 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
@@ -6711,7 +6763,7 @@ msgstr "por"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Fila de revisão {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -7215,7 +7267,7 @@ msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Versão %s já existe."
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
@@ -7661,6 +7713,8 @@ msgstr ""
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
 msgstr ""
+"Quando a transição de Persona para Contas Firefox estiver pronta, você "
+"receberá um e-mail com um link de ativação."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""

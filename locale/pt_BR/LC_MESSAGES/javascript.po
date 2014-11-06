@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-06-01 21:12+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-10-28 12:41+0000\n"
+"Last-Translator: Nanci <nancibonfim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401657159.0\n"
+"X-POOTLE-MTIME: 1414500062.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "O tipo de arquivo que você enviou não foi reconhecido."
+msgstr "O tipo de arquivo enviado não é reconhecido."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
@@ -165,11 +165,11 @@ msgstr "Digite o endereço de e-mail de um novo membro da equipe"
 
 #: media/js/devreg/devhub.js:478
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifesto atualizado"
 
 #: media/js/devreg/devhub.js:483
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Não foi possível atualizar o manifesto. Tente novamente mais tarde."
 
 #: media/js/devreg/devhub.js:664
 msgid "There was an error uploading your file."
@@ -201,11 +201,11 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Ativado"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Desativado"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -225,11 +225,11 @@ msgstr "O login com Persona falhou. O servidor está passando por problemas."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "O estado foi alterado com sucesso para \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Não foi possível alterar o estado para \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -363,7 +363,7 @@ msgstr "Pesquisar complementos com <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Algo deu errado. Por favor, tente novamente."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -546,15 +546,17 @@ msgstr "Erro ao rejeitar o aplicativo"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Error ao validar o aplicativo: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Erro ao invalidar o aplicativo: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Desculpa! Tivemos um erro ao buscar o histórico da revisão. Por favor tente "
+"iniciar sessão novamente.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
