@@ -18,6 +18,7 @@ import newrelic.agent
 import waffle
 from cache_nuggets.lib import memoize
 
+from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
 
 
@@ -120,7 +121,11 @@ def commonplace(request, repo, **kwargs):
         # native fxa already provides navigator.id, and fallback fxa doesn't
         # need it.
         include_persona = False
-        site_settings = {}
+        fxa_auth_state, fxa_auth_url = fxa_auth_info()
+        site_settings = {
+            'fxa_auth_state': fxa_auth_state,
+            'fxa_auth_url': fxa_auth_url
+        }
     else:
         site_settings = {
             'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
@@ -140,10 +145,15 @@ def commonplace(request, repo, **kwargs):
         'newrelic_footer': newrelic.agent.get_browser_timing_footer,
     }
 
-    # For OpenGraph stuff.
-    resolved_url = resolve(request.path)
-    if repo == 'fireplace' and resolved_url.url_name == 'detail':
-        ctx = add_app_ctx(ctx, resolved_url.kwargs['app_slug'])
+    if repo == 'fireplace':
+        # For OpenGraph stuff.
+        resolved_url = resolve(request.path)
+        if resolved_url.url_name == 'detail':
+            ctx = add_app_ctx(ctx, resolved_url.kwargs['app_slug'])
+
+    ctx['waffle_switches'] = list(
+        waffle.models.Switch.objects.filter(active=True)
+                                    .values_list('name', flat=True))
 
     media_url = urlparse(settings.MEDIA_URL)
     if media_url.netloc:
