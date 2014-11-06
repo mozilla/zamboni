@@ -22,15 +22,21 @@ class TestAccountSerializer(amo.tests.TestCase):
 class TestAccountInfoSerializer(amo.tests.TestCase):
     UNKNOWN = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN]
     FIREFOX_ACCOUNTS = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_FXA]
+    PERSONA = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_BROWSERID]
 
     def setUp(self):
         self.account = UserProfile()
+        self.account.pk = 25
 
     def serializer(self):
         return AccountInfoSerializer(instance=self.account)
 
     def test_source_is_a_slug_default(self):
-        eq_(self.serializer().data['source'], self.UNKNOWN)
+        eq_(self.serializer().data['source'], self.PERSONA)
+
+    def test_source_is_unknown(self):
+        self.account.source = amo.LOGIN_SOURCE_UNKNOWN
+        eq_(self.serializer().data['source'], self.PERSONA)
 
     def test_source_is_fxa(self):
         self.account.source = amo.LOGIN_SOURCE_FXA
@@ -38,10 +44,15 @@ class TestAccountInfoSerializer(amo.tests.TestCase):
 
     def test_source_is_invalid(self):
         self.account.source = -1
-        eq_(self.serializer().data['source'], self.UNKNOWN)
+        eq_(self.serializer().data['source'], self.PERSONA)
 
     def test_source_is_unrelated(self):
         self.account.source = amo.LOGIN_SOURCE_BROWSERID
+        eq_(self.serializer().data['source'], self.PERSONA)
+
+    def test_account_has_no_pk(self):
+        self.account.source = amo.LOGIN_SOURCE_FXA
+        self.account.pk = None
         eq_(self.serializer().data['source'], self.UNKNOWN)
 
     def test_source_is_read_only(self):

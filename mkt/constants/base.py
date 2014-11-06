@@ -237,9 +237,9 @@ LOGIN_SOURCE_WEBPAY = 5
 
 LOGIN_SOURCE_LOOKUP = {
     LOGIN_SOURCE_UNKNOWN: 'unknown',
-    LOGIN_SOURCE_BROWSERID: 'browserid',
-    LOGIN_SOURCE_MMO_BROWSERID: 'mmo-browserid',
-    LOGIN_SOURCE_AMO_BROWSERID: 'amo-browserid',
+    LOGIN_SOURCE_BROWSERID: 'persona',
+    LOGIN_SOURCE_MMO_BROWSERID: 'mmo-persona',
+    LOGIN_SOURCE_AMO_BROWSERID: 'amo-persona',
     LOGIN_SOURCE_FXA: 'firefox-accounts',
     LOGIN_SOURCE_WEBPAY: 'webpay',
 }
