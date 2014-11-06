@@ -75,7 +75,7 @@ class BaseFeedCollectionESSerializer(BaseESSerializer):
         will affect our total app count. This forces us to run the to_native
         operation twice, but it is not expensive.
         """
-        app_field = AppESField(many=True)
+        app_field = AppESHomeField(many=True)
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)
 

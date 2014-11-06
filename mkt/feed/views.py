@@ -740,6 +740,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             # Store the apps to retrieve later.
             apps += self.get_app_ids(feed_elm)
 
+        # Remove dupes from apps list.
+        apps = list(set(apps))
+
         # Fetch apps to attach to feed elements later.
         app_map = self.get_apps(request, apps)
 
