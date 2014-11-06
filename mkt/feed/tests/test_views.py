@@ -68,6 +68,42 @@ class BaseTestFeedESView(amo.tests.ESTestCase):
         self.refresh('webapp')
 
 
+class BaseTestGroupedApps(object):
+    """
+    Base class containing utilities for testing grouped app collections.
+    """
+    def ungrouped_apps(self):
+        apps = [app_factory() for i in xrange(3)]
+        return [app.pk for app in apps]
+
+    def grouped_apps(self):
+        ret = []
+        for name in ['Games', 'Productivity', 'Lifestyle']:
+            apps = [app_factory() for i in xrange(2)]
+            ret.append({
+                'apps': [app.pk for app in apps],
+                'name': {
+                    'en-US': name,
+                    'fr': name[::-1]
+                }
+            })
+        return ret
+
+    def assertGroupedAppsEqual(self, grouped_apps, data):
+        """
+        Passed a list of dicts formed similar to the return value from
+        self.grouped_apps() and a collection serialization, asserts that the
+        apps in the serialization are in the correct groups as specified by the
+        list of dicts.
+        """
+        compare = {}
+        for group in grouped_apps:
+            for app in group['apps']:
+                compare[app] = group['name']
+        for app in data['apps']:
+            eq_(compare[app['id']], app['group'])
+
+
 class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
     """
     Tests the handling of GET requests to the list endpoint of FeedItemViewSet.
@@ -788,7 +824,8 @@ class TestFeedBrandViewSet(BaseTestFeedCollection, RestOAuth):
     url_basename = 'feedbrands'
 
 
-class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
+class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
+                                RestOAuth):
     obj_data = {
         'slug': 'potato',
         'type': 'promo',
@@ -798,37 +835,6 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
     }
     model = FeedCollection
     url_basename = 'feedcollections'
-
-    def ungrouped_apps(self):
-        apps = [app_factory() for i in xrange(3)]
-        return [app.pk for app in apps]
-
-    def grouped_apps(self):
-        ret = []
-        for name in ['Games', 'Productivity', 'Lifestyle']:
-            apps = [app_factory() for i in xrange(2)]
-            ret.append({
-                'apps': [app.pk for app in apps],
-                'name': {
-                    'en-US': name,
-                    'fr': name[::-1]
-                }
-            })
-        return ret
-
-    def assertGroupedAppsEqual(self, grouped_apps, data):
-        """
-        Passed a list of dicts formed similar to the return value from
-        self.grouped_apps() and a collection serialization, asserts that the
-        apps in the serialization are in the correct groups as specified by the
-        list of dicts.
-        """
-        compare = {}
-        for group in grouped_apps:
-            for app in group['apps']:
-                compare[app] = group['name']
-        for app in data['apps']:
-            eq_(compare[app['id']], app['group'])
 
     def test_create_missing_name(self):
         self.feed_permission()
@@ -949,7 +955,8 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         eq_(res.status_code, 400)
 
 
-class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
+class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
+                           RestOAuth):
     obj_data = {
         'carrier': 'telefonica',
         'description': {'en-US': 'Potato french fries'},
@@ -990,6 +997,23 @@ class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
         eq_(res.status_code, 201)
         for name, value in self.obj_data.iteritems():
             eq_(value, data[name])
+
+    def test_create_ungrouped(self):
+        self.feed_permission()
+        obj_data = self.data()
+        obj_data['apps'] = self.ungrouped_apps()
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)
+        for app in data['apps']:
+            eq_(app['group'], None)
+
+    def test_create_grouped(self):
+        self.feed_permission()
+        obj_data = self.data()
+        obj_data['apps'] = self.grouped_apps()
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)
+        self.assertGroupedAppsEqual(obj_data['apps'], data)
 
     @mock.patch('mkt.feed.views.pngcrush_image.delay')
     @mock.patch('mkt.feed.fields.requests.get')

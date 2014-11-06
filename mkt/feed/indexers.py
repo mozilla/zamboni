@@ -228,6 +228,8 @@ class FeedShelfIndexer(BaseIndexer):
                     'apps': {'type': 'long'},
                     'carrier': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
+                    'group_apps': {'type': 'object', 'dynamic': 'true'},
+                    'group_names': {'type': 'object', 'dynamic': 'true'},
                     'image_hash': cls.string_not_analyzed(),
                     'image_landing_hash': cls.string_not_analyzed(),
                     'item_type': cls.string_not_analyzed(),
@@ -244,6 +246,8 @@ class FeedShelfIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, pk=None, obj=None):
+        from mkt.feed.models import FeedShelfMembership
+
         if obj is None:
             obj = cls.get_model().get(pk=pk)
 
@@ -254,6 +258,8 @@ class FeedShelfIndexer(BaseIndexer):
             'apps': list(obj.apps().values_list('id', flat=True)),
             'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
             'created': obj.created,
+            'group_apps': {},  # Map of app IDs to index in group_names below.
+            'group_names': [],  # List of ES-serialized group names.
             'image_hash': obj.image_hash,
             'image_landing_hash': obj.image_landing_hash,
             'item_type': feed.FEED_TYPE_SHELF,
@@ -262,6 +268,19 @@ class FeedShelfIndexer(BaseIndexer):
                                      in obj.translations[obj.name_id])),
             'slug': obj.slug,
         }
+
+
+        # Grouped apps. Key off of translation, pointed to app IDs.
+        memberships = obj.feedshelfmembership_set.all()
+        attach_trans_dict(FeedShelfMembership, memberships)
+        for member in memberships:
+            if member.group:
+                grp_translation = format_translation_es(member, 'group')
+                if grp_translation not in doc['group_names']:
+                    doc['group_names'].append(grp_translation)
+
+                doc['group_apps'][member.app_id] = (
+                    doc['group_names'].index(grp_translation))
 
         # Handle localized fields.
         for field in ('description', 'name'):
