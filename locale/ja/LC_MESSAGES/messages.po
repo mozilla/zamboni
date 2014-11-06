@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-18 17:40+0000\n"
+"PO-Revision-Date: 2014-11-05 23:19-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3324,7 +3324,7 @@ msgstr "以下からあなたの <a href=\"%(url)s\">Persona</a> アカウント
 
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr "以下から <a href=\"%(url)s\">Firefox Account</a> でログインもしくはユーザ登録してください。"
+msgstr "以下から <a href=\"%(url)s\">Firefox アカウント</a> でログインもしくはユーザ登録してください。"
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -7528,11 +7528,11 @@ msgstr "ユーザ通知"
 
 #: mkt/users/tasks.py:15 mkt/users/tasks.py:18
 msgid "Firefox Accounts is coming"
-msgstr "Firefox Accounts が統合されます"
+msgstr "Firefox アカウントが統合されます"
 
 #: mkt/users/tasks.py:16 mkt/users/tasks.py:17 mkt/users/tasks.py:19 mkt/users/tasks.py:20
 msgid "Activate your Firefox Account"
-msgstr "あなたの Firefox Account を有効化しましょう"
+msgstr "あなたの Firefox アカウントを有効化しましょう"
 
 #: mkt/users/views.py:70
 msgid "An email address is required."
@@ -7560,7 +7560,7 @@ msgstr "今すぐ有効化"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr "Firefox Accounts に関する詳しい情報は <a href=\"%(faq)s\">FAQ</a> を参照してください。"
+msgstr "Firefox アカウントに関する詳しい情報は <a href=\"%(faq)s\">FAQ</a> を参照してください。"
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
@@ -7572,22 +7572,22 @@ msgstr ""
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr "Firefox Marketplace は Firefox Accounts へ切り替わりました。あなたの新しい Firefox Account を有効化してください。"
+msgstr "Firefox Marketplace は Firefox アカウントへ切り替わりました。あなたの新しい Firefox アカウントを有効化してください。"
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr "Firefox Marketplace はまもなく、現行のユーザログインシステム (Persona) を廃止し、Firefox Accounts と呼ばれるより一層強固なユーザアカウントシステムに置き換える予定です。"
+msgstr "Firefox Marketplace はまもなく、現行のユーザログインシステム (Persona) を廃止し、Firefox アカウントと呼ばれるより一層強固なユーザアカウントシステムに置き換える予定です。"
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr "Persona から Firefox Accounts アカウントへの移行準備が整い次第、有効化のためのリンクをメールでお送りします。"
+msgstr "Persona から Firefox アカウントへの移行準備が整い次第、有効化のためのリンクをメールでお送りします。"
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
-"Firefox Marketplace は、Mozilla が提供するあらゆるサービスや製品にわたってより一貫したユーザ体験を提供するため、Firefox Accounts へ移行しました。Firefox Account を取得することで、既存の Marketplace "
+"Firefox Marketplace は、Mozilla が提供するあらゆるサービスや製品にわたってより一貫したユーザ体験を提供するため、Firefox アカウントへ移行しました。Firefox アカウントを取得することで、既存の Marketplace "
 "アプリが参照可能となり、複数の端末上でシームレスにアプリを活用できます。提供サービスは順次追加予定です。"
 
 #: mkt/users/templates/users/emails/customers-during.html:5
@@ -7596,15 +7596,15 @@ msgstr "アカウントの有効化は簡単です。サイトへログインし
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr "Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox Account を有効化する必要があります。"
+msgstr "Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox アカウントを有効化する必要があります。"
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr "Firefox Marketplace は Firefox Accounts へ移行しました。あなたの新しいアカウントを有効化してください。"
+msgstr "Firefox Marketplace は Firefox アカウントへ移行しました。あなたの新しいアカウントを有効化してください。"
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr "重要: Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox Account を有効化する必要があります。"
+msgstr "重要: Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox アカウントを有効化する必要があります。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7714,7 +7714,7 @@ msgstr "ログイン / ユーザ登録"
 
 #: templates/base.html:123
 msgid "Firefox Accounts has arrived"
-msgstr "Firefox Accounts が統合されました"
+msgstr "Firefox アカウントが統合されました"
 
 #: templates/base.html:126
 msgid "Learn how to transfer your account"
