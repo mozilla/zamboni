@@ -13,14 +13,18 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 from amo.utils import reverse
+from mkt.commonplace.models import DeployBuildId
 
 
-class BaseCommonPlaceTests(amo.tests.TestCase):
+class CommonplaceTestMixin(amo.tests.TestCase):
 
-    def _test_url(self, url, url_kwargs=None):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def _test_url(self, url, fxa_mock, url_kwargs=None):
         """Test that the given url can be requested, returns a 200, and returns
         a valid gzipped response when requested with Accept-Encoding over ssl.
         Return the result of a regular (non-gzipped) request."""
+        fxa_mock.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+
         if not url_kwargs:
             url_kwargs = {}
         res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip',
@@ -38,11 +42,9 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
         eq_(ungzipped_content, res.content)
         return res
 
-class TestCommonplace(BaseCommonPlaceTests):
+class TestCommonplace(CommonplaceTestMixin):
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_fireplace_firefox_accounts(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+    def test_fireplace_firefox_accounts(self):
         res = self._test_url('/server.html')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'fireplace')
@@ -52,64 +54,50 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertContains(res, 'fakestate')
         self.assertContains(res, 'http://example.com/fakeauthurl')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_commbadge(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+    def test_commbadge(self):
         res = self._test_url('/comm/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'commbadge')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_rocketfuel(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+    def test_rocketfuel(self):
         res = self._test_url('/curation/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_transonic(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+    def test_transonic(self):
         res = self._test_url('/curate/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_discoplace(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+    def test_discoplace(self):
         res = self._test_url('/discovery/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'discoplace')
         self.assertContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region,
-                                                          mock_fxa):
+    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):
         test_region = mock.Mock()
         test_region.slug = 'testoland'
         mock_region.return_value = test_region
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         for url in ('/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah'):
             res = self._test_url(url)
             ok_('geoip_region' not in res.context, url)
             self.assertNotContains(res, 'data-region')
 
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_region_included_in_fireplace_if_sim_info(self, mock_region,
-                                                      mock_fxa):
+    def test_region_included_in_fireplace_if_sim_info(self, mock_region):
         test_region = mock.Mock()
         test_region.slug = 'testoland'
         mock_region.return_value = test_region
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         for url in ('/server.html?nativepersona=true',
                     '/server.html?mcc=blah',  # Incomplete info from SIM.
                     '/server.html',
@@ -119,7 +107,7 @@ class TestCommonplace(BaseCommonPlaceTests):
             self.assertContains(res, 'data-region="testoland"')
 
 
-class TestAppcacheManifest(BaseCommonPlaceTests):
+class TestAppcacheManifest(CommonplaceTestMixin):
 
     def test_no_repo(self):
         if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
@@ -152,7 +140,7 @@ class TestAppcacheManifest(BaseCommonPlaceTests):
         assert img + '\n' in res.content
 
 
-class TestIFrames(BaseCommonPlaceTests):
+class TestIFrames(CommonplaceTestMixin):
     def setUp(self):
         self.iframe_install_url = reverse('commonplace.iframe-install')
         self.potatolytics_url = reverse('commonplace.potatolytics')
@@ -292,3 +280,30 @@ class TestOpenGraph(amo.tests.TestCase):
         title, image, description = self._get_tags(res)
         eq_(title, 'Firefox Marketplace')
         ok_(description.startswith('The Firefox Marketplace is'))
+
+
+class TestBuildId(CommonplaceTestMixin):
+
+    def test_build_id_from_db(self):
+        DeployBuildId.objects.create(repo='fireplace', build_id='0118999')
+        res = self._test_url('/server.html')
+        doc = pq(res.content)
+
+        scripts = doc('script')
+        for script in scripts:
+            src = pq(script).attr('src')
+            if 'fireplace' in src:
+                ok_(src.endswith('?b=0118999'))
+
+    @mock.patch('mkt.commonplace.views.storage')
+    def test_fallback_to_build_id_txt(self, storage_mock):
+        storage_mock.open = mock.mock_open(read_data='0118999')
+
+        res = self._test_url('/server.html')
+        doc = pq(res.content)
+
+        scripts = doc('script')
+        for script in scripts:
+            src = pq(script).attr('src')
+            if 'fireplace' in src:
+                ok_(src.endswith('?b=0118999'))
