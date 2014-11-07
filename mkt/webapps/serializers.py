@@ -545,7 +545,7 @@ class ESAppFeedSerializer(BaseESAppFeedSerializer):
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'author', 'device_types', 'icons', 'id',
+            'author', 'device_types', 'group', 'icons', 'id',
             'is_packaged', 'manifest_url', 'name', 'payment_required',
             'premium_type', 'price', 'price_locale', 'ratings', 'slug', 'user'
         ]

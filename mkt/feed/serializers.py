@@ -287,8 +287,8 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
 
         elif obj.type == feed.COLLECTION_LISTING:
             # Needs minimal app serialization like FeedBrand.
-            app_field = AppESField(many=True,
-                                   limit=feed.HOME_NUM_APPS_LISTING_COLL)
+            app_field = AppESHomeField(many=True,
+                                       limit=feed.HOME_NUM_APPS_LISTING_COLL)
 
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)

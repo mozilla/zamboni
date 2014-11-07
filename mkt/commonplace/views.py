@@ -18,6 +18,8 @@ import newrelic.agent
 import waffle
 from cache_nuggets.lib import memoize
 
+from mkt.regions.middleware import RegionMiddleware
+from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
 
 
@@ -105,12 +107,21 @@ def commonplace(request, repo, **kwargs):
 
     include_persona = True
     include_splash = False
+    detect_region_with_geoip = False
     if repo == 'fireplace':
         include_splash = True
-        if (request.GET.get('nativepersona') or
-            'mccs' in request.GET or
-            ('mcc' in request.GET and 'mnc' in request.GET)):
+        has_sim_info_in_query = ('mccs' in request.GET or
+            ('mcc' in request.GET and 'mnc' in request.GET))
+        if request.GET.get('nativepersona') or has_sim_info_in_query:
+            # If we received SIM information or nativepersona was passed, we
+            # don't include the persona shim, we consider that we are dealing
+            # with a Firefox OS device that has native support for persona.
             include_persona = False
+        if not has_sim_info_in_query:
+            # If we didn't receive mcc/mnc, then use geoip to detect region,
+            # enabling fireplace to avoid the consumer_info API call that it
+            # does normally to fetch the region.
+            detect_region_with_geoip = True
     elif repo == 'discoplace':
         include_persona = False
         include_splash = True
@@ -120,7 +131,11 @@ def commonplace(request, repo, **kwargs):
         # native fxa already provides navigator.id, and fallback fxa doesn't
         # need it.
         include_persona = False
-        site_settings = {}
+        fxa_auth_state, fxa_auth_url = fxa_auth_info()
+        site_settings = {
+            'fxa_auth_state': fxa_auth_state,
+            'fxa_auth_url': fxa_auth_url
+        }
     else:
         site_settings = {
             'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
@@ -140,14 +155,23 @@ def commonplace(request, repo, **kwargs):
         'newrelic_footer': newrelic.agent.get_browser_timing_footer,
     }
 
-    # For OpenGraph stuff.
-    resolved_url = resolve(request.path)
-    if repo == 'fireplace' and resolved_url.url_name == 'detail':
-        ctx = add_app_ctx(ctx, resolved_url.kwargs['app_slug'])
+    if repo == 'fireplace':
+        # For OpenGraph stuff.
+        resolved_url = resolve(request.path)
+        if resolved_url.url_name == 'detail':
+            ctx = add_app_ctx(ctx, resolved_url.kwargs['app_slug'])
+
+    ctx['waffle_switches'] = list(
+        waffle.models.Switch.objects.filter(active=True)
+                                    .values_list('name', flat=True))
 
     media_url = urlparse(settings.MEDIA_URL)
     if media_url.netloc:
         ctx['media_origin'] = media_url.scheme + '://' + media_url.netloc
+
+    if detect_region_with_geoip:
+        region_middleware = RegionMiddleware()
+        ctx['geoip_region'] = region_middleware.region_from_request(request)
 
     return render(request, 'commonplace/index.html', ctx)
 

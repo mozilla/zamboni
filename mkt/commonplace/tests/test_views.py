@@ -6,6 +6,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+from jinja2.utils import escape
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -49,6 +50,21 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertContains(res, 'login.persona.org/include.js')
         eq_(res['Cache-Control'], 'max-age=180')
 
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_fireplace_firefox_accounts(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+        self.create_switch('firefox-accounts', db=True)
+        res = self._test_url('/server.html')
+        self.assertTemplateUsed(res, 'commonplace/index.html')
+        self.assertEquals(res.context['repo'], 'fireplace')
+        self.assertContains(res, 'splash.css')
+        self.assertNotContains(res, 'login.persona.org/include.js')
+        eq_(res['Cache-Control'], 'max-age=180')
+        self.assertContains(res, 'fakestate')
+        self.assertContains(res, 'http://example.com/fakeauthurl')
+        self.assertContains(res,
+             'data-waffle-switches="[&#34;firefox-accounts&#34;]"')
+
     def test_commbadge(self):
         res = self._test_url('/comm/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
@@ -88,8 +104,10 @@ class TestCommonplace(BaseCommonPlaceTests):
             res = self._test_url(url)
             self.assertNotContains(res, 'login.persona.org/include.js')
 
-    def test_fireplace_persona_js_not_included_for_firefox_accounts(self):
-        self.create_switch('firefox-accounts')
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_fireplace_persona_not_included_firefox_accounts(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
+        self.create_switch('firefox-accounts', db=True)
         for url in ('/server.html',
                     '/server.html?mcc=blah',
                     '/server.html?mccs=blah',
@@ -107,6 +125,30 @@ class TestCommonplace(BaseCommonPlaceTests):
         for url in ('/curation/', '/curation/?nativepersona=true'):
             res = self._test_url(url)
             self.assertContains(res, 'login.persona.org/include.js" defer')
+
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):
+        test_region = mock.Mock()
+        test_region.slug = 'testoland'
+        mock_region.return_value = test_region
+        for url in ('/server.html?mccs=blah',
+                    '/server.html?mcc=blah&mnc=blah'):
+            res = self._test_url(url)
+            ok_('geoip_region' not in res.context, url)
+            self.assertNotContains(res, 'data-region')
+
+    @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_region_included_in_fireplace_if_sim_info(self, mock_region):
+        test_region = mock.Mock()
+        test_region.slug = 'testoland'
+        mock_region.return_value = test_region
+        for url in ('/server.html?nativepersona=true',
+                    '/server.html?mcc=blah',  # Incomplete info from SIM.
+                    '/server.html',
+                    '/server.html?'):
+            res = self._test_url(url)
+            self.assertEquals(res.context['geoip_region'], test_region)
+            self.assertContains(res, 'data-region="testoland"')
 
 
 class TestAppcacheManifest(BaseCommonPlaceTests):

@@ -2,6 +2,7 @@
 import collections
 import json
 import uuid
+from datetime import datetime
 from urlparse import urlparse
 
 from django.conf import settings
@@ -739,7 +740,8 @@ class TestAccountInfoView(RestOAuth):
     def setUp(self):
         super(TestAccountInfoView, self).setUp()
         # Make sure there is at least one FxA user.
-        self.profile.update(source=amo.LOGIN_SOURCE_FXA)
+        self.profile.update(source=amo.LOGIN_SOURCE_FXA,
+                            last_login_attempt=datetime(2014, 06, 20))
 
     def url(self, email):
         return reverse('account-info', args=[email])
@@ -752,17 +754,23 @@ class TestAccountInfoView(RestOAuth):
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'unknown')
 
+    def test_old_user(self):
+        self.profile.update(last_login_attempt=datetime(2014, 04, 01))
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['source'], 'unknown')
+
     def test_unknown_source_user(self):
         self.profile.update(source=amo.LOGIN_SOURCE_UNKNOWN)
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
-        eq_(response.json['source'], 'unknown')
+        eq_(response.json['source'], 'persona')
 
     def test_browser_id_source_user(self):
         self.profile.update(source=amo.LOGIN_SOURCE_BROWSERID)
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
-        eq_(response.json['source'], 'unknown')
+        eq_(response.json['source'], 'persona')
 
     def test_fxa_user(self):
         self.profile.update(source=amo.LOGIN_SOURCE_FXA)
