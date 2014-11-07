@@ -43,7 +43,9 @@ def send_mail(user_ids, subject, html_template, text_template, link):
             send_html_mail_jinja(
                 force_text(subject),
                 html_template, text_template,
-                context, recipient_list=[user.email])
+                context, recipient_list=[user.email],
+                from_email='marketplace-firefox-accounts-transition'
+                           '@mozilla.com')
 
 
 @task
