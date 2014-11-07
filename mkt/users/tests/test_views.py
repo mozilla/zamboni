@@ -102,3 +102,14 @@ class TestLogout(amo.tests.TestCase):
         url = urlparams(reverse('users.logout'), to='http://ev.il/developers/')
         res = self.client.get(url, follow=True)
         self.assertRedirects(res, '/', status_code=302)
+
+    def test_has_logged_in_is_set(self):
+        res = self.client.get('/developers/', follow=True)
+        data = pq(res.content.decode('utf-8'))('body').attr('data-user')
+        data = json.loads(data)
+        eq_(data['email'], self.user.email)
+        eq_(data['anonymous'], False)
+
+        res = self.client.get(reverse('users.logout'))
+        ok_('has_logged_in' in res.cookies)
+        eq_(res.cookies['has_logged_in'].value, '1')

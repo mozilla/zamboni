@@ -29,7 +29,9 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         if (z.body.data('persona-url')) {
             startLogin();
         } else {
-            startFxALogin();
+            startFxALogin({
+                action: $this.hasClass('register') ?  'signup' : 'signin',
+            });
         }
         e.preventDefault();
     }
@@ -40,7 +42,8 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         return [x, y];
     }
 
-    function startFxALogin() {
+    function startFxALogin(options) {
+        options = options || {};
         var w = 320;
         var h = 500;
         var i = getCenteredCoordinates(w, h);
@@ -52,6 +55,8 @@ define('login', ['notification', 'storage'], function(notification, storage) {
             // Save the auth URL for later.
             storage.setItem('fxa_auth_url', fxa_auth_url);
             fxa_auth_url = fxa_migrate_url;
+        } else if (options.action) {
+            fxa_auth_url += '&action=' + options.action;
         }
         window.open(fxa_auth_url,
                     'fxa',

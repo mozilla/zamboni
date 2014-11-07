@@ -208,6 +208,9 @@ def logout(request):
     if not next:
         next = settings.LOGOUT_REDIRECT_URL
     response = http.HttpResponseRedirect(next)
+    # Remember whether the user has logged in to highlight the register or
+    # sign in nav button. 31536000 == one year.
+    response.set_cookie('has_logged_in', '1', max_age=5 * 31536000)
     # Fire logged out signal.
     logged_out.send(None, request=request, response=response)
     return response

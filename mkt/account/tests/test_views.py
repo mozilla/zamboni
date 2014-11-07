@@ -573,6 +573,24 @@ class TestFxaLoginHandler(TestCase):
         data = self._test_login()
         eq_(data['settings']['source'], 'firefox-accounts')
 
+    @patch.object(uuid, 'uuid4', FakeUUID)
+    @patch('requests.post')
+    def test_login_sets_has_logged_in(self, http_request):
+        state = 'fake-state'
+        with patch('mkt.account.views.OAuth2Session') as get_session:
+            m = get_session()
+            m.fetch_token.return_value = {'access_token': 'fake'}
+            m.post().json.return_value = {
+                'user': 'fake-uid',
+                'email': 'cvan@mozilla.com'
+            }
+            res = self.post({
+                'auth_response': 'https://testserver/?access_token=fake-token&'
+                                 'code=coed&state=' + state,
+                'state': state})
+            ok_('has_logged_in' in res.cookies)
+            eq_(res.cookies['has_logged_in'].value, '1')
+
     def test_logout(self):
         data = self._test_login()
 

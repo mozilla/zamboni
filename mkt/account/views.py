@@ -285,6 +285,10 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
 
         request.user = profile
         request.groups = profile.groups.all()
+        # Remember whether the user has logged in to highlight the register or
+        # sign in nav button. 31536000 == one year.
+        request.set_cookie('has_logged_in', '1', max_age=5 * 31536000)
+
         # We want to return completely custom data, not the serializer's.
         data = {
             'error': None,

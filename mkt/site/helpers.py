@@ -385,3 +385,9 @@ def strip_controls(s):
     control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
     rv = unicode(s).translate(control_trans)
     return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
+
+
+@register.function
+@jinja2.contextfunction
+def prefer_signin(context):
+    return 'has_logged_in' in context['request'].COOKIES
