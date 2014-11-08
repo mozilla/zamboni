@@ -96,6 +96,7 @@ API_NOTE_TYPE_WHITELIST = (
     NO_ACTION,
     REVIEWER_COMMENT,
     DEVELOPER_COMMENT,
+    REVIEWER_PUBLIC_COMMENT
 )
 
 # Maps from note type to email template names.
