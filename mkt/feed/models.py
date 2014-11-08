@@ -141,6 +141,10 @@ class BaseFeedCollection(ModelBase):
         """
         for app in self.apps().no_cache().values_list('pk', flat=True):
             self.remove_app(Webapp.objects.get(pk=app))
+
+        qs = self.membership_class.objects.filter(obj=self)
+        self.membership_class.objects.invalidate(*qs)
+
         for app in new_apps:
             self.add_app(Webapp.objects.get(pk=app))
 
