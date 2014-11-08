@@ -283,6 +283,7 @@ class TestFeedCollection(FeedTestMixin, amo.tests.TestCase):
 
     def test_update_apps(self):
         coll = self.feed_collection_factory()
+        eq_(coll.apps().count(), 1)
         coll.set_apps([337141, amo.tests.app_factory().id,
                        amo.tests.app_factory().id])
         eq_(coll.apps().count(), 3)

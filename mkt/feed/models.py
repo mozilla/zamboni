@@ -115,9 +115,7 @@ class BaseFeedCollection(ModelBase):
         # Help django-cache-machine: it doesn't like many 2 many relations,
         # the cache is never invalidated properly when adding a new object.
         self.membership_class.objects.invalidate(*qs)
-
         index_webapps.delay([app.pk])
-
         return rval
 
     def remove_app(self, app):
@@ -134,19 +132,19 @@ class BaseFeedCollection(ModelBase):
             index_webapps.delay([app.pk])
             return True
 
+    def remove_apps(self):
+        """Remove all apps from collection."""
+        self.membership_class.objects.filter(obj=self).delete()
+
     def set_apps(self, new_apps):
         """
         Passed a list of app IDs, will remove all existing members on the
         collection and create new ones for each of the passed apps, in order.
         """
-        for app in self.apps().no_cache().values_list('pk', flat=True):
-            self.remove_app(Webapp.objects.get(pk=app))
-
-        qs = self.membership_class.objects.filter(obj=self)
-        self.membership_class.objects.invalidate(*qs)
-
-        for app in new_apps:
-            self.add_app(Webapp.objects.get(pk=app))
+        self.remove_apps()
+        for app_id in new_apps:
+            self.add_app(Webapp.objects.get(pk=app_id))
+        index_webapps.delay(new_apps)
 
 
 class BaseFeedImage(models.Model):
@@ -274,14 +272,11 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
         # Help django-cache-machine: it doesn't like many 2 many relations,
         # the cache is never invalidated properly when adding a new object.
         self.membership_class.objects.invalidate(*qs)
-
         index_webapps.delay([app])
-
         return rval
 
     def set_apps_grouped(self, new_apps):
-        for app in self.apps().no_cache().values_list('pk', flat=True):
-            self.remove_app(Webapp.objects.get(pk=app))
+        self.remove_apps()
         for group in new_apps:
             for app in group['apps']:
                 self.add_app_grouped(app, group['name'])
