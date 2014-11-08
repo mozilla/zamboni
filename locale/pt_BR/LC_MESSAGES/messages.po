@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-06 22:28+0000\n"
-"Last-Translator: Nanci <nancibonfim@gmail.com>\n"
+"PO-Revision-Date: 2014-11-08 17:39+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1415312886.0\n"
+"X-POOTLE-MTIME: 1415468376.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -3197,6 +3197,14 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> Existem dois tipos de utilização principal da API do Marketplace. A "
+"partir de outro site web utilizando um fluxo OAuth tradicional ou de uma "
+"linha de comandos. A diferença é discutida na <a href=\"https://firefox-"
+"marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentação "
+"do Marketplace</a>. Quaisquer testes devem ser feitos no <a href=\"https"
+"://marketplace-dev.allizom.org\">servidor de desenvolvimento</a> e não no "
+"servidor de produção. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3358,6 +3366,8 @@ msgstr "Identifique-se ou registre-se com sua conta <a href=\"%(url)s\">Persona<
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Basta entrar ou fazer o registro com a <a href=\"%(url)s\">Conta do "
+"Firefox</a> abaixo."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -3753,38 +3763,48 @@ msgstr "Seu aplicativo está aguardando revisão."
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"Nossa revisão de {review_date} descobriu que o seu aplicativo suporta "
+"dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
+"A nossa revisão de {review_date} descobriu que o seu aplicativo não suporta "
+"dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "Solicitou uma revisão em {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
+"Seu aplicativo não está ativado em quaisquer regiões com dispositivos com "
+"pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
 msgstr ""
+"Você pode atualizar as regiões na <a href=\"{compatibility_page}\">página de "
+"compatibilidade</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Se o seu aplicativo funciona em dispositivos com pouca memória, então pode "
+"solicitar uma revisão para ser mostrado em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Saber mais sobre dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Não mostrar o meu aplicativo em dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Solicitar uma revisão para dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
@@ -3921,6 +3941,8 @@ msgstr "Apagar versão"
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Tem a certeza que pretende parar de mostrar o seu aplicativo em dispositivos "
+"com pouca memória?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:55
@@ -4181,8 +4203,12 @@ msgid "Support Information for {0}"
 msgstr "Informações de suporte para {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
+#, fuzzy
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"O endereço de email para pedidos de suporte para os usuários finais. Se "
+"tiver endereços diferentes para cada idioma, múltiplas traduções podem ser "
+"adicionadas neste campo."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4645,7 +4671,7 @@ msgstr "Experimente os pagamentos no aplicativo"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "Chaves para pagamentos em aplicativos"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -4691,8 +4717,9 @@ msgid "Generate Keys"
 msgstr "Gerar chaves"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
+#, fuzzy
 msgid "In-App Keys"
-msgstr ""
+msgstr "Chaves em aplicativos"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
