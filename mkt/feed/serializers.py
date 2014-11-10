@@ -22,7 +22,8 @@ from . import constants
 from .fields import (AppESField, AppESHomeField, AppESHomePromoCollectionField,
                      FeedCollectionMembershipField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
-                     FeedCollectionMembership, FeedItem, FeedShelf)
+                     FeedCollectionMembership, FeedItem, FeedShelf,
+                     FeedShelfMembership)
 
 
 class ValidateSlugMixin(object):
@@ -299,6 +300,7 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     A serializer for the FeedBrand class, a type of collection that allows
     editors to quickly create content without involving localizers.
     """
+    apps = serializers.SerializerMethodField('get_apps')
     background_image = FeedImageField(
         source='*', view_name='api-v2:feed-shelf-image-detail', format='png')
     background_image_landing = FeedLandingImageField(
@@ -317,6 +319,22 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
                   'is_published', 'name', 'region', 'slug', 'url']
         model = FeedShelf
         url_basename = 'feedshelves'
+
+    def get_apps(self, obj):
+        """
+        Return a list of serialized apps, adding each app's `group` to the
+        serialization.
+        """
+        ret = []
+        memberships = FeedShelfMembership.objects.filter(obj_id=obj.id)
+        field = TranslationSerializerField()
+        field.initialize(self, 'group')
+        field.context = self.context
+        for member in memberships:
+            data = AppSerializer(member.app, context=self.context).data
+            data['group'] = field.field_to_native(member, 'group')
+            ret.append(data)
+        return ret
 
 
 class FeedShelfESSerializer(BaseFeedCollectionESSerializer,
@@ -340,6 +358,11 @@ class FeedShelfESSerializer(BaseFeedCollectionESSerializer,
         ))
 
         shelf._app_ids = data.get('apps')
+
+        # Attach groups.
+        self.context['group_apps'] = data.get('group_apps')
+        self.context['group_names'] = data.get('group_names')
+
         return shelf
 
 

@@ -56,12 +56,22 @@ class FeedTestMixin(object):
         return coll
 
     def feed_shelf_factory(self, app_ids=None, name='test-shelf',
-                           carrier=1, region=1, **kwargs):
+                           carrier=1, region=1, grouped=False, **kwargs):
         count = FeedShelf.objects.count()
         shelf = FeedShelf.objects.create(
             name=name, slug='feed-shelf-%s' % count, carrier=carrier,
             region=region, **kwargs)
-        shelf.set_apps(app_ids or [337141])
+        app_ids = app_ids or [337141]
+        shelf.set_apps(app_ids)
+
+        if grouped:
+            for i, mem in enumerate(shelf.feedshelfmembership_set.all()):
+                if i == len(app_ids) - 1 and len(app_ids) > 1:
+                    mem.group = 'second-group'
+                else:
+                    mem.group = 'first-group'
+                mem.save()
+
         return shelf
 
     def feed_shelf_permission_factory(self, user, carrier=1, region=1):
