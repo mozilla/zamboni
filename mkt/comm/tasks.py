@@ -121,10 +121,12 @@ def _fix_developer_version_notes(ids):
             # version notes come from the developer.
             continue
 
-        if note.thread.notes.order_by('created')[0].id != note.id:
-            # Check that the note is the first note of the thread, because
-            # all developer version notes are the first thing created upon
-            # a new version's thread.
+        first_notes = (note.thread.notes.order_by('created')
+                                        .values_list('id', flat=True)[0:2])
+        if note.id not in first_notes:
+            # Check that the note is the first or second note of the thread,
+            # because all developer version notes are the first or second thing
+            # created upon a new version's thread (depending if it's VIP app).
             continue
 
         # Good to update.
