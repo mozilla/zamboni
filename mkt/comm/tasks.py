@@ -7,6 +7,7 @@ from mkt.constants import comm
 from mkt.developers.models import ActivityLog
 from mkt.site.decorators import write
 from mkt.versions.models import Version
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.comm')
@@ -115,16 +116,20 @@ def _fix_developer_version_notes(ids):
             # Just to make sure, even though it's specified in management cmd.
             continue
 
+        app_id = note.thread.addon_id  # Handle deleted apps.
         if (note.author.id not in
-            note.thread.addon.authors.values_list('id', flat=True)):
+            Webapp.with_deleted.get(id=app_id).authors.values_list('id',
+                                                                   flat=True)):
             # Check that the note came from the developer since developer
             # version notes come from the developer.
             continue
 
-        if note.thread.notes.order_by('created')[0].id != note.id:
-            # Check that the note is the first note of the thread, because
-            # all developer version notes are the first thing created upon
-            # a new version's thread.
+        first_notes = (note.thread.notes.order_by('created')
+                                        .values_list('id', flat=True)[0:2])
+        if note.id not in first_notes:
+            # Check that the note is the first or second note of the thread,
+            # because all developer version notes are the first or second thing
+            # created upon a new version's thread (depending if it's VIP app).
             continue
 
         # Good to update.

@@ -202,10 +202,13 @@ class TestFixDeveloperVersionNotes(amo.tests.TestCase):
         eq_(self.thread.notes.all()[0].note_type,
             comm.REVIEWER_COMMENT)
 
-    def test_not_first_note(self):
+    def test_not_first_or_second_note(self):
         first_note = self.thread.notes.create(note_type=comm.SUBMISSION,
                                               author=self.user)
         first_note.update(created=self.days_ago(123))
+        second_note = self.thread.notes.create(note_type=comm.SUBMISSION,
+                                               author=self.user)
+        second_note.update(created=self.days_ago(123))
         self.thread.notes.create(note_type=comm.REVIEWER_COMMENT,
                                  author=self.user)
         call_command('fix_developer_version_notes')
@@ -215,3 +218,11 @@ class TestFixDeveloperVersionNotes(amo.tests.TestCase):
         self.thread.notes.create(note_type=comm.SUBMISSION, author=self.user)
         call_command('fix_developer_version_notes')
         ok_(self.thread.notes.filter(note_type=comm.SUBMISSION).exists())
+
+    def test_deleted_app(self):
+        self.thread.notes.create(note_type=comm.REVIEWER_COMMENT,
+                                 author=self.user)
+        self.thread.addon.delete()
+        call_command('fix_developer_version_notes')
+        eq_(self.thread.notes.all()[0].note_type,
+            comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER)
