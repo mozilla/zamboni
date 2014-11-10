@@ -7,6 +7,7 @@ from mkt.constants import comm
 from mkt.developers.models import ActivityLog
 from mkt.site.decorators import write
 from mkt.versions.models import Version
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.comm')
@@ -115,8 +116,10 @@ def _fix_developer_version_notes(ids):
             # Just to make sure, even though it's specified in management cmd.
             continue
 
+        app_id = note.thread.addon_id  # Handle deleted apps.
         if (note.author.id not in
-            note.thread.addon.authors.values_list('id', flat=True)):
+            Webapp.with_deleted.get(id=app_id).authors.values_list('id',
+                                                                   flat=True)):
             # Check that the note came from the developer since developer
             # version notes come from the developer.
             continue
