@@ -578,10 +578,8 @@ COMMONPLACE_REPOS_APPCACHED = []
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
-CSP_DEFAULT_SRC = ("*","data:")
 CSP_SCRIPT_SRC = (
     "'self'",
-    'https://*.persona.org',
     'https://*.google-analytics.com',
     'https://*.newrelic.com',
 )
