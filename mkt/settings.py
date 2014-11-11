@@ -365,7 +365,8 @@ WEBAPPS_RECEIPT_URL = '/verify/'
 
 ###########################################
 # Celery
-BROKER_URL = 'amqp://zamboni:zamboni@localhost:5672/zamboni'
+BROKER_URL = 'amqp://zamboni:zamboni@{0}:5672/zamboni'.format(
+             os.environ.get('RABBIT_HOST', 'localhost'))
 BROKER_CONNECTION_TIMEOUT = 0.1
 
 CEF_PRODUCT = 'mkt'
