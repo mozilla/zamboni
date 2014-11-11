@@ -578,6 +578,7 @@ COMMONPLACE_REPOS_APPCACHED = []
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
+CSP_DEFAULT_SRC = None
 CSP_SCRIPT_SRC = (
     "'self'",
     'https://*.google-analytics.com',
