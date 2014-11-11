@@ -24,7 +24,8 @@ lookup the logged in user account id.
 
         {
             "resource_uri": "/api/v2/account/settings/1/",
-            "display_name": "Nice person"
+            "display_name": "Nice person",
+            "enable_recommendations": true
         }
 
 To update account information:
@@ -35,6 +36,8 @@ To update account information:
 
     :param display_name: the displayed name for this user.
     :type display_name: string
+    :param enable_recommendations: whether to show app recommendations or not.
+    :type enable_recommendations: boolean
 
     **Response**
 
@@ -45,6 +48,7 @@ To update account information:
 Fields that can be updated:
 
 * *display_name*
+* *enable_recommendations*
 
 .. http:get:: /api/v2/account/installed/mine/
 

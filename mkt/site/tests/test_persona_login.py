@@ -179,14 +179,6 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @patch('requests.post')
-    @patch('mkt.users.views.record_action')
-    def test_browserid_no_mark_as_market(self, record_action, post):
-        email = 'newuser@example.com'
-        self._browserid_login(email, post)
-        profile = UserProfile.objects.get(email=email)
-        assert not profile.notes
-
-    @patch('requests.post')
     def test_browserid_login_failure(self, http_request):
         """
         A failure response from BrowserID results in login failure.
@@ -264,7 +256,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(data['audience'], 'http://testserver')
         eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
         assert 'experimental_allowUnverified' not in data, (
-                'not allowing unverfied when not native')
+            'not allowing unverfied when not native')
 
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
                   'http://my-custom-b2g-verifier.org/verify')
@@ -281,7 +273,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
         assert 'experimental_forceIssuer' not in data, (
-                'not forcing issuer when the setting is blank')
+            'not forcing issuer when the setting is blank')
 
     @patch('requests.post')
     def test_mobile_persona_login_ignores_garbage(self, http_request):

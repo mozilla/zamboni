@@ -44,29 +44,15 @@
         "pk": 31337,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "averagerating": "3.11",
-            "confirmationcode": "",
-            "notifycompat": true,
-            "picture_type": "",
-            "occupation": "",
-            "homepage": "",
             "email": "steamcube@mozilla.com",
-            "location": "",
-            "bio": null,
             "deleted": false,
-            "emailhidden": true,
             "password": "sha512$7b5436061f8c0902088c292c057be69fdb17312e2f71607c9c51641f5d876522$08d1d370d89e2ae92755fd03464a7276ca607c431d04a52d659f7a184f3f9918073637d82fc88981c7099c7c46a1137b9fdeb675304eb98801038905a9ee0600",
             "username": "31337",
             "display_name": "31337 \u0627\u0644\u062a\u0637\u0628",
-            "resetcode_expires": null,
-            "resetcode": "",
             "created": "2007-03-05 13:09:56",
-            "notes": null,
             "modified": "2010-05-19 16:41:22",
             "last_login": "2010-05-19 16:41:22",
-            "notifyevents": true
+            "enable_recommendations": 1
         }
     },
     {

@@ -18,6 +18,12 @@ class TestAccountSerializer(amo.tests.TestCase):
         with mock.patch.object(UserProfile, 'name', 'Account name'):
             eq_(self.serializer().data['display_name'], 'Account name')
 
+    def test_recommendations(self):
+        # Test default.
+        eq_(self.serializer().data['enable_recommendations'], True)
+        self.account.enable_recommendations = False
+        eq_(self.serializer().data['enable_recommendations'], False)
+
 
 class TestAccountInfoSerializer(amo.tests.TestCase):
     UNKNOWN = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN]
