@@ -310,6 +310,22 @@ class TestFeedShelfESSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data['region'], 'restofworld')
         eq_(data['description']['de'], 'test')
         eq_(data['name']['en-US'], 'test')
+        return data
+
+    def test_deserialize_grouped_apps(self):
+        self.shelf = self.feed_shelf_factory(
+            app_ids=self.app_ids, grouped=True, description={'de': 'test'},
+            name={'en-US': 'test'})
+        self.data_es = self.shelf.get_indexer().extract_document(
+            None, obj=self.shelf)
+        data = self.test_deserialize()
+        for i, app in enumerate(data['apps']):
+            actual = app['group']['en-US']
+            if (i + 1) == len(self.app_ids):
+                expected = 'second-group'
+            else:
+                expected = 'first-group'
+            eq_(expected, actual, 'Expected %s, got %s' % (expected, actual))
 
     def test_background_image(self):
         self.shelf.update(image_hash='LOL', image_landing_hash='ROFL')

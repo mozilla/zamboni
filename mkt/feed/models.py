@@ -155,6 +155,39 @@ class BaseFeedImage(models.Model):
         abstract = True
 
 
+class GroupedAppsMixin(object):
+    """
+    An app's membership to a `FeedShelf` class, used as the through model for
+    `FeedShelf._apps`.
+    """
+    def add_app_grouped(self, app, group, order=None):
+        """
+        Add an app to this collection, as a member of the passed `group`.
+
+        If specified, the app will be created with the specified `order`. If
+        not, it will be added to the end of the collection.
+        """
+        qs = self.membership_class.objects.filter(obj=self)
+        if order is None:
+            aggregate = qs.aggregate(models.Max('order'))['order__max']
+            order = aggregate + 1 if aggregate is not None else 0
+
+        rval = self.membership_class.objects.create(obj_id=self.id, app_id=app,
+                                                    group=group, order=order)
+
+        # Help django-cache-machine: it doesn't like many 2 many relations,
+        # the cache is never invalidated properly when adding a new object.
+        self.membership_class.objects.invalidate(*qs)
+        index_webapps.delay([app])
+        return rval
+
+    def set_apps_grouped(self, new_apps):
+        self.remove_apps()
+        for group in new_apps:
+            for app in group['apps']:
+                self.add_app_grouped(app, group['name'])
+
+
 class BaseFeedCollectionMembership(ModelBase):
     """
     A custom `through` model is required for the M2M field `_apps` on
@@ -224,7 +257,8 @@ class FeedCollectionMembership(BaseFeedCollectionMembership):
         db_table = 'mkt_feed_collection_membership'
 
 
-class FeedCollection(BaseFeedCollection, BaseFeedImage):
+class FeedCollection(GroupedAppsMixin, BaseFeedCollection,
+                     BaseFeedImage):
     """
     Model for "Collections", a type of curated collection that allows more
     complex grouping of apps than an Editorial Brand.
@@ -254,39 +288,13 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
                             'feed_collection{suffix}_{pk}.png'.format(
                                 suffix=suffix, pk=self.pk))
 
-    def add_app_grouped(self, app, group, order=None):
-        """
-        Add an app to this collection, as a member of the passed `group`.
-
-        If specified, the app will be created with the specified `order`. If
-        not, it will be added to the end of the collection.
-        """
-        qs = self.membership_class.objects.filter(obj=self)
-        if order is None:
-            aggregate = qs.aggregate(models.Max('order'))['order__max']
-            order = aggregate + 1 if aggregate is not None else 0
-
-        rval = self.membership_class.objects.create(obj_id=self.id, app_id=app,
-                                                    group=group, order=order)
-
-        # Help django-cache-machine: it doesn't like many 2 many relations,
-        # the cache is never invalidated properly when adding a new object.
-        self.membership_class.objects.invalidate(*qs)
-        index_webapps.delay([app])
-        return rval
-
-    def set_apps_grouped(self, new_apps):
-        self.remove_apps()
-        for group in new_apps:
-            for app in group['apps']:
-                self.add_app_grouped(app, group['name'])
-
 
 class FeedShelfMembership(BaseFeedCollectionMembership):
     """
-    An app's membership to a `FeedBrand` class, used as the through model for
-    `FeedBrand._apps`.
+    An app's membership to a `FeedShelf` class, used as the through model for
+    `FeedShelf._apps`.
     """
+    group = PurifiedField(blank=True, null=True)
     obj = models.ForeignKey('FeedShelf')
 
     class Meta(BaseFeedCollectionMembership.Meta):
@@ -294,7 +302,7 @@ class FeedShelfMembership(BaseFeedCollectionMembership):
         db_table = 'mkt_feed_shelf_membership'
 
 
-class FeedShelf(BaseFeedCollection, BaseFeedImage):
+class FeedShelf(GroupedAppsMixin, BaseFeedCollection, BaseFeedImage):
     """
     Model for "Operator Shelves", a special type of collection that gives
     operators a place to centralize content they wish to feature.
@@ -453,6 +461,9 @@ models.signals.pre_save.connect(
     dispatch_uid='feedcollectionmembership_translations')
 models.signals.pre_save.connect(
     save_signal, sender=FeedShelf,
+    dispatch_uid='feedshelf_translations')
+models.signals.pre_save.connect(
+    save_signal, sender=FeedShelfMembership,
     dispatch_uid='feedshelfmembership_translations')
 
 

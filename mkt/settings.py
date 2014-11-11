@@ -570,17 +570,16 @@ CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
-                     'rocketfuel', 'transonic', 'discoplace']
+                     'rocketfuel', 'transonic', 'discoplace',
+                     'marketplace-operator-dashboard']
 COMMONPLACE_REPOS_APPCACHED = []
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
-CSP_DEFAULT_SRC = ("*","data:")
 CSP_SCRIPT_SRC = (
     "'self'",
-    'https://*.persona.org',
     'https://*.google-analytics.com',
     'https://*.newrelic.com',
 )

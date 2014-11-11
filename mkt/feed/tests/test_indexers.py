@@ -124,7 +124,7 @@ class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
         self.obj = self.feed_shelf_factory(
             app_ids=self.app_ids, name=self._get_test_l10n(),
             description=self._get_test_l10n(), image_hash='LOL',
-            image_landing_hash='ROFL')
+            image_landing_hash='ROFL', grouped=True)
         self.indexer = self.obj.get_indexer()()
         self.model = FeedShelf
 
@@ -138,6 +138,14 @@ class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
         eq_(doc['image_hash'], 'LOL')
         eq_(doc['image_landing_hash'], 'ROFL')
         self._assert_test_l10n(doc['name_translations'])
+        eq_(doc['group_apps'], {doc['apps'][0]: 0,
+                                doc['apps'][1]: 0,
+                                doc['apps'][2]: 1})
+        eq_(doc['group_names'],
+            [{'group_translations': [{'lang': 'en-US',
+                                      'string': 'first-group'}]},
+             {'group_translations': [{'lang': 'en-US',
+                                      'string': 'second-group'}]}])
         eq_(doc['region'],
             mkt.regions.REGIONS_CHOICES_ID_DICT[self.obj.region].slug)
         assert self.obj.name.localized_string in doc['search_names']

@@ -88,6 +88,25 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
         return super(ImageURLUploadMixin, self).post_save(obj, created)
 
 
+class GroupedAppsViewSetMixin(object):
+    def set_apps_grouped(self, obj, apps):
+        if apps:
+            try:
+                obj.set_apps_grouped(apps)
+            except Webapp.DoesNotExist:
+                raise ParseError(detail=self.exceptions['doesnt_exist'])
+
+    def set_apps(self, obj, apps):
+        """
+        Attempt to set the apps via the superclass, catching and handling the
+        TypeError raised if the apps are passed in a grouped manner.
+        """
+        try:
+            super(GroupedAppsViewSetMixin, self).set_apps(obj, apps)
+        except TypeError:
+            self.set_apps_grouped(obj, apps)
+
+
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                                 ImageURLUploadMixin):
     """
@@ -266,32 +285,16 @@ class FeedBrandViewSet(BaseFeedCollectionViewSet):
     serializer_class = FeedBrandSerializer
 
 
-class FeedCollectionViewSet(BaseFeedCollectionViewSet):
+class FeedCollectionViewSet(GroupedAppsViewSetMixin,
+                            BaseFeedCollectionViewSet):
     """
     A viewset for the FeedCollection class.
     """
     queryset = FeedCollection.objects.all()
     serializer_class = FeedCollectionSerializer
 
-    def set_apps_grouped(self, obj, apps):
-        if apps:
-            try:
-                obj.set_apps_grouped(apps)
-            except Webapp.DoesNotExist:
-                raise ParseError(detail=self.exceptions['doesnt_exist'])
 
-    def set_apps(self, obj, apps):
-        """
-        Attempt to set the apps via the superclass, catching and handling the
-        TypeError raised if the apps are passed in a grouped manner.
-        """
-        try:
-            super(FeedCollectionViewSet, self).set_apps(obj, apps)
-        except TypeError:
-            self.set_apps_grouped(obj, apps)
-
-
-class FeedShelfViewSet(BaseFeedCollectionViewSet):
+class FeedShelfViewSet(GroupedAppsViewSetMixin, BaseFeedCollectionViewSet):
     """
     A viewset for the FeedShelf class.
     """
