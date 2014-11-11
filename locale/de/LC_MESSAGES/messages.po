@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-11 19:50+0000\n"
+"PO-Revision-Date: 2014-11-11 19:52+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1415735418.0\n"
+"X-POOTLE-MTIME: 1415735524.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2610,7 +2610,9 @@ msgstr "<b>Veröffentlicht</b>: Sichtbar für alle im Marketplace und in Sucherg
 
 #: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr "<b><b>Nicht gelistet</b>: Nur für Personen mit der URL sichtbar und nicht in Suchergebnissen sowie Listenseiten aufgeführt."
+msgstr ""
+"<b>Nicht gelistet</b>: Nur für Personen mit der URL sichtbar und nicht in "
+"Suchergebnissen sowie Listenseiten aufgeführt."
 
 #: mkt/developers/forms.py:777
 msgid "App Visibility:"
