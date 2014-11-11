@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-15 16:34+0000\n"
+"PO-Revision-Date: 2014-11-11 19:50+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413390863.0\n"
+"X-POOTLE-MTIME: 1415735418.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -4480,7 +4480,9 @@ msgstr "Prozess der IARC-Inhaltsbewertung abgeschlossen, Sie werden auf die <a h
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr "Es tut uns Leid, bei der Bearbeitung der Inhaltsbewertung ist unsererseits ein Fehler aufgetreten. Sie können es sofort oder später erneut versuchen."
+msgstr ""
+"Es tut uns leid, bei der Bearbeitung der Inhaltsbewertung ist unsererseits "
+"ein Fehler aufgetreten. Sie können es sofort oder später erneut versuchen."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -5038,7 +5040,9 @@ msgstr "Danke für Ihr Abonnement!"
 
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
-msgstr "Es tut uns Leid, aber in unserem System ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+msgstr ""
+"Es tut uns leid, aber in unserem System ist ein Fehler aufgetreten. Bitte "
+"versuchen Sie es erneut."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
@@ -7105,7 +7109,7 @@ msgstr "Seite nicht gefunden"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr "Es tut uns Leid, aber wir finden nicht, was Sie suchen."
+msgstr "Es tut uns leid, aber wir finden nicht, was Sie suchen."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
