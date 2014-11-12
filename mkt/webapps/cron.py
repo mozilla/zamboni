@@ -153,7 +153,8 @@ def dump_user_installs_cron():
     """
     chunk_size = 100
     # Get valid users to dump.
-    user_ids = set(Installed.objects.values_list('user', flat=True))
+    user_ids = set(Installed.objects.filter(user__enable_recommendations=True)
+                   .values_list('user', flat=True))
 
     # Remove old dump data before running.
     user_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users')

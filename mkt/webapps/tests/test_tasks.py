@@ -550,6 +550,7 @@ class TestDumpUserInstalls(amo.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        super(TestDumpUserInstalls, self).setUp()
         # Create a user install.
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
@@ -558,6 +559,13 @@ class TestDumpUserInstalls(amo.tests.TestCase):
                                              settings.SECRET_KEY)).hexdigest()
         self.path = os.path.join(settings.DUMPED_USERS_PATH, 'users',
                                  self.hash[0], '%s.json' % self.hash)
+
+    def tearDown(self):
+        try:
+            os.unlink(self.path)
+        except OSError:
+            pass
+        super(TestDumpUserInstalls, self).tearDown()
 
     def dump_and_load(self):
         dump_user_installs([self.user.pk])
@@ -586,6 +594,12 @@ class TestDumpUserInstalls(amo.tests.TestCase):
         eq_(len(data['installed_apps']), 1)
         installed = data['installed_apps'][0]
         eq_(installed['id'], self.app.id)
+
+    def test_dump_recommendation_opt_out(self):
+        self.user.update(enable_recommendations=False)
+        with self.assertRaises(IOError):
+            # File shouldn't exist b/c we didn't write it.
+            self.dump_and_load()
 
 
 class TestFixMissingIcons(amo.tests.TestCase):

@@ -485,13 +485,9 @@ def dump_user_installs(ids, **kw):
     task_log.info(u'Dumping user installs {0} to {1}. [{2}]'
                   .format(ids[0], ids[-1], len(ids)))
 
-    for user_id in ids:
-        try:
-            user = UserProfile.objects.get(pk=user_id)
-        except UserProfile.DoesNotExist:
-            task_log.info('User profile does not exist: {0}'.format(user_id))
-            continue
-
+    users = (UserProfile.objects.filter(enable_recommendations=True)
+             .filter(id__in=ids))
+    for user in users:
         hash = user.recommendation_hash
         target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users', hash[0])
         target_file = os.path.join(target_dir, '%s.json' % hash)
