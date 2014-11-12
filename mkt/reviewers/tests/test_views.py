@@ -3237,7 +3237,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(len(mail.outbox), 1)
 
         self._check_email(
-            mail.outbox[0], 'Internal reviewer comment',
+            mail.outbox[0], 'Private reviewer comment',
             to=[self.contact.email])
 
     def test_disable(self):

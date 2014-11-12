@@ -46,7 +46,7 @@ NOTE_TYPES = {
     DISABLED: _('Banned'),
     MORE_INFO_REQUIRED: _('More information requested'),
     ESCALATION: _('Escalated'),
-    REVIEWER_COMMENT: _('Internal reviewer comment'),
+    REVIEWER_COMMENT: _('Private reviewer comment'),
     RESUBMISSION: _('App resubmission'),
     APPROVE_VERSION_PRIVATE: _('Approved but private'),
     ESCALATION_CLEARED: _('Escalation cleared'),
@@ -69,7 +69,7 @@ NOTE_TYPES = {
     ADDITIONAL_REVIEW_PASSED: _('Additional review passed'),
     ADDITIONAL_REVIEW_FAILED: _('Additional review failed'),
     DEVELOPER_VERSION_NOTE_FOR_REVIEWER: _('Version notes for reviewer'),
-    REVIEWER_PUBLIC_COMMENT: _('Reviewer comment')
+    REVIEWER_PUBLIC_COMMENT: _('Public reviewer comment')
 }
 
 # Note types only visible by reviewers and not developers.
