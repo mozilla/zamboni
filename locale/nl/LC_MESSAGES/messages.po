@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-16 09:01+0000\n"
+"PO-Revision-Date: 2014-11-12 09:23+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413450095.0\n"
+"X-POOTLE-MTIME: 1415784227.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2721,8 +2721,10 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
-"Ik verzoek u mijn app als kandidaat voor vooruitladen op een Firefox OS-apparaat te overwegen. Ik stem in met de hierboven gestelde voorwaarden. Ik begrijp dat dit document geen verplichting om "
-"mijn app vooruit te laden inhoudt."
+"Ik verzoek u mijn app als kandidaat voor vooraf laden op een Firefox OS-"
+"apparaat te overwegen. Ik stem in met de hierboven gestelde voorwaarden. Ik "
+"begrijp dat dit document geen verplichting om mijn app vooraf te laden "
+"inhoudt."
 
 #: mkt/developers/forms.py:1169
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -3066,7 +3068,7 @@ msgstr "Inhoudsbeoordelingen met succes opgeslagen."
 
 #: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
-msgstr "Aanvraag vooruit laden met succes ingediend."
+msgstr "Aanvraag voor vooraf laden met succes ingediend."
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
@@ -3867,7 +3869,7 @@ msgstr "de app wordt verwijderd uit onze beoordelingswachtrij"
 
 #: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app will not be listed in our public pages"
-msgstr "de app wordt niet weergegeven op onze publieke pagina’s"
+msgstr "de app wordt niet op onze publieke pagina’s vermeld"
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
@@ -4428,11 +4430,11 @@ msgstr "<a href=\"%(rating_url)s\">Inhoudsbeoordelingen instellen</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr "Vooruit geladen"
+msgstr "Vooraf geladen"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr "Vooruit geladen app"
+msgstr "Vooraf geladen app"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
@@ -4444,7 +4446,7 @@ msgstr "Klaar met testen?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr "Uw app voor vooruit laden indienen"
+msgstr "Uw app voor vooraf laden indienen"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -4452,13 +4454,18 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
-"U kunt uw app voordragen voor <strong>vooruit laden en verkoop met FirefoxOS-apparaten</strong> door telecomaanbieders. Om u aan te melden voor vooruit laden kunt u hieronder een testsjabloon "
-"downloaden, uw app testen, de sjabloon invullen en uw resultaten via het <a href=\"%(submit_url)s\">app-voorinstallatie-voordrachtsformulier</a> naar ons uploaden. Uw resultaten worden op onze "
-"servers opgeslagen, waar ze door geïnteresseerde telecomaanbieders worden beoordeeld. Verdere vragen kunt u sturen naar %(email)s."
+"U kunt uw app voordragen voor <strong>vooraf laden en verkoop met FirefoxOS-"
+"apparaten</strong> door telecomaanbieders. Om u aan te melden voor vooraf "
+"laden kunt u hieronder een testsjabloon downloaden, uw app testen, de "
+"sjabloon invullen en uw resultaten via het <a href=\"%(submit_url)s\">app-"
+"voorinstallatie-voordrachtsformulier</a> naar ons uploaden. Uw resultaten "
+"worden op onze servers opgeslagen, waar ze door geïnteresseerde "
+"telecomaanbieders worden beoordeeld. Verdere vragen kunt u sturen naar %"
+"(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr "Voorwaarden vooruit geladen app"
+msgstr "Voorwaarden voor vooraf geladen app"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
@@ -5011,7 +5018,10 @@ msgstr "Lees waarom sommige regio’s beperkt zijn."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr "Uw app wordt niet meer weergegeven voor bepaalde regio’s omdat die regio’s betalingen niet ondersteunen. We hebben uw regiokeuzes omgezet. Bekijk de wijzigingen voordat u ze opslaat."
+msgstr ""
+"Uw app wordt in bepaalde regio’s niet meer vermeld, omdat die regio’s geen "
+"betalingen ondersteunen. We hebben uw regiokeuzes omgezet. Bekijk de "
+"wijzigingen voordat u ze opslaat."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
@@ -6027,7 +6037,7 @@ msgstr "<small>Operator</small>dashboard"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr "Kandidaten vooruit laden"
+msgstr "Kandidaten voor vooraf laden"
 
 #: mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
@@ -6035,7 +6045,7 @@ msgstr "Categorie"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr "Opt-in vooruit laden"
+msgstr "Opt-in voor vooraf laden"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -6047,7 +6057,7 @@ msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:52
 msgid "No preload candidates found"
-msgstr "Geen kandidaten vooruit laden gevonden"
+msgstr "Geen kandidaten voor vooraf laden gevonden"
 
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:87
