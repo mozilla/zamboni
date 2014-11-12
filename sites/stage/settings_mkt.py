@@ -149,6 +149,9 @@ FXA_AUTH_DOMAIN = 'api.accounts.firefox.com'
 FXA_OAUTH_URL = 'https://oauth.accounts.firefox.com'
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
 FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')
+FXA_SECRETS = {
+    FXA_CLIENT_ID: FXA_CLIENT_SECRET,
+}
 
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 PAYMENT_PROVIDERS = ['bango']

@@ -1,5 +1,4 @@
 import json
-import uuid
 from urlparse import urljoin
 
 from django.conf import settings
@@ -19,7 +18,6 @@ from tower import ugettext as _
 from amo.helpers import urlparams
 from mkt.translations.helpers import truncate
 from mkt.translations.utils import get_locale_from_lang
-from mkt.users.views import fxa_oauth_api
 
 
 log = commonware.log.getLogger('z.mkt.site')
@@ -257,18 +255,6 @@ def get_doc_path(context, path, extension):
                 return localized_file_path
         except IOError:
             return '%s/en-US.%s' % (path, extension)
-
-
-@jinja2.contextfunction
-@register.function
-def fxa_auth_info(context=None):
-    state = uuid.uuid4().hex
-    return (state,
-            urlparams(
-                fxa_oauth_api('authorization'),
-                client_id=settings.FXA_CLIENT_ID,
-                state=state,
-                scope='profile'))
 
 
 @register.filter

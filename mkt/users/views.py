@@ -1,6 +1,4 @@
 import functools
-import json
-import urlparse
 
 from django import http
 from django.conf import settings
@@ -16,7 +14,6 @@ import commonware.log
 import waffle
 from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
-from requests_oauthlib import OAuth2Session
 from tower import ugettext as _
 
 import amo
@@ -97,67 +94,6 @@ def _clean_next_url(request):
     gets['to'] = url
     request.GET = gets
     return request
-
-
-def get_fxa_session(**kwargs):
-    return OAuth2Session(
-        settings.FXA_CLIENT_ID,
-        scope=u'profile',
-        **kwargs)
-
-
-def fxa_oauth_api(name):
-    return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
-
-
-def _fxa_authorize(fxa, client_secret, request, auth_response, userid):
-    token = fxa.fetch_token(
-        fxa_oauth_api('token'),
-        authorization_response=auth_response,
-        client_secret=client_secret)
-    res = fxa.post(fxa_oauth_api('verify'),
-                   data=json.dumps({'token': token['access_token']}),
-                   headers={'Content-Type': 'application/json'})
-    data = res.json()
-
-    if 'user' in data:
-        email = data['email']
-        fxa_uid = data['user']
-
-        def find_user(**kwargs):
-            try:
-                return UserProfile.objects.get(**kwargs)
-            except UserProfile.DoesNotExist:
-                return None
-
-        profile = (find_user(pk=userid) or find_user(username=fxa_uid)
-                   or find_user(email=email))
-        if profile:
-            profile.update(username=fxa_uid, email=email)
-        else:
-            profile = UserProfile.objects.create(
-                username=fxa_uid,
-                email=email,
-                source=amo.LOGIN_SOURCE_FXA,
-                display_name=email.partition('@')[0],
-                is_verified=True)
-            log_cef('New Account', 5, request, username=fxa_uid,
-                    signature='AUTHNOTICE',
-                    msg='User created a new account (from FxA)')
-            record_action('new-user', request)
-
-        if profile.source != amo.LOGIN_SOURCE_FXA:
-            log.info('Set account to FxA for {0}'.format(email))
-            statsd.incr('z.mkt.user.fxa')
-            profile.update(source=amo.LOGIN_SOURCE_FXA)
-
-        auth.login(request, profile)
-        profile.log_login_attempt(True)
-
-        auth.signals.user_logged_in.send(sender=profile.__class__,
-                                         request=request, user=profile)
-
-        return profile
 
 
 def browserid_authenticate(request, assertion, is_mobile=False,

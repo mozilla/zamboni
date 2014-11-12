@@ -705,6 +705,23 @@ FXA_OAUTH_URL = 'https://oauth-' + FXA_AUTH_DOMAIN
 FXA_MIGRATION_URL = '/fxa-migration'
 FXA_CSS_PATH = 'fireplace/css/fxa.css'
 
+FXA_SECRETS = {
+    # http://mp.dev - marketplace-docker.
+    FXA_CLIENT_ID: FXA_CLIENT_SECRET,
+    # https://localhost:8080.
+    '56fc6da8d185c8e4': 'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a4',
+    # http://localhost:8675 - markteplace-frontend.
+    '124ae9dff020ba79': '4a7f6a52fc6e66f693be105f31af02c2caa1ea4ec1491aacba75dbda221eb68d',
+    # http://localhost:8676 - marketplace-comm-dashboard.
+    '31b549f7dfb4de69': 'f8683bb74f87b74a41e87127bf074876f6e3bfae0007a70d269b266bc8a65ff7',
+    # http://localhost:8677 - marketplace-stats.
+    'cc389d4ccd6cd34d': '83edbdf17b431d4341fc4428720ee11d90661e78867fd922fce962e40babd7f7',
+    # http://localhost:8678 - marketplace-editorial-tools.
+    '47354b86fb361c7e': '7ea6cfee791063d8d5c1235e3924598b3ac99e7381de126f421c22fd42ab0bbb',
+    # http://localhost:8679 - marketplace-operator-dashboard.
+    '049d4b105daa1cb9': '2b8661ab4ee0b996009ab5413359b74064c433b4afae61b02fd455631fb6c198',
+}
+
 # Development environments don't use HTTPS, so we disable oauthlib's URL check.
 # Production environments have HTTPS managed by ops so this check is unneeded.
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'

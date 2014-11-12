@@ -3,6 +3,7 @@ import hashlib
 import hmac
 import json
 import uuid
+import urlparse
 
 from django import http
 from django.conf import settings
@@ -15,6 +16,7 @@ import commonware.log
 from django_browserid import get_audience
 from django_statsd.clients import statsd
 
+from requests_oauthlib import OAuth2Session
 from rest_framework import status
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
@@ -27,6 +29,8 @@ from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
 import amo
+from amo.utils import log_cef
+from lib.metrics import record_action
 from mkt.users.models import UserProfile
 from mkt.users.tasks import send_fxa_mail
 from mkt.users.views import browserid_authenticate
@@ -43,7 +47,6 @@ from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView, cors_api_view
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
-from mkt.users.views import _fxa_authorize, get_fxa_session
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 
@@ -195,12 +198,63 @@ def commonplace_token(email):
     return ','.join((email, hm.hexdigest(), unique_id))
 
 
+def fxa_oauth_api(name):
+    return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
+
+
+def find_or_create_user(email, fxa_uid, userid):
+
+    def find_user(**kwargs):
+        try:
+            return UserProfile.objects.get(**kwargs)
+        except UserProfile.DoesNotExist:
+            return None
+
+    profile = (find_user(pk=userid) or find_user(username=fxa_uid)
+               or find_user(email=email))
+    if profile:
+        created = False
+        profile.update(username=fxa_uid, email=email)
+    else:
+        created = True
+        profile = UserProfile.objects.create(
+            username=fxa_uid,
+            email=email,
+            source=amo.LOGIN_SOURCE_FXA,
+            display_name=email.partition('@')[0],
+            is_verified=True)
+
+    if profile.source != amo.LOGIN_SOURCE_FXA:
+        log.info('Set account to FxA for {0}'.format(email))
+        statsd.incr('z.mkt.user.fxa')
+        profile.update(source=amo.LOGIN_SOURCE_FXA)
+
+    return profile, created
+
+
+def fxa_authorize(session, client_secret, auth_response):
+    token = session.fetch_token(
+        fxa_oauth_api('token'),
+        authorization_response=auth_response,
+        client_secret=client_secret)
+    res = session.post(
+        fxa_oauth_api('verify'),
+        data=json.dumps({'token': token['access_token']}),
+        headers={'Content-Type': 'application/json'})
+    return res.json()
+
+
 class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
     authentication_classes = []
     serializer_class = FxALoginSerializer
 
     def create_action(self, request, serializer):
-        session = get_fxa_session(state=serializer.data['state'])
+        client_id = request.POST.get('client_id', settings.FXA_CLIENT_ID)
+        secret = settings.FXA_SECRETS[client_id]
+        session = OAuth2Session(
+            client_id,
+            scope=u'profile',
+            state=serializer.data['state'])
 
         try:
             # Maybe this was a preverified login to migrate a user.
@@ -208,13 +262,25 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
         except BadSignature:
             userid = None
 
-        profile = _fxa_authorize(
-            session,
-            settings.FXA_CLIENT_SECRET,
-            request,
-            serializer.data['auth_response'],
-            userid)
-        if profile is None:
+        auth_response = serializer.data['auth_response']
+        fxa_authorization = fxa_authorize(session, secret, auth_response)
+
+        if 'user' in fxa_authorization:
+            email = fxa_authorization['email']
+            fxa_uid = fxa_authorization['user']
+            profile, created = find_or_create_user(email, fxa_uid, userid)
+            if created:
+                log_cef('New Account', 5, request, username=fxa_uid,
+                        signature='AUTHNOTICE',
+                        msg='User created a new account (from FxA)')
+                record_action('new-user', request)
+            auth.login(request, profile)
+            profile.log_login_attempt(True)
+
+            auth.signals.user_logged_in.send(sender=profile.__class__,
+                                             request=request,
+                                             user=profile)
+        else:
             raise AuthenticationFailed('No profile.')
 
         request.user = profile
