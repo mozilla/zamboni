@@ -48,7 +48,7 @@ define('login', ['notification', 'storage'], function(notification, storage) {
 
         var fxa_auth_url = z.body.data('fxa-login-url');
         var fxa_migrate_url = z.body.data('fxa-migrate-url');
-        if (fxa_migrate_url && !storage.getItem('fxa-migrated')) {
+        if (fxa_migrate_url) {
             // Save the auth URL for later.
             storage.setItem('fxa_auth_url', fxa_auth_url);
             fxa_auth_url = fxa_migrate_url;

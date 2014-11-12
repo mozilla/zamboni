@@ -45,7 +45,7 @@
         data-fxa-state="{{ fxa_state }}"
         data-fxa-login-url="{{ fxa_url }}"
         data-fxa-auth-url="{{ url('fxa-account-login') }}"
-        {% if not user.is_authenticated() or user.can_migrate_to_fxa() %}
+        {% if waffle.switch('fx-accounts-migration') %}
           data-fxa-migrate-url="{{ settings.FXA_MIGRATION_URL }}"
         {% endif %}
       {% else %}
