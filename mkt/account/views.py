@@ -226,6 +226,7 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
             'settings': {
                 'display_name': request.user.display_name,
                 'email': request.user.email,
+                'enable_recommendations': request.user.enable_recommendations,
                 'source': 'firefox-accounts',
             }
         }
@@ -293,6 +294,7 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
             'settings': {
                 'display_name': request.user.display_name,
                 'email': request.user.email,
+                'enable_recommendations': request.user.enable_recommendations,
             }
         }
         # Serializers give up if they aren't passed an instance, so we

@@ -3,31 +3,17 @@
         "pk": 2519,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "occupation": "Software Developer",
-            "confirmationcode": "",
-            "location": "Minneapolis, MN",
-            "picture_type": "image/png",
-            "averagerating": "4.09",
-            "homepage": "http://www.chrisfinke.com/",
             "email": "cfinke@m.com",
-            "notifycompat": true,
-            "bio": null,
             "deleted": false,
-            "emailhidden": false,
             "password": "",
             "username": "cfinke",
             "display_name": "cfinke \u0627\u0644\u062a\u0637\u0628",
-            "resetcode_expires": null,
-            "resetcode": "",
             "created": "2007-03-05 13:09:34",
-            "notes": null,
             "modified": "2010-05-07 15:22:13",
             "last_login": "2010-05-07 15:22:13",
-            "notifyevents": true,
             "lang": "en-US",
-            "region": "en"
+            "region": "en",
+            "enable_recommendations": 1
         }
     }
 ]

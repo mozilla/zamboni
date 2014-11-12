@@ -20,7 +20,7 @@ from tower import ugettext as _
 
 import amo
 from mkt.site.models import ModelBase, OnChangeMixin
-from mkt.translations.fields import NoLinksField, save_signal
+from mkt.translations.fields import save_signal
 from mkt.translations.query import order_by_translation
 
 
@@ -72,30 +72,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
-
     email = models.EmailField(unique=True, null=True)
-
-    averagerating = models.CharField(max_length=255, blank=True, null=True)
-    bio = NoLinksField(short=False)
-    confirmationcode = models.CharField(max_length=255, default='',
-                                        blank=True)
     deleted = models.BooleanField(default=False)
-    display_collections = models.BooleanField(default=False)
-    display_collections_fav = models.BooleanField(default=False)
-    emailhidden = models.BooleanField(default=True)
-    homepage = models.URLField(max_length=255, blank=True, default='')
-    location = models.CharField(max_length=255, blank=True, default='')
-    notes = models.TextField(blank=True, null=True)
-    notifycompat = models.BooleanField(default=True)
-    notifyevents = models.BooleanField(default=True)
-    occupation = models.CharField(max_length=255, default='', blank=True)
-    # This is essentially a "has_picture" flag right now
-    picture_type = models.CharField(max_length=75, default='', blank=True)
-    resetcode = models.CharField(max_length=255, default='', blank=True)
-    resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
-                                             blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
-
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     last_login_attempt = models.DateTimeField(null=True, editable=False)
     last_login_attempt_ip = models.CharField(default='', max_length=45,
@@ -110,6 +89,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                               editable=False)
     lang = models.CharField(max_length=5, null=True, blank=True,
                             editable=False)
+    enable_recommendations = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'users'
@@ -121,13 +101,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
-
-    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
-        # we have to fix stupid things that we defined poorly in remora
-        if not self.resetcode_expires:
-            self.resetcode_expires = datetime.now()
-        super(UserProfile, self).save(force_insert, force_update, using,
-                                      **kwargs)
 
     @property
     def is_superuser(self):

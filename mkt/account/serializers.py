@@ -12,7 +12,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['display_name']
+        fields = ['display_name', 'enable_recommendations']
 
     def validate_display_name(self, attrs, source):
         """Validate that display_name is not empty"""

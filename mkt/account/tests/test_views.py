@@ -203,11 +203,13 @@ class TestAccount(RestOAuth):
         eq_(data['display_name'], self.user.username)
 
     def test_patch(self):
-        res = self.client.patch(self.url,
-                                data=json.dumps({'display_name': 'foo'}))
+        res = self.client.patch(
+            self.url, data=json.dumps({'display_name': 'foo',
+                                       'enable_recommendations': '0'}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
+        eq_(user.enable_recommendations, False)
 
     def test_patch_empty(self):
         res = self.client.patch(self.url,
@@ -223,12 +225,14 @@ class TestAccount(RestOAuth):
         eq_(data['display_name'], [u'This field is required'])
 
     def test_put(self):
-        res = self.client.put(self.url,
-                              data=json.dumps({'display_name': 'foo'}))
+        res = self.client.put(
+            self.url, data=json.dumps({'display_name': 'foo',
+                                       'enable_recommendations': '0'}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
         eq_(user.username, self.user.username)  # Did not change.
+        eq_(user.enable_recommendations, False)
 
     def test_patch_extra_fields(self):
         res = self.client.patch(self.url,
@@ -376,10 +380,14 @@ class TestLoginHandler(TestCase):
         ok_(not any(data['permissions'].values()))
 
     def test_login_existing_user_success(self):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile = UserProfile.objects.create(email='cvan@mozilla.com',
+                                             display_name='seavan')
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
+        eq_(data['settings']['display_name'], 'seavan')
+        eq_(data['settings']['email'], 'cvan@mozilla.com')
+        eq_(data['settings']['enable_recommendations'], True)
         eq_(data['permissions'],
             {'admin': False,
              'developer': False,
@@ -475,11 +483,15 @@ class TestFxaLoginHandler(TestCase):
         ok_(not any(data['permissions'].values()))
 
     def test_login_existing_user_uid_success(self):
-        profile = UserProfile.objects.create(username='fake-uid')
+        profile = UserProfile.objects.create(username='fake-uid',
+                                             display_name='seavan')
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
         eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(data['settings']['display_name'], 'seavan')
+        eq_(data['settings']['email'], 'cvan@mozilla.com')
+        eq_(data['settings']['enable_recommendations'], True)
         eq_(data['permissions'],
             {'admin': False,
              'developer': False,
@@ -498,11 +510,15 @@ class TestFxaLoginHandler(TestCase):
         eq_(profile.reload().email, 'cvan@mozilla.com')
 
     def test_login_preverified_success(self):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile = UserProfile.objects.create(email='cvan@mozilla.com',
+                                             display_name='seavan')
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login(state=Signer().sign(str(profile.pk)))
         eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(data['settings']['display_name'], 'seavan')
+        eq_(data['settings']['email'], 'cvan@mozilla.com')
+        eq_(data['settings']['enable_recommendations'], True)
         eq_(data['permissions'],
             {'admin': False,
              'developer': False,
@@ -843,5 +859,4 @@ class TestPreverify(RestOAuth):
         eq_(json.loads(res.content),
             {'keys': [{'e': 'AQAB', 'kty': 'RSA',
                        'n': '97209xSudEskAnd-6wYd3ED5MXve29bVxssOWRW5wHECX2MO0tzzfhOgdmD0e2X0Xgsv8vnFU0w0sWFjOtBJ1r2YAtnrcgpKiVVDcWm6EcOt-xS_CvZqwX8NZFktyxv-r9dpA9uRui0xQXy7JXS13rI0kq2VcWQuldiwYfDCPjM',
-                       'kid': 1
-                   }]})
+                       'kid': 1}]})

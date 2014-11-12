@@ -3,7 +3,8 @@
 {% if link %}{{ link }}{% endif %}
 
 {% trans faq='https://support.mozilla.org/kb/use-firefox-accounts-manage-your-marketplace-apps' %}
-For more information on Firefox Accounts, please see the FAQ: {{ faq }}{% endtrans %}
+For more information on Firefox Accounts, please see the FAQ: {{ faq }}
+{% endtrans %}
 --
 You are receiving this email because you created an account on Firefox Marketplace.
 Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.
