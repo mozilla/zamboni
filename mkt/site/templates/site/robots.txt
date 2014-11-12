@@ -6,6 +6,7 @@ Disallow: /
 Allow: /
 
 Disallow: /comm/
+Disallow: /curate/
 Disallow: /curation/
 Disallow: /downloads/
 Disallow: /lookup/
