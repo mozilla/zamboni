@@ -4,7 +4,7 @@ DJANGO = $(PYTHON) manage.py
 SETTINGS = mkt.settings
 SHELL := /usr/bin/env bash
 
-.PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db update_commonplace full_update reindex release
+.PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db full_update reindex release
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -18,7 +18,6 @@ help:
 	@echo "  update_code         to update the git repository and submodules"
 	@echo "  update_deps         to update the python and npm dependencies"
 	@echo "  update_db           to run the database migrations"
-	@echo "  update_commonplace  to update commonplace projects"
 	@echo "  full_update         to run a full update of zamboni and commonplace"
 	@echo "  reindex             to reindex everything in elasticsearch"
 	@echo "  release             to tag and stage a weekly code release"
@@ -58,10 +57,7 @@ update_deps:
 update_db:
 	schematic migrations
 
-update_commonplace:
-	commonplace fiddle
-
-full_update: update_code update_deps update_db update_commonplace
+full_update: update_code update_deps update_db
 
 reindex:
 	$(DJANGO) reindex --settings=$(SETTINGS) $(ARGS)
