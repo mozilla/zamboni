@@ -826,7 +826,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.status_code, 200)
         pqr = pq(res.content)
         # No accounts setup.
-        eq_(len(pqr('.no-accounts')), 1)
+        eq_(len(pqr('.no-accounts')), len(settings.PAYMENT_PROVIDERS))
         # Currently associated account should be displayed separately.
         eq_(pqr('.current-account').text(), unicode(acct))
 

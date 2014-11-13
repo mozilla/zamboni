@@ -117,7 +117,8 @@ IARC_MOCK = True
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
-PAYMENT_PROVIDERS = ['bango']
+PAYMENT_PROVIDERS = ['bango', 'reference']
+
 
 # When not testing this specific feature, make sure it's off.
 PRE_GENERATE_APKS = False

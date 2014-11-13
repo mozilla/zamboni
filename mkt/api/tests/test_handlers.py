@@ -21,6 +21,7 @@ from mkt.api.fields import LargeTextField
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
+from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.files.models import FileUpload
 from mkt.prices.models import Price, PriceCurrency
 from mkt.ratings.models import Review
@@ -385,7 +386,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def create_price(self, price):
         tier = Price.objects.create(price=price)
         # This is needed for the serialisation of the app.
-        PriceCurrency.objects.create(tier=tier, price=price, provider=1,
+        PriceCurrency.objects.create(tier=tier, price=price,
+                                     provider=PROVIDER_REFERENCE,
                                      region=regions.US.id)
 
     def test_put_price(self):
@@ -906,7 +908,7 @@ class TestPriceCurrency(RestOAuth):
             'method': 'operator+card',
             'paid': True,
             'price': '5.01',
-            'provider': 'bango',
+            'provider': 'reference',
             'region': 'pl',
             'resource_uri': self.detail_url,
             'tier': self.tier_url})
@@ -922,7 +924,7 @@ class TestPriceCurrency(RestOAuth):
             'method': 'operator+card',
             'paid': True,
             'price': '5.01',
-            'provider': 'bango',
+            'provider': 'reference',
             'region': 'pl',
             'resource_uri': self.detail_url,
             'tier': self.tier_url

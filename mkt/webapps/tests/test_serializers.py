@@ -13,6 +13,7 @@ import amo
 import amo.tests
 import mkt
 from mkt.constants import ratingsbodies, regions
+from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.prices.models import PriceCurrency
@@ -290,7 +291,7 @@ class TestAppSerializerPrices(amo.tests.TestCase):
         premium = self.make_premium(self.app, price='0.99')
         PriceCurrency.objects.create(region=regions.PL.id, currency='PLN',
                                      price='5.01', tier=premium.price,
-                                     provider=1)
+                                     provider=PROVIDER_REFERENCE)
 
         with self.activate(locale='fr'):
             res = self.serialize(self.app, region=regions.PL)

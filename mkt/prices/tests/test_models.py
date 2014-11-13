@@ -9,7 +9,7 @@ from nose.tools import eq_, ok_
 import amo
 import amo.tests
 from mkt.constants import apps
-from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from mkt.constants.payments import (PROVIDER_BOKU, PROVIDER_REFERENCE)
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU, RESTOFWORLD, SPAIN,
                                    UK, US)
 from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
@@ -127,18 +127,19 @@ class TestPrice(amo.tests.TestCase):
         ok_(not Price.objects.get(pk=1).get_price('foo', region=bad))
 
     def test_prices_provider(self):
-        currencies = Price.objects.get(pk=1).prices(provider=PROVIDER_BANGO)
+        currencies = Price.objects.get(pk=1).prices(
+            provider=PROVIDER_REFERENCE)
         eq_(len(currencies), 2)
 
     def test_multiple_providers(self):
         PriceCurrency.objects.get(pk=2).update(provider=PROVIDER_BOKU)
         # This used to be 0, so changing it to 3 puts in scope of the filter.
-        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+        with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             currencies = Price.objects.get(pk=1).prices()
             eq_(len(currencies), 3)
 
     def test_region_ids_by_name_multi_provider(self):
-        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+        with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             eq_(Price.objects.get(pk=2).region_ids_by_name(),
                 [BR.id, SPAIN.id, UK.id, RESTOFWORLD.id])
 
@@ -150,14 +151,14 @@ class TestPrice(amo.tests.TestCase):
         eq_(Price.objects.get(pk=2).region_ids_by_name(
             provider=PROVIDER_BOKU), [UK.id])
 
-    def test_region_ids_by_name_w_provider_bango(self):
+    def test_region_ids_by_name_w_provider_reference(self):
         eq_(Price.objects.get(pk=2).region_ids_by_name(
-            provider=PROVIDER_BANGO), [BR.id, SPAIN.id, RESTOFWORLD.id])
+            provider=PROVIDER_REFERENCE), [BR.id, SPAIN.id, RESTOFWORLD.id])
 
     def test_provider_regions(self):
-        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+        with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             eq_(Price.objects.get(pk=2).provider_regions(), {
-                PROVIDER_BANGO: [BR, SPAIN, RESTOFWORLD],
+                PROVIDER_REFERENCE: [BR, SPAIN, RESTOFWORLD],
                 PROVIDER_BOKU: [UK]})
 
     def test_provider_regions_boku(self):
@@ -165,10 +166,10 @@ class TestPrice(amo.tests.TestCase):
             eq_(Price.objects.get(pk=2).provider_regions(), {
                 PROVIDER_BOKU: [UK]})
 
-    def test_provider_regions_bango(self):
-        with self.settings(PAYMENT_PROVIDERS=['bango']):
+    def test_provider_regions_reference(self):
+        with self.settings(PAYMENT_PROVIDERS=['reference']):
             eq_(Price.objects.get(pk=2).provider_regions(), {
-                PROVIDER_BANGO: [BR, SPAIN, RESTOFWORLD]})
+                PROVIDER_REFERENCE: [BR, SPAIN, RESTOFWORLD]})
 
 
 class TestPriceCurrencyChanges(amo.tests.TestCase):

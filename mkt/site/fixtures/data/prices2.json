@@ -51,7 +51,7 @@
     "fields": {
       "currency": "PLN",
       "tier": 1,
-      "provider": 1,
+      "provider": 2,
       "region": 11,
       "price": "5.01",
       "modified": "2011-08-15 16:14:15",
@@ -77,7 +77,7 @@
     "fields": {
       "currency": "BRL",
       "tier": 2,
-      "provider": 1,
+      "provider": 2,
       "region": 7,
       "price": "1.01",
       "modified": "2011-08-15 16:15:23",
@@ -90,7 +90,7 @@
     "fields": {
       "currency": "USD",
       "tier": 2,
-      "provider": 1,
+      "provider": 2,
       "region": 1,
       "price": "1.99",
       "modified": "2011-08-15 16:15:23",
@@ -103,7 +103,7 @@
     "fields": {
       "currency": "USD",
       "tier": 1,
-      "provider": 1,
+      "provider": 2,
       "region": 1,
       "price": "0.99",
       "modified": "2011-08-15 16:15:23",
@@ -116,7 +116,7 @@
     "fields": {
       "currency": "EUR",
       "tier": 2,
-      "provider": 1,
+      "provider": 2,
       "region": 8,
       "price": "0.50",
       "modified": "2011-08-15 16:15:23",
@@ -129,7 +129,7 @@
     "fields": {
       "currency": "EUR",
       "tier": 2,
-      "provider": 1,
+      "provider": 2,
       "region": 8,
       "price": "0.50",
       "modified": "2011-08-15 16:14:26",

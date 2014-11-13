@@ -109,11 +109,13 @@ class Price(ModelBase):
         :param optional region: an int for the region. Defaults to restofworld.
         :param optional provider: an int for the provider. Defaults to bango.
         """
+        from mkt.developers.providers import ALL_PROVIDERS
         region = region or RESTOFWORLD.id
         # Unless you specify a provider, we will give you the Bango tier.
         # This is probably ok for now, because Bango is the default fall back
         # however we might need to think about this for the long term.
-        provider = provider or PROVIDER_BANGO
+        provider = (provider or
+                    ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider)
         if not hasattr(self, '_currencies'):
             Price.transformer([])
 

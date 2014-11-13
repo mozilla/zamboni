@@ -44,6 +44,7 @@ from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
@@ -567,10 +568,11 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
     def make_price(self, price='1.00'):
         price_obj, created = Price.objects.get_or_create(price=price,
                                                          name='1')
+
         for region in [regions.US.id, regions.RESTOFWORLD.id]:
             PriceCurrency.objects.create(region=region, currency='USD',
                                          price=price, tier=price_obj,
-                                         provider=1)
+                                         provider=PROVIDER_REFERENCE)
         return price_obj
 
     def make_premium(self, addon, price='1.00'):
