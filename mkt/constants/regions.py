@@ -90,6 +90,7 @@ lookup = {
     'NIC': _lazy(u'Nicaragua'),
     'PAN': _lazy(u'Panama'),
     'PER': _lazy(u'Peru'),
+    'PHL': _lazy(u'Philippines'),
     'POL': _lazy(u'Poland'),
     'MEX': _lazy(u'Mexico'),
     'RUS': _lazy(u'Russia'),
