@@ -19,7 +19,7 @@ import waffle
 from cache_nuggets.lib import memoize
 
 from mkt.regions.middleware import RegionMiddleware
-from mkt.site.helpers import fxa_auth_info
+from mkt.account.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
 
 

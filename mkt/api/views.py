@@ -22,6 +22,7 @@ from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
                                      ReadOnlyModelViewSet)
 
 from lib.constants import ALL_CURRENCIES
+from mkt.account.helpers import fxa_auth_info
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import cors_api_view, CORSMixin, MarketplaceView
@@ -34,7 +35,6 @@ from mkt.constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.prices.models import Price, PriceCurrency
 from mkt.regions.utils import parse_region
-from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _update_manifest
 
