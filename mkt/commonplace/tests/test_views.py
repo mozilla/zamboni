@@ -197,6 +197,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
              'https://marketplace.firefox.com',
+             'app://tarako.marketplace.firefox.com',
              'https://hello.firefox.com',
              'https://call.firefox.com'])
 
@@ -205,7 +206,8 @@ class TestIFrames(BaseCommonPlaceTests):
         eq_(whitelisted_origins,
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
-             'https://marketplace.firefox.com'])
+             'https://marketplace.firefox.com',
+             'app://tarako.marketplace.firefox.com'])
 
     @override_settings(DOMAIN='marketplace.allizom.org')
     def test_basic_stage(self):
@@ -215,6 +217,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
              'https://marketplace.allizom.org',
+             'app://tarako.marketplace.allizom.org',
              'https://hello.firefox.com',
              'https://call.firefox.com'])
 
@@ -223,7 +226,8 @@ class TestIFrames(BaseCommonPlaceTests):
         eq_(whitelisted_origins,
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
-             'https://marketplace.allizom.org'])
+             'https://marketplace.allizom.org',
+             'app://tarako.marketplace.allizom.org'])
 
     @override_settings(DOMAIN='marketplace-dev.allizom.org')
     def test_basic_dev(self):
@@ -233,6 +237,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
              'https://marketplace-dev.allizom.org',
+             'app://tarako.marketplace-dev.allizom.org',
              'http://localhost:8675',
              'https://localhost:8675',
              'http://localhost',
@@ -249,6 +254,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
              'https://marketplace-dev.allizom.org',
+             'app://tarako.marketplace-dev.allizom.org',
              'http://localhost:8675',
              'https://localhost:8675',
              'http://localhost',
@@ -264,6 +270,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.example.com',
              'app://example.com',
              'https://example.com',
+             'app://tarako.example.com',
              'http://localhost:8675',
              'https://localhost:8675',
              'http://localhost',
@@ -280,6 +287,7 @@ class TestIFrames(BaseCommonPlaceTests):
             ['app://packaged.example.com',
              'app://example.com',
              'https://example.com',
+             'app://tarako.example.com',
              'http://localhost:8675',
              'https://localhost:8675',
              'http://localhost',
