@@ -104,6 +104,7 @@
     function showPackagedTab() {
         return $('#id_free_platforms option:selected').length ||
             $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
+            $('#id_paid_platforms option[value="paid-android-mobile"]:selected').length ||
             allTabsDeselected();
     }
 
