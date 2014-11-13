@@ -1191,4 +1191,4 @@ XSENDFILE = False
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 # The UUID for Yogafire (Tarako Marketplace).
-YOGAFIRE_GUID = 'f34d3c22-3efe-47ca-803d-6c740da1a851'
+YOGAFIRE_GUID = '3a8bbc18-3a91-4170-a25a-3ba2a8ae2c81'

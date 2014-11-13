@@ -36,6 +36,8 @@ def get_whitelisted_origins(request, include_loop=True):
         'app://packaged.%s' % current_domain,
         'app://%s' % current_domain,
         current_origin,
+        # Also include Tarako
+        'app://tarako.%s' % current_domain,
     ]
 
     # On dev, also allow localhost/mp.dev.
