@@ -45,8 +45,8 @@ APP_FEATURES = OrderedDict([
     }),
     ('ARCHIVE', {
         'name': _lazy(u'Archive'),
-        'description': u'',
-        'apis': (),
+        'description': _lazy(u'The app requires the `ArchiveReader` API.'),
+        'apis': ('ArchiveReader',),
     }),
     ('BATTERY', {
         'name': _lazy(u'Battery'),
@@ -85,7 +85,8 @@ APP_FEATURES = OrderedDict([
     }),
     ('IDLE', {
         'name': _lazy(u'Idle'),
-        'description': u'',
+        'description': _lazy(u'The app requires the platform to support the '
+                             u'`addIdleObserver` API.'),
         'apis': ('addIdleObserver', 'removeIdleObserver'),
     }),
     ('NETWORK_INFO', {
@@ -310,6 +311,24 @@ APP_FEATURES = OrderedDict([
                              u'information about multiple network '
                              u'connections.'),
         'apis': ('navigator.mozMobileConnections',),
+    }),
+    ('MOBILEID', {
+        'name': _lazy(u'Mobile ID'),
+        'description': _lazy(u'The app requires access to the '
+                             u'`navigator.getMobileIdAssertion` API.'),
+        'apis': ('navigator.getMobileIdAssertion',),
+    }),
+    ('PRECOMPILE_ASMJS', {
+        'name': _lazy(u'Asm.js Precompilation'),
+        'description': _lazy(u'The app requires the device to support '
+                             u'precompilation of asm.js code.'),
+        'apis': (),
+    }),
+    ('HARDWARE_512MB_RAM', {
+        'name': _lazy(u'512MB RAM Device'),
+        'description': _lazy(u'The app requires the device to have at least '
+                             u'512MB RAM.'),
+        'apis': (),
     }),
 ])
 

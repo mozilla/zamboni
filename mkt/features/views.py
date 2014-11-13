@@ -15,6 +15,7 @@ class AppFeaturesList(CORSMixin, APIView):
     def _feature(self, i, slug):
         feature = APP_FEATURES[slug.upper()]
         data = {
+            'apis': feature['apis'],
             'name': feature['name'],
             'description': feature['description'],
             'position': i + 1,
