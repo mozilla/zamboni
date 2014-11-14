@@ -8,8 +8,8 @@ from jinja2 import Environment, FileSystemLoader
 from rest_framework.parsers import JSONParser, XMLParser
 
 import mkt.constants.iarc_mappings as mappings
-from amo.helpers import strip_controls
 from mkt.constants import ratingsbodies
+from mkt.site.helpers import strip_controls
 from mkt.translations.utils import no_translation
 
 log = commonware.log.getLogger('z.iarc')

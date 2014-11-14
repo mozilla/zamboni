@@ -28,10 +28,9 @@ import amo
 import amo.tests
 import mkt
 import mkt.ratings
-from amo.helpers import urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
-from amo.utils import isotime
+from amo.utils import isotime, urlparams
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport

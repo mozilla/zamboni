@@ -5,7 +5,7 @@ from django.conf import settings
 import jinja2
 from jingo import register
 
-from amo.helpers import urlparams
+from amo.utils import urlparams
 from mkt.account.views import fxa_oauth_api
 
 

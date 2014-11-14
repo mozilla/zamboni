@@ -12,7 +12,7 @@ from django.test.utils import override_settings
 
 import amo.tests
 import mkt
-from amo.helpers import urlparams
+from amo.utils import urlparams
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.views import endpoint_removed, ErrorViewSet
 from mkt.site.fixtures import fixture

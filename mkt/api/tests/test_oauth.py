@@ -15,8 +15,8 @@ from oauthlib import oauth1
 from pyquery import PyQuery as pq
 from rest_framework.request import Request
 
-from amo.helpers import urlparams
 from amo.tests import JSONClient, TestCase
+from amo.utils import urlparams
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token

@@ -13,7 +13,7 @@ from waffle import helpers  # NOQA
 
 import amo
 import amo.tests
-from amo.helpers import urlparams
+from amo.utils import urlparams
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 

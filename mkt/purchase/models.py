@@ -10,7 +10,7 @@ from jingo import env
 from jinja2.filters import do_dictsort
 
 import amo
-from amo.helpers import urlparams
+from amo.utils import urlparams
 from mkt.site.fields import DecimalCharField
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail

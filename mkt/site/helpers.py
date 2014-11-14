@@ -1,4 +1,5 @@
-import json
+import json as jsonlib
+import uuid
 from urlparse import urljoin
 
 from django.conf import settings
@@ -12,15 +13,22 @@ import commonware.log
 import jinja2
 from babel.support import Format
 from jingo import env, register
+# Needed to make sure our own |f filter overrides jingo's one.
+from jingo import helpers  # noqa
 from jingo_minify import helpers as jingo_minify_helpers
+from six import text_type
 from tower import ugettext as _
 
-from amo.helpers import urlparams
+from amo.utils import isotime, urlparams
 from mkt.translations.helpers import truncate
 from mkt.translations.utils import get_locale_from_lang
 
 
 log = commonware.log.getLogger('z.mkt.site')
+
+# Registering some utils as filters:
+register.filter(urlparams)
+register.filter(isotime)
 
 
 @jinja2.contextfunction
@@ -64,7 +72,7 @@ def market_button(context, product, receipt_type=None, classes=None):
     classes = (classes or []) + ['button', 'product']
     reviewer = receipt_type == 'reviewer'
     data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
-                  'is_packaged': json.dumps(product.is_packaged)}
+                  'is_packaged': jsonlib.dumps(product.is_packaged)}
 
     installed = None
 
@@ -320,3 +328,60 @@ def url(viewname, *args, **kwargs):
     if src:
         url = urlparams(url, src=src)
     return url
+
+
+@register.filter
+def impala_paginator(pager):
+    t = env.get_template('site/impala_paginator.html')
+    return jinja2.Markup(t.render({'pager': pager}))
+
+
+@register.filter
+def json(s):
+    return jsonlib.dumps(s)
+
+
+@register.function
+@jinja2.contextfunction
+def media(context, url, key='MEDIA_URL'):
+    """Get a MEDIA_URL link with a cache buster querystring."""
+    if 'BUILD_ID' in context:
+        build = context['BUILD_ID']
+    else:
+        if url.endswith('.js'):
+            build = context['BUILD_ID_JS']
+        elif url.endswith('.css'):
+            build = context['BUILD_ID_CSS']
+        else:
+            build = context['BUILD_ID_IMG']
+    return urljoin(context[key], urlparams(url, b=build))
+
+
+@register.function
+@jinja2.contextfunction
+def static(context, url):
+    """Get a STATIC_URL link with a cache buster querystring."""
+    return media(context, url, 'STATIC_URL')
+
+
+@register.filter
+def f(string, *args, **kwargs):
+    """This overrides jingo.helpers.f to convert input to unicode if needed.
+
+    This is needed because of
+    https://github.com/jbalogh/jingo/pull/54#issuecomment-36728948
+
+    """
+    if not isinstance(string, text_type):
+        string = text_type(string)
+    return string.format(*args, **kwargs)
+
+
+def strip_controls(s):
+    """
+    Strips control characters from a string.
+    """
+    # Translation table of control characters.
+    control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
+    rv = unicode(s).translate(control_trans)
+    return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv

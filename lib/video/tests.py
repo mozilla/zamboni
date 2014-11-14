@@ -11,7 +11,7 @@ from django.conf import settings
 
 import amo
 import amo.tests
-from amo.tests.test_helpers import get_image_path
+from mkt.site.tests.test_utils_ import get_image_path
 from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog

@@ -59,7 +59,7 @@ class File(OnChangeMixin, ModelBase):
             return True
 
     def get_url_path(self, src):
-        from amo.helpers import urlparams
+        from amo.utils import urlparams
         from mkt.site.helpers import absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
