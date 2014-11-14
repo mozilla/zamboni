@@ -168,13 +168,13 @@ def postback(request):
         user_profile = UserProfile.objects.create(
             display_name=buyer_username,
             email=buyer_email,
-            is_verified=waffle.switch_is_active('firefox-accounts'),
+            is_verified=True,
             source=source,
             username=buyer_username)
 
         log_cef('New Account', 5, request, username=buyer_username,
                 signature='AUTHNOTICE',
-                msg='A new account was created from Webpay (using Persona)')
+                msg='A new account was created from Webpay (using FxA)')
         record_action('new-user', request)
 
     log.info('webpay postback: fulfilling purchase for contrib %s with '

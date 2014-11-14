@@ -96,11 +96,6 @@ class TestConfig(RestOAuth):
     def test_fxa(self):
         res = self.client.get(self.url)
         data = json.loads(res.content)
-        ok_('fxa' not in data)
-
-        self.create_switch('firefox-accounts', db=True)
-        res = self.client.get(self.url)
-        data = json.loads(res.content)
         ok_('fxa' in data)
 
 

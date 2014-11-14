@@ -42,18 +42,9 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
 
 class TestCommonplace(BaseCommonPlaceTests):
 
-    def test_fireplace(self):
-        res = self._test_url('/server.html')
-        self.assertTemplateUsed(res, 'commonplace/index.html')
-        self.assertEquals(res.context['repo'], 'fireplace')
-        self.assertContains(res, 'splash.css')
-        self.assertContains(res, 'login.persona.org/include.js')
-        eq_(res['Cache-Control'], 'max-age=180')
-
     @mock.patch('mkt.commonplace.views.fxa_auth_info')
     def test_fireplace_firefox_accounts(self, mock_fxa):
         mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
-        self.create_switch('firefox-accounts', db=True)
         res = self._test_url('/server.html')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'fireplace')
@@ -70,7 +61,6 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'commbadge')
         self.assertNotContains(res, 'splash.css')
-        self.assertContains(res, 'login.persona.org/include.js')
         eq_(res['Cache-Control'], 'max-age=180')
 
     def test_rocketfuel(self):
@@ -78,7 +68,6 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
         self.assertNotContains(res, 'splash.css')
-        self.assertContains(res, 'login.persona.org/include.js')
         eq_(res['Cache-Control'], 'max-age=180')
 
     def test_transonic(self):
@@ -86,7 +75,6 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
         self.assertNotContains(res, 'splash.css')
-        self.assertContains(res, 'login.persona.org/include.js')
         eq_(res['Cache-Control'], 'max-age=180')
 
     def test_discoplace(self):
@@ -94,37 +82,7 @@ class TestCommonplace(BaseCommonPlaceTests):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'discoplace')
         self.assertContains(res, 'splash.css')
-        self.assertNotContains(res, 'login.persona.org/include.js')
         eq_(res['Cache-Control'], 'max-age=180')
-
-    def test_fireplace_persona_js_not_included_on_firefox_os(self):
-        for url in ('/server.html?mccs=blah',
-                    '/server.html?mcc=blah&mnc=blah',
-                    '/server.html?nativepersona=true'):
-            res = self._test_url(url)
-            self.assertNotContains(res, 'login.persona.org/include.js')
-
-    @mock.patch('mkt.commonplace.views.fxa_auth_info')
-    def test_fireplace_persona_not_included_firefox_accounts(self, mock_fxa):
-        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
-        self.create_switch('firefox-accounts', db=True)
-        for url in ('/server.html',
-                    '/server.html?mcc=blah',
-                    '/server.html?mccs=blah',
-                    '/server.html?mcc=blah&mnc=blah',
-                    '/server.html?nativepersona=true'):
-            res = self._test_url(url)
-            self.assertNotContains(res, 'login.persona.org/include.js')
-
-    def test_fireplace_persona_js_is_included_elsewhere(self):
-        for url in ('/server.html', '/server.html?mcc=blah'):
-            res = self._test_url(url)
-            self.assertContains(res, 'login.persona.org/include.js" async')
-
-    def test_rocketfuel_persona_js_is_included(self):
-        for url in ('/curation/', '/curation/?nativepersona=true'):
-            res = self._test_url(url)
-            self.assertContains(res, 'login.persona.org/include.js" defer')
 
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):

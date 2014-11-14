@@ -104,31 +104,14 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 
     """
     extra_params = {}
-    if waffle.switch_is_active('firefox-accounts'):
-        url = settings.NATIVE_FXA_VERIFICATION_URL
-    else:
-        url = settings.BROWSERID_VERIFICATION_URL
-
-        # We must always force the Firefox OS identity provider. This is
-        # because we are sometimes allowing unverified assertions and you
-        # can't mix that feature with bridged IdPs. See bug 910938.
-
-        if settings.UNVERIFIED_ISSUER:
-            extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
-
-        if is_mobile:
-            # When persona is running in a mobile OS then we can allow
-            # unverified assertions.
-            url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-            extra_params['experimental_allowUnverified'] = 'true'
-
-    log.debug('Verifying Persona at %s, audience: %s, '
+    url = settings.NATIVE_FXA_VERIFICATION_URL
+    log.debug('Verifying Native FxA at %s, audience: %s, '
               'extra_params: %s' % (url, browserid_audience, extra_params))
     v = BrowserIDBackend().get_verifier()
     v.verification_service_url = url
     result = v.verify(assertion, browserid_audience, url=url, **extra_params)
     if not result:
-        return None, _('Persona authentication failure.')
+        return None, _('Native FxA authentication failure.')
 
     if 'unverified-email' in result._response:
         email = result._response['unverified-email']
