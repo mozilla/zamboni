@@ -64,6 +64,8 @@ class RESTOFWORLD(REGION):
     weight = -1
 
 
+# These keys are from marketplace-constants
+# See https://mana.mozilla.org/wiki/display/MARKET/How+to+add+a+new+region
 lookup = {
     'ARG': _lazy(u'Argentina'),
     'BGD': _lazy(u'Bangladesh'),
@@ -90,6 +92,7 @@ lookup = {
     'PER': _lazy(u'Peru'),
     'POL': _lazy(u'Poland'),
     'MEX': _lazy(u'Mexico'),
+    'RUS': _lazy(u'Russia'),
     'SLV': _lazy(u'El Salvador'),
     'SRB': _lazy(u'Serbia'),
     'USD': _lazy(u'United States'),
