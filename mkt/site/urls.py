@@ -23,8 +23,8 @@ urlpatterns = patterns('',
     # These are the new manifest URLs going forward.
     url('^hosted.webapp$', views.manifest, name='hosted.webapp'),
     url('^packaged.webapp$', views.package_minifest, name='packaged.webapp'),
-    url('^marketplace-package.webapp$', views.yogafire_minifest,
-        name='packaged-marketplace.webapp'),
+    url('^marketplace-tarako.webapp$', views.yogafire_minifest,
+        name='marketplace-tarako.webapp'),
 
     # TODO: Deprecate this in favour of the ones above.
     url('^manifest.webapp$', views.manifest, name='manifest.webapp'),
