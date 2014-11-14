@@ -37,9 +37,8 @@ from waffle.decorators import waffle_switch
 
 import amo
 import mkt
-from amo.helpers import urlparams
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
-                       redirect_for_login, smart_decode)
+                       redirect_for_login, smart_decode, urlparams)
 from lib.crypto.packaged import SigningError
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl

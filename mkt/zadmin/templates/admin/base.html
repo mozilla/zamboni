@@ -75,7 +75,7 @@
                   </li>
                 {% else %}
                   <li class="account anonymous nomenu login">
-                  <a href="{{ login_link() }}" class="browserid-login browserid"
+                  <a href="{{ url('users.login') }}" class="browserid-login browserid"
                      data-url="{{ url('users.browserid_login') }}">
                      {{ _('Log in / Register') }}</a>
                   </li>

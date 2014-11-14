@@ -15,13 +15,13 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests.test_helpers import get_image_path
 from mkt.developers.views import standalone_hosted_upload, trap_duplicate
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.site.fixtures import fixture
+from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.users.models import UserProfile
 

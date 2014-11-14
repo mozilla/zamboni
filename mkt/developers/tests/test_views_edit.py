@@ -20,7 +20,6 @@ import amo
 import amo.tests
 import mkt
 from amo.tests import assert_required, formset, initial
-from amo.tests.test_helpers import get_image_path
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
@@ -29,6 +28,7 @@ from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests.test_utils_ import get_image_path
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version

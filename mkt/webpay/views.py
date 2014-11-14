@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import amo
-from amo.helpers import urlparams
+from amo.utils import urlparams
 from lib.cef_loggers import app_pay_cef
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,

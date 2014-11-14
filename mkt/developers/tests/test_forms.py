@@ -16,11 +16,11 @@ import amo
 import amo.tests
 import mkt
 from amo.tests import app_factory, version_factory
-from amo.tests.test_helpers import get_image_path
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
+from mkt.site.tests.test_utils_ import get_image_path
 from mkt.tags.models import Tag
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
