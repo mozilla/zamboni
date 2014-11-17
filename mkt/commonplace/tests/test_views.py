@@ -35,11 +35,7 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(sorted(res['Vary'].split(', ')),
             ['Accept-Encoding', 'Accept-Language', 'Cookie'])
-        # python 2.6 ain't got assertMultiLineEqual
-        assertEqual = getattr(self, 'assertMultiLineEqual', self.assertEqual)
-        self.maxDiff = None
-        self.assertMultiLineEqual(ungzipped_content, res.content)
-
+        eq_(ungzipped_content, res.content)
         return res
 
 class TestCommonplace(BaseCommonPlaceTests):
