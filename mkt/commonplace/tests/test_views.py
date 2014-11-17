@@ -35,10 +35,12 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(sorted(res['Vary'].split(', ')),
             ['Accept-Encoding', 'Accept-Language', 'Cookie'])
-        eq_(ungzipped_content, res.content)
+        # python 2.6 ain't got assertMultiLineEqual
+        assertEqual = getattr(self, 'assertMultiLineEqual', self.assertEqual)
+        self.maxDiff = None
+        self.assertMultiLineEqual(ungzipped_content, res.content)
 
         return res
-
 
 class TestCommonplace(BaseCommonPlaceTests):
 
@@ -53,53 +55,65 @@ class TestCommonplace(BaseCommonPlaceTests):
         eq_(res['Cache-Control'], 'max-age=180')
         self.assertContains(res, 'fakestate')
         self.assertContains(res, 'http://example.com/fakeauthurl')
-        self.assertContains(res,
-             'data-waffle-switches="[&#34;firefox-accounts&#34;]"')
 
-    def test_commbadge(self):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_commbadge(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         res = self._test_url('/comm/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'commbadge')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_rocketfuel(self):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_rocketfuel(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         res = self._test_url('/curation/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_transonic(self):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_transonic(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         res = self._test_url('/curate/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_discoplace(self):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_discoplace(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         res = self._test_url('/discovery/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'discoplace')
         self.assertContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):
+    def test_region_not_included_in_fireplace_if_sim_info(self, mock_region,
+                                                          mock_fxa):
         test_region = mock.Mock()
         test_region.slug = 'testoland'
         mock_region.return_value = test_region
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         for url in ('/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah'):
             res = self._test_url(url)
             ok_('geoip_region' not in res.context, url)
             self.assertNotContains(res, 'data-region')
 
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_region_included_in_fireplace_if_sim_info(self, mock_region):
+    def test_region_included_in_fireplace_if_sim_info(self, mock_region,
+                                                      mock_fxa):
         test_region = mock.Mock()
         test_region.slug = 'testoland'
         mock_region.return_value = test_region
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         for url in ('/server.html?nativepersona=true',
                     '/server.html?mcc=blah',  # Incomplete info from SIM.
                     '/server.html',
