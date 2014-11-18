@@ -19,7 +19,7 @@ from mkt.reviewers.models import (
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonDeviceType, Webapp
 
 
 class TestReviewerScore(amo.tests.TestCase):
@@ -64,6 +64,16 @@ class TestReviewerScore(amo.tests.TestCase):
         self.check_event(amo.STATUS_APPROVED,
                          amo.REVIEWED_WEBAPP_UPDATE)
 
+        self.app.latest_version.is_privileged = True
+        self.check_event(amo.STATUS_PENDING,
+                         amo.REVIEWED_WEBAPP_PRIVILEGED)
+        self.check_event(amo.STATUS_PUBLIC,
+                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+        self.check_event(amo.STATUS_UNLISTED,
+                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+        self.check_event(amo.STATUS_APPROVED,
+                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+
     def test_award_points(self):
         self._give_points()
         eq_(ReviewerScore.objects.all()[0].score,
@@ -74,6 +84,31 @@ class TestReviewerScore(amo.tests.TestCase):
         score = ReviewerScore.objects.all()[0]
         eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_APP_REVIEW))
         eq_(score.note_key, amo.REVIEWED_APP_REVIEW)
+
+    def test_award_additional_review_points(self):
+        ReviewerScore.award_additional_review_points(self.user, self.app,
+                                                     QUEUE_TARAKO)
+        score = ReviewerScore.objects.all()[0]
+        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_WEBAPP_TARAKO))
+        eq_(score.note_key, amo.REVIEWED_WEBAPP_TARAKO)
+
+    def test_extra_platform_points(self):
+        AddonDeviceType.objects.create(addon=self.app, device_type=1)
+        self._give_points()
+        score1 = amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED]
+        eq_(ReviewerScore.objects.all()[0].score, score1)
+
+        AddonDeviceType.objects.create(addon=self.app, device_type=2)
+        self._give_points()
+        score2 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
+                  amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA])
+        eq_(ReviewerScore.objects.all()[1].score, score2)
+
+        AddonDeviceType.objects.create(addon=self.app, device_type=3)
+        self._give_points()
+        score3 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
+                  (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2))
+        eq_(ReviewerScore.objects.all()[2].score, score3)
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -219,6 +254,8 @@ class TestAdditionalReview(amo.tests.TestCase):
         self.tarako_failed = self.patch('mkt.reviewers.models.tarako_failed')
         self.log_reviewer_action = self.patch_object(
             self.review, 'log_reviewer_action')
+        self.award_additional_review_points = self.patch(
+            'mkt.reviewers.models.ReviewerScore.award_additional_review_points')
 
     def patch(self, patch_string):
         patcher = mock.patch(patch_string)
@@ -297,6 +334,15 @@ class TestAdditionalReview(amo.tests.TestCase):
         self.log_reviewer_action.assert_called_with(
             self.app, reviewer, '', amo.LOG.PASS_ADDITIONAL_REVIEW,
             queue=QUEUE_TARAKO)
+
+    def test_get_points(self):
+        reviewer = UserProfile()
+        self.review.passed = True
+        self.review.reviewer = reviewer
+        ok_(not self.award_additional_review_points.called)
+        self.review.execute_post_review_task()
+        self.award_additional_review_points.assert_called_with(
+            reviewer, self.app, QUEUE_TARAKO)
 
 
 class TestAdditionalReviewManager(amo.tests.TestCase):
@@ -434,6 +480,8 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
     def setUp(self):
         super(TestSendTarakoMail, self).setUp()
         self.send_mail = self.patch('mkt.reviewers.models.send_mail_jinja')
+        self.award_additional_review_points = self.patch(
+            'mkt.reviewers.models.ReviewerScore.award_additional_review_points')
 
     def test_send_tarako_mail_review_passed(self):
         ok_(not self.send_mail.called)
