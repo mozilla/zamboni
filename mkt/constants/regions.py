@@ -86,19 +86,20 @@ lookup = {
     'IND': _lazy(u'India'),
     'ITA': _lazy(u'Italy'),
     'JPN': _lazy(u'Japan'),
+    'MEX': _lazy(u'Mexico'),
     'MNE': _lazy(u'Montenegro'),
     'NIC': _lazy(u'Nicaragua'),
     'PAN': _lazy(u'Panama'),
     'PER': _lazy(u'Peru'),
     'PHL': _lazy(u'Philippines'),
     'POL': _lazy(u'Poland'),
-    'MEX': _lazy(u'Mexico'),
     'RUS': _lazy(u'Russia'),
     'SLV': _lazy(u'El Salvador'),
     'SRB': _lazy(u'Serbia'),
-    'USD': _lazy(u'United States'),
     'URY': _lazy(u'Uruguay'),
+    'USD': _lazy(u'United States'),
     'VEN': _lazy(u'Venezuela'),
+    'ZAF': _lazy(u'South Africa'),
 }
 
 for k, translation in lookup.items():
