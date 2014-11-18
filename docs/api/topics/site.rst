@@ -213,7 +213,7 @@ Configuration
             ...
 
             "waffle": {
-                "switches": ["firefox-accounts", "user-curation", "feed"]
+                "switches": ["user-curation", "feed"]
             },
 
             ...

@@ -176,9 +176,7 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         storage.setItem('settings', data.settings);
         storage.setItem('permissions', data.permissions);
         storage.setItem('user_apps', data.apps);
-        if (storage.getItem('settings').source === 'firefox-accounts') {
-            storage.setItem('fxa-migrated', true);
-        }
+        storage.setItem('fxa-migrated', true);
     }
 
     function clearToken() {

@@ -126,13 +126,11 @@ def site_config(request):
         }
 
     # Always include FxA info, all projects need it.
-    if waffle.switch_is_active('firefox-accounts'):
-        fxa_auth_state, fxa_auth_url = fxa_auth_info()
-        data['fxa'] = {
-            'fxa_auth_state': fxa_auth_state,
-            'fxa_auth_url': fxa_auth_url
-        }
-
+    fxa_auth_state, fxa_auth_url = fxa_auth_info()
+    data['fxa'] = {
+        'fxa_auth_state': fxa_auth_state,
+        'fxa_auth_url': fxa_auth_url
+    }
     return Response(data)
 
 
