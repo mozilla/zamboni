@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-25 22:11+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2014-11-18 09:05+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1414275111.0\n"
+"X-POOTLE-MTIME: 1416301517.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -4973,7 +4973,7 @@ msgstr "Úprava účtu Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "Název se vztahuje k účtu na Marketplace a nebude poskytnut Bango."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -6398,6 +6398,9 @@ msgstr "Banovat aplikaci"
 #: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Zablokuje aplikaci na Marketplace. Jedná se o obdobu zamítnutí, ale autor "
+"nemůže aplikaci znovu odeslat ke schválení. Používejte pouze v extrémních "
+"případech."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
