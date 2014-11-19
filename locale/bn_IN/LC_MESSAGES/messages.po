@@ -3,89 +3,90 @@ msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2012-02-27 09:15-0800\n"
-"Last-Translator: Wil Clouser <clouserw@khan.mozilla.org>\n"
+"PO-Revision-Date: 2014-11-18 16:57+0000\n"
+"Last-Translator: koustav <koustavsuny2009@gmail.com>\n"
 "Language-Team: Bengali\n"
-"Language: bn\n"
+"Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1416329863.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
-msgstr ""
+msgstr "অ্যাপ মার্কেটপ্লেস"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} তৈরি করা হয়েছে।"
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} বৈশিষ্ট্য সম্পাদন করা হয়েছে।"
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} বর্ণনা সম্পাদন করা হয়েছে।"
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য বিভাগ সম্পাদন করা হয়েছে।"
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) গুলি {addon} এর সাথে যোগ করা হয়েছে।"
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) গুলি {addon} থেকে মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "{addon} এর প্রতি অবদান।"
 
 #: apps/amo/log.py:65
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} নিষ্ক্রিয়।"
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} সক্রিয়।"
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য পরিসংখ্যান উন্মুক্ত করা হল।"
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} এর পরিসংখ্যান গোপন করা হল।"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} এর অবস্থা {0} তে পরিবর্তিত হয়েছে।"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "প্রিভিউ টি {addon} এর সাথে যুক্ত করে দেওয়া হয়েছে।"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য প্রিভিউ সম্পাদিত হয়েছে।"
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "{addon} থেকে প্রিভিউ মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} এর সাথে {version} যুক্ত করা হয়েছে।"
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য {version} কে সম্পাদিত করা হয়েছে।"
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
@@ -130,39 +131,39 @@ msgstr ""
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "বজায় রাখা হয়েছে"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "addon} {version} ধাপে ধাপে বৃদ্ধি পেয়েছে।"
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:46 mkt/reviewers/forms.py:164
 msgid "Escalated"
-msgstr ""
+msgstr "ধাপে ধাপে বৃদ্ধি পেয়েছে"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "addon} {version} পুনরায় বিবেচনার অনুরোধ।"
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "অনুরোধ পুনরায় বিচার করুন"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "addon} {version} আরও তথ্যের জন্য অনুরোধ করা হচ্ছে।"
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:45
 msgid "More information requested"
-msgstr ""
+msgstr "আরো তথ্যের জন্য অনুরোধ করা হচ্ছে"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "addon} {version} সুপার রিভিউ অনুরোধ করা হয়েছে।"
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "সুপার রিভিউ এর অনুরোধ করা হয়েছে"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
@@ -204,41 +205,41 @@ msgstr ""
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} এখন সুগঠিত।"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} আর ফিচার করা হচ্ছে না।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} যোগ করা হয়েছে।"
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} এর ভূমিকা পরিবর্তিত হয়ে {addon} এর {1} এ পরিনত হয়েছে।"
 
 #: apps/amo/log.py:315
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} এর নীতি পরিবর্তিত হয়েছে।"
 
 #: apps/amo/log.py:321
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} আইকন পালটে গেছে।"
 
 #: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{addon} এর {review} গৃহীত হয়েছে।"
 
 #: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{addon} এর {review} টি {user} গ্রহন করেছেন।"
 
 #: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "{addon} এর {0} টি রিভিউ মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
@@ -278,39 +279,39 @@ msgstr ""
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} ক্রয় করা হয়েছে।"
 
 #: apps/amo/log.py:390
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} ইন্সটল করা হয়েছে।"
 
 #: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "{addon} এর মূল্য ফেরত চাওয়া হয়েছে"
 
 #: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "{0} এর {addon} এর মূল্য ফেরত দিতে অস্বীকার করা হয়েছে।"
 
 #: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "{0} এর {addon} এর মূল্য ফেরত দেওয়া হবে।"
 
 #: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "{addon} এর তাৎক্ষনিক মূল্য ফেরত দেওয়ার কথা স্বীকার করা হয়েছে।"
 
 #: apps/amo/log.py:415
 msgid "Account updated."
-msgstr ""
+msgstr "অ্যাকাউন্ট আপডেট করা হয়েছে।"
 
 #: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "{addon} এর বৈধ রসিদ পরীক্ষা করা হয়েছে।"
 
 #: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "{addon} এর ধাপে ধাপে বৃদ্ধি ক্লিয়ার করা হয়েছে।"
 
 #: apps/amo/log.py:426 mkt/constants/comm.py:50
 msgid "Escalation cleared"
@@ -351,38 +352,41 @@ msgstr ""
 #: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr ""
+"{addon} পুনরায়-রিভিউ করা হয়েছে কারণ অ্যাপ টি প্রিমিয়াম টাইপে আপগ্রেডে "
+"রূপান্তরিত হয়েছে।"
 
 #: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "প্রিমিয়াম টাইপে আপগ্রেড করা হয়েছে"
 
 #: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "{addon} এর পুনরায়-রিভিউ ক্লিয়ার করা হয়েছে।"
 
 #: apps/amo/log.py:474 mkt/constants/comm.py:53
 msgid "Re-review cleared"
-msgstr ""
+msgstr "পুনরায়-রিভিউ ক্লিয়ার করা হয়েছে"
 
 #: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} রিভিউয়ারের দ্বারা উন্নত হয়েছে।"
 
 #: apps/amo/log.py:482
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "রিভিউয়ার এস্কালেশান"
 
 #: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "{addon} থেকে ভিডিও মুছে ফেলা হয়েছে কারণ ভিডিও টি তে কিছু সমস্যা ছিল।"
 
 #: apps/amo/log.py:492
 msgid "Video removed"
-msgstr ""
+msgstr "ভিডিও মুছে ফেলা হয়েছে"
 
 #: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
 msgstr ""
+"{addon} নতুন করে রিভিউ করা হচ্ছে কারণ নতুন ডিভাইস(গুলি) যুক্ত করা হয়েছে।"
 
 #: apps/amo/log.py:498
 msgid "Device(s) Added"
@@ -422,23 +426,23 @@ msgstr ""
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} স্বয়ংক্রিয়ভাবে এস্কালেট করে গেছে কারণ এটি একটি প্রিরিলিস অ্যাপ।"
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "প্রিরিলিস সয়ংক্রিয়ভাবে-এস্কালেশান"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
-msgstr ""
+msgstr "বানানো হয়েছে: {0}।"
 
 #: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "{2} কে সম্পাদনা করে: {0} তে: সেট করা হয়েছে।"
 
 #: apps/amo/log.py:567
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "মুছে ফেলা হয়েছে: {1}."
 
 #: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"

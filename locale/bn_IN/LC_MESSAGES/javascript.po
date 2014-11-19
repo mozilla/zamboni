@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2013-08-23 18:52+0000\n"
-"Last-Translator: Suvorno <hpg6pavillion@hotmail.co.uk>\n"
+"PO-Revision-Date: 2014-11-18 16:57+0000\n"
+"Last-Translator: koustav <koustavsuny2009@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,63 +12,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1377283955.0\n"
+"X-POOTLE-MTIME: 1416329863.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "আপনার আপলোড করা ফাইলটাইপ স্বীকৃত নয়।"
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "আপনি আপলোড টি বাতিল করেছেন।"
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "ছবি PNG বা JPG হতে হবে।"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "ভিডিও WebM হতে হবে।"
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "সার্ভারের সাথে সংযুক্ত করতে একটি সমস্যা হচ্ছিল।"
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "একটি ফাইল নির্বাচন করুন..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "আপনার প্যাকেজ অ্যাপ্লিকেশন <code>.zip</code> দিয়ে শেষ হবে।"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% সম্পূর্ণ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} এর {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল করুন"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} আপলোড হচ্ছে"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} তে ত্রুটি"
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাপ্লিকেশন {0} ত্রুটি যাচাইকরণে ব্যর্থ হয়েছে।"
+msgstr[1] "আপনার অ্যাপ্লিকেশন {0} ত্রুটিগুলির যাচাইকরণে ব্যর্থ হয়েছে।"
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
@@ -78,7 +78,7 @@ msgstr[1] ""
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
 msgid "See full validation report"
-msgstr ""
+msgstr "সম্পূর্ণ বৈধ রিপোর্ট দেখুন"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
@@ -87,15 +87,15 @@ msgstr ""
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "সার্ভার থেকে একটি খালি প্রতিক্রিয়া পাওয়া গেছে;অবস্থা: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "বৈধতা যাচাই করার সময় অপ্রত্যাশিত সার্ভার ত্রুটি।"
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "{0} যাঁচাই শেষ"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
@@ -121,7 +121,7 @@ msgstr ""
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "অবৈধ অ্যাপ ম্যানিফেস্ট।"
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
@@ -221,7 +221,7 @@ msgstr ""
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "পারসোনা লগইন ব্যর্থ হয়েছে। একটি সার্ভার ত্রুটি ঘটেছে।"
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
