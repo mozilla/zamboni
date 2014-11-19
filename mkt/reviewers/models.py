@@ -87,15 +87,38 @@ class ReviewerScore(ModelBase):
         """
         if addon.is_packaged:
             if status in amo.WEBAPPS_APPROVED_STATUSES:
-                return amo.REVIEWED_WEBAPP_UPDATE
+                if addon.app_type_id == amo.ADDON_WEBAPP_PRIVILEGED:
+                    return amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE
+                else:
+                    return amo.REVIEWED_WEBAPP_UPDATE
             else:  # If it's not PUBLIC, assume it's a new submission.
-                return amo.REVIEWED_WEBAPP_PACKAGED
+                if addon.app_type_id == amo.ADDON_WEBAPP_PRIVILEGED:
+                    return amo.REVIEWED_WEBAPP_PRIVILEGED
+                else:
+                    return amo.REVIEWED_WEBAPP_PACKAGED
         else:  # It's a hosted app.
             in_rereview = kwargs.pop('in_rereview', False)
             if status in amo.WEBAPPS_APPROVED_STATUSES and in_rereview:
                 return amo.REVIEWED_WEBAPP_REREVIEW
             else:
                 return amo.REVIEWED_WEBAPP_HOSTED
+
+    @classmethod
+    def get_extra_platform_points(cls, addon, status):
+        """Gives extra points to reviews of apps that are compatible with
+        multiple platforms, to reflect the extra effort involved.  Only new
+        submissions get extra points (for now).
+
+        """
+        if status in amo.WEBAPPS_APPROVED_STATUSES:
+            return 0
+        event = amo.REVIEWED_WEBAPP_PLATFORM_EXTRA
+        platform_bonus = amo.REVIEWED_SCORES.get(event)
+        devices_count = len(addon.device_types)
+        if devices_count < 2:
+            return 0
+        else:
+            return (devices_count - 1) * platform_bonus
 
     @classmethod
     def award_points(cls, user, addon, status, **kwargs):
@@ -108,6 +131,7 @@ class ReviewerScore(ModelBase):
         event = cls.get_event(addon, status, **kwargs)
         score = amo.REVIEWED_SCORES.get(event)
         if score:
+            score += cls.get_extra_platform_points(addon, status)
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event)
             cls.get_key(invalidate=True)
@@ -128,6 +152,21 @@ class ReviewerScore(ModelBase):
         user_log.info(
             u'Awarding %s points to user %s for "%s" for review %s' % (
                 score, user, amo.REVIEWED_CHOICES[event], review_id))
+
+    @classmethod
+    def award_additional_review_points(cls, user, addon, queue):
+        """Awards points to user based on additional (Tarako) review."""
+        # TODO: generalize with other additional reviews queues
+        if queue is not QUEUE_TARAKO:
+            return
+        event = amo.REVIEWED_WEBAPP_TARAKO
+        score = amo.REVIEWED_SCORES.get(event)
+
+        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
+        cls.get_key(invalidate=True)
+        user_log.info(
+            u'Awarding %s points to user %s for "%s" for addon %s' %
+                (score, user, amo.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
     def get_total(cls, user):
@@ -450,6 +489,8 @@ class AdditionalReview(ModelBase):
         self.log_reviewer_action(
             self.app, self.reviewer, self.comment or '', action,
             queue=self.queue)
+        ReviewerScore.award_additional_review_points(self.reviewer, self.app,
+                                                     self.queue)
 
 
 def cleanup_queues(sender, instance, **kwargs):

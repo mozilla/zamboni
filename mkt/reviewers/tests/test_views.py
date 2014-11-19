@@ -2282,7 +2282,7 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
     def _check_message(self, msg):
         eq_(msg.call_args_list[0][0][1],
             '"Packaged App Review" successfully processed '
-            '(+120 points, 120 total).')
+            '(+60 points, 60 total).')
 
     def test_pending_to_public(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
@@ -2501,7 +2501,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def _check_message(self, msg):
         eq_(msg.call_args_list[0][0][1],
             '"Updated Packaged App Review" successfully processed '
-            '(+80 points, 80 total).')
+            '(+40 points, 40 total).')
 
     def test_version_pending_to_public(self, update_name, update_locales,
                                        update_cached_manifests, index_webapps,
