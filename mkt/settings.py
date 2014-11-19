@@ -699,15 +699,17 @@ FIREPLACE_URL = ''
 FFMPEG_BINARY = 'ffmpeg'
 
 FXA_AUTH_DOMAIN = 'stable.dev.lcip.org'  # Domain only, no protocol.
-FXA_CLIENT_ID = '7943afb7b9f54089'
-FXA_CLIENT_SECRET = '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a'
 FXA_OAUTH_URL = 'https://oauth-' + FXA_AUTH_DOMAIN
 FXA_MIGRATION_URL = '/fxa-migration'
 FXA_CSS_PATH = 'fireplace/css/fxa.css'
 
 FXA_SECRETS = {
     # http://mp.dev - marketplace-docker.
-    FXA_CLIENT_ID: FXA_CLIENT_SECRET,
+    '7943afb7b9f54089': '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a',
+    # http://localhost:2600 - zamboni default
+    '6b00a7db54f9efee': '8caf59671cf97387d4804f64f5b8bbaed3877ef25faf423bbad4794295571e0c',
+    # http://localhost:8000 - zamboni bonus
+    '82c894ff06812072': 'd5c9d80eda1f86b3c92d404a921395f2eeaebb85ac037f9807aea7e41beb1844',
     # https://localhost:8080.
     '56fc6da8d185c8e4': 'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a4',
     # http://localhost:8675 - markteplace-frontend.
@@ -721,6 +723,9 @@ FXA_SECRETS = {
     # http://localhost:8679 - marketplace-operator-dashboard.
     '049d4b105daa1cb9': '2b8661ab4ee0b996009ab5413359b74064c433b4afae61b02fd455631fb6c198',
 }
+
+FXA_CLIENT_ID = os.environ.get('FXA_CLIENT_ID', '6b00a7db54f9efee')
+FXA_CLIENT_SECRET = FXA_SECRETS[FXA_CLIENT_ID]
 
 # Development environments don't use HTTPS, so we disable oauthlib's URL check.
 # Production environments have HTTPS managed by ops so this check is unneeded.
