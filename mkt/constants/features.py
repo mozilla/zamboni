@@ -296,8 +296,7 @@ APP_FEATURES = OrderedDict([
         'name': _lazy(u'TCP Sockets'),
         'description': _lazy(u'The app requires the platform to allow opening '
                              u'raw TCP sockets.'),
-        'apis': ('TCPSocket', 'navigator.mozTCPSocket',
-                 'navigator.mozTCPServerSocket')
+        'apis': ('TCPSocket', 'navigator.mozTCPSocket')
     }),
     ('THIRDPARTY_KEYBOARD_SUPPORT', {
         'name': _lazy(u'Third-Party Keyboard Support'),
