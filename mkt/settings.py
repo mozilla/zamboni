@@ -541,7 +541,7 @@ BROWSERID_AUDIENCES = [SITE_URL]
 
 # Native-FxA uses a browserid verifier with slightly different behavior.
 NATIVE_FXA_VERIFICATION_URL = 'https://verifier.accounts.firefox.com/v2'
-NATIVE_FXA_ISSUER = 'https://api.accounts.firefox.com/'
+NATIVE_FXA_ISSUER = 'api.accounts.firefox.com'
 
 # Number of seconds a count() query should be cached.  Keep it short because
 # it's not possible to invalidate these queries.

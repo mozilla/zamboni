@@ -19,7 +19,6 @@ dennis==0.4.2
 Django==1.6.6
 dj-database-url==0.2.2
 django-aesfield==0.1.2
-django-browserid==0.10.1
 django-cache-nuggets==0.1.1
 django-celery==3.0.23
 django-cronjobs==0.2.3
@@ -105,6 +104,7 @@ urllib3==1.8.2
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
+-e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
 -e git+https://github.com/washort/django-cache-machine@b7a8d44ba60c44c5bd0aaae410b54d4712881f83#egg=django-cache-machine
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
