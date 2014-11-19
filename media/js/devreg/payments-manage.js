@@ -104,7 +104,7 @@ define('payments-manage', ['payments'], function(payments) {
             }));
 
             // Plop in text of agreement.
-            $('.agreement-text').html(response.reference.text);
+            $('.agreement-text').html(response.text);
 
             if (response.accepted) {
                 $overlay.find('form').trigger('submit');
