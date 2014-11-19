@@ -1029,3 +1029,11 @@ def find_abuse_escalations(addon_id, **kw):
         amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
                 abuse.addon.current_version, details={'comments': msg})
         task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
+
+
+@task
+@write
+def populate_is_offline(ids, **kw):
+    for webapp in Webapp.objects.filter(pk__in=ids).iterator():
+        if webapp.guess_is_offline():
+            webapp.update(is_offline=True)

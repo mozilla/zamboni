@@ -45,8 +45,7 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(res['is_packaged'], False)
         eq_(res['is_offline'], False)
 
-        self.app.update(is_packaged=True)
-        del self.app.is_offline  # cached_property, need to be reset.
+        self.app.update(is_packaged=True, is_offline=True)
 
         res = self.serialize(self.app)
         eq_(res['is_packaged'], True)

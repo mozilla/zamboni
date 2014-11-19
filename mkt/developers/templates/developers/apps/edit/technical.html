@@ -15,7 +15,7 @@
       <tbody>
         <tr>
           <th>
-            <label for="flash">
+            <label for="id_flash">
               {{ _('Uses Flash') }}
               {{ tip(None,
                      _('If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support.')) }}
@@ -27,6 +27,23 @@
               {{ form.flash.error }}
             {% else %}
               <input type="checkbox" disabled{{ ' checked' if addon.uses_flash }}>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="id_is_offline">
+              {{ _('Works Offline') }}
+              {{ tip(None,
+                     _('If your app works without an Internet connection then we will list that your app "Works Offline."')) }}
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.is_offline }}
+              {{ form.is_offline.error }}
+            {% else %}
+              <input type="checkbox" disabled{{ ' checked' if addon.is_offline }}>
             {% endif %}
           </td>
         </tr>
