@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-15 20:51+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-11-20 19:56+0000\n"
+"Last-Translator: Nanci <nancibonfim@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1416084663.0\n"
+"X-POOTLE-MTIME: 1416513406.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -4203,11 +4203,10 @@ msgid "Support Information for {0}"
 msgstr "Informações de suporte para {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
-#, fuzzy
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
-"O endereço de email para pedidos de suporte para os usuários finais. Se "
-"tiver endereços diferentes para cada idioma, múltiplas traduções podem ser "
+"O endereço de email para pedidos de suporte dos usuários finais. Se tiver "
+"endereços diferentes para cada idioma, múltiplos endereços podem ser "
 "adicionadas neste campo."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
@@ -5889,8 +5888,9 @@ msgid "Review pending"
 msgstr "Revisão pendente"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
+#, fuzzy
 msgid "Review failed"
-msgstr ""
+msgstr "Revisão falhou"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
@@ -6542,6 +6542,8 @@ msgstr "Banir o aplicativo"
 #: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Banir o aplicativo do Marketplace. Parecido com Rejeitar mas o(s) autor(es) "
+"não podem reenviar. Apenas deve ser utilizado em casos extremos."
 
 # 80%
 #: mkt/reviewers/views.py:124
@@ -7337,6 +7339,8 @@ msgstr ""
 #: mkt/submit/forms.py:268
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Não publique meu aplicativo. Notifique-me e eu ajustarei a visibilidade do "
+"aplicativo depois que ele for aprovado."
 
 # 93%
 #: mkt/submit/forms.py:279
@@ -7393,6 +7397,8 @@ msgstr "Seus comentários para os revisores"
 #: mkt/submit/forms.py:318
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Seu aplicativo será revisado pela Mozilla antes de ser publicado no "
+"Marketplace. Digite aqui quaisquer instruções especiais para os revisores."
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
@@ -7767,14 +7773,23 @@ msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"Você está recebendo este e-mail porque você criou uma conta no Firefox "
+"Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br><a "
+"href=\"%(terms)s\">Termos de Uso</a> | <a href=\"%(privacy)s\">Política de "
+"Provicidade</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
 msgstr ""
+"O Firefox Marketplace mudou para contas Firefox. Por favor, ative sua nova "
+"conta Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
 msgstr ""
+"Em breve, o Firefox Marketplace irá substituir o sistema atual de "
+"autenticação de usuários (Persona) por uma solução mais robusta, que "
+"chamamos de Contas Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
@@ -7795,10 +7810,14 @@ msgstr ""
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
 msgstr ""
+"Para acessar e gerenciar seus aplicativos listados no Firefox Marketplace, "
+"você deve ativar sua conta Firefox."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
 msgstr ""
+"O Firefox Marketplace mudou para contas Firefox. Por favor, ative sua nova "
+"conta."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
