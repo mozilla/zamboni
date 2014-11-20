@@ -61,6 +61,7 @@ Login
             "settings": {
                 "display_name": "fred foobar",
                 "email": "ffoob@example.com",
+                "enable_recommendations": true,
                 "region": "appistan"
             },
             "permissions": {

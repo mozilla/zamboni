@@ -96,8 +96,10 @@ Consumer Information
     will also be added to the response:
 
     :param apps.developed: IDs of apps the user has developed.
-    :type active: array
+    :type apps.developed: array
     :param apps.installed: IDs of apps the user has installed.
-    :type active: array
+    :type apps.installed: array
     :param apps.purchased: IDs of apps the user has purchased.
-    :type active: array
+    :type apps.purchased: array
+    :param enable_recommenations: A boolean if we should show app recommendations.
+    :type enable_recommendations: boolean
