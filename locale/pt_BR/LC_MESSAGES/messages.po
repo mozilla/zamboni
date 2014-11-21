@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-20 19:56+0000\n"
-"Last-Translator: Nanci <nancibonfim@gmail.com>\n"
+"PO-Revision-Date: 2014-11-21 11:43+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1416513406.0\n"
+"X-POOTLE-MTIME: 1416570188.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -4716,7 +4716,6 @@ msgid "Generate Keys"
 msgstr "Gerar chaves"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
-#, fuzzy
 msgid "In-App Keys"
 msgstr "Chaves em aplicativos"
 
@@ -4728,7 +4727,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Configurar chave em aplicativos"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4737,10 +4736,13 @@ msgstr "Produtos no aplicativos"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Produtos no aplicativo permitem receber os pagamentos em seu aplicativo e "
+"simplifica o processo, o que lhe permite criar e gerenciar seus produtos na "
+"Central do Desenvolvedor Firefox Marketplace."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Configurar produtos em aplicativos"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5888,7 +5890,6 @@ msgid "Review pending"
 msgstr "Revisão pendente"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
-#, fuzzy
 msgid "Review failed"
 msgstr "Revisão falhou"
 
@@ -6534,6 +6535,8 @@ msgstr "Remover reanálise"
 #: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Desmarque este aplicativo da fila de re-avaliação. O(s) autor(es) não irão "
+"receber nenhum email nem conseguirão ver os comentários aqui."
 
 #: mkt/reviewers/utils.py:498
 msgid "Ban app"
@@ -6772,7 +6775,7 @@ msgstr "Pontuação do Editor de {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Os pontos de distribuição desde o início"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
@@ -6824,7 +6827,7 @@ msgstr "Na fila de encaminhamento para análise superior"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "Na fila Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7328,7 +7331,7 @@ msgstr "Mudanças na \"origem\" não são permitidas."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Envio de validação do usuário não coincide."
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7802,10 +7805,15 @@ msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"O Firefox Marketplace mudou para as Contas Firefox para oferecer uma "
+"experiência mais integrada em todos os serviços e produtos da Mozilla. Ao "
+"ter uma Conta do Firefox tem acesso aos seus aplicativos no Marketplace e "
+"poderá desfrutar destes aplicativos em múltiplos dispositivos de forma "
+"transparente, bem como de novos serviços que chegarão em breve."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
-msgstr ""
+msgstr "Ativar a sua conta é simples. Basta entrar e confirmar a sua conta."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
