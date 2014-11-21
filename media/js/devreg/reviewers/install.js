@@ -70,7 +70,7 @@ define('install', ['capabilities', 'payments'], function(caps, payments) {
         $.post(product.recordUrl, post_data).success(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
-                installError(product);
+                installError(null, product);
                 return;
             }
             if (response.receipt) {
