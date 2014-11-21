@@ -157,8 +157,6 @@ class ReviewerScore(ModelBase):
     def award_additional_review_points(cls, user, addon, queue):
         """Awards points to user based on additional (Tarako) review."""
         # TODO: generalize with other additional reviews queues
-        if queue is not QUEUE_TARAKO:
-            return
         event = amo.REVIEWED_WEBAPP_TARAKO
         score = amo.REVIEWED_SCORES.get(event)
 
