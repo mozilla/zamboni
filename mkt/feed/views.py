@@ -23,7 +23,7 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
-from mkt.constants.applications import DEVICE_LOOKUP
+from mkt.constants.applications import get_device_id
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.authorization import OperatorShelfAuthorization
@@ -476,7 +476,7 @@ class BaseFeedESView(CORSMixin, APIView):
         else:
             # With filtering.
             sq = WebappIndexer.get_app_filter(request, {
-                'device': self._get_device(request)
+                'device': get_device_id(request)
             }, app_ids=app_ids)
 
         # Store the apps to attach to feed elements later.
@@ -524,20 +524,6 @@ class BaseFeedESView(CORSMixin, APIView):
             return None
 
         return feed_element
-
-    def _get_device(self, request):
-        """
-        Return device ID for ES to filter by (or None).
-        Fireplace sends `dev` and `device`. See the API docs for more info.
-        When `dev` is 'android' we also need to check `device` to pick a device
-        object.
-        """
-        dev = request.QUERY_PARAMS.get('dev')
-        device = request.QUERY_PARAMS.get('device')
-
-        if dev == 'android' and device:
-            dev = '%s-%s' % (dev, device)
-        return getattr(DEVICE_LOOKUP.get(dev), 'id', None)
 
 
 class FeedElementSearchView(BaseFeedESView):

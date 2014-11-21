@@ -178,14 +178,46 @@ class TestWebappIndexer(amo.tests.TestCase):
 
 class TestAppFilter(amo.tests.ESTestCase):
 
+    def setUp(self):
+        super(TestAppFilter, self).setUp()
+        self.apps = [amo.tests.app_factory() for i in range(11)]
+        self.app_ids = [a.id for a in self.apps]
+        self.request = amo.tests.req_factory_factory()
+        self.refresh('webapp')
+
     def test_app_ids(self):
         """
         Test all apps are returned if app IDs is passed. Natural ES limit is
         10.
         """
-        app_ids = [amo.tests.app_factory().id for i in range(11)]
-        self.refresh('webapp')
-        sq = WebappIndexer.get_app_filter(amo.tests.req_factory_factory(),
-                                          app_ids=app_ids)
+        sq = WebappIndexer.get_app_filter(self.request, app_ids=self.app_ids)
         results = sq.execute().hits
         eq_(len(results), 11)
+
+    def test_no_filter(self):
+        # Set a couple apps as non-public, the count should decrease.
+        self.apps[0].update(status=amo.STATUS_REJECTED)
+        self.apps[1].update(status=amo.STATUS_PENDING)
+        self.refresh('webapp')
+        sq = WebappIndexer.get_app_filter(self.request, app_ids=self.app_ids)
+        results = sq.execute().hits
+        eq_(len(results), 9)
+
+    def test_additional_info(self):
+        """
+        One of the ways `additional_info` is used it to pass the device type of
+        the request and filter apps by device.
+        """
+        # By default app_factory creates apps with device being
+        # DEVICE_TYPES.keys()[0]. Let's change a couple and query by that
+        # device.
+        device = DEVICE_TYPES.keys()[1]
+        self.apps[0].addondevicetype_set.create(device_type=device)
+        self.apps[1].addondevicetype_set.create(device_type=device)
+        # Reindex b/c we changed an off-model attribute.
+        self.reindex(Webapp, 'webapp')
+
+        sq = WebappIndexer.get_app_filter(self.request, {'device': device},
+                                          app_ids=self.app_ids)
+        results = sq.execute().hits
+        eq_(len(results), 2)
