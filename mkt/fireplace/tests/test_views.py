@@ -209,8 +209,17 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         region_from_request.return_value = mkt.regions.UK
         res = self.anon.get(self.url)
         data = json.loads(res.content)
+        eq_(len(data.keys()), 1)
         eq_(data['region'], 'uk')
-        ok_('apps' not in data)
+
+    @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_recommendation_opt_out(self, region_from_request):
+        region_from_request.return_value = mkt.regions.BR
+        for opt in (True, False):
+            self.user.update(enable_recommendations=opt)
+            res = self.client.get(self.url)
+            data = json.loads(res.content)
+            eq_(data['enable_recommendations'], opt)
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_developed(self, region_from_request):

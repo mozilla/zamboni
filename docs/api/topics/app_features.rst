@@ -1,4 +1,4 @@
-.. _features:
+.. _app_features:
 
 ============
 App Features

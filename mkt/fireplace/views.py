@@ -56,6 +56,7 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
         }
         if request.user.is_authenticated():
             data['apps'] = user_relevant_apps(request.user)
+            data['enable_recommendations'] = request.user.enable_recommendations
 
         # Return an HttpResponse directly to be as fast as possible.
         return Response(data)
