@@ -110,6 +110,34 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['addon'], self.addon.id)
 
+    def test_response_deleted_app(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+
+        thread = self._thread_factory(note=True)
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
+
+        eq_(res.status_code, 200)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
+
+    def test_response_deleted_version_app(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        thread = self._thread_factory(note=True)
+        version = amo.tests.version_factory(addon=self.addon)
+        version.update(deleted=True)
+        thread.update(_version=version)
+
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
+
+        eq_(res.status_code, 200)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
+        eq_(res.json['version'], version.id)
+        eq_(res.json['version_number'], version.version)
+        eq_(res.json['version_is_obsolete'], True)
+
     def test_recent_notes_perm(self):
         staff = UserProfile.objects.get(username='support_staff')
         self.addon.addonuser_set.create(user=self.profile)
