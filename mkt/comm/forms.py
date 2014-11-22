@@ -13,7 +13,7 @@ from mkt.webapps.models import Webapp
 
 
 class AppSlugForm(happyforms.Form):
-    app = SluggableModelChoiceField(queryset=Webapp.objects.all(),
+    app = SluggableModelChoiceField(queryset=Webapp.with_deleted.all(),
                                     sluggable_to_field_name='app_slug')
 
 
@@ -27,7 +27,7 @@ class CreateCommNoteForm(happyforms.Form):
 
 
 class CreateCommThreadForm(CreateCommNoteForm):
-    app = SluggableModelChoiceField(queryset=Webapp.objects.all(),
+    app = SluggableModelChoiceField(queryset=Webapp.with_deleted.all(),
                                     sluggable_to_field_name='app_slug')
     version = forms.CharField()
 

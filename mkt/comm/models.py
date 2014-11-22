@@ -14,6 +14,7 @@ from mkt.access import acl
 from mkt.constants import comm
 from mkt.site.models import ModelBase
 from mkt.translations.fields import save_signal
+from mkt.webapps.models import AddonUser
 
 
 class CommunicationPermissionModel(ModelBase):
@@ -104,7 +105,8 @@ def user_has_perm_thread(thread, profile):
         return True
 
     # User is a developer of the add-on and has the permission to read.
-    user_is_author = profile.addons.filter(pk=thread.addon_id)
+    user_is_author = AddonUser.objects.filter(addon_id=thread._addon_id,
+                                              user=profile)
     if thread.read_permission_developer and user_is_author.exists():
         return True
 
@@ -126,7 +128,7 @@ def user_has_perm_note(note, profile):
         return True
 
     # User is a developer of the add-on and has the permission to read.
-    user_is_author = profile.addons.filter(pk=note.thread.addon_id)
+    user_is_author = profile.addons.filter(pk=note.thread._addon_id)
     if note.read_permission_developer and user_is_author.exists():
         return True
 
@@ -134,13 +136,26 @@ def user_has_perm_note(note, profile):
 
 
 class CommunicationThread(CommunicationPermissionModel):
-    addon = models.ForeignKey('webapps.Webapp', related_name='threads')
-    version = models.ForeignKey('versions.Version', related_name='threads',
-                                null=True)
+    _addon = models.ForeignKey('webapps.Webapp', related_name='threads',
+                               db_column='addon_id')
+    _version = models.ForeignKey('versions.Version', related_name='threads',
+                                 db_column='version_id', null=True)
 
     class Meta:
         db_table = 'comm_threads'
-        unique_together = ('addon', 'version')
+        unique_together = ('_addon', '_version')
+
+    @property
+    def addon(self):
+        from mkt.webapps.models import Webapp
+        return Webapp.with_deleted.get(pk=self._addon_id)
+
+    @property
+    def version(self):
+        from mkt.versions.models import Version
+        if self._version_id:
+            return Version.with_deleted.get(pk=self._version_id)
+        return None
 
     def join_thread(self, user):
         return self.thread_cc.get_or_create(user=user)

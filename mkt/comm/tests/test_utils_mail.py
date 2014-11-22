@@ -179,7 +179,7 @@ class TestEmailReplySaving(TestCase):
         self.app = app_factory(name='Antelope', status=amo.STATUS_PENDING)
         self.profile = UserProfile.objects.get(pk=999)
         t = CommunicationThread.objects.create(
-            addon=self.app, version=self.app.current_version,
+            _addon=self.app, _version=self.app.current_version,
             read_permission_reviewer=True)
 
         self.create_switch('comm-dashboard')
