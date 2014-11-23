@@ -150,7 +150,7 @@ class TestMigrateApprovalNotes(amo.tests.TestCase):
         self.app = amo.tests.app_factory()
         self.version = self.app.latest_version
         self.thread = CommunicationThread.objects.create(
-            addon=self.app, version=self.version)
+            _addon=self.app, _version=self.version)
         self.user = amo.tests.user_factory()
         self.app.addonuser_set.create(user=self.user)
 
@@ -183,7 +183,7 @@ class TestFixDeveloperVersionNotes(amo.tests.TestCase):
         self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
         self.version = self.app.latest_version
         self.thread = CommunicationThread.objects.create(
-            addon=self.app, version=self.version)
+            _addon=self.app, _version=self.version)
         self.user = amo.tests.user_factory()
         self.app.addonuser_set.create(user=self.user)
 

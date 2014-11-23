@@ -41,3 +41,19 @@ DEVICE_CHOICES_IDS = {
     'tablet': DEVICE_TABLET.id,
     'firefoxos': DEVICE_GAIA.id,
 }
+
+
+def get_device(request):
+    # Fireplace sends `dev` and `device`. See the API docs. When `dev` is
+    # 'android' we also need to check `device` to pick a device object.
+    dev = request.GET.get('dev')
+    device = request.GET.get('device')
+
+    if dev == 'android' and device:
+        dev = '%s-%s' % (dev, device)
+
+    return DEVICE_LOOKUP.get(dev)
+
+
+def get_device_id(request):
+    return getattr(get_device(request), 'id', None)

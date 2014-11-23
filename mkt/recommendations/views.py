@@ -8,9 +8,11 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+import amo
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.constants.applications import get_device_id
 from mkt.search.views import SearchView
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.serializers import SimpleESAppSerializer
@@ -56,7 +58,13 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                 # Fall back to a popularity search.
                 return self._popular()
 
-            sq = WebappIndexer.get_app_filter(self.request, app_ids=app_ids)
+            filters = None
+            device = get_device_id(request)
+            if device != amo.DEVICE_DESKTOP.id:
+                filters = {'device': device}
+
+            sq = WebappIndexer.get_app_filter(self.request, filters,
+                                              app_ids=app_ids)
             return Response({
                 'objects': self.serializer_class(
                     sq.execute().hits, many=True,

@@ -32,7 +32,7 @@ def _migrate_activity_log(ids, **kwargs):
         # Create thread.
         try:
             thread, tc = CommunicationThread.objects.safer_get_or_create(
-                addon=log.arguments[0], version=log.arguments[1])
+                _addon=log.arguments[0], _version=log.arguments[1])
         except IndexError:
             continue
 
@@ -84,7 +84,7 @@ def _migrate_approval_notes(ids):
             continue
 
         try:
-            thread = CommunicationThread.objects.get(version=version)
+            thread = CommunicationThread.objects.get(_version=version)
         except CommunicationThread.DoesNotExist:
             continue
 
@@ -116,7 +116,7 @@ def _fix_developer_version_notes(ids):
             # Just to make sure, even though it's specified in management cmd.
             continue
 
-        app_id = note.thread.addon_id  # Handle deleted apps.
+        app_id = note.thread._addon_id  # Handle deleted apps.
         if (note.author.id not in
             Webapp.with_deleted.get(id=app_id).authors.values_list('id',
                                                                    flat=True)):

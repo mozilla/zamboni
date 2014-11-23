@@ -1107,10 +1107,11 @@ class DevNewsletterForm(happyforms.Form):
 
 class AppFormTechnical(AddonFormBase):
     flash = forms.BooleanField(required=False)
+    is_offline = forms.BooleanField(required=False)
 
     class Meta:
         model = Webapp
-        fields = ('public_stats',)
+        fields = ('is_offline', 'public_stats',)
 
     def __init__(self, *args, **kw):
         super(AppFormTechnical, self).__init__(*args, **kw)

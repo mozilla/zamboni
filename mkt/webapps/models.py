@@ -488,6 +488,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     # This is the public_id to a Generic Solitude Product
     solitude_public_id = models.CharField(max_length=255, null=True,
                                           blank=True)
+    is_offline = models.BooleanField(default=False)
 
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)
@@ -1493,18 +1494,22 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 'url': self.get_dev_url('payments'),
             }
 
-    @amo.cached_property(writable=True)
-    def is_offline(self):
+    def guess_is_offline(self):
         """
         Returns a boolean of whether this is an app that degrades
         gracefully offline (i.e., is a packaged app or has an
         `appcache_path` defined in its manifest).
 
         """
-        if self.is_packaged:
-            return True
-        manifest = self.get_manifest_json()
-        return bool(manifest and 'appcache_path' in manifest)
+        if self.latest_version:
+            # Manually find the latest file since `self.get_latest_file()`
+            # won't be set correctly near the start of the app submission
+            # process.
+            manifest = self.get_manifest_json(
+                file_obj=self.latest_version.all_files[0])
+            return bool(manifest and 'appcache_path' in manifest)
+        else:
+            return False
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""

@@ -10,6 +10,7 @@ from amo.utils import chunked
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
                                fix_missing_icons, import_manifests,
+                               populate_is_offline,
                                regenerate_icons_and_thumbnails,
                                update_manifests, update_supported_locales,
                                zip_apps)
@@ -38,6 +39,16 @@ tasks = {
                                                amo.STATUS_PUBLIC,
                                                amo.STATUS_APPROVED],
                                    disabled_by_user=False)]},
+    'populate_is_offline': {
+        'method': populate_is_offline,
+        'qs': [Q(status__in=[amo.STATUS_NULL,
+                             amo.STATUS_PENDING,
+                             amo.STATUS_PUBLIC,
+                             amo.STATUS_REJECTED,
+                             amo.STATUS_APPROVED,
+                             amo.STATUS_UNLISTED],
+                 disabled_by_user=False)]
+    },
     'regenerate_icons_and_thumbnails':
                              {'method': regenerate_icons_and_thumbnails,
                               'qs': [Q(status__in=[amo.STATUS_PENDING,

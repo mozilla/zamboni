@@ -356,7 +356,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         check(offline='None', visible=True)
 
         # Mark that app is capable offline.
-        self.webapp.update(is_packaged=True)
+        self.webapp.update(is_offline=True)
         self.refresh('webapp')
 
         # Should show up in offline.
@@ -595,7 +595,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['is_packaged'], False)
-        eq_(obj['is_offline'], False)
         eq_(obj['package_path'], None)
 
     @override_settings(SITE_URL='http://hy.fr')
@@ -610,7 +609,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['is_packaged'], True)
-        eq_(obj['is_offline'], True)
         eq_(obj['package_path'],
             '%s/downloads/file/%s/%s' % (settings.SITE_URL, f.id, f.filename))
 

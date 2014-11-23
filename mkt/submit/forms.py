@@ -324,11 +324,14 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         label=_lazy(u'Once your app is approved, choose a publishing option:'),
         choices=PUBLISH_CHOICES, initial=amo.PUBLISH_IMMEDIATE,
         widget=forms.RadioSelect())
+    is_offline = forms.BooleanField(
+        label=_lazy(u'My app works without an Internet connection.'),
+        required=False)
 
     class Meta:
         model = Webapp
         fields = ('app_slug', 'description', 'privacy_policy', 'homepage',
-                  'support_url', 'support_email', 'publish_type')
+                  'support_url', 'support_email', 'publish_type', 'is_offline')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
@@ -338,6 +341,10 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         privacy_field = self.base_fields['privacy_policy']
         privacy_field.help_text = mark_safe(privacy_field.help_text.format(
             url=self.PRIVACY_MDN_URL))
+
+        if 'instance' in kwargs:
+            instance = kwargs['instance']
+            instance.is_offline = instance.guess_is_offline()
 
         super(AppDetailsBasicForm, self).__init__(*args, **kwargs)
 

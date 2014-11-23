@@ -16,6 +16,7 @@ import amo
 import mkt
 from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
                             UnicodeChoiceField)
+from mkt.constants.applications import get_device
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
 from mkt.users.models import UserProfile
@@ -50,18 +51,6 @@ class CollectionMembershipField(serializers.RelatedField):
             serializer_class = self.app_serializer_classes['normal']
         return serializer_class(qs, context=self.context, many=True).data
 
-    def _get_device(self, request):
-        # Fireplace sends `dev` and `device`. See the API docs. When
-        # `dev` is 'android' we also need to check `device` to pick a device
-        # object.
-        dev = request.GET.get('dev')
-        device = request.GET.get('device')
-
-        if dev == 'android' and device:
-            dev = '%s-%s' % (dev, device)
-
-        return amo.DEVICE_LOOKUP.get(dev)
-
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or 'request' not in self.context:
             raise ImproperlyConfigured('Pass request in self.context when'
@@ -80,7 +69,7 @@ class CollectionMembershipField(serializers.RelatedField):
         qs = get_component(obj, self.source)
 
         # Filter apps based on device and feature profiles.
-        device = self._get_device(request)
+        device = get_device(request)
         profile = get_feature_profile(request)
         if device and device != amo.DEVICE_DESKTOP:
             qs = qs.filter(addondevicetype__device_type=device.id)
@@ -98,7 +87,7 @@ class CollectionMembershipField(serializers.RelatedField):
         Relies on a FeaturedSearchView instance in self.context['view']
         to properly rehydrate results returned by ES.
         """
-        device = self._get_device(request)
+        device = get_device(request)
 
         app_filters = {'profile': get_feature_profile(request)}
         if device and device != amo.DEVICE_DESKTOP:

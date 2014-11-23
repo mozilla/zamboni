@@ -638,12 +638,12 @@ class TestWebapp(amo.tests.WebappTestCase):
         region.adolescent = False
         eq_(app.get_trending(region=region), 10.0)
 
-    def test_is_offline_when_appcache_path(self):
+    def test_guess_is_offline_when_appcache_path(self):
         app = self.get_app()
 
         # If there's no appcache_path defined, ain't an offline-capable app.
         am = AppManifest.objects.get(version=app.current_version)
-        eq_(app.is_offline, False)
+        eq_(app.guess_is_offline(), False)
 
         # If there's an appcache_path defined, this is an offline-capable app.
         manifest = json.loads(am.manifest)
@@ -651,7 +651,11 @@ class TestWebapp(amo.tests.WebappTestCase):
         am.update(manifest=json.dumps(manifest))
         # reload isn't enough, it doesn't clear cached_property.
         app = self.get_app()
-        eq_(app.is_offline, True)
+        eq_(app.guess_is_offline(), True)
+
+    def test_guess_is_offline_no_manifest(self):
+        app = Webapp()
+        eq_(app.guess_is_offline(), False)
 
     @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
     def test_payments_complete(self, pay_mock):
@@ -1051,12 +1055,6 @@ class TestWebappLight(amo.tests.TestCase):
         geodata.update(region_de_usk_exclude=True)
         self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
         self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
-
-    @mock.patch('mkt.webapps.models.cache.get')
-    def test_is_offline_when_packaged(self, mock_get):
-        mock_get.return_value = ''
-        eq_(Webapp(is_packaged=True).is_offline, True)
-        eq_(Webapp(is_packaged=False).is_offline, False)
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_completion_errors(self, complete_mock):

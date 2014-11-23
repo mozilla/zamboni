@@ -38,7 +38,7 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 
     # Create thread + note.
     thread, created_thread = app.threads.safer_get_or_create(
-        version=version, defaults=create_perms)
+        _version=version, defaults=create_perms)
     note = thread.notes.create(
         note_type=note_type, body=body, author=author, **create_perms)
 

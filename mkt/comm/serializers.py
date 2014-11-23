@@ -3,7 +3,8 @@ import hashlib
 from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.serializers import (Field, ModelSerializer,
+                                        SerializerMethodField)
 from tower import ugettext as _
 
 from mkt.comm.models import (CommAttachment, CommunicationNote,
@@ -79,9 +80,11 @@ class AddonSerializer(ModelSerializer):
 
 
 class ThreadSerializer(ModelSerializer):
+    addon = SerializerMethodField('get_addon')
     addon_meta = AddonSerializer(source='addon', read_only=True)
     recent_notes = SerializerMethodField('get_recent_notes')
     notes_count = SerializerMethodField('get_notes_count')
+    version = SerializerMethodField('get_version')
     version_number = SerializerMethodField('get_version_number')
     version_is_obsolete = SerializerMethodField('get_version_is_obsolete')
 
@@ -91,6 +94,14 @@ class ThreadSerializer(ModelSerializer):
                   'recent_notes', 'created', 'modified', 'version_number',
                   'version_is_obsolete')
         view_name = 'comm-thread-detail'
+
+    def get_addon(self, obj):
+        return obj.addon.id
+
+    def get_version(self, obj):
+        version = obj.version
+        if version is not None:
+            return version.id
 
     def get_recent_notes(self, obj):
         notes = (obj.notes.with_perms(self.get_request().user, obj)
@@ -104,12 +115,12 @@ class ThreadSerializer(ModelSerializer):
 
     def get_version_number(self, obj):
         try:
-            return Version.with_deleted.get(id=obj.version_id).version
+            return Version.with_deleted.get(id=obj._version_id).version
         except Version.DoesNotExist:
             return ''
 
     def get_version_is_obsolete(self, obj):
         try:
-            return Version.with_deleted.get(id=obj.version_id).deleted
+            return Version.with_deleted.get(id=obj._version_id).deleted
         except Version.DoesNotExist:
             return True

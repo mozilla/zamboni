@@ -229,6 +229,48 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         ok_('{url}' not in help_text)
         ok_(form.PRIVACY_MDN_URL in help_text)
 
+    def test_is_offline_guess_false(self):
+        app = self.get_app()
+        app.guess_is_offline = lambda: False
+        assert not app.is_offline
+        forms.AppDetailsBasicForm(
+            self.get_data(),
+            request=self.request,
+            instance=app)
+        assert not app.is_offline
+
+    def test_is_offline_guess_false_override(self):
+        app = self.get_app()
+        app.guess_is_offline = lambda: False
+        form = forms.AppDetailsBasicForm(
+            self.get_data(is_offline=True),
+            request=self.request,
+            instance=app)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(app.is_offline, True)
+
+    def test_is_offline_guess_true(self):
+        app = self.get_app()
+        app.guess_is_offline = lambda: True
+        assert not app.is_offline
+        forms.AppDetailsBasicForm(
+            self.get_data(is_offline=None),
+            request=self.request,
+            instance=app)
+        assert app.is_offline
+
+    def test_is_offline_guess_true_override(self):
+        app = self.get_app()
+        app.guess_is_offline = lambda: True
+        form = forms.AppDetailsBasicForm(
+            self.get_data(is_offline=False),
+            request=self.request,
+            instance=app)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(app.is_offline, False)
+
 
 class TestAppFeaturesForm(amo.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')

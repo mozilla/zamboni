@@ -9,7 +9,6 @@ from elasticsearch_dsl import F, filter as es_filter, query
 import commonware.log
 
 import amo
-
 import mkt
 from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
@@ -448,7 +447,6 @@ class WebappIndexer(BaseIndexer):
         - Excludes non-public apps.
         - Excludes disabled apps (whether by reviewer or by developer).
         - Excludes based on region exclusions.
-        - TODO: Excludes based on device and platform support.
 
         additional_data -- an object with more data to allow more filtering.
         sq -- if you have an existing search object to filter off of.

@@ -114,13 +114,16 @@ def get_mail_context(note):
     """
     app = note.thread.addon
 
-    if app.name.locale != app.default_locale:
+    if app.name and app.name.locale != app.default_locale:
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
         lang = to_language(app.default_locale)
         with translation.override(lang):
-            app = Webapp.objects.get(id=app.id)
+            app = Webapp.with_deleted.get(id=app.id)
+    elif not app.name:
+        # For deleted apps.
+        app.name = app.app_slug
 
     return {
         'amo': amo,
