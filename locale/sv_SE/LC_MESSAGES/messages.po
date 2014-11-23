@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-22 11:20+0100\n"
+"PO-Revision-Date: 2014-11-23 16:34+0100\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.7beta2\n"
-"X-POOTLE-MTIME: 1416525851.0\n"
+"X-POOTLE-MTIME: 1416753324.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -503,7 +503,7 @@ msgstr "Användare {0.name} {0.id} borttaget via sökverktyget."
 
 #: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
-msgstr "{addon} innehållsklassificering ändrad till vuxen."
+msgstr "{addon} innehållsklassificering ändrad till Vuxen."
 
 #: apps/amo/log.py:661
 msgid "{addon} content rating changed."
@@ -599,7 +599,7 @@ msgstr "Namn"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "Välj ett giltigt val. %(value)s är ​​inte ett av de tillgängliga alternativen."
+msgstr "Välj ett giltigt val. %(value)s är inte ett av de tillgängliga alternativen."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
@@ -1211,7 +1211,7 @@ msgstr "Kuwait"
 
 #: mkt/constants/bango.py:140
 msgid "Kyrgyzstan"
-msgstr "Kirgistan"
+msgstr "Kirgizistan"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
@@ -2605,7 +2605,7 @@ msgstr "Du kan inte välja {region}."
 
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
-msgstr "Alla gruppmedlemmar måste ha läst och godkänt utvecklareavtalet."
+msgstr "Alla gruppmedlemmar måste ha läst och godkänt utvecklaravtalet."
 
 #: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
@@ -3213,7 +3213,7 @@ msgstr "Innehållsklassificering sparad."
 
 #: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
-msgstr "App för förinstallation har skickats in."
+msgstr "Ansökan för en förinstallerad app har skickats in."
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
@@ -4682,7 +4682,7 @@ msgstr "Används i listor över appar, som sökresultat och rekommenderade appar
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
-msgstr "Ladda upp rn anpassad ikon..."
+msgstr "Ladda upp en anpassad ikon..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
@@ -4983,7 +4983,7 @@ msgid ""
 "Sorry, there was an error on our side processing content ratings. You can keep trying or try "
 "again later."
 msgstr ""
-"Tyvärr, det uppstod ett fel på sidan som behandar innehållsklassificeringar. Du kan "
+"Tyvärr, det uppstod ett fel på sidan som behandlar innehållsklassificeringar. Du kan "
 "fortsätta att försöka eller försök igen senare."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
@@ -5514,7 +5514,7 @@ msgstr "Registrera betalningskonto"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
-msgstr "Behandar begäran..."
+msgstr "Behandlar begäran..."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
@@ -6247,14 +6247,14 @@ msgstr "Det gick inte att komma åt filen %s."
 
 #: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr "Filen \"manifest.webapp \" hittades inte i roten för den paketerade appens arkiv."
+msgstr "Filen \"manifest.webapp\" hittades inte i roten för den paketerade appens arkiv."
 
 #: mkt/files/utils.py:96
 msgid ""
 "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 "
 "characters."
 msgstr ""
-"Det gick inte att avkoda webappens manifestfil. Kontrollera din manifestfil för särskilda "
+"Det gick inte att avkoda webbappens manifestfil. Kontrollera din manifestfil för särskilda "
 "icke-utf-8 tecken."
 
 #: mkt/files/utils.py:104
@@ -6505,7 +6505,7 @@ msgstr "Granskning prioriterad"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Prioritize Review?"
-msgstr "Prioriterada granskning?"
+msgstr "Prioriterad granskning?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
@@ -7194,7 +7194,7 @@ msgid ""
 "Clear this app from the re-review queue. The author(s) will get no email or see comments "
 "here."
 msgstr ""
-"Rensa den här appen från kön för ny granskning. Författaren kommer intt att få någon mejl "
+"Rensa den här appen från kön för ny granskning. Författaren kommer inte att få någon mejl "
 "eller se kommentarerna här."
 
 #: mkt/reviewers/utils.py:498
@@ -7506,7 +7506,7 @@ msgstr "I upptrappningskön"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr "I Tarako-kö"
+msgstr "I Tarako-kön"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -8074,6 +8074,12 @@ msgid ""
 "have a privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to write one.</"
 "a>"
 msgstr ""
+"En sekretesspolicy förklarar hur du hanterar data som tas emot via din app. Till exempel: "
+"vilka data mottar du? Hur använder du den? Vem delar du den med? Tar du emot personlig "
+"information? Vidtar du åtgärder för att göra den anonym? Vilka val har användarna för att "
+"kontrollera vilken data som du och andra tar emot? Ange din länk till sekretesspolicyn eller "
+"text ovan. Om du inte har en sekretesspolicy, <a href=\"{url}\" target=\"_blank\">lära dig "
+"mer om hur man skriver en.</a>"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -8145,6 +8151,7 @@ msgid ""
 "Please review your listing information below. We've pre-filled as much as we can from your "
 "manifest."
 msgstr ""
+"Granska din listningsinformation nedan. Vi har fyllt i så mycket vi kan från din manifest."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -8270,11 +8277,15 @@ msgid ""
 "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status "
 "&amp; Versions</a>"
 msgstr ""
+"Begär att din app ska visas på enheter med mindre minne på <a href=\"%(status_url)s\">Status "
+"&amp; Versioner</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid ""
 "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Begär att din app ska visas på enheter med mindre minne på <a href=\"%(status_url)s"
+"\">Status</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid ""
@@ -8282,18 +8293,24 @@ msgid ""
 "\">Manage Status</a>. It would then show up on listing pages and in search for others to "
 "enjoy."
 msgstr ""
+"När din app har granskats, måste du manuellt publicera din app från <a href=\"%(url)s"
+"\">Hantera status</a>. Den kommer sedan att visas på listningssidor och i sökningar för "
+"andra att njuta av."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid ""
 "Your app has been approved! It is now showing up on listing pages and in search for others "
 "to enjoy."
 msgstr ""
+"Din app har godkänts! Det visar nu i listningssidor och i sökningar för andra att njuta av."
 
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid ""
 "Once your app is reviewed, it will show up on listing pages and in search for others to "
 "enjoy."
 msgstr ""
+"När din app är granskad kommer den att visas i listningssidor och i sökningar för andra att "
+"njuta av."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
@@ -8314,14 +8331,17 @@ msgid ""
 "Marketplace is the best way for users to discover and enjoy it across their devices. First, "
 "you'll need to join the Marketplace Developer Program below."
 msgstr ""
+"Vi är glada att du har byggt en app som använder webbtekniker och skickat in den till "
+"Firefox Marketplace är det bästa sättet för användare att upptäcka och njuta av den i sina "
+"enheter. Först måste du gå med i Marketplace utvecklarprogram nedan."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr ""
+msgstr "Till att börja med, läs och acceptera vårt <strong>utvecklaravtal</ strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla kan mejla mig med relevanta app-utvecklarnyheter och undersökningar"
 
 #: mkt/submit/tests/test_forms.py:265
 msgid "Héllo"
@@ -8345,6 +8365,9 @@ msgid ""
 "under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> "
 "or any later version."
 msgstr ""
+"Om inget annat <a href=\"%(legal_url)s\">anges</a>, är innehållet på denna webbplats "
+"licensierat under <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike Licens "
+"v3.0</a> eller någon senare version."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -8368,7 +8391,7 @@ msgstr "Expandera"
 
 #: mkt/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Översätt för: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: mkt/translations/templates/translations/trans-menu.html:16
 #: mkt/translations/templates/translations/trans-menu.html:29
