@@ -553,7 +553,8 @@ def ownership(request, addon_id, addon):
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
                 # Unsubscribe user from emails (Commbadge).
-                author.user.comm_thread_cc.filter(thread__addon=addon).delete()
+                author.user.comm_thread_cc.filter(
+                    thread___addon=addon).delete()
 
         for author in user_form.deleted_objects:
             if author.user_id == request.user.id:
@@ -563,7 +564,7 @@ def ownership(request, addon_id, addon):
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
             # Unsubscribe user from emails (Commbadge).
-            author.user.comm_thread_cc.filter(thread__addon=addon).delete()
+            author.user.comm_thread_cc.filter(thread___addon=addon).delete()
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect(redirect_url)

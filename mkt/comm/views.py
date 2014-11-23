@@ -92,16 +92,19 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
                                 status=status.HTTP_403_FORBIDDEN)
 
             queryset = CommunicationThread.objects.filter(
-                addon=form.cleaned_data['app'])
+                _addon=form.cleaned_data['app'])
 
             # Thread IDs and version numbers from same app.
-            data['app_threads'] = list(queryset.order_by('version__version')
-                .values('id', 'version__version'))
+            data['app_threads'] = list(queryset.order_by('_version__version')
+                .values('id', '_version__version'))
+            for app_thread in data['app_threads']:
+                app_thread['version__version'] = app_thread.pop(
+                    '_version__version')
         else:
             # We list all the threads that user is developer of or
             # is subscribed/CC'ed to.
             addons = list(profile.addons.values_list('pk', flat=True))
-            q_dev = Q(addon__in=addons, read_permission_developer=True)
+            q_dev = Q(_addon__in=addons, read_permission_developer=True)
             queryset = CommunicationThread.objects.filter(
                 Q(pk__in=cc) | q_dev)
 
@@ -117,8 +120,11 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 
         # Thread IDs and version numbers from same app.
         res.data['app_threads'] = list(
-            CommunicationThread.objects.filter(addon_id=res.data['addon'])
-            .order_by('version__version').values('id', 'version__version'))
+            CommunicationThread.objects.filter(_addon_id=res.data['addon'])
+            .order_by('_version__version').values('id', '_version__version'))
+        for app_thread in res.data['app_threads']:
+            app_thread['version__version'] = app_thread.pop(
+                '_version__version')
         return res
 
     def create(self, request, *args, **kwargs):

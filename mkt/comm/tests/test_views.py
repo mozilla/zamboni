@@ -11,9 +11,11 @@ import mock
 from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
-import mkt.constants.comm as comm
+import amo
 from amo.tests import (app_factory, req_factory_factory, user_factory,
                        version_factory)
+
+import mkt.constants.comm as comm
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
@@ -108,6 +110,34 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['addon'], self.addon.id)
 
+    def test_response_deleted_app(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+
+        thread = self._thread_factory(note=True)
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
+
+        eq_(res.status_code, 200)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
+
+    def test_response_deleted_version_app(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        thread = self._thread_factory(note=True)
+        version = amo.tests.version_factory(addon=self.addon)
+        version.update(deleted=True)
+        thread.update(_version=version)
+
+        res = self.client.get(
+            reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
+
+        eq_(res.status_code, 200)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
+        eq_(res.json['version'], version.id)
+        eq_(res.json['version_number'], version.version)
+        eq_(res.json['version_is_obsolete'], True)
+
     def test_recent_notes_perm(self):
         staff = UserProfile.objects.get(username='support_staff')
         self.addon.addonuser_set.create(user=self.profile)
@@ -194,7 +224,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
     def test_version_number(self):
         version = version_factory(addon=self.addon, version='7.12')
         thread = CommunicationThread.objects.create(
-            addon=self.addon, version=version, read_permission_public=True)
+            _addon=self.addon, _version=version, read_permission_public=True)
 
         res = self.client.get(reverse('comm-thread-detail', args=[thread.pk]))
         eq_(json.loads(res.content)['version_number'], '7.12')
@@ -208,11 +238,11 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
     def test_app_threads(self):
         version1 = version_factory(addon=self.addon, version='7.12')
         thread1 = CommunicationThread.objects.create(
-            addon=self.addon, version=version1, read_permission_public=True)
+            _addon=self.addon, _version=version1, read_permission_public=True)
 
         version2 = version_factory(addon=self.addon, version='1.16')
         thread2 = CommunicationThread.objects.create(
-            addon=self.addon, version=version2, read_permission_public=True)
+            _addon=self.addon, _version=version2, read_permission_public=True)
 
         for thread in (thread1, thread2):
             res = self.client.get(reverse('comm-thread-detail',
@@ -253,7 +283,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.status_code, 404)
 
     def test_app_slug(self):
-        thread = CommunicationThread.objects.create(addon=self.addon)
+        thread = CommunicationThread.objects.create(_addon=self.addon)
         CommunicationNote.objects.create(author=self.profile, thread=thread,
             note_type=0, body='something')
 
@@ -266,12 +296,12 @@ class TestThreadList(RestOAuth, CommTestMixin):
     def test_app_threads(self):
         version1 = version_factory(addon=self.addon, version='7.12')
         thread1 = CommunicationThread.objects.create(
-            addon=self.addon, version=version1, read_permission_public=True)
+            _addon=self.addon, _version=version1, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread1)
 
         version2 = version_factory(addon=self.addon, version='1.16')
         thread2 = CommunicationThread.objects.create(
-            addon=self.addon, version=version2, read_permission_public=True)
+            _addon=self.addon, _version=version2, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread2)
 
         self.grant_permission(self.user, 'Apps:Review')
@@ -305,6 +335,7 @@ class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
         self.create_switch('comm-dashboard')
 
         self.addon = Webapp.objects.get(pk=337141)
+        self.version = self.addon.current_version
         self.thread = self._thread_factory(
             perms=['developer'], version=self.addon.current_version)
         self.thread_url = reverse(
@@ -355,6 +386,20 @@ class TestNote(NoteSetupMixin):
         eq_(len(res.json['objects']), 2)
 
     def test_create(self):
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': '0', 'body': 'something'}))
+        eq_(res.status_code, 201)
+        eq_(res.json['body'], 'something')
+
+    def test_create_app_deleted(self):
+        self.addon.update(status=amo.STATUS_DELETED)
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': '0', 'body': 'something'}))
+        eq_(res.status_code, 201)
+        eq_(res.json['body'], 'something')
+
+    def test_create_version_deleted(self):
+        self.version.update(deleted=True)
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 201)
@@ -515,8 +560,8 @@ class TestEmailApi(RestOAuth):
         app = app_factory()
         user = user_factory()
         self.grant_permission(user, 'Admin:*')
-        t = CommunicationThread.objects.create(addon=app,
-                                               version=app.current_version)
+        t = CommunicationThread.objects.create(_addon=app,
+                                               _version=app.current_version)
         t.token.create(user=user, uuid='5a0b8a83d501412589cc5d562334b46b')
 
         res = post_email(req)

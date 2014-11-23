@@ -27,9 +27,11 @@ class PermissionTestMixin(object):
 
     def setUp(self):
         self.addon = Webapp.objects.get()
+        self.version = self.addon.current_version
         self.user = UserProfile.objects.get(username='regularuser')
 
-        self.thread = CommunicationThread.objects.create(addon=self.addon)
+        self.thread = CommunicationThread.objects.create(
+            _addon=self.addon, _version=self.version)
         self.author = UserProfile.objects.create(email='lol', username='lol')
         self.note = CommunicationNote.objects.create(
             thread=self.thread, author=self.author, note_type=0, body='xyz')
@@ -107,6 +109,14 @@ class TestCommunicationThread(PermissionTestMixin, amo.tests.TestCase):
         self.type = 'thread'
         self.obj = self.thread
 
+    def test_addon_deleted(self):
+        self.thread.addon.update(status=amo.STATUS_DELETED)
+        eq_(self.thread.addon, self.addon)
+
+    def test_version_deleted(self):
+        self.version.update(deleted=True)
+        eq_(self.thread.version, self.version)
+
     def test_has_perm_posted(self):
         self.note.update(author=self.user)
         self._eq_obj_perm(True)
@@ -131,7 +141,7 @@ class TestThreadTokenModel(amo.tests.TestCase):
 
     def setUp(self):
         addon = Webapp.objects.get(pk=337141)
-        self.thread = CommunicationThread(addon=addon)
+        self.thread = CommunicationThread(_addon=addon)
         user = UserProfile.objects.all()[0]
         self.token = CommunicationThreadToken(thread=self.thread, user=user)
         self.token.modified = datetime.now()
