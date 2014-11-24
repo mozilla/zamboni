@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-03 13:46+0200\n"
+"PO-Revision-Date: 2014-11-24 12:31+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -477,7 +477,7 @@ msgstr "Shënime për Shqyrtuesit"
 
 #: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
-msgstr "S'u gjetën shënime versioni"
+msgstr "S’u gjetën shënime versioni"
 
 #: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
