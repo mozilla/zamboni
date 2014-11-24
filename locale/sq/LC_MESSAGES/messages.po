@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-24 13:28+0200\n"
+"PO-Revision-Date: 2014-11-24 22:36+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -462,7 +462,7 @@ msgstr "Fshirë më: {1}."
 
 #: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "U ndryshua përdoruesi {user}, arsyeja: {1}"
 
 #: apps/amo/log.py:579
 msgid "User {user} anonymized."
@@ -1869,7 +1869,7 @@ msgstr "Falas, me pagesa in-app"
 
 #: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Do të përdor sistemin tim për pagesa in-app"
 
 #: mkt/constants/base.py:190
 msgid "Manual Reviewer Points"
@@ -3384,7 +3384,7 @@ msgstr "Shembull OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr ""
+msgstr "<p>Shembull përdorimi i një librarie Python për rresht urdhrash në Mac OS X duke përdorur kredencialet tuaja OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26
@@ -3871,15 +3871,15 @@ msgstr "Zbatimi juaj është <b>miratuar</b> dhe hëpërhë <i>i hequr nga lista
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
+msgstr "Vetëm ata me URL-në vijuese mund të shohin dhe instalojnë këtë zbatim:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
-msgstr ""
+msgstr "Zbatimi juaj është <b>miratuar</b> dhe hëpërhë është i dukshëm vetëm për anëtarët e ekipit."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
+msgstr "Vetëm <b>anëtarët e ekipit</b> me URL-në vijuese mund të shohin dhe instalojnë këtë zbatim:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
@@ -3955,19 +3955,19 @@ msgstr "Vazhdo"
 #: mkt/developers/templates/developers/apps/status.html:286
 #: mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
-msgstr "Pajisje Me Kujtesë të Ulët"
+msgstr "Pajisje Me Kujtesë të Pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr "Zbatimi juaj shfaqet në pajisje me kujtesë të ulët."
+msgstr "Zbatimi juaj shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr "Zbatimi juaj nuk shfaqet në pajisje me kujtesë të ulët."
+msgstr "Zbatimi juaj nuk shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr "Nuk keni kërkuar shqyrtim për pajisje me kujtesë të ulët."
+msgstr "Nuk keni kërkuar shqyrtim për pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
@@ -3995,21 +3995,21 @@ msgstr "Rajonet tuaj mund t’i përditësoni te <a href=\"{compatibility_page}\
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
+msgstr "Nëse zbatimi juaj funksionon në pajisje me kujtesë të pakët, atëherë mundeni të kërkoni një shqyrtim lidhur me shfaqjen e tij në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:329
 #: mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr "Mësoni rreth pajisjeve me kujtesë të ulët."
+msgstr "Mësoni rreth pajisjeve me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:335
 #: mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Mos e shfaq zbatimin tim në pajisje me kujtesë të pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr "Kërkoni shqyrtim për pajisje me kujtesë të ulët"
+msgstr "Kërkoni shqyrtim për pajisje me kujtesë të pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
@@ -4172,7 +4172,7 @@ msgstr "Fshije Versionin"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr "Jeni i sigurt se doni që të reshtë shfaqja e zbatimit tuaj në pajijse me pak kujtesë?"
+msgstr "Jeni i sigurt se doni që të reshtë shfaqja e zbatimit tuaj në pajijse me kujtesë të pakët?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
@@ -5330,7 +5330,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr "Pajisje me kujtesë të ulët"
+msgstr "Pajisje me kujtesë të pakët"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
