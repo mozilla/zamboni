@@ -58,7 +58,7 @@ define('reviewersCommbadge', ['login'], function(login) {
             // Append notes to table.
             $('tbody', $table).append(noteTemplate({
                 attachments: note.attachments,
-                body: note.body,
+                body: escape_(note.body),
                 // L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
                 metadata: format(gettext('By {0} on {1}'),
                                  [author, created]),
