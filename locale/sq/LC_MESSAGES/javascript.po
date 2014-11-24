@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.12.0\n"
 "X-POOTLE-MTIME: 1415008045.0\n"
 
 #: media/js/common/upload-base.js:61
@@ -45,7 +45,8 @@ msgstr "Përzgjidhni një kartelë..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Zbatimi juaj i paketuar do të duhej të përfundonte me <code>.zip</code>."
+msgstr ""
+"Zbatimi juaj i paketuar do të duhej të përfundonte me <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
@@ -156,8 +157,10 @@ msgstr[1] "Zbatimi juaj dështoi në vleftësim me {0} gabime dhe {1} mesazh(e).
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizim."
-msgstr[1] "Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizime."
+msgstr[0] ""
+"Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizim."
+msgstr[1] ""
+"Shtesa juaj e kaloi procesin e vleftësimit pa gabime dhe {0} sinjalizime."
 
 #: media/js/devreg/devhub.js:237
 msgid "Your app passed validation with no errors or messages."
@@ -216,16 +219,23 @@ msgid "Disabled"
 msgstr "I paaktivizuar"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ky funksion është përkohësisht i çaktivizuar, teksa bëjmë mirëmbajtjen e sajtit web. Ju lutemi, rikontrolloni pas pak."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Ky funksion është përkohësisht i çaktivizuar, teksa bëjmë mirëmbajtjen e "
+"sajtit web. Ju lutemi, rikontrolloni pas pak."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Hiqe këtë përkthim"
 
 #: media/js/devreg/login.js:121
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Hyrja me Persona-n dështoi. Ndoshta nuk keni llogari nën këtë adresë email."
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Hyrja me Persona-n dështoi. Ndoshta nuk keni llogari nën këtë adresë email."
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. A server error was encountered."
@@ -305,7 +315,8 @@ msgstr "HEBIC Grek/Kod Banke Indoneziane"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Kod Sort UK/Irlande ose Prefiks Llogarie Zelande të re ose Kod BSB Australie"
+msgstr ""
+"Kod Sort UK/Irlande ose Prefiks Llogarie Zelande të re ose Kod BSB Australie"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -330,10 +341,22 @@ msgstr "U zbulua: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimeve vijuese. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
-msgstr[1] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimit vijues. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej "
+"zbatimeve vijuese. Zbatimet pa një llogari pagesash nuk do të jepen më për "
+"shitje."
+msgstr[1] ""
+"Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej "
+"zbatimit vijues. Zbatimet pa një llogari pagesash nuk do të jepen më për "
+"shitje."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -570,11 +593,14 @@ msgid "Error failing app: {app}"
 msgstr "Gabim në ngeljen e zbatimit: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Na ndjeni! Patëm një gabim në prurjen e historikut të shqyrtimeve. Ju lutemi, riprovoni hyrjen.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Na ndjeni! Patëm një gabim në prurjen e historikut të shqyrtimeve. Ju "
+"lutemi, riprovoni hyrjen.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr "Nga {0} më {1}"
-
