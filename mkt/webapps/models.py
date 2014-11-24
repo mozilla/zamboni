@@ -1501,7 +1501,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         `appcache_path` defined in its manifest).
 
         """
-        if self.latest_version:
+        if self.is_packaged:
+            return True
+        elif self.latest_version:
             # Manually find the latest file since `self.get_latest_file()`
             # won't be set correctly near the start of the app submission
             # process.

@@ -657,6 +657,12 @@ class TestWebapp(amo.tests.WebappTestCase):
         app = Webapp()
         eq_(app.guess_is_offline(), False)
 
+    @mock.patch('mkt.webapps.models.cache.get')
+    def test_is_offline_when_packaged(self, mock_get):
+        mock_get.return_value = ''
+        eq_(Webapp(is_packaged=True).guess_is_offline(), True)
+        eq_(Webapp(is_packaged=False).guess_is_offline(), False)
+
     @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
     def test_payments_complete(self, pay_mock):
         # Default to complete if it's not needed.
