@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-24 12:31+0200\n"
+"PO-Revision-Date: 2014-11-24 12:51+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -253,15 +253,15 @@ msgstr "Lejet e Kërkuara:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "I certifikuar"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "I privilegjuar"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "I paprivilegjuar"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
@@ -497,7 +497,7 @@ msgstr "më pak..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Mbajeni shqyrtimin / Hiqini flamurkat"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -533,7 +533,7 @@ msgstr "Zbatim me Pagesë"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr ""
+msgstr "Për shqyrtim të mëtejshëm"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-03 13:43+0200\n"
+"PO-Revision-Date: 2014-11-24 13:28+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -442,11 +442,11 @@ msgstr "Ndryshim URL-je Manifesti"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} u vetëkalua për shqyrtim të mëtejshëm, ngaqë është zbatim paraqarkullim."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Vetëkalim si paraqarkullim"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
@@ -1861,11 +1861,11 @@ msgstr "Me Pagesë"
 
 #: mkt/constants/base.py:136
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Me pagesë, përmes pagesash in-app"
 
 #: mkt/constants/base.py:137
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Falas, me pagesa in-app"
 
 #: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
@@ -2069,7 +2069,7 @@ msgstr " Juaj"
 
 #: mkt/constants/comm.py:65
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Për Shqyrtim të Mëtejshëm, si Zbatim Paraqarkullim"
 
 #: mkt/constants/comm.py:66
 msgid "Priority review requested"
@@ -2576,7 +2576,7 @@ msgstr "Europë"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
@@ -2906,7 +2906,7 @@ msgstr "Çmim Zbatimi"
 
 #: mkt/developers/forms_payments.py:111
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Falas (me pagesa in-app)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
@@ -2926,7 +2926,7 @@ msgstr "Mbulon krejt metodat e faturimit"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Nëse zbatimi është Falas, pagesat in-app duhen aktivizuar"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -3274,11 +3274,11 @@ msgstr "U prodhua kyç i ri API."
 
 #: mkt/developers/views.py:1042
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "U krijuar version i bllokuar"
 
 #: mkt/developers/views.py:1044
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Zbatimi është tashmë i bllokuar."
 
 #: mkt/developers/views_payments.py:88
 #: mkt/developers/views_payments.py:106
@@ -3312,7 +3312,7 @@ msgstr "Kyçi dhe sekreti u krijuan me sukses."
 
 #: mkt/developers/views_payments.py:359
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Zbatimi juaj nuk është formësuar për pagesa in-app."
 
 #: mkt/developers/views_payments.py:362
 msgid "No payment account for this app."
@@ -4072,15 +4072,15 @@ msgstr "Fshirja e zbatimit tuaj do ta fshijë atë përgjithmonë nga sajti. <st
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
-msgstr ""
+msgstr "Bllokojeni Zbatimin"
 
 #: mkt/developers/templates/developers/apps/status.html:444
 msgid "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is submitted and approved. These changes cannot be undone. Please proceed with caution."
-msgstr ""
+msgstr "Bllokimi i një zbatimi do t’i kalojë përdoruesi në një version special i cili do ta bëjë zbatimin të papërdorshëm në pajisjet e tyre me Firefox OS. Kjo do ta heqë gjithashtu zbatimin nga faqet publike, deri çastin kur të parashtrohet dhe miratohet një version i ri. Këto ndryshime nuk mund të zhbëhen. Ju lutemi, ecni më tej me kujde."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
-msgstr ""
+msgstr "Bllokoje"
 
 #: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
@@ -4172,7 +4172,7 @@ msgstr "Fshije Versionin"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr ""
+msgstr "Jeni i sigurt se doni që të reshtë shfaqja e zbatimit tuaj në pajijse me pak kujtesë?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
@@ -4239,7 +4239,7 @@ msgstr "      "
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
-msgstr ""
+msgstr "Zbatimi do të trajtohet si përparësi dhe do të kalohet në krye të radhës për shqyrtime"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
@@ -4348,7 +4348,7 @@ msgstr "Rifresko"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href=\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
-msgstr ""
+msgstr "Ju lutemi, përpiquni të mos e ndryshoni shumë shpesh URL-në e manifestit tuaj. Nëse e ndryshoni URL-në e manifestit tuaj, përdoruesit ekzistues nuk do të përdorin dot URL-në e re të manifestit. Për më tepër të dhëna, lexoni <a href=\"%(doc_url)s\" target=\"_blank\">dokumentimin mbi Përditësim Zbatimesh</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 #: mkt/reviewers/templates/reviewers/includes/details.html:151
@@ -4700,7 +4700,7 @@ msgstr "Klasifikime Lënde"
 #: mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
-msgstr ""
+msgstr "Pagesa In-App"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:35
@@ -4921,7 +4921,7 @@ msgstr "Provoni Instalimin e Zbatimit"
 #: mkt/developers/templates/developers/includes/testing_nav.html:4
 #: mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Testoni Pagesa In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
@@ -4929,7 +4929,7 @@ msgstr ">pagesash in-app</b>."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
-msgstr ""
+msgstr "Firefox Marketplace-i u lejon zbatimeve tuaja të pranojnë pagesa in-app. <a href=\"{guide}\">Udhërrëfyesi i pagesa in-app</a> shpjegon se si të formësohet zbatimi juaj për pagesa, përmes parametrave më poshtë."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31
 #: mkt/developers/templates/developers/payments/in-app-keys.html:29
@@ -4985,7 +4985,7 @@ msgstr "- {max}  "
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38
 #: mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Produkte In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
@@ -4993,7 +4993,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Formësoni Produkte In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5051,7 +5051,7 @@ msgstr "Mënyra me pagesë lyp që zbatimi juaj të mbulojë vetëm:"
 #: mkt/developers/templates/developers/payments/premium.html:91
 #: mkt/submit/templates/submit/manifest.html:39
 msgid "Paid / In-app"
-msgstr ""
+msgstr "Me pagesë / In-app"
 
 #: mkt/developers/templates/developers/payments/premium.html:100
 msgid "Change to Paid"
@@ -5088,7 +5088,7 @@ msgstr "Çmime dhe Vende"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr ""
+msgstr "A përdor zbatimi juaj paltformën e Mozilla-s për pagesa in-app?"
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "A server error occurred. Please try again later."
@@ -5512,7 +5512,7 @@ msgstr "Krijoni një bazë dashamirësish të hershëm dhe fitoni popullaritet."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "Synoni me zbatimin tuaj konsumatorët që marrin vesh nga teknologjia"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -5860,7 +5860,7 @@ msgstr "Nuk u gjet kartela \"manifest.webapp\" në rrënjën e arkivës së zbat
 
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "Nuk çkodoi dot kartelën e manifestit webapp. Kontrollojeni kartelën tuaj të manifestit për shenja speciale jo-utf-8."
 
 #: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
@@ -5993,7 +5993,7 @@ msgstr "Po sillet kartelë."
 
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr ""
+msgstr "Logoja e produktit duhet të jetë një figurë 64x64. Shihni nëse URL-ja është e saktë."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6222,7 +6222,7 @@ msgstr "Blerës"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
-msgstr ""
+msgstr "Brez Çmimesh"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
@@ -6428,7 +6428,7 @@ msgstr "Nuk u gjetën kandidatë parangarkimi"
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:87
 msgid "Tier %s"
-msgstr ""
+msgstr "Brezi %s"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:29
@@ -6747,7 +6747,7 @@ msgstr "Hidhe tej"
 
 #: mkt/reviewers/utils.py:460
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
-msgstr ""
+msgstr "Kjo do ta hedhë tej zbatimin, do ta heqë atë prej radhës së shqyrtimeve dhe zhbotojë, në qoftë i botuar tashmë."
 
 #: mkt/reviewers/utils.py:465
 msgid "Request more information"
@@ -6811,7 +6811,7 @@ msgstr "Nuk lejohen shqyrtime nga vetja."
 
 #: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
+msgstr "Vetëm shqyrtuesit senior mund të shqyrtojnë zbatime të bllokuara."
 
 #: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
@@ -6862,7 +6862,7 @@ msgstr "Radhë Shtesë"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "Radhë Shqyrtimesh Për {queue}"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
@@ -6906,7 +6906,7 @@ msgstr "Zbatim i Paketuar"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37
 #: mkt/reviewers/templates/reviewers/includes/macros.html:78
 msgid "Blocklisted App"
-msgstr ""
+msgstr "Zbatim i Bllokuar"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40
 #: mkt/reviewers/templates/reviewers/includes/macros.html:86
@@ -7057,7 +7057,7 @@ msgstr "Vit"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
-msgstr ""
+msgstr "Tërë Kohën"
 
 #: mkt/reviewers/templates/reviewers/queue.html:31
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
@@ -7267,11 +7267,11 @@ msgstr "Zbatim i Privilegjuar"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Me pagesë, përmes In-App"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:84
 msgid "Free with In-App"
-msgstr ""
+msgstr "Falas, me In-App"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
@@ -7417,15 +7417,15 @@ msgstr "Zbatim i paletuar i privilegjuar"
 
 #: mkt/search/forms.py:33
 msgid "Free with In-app"
-msgstr ""
+msgstr "Falas, me In-App"
 
 #: mkt/search/forms.py:35
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Me pagesë, përmes In-App"
 
 #: mkt/search/forms.py:36
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Tjetër Sistem për In-App"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
@@ -7852,7 +7852,7 @@ msgstr "Mozilla mund të më dërgojë me email lajme dhe anketime që janë të
 
 #: mkt/submit/tests/test_forms.py:265
 msgid "Héllo"
-msgstr ""
+msgstr "Tungjatjeta"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
