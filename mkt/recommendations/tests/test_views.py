@@ -131,11 +131,22 @@ class TestRecommendationViewMocked(RestOAuth, amo.tests.ESTestCase):
         eq_(len(objects), 1)
         self.assertSetEqual([a['id'] for a in objects], [self.apps[0].pk])
 
-    def test_no_filter_by_device_desktop(self):
-        self.apps[0].addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+    def test_filter_by_desktop(self):
+        self.apps[0].addondevicetype_set.create(
+            device_type=amo.DEVICE_DESKTOP.id)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.url, {'dev': amo.DEVICE_DESKTOP.api_name})
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        eq_(len(objects), 1)
+        self.assertSetEqual([a['id'] for a in objects], [self.apps[0].pk])
+
+    def test_no_filter_if_no_dev(self):
+        self.apps[0].addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.reindex(Webapp, 'webapp')
+
+        res = self.client.get(self.url, {'dev': ''})
         eq_(res.status_code, 200)
         objects = res.json['objects']
         eq_(len(objects), 2)

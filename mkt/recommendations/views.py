@@ -8,7 +8,6 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-import amo
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
@@ -58,10 +57,8 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                 # Fall back to a popularity search.
                 return self._popular()
 
-            filters = None
             device = get_device_id(request)
-            if device != amo.DEVICE_DESKTOP.id:
-                filters = {'device': device}
+            filters = {'device': device} if device else None
 
             sq = WebappIndexer.get_app_filter(self.request, filters,
                                               app_ids=app_ids)
