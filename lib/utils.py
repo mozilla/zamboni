@@ -50,7 +50,7 @@ def static_url(url):
     """
     Return the relevant URL from settings. Rather than rely on
     a complicated layer of settings to do their work, this just does
-    it at runtime. This allows MEDIA_URL, STATIC_URL and VAMO_URL to be
+    it at runtime. This allows MEDIA_URL and STATIC_URL to be
     changed in a local settings file, without having to overidde all the
     URLs.
 
