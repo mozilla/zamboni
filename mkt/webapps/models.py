@@ -1503,7 +1503,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         if self.is_packaged:
             return True
-        elif self.latest_version:
+        elif self.latest_version and self.latest_version.all_files:
             # Manually find the latest file since `self.get_latest_file()`
             # won't be set correctly near the start of the app submission
             # process.
