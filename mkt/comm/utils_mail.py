@@ -154,11 +154,21 @@ class CommEmailParser(object):
 
         self.email = message_from_string(email_text)
 
-        payload = self.email.get_payload()  # If not multipart, it's a string.
+        payload = self.email.get_payload()
         if isinstance(payload, list):
-            # If multipart, get the plaintext part.
+            # If multipart, get the plain text part.
             for part in payload:
+                # Nested multipart. Go deeper.
+                if part.get_content_type() == 'multipart/alternative':
+                    payload = part.get_payload()
+                    for part in payload:
+                        if part.get_content_type() == 'text/plain':
+                            # Found the plain text part.
+                            payload = part.get_payload()
+                            break
+
                 if part.get_content_type() == 'text/plain':
+                    # Found the plain text part.
                     payload = part.get_payload()
                     break
 

@@ -27,6 +27,10 @@ multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
                            'email_multipart.txt')
 quopri_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
                            'email_quoted_printable.txt')
+attach_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
+                           'email_attachment.txt')
+attach_email2 = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
+                            'email_attachment2.txt')
 
 
 class TestSendMailComm(TestCase, CommTestMixin):
@@ -231,18 +235,28 @@ class TestEmailParser(TestCase):
         eq_(parser.get_body(), 'test note 5\n')
 
     def test_multipart(self):
-        multipart_email = open(multi_email).read()
-        payload = base64.standard_b64encode(multipart_email)
+        email = open(multi_email).read()
+        payload = base64.standard_b64encode(email)
         parser = CommEmailParser(payload)
         eq_(parser.get_body(), 'this is the body text\n')
         eq_(parser.get_uuid(), 'abc123')
 
     def test_quoted_printable(self):
-        quoted_printable_email = open(quopri_email).read()
-        payload = base64.standard_b64encode(quoted_printable_email)
+        email = open(quopri_email).read()
+        payload = base64.standard_b64encode(email)
         parser = CommEmailParser(payload)
 
         body = parser.get_body()
         ok_('Yo,\n\nas it is open source' in body)
         ok_('=20' not in body)
         ok_('app-reviewers@mozilla.org' not in body)
+
+    def test_with_attachments(self):
+        for email in (attach_email, attach_email2):
+            email = open(attach_email).read()
+            payload = base64.standard_b64encode(email)
+            parser = CommEmailParser(payload)
+
+            body = parser.get_body()
+            ok_('Body inspection' in body)
+            eq_(parser.get_uuid(), 'abc123')
