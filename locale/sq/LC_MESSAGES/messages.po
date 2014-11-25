@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-25 14:14+0200\n"
+"PO-Revision-Date: 2014-11-25 14:46+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -5326,7 +5326,7 @@ msgstr "Rajone që lypin shqyrtim ekstra të çështjes:"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr ""
+msgstr "Duhet të <a href=\"{status_page}\">kërkoni shqyrtim</a> që zbatimi juaj të shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5346,7 +5346,7 @@ msgstr "Zbatimi juaj do të shfaqet në çfarëdo Marketplace-i rajonal që shto
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
-msgstr ""
+msgstr "(Subjekt i pagesave të zbatueshme në atë rajon për çmimin e përzgjedhur)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -6775,7 +6775,7 @@ msgstr "Hiqja Kërkesën Për Shqyrtim të Mëtejshëm"
 
 #: mkt/reviewers/utils.py:486
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "Hiqeni këtë zbatim nga radha e shqyrtimeve të mëtejshme. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
 
 #: mkt/reviewers/utils.py:491
 msgid "Clear Re-review"
@@ -6783,7 +6783,7 @@ msgstr "Hiqja Kërkesën Për Rishqyrtim"
 
 #: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "Hiqeni këtë zbatim nga radha e rishqyrtimeve. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
 
 #: mkt/reviewers/utils.py:498
 msgid "Ban app"
@@ -6866,11 +6866,11 @@ msgstr "Radhë Shqyrtimesh Për {queue}"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
-msgstr ""
+msgstr "Kalon"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Nuk kalon"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:32
 #: mkt/reviewers/templates/reviewers/queue.html:63
