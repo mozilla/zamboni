@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-24 23:55+0200\n"
+"PO-Revision-Date: 2014-11-25 14:14+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -3975,11 +3975,11 @@ msgstr "Zbatimi juaj është në pritje të shqyrtimit."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr ""
+msgstr "Shqyrtimi ynë më {review_date} pa se zbatimi juaj i mbulon pajisjet me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr ""
+msgstr "Shqyrtimi ynë më {review_date} pa se zbatimi juaj nuk i mbulon pajisjet me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3987,7 +3987,7 @@ msgstr "Kërkuat shqyrtim më {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr ""
+msgstr "Zbatimi juaj nuk është i aktivizuar për ndonjë rajon me pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
@@ -4964,7 +4964,7 @@ msgstr "Mësoni më tepër rreth <b>pagesash in-app</b>, te MDN-ja."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, set up your payment credentials, and generate a new key specifically for that app."
-msgstr ""
+msgstr "Çifti vijues kyç/sekret do t’ju lejojë të simuloni pagesa in-app vetëm teksa programoni zbatimin tuaj. Për të prodhuar një kyç për pagesa të njëmendta in-app duhet ta <a href=\"%(submit)s\">parashtroni</a> zbatimin tuaj, të rregulloni kredencialet tuaja për pagesat, dhe të prodhoni një kyç posaçërisht për atë zbatim."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4976,7 +4976,7 @@ msgstr "max}  "
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
+msgstr "Kyçet për Pagesa In-App ju lejojnë të pranoni pagesa te zbatimi për çfarëdo çmimi arbitrar shitjeje. Përgjegjësi për përkufizimin dhe administrimin e produkteve jeni ju vetë."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
@@ -4989,7 +4989,7 @@ msgstr "Produkte In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
+msgstr "Produktet In-App ju lejojnë të pranoni pagesa te zbatimi juaj dhe e thjeshtojnë procesin, ngaqë ju lejojnë t’i krijoni dhe administroni produktet tuaja te Qendra e Zhvilluesve për Firefox Marketplace."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -5001,19 +5001,19 @@ msgstr "Aktivizoje"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
-msgstr ""
+msgstr "Zbatimi juaj duhet të jetë i paketuar dhe të ketë të përcaktuar një <a href=\"%(origin)s\">origjinë</a> që do të përdoret te sistemi i pagesave in-app."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
-msgstr ""
+msgstr "Zbatimi juaj duhet të ketë të përcaktuar te manifesti juaj një <a href=\"%(origin)s\">origjinë</a> që dëftesat të mund të verifikohen si duhet."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr ""
+msgstr "Kjo veçori po zhvillohet vazhdimisht. Ju lutemi, për më tepër të dhëna, shihni te <a target=\"_blank\" href=\"%(doc_link)s\">dokumentimi</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr ""
+msgstr "Nëse hasni ndonjë problem, ju lutemi <a target=\"_blank\" href=\"%(bug_link)s\">bëjeni të ditur</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
@@ -5021,7 +5021,7 @@ msgstr "Ikonë"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
-msgstr ""
+msgstr "Çmim"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
@@ -5282,7 +5282,7 @@ msgstr "Krijoni një emër për këtë llogari."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
+msgstr "Id alfa-numerike e shfaqurt te Emër Shërbimi, në sajtin web të Boku-t. Mësoni më tepër, te <a href=\"%(boku_docs_url)s\" target=\"_blank\">faqja e MDN-së mbi Boku-n</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
@@ -5299,7 +5299,7 @@ msgstr "Modifikoni Llogari Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "Emër për t’iu referuar llogarisë te Marketplace-i, nuk i dërgohet Bango-s."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
@@ -6549,7 +6549,7 @@ msgstr "Ky është faqe e ruajtur për hollësitë e dëftesës. Nëse keni inst
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te tregtorja. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshëm dëftesash."
+msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te tregtorja. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshme dëftesash."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -6763,11 +6763,11 @@ msgstr "Shqyrtim i mëtejshëm"
 
 #: mkt/reviewers/utils.py:473
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr ""
+msgstr "I vini shenjë këtij zbatimi për shqyrtim nga një prej përgjegjësve. Komentet u dërgohen përgjegjësve, jo autorëve."
 
 #: mkt/reviewers/utils.py:480
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr ""
+msgstr "Bëni një koment rreth këtij zbatimi. Autori, ose autorët, nuk do të jenë në gjendje t’i shohin këto komente."
 
 #: mkt/reviewers/utils.py:484
 msgid "Clear Escalation"
@@ -6791,7 +6791,7 @@ msgstr "Ndalojeni zbatimin"
 
 #: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
+msgstr "Dëbojeni zbatimin prej Marketplace-it. E ngjashme me Hedhjen, por autori nuk mund të riparashtrojë. Për përdorim vetëm në raste të skajshëm."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -8045,7 +8045,7 @@ msgstr "Këtë email po e merrni ngaqë krijuat një llogari te Firefox Marketpl
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr ""
+msgstr "Firefox Marketplace ju ka kaluar te Firefox Accounts. Ju lutemi, aktivizoni llogarinë tuaj të re Firefox Account."
 
 #: mkt/users/templates/users/emails/customers-before.html:3
 #: mkt/users/templates/users/emails/developers-before.html:3
@@ -8059,7 +8059,7 @@ msgstr "Kur kalimi nga Persona te Firefox Accounts të jetë gati, do të merrni
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
-msgstr ""
+msgstr "Firefox Marketplace ka kaluar te Firefox Accounts, për të ofruar punim më të njëtrajtshëm dhe organik përmes krejt shërbimeve dhe produkteve Mozilla. Pasja e një llogarie Firefox Account ju lejon të përdorni zbatimet tuaja ekzistuese në Marketplace dhe t’i shijoni zbatimet njësoj në pajisje të ndryshme. Së afërmi priten më tepër shërbime."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
