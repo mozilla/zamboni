@@ -12,5 +12,9 @@ M2Crypto==0.22.3
 Pillow==2.7.0
 # pycrypto is required by pyjwkest
 pycrypto==2.6.1
+
 # pyOpenSSL is required by app-validator (To get SNI support in requests)
 pyOpenSSL==0.15.1
+
+# used by langid.
+numpy==1.9.2

@@ -364,6 +364,32 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         assert data['user']['can_rate']
         assert not data['user']['has_rated']
 
+    def test_no_lang_filter(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              lang='en')
+        other_user = UserProfile.objects.exclude(pk=self.user.pk)[0]
+        Review.objects.create(addon=self.app, user=other_user, body='yes',
+                              lang='pt')
+        res, data = self._get_url(self.list_url, app=self.app.app_slug,
+                                  client=self.anon, lang='pt')
+        eq_(res.status_code, 200)
+        eq_(len(data['objects']), 2)
+        eq_(data['info']['total_reviews'], 2)
+
+    def test_lang_filter(self):
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              lang='en')
+        other_user = UserProfile.objects.exclude(pk=self.user.pk)[0]
+        Review.objects.create(addon=self.app, user=other_user, body='yes',
+                              lang='pt')
+        res, data = self._get_url(self.list_url, app=self.app.app_slug,
+                                  client=self.anon, lang='pt',
+                                  match_lang='1')
+        eq_(res.status_code, 200)
+        eq_(len(data['objects']), 1)
+        eq_(data['info']['total_reviews'], 2)
+        eq_(data['objects'][0]['lang'], 'pt')
+
     def _create(self, data=None, anonymous=False, version=None):
         version = version or self.app.current_version
         default_data = {
@@ -398,6 +424,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['rating'], 5)
         eq_(data['resource_uri'], reverse('ratings-detail', kwargs={'pk': pk}))
         eq_(data['report_spam'], reverse('ratings-flag', kwargs={'pk': pk}))
+        eq_(data['lang'], 'en')
 
         eq_(record_action.call_count, 1)
         eq_(record_action.call_args[0][0], 'new-review')
@@ -405,6 +432,10 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
         return res, data
+
+    def test_create_fr(self):
+        res, data = self._create(data={'body': 'Je peux manger du verre'})
+        eq_(data['lang'], 'fr')
 
     def test_create_packaged(self):
         self.app.update(is_packaged=True)
