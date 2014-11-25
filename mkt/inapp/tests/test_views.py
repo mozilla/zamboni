@@ -230,6 +230,11 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
         eq_(sorted([p['guid'] for p in response.json['objects']]),
             sorted([product1.guid, product2.guid]))
 
+    def test_fxpay_version_header(self):
+        res = self.get(self.list_url())
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
+
     def test_detail(self):
         product = self.create_product()
         response = self.get(self.detail_url(product.guid))
@@ -286,6 +291,11 @@ class TestStubInAppProductViewSet(BaseInAppProductViewSetTests):
 
     def objects(self, res):
         return sorted(res.json['objects'], key=lambda d: d['name'])
+
+    def test_fxpay_version_header(self):
+        res = self.get(self.list_url())
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
 
     def test_get_when_stubs_dont_exist(self):
         res = self.get(self.list_url())

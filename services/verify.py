@@ -356,6 +356,7 @@ class Verify:
 def get_headers(length):
     return [('Access-Control-Allow-Origin', '*'),
             ('Access-Control-Allow-Methods', 'POST'),
+            ('Access-Control-Allow-Headers', 'content-type, x-fxpay-version'),
             ('Content-Type', 'application/json'),
             ('Content-Length', str(length)),
             ('Cache-Control', 'no-cache'),

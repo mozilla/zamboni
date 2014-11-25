@@ -72,6 +72,8 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
 
     @patch.object(settings, 'SECRET_KEY', 'gubbish')
     def test_good_shared_secret(self):
@@ -228,6 +230,11 @@ class TestStatus(BaseAPI):
         eq_(data['status'], 'complete')
         # Normal transactions should not produce receipts.
         eq_(data['receipt'], None)
+
+    def test_fxpay_version_header(self):
+        res = self.client.get(self.get_contribution_url())
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
 
     def test_completed_inapp_purchase(self):
         contribution = self.get_contribution(inapp=self.get_inapp_product())

@@ -370,13 +370,11 @@ class TestVerify(ReceiptTest):
         return verify.get_headers(verify.Verify('', mock.Mock()))
 
     def test_cross_domain(self):
-        hdrs = self.get_headers()
-        assert (
-            'Access-Control-Allow-Origin', '*') in hdrs, (
-            'No cross domain headers')
-        assert (
-            'Access-Control-Allow-Methods', 'POST') in hdrs, (
-            'Allow POST only')
+        hdrs = dict(self.get_headers())
+        eq_(hdrs['Access-Control-Allow-Origin'], '*')
+        eq_(hdrs['Access-Control-Allow-Methods'], 'POST')
+        eq_(hdrs['Access-Control-Allow-Headers'],
+            'content-type, x-fxpay-version')
 
     def test_no_cache(self):
         hdrs = self.get_headers()

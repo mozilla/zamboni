@@ -258,8 +258,9 @@ class CORSMiddleware(object):
         # responses.
         fireplace_url = settings.FIREPLACE_URL
         fireplacey = request.META.get('HTTP_ORIGIN') == fireplace_url
-        response['Access-Control-Allow-Headers'] = (
-            'X-HTTP-Method-Override, Content-Type')
+        response['Access-Control-Allow-Headers'] = ', '.join(
+            getattr(request, 'CORS_HEADERS',
+                    ('X-HTTP-Method-Override', 'Content-Type')))
 
         if fireplacey or getattr(request, 'CORS', None):
             # If this is a request from our hosted frontend, allow cookies.
