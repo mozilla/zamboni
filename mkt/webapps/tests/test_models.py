@@ -663,6 +663,17 @@ class TestWebapp(amo.tests.WebappTestCase):
         eq_(Webapp(is_packaged=True).guess_is_offline(), True)
         eq_(Webapp(is_packaged=False).guess_is_offline(), False)
 
+    def test_guess_is_offline_no_version(self):
+        app = Webapp()
+        with mock.patch.object(Webapp, 'latest_version', None):
+            eq_(app.guess_is_offline(), False)
+
+    def test_guess_is_offline_no_files(self):
+        app = Webapp()
+        version = mock.MagicMock(all_files=[])
+        with mock.patch.object(Webapp, 'latest_version', version):
+            eq_(app.guess_is_offline(), False)
+
     @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
     def test_payments_complete(self, pay_mock):
         # Default to complete if it's not needed.
