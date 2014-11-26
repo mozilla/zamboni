@@ -209,3 +209,12 @@ carrier/region pairs.
                 'region': 'co'
             }
         ]
+
+    If the user is able to administer every carrier/region pair, it will
+    instead return:
+
+    .. code-block:: json
+
+        [
+            '*'
+        ]
