@@ -45,6 +45,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
                               RestSharedSecretAuthentication]
     permission_classes = [IsAuthenticated]
     cors_allowed_methods = ['post']
+    cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
 
     def post(self, request, *args, **kwargs):
         form = PrepareWebAppForm(request.DATA)
@@ -158,6 +159,7 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
     authentication_classes = []
     permission_classes = []
     cors_allowed_methods = ['get']
+    cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
     queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
     lookup_field = 'uuid'
 

@@ -24,6 +24,7 @@ log = commonware.log.getLogger('z.inapp')
 class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     serializer_class = InAppProductSerializer
     cors_allowed_methods = ('get', 'post', 'put', 'patch', 'delete')
+    cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
     lookup_field = 'guid'
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
@@ -61,6 +62,7 @@ class StubInAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     serializer_class = InAppProductSerializer
     lookup_field = 'guid'
     cors_allowed_methods = ('get',)
+    cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
     allowed_methods = ('GET',)
     permission_classes = [AllowAny]
     authentication_classes = []

@@ -202,6 +202,8 @@ class CORSMixin(object):
     def finalize_response(self, request, response, *args, **kwargs):
         if not hasattr(request._request, 'CORS'):
             request._request.CORS = self.cors_allowed_methods
+        if hasattr(self, 'cors_allowed_headers'):
+            request._request.CORS_HEADERS = self.cors_allowed_headers
         return super(CORSMixin, self).finalize_response(
             request, response, *args, **kwargs)
 
