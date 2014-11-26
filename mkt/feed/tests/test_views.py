@@ -21,7 +21,7 @@ from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
 from mkt.fireplace.tests.test_views import assert_fireplace_app
-from mkt.operators.authorization import OperatorPermission
+from mkt.operators.models import OperatorPermission
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview, Webapp
@@ -1036,6 +1036,13 @@ class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
         eq_(crush_mock.call_args_list[0][0][0], obj.image_path())
         ok_(data['background_image_landing'].endswith(obj.image_landing_hash))
         eq_(crush_mock.call_args_list[1][0][0], obj.image_path('_landing'))
+
+    def test_delete_with_obj_permission(self):
+        OperatorPermission.objects.create(
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,
+            user=self.user)
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 204)
 
 
 class TestFeedShelfViewSetMine(FeedTestMixin, RestOAuth):

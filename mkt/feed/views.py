@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
+from django.utils.datastructures import MultiValueDictKeyError
 
 import commonware
 from django_statsd.clients import statsd
@@ -9,13 +10,14 @@ from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
 from PIL import Image
 from rest_framework import exceptions, generics, response, status, viewsets
-from rest_framework.exceptions import ParseError
+from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import mkt
 import mkt.feed.constants as feed
+from mkt.access import acl
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -24,9 +26,10 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
 from mkt.constants.applications import get_device_id
+from mkt.constants.carriers import CARRIER_MAP
+from mkt.constants.regions import REGIONS_DICT
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
-from mkt.operators.authorization import OperatorShelfAuthorization
 from mkt.operators.models import OperatorPermission
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
@@ -294,14 +297,69 @@ class FeedCollectionViewSet(GroupedAppsViewSetMixin,
     serializer_class = FeedCollectionSerializer
 
 
-class FeedShelfViewSet(GroupedAppsViewSetMixin, BaseFeedCollectionViewSet):
+class FeedShelfPermissionMixin(object):
+    """
+    There are some interesting permissions-related things going on with
+    FeedShelves. DRF will never run object-level permissions checks (i.e.
+    has_object_permission) if the user fails the top-level checks (i.e.
+    has_permission), but there are cases with FeedShelf objects where access
+    to an object requires access to properties of the object. This means we
+    have to manually make these checks in the viewsets.
+
+    This mixin provides all the necessary methods to do so.
+    """
+    def req_data(self):
+        """
+        Returns a MultiDict containing the request data. This is shimmed to
+        ensure that it works if passed either rest_framework's Request class
+        or Django's WSGIRequest class.
+        """
+        return (self.request.DATA if hasattr(self.request, 'DATA') else
+                self.request.POST)
+
+    def is_admin(self, user):
+        """
+        Returns a boolean indicating whether the passed user passes either
+        OperatorDashboard:* or Feed:Curate.
+        """
+        return (acl.action_allowed(self.request, 'OperatorDashboard', '*') or
+                acl.action_allowed(self.request, 'Feed', 'Curate'))
+
+    def require_operator_permission(self, user, carrier, region):
+        """
+        Raises PermissionDenied if the passed user does not have an
+        OperatorPermission object for the passed carrier and region.
+        """
+        if user.is_anonymous():
+            raise PermissionDenied()
+        elif self.is_admin(user):
+            return
+        carrier = (carrier if isinstance(carrier, (int, long)) else
+                   CARRIER_MAP[carrier].id)
+        region = (region if isinstance(region, (int, long)) else
+                  REGIONS_DICT[region].id)
+        passes = OperatorPermission.objects.filter(
+            user=user, carrier=carrier, region=region).exists()
+        if not passes:
+            raise PermissionDenied()
+
+    def require_object_permission(self, user, obj):
+        """
+        Raises PermissionDenied if the passed user does not have an
+        OperatorPermission object for the passed Feedshelf object's carrier and
+        region.
+        """
+        self.require_operator_permission(user, obj.carrier, obj.region)
+
+
+class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
+                       BaseFeedCollectionViewSet):
     """
     A viewset for the FeedShelf class.
     """
     queryset = FeedShelf.objects.all()
     serializer_class = FeedShelfSerializer
-    permission_classes = [AnyOf(OperatorShelfAuthorization,
-                                *BaseFeedCollectionViewSet.permission_classes)]
+    permission_classes = []
 
     image_fields = (
         ('background_image_upload_url', 'image_hash', ''),
@@ -314,9 +372,10 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, BaseFeedCollectionViewSet):
         Return all shelves a user can administer. Anonymous users will always
         receive an empty list.
         """
+        data = self.req_data()
         if request.user.is_anonymous():
             qs = self.queryset.none()
-        elif OperatorShelfAuthorization().is_admin(request):
+        elif self.is_admin(request.user):
             qs = self.queryset
         else:
             perms = OperatorPermission.objects.filter(user=request.user)
@@ -331,8 +390,41 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, BaseFeedCollectionViewSet):
         serializer = self.get_serializer(self.object_list, many=True)
         return Response(serializer.data)
 
+    def create(self, request, *args, **kwargs):
+        """
+        Raise PermissionDenied if the authenticating user does not pass the
+        checks in require_operator_permission for the carrier and region in the
+        request data.
+        """
+        data = self.req_data()
+        try:
+            self.require_operator_permission(
+                request.user, data['carrier'], data['region'])
+        except (KeyError, MultiValueDictKeyError):
+            raise ParseError()
+        return super(FeedShelfViewSet, self).create(request, *args, **kwargs)
 
-class FeedShelfPublishView(CORSMixin, APIView):
+    def update(self, request, *args, **kwargs):
+        """
+        Raise PermissionDenied if the authenticating user does not pass the
+        checks in require_operator_permission for the carrier and region on the
+        FeedShelf object they are attempting to update.
+        """
+        self.require_object_permission(request.user, self.get_object())
+        return super(FeedShelfViewSet, self).update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Raise PermissionDenied if the authenticating user does not pass the
+        checks in require_operator_permission for the carrier and region on the
+        FeedShelf object they are attempting to destroy.
+        """
+        self.require_object_permission(request.user, self.get_object())
+        return super(FeedShelfViewSet, self).destroy(request, *args, **kwargs)
+
+
+
+class FeedShelfPublishView(FeedShelfPermissionMixin, CORSMixin, APIView):
     """
     put -- creates a FeedItem for a FeedShelf with respective carrier/region
         pair.  Deletes any currently existing FeedItems with the carrier/region
@@ -352,16 +444,7 @@ class FeedShelfPublishView(CORSMixin, APIView):
             obj = FeedShelf.objects.get(pk=pk)
         else:
             obj = FeedShelf.objects.get(slug=pk)
-
-        # Because APIView doesn't use object level permissions, we need to
-        # check them manually.
-        permission_classes = [OperatorShelfAuthorization,
-                              GroupPermission('Feed', 'Curate')]
-        if not any([c().has_object_permission(self.request, self, obj) for c
-                    in permission_classes]):
-            raise exceptions.PermissionDenied()
-
-        # self.check_object_permissions(self.request, obj)
+        self.require_object_permission(self.request.user, obj)
         return obj
 
     def put(self, request, *args, **kwargs):
@@ -408,11 +491,11 @@ class FeedCollectionImageViewSet(CollectionImageViewSet):
     queryset = FeedCollection.objects.all()
 
 
-class FeedShelfImageViewSet(CollectionImageViewSet):
+class FeedShelfImageViewSet(FeedShelfPermissionMixin, CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
 
 
-class FeedShelfLandingImageViewSet(CollectionImageViewSet):
+class FeedShelfLandingImageViewSet(FeedShelfPermissionMixin, CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
     hash_field = 'image_landing_hash'
     image_suffix = '_landing'
