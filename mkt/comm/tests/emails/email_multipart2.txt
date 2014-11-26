@@ -1,0 +1,96 @@
+From hehey@ngokevin.com  Tue Nov  4 10:02:24 2014
+Received: from mail-wg0-f67.google.com (mail-wg0-f67.google.com [74.125.82.67])
+    (using TLSv1 with cipher RC4-SHA (128/128 bits))
+    (No client certificate requested)
+    by mx1.marketplace.prod.mozaws.net (Postfix) with ESMTPS id 092B310025D
+    for <commreply+abc123@marketplace.firefox.com>; Tue,  4 Nov 2014 10:02:23 +0000 (UTC)
+Received: by mail-wg0-f67.google.com with SMTP id b13so3270073wgh.10
+        for <commreply+abc123@marketplace.firefox.com>; Tue, 04 Nov 2014 02:02:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=AQH/MzshzHcGwsZhzp4uiX4UQqTAIOKt1qSK+Gey/Tc=;
+        b=wD8u4+/hZsboffpSwo2Ax4B9tbB6zX27fGg10tC7XBkQ/bKC49gZMeVNS5rX/3Z7J9
+         EyPz2ZwKQlogvawsugF4npmpa3N/Qu7gjOrJSZNNer3DriO8Avr2Wlim7n+c+/+m6Bt5
+         5T0/JGOe/AQ+jLJF1MWCSPd0VnObb97dJACmarzwxCuxiwjAtrUBVddeO8gVk1jGohBG
+         cgTuT66gxQSHXUO/Uya81SyPM1aNpwkLHxK01vTkasZP+h57qWaCyLICk0W6R0HNh2Nd
+         U19CquijqA7h9ynrYsfrS11EAIshxcBifLnsotI+PN/4g26523zweRh8NGOBv51JyBPa
+         SpCQ==
+MIME-Version: 1.0
+X-Received: by 10.180.75.38 with SMTP id z6mr2232594xwiv.81.1415095342291;
+ Tue, 04 Nov 2014 02:02:22 -0800 (PST)
+Received: by 10.217.57.200 with HTTP; Tue, 4 Nov 2014 02:02:22 -0800 (PST)
+In-Reply-To: <20141103151202.26317.9909@web2.mktweb.services.phx1.mozilla.com>
+References: <20141103151202.26317.9909@web2.mktweb.services.phx1.mozilla.com>
+Date: Tue, 4 Nov 2014 11:02:22 +0100
+Message-ID: <CABc=o7spufa7_e-FxCRdox9xcteSiNyARmZmMLb_fSFc15+H8A@mail.gmail.com>
+Subject: Re: More information requested: Firefox HA HA
+From: HA HA <heyhey@ngokevin.com>
+To: commreply+a142d6648c8b466fb4b20920c7678766@marketplace.firefox.com
+Content-Type: multipart/mixed; boundary=f46d043c06c233782e0507058fe7
+
+--f46d043c06cx33782e0507058fe7
+Content-Type: multipart/alternative; boundary=f46d043c06c23378290507058fe5
+
+--f46d043c06cx3378290507058fe5
+Content-Type: text/plain; charset=UTF-8
+
+Body inspector
+
+Thanks
+
+On Mon, Nov 3, 2014 at 4:12 PM, <app-reviewers@mozilla.org> wrote:
+
+> some quoted text
+>
+> --
+> Kevin Ngo
+> Firefox Marketplace Commander
+> https://marketplace.firefox.com
+>
+
+--f46d043c06c23378290507058fe5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hey dude,<div><br></div><div>=C2=A0Yep, compatibility is=
+ limited to one device is the launch, however, there is a simple trick so y=
+ou can test the app in a Flame device, is changing the compatibility.json w=
+ith this one I am enclosing.=C2=A0</div><div><br></div><div>Thanks</div></d=
+iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Nov 3,=
+ 2014 at 4:12 PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:app-reviewers@mo=
+zilla.org" target=3D"_blank">app-reviewers@mozilla.org</a>&gt;</span> wrote=
+:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex">We need additional information to compl=
+ete review of Firefox ByeBye.<br>
+<br>
+Kevin Ngo wrote:<br>
+<br>
+=C2=A0 =C2=A0 &quot;sorry can&#39;t test this.=C2=A0 This update seems to h=
+ave limited the compatible devices to 1 device I&#39;ve not heard of.=C2=A0=
+ A mistake, surely?&quot;<br>
+<br>
+App: Foxy ByeBye<br>
+URL: <a href=3D"https://marketplace.firefox.com/app/byebye-hello-no-la-enc=
+uentras/" target=3D"_blank">https://marketplace.firefox.com/app/byebye-hel=
+lo-no-la-encuentras/</a><br>
+<br>
+--<br>
+Kevin Ngo<br>
+Firefox Marketplace Master<br>
+<a href=3D"https://marketplace.firefox.com" target=3D"_blank">https://marke=
+tplace.firefox.com</a><br>
+</blockquote></div><br></div>
+
+--f46d043c06c23378290507058fe5--
+--f46d043c06c233782e0507058fe7
+Content-Type: application/json; name="compatibility.json"
+Content-Disposition: attachment; filename="compatibility.json"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_i2336sto0
+
+somedummyxZpY2UiOiB7CiAgICAibmFtZXMiOiBbCiAgICAgICJBTENBVEVMT25lVG91Y2g2MDE1
+WCIsCiAgICAgICJNb3ppbGxhIgogICAgXQogIH0sCiAgIm9zIjogewogICAgIm1pbmltdW1NYWpv
+clZlcnNpb24iOiAzMgogIH0KfQo=
+--f46d043a06c233782e0507058fe7--

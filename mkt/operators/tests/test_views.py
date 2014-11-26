@@ -86,3 +86,9 @@ class TestOperatorPermissionsViewSet(RestOAuth, amo.tests.ESTestCase):
         self.create(mkt.carriers.TELEFONICA, mkt.regions.BR, self.other_user)
         res, data = self.get(self.client)
         eq_(data['meta']['total_count'], 0)
+
+    def test_admin(self):
+        self.grant_permission(self.user, 'OperatorDashboard:*')
+        res, data = self.get(self.client)
+        eq_(res.status_code, 200)
+        eq_(data, ['*'])

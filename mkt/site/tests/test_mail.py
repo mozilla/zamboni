@@ -187,7 +187,7 @@ class TestSendMail(TestCase):
                              from_email=settings.NOBODY_EMAIL,
                              use_blacklist=False,
                              perm_setting='individual_contact',
-                             headers={'Reply-To': settings.EDITORS_EMAIL})
+                             headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 
         msg = mail.outbox[0]
         message = msg.message()
@@ -195,7 +195,7 @@ class TestSendMail(TestCase):
         eq_(msg.to, emails)
         eq_(msg.subject, subject)
         eq_(msg.from_email, settings.NOBODY_EMAIL)
-        eq_(msg.extra_headers['Reply-To'], settings.EDITORS_EMAIL)
+        eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
 
         eq_(message.is_multipart(), True)
         eq_(message.get_content_type(), 'multipart/alternative')

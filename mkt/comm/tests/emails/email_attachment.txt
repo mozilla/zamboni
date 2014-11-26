@@ -1,0 +1,125 @@
+From kngo@mozilla.com  Mon Oct 20 19:18:04 2014
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.81.50])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by mx1.marketplace.prod.mozaws.net (Postfix) with ESMTPS id AF66E100C76
+	for <commreply+abc123@marketplace.firefox.com>; Mon, 20 Oct 2014 19:18:02 +0000 (UTC)
+Received: by mail-wg0-f50.google.com with SMTP id a1bo6282140wgh.9
+        for <commreply+abc123@marketplace.firefox.com>; Mon, 20 Oct 2014 12:18:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=itHKxOV+HqS9TAKt6Ma+QGHslxj5IB0oxWedN/FJqI0=;
+        b=D5k49EEWDXQ7gx2J+FCfZ3X8EIVAFjRI+tk9GuaMDOKWopbozAwNwcFP0RcuwPcHl/
+         sWSINi5zGmX5EIEBCduawF1yj+lc1oK76+MTJSr7upea7NbG0c9jF3hfCURvgzp5stNF
+         xW0yxr7T1IvQFZH1k5hPb5lQIF+MhR9QeMYHZNMzkCb/mng/4yaegVfRtpggtGcIe088
+         Cmoi+3LevPI/DGWL6wD75l+bNHv/unNBOxH8OegGKEBjdwdetYcxE1NKlRxDUa4T0pXN
+         1id23uS25W1RFawT4J0kN1lg56yM92JK0RJnzoRWgbxlmSSaLQDFTbljj1W41kBb1iN9
+         KBlA==
+MIME-Version: 1.0
+X-Received: by 10.194.184.82 with SMTP id ag18mr6950068wjc.115.1413832680759;
+ Mon, 20 Oct 2014 12:18:00 -0700 (PDT)
+Received: by 10.194.140.43 with HTTP; Mon, 20 Oct 2014 12:18:00 -0700 (PDT)
+In-Reply-To: <20141019100415.17504.64153@web11.mktweb.services.phx1.mozilla.com>
+References: <20141019100415.17504.64153@web11.mktweb.services.phx1.mozilla.com>
+Date: Mon, 20 Oct 2014 21:18:00 +0200
+Message-ID: <CAGfSEz2Agcm-efnZ93vT=VV8Ny_HtaUtYY+LuwSJCfjDdoQP_A@mail.gmail.com>
+Subject: Re: Rejected: BadApp
+From: Kevin Ngo <kngo@mozilla.com>
+To: commreply+abc123@marketplace.firefox.com
+Content-Type: multipart/mixed; boundary=047d7bb04846b59b6e0505df926e
+
+--047d7bb04846b59b6e0505df926e
+Content-Type: multipart/alternative; boundary=047d7bb04846b59b5b0505df926c
+
+--047d7bb04846b59b5b0505df926c
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+Body inspection
+
+Thank you,
+Kevin Ngo
+Developer - Kevin Ngo
+
+On Sun, Oct 19, 2014 at 12:04 PM, <app-reviewers@mozilla.org> wrote:
+
+>
+> Some quoted email
+>
+> --
+> Kevin
+> Firefox Marketplace Reviewer
+> https://marketplace.firefox.com
+>
+
+--047d7bb04846b59b5b0505df926c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I tried to follo=
+w the thread link but I only got an error page.<br></div>I updated the mani=
+fest and uploaded a new version for review. I took a couple of screenshots =
+when testing with the Firefox OS 1.1. simulator.<br><br></div>Thank you,<br=
+></div>Kevin Ngo<br></div>Developer - Kevin Ngo<br></div><div class=3D=
+"gmail_extra"><br><div class=3D"gmail_quote">On Sun, Oct 19, 2014 at 12:04 =
+PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:app-reviewers@mozilla.org" tar=
+get=3D"_blank">app-reviewers@mozilla.org</a>&gt;</span> wrote:<br><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
+lid;padding-left:1ex">After reviewing your submission for PartyPoppers, we =
+have determined that it does not currently meet our requirements for approv=
+al.<br>
+<br>
+VP7 wrote:<br>
+<br>
+=C2=A0 =C2=A0 &quot;The app icon(s) specified in the manifest is missing so=
+ the desktop/homescreen icon and window icons are blank.=C2=A0 Note the url=
+s are absolute, i.e. relative to the app&#39;s origin, &quot;/&quot;, NOT t=
+he manifest location.<br>
+<br>
+Suggestion: add a screen shot which is taken when you are playing in the Si=
+mulator<br>
+<br>
+Tested on Keon 1.1 with Firefox 32&quot;<br>
+<br>
+App: PartyPoppers<br>
+URL: <a href=3D"https://marketplace.firefox.com/app/partypoppers/" target=
+=3D"_blank">https://marketplace.firefox.com/app/partypoppers/</a><br>
+<br>
+If you have any questions about this review, you can contact the review tea=
+m by replying to this email or join us in #app-comm on <a href=3D"http://ir=
+c.mozilla.org" target=3D"_blank">irc.mozilla.org</a>. You can also follow t=
+he Apps Blog (<a href=3D"http://blog.mozilla.com/apps" target=3D"_blank">ht=
+tp://blog.mozilla.com/apps</a>) to stay updated on Marketplace news. Techni=
+cal support is available on <a href=3D"http://stackoverflow.com/r/mozilla" =
+target=3D"_blank">http://stackoverflow.com/r/mozilla</a>.<br>
+<br>
+Once the concerns above have been addressed, you may resubmit your app from=
+ the My Submissions page at <a href=3D"https://marketplace.firefox.com/deve=
+lopers/app/partypoppers/status" target=3D"_blank">https://marketplace.firef=
+ox.com/developers/app/partypoppers/status</a>.<br>
+<br>
+You may reply to this email or post to <a href=3D"https://marketplace.firef=
+ox.com/comm/thread/24531" target=3D"_blank">https://marketplace.firefox.com=
+/comm/thread/24531</a><br>
+<br>
+--<br>
+VP7<br>
+Firefox Marketplace Reviewer<br>
+<a href=3D"https://marketplace.firefox.com" target=3D"_blank">https://marke=
+tplace.firefox.com</a><br>
+</blockquote></div><br></div>
+
+--047d7bb04846b59b5b0505df926c--
+--047d7bb04846b59b6e0505df926e
+Content-Type: image/png; name="ffscreen1.png"
+Content-Disposition: attachment; filename="ffscreen1.png"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_i1i7fzb32
+
+somedummyimageANSUhEUgAAAsYAAAM5CAIAAACLuWCaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+AEBFAQAAAAAqCgAAAAAVBQAAAICKAgAAAEBFAQAAAKCiAAAAAAAVBQAAAPBK8P8CDAB5meXRgo/y
+MQAAAABJRU5ErkJggg==
+--047d7bb04846b59b6e0505df926e--

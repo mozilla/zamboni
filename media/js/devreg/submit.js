@@ -123,16 +123,6 @@
         }
     }
 
-    z.body.on('tabs-changed', function(e, tab) {
-        if (tab.id == 'packaged-tab-header') {
-            $('.learn-mdn.active').removeClass('active');
-            $('.learn-mdn.packaged').addClass('active');
-        } else if (tab.id == 'hosted-tab-header') {
-            $('.learn-mdn.active').removeClass('active');
-            $('.learn-mdn.hosted').addClass('active');
-        }
-    });
-
     // Deselect all checkboxes once tabs have been setup.
     if (isSubmitAppPage) {
         $('.tabbable').bind('tabs-setup', nullifySelections);

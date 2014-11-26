@@ -267,7 +267,6 @@ USE_I18N = True
 ###########################################
 # Team Emails
 ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+abuse@mozilla.org>'
-EDITORS_EMAIL = 'amo-editors@mozilla.org'
 FLIGTAR = 'marketplace-staff+random-goings-on@mozilla.org'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
@@ -276,8 +275,6 @@ MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff+escalations@mozilla.org'
 MKT_SUPPORT_EMAIL = 'app-reviewers@mozilla.org'
 NOBODY_EMAIL_ADDRESS = 'nobody@mozilla.org'
 NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
-SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
-THEMES_EMAIL = 'theme-reviews@mozilla.org'
 
 ###########################################
 # Paths
@@ -345,12 +342,11 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 # URLs other things depend upon.
 SITE_URL = 'http://%s' % DOMAIN
 STATIC_URL = SITE_URL + '/'
-VAMO_URL = 'https://versioncheck.addons.mozilla.org'
 
 ADDON_ICONS_DEFAULT_URL = 'img/hub'
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 
-LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
+LOCAL_MIRROR_URL = 'https://marketplace.cdn.mozilla.net/_files'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
 PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 PRIVATE_MIRROR_URL = '/_privatefiles'
@@ -888,7 +884,6 @@ MAX_GEN_USERNAME_TRIES = 50
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_INAPP_IMAGE_SIZE = 4 * 1024 * 1024
-MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
@@ -907,10 +902,6 @@ MARKETPLACE_GUID = 'e6a59937-29e4-456a-b636-b69afa8693b4'
 # would see this in their logs.
 MARKETPLACE_USER_AGENT = ('UA for marketplace.firefox.com; '
                           'bug? http://mzl.la/1mZ9F3a')
-
-# If the users's Firefox has a version number greater than this we consider it
-# a beta.
-MIN_BETA_VERSION = '3.7'
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -1171,10 +1162,6 @@ URL_FORMAT_OVERRIDE = 'format'
 USE_HEKA_FOR_CEF = False
 
 VALIDATE_ADDONS = True
-
-# URL for Add-on Validation FAQ.
-VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
-                      'AddonReviews#Step_2:_Automatic_validation')
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']
