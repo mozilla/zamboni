@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-11-25 14:50+0200\n"
+"PO-Revision-Date: 2014-11-26 16:57+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2426,7 +2426,7 @@ msgstr "Zbatimi lyp aftësinë për marrje informacioni rreth lidhjesh të shum�
 #: mkt/constants/payments.py:40
 #: mkt/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Rikthim pagese"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
@@ -5564,7 +5564,7 @@ msgstr "Podcast-e"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:81
 msgid "Roller"
-msgstr ""
+msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:89
 msgid "Webfighter"
@@ -6411,7 +6411,7 @@ msgstr "Kategori"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Opt-in i parangarkuar"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -6990,7 +6990,7 @@ msgstr "Shqyrtime Këtë Muaj"
 #: mkt/reviewers/templates/reviewers/leaderboard.html:3
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Klasifikimi i Shqyrtuesve"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18
 #: mkt/reviewers/templates/reviewers/performance.html:18
@@ -7039,11 +7039,11 @@ msgstr "Pikë Shqyrtuesi për {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Shpërndarje pikësh që prej fillimeve"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Pikë"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30
 #: mkt/stats/forms.py:11
@@ -7628,7 +7628,7 @@ msgstr "Nuk lejohen ndryshime te \"origin\"."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Përdoruesi që po parashtron nuk përputhet."
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
