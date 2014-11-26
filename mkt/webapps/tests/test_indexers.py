@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from nose.tools import eq_, ok_
 
 import amo.tests
@@ -174,6 +175,24 @@ class TestWebappIndexer(amo.tests.TestCase):
             {'lang': 'en-US', 'string': release_notes['en-US']})
         eq_(doc['release_notes_translations'][1],
             {'lang': 'fr', 'string': release_notes['fr']})
+
+    def test_extract_installs_allowed_from(self):
+        # Test 'installs_allowed_from' empty defaults to ['*'].
+        self.app.current_version.manifest_json.update(manifest=json.dumps({}))
+        obj, doc = self._get_doc()
+        eq_(doc['installs_allowed_from'], ['*'])
+
+        # Test single value.
+        self.app.current_version.manifest_json.update(manifest=json.dumps({
+            'installs_allowed_from': ['http://a.com']}))
+        obj, doc = self._get_doc()
+        eq_(doc['installs_allowed_from'], ['http://a.com'])
+
+        # Test multiple value.
+        self.app.current_version.manifest_json.update(manifest=json.dumps({
+            'installs_allowed_from': ['http://a.com', 'http://b.com']}))
+        obj, doc = self._get_doc()
+        eq_(doc['installs_allowed_from'], ['http://a.com', 'http://b.com'])
 
 
 class TestAppFilter(amo.tests.ESTestCase):

@@ -12,7 +12,8 @@ from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
-from mkt.search.views import _sort_search, DEFAULT_SORTING
+from mkt.search.views import (_sort_search, DEFAULT_SORTING,
+                              search_form_to_es_fields)
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
 
@@ -38,18 +39,8 @@ class TestSearchFilters(BaseOAuth):
         form = self.form_class(filters)
         if form.is_valid():
             form_data = form.cleaned_data
-            sq = WebappIndexer.get_app_filter(self.req, {
-                'app_type': form_data['app_type'],
-                'author.raw': form_data['author'],
-                'category': form_data['cat'],
-                'device': form_data['device'],
-                'is_offline': form_data['offline'],
-                'manifest_url': form_data['manifest_url'],
-                'q': form_data['q'],
-                'premium_type': form_data['premium_types'],
-                'supported_locales': form_data['languages'],
-                'tags': form_data['tag'],
-            })
+            sq = WebappIndexer.get_app_filter(
+                self.req, search_form_to_es_fields(form_data))
             return _sort_search(self.req, sq, form_data).to_dict()
         else:
             return form.errors.copy()
@@ -192,6 +183,15 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'author': 'Mozilla LABS'})
         ok_({'term': {'author.raw': u'mozilla labs'}}
             in qs['query']['filtered']['filter']['bool']['must'])
+
+    def test_installs_allowed_from(self):
+        qs = self._filter(self.req, {'installs_allowed_from': '*'})
+        ok_({'term': {'installs_allowed_from': u'*'}}
+            in qs['query']['filtered']['filter']['bool']['must'])
+        # Test that we don't filter by this field if not provided.
+        qs = self._filter(self.req, {})
+        ok_('installs_allowed_from' not in json.dumps(qs),
+            "Unexpected 'installs_allowed_from' in query")
 
     def test_region_exclusions(self):
         self.req.REGION = regions.CO

@@ -40,6 +40,8 @@ Search
         exact match and should only return a single result if a match is
         found.
     :type manifest_url: string
+    :param installs_allowed_from: Filters apps by the manifest
+        'installs_allowed_from' field. The only supported value is '*'.
     :param optional offline: Filters by whether the app works offline or not.
         'True' to show offline-capable apps; 'False' to show apps requiring
         online support; any other value will show all apps unfiltered by

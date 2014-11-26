@@ -186,7 +186,7 @@ class TestSearchView(RestOAuth, ESTestCase):
 
     def test_multiple_sort(self):
         res = self.anon.get(self.url, [('sort', 'rating'),
-                                         ('sort', 'created')])
+                                       ('sort', 'created')])
         eq_(res.status_code, 200)
 
     def test_right_category(self):
@@ -632,6 +632,25 @@ class TestSearchView(RestOAuth, ESTestCase):
             eq_(len(res.json['objects']), 1)
             obj = res.json['objects'][0]
             eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_installs_allowed_from_anywhere(self):
+        res = self.anon.get(self.url, data={'installs_allowed_from': '*'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
+    def test_installs_allowed_from_strict(self):
+        self.webapp.current_version.manifest_json.update(
+            manifest=json.dumps({'installs_allowed_from': 'http://a.com'}))
+        self.reindex(Webapp, 'webapp')
+        res = self.anon.get(self.url, data={'installs_allowed_from': '*'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
+
+    def test_installs_allowed_from_invalid(self):
+        res = self.anon.get(
+            self.url, data={'installs_allowed_from': 'http://a.com'})
+        eq_(res.status_code, 400)
+        ok_('installs_allowed_from' in res.json['detail'])
 
     def test_status_value_packaged(self):
         # When packaged and not a reviewer we exclude latest version status.

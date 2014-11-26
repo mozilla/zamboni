@@ -102,6 +102,10 @@ class ApiSearchForm(forms.Form):
         required=False, choices=APP_TYPE_CHOICES,
         widget=forms.CheckboxSelectMultiple(), label=_lazy(u'App type'))
     manifest_url = forms.CharField(required=False, label=_lazy('Manifest URL'))
+    # TODO: If we ever want to allow any string here change to a `CharField`.
+    installs_allowed_from = forms.ChoiceField(
+        required=False, label=_lazy('Installs allowed from'),
+        choices=[('*', _lazy('Everywhere'))])
     offline = forms.NullBooleanField(required=False,
                                      label=_lazy('Works offline'))
     languages = forms.CharField(required=False,

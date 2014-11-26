@@ -118,6 +118,7 @@ class WebappIndexer(BaseIndexer):
                     'has_public_stats': {'type': 'boolean'},
                     'icon_hash': cls.string_not_indexed(),
                     'interactive_elements': cls.string_not_indexed(),
+                    'installs_allowed_from': cls.string_not_analyzed(),
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
                     'is_offline': {'type': 'boolean'},
@@ -282,6 +283,9 @@ class WebappIndexer(BaseIndexer):
             d['interactive_elements'] = obj.rating_interactives.to_keys()
         except RatingInteractives.DoesNotExist:
             d['interactive_elements'] = []
+        d['installs_allowed_from'] = (
+            version.manifest.get('installs_allowed_from', ['*'])
+            if version else ['*'])
         d['is_escalated'] = obj.escalationqueue_set.exists()
         d['is_offline'] = getattr(obj, 'is_offline', False)
         d['is_priority'] = obj.priority_review
@@ -466,6 +470,7 @@ class WebappIndexer(BaseIndexer):
             'category': None,  # Slug.
             'device': None,  # ID.
             'gaia': getattr(request, 'GAIA', False),
+            'installs_allowed_from': None,
             'is_offline': None,
             'manifest_url': '',
             'mobile': getattr(request, 'MOBILE', False),
@@ -481,8 +486,8 @@ class WebappIndexer(BaseIndexer):
         data.update(additional_data)
 
         # Fields that will be filtered with a term query.
-        term_fields = ('author.raw', 'device', 'manifest_url', 'status',
-                       'tags')
+        term_fields = ('author.raw', 'device', 'installs_allowed_from',
+                       'manifest_url', 'status', 'tags')
         # Fields that will be filtered with a terms query.
         terms_fields = ('category', 'premium_type', 'app_type',
                         'supported_locales')
