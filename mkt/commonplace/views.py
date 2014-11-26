@@ -18,6 +18,7 @@ import newrelic.agent
 import waffle
 from cache_nuggets.lib import memoize
 
+from mkt.commonplace.models import DeployBuildId
 from mkt.regions.middleware import RegionMiddleware
 from mkt.account.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
@@ -68,27 +69,18 @@ def get_whitelisted_origins(request, include_loop=True):
 
 def get_build_id(repo):
     try:
-        # This is where the `build_{repo}.py` files get written to after
-        # compiling and minifying our assets.
-        # Get the `BUILD_ID` from `build_{repo}.py` and use that to
-        # cache-bust the assets for this repo's CSS/JS minified bundles.
-        module = 'build_%s' % repo
-        return importlib.import_module(module).BUILD_ID
-    except (ImportError, AttributeError):
+        # Get the build ID from the database (bug 1083185).
+        return DeployBuildId.objects.get(repo=repo).build_id
+    except DeployBuildId.DoesNotExist:
+        # If we haven't initialized a build ID yet, read it directly from the
+        # build_id.txt by our frontend builds.
         try:
-            build_id_fn = os.path.join(settings.MEDIA_ROOT, repo,
-                                       'build_id.txt')
-            with storage.open(build_id_fn) as fh:
-                return fh.read()
+            build_id_path = os.path.join(settings.MEDIA_ROOT, repo,
+                                         'build_id.txt')
+            with storage.open(build_id_path) as f:
+                return f.read()
         except:
-            # Either `build_{repo}.py` does not exist or `build_{repo}.py`
-            # exists but does not contain `BUILD_ID`. Fall back to
-            # `BUILD_ID_JS` which is written to `build.py` by jingo-minify.
-            try:
-                from build import BUILD_ID_CSS
-                return BUILD_ID_CSS
-            except ImportError:
-                return 'dev'
+            return 'dev'
 
 
 def get_imgurls(repo):
