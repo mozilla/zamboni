@@ -98,8 +98,10 @@ class Price(ModelBase):
     def transformer(prices):
         # There are a constrained number of price currencies, let's just
         # get them all.
-        Price._currencies = dict((price_key(model_to_dict(p)), p)
-                                 for p in PriceCurrency.objects.all())
+        Price._currencies = dict(
+            (price_key(model_to_dict(p)), p)
+            for p in PriceCurrency.objects.filter(tier__active=True)
+        )
 
     def get_price_currency(self, carrier=None, region=None, provider=None):
         """

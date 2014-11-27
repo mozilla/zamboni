@@ -50,11 +50,18 @@ AUTHENTICATION_BACKENDS = ('django_browserid.auth.BrowserIDBackend',)
 
 CACHE_MIDDLEWARE_SECONDS = 60 * 3
 
+# A Django cache machine setting, that hasn't been updated to use the
+# new PREFIX in the CACHE settings.
+#
+# A non-standard setting, but moved up here so it can be accessed by
+# the CACHES settings.
+CACHE_PREFIX = 'marketplace:%s' % build_id
+
 # Here we use the LocMemCache backend from cache-machine, as it interprets the
 # "0" timeout parameter of ``cache``  in the same way as the Memcached backend:
 # as infinity. Django's LocMemCache backend interprets it as a "0 seconds"
 # timeout (and thus doesn't cache at all).
-
+#
 # Caching is required for CSRF to work, please do not use the dummy cache.
 CACHES = {
     'default': {
@@ -62,6 +69,17 @@ CACHES = {
         'LOCATION': 'zamboni',
     }
 }
+
+if os.environ.get('MEMCACHE_URL'):
+    # If MEMCACHE_URL is specified, eg: in Docker, let's use that instead.
+    CACHES = {
+        'default': {
+            'BACKEND': 'caching.backends.memcached.MemcachedCache',
+            'LOCATION': os.environ['MEMCACHE_URL'],
+            'TIMEOUT': 500,
+            'KEY_PREFIX': CACHE_PREFIX,
+        },
+    }
 
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
@@ -542,10 +560,6 @@ NATIVE_FXA_ISSUER = 'api.accounts.firefox.com'
 # Number of seconds a count() query should be cached.  Keep it short because
 # it's not possible to invalidate these queries.
 CACHE_COUNT_TIMEOUT = 60
-
-# A Django cache machine setting, that hasn't been updated to use the
-# new PREFIX in the CACHE settings.
-CACHE_PREFIX = 'marketplace:%s' % build_id
 
 # Cache timeout on the /search/featured API.
 CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
