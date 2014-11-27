@@ -43,10 +43,12 @@ class TestPrice(amo.tests.TestCase):
             del Price._currencies  # needed to pick up fixtures.
 
     def test_active(self):
+        Price.objects.get(pk=2).update(active=False)
         eq_(Price.objects.count(), 2)
         eq_(Price.objects.active().count(), 1)
 
     def test_active_order(self):
+        Price.objects.get(pk=2).update(active=False)
         Price.objects.create(name='USD', price='0.00')
         Price.objects.create(name='USD', price='1.99')
         eq_(list(Price.objects.active().values_list('price', flat=True)),

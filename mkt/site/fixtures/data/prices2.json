@@ -38,7 +38,7 @@
     "pk": 2,
     "model": "prices.price",
     "fields": {
-      "active": false,
+      "active": true,
       "price": "1.99",
       "modified": "2011-08-10 04:21:42",
       "name": 2,
