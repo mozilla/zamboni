@@ -29,7 +29,8 @@ from mkt.site.mail import send_mail_jinja
 from mkt.site.helpers import absolutify
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.serializers import ProductIconSerializer
+from mkt.webpay.serializers import (ContributionSerializer,
+                                    ProductIconSerializer)
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, SimulatedInAppProduct,
                                    WebAppProduct)
@@ -46,6 +47,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
     permission_classes = [IsAuthenticated]
     cors_allowed_methods = ['post']
     cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
+    serializer_class = ContributionSerializer
 
     def post(self, request, *args, **kwargs):
         form = PrepareWebAppForm(request.DATA)
@@ -95,6 +97,8 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
     authentication_classes = []
     permission_classes = []
     cors_allowed_methods = ['post']
+    cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
+    serializer_class = ContributionSerializer
 
     def post(self, request, *args, **kwargs):
         form = PrepareInAppForm(request.DATA)

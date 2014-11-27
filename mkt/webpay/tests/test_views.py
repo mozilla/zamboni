@@ -153,6 +153,8 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
 
     def test_get_simulated_jwt(self):
         self.inapp.webapp = None
