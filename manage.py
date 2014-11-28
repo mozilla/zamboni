@@ -23,6 +23,10 @@ from jinja2 import Markup
 mod = Markup.__mod__
 trans_log = logging.getLogger('z.trans')
 
+# Load this early so that anything else you import will use these log settings.
+# Mostly to shut Raven the hell up.
+from lib.log_settings_base import log_configure
+log_configure()
 
 # waffle and amo form an import cycle because amo patches waffle and
 # waffle loads the user model, so we have to make sure amo gets
@@ -49,8 +53,6 @@ djcelery.setup_loader()
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
 from lib.utils import update_csp, validate_modules, validate_settings
-from lib.log_settings_base import log_configure
-log_configure()
 update_csp()
 validate_modules()
 validate_settings()
