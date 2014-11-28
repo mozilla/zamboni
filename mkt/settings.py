@@ -221,8 +221,10 @@ LOGGING = {
         'z.heka': {'level': logging.INFO},
         'z.elasticsearch': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
+        'raven': {'level': logging.WARNING},
     },
 }
+
 LOGGING_CONFIG = None
 
 MANAGERS = ADMINS

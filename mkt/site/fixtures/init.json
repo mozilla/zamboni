@@ -1738,5 +1738,58 @@
         },
         "model": "waffle.flag",
         "pk": 20
+    },
+    {
+        "fields": {
+            "created": "2014-11-28T14:06:18",
+            "deleted": false,
+            "display_name": "",
+            "email": "amckay+docker-api@mozilla.com",
+            "enable_recommendations": true,
+            "failed_login_attempts": 0,
+            "is_verified": true,
+            "lang": null,
+            "last_login": "2014-11-28T14:06:18",
+            "last_login_attempt": null,
+            "last_login_attempt_ip": "",
+            "last_login_ip": "",
+            "modified": "2014-11-28T14:06:18",
+            "password": "",
+            "read_dev_agreement": null,
+            "region": null,
+            "source": 0,
+            "username": ""
+        },
+        "model": "users.userprofile",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "app_name": "",
+            "created": "2014-11-28T14:12:18",
+            "key": "mkt:default:1:amckay+docker-api@mozilla.com",
+            "modified": "2014-11-28T14:12:18",
+            "redirect_uri": "",
+            "secret": "some-secret-eh?",
+            "user": 1
+        },
+        "model": "api.access",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "group": 50067,
+            "user": 1
+        },
+        "model": "access.groupuser",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "group": 50068,
+            "user": 1
+        },
+        "model": "access.groupuser",
+        "pk": 2
     }
 ]
