@@ -38,6 +38,7 @@ ENV ES_HOST elasticsearch:9200
 ENV MARKETPLACE_URL http://mp.dev
 ENV MEMCACHE_URL memcached:11211
 ENV SOLITUDE_URL http://solitude:2602
+ENV REDIS_URL redis://redis:6379?socket_timeout=0.5
 ENV STYLUS_BIN /srv/zamboni-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_BIN /srv/zamboni-node/node_modules/uglify-js/bin/uglifyjs
 ENV ZAMBONI_DATABASE mysql://root:@mysql:3306/zamboni

@@ -998,7 +998,10 @@ READ_ONLY = False
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
 
-REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
+REDIS_BACKENDS = {
+    'master': os.environ.get('REDIS_URL',
+                             'redis://localhost:6379?socket_timeout=0.5')
+}
 
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
