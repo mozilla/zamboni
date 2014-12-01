@@ -129,12 +129,13 @@ class TestSendMailComm(TestCase, CommTestMixin):
     def test_developer_comment(self, email):
         self._create(comm.REVIEWER_COMMENT)
         self._create(comm.DEVELOPER_COMMENT, author=self.developer)
-        eq_(email.call_count, 3)
+        eq_(email.call_count, 4)
 
         recipients = self._recipients(email)
         assert self.mozilla_contact.email in recipients
         assert self.reviewer.email in recipients
         assert self.developer.email not in recipients
+        assert settings.MKT_REVIEWS_EMAIL in recipients
 
         self._check_template(email.call_args, 'generic')
 
@@ -174,6 +175,13 @@ class TestSendMailComm(TestCase, CommTestMixin):
 
             print '##### %s #####' % email.subject
             print email.body
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_reply_to(self, email):
+        note, thread = self._create(comm.APPROVAL)
+        reply_to = email.call_args_list[1][1]['headers']['Reply-To']
+        ok_(reply_to.startswith('commreply+'))
+        ok_(reply_to.endswith('marketplace.firefox.com'))
 
 
 class TestEmailReplySaving(TestCase):

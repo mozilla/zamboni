@@ -107,6 +107,15 @@ def email_recipients(recipients, note, template=None):
                         perm_setting='app_reviewed',
                         headers={'Reply-To': reply_to})
 
+    # Also send mail to the fallback emailing list.
+    if note.note_type == comm.DEVELOPER_COMMENT:
+        mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
+        send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
+                        get_mail_context(note),
+                        recipient_list=[settings.MKT_REVIEWS_EMAIL],
+                        from_email=settings.MKT_REVIEWERS_EMAIL,
+                        perm_setting='app_reviewed')
+
 
 def get_mail_context(note):
     """
@@ -143,7 +152,6 @@ class CommEmailParser(object):
     def __init__(self, email_text):
         """Decode base64 email and turn it into a Django email object."""
         try:
-            log.info('CommEmailParser received email: ' + email_text)
             email_text = base64.standard_b64decode(
                 urllib2.unquote(email_text.rstrip()))
         except TypeError:

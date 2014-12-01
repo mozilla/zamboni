@@ -293,6 +293,7 @@ MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
 MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff+escalations@mozilla.org'
 MKT_SUPPORT_EMAIL = 'app-reviewers@mozilla.org'
+MKT_REVIEWS_EMAIL = 'app-reviews@mozilla.org'
 NOBODY_EMAIL_ADDRESS = 'nobody@mozilla.org'
 NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 
