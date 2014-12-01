@@ -1106,14 +1106,14 @@ SLAVE_DATABASES = []
 SOLITUDE_HOSTS = (os.environ.get('SOLITUDE_URL', 'http://localhost:2602'),)
 
 # The oAuth key and secret that solitude needs.
-SOLITUDE_KEY = ''
-SOLITUDE_SECRET = ''
+SOLITUDE_KEY = 'marketplace'
+SOLITUDE_SECRET = 'please change this'
 
 # The timeout we'll give solitude.
 SOLITUDE_TIMEOUT = 10
 
 # The OAuth keys to connect to the solitude host specified above.
-SOLITUDE_OAUTH = {'key': '', 'secret': ''}
+SOLITUDE_OAUTH = {'key': SOLITUDE_KEY, 'secret': SOLITUDE_SECRET}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator
