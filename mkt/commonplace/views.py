@@ -157,6 +157,13 @@ def commonplace(request, repo, **kwargs):
     return render(request, 'commonplace/index.html', ctx)
 
 
+def fxa_authorize(request):
+    """
+    A page to mimic commonplace's fxa-authorize page to handle login.
+    """
+    return render(request, 'commonplace/fxa_authorize.html')
+
+
 def add_app_ctx(ctx, app_slug):
     """
     If we are hitting the Fireplace detail page, get the app for Open Graph
