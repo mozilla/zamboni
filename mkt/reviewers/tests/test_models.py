@@ -96,19 +96,19 @@ class TestReviewerScore(amo.tests.TestCase):
         AddonDeviceType.objects.create(addon=self.app, device_type=1)
         self._give_points()
         score1 = amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED]
-        eq_(ReviewerScore.objects.all()[0].score, score1)
+        eq_(ReviewerScore.objects.order_by('-pk').first().score, score1)
 
         AddonDeviceType.objects.create(addon=self.app, device_type=2)
         self._give_points()
         score2 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
                   amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA])
-        eq_(ReviewerScore.objects.all()[1].score, score2)
+        eq_(ReviewerScore.objects.order_by('-pk').first().score, score2)
 
         AddonDeviceType.objects.create(addon=self.app, device_type=3)
         self._give_points()
         score3 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
-                  (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2))
-        eq_(ReviewerScore.objects.all()[2].score, score3)
+                  amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2)
+        eq_(ReviewerScore.objects.order_by('-pk').first().score, score3)
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
