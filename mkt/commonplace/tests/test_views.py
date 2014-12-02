@@ -61,14 +61,9 @@ class TestCommonplace(CommonplaceTestMixin):
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_rocketfuel(self):
-        res = self._test_url('/curation/')
-        self.assertTemplateUsed(res, 'commonplace/index.html')
-        self.assertEquals(res.context['repo'], 'rocketfuel')
-        self.assertNotContains(res, 'splash.css')
-        eq_(res['Cache-Control'], 'max-age=180')
-
-    def test_transonic(self):
+    @mock.patch('mkt.commonplace.views.fxa_auth_info')
+    def test_transonic(self, mock_fxa):
+        mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
         res = self._test_url('/curate/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
@@ -121,7 +116,7 @@ class TestAppcacheManifest(CommonplaceTestMixin):
             raise SkipTest
 
         res = self.client.get(reverse('commonplace.appcache'),
-                              {'repo': 'rocketfuel'})
+                              {'repo': 'transonic'})
         eq_(res.status_code, 404)
 
     @mock.patch('mkt.commonplace.views.get_build_id', new=lambda x: 'p00p')

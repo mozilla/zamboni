@@ -435,16 +435,15 @@ def dump_all_apps_tasks():
 
 @task
 def export_data(name=None):
-    from mkt.collections.tasks import dump_all_collections_tasks
     today = datetime.datetime.today().strftime('%Y-%m-%d')
     if name is None:
         name = today
     root = settings.DUMPED_APPS_PATH
-    directories = ['apps', 'collections']
+    directories = ['apps']
     for directory in directories:
         rm_directory(os.path.join(root, directory))
     files = directories + compile_extra_files(date=today)
-    chord(dump_all_apps_tasks() + dump_all_collections_tasks(),
+    chord(dump_all_apps_tasks(),
           compress_export.si(filename=name, files=files)).apply_async()
 
 

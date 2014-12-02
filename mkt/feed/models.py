@@ -21,11 +21,11 @@ from django.dispatch import receiver
 import amo
 import mkt.carriers
 import mkt.regions
-from mkt.collections.fields import ColorField
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
 from mkt.site.decorators import use_master
+from mkt.site.fields import ColorField
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import clean_slug, Preview, Webapp
@@ -246,7 +246,7 @@ class FeedBrand(BaseFeedCollection):
 
 class FeedCollectionMembership(BaseFeedCollectionMembership):
     """
-    An app's membership to a `FeedBrand` class, used as the through model for
+    An app's membership to a `FeedCollection` class, used as the through model for
     `FeedBrand._apps`.
     """
     obj = models.ForeignKey('FeedCollection')

@@ -1,3 +1,5 @@
+import re
+
 from django.core import exceptions
 from django.db import models
 from django.forms import fields
@@ -88,3 +90,22 @@ class SeparatedValuesField(fields.Field):
                 self.value_list.append(base_field.clean(value))
 
         return u', '.join(self.value_list)
+
+
+class ColorField(models.CharField):
+    """
+    Model field that only accepts 7-character hexadecimal color representations,
+    e.g. #FF0035.
+    """
+    description = _('Hexadecimal color')
+
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = kwargs.get('max_length', 7)
+        self.default_error_messages.update({
+            'bad_hex': _('Must be a valid hex color code, e.g. #FF0035.'),
+        })
+        super(ColorField, self).__init__(*args, **kwargs)
+
+    def validate(self, value, model_instance):
+        if value and not re.match('^\#([0-9a-fA-F]{6})$', value):
+            raise exceptions.ValidationError(self.error_messages['bad_hex'])

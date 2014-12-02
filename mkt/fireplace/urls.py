@@ -1,23 +1,30 @@
+from django.core.urlresolvers import reverse
 from django.conf.urls import include, patterns, url
+from django.shortcuts import redirect
 
 from rest_framework.routers import SimpleRouter
 
-from mkt.fireplace.views import (AppViewSet, CollectionViewSet,
-                                 ConsumerInfoView, SearchView)
+from mkt.fireplace.views import AppViewSet, ConsumerInfoView, SearchView
 
 
 apps = SimpleRouter()
 apps.register(r'app', AppViewSet, base_name='fireplace-app')
 
 
-collections = SimpleRouter()
-collections.register(r'collection', CollectionViewSet,
-                     base_name='fireplace-collection')
+def redirect_to_feed_element(request, slug):
+    url = reverse('api-v2:feed.fire_feed_element_get', 
+                  kwargs={'item_type': 'collections', 'slug': slug})
+    return redirect(url, permanent=True)
 
 
 urlpatterns = patterns('',
     url(r'^fireplace/', include(apps.urls)),
-    url(r'^fireplace/', include(collections.urls)),
+
+    # Compatibility for old apps that still hit the rocketfuel collection API,
+    # we redirect them to the feed.
+    url(r'^fireplace/collection/(?P<slug>[^/.]+)/$', redirect_to_feed_element,
+        name='feed.fire_rocketfuel_compat'),
+
     url(r'^fireplace/consumer-info/',
         ConsumerInfoView.as_view(),
         name='fireplace-consumer-info'),

@@ -1,13 +1,15 @@
+import hashlib
 import StringIO
+import uuid
 
 from django.conf import settings
+from django.core.files.base import File
 
 import requests
 from PIL import Image
 from rest_framework import exceptions, serializers
 from tower import ugettext as _
 
-from mkt.collections.serializers import DataURLImageField
 from mkt.fireplace.serializers import FeedFireplaceESAppSerializer
 from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
                                      ESAppFeedCollectionSerializer,
@@ -142,6 +144,31 @@ class AppESHomePromoCollectionField(AppESField):
     @property
     def serializer_class(self):
         return ESAppFeedCollectionSerializer
+
+
+class DataURLImageField(serializers.CharField):
+    def from_native(self, data):
+        if data.startswith('"') and data.endswith('"'):
+            # Strip quotes if necessary.
+            data = data[1:-1]
+        if not data.startswith('data:'):
+            raise serializers.ValidationError('Not a data URI.')
+
+        metadata, encoded = data.rsplit(',', 1)
+        parts = metadata.rsplit(';', 1)
+        if parts[-1] == 'base64':
+            content = encoded.decode('base64')
+            f = StringIO.StringIO(content)
+            f.size = len(content)
+            tmp = File(f, name=uuid.uuid4().hex)
+            hash_ = hashlib.md5(content).hexdigest()[:8]
+            return serializers.ImageField().from_native(tmp), hash_
+        else:
+            raise serializers.ValidationError('Not a base64 data URI.')
+
+    def to_native(self, value):
+        return value.name
+
 
 
 class ImageURLField(serializers.Field):

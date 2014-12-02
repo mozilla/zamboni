@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     'mkt.access',
     'mkt.account',
     'mkt.api',
-    'mkt.collections',
     'mkt.comm',
     'mkt.commonplace',
     'mkt.detail',
@@ -584,7 +583,7 @@ CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
-                     'rocketfuel', 'transonic', 'discoplace',
+                     'transonic', 'discoplace',
                      'marketplace-operator-dashboard']
 COMMONPLACE_REPOS_APPCACHED = []
 

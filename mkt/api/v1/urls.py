@@ -5,12 +5,11 @@ from rest_framework.routers import SimpleRouter
 
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
-from mkt.api.base import SubRouter, SubRouterWithFormat
+from mkt.api.base import SubRouter
 from mkt.api.views import (CarrierViewSet, CategoryViewSet,
                            error_reporter, ErrorViewSet, PriceTierViewSet,
                            PriceCurrencyViewSet, RefreshManifestViewSet,
                            RegionViewSet, site_config)
-from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.developers.urls import dev_api_patterns, payments_api_patterns
 from mkt.features.views import AppFeaturesList
@@ -22,13 +21,6 @@ from mkt.stats.urls import stats_api_patterns, txn_api_patterns
 from mkt.submit.views import PreviewViewSet, StatusViewSet, ValidationViewSet
 from mkt.webapps.views import AppTagViewSet, AppViewSet, PrivacyPolicyViewSet
 
-rocketfuel = SimpleRouter()
-rocketfuel.register(r'collections', CollectionViewSet,
-                    base_name='collections')
-
-subcollections = SubRouterWithFormat()
-subcollections.register('image', CollectionImageViewSet,
-                        base_name='collection-image')
 
 apps = SimpleRouter()
 apps.register(r'preview', PreviewViewSet, base_name='app-preview')
@@ -70,8 +62,6 @@ urlpatterns = patterns('',
     url(r'^services/', include(services.urls)),
     url(r'^services/config/site/', site_config, name='site-config'),
     url(r'^fireplace/report_error/\d*', error_reporter, name='error-reporter'),
-    url(r'^rocketfuel/', include(rocketfuel.urls)),
-    url(r'^rocketfuel/collections/', include(subcollections.urls)),
     url(r'^apps/', include('mkt.versions.urls')),
     url(r'^apps/', include('mkt.ratings.urls')),
     url(r'^apps/features/', AppFeaturesList.as_view(),

@@ -54,10 +54,6 @@ urlpatterns = patterns('',
     url('^comm/.*$', views.commonplace, {'repo': 'commbadge'},
         name='commonplace.commbadge'),
 
-    # Rocketfuel:
-    url('^curation/.*$', views.commonplace, {'repo': 'rocketfuel'},
-        name='commonplace.rocketfuel'),
-
     # Transonic:
     url('^curate/.*$', views.commonplace, {'repo': 'transonic'},
         name='commonplace.transonic'),

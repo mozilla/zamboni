@@ -89,14 +89,6 @@ class WebappIndexer(BaseIndexer):
                     'banner_regions': cls.string_not_indexed(),
                     'bayesian_rating': {'type': 'float', 'doc_values': True},
                     'category': cls.string_not_analyzed(),
-                    'collection': {
-                        'type': 'nested',
-                        'include_in_parent': True,
-                        'properties': {
-                            'id': {'type': 'long'},
-                            'order': {'type': 'short'}
-                        }
-                    },
                     'content_descriptors': cls.string_not_indexed(),
                     'content_ratings': {
                         'type': 'object',
@@ -260,11 +252,6 @@ class WebappIndexer(BaseIndexer):
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
         d['category'] = obj.categories if obj.categories else []
-        if obj.is_published:
-            d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
-                               for cms in obj.collectionmembership_set.all()]
-        else:
-            d['collection'] = []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
         try:

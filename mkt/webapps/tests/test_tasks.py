@@ -689,11 +689,10 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
 
 
 class TestExportData(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141', 'collection_81721')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.export_directory = mkdtemp()
-        self.collection_path = 'collections/81/81721.json'
         self.app_path = 'apps/337/337141.json'
 
     def tearDown(self):
@@ -709,7 +708,6 @@ class TestExportData(amo.tests.TestCase):
 
     def test_export_is_created(self):
         expected_files = [
-            self.collection_path,
             self.app_path,
             'license.txt',
             'readme.txt',
@@ -718,12 +716,6 @@ class TestExportData(amo.tests.TestCase):
         actual_files = tarball.getnames()
         for expected_file in expected_files:
             assert expected_file in actual_files, expected_file
-
-    def test_collections_point_to_apps(self):
-        tarball = self.create_export('tarball-name')
-        collection_file = tarball.extractfile(self.collection_path)
-        collection_data = json.loads(collection_file.read())
-        eq_(collection_data['apps'][0]['filepath'], self.app_path)
 
 
 class AppGeneratorTests(amo.tests.TestCase):
