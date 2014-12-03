@@ -1344,7 +1344,7 @@
             "modified": "2012-04-19T18:43:22",
             "name": "Staff",
             "notes": "",
-            "rules": "Addons:Review,Apps:Review,Personas:Review,Reviews:Edit,Addons:Edit,Addons:Configure,Users:Edit,Stats:View,CollectionStats:View,Collections:Edit,AdminTools:View,Apps:Configure,FeaturedApps:View,FeaturedApps:Edit,Stats:View,Apps:ReviewPrivileged,Apps:Publisher,Apps:ReviewRegionCN,Apps:Edit"
+            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,Lookup:View,Stats:View"
         },
         "model": "access.group",
         "pk": 50000
@@ -1355,7 +1355,7 @@
             "modified": "2012-04-04T17:17:55",
             "name": "Statistic Viewers",
             "notes": "",
-            "rules": "Stats:View,CollectionStats:View"
+            "rules": "Stats:View"
         },
         "model": "access.group",
         "pk": 50001
@@ -1364,45 +1364,12 @@
         "fields": {
             "created": "2012-04-04T17:17:55",
             "modified": "2012-04-04T17:17:55",
-            "name": "Add-on Reviewers",
-            "notes": "",
-            "rules": "Addons:Review,Reviews:Edit"
-        },
-        "model": "access.group",
-        "pk": 50002
-    },
-    {
-        "fields": {
-            "created": "2012-04-04T17:17:55",
-            "modified": "2012-04-04T17:17:55",
             "name": "App Reviewers",
             "notes": "",
-            "rules": "Apps:Review,Reviews:Edit"
+            "rules": "Apps:Review"
         },
         "model": "access.group",
         "pk": 50003
-    },
-    {
-        "fields": {
-            "created": "2012-04-04T17:17:55",
-            "modified": "2012-04-04T17:17:55",
-            "name": "Persona Reviewers",
-            "notes": "",
-            "rules": "Personas:Review,Reviews:Edit"
-        },
-        "model": "access.group",
-        "pk": 50004
-    },
-    {
-        "fields": {
-            "created": "2012-04-04T17:17:55",
-            "modified": "2012-04-04T17:17:55",
-            "name": "Senior Add-on Reviewers",
-            "notes": "",
-            "rules": "Addons:Review,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View"
-        },
-        "model": "access.group",
-        "pk": 50005
     },
     {
         "fields": {
@@ -1485,34 +1452,12 @@
         "fields": {
             "created": "2012-04-04T17:17:58",
             "modified": "2012-04-04T17:17:58",
-            "name": "Add-on Reviewer MOTD",
-            "notes": "",
-            "rules": "AddonReviewerMOTD:Edit"
-        },
-        "model": "access.group",
-        "pk": 50052
-    },
-    {
-        "fields": {
-            "created": "2012-04-04T17:17:58",
-            "modified": "2012-04-04T17:17:58",
             "name": "App Reviewer MOTD",
             "notes": "",
             "rules": "AppReviewerMOTD:Edit"
         },
         "model": "access.group",
         "pk": 50053
-    },
-    {
-        "fields": {
-            "created": "2012-04-04T17:17:58",
-            "modified": "2012-04-04T17:17:58",
-            "name": "Persona Reviewer MOTD",
-            "notes": "",
-            "rules": "PersonaReviewerMOTD:Edit"
-        },
-        "model": "access.group",
-        "pk": 50054
     },
     {
         "fields": {
@@ -1524,17 +1469,6 @@
         },
         "model": "access.group",
         "pk": 50055
-    },
-    {
-        "fields": {
-            "created": "2012-05-09T15:40:07",
-            "modified": "2012-05-09T15:40:07",
-            "name": "Bulk Compatibility Updaters",
-            "notes": "",
-            "rules": "BulkValidationAdminTools:View"
-        },
-        "model": "access.group",
-        "pk": 50056
     },
     {
         "fields": {
@@ -1564,7 +1498,7 @@
             "modified": "2012-08-08T14:40:41",
             "name": "Senior App Reviewers",
             "notes": "",
-            "rules": "Apps:Review,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Apps:ReviewEscalated,Apps:ReviewPrivileged,Apps:ReviewRegionCN,Apps:Edit"
+            "rules": "Apps:Review,Apps:Edit,ReviewerAdminTools:View,Apps:ReviewEscalated,Apps:ReviewPrivileged,Apps:ReviewRegionCN"
         },
         "model": "access.group",
         "pk": 50059
@@ -1652,7 +1586,7 @@
             "modified": "2014-04-04T15:43:10",
             "name": "Price currency manipulation",
             "notes": "Clients that can modify prices",
-            "rules": "Prices:Modify"
+            "rules": "Prices:Edit"
         },
         "model": "access.group",
         "pk": 50074
