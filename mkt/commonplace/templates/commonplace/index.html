@@ -15,6 +15,10 @@
     {% endif -%}
     <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
 
+    {% if repo == 'fireplace' %}
+      <link rel="stylesheet" href="/manifests/standard.json">
+    {% endif %}
+
     <link title="Firefox Apps"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('opensearch') }}">
