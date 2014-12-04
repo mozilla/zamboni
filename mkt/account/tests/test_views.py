@@ -255,13 +255,16 @@ class TestInstalled(RestOAuth):
     def setUp(self):
         super(TestInstalled, self).setUp()
         self.list_url = reverse('installed-apps')
+        self.remove_app_url = reverse('installed-apps-remove')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_has_cors(self):
-        self.assertCORS(self.client.get(self.list_url), 'get')
+        self.assertCORS(self.client.post(self.remove_app_url), 'post')
+        self.assertCORS(self.client.options(self.list_url), 'get')
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ('get'))
+        self._allowed_verbs(self.remove_app_url, ('post'))
 
     def test_not_allowed(self):
         eq_(self.anon.get(self.list_url).status_code, 403)
@@ -339,6 +342,32 @@ class TestInstalled(RestOAuth):
         Installed.objects.create(user=self.user, addon_id=337141,
                                  install_type=INSTALL_TYPE_REVIEWER)
         self.not_there()
+
+    def test_installed_remove_app_anonymous(self):
+        eq_(self.anon.get(self.remove_app_url).status_code, 403)
+        eq_(self.anon.post(self.remove_app_url, {'app': 42}).status_code, 403)
+
+    def test_installed_remove_app_not_installed(self):
+        data = {'app': 4242}
+        res = self.client.post(self.remove_app_url, json.dumps(data))
+        eq_(res.status_code, 400)
+
+        data = {}
+        res = self.client.post(self.remove_app_url, json.dumps(data))
+        eq_(res.status_code, 400)
+
+    def test_installed_remove_app_get(self):
+        eq_(self.client.get(self.remove_app_url).status_code, 405)
+
+    def test_installed_remove_app(self):
+        Installed.objects.create(user=self.user, addon_id=337141)
+        app = app_factory()
+        Installed.objects.create(user=self.user, addon=app)
+        data = {'app': app.pk}
+        res = self.client.post(self.remove_app_url, json.dumps(data))
+        eq_(res.status_code, 202)
+        eq_(list(self.user.installed_set.values_list('addon_id', flat=True)),
+            [337141])
 
 
 class FakeUUID(object):

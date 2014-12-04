@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.signing import BadSignature, Signer
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
+from django.utils.datastructures import MultiValueDictKeyError
 
 import basket
 import commonware.log
@@ -20,13 +21,15 @@ from requests_oauthlib import OAuth2Session
 from rest_framework import status
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed, ParseError
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
-                                     ListAPIView, RetrieveAPIView,
-                                     RetrieveUpdateAPIView, UpdateAPIView)
+                                     RetrieveAPIView, RetrieveUpdateAPIView,
+                                     UpdateAPIView)
+from rest_framework.mixins import ListModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
+from rest_framework.viewsets import GenericViewSet
 
 import amo
 from amo.utils import log_cef
@@ -48,7 +51,7 @@ from mkt.api.base import CORSMixin, MarketplaceView, cors_api_view
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
 from mkt.webapps.serializers import SimpleAppSerializer
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Installed, Webapp
 
 
 log = commonware.log.getLogger('z.account')
@@ -72,7 +75,8 @@ class MineMixin(object):
         return super(MineMixin, self).get_object(queryset)
 
 
-class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
+class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
+                       GenericViewSet):
     cors_allowed_methods = ['get']
     serializer_class = SimpleAppSerializer
     permission_classes = [AllowSelf]
@@ -84,6 +88,21 @@ class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
             installed__user=self.request.user,
             installed__install_type=INSTALL_TYPE_USER).order_by(
                 '-installed__created')
+
+    def remove_app(self, request, **kwargs):
+        self.cors_allowed_methods = ['post']
+        try:
+            to_remove = Webapp.objects.get(pk=request.DATA['app'])
+        except (KeyError, MultiValueDictKeyError):
+            raise ParseError(detail='`app` was not provided.')
+        except Webapp.DoesNotExist:
+            raise ParseError(detail='`app` does not exist.')
+        try:
+            installed = self.get_queryset().filter(pk=to_remove.pk)
+            installed.delete()
+        except Installed.DoesNotExist:
+            raise ParseError(detail='`app` is not installed.')
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class CreateAPIViewWithoutModel(MarketplaceView, CreateAPIView):
