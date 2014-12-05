@@ -23,7 +23,7 @@ from mkt.account.views import MineMixin
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed
+from mkt.webapps.models import Installed, Webapp
 from mkt.users.models import UserProfile
 
 
@@ -366,8 +366,20 @@ class TestInstalled(RestOAuth):
         data = {'app': app.pk}
         res = self.client.post(self.remove_app_url, json.dumps(data))
         eq_(res.status_code, 202)
+        # Make sure there are still 2 apps, but we removed one from the
+        # installed list...
+        eq_(Webapp.objects.count(), 2)
         eq_(list(self.user.installed_set.values_list('addon_id', flat=True)),
             [337141])
+
+    def test_installed_remove_app_not_user_installed(self):
+        Installed.objects.create(user=self.user, addon_id=337141)
+        app = app_factory()
+        Installed.objects.create(user=self.user, addon=app,
+                                 install_type=INSTALL_TYPE_REVIEWER)
+        data = {'app': app.pk}
+        res = self.client.post(self.remove_app_url, json.dumps(data))
+        eq_(res.status_code, 400)
 
 
 class FakeUUID(object):

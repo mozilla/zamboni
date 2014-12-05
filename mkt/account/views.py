@@ -98,10 +98,11 @@ class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
         except Webapp.DoesNotExist:
             raise ParseError(detail='`app` does not exist.')
         try:
-            installed = self.get_queryset().filter(pk=to_remove.pk)
+            installed = request.user.installed_set.get(
+                install_type=INSTALL_TYPE_USER, addon_id=to_remove.pk)
             installed.delete()
         except Installed.DoesNotExist:
-            raise ParseError(detail='`app` is not installed.')
+            raise ParseError(detail='`app` is not installed or not removable.')
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
