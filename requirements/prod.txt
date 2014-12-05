@@ -120,7 +120,7 @@ urllib3==1.8.2
 -e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
 -e git+https://github.com/jbalogh/django-cache-machine@f827f05b195ad3fc1b0111131669471d843d631f#egg=django-cache-machine
 -e git+https://github.com/django-nose/django-nose@b81f8471e74b9dd95581c39a17eac2657dbb72fe#egg=django-nose
--e git+https://github.com/robhudson/jingo@b1f872098300dab2cd83d859b885cdc97a163f37#egg=jingo
+-e git+https://github.com/jbalogh/jingo@fce09043542e71d972cc97d2ae703740741f80d0#egg=jingo
 
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
