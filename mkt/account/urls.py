@@ -3,15 +3,18 @@ from django.conf.urls import include, patterns, url
 from mkt.account.views import (fxa_preverify_view, fxa_preverify_key,
                                AccountView, AccountInfoView,
                                ConfirmFxAVerificationView, FeedbackView,
-                               FxALoginView, InstalledView, LoginView,
+                               FxALoginView, InstalledViewSet, LoginView,
                                LogoutView, NewsletterView, PermissionsView)
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
-
 drf_patterns = patterns('',
     url('^feedback/$', FeedbackView.as_view(), name='account-feedback'),
-    url('^installed/mine/$', InstalledView.as_view(), name='installed-apps'),
+    url('^installed/mine/$',
+        InstalledViewSet.as_view({'get': 'list'}), name='installed-apps'),
+    url('^installed/mine/remove_app/$',
+        InstalledViewSet.as_view({'post': 'remove_app'}),
+        name='installed-apps-remove'),
     url('^login/$', LoginView.as_view(), name='account-login'),
     url('^fxa-login/$', FxALoginView.as_view(), name='fxa-account-login'),
     url('^fxa-preverify/$', fxa_preverify_view, name='fxa-preverify'),

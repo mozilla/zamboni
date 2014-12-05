@@ -67,6 +67,20 @@ Fields that can be updated:
     :type objects: array
     :status 200: sucessfully completed.
 
+.. http:post:: /api/v2/account/installed/mine/remove_app/
+
+    Removes an app from the list of the installed apps for the currently logged
+    in user. This only works for user installed apps.
+
+    **Request**
+
+    :param app: the app id
+    :type app: int
+
+    **Response**
+
+    :status 202: sucessfully completed.
+
 .. _permission-get-label:
 
 .. http:get:: /api/v2/account/permissions/mine/
