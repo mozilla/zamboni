@@ -136,6 +136,16 @@ class TestRobots(amo.tests.TestCase):
         self.assertContains(rs, 'Disallow: /')
 
 
+class TestContribute(amo.tests.TestCase):
+
+    def test_contribute(self):
+        response = self.client.get('/contribute.json')
+        eq_(response.status_code, 200)
+        eq_(response['Content-Type'], 'application/json')
+        eq_(json.loads(response.content).keys(), ['name', 'repository', 'bugs',
+            'urls', 'participate', 'keywords', 'description'])
+
+
 class TestOpensearch(amo.tests.TestCase):
 
     def test_opensearch_declaration(self):

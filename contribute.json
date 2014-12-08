@@ -1,0 +1,51 @@
+{
+    "name": "Marketplace",
+    "description": "The Firefox Marketplace is the official source of apps for the Web Platform.",
+    "repository": {
+        "url": "https://github.com/mozilla/marketplace-env",
+        "other_urls": [
+            "https://github.com/mozilla/zamboni",
+            "https://github.com/mozilla/fireplace",
+            "https://github.com/mozilla/marketplace-api-mock",
+            "https://github.com/mozilla/monolith-client",
+            "https://github.com/mozilla/monolith-aggregator",
+            "https://github.com/mozilla/solitude",
+            "https://github.com/mozilla/webpay",
+            "https://github.com/mozilla/trunion",
+            "https://github.com/mozilla/zippy",
+            "https://github.com/mozilla/apk-factory-service",
+            "https://github.com/mozilla/apk-signer"
+        ],
+        "license": "MPL2",
+        "type": "git",
+        "tests": "https://metaplace.paas.allizom.org/build"
+    },
+    "participate": {
+        "home": "https://wiki.mozilla.org/Marketplace",
+        "docs": "http://marketplace.readthedocs.org",
+        "mailing-list": "https://lists.mozilla.org/listinfo/dev-marketplace",
+        "irc": "irc://irc.mozilla.org/#marketplace"
+    },
+    "bugs": {
+        "list": "https://bugzilla.mozilla.org/buglist.cgi?product=marketplace",
+        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=marketplace&rep_platform=all&op_sys=all",
+        "mentored": "https://bugzilla.mozilla.org/buglist.cgi?f1=bug_mentor&o1=isnotempty&query_format=advanced&bug_status=NEW&product=marketplace"
+    },
+    "urls": {
+        "prod": "https://marketplace.firefox.com",
+        "stage": "https://marketplace.allizom.org",
+        "dev": "https://marketplace-dev.allizom.org",
+        "alt dev": "https://marketplace-altdev.allizom.org",
+        "payments alt": "https://payments-alt.allizom.org"
+    },
+    "keywords": [
+        "python",
+        "stylus",
+        "django",
+        "html5",
+        "jquery",
+        "nunjucks",
+        "jinja",
+        "nodejs"
+    ]
+}
