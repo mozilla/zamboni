@@ -8,23 +8,10 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin
-from mkt.collections.views import CollectionViewSet as BaseCollectionViewSet
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
-                                       FireplaceCollectionSerializer,
                                        FireplaceESAppSerializer)
 from mkt.search.views import SearchView as BaseSearchView
 from mkt.webapps.views import AppViewSet as BaseAppViewset
-
-
-class CollectionViewSet(BaseCollectionViewSet):
-    serializer_class = FireplaceCollectionSerializer
-
-    def get_serializer_context(self):
-        """Context passed to the serializer. Since we are in Fireplace, we
-        always want to use ES to fetch apps."""
-        context = super(CollectionViewSet, self).get_serializer_context()
-        context['use-es-for-apps'] = not self.request.GET.get('preview')
-        return context
 
 
 class AppViewSet(BaseAppViewset):

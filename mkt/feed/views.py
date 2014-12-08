@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.utils.datastructures import MultiValueDictKeyError
+from django.http import Http404
+from django.views.decorators.cache import cache_control
 
 import commonware
 from django_statsd.clients import statsd
@@ -9,14 +11,16 @@ from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
 from PIL import Image
-from rest_framework import exceptions, generics, response, status, viewsets
+from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.response import Response
+from rest_framework.serializers import Serializer, ValidationError
 from rest_framework.views import APIView
 
 import mkt
 import mkt.feed.constants as feed
+from amo.utils import HttpResponseSendFile
 from mkt.access import acl
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -24,7 +28,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
-from mkt.collections.views import CollectionImageViewSet
 from mkt.constants.applications import get_device_id
 from mkt.constants.carriers import CARRIER_MAP
 from mkt.constants.regions import REGIONS_DICT
@@ -35,7 +38,7 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
-from .fields import ImageURLField
+from .fields import DataURLImageField, ImageURLField
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppESSerializer, FeedAppSerializer,
                           FeedBrandESSerializer, FeedBrandSerializer,
@@ -481,6 +484,61 @@ class FeedShelfPublishView(FeedShelfPermissionMixin, CORSMixin, APIView):
 
         # Return.
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                             generics.GenericAPIView, viewsets.ViewSet):
+    permission_classes = [AnyOf(AllowReadOnly,
+                                GroupPermission('Feed', 'Curate'))]
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+    cors_allowed_methods = ('get', 'put', 'delete')
+
+    hash_field = 'image_hash'
+    image_suffix = ''
+
+    # Dummy serializer to keep DRF happy when it's answering to OPTIONS.
+    serializer_class = Serializer
+
+    def perform_content_negotiation(self, request, force=False):
+        """
+        Force DRF's content negociation to not raise an error - It wants to use
+        the format passed to the URL, but we don't care since we only deal with
+        "raw" content: we don't even use the renderers.
+        """
+        return super(CollectionImageViewSet, self).perform_content_negotiation(
+            request, force=True)
+
+    @cache_control(max_age=60 * 60 * 24 * 365)
+    def retrieve(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if not getattr(obj, 'image_hash', None):
+            raise Http404
+        return HttpResponseSendFile(request, obj.image_path(self.image_suffix),
+                                    content_type='image/png')
+
+    def update(self, request, *args, **kwargs):
+        obj = self.get_object()
+        try:
+            img, hash_ = DataURLImageField().from_native(request.read())
+        except ValidationError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        i = Image.open(img)
+        with storage.open(obj.image_path(self.image_suffix), 'wb') as f:
+            i.save(f, 'png')
+        # Store the hash of the original image data sent.
+        obj.update(**{self.hash_field: hash_})
+
+        pngcrush_image.delay(obj.image_path(self.image_suffix))
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if getattr(obj, 'image_hash', None):
+            storage.delete(obj.image_path(self.image_suffix))
+            obj.update(**{self.hash_field: None})
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class FeedAppImageViewSet(CollectionImageViewSet):

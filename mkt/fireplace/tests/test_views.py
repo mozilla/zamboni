@@ -13,8 +13,6 @@ import mkt
 from amo.tests import app_factory, ESTestCase, TestCase
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
-from mkt.collections.models import Collection
 from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
@@ -85,51 +83,6 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         ok_('collections' not in res.json)
         ok_('featured' not in res.json)
         ok_('operator' not in res.json)
-
-
-class TestCollectionViewSet(RestOAuth, ESTestCase):
-    fixtures = fixture('user_2519', 'webapp_337141')
-
-    def setUp(self):
-        super(TestCollectionViewSet, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
-        collection = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=COLLECTIONS_TYPE_BASIC, is_public=True)
-        collection.add_app(self.webapp)
-        self.reindex(Webapp, 'webapp')
-        self.url = reverse('fireplace-collection-detail',
-                           kwargs={'pk': collection.pk})
-
-    def test_get(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(res.json['name'], {u'en-US': u'Hi'})
-        data = res.json['apps'][0]
-        assert_fireplace_app(data)
-
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
-    def test_get_preview(self, mock_field_to_native):
-        mock_field_to_native.return_value = []
-        res = self.client.get(self.url, {'preview': 1})
-        eq_(res.status_code, 200)
-        eq_(res.json['name'], {u'en-US': u'Hi'})
-        eq_(res.json['apps'], [])
-
-        eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
-        eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
-
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
-    def test_no_get_preview(self, mock_field_to_native):
-        mock_field_to_native.return_value = []
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(res.json['name'], {u'en-US': u'Hi'})
-        eq_(res.json['apps'], [])
-
-        eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], Search))
-        eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
 
 
 class TestSearchView(RestOAuth, ESTestCase):

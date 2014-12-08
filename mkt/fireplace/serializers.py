@@ -1,5 +1,3 @@
-from mkt.collections.serializers import (CollectionSerializer,
-                                         CollectionMembershipField)
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
 
@@ -44,14 +42,3 @@ class FeedFireplaceESAppSerializer(BaseFireplaceAppSerializer,
     class Meta(SimpleESAppSerializer.Meta):
         fields = sorted(FireplaceAppSerializer.Meta.fields + ['group'])
         exclude = FireplaceAppSerializer.Meta.exclude
-
-
-class FireplaceCollectionMembershipField(CollectionMembershipField):
-    app_serializer_classes = {
-        'es': FireplaceESAppSerializer,
-        'normal': FireplaceAppSerializer,
-    }
-
-
-class FireplaceCollectionSerializer(CollectionSerializer):
-    apps = FireplaceCollectionMembershipField(many=True, source='apps')

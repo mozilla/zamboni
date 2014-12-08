@@ -78,11 +78,9 @@ class TestAPIv1URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
 
     def test_collections(self):
         """
-        Tests the v1 half of a move of the collection endpoints from:
-        - v1: /rocketfuel/collections/
-        - v2: /feed/collections/
+        Tests the v1 endpoints removed in v2 still work with v1.
         """
-        self.assertViewName('/rocketfuel/collections/', 'CollectionViewSet')
+        self.assertViewName('/apps/search/featured/', 'FeaturedSearchView')
 
 
 class TestAPIv2URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
@@ -94,8 +92,6 @@ class TestAPIv2URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
 
     def test_collections(self):
         """
-        Tests the v2 half of a move of the collection endpoints from:
-        - v1: /rocketfuel/collections/
-        - v2: /feed/collections/
+        Tests the v2 endpoints removal.
         """
-        self.assertView404('/rocketfuel/collections/')
+        self.assertView404('/apps/search/featured/')
