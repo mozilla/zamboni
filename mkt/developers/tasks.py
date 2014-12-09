@@ -467,7 +467,7 @@ def _fetch_manifest(url, upload=None):
     return content
 
 
-@task
+@post_request_task
 @write
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)
