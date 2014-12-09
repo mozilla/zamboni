@@ -1,7 +1,8 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.forms.util import ErrorList
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text, force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from django.utils.translation.trans_real import to_language
@@ -66,3 +67,14 @@ class LocaleErrorList(ErrorList):
             li.append((extra, conditional_escape(force_unicode(e))))
         return mark_safe('<ul class="errorlist">%s</ul>' %
                          ''.join(u'<li%s>%s</li>' % x for x in li))
+
+    # Override Django 1.7's `__getitem__` which wraps the error with
+    # `force_text` converting our tuples to strings.
+    def __getitem__(self, i):
+        error = self.data[i]
+        if isinstance(error, ValidationError):
+            return list(error)[0]
+        elif isinstance(error, tuple):
+            return error
+        else:
+            return force_text(error)
