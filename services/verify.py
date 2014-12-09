@@ -28,6 +28,7 @@ import receipts  # NOQA, used for patching in the tests
 
 status_codes = {
     200: '200 OK',
+    204: '204 OK',
     405: '405 Method Not Allowed',
     500: '500 Internal Server Error',
 }
@@ -423,10 +424,13 @@ def application(environ, start_response):
     if path == '/services/status/':
         status, body = status_check(environ)
     else:
-        # Only allow POST through as per spec.
-        if environ.get('REQUEST_METHOD') != 'POST':
-            status = 405
-        else:
+        # Only allow POST per verifier spec but also OPTIONS for CORS.
+        method = environ.get('REQUEST_METHOD')
+        if method == 'POST':
             status, body = receipt_check(environ)
+        elif method == 'OPTIONS':
+            status = 204
+        else:
+            status = 405
     start_response(status_codes[status], get_headers(len(body)))
     return [body]
