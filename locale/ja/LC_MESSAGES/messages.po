@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-11-07 00:27-0500\n"
+"PO-Revision-Date: 2014-12-10 13:01-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1712,7 +1712,7 @@ msgstr "パッケージ型アプリの審査"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "特権付きアプリの審査"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1724,7 +1724,7 @@ msgstr "パッケージ型アプリの更新審査"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "更新された特権付きアプリの審査"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1732,7 +1732,7 @@ msgstr "アプリの管理者審査"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako アプリの審査"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1844,7 +1844,7 @@ msgstr "追放済み"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "審査担当者の非公開コメント"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1884,7 +1884,7 @@ msgstr "マニフェスト URL の変更による再審査"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "有料版への変更による再審査"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1920,11 +1920,11 @@ msgstr "追加審査に不合格となりました"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "審査担当者向けリリースノート"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "審査担当者の公開コメント"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1932,7 +1932,7 @@ msgstr "アプリ管理 API"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
-msgstr "このアプリは他のアプリをインストール、管理するために `navigator.mozApps` API を必要としています。"
+msgstr "このアプリは他のアプリをインストール、管理するために `navigator.mozApps` API を必要とします。"
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
@@ -1940,7 +1940,7 @@ msgstr "パッケージ型アプリのインストール API"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "このアプリは他のパッケージ型アプリをインストールするために `navigator.mozApps.installPackage` API を必要としています。"
+msgstr "このアプリは他のパッケージ型アプリをインストールするために `navigator.mozApps.installPackage` API を必要とします。"
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -1948,7 +1948,7 @@ msgstr "Web 決済"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr "このアプリは `navigator.mozApps` API を必要としています。"
+msgstr "このアプリは `navigator.mozApps` API を必要とします。"
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
@@ -1956,7 +1956,7 @@ msgstr "Web アクティビティ"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr "このアプリは Web アクティビティ (`MozActivity` API) を必要としています。"
+msgstr "このアプリは Web アクティビティ (`MozActivity` API) を必要とします。"
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -1964,7 +1964,7 @@ msgstr "環境光センサー"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr "このアプリは環境光センサー (`ondevicelight` API) を必要としています。"
+msgstr "このアプリは環境光センサー (`ondevicelight` API) を必要とします。"
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -1972,7 +1972,7 @@ msgstr "アーカイブ"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "このアプリは `ArchiveReader` API を必要とします。"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -1980,11 +1980,11 @@ msgstr "バッテリー"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr "このアプリは `navigator.battery` API を必要としています。"
+msgstr "このアプリは `navigator.battery` API を必要とします。"
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr "このアプリは `navigator.mozBluetooth` API を必要としています。"
+msgstr "このアプリは `navigator.mozBluetooth` API を必要とします。"
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
@@ -1992,7 +1992,7 @@ msgstr "連絡先"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr "このアプリは `navigator.mozContacts` API を必要としています。"
+msgstr "このアプリは `navigator.mozContacts` API を必要とします。"
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
@@ -2000,11 +2000,11 @@ msgstr "端末ストレージ"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr "このアプリはファイルシステム上のファイルへアクセスするために Device Storage API を必要としています。"
+msgstr "このアプリはファイルシステム上のファイルへアクセスするために Device Storage API を必要とします。"
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr "このアプリは IndexedDB に対応した OS を必要としています。"
+msgstr "このアプリは IndexedDB に対応した OS を必要とします。"
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
@@ -2012,7 +2012,7 @@ msgstr "位置情報"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr "このアプリは `navigator.geolocation` API に対応した OS を必要としています。"
+msgstr "このアプリは `navigator.geolocation` API に対応した OS を必要とします。"
 
 #: mkt/constants/features.py:87
 msgid "Idle"
@@ -2020,7 +2020,7 @@ msgstr "アイドリング"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "このアプリは `addIdleObserver` API に対応した OS を必要とします。"
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2028,7 +2028,7 @@ msgstr "ネットワーク情報"
 
 #: mkt/constants/features.py:94
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr "このアプリはネットワーク接続に関する情報を取得する機能 (`navigator.mozConnection` API) を必要としています。"
+msgstr "このアプリはネットワーク接続に関する情報を取得する機能 (`navigator.mozConnection` API) を必要とします。"
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
@@ -2036,7 +2036,7 @@ msgstr "ネットワーク統計"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr "このアプリは `navigator.mozNetworkStats` API を必要としています。"
+msgstr "このアプリは `navigator.mozNetworkStats` API を必要とします。"
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
@@ -2044,7 +2044,7 @@ msgstr "近接"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr "このアプリは近接センサー (`ondeviceproximity` API) を必要としています。"
+msgstr "このアプリは近接センサー (`ondeviceproximity` API) を必要とします。"
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
@@ -2052,7 +2052,7 @@ msgstr "シンプルプッシュ通知"
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
-msgstr "このアプリは `navigator.mozPush` API を必要としています。"
+msgstr "このアプリは `navigator.mozPush` API を必要とします。"
 
 #: mkt/constants/features.py:117
 msgid "Screen Orientation"
@@ -2060,7 +2060,7 @@ msgstr "画面回転"
 
 #: mkt/constants/features.py:118
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr "このアプリは `ondeviceorientation` API に対応した OS を必要としています。"
+msgstr "このアプリは `ondeviceorientation` API に対応した OS を必要とします。"
 
 #: mkt/constants/features.py:123
 msgid "Time/Clock"
@@ -2068,7 +2068,7 @@ msgstr "時刻・時計"
 
 #: mkt/constants/features.py:124
 msgid "The app requires the `navigator.mozTime` API."
-msgstr "このアプリは `navigator.mozTime` API を必要としています。"
+msgstr "このアプリは `navigator.mozTime` API を必要とします。"
 
 #: mkt/constants/features.py:128
 msgid "Vibration"
@@ -2076,15 +2076,15 @@ msgstr "バイブレーション"
 
 #: mkt/constants/features.py:129
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr "このアプリはバイブレーションに対応した端末 (`navigator.vibrate` API) を必要としています。"
+msgstr "このアプリはバイブレーションに対応した端末 (`navigator.vibrate` API) を必要とします。"
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr "このアプリは `navigator.mozFM` もしくは `navigator.mozFMRadio` API を必要としています。"
+msgstr "このアプリは `navigator.mozFM` もしくは `navigator.mozFMRadio` API を必要とします。"
 
 #: mkt/constants/features.py:141
 msgid "The app requires the `navigator.mozSms` API."
-msgstr "このアプリは `navigator.mozSms` API を必要としています。"
+msgstr "このアプリは `navigator.mozSms` API を必要とします。"
 
 #: mkt/constants/features.py:145
 msgid "Touch"
@@ -2280,27 +2280,27 @@ msgstr "このアプリは、複数のネットワーク接続に関する情報
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "モバイル ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "このアプリは `navigator.getMobileIdAssertion` API へのアクセスを必要とします。"
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js プレコンパイル"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "このアプリは asm.js コードのプレコンパイルに対応した端末を必要とします。"
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM 端末"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "このアプリは少なくとも 512MB の RAM を搭載した端末を必要とします。"
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2451,7 +2451,7 @@ msgstr "その他の地域"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "ロシア"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2596,7 +2596,7 @@ msgstr "既定のロケールを変更する前に、そのロケールでアド
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Web サイトとメールアドレスのいずれか、あるいは両方を設定する必要があります。"
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4148,11 +4148,11 @@ msgstr "このアプリが Flash を使っている場合、Flash 非対応の�
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "オフライン対応"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr ""
+msgstr "このアプリがインターネット接続なしでも動作する場合、「オフライン対応」として掲載します。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6652,7 +6652,7 @@ msgstr "Tarako 審査待ち"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "中国向け審査待ち"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6768,7 +6768,7 @@ msgstr "週間ダウンロード数"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "対応地域"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6793,7 +6793,7 @@ msgstr "フィルタ"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "アプリの配信元"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7020,11 +7020,11 @@ msgstr "アプリの種類"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "インストール許可:"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "すべてのサイト"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7228,7 +7228,7 @@ msgstr "アプリのホームページが別にある場合は、その URL を�
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Web サイト:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7236,7 +7236,7 @@ msgstr "アプリのサポートサイトやフォーラムがある場合は、
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "メール:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7260,7 +7260,7 @@ msgstr "アプリが承認されたら、公開設定を選択してください
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "このアプリはインターネット接続なしでも動作します。"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7285,7 +7285,7 @@ msgstr "詳細ページを開く"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "サポート情報:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7608,7 +7608,7 @@ msgstr "このメールアドレスを持つユーザは存在しないか、開
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "ネイティブ FxA 認証に失敗しました。"
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7699,7 +7699,7 @@ msgstr "表示"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "サポート用メールアドレスか URL を入力してください。"
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7774,7 +7774,7 @@ msgstr "ログイン / ユーザ登録"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "ユーザ登録"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
