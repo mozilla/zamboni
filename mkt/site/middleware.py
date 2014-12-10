@@ -12,7 +12,6 @@ from django.utils.encoding import iri_to_uri
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import tower
-from django_statsd.clients import statsd
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -201,18 +200,6 @@ class DeviceDetectionMiddleware(object):
                 response.set_cookie(device, 'true')
 
         return response
-
-
-class DoNotTrackTrackingMiddleware(object):
-    """A small middleware to record DNT counts."""
-
-    def process_request(self, request):
-        if 'HTTP_DNT' not in request.META:
-            statsd.incr('z.mkt.dnt.unset')
-        elif request.META.get('HTTP_DNT') == '1':
-            statsd.incr('z.mkt.dnt.on')
-        else:
-            statsd.incr('z.mkt.dnt.off')
 
 
 class CacheHeadersMiddleware(object):

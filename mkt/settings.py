@@ -190,7 +190,6 @@ MIDDLEWARE_CLASSES = (
     'mkt.site.middleware.LocaleMiddleware',
     'mkt.regions.middleware.RegionMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',
-    'mkt.site.middleware.DoNotTrackTrackingMiddleware',
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
