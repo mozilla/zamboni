@@ -28,7 +28,8 @@ class TestAPI(RestOAuth):
         self.profile = self.user
 
     def test_has_cors(self):
-        self.assertCORS(self.client.post(self.url), 'post')
+        self.assertCORS(self.client.post(self.url), 'post',
+                        headers=['content-type', 'accept', 'x-fxpay-version'])
 
     def post(self, anon=False):
         client = self.client if not anon else self.anon
@@ -92,7 +93,8 @@ class TestDevhubAPI(RestOAuth):
         self.url = reverse('receipt.test')
 
     def test_has_cors(self):
-        self.assertCORS(self.client.post(self.url), 'post')
+        self.assertCORS(self.client.post(self.url), 'post',
+                        headers=['content-type', 'accept', 'x-fxpay-version'])
 
     def test_decode(self):
         res = self.anon.post(self.url, data=self.data)

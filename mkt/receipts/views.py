@@ -222,15 +222,18 @@ def devhub_details(request):
     return render(request, 'receipts/test_details.html')
 
 
-@csrf_exempt
-@require_POST
+@cors_api_view(['POST'],
+               headers=('content-type', 'accept', 'x-fxpay-version'))
+@authentication_classes([])
+@permission_classes((AllowAny,))
 def devhub_verify(request, status):
     receipt = request.read()
     verify = Verify(receipt, request.META)
-    return response(json.dumps(verify.check_without_db(status)))
+    return Response(verify.check_without_db(status))
 
 
-@cors_api_view(['POST'])
+@cors_api_view(['POST'],
+               headers=('content-type', 'accept', 'x-fxpay-version'))
 @authentication_classes([RestOAuthAuthentication,
                          RestSharedSecretAuthentication])
 @permission_classes([IsAuthenticated])
@@ -287,7 +290,8 @@ def install_record(obj, request, install_type):
     return create_receipt(installed.addon, installed.user, uuid)
 
 
-@cors_api_view(['POST'])
+@cors_api_view(['POST'],
+               headers=('content-type', 'accept', 'x-fxpay-version'))
 @permission_classes((AllowAny,))
 def test_receipt(request):
     form = forms.TestInstall(request.DATA)
@@ -302,7 +306,8 @@ def test_receipt(request):
     return Response(data, status=201)
 
 
-@cors_api_view(['POST'])
+@cors_api_view(['POST'],
+               headers=('content-type', 'accept', 'x-fxpay-version'))
 @permission_classes((AllowAny,))
 def reissue(request):
     """

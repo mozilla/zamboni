@@ -208,14 +208,23 @@ class CORSMixin(object):
             request, response, *args, **kwargs)
 
 
-def cors_api_view(methods):
-    def decorator(f):
-        @api_view(methods)
-        @functools.wraps(f)
-        def wrapped(request):
-            request._request.CORS = methods
-            return f(request)
-        return wrapped
+def cors_api_view(methods, headers=None):
+    def decorator(view):
+
+        def add_cors(handler):
+            @functools.wraps(handler)
+            def view_with_cors(request, *args, **kw):
+                request.CORS = methods
+                if headers:
+                    request.CORS_HEADERS = headers
+                return handler(request, *args, **kw)
+            return view_with_cors
+
+        # The request.CORS attributes need to be added to the view before
+        # the DRF @api_view handler executes.
+
+        return add_cors(api_view(methods)(view))
+
     return decorator
 
 

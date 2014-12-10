@@ -501,11 +501,14 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         return self.assertSetEqual(qs1.values_list('id', flat=True),
                                    qs2.values_list('id', flat=True))
 
-    def assertCORS(self, res, *verbs):
+    def assertCORS(self, res, *verbs, **kw):
         """
         Determines if a response has suitable CORS headers. Appends 'OPTIONS'
         on to the list of verbs.
         """
+        headers = kw.pop('headers', None)
+        if not headers:
+            headers = ['X-HTTP-Method-Override', 'Content-Type']
         eq_(res['Access-Control-Allow-Origin'], '*')
         assert 'API-Status' in res['Access-Control-Expose-Headers']
         assert 'API-Version' in res['Access-Control-Expose-Headers']
@@ -513,8 +516,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         verbs = map(str.upper, verbs) + ['OPTIONS']
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
-        eq_(res['Access-Control-Allow-Headers'],
-            'X-HTTP-Method-Override, Content-Type')
+        eq_(res['Access-Control-Allow-Headers'], ', '.join(headers))
 
     def assertApiUrlEqual(self, *args, **kwargs):
         """
