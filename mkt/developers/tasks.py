@@ -28,6 +28,7 @@ from tower import ugettext as _
 
 import amo
 from amo.utils import remove_icons, resize_image, strip_bom
+from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
@@ -50,7 +51,7 @@ REQUESTS_HEADERS = {
 }
 
 
-@task
+@post_request_task
 @write
 def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
@@ -466,7 +467,7 @@ def _fetch_manifest(url, upload=None):
     return content
 
 
-@task
+@post_request_task
 @write
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)

@@ -441,3 +441,18 @@ class TestServices(amo.tests.TestCase):
     def test_wrong_settings(self):
         with self.settings(SIGNING_SERVER_ACTIVE=''):
             eq_(verify.status_check({})[0], 500)
+
+    def test_options_request_for_cors(self):
+        data = {}
+        req = RequestFactory().options('/verify')
+
+        def start_response(status, wsgi_headers):
+            data['status'] = status
+            data['headers'] = dict(wsgi_headers)
+
+        verify.application(req.META, start_response)
+
+        eq_(data['status'], '204 OK')
+        eq_(data['headers']['Access-Control-Allow-Headers'],
+            'content-type, x-fxpay-version')
+        eq_(data['headers']['Content-Length'], '0')
