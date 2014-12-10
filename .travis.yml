@@ -18,7 +18,7 @@ install:
 before_script:
   - mysql -e 'create database zamboni;'
 script:
-  - manage.py test lib mkt --noinput --logging-clear-handlers --with-blockage --with-nicedots
+  - ./manage.py test lib mkt --noinput --logging-clear-handlers --with-blockage --with-nicedots
 notifications:
   irc:
     channels:
