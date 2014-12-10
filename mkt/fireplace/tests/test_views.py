@@ -1,11 +1,10 @@
+# -*- coding: utf-8 -*-
 import json
 from urlparse import urlparse
 
 from django.core.urlresolvers import reverse
-from django.db.models.query import QuerySet
 from django.test.client import RequestFactory
 
-from elasticsearch_dsl.search import Search
 from mock import patch
 from nose.tools import eq_, ok_
 
@@ -213,3 +212,21 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['developed'], [])
         eq_(data['apps']['purchased'], [purchased_app.pk])
+
+
+class TestRocketFuelRedirect(TestCase):
+    def setUp(self):
+        super(TestRocketFuelRedirect, self).setUp()
+        self.url = '/api/v1/fireplace/collection/tarako-featured/'
+        self.target_url = '/api/v2/fireplace/feed/collections/tarako-featured/'
+
+    def test_redirect(self):
+        response = self.client.get(self.url)
+        self.assertCORS(response, 'GET')
+        self.assert3xx(response, self.target_url,
+                       status_code=301)
+
+    def test_redirect_with_query_params(self):
+        self.url += u'?foo=bar&re=diré'
+        self.target_url += '?foo=bar&re=dir%C3%A9'
+        self.test_redirect()
