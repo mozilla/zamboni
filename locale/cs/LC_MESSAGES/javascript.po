@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2014-09-06 11:15+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -160,35 +160,35 @@ msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprá
 msgid "Your app passed validation with no errors or messages."
 msgstr "Vaše aplikace prošla kontrolou bez chyb či informačních zpráv."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Vložte e-mailovou adresu nového člena týmu"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr "Manifest obnoven"
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr "Obnovení manifestu se nezdařilo. Zkuste to znovu později."
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Dozvědět se více"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Příklad"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku."
 
@@ -220,11 +220,11 @@ msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu.
 msgid "Remove this localization"
 msgstr "Odebrat lokalizaci"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Přihlášení pomocí Persona selhalo. Možná pod touto e-mailovou adresou nemáte účet?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Přihlášení pomocí Persona selhalo. Nastala chyba serveru."
 

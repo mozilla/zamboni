@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2014-09-27 20:49+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
@@ -155,35 +155,35 @@ msgstr[1] "A sua aplicação passou a validação sem erros e com {0} mensagens.
 msgid "Your app passed validation with no errors or messages."
 msgstr "A sua aplicação passou a validação sem erros ou mensagens."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Introduza o endereço de correio electrónico do novo membro da equipa"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr "Manifesto atualizado"
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr "Não foi possível atualizar o manifesto. Tente novamente mais tarde."
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "Ocorreu um erro ao carregar o seu ficheiro."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Saber mais"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Exemplo"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "As alterações de imagem estão a ser processadas"
 
@@ -215,11 +215,11 @@ msgstr "Esta funcionalidade está temporariamente desativada enquanto procedemos
 msgid "Remove this localization"
 msgstr "Remover esta tradução"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "A autenticação com o Persona falhou. Talvez não tenha uma conta com esse endereço de email?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "A autenticação com o Persona falhou. Ocorreu um erro de servidor."
 

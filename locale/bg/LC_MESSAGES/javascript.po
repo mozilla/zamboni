@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2013-08-22 17:33+0200\n"
 "Last-Translator: Mihail Chilyashev <chilyashev@gmail.com>\n"
 "Language-Team: none\n"
@@ -154,35 +154,35 @@ msgstr[1] "Приложението ви премина валидацията �
 msgid "Your app passed validation with no errors or messages."
 msgstr "Приложението ви премина валидацията без грешки или съобщения."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Промените са запазени"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Въведете имейлът на нов участник в екипа"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "Стана грешка при качването на файла ви."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Научи още"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "Обработват се промените по изображението"
 
@@ -214,11 +214,11 @@ msgstr "Това свойство е временно спряно, докато
 msgid "Remove this localization"
 msgstr "Премахни тази локализация"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Влизането с Persona се провали. Може би нямате акаунт с този имейл адрес?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Влизането с Persona се провали. Срещната е сървърна грешка."
 

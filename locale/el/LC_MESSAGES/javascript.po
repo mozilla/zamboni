@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2012-03-08 05:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -154,35 +154,35 @@ msgstr[1] "Η εφαρμογή σας πέρασε την αξιολόγηση �
 msgid "Your app passed validation with no errors or messages."
 msgstr "Η εφαρμογή σας πέρασε την αξιολόγηση χωρίς σφάλματα ή ειδοποιήσεις."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Εισάγετε τη διεύθυνση email ενός νέου μέλους της ομάδας"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Παράδειγμα"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
@@ -214,11 +214,11 @@ msgstr "Αυτό το χαρακτηριστικό έχει απενεργοπο
 msgid "Remove this localization"
 msgstr "Αφαίρεση αυτής της μετάφρασης"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Η σύνδεση στο Persona απέτυχε. Μήπως δεν έχετε λογαριασμό με αυτή τη διεύθυνση email;"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Η σύνδεση στο Persona απέτυχε. Προέκυψε σφάλμα διακομιστή."
 

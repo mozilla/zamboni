@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -168,35 +168,35 @@ msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachta
 msgid "Your app passed validation with no errors or messages."
 msgstr "D'éirigh le d'aip sa bhailíochtú gan earráidí gan rabhaidh."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Sampla"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "Athruithe san íomhá á bpróiseáil"
 
@@ -228,11 +228,11 @@ msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an 
 msgid "Remove this localization"
 msgstr "Bain an t-aistriúchán seo"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Níorbh fhéidir logáil isteach i bPersona. B'fhéidir nach bhfuil do chuntas cláraithe leis an seoladh ríomhphoist sin?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Níorbh fhéidir logáil isteach i bPersona. Tharla fadhb leis an bhfreastalaí."
 

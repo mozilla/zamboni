@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2014-10-08 05:48+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -160,37 +160,37 @@ msgstr[2] "Ваше приложение прошло валидацию без 
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваше приложение прошло валидацию без ошибок или сообщений."
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "Изменения сохранены"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "Введите адрес эл. почты нового члена команды"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 #, fuzzy
 msgid "Manifest refreshed"
 msgstr "Манифест"
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 #, fuzzy
 msgid "Could not refresh manifest. Try again later."
 msgstr "Не удалось загрузить файл. Пожалуйста, попробуйте позже."
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "При загрузке вашего файла произошла ошибка."
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
@@ -224,11 +224,11 @@ msgstr "Пока мы производим техническое обслужи
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Вход через Persona не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
 

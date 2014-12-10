@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-15 09:03-0700\n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
 "PO-Revision-Date: 2014-09-05 18:44+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,35 +155,35 @@ msgstr[1] "আপনার অ্যাপ কোনো ত্রুটি এ�
 msgid "Your app passed validation with no errors or messages."
 msgstr "আপনার অ্যাপ কোন ত্রুটি বা বার্তা ছাড়াই বৈধতা পাস করেছে।"
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
 msgstr "পরিবর্তন সংরক্ষিত"
 
-#: media/js/devreg/devhub.js:465
+#: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
 msgstr "দলের নতুন সদস্যের ইমেইল এড্রেস প্রবেশ করান"
 
-#: media/js/devreg/devhub.js:478
+#: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
 msgstr "ম্যানিফেস্ট রিফ্রেশ হয়েছে"
 
-#: media/js/devreg/devhub.js:483
+#: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
 msgstr "ম্যানিফেস্ট রিফ্রেশ করা যায় নি। কিছুক্ষন পর আবার চেষ্টা করুন।"
 
-#: media/js/devreg/devhub.js:664
+#: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
 msgstr "আপনার ফাইল আপলোড করার সময় একটু ত্রুটি পাওয়া গেছে।"
 
-#: media/js/devreg/devhub.js:949
+#: media/js/devreg/devhub.js:952
 msgid "Learn more"
 msgstr "বিস্তারিত জানুন"
 
-#: media/js/devreg/devhub.js:953
+#: media/js/devreg/devhub.js:956
 msgid "Example"
 msgstr "উদাহরণ"
 
-#: media/js/devreg/devhub.js:1222
+#: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 
@@ -215,11 +215,11 @@ msgstr "ওয়েবসাইটটির তত্বাবধানের জ�
 msgid "Remove this localization"
 msgstr "এই স্থানীয়করণ অপসারণ করুন"
 
-#: media/js/devreg/login.js:121
+#: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "পারসনা লগইন ব্যর্থ হয়েছে। হতে পারে আপনার ঐ ইমেইল ঠিকানার অধীনে কোন একাউন্ট নেই?"
 
-#: media/js/devreg/login.js:126
+#: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "পারসনা লগইন ব্যর্থ হয়েছে। একটি সার্ভার ত্রুটির সম্মুখীন হয়েছে।"
 
