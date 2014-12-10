@@ -5511,7 +5511,7 @@ msgstr "Erro ao transferir a imagem de %(url)s"
 
 #: mkt/feed/fields.py:201
 msgid "Image from %(url)s could not be parsed"
-msgstr "Imagem de %(url) s não pôde ser analisada"
+msgstr "Imagem de %(url)s não pôde ser analisada"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6729,7 +6729,7 @@ msgstr "por"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "Fila de revisão {region}"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"

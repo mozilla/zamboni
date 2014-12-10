@@ -131,7 +131,7 @@ msgstr "বজায় রাখা হয়েছে"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr "addon} {version} ধাপে ধাপে বৃদ্ধি পেয়েছে।"
+msgstr "{addon} {version} ধাপে ধাপে বৃদ্ধি পেয়েছে।"
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:48 mkt/reviewers/forms.py:164
 msgid "Escalated"
@@ -139,7 +139,7 @@ msgstr "ধাপে ধাপে বৃদ্ধি পেয়েছে"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr "addon} {version} পুনরায় বিবেচনার অনুরোধ।"
+msgstr "{addon} {version} পুনরায় বিবেচনার অনুরোধ।"
 
 #: apps/amo/log.py:208
 msgid "Review requested"
@@ -147,7 +147,7 @@ msgstr "অনুরোধ পুনরায় বিচার করুন"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr "addon} {version} আরও তথ্যের জন্য অনুরোধ করা হচ্ছে।"
+msgstr "{addon} {version} আরও তথ্যের জন্য অনুরোধ করা হচ্ছে।"
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:47
 msgid "More information requested"
@@ -155,7 +155,7 @@ msgstr "আরো তথ্যের জন্য অনুরোধ করা �
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr "addon} {version} সুপার রিভিউ অনুরোধ করা হয়েছে।"
+msgstr "{addon} {version} সুপার রিভিউ অনুরোধ করা হয়েছে।"
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
@@ -327,7 +327,7 @@ msgstr "অনেক বেশি সংখ্যক অপব্যবহার
 
 #: apps/amo/log.py:442
 msgid "High Abuse Reports"
-msgstr "{addon} বাড়ানো হয়েছে উচ্চ সংখ্যায় ফেরত আবেদনের জন্য।"
+msgstr ""
 
 #: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
@@ -535,7 +535,7 @@ msgstr "নাম"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "একটি বৈধ পছন্দ নির্বাচন করুন। %(মান) টি এখানে পাওয়া পছন্দ গুলির মধ্যে পাওয়া যায়নি।"
+msgstr "একটি বৈধ পছন্দ নির্বাচন করুন। %(value)s টি এখানে পাওয়া পছন্দ গুলির মধ্যে পাওয়া যায়নি।"
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
@@ -6841,7 +6841,7 @@ msgstr "অনুবাদ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(কারণ)s</strong> <span class=\"light\">ফ্ল্যাগ করেছেন %(ব্যবহারকারী)গণ %(তারিখে)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">ফ্ল্যাগ করেছেন %(user)s গণ %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
 msgid "All reviews have been moderated. Good work!"

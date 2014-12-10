@@ -142,8 +142,8 @@ msgstr "ইনস্টল ব্যর্থ হয়েছে। অনুগ
 #: media/js/devreg/devhub.js:218
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "আপনার অ্যাপ বৈধতা পায়নি {0} টি ত্রুটি এবং {3} টি বার্তা পাওয়া গেছে।"
-msgstr[1] "আপনার অ্যাপ বৈধতা পায়নি {0} টি ত্রুটি এবং {3} টি বার্তা পাওয়া গেছে।"
+msgstr[0] "আপনার অ্যাপ বৈধতা পায়নি {0} টি ত্রুটি এবং {1} টি বার্তা পাওয়া গেছে।"
+msgstr[1] "আপনার অ্যাপ বৈধতা পায়নি {0} টি ত্রুটি এবং {1} টি বার্তা পাওয়া গেছে।"
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors and {0} message."
@@ -549,7 +549,7 @@ msgstr "ত্রুটি পাস করার অ্যাপ: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr "ত্রুটি ব্যর্থ অ্যাপ: {অ্যাপ}"
+msgstr "ত্রুটি ব্যর্থ অ্যাপ: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"

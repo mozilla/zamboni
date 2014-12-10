@@ -4659,7 +4659,7 @@ msgstr "Prodho Kyçe"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr "max}  "
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
@@ -4667,7 +4667,7 @@ msgstr "Kyçet për Pagesa In-App ju lejojnë të pranoni pagesa te zbatimi për
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr "- {max}  "
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
