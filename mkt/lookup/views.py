@@ -120,7 +120,7 @@ def transaction_summary(request, tx_uuid):
     return render(request, 'lookup/transaction_summary.html',
                   dict({'uuid': tx_uuid, 'tx_form': tx_form,
                         'tx_refund_form': tx_refund_form}.items() +
-                            tx_data.items()))
+                        tx_data.items()))
 
 
 def _transaction_summary(tx_uuid):
@@ -134,7 +134,7 @@ def _transaction_summary(tx_uuid):
     if refund_contrib and refund_contrib.refund.status == amo.REFUND_PENDING:
         try:
             status = client.api.bango.refund.status.get(
-                    data={'uuid': refund_contrib.transaction_id})['status']
+                data={'uuid': refund_contrib.transaction_id})['status']
             refund_status = SOLITUDE_REFUND_STATUSES[status]
         except HttpServerError:
             refund_status = _('Currently unable to retrieve refund status.')
@@ -195,6 +195,9 @@ def transaction_refund(request, tx_uuid):
         refund_contrib = Contribution.objects.get(id=contrib.id)
         refund_contrib.id = None
         refund_contrib.save()
+        log.info('Creating refund transaction from: {0} '
+                 'with transaction_id of: {1}'
+                 .format(contrib.id, res['uuid']))
         refund_contrib.update(
             type=amo.CONTRIB_REFUND, related=contrib,
             uuid=hashlib.md5(str(uuid.uuid4())).hexdigest(),
@@ -275,7 +278,8 @@ def app_summary(request, addon_id):
         'provider_portals': provider_portals,
         'status_form': status_form, 'versions': versions,
         'is_tarako': app.tags.filter(tag_text=QUEUE_TARAKO).exists(),
-        'tarako_review': app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
+        'tarako_review':
+            app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
         'version_status_forms': version_status_forms,
         'permissions': permissions,
     })
@@ -415,9 +419,9 @@ def app_search(request):
         # Try to load by GUID:
         qs = Webapp.objects.filter(guid=q).values(*non_es_fields)[:limit]
         if not qs.count():
+            # TODO: Update to `.fields(...)` when the DSL supports it.
             qs = (WebappIndexer.search()
                   .query(_expand_query(q, fields))[:limit])
-                  # TODO: Update to `.fields(...)` when the DSL supports it.
             qs = qs.execute()
     for app in qs:
         if isinstance(app, dict):
