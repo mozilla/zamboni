@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-10-16 03:48+0000\n"
+"PO-Revision-Date: 2014-12-11 03:15+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413431328.0\n"
+"X-POOTLE-MTIME: 1418267755.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1712,7 +1712,7 @@ msgstr "封裝應用程式審核"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "有權限的應用程式審核"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1724,7 +1724,7 @@ msgstr "更新封裝應用程式審核"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "有權限的應用程式更新審核"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1732,7 +1732,7 @@ msgstr "有問題的應用程式評論"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako 應用程式審核"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1844,7 +1844,7 @@ msgstr "已封鎖"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "審核者私人留言"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1884,7 +1884,7 @@ msgstr "因為安裝資訊網址變更而重新審核"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "因為收費類型升級，進行重新審核"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1920,11 +1920,11 @@ msgstr "未通過附加審查"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "給審核者的版本更新紀錄"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "審核者公開留言"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1972,7 +1972,7 @@ msgstr "封存"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "此應用程式需要 'ArchiveReader' API。"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2020,7 +2020,7 @@ msgstr "閒置"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "此應用程式需要平台支援 'addIdleObserver' API。"
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2278,27 +2278,27 @@ msgstr "此應用程式需要取得多重網路連線的資訊。"
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobile ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "此應用程式需要能夠存取 'navigator.getMobileIdAssertion' API。"
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js 預先編譯"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "此應用程式需要裝置支援預先編譯 asm.js 程式碼。"
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM 裝置"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "此應用程式需要裝置至少有 512MB 的 RAM。"
 
 # 專有名詞
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
@@ -2450,7 +2450,7 @@ msgstr "世界其他地區"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "俄羅斯"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2598,7 +2598,7 @@ msgstr "在您修改預設語言之前，您必須有該語言的名稱和說明
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "您必須至少提供網站、電子郵件地址，或兩者都提供。"
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4151,11 +4151,11 @@ msgstr "如果您的應用程式使用 Flash，任何不支援 Flash 的裝置�
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "可在離線時使用"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr ""
+msgstr "若您的應用程式可在沒有網際網路連線時使用，我們會將您的程式標為「可在離線時使用」。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6671,7 +6671,7 @@ msgstr "於 Tarako 佇列"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "在中國佇列中"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6787,7 +6787,7 @@ msgstr "每週下載次數"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "地區可用性"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6812,7 +6812,7 @@ msgstr "過濾條件"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "應用程式來源"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7039,11 +7039,11 @@ msgstr "應用程式類型"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "允許安裝自"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "所有地方"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7247,7 +7247,7 @@ msgstr "如果您的應用程式有另一個首頁，請在這裡輸入網址。
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "網站:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7255,7 +7255,7 @@ msgstr "如果您的應用程式有支援網站或是討論區，請在此輸入
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7279,7 +7279,7 @@ msgstr "您的程式通過審查後，選擇發佈選項:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "我的應用程式可在沒有網際網路連線時使用。"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7304,7 +7304,7 @@ msgstr "開啟詳細資訊頁面"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "支援資訊:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7617,7 +7617,7 @@ msgstr "使用該電子郵件地址的使用者不存在，或是使用者尚未
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "原生 FxA 驗證失敗。"
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7707,7 +7707,7 @@ msgstr "顯示"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "您必須提供技術支援信箱或網址。"
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7782,7 +7782,7 @@ msgstr "登入 / 註冊"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "註冊"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
