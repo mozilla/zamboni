@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-11-23 15:38+0000\n"
+"PO-Revision-Date: 2014-12-11 18:31+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1416757114.0\n"
+"X-POOTLE-MTIME: 1418322694.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1709,7 +1709,7 @@ msgstr "Granskning paketerad app"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Granskning privilegierad app"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1721,7 +1721,7 @@ msgstr "Granskning uppdaterad paketerad app"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Uppdaterad granskning av privilegierad app"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1729,7 +1729,7 @@ msgstr "Modererad app-granskning"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako app-granskning"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1841,7 +1841,7 @@ msgstr "Bannlyst"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Privat kommentar från granskare"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1881,7 +1881,7 @@ msgstr "Granskad åter på grund av ändrad Manifest-URL"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Granskad åter på grund av uppgradering till premiumtyp"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1917,11 +1917,11 @@ msgstr "Tilläggsgranskning misslyckades"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Versionsanteckningar för granskare"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Publik kommentar från granskare"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1969,7 +1969,7 @@ msgstr "Arkiv"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Appen kräver `ArchiveReader` API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2017,7 +2017,7 @@ msgstr "Inaktiv"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Appen kräver plattformen för att stödja `addIdleObserver` API."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2277,27 +2277,27 @@ msgstr "Appen kräver möjlighet att få information om flera nätverksanslutnin
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobil-ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Appen kräver åtkomst till `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js förkompileringen"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Appen kräver att enheten ska stödja förkompilering av asm.js-kod."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM-enhet"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Appen kräver att enheten ha minst 512MB RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2448,7 +2448,7 @@ msgstr "Resten av världen"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Ryssland"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2594,7 +2594,7 @@ msgstr "Innan du ändrar ditt standardspråk måste du ha ett namn och beskrivni
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Du måste ange antingen en webbplats, en e-postadress eller både."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4153,11 +4153,13 @@ msgstr "Om din app använder Flash, kommer den att döljas från Marketplace på
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Fungerar offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Om din app fungerar utan en internetanslutning, kommer vi att lista din app "
+"som \"Fungerar offline.\""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6663,7 +6665,7 @@ msgstr "I Tarako-kön"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "I Kina-kön"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6779,7 +6781,7 @@ msgstr "Nedladdningar per vecka"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Tillgänglighet av region"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6804,7 +6806,7 @@ msgstr "Filtrera"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "App-ursprung"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7030,11 +7032,11 @@ msgstr "App-typ"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Installationer tillåts från"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Överallt"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7238,7 +7240,7 @@ msgstr "Om din app har en annan hemsida, skriver du in adressen här."
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Webbplats:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7246,7 +7248,7 @@ msgstr "Om din app har en supportwebbplats eller forum, skriver du in adressen h
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-post:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7272,7 +7274,7 @@ msgstr "När din app är godkänd, välj ett publiceringsalternativ:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Min app fungerar utan en internetanslutning."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7297,7 +7299,7 @@ msgstr "Öppna detaljsidan"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Supportinformation:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7619,7 +7621,7 @@ msgstr "En användare med den e-postadressen finns inte eller så har användare
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Native FxA autentiseringsfel."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7713,7 +7715,7 @@ msgstr "Listad"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Du måste ange en e-postadress eller URL för support."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7788,7 +7790,7 @@ msgstr "Logga in / Registrera"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registrera"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
