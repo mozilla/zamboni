@@ -82,7 +82,9 @@ class NewsletterSerializer(serializers.Serializer):
     NEWSLETTER_CHOICES_API = {
         # string passed to the API : actual string passed to basket.
         'about:apps': 'mozilla-and-you,marketplace-desktop',
-        'marketplace': 'marketplace'
+        'marketplace-firefoxos': 'marketplace',
+        'marketplace-desktop': 'mozilla-and-you',
+        'marketplace-android': 'mozilla-and-you'
     }
     email = fields.EmailField()
     newsletter = fields.ChoiceField(required=False, default='marketplace',
