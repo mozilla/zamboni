@@ -84,16 +84,7 @@ class TranslationTestCase(TestCase):
 
     def setUp(self):
         super(TranslationTestCase, self).setUp()
-        self.redirect_url = settings.REDIRECT_URL
-        self.redirect_secret_key = settings.REDIRECT_SECRET_KEY
-        settings.REDIRECT_URL = None
-        settings.REDIRECT_SECRET_KEY = 'sekrit'
         translation.activate('en-US')
-
-    def tearDown(self):
-        super(TranslationTestCase, self).tearDown()
-        settings.REDIRECT_URL = self.redirect_url
-        settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
 
     def test_meta_translated_fields(self):
         assert not hasattr(UntranslatedModel._meta, 'translated_fields')
@@ -349,24 +340,6 @@ class TranslationTestCase(TestCase):
         eq_(s, u'%s==%s' % (m.purified.localized_string_clean,
                             m.linkified.localized_string_clean))
 
-    @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
-    def test_outgoing_url(self):
-        """
-        Make sure linkified field is properly bounced off our outgoing URL
-        redirector.
-        """
-        settings.REDIRECT_URL = 'http://example.com/'
-
-        s = 'I like http://example.org/awesomepage.html .'
-        m = FancyModel.objects.create(linkified=s)
-        eq_(m.linkified.localized_string_clean,
-            'I like <a href="http://example.com/'
-            '40979175e3ef6d7a9081085f3b99f2f05447b22ba790130517dd62b7ee59ef94/'
-            'http%3A//example.org/'
-            'awesomepage.html">http://example.org/awesomepage'
-            '.html</a> .')
-        eq_(m.linkified.localized_string, s)
-
     def test_require_locale(self):
         obj = TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
@@ -519,22 +492,18 @@ class PurifiedTranslationTest(TestCase):
             u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>')
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
-    @patch('mkt.site.utils.get_outgoing_url')
-    def test_external_link(self, get_outgoing_url_mock):
-        get_outgoing_url_mock.return_value = 'http://external.url'
+    def test_external_link(self):
         s = u'<b>markup</b> <a href="http://example.com">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://external.url">bar</a>')
+            u'<b>markup</b> <a href="http://example.com">bar</a>')
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
-    @patch('mkt.site.utils.get_outgoing_url')
-    def test_external_text_link(self, get_outgoing_url_mock):
-        get_outgoing_url_mock.return_value = 'http://external.url'
+    def test_external_text_link(self):
         s = u'<b>markup</b> http://example.com'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://external.url">http://example.com</a>')
+            u'<b>markup</b> <a href="http://example.com">http://example.com</a>')
 
     def test_newlines_normal(self):
         before = ("Paragraph one.\n"
@@ -694,9 +663,7 @@ class PurifiedTranslationTest(TestCase):
         eq_(PurifiedTranslation(localized_string=before).__html__(), after)
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
-    @patch('mkt.site.utils.get_outgoing_url')
-    def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
-        mock_get_outgoing_url.return_value = 'http://google.com'
+    def test_newlines_attribute_link_doublequote(self):
         before = '<a href="http://google.com">test</a>'
         after = '<a href="http://google.com">test</a>'
         eq_(PurifiedTranslation(localized_string=before).__html__(), after)
@@ -775,13 +742,11 @@ class PurifiedTranslationTest(TestCase):
 class LinkifiedTranslationTest(TestCase):
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
-    @patch('mkt.site.utils.get_outgoing_url')
-    def test_allowed_tags(self, get_outgoing_url_mock):
-        get_outgoing_url_mock.return_value = 'http://external.url'
+    def test_allowed_tags(self):
         s = u'<a href="http://example.com">bar</a>'
         x = LinkifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<a href="http://external.url">bar</a>')
+            u'<a href="http://example.com">bar</a>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'

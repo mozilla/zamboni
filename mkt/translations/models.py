@@ -9,7 +9,6 @@ import bleach
 import commonware.log
 
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.site.utils import linkify_with_outgoing
 
 from . import utils
 
@@ -197,8 +196,9 @@ class PurifiedTranslation(Translation):
         self.localized_string_clean = utils.clean_nl(cleaned).strip()
 
     def clean_localized_string(self):
-        # All links (text and markup) are normalized.
-        linkified = linkify_with_outgoing(self.localized_string)
+        # Linkify links.
+        linkified = bleach.linkify(self.localized_string,
+                                   callbacks=[bleach.callbacks.nofollow])
         # Keep only the allowed tags and attributes, escape the rest.
         return bleach.clean(linkified, tags=self.allowed_tags,
                             attributes=self.allowed_attributes)

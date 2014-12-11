@@ -29,6 +29,7 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
 
+import bleach
 import chardet
 import jinja2
 import pytz
@@ -40,7 +41,6 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 from amo import APP_ICON_SIZES
 from mkt.api.paginator import ESPaginator
-from mkt.site.utils import linkify_with_outgoing
 from mkt.translations.models import Translation
 
 from . import logger_log as log
@@ -471,7 +471,7 @@ def escape_all(v, linkify=True):
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
         if linkify:
-            v = linkify_with_outgoing(v)
+            v = bleach.linkify(v, callbacks=[bleach.callbacks.nofollow])
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):

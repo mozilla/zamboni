@@ -19,7 +19,6 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = False
 SESSION_COOKIE_SECURE = True
-REDIRECT_SECRET_KEY = private.REDIRECT_SECRET_KEY
 
 ADMINS = ()
 
@@ -137,8 +136,6 @@ KNOWN_PROXIES += ['10.2.83.105',
                   ]
 
 NEW_FEATURES = True
-
-REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 LESS_BIN = 'lessc'
