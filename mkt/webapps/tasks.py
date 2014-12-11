@@ -926,8 +926,10 @@ def generate_hosted_app(name, category):
     # Let's not make production code depend on stuff in the test package --
     # importing it only when called in local dev is fine.
     from amo.tests import app_factory
-    return app_factory(categories=[category], name=name, complete=True,
-                       rated=True)
+    a = app_factory(categories=[category], name=name, complete=True,
+                    rated=True)
+    a.versions.latest().update(reviewed=datetime.datetime.now())
+    return a
 
 
 def generate_manifest(app):
