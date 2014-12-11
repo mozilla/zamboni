@@ -82,11 +82,13 @@ class NewsletterSerializer(serializers.Serializer):
     NEWSLETTER_CHOICES_API = {
         # string passed to the API : actual string passed to basket.
         'about:apps': 'mozilla-and-you,marketplace-desktop',
-        'marketplace': 'marketplace'
+        'marketplace-firefoxos': 'marketplace',
+        'marketplace-desktop': 'mozilla-and-you',
+        'marketplace-android': 'mozilla-and-you'
     }
     email = fields.EmailField()
-    newsletter = fields.ChoiceField(required=False, default='marketplace',
-                                    choices=NEWSLETTER_CHOICES_API.items())
+    newsletter = fields.ChoiceField(default='marketplace-firefoxos',
+        required=False, choices=NEWSLETTER_CHOICES_API.items())
 
     def transform_newsletter(self, obj, value):
         # Transform from the string the API receives to the one we need to pass
