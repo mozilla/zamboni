@@ -187,7 +187,7 @@
             if (app.downloadAvailable) {
                 app.download();
             }
-        }
+        });
 
     }
 
@@ -248,8 +248,8 @@
             var request = installed[manifestURL].checkForUpdate();
             request.onerror = function() {
                 postErrorMessage('Checking for app update failed', manifestURL, 'check-for-update', this.error.name || this.error);
-            }
-        })
+            };
+        });
     }
 
     function launchApp(e) {
