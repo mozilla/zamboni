@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-11-12 09:29+0000\n"
+"PO-Revision-Date: 2014-12-12 15:59+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1415784543.0\n"
+"X-POOTLE-MTIME: 1418399941.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -247,7 +247,7 @@ msgstr "{user} heeft {0} voor {addon} verwijderd."
 
 #: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
-msgstr "Maximumversie toepassing voor {version} bijgewerkt."
+msgstr "Maximale toepassingsversie voor {version} bijgewerkt."
 
 # 97%
 # 100%
@@ -269,7 +269,7 @@ msgstr "{addon} gewijzigd naar premium."
 
 #: apps/amo/log.py:370
 msgid "{addon} manifest updated."
-msgstr "Manifest {addon} bijgewerkt."
+msgstr "Manifest van {addon} bijgewerkt."
 
 #: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
@@ -305,7 +305,7 @@ msgstr "Directe restitutie voor {addon} toegewezen."
 
 #: apps/amo/log.py:415
 msgid "Account updated."
-msgstr "Rekening bijgewerkt."
+msgstr "Account bijgewerkt."
 
 #: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
@@ -1711,11 +1711,11 @@ msgstr "Webapp-beoordeling"
 
 #: mkt/constants/base.py:196
 msgid "Packaged App Review"
-msgstr "Beoordeling verpakte app"
+msgstr "Beoordeling van verpakte app"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Beoordeling van voorkeursapp"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1723,19 +1723,19 @@ msgstr "Webapp-herbeoordeling"
 
 #: mkt/constants/base.py:199
 msgid "Updated Packaged App Review"
-msgstr "Herbeoordeling verpakte app"
+msgstr "Herbeoordeling van verpakte app"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Herbeoordeling van voorkeursapp"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
-msgstr "Beoordeling gemodereerde app"
+msgstr "Beoordeling van gemodereerde app"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako-app-beoordeling"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1847,7 +1847,7 @@ msgstr "Geblokkeerd"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Privéreactie van beoordelaar"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1887,7 +1887,7 @@ msgstr "Herbeoordeling vanwege wijziging van manifest-URL"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Herbeoordeling vanwege upgrade van premium-type"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1923,11 +1923,11 @@ msgstr "Aanvullende beoordeling mislukt"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Versieopmerkingen voor beoordelaar"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Openbare reactie van beoordelaar"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1975,7 +1975,7 @@ msgstr "Archief"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "De app vereist de ’ArchiveReader’-API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2023,7 +2023,7 @@ msgstr "Inactief"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "De app vereist dat het platform de ‘addIdleObserver’-API ondersteunt."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2283,27 +2283,28 @@ msgstr "De app vereist de mogelijkheid om informatie over meerdere netwerkverbin
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobiele ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "De app vereist toegang tot de ’navigator.getMobileIdAssertion’- API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js-precompilatie"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
+"De app vereist dat het apparaat precompilatie van asm.js-code ondersteunt."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM-apparaat"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "De app vereist dat het apparaat minstens 512MB RAM heeft."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2454,7 +2455,7 @@ msgstr "Rest van de wereld"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rusland"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2600,7 +2601,7 @@ msgstr "Voordat u uw standaardlocale wijzigt dient u een naam en beschrijving in
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "U moet een website of een e-mailadres opgeven, of beide."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4164,11 +4165,13 @@ msgstr "Als uw app Flash gebruikt, wordt deze op de Marketplace verborgen op app
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Werkt offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Als uw app zonder internetverbinding werkt, vermelden we “Werkt offline” bij "
+"uw app."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6233,7 +6236,9 @@ msgstr "Negeren apparaattype:"
 
 #: mkt/reviewers/forms.py:87
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Mij berichten wanneer het manifest weer wordt bijgewerkt. (Volgende updates genereren geen e-mailbericht)"
+msgstr ""
+"Mij melden wanneer het manifest weer wordt bijgewerkt. (Volgende updates "
+"genereren geen e-mailbericht)"
 
 #: mkt/reviewers/forms.py:91
 msgid "This app works on Tarako devices."
@@ -6684,7 +6689,7 @@ msgstr "In Tarako-wachtrij"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "In China-wachtrij"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6800,7 +6805,7 @@ msgstr "Wekelijkse downloads"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Regiobeschikbaarheid"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6825,7 +6830,7 @@ msgstr "Filteren"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "App-herkomst"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7052,11 +7057,11 @@ msgstr "App-type"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Installaties toegestaan vanaf"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Overal"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7260,7 +7265,7 @@ msgstr "Als uw app een andere startpagina heeft, voer dan hier het adres in."
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Website:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7268,7 +7273,7 @@ msgstr "Als uw app een ondersteuningswebsite of -forum heeft, voer dan hier het 
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-mailadres:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7294,7 +7299,7 @@ msgstr "Als uw app is goedgekeurd, kies dan een publicatieoptie:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Mijn app werkt zonder een internetverbinding."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7319,7 +7324,7 @@ msgstr "Detailpagina openen"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Ondersteuningsinformatie:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7642,7 +7647,7 @@ msgstr "Er bestaat geen gebruiker met dat e-mailadres, of de gebruiker heeft de 
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Systeemeigen FxA-authenticatie mislukt."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7737,7 +7742,7 @@ msgstr "Vermeld"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "U moet een e-mailadres of URL voor ondersteuning opgeven."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7812,7 +7817,7 @@ msgstr "Aanmelden / Registreren"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registreren"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
