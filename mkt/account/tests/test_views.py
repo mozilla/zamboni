@@ -778,7 +778,7 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='restofworld', trigger_welcome='Y', optin='N', format='H')
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
@@ -787,7 +787,7 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='restofworld', trigger_welcome='Y', optin='N', format='H')
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
@@ -796,7 +796,7 @@ class TestNewsletter(RestOAuth):
             data=json.dumps({'email': self.VALID_PLUS_EMAIL}))
         subscribe.assert_called_with(
             self.VALID_PLUS_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='restofworld', trigger_welcome='Y', optin='N', format='H')
         eq_(res.status_code, 204)
 
     @patch('basket.subscribe')
@@ -808,7 +808,7 @@ class TestNewsletter(RestOAuth):
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'mozilla-and-you,marketplace-desktop',
             lang='en-US', country='restofworld', trigger_welcome='Y',
-            optin='Y', format='H')
+            optin='N', format='H')
 
 
 class TestAccountInfoView(RestOAuth):
