@@ -1,4 +1,3 @@
-import hashlib
 import json
 import uuid
 from datetime import datetime, timedelta
@@ -200,7 +199,7 @@ def transaction_refund(request, tx_uuid):
                  .format(contrib.id, res['uuid']))
         refund_contrib.update(
             type=amo.CONTRIB_REFUND, related=contrib,
-            uuid=hashlib.md5(str(uuid.uuid4())).hexdigest(),
+            uuid=str(uuid.uuid4()),
             amount=-refund_contrib.amount if refund_contrib.amount else None,
             transaction_id=res['uuid'])
 
