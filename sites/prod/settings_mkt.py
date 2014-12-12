@@ -158,3 +158,6 @@ FXA_SECRETS = {
 
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 PAYMENT_PROVIDERS = ['bango']
+
+RECOMMENDATIONS_API_URL = 'https://recommend.marketplace.firefox.com'
+RECOMMENDATIONS_ENABLED = True

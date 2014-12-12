@@ -998,9 +998,6 @@ REDIS_BACKENDS = {
                              'redis://localhost:6379?socket_timeout=0.5')
 }
 
-# Allow URLs from these servers. Use full domain names.
-REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
-
 REST_FRAMEWORK = {
     'DEFAULT_MODEL_SERIALIZER_CLASS':
         'rest_framework.serializers.HyperlinkedModelSerializer',
