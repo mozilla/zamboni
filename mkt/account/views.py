@@ -429,7 +429,7 @@ class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
         newsletter = serializer.data['newsletter']
         basket.subscribe(email, newsletter,
                          format='H', country=request.REGION.slug,
-                         lang=request.LANG, optin='Y',
+                         lang=request.LANG, optin='N',
                          trigger_welcome='Y')
 
 
