@@ -152,3 +152,12 @@ class TestRecommendationViewMocked(RestOAuth, amo.tests.ESTestCase):
         eq_(len(objects), 2)
         self.assertSetEqual([a['id'] for a in objects],
                             [a.pk for a in self.apps])
+
+    def test_no_installed_apps(self):
+        self.profile.installed_set.create(addon=self.apps[0])
+
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        eq_(len(objects), 1)
+        self.assertSetEqual([a['id'] for a in objects], [self.apps[1].pk])
