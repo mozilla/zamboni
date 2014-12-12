@@ -431,7 +431,7 @@ class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
         basket.subscribe(email, newsletter,
                          format='H', country=request.REGION.slug,
                          lang=lang,
-                         optin='N',
+                         optin='Y',
                          trigger_welcome='Y')
 
 
