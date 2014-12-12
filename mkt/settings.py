@@ -993,10 +993,6 @@ PRODUCT_ICON_EXPIRY = 1
 # Read-only mode setup.
 READ_ONLY = False
 
-# Outgoing URL bouncer
-REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
-REDIRECT_SECRET_KEY = ''
-
 REDIS_BACKENDS = {
     'master': os.environ.get('REDIS_URL',
                              'redis://localhost:6379?socket_timeout=0.5')

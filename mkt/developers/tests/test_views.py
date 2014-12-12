@@ -1006,9 +1006,7 @@ class TestUploadDetail(BaseUploadTest):
         message = data['validation']['messages'][0]
         description = message['description'][0]
         eq_(description,
-            '<a href="http://outgoing.mozilla.org/v1/'
-            '680c0c59e4d87f3d21faf1d7365f0fec615076041466406aa3608fe6503aef43'
-            '/http%3A//www.firefox.com">http://www.firefox.com</a>'
+            '<a href="http://www.firefox.com">http://www.firefox.com</a>'
             '&lt;script&gt;alert("hi");&lt;/script&gt;')
         context = message['context'][1]
         eq_(context,

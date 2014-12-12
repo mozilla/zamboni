@@ -5,6 +5,7 @@ from django.core.mail import (EmailMessage, EmailMultiAlternatives,
 
 import commonware.log
 from celeryutils import task
+from mkt.translations.models import PurifiedTranslation
 
 
 log = commonware.log.getLogger('z.task')
@@ -48,3 +49,9 @@ def set_modified_on_object(obj, **kw):
     except Exception, e:
         log.error('Failed to set modified on: %s, %s - %s' %
                   (obj.__class__.__name__, obj.pk, e))
+
+
+@task
+def update_translations(ids):
+    for p in PurifiedTranslation.objects.filter(id__in=ids):
+        p.save()

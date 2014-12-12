@@ -174,7 +174,6 @@ JS = {
         'js/devreg/popup.js',
         'js/devreg/login.js',
         'js/devreg/notification.js',
-        'js/devreg/outgoing_links.js',
         'js/devreg/storage.js',
         'js/devreg/tarako.js',
         'js/devreg/utils.js',
