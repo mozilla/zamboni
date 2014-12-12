@@ -767,6 +767,7 @@ class TestNewsletter(RestOAuth):
     @patch('basket.subscribe')
     def test_signup_invalid_newsletter(self, subscribe):
         res = self.client.post(self.url, data={'email': self.VALID_EMAIL,
+                                               'lang': 'en-US',
                                                'newsletter': 'invalid'})
         eq_(res.status_code, 400)
         ok_(not subscribe.called)
@@ -774,16 +775,28 @@ class TestNewsletter(RestOAuth):
     @patch('basket.subscribe')
     def test_signup_anonymous(self, subscribe):
         res = self.anon.post(self.url,
-                               data=json.dumps({'email': self.VALID_EMAIL}))
+                             data=json.dumps({'email': self.VALID_EMAIL,
+                                              'lang': 'en-US'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
             country='restofworld', trigger_welcome='Y', optin='N', format='H')
 
     @patch('basket.subscribe')
+    def test_signup_lang(self, subscribe):
+        res = self.anon.post(self.url,
+                             data=json.dumps({'email': self.VALID_EMAIL,
+                                              'lang': 'es'}))
+        eq_(res.status_code, 204)
+        subscribe.assert_called_with(
+            self.VALID_EMAIL, 'marketplace', lang='es',
+            country='restofworld', trigger_welcome='Y', optin='N', format='H')
+
+    @patch('basket.subscribe')
     def test_signup(self, subscribe):
         res = self.client.post(self.url,
-                               data=json.dumps({'email': self.VALID_EMAIL}))
+                               data=json.dumps({'email': self.VALID_EMAIL,
+                                                'lang': 'en-US'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
@@ -793,7 +806,8 @@ class TestNewsletter(RestOAuth):
     def test_signup_plus(self, subscribe):
         res = self.client.post(
             self.url,
-            data=json.dumps({'email': self.VALID_PLUS_EMAIL}))
+            data=json.dumps({'email': self.VALID_PLUS_EMAIL,
+                             'lang': 'en-US'}))
         subscribe.assert_called_with(
             self.VALID_PLUS_EMAIL, 'marketplace', lang='en-US',
             country='restofworld', trigger_welcome='Y', optin='N', format='H')
@@ -803,6 +817,7 @@ class TestNewsletter(RestOAuth):
     def test_signup_about_apps(self, subscribe):
         res = self.client.post(self.url,
                                data=json.dumps({'email': self.VALID_EMAIL,
+                                                'lang': 'en-US',
                                                 'newsletter': 'about:apps'}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
