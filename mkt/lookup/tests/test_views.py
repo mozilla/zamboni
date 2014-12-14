@@ -51,10 +51,12 @@ class SummaryTest(TestCase):
                 provider=provider,
                 seller_uri=uri, uri=uri,
                 agreed_tos=True, account_id='not-important')
-            AddonPaymentAccount.objects.create(addon=app,
+            AddonPaymentAccount.objects.create(
+                addon=app,
                 product_uri='product-{p}'.format(p=provider),
                 account_uri=payment.uri,
-                payment_account=payment)
+                payment_account=payment
+            )
 
         app.save()
 
@@ -551,6 +553,7 @@ class TestTransactionRefund(TestCase):
         eq_(refund_contribs[0].refund, refund[0])
         eq_(refund_contribs[0].related, self.contrib)
         eq_(refund_contribs[0].amount, -self.contrib.amount)
+        eq_(refund_contribs[0].transaction_id, 'some:uid')
 
         self.assert3xx(res, self.summary_url)
 

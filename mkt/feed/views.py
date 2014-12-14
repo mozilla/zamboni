@@ -376,11 +376,10 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
         receive an empty list.
         """
         data = self.req_data()
+        qs = self.queryset.no_cache()
         if request.user.is_anonymous():
             qs = self.queryset.none()
-        elif self.is_admin(request.user):
-            qs = self.queryset
-        else:
+        elif not self.is_admin(request.user):
             perms = OperatorPermission.objects.filter(user=request.user)
             if perms:
                 query = Q()
