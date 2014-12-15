@@ -11,6 +11,7 @@ from django.utils.datastructures import SortedDict
 
 import commonware.log
 import waffle
+from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
 import amo
@@ -724,12 +725,13 @@ class ReviewersQueuesHelper(object):
 
     def get_pending_queue(self):
         if self.use_es:
-            sq = WebappIndexer.search()
-            sq = sq.filter('term', status=amo.STATUS_PENDING)
-            sq = sq.filter('term', **{'latest_version.status': amo.STATUS_PENDING})
-            sq = sq.filter('term', is_escalated=False)
-            sq = sq.filter('term', is_disabled=False)
-            return sq
+            must = [
+                es_filter.Term(status=amo.STATUS_PENDING),
+                es_filter.Term(**{'latest_version.status': amo.STATUS_PENDING}),
+                es_filter.Term(is_escalated=False),
+                es_filter.Term(is_disabled=False),
+            ]
+            return WebappIndexer.search().filter('bool', must=must)
 
         return (Version.objects.no_cache().filter(
             files__status=amo.STATUS_PENDING,
@@ -740,20 +742,29 @@ class ReviewersQueuesHelper(object):
             .select_related('addon', 'files').no_transforms())
 
     def get_rereview_queue(self):
+        if self.use_es:
+            must = [
+                es_filter.Term(is_rereviewed=True),
+                es_filter.Term(is_disabled=False),
+                es_filter.Term(is_escalated=False),
+            ]
+            return WebappIndexer.search().filter('bool', must=must)
+
         return (RereviewQueue.objects.no_cache()
             .filter(addon__disabled_by_user=False)
             .exclude(addon__in=self.excluded_ids))
 
     def get_updates_queue(self):
         if self.use_es:
-            sq = WebappIndexer.search()
-            sq = sq.filter('terms', status=amo.WEBAPPS_APPROVED_STATUSES)
-            sq = sq.filter('term', **{'latest_version.status': amo.STATUS_PENDING})
-            sq = sq.filter('terms', app_type=[amo.ADDON_WEBAPP_PACKAGED,
-                                              amo.ADDON_WEBAPP_PRIVILEGED])
-            sq = sq.filter('term', is_disabled=False)
-            sq = sq.filter('term', is_escalated=False)
-            return sq
+            must = [
+                es_filter.Terms(status=amo.WEBAPPS_APPROVED_STATUSES),
+                es_filter.Term(**{'latest_version.status': amo.STATUS_PENDING}),
+                es_filter.Terms(app_type=[amo.ADDON_WEBAPP_PACKAGED,
+                                          amo.ADDON_WEBAPP_PRIVILEGED]),
+                es_filter.Term(is_disabled=False),
+                es_filter.Term(is_escalated=False),
+            ]
+            return WebappIndexer.search().filter('bool', must=must)
 
         return (Version.objects.no_cache().filter(
             # Note: this will work as long as we disable files of existing
