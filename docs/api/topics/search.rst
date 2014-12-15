@@ -102,7 +102,7 @@ features table.
 Each bit in the features bitfield represents the presence or absence
 of a feature.
 
-Feature table version 5:
+Feature table version 6:
 
 =====  ============================
   bit   feature
@@ -157,14 +157,15 @@ Feature table version 5:
    47   Mobile ID
    48   Asm.js Precompilation
    49   512MB RAM Device
+   50   1GB RAM Device
 =====  ============================
 
 
-For example, a device with the 'App Management API', 'Proximity',
-'Ambient Light Sensor', and 'Vibration' features would send this
+For example, a device with only the 'App Management API', 'Proximity',
+'Ambient Light Sensor', and 'Vibration' features enabled would send this
 feature profile signature::
 
-    2200440000000.50.5
+    4400880000000.51.6
 
 .. [1] `other` denotes a payment system other than the Firefox Marketplace
   payments. This field is not currently populated by the Marketplace Developer
