@@ -16,9 +16,8 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonDeviceType, Webapp
-
-from ..forms import DevMailerForm
-from ..models import EmailPreviewTopic
+from mkt.zadmin.forms import DevMailerForm
+from mkt.zadmin.models import EmailPreviewTopic
 
 
 class TestEmailPreview(mkt.site.tests.TestCase):
