@@ -10,11 +10,10 @@ from django.core.urlresolvers import reverse
 from django.test import client
 
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.monolith.models import MonolithRecord, record_stat
+from mkt.monolith.views import daterange
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
-
-from .models import MonolithRecord, record_stat
-from .views import daterange
 
 
 class RequestFactory(client.RequestFactory):
