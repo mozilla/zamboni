@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-10-16 03:43+0000\n"
+"PO-Revision-Date: 2014-12-16 04:37+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413431024.0\n"
+"X-POOTLE-MTIME: 1418704662.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1708,7 +1708,7 @@ msgstr "封装应用审核"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "有特权的应用审核"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1720,15 +1720,15 @@ msgstr "更新封装应用审核"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "已更新的有特权应用审核"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
-msgstr "提请仲裁的应用评论"
+msgstr "提请仲裁的应用审核"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako 应用审核"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1840,7 +1840,7 @@ msgstr "已封禁"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "给审核者的私密留言"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1880,7 +1880,7 @@ msgstr "因清单 URL 变更而重新审核"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "因收费类型升级而重新审核"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1916,11 +1916,11 @@ msgstr "额外审核未通过"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "给审核者的版本说明"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "给审核者的公开留言"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1968,7 +1968,7 @@ msgstr "存档"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "此应用需要 `ArchiveReader` API。"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2016,7 +2016,7 @@ msgstr "空闲"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "此应用需要平台支持 `addIdleObserver` API。"
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2274,27 +2274,27 @@ msgstr "此应用需要获取有关多个网络连接的信息。"
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobile ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "此应用需要访问 \"navigator.getMobileIdAssertion\" API。"
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js 预先编译"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "此应用需要设备支持 asm.js 代码的预先编译。"
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM 设备"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "此应用需要设备有至少 512MB RAM。"
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2445,7 +2445,7 @@ msgstr "其他地区"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "俄罗斯"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2590,7 +2590,7 @@ msgstr "要有那个语种的名称和描述才能改变默认语种。现在缺
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "您必须提供网站、电子邮件之一或两者。"
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4137,11 +4137,11 @@ msgstr "如果您的应用使用 Flash，以不支持 Flash 的设备访问市�
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "可在离线时使用"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr ""
+msgstr "如果您的应用可以在没有互联网连接时使用，我们会将您的应用标记为“可在离线时使用”。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6627,7 +6627,7 @@ msgstr "在 Tarako 队列中"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "在中国队列中"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6743,7 +6743,7 @@ msgstr "周下载量"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "地区可用性"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6768,7 +6768,7 @@ msgstr "过滤器"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "应用来源"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -6995,11 +6995,11 @@ msgstr "应用类型"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "允许安装从"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "所有地方"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7202,7 +7202,7 @@ msgstr "如果您的应用有另一个主页，在这里输入地址。"
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "网站："
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7210,7 +7210,7 @@ msgstr "如果您的应用有支持网站或者论坛，在这里输入地址。
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "电子邮件："
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7234,7 +7234,7 @@ msgstr "选择在您的应用通过审核后的发布选项："
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "我的应用可以在没有互联网连接时使用。"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7259,7 +7259,7 @@ msgstr "打开常用页。"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "支持信息："
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7574,7 +7574,7 @@ msgstr "不存在登记了那个邮件地址的用户，或者这名用户尚未
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "原生 FxA 验证失败。"
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7662,7 +7662,7 @@ msgstr "已列出"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "您必须提供一个技术支持邮箱或网址。"
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7737,7 +7737,7 @@ msgstr "登录/注册"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "注册"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
