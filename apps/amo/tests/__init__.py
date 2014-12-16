@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import random
 import time
@@ -50,7 +49,8 @@ from mkt.files.models import File
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
-from mkt.translations.models import Translation
+from mkt.translations.hold import clean_translations
+from mkt.translations.models import delete_translation, Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import update_search_index as app_update_search_index
@@ -353,6 +353,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
 
     def _post_teardown(self):
         amo.set_user(None)
+        clean_translations(None)  # Make sure queued translations are removed.
         super(TestCase, self)._post_teardown()
 
     @contextmanager
@@ -909,8 +910,13 @@ class ESTestCase(TestCase):
     def tearDownClass(cls):
         try:
             if hasattr(cls, '_addons'):
-                Webapp.objects.filter(
-                    pk__in=[a.id for a in cls._addons]).delete()
+                addons = Webapp.objects.filter(
+                    pk__in=[a.id for a in cls._addons])
+                # First delete all the translations.
+                for addon in addons:
+                    for field in addon._meta.translated_fields:
+                        delete_translation(addon, field.name)
+                addons.delete()
                 unindex_webapps([a.id for a in cls._addons])
             amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
