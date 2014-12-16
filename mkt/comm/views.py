@@ -103,10 +103,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         else:
             # We list all the threads that user is developer of or
             # is subscribed/CC'ed to.
-            addons = list(profile.addons.values_list('pk', flat=True))
-            q_dev = Q(_addon__in=addons, read_permission_developer=True)
-            queryset = CommunicationThread.objects.filter(
-                Q(pk__in=cc) | q_dev)
+            queryset = CommunicationThread.objects.filter(pk__in=cc)
 
         self.queryset = queryset
         res = SilentListModelMixin.list(self, request)
