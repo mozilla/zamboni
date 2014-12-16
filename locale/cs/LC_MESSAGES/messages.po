@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-11-18 09:05+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2014-12-16 20:24+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1416301517.0\n"
+"X-POOTLE-MTIME: 1418761464.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1922,7 +1922,7 @@ msgstr "Doplňková kontrola nebyla úspěšná"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Poznámka k verzi pro redaktora"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
@@ -1974,7 +1974,7 @@ msgstr "Archiv"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Aplikace vyžaduje `ArchiveReader` API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2022,7 +2022,7 @@ msgstr "Nečinnost"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Mobilní ID"
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2282,27 +2282,27 @@ msgstr "Aplikace vyžaduje dostupnost informací o více síťových připojení
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobilní ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Aplikace vyžaduje přístup k `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Předkompilace asm.js"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Aplikace vyžaduje, aby zařízení podporovalo předkompilaci kódu asm.js."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Zařízení s 512 MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Aplikace vyžaduje, aby zařízení mělo alespoň 512 MB RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2453,7 +2453,7 @@ msgstr "Zbytek světa"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rusko"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -4164,11 +4164,13 @@ msgstr "Pokud vaše aplikace využívá Flash, bude na Marketplace skryta pro za
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Funguje off-line"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Pokud vaše aplikace funguje i bez připojení k internetu, potom u ní "
+"zobrazíme, že \"Funguje off-line\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -7265,7 +7267,7 @@ msgstr "Pokud má vaše aplikace další domovskou stránku, vložte zde její a
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Webová stránka"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7273,7 +7275,7 @@ msgstr "Pokud má vaše aplikace stránky podpory či fórum, vložte zde jejich
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7299,7 +7301,7 @@ msgstr "Zvolte možnost publikace aplikace po jejím schválení:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Má aplikace funguje i bez připojení k internetu."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
