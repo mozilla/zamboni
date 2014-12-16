@@ -329,6 +329,12 @@ APP_FEATURES = OrderedDict([
                              u'512MB RAM.'),
         'apis': (),
     }),
+    ('HARDWARE_1GB_RAM', {
+        'name': _lazy(u'1GB RAM Device'),
+        'description': _lazy(u'The app requires the device to have at least '
+                             u'1GB RAM.'),
+        'apis': (),
+    }),
 ])
 
 PRERELEASE_PERMISSIONS = [

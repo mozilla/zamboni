@@ -641,7 +641,6 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
-
         RereviewQueue.objects.create(addon=self.apps[0]).update(
             created=self.days_ago(5))
         RereviewQueue.objects.create(addon=self.apps[1]).update(
@@ -652,8 +651,16 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[1].update(created=self.days_ago(3))
         self.apps[2].update(created=self.days_ago(1))
 
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
+
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
+
+    def tearDown(self):
+        if self.uses_es():
+            unindex_webapps([app.id for app in self.apps])
+        super(TestRereviewQueue, self).tearDown()
 
     def review_url(self, app):
         return reverse('reviewers.apps.review', args=[app.app_slug])
@@ -753,9 +760,15 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
-        self.assertSetEqual([a.app for a in res.context['addons']],
-                            self.apps[1:])
+        if self.uses_es():
+            self.assertSetEqual([a.id for a in res.context['addons']],
+                                [a.id for a in self.apps[1:]])
+        else:
+            self.assertSetEqual([a.app for a in res.context['addons']],
+                                self.apps[1:])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
@@ -768,6 +781,14 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         app = self.apps[0]
         app.delete()
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
+
+
+class TestRereviewQueueES(amo.tests.ESTestCase, TestRereviewQueue):
+
+    def setUp(self):
+        super(TestRereviewQueueES, self).setUp()
+        self.create_switch('reviewer-tools-elasticsearch')
+        self.reindex(Webapp, 'webapp')
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)

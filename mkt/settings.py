@@ -503,7 +503,7 @@ API_THROTTLE = True
 
 # The version we append to the app feature profile. Bump when we add new app
 # features to the `AppFeatures` model.
-APP_FEATURES_VERSION = 5
+APP_FEATURES_VERSION = 6
 
 # This is the aud (audience) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().

@@ -484,14 +484,12 @@ def queue_apps(request):
     sort_field = 'nomination'
 
     queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
-    qs = queues_helper.get_pending_queue()
-    qs = queues_helper.sort(qs, date_sort=sort_field)
+    apps = queues_helper.get_pending_queue()
+    apps = queues_helper.sort(apps, date_sort=sort_field)
 
-    if use_es:
-        apps = qs
-    else:
+    if not use_es:
         apps = [QueuedApp(app, app.all_versions[0].nomination)
-                for app in Webapp.version_and_file_transformer(qs)]
+                for app in Webapp.version_and_file_transformer(apps)]
 
     return _queue(request, apps, 'pending', date_sort='nomination',
                   use_es=use_es)
@@ -537,12 +535,18 @@ def additional_review(request, queue):
 
 @reviewer_required
 def queue_rereview(request):
-    queues_helper = ReviewersQueuesHelper(request)
-    qs = queues_helper.get_rereview_queue()
-    apps = queues_helper.sort(qs)
-    apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
-            for app in apps]
-    return _queue(request, apps, 'rereview')
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
+
+    queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
+    apps = queues_helper.get_rereview_queue()
+    apps = queues_helper.sort(apps, date_sort='created')
+
+    if not use_es:
+        apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
+                for app in apps]
+
+    return _queue(request, apps, 'rereview', date_sort='created',
+                  use_es=use_es)
 
 
 @permission_required([('Apps', 'ReviewEscalated')])
@@ -560,14 +564,12 @@ def queue_updates(request):
     use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
 
     queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
-    qs = queues_helper.get_updates_queue()
-    qs = queues_helper.sort(qs, date_sort='nomination')
+    apps = queues_helper.get_updates_queue()
+    apps = queues_helper.sort(apps, date_sort='nomination')
 
-    if use_es:
-        apps = qs
-    else:
+    if not use_es:
         apps = [QueuedApp(app, app.all_versions[0].nomination)
-                for app in Webapp.version_and_file_transformer(qs)]
+                for app in Webapp.version_and_file_transformer(apps)]
 
     return _queue(request, apps, 'updates', date_sort='nomination',
                   use_es=use_es)
