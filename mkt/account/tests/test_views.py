@@ -780,7 +780,7 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup_lang(self, subscribe):
@@ -790,7 +790,7 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='es',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
@@ -800,7 +800,19 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='', trigger_welcome='Y', optin='Y', format='H')
+
+    @patch('mkt.account.views.NewsletterView.get_region')
+    @patch('basket.subscribe')
+    def test_signup_us(self, subscribe, get_region):
+        get_region.return_value = 'us'
+        res = self.client.post(self.url,
+                               data=json.dumps({'email': self.VALID_EMAIL,
+                                                'lang': 'en-US'}))
+        eq_(res.status_code, 204)
+        subscribe.assert_called_with(
+            self.VALID_EMAIL, 'marketplace', lang='en-US',
+            country='us', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
@@ -810,7 +822,7 @@ class TestNewsletter(RestOAuth):
                              'lang': 'en-US'}))
         subscribe.assert_called_with(
             self.VALID_PLUS_EMAIL, 'marketplace', lang='en-US',
-            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
+            country='', trigger_welcome='Y', optin='Y', format='H')
         eq_(res.status_code, 204)
 
     @patch('basket.subscribe')
@@ -822,7 +834,7 @@ class TestNewsletter(RestOAuth):
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
             self.VALID_EMAIL, 'mozilla-and-you,marketplace-desktop',
-            lang='en-US', country='restofworld', trigger_welcome='Y',
+            lang='en-US', country='', trigger_welcome='Y',
             optin='Y', format='H')
 
 
