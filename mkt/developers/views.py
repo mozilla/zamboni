@@ -69,7 +69,7 @@ from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.views import BaseFilter
-from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
+from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
@@ -458,8 +458,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     if show_features:
         appfeatures = version.features
-        appfeatures_form = AppFeaturesForm(request.POST or None,
-                                           instance=appfeatures)
+        appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
         all_forms.append(appfeatures_form)
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
