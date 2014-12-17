@@ -421,6 +421,13 @@ class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
     serializer_class = NewsletterSerializer
     throttle_classes = (NewsletterThrottle,)
 
+    def get_region(self):
+        return self.request.REGION.slug
+
+    def get_country(self):
+        region = self.get_region()
+        return '' if region == 'restofworld' else region
+
     def response_success(self, request, serializer, data=None):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
@@ -428,11 +435,9 @@ class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
         email = serializer.data['email']
         newsletter = serializer.data['newsletter']
         lang = serializer.data['lang']
-        basket.subscribe(email, newsletter,
-                         format='H', country=request.REGION.slug,
-                         lang=lang,
-                         optin='Y',
-                         trigger_welcome='Y')
+        country = self.get_country()
+        basket.subscribe(email, newsletter, format='H', country=country,
+                         lang=lang, optin='Y', trigger_welcome='Y')
 
 
 class PermissionsView(CORSMixin, MineMixin, RetrieveAPIView):
