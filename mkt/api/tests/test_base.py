@@ -61,15 +61,32 @@ class TestEncoding(RestOAuth):
 
 
 class TestCORSWrapper(TestCase):
+    urls = 'mkt.api.tests.test_base_urls'
+
     def test_cors(self):
         @cors_api_view(['GET', 'PATCH'])
         @authentication_classes([])
         @permission_classes([])
         def foo(request):
             return Response()
-        request = RequestFactory().get('/')
+        request = RequestFactory().options('/')
         foo(request)
         eq_(request.CORS, ['GET', 'PATCH'])
+
+    def test_cors_with_headers(self):
+        @cors_api_view(['POST'], headers=('x-barfoo',))
+        @authentication_classes([])
+        @permission_classes([])
+        def foo(request):
+            return Response()
+        request = RequestFactory().options('/')
+        foo(request)
+        eq_(request.CORS_HEADERS, ('x-barfoo',))
+
+    def test_cors_options(self):
+        res = self.client.options(reverse('test-cors-api-view'))
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Headers'], 'x-barfoo, x-foobar')
 
 
 class Form(forms.Form):

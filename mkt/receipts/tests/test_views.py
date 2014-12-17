@@ -17,7 +17,6 @@ from mkt.constants import apps
 from mkt.developers.models import AppLog
 from mkt.receipts.tests.test_models import TEST_LEEWAY
 from mkt.receipts.utils import create_test_receipt
-from mkt.receipts.views import devhub_verify
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
@@ -120,8 +119,8 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(record_action.call_args[0][0], 'install')
         eq_(record_action.call_args[0][2], {'app-domain': u'http://cbc.ca',
-                                           'app-id': self.addon.pk,
-                                           'anonymous': False})
+                                            'app-id': self.addon.pk,
+                                            'anonymous': False})
 
     @mock.patch('mkt.receipts.views.record_action')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
@@ -358,6 +357,14 @@ class TestDevhubReceipts(amo.tests.TestCase):
     def setUp(self):
         self.issue = reverse('receipt.test.issue')
 
+    def test_verify_supports_cors(self):
+        res = self.client.options(reverse('receipt.test.verify',
+                                          args=['ok']))
+        eq_(res.status_code, 200, res)
+        eq_(res['Access-Control-Allow-Headers'],
+            'content-type, accept, x-fxpay-version')
+        eq_(res['Access-Control-Allow-Origin'], '*')
+
     def test_install_page(self):
         eq_(self.client.get(reverse('receipt.test.install')).status_code, 200)
 
@@ -393,14 +400,14 @@ class TestDevhubReceipts(amo.tests.TestCase):
         ok_(json.loads(res.content)['error'])
 
     def test_verify_fails(self):
-        req = RawRequestFactory().post('/', '')
-        res = devhub_verify(req, 'expired')
+        res = self.client.post(reverse('receipt.test.verify',
+                                       args=['expired']))
         eq_(json.loads(res.content)['status'], 'invalid')
 
     def test_verify(self):
-        url = absolutify(reverse('receipt.test.verify',
-                                 kwargs={'status': 'expired'}))
         receipt = create_test_receipt('http://foo', 'expired')
-        req = RawRequestFactory().post(url, receipt)
-        res = devhub_verify(req, 'expired')
+        res = self.client.post(reverse('receipt.test.verify',
+                                       args=['expired']),
+                               receipt,
+                               content_type='text/plain')
         eq_(json.loads(res.content)['status'], 'expired')
