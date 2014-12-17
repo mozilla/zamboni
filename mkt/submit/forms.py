@@ -423,6 +423,9 @@ class AppFeaturesForm(happyforms.ModelForm):
         mark_for_rereview = kwargs.pop('mark_for_rereview', True)
         addon = self.instance.version.addon
         rval = super(AppFeaturesForm, self).save(*args, **kwargs)
+        # Also save the addon to update modified date and trigger a reindex.
+        addon.save(update_fields=['modified'])
+        # Trigger a re-review if necessary.
         if (self.instance and mark_for_rereview and
                 addon.status in amo.WEBAPPS_APPROVED_STATUSES and
                 sorted(self.instance.to_keys()) != self.initial_features):
