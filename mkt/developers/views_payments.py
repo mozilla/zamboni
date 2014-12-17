@@ -114,18 +114,22 @@ def payments(request, addon_id, addon, webapp=False):
             return redirect(addon.get_dev_url('payments'))
 
     # TODO: refactor this (bug 945267)
-    android_payments_enabled = waffle.flag_is_active(request,
-                                                     'android-payments')
+    android_pay = waffle.flag_is_active(request, 'android-payments')
+    desktop_pay = waffle.flag_is_active(request, 'desktop-payments')
 
     # If android payments is not allowed then firefox os must
     # be 'checked' and android-mobile and android-tablet should not be.
-    invalid_paid_platform_state = [('desktop', True)]
+    invalid_paid_platform_state = []
 
-    if not android_payments_enabled:
+    if not android_pay:
         # When android-payments is off...
         invalid_paid_platform_state += [('android-mobile', True),
                                         ('android-tablet', True),
                                         ('firefoxos', False)]
+
+    if not desktop_pay:
+        # When desktop-payments is off...
+        invalid_paid_platform_state += [('desktop', True)]
 
     cannot_be_paid = (
         addon.premium_type == amo.ADDON_FREE and

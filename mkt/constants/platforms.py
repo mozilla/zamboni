@@ -18,13 +18,19 @@ def PAID_PLATFORMS(request=None):
         ('paid-firefoxos', _('Firefox OS')),
     )
 
-    android_payments_enabled = (request and
-        waffle.flag_is_active(request, 'android-payments'))
+    active = waffle.flag_is_active
+    android_pay = request and active(request, 'android-payments')
+    desktop_pay = request and active(request, 'desktop-payments')
 
-    if android_payments_enabled:
+    if android_pay:
         platforms += (
             ('paid-android-mobile', _('Firefox Mobile')),
             ('paid-android-tablet', _('Firefox Tablet')),
+        )
+
+    if desktop_pay:
+        platforms += (
+            ('paid-desktop', _('Firefox for Desktop')),
         )
 
     return platforms
@@ -39,4 +45,5 @@ PLATFORMS_NAMES = {
     'paid-firefoxos': _('Fully open mobile ecosystem'),
     'paid-android-mobile': _('Android smartphones'),
     'paid-android-tablet': _('Tablets'),
+    'paid-desktop': _('Windows, Mac and Linux'),
 }
