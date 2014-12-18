@@ -956,7 +956,7 @@ def generate_hosted_manifest(app):
                (slugify(unicode(app.name)),))
 
 
-def generate_app_package(app, out, version):
+def generate_app_package(app, out, permissions, version='1.0'):
     fr_prefix = u'(fran\xe7ais) '
     es_prefix = u'(espa\xf1ol) '
     manifest = {
@@ -987,6 +987,8 @@ def generate_app_package(app, out, version):
                                ' generated'
             },
         },
+        'permissions': dict(((k, {"description": k})
+                             for k in permissions)),
         'default_locale': 'en',
         'orientation': 'landscape',
         'fullscreen': 'true'
@@ -1009,7 +1011,8 @@ def generate_app_package(app, out, version):
         version=version, manifest=json.dumps(manifest))
 
 
-def generate_packaged_app(name, category, num_versions=1):
+
+def generate_packaged_app(name, category, permissions=(), num_versions=1):
     from amo.tests import app_factory, version_factory
     app = app_factory(categories=[category], name=name, complete=True,
                       rated=True, is_packaged=True,
@@ -1022,18 +1025,24 @@ def generate_packaged_app(name, category, num_versions=1):
     except OSError:
         pass
     with open(fp, 'w') as out:
-        generate_app_package(app, out, version=app.latest_version)
+        generate_app_package(app, out, permissions=permissions,
+                             version=app.latest_version)
         for i in range(1, num_versions):
             v = version_factory(version="1." + str(i), addon=app)
-            generate_app_package(app, out, v)
+            generate_app_package(app, out, permissions, v)
     return app
 
 
-def generate_apps(num_hosted, num_packaged=0):
-    apps = generate_app_data(num_hosted + num_packaged)
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=1):
+    apps = generate_app_data(hosted + packaged + privileged)
     for i, (appname, cat_slug) in enumerate(apps):
-        if i < num_packaged:
-            app = generate_packaged_app(appname, cat_slug, num_versions=3)
+        if i < privileged:
+            app = generate_packaged_app(appname, cat_slug,
+                                        num_versions=versions,
+                                        permissions=['camera', 'storage'])
+        elif i < (privileged + packaged):
+            app = generate_packaged_app(appname, cat_slug,
+                                        num_versions=versions)
         else:
             app = generate_hosted_app(appname, cat_slug)
         generate_icon(app)
