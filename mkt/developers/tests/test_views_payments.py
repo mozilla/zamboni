@@ -982,6 +982,13 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 1)
         eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 1)
 
+    def test_device_checkboxes_present_with_desktop_payments(self):
+        self.create_flag('desktop-payments')
+        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-desktop input[type="checkbox"]')), 1)
+
     def test_device_checkboxes_not_present_without_android_payments(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
@@ -1008,6 +1015,15 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.create_flag('android-payments')
         for device_type in (amo.DEVICE_GAIA,
                             amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['cannot_be_paid'], False)
+
+    def test_cannot_be_paid_with_desktop_payments(self):
+        self.create_flag('desktop-payments')
+        for device_type in (amo.DEVICE_GAIA, amo.DEVICE_DESKTOP):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
