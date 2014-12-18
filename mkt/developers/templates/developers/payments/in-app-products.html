@@ -25,16 +25,11 @@
 
   <section class="primary manage" role="main">
     <h2>{{ title }}</h2>
-    {% if not addon.is_packaged %}
+    {% if not addon.origin %}
       <div id="origin-notification" class="island notification-box">
         {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}
-          Your app must be packaged and specify an <a href="{{ origin }}">origin</a> to use this in-app payment system.
-        {% endtrans %}
-      </div>
-    {% elif not addon.origin %}
-      <div id="origin-notification" class="island notification-box">
-        {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}
-          Your app must define an <a href="{{ origin }}">origin</a> in your manifest so that receipts can be verified properly.
+          In-app products are only supported for hosted apps or packaged apps that define an <a href="{{ origin }}">origin</a> in the manifest.
+          Your app does not define an origin.
         {% endtrans %}
       </div>
     {% else %}

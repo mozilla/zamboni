@@ -242,10 +242,11 @@ class TestInAppProductsView(InappTest):
         doc = pq(self.get().content)
         ok_(doc('section.primary div#origin-notification'))
 
-    def test_not_packaged(self):
-        self.app.update(is_packaged=False)
+    def test_hosted(self):
+        self.app.update(is_packaged=False, app_domain='http://f.c')
         doc = pq(self.get().content)
-        ok_(doc('section.primary div#origin-notification'))
+        ok_(not doc('section.primary div#origin-notification'))
+        ok_(doc('section.primary div#buglink-notification'))
 
 
 class TestInappSecret(InappTest):
