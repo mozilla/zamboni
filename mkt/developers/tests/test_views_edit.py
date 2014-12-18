@@ -1523,13 +1523,23 @@ class TestEditVersion(TestEdit):
         eq_(r.context['appfeatures_form'].initial,
             dict(id=features.id, **features.to_dict()))
 
-    def test_new_features(self):
+    @mock.patch('mkt.webapps.tasks.index_webapps.delay')
+    def test_new_features(self, index_webapps):
         assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+        index_webapps.reset_mock()
+        old_modified = self.webapp.modified
 
         # Turn a feature on.
         version = self.test_post(has_audio=True)
         ok_(version.features.has_audio)
         ok_(not version.features.has_apps)
+
+        # Addon modified date must have changed.
+        addon = self.get_webapp()
+        ok_(addon.modified > old_modified)
+        old_modified = self.webapp.modified
+
+        index_webapps.reset_mock()
 
         # Then turn the feature off.
         version = self.test_post(has_audio=False)
@@ -1538,6 +1548,21 @@ class TestEditVersion(TestEdit):
 
         # Changing features must trigger re-review.
         assert RereviewQueue.objects.filter(addon=self.webapp).exists()
+
+        # Addon modified date must have changed.
+        addon = self.get_webapp()
+        ok_(addon.modified > old_modified)
+
+        # Changing features must trigger a reindex.
+        eq_(index_webapps.call_count, 1)
+
+    def test_features_uncheck_all(self):
+        version = self.test_post(has_audio=True)
+        ok_(version.features.has_audio)
+        req = self.client.post(self.url, {})  # Empty POST should uncheck all.
+        eq_(req.status_code, 302)
+        version.features.reload()
+        ok_(not version.features.has_audio)
 
     def test_correct_version_features(self):
         new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
