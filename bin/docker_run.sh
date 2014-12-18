@@ -15,7 +15,7 @@ if [ $? -ne 0 ]; then
     echo "Jumping migrations forward to the most recent."
     schematic migrations/ --fake
     echo "Creating the initial index"
-    python manage.py reindex --index=apps
+    python manage.py reindex
 fi
 
 python manage.py runserver 0.0.0.0:2600
