@@ -1309,7 +1309,7 @@ class TestReviewMixin(object):
             assert getattr(thread, 'read_permission_%s' % key)
 
     def _check_admin_email(self, msg, subject):
-        eq_(msg.to, [settings.MKT_SENIOR_EDITORS_EMAIL])
+        eq_(msg.to, [settings.REVIEW_ESCALATION_EMAIL])
         eq_(msg.subject, '%s: %s' % (subject, self.app.name))
         eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
         eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)

@@ -284,12 +284,12 @@ USE_I18N = True
 
 ###########################################
 # Team Emails
-ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+abuse@mozilla.org>'
-FLIGTAR = 'marketplace-staff+random-goings-on@mozilla.org'
+ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'
+APP_DELETION_EMAIL = 'marketplace-staff+deletions@mozilla.org'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
 MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
-MKT_SENIOR_EDITORS_EMAIL = 'marketplace-staff+escalations@mozilla.org'
+REVIEW_ESCALATION_EMAIL = 'marketplace-staff+escalations@mozilla.org'
 MKT_SUPPORT_EMAIL = 'app-reviewers@mozilla.org'
 MKT_REVIEWS_EMAIL = 'app-reviews@mozilla.org'
 NOBODY_EMAIL_ADDRESS = 'nobody@mozilla.org'

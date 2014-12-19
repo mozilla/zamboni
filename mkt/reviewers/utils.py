@@ -355,7 +355,7 @@ class ReviewApp(ReviewBase):
             data = self.get_context_data()
             send_reviewer_mail(u'Escalated Review Requested: %s' % data['name'],
                                'reviewers/emails/super_review.txt', data,
-                               [settings.MKT_SENIOR_EDITORS_EMAIL],
+                               [settings.REVIEW_ESCALATION_EMAIL],
                                attachments=self.get_attachments())
 
     def process_comment(self):
