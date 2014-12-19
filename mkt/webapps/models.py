@@ -536,7 +536,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         log.debug('Deleting app: %s' % self.id)
 
-        to = [settings.FLIGTAR]
+        to = [settings.APP_DELETION_EMAIL]
         user = amo.get_user()
 
         context = {

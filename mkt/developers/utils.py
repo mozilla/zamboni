@@ -146,7 +146,7 @@ def escalate_app(app, version, user, msg, email_template, log_type):
                                                     args=[app.app_slug])),
                    'SITE_URL': settings.SITE_URL}
         send_reviewer_mail(u'%s: %s' % (msg, app.name), email_template, context,
-                           [settings.MKT_SENIOR_EDITORS_EMAIL])
+                           [settings.REVIEW_ESCALATION_EMAIL])
 
 
 def handle_vip(addon, version, user):
