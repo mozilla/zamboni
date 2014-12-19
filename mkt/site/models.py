@@ -1,6 +1,7 @@
 import contextlib
 import threading
 
+from django.conf import settings
 from django.db import models, transaction
 from django.utils import encoding, translation
 
@@ -10,7 +11,7 @@ import queryset_transform
 
 
 _locals = threading.local()
-_locals.skip_cache = False
+_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
 
 @contextlib.contextmanager
@@ -27,7 +28,7 @@ def use_master():
 @contextlib.contextmanager
 def skip_cache():
     """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', False)
+    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
     _locals.skip_cache = True
     try:
         yield

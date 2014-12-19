@@ -364,10 +364,10 @@ class TranslationTestCase(TestCase):
 
         obj.description.delete()
 
-        obj = TranslatedModel.objects.no_cache().get(id=1)
+        obj = TranslatedModel.objects.get(id=1)
         eq_(obj.description_id, None)
         eq_(obj.description, None)
-        eq_(Translation.objects.no_cache().filter(id=trans_id).exists(), False)
+        eq_(Translation.objects.filter(id=trans_id).exists(), False)
 
     @patch.object(TranslatedModel, 'get_fallback', create=True)
     def test_delete_keep_other_translations(self, get_fallback):
@@ -383,8 +383,8 @@ class TranslationTestCase(TestCase):
 
         obj.name.delete()
 
-        obj = TranslatedModel.objects.no_cache().get(id=1)
-        eq_(Translation.objects.no_cache().filter(id=orig_name_id).count(), 1)
+        obj = TranslatedModel.objects.get(id=1)
+        eq_(Translation.objects.filter(id=orig_name_id).count(), 1)
 
         # We shouldn't have set name_id to None.
         eq_(obj.name_id, orig_name_id)
@@ -423,7 +423,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         # Make sure we are in a clean environnement.
         reset_queries()
         TranslatedModel.objects.get(pk=1)
-        eq_(len(connections['default'].queries), 3)
+        eq_(len(connections['default'].queries), 2)
 
     @override_settings(DEBUG=True)
     def test_translations_reading_from_multiple_db(self):
@@ -435,7 +435,7 @@ class TranslationMultiDbTests(TransactionTestCase):
                 TranslatedModel.objects.get(pk=1)
                 eq_(len(connections['default'].queries), 0)
                 eq_(len(connections['slave-1'].queries), 0)
-                eq_(len(connections['slave-2'].queries), 3)
+                eq_(len(connections['slave-2'].queries), 2)
 
     @override_settings(DEBUG=True)
     def test_translations_reading_from_multiple_db_using(self):
@@ -447,7 +447,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             with patch('multidb.get_slave', lambda: 'slave-2'):
                 TranslatedModel.objects.using('slave-1').get(pk=1)
                 eq_(len(connections['default'].queries), 0)
-                eq_(len(connections['slave-1'].queries), 3)
+                eq_(len(connections['slave-1'].queries), 2)
                 eq_(len(connections['slave-2'].queries), 0)
 
     @override_settings(DEBUG=True)
@@ -459,7 +459,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             with nested(patch('multidb.get_slave', lambda: 'slave-2'),
                         multidb.pinning.use_master):
                 TranslatedModel.objects.get(pk=1)
-                eq_(len(connections['default'].queries), 3)
+                eq_(len(connections['default'].queries), 2)
                 eq_(len(connections['slave-1'].queries), 0)
                 eq_(len(connections['slave-2'].queries), 0)
 
