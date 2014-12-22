@@ -110,8 +110,6 @@ def commonplace(request, repo, **kwargs):
             # enabling fireplace to avoid the consumer_info API call that it
             # does normally to fetch the region.
             detect_region_with_geoip = True
-    elif repo == 'discoplace':
-        include_splash = True
 
     # We never want to include persona shim if firefox accounts is enabled:
     # native fxa already provides navigator.id, and fallback fxa doesn't
