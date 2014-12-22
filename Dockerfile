@@ -14,7 +14,8 @@ RUN yum install -y redis \
     libjpeg-devel \
     gcc-c++ \
     npm \
-    wget
+    wget \
+    totem
 
 RUN mkdir -p /pip/{cache,build}
 
