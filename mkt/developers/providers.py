@@ -346,8 +346,7 @@ class Reference(Provider):
     @account_check
     def terms_retrieve(self, account):
         res = self.client.terms(account.account_id).get()
-        if 'text' in res:
-            res['text'] = bleach.clean(res['text'])
+        res['text'] = bleach.clean(res['reference']['text'])
         log.info('Retreiving Reference terms: %s' % account.pk)
         return res
 
