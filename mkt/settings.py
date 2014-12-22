@@ -990,6 +990,10 @@ PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
 # https://developer.mozilla.org/en-US/docs/Web/Apps/Publishing/In-app_payments
 PRODUCT_ICON_EXPIRY = 1
 
+# QA uses the following app for testing in production. We need to ensure it
+# doesn't show up as the most popular app. (See bug 1112731)
+QA_APP_ID = 455996
+
 # Read-only mode setup.
 READ_ONLY = False
 

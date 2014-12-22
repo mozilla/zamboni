@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
+from django.test.utils import override_settings
+
 import json
 from nose.tools import eq_, ok_
 
 import amo.tests
-
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.translations.utils import to_language
+from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
+from mkt.webapps.models import AddonDeviceType, ContentRating, Installed, Webapp
 
 
 class TestWebappIndexer(amo.tests.TestCase):
@@ -18,6 +20,7 @@ class TestWebappIndexer(amo.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=31337)
 
     def test_mapping_type_name(self):
         eq_(WebappIndexer.get_mapping_type_name(), 'webapp')
@@ -193,6 +196,34 @@ class TestWebappIndexer(amo.tests.TestCase):
             'installs_allowed_from': ['http://a.com', 'http://b.com']}))
         obj, doc = self._get_doc()
         eq_(doc['installs_allowed_from'], ['http://a.com', 'http://b.com'])
+
+    def test_installs_to_popularity(self):
+        user2 = UserProfile.objects.create()
+
+        # No installs.
+        obj, doc = self._get_doc()
+        # Boost is multiplied by 4 if it's public.
+        eq_(doc['boost'], 1 * 4)
+        eq_(doc['popularity'], 0)
+
+        # One install.
+        Installed.objects.create(addon=self.app, user=self.user)
+        obj, doc = self._get_doc()
+        eq_(doc['boost'], 1 * 4)
+        eq_(doc['popularity'], 1)
+
+        # Two installs.
+        Installed.objects.create(addon=self.app, user=user2)
+        obj, doc = self._get_doc()
+        eq_(doc['boost'], 2 * 4)
+        eq_(doc['popularity'], 2)
+
+    @override_settings(QA_APP_ID=337141)
+    def test_popularity_qa_app(self):
+        Installed.objects.create(addon=self.app, user=self.user)
+        obj, doc = self._get_doc()
+        eq_(doc['boost'], 1 * 4)
+        eq_(doc['popularity'], 0)
 
 
 class TestAppFilter(amo.tests.ESTestCase):
