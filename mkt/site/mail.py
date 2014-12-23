@@ -101,7 +101,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 else:
                     fake_recipient_list.append(email)
         else:
-            # No whitelist in the config so all emails are fake.
+            # No filtered list in the config so all emails are fake.
             fake_recipient_list = recipient_list
             real_recipient_list = []
 
@@ -185,8 +185,8 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
 
 
 def _real_email_regexes():
-    real_email_regexes = get_config('real_email_regex_whitelist')
-    # We have a whitelist set in the config so use it.
+    real_email_regexes = get_config('real_email_allowed_regex')
+    # We have a list set in the config so use it.
     if real_email_regexes:
         regexes = []
         for regex in real_email_regexes.split(','):

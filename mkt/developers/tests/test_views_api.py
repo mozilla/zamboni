@@ -92,7 +92,7 @@ class TestContentRating(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(len(json.loads(res.content)['objects']), 1)
 
-    def test_view_whitelist(self):
+    def test_view_allowed(self):
         """Only -list, no create/update/delete."""
         with self.assertRaises(NoReverseMatch):
             reverse('content-ratings-create', args=[self.app.id])

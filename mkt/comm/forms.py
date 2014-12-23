@@ -22,7 +22,7 @@ class CreateCommNoteForm(happyforms.Form):
         error_messages={'required': _lazy('Note body is empty.')})
     note_type = forms.TypedChoiceField(
         empty_value=comm.NO_ACTION,
-        coerce=int, choices=[(x, x) for x in comm.API_NOTE_TYPE_WHITELIST],
+        coerce=int, choices=[(x, x) for x in comm.API_NOTE_TYPE_ALLOWED],
         error_messages={'invalid_choice': _lazy(u'Invalid note type.')})
 
 

@@ -83,7 +83,7 @@ mock_ out those calls instead.
 
 To enforce this we run Jenkins with the `nose-blockage`_ plugin, that
 will raise errors if you have an HTTP calls in your tests apart from calls to
-the whitelisted domains of `127.0.0.1` and `localhost`.
+the domains `127.0.0.1` and `localhost`.
 
 Why Tests Fail
 --------------

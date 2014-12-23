@@ -65,7 +65,7 @@ class TestFetchProductIcon(TestCase):
         prod = ProductIcon.objects.get()
         for fn in (prod.storage_path, prod.url):
             assert fn().endswith('.jpg'), (
-                'The CDN only whitelists .jpg not .jpeg. Got: %s' % fn())
+                'The CDN only allows .jpg not .jpeg. Got: %s' % fn())
 
     @fudge.patch('mkt.webpay.tasks.requests')
     def test_ignore_non_image(self, fake_req):

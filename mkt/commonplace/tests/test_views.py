@@ -136,8 +136,8 @@ class TestIFrames(CommonplaceTestMixin):
     @override_settings(DOMAIN='marketplace.firefox.com')
     def test_basic(self):
         res = self._test_url(self.iframe_install_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
              'https://marketplace.firefox.com',
@@ -146,8 +146,8 @@ class TestIFrames(CommonplaceTestMixin):
              'https://call.firefox.com'])
 
         res = self._test_url(self.potatolytics_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
              'https://marketplace.firefox.com',
@@ -156,8 +156,8 @@ class TestIFrames(CommonplaceTestMixin):
     @override_settings(DOMAIN='marketplace.allizom.org')
     def test_basic_stage(self):
         res = self._test_url(self.iframe_install_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
              'https://marketplace.allizom.org',
@@ -166,8 +166,8 @@ class TestIFrames(CommonplaceTestMixin):
              'https://call.firefox.com'])
 
         res = self._test_url(self.potatolytics_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
              'https://marketplace.allizom.org',
@@ -176,8 +176,8 @@ class TestIFrames(CommonplaceTestMixin):
     @override_settings(DOMAIN='marketplace-dev.allizom.org')
     def test_basic_dev(self):
         res = self._test_url(self.iframe_install_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
              'https://marketplace-dev.allizom.org',
@@ -193,8 +193,8 @@ class TestIFrames(CommonplaceTestMixin):
              'http://loop-webapp.dev.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
              'https://marketplace-dev.allizom.org',
@@ -209,8 +209,8 @@ class TestIFrames(CommonplaceTestMixin):
     @override_settings(DOMAIN='example.com', DEBUG=True)
     def test_basic_debug_true(self):
         res = self._test_url(self.iframe_install_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.example.com',
              'app://example.com',
              'https://example.com',
@@ -226,8 +226,8 @@ class TestIFrames(CommonplaceTestMixin):
              'http://loop-webapp.dev.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
-        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
-        eq_(whitelisted_origins,
+        allowed_origins = json.loads(res.context['allowed_origins'])
+        eq_(allowed_origins,
             ['app://packaged.example.com',
              'app://example.com',
              'https://example.com',

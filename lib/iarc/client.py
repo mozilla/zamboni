@@ -18,7 +18,7 @@ wsdl = {
     'services': 'file://' + os.path.join(root, 'iarc_services.wsdl'),
 }
 
-# Add in the whitelist of supported methods here.
+# Add a list of supported methods here.
 services = ['Get_App_Info', 'Set_Storefront_Data', 'Get_Rating_Changes']
 
 
