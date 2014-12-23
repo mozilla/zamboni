@@ -948,6 +948,9 @@ NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
 NFS_LAG_DELAY = 3
 
 NOSE_ARGS = [
+    # Stops nose always adding lib into the path, which then breaks crypto
+    # imports.
+    '-P',
     '--with-fixture-bundling',
 ]
 
