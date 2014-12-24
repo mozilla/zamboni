@@ -1118,6 +1118,11 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         self.login_as_senior_reviewer()
         self.url = reverse('reviewers.apps.queue_escalated')
 
+    def tearDown(self):
+        if self.uses_es():
+            unindex_webapps([app.id for app in self.apps])
+        super(TestEscalationQueue, self).tearDown()
+
     def review_url(self, app):
         return reverse('reviewers.apps.review', args=[app.app_slug])
 
@@ -1125,6 +1130,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         # Blocklisted apps should only be in the update queue, so this flag
         # check is here rather than in FlagsMixin.
         self.apps[0].update(status=amo.STATUS_BLOCKED)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -1209,6 +1216,14 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         app = self.apps[0]
         app.delete()
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
+
+
+class TestEscalationQueueES(amo.tests.ESTestCase, TestEscalationQueue):
+
+    def setUp(self):
+        super(TestEscalationQueueES, self).setUp()
+        self.create_switch('reviewer-tools-elasticsearch')
+        self.reindex(Webapp, 'webapp')
 
 
 class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,

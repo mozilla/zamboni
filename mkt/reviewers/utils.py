@@ -720,6 +720,13 @@ class ReviewersQueuesHelper(object):
         return self.get_escalated_queue().values_list('addon', flat=True)
 
     def get_escalated_queue(self):
+        if self.use_es:
+            must = [
+                es_filter.Term(is_disabled=False),
+                es_filter.Term(is_escalated=True),
+            ]
+            return WebappIndexer.search().filter('bool', must=must)
+
         return EscalationQueue.objects.no_cache().filter(
             addon__disabled_by_user=False)
 
