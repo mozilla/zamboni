@@ -65,6 +65,13 @@ class Test404(mkt.site.tests.TestCase):
         res = self.client.get('/api/this-should-never-work/')
         eq_(res.status_code, 404)
         eq_(res.content, '')
+        self.assertCORS(res, 'get')
+
+    def test_404_api_debug(self):
+        with self.settings(DEBUG=True):
+            res = self.client.options('/api/this-should-never-work/')
+            eq_(res.status_code, 404)
+            self.assertCORS(res)
 
 
 class TestManifest(mkt.site.tests.TestCase):

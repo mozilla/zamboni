@@ -262,17 +262,22 @@ class CORSMiddleware(object):
             getattr(request, 'CORS_HEADERS',
                     ('X-HTTP-Method-Override', 'Content-Type')))
 
-        if fireplacey or getattr(request, 'CORS', None):
+        error_allowed_methods = []
+        if response.status_code >= 400 and request.API:
+            error_allowed_methods = [request.method]
+
+        cors_allowed_methods = getattr(request, 'CORS', error_allowed_methods)
+        if fireplacey or cors_allowed_methods:
             # If this is a request from our hosted frontend, allow cookies.
             if fireplacey:
                 response['Access-Control-Allow-Origin'] = fireplace_url
                 response['Access-Control-Allow-Credentials'] = 'true'
             else:
                 response['Access-Control-Allow-Origin'] = '*'
-            options = [h.upper() for h in request.CORS]
-            if 'OPTIONS' not in options:
-                options.append('OPTIONS')
-            response['Access-Control-Allow-Methods'] = ', '.join(options)
+            methods = [h.upper() for h in cors_allowed_methods]
+            if 'OPTIONS' not in methods:
+                methods.append('OPTIONS')
+            response['Access-Control-Allow-Methods'] = ', '.join(methods)
 
         # The headers that the response will be able to access.
         response['Access-Control-Expose-Headers'] = (
