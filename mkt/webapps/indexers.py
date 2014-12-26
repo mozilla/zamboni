@@ -3,7 +3,7 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.models import Min
+from django.db.models import Count, Min
 from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
@@ -239,15 +239,17 @@ class WebappIndexer(BaseIndexer):
         except IndexError:
             status = None
 
-        installed_ids = list(Installed.objects.filter(addon=obj)
-                             .values_list('id', flat=True))
+        install_count = 0
+        if obj.pk != settings.QA_APP_ID:
+            install_count = (Installed.objects.filter(addon=obj)
+                             .aggregate(Count('id')).get('id__count', 0))
 
         attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
                  'last_updated', 'modified', 'premium_type', 'status',
                  'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['boost'] = len(installed_ids) or 1
+        d['boost'] = install_count or 1
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -302,7 +304,7 @@ class WebappIndexer(BaseIndexer):
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
-        d['popularity'] = len(installed_ids)
+        d['popularity'] = install_count
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
                          for p in obj.previews.all()]

@@ -182,8 +182,9 @@ class TestReference(Patcher, TestCase):
     def test_terms_bleached(self):
         account = self.make_account()
         account_mock = Mock()
-        account_mock.get.return_value = {'text':
-                                         '<script>foo</script><a>bar</a>'}
+        account_mock.get.return_value = {
+            'reference': {'text': '<script>foo</script><a>bar</a>'}
+        }
         self.ref_patcher.terms.return_value = account_mock
         eq_(self.ref.terms_retrieve(account)['text'],
             u'&lt;script&gt;foo&lt;/script&gt;<a>bar</a>')

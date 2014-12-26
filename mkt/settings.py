@@ -478,8 +478,8 @@ ALLOW_SELF_REVIEWS = True
 AMO_LANGUAGES = (
     'af', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu',
     'fr', 'ga-IE', 'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pa',
-    'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'ta', 'tr', 'xh',
-    'zh-CN', 'zh-TW', 'zu',
+    'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'sv-SE', 'ta',
+    'tr', 'xh', 'zh-CN', 'zh-TW', 'zu',
 )
 
 
@@ -948,6 +948,9 @@ NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
 NFS_LAG_DELAY = 3
 
 NOSE_ARGS = [
+    # Stops nose always adding lib into the path, which then breaks crypto
+    # imports.
+    '-P',
     '--with-fixture-bundling',
 ]
 
@@ -989,6 +992,10 @@ PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
 # If you change this value, update the docs:
 # https://developer.mozilla.org/en-US/docs/Web/Apps/Publishing/In-app_payments
 PRODUCT_ICON_EXPIRY = 1
+
+# QA uses the following app for testing in production. We need to ensure it
+# doesn't show up as the most popular app. (See bug 1112731)
+QA_APP_ID = 455996
 
 # Read-only mode setup.
 READ_ONLY = False
