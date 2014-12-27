@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-11-21 11:43+0000\n"
+"PO-Revision-Date: 2014-12-27 15:24+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1416570188.0\n"
+"X-POOTLE-MTIME: 1419693867.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1732,7 +1732,7 @@ msgstr "Análise de aplicativo empacotado"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Análise do aplicativo privilegiado"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1744,7 +1744,7 @@ msgstr "Análise atualizada de aplicativo empacotado"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Analise atualizada do aplicativo privilegiado"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1752,7 +1752,7 @@ msgstr "Revisão Moderada do Aplicativo"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Análise tarako do aplicativo"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1864,7 +1864,7 @@ msgstr "Banido"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Comentário privado do revisor"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1904,7 +1904,7 @@ msgstr "Nova revisão devido a alteração da URL do manifesto"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Reanalise devido a atualização do tipo premium"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1936,15 +1936,15 @@ msgstr "Passou na revisão adicional"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr "Falhou na revisão adicional"
+msgstr "Notas de versão para o revisor"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Notas da verão para o revisor"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Comentário público do revisor"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1992,7 +1992,7 @@ msgstr "Arquivo"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "O aplicativo necessita da API `ArchiveReader`"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2041,6 +2041,7 @@ msgstr "Em espera"
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr ""
+"O aplicativo necessita que a plataforma suporte a API `addIdleObserver`."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2300,27 +2301,29 @@ msgstr "O aplicativo necessita a capacidade de obter informações sobre várias
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "ID móvel"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "O aplicativo requer acesso a API  `navigator.getMobileIdAssertion`."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Pré-compilação Asm.js"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
+"O aplicativo necessita que o dispositivo suporte a pré-compilação de código "
+"asm.js."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Dispositivo com 512 MB de RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "O aplicativo necessita que o dispositivo tenha pelo menos 512MB de RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2471,7 +2474,7 @@ msgstr "Resto do Mundo"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rússia"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2617,7 +2620,7 @@ msgstr "Antes de mudar sua região padrão, você precisa ter um nome e uma desc
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Você deve especificar um site ou um endereço de e-mail ou ambos."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4181,11 +4184,13 @@ msgstr "Se o seu aplicativo usa Flash, ele será ocultado no Marketplace em disp
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Funciona offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Se o seu aplicativo funciona sem uma conexão à Internet então iremos dar a "
+"indicação que o aplicativo \"Funciona Offline\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -5133,7 +5138,9 @@ msgstr "Todas as ferramentas, documentos e referências que precisa para desenvo
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Saiba como distribuir seus aplicativos em um mercado aberto que coloca os usuários e desenvolvedores em primeiro lugar"
+msgstr ""
+"Saiba como distribuir seus aplicativos em uma loja aberta que coloca os "
+"usuários e desenvolvedores em primeiro lugar"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -5511,7 +5518,7 @@ msgstr "Erro ao transferir a imagem de %(url)s"
 
 #: mkt/feed/fields.py:201
 msgid "Image from %(url)s could not be parsed"
-msgstr "Imagem de %(url)s não pôde ser analisada"
+msgstr "Não foi possível processar a imagem de %(url)s"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6729,7 +6736,7 @@ msgstr "por"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Fila de revisão {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -6741,7 +6748,7 @@ msgstr "Na fila Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "Na fila da China"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6857,7 +6864,7 @@ msgstr "Downloads semanais"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Disponibilidade regional"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6882,7 +6889,7 @@ msgstr "Filtrar"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Origem do aplicativo"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7110,11 +7117,11 @@ msgstr "Tipo do aplicativo"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Instalações permitidas a partir de"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Por Toda Parte"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7208,7 +7215,7 @@ msgstr "Página não encontrada"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr "Sentimos muito, mas não pudemos encontrar o que você está procurando."
+msgstr "Sentimos muito, mas não conseguimos encontrar o que está procurando."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
@@ -7320,7 +7327,7 @@ msgstr "Se o seu aplicativo tiver outra página inicial, insira seu endereço aq
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Site:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7328,7 +7335,7 @@ msgstr "Se o seu aplicativo tiver uma página de suporte ou fórum, insira seu e
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7352,7 +7359,7 @@ msgstr "Depois do seu aplicativo ser aprovado, escolha uma opção de publicaç�
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Meu aplicativo funciona sem conexão com a Internet."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7377,7 +7384,7 @@ msgstr "Abrir a página de detalhes"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Informações sobre o suporte:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7698,7 +7705,7 @@ msgstr "Não existe usuário com esse endereço de e-mail ou o usuário não ace
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Falha na autenticação nativa FxA."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7793,7 +7800,7 @@ msgstr "Listado"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Você deve fornecer um e-mail ou uma URL de suporte."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7868,7 +7875,7 @@ msgstr "Identificar-me / Criar uma conta"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registro"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
