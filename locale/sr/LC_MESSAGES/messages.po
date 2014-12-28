@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-10-25 08:32+0000\n"
+"PO-Revision-Date: 2014-12-28 12:38+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1414225929.0\n"
+"X-POOTLE-MTIME: 1419770320.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1711,7 +1712,7 @@ msgstr "Рецензија паковане апликације"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Рецензија привилегованих апликација"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1723,7 +1724,7 @@ msgstr "Ажурирана рецензија упаковане апликац�
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Рецензија привилегованих апликација је ажурирана"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1731,7 +1732,7 @@ msgstr "Рецензија уређене апликације"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Рецензија Tarako апликација"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1843,7 +1844,7 @@ msgstr "Банован"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Приватан коментар рецезента"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1883,7 +1884,7 @@ msgstr "Поновни преглед због промене URL адресе �
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Рецензија за премиум надоградњу"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1919,11 +1920,11 @@ msgstr "Пао додатни преглед"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Забелешке верзије за рецезента"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Јавни коментар рецезента"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1971,7 +1972,7 @@ msgstr "Архива"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Апликација захтева `ArchiveReader` API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2019,7 +2020,7 @@ msgstr "Неактиван"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Апликација захтева платформу која подржава `addIdleObserver` API."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2279,27 +2280,29 @@ msgstr "Апликација захтева способност да добиј
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobile ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Апликација захтева приступ `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js прекомпилација"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
+"Ова апликација захтева уређај који подржава прекомпилацију од "
+"`addIdleObserver` API-ја."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Уређај са 512MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Апликација захтева уређај који има барем 512MB RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2450,7 +2453,7 @@ msgstr "Остатак света"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Русија"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2597,7 +2600,7 @@ msgstr "Пре замене подразумеваног локала морат
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Морате обезбедити веб сајт или е-пошту или обоје."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -4161,11 +4164,13 @@ msgstr "Ако Ваша апликација користи Flash, биће са
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Ради ван мреже"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Ако Ваша апликација ради без интернет конекције онда ћемо је ставити као "
+"\"Ради ван мреже.\""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -6688,7 +6693,7 @@ msgstr "У Tarako реду за чекање"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "У реду за Кину"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6804,7 +6809,7 @@ msgstr "Седмична преузимања"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Доступност по регионима"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6829,7 +6834,7 @@ msgstr "Филтрирај"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Порекло апликације"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7055,11 +7060,11 @@ msgstr "Тип апликације"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Инсталација је дозвољена са"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Било ког места"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7263,7 +7268,7 @@ msgstr "Ако апликација има још једну почетну ст
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Веб сајта:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7271,7 +7276,7 @@ msgstr "Ако апликација има подршку сајта или фо
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "Е-поште:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7297,7 +7302,7 @@ msgstr "Једном када се апликација одобри, изабе
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Моја апликација ради без интернет конекције."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7322,7 +7327,7 @@ msgstr "Отвори страницу са детаљима"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Информације подршке:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7645,7 +7650,7 @@ msgstr "Корисник са овом адресом е-поште не пос�
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Аутентификација нативног FxA је неуспешна."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7744,7 +7749,7 @@ msgstr "У листи"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Морате обезбедити е-пошту подршке или URL."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7819,7 +7824,7 @@ msgstr "Пријави се / Региструј се"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Региструј се"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
