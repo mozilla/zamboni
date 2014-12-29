@@ -928,7 +928,7 @@ MINIFY_BUNDLES = {
 MINIFY_MOZMARKET = True
 
 # Monolith settings.
-MONOLITH_SERVER = None
+MONOLITH_SERVER = os.environ.get('MONOLITH_URL', 'localhost:9200')
 MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
