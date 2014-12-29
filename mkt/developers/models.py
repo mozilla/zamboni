@@ -7,6 +7,7 @@ import uuid
 from copy import copy
 from datetime import datetime
 
+from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -402,7 +403,7 @@ class ActivityLog(ModelBase):
                 objs.append(pk)
             else:
                 (app_label, model_name) = model_name.split('.')
-                model = models.loading.get_model(app_label, model_name)
+                model = apps.get_model(app_label, model_name)
                 # Cope with soft deleted models.
                 if hasattr(model, 'with_deleted'):
                     objs.extend(model.with_deleted.filter(pk=pk))
