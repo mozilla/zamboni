@@ -937,11 +937,6 @@ class FeedElementGetView(BaseFeedESView):
             'request': request
         }).data
 
-        # Limit if necessary.
-        limit = request.GET.get('limit')
-        if limit and limit.isdigit() and 'apps' in data:
-            data['apps'] = data['apps'][:int(limit)]
-
         return response.Response(data, status=status.HTTP_200_OK)
 
 
