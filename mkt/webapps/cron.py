@@ -10,7 +10,7 @@ from django.db.models import Q
 
 import commonware.log
 import cronjobs
-from celery import chord
+from celery import chain, chord
 
 import amo
 from amo.utils import chunked, walkfiles
@@ -135,15 +135,12 @@ def update_app_trending():
 
     """
     chunk_size = 50
-    seconds_between = 15
 
     all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
                    .values_list('id', flat=True))
 
-    countdown = 0
-    for ids in chunked(all_ids, chunk_size):
-        update_trending.delay(ids, countdown=countdown)
-        countdown += seconds_between
+    tasks = [update_trending.si(ids) for ids in chunked(all_ids, chunk_size)]
+    chain(*tasks).apply_async()
 
 
 @cronjobs.register
