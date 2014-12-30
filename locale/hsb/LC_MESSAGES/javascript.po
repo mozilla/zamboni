@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-12-30 15:57+0000\n"
+"PO-Revision-Date: 2014-12-30 20:41+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419955073.0\n"
+"X-POOTLE-MTIME: 1419972085.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -104,47 +104,52 @@ msgstr "Njewočakowany zmylk při přepruwowanju."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Přepruwowanje {0} dokónčene"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjom wobstało."
 msgstr[1] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjomaj "
+"wobstało."
 msgstr[2] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
 msgstr[3] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Waše nałoženje je přepruwowanje bjez zmylkow abo warnowanjow wobstało."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Manifest njeda so na podatym městnje namakać."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Nałoženski host njeda so docpěć."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Nałoženski manifest njeda so parsować."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Nałoženski manifest je njepłaćiwy."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Nałoženje je hižo instalowane."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Nutřkowny serwerowy zmylk."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Nutřkowny serwerowy zmylk při instalowanju nałoženja."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -204,41 +209,43 @@ msgstr "Při nahrawanju wašeje dataje je zmylk wustupił."
 
 #: media/js/devreg/devhub.js:952
 msgid "Learn more"
-msgstr ""
+msgstr "Dalše informacije"
 
 #: media/js/devreg/devhub.js:956
 msgid "Example"
-msgstr ""
+msgstr "Přikład"
 
 #: media/js/devreg/devhub.js:1225
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Změny wobrazow so předźěłuja"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Tute widejo trjeba wobhladowak z podpěru za Open Video "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "abo <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Zmóžnjeny"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Znjemóžnjeny"
 
 #: media/js/devreg/init.js:35
 msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
+"Tuta funkcija je so nachwilu znjemóžnjena, mjeztym zo wothladowanske dźěła "
+"na websydle přewjedźemy. Prošu spytajće tróšku pozdźišo hišće raz."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -282,39 +289,39 @@ msgstr "Certifikowany"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Priwilegowany"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Njepriwilegowany"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Žana přičina podata"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "W porjadku"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Španiske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Irske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belgiske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Španiske/Francoske/Italske/Nižozemske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Nižozemske/US-bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
@@ -364,13 +371,25 @@ msgid_plural ""
 "following app. Applications without a payment account will no longer be "
 "available for sale."
 msgstr[0] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
 msgstr[1] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
 msgstr[2] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceju "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
 msgstr[3] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceho "
+"nałoženja. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Płaćenske konta {appName}:"
 
 #: media/js/devreg/payments-manage.js:98
 #: media/js/devreg/payments-manage.js:161
@@ -380,32 +399,32 @@ msgstr ""
 #: media/js/devreg/reviewers/buttons.js:85
 #: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Zmylk"
 
 #: media/js/devreg/payments-manage.js:99
 #: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Při kontaktowanju płaćenskeho serwera je problem wustupił."
 
 #: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
-msgstr ""
+msgstr "Awtentifikaciski zmylk"
 
 #: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Tuchwilu nimaće płaćenske konta."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Temy za <b>{0}</b> pytać"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Nałoženja za <b>{0}</b> pytać"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Přidatki za <b>{0}</b> pytać"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
@@ -440,181 +459,183 @@ msgstr "Warnowanje"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testy kompatibelnosće"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr ""
+msgstr "Nałoženje je při přepruwowanju přepadnyło."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr ""
+msgstr "Nałoženje je přepruwowanje wobstało."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} zmylk"
+msgstr[1] "{0} zmylkaj"
+msgstr[2] "{0} zmylki"
+msgstr[3] "{0} zmylkow"
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} warnowanje"
+msgstr[1] "{0} warnowani"
+msgstr[2] "{0} warnowanja"
+msgstr[3] "{0} warnowanjow"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Přepruwowanje njeda so dokónčić abo je so ze zmylkami dokónčiło"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr ""
+msgstr "Nutřkowny serwerowy zmylk"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Kupowanje"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Kupjeny"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Startować"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} je sej tutu stronu jako prěni wobhladał."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Kwitowanka je so přez nałoženje přepruwowała."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Kwitowanka njeje so přez nałoženje přepruwowała."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} je sej tutón přidatk jako prěni wobhladał."
 
 #: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Začituje so&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
-msgstr ""
+msgstr "Wersijowe pokazy"
 
 #: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Pokazy za přepruwowarjow"
 
 #: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
-msgstr ""
+msgstr "Žane wersijowe pokazy namakane"
 
 #: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
-msgstr ""
+msgstr "Wubjerće najprjedy nałoženje"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
-msgstr ""
+msgstr "Zmylk při začitowanju přełožka"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "wjace..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "mjenje..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Pohódnoćenje wobchować / Markěrowanja wotstronić"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Pohódnoćenje zhašeć"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Mjeztym přeskočić"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Płaćenje je so nimokuliło. Spytajće pozdźišo hišće raz."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr ""
+msgstr "Zapakowane nałoženje"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr ""
+msgstr "Priwilegowane nałoženje"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
-msgstr ""
+msgstr "Dalše informacije požadane"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Wobsahuje komentar redaktora"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
-msgstr ""
+msgstr "Premiumowe nałoženje"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr ""
+msgstr "K přichodnemu wyšemu městnu dale daty"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Darmo"
 
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr ""
+msgstr "Wšojedne"
 
 #: media/js/devreg/reviewers/reviewers.js:246
 #: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Nałoženje schwalene: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249
 #: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Nałoženje wotpokazane: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Zmylk při schwalenju nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Zmylk při wotpokazowanju nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Zmylk při wobstaću nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Zmylk při přepadnjenju nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid ""
 "Sorry! We had an error fetching the review history. Please try logging in "
 "again.<p>"
 msgstr ""
+"Wodajće! Mějachmy zmylk při wotwołowanju historije přepruwowanjow. Prošu "
+"spytajće so hišće raz přizjewjeć.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Wot {0} {1}"
