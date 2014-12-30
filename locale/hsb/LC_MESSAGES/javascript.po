@@ -3,97 +3,104 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-12-30 15:57+0000\n"
+"Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1419955073.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Datajowy typ, kotryž sće nahrał, so njespóznawa."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Sće nahraće přetorhnył."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobrazy dyrbja pak PNG abo JPG być."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Wideja dyrbja w formaće WebM być."
 
 #: media/js/common/upload-image.js:129
 #: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Při kontaktowanju serwera je problem wustupił."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Wubjerće dataju..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Waše zapakowane nałoženje měło so na <code>.zip</code> kónčić."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% dokónčene"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} z {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Přetorhnyć"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} so nahrawa"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Zmylk z {0}"
 
 #: media/js/common/upload-packaged-app.js:169
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waše nałoženje je při přepruwowanju z {0} zmylkom přepadnyło."
+msgstr[1] "Waše nałoženje je při přepruwowanju z {0} zmylkomaj přepadnyło."
+msgstr[2] "Waše nałoženje je při přepruwowanju z {0} zmylkami přepadnyło."
+msgstr[3] "Waše nałoženje je při přepruwowanju z {0} zmylkami přepadnyło."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;a {0} dalši"
+msgstr[1] "&hellip;a {0} dalšej"
+msgstr[2] "&hellip;a {0} dalše"
+msgstr[3] "&hellip;a {0} dalšich"
 
 #: media/js/common/upload-packaged-app.js:199
 #: media/js/common/upload-packaged-app.js:325
 #: media/js/devreg/devhub.js:175
 msgid "See full validation report"
-msgstr ""
+msgstr "Dospołnu přepruwowansku rozprawu čitać"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} so přepruwuje"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Prózdna wotmołwa je so wot serwera dóstała; status: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Njewočakowany zmylk při přepruwowanju."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
@@ -104,6 +111,8 @@ msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -139,43 +148,59 @@ msgstr ""
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Instalacija je so nimokuliła. Prošu spytajće pozdźišo hišće raz."
 
 #: media/js/devreg/devhub.js:218
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkom a {1} zdźělenku "
+"přepadnyło."
 msgstr[1] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkomaj a {1} zdźělenkomaj "
+"přepadnyło."
+msgstr[2] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami "
+"přepadnyło."
+msgstr[3] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami "
+"přepadnyło."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenku wobstało."
 msgstr[1] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkomaj wobstało."
+msgstr[2] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
+msgstr[3] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
 
 #: media/js/devreg/devhub.js:237
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Waše nałoženje je přepruwowanje bjeze zmylkow abo zdźělenkow wobstało."
 
 #: media/js/devreg/devhub.js:452
 msgid "Changes Saved"
-msgstr ""
+msgstr "Změny su so składowali"
 
 #: media/js/devreg/devhub.js:468
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Zapodajće e-mejlowu adresu noweho teamoweho čłona"
 
 #: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest je so zaktualizował"
 
 #: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Manifest njeda so aktualizować. Spytajće pozdźišo hišće raz."
 
 #: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Při nahrawanju wašeje dataje je zmylk wustupił."
 
 #: media/js/devreg/devhub.js:952
 msgid "Learn more"
@@ -217,41 +242,43 @@ msgstr ""
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Tutón přełožk wotstronić"
 
 #: media/js/devreg/login.js:126
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"Přizjewjenje z Persona je so nimokuliło. Snano nimaće konto pod tutej "
+"e-mejlowej adresu?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Přizjewjenje z Persona je so nimokuliło. Serwerowy zmylk je wustupił."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status je so wuspěšnje do \"{0}\" změnił"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Status njeda so do \"{0}\" změnić"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
-msgstr ""
+msgstr "Wšě wuslědki pokazać"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Přez {0} wuslědkow namakane, wy měł swoje pytanje precizować."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Požadane prawa:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Certifikowany"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
@@ -291,40 +318,40 @@ msgstr ""
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Kanadiske/Němske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Korejske/Indoneske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Grjekske/Indoneske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "Britiske/Irske, Nowoseelandske abo Awstralske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Awstriske/Šwicarske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Danske/Šwicarske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Šwicarske/Irakske bankowe čisło"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Irakske bankowe čisło"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Spóznaty: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
@@ -338,6 +365,8 @@ msgid_plural ""
 "available for sale."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -380,32 +409,34 @@ msgstr ""
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Něšto je so nimokuliło. Prošu spytajće hišće raz."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} znamješko wyše."
+msgstr[1] "{0} znamješce wyše."
+msgstr[2] "{0} znamješka wyše."
+msgstr[3] "{0} znamješkow wyše."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Wšě testy su so wuspěšnje přewjedli."
 
 #: media/js/devreg/validator.js:74
 #: media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr ""
+msgstr "Tute testy njejsu so přewjedli."
 
 #: media/js/devreg/validator.js:117
 #: media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr ""
+msgstr "Testy"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr ""
+msgstr "Warnowanje"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
@@ -424,12 +455,16 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
