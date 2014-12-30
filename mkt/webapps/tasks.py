@@ -956,13 +956,14 @@ def generate_hosted_manifest(app):
                (slugify(unicode(app.name)),))
 
 
-def generate_app_package(app, out, version='1.0'):
+def generate_app_package(app, out, permissions, version='1.0'):
     fr_prefix = u'(fran\xe7ais) '
     es_prefix = u'(espa\xf1ol) '
     manifest = {
-        'version': version,
+        'version': version.version,
         'name': unicode(app.name),
-        'description': 'This packaged app has been automatically generated',
+        'description': ('This packaged app has been automatically generated'
+                        ' (version %s)' % (version.version,)),
         'icons': {
             '16': '/icons/16.png',
             '32': '/icons/32.png',
@@ -986,12 +987,14 @@ def generate_app_package(app, out, version='1.0'):
                                ' generated'
             },
         },
+        'permissions': dict(((k, {"description": k})
+                             for k in permissions)),
         'default_locale': 'en',
         'orientation': 'landscape',
         'fullscreen': 'true'
     }
     with ZipFile(file=out, mode='w', compression=ZIP_DEFLATED) as outz:
-        for size in ('16', '32', '256'):
+        for size in ('32', 'med'):
             outz.writestr(
                 'icons/%s.png' % (size,),
                 open(os.path.join(
@@ -1005,13 +1008,15 @@ def generate_app_package(app, out, version='1.0'):
             '<h1>Test packaged app</h1>')
         outz.writestr("manifest.webapp", json.dumps(manifest))
     AppManifest.objects.create(
-        version=app.latest_version, manifest=json.dumps(manifest))
+        version=version, manifest=json.dumps(manifest))
 
 
-def generate_packaged_app(name, category):
-    from amo.tests import app_factory
+
+def generate_packaged_app(name, category, permissions=(), num_versions=1):
+    from amo.tests import app_factory, version_factory
     app = app_factory(categories=[category], name=name, complete=True,
-                      rated=True, is_packaged=True)
+                      rated=True, is_packaged=True,
+                      version_kw={'version': '1.0'})
     f = app.latest_version.all_files[0]
     f.update(filename=f.generate_filename())
     fp = os.path.join(app.latest_version.path_prefix, f.filename)
@@ -1020,15 +1025,24 @@ def generate_packaged_app(name, category):
     except OSError:
         pass
     with open(fp, 'w') as out:
-        generate_app_package(app, out)
+        generate_app_package(app, out, permissions=permissions,
+                             version=app.latest_version)
+        for i in range(1, num_versions):
+            v = version_factory(version="1." + str(i), addon=app)
+            generate_app_package(app, out, permissions, v)
     return app
 
 
-def generate_apps(num_hosted, num_packaged=0):
-    apps = generate_app_data(num_hosted + num_packaged)
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=1):
+    apps = generate_app_data(hosted + packaged + privileged)
     for i, (appname, cat_slug) in enumerate(apps):
-        if i < num_packaged:
-            app = generate_packaged_app(appname, cat_slug)
+        if i < privileged:
+            app = generate_packaged_app(appname, cat_slug,
+                                        num_versions=versions,
+                                        permissions=['camera', 'storage'])
+        elif i < (privileged + packaged):
+            app = generate_packaged_app(appname, cat_slug,
+                                        num_versions=versions)
         else:
             app = generate_hosted_app(appname, cat_slug)
         generate_icon(app)

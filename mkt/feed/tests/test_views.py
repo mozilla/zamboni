@@ -1881,13 +1881,13 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         data = json.loads(res.content) if res.content else {}
         return res, data
 
-    def _assert(self, obj, result, limit=1000):
+    def _assert(self, obj, result):
         eq_(obj.id, result['id'])
         if hasattr(obj, 'app_id'):
             eq_(obj.app_id, result['app']['id'])
         else:
             self.assertSetEqual(
-                obj.apps().values_list('id', flat=True)[:limit],
+                obj.apps().values_list('id', flat=True),
                 [app['id'] for app in result['apps']])
 
     def test_app(self):
@@ -1910,14 +1910,6 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self._assert(app, data)
         assert_fireplace_app(data['app'])
 
-        self._assert(app, data)
-
-    def test_app_limit(self):
-        app = self.feed_app_factory()
-        url = reverse('api-v2:feed.feed_element_get',
-                      args=['apps', app.slug])
-        # Limit should be ignored, we are not dealing with a list of apps.
-        res, data = self._get(url, limit=0)
         self._assert(app, data)
 
     def test_brand(self):
@@ -1957,18 +1949,6 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(url, app_serializer='fireplace')
         self._assert(collection, data)
         assert_fireplace_app(data['apps'][0])
-
-    def test_collection_limit(self):
-        apps = [amo.tests.app_factory(), amo.tests.app_factory(),
-                amo.tests.app_factory()]
-
-        collection = self.feed_collection_factory(
-            app_ids=[app.id for app in apps])
-        url = reverse('api-v2:feed.feed_element_get',
-                      args=['collections', collection.slug])
-        res, data = self._get(url, limit=2)
-        eq_(len(data['apps']), 2)
-        self._assert(collection, data, limit=2)
 
     def test_shelf(self):
         shelf = self.feed_shelf_factory()

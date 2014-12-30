@@ -318,15 +318,6 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
 
-        # If we have a settings_test.py let's roll it into our settings.
-        try:
-            import settings_test
-            # Use setattr to update Django's proxies:
-            for k in dir(settings_test):
-                setattr(settings, k, getattr(settings_test, k))
-        except ImportError:
-            pass
-
         # Clean the slate.
         cache.clear()
         post_request_task._discard_tasks()

@@ -690,7 +690,8 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         self._test_success(res, data)
         eq_(unicode(self.user), data['user'])
         email = mail.outbox[0]
-        eq_(email.from_email, self.user.email)
+        eq_(email.from_email, settings.DEFAULT_FROM_EMAIL)
+        eq_(email.extra_headers['Reply-To'], self.user.email)
         assert self.user.username in email.body
         assert self.user.name in email.body
         assert unicode(self.user.pk) in email.body
@@ -704,7 +705,9 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         data = json.loads(res.content)
         self._test_success(res, data)
         eq_(unicode(self.user), data['user'])
-        eq_(mail.outbox[0].from_email, self.user.email)
+        email = mail.outbox[0]
+        eq_(email.from_email, settings.DEFAULT_FROM_EMAIL)
+        eq_(email.extra_headers['Reply-To'], self.user.email)
 
     def test_send_without_platform(self):
         del self.default_data['platform']

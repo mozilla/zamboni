@@ -551,12 +551,18 @@ def queue_rereview(request):
 
 @permission_required([('Apps', 'ReviewEscalated')])
 def queue_escalated(request):
-    queues_helper = ReviewersQueuesHelper(request)
-    qs = queues_helper.get_escalated_queue()
-    apps = queues_helper.sort(qs)
-    apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
-            for app in apps]
-    return _queue(request, apps, 'escalated')
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
+
+    queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
+    apps = queues_helper.get_escalated_queue()
+    apps = queues_helper.sort(apps, date_sort='created')
+
+    if not use_es:
+        apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
+                for app in apps]
+
+    return _queue(request, apps, 'escalated', date_sort='created',
+                  use_es=use_es)
 
 
 @reviewer_required

@@ -928,7 +928,7 @@ MINIFY_BUNDLES = {
 MINIFY_MOZMARKET = True
 
 # Monolith settings.
-MONOLITH_SERVER = None
+MONOLITH_SERVER = os.environ.get('MONOLITH_URL', 'localhost:9200')
 MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
@@ -1150,14 +1150,8 @@ SYSLOG_TAG2 = "http_app_addons2"
 # creates a clean database.
 TASK_USER_ID = 1
 
-# These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
-TEST_INSTALLED_APPS = (
-    'mkt.translations.tests.testapp',
-)
-
 # Tests
-TEST_RUNNER = 'amo.runner.DiscoverRunnerWithExtraApps'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
