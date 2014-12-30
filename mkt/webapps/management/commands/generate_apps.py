@@ -16,9 +16,10 @@ class Command(BaseCommand):
     help = 'Generate example apps for development/testing'
     option_list = BaseCommand.option_list + (
         make_option('--type',
-                    choices=['hosted', 'packaged'],
+                    choices=['hosted', 'packaged', 'privileged'],
                     default='hosted',
-                    help='Kind of apps to generate'),
+                    help=('Kind of apps to generate: one of "hosted", '
+                          '"packaged", or "privileged"')),
         make_option('--versions',
                     type='int',
                     default=1,
@@ -29,6 +30,8 @@ class Command(BaseCommand):
             raise CommandError("Number of apps required.")
         num_apps = int(args[0])
         if kwargs['type'] == 'hosted':
-            generate_apps(num_apps, 0, versions=kwargs['versions'])
-        else:
-            generate_apps(0, num_apps, versions=kwargs['versions'])
+            generate_apps(hosted=num_apps, versions=kwargs['versions'])
+        elif kwargs['type'] == 'packaged':
+            generate_apps(packaged=num_apps, versions=kwargs['versions'])
+        elif kwargs['type'] == 'privileged':
+            generate_apps(privileged=num_apps, versions=kwargs['versions'])
