@@ -70,6 +70,7 @@ class TestWebappIndexer(amo.tests.TestCase):
             [{'lang': to_language(l), 'string': s}
              for l, s in obj.translations[obj.name_id]])
         eq_(doc['status'], obj.status)
+        eq_(doc['trending'], 0)
         eq_(doc['is_escalated'], False)
         eq_(doc['latest_version']['status'], amo.STATUS_PUBLIC)
         eq_(doc['latest_version']['has_editor_comment'], False)
@@ -224,6 +225,19 @@ class TestWebappIndexer(amo.tests.TestCase):
         obj, doc = self._get_doc()
         eq_(doc['boost'], 1 * 4)
         eq_(doc['popularity'], 0)
+
+    def test_trending(self):
+        self.app.trending.create(region=0, value=10.0)
+        # Test an adolescent region.
+        self.app.trending.create(region=2, value=50.0)
+        # Test a mature region.
+        self.app.trending.create(region=7, value=50.0)
+
+        obj, doc = self._get_doc()
+        eq_(doc['trending'], 10.0)
+        # An adolescent region uses the global trending value.
+        eq_(doc['trending_2'], 10.0)
+        eq_(doc['trending_7'], 50.0)
 
 
 class TestAppFilter(amo.tests.ESTestCase):

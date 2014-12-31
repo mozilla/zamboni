@@ -22,7 +22,7 @@ from mkt.versions.models import Version
 from mkt.webapps import cron
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Trending, Webapp
 from mkt.webapps.tasks import _get_trending
 
 
@@ -265,6 +265,16 @@ class TestUpdateTrending(amo.tests.TestCase):
         eq_(self.app.get_trending(), 2.0)
         for region in mkt.regions.REGIONS_DICT.values():
             eq_(self.app.get_trending(region=region), 2.0)
+
+    @mock.patch('mkt.webapps.tasks._get_trending')
+    def test_trending_deleted(self, _mock):
+        self.app.trending.get_or_create(region=0, value=12.0)
+
+        _mock.return_value = 0.0
+        update_app_trending()
+
+        with self.assertRaises(Trending.DoesNotExist):
+            self.app.trending.get(region=0)
 
     @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending(self, _mock):

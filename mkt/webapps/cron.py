@@ -20,8 +20,8 @@ from mkt.site.decorators import write
 from mkt.site.utils import chunked, walkfiles
 
 from .models import Installed, Webapp
-from .tasks import (delete_logs, dump_user_installs, update_downloads,
-                    update_trending, zip_users)
+from .tasks import (delete_logs, dump_user_installs, reindex_trending,
+                    update_downloads, update_trending, zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
@@ -130,16 +130,19 @@ def update_app_trending():
     """
     Update trending for all published apps.
 
-    Spread these tasks out successively by 15 seconds so they don't hit
-    Monolith all at once.
+    We chain these so we don't hit Monolith all at once.
 
     """
     chunk_size = 50
 
-    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
+    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC,
+                                         disabled_by_user=False)
                    .values_list('id', flat=True))
 
     tasks = [update_trending.si(ids) for ids in chunked(all_ids, chunk_size)]
+    # Add a reindex task when all done to update trending apps.
+    tasks.append(reindex_trending.si())
+
     chain(*tasks).apply_async()
 
 
