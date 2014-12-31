@@ -10,10 +10,10 @@ from nose.tools import eq_
 
 import amo.tests
 import mkt
-from amo.utils import urlparams
 from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
+from mkt.site.utils import urlparams
 from mkt.webapps.models import ContentRating, Geodata
 from mkt.users.models import UserProfile
 

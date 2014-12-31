@@ -20,7 +20,6 @@ from rest_framework.views import APIView
 
 import mkt
 import mkt.feed.constants as feed
-from amo.utils import HttpResponseSendFile
 from mkt.access import acl
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -34,6 +33,7 @@ from mkt.constants.regions import REGIONS_DICT
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.models import OperatorPermission
+from mkt.site.utils import HttpResponseSendFile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 

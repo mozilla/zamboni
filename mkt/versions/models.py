@@ -13,11 +13,11 @@ import commonware.log
 import jinja2
 
 import amo
-import amo.utils
 from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.utils import cached_property, sorted_groupby
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.versions.tasks import update_supported_locales_single
 from mkt.webapps import query
@@ -158,14 +158,14 @@ class Version(ModelBase):
 
         models.signals.post_delete.send(sender=Version, instance=self)
 
-    @amo.cached_property(writable=True)
+    @cached_property(writable=True)
     def all_activity(self):
         from mkt.developers.models import VersionLog
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
               .select_related('activity_log', 'version').no_cache())
         return al
 
-    @amo.cached_property(writable=True)
+    @cached_property(writable=True)
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
@@ -208,7 +208,7 @@ class Version(ModelBase):
         files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
-            groups = amo.utils.sorted_groupby(xs, 'version_id')
+            groups = sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
         file_dict = rollup(files)
@@ -232,7 +232,7 @@ class Version(ModelBase):
               .select_related('activity_log', 'version').no_cache())
 
         def rollup(xs):
-            groups = amo.utils.sorted_groupby(xs, 'version_id')
+            groups = sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
         al_dict = rollup(al)
@@ -254,7 +254,7 @@ class Version(ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    @amo.cached_property(writable=True)
+    @cached_property(writable=True)
     def is_privileged(self):
         """
         Return whether the corresponding addon is privileged by looking at
@@ -271,7 +271,7 @@ class Version(ModelBase):
         data = self.addon.get_manifest_json(file_obj=self.all_files[0])
         return data.get('type') == 'privileged'
 
-    @amo.cached_property
+    @cached_property
     def manifest(self):
         # To avoid circular import.
         from mkt.webapps.models import AppManifest

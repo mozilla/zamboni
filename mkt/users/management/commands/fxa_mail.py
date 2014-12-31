@@ -5,8 +5,8 @@ from django.core.management.base import BaseCommand
 
 import commonware.log
 
-from amo.utils import chunked
 from mkt.constants.base import LOGIN_SOURCE_FXA
+from mkt.site.utils import chunked
 from mkt.users.models import UserProfile
 from mkt.users.tasks import fxa_email_types, send_fxa_mail
 from mkt.webapps.models import AddonUser

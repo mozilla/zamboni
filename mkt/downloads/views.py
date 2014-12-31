@@ -4,10 +4,10 @@ from django.shortcuts import get_object_or_404
 import commonware.log
 
 import amo
-from amo.utils import HttpResponseSendFile
 from mkt.access import acl
 from mkt.files.models import File
 from mkt.site.decorators import allow_cross_site_request
+from mkt.site.utils import HttpResponseSendFile
 from mkt.webapps.models import Webapp
 
 

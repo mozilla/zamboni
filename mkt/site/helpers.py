@@ -1,5 +1,5 @@
 import json as jsonlib
-import uuid
+import pytz
 from urlparse import urljoin
 
 from django.conf import settings
@@ -19,16 +19,15 @@ from jingo_minify import helpers as jingo_minify_helpers
 from six import text_type
 from tower import ugettext as _
 
-from amo.utils import isotime, urlparams
 from mkt.translations.helpers import truncate
 from mkt.translations.utils import get_locale_from_lang
+from mkt.site.utils import append_tz, urlparams
 
 
 log = commonware.log.getLogger('z.mkt.site')
 
 # Registering some utils as filters:
 register.filter(urlparams)
-register.filter(isotime)
 
 
 @jinja2.contextfunction
@@ -391,3 +390,11 @@ def strip_controls(s):
 @jinja2.contextfunction
 def prefer_signin(context):
     return 'has_logged_in' in context['request'].COOKIES
+
+
+@register.filter
+def isotime(t):
+    """Date/Time format according to ISO 8601"""
+    if not hasattr(t, 'tzinfo'):
+        return
+    return append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")

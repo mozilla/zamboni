@@ -16,13 +16,13 @@ from pyquery import PyQuery as pq
 from rest_framework.request import Request
 
 from amo.tests import JSONClient, TestCase
-from amo.utils import urlparams
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.utils import urlparams
 from mkt.users.models import UserProfile
 
 

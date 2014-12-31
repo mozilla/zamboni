@@ -37,8 +37,6 @@ from waffle.decorators import waffle_switch
 
 import amo
 import mkt
-from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
-                       redirect_for_login, smart_decode, urlparams)
 from lib.crypto.packaged import SigningError
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
@@ -68,6 +66,9 @@ from mkt.reviewers.utils import (AppsReviewing, device_queue_search,
 from mkt.search.views import search_form_to_es_fields, SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
+from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
+                            JSONEncoder, paginate, redirect_for_login,
+                            smart_decode, urlparams)
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -175,8 +176,6 @@ def _progress():
     """
 
     queues_helper = ReviewersQueuesHelper()
-
-    days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
 
     base_filters = {
         'pending': (queues_helper.get_pending_queue(),

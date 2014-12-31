@@ -30,7 +30,6 @@ import mkt
 import mkt.ratings
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
-from amo.utils import isotime, urlparams
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
@@ -49,7 +48,8 @@ from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
-from mkt.site.helpers import absolutify
+from mkt.site.helpers import absolutify, isotime
+from mkt.site.utils import urlparams
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -1963,14 +1963,14 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             'AcitvityLog objects not being created')
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_no_attachments(self, save_mock):
         """ Test addition of no attachment """
         self.post(self._attachment_form_data(num=0, action='public'))
         eq_(save_mock.called, False, save_mock.call_args_list)
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment(self, save_mock):
         """ Test addition of an attachment """
         self._attachment_post(1)
@@ -1978,7 +1978,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment_email(self, save_mock):
         """
         Test that a single attachment is included as an attachment in
@@ -1993,7 +1993,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment_email_multiple(self, save_mock):
         """
         Test that mutliple attachments are included as attachments in
@@ -2006,7 +2006,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment_email_escalate(self, save_mock):
         """
         Test that attachments are included as attachments in an `escalate`
@@ -2020,7 +2020,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('amo.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment_email_requestinfo(self, save_mock):
         """
         Test that attachments are included as attachments in an `info` review,

@@ -6,7 +6,7 @@ from django.db.models import Q
 
 import amo
 import mkt.constants.reviewers as rvw
-from amo.utils import chunked
+from mkt.site.utils import chunked
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.tasks import _batch_award_points
 

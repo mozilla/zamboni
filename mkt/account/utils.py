@@ -11,11 +11,11 @@ from jwkest.jwk import RSAKey, import_rsa_key_from_file
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import paginate, urlparams
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
 from mkt.site.helpers import absolutify
 from mkt.site.models import manual_order
+from mkt.site.utils import paginate, urlparams
 from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Webapp
 from mkt.webapps.views import BaseFilter

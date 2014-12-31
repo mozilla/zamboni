@@ -15,7 +15,6 @@ from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import JSONEncoder
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -26,6 +25,7 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.mail import send_mail_jinja
 from mkt.site.models import manual_order
+from mkt.site.utils import cached_property, JSONEncoder
 from mkt.translations.query import order_by_translation
 from mkt.translations.utils import to_language
 from mkt.versions.models import Version
@@ -713,7 +713,7 @@ class ReviewersQueuesHelper(object):
         self.request = request
         self.use_es = use_es
 
-    @amo.cached_property
+    @cached_property
     def excluded_ids(self):
         # We need to exclude Escalated Apps from almost all queries, so store
         # the result once.

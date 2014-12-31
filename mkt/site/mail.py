@@ -4,9 +4,9 @@ import re
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 
+import commonware.log
 from jingo import env
 
-from amo import logger_log as log
 from mkt.site.models import FakeEmail
 from mkt.site.tasks import send_email
 from mkt.users.models import UserNotification
@@ -15,6 +15,7 @@ from mkt.zadmin.models import get_config
 
 
 maillog = logging.getLogger('z.amo.mail')
+log = commonware.log.getLogger('z.amo')
 
 
 class FakeEmailBackend(BaseEmailBackend):

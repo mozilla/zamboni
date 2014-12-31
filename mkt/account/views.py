@@ -32,7 +32,6 @@ from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import GenericViewSet
 
 import amo
-from amo.utils import log_cef
 from lib.metrics import record_action
 from mkt.users.models import UserProfile
 from mkt.users.tasks import send_fxa_mail
@@ -50,6 +49,7 @@ from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView, cors_api_view
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
+from mkt.site.utils import log_cef
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Installed, Webapp
 

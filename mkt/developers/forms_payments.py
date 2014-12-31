@@ -4,6 +4,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.forms.fields import Field
 from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
@@ -12,7 +13,7 @@ from curling.lib import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import raise_required
+
 from lib.pay_server import client
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
@@ -202,7 +203,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         if ((premium_type in amo.ADDON_PREMIUMS
                 or premium_type == amo.ADDON_FREE_INAPP)
                 and not price_value and not self.is_toggling()):
-            raise_required()
+            raise ValidationError(Field.default_error_messages['required'])
 
         if not price_value and self.fields['price'].required is False:
             return None

@@ -30,9 +30,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
 
 import amo
-import amo.utils
 import lib.iarc
-from amo.utils import escape_all
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
@@ -61,6 +59,7 @@ from mkt.purchase.webpay import _prepare_pay
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (json_view, login_required, permission_required,
                                  skip_cache, write)
+from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.users.models import UserProfile
 from mkt.users.views import _login
@@ -114,7 +113,7 @@ def index(request):
 @login_required
 def dashboard(request):
     addons, filter = addon_listing(request)
-    addons = amo.utils.paginate(request, addons, per_page=10)
+    addons = paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
                 sort_opts=filter.opts,
                 motd=unmemoized_get_config('mkt_developers_motd')
@@ -1061,8 +1060,7 @@ def transactions(request):
     return render(request, 'developers/transactions.html',
                   {'form': form, 'CONTRIB_TYPES': amo.CONTRIB_TYPES,
                    'count': transactions.count(),
-                   'transactions': amo.utils.paginate(
-                       request, transactions, per_page=50)})
+                   'transactions': paginate(request, transactions, per_page=50)})
 
 
 def _get_transactions(request):

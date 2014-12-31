@@ -10,9 +10,9 @@ from urlparse import urljoin
 
 import amo
 import amo.tests
-from amo.utils import urlparams
-from mkt.site.helpers import absolutify, css, f, js, product_as_dict, timesince
+from mkt.site.helpers import absolutify, css, js, product_as_dict, timesince
 from mkt.site.fixtures import fixture
+from mkt.site.utils import urlparams
 from mkt.webapps.models import Webapp
 
 

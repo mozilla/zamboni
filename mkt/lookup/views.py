@@ -19,7 +19,6 @@ from tower import ugettext as _
 
 import amo
 import mkt.constants.lookup as lkp
-from amo.utils import paginate
 from lib.pay_server import client
 from mkt.access import acl
 from mkt.account.utils import purchase_list
@@ -36,6 +35,7 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import json_view, login_required, permission_required
+from mkt.site.utils import paginate
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp

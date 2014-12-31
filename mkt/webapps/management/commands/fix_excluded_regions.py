@@ -2,7 +2,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
+from mkt.site.utils import chunked
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import fix_excluded_regions
 

@@ -6,8 +6,8 @@ import commonware.log
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from amo.utils import slug_validator, slugify
 from mkt.access import acl
+from mkt.site.utils import slug_validator, slugify
 from mkt.tags.models import Tag
 
 from .models import BlacklistedSlug, Webapp

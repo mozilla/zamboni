@@ -10,10 +10,10 @@ import waffle
 
 import amo
 import mkt.constants.comm as comm
-from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
 from mkt.site.mail import send_mail_jinja
 from mkt.site.models import ManagerBase, ModelBase, skip_cache
+from mkt.site.utils import cache_ns_key
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile

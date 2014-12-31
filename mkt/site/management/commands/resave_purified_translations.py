@@ -1,11 +1,11 @@
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
 from mkt.feed.models import (FeedApp, FeedCollection, FeedCollectionMembership,
                              FeedShelf, FeedShelfMembership)
 from mkt.versions.models import Version
 from mkt.webapps.models import Geodata, Webapp
 from mkt.site.tasks import update_translations
+from mkt.site.utils import chunked
 
 
 class Command(BaseCommand):
