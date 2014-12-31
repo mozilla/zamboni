@@ -46,7 +46,7 @@ def send_reviewer_mail(subject, template, context, emails, perm_setting=None,
     manage_url = absolutify('/settings') + '#notifications'
     send_mail_jinja(subject, template, context, recipient_list=emails,
                     from_email=settings.MKT_REVIEWERS_EMAIL,
-                    use_blacklist=False, perm_setting=perm_setting,
+                    use_blocked=False, perm_setting=perm_setting,
                     manage_url=manage_url, headers={'Reply-To': reply_to},
                     cc=cc, attachments=attachments)
 

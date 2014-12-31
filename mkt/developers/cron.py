@@ -45,7 +45,7 @@ def _region_exclude(ids, regions):
 @cronjobs.register
 def exclude_new_region(regions):
     """
-    Update regional blacklist based on a list of regions to exclude.
+    Update blocked regions based on a list of regions to exclude.
     """
     excluded = set(AddonExcludedRegion.objects
                    .filter(region__in=[r.id for r in regions])

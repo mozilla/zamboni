@@ -10,7 +10,7 @@ from amo.utils import slug_validator, slugify
 from mkt.access import acl
 from mkt.tags.models import Tag
 
-from .models import BlacklistedSlug, Webapp
+from .models import BlockedSlug, Webapp
 
 
 log = commonware.log.getLogger('z.addons')
@@ -24,7 +24,7 @@ def clean_slug(slug, instance):
         if Webapp.objects.filter(**{slug_field: slug}).exists():
             raise forms.ValidationError(
                 _('This slug is already in use. Please choose another.'))
-        if BlacklistedSlug.blocked(slug):
+        if BlockedSlug.blocked(slug):
             raise forms.ValidationError(
                 _('The slug cannot be "%s". Please choose another.' % slug))
 
@@ -40,12 +40,12 @@ def clean_tags(request, tags):
     max_tags = amo.MAX_TAGS
     total = len(target)
 
-    blacklisted = (Tag.objects.values_list('tag_text', flat=True)
-                      .filter(tag_text__in=target, blacklisted=True))
-    if blacklisted:
+    blocked = (Tag.objects.values_list('tag_text', flat=True)
+               .filter(tag_text__in=target, blocked=True))
+    if blocked:
         # L10n: {0} is a single tag or a comma-separated list of tags.
         msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                       len(blacklisted)).format(', '.join(blacklisted))
+                       len(blocked)).format(', '.join(blocked))
         raise forms.ValidationError(msg)
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)

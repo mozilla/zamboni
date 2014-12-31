@@ -661,8 +661,8 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # Files saved to TMP_PATH deleted 15 days after written.
 TMP_PATH_DAYS_DELETE = 3600 * 24 * 15
 
-# Please use all lowercase for the blacklist.
-EMAIL_BLACKLIST = (
+# Please use all lowercase.
+EMAIL_BLOCKED = (
     'nobody@mozilla.org',
 )
 

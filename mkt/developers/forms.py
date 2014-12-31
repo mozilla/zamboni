@@ -50,7 +50,7 @@ from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
-from mkt.webapps.models import (AddonUser, BlacklistedSlug, IARCInfo, Preview,
+from mkt.webapps.models import (AddonUser, BlockedSlug, IARCInfo, Preview,
                                 Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
                                update_manifests)
@@ -600,7 +600,7 @@ class AppFormBasic(AddonFormBase):
                 raise forms.ValidationError(
                     _('This slug is already in use. Please choose another.'))
 
-            if BlacklistedSlug.blocked(slug):
+            if BlockedSlug.blocked(slug):
                 raise forms.ValidationError(_('The slug cannot be "%s". '
                                               'Please choose another.' % slug))
 

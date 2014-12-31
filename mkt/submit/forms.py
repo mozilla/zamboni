@@ -23,7 +23,7 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea
 from mkt.users.models import UserNotification
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import AppFeatures, BlacklistedSlug, Webapp
+from mkt.webapps.models import AppFeatures, BlockedSlug, Webapp
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -357,7 +357,7 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
                 raise forms.ValidationError(
                     _('This slug is already in use. Please choose another.'))
 
-            if BlacklistedSlug.blocked(slug):
+            if BlockedSlug.blocked(slug):
                 raise forms.ValidationError(
                     _('The slug cannot be "%s". Please choose another.'
                       % slug))

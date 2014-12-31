@@ -6,13 +6,13 @@ from mkt.tags.models import Tag
 
 class TestTagManager(amo.tests.TestCase):
 
-    def test_not_blacklisted(self):
-        """Make sure Tag Manager filters right for not blacklisted tags."""
-        tag1 = Tag(tag_text='abc', blacklisted=False)
+    def test_not_blocked(self):
+        """Make sure Tag Manager filters right for not blocked tags."""
+        tag1 = Tag(tag_text='abc', blocked=False)
         tag1.save()
-        tag2 = Tag(tag_text='swearword', blacklisted=True)
+        tag2 = Tag(tag_text='swearword', blocked=True)
         tag2.save()
 
         eq_(Tag.objects.all().count(), 2)
-        eq_(Tag.objects.not_blacklisted().count(), 1)
-        eq_(Tag.objects.not_blacklisted()[0], tag1)
+        eq_(Tag.objects.not_blocked().count(), 1)
+        eq_(Tag.objects.not_blocked()[0], tag1)
