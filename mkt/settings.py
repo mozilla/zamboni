@@ -1119,8 +1119,7 @@ SOLITUDE_OAUTH = {'key': SOLITUDE_KEY, 'secret': SOLITUDE_SECRET}
 SPIDERMONKEY = None
 
 # Tower
-TEXT_DOMAIN = 'messages'
-STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
+STANDALONE_DOMAINS = ['messages', 'javascript']
 
 STATSD_HOST = 'localhost'
 STATSD_PORT = 8125

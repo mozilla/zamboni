@@ -93,6 +93,7 @@ slumber==0.5.3
 SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
+tower==0.4.1
 urllib3==1.8.2
 
 ## Not on pypi.
@@ -109,10 +110,6 @@ urllib3==1.8.2
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 -e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
-
-
-## Out of date or not sure on pypi. Not sure why I pulled this earlier, putting it back.
--e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
 
 ## moved for 2014/04/02 deployment expediency
 MySQL-python==1.2.5
