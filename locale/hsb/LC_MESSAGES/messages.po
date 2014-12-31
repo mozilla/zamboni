@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-12-31 12:48+0000\n"
+"PO-Revision-Date: 2014-12-31 16:33+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420030088.0\n"
+"X-POOTLE-MTIME: 1420043635.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -25,7 +25,7 @@ msgstr "Kajkosće přidatka {addon} su so wobdźěłali."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr "Wopisanje přidatka {addon}} je so wobdźěłało."
+msgstr "Wopisanje přidatka {addon} je so wobdźěłało."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
@@ -92,49 +92,49 @@ msgstr "Wersija {0} přidatka {addon} je so zhašała."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0.name} je so wersiji {version} přidatka {addon} přidała."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0} je so z wersije {version} přidatka {addon} zhašała."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "Přidatk {addon} {version} schwaleny."
 
 #: apps/amo/log.py:157
 #: mkt/constants/base.py:43
 #: mkt/constants/comm.py:44
 #: mkt/constants/payments.py:66
 msgid "Approved"
-msgstr ""
+msgstr "Schwaleny"
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Přidatk {addon} {version} je nachwilu schwaleny."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Nachwilu schwaleny"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "Přidatk {addon} {version} wotpokazany."
 
 #: apps/amo/log.py:178
 #: mkt/constants/base.py:31
 #: mkt/constants/comm.py:45
 #: mkt/reviewers/helpers.py:177
 msgid "Rejected"
-msgstr ""
+msgstr "Wotpokazany"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "Přidatk {addon} {version} wróćo zdźeržany."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Wróćo zdźeržany"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
@@ -178,23 +178,23 @@ msgstr "Komentar k přidatkej {addon} {version}."
 #: apps/amo/log.py:234
 #: mkt/reviewers/utils.py:479
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} je so přidatkej {addon} přidała."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} je so z přidatka {addon} wotstroniła."
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "Přidatk {addon} je so zběrce {collection} přidał."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
