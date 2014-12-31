@@ -20,8 +20,8 @@ from appvalidator.testcases.packagelayout import (blacklisted_extensions,
                                                   blacklisted_magic_numbers)
 
 import amo
-from amo.utils import rm_local_tmp_dir
 from mkt.files.utils import extract_xpi, get_md5
+from mkt.site.utils import rm_local_tmp_dir
 
 
 # Allow files with a shebang through.

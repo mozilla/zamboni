@@ -27,7 +27,6 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-from amo.utils import remove_icons, resize_image, strip_bom
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.files.models import File, FileUpload, FileValidation
@@ -35,6 +34,7 @@ from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
+from mkt.site.utils import remove_icons, resize_image, strip_bom
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 

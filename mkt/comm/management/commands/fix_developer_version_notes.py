@@ -2,10 +2,10 @@ from django.core.management.base import BaseCommand
 
 import commonware.log
 
-from amo.utils import chunked
 from mkt.comm.tasks import _fix_developer_version_notes
 from mkt.comm.models import CommunicationNote
 from mkt.constants import comm
+from mkt.site.utils import chunked
 
 
 log = commonware.log.getLogger('comm')

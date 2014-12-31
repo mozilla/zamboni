@@ -19,6 +19,7 @@ from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
 from mkt.reviewers.utils import send_reviewer_mail
 from mkt.site.helpers import absolutify
+from mkt.site.utils import ImageCheck
 from mkt.users.models import UserProfile
 
 
@@ -65,7 +66,7 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.extend(video.errors)
 
     else:
-        check = amo.utils.ImageCheck(file_obj)
+        check = ImageCheck(file_obj)
         if (not check.is_image() or
             content_type not in amo.IMG_TYPES):
             do_not_open = True

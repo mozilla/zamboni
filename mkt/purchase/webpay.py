@@ -9,10 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import commonware.log
-import waffle
 
 import amo
-from amo.utils import log_cef
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
 from lib.metrics import record_action
@@ -21,6 +19,7 @@ from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.decorators import can_be_purchased
 from mkt.purchase.models import Contribution
 from mkt.site.decorators import json_view, login_required, write
+from mkt.site.utils import log_cef
 from mkt.users.models import UserProfile
 from mkt.users.utils import autocreate_username
 from mkt.webapps.decorators import app_view_factory

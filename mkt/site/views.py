@@ -20,12 +20,12 @@ import waffle
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 
-from amo.utils import log_cef, urlparams
 from mkt.carriers import get_carrier
 from mkt.detail.views import manifest as mini_manifest
 from mkt.site import monitors
 from mkt.site.context_processors import get_collect_timings
 from mkt.site.helpers import media
+from mkt.site.utils import log_cef, urlparams
 
 
 log = commonware.log.getLogger('z.mkt.site')

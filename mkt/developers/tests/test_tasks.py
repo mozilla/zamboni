@@ -22,11 +22,11 @@ import amo
 import amo.tests
 import mkt
 from mkt.users.models import UserProfile
-from amo.utils import ImageCheck
 from mkt.developers import tasks
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.utils import ImageCheck
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import Preview, Webapp

@@ -20,8 +20,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 
-from amo.utils import HttpResponseSendFile
-
 import mkt.comm.forms as forms
 import mkt.constants.comm as comm
 from mkt.access import acl
@@ -38,6 +36,7 @@ from mkt.comm.models import user_has_perm_app
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
 from mkt.site.decorators import skip_cache
+from mkt.site.utils import HttpResponseSendFile
 
 
 class NoAuthentication(BaseAuthentication):

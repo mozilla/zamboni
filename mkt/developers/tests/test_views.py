@@ -24,7 +24,6 @@ import amo
 import amo.tests
 import mkt
 from amo.tests import app_factory, assert_no_validation_errors, version_factory
-from amo.utils import urlparams
 from lib.iarc.utils import get_iarc_app_title
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
@@ -38,6 +37,7 @@ from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.utils import urlparams
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile

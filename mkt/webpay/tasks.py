@@ -10,7 +10,7 @@ from django.db import transaction
 from celeryutils import task
 import requests
 
-from amo.utils import ImageCheck, resize_image
+from mkt.site.utils import ImageCheck, resize_image
 
 from .models import ProductIcon
 

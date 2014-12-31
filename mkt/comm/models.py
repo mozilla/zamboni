@@ -3,13 +3,13 @@ import os
 from datetime import datetime
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
 
 import bleach
 from uuidfield.fields import UUIDField
 
-from amo.utils import reverse
 from mkt.access import acl
 from mkt.constants import comm
 from mkt.site.models import ModelBase

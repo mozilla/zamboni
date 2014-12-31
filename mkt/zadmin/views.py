@@ -16,12 +16,12 @@ import elasticsearch
 import jinja2
 
 import amo
-from amo.utils import chunked
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File
 from mkt.prices.utils import update_from_csv
 from mkt.site.decorators import json_view, permission_required
 from mkt.site.mail import FakeEmailBackend
+from mkt.site.utils import chunked
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.webapps.tasks import update_manifests

@@ -30,8 +30,6 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 import mkt
-from amo.utils import (JSONEncoder, slugify, smart_path, sorted_groupby,
-                       urlparams)
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
@@ -51,6 +49,8 @@ from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import copy_stored_file
+from mkt.site.utils import (cached_property, JSONEncoder, slugify, smart_path,
+                            sorted_groupby, urlparams)
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)
@@ -780,7 +780,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 .values('id')
                 .annotate(last_updated=Max('versions__created')))
 
-    @amo.cached_property(writable=True)
+    @cached_property(writable=True)
     def all_previews(self):
         return list(self.get_previews())
 
@@ -796,7 +796,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def get_mozilla_contacts(self):
         return [x.strip() for x in self.mozilla_contact.split(',')]
 
-    @amo.cached_property
+    @cached_property
     def upsell(self):
         """Return the upsell or add-on, or None if there isn't one."""
         try:
@@ -964,7 +964,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return False
         return self.installed.filter(user=user).exists()
 
-    @amo.cached_property
+    @cached_property
     def upsold(self):
         """
         Return what this is going to upsold from,
@@ -983,7 +983,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
-    @amo.cached_property(writable=True)
+    @cached_property(writable=True)
     def listed_authors(self):
         return UserProfile.objects.filter(
             addons=self,
@@ -1071,12 +1071,12 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         # Attach the files to the versions.
         f_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(files, 'version_id'))
+                      sorted_groupby(files, 'version_id'))
         for version in versions:
             version.all_files = f_dict.get(version.id, [])
         # Attach the versions to the apps.
         v_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(versions, 'addon_id'))
+                      sorted_groupby(versions, 'addon_id'))
         for app in apps:
             app.all_versions = v_dict.get(app.id, [])
 
@@ -1631,7 +1631,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         if tier:
             return tier.tier_locale()
 
-    @amo.cached_property
+    @cached_property
     def promo(self):
         return self.get_promo()
 
@@ -2198,7 +2198,7 @@ class AddonUpsell(ModelBase):
     def __unicode__(self):
         return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
-    @amo.cached_property
+    @cached_property
     def premium_addon(self):
         """
         Return the premium version, or None if there isn't one.

@@ -13,11 +13,11 @@ import cronjobs
 from celery import chain, chord
 
 import amo
-from amo.utils import chunked, walkfiles
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import write
+from mkt.site.utils import chunked, walkfiles
 
 from .models import Installed, Webapp
 from .tasks import (delete_logs, dump_user_installs, update_downloads,

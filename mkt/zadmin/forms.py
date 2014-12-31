@@ -88,7 +88,7 @@ class GenerateErrorForm(happyforms.Form):
             except:
                 settings.HEKA.raven('heka_sentry error triggered')
         elif error == 'amo_cef':
-            from amo.utils import log_cef
+            from mkt.site.utils import log_cef
             env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
                             'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
                             'HTTP_USER_AGENT': 'MySuperBrowser'}
