@@ -3,89 +3,92 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-12-31 12:48+0000\n"
+"Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1420030088.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} je so wutworił."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Kajkosće přidatka {addon} su so wobdźěłali."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Wopisanje přidatka {addon}} je so wobdźěłało."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategorije za přidatk {addon} su so wobdźěłali."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) je so přidatkej {addon} přidał."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) je so z přidatka {addon} wotstronił."
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Přinoški za {addon}."
 
 #: apps/amo/log.py:65
 msgid "{addon} disabled."
-msgstr ""
+msgstr "Přidatk {addon} je znjemóžnjeny."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "Přidatk {addon} je zmóžnjeny."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistiki za přidatk {addon} su zjawne."
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Statistiki za přidatk {addon} su priwatne."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Status přidatka {addon} je so do {0} změnił."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Přehlad je so přidatkej {addon} přidał."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Přehlad přidatka {addon} je so wobdźěłał."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Přehlad přidatka {addon} je so zhašał."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "Wersija {version} je so přidatkej {addon} přidała."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "Wersija {version} přidatka {addon} je so wobdźěłała."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Wersija {0} přidatka {addon} je so zhašała."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
@@ -135,42 +138,42 @@ msgstr ""
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "Přidatk {addon} {version} je so přichodnemu wyšemu městnu dale dał."
 
 #: apps/amo/log.py:198
 #: mkt/constants/comm.py:48
 #: mkt/reviewers/forms.py:164
 msgid "Escalated"
-msgstr ""
+msgstr "Přichodnemu wyšemu městnu dale daty"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Přepruwowanje přidatka {addon} {version} je so požadało."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "Přepruwowanje je so požadało"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Dalše informacije wo přidatku {addon} {version} su so požadali."
 
 #: apps/amo/log.py:217
 #: mkt/constants/comm.py:47
 msgid "More information requested"
-msgstr ""
+msgstr "Dalše informacije požadane"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Superpřepruwowanje přidatka {addon} {version} je so požadało."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "Superpřepruwowanje je požadane"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komentar k přidatkej {addon} {version}."
 
 #: apps/amo/log.py:234
 #: mkt/reviewers/utils.py:479
@@ -213,37 +216,37 @@ msgstr ""
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "Přidatk {addon} so hižo njepředstaja."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} přidaty."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Róla {0.name} za přidatk {addon} do {1} změnjena."
 
 #: apps/amo/log.py:315
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Prawidła přidatka {addon} změnjene."
 
 #: apps/amo/log.py:321
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Symbol přidatka {addon} změnjeny."
 
 #: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "Přepruwowanje {review} za přidatk {addon} schwalene."
 
 #: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "Wužiwar {user} je pohódnoćenje {review} za přidatk {addon} schwalił."
 
 #: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "Pohódnoćenje {0} za přidatk {addon} je so zhašało."
 
 #: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
@@ -2653,6 +2656,8 @@ msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
@@ -2849,6 +2854,8 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/developers/forms.py:1068
 msgid "Agree"
@@ -3653,6 +3660,8 @@ msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -4423,6 +4432,8 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -4433,6 +4444,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -5128,6 +5141,8 @@ msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid ""
@@ -7335,24 +7350,32 @@ msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
@@ -7363,6 +7386,8 @@ msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
@@ -8620,6 +8645,8 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:58
@@ -8627,12 +8654,16 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/webapps/forms.py:66
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/webapps/forms.py:71
 msgid ""
@@ -8644,6 +8675,8 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: mkt/webapps/models.py:208
 msgid "Listed"
