@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-12-31 16:33+0000\n"
+"PO-Revision-Date: 2015-01-01 15:40+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420043635.0\n"
+"X-POOTLE-MTIME: 1420126807.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -198,21 +198,21 @@ msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} za {addpn} napisane."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "Přidatk {addon} w {0} předstajeny."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "Přidatk {addon} so w {0} hižo njepředstaja."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "Přidatk {addon} so nětko předstaja."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
@@ -250,211 +250,225 @@ msgstr "Pohódnoćenje {0} za přidatk {addon} je so zhašało."
 
 #: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "Wužiwar {user} je {0} za přidatk {addon} zhašał."
 
 #: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maks. wersija nałoženja je so za wersiju {version} zaktualizowała."
 
 #: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
+"Awtorojo su so wo kompatibelnosći wersije {version} přez e-mejl informowali."
 
 #: apps/amo/log.py:355
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mejl wo kompatibelnosći přidatka je so na awtora pósłała."
 
 #: apps/amo/log.py:360
 msgid "Password changed."
-msgstr ""
+msgstr "Hesło je so změniło."
 
 #: apps/amo/log.py:365
 msgid "{addon} changed to premium."
-msgstr ""
+msgstr "Přidatk {addon} je so na premium změnił."
 
 #: apps/amo/log.py:370
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Manifest přidatka {addon} je so zaktualizował."
 
 #: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "Přidatk {addon} {version} je so schwalił, ale jako priwatny."
 
 #: apps/amo/log.py:377
 #: mkt/constants/base.py:34
 #: mkt/constants/comm.py:51
 msgid "Approved but private"
-msgstr ""
+msgstr "Schwaleny, ale jako priwatny"
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
-msgstr ""
+msgstr "Přidatk {addon} je so kupił."
 
 #: apps/amo/log.py:390
 msgid "{addon} installed."
-msgstr ""
+msgstr "Přidatk {addon} je so instalował."
 
 #: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "Zarunanje za přidatk {addon} požadane"
 
 #: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "Zarunanje za přidatk {addon} na {0} wotpokazane."
 
 #: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "Zarunanje za přidatk {addon} na {0} přizwólene."
 
 #: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Hnydomne zarunanje je so za přidatk {addon} přizwólene."
 
 #: apps/amo/log.py:415
 msgid "Account updated."
-msgstr ""
+msgstr "Konto je so zaktualizowało."
 
 #: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Płaćiwa kwitowanka je so za přidatk {addon} přepruwowała."
 
 #: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu za přidatk {addon} schwalene."
 
 #: apps/amo/log.py:426
 #: mkt/constants/comm.py:52
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu schwalene"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "Přidatk {addon} je zawrjeny."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "Nałoženje je zawrjene"
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
+"Přidatk {addon} je so dla wyšokeje ličby znjewužiwanskich rozprawow "
+"přichodnemu wyšemu městnu dale dał."
 
 #: apps/amo/log.py:442
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Wjele znjewužiwanskich zdźělenkow"
 
 #: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr ""
+"Přidatk {addon} je so dla wysokeje ličby zarunanskich požadanjow přichodnemu "
+"wyšemu městnu dale dał."
 
 #: apps/amo/log.py:450
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Wjele zarunanskich požadanjow"
 
 #: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "Přidatk {addon} je so změny manifesta dla znowa přepruwował."
 
 #: apps/amo/log.py:458
 msgid "Manifest Change"
-msgstr ""
+msgstr "Změna manifesta"
 
 #: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr ""
+"Přidatk {addon} je so znowa přepruwował, dokelž nałoženje je premiumowy typ "
+"rozšěriło."
 
 #: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Rozšěrjenje premiumoweho typa"
 
 #: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Nowopřepruwowanje za přidatk (addon} schwalene."
 
 #: apps/amo/log.py:474
 #: mkt/constants/comm.py:55
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Nowopřepruwowanje schwalene"
 
 #: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "Přepruwowar je přidatk {addon} přichodnemu wyšemu městnu dale dał."
 
 #: apps/amo/log.py:482
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu přez přepruwowarja"
 
 #: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Widejo přidatka {addon} je so problema z widejom dla wotstroniło."
 
 #: apps/amo/log.py:492
 msgid "Video removed"
-msgstr ""
+msgstr "Widejo wotstronjene"
 
 #: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Nowe přepruwowanje přidatka {addon} nowych gratow dla."
 
 #: apps/amo/log.py:498
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Graty přidate"
 
 #: apps/amo/log.py:505
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
+"Gratowa podpěra za přidatk {addon} je so wot přepruwowarja manuelnje "
+"změniła."
 
 #: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Graty wot přepruwowarja změnjene"
 
 #: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "Přidatk {addon} je so znowa za přepruwowanje zapodał."
 
 #: apps/amo/log.py:514
 msgid "App Resubmission"
-msgstr ""
+msgstr "Nowozapodaće nałoženja"
 
 #: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr ""
+"Přidakt {addon} je so awtomatisce přichodnemu wyšemu městnu dale dał, dokelž "
+"je VIP-nałoženje."
 
 #: apps/amo/log.py:522
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "Awtomatiske daledaće VIP-přidatka přichodnemu wyšemu městnu"
 
 #: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr ""
+"Přidatk {addon} je so znowa přepruwował, dokelž je so URL manifesta změnił."
 
 #: apps/amo/log.py:530
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Změna manifesteho URL"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"Přidatk {addon} je so awtomatisce přichodnemu wyšemu městnu dale dał, dokelž "
+"je nałoženje za předwozjewjenje."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Awtomatiske daledaće přichodnemu wyšemu městnu za předwozjewjenje"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
-msgstr ""
+msgstr "Wutworjeny: {0}"
 
 #: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Wobdźěłane polo: {2} změnjeny do: {0}."
 
 #: apps/amo/log.py:567
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Zhašany: {1}"
 
 #: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Wužiwar {user} je so wobdźěłał, přičina: {1}"
 
 #: apps/amo/log.py:579
 msgid "User {user} anonymized."
@@ -498,12 +512,12 @@ msgstr ""
 
 #: apps/amo/log.py:634
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Žadanja změnjene"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:642
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Status wersije {version} je so do {0} změnił."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:649
