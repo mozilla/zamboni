@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-12-16 20:24+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-01-01 12:05+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418761464.0\n"
+"X-POOTLE-MTIME: 1420113915.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1714,7 +1714,7 @@ msgstr "Kontrola zabalená aplikace"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Kontrola privilegované aplikace"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1726,7 +1726,7 @@ msgstr "Kontrola aktualizované webové aplikace"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Kontrola aktualizované privilegované aplikace"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1734,7 +1734,7 @@ msgstr "Moderovaná kontrola aplikace"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Kontrola aplikace pro Tarako"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1846,7 +1846,7 @@ msgstr "Zablokováno"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Soukromý komentář redaktora"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1886,7 +1886,7 @@ msgstr "Opětovná kontrola z důvodu změny URL manifestu"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu aktualizace na Premium"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1926,7 +1926,7 @@ msgstr "Poznámka k verzi pro redaktora"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Veřejný komentář redaktora"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2600,7 +2600,7 @@ msgstr "Před změnou vašeho výchozího jazyka musíte mít název a popis v t
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Musíte uvést webovou stránku, e-mail nebo obojí."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -6691,7 +6691,7 @@ msgstr "Ve frontě Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "Ve frontě pro Čínu"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6807,7 +6807,7 @@ msgstr "Týdenní stažení"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Dostupnost regionu"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -7059,11 +7059,11 @@ msgstr "Typ aplikace"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Instalace povoleny z"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Všude"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7326,7 +7326,7 @@ msgstr "Otevřít stránku s detaily"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Informace k podpoře:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7649,7 +7649,7 @@ msgstr "Uživatel se zvolenou e-mailovou adresou neexistuje nebo dosud neodsouhl
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Nativní FxA autentizace selhala."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7748,7 +7748,7 @@ msgstr "Zobrazení"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Musíte vložit e-mail podpory či URL."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7823,7 +7823,7 @@ msgstr "Přihlášení / Registrace"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registrace"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
