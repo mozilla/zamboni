@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
 from mkt.comm.tasks import _migrate_approval_notes
+from mkt.site.utils import chunked
 from mkt.versions.models import Version
 
 

@@ -16,8 +16,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import mkt.feed.indexers as f_indexers
-from amo.utils import chunked, timestamp_index
 from lib.es.models import Reindexing
+from mkt.site.utils import chunked, timestamp_index
 from mkt.webapps.indexers import WebappIndexer
 
 

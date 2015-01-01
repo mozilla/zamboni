@@ -7,11 +7,11 @@ from tower import ugettext as _
 
 import amo
 import lib.iarc
-from amo.utils import chunked
 from mkt.constants.iarc_mappings import RATINGS
 from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
                                   region_exclude)
 from mkt.reviewers.models import RereviewQueue
+from mkt.site.utils import chunked
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 

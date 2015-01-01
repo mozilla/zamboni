@@ -2,7 +2,7 @@
 
 from celeryutils import task
 
-from amo.utils import chunked
+from mkt.site.utils import chunked
 from mkt.site.decorators import write
 from mkt.webapps.models import Webapp
 

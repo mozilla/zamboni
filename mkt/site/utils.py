@@ -1,11 +1,9 @@
 import codecs
 import datetime
 import errno
-import functools
 import itertools
 import operator
 import os
-import random
 import re
 import shutil
 import time
@@ -15,7 +13,6 @@ import urlparse
 
 from django import http
 from django.conf import settings
-from django.contrib import messages
 from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
@@ -23,7 +20,6 @@ from django.core.files.storage import FileSystemStorage
 from django.core.serializers import json
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
-from django.forms.fields import Field
 from django.http import HttpRequest
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
@@ -31,25 +27,23 @@ from django.utils.http import urlquote
 
 import bleach
 import chardet
+import commonware.log
 import jinja2
 import pytz
+from caching.base import CachingQuerySet
 from cef import log_cef as _log_cef
-from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
 from PIL import Image, ImageFile, PngImagePlugin
 
-from amo import APP_ICON_SIZES
+import amo
 from mkt.api.paginator import ESPaginator
 from mkt.translations.models import Translation
 
-from . import logger_log as log
-
-
-heka = settings.HEKA
-
 
 days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
+
+log = commonware.log.getLogger('z.amo')
 
 
 def urlparams(url_, hash=None, **query):
@@ -67,28 +61,21 @@ def urlparams(url_, hash=None, **query):
     query_dict = dict(urlparse.parse_qsl(smart_str(q))) if q else {}
     query_dict.update((k, v) for k, v in query.items())
 
-    query_string = urlencode([(k, v) for k, v in query_dict.items()
+    query_string = _urlencode([(k, v) for k, v in query_dict.items()
                              if v is not None])
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()
 
 
-def isotime(t):
-    """Date/Time format according to ISO 8601"""
-    if not hasattr(t, 'tzinfo'):
-        return
-    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
 def epoch(t):
     """Date/Time converted to seconds since epoch"""
     if not hasattr(t, 'tzinfo'):
         return
-    return int(time.mktime(_append_tz(t).timetuple()))
+    return int(time.mktime(append_tz(t).timetuple()))
 
 
-def _append_tz(t):
+def append_tz(t):
     tz = pytz.timezone(settings.TIME_ZONE)
     return tz.localize(t)
 
@@ -163,33 +150,12 @@ def chunked(seq, n):
         yield rv
 
 
-def urlencode(items):
+def _urlencode(items):
     """A Unicode-safe URLencoder."""
     try:
         return urllib.urlencode(items)
     except UnicodeEncodeError:
         return urllib.urlencode([(k, smart_str(v)) for k, v in items])
-
-
-def randslice(qs, limit, exclude=None):
-    """
-    Get a random slice of items from ``qs`` of size ``limit``.
-
-    There will be two queries.  One to find out how many elements are in ``qs``
-    and another to get a slice.  The count is so we don't go out of bounds.
-    If exclude is given, we make sure that pk doesn't show up in the slice.
-
-    This replaces qs.order_by('?')[:limit].
-    """
-    cnt = qs.count()
-    # Get one extra in case we find the element that should be excluded.
-    if exclude is not None:
-        limit += 1
-    rand = 0 if limit > cnt else random.randint(0, cnt - limit)
-    slice_ = list(qs[rand:rand + limit])
-    if exclude is not None:
-        slice_ = [o for o in slice_ if o.pk != exclude][:limit - 1]
-    return slice_
 
 
 # Extra characters outside of alphanumerics that we'll allow.
@@ -222,20 +188,6 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
     """
     if not (s and slugify(s, ok, lower, spaces, delimiter) == s):
         raise ValidationError(message, code=code)
-
-
-def raise_required():
-    raise ValidationError(Field.default_error_messages['required'])
-
-
-def clear_messages(request):
-    """
-    Clear any messages out of the messages framework for the authenticated
-    user.
-    Docs: http://bit.ly/dEhegk
-    """
-    for message in messages.get_messages(request):
-        pass
 
 
 # From: http://bit.ly/eTqloE
@@ -304,7 +256,7 @@ def resize_image(src, dst, size=None, remove_src=True, locally=False):
 
 
 def remove_icons(destination):
-    for size in APP_ICON_SIZES:
+    for size in amo.APP_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
         if storage.exists(filename):
             storage.delete(filename)
@@ -352,11 +304,6 @@ class ImageCheck(object):
             except EOFError:
                 return False
             return True
-
-
-class MenuItem():
-    """Refinement item with nestable children for use in menus."""
-    url, text, selected, children = ('', '', False, [])
 
 
 class HttpResponseSendFile(http.HttpResponse):
@@ -461,7 +408,7 @@ def log_cef(name, severity, env, *args, **kwargs):
     else:
         r = {}
     if settings.USE_HEKA_FOR_CEF:
-        return heka.cef(name, severity, r, *args, config=c, **kwargs)
+        return settings.HEKA.cef(name, severity, r, *args, config=c, **kwargs)
     else:
         return _log_cef(name, severity, r, *args, config=c, **kwargs)
 
@@ -577,48 +524,9 @@ def rm_local_tmp_dir(path):
     return shutil.rmtree(path)
 
 
-def rm_local_tmp_file(path):
-    """Remove a local temp file.
-
-    This is just a wrapper around os.unlink(). Use it to indicate you are
-    certain that your executing code is operating on a local temp file, not a
-    path managed by the Django Storage API.
-    """
-    return os.unlink(path)
-
-
 def timestamp_index(index):
     """Returns index-YYYYMMDDHHMMSS with the current time."""
     return '%s-%s' % (index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
-
-
-def timer(*func, **kwargs):
-    """
-    Outputs statsd timings for the decorated method, ignored if not
-    in test suite. It will give us a name that's based on the module name.
-
-    It will work without params. Or with the params:
-    key: a key to override the calculated one
-    test_only: only time while in test suite (default is True)
-    """
-    key = kwargs.get('key', None)
-    test_only = kwargs.get('test_only', True)
-
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kw):
-            if test_only and not settings.IN_TEST_SUITE:
-                return func(*args, **kw)
-            else:
-                name = (key if key else
-                        '%s.%s' % (func.__module__, func.__name__))
-                with statsd.timer('timer.%s' % name):
-                    return func(*args, **kw)
-        return wrapper
-
-    if func:
-        return decorator(func[0])
-    return decorator
 
 
 def walkfiles(folder, suffix=''):
@@ -627,3 +535,62 @@ def walkfiles(folder, suffix=''):
             for basename, dirnames, filenames in os.walk(folder)
             for filename in filenames
             if filename.endswith(suffix))
+
+
+def cached_property(*args, **kw):
+    # Handles invocation as a direct decorator or
+    # with intermediate keyword arguments.
+    if args:  # @cached_property
+        return CachedProperty(args[0])
+    else:     # @cached_property(name=..., writable=...)
+        return lambda f: CachedProperty(f, **kw)
+
+
+class CachedProperty(object):
+    """
+    A decorator that converts a function into a lazy property.  The
+    function wrapped is called the first time to retrieve the result
+    and than that calculated result is used the next time you access
+    the value::
+
+        class Foo(object):
+
+            @cached_property
+            def foo(self):
+                # calculate something important here
+                return 42
+
+    Lifted from werkzeug.
+    """
+
+    def __init__(self, func, name=None, doc=None, writable=False):
+        self.func = func
+        self.writable = writable
+        self.__name__ = name or func.__name__
+        self.__doc__ = doc or func.__doc__
+
+    def __get__(self, obj, type=None):
+        if obj is None:
+            return self
+        _missing = object()
+        value = obj.__dict__.get(self.__name__, _missing)
+        if value is _missing:
+            value = self.func(obj)
+            if isinstance(value, CachingQuerySet):
+                # Work around a bug in django-cache-machine that
+                # causes deadlock or infinite recursion if
+                # CachingQuerySets are cached before they run their
+                # query.
+                value._fetch_all()
+            obj.__dict__[self.__name__] = value
+        return value
+
+    def __set__(self, obj, value):
+        if not self.writable:
+            raise TypeError('read only attribute')
+        obj.__dict__[self.__name__] = value
+
+    def __delete__(self, obj):
+        if not self.writable:
+            raise TypeError('read only attribute')
+        del obj.__dict__[self.__name__]

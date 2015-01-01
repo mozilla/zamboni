@@ -17,9 +17,9 @@ from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
-from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
 from mkt.site.decorators import json_view, login_required
+from mkt.site.utils import escape_all, log_cef
 
 from .models import UserProfile
 from .signals import logged_out

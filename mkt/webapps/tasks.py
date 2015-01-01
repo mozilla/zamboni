@@ -30,7 +30,6 @@ from tower import ugettext as _
 
 import amo
 import mkt
-from amo.utils import chunked, days_ago, JSONEncoder, slugify
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
 from mkt.abuse.models import AbuseReport
@@ -46,10 +45,11 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
+from mkt.site.utils import chunked, days_ago, JSONEncoder, slugify
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AppManifest, Preview, Webapp
+from mkt.webapps.models import AppManifest, Preview, Trending, Webapp
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -659,6 +659,10 @@ def _get_trending(app_id, region=None):
     except ValueError as e:
         task_log.info('Call to ES failed: {0}'.format(e))
         count_1 = 0
+    except KeyError as e:
+        # ES results didn't have the structure we were expecting.
+        task_log.info('Unexpected result: {0}'.format(e))
+        count_1 = 0
 
     # If count_1 isn't more than 100, stop here to avoid extra Monolith calls.
     if not count_1 > 100:
@@ -673,6 +677,10 @@ def _get_trending(app_id, region=None):
             if c.get('count')) / 3
     except ValueError as e:
         task_log.info('Call to ES failed: {0}'.format(e))
+        count_3 = 0
+    except KeyError as e:
+        # ES results didn't have the structure we were expecting.
+        task_log.info('Unexpected result: {0}'.format(e))
         count_3 = 0
 
     if count_3 > 1:
@@ -694,24 +702,46 @@ def update_trending(ids, **kw):
 
         # Calculate global trending, then per-region trending below.
         value = _get_trending(app.id)
-        if value:
+        if value > 0:
             trending, created = app.trending.get_or_create(
                 region=0, defaults={'value': value})
             if not created:
                 trending.update(value=value)
+        else:
+            # The value is <= 0 so the app is not trending. Let's remove it
+            # from the trending table.
+            app.trending.filter(region=0).delete()
 
         for region in mkt.regions.REGIONS_DICT.values():
             value = _get_trending(app.id, region)
-            if value:
+            if value > 0:
                 trending, created = app.trending.get_or_create(
                     region=region.id, defaults={'value': value})
                 if not created:
                     trending.update(value=value)
+            else:
+                # The value is <= 0 so the app is not trending. Let's remove it
+                # from the trending table.
+                app.trending.filter(region=region.id).delete()
 
         times.append(time.time() - t_start)
 
     task_log.info('Trending calculated for %s apps. Avg time overall: '
                   '%0.2fs' % (count, sum(times) / count))
+
+
+@task
+def reindex_trending(**kwargs):
+    """
+    Task to reindex only the trending apps.
+
+    We run this after updating the trending apps table so the data in
+    Elasticsearch is updated.
+
+    """
+    trending_ids = Trending.objects.all().values_list('addon', flat=True)
+    for ids in chunked(trending_ids, 100):
+        WebappIndexer.index_ids(ids, no_delay=True)
 
 
 @task
@@ -1009,7 +1039,6 @@ def generate_app_package(app, out, permissions, version='1.0'):
         outz.writestr("manifest.webapp", json.dumps(manifest))
     AppManifest.objects.create(
         version=version, manifest=json.dumps(manifest))
-
 
 
 def generate_packaged_app(name, category, permissions=(), num_versions=1):

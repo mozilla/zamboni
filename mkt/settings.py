@@ -611,7 +611,7 @@ DATABASE_POOL_ARGS = {
 }
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'mkt.site.utils.LocalFileStorage'
 
 # If you need to get a payment provider, which one will be the default?
 DEFAULT_PAYMENT_PROVIDER = 'reference'
@@ -928,7 +928,7 @@ MINIFY_BUNDLES = {
 MINIFY_MOZMARKET = True
 
 # Monolith settings.
-MONOLITH_SERVER = os.environ.get('MONOLITH_URL', 'localhost:9200')
+MONOLITH_SERVER = os.environ.get('MONOLITH_URL', 'http://localhost:9200')
 MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
@@ -1119,8 +1119,7 @@ SOLITUDE_OAUTH = {'key': SOLITUDE_KEY, 'secret': SOLITUDE_SECRET}
 SPIDERMONKEY = None
 
 # Tower
-TEXT_DOMAIN = 'messages'
-STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
+STANDALONE_DOMAINS = ['messages', 'javascript']
 
 STATSD_HOST = 'localhost'
 STATSD_PORT = 8125

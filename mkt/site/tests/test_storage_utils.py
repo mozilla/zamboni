@@ -8,9 +8,9 @@ from django.core.files.storage import default_storage as storage
 
 from nose.tools import eq_
 
-from amo.utils import rm_local_tmp_dir
 from mkt.site.storage_utils import (walk_storage, copy_stored_file,
                                     move_stored_file)
+from mkt.site.utils import rm_local_tmp_dir
 
 
 def test_storage_walk():

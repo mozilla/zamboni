@@ -3,9 +3,8 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
-
 from mkt.developers.tasks import refresh_iarc_ratings
+from mkt.site.utils import chunked
 
 
 log = logging.getLogger('z.task')

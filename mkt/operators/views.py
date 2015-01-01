@@ -4,13 +4,13 @@ from rest_framework import mixins, response, status, viewsets
 from waffle.decorators import waffle_switch
 
 import amo
-from amo.utils import paginate
 from mkt.access import acl
 from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.developers.models import PreloadTestPlan
 from mkt.site.decorators import permission_required
+from mkt.site.utils import paginate
 from mkt.users.models import UserProfile
 
 from .models import OperatorPermission

@@ -3,9 +3,9 @@ from django.core.management.base import BaseCommand
 import commonware.log
 
 import amo
-from amo.utils import chunked
 from mkt.comm.tasks import _migrate_activity_log
 from mkt.developers.models import ActivityLog, AppLog
+from mkt.site.utils import chunked
 
 
 log = commonware.log.getLogger('comm')

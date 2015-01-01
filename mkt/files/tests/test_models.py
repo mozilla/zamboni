@@ -14,6 +14,7 @@ import amo.tests
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
+from mkt.site.utils import chunked
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -49,7 +50,7 @@ class TestFileUpload(UploadTest):
 
     def upload(self):
         # The data should be in chunks.
-        data = [''.join(x) for x in amo.utils.chunked(self.data, 3)]
+        data = [''.join(x) for x in chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.zip', len(self.data))
 
     def test_from_post_write_file(self):

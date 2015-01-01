@@ -3,9 +3,9 @@ from optparse import make_option
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
 from mkt.developers.providers import Provider
 from mkt.developers.utils import uri_to_pk
+from mkt.site.utils import chunked
 from mkt.webapps.models import Webapp
 from mkt.webpay.utils import make_external_id
 

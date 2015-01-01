@@ -16,11 +16,11 @@ import commonware
 from uuidfield.fields import UUIDField
 
 import amo
-import amo.utils
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
+from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase, OnChangeMixin, UncachedManagerBase
-
+from mkt.site.utils import smart_path, urlparams
 
 log = commonware.log.getLogger('z.files')
 
@@ -59,8 +59,6 @@ class File(OnChangeMixin, ModelBase):
             return True
 
     def get_url_path(self, src):
-        from amo.utils import urlparams
-        from mkt.site.helpers import absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.
@@ -68,7 +66,7 @@ class File(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, parse_data={}):
-        upload.path = amo.utils.smart_path(nfd_str(upload.path))
+        upload.path = smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
 
         f = cls(version=version)
@@ -278,7 +276,7 @@ class FileUpload(ModelBase):
     def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
         loc = os.path.join(settings.ADDONS_PATH, 'temp', uuid.uuid4().hex)
-        base, ext = os.path.splitext(amo.utils.smart_path(filename))
+        base, ext = os.path.splitext(smart_path(filename))
         if ext in EXTENSIONS:
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))

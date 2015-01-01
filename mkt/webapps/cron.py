@@ -10,18 +10,18 @@ from django.db.models import Q
 
 import commonware.log
 import cronjobs
-from celery import chord
+from celery import chain, chord
 
 import amo
-from amo.utils import chunked, walkfiles
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import write
+from mkt.site.utils import chunked, walkfiles
 
 from .models import Installed, Webapp
-from .tasks import (delete_logs, dump_user_installs, update_downloads,
-                    update_trending, zip_users)
+from .tasks import (delete_logs, dump_user_installs, reindex_trending,
+                    update_downloads, update_trending, zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
@@ -130,20 +130,20 @@ def update_app_trending():
     """
     Update trending for all published apps.
 
-    Spread these tasks out successively by 15 seconds so they don't hit
-    Monolith all at once.
+    We chain these so we don't hit Monolith all at once.
 
     """
     chunk_size = 50
-    seconds_between = 15
 
-    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
+    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC,
+                                         disabled_by_user=False)
                    .values_list('id', flat=True))
 
-    countdown = 0
-    for ids in chunked(all_ids, chunk_size):
-        update_trending.delay(ids, countdown=countdown)
-        countdown += seconds_between
+    tasks = [update_trending.si(ids) for ids in chunked(all_ids, chunk_size)]
+    # Add a reindex task when all done to update trending apps.
+    tasks.append(reindex_trending.si())
+
+    chain(*tasks).apply_async()
 
 
 @cronjobs.register

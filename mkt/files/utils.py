@@ -16,7 +16,7 @@ from django.utils.translation import trans_real as translation
 
 from tower import ugettext as _
 
-from amo.utils import rm_local_tmp_dir, strip_bom
+from mkt.site.utils import rm_local_tmp_dir, strip_bom
 from mkt.translations.utils import to_language
 
 

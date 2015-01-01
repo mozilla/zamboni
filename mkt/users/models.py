@@ -20,6 +20,7 @@ from tower import ugettext as _
 
 import amo
 from mkt.site.models import ModelBase, OnChangeMixin
+from mkt.site.utils import cached_property
 from mkt.translations.fields import save_signal
 from mkt.translations.query import order_by_translation
 
@@ -141,7 +142,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return hashlib.sha256('{id}{key}'.format(
             id=self.id, key=settings.SECRET_KEY)).hexdigest()
 
-    @amo.cached_property
+    @cached_property
     def is_developer(self):
         return self.addonuser_set.exists()
 
@@ -149,7 +150,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def name(self):
         return smart_unicode(self.display_name or self.username)
 
-    @amo.cached_property
+    @cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
         qs = self._reviews_all.filter(reply_to=None)

@@ -2,7 +2,7 @@
 
 from addons.models import Persona
 from addons.tasks import calc_checksum
-from amo.utils import chunked
+from mkt.site.utils import chunked
 
 
 def run():

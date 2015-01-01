@@ -142,6 +142,7 @@ class WebappIndexer(BaseIndexer):
                     'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
                     'package_path': cls.string_not_indexed(),
+                    # See also popularity by region below.
                     'popularity': {'type': 'long', 'doc_values': True},
                     'premium_type': {'type': 'byte'},
                     'previews': {
@@ -162,6 +163,8 @@ class WebappIndexer(BaseIndexer):
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
+                    # See also trending by region below.
+                    'trending': {'type': 'float', 'doc_values': True},
                     'upsell': {
                         'type': 'object',
                         'properties': {
@@ -188,7 +191,14 @@ class WebappIndexer(BaseIndexer):
         # Add popularity by region.
         for region in mkt.regions.ALL_REGION_IDS:
             mapping[doc_type]['properties'].update(
-                {'popularity_%s' % region: {'type': 'long'}})
+                {'popularity_%s' % region: {'type': 'long',
+                                            'doc_values': True}})
+
+        # Add trending by region.
+        for region in mkt.regions.ALL_REGION_IDS:
+            mapping[doc_type]['properties'].update(
+                {'trending_%s' % region: {'type': 'float',
+                                          'doc_values': True}})
 
         # Add fields that we expect to return all translations.
         cls.attach_translation_mappings(
@@ -305,6 +315,9 @@ class WebappIndexer(BaseIndexer):
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
         d['popularity'] = install_count
+        for region in mkt.regions.ALL_REGION_IDS:
+            d['popularity_%s' % region] = d['popularity']
+
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
                          for p in obj.previews.all()]
@@ -326,8 +339,12 @@ class WebappIndexer(BaseIndexer):
                 None, version.supported_locales.split(','))
         else:
             d['supported_locales'] = []
-
         d['tags'] = getattr(obj, 'tag_list', [])
+
+        d['trending'] = obj.get_trending()
+        for region in mkt.regions.ALL_REGIONS:
+            d['trending_%s' % region.id] = obj.get_trending(region)
+
         if obj.upsell and obj.upsell.premium.is_published():
             upsell_obj = obj.upsell.premium
             d['upsell'] = {
@@ -364,9 +381,6 @@ class WebappIndexer(BaseIndexer):
             {'lang': to_language(lang), 'string': string}
             for lang, string
             in geodata.translations[geodata.banner_message_id]]
-
-        for region in mkt.regions.ALL_REGION_IDS:
-            d['popularity_%s' % region] = d['popularity']
 
         # Bump the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC:

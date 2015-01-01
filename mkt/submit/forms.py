@@ -11,13 +11,13 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo.utils import slug_validator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
 from mkt.reviewers.models import RereviewQueue
+from mkt.site.utils import slug_validator
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea

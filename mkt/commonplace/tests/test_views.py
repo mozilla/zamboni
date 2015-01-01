@@ -3,6 +3,7 @@ import json
 from StringIO import StringIO
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
@@ -12,7 +13,6 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from amo.utils import reverse
 from mkt.commonplace.models import DeployBuildId
 
 
