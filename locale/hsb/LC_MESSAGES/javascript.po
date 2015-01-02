@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-01 12:33+0000\n"
+"PO-Revision-Date: 2015-01-01 15:13+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420115601.0\n"
+"X-POOTLE-MTIME: 1420125188.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -591,7 +591,7 @@ msgstr "Premiumowe nałoženje"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr "K přichodnemu wyšemu městnu dale daty"
+msgstr "Přichodnemu wyšemu městnu dale daty"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
