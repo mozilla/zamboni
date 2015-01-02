@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-02 19:02+0000\n"
+"PO-Revision-Date: 2015-01-02 19:10+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420225324.0\n"
+"X-POOTLE-MTIME: 1420225800.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2273,27 +2273,35 @@ msgid ""
 "The app requires that the platform supports the Web Audio API "
 "(`window.AudioContext`)."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma API Web Audio (\"window.AudioContext\") "
+"podpěruje."
 
 #: mkt/constants/features.py:181
 msgid ""
 "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma móže dataje H.264-widejow dekodować a "
+"wothrać."
 
 #: mkt/constants/features.py:187
 msgid ""
 "The app requires that the platform can decode and play WebM video files "
 "(VP8)."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma móže widejowe dataje WebM (VP8) "
+"dekodować a wothrać."
 
 #: mkt/constants/features.py:192
 msgid "Full Screen"
-msgstr ""
+msgstr "Połna wobrazowka"
 
 #: mkt/constants/features.py:193
 msgid ""
 "The app requires the Full Screen API (`requestFullScreen` or "
 "`mozRequestFullScreen`)."
 msgstr ""
+"Nałoženje wužaduje sej API Full Screen (\"requestFullScreen\" abo "
+"\"mozRequestFullScreen\")."
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
@@ -2357,7 +2365,7 @@ msgstr ""
 
 #: mkt/constants/features.py:234
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:235
 msgid ""
@@ -2367,7 +2375,7 @@ msgstr ""
 
 #: mkt/constants/features.py:241
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:242
 msgid ""
@@ -2377,7 +2385,7 @@ msgstr ""
 
 #: mkt/constants/features.py:248
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:249
 msgid ""
@@ -2438,7 +2446,7 @@ msgstr ""
 
 #: mkt/constants/features.py:289
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:290
 msgid ""
@@ -2448,7 +2456,7 @@ msgstr ""
 
 #: mkt/constants/features.py:296
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
