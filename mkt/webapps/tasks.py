@@ -19,6 +19,7 @@ from django.core.urlresolvers import reverse
 from django.template import Context, loader
 from django.test.client import RequestFactory
 
+import elasticsearch
 import pytz
 import requests
 from celery import chord
@@ -630,68 +631,127 @@ def import_manifests(ids, **kw):
                               '%s: %s' % (app.id, version.id, e))
 
 
-def _get_trending(app_id, region=None):
+def _get_trending(ES, app_id):
     """
-    Calculate trending.
+    Calculate trending for app for all regions and per region.
 
-    a = installs from 7 days ago to now
+    a = installs from 7 days ago to today
     b = installs from 28 days ago to 8 days ago, averaged per week
-
     trending = (a - b) / b if a > 100 and b > 1 else 0
 
+    Returns value in the format of::
+
+        {<region_slug>: <trending score>, ...}
+
+    where a `region_slug` of 'all' is all regions.
+
     """
-    client = get_monolith_client()
+    today = datetime.date.today()
 
-    kwargs = {'app-id': app_id}
-    if region:
-        kwargs['region'] = region.slug
+    week1 = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(7).date().isoformat(),
+                    'lte': today.isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
+    week3 = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(28).date().isoformat(),
+                    'lte': days_ago(8).date().isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
 
-    today = datetime.datetime.today()
+    query = {
+        'query': {
+            'filtered': {
+                'query': {'match_all': {}},
+                'filter': {'term': {'app-id': app_id}}
+            }
+        },
+        'aggregations': {
+            'week1': week1,
+            'week3': week3,
+            'region': {
+                'terms': {
+                    'field': 'region',
+                    # Add size so we get all regions, not just the top 10.
+                    'size': len(mkt.regions.ALL_REGIONS)
+                },
+                'aggregations': {
+                    'week1': week1,
+                    'week3': week3
+                }
+            }
+        },
+        'size': 0
+    }
 
-    # If we query monolith with interval=week and the past 7 days
-    # crosses a Monday, Monolith splits the counts into two. We want
-    # the sum over the past week so we need to `sum` these.
     try:
-        count_1 = sum(
-            c['count'] for c in
-            client('app_installs', days_ago(7), today, 'week', **kwargs)
-            if c.get('count'))
-    except ValueError as e:
-        task_log.info('Call to ES failed: {0}'.format(e))
-        count_1 = 0
-    except KeyError as e:
-        # ES results didn't have the structure we were expecting.
-        task_log.info('Unexpected result: {0}'.format(e))
-        count_1 = 0
+        res = ES.search(index=settings.MONOLITH_INDEX, search_type='count',
+                        body=query)
+    except elasticsearch.ElasticsearchException as e:
+        task_log.error('Error response from Elasticsearch: {0}'.format(e))
+        return {}
 
-    # If count_1 isn't more than 100, stop here to avoid extra Monolith calls.
-    if not count_1 > 100:
-        return 0.0
+    def _score(week1, week3):
+        score = 0.0
+        if week3 > 1:
+            score = (week1 - week3) / week3
+        if score <= 0:
+            score = 0.0
+        return score
 
-    # Get the average installs for the prior 3 weeks. Don't use the `len` of
-    # the returned counts because of week boundaries.
-    try:
-        count_3 = sum(
-            c['count'] for c in
-            client('app_installs', days_ago(28), days_ago(8), 'week', **kwargs)
-            if c.get('count')) / 3
-    except ValueError as e:
-        task_log.info('Call to ES failed: {0}'.format(e))
-        count_3 = 0
-    except KeyError as e:
-        # ES results didn't have the structure we were expecting.
-        task_log.info('Unexpected result: {0}'.format(e))
-        count_3 = 0
+    # Global trending score.
+    week1 = res['aggregations']['week1']['total_installs']['value']
+    week3 = res['aggregations']['week3']['total_installs']['value'] / 3.0
 
-    if count_3 > 1:
-        return (count_1 - count_3) / count_3
-    else:
-        return 0.0
+    if week1 < 100.0:
+        # If global installs over the last week aren't over 100, we
+        # short-circuit and return zero as this is not a trending app by
+        # definition.
+        return {}
+
+    results = {
+        'all': _score(week1, week3)
+    }
+
+    if 'region' in res['aggregations']:
+        for regional_res in res['aggregations']['region']['buckets']:
+            region_slug = regional_res['key']
+            week1 = regional_res['week1']['total_installs']['value']
+            week3 = regional_res['week1']['total_installs']['value'] / 3.0
+            results[region_slug] = _score(week1, week3)
+
+    return results
 
 
 @task
 @write
 def update_trending(ids, **kw):
+
+    ES = elasticsearch.Elasticsearch(hosts=settings.MONOLITH_SERVER)
     count = 0
     times = []
 
@@ -700,8 +760,10 @@ def update_trending(ids, **kw):
         count += 1
         t_start = time.time()
 
-        # Calculate global trending, then per-region trending below.
-        value = _get_trending(app.id)
+        scores = _get_trending(ES, app.id)
+
+        # Update global trending, then per-region trending below.
+        value = scores.get('all')
         if value > 0:
             trending, created = app.trending.get_or_create(
                 region=0, defaults={'value': value})
@@ -713,7 +775,7 @@ def update_trending(ids, **kw):
             app.trending.filter(region=0).delete()
 
         for region in mkt.regions.REGIONS_DICT.values():
-            value = _get_trending(app.id, region)
+            value = scores.get(region.slug)
             if value > 0:
                 trending, created = app.trending.get_or_create(
                     region=region.id, defaults={'value': value})
