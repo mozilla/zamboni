@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-02 12:53+0000\n"
+"PO-Revision-Date: 2015-01-02 17:55+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420203209.0\n"
+"X-POOTLE-MTIME: 1420221328.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2161,78 +2161,84 @@ msgid ""
 "The app requires the ability to get information about the network connection "
 "(the `navigator.mozConnection` API)."
 msgstr ""
+"Tute nałoženje wužaduje sej móžnosć, informacije wo syćowym zwisku dóstać "
+"(API \"navigator.mozConnection)."
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
-msgstr ""
+msgstr "Syćowa statistika"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozNetworkStats\"."
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
-msgstr ""
+msgstr "Bliskosć"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Nałoženje wužaduje sej bliskostny sensor (API \"ondeviceproximity\")."
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
-msgstr ""
+msgstr "Jednory push"
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozPush\"."
 
 #: mkt/constants/features.py:117
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Wusměrjenje wobrazowki"
 
 #: mkt/constants/features.py:118
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej podpěru API \"ondeviceorientation\" na platformje."
 
 #: mkt/constants/features.py:123
 msgid "Time/Clock"
-msgstr ""
+msgstr "Čas/Časnik"
 
 #: mkt/constants/features.py:124
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozTime\"."
 
 #: mkt/constants/features.py:128
 msgid "Vibration"
-msgstr ""
+msgstr "Wibracija"
 
 #: mkt/constants/features.py:129
 msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
 msgstr ""
+"Nałoženje wužaduje sej podpěru wibracije (API navigator.vibrate) na graće."
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr ""
+"Nałoženje wužaduje sej API \"navigator.mozFM\" abo \"navigator.mozFMRadio\"."
 
 #: mkt/constants/features.py:141
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozSms\"."
 
 #: mkt/constants/features.py:145
 msgid "Touch"
-msgstr ""
+msgstr "Dótknjenje"
 
 #: mkt/constants/features.py:146
 msgid ""
 "The app requires the platform to support touch events. This option indicates "
 "that the app will not function when used with a mouse."
 msgstr ""
+"Nałoženje wužaduje sej podpěru dótknjenskich podawkow na platformje. Tuta "
+"opcija pokazuje, zo nałoženje njefunguje, hdyž so z myšku wužiwa."
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Wobrazowki we wulkosći smartfona (qHD)"
 
 #: mkt/constants/features.py:153
 msgid ""
@@ -2286,17 +2292,19 @@ msgstr ""
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: mkt/constants/features.py:200
 msgid ""
 "The app requires the platform to support the gamepad API "
 "(`navigator.getGamepads`)."
 msgstr ""
+"Nałoženje wužaduje sej podpěru API gamepada (\"navigator.getGamepads\") na "
+"platformje."
 
 #: mkt/constants/features.py:205
 msgid "Quota Management"
-msgstr ""
+msgstr "Kwotowe zrjadowanje"
 
 #: mkt/constants/features.py:206
 msgid ""
@@ -2304,30 +2312,37 @@ msgid ""
 "above the normally allowed limits for an app (`window.StorageInfo` or "
 "`window.persistentStorage`)."
 msgstr ""
+"Nałoženje wužaduje sej, zo so platformje dowola, zo so trajny składowanski "
+"limit nad normalnje dowolene limity za nałoženje powyšuje "
+"('window.StorageInfo\" abo \"window.persistentStorage\")."
 
 #: mkt/constants/features.py:214
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:215
 msgid ""
 "The app requires the platform to allow access to video from the device "
 "camera via a LocalMediaStream object."
 msgstr ""
+"Nałoženje wužaduje sej, zo platforma přistup na wideja z kamery grata přez "
+"objekt LocalMediaStream dowola."
 
 #: mkt/constants/features.py:221
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:222
 msgid ""
 "The app requires the platform to allow access to audio from the device "
 "microphone."
 msgstr ""
+"Nałoženje wužaduje sej, zo platforma přistup na zynk gratoweho mikrofona "
+"dowola."
 
 #: mkt/constants/features.py:227
 msgid "Screen Capture"
-msgstr ""
+msgstr "Fota wobrazowki"
 
 #: mkt/constants/features.py:228
 msgid ""
@@ -2367,43 +2382,48 @@ msgstr ""
 
 #: mkt/constants/features.py:255
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:256
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Nałoženje sej wužaduje, zo platforma wužiwanje tekst-do-rěčenja dowola."
 
 #: mkt/constants/features.py:261
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:262
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma wužiwanje rěčenje-do-teksta dowola."
 
 #: mkt/constants/features.py:267
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Zawrjenje pokazowarja"
 
 #: mkt/constants/features.py:268
 msgid ""
 "The app requires the platform to provide additional information and control "
 "about the pointer."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma přidatne informacije a kontrolu wo "
+"pokazowarju k dispoziciji staja."
 
 #: mkt/constants/features.py:274
 msgid "Notifications"
-msgstr ""
+msgstr "Zdźělenki"
 
 #: mkt/constants/features.py:275
 msgid ""
 "The app requires the platform to allow the displaying phone and desktop "
 "notifications to the user."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma zwobraznjenje telefonowych a "
+"desktopowych zdźělenkow do wužiwarja dowola."
 
 #: mkt/constants/features.py:281
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmy"
 
 #: mkt/constants/features.py:282
 msgid ""
@@ -2457,42 +2477,42 @@ msgstr ""
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Předkompilowanje Asm.js"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Nałoženje sej wužaduje, zo grat předkompilowanje koda asm.js podpěruje."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Grat z 512 MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Nałoženje sej wužaduje, zo grat ma znajmjeńša 512 MB RAM."
 
 #: mkt/constants/payments.py:40
 #: mkt/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Wróćopłaćenje"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
-msgstr ""
+msgstr "Druhe"
 
 #: mkt/constants/payments.py:42
 #: mkt/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Kupić"
 
 #: mkt/constants/payments.py:43
 #: mkt/constants/payments.py:50
 msgid "Refund"
-msgstr ""
+msgstr "Zarunanje"
 
 #: mkt/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Dobrowólny"
 
 #: mkt/constants/payments.py:63
 #: mkt/constants/payments.py:120
@@ -2536,44 +2556,44 @@ msgstr ""
 #: mkt/constants/platforms.py:7
 #: mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox za Desktop"
 
 #: mkt/constants/platforms.py:35
 #: mkt/constants/platforms.py:39
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Dospołnje wotewrjeny mobilny ekosystem"
 
 #: mkt/constants/platforms.py:36
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac a Linux"
 
 #: mkt/constants/platforms.py:37
 #: mkt/constants/platforms.py:40
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Androidowe smartfony"
 
 #: mkt/constants/platforms.py:38
 #: mkt/constants/platforms.py:41
 msgid "Tablets"
-msgstr ""
+msgstr "Tablety"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Za wšě starobne skupiny"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "Za starobu wot %d lět"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Zastopnjowanje wotpokazane"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Zastopnjowanje faluje"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -2620,7 +2640,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2628,15 +2648,15 @@ msgstr ""
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
-msgstr ""
+msgstr "Zbytk swěta"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Ruska"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7
 #: mkt/developers/templates/developers/validate_app.html:16
@@ -2650,11 +2670,11 @@ msgstr ""
 #: mkt/search/forms.py:27
 #: mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
-msgstr ""
+msgstr "Zapakowany"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
-msgstr ""
+msgstr "Dojednanje"
 
 #: mkt/constants/submit.py:6
 #: mkt/developers/templates/developers/apps/preload/submit.html:11
@@ -2700,7 +2720,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:66
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Njemóžeće {region} wubrać."
 
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
