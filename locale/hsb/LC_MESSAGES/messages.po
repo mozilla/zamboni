@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-01 21:46+0000\n"
+"PO-Revision-Date: 2015-01-02 11:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420148775.0\n"
+"X-POOTLE-MTIME: 1420198209.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -929,7 +929,7 @@ msgstr "Chorwatska"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr ""
+msgstr "Kuba"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
@@ -1043,41 +1043,41 @@ msgstr "Němska"
 
 #: mkt/constants/bango.py:102
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: mkt/constants/bango.py:103
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 #: mkt/constants/bango.py:104
 #: mkt/constants/regions.py:83
 msgid "Greece"
-msgstr ""
+msgstr "Grjekska"
 
 #: mkt/constants/bango.py:105
 msgid "Greenland"
-msgstr ""
+msgstr "Grönlandska"
 
 #: mkt/constants/bango.py:106
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: mkt/constants/bango.py:107
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadeloupe"
 
 #: mkt/constants/bango.py:108
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:109
 #: mkt/constants/regions.py:84
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:110
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: mkt/constants/bango.py:111
 msgid "Guinea"
@@ -1294,36 +1294,36 @@ msgstr "Mayotte"
 #: mkt/constants/bango.py:163
 #: mkt/constants/regions.py:89
 msgid "Mexico"
-msgstr ""
+msgstr "Mexiko"
 
 #: mkt/constants/bango.py:164
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Mikroneziska, Federatiwne staty"
 
 #: mkt/constants/bango.py:165
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldawska, republika"
 
 #: mkt/constants/bango.py:166
 msgid "Monaco"
-msgstr ""
+msgstr "Monaco"
 
 #: mkt/constants/bango.py:167
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolska"
 
 #: mkt/constants/bango.py:168
 #: mkt/constants/regions.py:90
 msgid "Montenegro"
-msgstr ""
+msgstr "Čorna Hora"
 
 #: mkt/constants/bango.py:169
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: mkt/constants/bango.py:170
 msgid "Morocco"
-msgstr ""
+msgstr "Marokko"
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
@@ -1591,39 +1591,39 @@ msgstr "Swaziska"
 
 #: mkt/constants/bango.py:235
 msgid "Sweden"
-msgstr ""
+msgstr "Šwedska"
 
 #: mkt/constants/bango.py:236
 msgid "Switzerland"
-msgstr ""
+msgstr "Šwicarska"
 
 #: mkt/constants/bango.py:237
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Syriska arabska republika"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Taiwan, chinska prowinca"
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tadźikistan"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tansanija, Zjednoćena republika"
 
 #: mkt/constants/bango.py:241
 msgid "Thailand"
-msgstr ""
+msgstr "Thailandska"
 
 #: mkt/constants/bango.py:242
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Wuchodny Timor"
 
 #: mkt/constants/bango.py:243
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: mkt/constants/bango.py:244
 msgid "Tokelau"
@@ -1791,40 +1791,40 @@ msgstr "Pomoc"
 #: mkt/search/forms.py:32
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
-msgstr ""
+msgstr "Darmo"
 
 #: mkt/constants/base.py:135
 #: mkt/search/forms.py:34
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: mkt/constants/base.py:136
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium z płaćenjom w nałoženju"
 
 #: mkt/constants/base.py:137
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Darmo z płaćenjemi w nałoženju"
 
 #: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Wužiwam swójski system za płaćenja w nałoženju"
 
 #: mkt/constants/base.py:194
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Přiručka za přepruwowarske dypki"
 
 #: mkt/constants/base.py:195
 msgid "Web App Review"
-msgstr ""
+msgstr "Přepruwowanje webnałoženja"
 
 #: mkt/constants/base.py:196
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Přepruwowanje zapakowaneho nałoženja"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Přepruwowanje priwilegowaneho nałoženja"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1938,41 +1938,42 @@ msgstr "Sport"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "Pućowanje"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
-msgstr ""
+msgstr "Nastroje"
 
 #: mkt/constants/categories.py:38
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
 #: mkt/site/context_processors.py:48
 msgid "Tools"
-msgstr ""
+msgstr "Nastroje"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Žana akcija"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Zawrjeny"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Priwatny přepruwowarski komentar"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "Zasozapodaće nałoženja"
 
 #: mkt/constants/comm.py:53
 msgid "Escalated due to High Abuse Reports"
 msgstr ""
+"Wjele znjewužiwanskich zdźělenkow dla přichodnemu wyšemu městnu dale daty"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Wjele zarunanskich požadanjow přichodnemu wyšemu městnu dale daty"
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
@@ -2028,43 +2029,47 @@ msgstr ""
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
-msgstr ""
+msgstr "Přidatne přepruwowanje wobstaty"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr ""
+msgstr "Přidatne přepruwowanje njewobstaty"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Wersijowe pokazy za přepruwowarja"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Zjawny přepruwowarski komentar"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API za zrjadowanje nałoženjow"
 
 #: mkt/constants/features.py:18
 msgid ""
 "The app requires the `navigator.mozApps` API to install and manage other "
 "apps."
 msgstr ""
+"Nałoženje wužaduje sej API \"navigator.mozApps\" za instalowanje a rjadowanje "
+"druhich nałoženjow."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API za instalowanje zapakowanych nałoženjow"
 
 #: mkt/constants/features.py:24
 msgid ""
 "The app requires the `navigator.mozApps.installPackage` API to install other "
 "packaged apps."
 msgstr ""
+"Nałoženje wužaduje sej API \"navigator.mozApps.installPackage\" za "
+"instalowanje druhich zapakowanych nałoženjow."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Webpłaćenje"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
@@ -2104,19 +2109,19 @@ msgstr ""
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozBluetooth\"."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakty"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Tute nałoženje wužaduje sej API \"navigator.mozContacts\"."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Gratowy składowak"
 
 #: mkt/constants/features.py:70
 msgid ""
