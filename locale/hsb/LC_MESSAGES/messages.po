@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-02 11:39+0000\n"
+"PO-Revision-Date: 2015-01-02 12:53+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420198754.0\n"
+"X-POOTLE-MTIME: 1420203209.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1722,24 +1722,24 @@ msgstr "Zapadna Sahara"
 
 #: mkt/constants/bango.py:267
 msgid "Yemen"
-msgstr ""
+msgstr "Jemen"
 
 #: mkt/constants/bango.py:268
 msgid "Zambia"
-msgstr ""
+msgstr "Sambija"
 
 #: mkt/constants/bango.py:269
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Simbabwe"
 
 #: mkt/constants/base.py:26
 #: mkt/lookup/views.py:150
 msgid "Incomplete"
-msgstr ""
+msgstr "Njedospołny"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
-msgstr ""
+msgstr "Čaka na schwalenje"
 
 #: mkt/constants/base.py:28
 #: mkt/constants/base.py:44
@@ -1864,41 +1864,41 @@ msgstr "Schodźenk 4"
 
 #: mkt/constants/base.py:234
 msgid "Level 5"
-msgstr ""
+msgstr "Schodźenk 5"
 
 #: mkt/constants/base.py:235
 msgid "Level 6"
-msgstr ""
+msgstr "Schodźenk 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "Knihi"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Wobchodnistwo"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Kubłanje"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Zabawjenje"
 
 #: mkt/constants/categories.py:9
 #: mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "Hry"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Strowosć a fitnes"
 
 #: mkt/constants/categories.py:11
 #: mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "Lifestyle"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
@@ -1993,39 +1993,39 @@ msgstr "Žadanja wot přepruwowarja změnjene"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Nowopřepruwowanje změny manifesta dla"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Nowopřepruwowanje změny manifestoweho URL"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Nowopřepruwowanje aktualizacije premiumoweho typa dla"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Nowopřepruwowanje přidatych gratow dla"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Nowopřepruwowanje změnjenych žadanjow dla"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Nowopřepruwowanje zastupnjowanja za dorosćenych dla"
 
 #: mkt/constants/comm.py:66
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu VIP-nałoženja dla"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu nałoženja za předwozjewjenje dla"
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
-msgstr ""
+msgstr "Přepruwowanje priority požadane"
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
@@ -2073,39 +2073,39 @@ msgstr "Webpłaćenje"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"navigator.mozApps\"."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Webaktiwity"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Nałoženje wužaduje sej webaktiwity (API \"MozActivity\")."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Wokolinowy swětłosensor"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "Nałoženje wužaduje sej wokolinowy swětłosensor (API \"ondevicelight\")."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Archiw"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"ArchiveReader\"."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "Baterija"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej API \"naqvigator.battery\"."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
@@ -2127,31 +2127,34 @@ msgstr "Gratowy składowak"
 msgid ""
 "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Nałoženje wužaduje sej API \"Gratowy składowak\", zo by přistup na datajowy "
+"system měło."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Nałoženje wužaduje sej podpěru IndexedDB na platformje."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Postajenje stejnišćow"
 
 #: mkt/constants/features.py:82
 msgid ""
 "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Nałoženje wužaduje sej podpěru API \"navigator.geolocation\" na platformje."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Prózdnoběh"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Nałoženje wužaduje sej podpěru API \"addIdleObserver\" na platformje."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
-msgstr ""
+msgstr "Syćowe informacije"
 
 #: mkt/constants/features.py:94
 msgid ""
