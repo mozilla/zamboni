@@ -48,8 +48,9 @@ def test_walkfiles():
     file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
     file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
 
-    eq_(list(walkfiles(basedir, suffix='_foo')), [file1path, file2path])
-    eq_(list(walkfiles(basedir)), [file1path, file3path, file2path])
+    eq_(sorted(walkfiles(basedir, suffix='_foo')),
+        sorted([file1path, file2path]))
+    eq_(sorted(walkfiles(basedir)), sorted([file1path, file3path, file2path]))
 
 
 u = u'Ελληνικά'
