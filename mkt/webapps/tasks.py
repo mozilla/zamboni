@@ -1083,6 +1083,7 @@ def generate_app_package(app, out, permissions, version='1.0'):
                              for k in permissions)),
         'default_locale': 'en',
         'orientation': 'landscape',
+        'type': 'privileged' if permissions else 'web',
         'fullscreen': 'true'
     }
     with ZipFile(file=out, mode='w', compression=ZIP_DEFLATED) as outz:
