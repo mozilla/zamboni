@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
-import elasticsearch
 import mock
 from nose.tools import eq_
 
@@ -299,36 +298,45 @@ class TestUpdateTrending(amo.tests.TestCase):
             }
         }
 
-    @mock.patch('elasticsearch.client.Elasticsearch')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending(self, _mock):
-        _mock.search.return_value = self._return_value(255, 255)
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(255, 255)
+        _mock.return_value = client
 
         # 1st week count: 255
         # Prior 3 weeks get averaged: (255) / 3 = 85
         # (255 - 85) / 85 = 2.0
-        eq_(_get_trending(_mock, self.app.id), {'all': 2.0})
+        eq_(_get_trending(self.app.id), {'all': 2.0})
 
-    @mock.patch('elasticsearch.client.Elasticsearch')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_threshold(self, _mock):
-        _mock.search.return_value = self._return_value(99, 2)
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(99, 2)
+        _mock.return_value = client
 
         # 1st week count: 99
         # 99 is less than 100 so we return {} as not trending.
-        eq_(_get_trending(_mock, self.app.id), {})
+        eq_(_get_trending(self.app.id), {})
 
-    @mock.patch('elasticsearch.client.Elasticsearch')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_negative(self, _mock):
-        _mock.search.return_value = self._return_value(100, 1000)
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(100, 1000)
+        _mock.return_value = client
 
         # 1st week count: 100
         # Prior 3 week count: 1000
         # (100 - 1000) / 1000 = -0.9 which gets set to 0.0.
-        eq_(_get_trending(_mock, self.app.id), {'all': 0.0})
+        eq_(_get_trending(self.app.id), {'all': 0.0})
 
-    @mock.patch('elasticsearch.client.Elasticsearch')
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_error(self, _mock):
-        _mock.search.side_effect = elasticsearch.ElasticsearchException
-        eq_(_get_trending(_mock, self.app.id), {})
+        client = mock.Mock()
+        client.raw.side_effect = ValueError
+        _mock.return_value = client
+
+        eq_(_get_trending(self.app.id), {})
 
 
 @mock.patch('os.stat')

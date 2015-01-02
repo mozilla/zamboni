@@ -19,7 +19,6 @@ from django.core.urlresolvers import reverse
 from django.template import Context, loader
 from django.test.client import RequestFactory
 
-import elasticsearch
 import pytz
 import requests
 from celery import chord
@@ -631,7 +630,7 @@ def import_manifests(ids, **kw):
                               '%s: %s' % (app.id, version.id, e))
 
 
-def _get_trending(ES, app_id):
+def _get_trending(app_id):
     """
     Calculate trending for app for all regions and per region.
 
@@ -646,6 +645,7 @@ def _get_trending(ES, app_id):
     where a `region_slug` of 'all' is all regions.
 
     """
+    client = get_monolith_client()
     today = datetime.date.today()
 
     week1 = {
@@ -709,10 +709,9 @@ def _get_trending(ES, app_id):
     }
 
     try:
-        res = ES.search(index=settings.MONOLITH_INDEX, search_type='count',
-                        body=query)
-    except elasticsearch.ElasticsearchException as e:
-        task_log.error('Error response from Elasticsearch: {0}'.format(e))
+        res = client.raw(query)
+    except ValueError as e:
+        task_log.error('Error response from Monolith: {0}'.format(e))
         return {}
 
     def _score(week1, week3):
@@ -751,7 +750,6 @@ def _get_trending(ES, app_id):
 @write
 def update_trending(ids, **kw):
 
-    ES = elasticsearch.Elasticsearch(hosts=settings.MONOLITH_SERVER)
     count = 0
     times = []
 
@@ -760,7 +758,7 @@ def update_trending(ids, **kw):
         count += 1
         t_start = time.time()
 
-        scores = _get_trending(ES, app.id)
+        scores = _get_trending(app.id)
 
         # Update global trending, then per-region trending below.
         value = scores.get('all')
