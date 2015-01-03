@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-03-27 15:01+0000\n"
-"Last-Translator: bimbimka <barboradur@gmail.com>\n"
+"PO-Revision-Date: 2015-01-03 22:37+0000\n"
+"Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395932501.0\n"
+"X-POOTLE-MTIME: 1420324641.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -170,11 +170,11 @@ msgstr "Zadajte e-mailovú adresu nového člena tímu"
 
 #: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest obnovený"
 
 #: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Obnovenie manifestu sa nepodarilo. Skúste to znovu neskôr."
 
 #: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
@@ -206,11 +206,11 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Povolené"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázané"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -230,11 +230,11 @@ msgstr "Prihlásenie pomocou služby Persona zlyhalo. Nastala chyba servera."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Stav bol úspešne zmenený na \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Stav nemožno zmeniť na \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -335,7 +335,7 @@ msgstr[2] ""
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Účet platieb pre aplikáciu {appName}:"
 
 #: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
@@ -368,7 +368,7 @@ msgstr "Vyhľadávanie doplnkov pre <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Nastala chyba. Skúste to znova."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -490,7 +490,7 @@ msgstr "menej..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Ponechať recenziu / Odobrať značky"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -563,8 +563,10 @@ msgstr ""
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Ospravedlňujeme sa! Počas získavania histórie kontrol nastala chyba. Skúste "
+"sa prosím prihlásiť znova.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Od {0} dňa {1}"
