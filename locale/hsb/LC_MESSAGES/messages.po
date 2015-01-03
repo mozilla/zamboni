@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-02 19:10+0000\n"
+"PO-Revision-Date: 2015-01-03 19:53+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420225800.0\n"
+"X-POOTLE-MTIME: 1420314836.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2362,6 +2362,8 @@ msgid ""
 "The app requires the platform to allow access to the device screen for "
 "capture."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma přistup na wobrazowku grata za fota "
+"dowola."
 
 #: mkt/constants/features.py:234
 msgid "WebRTC MediaStream"
@@ -2372,6 +2374,8 @@ msgid ""
 "The app requires the platform to allow web real-time communication browser-"
 "to-browser inbound media streams."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma komunikaciju woprawdźiteho časa mjez "
+"wobhladowakami přez dochadźace medijowe prudy dowola."
 
 #: mkt/constants/features.py:241
 msgid "WebRTC DataChannel"
@@ -2382,6 +2386,8 @@ msgid ""
 "The app requires the platform to allow peer-to-peer exchange of data other "
 "than audio and video."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma direktnu wuměnu hinašich datow hač "
+"awdio a widejo dowola."
 
 #: mkt/constants/features.py:248
 msgid "WebRTC PeerConnection"
@@ -2392,6 +2398,8 @@ msgid ""
 "The app requires the platform to allow communication of streaming data "
 "between peers."
 msgstr ""
+"Nałoženje sej wužadije, zo platforma komunikaciju prudźacych datow mjez "
+"ličakami w kompjuterowej syći dowola."
 
 #: mkt/constants/features.py:255
 msgid "Web Speech Synthesis"
@@ -2443,6 +2451,8 @@ msgid ""
 "The app requires the platform to provide access to the device alarm settings "
 "to schedule notifications and events at specific time."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma přistup na alarmowe nastajenja grata "
+"dowola, zo by zdźělenki a podawki za wěsty čas planowało."
 
 #: mkt/constants/features.py:289
 msgid "SystemXHR"
@@ -2453,6 +2463,8 @@ msgid ""
 "The app requires the platform to allow the sending of asynchronous HTTP "
 "requests without the restrictions of the same-origin policy."
 msgstr ""
+"Nałoženje se wužaduje, zo platforma słanje asynchronych HTTP-naprašowanjow "
+"bjez wobmjezowanjow samsneho pochada dowola."
 
 #: mkt/constants/features.py:296
 msgid "TCP Sockets"
@@ -2460,33 +2472,37 @@ msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Nałoženje sej wužaduje, zo platforma wočinjenje Raw TCP Sockets dowola."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Podpěra za tastatury třećich poskićowarjow"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
 msgstr ""
+"Nałoženje sej wužaduje, zo platforma tastatury třećich poskićowarjow "
+"podpěruje."
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Informacije wo wjacorych syćach"
 
 #: mkt/constants/features.py:309
 msgid ""
 "The app requires the ability to get information about multiple network "
 "connections."
 msgstr ""
+"Nałoženje wužaduje sej móžnosć, sej informacije wo wjacorych syćowych "
+"zwiskach wobstarać."
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "ID mobilneho telefona"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Nakoženje wužaduje sej přistup na API \"navigator.getMobileIdAssertion\"."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
@@ -2530,25 +2546,25 @@ msgstr "Dobrowólny"
 #: mkt/constants/payments.py:63
 #: mkt/constants/payments.py:120
 msgid "Pending"
-msgstr ""
+msgstr "Faluje"
 
 #: mkt/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Hnydom schwaleny"
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Wotpokazany"
 
 #: mkt/constants/payments.py:75
 #: mkt/constants/payments.py:122
 msgid "Failed"
-msgstr ""
+msgstr "Je so nimokuliło"
 
 #: mkt/constants/payments.py:79
 #: mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "Płaćenje je so přijało, ale njeje so dokónčiło."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
@@ -2635,21 +2651,21 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Wot 17 lět"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Dorosćeni wot 18 lět"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Cyła Amerika, nimo Brazilskeje"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Přepruwanišćo za zabawjensku softwaru"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
@@ -2657,7 +2673,7 @@ msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Paneuropska hrajna informacija"
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
@@ -2676,7 +2692,7 @@ msgstr "Venezuela"
 #: mkt/search/forms.py:26
 #: mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
-msgstr ""
+msgstr "Hosćeny"
 
 #: mkt/constants/reviewers.py:8
 #: mkt/developers/templates/developers/validate_app.html:54
@@ -2693,19 +2709,19 @@ msgstr "Dojednanje"
 #: mkt/developers/templates/developers/apps/preload/submit.html:11
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
-msgstr ""
+msgstr "Wotpósłać"
 
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
 #: mkt/webapps/models.py:1479
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosće"
 
 #: mkt/constants/submit.py:8
 #: mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Přichodne kroki"
 
 #: mkt/detail/helpers.py:31
 msgid "{0} weekly download"
@@ -2756,36 +2772,48 @@ msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež je "
+"tuchwilu zjawne. <a href=\"%s\">Nałoženje wobdźěłać</a>"
 
 #: mkt/developers/forms.py:194
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež tuchwilu "
+"hišće wusteji. <a href=\"%s\">Nałoženje wobdźěłać</a>"
 
 #: mkt/developers/forms.py:198
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež je "
+"tuchwilu njedospołne. <a href=\"%s\">Z nałoženjom pokročować</a>"
 
 #: mkt/developers/forms.py:202
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež je "
+"tuchwilu wotpokazane. <a href=\"%s\">Nałoženje wobdźěłać</a>"
 
 #: mkt/developers/forms.py:206
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež je "
+"tuchwilu za Torhošćo zawrjene. <a href=\"%s\">Nałoženje wobdźěłać</a>"
 
 #: mkt/developers/forms.py:210
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda so, kaž byšće tutón manifest hižo za %s zapodał, kotrež je "
+"tuchwilu znjemóžnjene. <a href=\"%s\">Nałoženje wobdźěłać</a>"
 
 #: mkt/developers/forms.py:225
 msgid ""
@@ -2852,7 +2880,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
-msgstr ""
+msgstr "Waše komentary"
 
 #: mkt/developers/forms.py:795
 msgid ""
@@ -2868,7 +2896,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:815
 msgid "App Visibility:"
-msgstr ""
+msgstr "Widźomnosć nałoženja"
 
 #: mkt/developers/forms.py:817
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -2923,11 +2951,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1088
 msgid "Your email address"
-msgstr ""
+msgstr "Waša e-mejlowa adresa"
 
 #: mkt/developers/forms.py:1091
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: mkt/developers/forms.py:1095
 msgid "You must agree to the Privacy Policy."
@@ -2937,7 +2965,7 @@ msgstr ""
 #: mkt/developers/forms_payments.py:396
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Kraj"
 
 #: mkt/developers/forms.py:1130
 #: mkt/developers/templates/developers/transactions.html:41
@@ -2949,25 +2977,25 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Nałoženje"
 
 #: mkt/developers/forms.py:1132
 msgid "Transaction Type"
-msgstr ""
+msgstr "Transakciski typ"
 
 #: mkt/developers/forms.py:1135
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
-msgstr ""
+msgstr "Transakciski ID"
 
 #: mkt/developers/forms.py:1141
 msgid "From"
-msgstr ""
+msgstr "Wot"
 
 #: mkt/developers/forms.py:1144
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: mkt/developers/forms.py:1155
 msgid "Web site"
@@ -2992,11 +3020,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1211
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Nahrajće swój testowy plan (.pdf, .xls mjenje hač 2,5 MB)"
 
 #: mkt/developers/forms.py:1227
 msgid "Test plan required."
-msgstr ""
+msgstr "Testowy plan trěbny"
 
 #: mkt/developers/forms.py:1234
 msgid "File too large. Keep size under %s. Current size %s."
