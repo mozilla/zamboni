@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-03 22:47+0000\n"
+"PO-Revision-Date: 2015-01-03 23:31+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420325274.0\n"
+"X-POOTLE-MTIME: 1420327868.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -574,35 +574,36 @@ msgstr ""
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "Obsah poznámky je prázdny."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Neplatný typ poznámky."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Verzia %s neexistuje"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "Príloha:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:276
 msgid "Description:"
-msgstr ""
+msgstr "Popis:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Príloha prekročila maximálnu veľkosť %s."
 
 #: mkt/comm/serializers.py:54
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"Firefox Marketplace je oficiálnym zdrojom aplikácií pre webovú platformu."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
@@ -1663,7 +1664,7 @@ msgstr "Zablokované"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Nie je v zozname"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
