@@ -67,7 +67,7 @@ tagz.py:
 
 tag_release: tagz.py
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
-	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/spartacus,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/rocketfuel,mozilla/discoplace,mozilla/transonic,mozilla/zamboni -c create -t $(RELEASE_DATE)
+	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/spartacus,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/transonic,mozilla/zamboni -c create -t $(RELEASE_DATE)
 
 deploy_release:
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
@@ -78,8 +78,6 @@ deploy_release:
                 marketplace.allizom.org-spartacus               \
 		marketplace.allizom.org-webpay			\
 		monolith.allizom.org-aggregator			\
-		marketplace.allizom.org-discoplace		\
-		marketplace.allizom.org-rocketfuel		\
 		marketplace.allizom.org-marketplace-stats	\
 		marketplace.allizom.org-commbadge		\
                 marketplace.allizom.org-transonic               \
