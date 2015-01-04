@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 22:27+0000\n"
+"PO-Revision-Date: 2015-01-04 22:50+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420410421.0\n"
+"X-POOTLE-MTIME: 1420411828.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1871,67 +1871,67 @@ msgstr ""
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "Komentár vývojára"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Zariadenia boli zmenené redaktorom"
 
 #: mkt/constants/comm.py:59
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Požiadavky boli zmenené redaktorom"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu zmeny v manifeste"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu zmeny URL adresy manifestu"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu zmeny aktualizácie na Prémium"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu pridania zariadení"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu zmeny požiadaviek"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Opätovná kontrola z dôvodu hodnotenia obsahu"
 
 #: mkt/constants/comm.py:66
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Zvýšený dôraz, pretože sa jedná o VIP aplikáciu"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Zvýšený dôraz, pretože sa jedná o predinštalovanú aplikáciu"
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
-msgstr ""
+msgstr "Požadovaná prioritná kontrola"
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
-msgstr ""
+msgstr "Doplnková kontrola bola úspešne dokončená"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr ""
+msgstr "Doplnková kontrola nebola úspešná"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Poznámka k verzii pre redaktora"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Verejný komentár redaktora"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
