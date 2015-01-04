@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 13:23+0000\n"
+"PO-Revision-Date: 2015-01-04 14:24+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420377805.0\n"
+"X-POOTLE-MTIME: 1420381488.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2837,50 +2837,54 @@ msgstr "Dyrbiće znajmjeńša jedne foto wobrazowki abo widejo nahrać."
 msgid ""
 "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
+"Zapakowane nałoženje je přewulke za přenošowanje. Pakety dyrbja mjenje hač %"
+"s być."
 
 #: mkt/developers/forms.py:478
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Zmylk při wubalowanju manifesta ze ZIP-dataje."
 
 #: mkt/developers/forms.py:559
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Podajće nadrobne wopisanje swojeho nałoženja"
 
 #: mkt/developers/forms.py:560
 #: mkt/submit/forms.py:277
 msgid "This description will appear on the details page."
-msgstr ""
+msgstr "Wopisanje so na stronje podrobnosćow zjewi."
 
 #: mkt/developers/forms.py:601
 #: mkt/submit/forms.py:358
 #: mkt/webapps/forms.py:26
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Tute adresowe mjeno so hižo wužiwa. Prošu wubjerće druhe."
 
 #: mkt/developers/forms.py:604
 #: mkt/submit/forms.py:362
 #: mkt/webapps/forms.py:29
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Adresowe mjeno njemóže \"%s\" być. Prošu wubjerće druhe."
 
 #: mkt/developers/forms.py:632
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "URL manifesta je so z {before_url} do {after_url}  změnił."
 
 #: mkt/developers/forms.py:654
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "Prošu podajće prawidła priwatnosće swojeho nałoženja."
 
 #: mkt/developers/forms.py:675
 msgid ""
 "Before changing your default locale you must have a name and description in "
 "that locale. You are missing %s."
 msgstr ""
+"Prjedy hač swoju standardnu lokalu podaće, dyrbiće mjeno a wopsianje w rěči "
+"tuteje lokale měć. Wam %s faluje."
 
 #: mkt/developers/forms.py:743
 #: mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Dyrbiće pak websydło, e-mejlowu adresu pak wobě podać."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -2891,12 +2895,16 @@ msgid ""
 "<b>Published</b>: Visible to everyone in the Marketplace and included in "
 "search results and listing pages."
 msgstr ""
+"<b>Wozjewjeny</b>: Widźomny za wšě na torhošću a w pytanskich wuslědkach a "
+"lisćinwoych stronach naspomnjeny."
 
 #: mkt/developers/forms.py:799
 msgid ""
 "<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
 "search results and listing pages."
 msgstr ""
+"<b>Njelistowany</b>: Widźomny jenož za wosoby z URL a njejewi so w "
+"pytanskich wuslědkach a lisćinowych stronach."
 
 #: mkt/developers/forms.py:815
 msgid "App Visibility:"
@@ -2904,28 +2912,28 @@ msgstr "Widźomnosć nałoženja"
 
 #: mkt/developers/forms.py:817
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Na mój team wobmjezować</b>: Widźomny jenož za teamowych čłonow."
 
 #: mkt/developers/forms.py:862
 msgid "Choose the regions your app will be listed in:"
-msgstr ""
+msgstr "Wubjerće regiony, w kotrychž waše nałoženje je nalistowane:"
 
 #: mkt/developers/forms.py:866
 #: mkt/developers/forms.py:968
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Dyrbiće znajmjeńša jedyn region wubrać."
 
 #: mkt/developers/forms.py:871
 msgid "Enable new regions"
-msgstr ""
+msgstr "Nowe regiony zmóžnić"
 
 #: mkt/developers/forms.py:873
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Moje nałoženje w najwjace regionach k dispoziciji stajić"
 
 #: mkt/developers/forms.py:874
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Wubjerće, hdźež moje nałoženje budźe k dispoziciji"
 
 #: mkt/developers/forms.py:1029
 #: mkt/developers/templates/developers/apps/edit/basic.html:146
@@ -3036,11 +3044,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1240
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Njepłaćiwy datajowy typ {0}. Jenož {1} so podpěruje."
 
 #: mkt/developers/forms.py:1264
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Prošu zapodajće płaćiwy přenošowanski ID."
 
 #: mkt/developers/forms.py:1280
 msgid ""
@@ -3051,15 +3059,15 @@ msgstr ""
 #: mkt/developers/forms.py:1315
 #: mkt/developers/forms.py:1327
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Njepłaćiwy přenošowanski ID abo wěstotny kod."
 
 #: mkt/developers/forms_payments.py:58
 msgid "App Price"
-msgstr ""
+msgstr "Płaćizna nałoženja"
 
 #: mkt/developers/forms_payments.py:111
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Darmo (z płaćenjemi w nałoženju)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
