@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 17:54+0000\n"
+"PO-Revision-Date: 2015-01-04 20:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420394074.0\n"
+"X-POOTLE-MTIME: 1420404748.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3352,7 +3352,7 @@ msgstr "Symbol njeda so wočinić."
 
 #: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Přehlad njeda so wočinić."
 
 #: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
@@ -3440,41 +3440,41 @@ msgstr "Při přenošowanju je zmylk wustupił."
 
 #: mkt/developers/views.py:950
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
 
 #: mkt/developers/views.py:1001
 msgid "Terms of service accepted."
-msgstr ""
+msgstr "Wužiwanske wuměnjenja su so akceptowali."
 
 #: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
-msgstr ""
+msgstr "Wužiwarjo z rólu administratora njemóža API wužiwać."
 
 #: mkt/developers/views.py:1021
 msgid "No such API key."
-msgstr ""
+msgstr "Tajki API-kluč njeeksistuje."
 
 #: mkt/developers/views.py:1033
 msgid "New API key generated."
-msgstr ""
+msgstr "Nowy API-kluč wutworjeny."
 
 #: mkt/developers/views.py:1051
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Zawrjena wersija je so wutworiła."
 
 #: mkt/developers/views.py:1053
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Nałoženje je hižo zawrjene."
 
 #: mkt/developers/views_payments.py:88
 #: mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
-msgstr ""
+msgstr "Při zwjazowanju z płaćenskim serwerom je problem wustupił."
 
 #: mkt/developers/views_payments.py:171
 #: mkt/files/forms.py:28
 msgid "All"
-msgstr ""
+msgstr "Wšě"
 
 #: mkt/developers/views_payments.py:172
 msgid "Credit card"
@@ -3513,6 +3513,8 @@ msgstr "Marketplace-API"
 msgid ""
 "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Zo byšće přistup na API Marketplace měł, wutworće por OAuth-klučow z pomocu "
+"slědowaceho formulara."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid ""
@@ -3533,25 +3535,25 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Klientowy typ"
 
 #: mkt/developers/templates/developers/api.html:40
 #: mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Mjeno nałoženja"
 
 #: mkt/developers/templates/developers/api.html:43
 #: mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
-msgstr ""
+msgstr "Dalesposrědkowanski URL"
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr ""
+msgstr "Wutworić"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth-kluče"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3615,48 +3617,48 @@ msgstr ""
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Dyrbiće so přizjewić, zo byšće pokročował."
 
 #: mkt/developers/templates/developers/login.html:12
 #: mkt/developers/templates/developers/skeleton_impala.html:133
 #: templates/base.html:156
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Přizjewić / Registrować"
 
 #: mkt/developers/templates/developers/motd.html:3
 #: mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Powěsć dnja"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Powěsć dnja aktualizować"
 
 #: mkt/developers/templates/developers/motd.html:14
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:32
 #: mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:213
 msgid "Save"
-msgstr ""
+msgstr "Składować"
 
 #: mkt/developers/templates/developers/nav.html:6
 #: mkt/developers/templates/developers/payments/in-app-payments.html:24
 #: mkt/developers/templates/developers/payments/in-app-payments.html:41
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentacija"
 
 #: mkt/developers/templates/developers/nav.html:9
 #: mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testowanje nałoženjow"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
-msgstr ""
+msgstr "Nowe nałoženje zapodać"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Přistup awtorizować"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
@@ -3695,13 +3697,13 @@ msgstr ""
 #: mkt/templates/mkt/header.html:28
 #: templates/base.html:77
 msgid "Sign In"
-msgstr ""
+msgstr "Přizjewić"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:75
 #: mkt/templates/mkt/header.html:21
 #: templates/base.html:84
 msgid "Settings"
-msgstr ""
+msgstr "Nastajenja"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92
 #: mkt/zadmin/templates/admin/base.html:49
@@ -3721,7 +3723,7 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:125
 #: templates/base.html:148
 msgid "Please sign in"
-msgstr ""
+msgstr "Prošu přizjewće so"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127
 #: templates/base.html:150
@@ -3732,17 +3734,17 @@ msgstr ""
 #: mkt/developers/templates/developers/terms.html:3
 #: mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Wužiwanske wuměnjenja"
 
 #: mkt/developers/templates/developers/terms.html:18
 #: mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
-msgstr ""
+msgstr "Ćišćomna wersija"
 
 #: mkt/developers/templates/developers/terms.html:22
 #: mkt/submit/templates/submit/terms.html:41
 msgid "Additional Marketplace Policies"
-msgstr ""
+msgstr "Přidatne prawidła Torhošća"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
@@ -3799,16 +3801,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Měna"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Suma"
 
 #: mkt/developers/templates/developers/validate_app.html:3
 #: mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Nałoženske přepruwowanje testować"
 
 #: mkt/developers/templates/developers/validate_app.html:17
 #: mkt/submit/templates/submit/manifest.html:50
@@ -3818,7 +3820,7 @@ msgstr ""
 #: mkt/developers/templates/developers/validate_app.html:27
 #: mkt/submit/templates/submit/manifest.html:59
 msgid "Validate"
-msgstr ""
+msgstr "Přepruwować"
 
 #: mkt/developers/templates/developers/validate_app.html:35
 #: mkt/submit/templates/submit/manifest.html:67
@@ -3889,7 +3891,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:31
 #: mkt/submit/templates/submit/details.html:83
 msgid "Edit"
-msgstr ""
+msgstr "Wobdźěłać"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:27
 msgid "Welcome to the Developer Dashboard"
@@ -3903,7 +3905,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
-msgstr ""
+msgstr "Nałoženje zapodać"
 
 #: mkt/developers/templates/developers/apps/edit.html:3
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:25
@@ -3912,7 +3914,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/helpers/app_header.html:33
 #: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Edit Listing"
-msgstr ""
+msgstr "Zapisk lisćiny wobdźěłać"
 
 #: mkt/developers/templates/developers/apps/edit.html:13
 #: mkt/developers/templates/developers/includes/macros.html:17
@@ -3922,7 +3924,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:46
 #: mkt/translations/templates/translations/all-locales.html:6
 msgid "None"
-msgstr ""
+msgstr "Žane"
 
 #: mkt/developers/templates/developers/apps/owner.html:3
 #: mkt/developers/templates/developers/apps/owner.html:26
@@ -3931,7 +3933,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:127
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:137
 msgid "Team Members"
-msgstr ""
+msgstr "Teamowi čłonojo"
 
 #: mkt/developers/templates/developers/apps/owner.html:22
 #: mkt/developers/templates/developers/payments/premium.html:51
@@ -3940,7 +3942,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
-msgstr ""
+msgstr "Wo rólach teamowych čłonow"
 
 #: mkt/developers/templates/developers/apps/owner.html:58
 #: mkt/developers/templates/developers/apps/version_edit.html:72
@@ -4003,7 +4005,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:5
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status a wersije"
 
 #: mkt/developers/templates/developers/apps/status.html:7
 #: mkt/developers/templates/developers/apps/status.html:202
@@ -4021,19 +4023,19 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: mkt/developers/templates/developers/apps/status.html:21
 msgid "Current Status"
-msgstr ""
+msgstr "Aktualny status"
 
 #: mkt/developers/templates/developers/apps/status.html:29
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "Sće tute nałoženje <b>z lisćiny wotstronił</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr ""
+msgstr "Tute nałoženje je <b>njedospołne</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -4068,29 +4070,31 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "Přepruwowar Torhošća Firefox je tute nałoženje <b>wotpokazał</b>."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "Wersija <b>{0}</b> wašeho nałoženja je <b>{1}</b> a <b>aktiwna</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "Wersija <b>{0}</b> wašeho nałoženja je <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"Tute nałoženje <b>čaka hišće na přepruwowanje</b> přez přepruwowarja "
+"Torhošća Firefox."
 
 #: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Dóstanjeće e-mejlku, hdyž přepruwowanje je zakónčene."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Tute nałoženje je <b>wozjewjene</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
