@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 20:52+0000\n"
+"PO-Revision-Date: 2015-01-04 21:25+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420404748.0\n"
+"X-POOTLE-MTIME: 1420406721.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3521,6 +3521,9 @@ msgid ""
 "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of "
 "service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"Zo byšće přistup na API Marketplace měł, akceptujće <a href=\"%"
+"(terms)s\">wužiwanske wuměnjenja</a> a wutworće por OAuth-klučow z pomocu "
+"slědowaceho formulara."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -3532,6 +3535,13 @@ msgid ""
 "://marketplace-dev.allizom.org\">development server</a> and not the "
 "production server. </p>"
 msgstr ""
+"<p>Stej dwaj hłownej nałožowanskej zaměraj za API Marketplace. Z druheho "
+"websydła z pomocu tradicionelneho OAuth-wotběha abo z nastroja přikazoweje "
+"linki. Rozdźěl so w <a href=\"https://firefox-marketplace-api.readthedocs.org"
+"/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> "
+"diskutuje. Testowanje měło so na <a href=\"https://marketplace-"
+"dev.allizom.org\">wuwiwanskim serwerje</a> wotměwać a nic na produkciskim "
+"serwerje.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3557,11 +3567,11 @@ msgstr "OAuth-kluče"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Kluč"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Tajne słowo"
 
 #: mkt/developers/templates/developers/api.html:80
 #: mkt/developers/templates/developers/apps/status.html:236
@@ -3570,21 +3580,23 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/account_list.html:15
 #: mkt/developers/templates/developers/payments/includes/account_list.html:51
 msgid "Delete"
-msgstr ""
+msgstr "Zhašeć"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "Tuchwilu nimaće API-kluč."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth-přikład"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid ""
 "<p>Example using a Python library for the command-line on Mac OS X using "
 "your OAuth credentials:</p>"
 msgstr ""
+"<p>Přikład z pomocu Pythonowej biblioteku za přikazowu linku na Mac OX X z "
+"pomocu wašich přizjewjenskich datow:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26
@@ -3593,11 +3605,13 @@ msgid ""
 "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your "
 "app can be reviewed or published."
 msgstr ""
+"Dyrbiće <a href=\"%(next_url)s\">%(next_step_name)s</a> připrawić, prjedy hač "
+"waše nałoženje da so přepruwować abo wozjewić."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Dyrbiće <a href=\"%(next_url)s\">%(next_step_name)s</a> připrawić."
 
 #: mkt/developers/templates/developers/login.html:3
 #: mkt/developers/templates/developers/skeleton_impala.html:13
@@ -3609,11 +3623,11 @@ msgstr ""
 #: mkt/zadmin/templates/admin/base.html:19
 #: templates/base.html:13
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Torhošćo Firefox"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Přizjewić"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
@@ -3662,30 +3676,30 @@ msgstr "Přistup awtorizować"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s chce přistup na waše konto Torhošća měć."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Dopušćić"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Wotpokazać"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54
 #: templates/base.html:58
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Wuwiwarjo Torhošća Firefox"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:59
 #: templates/base.html:63
 msgid "API Reference"
-msgstr ""
+msgstr "API-referenca"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:62
 #: templates/base.html:66
 msgid "Submit an app"
-msgstr ""
+msgstr "Nałoženje zapodać"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64
 #: mkt/ecosystem/templates/ecosystem/partners.html:115
@@ -3782,14 +3796,14 @@ msgstr[3] ""
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "Waše nałoženja tuchwilu žane transakcije nimaja."
 
 #: mkt/developers/templates/developers/transactions.html:42
 #: mkt/lookup/templates/lookup/app_summary.html:155
 #: mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: mkt/developers/templates/developers/transactions.html:43
 #: mkt/lookup/templates/lookup/app_summary.html:41
@@ -3797,7 +3811,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:9
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
@@ -3815,7 +3829,7 @@ msgstr "Nałoženske přepruwowanje testować"
 #: mkt/developers/templates/developers/validate_app.html:17
 #: mkt/submit/templates/submit/manifest.html:50
 msgid "Submit your app manifest URL"
-msgstr ""
+msgstr "Přenjesće URL wašeho nałoženskeho manifesta"
 
 #: mkt/developers/templates/developers/validate_app.html:27
 #: mkt/submit/templates/submit/manifest.html:59
@@ -3828,6 +3842,8 @@ msgid ""
 "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\""
 ">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr ""
+"<strong>Njezabudźće protokol</strong> Spytajće pak <a href=\"#\">%(http)s</a> "
+"pak <a href=\"#\">%(https)s</a> přidawać."
 
 #: mkt/developers/templates/developers/validate_app.html:43
 #: mkt/submit/templates/submit/manifest.html:75
@@ -3854,7 +3870,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Přepruwowanske wuslědki za {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
@@ -3972,15 +3988,15 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
-msgstr ""
+msgstr "začinić"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "Wo rólach teamowych čłonow"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr ""
+msgstr "Nałoženja móža wjele teamowych čłonow z 4 móžnymi rólemi měć:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid ""
