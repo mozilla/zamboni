@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 14:24+0000\n"
+"PO-Revision-Date: 2015-01-04 17:08+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420381488.0\n"
+"X-POOTLE-MTIME: 1420391285.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2941,25 +2941,25 @@ msgstr "Wubjerće, hdźež moje nałoženje budźe k dispoziciji"
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:144
 #: mkt/search/forms.py:91
 msgid "Categories"
-msgstr ""
+msgstr "Kategorije"
 
 #. L10n: {0} is the number of categories.
 #: mkt/developers/forms.py:1054
 #: mkt/webapps/serializers.py:275
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Móžeće jenož {0} kategoriju wubrać."
+msgstr[1] "Móžeće jenož {0} kategoriji wubrać."
+msgstr[2] "Móžeće jenož {0} kategorije wubrać."
+msgstr[3] "Móžeće jenož {0} kategorijow wubrać."
 
 #: mkt/developers/forms.py:1068
 msgid "Agree"
-msgstr ""
+msgstr "Přihłosować"
 
 #: mkt/developers/forms.py:1085
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Prošu zapodajće płaćiwu e-mejlowu adresu."
 
 #: mkt/developers/forms.py:1088
 msgid "Your email address"
@@ -2971,7 +2971,7 @@ msgstr "Tekst"
 
 #: mkt/developers/forms.py:1095
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Dyrbiće do prawidłow priwatnosće zwolić."
 
 #: mkt/developers/forms.py:1096
 #: mkt/developers/forms_payments.py:396
@@ -3011,17 +3011,19 @@ msgstr "Do"
 
 #: mkt/developers/forms.py:1155
 msgid "Web site"
-msgstr ""
+msgstr "Websydło"
 
 #: mkt/developers/forms.py:1156
 msgid "Command line"
-msgstr ""
+msgstr "Přikazowa linka"
 
 #: mkt/developers/forms.py:1177
 msgid ""
 "Make this the Active version of my app as soon as it has been reviewed and "
 "approved."
 msgstr ""
+"To k aktiwnej wersiji mojeho nałoženja činić, tak ruče kaž je so "
+"přepruwowało a schwaliło."
 
 #: mkt/developers/forms.py:1204
 msgid ""
@@ -3029,6 +3031,9 @@ msgid ""
 "device. I agree to the terms and conditions outlined above. I understand "
 "that this document is not a commitment to pre-load my app."
 msgstr ""
+"Prošu wobkedźujće moje nałoženje jako kandidat za předinstalaciju na graće "
+"Firefox OS. Sym z horjeka wuwjedźenymi wužiwanskimi wuměnjenjemi přezjedny. "
+"Rozumju, zo tutón dokument njeje připrajenje, moje nałoženje předinstalować."
 
 #: mkt/developers/forms.py:1211
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -3041,6 +3046,8 @@ msgstr "Testowy plan trěbny"
 #: mkt/developers/forms.py:1234
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
+"Dataja je přewulka. Dataja smě maksimalnje %s wulka być. Aktualna wulkosć je "
+"%s."
 
 #: mkt/developers/forms.py:1240
 msgid "Invalid file type {0}. Only {1} files are supported."
@@ -3055,6 +3062,8 @@ msgid ""
 "This IARC certificate is already being used for another app. Please create a "
 "new IARC Ratings Certificate."
 msgstr ""
+"IARC-certifikat so hižo za druhe nałoženje wužiwa. Prošu wutworće nowy "
+"pohódnoćenski IARC-certifikat."
 
 #: mkt/developers/forms.py:1315
 #: mkt/developers/forms.py:1327
@@ -3071,72 +3080,72 @@ msgstr "Darmo (z płaćenjemi w nałoženju)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Wabjenska płaćizna"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Podpěruje jenož wotličenje přez poskićowarja mobilneho škričkowanja"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Podpěruje jenož wotličenje přez kreditnu kartu"
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Podpěruje wšě wotličenske metody"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Jeli nałoženje je darmotne, dyrbja płaćenja w nałoženju zmóžnjene być"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Žadyn płaćiwy wuběr"
 
 #: mkt/developers/forms_payments.py:325
 #: mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "To je zapłaćena aktualizacija"
 
 #: mkt/developers/forms_payments.py:326
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Žana aktualizacija"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Mjeno mějićela bankoweho konta"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
-msgstr ""
+msgstr "Firmowe mjeno"
 
 #: mkt/developers/forms_payments.py:372
 msgid "Vendor Name"
-msgstr ""
+msgstr "Mjeno předawarja"
 
 #: mkt/developers/forms_payments.py:374
 msgid "Financial Email"
-msgstr ""
+msgstr "Financna e-mejlowa adresa"
 
 #: mkt/developers/forms_payments.py:377
 msgid "Administrative Email"
-msgstr ""
+msgstr "Administratiwna e-mejlowa adresa"
 
 #: mkt/developers/forms_payments.py:380
 msgid "Support Email"
-msgstr ""
+msgstr "E-mejlowa adresa pomocy"
 
 #: mkt/developers/forms_payments.py:384
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: mkt/developers/forms_payments.py:386
 msgid "Address 2"
-msgstr ""
+msgstr "Adresa 2"
 
 #: mkt/developers/forms_payments.py:388
 msgid "City/Municipality"
-msgstr ""
+msgstr "Město/Gmejna"
 
 #: mkt/developers/forms_payments.py:390
 msgid "State/Province/Region"
@@ -3180,41 +3189,41 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Město/Gmejna banki"
 
 #: mkt/developers/forms_payments.py:419
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Stat/Prowinca/Region banki"
 
 #: mkt/developers/forms_payments.py:421
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Póstowe wodźenske čisło banki"
 
 #: mkt/developers/forms_payments.py:423
 msgid "Bank Country"
-msgstr ""
+msgstr "Kraj banki"
 
 #: mkt/developers/forms_payments.py:425
 #: mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Kontowe mjeno"
 
 #: mkt/developers/forms_payments.py:454
 msgid "Payment Account"
-msgstr ""
+msgstr "Płaćenske mjeno"
 
 #: mkt/developers/forms_payments.py:524
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "Móžeće płaćenske konto z nałoženja wotstronić."
 
 #: mkt/developers/forms_payments.py:528
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Njesměće płaćenske konta změnić."
 
 #: mkt/developers/forms_payments.py:616
 #: mkt/developers/forms_payments.py:632
 msgid "Account name"
-msgstr ""
+msgstr "Kontowe mjeno"
 
 #: mkt/developers/forms_payments.py:618
 #: mkt/developers/templates/developers/apps/edit/support.html:21
@@ -3263,45 +3272,51 @@ msgstr ""
 
 #: mkt/developers/providers.py:285
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Přikładna implementacija"
 
 #: mkt/developers/providers.py:372
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
+"Pod tutym URL njeje so žadyn manifest namakał. Wubjerće adresu a spytajće "
+"hišće raz."
 
 #: mkt/developers/tasks.py:434
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x"
 "-web-app-manifest+json\". See %s for more information."
 msgstr ""
+"Manifesty dyrbja so z HTTP-hłowu \"Content-Type: application/x-web-app-"
+"manifest)json\" wudać. Pod %s dóstanjeće dalše informacije."
 
 #: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
-msgstr ""
+msgstr "Waš manifest dyrbi mjeńši hač %s bajtow być."
 
 #: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
-msgstr ""
+msgstr "Waš manifest njeje so jako płaćiwy UTF-8 skodował."
 
 #: mkt/developers/tasks.py:462
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
 msgstr ""
+"Kodowanje manifesta njehodźi so k znamješkowej sadźbje podatej w HTTP "
+"Content-Type."
 
 #: mkt/developers/tasks.py:521
 #: mkt/developers/tasks.py:527
 #: mkt/reviewers/forms.py:36
 msgid "and"
-msgstr ""
+msgstr "a"
 
 #: mkt/developers/tasks.py:541
 msgid "{region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "Region {region} je so Torhošću Firefox přidał"
 
 #: mkt/developers/tasks.py:545
 msgid "New regions added to the Firefox Marketplace"
@@ -3341,41 +3356,43 @@ msgstr ""
 
 #: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Symbole dyrbja znajmjeńša 128 px króć 128 px wulke być."
 
 #: mkt/developers/utils.py:113
 msgid "Icons must be square."
-msgstr ""
+msgstr "Symbole dyrbja kwadratiske być."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
 #: mkt/developers/utils.py:123
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Přehlady nałoženjow dyrbja znajmjeńša {0} px króć {1} px abo {1} króć {0} px "
+"wulke być."
 
 #: mkt/developers/views.py:88
 msgid "Created"
-msgstr ""
+msgstr "Wutworjeny"
 
 #: mkt/developers/views.py:150
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr ""
+msgstr "Płaćomne nałoženja njedadźa so zhašeć. Znjemóžńće je město toho."
 
 #: mkt/developers/views.py:160
 msgid "App deleted."
-msgstr ""
+msgstr "Nałoženje zhašane."
 
 #: mkt/developers/views.py:165
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "Hesło je wopak było. Nałoženje njeje so zhašało."
 
 #: mkt/developers/views.py:209
 msgid "App successfully resubmitted."
-msgstr ""
+msgstr "Nałoženje je so wuspěšnje zasozapodało."
 
 #: mkt/developers/views.py:242
 msgid "New version successfully added."
-msgstr ""
+msgstr "Nowa wersija je so wuspěšnje přidała."
 
 #: mkt/developers/views.py:306
 #: mkt/developers/views.py:569
