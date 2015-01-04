@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-03 23:31+0000\n"
+"PO-Revision-Date: 2015-01-04 22:27+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420327868.0\n"
+"X-POOTLE-MTIME: 1420410421.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -530,9 +530,8 @@ msgid "{addon} {version} failed the {queue} review."
 msgstr ""
 
 #: mkt/account/utils.py:63
-#, fuzzy
 msgid "Purchase Date"
-msgstr "Datum koupě"
+msgstr "Dátum zakúpenia"
 
 #: mkt/account/utils.py:64 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:77
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
@@ -1844,11 +1843,11 @@ msgstr "Nástroje"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Žiadna akcia"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Zablokované"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
@@ -2549,6 +2548,8 @@ msgstr ""
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Upps, zdá sa, že pridávaný manifest pre %s je aktuálne na zozname "
+"blokovaných na Marketplace. <a href=\"%s\">Upraviť aplikáciu</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -3586,11 +3587,13 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Tato aplikácia bola <b>na Marketplace zablokovaná</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Vaša aplikácia bola zablokovaná systémovým administrátorom. Ak máte "
+"akékoľvek otázky, pošlite e-mail na %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 #, fuzzy
