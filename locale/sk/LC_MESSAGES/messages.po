@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 22:50+0000\n"
+"PO-Revision-Date: 2015-01-04 23:41+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420411828.0\n"
+"X-POOTLE-MTIME: 1420414861.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4140,16 +4140,16 @@ msgstr "Zásady ochrany soukromí jsou vyžadována pro vysvětlení, jaká data
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "Krajina a jazyk"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Detaily o krajine a jazyku pre {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Úprava krajiny na stránke kompatibility"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
@@ -4157,16 +4157,15 @@ msgstr "Jazyk"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "východzí"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Úprava jazykov v súbore manifestu vašej aplikácie"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
-#, fuzzy
 msgid "Media"
-msgstr "Média"
+msgstr "Médiá"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
@@ -4180,15 +4179,20 @@ msgstr "Informácie o podpore pre doplnok {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:23
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"E-mailová adresa, ktorá bude používaná koncovými používateľmi ako kontakt "
+"pre riešenie problémov. Ak máte odlišné e-mailové adresy pre jednotlivé "
+"jazyky, môžete pridať adresy pre jednotlivé jazyky."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "Website"
 msgstr "Webová stránka"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
-#, fuzzy
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr "Pokud má vaše aplikace stránky podpory či fórum, vložte adresy zde. Pokud je vaše webová stránka přeložena do více jazyků, můžete pro každý jazyk přidat vlastní."
+msgstr ""
+"Ak má vaša aplikácia stránky podpory alebo fórum, zadajte ich adresy sem. Ak "
+"je vaša webová stránka preložená do viacerých jazykov, môžete pre každý "
+"jazyk pridať vlastný odkaz."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4200,27 +4204,28 @@ msgid "Technical Details for {0}"
 msgstr "Technické podrobnosti pre {0}"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
-#, fuzzy
 msgid "Uses Flash"
-msgstr "Používá Flash"
+msgstr "Používa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
-#, fuzzy
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr "Pokud vaše aplikace využívá Flash, bude na Marketplace skryta pro zařízení, která Flash nepodporují."
+msgstr ""
+"Ak vaša aplikácia využíva Flash, bude na Marketplace skrytá pre zariadenia, "
+"ktoré Flash nepodporujú."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Funguje offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Ak vaša aplikácia funguje aj bez pripojenia k internetu, potom pri nej "
+"zobrazíme, že \"Funguje offline\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
-#, fuzzy
 msgid "Public Stats?"
-msgstr "Veřejné statistiky?"
+msgstr "Verejné štatistiky?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 #, fuzzy
@@ -4242,22 +4247,20 @@ msgid "This app does not require any device features"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
-#, fuzzy
 msgid "App Icon"
-msgstr "Ikona aplikace"
+msgstr "Ikona aplikácie"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
-#, fuzzy
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
-"Nahrajte ikonu pro vaši aplikaci nebo zvolte jednu ze svých. Ikona je zobrazena prakticky na všech místech, kde je vaše aplikace umístěna. Nahrané obrázky musí mít jeden z následujících typů: ."
-"png, .jpg"
+"Nahrajte ikonu pre vašu aplikáciu, alebo vyberte jednu zo svojich. Ikona je "
+"zobrazená prakticky na všetkých miestach, kde je vaša aplikácia umiestnená. "
+"Nahrané obrázky musia mať jeden z nasledovných typov: .png, .jpg"
 
 # 83%
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
-#, fuzzy
 msgid "Select an icon for your app:"
-msgstr "Vyberte ikonku vaší aplikace:"
+msgstr "Vyberte ikonku vašej aplikácie:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -4444,32 +4447,30 @@ msgstr "Přidání nové verze zabalené aplikace."
 
 # 82%
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
-#, fuzzy
 msgid "Add New Version"
-msgstr "Pridať novú verziu"
+msgstr "Pridanie novej verzie"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Stav a verzie"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1486
-#, fuzzy
 msgid "Content Ratings"
-msgstr "Hodnocení obsahu"
+msgstr "Hodnotenie obsahu"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
 #: mkt/developers/templates/developers/payments/in-app-config.html:14 mkt/developers/templates/developers/payments/in-app-payments.html:4
 #: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
-msgstr ""
+msgstr "Platby v aplikácií"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100 mkt/developers/templates/developers/includes/addons_edit_nav.html:35
 msgid "Messages"
-msgstr ""
+msgstr "Správy"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:105 mkt/developers/templates/developers/includes/addons_edit_nav.html:40
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
@@ -4478,28 +4479,25 @@ msgstr "Štatistika"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:111 mkt/developers/templates/developers/includes/addons_edit_nav.html:45
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcie"
 
 # 87%
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
-#, fuzzy
 msgid "Created:"
-msgstr "Přidáno dne:"
+msgstr "Vytvorené:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
 msgstr "Stav:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
-#, fuzzy
 msgid "Packaged App Version:"
-msgstr "Verze zabalené aplikace:"
+msgstr "Verzia zabalenej aplikácie:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
-#, fuzzy
 msgid "Pending Version:"
-msgstr "Čekající verze:"
+msgstr "Čakajúce verzie:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:47
 msgid "Price:"
@@ -4507,15 +4505,15 @@ msgstr "Cena:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Nastavenie účtu pre platby"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Zmena zariadení"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Nastavenie hodnotení obsahu</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4604,7 +4602,7 @@ msgstr "Súhrn"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Systém hodnotenia"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:230
 msgid "Region"
@@ -4612,15 +4610,15 @@ msgstr "Región"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "Kategórie hodnotenia"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
-msgstr ""
+msgstr "Popisy"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Interaktívne prvky"
 
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
@@ -4645,13 +4643,11 @@ msgid "Remove this application"
 msgstr "Odstrániť túto aplikáciu"
 
 #: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81
-#, fuzzy
 msgid "Pick one or two categories."
-msgstr "Zvolte jednu či dvě kategorie."
+msgstr "Zvoľte jednu alebo dve kategórie."
 
 # 90%
 #: mkt/developers/templates/developers/includes/macros.html:80
-#, fuzzy
 msgid "Categories:"
 msgstr "Kategórie:"
 
@@ -4739,7 +4735,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "Kľúče pre platby v aplikácií "
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
@@ -4787,30 +4783,28 @@ msgstr "Ikona"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
-msgstr ""
+msgstr "Cena"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
-msgstr ""
+msgstr "ID produktu"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
-msgstr ""
+msgstr "Pridať produkt"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
-#, fuzzy
 msgid "App Compatibility"
-msgstr "Kompatibilita aplikace"
+msgstr "Kompatibilita aplikácie"
 
 #: mkt/developers/templates/developers/payments/premium.html:71
-#, fuzzy
 msgid "Change to Free"
-msgstr "Změna na neplacenou"
+msgstr "Zmena na neplatenú"
 
 #: mkt/developers/templates/developers/payments/premium.html:72
-#, fuzzy
 msgid "Changing to Free will put your app back into review."
-msgstr "Změna na neplacenou způsobí, že se vaše aplikace vrátí zpět na kontrolu."
+msgstr ""
+"Zmena na neplatenú spôsobí, že sa vaša aplikácia vráti späť na kontrolu."
 
 #: mkt/developers/templates/developers/payments/premium.html:88
 msgid "Paid mode requires that your app only supports:"
@@ -4864,15 +4858,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:202
 msgid "Not applicable"
-msgstr ""
+msgstr "Nie je aplikovateľné"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
-msgstr ""
+msgstr "Regióny"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Available Regions"
-msgstr ""
+msgstr "Dostupné regióny"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
