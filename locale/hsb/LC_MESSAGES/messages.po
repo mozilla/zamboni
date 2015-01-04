@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 21:25+0000\n"
+"PO-Revision-Date: 2015-01-04 22:11+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420406721.0\n"
+"X-POOTLE-MTIME: 1420409492.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3705,7 +3705,7 @@ msgstr "Nałoženje zapodać"
 #: mkt/ecosystem/templates/ecosystem/partners.html:115
 #: templates/base.html:70
 msgid "Marketplace"
-msgstr ""
+msgstr "Torhošćo"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 #: mkt/templates/mkt/header.html:28
@@ -3726,6 +3726,8 @@ msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
 msgstr ""
+"Někotre funkcije su nachwilu znjemóžnjene, mjeztym zo websydło wothladujemy. "
+"Budźemy bórze połnu funkcionalnosć wobnowjeć."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98
 #: templates/base.html:107
@@ -3733,6 +3735,8 @@ msgid ""
 "The Terms of Service have changed since you last agreed to them. Please read "
 "and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
+"Wužiwanske wuměnjenja su so změnili, wot toho, zo sće jim přihłosował. Prošu "
+"čitajće a akceptujće <a href=\"%(url)s\">nowe wuměnjenja</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125
 #: templates/base.html:148
@@ -3744,6 +3748,8 @@ msgstr "Prošu přizjewće so"
 msgid ""
 "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Přizjewće so prosće abo registrujće so deleka z <a href=\"%(url)s\">Firefox "
+"Accounts</a>."
 
 #: mkt/developers/templates/developers/terms.html:3
 #: mkt/templates/mkt/account-links.html:9
@@ -3762,7 +3768,7 @@ msgstr "Přidatne prawidła Torhošća"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr ""
+msgstr "Sće hižo wuwiwarskemu dojednanju přihłosował."
 
 #: mkt/developers/templates/developers/testing.html:8
 #: mkt/developers/templates/developers/validate_app.html:9
@@ -3770,29 +3776,31 @@ msgstr ""
 #: mkt/receipts/templates/receipts/test_details.html:8
 #: mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testowanje"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid ""
 "Use these tools for testing your apps prior to submission to the Firefox "
 "Marketplace."
 msgstr ""
+"Wužiwajće tute nastroje, zo byšće swoje nałoženja testował, prjedy hač je w "
+"Torhošću Firefox zapodał."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Transakciske podrobnosće"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Transakcije filtrować"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} transakcija namakana"
+msgstr[1] "{num} transakciji namakanej"
+msgstr[2] "{num} transakcije namakane"
+msgstr[3] "{num} transakcijow namakanych"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -3852,11 +3860,14 @@ msgid ""
 "or <code>https://</code>) and typically use the <code>.webapp</code> "
 "extension."
 msgstr ""
+"Manifestowe URL dyrbja z protokolom započeć (na přikład <code>http://</code> "
+"abo <code>https://</code>) a w normalnym padźe sufiks<code>.webapp</code> "
+"wužiwać."
 
 #: mkt/developers/templates/developers/validate_app.html:61
 #: mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Zhońće wjace wo zapodawanju nałoženja."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
@@ -3874,26 +3885,26 @@ msgstr "Přepruwowanske wuslědki za {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Přepruwowanske wuslědki"
 
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Přepruwowany:"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Moje zapodaća zrjadować"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:10
 #: mkt/reviewers/templates/reviewers/base.html:39
 #: mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
-msgstr ""
+msgstr "Připowědź"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:12
 #: mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Připowědź zaćisnyć"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15
 #: mkt/developers/templates/developers/apps/edit/admin.html:9
@@ -4066,23 +4077,27 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Tute nałoženje je <b>za Torhošćo zawrjene</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid ""
 "Your app was banned by a site administrator. If you have any questions, "
 "please email %(email)s."
 msgstr ""
+"Waše nałoženje je so wot sydłoweho administratora zawrěło. Jeli maće "
+"prašenja, pósćelće e-mejlku na %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr ""
+msgstr "Waše nałoženje je so <b>wot Mozilla zablokowało</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid ""
 "Your app was blocked by a site administrator. If you have any questions, "
 "please email %(email)s."
 msgstr ""
+"Waše nałoženje je so wot sydłoweho administratora zablokowało. Jeli maće "
+"prašenja, pósćelće e-mejlku na %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -4115,12 +4130,15 @@ msgstr "Tute nałoženje je <b>wozjewjene</b>."
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
 msgstr ""
+"Waše nałoženje je so <b>schwaliło</b> a je tuchwilu <b>njelistowane</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid ""
 "Only those with the following URL can view and install this app:<br> <a href="
 "\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Jenož wosoby ze slědowacym URL móža sej tute nałoženje wobhladać a jo "
+"instalować:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid ""
