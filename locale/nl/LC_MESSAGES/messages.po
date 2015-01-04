@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-12-12 15:59+0000\n"
+"PO-Revision-Date: 2015-01-04 14:40+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1418399941.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1420382451.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2052,7 +2052,7 @@ msgstr ""
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr "Installatie-API verpakte apps"
+msgstr "Installatie-API voor verpakte apps"
 
 #: mkt/constants/features.py:24
 msgid ""
@@ -3867,10 +3867,10 @@ msgid ""
 "would like to run a copy of your own, the source code is available <a href=\""
 "%(repo)s\">on Github</a>."
 msgstr ""
-"De validator is een hulpmiddel dat u kan helpen uw app te testen op fouten, "
-"goede praktijken en overeenkomst met de Marketplace-richtlijnen voordat u uw "
-"app daadwerkelijk indient voor beoordeling. Als u interesse hebt in hoe dit "
-"werkt of graag een eigen exemplaar zou willen hebben is de broncode "
+"De validator is een hulpmiddel dat kan helpen uw app te testen op fouten, "
+"goede praktijken en naleving van de Marketplace-richtlijnen voordat u uw app "
+"daadwerkelijk voor beoordeling indient. Als u interesse hebt in hoe dit "
+"werkt of graag een eigen exemplaar zou willen hebben, is de broncode "
 "beschikbaar <a href=\"%(repo)s\">op GitHub</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
@@ -6322,7 +6322,7 @@ msgstr "Betalingen"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
-msgstr "App Generator"
+msgstr "App-generator"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143
 msgid "App Validator"
@@ -6491,7 +6491,7 @@ msgid ""
 "equal or greater size"
 msgstr ""
 "Wanneer deze wordt gebruikt naast logo’s voor andere marktplaatsen "
-"(“Verkrijgbaar op Google Play”, “Downloaden in de App Store”) dient de "
+"(“Verkrijgbaar op Google Play”, “Downloaden in de App Store”), dient de "
 "Firefox Marketplace-badge even groot of groter te zijn"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
