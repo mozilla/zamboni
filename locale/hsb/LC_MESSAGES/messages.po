@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 17:08+0000\n"
+"PO-Revision-Date: 2015-01-04 17:54+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420391285.0\n"
+"X-POOTLE-MTIME: 1420394074.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3149,43 +3149,43 @@ msgstr "Město/Gmejna"
 
 #: mkt/developers/forms_payments.py:390
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Stat/Prowinca/Region"
 
 #: mkt/developers/forms_payments.py:392
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "Póstowe wodźenske čisło"
 
 #: mkt/developers/forms_payments.py:394
 msgid "Phone"
-msgstr ""
+msgstr "Telefonowe čisło"
 
 #: mkt/developers/forms_payments.py:399
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Preferuju płaćenja w"
 
 #: mkt/developers/forms_payments.py:402
 msgid "VAT Number"
-msgstr ""
+msgstr "Identifikaciske čisło wobrotoweho dawka (IWD)"
 
 #: mkt/developers/forms_payments.py:405
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Čisło bankoweho konta"
 
 #: mkt/developers/forms_payments.py:408
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT-kod"
 
 #: mkt/developers/forms_payments.py:410
 msgid "Bank Name"
-msgstr ""
+msgstr "Mjeno banki"
 
 #: mkt/developers/forms_payments.py:412
 msgid "Bank Address"
-msgstr ""
+msgstr "Adresa banki"
 
 #: mkt/developers/forms_payments.py:414
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Adresa banki 2"
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank City/Municipality"
@@ -3231,44 +3231,44 @@ msgstr "Kontowe mjeno"
 #: mkt/ecosystem/templates/ecosystem/partners.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
-msgstr ""
+msgstr "E-mejl"
 
 #: mkt/developers/forms_payments.py:635
 msgid "Service ID"
-msgstr ""
+msgstr "Słužbny ID"
 
 #: mkt/developers/forms_payments.py:642
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "Słužbny ID płaćiwy njeje"
 
 #: mkt/developers/forms_payments.py:656
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Za tute nałoženje hišće žane płaćenske konto njeje"
 
 #: mkt/developers/helpers.py:31
 #: mkt/developers/helpers.py:50
 msgid "Developers"
-msgstr ""
+msgstr "Wuwiwarjo"
 
 #: mkt/developers/helpers.py:51
 #: mkt/site/context_processors.py:66
 #: templates/base.html:68
 msgid "My Submissions"
-msgstr ""
+msgstr "Moje zapodaća"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "{0} darić"
 
 #: mkt/developers/models.py:479
 msgid "Review"
-msgstr ""
+msgstr "Přepruwowanje"
 
 #: mkt/developers/models.py:482
 #: mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
-msgstr ""
+msgstr "Wersija {0}"
 
 #: mkt/developers/providers.py:285
 msgid "Reference Implementation"
@@ -3320,35 +3320,35 @@ msgstr "Region {region} je so Torhošću Firefox přidał"
 
 #: mkt/developers/tasks.py:545
 msgid "New regions added to the Firefox Marketplace"
-msgstr ""
+msgstr "Nowe regiony su so Torhošću Firefox přidali"
 
 #: mkt/developers/utils.py:60
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Widejopodpěra njeje zmóžnjena."
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Symbole dyrbja we formaće PNG abo JPG być."
 
 #: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobrazy dyrbja pak w formaće PNG pak w formaće JPG być."
 
 #: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Symbole njesmědźa animěrowane być."
 
 #: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Wobrazy njesmědźa animěrowane być."
 
 #: mkt/developers/utils.py:91
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "rošu wužiwajće dataje, kotrež su mjeńše hač %s."
 
 #: mkt/developers/utils.py:101
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Symbol njeda so wočinić."
 
 #: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
@@ -3400,41 +3400,43 @@ msgstr "Nowa wersija je so wuspěšnje přidała."
 #: mkt/developers/views_payments.py:430
 #: mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Změny su so wuspěšnje składowali."
 
 #: mkt/developers/views.py:313
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
 msgstr ""
+"Wutrobne zbožopřeće, waše nałoženske zapodaće je nětko dospołne a budźe so "
+"bórze přepruwować!"
 
 #: mkt/developers/views.py:315
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Wobsahowe pohódnoćenja su so wuspěšnje składowali."
 
 #: mkt/developers/views.py:439
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "Nałoženje je so za předinstalaciju přednjesło."
 
 #: mkt/developers/views.py:442
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Zmylk z formularom je wustupił."
 
 #: mkt/developers/views.py:473
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Wersija je so wuspěšnje wobdźěłała."
 
 #: mkt/developers/views.py:508
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Wersija je so wuspěšnje zaktiwizowała."
 
 #: mkt/developers/views.py:523
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "Wersija \"{0}\" je so zhašała."
 
 #: mkt/developers/views.py:653
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Při přenošowanju je zmylk wustupił."
 
 #: mkt/developers/views.py:950
 msgid "There was an error uploading your preview."
@@ -3476,36 +3478,36 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:172
 msgid "Credit card"
-msgstr ""
+msgstr "Kreditna karta"
 
 #: mkt/developers/views_payments.py:173
 msgid "Carrier"
-msgstr ""
+msgstr "Poskićowar mobilneho škričkowanja"
 
 #: mkt/developers/views_payments.py:322
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Při wotwołowanju nałoženskeho kluča je serwerowy zmylk wustupił."
 
 #: mkt/developers/views_payments.py:329
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "Tajne słowo je so wuspěšnje wróćo stajiło."
 
 #: mkt/developers/views_payments.py:333
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "Kluč a tajne słowo stej so wuspěšnje wutworiłoj."
 
 #: mkt/developers/views_payments.py:359
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Waše nałoženje njeje so za płaćenja w nałoženju konfigurowało."
 
 #: mkt/developers/views_payments.py:362
 msgid "No payment account for this app."
-msgstr ""
+msgstr "Žane płaćenske konto za tute nałoženje."
 
 #: mkt/developers/templates/developers/api.html:2
 #: mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace-API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid ""
