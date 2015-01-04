@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-03 23:24+0000\n"
+"PO-Revision-Date: 2015-01-04 13:23+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420327473.0\n"
+"X-POOTLE-MTIME: 1420377805.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2572,15 +2572,16 @@ msgstr "Płaćenje je so nimokuliło."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "Storněrowanje je so nimokuliło."
 
 #: mkt/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr ""
+"Zapłaćenje je so přijało, ale njeje se zakónčiło a čaka na předźěłowanje."
 
 #: mkt/constants/payments.py:121
 msgid "Completed"
-msgstr ""
+msgstr "Dokónčeny"
 
 #: mkt/constants/platforms.py:7
 #: mkt/constants/tests/test_platforms.py:15
@@ -2626,7 +2627,7 @@ msgstr "Zastopnjowanje faluje"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Wotrjad za justicu, pohódnoćowanje, titule a kwalifikaciju"
 
 #: mkt/constants/ratingsbodies.py:144
 #: mkt/constants/ratingsbodies.py:146
@@ -2635,19 +2636,19 @@ msgstr "Powšitkowny"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Gremij za samokontrolu zabawneje softwary"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Za kóždu starobu"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Za starobu wot 10 lět"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Za starobu wot 12 lět"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
@@ -2737,15 +2738,15 @@ msgstr "(Njepodpěrany)"
 
 #: mkt/developers/api_payments.py:103
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Zwisk z płaćenskim serwerom móžno njeje."
 
 #: mkt/developers/api_payments.py:127
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Dźelene konto njeda so zhašeć"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Wobsahowe pohódnoćenje je so na status \"Dorosćeny\" změniło."
 
 #: mkt/developers/forms.py:66
 msgid "You cannot select {region}."
@@ -2754,18 +2755,19 @@ msgstr "Njemóžeće {region} wubrać."
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
+"Wšě teamowi čłonojo dyrbja wuwiwarske dojednanje čitać a jemu přihłosować."
 
 #: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Znajmjeńša jedyn wobsedźer dyrbi podaty być."
 
 #: mkt/developers/forms.py:159
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Znajmjeńša jedyn teamowy čłon dyrbi so nalistować."
 
 #: mkt/developers/forms.py:163
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "Teamowy čłon smě so jenož jedyn raz podać."
 
 #: mkt/developers/forms.py:190
 msgid ""
@@ -2819,15 +2821,17 @@ msgstr ""
 msgid ""
 "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
+"Nałoženje z tutej domenu hižo eksistuje; jenož jedne nałoženje je na domenu "
+"dowolene."
 
 #: mkt/developers/forms.py:343
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Njepłaćiwy region wubrany."
 
 #: mkt/developers/forms.py:422
 #: mkt/webapps/models.py:1388
 msgid "You must upload at least one screenshot or video."
-msgstr ""
+msgstr "Dyrbiće znajmjeńša jedne foto wobrazowki abo widejo nahrać."
 
 #: mkt/developers/forms.py:463
 msgid ""
