@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-05 15:00+0000\n"
+"PO-Revision-Date: 2015-01-05 20:27+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420470010.0\n"
+"X-POOTLE-MTIME: 1420489671.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4207,6 +4207,8 @@ msgid ""
 "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before "
 "resubmitting your app."
 msgstr ""
+"Dyrbiće <a href=\"%(ratings_url)s\">wobsahowe pohódnoćenja dobyć</a>, prjedy "
+"hač swoje nałoženje znowa zapodaće."
 
 #: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
@@ -4240,12 +4242,16 @@ msgid ""
 "Upload a new version of this packaged app. New versions must be reviewed "
 "before they will be available for installation."
 msgstr ""
+"Nahrajće nowu wersiju tutoho zapakowaneho nałoženja. Nowe wersije dyrbja so "
+"přepruwować, prjedy hač budu k dispoziciji za instalaciju."
 
 #: mkt/developers/templates/developers/apps/status.html:259
 msgid ""
 "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> "
 "if a large portion of the app's content has changed."
 msgstr ""
+"Spominajće na to, zo <a href=\"%(ratings_url)s\">wobsahowe pohódnoćenja</a> "
+"nałoženja aktualizujeće, jeli je so wulki dźěl wobsaha změnił."
 
 #: mkt/developers/templates/developers/apps/status.html:275
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:171
@@ -4270,22 +4276,26 @@ msgstr "Waše nałoženje so na gratach z mało składowakom njepokazuje."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Njejsće přepruwowanje za mało składowaka požadał."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "Waše nałoženje čaka na přepruwowanje."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid ""
 "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"Naše přepruwowanje dnja {review_date} je pokazało, zo waše nałoženje graty z "
+"mało składowakom podpěruje."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid ""
 "Our review on {review_date} found that your app does not support low-memory "
 "devices."
 msgstr ""
+"Naše přepruwowanje dnja {review_date} je pokazało, zo waše nałoženje graty z "
+"mało składowakom njepodpěruje."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -4309,6 +4319,8 @@ msgid ""
 "If your app works on low-memory devices then you can request a review to be "
 "shown on low-memory devices."
 msgstr ""
+"Jeli waše nałoženje na gratach z mało składowakom funguje, móžeće "
+"přepruwowanje požadać, kotrež so na gratach z mało składowakom pokazuje."
 
 #: mkt/developers/templates/developers/apps/status.html:329
 #: mkt/developers/templates/developers/payments/includes/region_form.html:20
@@ -4333,6 +4345,7 @@ msgid ""
 "<strong class=\"submitted\">Application Submitted</strong> on "
 "%(last_submission)s"
 msgstr ""
+"<strong class=\"submitted\">Nałoženje zapodaty</strong> %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
@@ -4344,11 +4357,11 @@ msgstr "Nowa wersija testoweho plana k dispoziciji"
 
 #: mkt/developers/templates/developers/apps/status.html:373
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Wobhladajće sej swój najnowši přednjeseny testowy plan"
 
 #: mkt/developers/templates/developers/apps/status.html:376
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr ""
+msgstr "Zhońće, kak móžeće swoje nałoženje na gratach Firefox OS předinstalować"
 
 #: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
@@ -4371,25 +4384,31 @@ msgid ""
 "Your app's listing is disabled and will not appear in the Firefox "
 "Marketplace. You may re-list it at any time."
 msgstr ""
+"Lisćinowy zapisk wašeho nałoženja je so znjemóžnił a njebudźe so w Torhošću "
+"Firefox jewić. Móžeće jón kóždy čas zaso zmóžnić."
 
 #: mkt/developers/templates/developers/apps/status.html:400
 msgid ""
 "Delisting your app will prevent it from appearing anywhere in the "
 "Marketplace."
 msgstr ""
+"Jeli lisćinowy zapisk swojeho nałoženja wotstronjeće, budźe so nałoženje "
+"nihdźe w Torhošću jewić."
 
 #: mkt/developers/templates/developers/apps/status.html:420
 #: mkt/developers/templates/developers/apps/status.html:431
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr ""
+msgstr "Nałoženje zhašeć"
 
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid ""
 "Deleting your app will permanently delete it from the site. <strong>There is "
 "no going back.</strong>"
 msgstr ""
+"Jeli swoje nałoženje wotstronjeće, budźe so wono na přeco ze sydła "
+"wostronjeć. <strong>To njeda so cofnyć.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
