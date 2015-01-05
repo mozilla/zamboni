@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-02 18:22+0000\n"
+"PO-Revision-Date: 2015-01-05 18:30+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420222955.0\n"
+"X-POOTLE-MTIME: 1420482657.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3635,7 +3635,9 @@ msgstr "Sobald Sie diese Probleme beseitigt haben, können Sie <a href=\"%(resub
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Once you have addressed these concerns, you may resubmit your app below."
-msgstr "Sobald Sie diese Bedenken aufgeräumt haben, können Sie Ihre App im Folgenden erneut einreichen."
+msgstr ""
+"Sobald Sie diese Bedenken ausgeräumt haben, können Sie Ihre App im Folgenden "
+"erneut einreichen."
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
