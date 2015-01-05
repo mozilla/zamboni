@@ -161,3 +161,5 @@ PAYMENT_PROVIDERS = ['bango']
 
 RECOMMENDATIONS_API_URL = 'https://recommend.marketplace.firefox.com'
 RECOMMENDATIONS_ENABLED = True
+
+QA_APP_ID = 455996

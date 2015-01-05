@@ -994,7 +994,7 @@ PRODUCT_ICON_EXPIRY = 1
 
 # QA uses the following app for testing in production. We need to ensure it
 # doesn't show up as the most popular app. (See bug 1112731)
-QA_APP_ID = 455996
+QA_APP_ID = 0
 
 # Read-only mode setup.
 READ_ONLY = False
