@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-05 12:48+0000\n"
+"PO-Revision-Date: 2015-01-05 15:00+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420462083.0\n"
+"X-POOTLE-MTIME: 1420470010.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3877,6 +3877,11 @@ msgid ""
 "would like to run a copy of your own, the source code is available <a href=\""
 "%(repo)s\">on Github</a>."
 msgstr ""
+"Walidator je nastroj, kotryž móže při testowanju wašeho nałoženja za "
+"zmylkami, najlěpšimi postupowanskimi wašnjemi a wotpowědowanjom ze "
+"směrnicami Torhošća pomhać, prjedy hač woprawdźe zapodaće swoje nałoženje za "
+"přepruwowanje. Jeli so za to zajimujeće, kak nastroj funguje, abo chceće "
+"jón wužiwać, namakaće žórłowy tekst <a href=\"%(repo)s\">na github</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -3929,6 +3934,9 @@ msgid ""
 "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a "
 "href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Njejsće hišće žane nałoženje w Torhošću Firefox zapodał. Hdyž sće <a href=\"%"
+"(app_url)s\">swoje nałoženje wutworił</a>, klikńće na \"Waše nałoženje "
+"zapodać\"."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -4014,12 +4022,16 @@ msgid ""
 "Can manage all aspects of the app's listing, including adding and removing "
 "other team members"
 msgstr ""
+"Móže wšě aspekty lisćinoweho zapiska zrjadować inkluziwnje přidawanje a "
+"wotstronjenje druhich teamowych čłonow"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid ""
 "Can manage all aspects of the app's listing, except for adding and removing "
 "other team members and managing payments"
 msgstr ""
+"Móže wšě aspekty lisćinoweho zapiska zrjadować, nimo přidawanja a "
+"wotstronjenja druhich teamowych čłonow a rjadowanja płaćenjow"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
@@ -4074,6 +4086,9 @@ msgid ""
 "automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining "
 "content ratings</a>."
 msgstr ""
+"Waše nałoženje je so znjemóžniło, dokelž nima wobsahowe pohódnoćenja. "
+"Znjemóžni so awtomatisce, po tym zo sće <a href=\"%(ratings_url)s\">wobsahowe "
+"pohódnoćenja dóstał</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
@@ -4173,11 +4188,15 @@ msgid ""
 "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">"
 "resubmit your app below</a>."
 msgstr ""
+"Hdyž sće so wo tute naležnosće starał, móžeće <a href=\"%"
+"(resubmit_url)s\">swoje nałoženje deleka znowa zapodać</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid ""
 "Once you have addressed these concerns, you may resubmit your app below."
 msgstr ""
+"Hdyž sće so wo tute naležnosće starał, móžeće swoje nałoženje deleka znowa "
+"zapodać."
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
