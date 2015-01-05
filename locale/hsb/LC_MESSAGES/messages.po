@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-05 12:30+0000\n"
+"PO-Revision-Date: 2015-01-05 12:48+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420461057.0\n"
+"X-POOTLE-MTIME: 1420462083.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3965,7 +3965,7 @@ msgstr "Teamowi čłonojo"
 #: mkt/developers/templates/developers/apps/owner.html:22
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Jenož wobsedźerjo nałoženja móža tutu stronu wobdźěłać."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4023,7 +4023,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
-msgstr ""
+msgstr "Móže sej nastajenja nałoženja wobhladać, ale njemóže změny přewjesć"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
@@ -4145,12 +4145,16 @@ msgid ""
 "Your app has been <b>approved</b> and is currently only visible to team "
 "members."
 msgstr ""
+"Waše nałoženje je so <b>schwaliło</b> a je tuchwilu widźomne jenož za "
+"teamowych čłonow."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid ""
 "Only <b>team members</b> with the following URL can view and install this "
 "app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Jenož <b>teamowi čłonojo</b> ze slědowacym URL móža sej tute nałoženje "
+"wobhladać a jo instalować:<br><a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
@@ -4177,7 +4181,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
-msgstr ""
+msgstr "Nałoženje znowa zapodać"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid ""
@@ -4187,11 +4191,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
-msgstr ""
+msgstr "Zapakowane wersije"
 
 #: mkt/developers/templates/developers/apps/status.html:203
 msgid "Submission date"
-msgstr ""
+msgstr "Zapodawanski datum"
 
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -4243,7 +4247,7 @@ msgstr "Waše nałoženje so na gratach z mało składowakom pokazuje."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "Waše nałoženje so na gratach z mało składowakom njepokazuje."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
@@ -4313,11 +4317,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
-msgstr ""
+msgstr "Njepřenjeseny"
 
 #: mkt/developers/templates/developers/apps/status.html:368
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "Nowa wersija testoweho plana k dispoziciji"
 
 #: mkt/developers/templates/developers/apps/status.html:373
 msgid "View your most recently submitted test plan"
@@ -4329,7 +4333,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
-msgstr ""
+msgstr "Zaktualizujće swój testowy plan"
 
 #: mkt/developers/templates/developers/apps/status.html:391
 #: mkt/developers/templates/developers/apps/status.html:409
@@ -4410,7 +4414,7 @@ msgstr ""
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
-msgstr ""
+msgstr "abo"
 
 #: mkt/developers/templates/developers/apps/status.html:478
 #: mkt/developers/templates/developers/apps/status.html:500
@@ -4436,11 +4440,11 @@ msgstr ""
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
-msgstr ""
+msgstr "Přetorhnyć"
 
 #: mkt/developers/templates/developers/apps/status.html:488
 msgid "Delete Version &quot;{version}&quot;"
-msgstr ""
+msgstr "Wersiju &quot;{version}&quot; zhašeć"
 
 #: mkt/developers/templates/developers/apps/status.html:489
 msgid "Deleting the only version will result in the following:"
