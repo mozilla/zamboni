@@ -13,9 +13,7 @@ from tower import ugettext as _
 from mkt.fireplace.serializers import FeedFireplaceESAppSerializer
 from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
                                      ESAppFeedCollectionSerializer,
-                                     ESAppSerializer,
-                                     FeedDiscoPlaceESAppSerializer)
-
+                                     ESAppSerializer)
 
 class FeedCollectionMembershipField(serializers.RelatedField):
     """
@@ -45,7 +43,6 @@ class AppESField(serializers.Field):
     """
     app_serializer_classes = {
         'fireplace': FeedFireplaceESAppSerializer,
-        'discoplace': FeedDiscoPlaceESAppSerializer
     }
 
     @property

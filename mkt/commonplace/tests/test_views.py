@@ -70,13 +70,6 @@ class TestCommonplace(CommonplaceTestMixin):
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_discoplace(self):
-        res = self._test_url('/discovery/')
-        self.assertTemplateUsed(res, 'commonplace/index.html')
-        self.assertEquals(res.context['repo'], 'discoplace')
-        self.assertContains(res, 'splash.css')
-        eq_(res['Cache-Control'], 'max-age=180')
-
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_region_not_included_in_fireplace_if_sim_info(self, mock_region):
         test_region = mock.Mock()
