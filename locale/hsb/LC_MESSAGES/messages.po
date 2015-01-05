@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-05 20:27+0000\n"
+"PO-Revision-Date: 2015-01-05 20:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420489671.0\n"
+"X-POOTLE-MTIME: 1420491124.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4428,7 +4428,7 @@ msgstr "Lisćina zawrjenjow"
 
 #: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
-msgstr ""
+msgstr "Chceće lisćinowy zapisk swojeho nałoženja woprawdźe wotstronić?"
 
 #. This 'or' goes between two choices in a dialog.
 #: mkt/developers/templates/developers/apps/status.html:478
@@ -4486,19 +4486,19 @@ msgstr "Wersiju &quot;{version}&quot; zhašeć"
 
 #: mkt/developers/templates/developers/apps/status.html:489
 msgid "Deleting the only version will result in the following:"
-msgstr ""
+msgstr "Jeli jeničku wersiju zhašeće, so tole stanje:"
 
 #: mkt/developers/templates/developers/apps/status.html:491
 msgid "the app status will be marked as &quot;incomplete&quot;"
-msgstr ""
+msgstr "status nałoženja markěruje so jako &quot;dospołny&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:492
 msgid "the app will be removed from our review queue"
-msgstr ""
+msgstr "nałoženje wotstroni so z čakanskeho rynka"
 
 #: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app will not be listed in our public pages"
-msgstr ""
+msgstr "nałoženje njenalistuje so na našich zjawnych stronach"
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
@@ -4515,6 +4515,8 @@ msgstr "Wersiju zhašeć"
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Chceće woprawdźe, zo so hižo waše nałoženje na gratach z mało składowakom "
+"njepokazuje?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
@@ -4558,7 +4560,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:25
 msgid "Mozilla Contact"
-msgstr ""
+msgstr "Kontakt Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid ""
@@ -4599,7 +4601,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
-msgstr ""
+msgstr "Chorhojowa powěsć"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid ""
@@ -4647,28 +4649,28 @@ msgstr[3] ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Zakładne informacije"
 
 #. {0} is the addon name
 #: mkt/developers/templates/developers/apps/edit/basic.html:16
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Zakładne informacije za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23
 #: mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Tute polo da so jenož přez jeho aktualizowanje w manifesće wobdźěłać."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
-msgstr ""
+msgstr "Wuwiwarske mjeno"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46
 #: mkt/submit/templates/submit/details.html:67
 msgid "App URL"
-msgstr ""
+msgstr "URL nałoženja"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47
 #: mkt/submit/templates/submit/details.html:69
@@ -4682,11 +4684,11 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29
 #: mkt/reviewers/templates/reviewers/review.html:58
 msgid "View Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk sej wobhladać"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:66
 msgid "API URL"
-msgstr ""
+msgstr "API-URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
@@ -4705,7 +4707,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
-msgstr ""
+msgstr "Aktualizować"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid ""
@@ -4718,7 +4720,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Description"
-msgstr ""
+msgstr "Wopisanje"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid ""
@@ -4728,7 +4730,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid ""
@@ -4744,14 +4746,14 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr ""
+msgstr "Podrobnosće nałoženja"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:17
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:66
 #: mkt/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardna rěč"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid ""
@@ -4794,32 +4796,32 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Kraj na stronje kompatibelnosće wobdźěłać"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
-msgstr ""
+msgstr "Rěč"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "standard"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Rěč w manifestowej dataji wašeho nałoženja wobdźěłać"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
-msgstr ""
+msgstr "Medije"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
-msgstr ""
+msgstr "Informacije pomocy"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/support.html:16
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informacije pomocy za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
 msgid ""
@@ -4832,7 +4834,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:101
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "Website"
-msgstr ""
+msgstr "Websydło"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
 msgid ""
@@ -4862,7 +4864,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Funguje offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid ""
@@ -4872,7 +4874,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
-msgstr ""
+msgstr "Zjawne statistiki?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid ""
@@ -4894,7 +4896,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Symbol nałoženja"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid ""
@@ -4944,7 +4946,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
-msgstr ""
+msgstr "Fota wobrazowki abo wideja"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
@@ -4953,7 +4955,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:151
 msgid "Add a Screenshot or Video..."
-msgstr ""
+msgstr "Foto wobrazowki abo widejo přidać..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid ""
@@ -4964,24 +4966,24 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
-msgstr ""
+msgstr "Powšitkowne testy"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:9
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:45
 msgid "Package Tests"
-msgstr ""
+msgstr "Paketowe testy"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:13
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:58
 msgid "Content Tests"
-msgstr ""
+msgstr "Wobsahowe testy"
 
 #. abbreviation of 'previous'
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:41
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr ""
+msgstr "Předchadna strona"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:28
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:42
@@ -5003,12 +5005,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
-msgstr ""
+msgstr "Prošu zdźelće nam, čehoždla swoje nałoženje zhašeće"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
-msgstr ""
+msgstr "Akcije"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
@@ -5017,11 +5019,11 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
 msgid "Resume"
-msgstr ""
+msgstr "Pokročować"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Tute nałoženje zhašeć."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -5029,17 +5031,17 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Nowu wersiju tutoho nałoženja nahrać."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:30
 msgid "New Version"
-msgstr ""
+msgstr "Nowa wersija"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:43
 #: mkt/site/templates/site/paginator.html:3
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:14
 msgid "More"
-msgstr ""
+msgstr "Wjace"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
@@ -5079,7 +5081,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr ""
+msgstr "Tute nałoženje zhašeć."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -5091,12 +5093,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
-msgstr ""
+msgstr "Nowu wersiju přidać"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Status a wersije"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
@@ -5108,7 +5110,7 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
 #: mkt/webapps/models.py:1486
 msgid "Content Ratings"
-msgstr ""
+msgstr "Wobsahowe pohódnoćenja"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:20
@@ -5118,7 +5120,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
-msgstr ""
+msgstr "Płaćenja w nałoženju"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:35
@@ -5151,11 +5153,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
 msgid "Pending Version:"
-msgstr ""
+msgstr "Falowaca wersija:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:47
 msgid "Price:"
-msgstr ""
+msgstr "Płaćizna:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
@@ -5163,7 +5165,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Graty změnić"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -5180,11 +5182,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr ""
+msgstr "Sćehńće testowy plan"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Testowanje skónčene?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:39
