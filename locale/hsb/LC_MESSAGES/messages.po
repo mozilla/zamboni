@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-04 22:11+0000\n"
+"PO-Revision-Date: 2015-01-05 12:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420409492.0\n"
+"X-POOTLE-MTIME: 1420461057.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3922,7 +3922,7 @@ msgstr "Wobdźěłać"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:27
 msgid "Welcome to the Developer Dashboard"
-msgstr ""
+msgstr "Witajće k wuwiwarskemu přehladej"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid ""
@@ -3987,7 +3987,7 @@ msgstr "Wo rólach teamowych čłonow"
 #: mkt/developers/templates/developers/payments/premium.html:315
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr ""
+msgstr "Změny składować"
 
 #: mkt/developers/templates/developers/apps/owner.html:83
 #: mkt/developers/templates/developers/payments/includes/account_list.html:5
@@ -4027,7 +4027,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Móže sej nastajenja nałoženja wobhladać"
 
 #: mkt/developers/templates/developers/apps/status.html:5
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:48
@@ -4066,7 +4066,7 @@ msgstr "Tute nałoženje je <b>njedospołne</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr ""
+msgstr "Tute nałoženje je so <b>wot Mozilla znjemóžniło</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid ""
@@ -4154,15 +4154,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Zhońće wjace wo přepruwowanskich kriterijach za nałoženja"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Widźomnosć nałoženja aktualizować"
 
 #: mkt/developers/templates/developers/apps/status.html:148
 msgid "Reviewed by <b>%(reviewer)s</b>"
-msgstr ""
+msgstr "Wot <b>%(reviewer)s</b> přepruwowany"
 
 #: mkt/developers/templates/developers/apps/status.html:161
 msgid ""
@@ -4196,21 +4196,21 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
-msgstr ""
+msgstr "Znjemóžnjeny"
 
 #: mkt/developers/templates/developers/apps/status.html:228
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/operators/templates/operators/preloads.html:47
 msgid "Download"
-msgstr ""
+msgstr "Sćahnyć"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
-msgstr ""
+msgstr "Aktiwizować"
 
 #: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
-msgstr ""
+msgstr "Nowu wersiju sćahnyć"
 
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid ""
@@ -4230,16 +4230,16 @@ msgstr ""
 #: mkt/submit/templates/submit/manifest.html:110
 #: mkt/submit/templates/submit/next_steps.html:110
 msgid "Continue"
-msgstr ""
+msgstr "Dale"
 
 #: mkt/developers/templates/developers/apps/status.html:286
 #: mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Graty z mało składowakom"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "Waše nałoženje so na gratach z mało składowakom pokazuje."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
@@ -4266,17 +4266,20 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "Sće {request_date} wo přepruwowanje prosył."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
+"Waše nałoženje njeje so w regionach z gratami z mało składowakom zmóžniło."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid ""
 "You can update your regions on the <a href=\"{compatibility_page}\">"
 "compatibility page</a>."
 msgstr ""
+"Móžeće swoje regiony na <a href=\"{compatibility_page}\">stronje "
+"kompatibelnosće</a> aktualizować."
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid ""
@@ -4287,20 +4290,20 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:329
 #: mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Zhońće wjace wo gratach z mało składowakom."
 
 #: mkt/developers/templates/developers/apps/status.html:335
 #: mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Moje nałoženje na gratach z mało składowakom njepokazać"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Přepruwowanje za mało składowaka požadać"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Status jako předinstalowane nałoženje"
 
 #: mkt/developers/templates/developers/apps/status.html:360
 msgid ""
@@ -4331,14 +4334,14 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:391
 #: mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
-msgstr ""
+msgstr "Nałoženje nalistować"
 
 #: mkt/developers/templates/developers/apps/status.html:391
 #: mkt/developers/templates/developers/apps/status.html:412
 #: mkt/developers/templates/developers/apps/status.html:472
 #: mkt/developers/templates/developers/apps/status.html:477
 msgid "Delist App"
-msgstr ""
+msgstr "Nałoženje z lisćiny wotstronić"
 
 #: mkt/developers/templates/developers/apps/status.html:395
 msgid ""
@@ -4367,7 +4370,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
-msgstr ""
+msgstr "Nałoženje zawrěć"
 
 #: mkt/developers/templates/developers/apps/status.html:444
 msgid ""
@@ -4379,7 +4382,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
-msgstr ""
+msgstr "Lisćina zawrjenjow"
 
 #: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
@@ -4457,15 +4460,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
-msgstr ""
+msgstr "Tute změny njedadźa so cofnyć."
 
 #: mkt/developers/templates/developers/apps/status.html:496
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Chceće tutu wersiju woprawdźe zhašeć?"
 
 #: mkt/developers/templates/developers/apps/status.html:499
 msgid "Delete Version"
-msgstr ""
+msgstr "Wersiju zhašeć"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
@@ -4475,7 +4478,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:55
 msgid "Version Notes"
-msgstr ""
+msgstr "Wersijowe pokazy"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
@@ -4488,7 +4491,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:65
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Pokazy za přepruwowarjow"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid ""
@@ -4499,7 +4502,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/version_edit.html:53
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
-msgstr ""
+msgstr "Minimalne žadanja"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54
 #: mkt/developers/templates/developers/apps/edit/technical.html:66
@@ -4523,11 +4526,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr ""
+msgstr "Zapodajće e-mejlowe adresy, dźělene přez komy"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "VIP-nałoženje Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid ""
@@ -4537,11 +4540,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Zrědka wužiwać"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Přepruwowanje priority trěbne"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid ""
