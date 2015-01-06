@@ -715,6 +715,10 @@ def _get_trending(app_id):
         return {}
 
     def _score(week1, week3):
+        # If last week app installs are < 100, this app isn't trending.
+        if week1 < 100.0:
+            return 0.0
+
         score = 0.0
         if week3 > 1:
             score = (week1 - week3) / week3
@@ -728,8 +732,9 @@ def _get_trending(app_id):
 
     if week1 < 100.0:
         # If global installs over the last week aren't over 100, we
-        # short-circuit and return zero as this is not a trending app by
-        # definition.
+        # short-circuit and return a zero-like value as this is not a trending
+        # app by definition. Since global installs aren't above 100, per-region
+        # installs won't be either.
         return {}
 
     results = {
@@ -740,7 +745,7 @@ def _get_trending(app_id):
         for regional_res in res['aggregations']['region']['buckets']:
             region_slug = regional_res['key']
             week1 = regional_res['week1']['total_installs']['value']
-            week3 = regional_res['week1']['total_installs']['value'] / 3.0
+            week3 = regional_res['week3']['total_installs']['value'] / 3.0
             results[region_slug] = _score(week1, week3)
 
     return results

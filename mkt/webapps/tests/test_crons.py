@@ -285,15 +285,24 @@ class TestUpdateTrending(amo.tests.TestCase):
     def _return_value(self, week1, week3):
         return {
             'aggregations': {
-                'week1': {
-                    'total_installs': {
-                        'value': week1
-                    }
-                },
-                'week3': {
-                    'total_installs': {
-                        'value': week3
-                    }
+                'week1': {'total_installs': {'value': week1}},
+                'week3': {'total_installs': {'value': week3}},
+            }
+        }
+
+    def _return_value_with_regions(self, week1, week3, rweek1, rweek3):
+        return {
+            'aggregations': {
+                'week1': {'total_installs': {'value': week1}},
+                'week3': {'total_installs': {'value': week3}},
+                'region': {
+                    'buckets': [
+                        {
+                            'key': 'br',
+                            'week1': {'total_installs': {'value': rweek1}},
+                            'week3': {'total_installs': {'value': rweek3}},
+                        },
+                    ]
                 }
             }
         }
@@ -326,9 +335,51 @@ class TestUpdateTrending(amo.tests.TestCase):
         _mock.return_value = client
 
         # 1st week count: 100
-        # Prior 3 week count: 1000
-        # (100 - 1000) / 1000 = -0.9 which gets set to 0.0.
+        # Prior 3 week count: 1000/3 = 333.3
+        # (100 - 333.3) / 333.3 = -0.7 which gets set to 0.0.
         eq_(_get_trending(self.app.id), {'all': 0.0})
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_get_trending_regional(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  255, 102)
+        _mock.return_value = client
+
+        # We set global counts to anything over 100. See above tests. I chose
+        # 102 to divide equally by 3 w/o a crazy remainder.
+        #
+        # 1st week regional count: 255
+        # Prior 3 week regional count: 102/3 = 34
+        # (255 - 34) / 34 = 6.5
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+        eq_(_get_trending(self.app.id)['br'], 6.5)
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_get_trending_regional_threshold(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  99, 99)
+        _mock.return_value = client
+
+        # 1st week regional count: 99
+        # Prior 3 week regional count: 99/3 = 33
+        # (99 - 33) / 33 = 2.0 but week1 isn't > 100 so we set to zero.
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+        eq_(_get_trending(self.app.id)['br'], 0.0)
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_get_trending_regional_negative(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  100, 1000)
+        _mock.return_value = client
+
+        # 1st week regional count: 99
+        # Prior 3 week regional count: 99/3 = 33
+        # (99 - 33) / 33 = 2.0 but week1 isn't > 100 so we set to zero.
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+        eq_(_get_trending(self.app.id)['br'], 0.0)
 
     @mock.patch('mkt.webapps.tasks.get_monolith_client')
     def test_get_trending_error(self, _mock):
