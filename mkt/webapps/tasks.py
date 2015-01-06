@@ -634,26 +634,25 @@ def _get_trending(app_id):
     """
     Calculate trending for app for all regions and per region.
 
-    a = installs from 7 days ago to today
-    b = installs from 28 days ago to 8 days ago, averaged per week
+    a = installs from 8 days ago to 1 day ago
+    b = installs from 29 days ago to 9 days ago, averaged per week
     trending = (a - b) / b if a > 100 and b > 1 else 0
 
     Returns value in the format of::
 
-        {<region_slug>: <trending score>, ...}
-
-    where a `region_slug` of 'all' is all regions.
+        {'all': <global trending score>,
+         <region_slug>: <regional trending score>,
+         ...}
 
     """
     client = get_monolith_client()
-    today = datetime.date.today()
 
     week1 = {
         'filter': {
             'range': {
                 'date': {
-                    'gte': days_ago(7).date().isoformat(),
-                    'lte': today.isoformat()
+                    'gte': days_ago(8).date().isoformat(),
+                    'lte': days_ago(1).date().isoformat()
                 }
             }
         },
@@ -669,8 +668,8 @@ def _get_trending(app_id):
         'filter': {
             'range': {
                 'date': {
-                    'gte': days_ago(28).date().isoformat(),
-                    'lte': days_ago(8).date().isoformat()
+                    'gte': days_ago(29).date().isoformat(),
+                    'lte': days_ago(9).date().isoformat()
                 }
             }
         },
