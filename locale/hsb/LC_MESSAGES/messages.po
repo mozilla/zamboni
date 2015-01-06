@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-06 11:51+0000\n"
+"PO-Revision-Date: 2015-01-06 15:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420545064.0\n"
+"X-POOTLE-MTIME: 1420558483.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4739,6 +4739,10 @@ msgid ""
 "URL. For more information, read the <a href=\"%(doc_url)s\" target=\"_blank\""
 ">documentation on Updating Apps</a>."
 msgstr ""
+"Prošu spytajće, URL swojeho manifesta nic přehusto změnić. Jeli URL swojeho "
+"manifesta změniće, njebudu so eksistowacy wužiwarjo na nowy manifestowy URL "
+"aktualizować. Dalše informacije namakaće w <a href=\"%(doc_url)s\" "
+"target=\"_blank\">dokumentaciji wo aktualizowanju nałoženjow</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
@@ -4750,6 +4754,8 @@ msgid ""
 "An explanation of features, functionality, and other relevant information. "
 "This field is displayed on the app's details page."
 msgstr ""
+"Wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych informacijow. "
+"Tute polo so na stronje podrobnosćow nałoženja zwobraznja."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
@@ -4760,12 +4766,17 @@ msgid ""
 "Information about changes in the latest release, new features, known bugs, "
 "and other useful information specific to this release/version."
 msgstr ""
+"Informacije wo změnach w najnowšej wersiji, nowych funkcijach, znatych "
+"zmylkach a druhich wužitnych informacijach za tutu wersiju."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:147
 msgid ""
 "Categories are the primary way users browse through apps. Choose any that "
 "fit your app's functionality for the most exposure."
 msgstr ""
+"Kategorije su hłowny srědk, kotryž wužiwarjo wužiwaja, zo bychu nałoženja "
+"přepytowali. Wubjerće kategoriju, kotraž hodźi so k funkcionalnosći wašeho "
+"nałoženja, zo byšće tak wulki kaž móžny publikum docpěł."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -4783,6 +4794,8 @@ msgid ""
 "Information about your app is displayed in this locale unless you override "
 "it with a locale-specific translation."
 msgstr ""
+"Informacije wo wašim nałoženju so w tutej rěči zwobraznjeja, chibazo "
+"wuměnjeće je přez přełožk, kotryž je specifiski za wěstu lokalu."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
@@ -4794,6 +4807,9 @@ msgid ""
 "localized into other languages multiple translations of this field can be "
 "added."
 msgstr ""
+"Jeli waše nałoženje ma dalšu webstronu, zapodajće tu jeje adresu. Jeli waše "
+"websydło je so do druhich rěčow přełožiło, móžeće za tute polo wjacore "
+"přełožki zapodać."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:55
@@ -4807,6 +4823,8 @@ msgid ""
 "A privacy policy is required that explains what data is transmitted from a "
 "user's computer and how it is used."
 msgstr ""
+"Prawidła priwatnosće su trěbne, kotrež wujasnjeja, kotre daty so wot ličaka "
+"wužiwarja přenošuja a kak so wužiwaja."
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
