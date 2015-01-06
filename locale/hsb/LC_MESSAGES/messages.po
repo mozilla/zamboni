@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-06 17:53+0000\n"
+"PO-Revision-Date: 2015-01-06 18:11+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420566789.0\n"
+"X-POOTLE-MTIME: 1420567879.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4951,12 +4951,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "Wubjerće symbol za swoje nałoženje:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
@@ -4965,7 +4965,7 @@ msgstr ""
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
@@ -4974,7 +4974,7 @@ msgstr ""
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
