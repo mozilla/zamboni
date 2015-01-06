@@ -21,49 +21,49 @@ class TestSendMail(TestCase):
     fixtures = fixture('user_999', 'user_2519', 'user_10482')
 
     def setUp(self):
-        self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
+        self._email_blocked = list(getattr(settings, 'EMAIL_BLOCKED', []))
 
     def tearDown(self):
         translation.activate('en_US')
-        settings.EMAIL_BLACKLIST = self._email_blacklist
+        settings.EMAIL_BLOCKED = self._email_blocked
 
     def test_send_string(self):
         to = 'f@f.com'
         with self.assertRaises(ValueError):
             send_mail('subj', 'body', recipient_list=to)
 
-    def test_blacklist(self):
+    def test_blocked(self):
         to = 'nobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
-        settings.EMAIL_BLACKLIST = (to,)
+        settings.EMAIL_BLOCKED = (to,)
         success = send_mail('test subject', 'test body',
                             recipient_list=[to, to2], fail_silently=False)
         assert success
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [to2])
 
-    def test_blacklist_flag(self):
+    def test_blocked_flag(self):
         to = 'nobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
-        settings.EMAIL_BLACKLIST = (to,)
+        settings.EMAIL_BLOCKED = (to,)
         success = send_mail('test subject', 'test body',
                             recipient_list=[to, to2], fail_silently=False,
-                            use_blacklist=True)
+                            use_blocked=True)
         assert success
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [to2])
 
-    def test_blacklist_flag_off(self):
+    def test_blocked_flag_off(self):
         to = 'nobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
-        settings.EMAIL_BLACKLIST = (to,)
-        success = send_mail('test subject', 'test_blacklist_flag_off',
+        settings.EMAIL_BLOCKED = (to,)
+        success = send_mail('test subject', 'test_blocked_flag_off',
                             recipient_list=[to, to2], fail_silently=False,
-                            use_blacklist=False)
+                            use_blocked=False)
         assert success
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [to, to2])
-        assert 'test_blacklist_flag_off' in mail.outbox[0].body
+        assert 'test_blocked_flag_off' in mail.outbox[0].body
 
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_real_regex_list(self):
@@ -158,7 +158,7 @@ class TestSendMail(TestCase):
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 0)
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_BLOCKED', ())
     def test_success_real_mail(self):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org'],
@@ -167,7 +167,7 @@ class TestSendMail(TestCase):
         eq_(mail.outbox[0].subject.find('test subject'), 0)
         eq_(mail.outbox[0].body.find('test body'), 0)
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_BLOCKED', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_success_fake_mail(self):
         assert send_mail('test subject', 'test body',
@@ -185,7 +185,7 @@ class TestSendMail(TestCase):
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
                              from_email=settings.NOBODY_EMAIL,
-                             use_blacklist=False,
+                             use_blocked=False,
                              perm_setting='individual_contact',
                              headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 

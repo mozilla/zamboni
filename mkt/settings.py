@@ -660,8 +660,8 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # Files saved to TMP_PATH deleted 15 days after written.
 TMP_PATH_DAYS_DELETE = 3600 * 24 * 15
 
-# Please use all lowercase for the blacklist.
-EMAIL_BLACKLIST = (
+# Please use all lowercase.
+EMAIL_BLOCKED = (
     'nobody@mozilla.org',
 )
 
@@ -994,7 +994,7 @@ PRODUCT_ICON_EXPIRY = 1
 
 # QA uses the following app for testing in production. We need to ensure it
 # doesn't show up as the most popular app. (See bug 1112731)
-QA_APP_ID = 455996
+QA_APP_ID = 0
 
 # Read-only mode setup.
 READ_ONLY = False

@@ -55,7 +55,7 @@ from mkt.versions.models import update_status, Version
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AppFeatures, AppManifest,
-                                BlacklistedSlug, ContentRating, Geodata,
+                                BlockedSlug, ContentRating, Geodata,
                                 get_excluded_in, IARCInfo, Installed, Preview,
                                 RatingDescriptors, RatingInteractives,
                                 version_changed, Webapp)
@@ -135,25 +135,25 @@ class TestCleanSlug(amo.tests.TestCase):
         b.clean_slug()
         eq_(b.app_slug, "fooslug-1")
 
-    def test_clean_slug_blacklisted_slug(self):
-        blacklisted_slug = 'fooblacklisted'
-        BlacklistedSlug.objects.create(name=blacklisted_slug)
+    def test_clean_slug_blocked_slug(self):
+        blocked_slug = 'fooblocked'
+        BlockedSlug.objects.create(name=blocked_slug)
 
-        a = Webapp(app_slug=blacklisted_slug)
+        a = Webapp(app_slug=blocked_slug)
         a.clean_slug()
-        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
+        # Blocked slugs (like "activate" or IDs) have a "~" appended to
         # avoid clashing with URLs.
-        eq_(a.app_slug, "%s~" % blacklisted_slug)
+        eq_(a.app_slug, "%s~" % blocked_slug)
         # Now save the instance to the database for future clashes.
         a.save()
 
-        b = Webapp(app_slug=blacklisted_slug)
+        b = Webapp(app_slug=blocked_slug)
         b.clean_slug()
-        eq_(b.app_slug, "%s~-1" % blacklisted_slug)
+        eq_(b.app_slug, "%s~-1" % blocked_slug)
 
-    def test_clean_slug_blacklisted_slug_long_slug(self):
+    def test_clean_slug_blocked_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
-        BlacklistedSlug.objects.create(name=long_slug[:30])
+        BlockedSlug.objects.create(name=long_slug[:30])
 
         # If there's no clashing slug, just append a "~".
         a = Webapp.objects.create(app_slug=long_slug[:30])
@@ -794,7 +794,7 @@ class TestWebappLight(amo.tests.TestCase):
         eq_(w3.app_slug, 'slug-2')
 
     def test_app_slug_blocklist(self):
-        BlacklistedSlug.objects.create(name='slug')
+        BlockedSlug.objects.create(name='slug')
         w = Webapp(app_slug='slug')
         w.save()
         eq_(w.app_slug, 'slug~')

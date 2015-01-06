@@ -90,7 +90,7 @@ def clean_slug(instance, slug_field='app_slug'):
     max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
     slug = slugify(slug)[:max_length]
 
-    if BlacklistedSlug.blocked(slug):
+    if BlockedSlug.blocked(slug):
         slug = slug[:max_length - 1] + '~'
 
     # The following trick makes sure we are using a manager that returns
@@ -194,7 +194,7 @@ def attach_translations(addons):
 
 def attach_tags(addons):
     addon_dict = dict((a.id, a) for a in addons)
-    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
+    qs = (Tag.objects.not_blocked().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
@@ -301,11 +301,11 @@ dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
 
 
-class BlacklistedSlug(ModelBase):
+class BlockedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
-        db_table = 'addons_blacklistedslug'
+        db_table = 'addons_blocked_slug'
 
     def __unicode__(self):
         return self.name

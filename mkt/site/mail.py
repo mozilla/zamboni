@@ -42,14 +42,14 @@ class FakeEmailBackend(BaseEmailBackend):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True, perm_setting=None,
+              fail_silently=False, use_blocked=True, perm_setting=None,
               manage_url=None, headers=None, cc=None,
               html_message=None, attachments=None, async=False,
               max_retries=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
-    Adds blacklist checking and error logging.
+    Adds blocked emails checking and error logging.
     """
     if not recipient_list:
         return True
@@ -70,15 +70,15 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         recipient_list = [e for e in recipient_list
                           if e and perms.setdefault(e, d)]
 
-    # Prune blacklisted emails.
-    if use_blacklist:
-        notblacklisted_list = []
+    # Prune blocked emails.
+    if use_blocked:
+        not_blocked = []
         for email in recipient_list:
-            if email and email.lower() in settings.EMAIL_BLACKLIST:
-                log.debug('Blacklisted email removed from list: %s' % email)
+            if email and email.lower() in settings.EMAIL_BLOCKED:
+                log.debug('Blocked email removed from list: %s' % email)
             else:
-                notblacklisted_list.append(email)
-        recipient_list = notblacklisted_list
+                not_blocked.append(email)
+        recipient_list = not_blocked
 
     # We're going to call send_email twice, once for fake emails, the other
     # real.
