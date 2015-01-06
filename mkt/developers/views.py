@@ -127,7 +127,7 @@ def edit(request, addon_id, addon):
         'page': 'edit',
         'addon': addon,
         'valid_slug': addon.app_slug,
-        'tags': addon.tags.not_blacklisted().values_list('tag_text',
+        'tags': addon.tags.not_blocked().values_list('tag_text',
                                                          flat=True),
         'previews': addon.get_previews(),
         'version': addon.current_version or addon.latest_version
@@ -835,7 +835,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
 
     elif section == 'admin':
-        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+        tags = addon.tags.not_blocked().values_list('tag_text', flat=True)
         restricted_tags = addon.tags.filter(restricted=True)
 
     # Get the slug before the form alters it to the form data.

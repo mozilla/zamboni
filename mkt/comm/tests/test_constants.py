@@ -5,9 +5,10 @@ import mkt.constants.comm as comm
 
 
 class TestCommConstants(amo.tests.TestCase):
+
     def setUp(self):
         # TODO (hi mat): remove these from amo/log.py.
-        self.blacklist = [
+        self.blocked = [
             amo.LOG.RETAIN_VERSION.id,
             amo.LOG.REQUEST_VERSION.id,
             amo.LOG.PRELIMINARY_VERSION.id,
@@ -21,7 +22,7 @@ class TestCommConstants(amo.tests.TestCase):
         If this test is failing, tell ngoke to add a new note type.
         """
         for log_type in amo.LOG_REVIEW_QUEUE:
-            if log_type in self.blacklist:
+            if log_type in self.blocked:
                 continue
 
             assert comm.ACTION_MAP(log_type) != comm.NO_ACTION, log_type

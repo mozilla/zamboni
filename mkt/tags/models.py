@@ -7,14 +7,14 @@ from mkt.site.models import ManagerBase, ModelBase
 
 class TagManager(ManagerBase):
 
-    def not_blacklisted(self):
+    def not_blocked(self):
         """Get allowed tags only"""
-        return self.filter(blacklisted=False)
+        return self.filter(blocked=False)
 
 
 class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
-    blacklisted = models.BooleanField(default=False)
+    blocked = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField('webapps.Webapp', through='AddonTag',
                                     related_name='tags')
