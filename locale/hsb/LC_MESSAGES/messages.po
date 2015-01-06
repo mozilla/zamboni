@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-05 20:52+0000\n"
+"PO-Revision-Date: 2015-01-06 10:55+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420491124.0\n"
+"X-POOTLE-MTIME: 1420541719.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4421,6 +4421,10 @@ msgid ""
 "this app from public pages until a new version is submitted and approved. "
 "These changes cannot be undone. Please proceed with caution."
 msgstr ""
+"Hdyž so nałoženje zawěra, dóstanu wužiwarjo aktualizaciju na wosebitu "
+"wersiju, kotraž čini nałoženje na jich gratach Firefox OS njewužiwajomne. To "
+"wotstroni tež tute nałoženje ze zjawnych stronow, doniž nowa wersija njeje "
+"zapodata a schwalena. Tute změny njedadźo so cofnyć. Prošu budźće kedźbliwy."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
@@ -4530,6 +4534,10 @@ msgid ""
 "other useful information specific to this release/version. This information "
 "is also shown in the Apps Manager when updating."
 msgstr ""
+"Informacije wo změnach w tutej wersiji, nowe funkcije, znate programowe "
+"zmylki a druhe wužitne informacije, kotrež su specialne k tutej wersiji. "
+"Tute informacije so  při aktualizowanju tež w zrjadowaku nałoženjow "
+"pokazuja."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:56
@@ -4542,6 +4550,8 @@ msgid ""
 "Optionally, enter any information that may be useful to the Reviewer "
 "reviewing this app, such as test account information."
 msgstr ""
+"Na přeće móžeće tež informacije zapodać, kotrež su wužitne za přepruwowarja "
+"tutoho nałoženja, kaž na přikład informacije k testowym kontam."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
@@ -4551,11 +4561,11 @@ msgstr "Minimalne žadanja"
 #: mkt/developers/templates/developers/apps/version_edit.html:54
 #: mkt/developers/templates/developers/apps/edit/technical.html:66
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Funkcije grata, kotrež su trěbne za tute nałoženje."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
-msgstr ""
+msgstr "Wabjenje přidać"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:25
@@ -4567,6 +4577,8 @@ msgid ""
 "An e-mail address (or addresses separated by commas) of this app's Mozilla "
 "contact that will be CC'd on any reviewer emails."
 msgstr ""
+"E-mejlowa adresa (abo adresy dźělene přez komy) za kontakt z Mozilla tutoho "
+"nałoženja, na kotruž so za e-mejlki přepruwowarjow kopija sćele."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -4581,6 +4593,8 @@ msgid ""
 "Is this a very important app that should always be handled by Mozilla Staff "
 "or Senior App Reviewers?"
 msgstr ""
+"Je to jara wažne nałoženje, kotrež měło so wot personala Mozilla abo "
+"nazhonjenych přepruwowarjow nałoženjow wobdźěłować?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -4594,10 +4608,12 @@ msgstr "Přepruwowanje priority trěbne"
 msgid ""
 "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Z tutym nałoženjom wobchadźeja so z prioritu a staja so na spočatk "
+"čakanskeho rynka přepruwowanjow"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "To wostanje tak hač do prěnjeho schwalenja"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -4607,45 +4623,50 @@ msgstr "Chorhojowa powěsć"
 msgid ""
 "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Ekskluziwna powěsć, kotraž so jenož we wubranych regionach na lisćinowej "
+"stronje pokazuje."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "Regiony, w kotrychž ma so chorhoj pokazać"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regiony, w kotrychž ma so chorhojowa powěsć pokazać"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:169
 #: mkt/search/forms.py:118
 msgid "Tags"
-msgstr ""
+msgstr "Hesła"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid ""
 "Tags help users find your app and should be short descriptors such as tabs, "
 "toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Hesła pomhaja wužiwarjam, waš nałoženje namakać a měli krótke wopisanje być, "
+"kaž na přikład rajtarki, symbolowa lajsta abo twitter. Móžeće maksimalnje "
+"{0} hesłow zapodać."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Přez komu dźěleny, znajmjeńša {0} znamješka."
+msgstr[1] "Přez komu dźěleny, znajmjeńša {0} znamješce."
+msgstr[2] "Přez komu dźěleny, znajmjeńša {0} znamješki."
+msgstr[3] "Přez komu dźěleny, znajmjeńša {0} znamješkow."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Přikład: ćmowy, kino, čorny. Maksimalnje 20."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:188
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Rezerwowane hesło:"
+msgstr[1] "Rezerwowanej hesle:"
+msgstr[2] "Rezerwowane hesła:"
+msgstr[3] "Rezerwowanych hesłow:"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -4678,6 +4699,8 @@ msgid ""
 "Select a unique URL for your detail page. By default we use your app name to "
 "create this URL."
 msgstr ""
+"Wubjerće jónkróćny URL za swoju stronu podrobnosćow. Po standardźe wužiwamy "
+"mjeno wašeho nałoženja, zo bychmy tutón URL tworili."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:60
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
@@ -4692,18 +4715,18 @@ msgstr "API-URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "URL za přistup na tute nałoženje z pomocu API Marketplace"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
-msgstr ""
+msgstr "API-dokumentaciju sej wobhladać"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76
 #: mkt/reviewers/templates/reviewers/includes/details.html:26
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:104
 msgid "Manifest URL"
-msgstr ""
+msgstr "URL manifesta"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
@@ -4845,16 +4868,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
-msgstr ""
+msgstr "Techniske podrobnosće"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/technical.html:14
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Techniske podrobnosće za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Uses Flash"
-msgstr ""
+msgstr "Wužiwa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid ""
