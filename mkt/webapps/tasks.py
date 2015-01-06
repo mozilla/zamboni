@@ -645,6 +645,12 @@ def _get_trending(app_id):
          ...}
 
     """
+    # How many app installs are required in the prior week to be considered
+    # "trending". Adjust this as total Marketplace app installs increases.
+    #
+    # Note: AMO uses 1000.0 for add-ons.
+    PRIOR_WEEK_INSTALL_THRESHOLD = 100.0
+
     client = get_monolith_client()
 
     week1 = {
@@ -715,13 +721,13 @@ def _get_trending(app_id):
 
     def _score(week1, week3):
         # If last week app installs are < 100, this app isn't trending.
-        if week1 < 100.0:
+        if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
             return 0.0
 
         score = 0.0
-        if week3 > 1:
+        if week3 > 1.0:
             score = (week1 - week3) / week3
-        if score <= 0:
+        if score < 0.0:
             score = 0.0
         return score
 
@@ -729,7 +735,7 @@ def _get_trending(app_id):
     week1 = res['aggregations']['week1']['total_installs']['value']
     week3 = res['aggregations']['week3']['total_installs']['value'] / 3.0
 
-    if week1 < 100.0:
+    if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
         # If global installs over the last week aren't over 100, we
         # short-circuit and return a zero-like value as this is not a trending
         # app by definition. Since global installs aren't above 100, per-region
