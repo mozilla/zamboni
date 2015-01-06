@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-06 15:34+0000\n"
+"PO-Revision-Date: 2015-01-06 17:53+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420558483.0\n"
+"X-POOTLE-MTIME: 1420566789.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4870,6 +4870,9 @@ msgid ""
 "you have different addresses for each language multiple translations of this "
 "field can be added."
 msgstr ""
+"E-mejlowa adresa, kotraž so wot kónčnych wužiwarjow wužiwa, zo bychu was při "
+"problemach kontaktowali. Jeli maće rozdźělne adresy za kóždu rěč, dadźa so "
+"wjacore přełožki přidać."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41
 #: mkt/reviewers/templates/reviewers/includes/details.html:101
