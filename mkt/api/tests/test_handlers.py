@@ -16,7 +16,7 @@ from rest_framework.request import Request
 import mkt
 from mkt.access.models import Group, GroupUser
 from mkt.api.fields import LargeTextField
-from mkt.api.models import Access, generate
+from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.constants.payments import PROVIDER_REFERENCE
@@ -494,7 +494,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         editor = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='Apps:Review,Reviews:Edit')
         GroupUser.objects.create(group=g, user=editor)
-        ac = Access.objects.create(key='adminOauthKey', secret=generate(),
+        ac = Access.objects.create(key='adminOauthKey', secret='admin secret',
                                    user=editor)
         client = RestOAuthClient(ac)
         r = client.get(self.get_url)
@@ -513,7 +513,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         admin = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='*:*')
         GroupUser.objects.create(group=g, user=admin)
-        ac = Access.objects.create(key='adminOauthKey', secret=generate(),
+        ac = Access.objects.create(key='adminOauthKey', secret='admin secret',
                                    user=admin)
         client = RestOAuthClient(ac)
         r = client.get(self.get_url)
