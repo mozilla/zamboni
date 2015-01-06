@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-06 10:55+0000\n"
+"PO-Revision-Date: 2015-01-06 11:51+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420541719.0\n"
+"X-POOTLE-MTIME: 1420545064.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4786,7 +4786,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
-msgstr ""
+msgstr "Startowa strona"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
 msgid ""
@@ -4800,7 +4800,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:131
 #: mkt/templates/mkt/footer.html:15
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Prawidła priwatnosće"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:57
 msgid ""
@@ -4810,12 +4810,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "Kraj a rěč"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Podrobnosće wo kraju a rěči za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
