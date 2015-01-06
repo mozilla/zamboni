@@ -508,7 +508,7 @@ APP_FEATURES_VERSION = 6
 # This is the aud (audience) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the DOMAIN setting and on B2G this must match
-# what's in the provider whitelist.
+# what's in the provider list of approved types.
 APP_PURCHASE_AUD = DOMAIN
 
 # This is the iss (issuer) for app purchase JWTs.
@@ -523,7 +523,7 @@ APP_PURCHASE_SECRET = 'please change this'
 
 # This is the typ for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
-# On B2G this must match a provider in the whitelist.
+# On B2G this must match a provider in the list of approved types.
 APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 
 # Base URL to the Bango Vendor Portal (keep the trailing question mark).
@@ -1201,9 +1201,9 @@ WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
 
 WEBAPPS_UNIQUE_BY_DOMAIN = False
 
-# Whitelist IP addresses of the allowed clients that can post email
+# Filter IP addresses of the allowed clients that can post email
 # through the API.
-WHITELISTED_CLIENTS_EMAIL_API = []
+ALLOWED_CLIENTS_EMAIL_API = []
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False

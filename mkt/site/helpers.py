@@ -136,7 +136,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         if request.user.is_authenticated():
             ret['isPurchased'] = purchased
 
-    # Jinja2 escape everything except this whitelist so that bool is retained
+    # Jinja2 escape everything except this list so that bool is retained
     # for the JSON encoding.
     wl = ('categories', 'currencies', 'isPurchased', 'is_packaged', 'previews',
           'price', 'priceLocale')

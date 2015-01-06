@@ -429,7 +429,7 @@ class TestNote(NoteSetupMixin):
                                 'body': 'something'}))
         eq_(res.status_code, 201)
 
-    def test_create_whitelisted_note_types(self):
+    def test_create_allowed_note_types(self):
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': comm.RESUBMISSION,
                                 'body': 'something'}))
@@ -539,7 +539,7 @@ class TestAttachments(NoteSetupMixin):
         eq_(res.status_code, 403)
 
 
-@mock.patch.object(settings, 'WHITELISTED_CLIENTS_EMAIL_API',
+@mock.patch.object(settings, 'ALLOWED_CLIENTS_EMAIL_API',
                    ['10.10.10.10'])
 @mock.patch.object(settings, 'POSTFIX_AUTH_TOKEN', 'something')
 class TestEmailApi(RestOAuth):

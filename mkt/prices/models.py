@@ -329,7 +329,7 @@ def create_addon_purchase(sender, instance, **kw):
     if (kw.get('raw') or
         instance.type not in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
                               amo.CONTRIB_CHARGEBACK]):
-        # Whitelist the types we care about. Forget about the rest.
+        # Filter the types we care about. Forget about the rest.
         return
 
     log.info('Processing addon purchase type: {t}, addon {a}, user {u}'

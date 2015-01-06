@@ -71,7 +71,7 @@ class TestSendMail(TestCase):
         to2 = 'somebody@mozilla.org'
         to3 = 'reallywantsemail@mozilla.org'
         to4 = 'reallywantsemail+testing@mozilla.org'
-        set_config('real_email_regex_whitelist',
+        set_config('real_email_allowed_regex',
                    'reallywantsemail(\+[^@]+)?@mozilla.org')
         success = send_mail('test subject', 'test_real_list',
                             recipient_list=[to, to2, to3, to4],
@@ -87,7 +87,7 @@ class TestSendMail(TestCase):
 
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_bad_regexes(self):
-        set_config('real_email_regex_whitelist',
+        set_config('real_email_allowed_regex',
                    'reallywantsemail(\+[^@]+)?@mozilla.org,bad(regex{3')
         email_regexes = _real_email_regexes()
         eq_(len(email_regexes), 1)
