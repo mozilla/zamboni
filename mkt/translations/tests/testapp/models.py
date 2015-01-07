@@ -1,7 +1,6 @@
 from django.db import models
 
-from queryset_transform import TransformQuerySet
-
+from mkt.site.models import TransformQuerySet
 from mkt.translations import transformer
 from mkt.translations.fields import (LinkifiedField, PurifiedField,
                                      save_signal, TranslatedField)
