@@ -81,6 +81,8 @@ if os.environ.get('MEMCACHE_URL'):
         },
     }
 
+CACHE_MACHINE_ENABLED = False
+
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)

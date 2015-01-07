@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import connections, models, router
 from django.utils import translation
 
-from mkt.translations.fields import TranslatedField
 from mkt.translations.models import Translation
 
 isnull = """IF(!ISNULL({t1}.localized_string), {t1}.{col}, {t2}.{col})
@@ -24,10 +23,6 @@ def build_query(model, connection):
         fallback = model.get_fallback()
     else:
         fallback = settings.LANGUAGE_CODE
-
-    if not hasattr(model._meta, 'translated_fields'):
-        model._meta.translated_fields = [f for f in model._meta.fields
-                                         if isinstance(f, TranslatedField)]
 
     # Add the selects and joins for each translated field on the model.
     for field in model._meta.translated_fields:

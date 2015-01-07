@@ -567,6 +567,8 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
             PriceCurrency.objects.create(region=region, currency='USD',
                                          price=price, tier=price_obj,
                                          provider=PROVIDER_REFERENCE)
+        # Call Price transformer in order to repopulate _currencies cache.
+        Price.transformer([])
         return price_obj
 
     def make_premium(self, addon, price='1.00'):
