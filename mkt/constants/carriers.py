@@ -133,7 +133,7 @@ class O2(CARRIER):
 
 
 class MTN(CARRIER):
-    id = 20
+    id = 21
     name = u'MTN'
     slug = 'mtn'
 
