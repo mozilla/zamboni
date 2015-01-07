@@ -766,6 +766,7 @@ def update_trending(ids, **kw):
     for app in Webapp.objects.filter(id__in=ids).no_transforms():
 
         count += 1
+        now = datetime.datetime.now()
         t_start = time.time()
 
         scores = _get_trending(app.id)
@@ -776,7 +777,7 @@ def update_trending(ids, **kw):
             trending, created = app.trending.get_or_create(
                 region=0, defaults={'value': value})
             if not created:
-                trending.update(value=value)
+                trending.update(value=value, modified=now)
         else:
             # The value is <= 0 so the app is not trending. Let's remove it
             # from the trending table.
@@ -788,7 +789,7 @@ def update_trending(ids, **kw):
                 trending, created = app.trending.get_or_create(
                     region=region.id, defaults={'value': value})
                 if not created:
-                    trending.update(value=value)
+                    trending.update(value=value, modified=now)
             else:
                 # The value is <= 0 so the app is not trending. Let's remove it
                 # from the trending table.
@@ -809,6 +810,14 @@ def reindex_trending(**kwargs):
     Elasticsearch is updated.
 
     """
+    # Before reindexing, purge any Trending items that were leftover from the
+    # last run and not updated. We force updating of `modified` even if no data
+    # changes. So any records with older modified times can be purged.
+    now = datetime.datetime.now()
+    midnight = datetime.datetime(year=now.year, month=now.month, day=now.day)
+    Trending.objects.filter(modified__lte=midnight).delete()
+
+    # Now reindex what's left.
     trending_ids = Trending.objects.all().values_list('addon', flat=True)
     for ids in chunked(trending_ids, 100):
         WebappIndexer.index_ids(ids, no_delay=True)
