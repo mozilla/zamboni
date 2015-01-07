@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-07 14:10+0000\n"
+"PO-Revision-Date: 2015-01-07 14:49+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420639821.0\n"
+"X-POOTLE-MTIME: 1420642167.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5080,7 +5080,7 @@ msgstr "Akcije"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Z přenošowanskim procesom za tute rozšěrjenje pokročować."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
@@ -5093,7 +5093,7 @@ msgstr "Tute nałoženje zhašeć."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Podrobosće wo lisćinowym zapisku tutoho rozšěrjenja wobdźěłać."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
@@ -5111,39 +5111,39 @@ msgstr "Wjace"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "Teamowi čłonojo a licenca"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:77
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:17
 #: mkt/developers/templates/developers/payments/premium.html:4
 msgid "Compatibility & Payments"
-msgstr ""
+msgstr "Kompatibelnosć a płaćenja"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:55
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk rozšěrjenja pokazać"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Resume the submission process for this app."
-msgstr ""
+msgstr "Z přenošowanskim procesom za tute nałoženje pokročować."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "Wobsahowe pohódnoćenja za nałoženje sej wobstarać."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "Wobsahowe pohódnoćenja připrawić"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
-msgstr ""
+msgstr "Podajće płaćenske informacije za tute nałoženje."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 #: mkt/submit/templates/submit/done.html:47
 msgid "Set Up Payments"
-msgstr ""
+msgstr "Płaćenja připrawić"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
@@ -5235,16 +5235,16 @@ msgstr "Graty změnić"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Wobsahowe pohódnoćenja připrawić</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10
 #: mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Předinstalowane"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Předinstalowane nałoženje"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
@@ -5257,7 +5257,7 @@ msgstr "Testowanje skónčene?"
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Přenjesće swoje nałoženje za předinstalaciju"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -5343,43 +5343,43 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
-msgstr ""
+msgstr "Zjeće"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Pohódnoćenski system"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 #: mkt/developers/templates/developers/payments/premium.html:230
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "Pohódnoćenska kategorija"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
-msgstr ""
+msgstr "Hesła"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Interaktiwne elementy"
 
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3
 #: mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Wuwiwarske dojednanje"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć"
 
 #. {0} is a list of HTML tags.
 #: mkt/developers/templates/developers/includes/macros.html:6
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Dowoleny HTML: {0}"
 
 #: mkt/developers/templates/developers/includes/macros.html:9
 msgid "Some HTML supported."
@@ -5405,10 +5405,10 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/macros.html:103
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowy dźeń"
+msgstr[1] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowej dnjej"
+msgstr[2] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowe dny"
+msgstr[3] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowych dnjow"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid ""
@@ -5424,25 +5424,25 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
-msgstr ""
+msgstr "Wšě pokazać"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
-msgstr ""
+msgstr "Wšě schować"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3
 #: mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Instalacisku nałoženja testować"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4
 #: mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Płaćenja w nałoženju testować"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "Kluče za płaćenja w nałoženju"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid ""
@@ -5454,29 +5454,29 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-config.html:31
 #: mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
-msgstr ""
+msgstr "Nałoženski kluč"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:35
 #: mkt/developers/templates/developers/payments/in-app-config.html:47
 #: mkt/developers/templates/developers/payments/in-app-keys.html:33
 #: mkt/developers/templates/developers/payments/in-app-keys.html:46
 msgid "Not yet generated."
-msgstr ""
+msgstr "Hišće njetworjeny."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:39
 #: mkt/developers/templates/developers/payments/in-app-keys.html:37
 msgid "Application Secret"
-msgstr ""
+msgstr "Tajne słowo nałoženja"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:43
 #: mkt/developers/templates/developers/payments/in-app-keys.html:42
 msgid "Show secret"
-msgstr ""
+msgstr "Tajne słowo pokazać"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:53
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Reset secret"
-msgstr ""
+msgstr "Tajne słowo wróćo stajić"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
@@ -5492,11 +5492,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
-msgstr ""
+msgstr "Kluče tworić"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "Kluče w nałoženju"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid ""
@@ -5507,12 +5507,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Kluče w nałoženju konfigurować"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38
 #: mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Produkty w nałoženju"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid ""
@@ -5523,7 +5523,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Produkty w nałoženju konfigurować"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5555,27 +5555,27 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
-msgstr ""
+msgstr "Symbol"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
-msgstr ""
+msgstr "Płaćiznowy dypk"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
-msgstr ""
+msgstr "Produktowy ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
-msgstr ""
+msgstr "Produkt přidać"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć nałoženja"
 
 #: mkt/developers/templates/developers/payments/premium.html:71
 msgid "Change to Free"
-msgstr ""
+msgstr "Na \"darmo\" změnić"
 
 #: mkt/developers/templates/developers/payments/premium.html:72
 msgid "Changing to Free will put your app back into review."
@@ -5627,7 +5627,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Płaćizny a kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -5639,15 +5639,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:202
 msgid "Not applicable"
-msgstr ""
+msgstr "Njenałožujomny"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
-msgstr ""
+msgstr "Regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Available Regions"
-msgstr ""
+msgstr "K dispoziciji stejace regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid ""
