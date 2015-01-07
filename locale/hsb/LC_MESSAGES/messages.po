@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-06 18:11+0000\n"
+"PO-Revision-Date: 2015-01-07 14:10+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420567879.0\n"
+"X-POOTLE-MTIME: 1420639821.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4886,6 +4886,9 @@ msgid ""
 "website is localized into other languages, multiple translations of this "
 "field can be added."
 msgstr ""
+"Jeli waše nałoženje ma websydło pomocy abo forum, zapodajće tu jeho adresu. "
+"Jeli waše websydło je so do druhich rěčow přełožiło, móžeće wjacore přełožki "
+"w tutym polu přidać."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4905,6 +4908,8 @@ msgid ""
 "If your app uses Flash, it will be hidden from the Marketplace on devices "
 "without Flash support."
 msgstr ""
+"Jeli waše nałoženje Flash wužiwa, schowa so w Torhošću, jeli so graty bjez "
+"podpěry Flash wužiwaja."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -4915,6 +4920,8 @@ msgid ""
 "If your app works without an Internet connection then we will list that your "
 "app \"Works Offline.\""
 msgstr ""
+"Jeli waše nałoženje bjez internetneho zwiska funguje, podamy, zo waše "
+"nałoženje \"offline funguje\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -4925,18 +4932,20 @@ msgid ""
 "Whether the install and usage stats of your app can be displayed in our "
 "online viewer."
 msgstr ""
+"Hač instalaciske a wužiwanske statistiki wašeho nałoženja dadźa so w našim "
+"online-zwobraznjenju pokazować."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
-msgstr ""
+msgstr "Statistiki tutoho nałoženja su zjawnje widźomne."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "No, this app's stats are not publicly viewable."
-msgstr ""
+msgstr "Ně, statistiki tutoho nałoženja zjawnje widźomne njejsu."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "This app does not require any device features"
-msgstr ""
+msgstr "Tute nałoženje funkcije grata njetrjeba"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4948,6 +4957,9 @@ msgid ""
 "displayed nearly everywhere your app is. Uploaded images must be one of the "
 "following image types: .png, .jpg"
 msgstr ""
+"Nahrajće symbol za swoje nałoženje abo wubjerće jedyn z našich. Symbol so "
+"nimale wšudźe zwobraznjuje, hdźež waše nałoženje je. Nahrate wobrazy dyrbja "
+"jedyn ze slědowacych wobrazowych typow měć: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
@@ -4961,6 +4973,8 @@ msgstr "128x128 px"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
 msgstr ""
+"Wužiwa so na pytanskich stronach, při přehladowanju stronow a na startowej "
+"stronje."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -4969,7 +4983,7 @@ msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
-msgstr ""
+msgstr "Wužiwa so na stronach podrobnosćow nałoženja."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
@@ -4979,14 +4993,18 @@ msgstr "32x32px"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
 msgstr ""
+"Wužiwa so w lisćinowych zapiskach nałoženjow, kaž na přikład w pytanskich "
+"wuslědkach a předstajenych nałoženjach."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Swójski symbol nahrać..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
 msgstr ""
+"PNG a JPG so podpěrujetej. Symbole dyrbja znajmjeńša 128 px króć 128 px "
+"wulke być."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
@@ -4995,6 +5013,7 @@ msgstr "Fota wobrazowki abo wideja"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
 msgstr ""
+"Prošu podajće znajmjeńša jedne foto wobrazowki abo widejo swojeho nałoženja:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:151
@@ -5006,6 +5025,9 @@ msgid ""
 "Screenshots and videos must be at least 320px by 480px. Media proportional "
 "to 320px by 480px is optimal. Video must be encoded as WebM."
 msgstr ""
+"Fota wobrazowki a wideja dyrbja znajmjeńša 320 px króć 480 px wulke być. "
+"Medije, kotrež su wotměram 320 px króć 480 px proporcionalne, su optimalne. "
+"Wideja dyrbja jako WebM skodowane być."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
@@ -5033,7 +5055,7 @@ msgstr "Předchadna strona"
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:42
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:55
 msgid "Top"
-msgstr ""
+msgstr "Horje"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:29
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:43
@@ -5041,11 +5063,11 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:16
 #: mkt/site/templates/site/impala_paginator.html:26
 msgid "Next"
-msgstr ""
+msgstr "Přichodna strona"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr ""
+msgstr "Chceće swoje nałoženje woprawdźe zhašeć?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
@@ -5129,11 +5151,11 @@ msgstr "Tute nałoženje zhašeć."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
-msgstr ""
+msgstr "Wobdźěłajće podrobnosće za lisćinowu stronu tutoho nałoženja."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
-msgstr ""
+msgstr "Přidajće nowu wersiju zapakowaneho nałoženja."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
@@ -5169,31 +5191,31 @@ msgstr "Płaćenja w nałoženju"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:35
 msgid "Messages"
-msgstr ""
+msgstr "Powěsće"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:105
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:40
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiki"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:111
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:45
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcije"
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "Created:"
-msgstr ""
+msgstr "Wutworjeny:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
-msgstr ""
+msgstr "Wersija zapakowaneho nałoženja:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
 msgid "Pending Version:"
@@ -5205,7 +5227,7 @@ msgstr "Płaćizna:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Płaćenske konto připrawić"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
