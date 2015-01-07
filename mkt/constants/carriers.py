@@ -132,6 +132,12 @@ class O2(CARRIER):
     slug = 'o2'
 
 
+class MTN(CARRIER):
+    id = 20
+    name = u'MTN'
+    slug = 'mtn'
+
+
 CARRIER_MAP = dict((c.slug, c) for name, c in locals().items() if
                    type(c) is type and c != CARRIER and issubclass(c, CARRIER))
 CARRIERS = CARRIER_MAP.values()
