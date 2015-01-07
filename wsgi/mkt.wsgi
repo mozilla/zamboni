@@ -18,22 +18,22 @@ site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 # manage adds /apps, /lib, and /vendor to the Python path.
 import manage  # noqa
 
-import django.conf  # noqa
-import django.core.handlers.wsgi  # noqa
-import django.core.management  # noqa
-import django.utils  # noqa
+from django.conf import settings
+from django.core.management import ManagementUtility
+from django.core.wsgi import get_wsgi_application
+from django.utils import translation
 
 # Do validate and activate translations like using `./manage.py runserver`.
 # http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html
-django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
-utility = django.core.management.ManagementUtility()
+translation.activate(settings.LANGUAGE_CODE)
+utility = ManagementUtility()
 command = utility.fetch_command('runserver')
 command.validate()
 
 # This is what mod_wsgi runs.
-django_app = django.core.handlers.wsgi.WSGIHandler()
+django_app = get_wsgi_application()
 
-newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
+newrelic_ini = getattr(settings, 'NEWRELIC_INI', None)
 load_newrelic = False
 
 if newrelic_ini:
@@ -54,7 +54,7 @@ def application(env, start_response):
     if 'HTTP_X_ZEUS_DL_PT' in env:
         env['SCRIPT_URL'] = env['SCRIPT_NAME'] = ''
     env['wsgi.loaded'] = wsgi_loaded
-    env['hostname'] = django.conf.settings.HOSTNAME
+    env['hostname'] = settings.HOSTNAME
     env['datetime'] = str(datetime.now())
     return django_app(env, start_response)
 
