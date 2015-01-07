@@ -7,8 +7,8 @@ from django.test.client import RequestFactory
 
 from nose.tools import eq_
 
-from amo.tests import ESTestCase, TestCase
 from mkt.api.paginator import ESPaginator, MetaSerializer
+from mkt.site.tests import ESTestCase, TestCase
 from mkt.webapps.indexers import WebappIndexer
 
 

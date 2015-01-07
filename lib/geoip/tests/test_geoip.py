@@ -4,7 +4,7 @@ import mock
 import requests
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 
 from lib.geoip import GeoIP
 
@@ -14,7 +14,7 @@ def generate_settings(url='', default='restofworld', timeout=0.2):
                      GEOIP_DEFAULT_TIMEOUT=timeout)
 
 
-class GeoIPTest(amo.tests.TestCase):
+class GeoIPTest(mkt.site.tests.TestCase):
 
     @mock.patch('requests.post')
     def test_lookup(self, mock_post):

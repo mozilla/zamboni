@@ -13,20 +13,19 @@ from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
 from mkt.developers.views import standalone_hosted_upload, trap_duplicate
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.site.fixtures import fixture
+from mkt.site.tests import MktPaths, TestCase
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.users.models import UserProfile
 
 
-class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestWebApps(TestCase, MktPaths):
 
     def setUp(self):
         self.webapp_path = tempfile.mktemp(suffix='.webapp')

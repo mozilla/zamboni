@@ -6,9 +6,8 @@ from django.db import models
 
 from nose.tools import eq_
 
-import amo
-import amo.tests
 from mkt.site.fields import DecimalCharField, SeparatedValuesField
+from mkt.site.tests import TestCase
 
 
 class DecimalCharFieldModel(models.Model):
@@ -17,7 +16,7 @@ class DecimalCharFieldModel(models.Model):
                              nullify_invalid=True, null=True)
 
 
-class DecimalCharFieldTestCase(amo.tests.TestCase):
+class DecimalCharFieldTestCase(TestCase):
 
     def test_basic(self):
         obj = DecimalCharFieldModel(strict='1.23', loose='foo')
@@ -46,7 +45,7 @@ class DecimalCharFieldTestCase(amo.tests.TestCase):
         eq_(o.loose, None, 'expected None')
 
 
-class SeparatedValuesFieldTestCase(amo.tests.TestCase):
+class SeparatedValuesFieldTestCase(TestCase):
 
     def setUp(self):
         self.field = SeparatedValuesField(forms.EmailField)

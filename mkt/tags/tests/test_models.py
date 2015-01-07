@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.tags.models import Tag
 
 
-class TestTagManager(amo.tests.TestCase):
+class TestTagManager(mkt.site.tests.TestCase):
 
     def test_not_blocked(self):
         """Make sure Tag Manager filters right for not blocked tags."""

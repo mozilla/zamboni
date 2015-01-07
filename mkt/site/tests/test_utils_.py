@@ -11,17 +11,17 @@ from django.core.validators import ValidationError
 import mock
 from nose.tools import assert_raises, eq_, raises
 
-import amo.tests
+from mkt.site.tests import TestCase
 from mkt.site.utils import (cache_ns_key, escape_all, ImageCheck,
                             LocalFileStorage, resize_image, rm_local_tmp_dir,
                             slug_validator, slugify, walkfiles)
 
 
 def get_image_path(name):
-    return path.join(settings.ROOT, 'apps', 'amo', 'tests', 'images', name)
+    return path.join(settings.ROOT, 'mkt', 'site', 'tests', 'images', name)
 
 
-class TestAnimatedImages(amo.tests.TestCase):
+class TestAnimatedImages(TestCase):
 
     def test_animated_images(self):
         img = ImageCheck(open(get_image_path('animated.png')))

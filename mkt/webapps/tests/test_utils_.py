@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-import amo
+from mkt.site.tests import TestCase
 from mkt.webapps.utils import get_supported_locales
 
 
-class TestSupportedLocales(amo.tests.TestCase):
+class TestSupportedLocales(TestCase):
 
     def setUp(self):
         self.manifest = {'default_locale': 'en'}

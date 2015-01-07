@@ -8,15 +8,14 @@ from jingo import env
 from nose.tools import eq_
 from urlparse import urljoin
 
-import amo
-import amo.tests
+import mkt.site.tests
 from mkt.site.helpers import absolutify, css, js, product_as_dict, timesince
 from mkt.site.fixtures import fixture
 from mkt.site.utils import urlparams
 from mkt.webapps.models import Webapp
 
 
-class TestCSS(amo.tests.TestCase):
+class TestCSS(mkt.site.tests.TestCase):
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', True)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -63,7 +62,7 @@ class TestCSS(amo.tests.TestCase):
         css(context, 'mkt/devreg')
 
 
-class TestJS(amo.tests.TestCase):
+class TestJS(mkt.site.tests.TestCase):
 
     @mock.patch.object(settings, 'TEMPLATE_DEBUG', True)
     @fudge.patch('mkt.site.helpers.jingo_minify_helpers')
@@ -110,7 +109,7 @@ class TestJS(amo.tests.TestCase):
         js(context, 'mkt/devreg')
 
 
-class TestProductAsDict(amo.tests.TestCase):
+class TestProductAsDict(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def test_correct(self):

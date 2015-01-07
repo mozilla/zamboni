@@ -15,7 +15,6 @@ from rest_framework.request import Request
 
 import amo
 import mkt
-from amo.tests import AMOPaths, app_factory, TestCase
 from mkt.access.models import Group, GroupUser
 from mkt.api.fields import LargeTextField
 from mkt.api.models import Access, generate
@@ -26,6 +25,7 @@ from mkt.files.models import FileUpload
 from mkt.prices.models import Price, PriceCurrency
 from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
+from mkt.site.tests import MktPaths, app_factory, TestCase
 from mkt.tags.models import AddonTag, Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
@@ -56,7 +56,7 @@ def _mock_fetch_content(url):
                              '337141-128.png'))
 
 
-class TestAppCreateHandler(CreateHandler, AMOPaths):
+class TestAppCreateHandler(CreateHandler, MktPaths):
     fixtures = fixture('user_admin', 'user_2519', 'user_999')
 
     def count(self):
@@ -525,7 +525,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.json['privacy_policy'], data['privacy_policy'])
 
 
-class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
+class CreatePackagedHandler(mkt.site.tests.MktPaths, RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -558,7 +558,7 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         eq_(app.is_packaged, True)
 
 
-class TestListHandler(CreateHandler, AMOPaths):
+class TestListHandler(CreateHandler, MktPaths):
     fixtures = fixture('user_2519', 'user_999')
 
     def create(self, users):

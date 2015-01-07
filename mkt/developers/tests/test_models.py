@@ -8,7 +8,7 @@ from mock import Mock, patch
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    AddonPaymentAccount, CantCancel,
@@ -26,7 +26,7 @@ ATTACHMENTS_DIR = path.abspath(path.join(TEST_PATH, '..', '..', 'comm',
                                          'tests', 'attachments'))
 
 
-class TestActivityLogCount(amo.tests.TestCase):
+class TestActivityLogCount(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
@@ -91,7 +91,7 @@ class TestActivityLogCount(amo.tests.TestCase):
 
 @override_settings(DEFAULT_PAYMENT_PROVIDER='bango',
                    PAYMENT_PROVIDERS=['bango'])
-class TestPaymentAccount(Patcher, amo.tests.TestCase):
+class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -222,7 +222,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             data={'vendorName': 'new vendor name'})
 
 
-class TestActivityLogAttachment(amo.tests.TestCase):
+class TestActivityLogAttachment(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
@@ -293,10 +293,10 @@ class TestActivityLogAttachment(amo.tests.TestCase):
             assert False, msg
 
 
-class TestPreloadTestPlan(amo.tests.TestCase):
+class TestPreloadTestPlan(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = mkt.site.tests.app_factory()
         self.preload = self.app.preloadtestplan_set.create(filename='test.pdf')
 
     def test_delete_cascade(self):

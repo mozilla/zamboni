@@ -1,11 +1,11 @@
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 
 from mkt.stats.forms import StatsForm
 
 
-class TestStatsForm(amo.tests.TestCase):
+class TestStatsForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.data = {'start': '2013-04-01',

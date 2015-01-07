@@ -16,7 +16,7 @@ from nose.tools import eq_, ok_
 from services import utils, verify
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
@@ -33,7 +33,7 @@ def get_response(data, status):
     return response
 
 
-class ReceiptTest(amo.tests.TestCase):
+class ReceiptTest(mkt.site.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141', 'user_999')
 
     def setUp(self):
@@ -59,7 +59,7 @@ class ReceiptTest(amo.tests.TestCase):
 # There are two "different" settings files that need to be patched,
 # even though they are the same file.
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
+                   mkt.site.tests.MktPaths.sample_key())
 @mock.patch.object(settings, 'SITE_URL', 'http://foo.com/')
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_URL', '/verifyme/')
 class TestVerify(ReceiptTest):
@@ -381,7 +381,7 @@ class TestVerify(ReceiptTest):
         assert ('Cache-Control', 'no-cache') in hdrs, 'No cache header needed'
 
 
-class TestBase(amo.tests.TestCase):
+class TestBase(mkt.site.tests.TestCase):
 
     def create(self, data, request=None):
         stuff = {'user': {'type': 'directed-identifier'}}
@@ -396,7 +396,7 @@ class TestBase(amo.tests.TestCase):
 class TestType(TestBase):
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
+                       mkt.site.tests.MktPaths.sample_key())
     def test_no_type(self):
         self.create({'typ': 'test-receipt'}).check_type('test-receipt')
 
@@ -411,7 +411,7 @@ class TestType(TestBase):
 
 
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
+                   mkt.site.tests.MktPaths.sample_key())
 class TestURL(TestBase):
 
     def setUp(self):
@@ -430,13 +430,13 @@ class TestURL(TestBase):
         eq_(str(err.exception), 'WRONG_PATH')
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
+                       mkt.site.tests.MktPaths.sample_key())
     def test_good(self):
         sample = {'verify': 'https://f.com/foo'}
         self.create(sample, request=self.req).check_url('f.com')
 
 
-class TestServices(amo.tests.TestCase):
+class TestServices(mkt.site.tests.TestCase):
 
     def test_wrong_settings(self):
         with self.settings(SIGNING_SERVER_ACTIVE=''):

@@ -13,7 +13,6 @@ from nose.tools import eq_, ok_
 
 import amo
 import mkt.regions
-from amo.tests import ESTestCase
 from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
@@ -22,6 +21,7 @@ from mkt.reviewers.models import (AdditionalReview, CannedResponse,
                                   QUEUE_TARAKO, ReviewerScore)
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
+from mkt.site.tests import ESTestCase
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp

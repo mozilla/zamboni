@@ -7,16 +7,15 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
-from jinja2.utils import escape
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-import amo.tests
+import mkt.site.tests
 from mkt.commonplace.models import DeployBuildId
 
 
-class CommonplaceTestMixin(amo.tests.TestCase):
+class CommonplaceTestMixin(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.commonplace.views.fxa_auth_info')
     def _test_url(self, url, fxa_mock, url_kwargs=None):
@@ -41,6 +40,7 @@ class CommonplaceTestMixin(amo.tests.TestCase):
             ['Accept-Encoding', 'Accept-Language', 'Cookie'])
         eq_(ungzipped_content, res.content)
         return res
+
 
 class TestCommonplace(CommonplaceTestMixin):
 
@@ -240,7 +240,7 @@ class TestIFrames(CommonplaceTestMixin):
              'https://mp.dev'])
 
 
-class TestOpenGraph(amo.tests.TestCase):
+class TestOpenGraph(mkt.site.tests.TestCase):
 
     def _get_tags(self, res):
         """Returns title, image, description."""
@@ -256,7 +256,7 @@ class TestOpenGraph(amo.tests.TestCase):
         ok_(description.startswith('The Firefox Marketplace is'))
 
     def test_detail(self):
-        app = amo.tests.app_factory(description='Awesome')
+        app = mkt.site.tests.app_factory(description='Awesome')
         res = self.client.get(reverse('detail', args=[app.app_slug]))
         title, image, description = self._get_tags(res)
         eq_(title, app.name)

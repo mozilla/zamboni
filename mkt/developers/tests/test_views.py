@@ -21,9 +21,8 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
-from amo.tests import app_factory, assert_no_validation_errors, version_factory
 from lib.iarc.utils import get_iarc_app_title
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
@@ -36,6 +35,8 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import (app_factory, assert_no_validation_errors,
+                            version_factory)
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import urlparams
 from mkt.submit.models import AppSubmissionChecklist
@@ -46,7 +47,7 @@ from mkt.webapps.models import AddonDeviceType, AddonUpsell, AddonUser, Webapp
 from mkt.zadmin.models import get_config, set_config
 
 
-class AppHubTest(amo.tests.TestCase):
+class AppHubTest(mkt.site.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
@@ -68,7 +69,7 @@ class AppHubTest(amo.tests.TestCase):
         return Webapp.objects.get(id=337141)
 
 
-class TestHome(amo.tests.TestCase):
+class TestHome(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -104,7 +105,7 @@ class TestAppBreadcrumbs(AppHubTest):
             ('Developers', reverse('ecosystem.landing')),
             ('Submit App', None),
         ]
-        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
+        mkt.site.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
 
     def test_webapp_management_breadcrumbs(self):
         webapp = Webapp.objects.get(id=337141)
@@ -116,7 +117,7 @@ class TestAppBreadcrumbs(AppHubTest):
             ('My Submissions', reverse('mkt.developers.apps')),
             (unicode(webapp.name), None),
         ]
-        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
+        mkt.site.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
 
 
 class TestAppDashboard(AppHubTest):
@@ -189,7 +190,7 @@ class TestAppDashboard(AppHubTest):
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
-        amo.tests.check_links(expected, doc('a.action-link'), verify=False)
+        mkt.site.tests.check_links(expected, doc('a.action-link'), verify=False)
 
     def test_xss(self):
         app = self.get_app()
@@ -210,7 +211,7 @@ class TestAppDashboardSorting(AppHubTest):
 
     def clone(self, num=3):
         for x in xrange(num):
-            app = amo.tests.app_factory()
+            app = mkt.site.tests.app_factory()
             AddonUser.objects.create(addon=app, user=self.user)
 
     def test_pagination(self):
@@ -305,7 +306,7 @@ class TestDevRequired(AppHubTest):
 
 @mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
             new=lambda x: x.cleaned_data)
-class TestMarketplace(amo.tests.TestCase):
+class TestMarketplace(mkt.site.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
@@ -402,7 +403,7 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(upsell[0].free, new)
 
 
-class TestPubliciseVersion(amo.tests.TestCase):
+class TestPubliciseVersion(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -611,7 +612,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
         eq_(doc('#version-list form').attr('action'), self.url)
 
 
-class TestStatus(amo.tests.TestCase):
+class TestStatus(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
                        'group_admin')
 
@@ -676,7 +677,7 @@ class TestStatus(amo.tests.TestCase):
         assert '<script>' not in doc.html()
 
 
-class TestResumeStep(amo.tests.TestCase):
+class TestResumeStep(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -1031,7 +1032,7 @@ def assert_json_field(request, field, msg):
     eq_(content[field], msg)
 
 
-class TestDeleteApp(amo.tests.TestCase):
+class TestDeleteApp(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
                        'group_admin')
 
@@ -1057,7 +1058,7 @@ class TestDeleteApp(amo.tests.TestCase):
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = amo.tests.app_factory(name='Boop', status=amo.STATUS_NULL)
+        webapp = mkt.site.tests.app_factory(name='Boop', status=amo.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],
@@ -1091,7 +1092,7 @@ class TestDeleteApp(amo.tests.TestCase):
             Webapp.objects.get(pk=self.webapp.pk)
 
 
-class TestEnableDisable(amo.tests.TestCase):
+class TestEnableDisable(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
@@ -1131,7 +1132,7 @@ class TestEnableDisable(amo.tests.TestCase):
         eq_(self.webapp.reload().disabled_by_user, True)
 
 
-class TestRemoveLocale(amo.tests.TestCase):
+class TestRemoveLocale(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -1160,7 +1161,7 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(r.status_code, 400)
 
 
-class TestTerms(amo.tests.TestCase):
+class TestTerms(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -1196,7 +1197,7 @@ class TestTerms(amo.tests.TestCase):
         assert self.get_user().read_dev_agreement
 
     @mock.patch.object(settings, 'DEV_AGREEMENT_LAST_UPDATED',
-                       amo.tests.days_ago(-5).date())
+                       mkt.site.tests.days_ago(-5).date())
     def test_update(self):
         past = self.days_ago(10)
         self.user.update(read_dev_agreement=past)
@@ -1205,7 +1206,7 @@ class TestTerms(amo.tests.TestCase):
         assert self.get_user().read_dev_agreement != past
 
     @mock.patch.object(settings, 'DEV_AGREEMENT_LAST_UPDATED',
-                       amo.tests.days_ago(-5).date())
+                       mkt.site.tests.days_ago(-5).date())
     def test_past(self):
         past = self.days_ago(10)
         self.user.update(read_dev_agreement=past)
@@ -1245,7 +1246,7 @@ class TestTerms(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
 
-class TestTransactionList(amo.tests.TestCase):
+class TestTransactionList(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -1317,7 +1318,7 @@ class TestTransactionList(amo.tests.TestCase):
                             [tx.id for tx in expected_txs])
 
 
-class TestContentRatings(amo.tests.TestCase):
+class TestContentRatings(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
@@ -1327,7 +1328,7 @@ class TestContentRatings(amo.tests.TestCase):
         self.user = UserProfile.objects.get()
         self.url = reverse('mkt.developers.apps.ratings',
                            args=[self.app.app_slug])
-        self.req = amo.tests.req_factory_factory(self.url, user=self.user)
+        self.req = mkt.site.tests.req_factory_factory(self.url, user=self.user)
         self.req.session = mock.MagicMock()
 
     @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
@@ -1413,7 +1414,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(doc('#id_security_code').attr('value'), 'abcd')
 
 
-class TestContentRatingsSuccessMsg(amo.tests.TestCase):
+class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = app_factory(status=amo.STATUS_NULL)
@@ -1452,7 +1453,7 @@ class TestContentRatingsSuccessMsg(amo.tests.TestCase):
             _submission_msgs()['content_ratings_saved'])
 
 
-class TestMessageOfTheDay(amo.tests.TestCase):
+class TestMessageOfTheDay(mkt.site.tests.TestCase):
     fixtures = fixture('user_editor', 'user_999')
 
     def setUp(self):

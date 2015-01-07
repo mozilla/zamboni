@@ -6,16 +6,15 @@ from django.utils import translation
 from mock import patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
 from mkt.access.models import Group, GroupUser
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.ratings.models import Review
 from mkt.users.models import UserEmailField, UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
 
-class TestUserProfile(amo.tests.TestCase):
+class TestUserProfile(TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def test_anonymize(self):
@@ -98,7 +97,7 @@ class TestUserProfile(amo.tests.TestCase):
             eq_(translation.get_language(), 'fr')
 
 
-class TestUserEmailField(amo.tests.TestCase):
+class TestUserEmailField(TestCase):
     fixtures = fixture('user_999')
 
     def test_success(self):

@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from lib.es.models import Reindexing
 
 
-class TestReindexing(amo.tests.TestCase):
+class TestReindexing(mkt.site.tests.TestCase):
 
     def test_flag_reindexing(self):
         assert Reindexing.objects.count() == 0

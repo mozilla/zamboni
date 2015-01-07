@@ -9,11 +9,11 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import mkt
-from amo.tests import app_factory, ESTestCase, TestCase
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Installed, Webapp
 

@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 
-import amo.tests
+import amo
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
                              CommunicationThreadToken, user_has_perm_app,
@@ -14,6 +14,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase, user_factory
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
@@ -77,7 +78,7 @@ class PermissionTestMixin(object):
         self._eq_obj_perm(True)
 
 
-class TestCommunicationNote(PermissionTestMixin, amo.tests.TestCase):
+class TestCommunicationNote(PermissionTestMixin, TestCase):
 
     def setUp(self):
         super(TestCommunicationNote, self).setUp()
@@ -102,7 +103,7 @@ class TestCommunicationNote(PermissionTestMixin, amo.tests.TestCase):
                                                  self.thread).count(), 1)
 
 
-class TestCommunicationThread(PermissionTestMixin, amo.tests.TestCase):
+class TestCommunicationThread(PermissionTestMixin, TestCase):
 
     def setUp(self):
         super(TestCommunicationThread, self).setUp()
@@ -136,7 +137,7 @@ class TestCommunicationThread(PermissionTestMixin, amo.tests.TestCase):
         ok_(user_has_perm_app(self.user, self.addon))
 
 
-class TestThreadTokenModel(amo.tests.TestCase):
+class TestThreadTokenModel(TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
@@ -188,12 +189,12 @@ class TestThreadTokenModel(amo.tests.TestCase):
         assert uuid != self.token.uuid
 
 
-class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
+class TestCommAttachment(TestCase, CommTestMixin):
     fixtures = fixture('webapp_337141')
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
 
     def setUp(self):
-        self.user = amo.tests.user_factory(username='porkbelly')
+        self.user = user_factory(username='porkbelly')
         amo.set_user(self.user)
         self.profile = self.user
         self.addon = Webapp.objects.get()

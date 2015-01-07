@@ -1,4 +1,4 @@
-import amo.tests
+import mkt.site.tests
 
 from mkt.access.acl import action_allowed_user
 from mkt.site.fixtures import fixture
@@ -7,7 +7,7 @@ from mkt.zadmin.management.commands.removeuserfromgroup import do_removeuser
 from mkt.users.models import UserProfile
 
 
-class TestCommand(amo.tests.TestCase):
+class TestCommand(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'user_10482')
 
     def test_group_management(self):

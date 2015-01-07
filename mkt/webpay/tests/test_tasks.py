@@ -9,8 +9,7 @@ from fudge.inspector import arg
 from nose.tools import eq_
 from requests.exceptions import RequestException
 
-from amo.tests import TestCase
-
+from mkt.site.tests import TestCase
 from mkt.webpay import tasks
 from mkt.webpay.models import ProductIcon
 

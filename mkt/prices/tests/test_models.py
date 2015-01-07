@@ -7,7 +7,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.constants import apps
 from mkt.constants.payments import (PROVIDER_BOKU, PROVIDER_REFERENCE)
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU, RESTOFWORLD, SPAIN,
@@ -19,7 +19,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
 
-class TestPremium(amo.tests.TestCase):
+class TestPremium(mkt.site.tests.TestCase):
     fixtures = fixture('prices2', 'webapp_337141')
 
     def setUp(self):
@@ -34,7 +34,7 @@ class TestPremium(amo.tests.TestCase):
         assert ap.is_complete()
 
 
-class TestPrice(amo.tests.TestCase):
+class TestPrice(mkt.site.tests.TestCase):
     fixtures = fixture('prices2')
 
     def setUp(self):
@@ -174,10 +174,10 @@ class TestPrice(amo.tests.TestCase):
                 PROVIDER_REFERENCE: [BR, SPAIN, RESTOFWORLD]})
 
 
-class TestPriceCurrencyChanges(amo.tests.TestCase):
+class TestPriceCurrencyChanges(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.addon = amo.tests.app_factory()
+        self.addon = mkt.site.tests.app_factory()
         self.make_premium(self.addon)
         self.currency = self.addon.premium.price.pricecurrency_set.all()[0]
 
@@ -211,7 +211,7 @@ class ContributionMixin(object):
         return self.addon.addonpurchase_set.get(user=self.user).type
 
 
-class TestContribution(ContributionMixin, amo.tests.TestCase):
+class TestContribution(ContributionMixin, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def test_purchase(self):
@@ -302,7 +302,7 @@ class TestContribution(ContributionMixin, amo.tests.TestCase):
         eq_(list(self.user.purchase_ids()), [])
 
 
-class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
+class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def setUp(self):
@@ -390,7 +390,7 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
         self.assertCloseToNow(refund.declined)
 
 
-class TestRefundManager(amo.tests.TestCase):
+class TestRefundManager(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def setUp(self):

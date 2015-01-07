@@ -3,7 +3,8 @@ import datetime
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import amo
+import mkt.site.tests
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.ratings.models import Review
 from mkt.stats import tasks
@@ -12,7 +13,7 @@ from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Webapp
 
 
-class TestMonolithStats(amo.tests.TestCase):
+class TestMonolithStats(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.stats.tasks.MonolithRecord')
     def test_mmo_user_total_count_updates_monolith(self, record):
@@ -148,7 +149,7 @@ class TestMonolithStats(amo.tests.TestCase):
                                         source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         p2 = UserProfile.objects.create(username='bar',
                                         source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        a1 = amo.tests.app_factory()
+        a1 = mkt.site.tests.app_factory()
         AddonUser.objects.create(addon=a1, user=p1)
         AddonUser.objects.create(addon=a1, user=p2)
 

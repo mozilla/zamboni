@@ -9,7 +9,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 
 from mkt.constants import comm
 from mkt.comm.models import CommunicationNote
@@ -22,13 +22,13 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonDeviceType, Webapp
 
 
-class TestReviewerScore(amo.tests.TestCase):
+class TestReviewerScore(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'group_editor', 'user_admin',
                        'user_admin_group', 'user_editor', 'user_editor_group',
                        'user_999')
 
     def setUp(self):
-        self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        self.app = mkt.site.tests.app_factory(status=amo.STATUS_PENDING)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def _give_points(self, user=None, app=None, status=None):
@@ -41,7 +41,7 @@ class TestReviewerScore(amo.tests.TestCase):
             'Score event status:%s was not %s' % (status, event)))
 
     def test_events_webapps(self):
-        self.app = amo.tests.app_factory()
+        self.app = mkt.site.tests.app_factory()
         self.check_event(amo.STATUS_PENDING,
                          amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -243,7 +243,7 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_performance(self.user)
 
 
-class TestAdditionalReview(amo.tests.TestCase):
+class TestAdditionalReview(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -345,7 +345,7 @@ class TestAdditionalReview(amo.tests.TestCase):
             reviewer, self.app, QUEUE_TARAKO)
 
 
-class TestAdditionalReviewManager(amo.tests.TestCase):
+class TestAdditionalReviewManager(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.unreviewed = AdditionalReview.objects.create(
@@ -417,7 +417,7 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
                 queue='queue-one', descending=True)))
 
 
-class BaseTarakoFunctionsTestCase(amo.tests.TestCase):
+class BaseTarakoFunctionsTestCase(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -538,9 +538,9 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         ok_('not passed' in mail.outbox[0].body)
 
 
-class TestRereviewQueue(amo.tests.TestCase):
+class TestRereviewQueue(mkt.site.tests.TestCase):
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = mkt.site.tests.app_factory()
 
     def test_flag_creates_notes(self):
         RereviewQueue.flag(self.app, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)

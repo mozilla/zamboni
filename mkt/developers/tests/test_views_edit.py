@@ -6,6 +6,7 @@ import tempfile
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
+from django.forms.fields import Field
 from django.utils.encoding import smart_unicode
 
 import mock
@@ -17,9 +18,8 @@ from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
-from amo.tests import assert_required, formset, initial
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
@@ -28,6 +28,7 @@ from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import formset, initial
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -63,7 +64,7 @@ def get_section_url(addon, section, edit=False):
     return reverse('mkt.developers.apps.section', args=args)
 
 
-class TestEdit(amo.tests.TestCase):
+class TestEdit(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'user_999', 'user_admin',
                        'user_admin_group', 'webapp_337141')
 
@@ -281,7 +282,7 @@ class TestEditBasic(TestEdit):
     @mock.patch('mkt.developers.forms.update_manifests')
     def test_view_manifest_changed_dupe_app_domain(self, fetch):
         self.create_switch('webapps-unique-by-domain')
-        amo.tests.app_factory(name='Super Duper',
+        mkt.site.tests.app_factory(name='Super Duper',
                               app_domain='https://ballin.com')
         self.login('admin')
 
@@ -348,7 +349,8 @@ class TestEditBasic(TestEdit):
     @mock.patch('mkt.webapps.models.Webapp.save')
     def test_edit_categories_required(self, save):
         r = self.client.post(self.edit_url, self.get_dict(categories=[]))
-        assert_required(r.context['cat_form'].errors['categories'][0])
+        eq_(r.context['cat_form'].errors['categories'][0],
+            unicode(Field.default_error_messages['required']))
         assert not save.called
 
     def test_edit_categories_xss(self):
@@ -826,7 +828,7 @@ class TestEditMedia(TestEdit):
         assert result['icons']
 
     def test_icon_size_req(self):
-        filehandle = open(get_image_path('sunbird-small.png'), 'rb')
+        filehandle = open(get_image_path('mkt_icon_72.png'), 'rb')
 
         res = self.client.post(self.icon_upload, {'upload_image': filehandle})
         response_json = json.loads(res.content)

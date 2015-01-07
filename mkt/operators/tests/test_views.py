@@ -5,19 +5,18 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
 import mkt
-from amo.tests import app_factory
+import mkt.site.tests
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.models import PreloadTestPlan
 from mkt.operators.models import OperatorPermission
 from mkt.operators.views import preloads
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory
 from mkt.users.models import UserProfile
 
 
-class TestPreloadCandidates(amo.tests.TestCase):
+class TestPreloadCandidates(mkt.site.tests.TestCase):
     fixtures = fixture('user_operator')
 
     def setUp(self):
@@ -32,7 +31,7 @@ class TestPreloadCandidates(amo.tests.TestCase):
 
     def test_preloads(self):
         plan = self._preload_factory()
-        req = amo.tests.req_factory_factory(self.url, user=self.user)
+        req = mkt.site.tests.req_factory_factory(self.url, user=self.user)
         res = preloads(req)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -42,7 +41,7 @@ class TestPreloadCandidates(amo.tests.TestCase):
             plan.preload_test_plan_url)
 
 
-class TestOperatorPermissionsViewSet(RestOAuth, amo.tests.ESTestCase):
+class TestOperatorPermissionsViewSet(RestOAuth, mkt.site.tests.ESTestCase):
     fixtures = RestOAuth.fixtures + fixture('user_999')
 
     def setUp(self):

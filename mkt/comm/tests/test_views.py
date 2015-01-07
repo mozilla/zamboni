@@ -2,7 +2,6 @@ import json
 import os
 
 from django.conf import settings
-from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test.client import MULTIPART_CONTENT
 from django.test.utils import override_settings
@@ -12,15 +11,14 @@ from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
 import amo
-from amo.tests import (app_factory, req_factory_factory, user_factory,
-                       version_factory)
-
 import mkt.constants.comm as comm
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
 from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
 from mkt.site.fixtures import fixture
+from mkt.site.tests import (app_factory, req_factory_factory, user_factory,
+                            version_factory)
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -124,7 +122,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
     def test_response_deleted_version_app(self):
         self.addon.update(status=amo.STATUS_DELETED)
         thread = self._thread_factory(note=True)
-        version = amo.tests.version_factory(addon=self.addon)
+        version = version_factory(addon=self.addon)
         version.update(deleted=True)
         thread.update(_version=version)
 

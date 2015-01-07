@@ -5,7 +5,7 @@ import mock
 from nose.tools import assert_false
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
@@ -14,7 +14,7 @@ from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_reviewer, match_rules)
 
 
-class ACLTestCase(amo.tests.TestCase):
+class ACLTestCase(mkt.site.tests.TestCase):
     """Test basic ACL by going to a locked page."""
 
     def test_match_rules(self):
@@ -56,7 +56,7 @@ class ACLTestCase(amo.tests.TestCase):
         self.assertLoginRedirects(r, url)
 
 
-class TestHasPerm(amo.tests.TestCase):
+class TestHasPerm(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'user_999', 'user_admin',
                        'user_admin_group', 'webapp_337141')
 
@@ -174,17 +174,17 @@ class TestHasPerm(amo.tests.TestCase):
         assert check_addon_ownership(self.request, self.app, support=True)
 
 
-class TestCheckReviewer(amo.tests.TestCase):
+class TestCheckReviewer(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
 
     def test_no_perm(self):
-        req = amo.tests.req_factory_factory('noop', user=self.user)
+        req = mkt.site.tests.req_factory_factory('noop', user=self.user)
         assert not check_reviewer(req)
 
     def test_perm_apps(self):
         self.grant_permission(self.user, 'Apps:Review')
-        req = amo.tests.req_factory_factory('noop', user=self.user)
+        req = mkt.site.tests.req_factory_factory('noop', user=self.user)
         assert check_reviewer(req)

@@ -6,7 +6,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR)
 from mkt.developers import forms_payments, models
@@ -20,7 +20,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonDeviceType, AddonUser, Webapp
 
 
-class TestPremiumForm(amo.tests.TestCase):
+class TestPremiumForm(mkt.site.tests.TestCase):
     # None of the tests in this TC should initiate Solitude calls.
     fixtures = fixture('webapp_337141')
 
@@ -301,7 +301,7 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(form._initial_price_id(), None)
 
 
-class TestAccountListForm(Patcher, amo.tests.TestCase):
+class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
                        'user_admin', 'user_admin_group', 'prices')
 
@@ -482,7 +482,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
         assert form.current_payment_account is None
 
 
-class TestPaidRereview(Patcher, amo.tests.TestCase):
+class TestPaidRereview(Patcher, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):
@@ -542,7 +542,7 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
 
 
-class TestRestoreAppStatus(amo.tests.TestCase):
+class TestRestoreAppStatus(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -561,7 +561,7 @@ class TestRestoreAppStatus(amo.tests.TestCase):
         eq_(self.addon.status, amo.STATUS_PENDING)
 
 
-class TestBangoAccountForm(Patcher, amo.tests.TestCase):
+class TestBangoAccountForm(Patcher, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -614,7 +614,7 @@ class TestBangoAccountForm(Patcher, amo.tests.TestCase):
         self.bango_patcher.api.by_url.assert_called_with('uid')
 
 
-class TestBokuAccountForm(amo.tests.TestCase):
+class TestBokuAccountForm(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

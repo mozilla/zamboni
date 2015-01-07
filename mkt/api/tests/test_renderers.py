@@ -1,7 +1,7 @@
 from nose.tools import eq_
 
-from amo.tests import TestCase
 from mkt.api.renderers import SuccinctJSONRenderer
+from mkt.site.tests import TestCase
 
 
 class TestSuccinctJSONRenderer(TestCase):

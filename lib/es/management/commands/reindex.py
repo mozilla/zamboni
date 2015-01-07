@@ -29,7 +29,7 @@ logger = logging.getLogger('z.elasticsearch')
 # logging.getLogger('elasticsearch.trace').setLevel(logging.DEBUG)
 
 # The subset of settings.ES_INDEXES we are concerned with.
-# Referenced from amo.tests.ESTestCase so update that if you are modifying the
+# Referenced from mkt.site.tests.ESTestCase so update that if you are modifying the
 # structure of INDEXES.
 ES_INDEXES = settings.ES_INDEXES
 INDEXES = (

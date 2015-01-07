@@ -3,12 +3,12 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
 from mock import Mock, patch
 
-import amo.tests
+import mkt.site.tests
 from mkt.access import acl
 from mkt.files.decorators import allowed
 
 
-class AllowedTest(amo.tests.TestCase):
+class AllowedTest(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = Mock()

@@ -1026,7 +1026,7 @@ def generate_ratings(app, num):
 def generate_hosted_app(name, category):
     # Let's not make production code depend on stuff in the test package --
     # importing it only when called in local dev is fine.
-    from amo.tests import app_factory
+    from mkt.site.tests import app_factory
     a = app_factory(categories=[category], name=name, complete=True,
                     rated=True)
     a.versions.latest().update(reviewed=datetime.datetime.now())
@@ -1113,7 +1113,7 @@ def generate_app_package(app, out, permissions, version='1.0'):
 
 
 def generate_packaged_app(name, category, permissions=(), num_versions=1):
-    from amo.tests import app_factory, version_factory
+    from mkt.site.tests import app_factory, version_factory
     app = app_factory(categories=[category], name=name, complete=True,
                       rated=True, is_packaged=True,
                       version_kw={'version': '1.0'})

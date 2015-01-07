@@ -6,7 +6,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 
 from mkt.constants.features import APP_FEATURES, FeatureProfile
 
@@ -15,7 +15,7 @@ APP_FEATURES = OrderedDict(itertools.islice(APP_FEATURES.iteritems(), 45))
 
 
 @mock.patch('mkt.constants.features.APP_FEATURES', APP_FEATURES)
-class TestFeatureProfile(amo.tests.TestCase):
+class TestFeatureProfile(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.features = 0x110022000000

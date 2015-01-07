@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 import mock
 
-import amo.tests
+import mkt.site.tests
 from lib.metrics import record_action
 
 
-class TestMetrics(amo.tests.TestCase):
+class TestMetrics(mkt.site.tests.TestCase):
 
     @mock.patch('lib.metrics.record_stat')
     def test_record_action(self, record_stat):

@@ -12,7 +12,7 @@ import mock
 from nose.tools import eq_, raises
 from requests import Timeout
 
-import amo.tests
+import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.site.fixtures import fixture
@@ -40,7 +40,7 @@ def mock_sign(version_id, reviewer=False):
 
 @mock.patch('lib.crypto.receipt.requests.post')
 @mock.patch.object(settings, 'SIGNING_SERVER', 'http://localhost')
-class TestReceipt(amo.tests.TestCase):
+class TestReceipt(mkt.site.tests.TestCase):
 
     def test_called(self, get):
         get.return_value = self.get_response(200)
@@ -76,7 +76,7 @@ class TestReceipt(amo.tests.TestCase):
         sign('x')
 
 
-class TestCrack(amo.tests.TestCase):
+class TestCrack(mkt.site.tests.TestCase):
 
     def test_crack(self):
         eq_(crack(jwt.encode('foo', 'x')), [u'foo'])
@@ -86,7 +86,7 @@ class TestCrack(amo.tests.TestCase):
             [u'foo', u'bar'])
 
 
-class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
+class PackagedApp(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
@@ -113,7 +113,7 @@ class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
 
 
 @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
-class TestPackaged(PackagedApp, amo.tests.TestCase):
+class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestPackaged, self).setUp()

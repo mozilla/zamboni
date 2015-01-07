@@ -1,5 +1,6 @@
 import json
-from amo.tests import TestCase
+
+from mkt.site.tests import TestCase
 
 
 class BaseAPI(TestCase):
@@ -29,4 +30,3 @@ class BaseAPI(TestCase):
 
     def get_error(self, response):
         return json.loads(response.content)['error_message']
-

@@ -8,11 +8,11 @@ import mock
 from nose.tools import eq_
 
 import amo
-import amo.tests
-from amo.tests import app_factory
+import mkt.site.tests
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import app_factory
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
 
@@ -22,7 +22,7 @@ from mkt.users.models import UserProfile
 TEST_LEEWAY = 100
 
 
-class TestReceipt(amo.tests.TestCase):
+class TestReceipt(mkt.site.tests.TestCase):
     fixtures = fixture('users')
 
     def setUp(self):
@@ -135,7 +135,7 @@ class TestReceipt(amo.tests.TestCase):
 
 
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key() + '.foo')
-class TestBrokenReceipt(amo.tests.TestCase):
+                   mkt.site.tests.MktPaths.sample_key() + '.foo')
+class TestBrokenReceipt(mkt.site.tests.TestCase):
     def test_get_key(self):
         self.assertRaises(IOError, get_key)

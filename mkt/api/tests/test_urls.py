@@ -3,7 +3,7 @@ from nose.tools import eq_, ok_
 
 from django.core.urlresolvers import resolve, Resolver404
 
-import amo.tests
+import mkt.site.tests
 from mkt.api.urls import include_version
 
 
@@ -14,7 +14,7 @@ MODULE, NAMESPACE = 0, 2
 FUNCTION = 0
 
 
-class TestIncludeVersion(amo.tests.TestCase):
+class TestIncludeVersion(mkt.site.tests.TestCase):
     def includes(self):
         return include_version(1), include_version(2)
 
@@ -69,7 +69,7 @@ class BaseTestAPIVersionURLs(object):
             eq_(resolved[FUNCTION].func_name, 'EndpointRemoved')
 
 
-class TestAPIv1URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
+class TestAPIv1URLs(BaseTestAPIVersionURLs, mkt.site.tests.TestCase):
     """
     Tests for expected changes of URLs between versions of the API using the v1
     urlconf.
@@ -83,7 +83,7 @@ class TestAPIv1URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
         self.assertViewName('/apps/search/featured/', 'FeaturedSearchView')
 
 
-class TestAPIv2URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
+class TestAPIv2URLs(BaseTestAPIVersionURLs, mkt.site.tests.TestCase):
     """
     Tests for expected changes of URLs between versions of the API using the v2
     urlconf.

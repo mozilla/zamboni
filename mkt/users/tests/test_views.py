@@ -1,24 +1,20 @@
 # -*- coding: utf-8 -*-
 import json
 from datetime import datetime
-import urllib
 
 from django.core.urlresolvers import reverse
-from django.test.utils import override_settings
 
-import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from waffle import helpers  # NOQA
 
-import amo
-import amo.tests
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.site.utils import urlparams
 from mkt.users.models import UserProfile
 
 
-class TestAjax(amo.tests.TestCase):
+class TestAjax(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -71,7 +67,7 @@ class TestAjax(amo.tests.TestCase):
         eq_(r.status_code, 401)
 
 
-class TestLogout(amo.tests.TestCase):
+class TestLogout(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):

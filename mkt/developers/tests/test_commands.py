@@ -3,7 +3,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 exclude_unrated,
@@ -14,7 +14,7 @@ from mkt.webapps.models import (AddonPremium, IARCInfo, RatingDescriptors,
                                 Webapp)
 
 
-class TestCommandViews(amo.tests.TestCase):
+class TestCommandViews(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -32,7 +32,7 @@ class TestCommandViews(amo.tests.TestCase):
         eq_(AddonPremium.objects.all().count(), 0)
 
 
-class TestMigrateGeodata(amo.tests.TestCase):
+class TestMigrateGeodata(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -75,7 +75,7 @@ class TestMigrateGeodata(amo.tests.TestCase):
 
 
 @mock.patch('mkt.developers.management.commands.exclude_unrated.index_webapps')
-class TestExcludeUnrated(amo.tests.TestCase):
+class TestExcludeUnrated(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -93,7 +93,7 @@ class TestExcludeUnrated(amo.tests.TestCase):
         assert not self._germany_listed()
 
     def test_dont_exclude_rated(self, index_mock):
-        amo.tests.make_rated(self.webapp)
+        mkt.site.tests.make_rated(self.webapp)
 
         exclude_unrated.Command().handle()
         assert self._brazil_listed()
@@ -134,7 +134,7 @@ class TestExcludeUnrated(amo.tests.TestCase):
         eq_(index_mock.call_args[0][0], [self.webapp.id])
 
 
-class TestRefreshIARCRatings(amo.tests.TestCase):
+class TestRefreshIARCRatings(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

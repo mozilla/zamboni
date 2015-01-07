@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.access.models import Group, GroupUser
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
@@ -21,7 +21,7 @@ from ..forms import DevMailerForm
 from ..models import EmailPreviewTopic
 
 
-class TestEmailPreview(amo.tests.TestCase):
+class TestEmailPreview(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
                        'webapp_337141')
 
@@ -44,7 +44,7 @@ class TestEmailPreview(amo.tests.TestCase):
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
 
 
-class TestMemcache(amo.tests.TestCase):
+class TestMemcache(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
@@ -65,7 +65,7 @@ class TestMemcache(amo.tests.TestCase):
         eq_(cache.get('foo'), 'bar')
 
 
-class TestElastic(amo.tests.ESTestCase):
+class TestElastic(mkt.site.tests.ESTestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
@@ -78,7 +78,7 @@ class TestElastic(amo.tests.ESTestCase):
             reverse('users.login') + '?to=/admin/elastic')
 
 
-class TestEmailDevs(amo.tests.TestCase):
+class TestEmailDevs(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
                        'webapp_337141')
 
@@ -209,7 +209,7 @@ class TestEmailDevs(amo.tests.TestCase):
             eq_(len(mail.outbox), 0)
 
 
-class TestPerms(amo.tests.TestCase):
+class TestPerms(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
                        'user_999')
 
@@ -253,7 +253,7 @@ class TestPerms(amo.tests.TestCase):
                              reverse('users.login') + '?to=/admin/')
 
 
-class TestHome(amo.tests.TestCase):
+class TestHome(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
@@ -266,7 +266,7 @@ class TestHome(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
 
-class TestGenerateError(amo.tests.TestCase):
+class TestGenerateError(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
@@ -343,7 +343,7 @@ class TestGenerateError(amo.tests.TestCase):
         eq_(msg.type, 'sentry')
 
 
-class TestManifestRevalidation(amo.tests.TestCase):
+class TestManifestRevalidation(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
                        'webapp_337141', 'user_999')
 

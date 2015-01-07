@@ -11,9 +11,9 @@ from rest_framework.decorators import (authentication_classes,
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from amo.tests import TestCase
 from mkt.api.base import cors_api_view, SubRouterWithFormat
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.site.tests import TestCase
 from mkt.webapps.views import AppViewSet
 
 

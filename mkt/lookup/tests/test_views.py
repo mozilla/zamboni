@@ -15,8 +15,7 @@ from pyquery import PyQuery as pq
 from slumber import exceptions
 
 import amo
-import amo.tests
-from amo.tests import app_factory, ESTestCase, req_factory_factory, TestCase
+import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
 from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
@@ -32,6 +31,7 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, ESTestCase, req_factory_factory, TestCase
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
@@ -727,8 +727,8 @@ class TestAppSummary(AppSummaryTest):
 
     def test_packaged_app_deleted(self):
         self.app.update(is_packaged=True)
-        ver = amo.tests.version_factory(addon=self.app)
-        amo.tests.file_factory(version=ver)
+        ver = mkt.site.tests.version_factory(addon=self.app)
+        mkt.site.tests.file_factory(version=ver)
         self.app.delete()
         self.summary()
 
@@ -1004,7 +1004,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
         eq_(res.context['refunds']['rejected'], 2)
 
 
-class TestPurchases(amo.tests.TestCase):
+class TestPurchases(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
@@ -1048,7 +1048,7 @@ class TestPurchases(amo.tests.TestCase):
         eq_(len(doc('.item a.request-support')), 0)
 
 
-class TestActivity(amo.tests.TestCase):
+class TestActivity(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
@@ -1090,7 +1090,7 @@ class TestActivity(amo.tests.TestCase):
         assert 'edited' in doc('li.item').eq(1).text()
 
 
-class TestAppActivity(amo.tests.TestCase):
+class TestAppActivity(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):

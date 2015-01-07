@@ -6,13 +6,14 @@ import mock
 from nose.tools import eq_, ok_
 from receipts.receipts import Receipt
 
-import amo.tests
+import amo
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
 from mkt.constants.payments import CONTRIB_NO_CHARGE
 from mkt.developers.models import AppLog
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
@@ -191,7 +192,7 @@ class TestReceipt(RestOAuth):
         ok_(Receipt(r.data['receipt']).receipt_decoded())
 
 
-class TestReissue(amo.tests.TestCase):
+class TestReissue(TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):

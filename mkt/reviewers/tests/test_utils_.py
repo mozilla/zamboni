@@ -1,10 +1,10 @@
 # -*- coding: utf8 -*-
-import amo.tests
+import mkt.site.tests
 
 from mkt.reviewers.utils import create_sort_link
 
 
-class TestCreateSortLink(amo.tests.TestCase):
+class TestCreateSortLink(mkt.site.tests.TestCase):
     """Test that the sortable table headers' have URLs created correctly."""
 
     def test_sort_asc_created(self):

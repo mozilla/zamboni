@@ -1,13 +1,12 @@
 from contextlib import contextmanager
-from django.utils import translation
 from nose.tools import eq_, ok_
 from tower import activate
 
-import amo.tests
 import mkt.constants.regions as regions
+from mkt.site.tests import TestCase
 
 
-class TestRegionContentRatings(amo.tests.TestCase):
+class TestRegionContentRatings(TestCase):
 
     @contextmanager
     def tower_activate(self, region):

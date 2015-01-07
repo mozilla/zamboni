@@ -3,14 +3,14 @@ from django.core import mail
 
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
-class TestAbuse(amo.tests.TestCase):
+class TestAbuse(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):

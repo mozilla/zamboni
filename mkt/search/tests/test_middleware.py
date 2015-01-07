@@ -4,11 +4,11 @@ import elasticsearch
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.search.middleware import ElasticsearchExceptionMiddleware as ESM
 
 
-class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
+class TestElasticsearchExceptionMiddleware(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = RequestFactory()

@@ -20,7 +20,7 @@ from PIL import Image
 from requests import RequestException
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.users.models import UserProfile
 from mkt.developers import tasks
@@ -105,7 +105,7 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-class TestPngcrushImage(amo.tests.TestCase):
+class TestPngcrushImage(mkt.site.tests.TestCase):
 
     def setUp(self):
         img = get_image_path('mozilla.png')
@@ -156,7 +156,7 @@ class TestPngcrushImage(amo.tests.TestCase):
         ok_('modified' in update_mock.call_args_list[0][1])
 
 
-class TestValidator(amo.tests.TestCase):
+class TestValidator(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.upload = FileUpload.objects.create()
@@ -219,7 +219,7 @@ def _mock_hide_64px_icon(path, *args, **kwargs):
 @override_settings(
     PREVIEW_FULL_PATH='/tmp/uploads-tests/previews/full/%s/%d.%s',
     PREVIEW_THUMBNAIL_PATH='/tmp/uploads-tests/previews/thumbs/%s/%d.png')
-class TestResizePreview(amo.tests.TestCase):
+class TestResizePreview(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -286,7 +286,7 @@ class TestResizePreview(amo.tests.TestCase):
         assert not os.path.exists(preview.image_path), preview.image_path
 
 
-class TestFetchManifest(amo.tests.TestCase):
+class TestFetchManifest(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.upload = FileUpload.objects.create()
@@ -572,7 +572,7 @@ class TestFetchIcon(BaseWebAppTest):
         assert url[1:] in zf.extract_path.call_args[0][0]
 
 
-class TestRegionEmail(amo.tests.WebappTestCase):
+class TestRegionEmail(mkt.site.tests.WebappTestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_one_new_region(self):
@@ -618,7 +618,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert ': Brazil, United Kingdom, and United States.' in msg.body
 
 
-class TestRegionExclude(amo.tests.WebappTestCase):
+class TestRegionExclude(mkt.site.tests.WebappTestCase):
 
     def test_exclude_no_apps(self):
         tasks.region_exclude([], [])

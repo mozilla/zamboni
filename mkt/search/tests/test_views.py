@@ -14,7 +14,6 @@ from nose.tools import eq_, ok_
 import amo
 import mkt
 import mkt.regions
-from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
@@ -24,6 +23,7 @@ from mkt.regions.middleware import RegionMiddleware
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.tags.models import AddonTag, Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
@@ -953,7 +953,7 @@ class TestRocketbarView(ESTestCase):
         self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         # Add 2 installed records so this app is boosted higher than app1.
         Installed.objects.create(user=self.profile, addon=self.app2)
-        Installed.objects.create(user=amo.tests.user_factory(),
+        Installed.objects.create(user=mkt.site.tests.user_factory(),
                                  addon=self.app2)
         self.app2.save()
         self.refresh('webapp')

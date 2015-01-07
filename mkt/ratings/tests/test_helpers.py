@@ -2,10 +2,10 @@ import jingo
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
+import mkt.site.tests
 
 
-class TestRatingsHelpers(amo.tests.TestCase):
+class TestRatingsHelpers(mkt.site.tests.TestCase):
     def render(self, s, context={}):
         t = jingo.env.from_string(s)
         return t.render(context)

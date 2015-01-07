@@ -2,17 +2,18 @@ from decimal import Decimal
 
 import mock
 
-import amo.tests
+import amo
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
-class PurchaseTest(amo.tests.TestCase):
+class PurchaseTest(TestCase):
     fixtures = fixture('prices', 'user_admin', 'user_999', 'webapp_337141')
 
     def setUp(self):

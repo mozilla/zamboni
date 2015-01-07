@@ -13,7 +13,7 @@ from pyquery import PyQuery as pq
 from waffle.models import Switch
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.constants.payments import (ACCESS_PURCHASE, ACCESS_SIMULATE,
                                     PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
@@ -48,7 +48,7 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
         payment_account=payment)
 
 
-class InappTest(amo.tests.TestCase):
+class InappTest(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -119,7 +119,7 @@ def render_in_app_view(request, addon_id, addon, *args, **kwargs):
     return 'The view was rendered'
 
 
-class TestRequireInAppPayments(amo.tests.TestCase):
+class TestRequireInAppPayments(mkt.site.tests.TestCase):
 
     def good_app(self):
         addon = mock.Mock(premium_type=amo.ADDON_INAPPS[0], app_slug='foo')
@@ -371,7 +371,7 @@ class TestInappKeySecret(InappKeysTest):
         eq_(res.content, secret)
 
 
-class TestPayments(Patcher, amo.tests.TestCase):
+class TestPayments(Patcher, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'group_admin',
                        'user_admin', 'user_admin_group', 'prices')
 
@@ -1093,7 +1093,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(len(pqr('#free-android-tablet')), 1)
 
 
-class TestRegions(amo.tests.TestCase):
+class TestRegions(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
                        'group_admin')
 
@@ -1131,7 +1131,7 @@ class TestRegions(amo.tests.TestCase):
         eq_(AER.objects.count(), 0)
 
 
-class PaymentsBase(amo.tests.TestCase):
+class PaymentsBase(mkt.site.tests.TestCase):
     fixtures = fixture('user_editor', 'user_999')
 
     def setUp(self):
@@ -1234,7 +1234,7 @@ class TestPaymentPortal(PaymentsBase):
         eq_(output[0]['portal-url'], '')
 
     def test_reference(self):
-        amo.tests.app_factory(app_slug=self.app_slug)
+        mkt.site.tests.app_factory(app_slug=self.app_slug)
         PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
         res = self.client.get(self.bango_url)
         eq_(res.status_code, 403)

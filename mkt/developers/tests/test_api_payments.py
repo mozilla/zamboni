@@ -11,7 +11,6 @@ from nose.tools import eq_, ok_
 from rest_framework.request import Request
 
 import amo
-from amo.tests import app_factory, TestCase
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
                                          PaymentAppViewSet)
@@ -20,6 +19,7 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.developers.tests.test_providers import Patcher
 from mkt.prices.models import AddonPremium, Price
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, TestCase
 from mkt.webapps.models import AddonUpsell, AddonUser, Webapp
 
 

@@ -3,18 +3,19 @@ from django.forms import ModelForm
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
+from mkt.site.tests import TestCase
 from mkt.translations import forms, fields
 from mkt.translations.tests.testapp.models import TranslatedModel
 
 
 class TestForm(forms.TranslationFormMixin, ModelForm):
     name = fields.TransField()
+
     class Meta:
         model = TranslatedModel
 
 
-class TestTranslationFormMixin(amo.tests.TestCase):
+class TestTranslationFormMixin(TestCase):
 
     def test_default_locale(self):
         obj = TranslatedModel()

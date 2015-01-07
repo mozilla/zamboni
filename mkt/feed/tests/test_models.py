@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 import mock
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 
 import mkt.feed.constants as feed
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
@@ -157,7 +157,7 @@ class FeedAppMixin(object):
         return feedapps
 
 
-class TestFeedApp(FeedAppMixin, amo.tests.TestCase):
+class TestFeedApp(FeedAppMixin, mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestFeedApp, self).setUp()
@@ -200,11 +200,11 @@ class TestFeedApp(FeedAppMixin, amo.tests.TestCase):
             self.test_create()
 
 
-class TestFeedBrand(amo.tests.TestCase):
+class TestFeedBrand(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestFeedBrand, self).setUp()
-        self.apps = [amo.tests.app_factory() for i in xrange(3)]
+        self.apps = [mkt.site.tests.app_factory() for i in xrange(3)]
         self.brand = None
         self.brand_data = {
             'slug': 'potato',
@@ -260,7 +260,7 @@ class TestFeedBrand(amo.tests.TestCase):
             self.brand.set_apps([99999])
 
 
-class TestESReceivers(FeedTestMixin, amo.tests.TestCase):
+class TestESReceivers(FeedTestMixin, mkt.site.tests.TestCase):
 
     @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
     def test_update_search_index(self, update_mock):
@@ -280,7 +280,7 @@ class TestESReceivers(FeedTestMixin, amo.tests.TestCase):
         eq_(delete_mock.call_count, count)
 
 
-class TestFeedShelf(FeedTestMixin, amo.tests.TestCase):
+class TestFeedShelf(FeedTestMixin, mkt.site.tests.TestCase):
 
     def test_is_published(self):
         shelf = self.feed_shelf_factory()
@@ -289,11 +289,11 @@ class TestFeedShelf(FeedTestMixin, amo.tests.TestCase):
         assert shelf.is_published
 
 
-class TestFeedCollection(FeedTestMixin, amo.tests.TestCase):
+class TestFeedCollection(FeedTestMixin, mkt.site.tests.TestCase):
 
     def test_update_apps(self):
         coll = self.feed_collection_factory()
         eq_(coll.apps().count(), 1)
-        coll.set_apps([337141, amo.tests.app_factory().id,
-                       amo.tests.app_factory().id])
+        coll.set_apps([337141, mkt.site.tests.app_factory().id,
+                       mkt.site.tests.app_factory().id])
         eq_(coll.apps().count(), 3)

@@ -10,7 +10,7 @@ from django.http import Http404, HttpRequest
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.views import endpoint_removed, ErrorViewSet
@@ -169,7 +169,7 @@ class TestCarrier(RestOAuth):
         eq_(data['id'], carrier.id)
 
 
-class TestEndpointRemoved(amo.tests.TestCase):
+class TestEndpointRemoved(mkt.site.tests.TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 

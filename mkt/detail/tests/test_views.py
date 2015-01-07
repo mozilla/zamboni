@@ -9,14 +9,14 @@ import mock
 from nose.tools import eq_
 
 import amo
-import amo.tests
+import mkt.site.tests
 
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.webapps.models import Webapp
 from mkt.site.fixtures import fixture
 
 
-class TestPackagedManifest(amo.tests.TestCase):
+class TestPackagedManifest(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'group_editor', 'user_editor',
                        'user_editor_group')
 

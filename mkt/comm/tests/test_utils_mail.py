@@ -9,15 +9,13 @@ from nose import SkipTest
 from nose.tools import eq_, ok_
 
 import amo
-from amo.tests import app_factory, TestCase
-
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
-from mkt.comm.utils_mail import (CommEmailParser, get_recipients,
-                                 save_from_email_reply)
+from mkt.comm.utils_mail import CommEmailParser, save_from_email_reply
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, TestCase, user_factory
 from mkt.users.models import UserProfile
 
 
@@ -38,15 +36,15 @@ class TestSendMailComm(TestCase, CommTestMixin):
     def setUp(self):
         self.create_switch('comm-dashboard')
 
-        self.developer = amo.tests.user_factory()
-        self.mozilla_contact = amo.tests.user_factory()
-        self.reviewer = amo.tests.user_factory()
-        self.senior_reviewer = amo.tests.user_factory()
+        self.developer = user_factory()
+        self.mozilla_contact = user_factory()
+        self.reviewer = user_factory()
+        self.senior_reviewer = user_factory()
 
         self.grant_permission(self.senior_reviewer, '*:*',
                               'Senior App Reviewers')
 
-        self.app = amo.tests.app_factory()
+        self.app = app_factory()
         self.app.addonuser_set.create(user=self.developer)
         self.app.update(mozilla_contact=self.mozilla_contact.email)
 
@@ -113,7 +111,7 @@ class TestSendMailComm(TestCase, CommTestMixin):
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
     def test_reviewer_comment(self, email):
-        another_reviewer = amo.tests.user_factory()
+        another_reviewer = user_factory()
         self._create(comm.REVIEWER_COMMENT, author=self.reviewer)
         self._create(comm.REVIEWER_COMMENT, author=another_reviewer)
         eq_(email.call_count, 3)

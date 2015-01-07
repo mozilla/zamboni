@@ -6,18 +6,15 @@ import mock
 from nose.tools import eq_
 
 import amo
-from amo.tests import app_factory
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import AppLog
-from mkt.prices.models import AddonPurchase, Refund
-from mkt.purchase.models import Contribution
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.users.models import UserProfile
+from mkt.site.tests import app_factory, TestCase
 from mkt.webapps.tasks import find_abuse_escalations
 
 
-class TestAbuseEscalationTask(amo.tests.TestCase):
+class TestAbuseEscalationTask(TestCase):
     fixtures = fixture('user_admin')
 
     def setUp(self):

@@ -5,12 +5,13 @@ from django.test.client import RequestFactory
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import amo
+from mkt.site.tests import app_factory, TestCase
 from mkt.webapps import decorators as dec
 from mkt.webapps.models import Webapp
 
 
-class TestWebappDecorators(amo.tests.TestCase):
+class TestWebappDecorators(TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.create(slug='x')
@@ -90,13 +91,13 @@ class TestWebappDecorators(amo.tests.TestCase):
         eq_(addon, app)
 
     def test_app(self):
-        app = amo.tests.app_factory(name='xxxx')
+        app = app_factory(name='xxxx')
         app.update(slug=str(app.id) + 'foo', app_slug=str(app.id))
         res = self.view(self.request, app_slug=str(app.id))
         eq_(res, mock.sentinel.OK)
 
 
-class TestPremiumDecorators(amo.tests.TestCase):
+class TestPremiumDecorators(TestCase):
 
     def setUp(self):
         self.addon = mock.Mock(pk=1)

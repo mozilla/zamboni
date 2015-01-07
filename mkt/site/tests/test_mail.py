@@ -1,5 +1,3 @@
-import re
-
 from django.conf import settings
 from django.core import mail
 from django.core.mail import EmailMessage
@@ -9,10 +7,10 @@ import mock
 from nose.tools import eq_
 
 import mkt.users.notifications
-from amo.tests import TestCase
 from mkt.site.fixtures import fixture
 from mkt.site.mail import send_mail, send_html_mail_jinja, _real_email_regexes
 from mkt.site.models import FakeEmail
+from mkt.site.tests import TestCase
 from mkt.users.models import UserNotification, UserProfile
 from mkt.zadmin.models import set_config
 

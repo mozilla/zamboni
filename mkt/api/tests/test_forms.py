@@ -5,13 +5,12 @@ from django.core.exceptions import ValidationError
 import mock
 from nose.tools import eq_, ok_
 
-import amo
-import amo.tests
+import mkt.site.tests
 from mkt.api.forms import (PreviewJSONForm, SchemeURLValidator,
                            SluggableModelChoiceField)
 
 
-class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestPreviewForm(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
     def setUp(self):
         self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
@@ -53,7 +52,7 @@ class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(form.errors['file'], ['This field is required.'])
 
 
-class TestSluggableChoiceField(amo.tests.TestCase):
+class TestSluggableChoiceField(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.fld = SluggableModelChoiceField(mock.Mock(),
@@ -76,7 +75,7 @@ class TestSluggableChoiceField(amo.tests.TestCase):
         ok_(self.fld.to_field_name is None)
 
 
-class TestSchemeURLValidator(amo.tests.TestCase):
+class TestSchemeURLValidator(mkt.site.tests.TestCase):
     ftp_url = 'ftp://my-domain.com'
     not_a_url = 'not-a-url'
 

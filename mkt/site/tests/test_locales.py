@@ -3,14 +3,14 @@ from django.utils.translation import trans_real
 import tower
 
 
-def test_amo_locale_not_in_django():
+def test_mkt_locale_not_in_django():
     """
     We load gettext catalogs in this order:
         django/locale/django.po
-        amo/locale/messages.po
+        locale/messages.po
 
     If Django doesn't have a locale, it returns the en-us catalog as a
-    fallback.  But then we take that catalog and merge in our z-messages.po.
+    fallback.  But then we take that catalog and merge in our messages.po.
     That's no good because we just mixed some other locale into en-us.
 
     This test will be invalid once Django gets an mn locale.

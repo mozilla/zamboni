@@ -2,11 +2,11 @@ from django.test.client import RequestFactory
 from nose.tools import eq_
 from tower import ugettext as _
 
-import amo.tests
+import mkt.site.tests
 from mkt.constants.platforms import FREE_PLATFORMS, PAID_PLATFORMS
 
 
-class TestPlatforms(amo.tests.TestCase):
+class TestPlatforms(mkt.site.tests.TestCase):
 
     def test_free_platforms(self):
         platforms = FREE_PLATFORMS()

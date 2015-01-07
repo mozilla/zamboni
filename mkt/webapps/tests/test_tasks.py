@@ -20,7 +20,7 @@ from nose.tools import eq_, ok_
 from requests.exceptions import RequestException
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
@@ -95,7 +95,7 @@ nhash = ('sha256:'
          '409fbe87dca5a4a7937e3dea27b69cb3a3d68caf39151585aef0c7ab46d8ee1e')
 
 
-class TestUpdateManifest(amo.tests.TestCase):
+class TestUpdateManifest(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
@@ -501,7 +501,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         ok_(_iarc.called)
 
 
-class TestDumpApps(amo.tests.TestCase):
+class TestDumpApps(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def test_dump_app(self):
@@ -528,7 +528,7 @@ class TestDumpApps(amo.tests.TestCase):
 
     def test_removed(self):
         # At least one public app must exist for dump_apps to run.
-        amo.tests.app_factory(name='second app', status=amo.STATUS_PUBLIC)
+        mkt.site.tests.app_factory(name='second app', status=amo.STATUS_PUBLIC)
         app_path = os.path.join(settings.DUMPED_APPS_PATH, 'apps', '337',
                                 '337141.json')
         app = Webapp.objects.get(pk=337141)
@@ -546,7 +546,7 @@ class TestDumpApps(amo.tests.TestCase):
         assert dump_app.called
 
 
-class TestDumpUserInstalls(amo.tests.TestCase):
+class TestDumpUserInstalls(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -586,7 +586,7 @@ class TestDumpUserInstalls(amo.tests.TestCase):
 
     def test_dump_exludes_deleted(self):
         """We can't recommend deleted apps, so don't include them."""
-        app = amo.tests.app_factory()
+        app = mkt.site.tests.app_factory()
         app.installed.create(user=self.user)
         app.delete()
 
@@ -602,7 +602,7 @@ class TestDumpUserInstalls(amo.tests.TestCase):
             self.dump_and_load()
 
 
-class TestFixMissingIcons(amo.tests.TestCase):
+class TestFixMissingIcons(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -642,7 +642,7 @@ class TestFixMissingIcons(amo.tests.TestCase):
         assert fetch_icon.called
 
 
-class TestRegenerateIconsAndThumbnails(amo.tests.TestCase):
+class TestRegenerateIconsAndThumbnails(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     @mock.patch('mkt.webapps.tasks.resize_preview.delay')
@@ -655,7 +655,7 @@ class TestRegenerateIconsAndThumbnails(amo.tests.TestCase):
 
 
 @mock.patch('mkt.webapps.tasks.requests')
-class TestPreGenAPKs(amo.tests.WebappTestCase):
+class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestPreGenAPKs, self).setUp()
@@ -688,7 +688,7 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
             pre_generate_apk.delay(self.app.id)
 
 
-class TestExportData(amo.tests.TestCase):
+class TestExportData(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -718,7 +718,7 @@ class TestExportData(amo.tests.TestCase):
             assert expected_file in actual_files, expected_file
 
 
-class AppGeneratorTests(amo.tests.TestCase):
+class AppGeneratorTests(mkt.site.tests.TestCase):
     def test_tinyset(self):
         size = 4
         data = list(generate_app_data(size))
@@ -763,7 +763,7 @@ class AppGeneratorTests(amo.tests.TestCase):
             len(fake_app_names))
 
 
-class TestFixExcludedRegions(amo.tests.TestCase):
+class TestFixExcludedRegions(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

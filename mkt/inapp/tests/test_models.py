@@ -1,9 +1,9 @@
 from django.db.models import ProtectedError
 
-from amo.tests import TestCase
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import Price
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 
 
 class TestInappProduct(TestCase):

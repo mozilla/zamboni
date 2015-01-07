@@ -12,7 +12,7 @@ from django.utils.functional import lazy
 
 import jinja2
 import multidb
-from amo.tests import TestCase
+from mkt.site.tests import TestCase
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, ok_

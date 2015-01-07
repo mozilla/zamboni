@@ -3,7 +3,7 @@ from django.test.client import RequestFactory
 
 from nose.tools import eq_, ok_
 
-from amo.tests import app_factory, TestCase
+from mkt.site.tests import app_factory, TestCase
 from mkt.versions.models import Version
 from mkt.versions.serializers import VersionSerializer
 

@@ -6,15 +6,15 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
-from amo.tests import formset
+import mkt.site.tests
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
+from mkt.site.tests import formset
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
 
-class TestOwnership(amo.tests.TestCase):
+class TestOwnership(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -131,7 +131,7 @@ class TestEditAuthor(TestOwnership):
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
 
         eq_(user.comm_thread_cc.count(), 0)
 
@@ -163,7 +163,7 @@ class TestEditAuthor(TestOwnership):
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
-        r = self.client.post(self.url, data)
+        self.client.post(self.url, data)
 
         eq_(user.comm_thread_cc.count(), 0)
 
@@ -232,7 +232,7 @@ class TestEditAuthor(TestOwnership):
                                        role_str)
 
 
-class TestEditWebappAuthors(amo.tests.TestCase):
+class TestEditWebappAuthors(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin',
                        'user_admin_group', 'group_admin')
 
@@ -260,7 +260,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
         eq_(set(owners), set([31337, 999]))
 
 
-class TestDeveloperRoleAccess(amo.tests.TestCase):
+class TestDeveloperRoleAccess(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):

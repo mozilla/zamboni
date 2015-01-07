@@ -5,12 +5,12 @@ from mock import Mock
 from nose.tools import eq_, ok_
 from rest_framework.permissions import AllowAny, BasePermission
 
-from amo.tests import TestCase
 from mkt.api.authorization import (AllowAppOwner, AllowAuthor, AllowNone,
                                    AllowOwner, AllowReadOnlyIfPublic,
                                    AllowRelatedAppOwner, AllowSelf, AnyOf,
                                    ByHttpMethod, flag, GroupPermission, switch)
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 

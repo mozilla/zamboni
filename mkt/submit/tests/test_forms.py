@@ -7,7 +7,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.comm.models import CommunicationNote
 from mkt.constants.features import APP_FEATURES
 from mkt.developers.models import AppLog
@@ -19,7 +19,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import AppFeatures, Webapp
 
 
-class TestNewWebappForm(amo.tests.TestCase):
+class TestNewWebappForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = RequestFactory().get('/')
@@ -124,7 +124,7 @@ class TestNewWebappForm(amo.tests.TestCase):
             assert form.is_packaged()
 
 
-class TestNewWebappVersionForm(amo.tests.TestCase):
+class TestNewWebappVersionForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = RequestFactory().get('/')
@@ -149,7 +149,7 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
     def test_verify_app_domain_exclude_same(self):
-        app = amo.tests.app_factory(app_domain='app://hy.fr')
+        app = mkt.site.tests.app_factory(app_domain='app://hy.fr')
         form = forms.NewWebappVersionForm(
             {'upload': self.file.uuid}, request=self.request, is_packaged=True,
             addon=app)
@@ -158,8 +158,8 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
     def test_verify_app_domain_exclude_different(self):
-        app = amo.tests.app_factory(app_domain='app://yo.lo')
-        amo.tests.app_factory(app_domain='app://hy.fr')
+        app = mkt.site.tests.app_factory(app_domain='app://yo.lo')
+        mkt.site.tests.app_factory(app_domain='app://hy.fr')
         form = forms.NewWebappVersionForm(
             {'upload': self.file.uuid}, request=self.request, is_packaged=True,
             addon=app)
@@ -168,7 +168,7 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
                 'only one app per domain is allowed.' in form.errors['upload'])
 
 
-class TestAppDetailsBasicForm(amo.tests.TestCase):
+class TestAppDetailsBasicForm(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
@@ -272,7 +272,7 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         eq_(app.is_offline, False)
 
 
-class TestAppFeaturesForm(amo.tests.TestCase):
+class TestAppFeaturesForm(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):

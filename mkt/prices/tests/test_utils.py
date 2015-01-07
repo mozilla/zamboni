@@ -2,10 +2,9 @@ from StringIO import StringIO
 
 from nose.tools import eq_
 
-import amo.tests
-
 from mkt.prices.models import Price, PriceCurrency
 from mkt.prices.utils import update, update_from_csv
+from mkt.site.tests import TestCase
 
 tiers = [
     {'USD': '0.99', 'BRL': '1.99'},
@@ -17,7 +16,8 @@ tiers = [
 
 csv = StringIO("""USD\tCAD\tBRL\n0.99\t1.99\t1.00""")
 
-class TestUpdate(amo.tests.TestCase):
+
+class TestUpdate(TestCase):
 
     def setUp(self):
         self.tier = Price.objects.create(name='1', price='0.99')
