@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-07 22:50+0000\n"
+"PO-Revision-Date: 2015-01-07 22:51+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420671010.0\n"
+"X-POOTLE-MTIME: 1420671098.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -111,7 +111,7 @@ msgstr "{addon} {version} fick preliminär granskning."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr "Preliminärt godkänd."
+msgstr "Preliminärt godkänd"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
@@ -567,7 +567,7 @@ msgstr "Anteckningens huvuddel är tom."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr "Ogiltig anteckningstyp"
+msgstr "Ogiltig anteckningstyp."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
@@ -3735,11 +3735,11 @@ msgstr "Läs om enheter med mindre minne."
 
 #: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr "Visa inte min app på enheter med mindre minne."
+msgstr "Visa inte min app på enheter med mindre minne"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr "Begär en granskning för enheter med mindre minne."
+msgstr "Begär en granskning för enheter med mindre minne"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
@@ -4302,11 +4302,11 @@ msgstr "Återuppta"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr "Ta bort detta tillägg"
+msgstr "Ta bort detta tillägg."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr "Redigera detaljer om detta tilläggs listning"
+msgstr "Redigera detaljer om detta tilläggs listning."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
@@ -4359,7 +4359,7 @@ msgstr "Ta bort denna app."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
-msgstr "Redigera detaljer om denna apps listning"
+msgstr "Redigera detaljer om denna apps listning."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
@@ -4955,7 +4955,9 @@ msgstr "Skapa ett namn för detta konto."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr "Alfanumeriskt-ID visas under tjänstnamn på Boku:s hemsida. Läs mer på <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku:s webbplats</a>"
+msgstr ""
+"Alfanumeriskt-ID visas under tjänstnamn på Boku:s hemsida. Läs mer på <a "
+"href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku:s webbplats</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -5678,7 +5680,7 @@ msgstr "Återbetalning för denna transaktion är godkänd."
 
 #: mkt/lookup/views.py:226
 msgid "Refund request for this transaction failed."
-msgstr "Begäran om återbetalning för transaktionen misslyckades"
+msgstr "Begäran om återbetalning för transaktionen misslyckades."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -7812,7 +7814,7 @@ msgstr "Läs hur du överför ditt konto"
 
 #: templates/base.html:125
 msgid "It's easy."
-msgstr "Det är enkelt"
+msgstr "Det är enkelt."
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
