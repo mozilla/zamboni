@@ -46,6 +46,8 @@ REDIS_BACKENDS = {
     'slave': REDIS_BACKENDS_SLAVE,
 }
 
+CACHE_MACHINE_ENABLED = True
+
 ## Celery
 
 BROKER_URL = private_mkt.BROKER_URL

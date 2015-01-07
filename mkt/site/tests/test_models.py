@@ -1,11 +1,12 @@
+from django.conf import settings
+
 import multidb.pinning
 from mock import Mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from mkt.site import models
 from amo.tests import app_factory, TestCase
-from mkt.site import models as context
 from mkt.site.models import manual_order
 from mkt.webapps.models import Webapp
 
@@ -23,22 +24,25 @@ def test_ordering():
 
 
 def test_skip_cache():
-    eq_(getattr(context._locals, 'skip_cache', False), False)
-    with context.skip_cache():
-        eq_(context._locals.skip_cache, True)
-        with context.skip_cache():
-            eq_(context._locals.skip_cache, True)
-        eq_(context._locals.skip_cache, True)
-    eq_(context._locals.skip_cache, False)
+    ok_(hasattr(models._locals, 'skip_cache'))
+    eq_(getattr(models._locals, 'skip_cache'),
+        not settings.CACHE_MACHINE_ENABLED)
+    models._locals.skip_cache = False
+    with models.skip_cache():
+        eq_(models._locals.skip_cache, True)
+        with models.skip_cache():
+            eq_(models._locals.skip_cache, True)
+        eq_(models._locals.skip_cache, True)
+    eq_(models._locals.skip_cache, False)
 
 
 def test_use_master():
     multidb.pinning.unpin_this_thread()
-    local = context.multidb.pinning._locals
+    local = models.multidb.pinning._locals
     eq_(getattr(local, 'pinned', False), False)
-    with context.use_master():
+    with models.use_master():
         eq_(local.pinned, True)
-        with context.use_master():
+        with models.use_master():
             eq_(local.pinned, True)
         eq_(local.pinned, True)
     eq_(local.pinned, False)

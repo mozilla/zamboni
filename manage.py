@@ -6,10 +6,11 @@ import sys
 
 from django.core.management import execute_from_command_line
 
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mkt.settings')
-if len(sys.argv) > 1 and sys.argv[1] == 'test':
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
+if not 'DJANGO_SETTINGS_MODULE' in os.environ:
+    if len(sys.argv) > 1 and sys.argv[1] == 'test':
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mkt.settings')
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)

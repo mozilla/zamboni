@@ -27,9 +27,9 @@ MEDIA_URL = STATIC_URL + 'media/'
 
 CACHE_PREFIX = 'stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
-
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
+CACHE_MACHINE_ENABLED = False
 
 LOG_LEVEL = logging.DEBUG
 # The django statsd client to use, see django-statsd for more.
