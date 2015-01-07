@@ -57,7 +57,7 @@ CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 
 # Tags are only available to admins. They are free-form, and we expose them in
 # the API, but they are not supposed to be manipulated by users atm, so we only
-# allow to search for specific, whitelisted ones.
+# allow to search for specific, allowed ones.
 TAG_CHOICES = [
     ('tarako', 'tarako'),
 ]

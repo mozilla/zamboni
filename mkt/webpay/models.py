@@ -27,7 +27,7 @@ class ProductIcon(ModelBase):
     def _base_path(self):
         ext = self.format.lower()
         if ext == 'jpeg':
-            # The CDN only whitelists this extension.
+            # The CDN only allows this extension.
             ext = 'jpg'
         # This creates an intermediate directory to avoid too-many-links
         # errors on Linux, etc

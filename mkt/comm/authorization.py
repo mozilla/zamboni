@@ -67,7 +67,7 @@ class AttachmentPermission(NotePermission):
 
 
 class EmailCreationPermission(object):
-    """Permit if client's IP address is whitelisted."""
+    """Permit if client's IP address is allowed."""
 
     def has_permission(self, request, view):
         auth_token = request.META.get('HTTP_POSTFIX_AUTH_TOKEN')
@@ -76,4 +76,4 @@ class EmailCreationPermission(object):
 
         remote_ip = request.META.get('REMOTE_ADDR')
         return remote_ip and (
-            remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
+            remote_ip in settings.ALLOWED_CLIENTS_EMAIL_API)

@@ -634,26 +634,31 @@ def _get_trending(app_id):
     """
     Calculate trending for app for all regions and per region.
 
-    a = installs from 7 days ago to today
-    b = installs from 28 days ago to 8 days ago, averaged per week
+    a = installs from 8 days ago to 1 day ago
+    b = installs from 29 days ago to 9 days ago, averaged per week
     trending = (a - b) / b if a > 100 and b > 1 else 0
 
     Returns value in the format of::
 
-        {<region_slug>: <trending score>, ...}
-
-    where a `region_slug` of 'all' is all regions.
+        {'all': <global trending score>,
+         <region_slug>: <regional trending score>,
+         ...}
 
     """
+    # How many app installs are required in the prior week to be considered
+    # "trending". Adjust this as total Marketplace app installs increases.
+    #
+    # Note: AMO uses 1000.0 for add-ons.
+    PRIOR_WEEK_INSTALL_THRESHOLD = 100.0
+
     client = get_monolith_client()
-    today = datetime.date.today()
 
     week1 = {
         'filter': {
             'range': {
                 'date': {
-                    'gte': days_ago(7).date().isoformat(),
-                    'lte': today.isoformat()
+                    'gte': days_ago(8).date().isoformat(),
+                    'lte': days_ago(1).date().isoformat()
                 }
             }
         },
@@ -669,8 +674,8 @@ def _get_trending(app_id):
         'filter': {
             'range': {
                 'date': {
-                    'gte': days_ago(28).date().isoformat(),
-                    'lte': days_ago(8).date().isoformat()
+                    'gte': days_ago(29).date().isoformat(),
+                    'lte': days_ago(9).date().isoformat()
                 }
             }
         },
@@ -715,10 +720,14 @@ def _get_trending(app_id):
         return {}
 
     def _score(week1, week3):
+        # If last week app installs are < 100, this app isn't trending.
+        if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
+            return 0.0
+
         score = 0.0
-        if week3 > 1:
+        if week3 > 1.0:
             score = (week1 - week3) / week3
-        if score <= 0:
+        if score < 0.0:
             score = 0.0
         return score
 
@@ -726,10 +735,11 @@ def _get_trending(app_id):
     week1 = res['aggregations']['week1']['total_installs']['value']
     week3 = res['aggregations']['week3']['total_installs']['value'] / 3.0
 
-    if week1 < 100.0:
+    if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
         # If global installs over the last week aren't over 100, we
-        # short-circuit and return zero as this is not a trending app by
-        # definition.
+        # short-circuit and return a zero-like value as this is not a trending
+        # app by definition. Since global installs aren't above 100, per-region
+        # installs won't be either.
         return {}
 
     results = {
@@ -740,7 +750,7 @@ def _get_trending(app_id):
         for regional_res in res['aggregations']['region']['buckets']:
             region_slug = regional_res['key']
             week1 = regional_res['week1']['total_installs']['value']
-            week3 = regional_res['week1']['total_installs']['value'] / 3.0
+            week3 = regional_res['week3']['total_installs']['value'] / 3.0
             results[region_slug] = _score(week1, week3)
 
     return results

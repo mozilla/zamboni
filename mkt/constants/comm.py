@@ -92,7 +92,7 @@ REVIEWER_NOTE_TYPES = (
 )
 
 # Note types that can be created through the API view.
-API_NOTE_TYPE_WHITELIST = (
+API_NOTE_TYPE_ALLOWED = (
     NO_ACTION,
     REVIEWER_COMMENT,
     DEVELOPER_COMMENT,

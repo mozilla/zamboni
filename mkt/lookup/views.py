@@ -147,7 +147,7 @@ def _transaction_summary(tx_uuid):
         'contrib': contrib,
         'related': contrib.related,
         'type': amo.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
-        # Whitelist what is refundable.
+        # Filter what is refundable.
         'is_refundable': ((contrib.type == amo.CONTRIB_PURCHASE)
                           and not refund_contrib),
     }

@@ -175,10 +175,10 @@ RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
 
-NEWRELIC_WHITELIST = ['dev1.addons.phx1.mozilla.com',
-                      'dev2.addons.phx1.mozilla.com']
+NEWRELIC_ENABLED_LIST = ['dev1.addons.phx1.mozilla.com',
+                         'dev2.addons.phx1.mozilla.com']
 
-NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
+NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_ENABLED_LIST
 
 AES_KEYS = private.AES_KEYS
 
