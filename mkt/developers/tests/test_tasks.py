@@ -3,6 +3,7 @@ import json
 import os
 import shutil
 import socket
+import subprocess
 import tempfile
 from contextlib import contextmanager
 from cStringIO import StringIO
@@ -15,7 +16,7 @@ from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_, ok_
-from PIL import Image, ImageChops
+from PIL import Image
 from requests import RequestException
 
 import amo
@@ -112,37 +113,43 @@ class TestPngcrushImage(amo.tests.TestCase):
                                                delete=False)
         shutil.copyfile(img, self.src.name)
 
+        patcher = mock.patch('subprocess.Popen')
+        self.mock_popen = patcher.start()
+        attrs = {
+            'returncode': 0,
+            'communicate.return_value': ('ouput', 'error')
+        }
+        self.mock_popen.return_value.configure_mock(**attrs)
+        self.addCleanup(patcher.stop)
+
     def tearDown(self):
         os.remove(self.src.name)
 
-    def test_pngcrush_image_is_optimized(self):
-        src_crushed = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                                  delete=False)
-        shutil.copyfile(self.src.name, src_crushed.name)
+    @mock.patch('shutil.move')
+    def test_pngcrush_image_is_called(self, mock_move):
+        name = self.src.name
+        expected_suffix = '.opti.png'
+        expected_cmd = ['pngcrush', '-q', '-rem', 'alla', '-brute', '-reduce',
+                        '-e', expected_suffix, name]
 
-        rval = tasks.pngcrush_image(src_crushed.name)
-        ok_(rval)
+        rval = tasks.pngcrush_image(name)
+        self.mock_popen.assert_called_once_with(
+            expected_cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE)
+        mock_move.assert_called_once_with(
+            '%s%s' % (os.path.splitext(name)[0], expected_suffix), name)
+        eq_(rval, {'image_hash': 'bb362450'})
 
-        crushed_size = os.path.getsize(src_crushed.name)
-        orig_size = os.path.getsize(self.src.name)
-        assert crushed_size < orig_size
-
-        orig_image = Image.open(self.src.name)
-        crushed_image = Image.open(src_crushed.name)
-        eq_(ImageChops.difference(crushed_image, orig_image).getbbox(), None)
-        os.remove(src_crushed.name)
-
-    def test_set_modified(self):
+    @mock.patch('shutil.move')
+    def test_set_modified(self, mock_move):
         """Test passed instance is updated with the hash."""
-        src_crushed = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                                  delete=False)
-        shutil.copyfile(self.src.name, src_crushed.name)
+        name = self.src.name
 
         instance_mock = mock.Mock()
         update_mock = mock.Mock()
         instance_mock.update = update_mock
 
-        ret = tasks.pngcrush_image(src_crushed.name, 'some_hash',
+        ret = tasks.pngcrush_image(name, 'some_hash',
                                    set_modified_on=[instance_mock])
         ok_('some_hash' in ret)
         eq_(update_mock.call_args_list[0][1]['some_hash'], ret['some_hash'])
