@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-07 14:49+0000\n"
+"PO-Revision-Date: 2015-01-07 15:51+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420642167.0\n"
+"X-POOTLE-MTIME: 1420645910.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5269,14 +5269,23 @@ msgid ""
 "results on our servers where they will be reviewed by interested phone "
 "operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Móžeće swoje nałoženje zapodać, zo by so wot telefonowych poskićowarjow za "
+"<strong>předinstalaciju a dodawanje z gratami Firefox OS</strong> "
+"wobkedźbowało. Zo byšće so za předinstalaciju přizjewił, móžeće deleka "
+"testowu předłohu sćahnyć, swoje nałoženje testować, předłohu wupjelnić a "
+"swoje wuslědki přez <a href=\"%(submit_url)s\">zapodawanski formular za "
+"předinstalaciju nałoženja</a> wróćo k nam nahrać. Składujemy waše testowe "
+"wuslědki na swojich serwerach, hdźež so wot zajimowanych telefonowych "
+"poskićowarjow přepruwuja. Jeli maće dalše prašenja, móžeće e-mejlku na %"
+"(email)s pósłać."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Wuměnjenja za předinstalaciju nałoženjow"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Moje nałoženje pohódnoćić dać"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
@@ -5312,7 +5321,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "Sće swoje nałoženje hižo pohódnoćić dał?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid ""
@@ -5322,7 +5331,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "Zapodawanski ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid ""
@@ -5332,7 +5341,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "Wěstotny kod"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid ""
@@ -5383,20 +5392,20 @@ msgstr "Dowoleny HTML: {0}"
 
 #: mkt/developers/templates/developers/includes/macros.html:9
 msgid "Some HTML supported."
-msgstr ""
+msgstr "HTML so dźělnje podpěruje."
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
-msgstr ""
+msgstr "Tute nałoženje wotstronić"
 
 #: mkt/developers/templates/developers/includes/macros.html:67
 #: mkt/developers/templates/developers/includes/macros.html:81
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "Wubjerće jednu kategoriju abo dwě kategoriji."
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr ""
+msgstr "Kategorije"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -5527,7 +5536,7 @@ msgstr "Produkty w nałoženju konfigurować"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Zmóžnić"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid ""
@@ -5609,7 +5618,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:120
 #: mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr ""
+msgstr "Płaćenske konta"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid ""
@@ -5619,7 +5628,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
-msgstr ""
+msgstr "Kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:160
 msgid "Add, manage or view transactions for your payment accounts"
@@ -5635,7 +5644,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "A server error occurred. Please try again later."
-msgstr ""
+msgstr "Serwerowy zmylk je wustupił. Prošu spytajće pozdźišo hišće raz."
 
 #: mkt/developers/templates/developers/payments/premium.html:202
 msgid "Not applicable"
@@ -5673,7 +5682,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Other regions"
-msgstr ""
+msgstr "Druhe regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:246
 msgid ""
@@ -5684,7 +5693,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:268
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Regiony a lisćinowe zapiski"
 
 #: mkt/developers/templates/developers/payments/premium.html:283
 msgid "Promote as upgrade to free version"
@@ -5703,15 +5712,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:307
 msgid "No free apps"
-msgstr ""
+msgstr "Žane darmotne nałoženja"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "Wužiwanske wuměnjenja"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
-msgstr ""
+msgstr "Do wuměnjenjow zwolić"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
@@ -5730,11 +5739,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Konto {provider} přidać"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
-msgstr ""
+msgstr "Wužiwanske wuměnjenja akceptować"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
