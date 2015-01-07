@@ -118,7 +118,7 @@ class Price(ModelBase):
         # however we might need to think about this for the long term.
         provider = (provider or
                     ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider)
-        if not hasattr(self, '_currencies'):
+        if not hasattr(Price, '_currencies'):
             Price.transformer([])
 
         lookup = price_key({
