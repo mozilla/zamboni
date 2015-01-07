@@ -3,11 +3,11 @@ from django.core.management import call_command
 import mock
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 from mkt.commonplace.models import DeployBuildId
 
 
-class TestSetBuildId(amo.tests.TestCase):
+class TestSetBuildId(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.commonplace.management.commands.deploy_build_id.storage')
     def test_initial(self, storage_mock):

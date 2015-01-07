@@ -3,7 +3,7 @@ from django.utils import translation
 
 from nose.tools import eq_
 
-from amo.tests import TestCase
+from mkt.site.tests import TestCase
 from mkt.translations.models import Translation
 from mkt.translations.utils import (find_language, no_translation, to_language,
                                     transfield_changed, truncate,
@@ -24,7 +24,7 @@ class TranslationUtilsTests(TestCase):
         eq_(truncate(s, 100), s)
         eq_(truncate(s, 6), '<p>one</p><ol><li>two...</li></ol>')
         eq_(truncate(s, 5, True), '<p>one</p><ol><li>tw...</li></ol>')
-        eq_(truncate(s, 11), 
+        eq_(truncate(s, 11),
             '<p>one</p><ol><li>two</li><li>three...</li></ol>')
         eq_(truncate(s, 15),
             '<p>one</p><ol><li>two</li><li>three</li></ol>four...')

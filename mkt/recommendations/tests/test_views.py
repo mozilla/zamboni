@@ -8,9 +8,10 @@ from mock import patch
 from nose.tools import eq_, ok_
 from requests.exceptions import RequestException, Timeout
 
-import amo.tests
+import amo
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, ESTestCase
 from mkt.webapps.models import Webapp
 
 
@@ -21,7 +22,7 @@ class Response(requests.Response):
         self._content = content
 
 
-class TestRecommendationView(RestOAuth, amo.tests.ESTestCase):
+class TestRecommendationView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -79,7 +80,7 @@ class TestRecommendationView(RestOAuth, amo.tests.ESTestCase):
 
 @override_settings(RECOMMENDATIONS_API_URL='http://hy.fr',
                    RECOMMENDATIONS_ENABLED=True)
-class TestRecommendationViewMocked(RestOAuth, amo.tests.ESTestCase):
+class TestRecommendationViewMocked(RestOAuth, ESTestCase):
     """
     This test creates 2 apps and mocks the recommenation API to always return
     those two apps.
@@ -98,7 +99,7 @@ class TestRecommendationViewMocked(RestOAuth, amo.tests.ESTestCase):
         self.patched_requests.patcher = self.requests_patcher
         self.addCleanup(self.requests_patcher.stop)
 
-        self.apps = [amo.tests.app_factory() for i in range(2)]
+        self.apps = [app_factory() for i in range(2)]
         resp_value = json.dumps({
             'user': self.profile.recommendation_hash,
             'recommendations': [a.pk for a in self.apps],

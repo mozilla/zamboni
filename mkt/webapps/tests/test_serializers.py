@@ -10,7 +10,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.constants import ratingsbodies, regions
 from mkt.constants.payments import PROVIDER_REFERENCE
@@ -27,11 +27,11 @@ from mkt.webapps.serializers import (AppSerializer, ESAppSerializer,
                                      SimpleESAppSerializer)
 
 
-class TestAppSerializer(amo.tests.TestCase):
+class TestAppSerializer(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = amo.tests.app_factory(version_kw={'version': '1.8'})
+        self.app = mkt.site.tests.app_factory(version_kw={'version': '1.8'})
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
 
@@ -205,7 +205,7 @@ class TestAppSerializer(amo.tests.TestCase):
 
     def test_upsell(self):
         self.request.REGION = mkt.regions.US
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
@@ -219,7 +219,7 @@ class TestAppSerializer(amo.tests.TestCase):
 
     def test_upsell_not_public(self):
         self.request.REGION = mkt.regions.US
-        upsell = amo.tests.app_factory(disabled_by_user=True)
+        upsell = mkt.site.tests.app_factory(disabled_by_user=True)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
@@ -228,7 +228,7 @@ class TestAppSerializer(amo.tests.TestCase):
 
     def test_upsell_excluded_from_region(self):
         self.request.REGION = mkt.regions.US
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         upsell.addonexcludedregion.create(region=mkt.regions.US.id)
@@ -237,7 +237,7 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(res['upsell'], False)
 
     def test_upsell_region_without_payments(self):
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
@@ -248,11 +248,11 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(res['upsell'], False)
 
 
-class TestAppSerializerPrices(amo.tests.TestCase):
+class TestAppSerializerPrices(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = amo.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
+        self.app = mkt.site.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
         self.create_flag('override-app-purchase', everyone=True)
         self.request = RequestFactory().get('/')
@@ -322,7 +322,7 @@ class TestAppSerializerPrices(amo.tests.TestCase):
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
-class TestESAppSerializer(amo.tests.ESTestCase):
+class TestESAppSerializer(mkt.site.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -592,7 +592,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         eq_(res['release_notes'], unicode(version.releasenotes))
 
     def test_upsell(self):
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -606,7 +606,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
                                '/apps/app/%s/' % upsell.id)
 
     def test_upsell_not_public(self):
-        upsell = amo.tests.app_factory(disabled_by_user=True)
+        upsell = mkt.site.tests.app_factory(disabled_by_user=True)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -615,7 +615,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         eq_(res['upsell'], False)
 
     def test_upsell_is_made_public_later(self):
-        upsell = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        upsell = mkt.site.tests.app_factory(status=amo.STATUS_PENDING)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
@@ -636,7 +636,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
                                '/apps/app/%s/' % upsell.id)
 
     def test_upsell_excluded_from_region(self):
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         upsell.addonexcludedregion.create(region=mkt.regions.US.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
@@ -646,7 +646,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         eq_(res['upsell'], False)
 
     def test_upsell_region_without_payments(self):
-        upsell = amo.tests.app_factory()
+        upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -674,7 +674,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         eq_(res.data['group'], {'en-US': 'My Group'})
 
 
-class TestSimpleESAppSerializer(amo.tests.ESTestCase):
+class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

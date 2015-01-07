@@ -4,12 +4,12 @@ from datetime import datetime
 from nose.tools import eq_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
-class LogTest(amo.tests.TestCase):
+class LogTest(mkt.site.tests.TestCase):
     def setUp(self):
         u = UserProfile.objects.create(username='foo')
         amo.set_user(u)

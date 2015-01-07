@@ -9,10 +9,12 @@ from mock import patch
 from nose.tools import eq_, ok_
 from PIL import Image, ImageChops
 
-import amo.tests
+import amo
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
+from mkt.site.tests import MktPaths
+from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
@@ -89,7 +91,7 @@ class TestAddValidationHandler(ValidationHandler):
         eq_(obj.user, None)
 
 
-class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
+class TestPackagedValidation(MktPaths, ValidationHandler):
 
     def setUp(self):
         super(TestPackagedValidation, self).setUp()
@@ -209,7 +211,7 @@ class TestGetValidationHandler(ValidationHandler):
         eq_(data['valid'], False)
 
 
-class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
+class TestAppStatusHandler(RestOAuth, MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -357,7 +359,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
 
 
-class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
+class TestPreviewHandler(RestOAuth, MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -365,7 +367,7 @@ class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(user=self.user, addon=self.app)
-        self.file = base64.b64encode(open(self.preview_image(), 'r').read())
+        self.file = base64.b64encode(open(get_image_path('preview.jpg'), 'r').read())
         self.list_url = reverse('app-preview',
                                 kwargs={'pk': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},
@@ -451,7 +453,7 @@ class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(res.status_code, 404)
 
 
-class TestIconUpdate(RestOAuth, amo.tests.AMOPaths):
+class TestIconUpdate(RestOAuth, MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):

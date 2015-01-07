@@ -1,11 +1,11 @@
-import amo.tests
+import mkt.site.tests
 from mkt.features.serializers import AppFeaturesSerializer
 
 
-class TestAppFeaturesSerializer(amo.tests.TestCase):
+class TestAppFeaturesSerializer(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = mkt.site.tests.app_factory()
         self.serializer = AppFeaturesSerializer()
 
     def _test_features(self, true_features):

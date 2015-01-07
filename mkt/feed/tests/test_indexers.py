@@ -1,6 +1,6 @@
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 
 import mkt.carriers
 import mkt.feed.constants as feed
@@ -31,7 +31,7 @@ class BaseFeedIndexerTest(object):
 
 
 class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
-                         amo.tests.TestCase):
+                         mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -66,7 +66,7 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
 
 class TestFeedBrandIndexer(FeedTestMixin, BaseFeedIndexerTest,
-                           amo.tests.TestCase):
+                           mkt.site.tests.TestCase):
 
     def setUp(self):
         self.obj = self.feed_brand_factory()
@@ -84,10 +84,10 @@ class TestFeedBrandIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
 
 class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
-                                amo.tests.TestCase):
+                                mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app_ids = [amo.tests.app_factory().id for app in range(3)]
+        self.app_ids = [mkt.site.tests.app_factory().id for app in range(3)]
         self.obj = self.feed_collection_factory(
             app_ids=self.app_ids, name=self._get_test_l10n(),
             description=self._get_test_l10n(), image_hash='LOL',
@@ -117,10 +117,10 @@ class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
 
 class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
-                           amo.tests.TestCase):
+                           mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app_ids = [amo.tests.app_factory().id for app in range(3)]
+        self.app_ids = [mkt.site.tests.app_factory().id for app in range(3)]
         self.obj = self.feed_shelf_factory(
             app_ids=self.app_ids, name=self._get_test_l10n(),
             description=self._get_test_l10n(), image_hash='LOL',
@@ -153,7 +153,7 @@ class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
 
 class TestFeedItemIndexer(FeedTestMixin, BaseFeedIndexerTest,
-                          amo.tests.TestCase):
+                          mkt.site.tests.TestCase):
 
     def setUp(self):
         self.obj = self.feed_item_factory(item_type=feed.FEED_TYPE_APP,

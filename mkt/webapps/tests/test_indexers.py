@@ -4,18 +4,19 @@ from django.test.utils import override_settings
 import json
 from nose.tools import eq_, ok_
 
-import amo.tests
+import amo
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.site.tests import ESTestCase, TestCase
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, ContentRating, Installed, Webapp
 
 
-class TestWebappIndexer(amo.tests.TestCase):
+class TestWebappIndexer(TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -113,7 +114,7 @@ class TestWebappIndexer(amo.tests.TestCase):
         created_date = self.days_ago(5).replace(microsecond=0)
         nomination_date = self.days_ago(3).replace(microsecond=0)
 
-        amo.tests.version_factory(addon=self.app, version='43.0',
+        mkt.site.tests.version_factory(addon=self.app, version='43.0',
                                   has_editor_comment=True,
                                   has_info_request=True,
                                   created=created_date,
@@ -240,13 +241,13 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['trending_7'], 50.0)
 
 
-class TestAppFilter(amo.tests.ESTestCase):
+class TestAppFilter(ESTestCase):
 
     def setUp(self):
         super(TestAppFilter, self).setUp()
-        self.apps = [amo.tests.app_factory() for i in range(11)]
+        self.apps = [mkt.site.tests.app_factory() for i in range(11)]
         self.app_ids = [a.id for a in self.apps]
-        self.request = amo.tests.req_factory_factory()
+        self.request = mkt.site.tests.req_factory_factory()
         self.refresh('webapp')
 
     def test_app_ids(self):

@@ -8,8 +8,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
-from amo.tests import req_factory_factory
+import mkt.site.tests
 from mkt.comm.models import CommunicationNote
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
@@ -17,13 +16,14 @@ from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
+from mkt.site.tests import req_factory_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Webapp
 
 
-class TestVersion(amo.tests.TestCase):
+class TestVersion(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'user_999', 'user_admin',
                        'user_admin_group', 'webapp_337141')
 
@@ -88,7 +88,7 @@ class TestVersion(amo.tests.TestCase):
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
-        amo.tests.make_rated(self.webapp)
+        mkt.site.tests.make_rated(self.webapp)
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))
 
@@ -127,7 +127,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_comm_thread_after_resubmission(self):
         self.webapp.update(status=amo.STATUS_REJECTED)
-        amo.tests.make_rated(self.webapp)
+        mkt.site.tests.make_rated(self.webapp)
         amo.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))
@@ -160,7 +160,7 @@ class TestVersion(amo.tests.TestCase):
 class BaseAddVersionTest(BasePackagedAppTest):
     def setUp(self):
         super(BaseAddVersionTest, self).setUp()
-        self.app = amo.tests.app_factory(
+        self.app = mkt.site.tests.app_factory(
             complete=True, is_packaged=True, app_domain='app://hy.fr',
             version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
@@ -318,7 +318,7 @@ class TestAddVersionNoPermissions(BaseAddVersionTest):
             'App in escalation queue')
 
 
-class TestVersionPackaged(amo.tests.WebappTestCase):
+class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
@@ -328,7 +328,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         self.app.update(is_packaged=True)
         self.app = self.get_app()
         # Needed for various status checking routines on fully complete apps.
-        amo.tests.make_rated(self.app)
+        mkt.site.tests.make_rated(self.app)
         if not self.app.categories:
             self.app.update(categories=['utilities'])
         self.app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
@@ -348,7 +348,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
 
     def test_version_list_packaged(self):
         self.app.update(is_packaged=True)
-        amo.tests.version_factory(addon=self.app, version='2.0',
+        mkt.site.tests.version_factory(addon=self.app, version='2.0',
                                   file_kw=dict(status=amo.STATUS_PENDING))
         self.app = self.get_app()
         doc = pq(self.client.get(self.url).content)
@@ -404,7 +404,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(self.app.versions.count(), 1)
         ver1 = self.app.latest_version
         ver1.all_files[0].update(status=amo.STATUS_APPROVED)
-        ver2 = amo.tests.version_factory(
+        ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=amo.STATUS_PUBLIC))
 
@@ -422,7 +422,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         """Test deletion of current_version when app is PUBLIC."""
         eq_(self.app.status, amo.STATUS_PUBLIC)
         ver1 = self.app.latest_version
-        ver2 = amo.tests.version_factory(
+        ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=amo.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
@@ -446,7 +446,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         """Test deletion of current_version when app is UNLISTED."""
         self.app.update(status=amo.STATUS_UNLISTED)
         ver1 = self.app.latest_version
-        ver2 = amo.tests.version_factory(
+        ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=amo.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
@@ -477,7 +477,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         """Test deletion of current_version when app is APPROVED."""
         self.app.update(status=amo.STATUS_APPROVED)
         ver1 = self.app.latest_version
-        ver2 = amo.tests.version_factory(
+        ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=amo.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
@@ -575,7 +575,7 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(app.versions.latest().files.latest().status, amo.STATUS_BLOCKED)
 
 
-class TestPreloadSubmit(amo.tests.TestCase):
+class TestPreloadSubmit(mkt.site.tests.TestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
                        'webapp_337141')
 

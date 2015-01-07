@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.lookup.forms import TransactionSearchForm, TransactionRefundForm
 
 
-class TestTransactionSearchForm(amo.tests.TestCase):
+class TestTransactionSearchForm(mkt.site.tests.TestCase):
 
     def test_basic(self):
         """Test the form doesn't crap out."""
@@ -18,7 +18,7 @@ class TestTransactionSearchForm(amo.tests.TestCase):
         eq_(form.is_valid(), valid)
 
 
-class TestTransactionRefundForm(amo.tests.TestCase):
+class TestTransactionRefundForm(mkt.site.tests.TestCase):
 
     def test_not_fake(self):
         with self.settings(BANGO_FAKE_REFUNDS=False):

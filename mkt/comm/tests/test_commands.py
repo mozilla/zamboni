@@ -3,19 +3,19 @@ from django.core.management import call_command
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
 from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.constants import comm
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, TestCase, user_factory
 from mkt.users.models import UserProfile
 
 
-class TestMigrateActivityLog(amo.tests.TestCase):
+class TestMigrateActivityLog(TestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        self.app = app_factory(status=amo.STATUS_PENDING)
         self.version = self.app.latest_version
         self.user = UserProfile.objects.get()
 
@@ -144,14 +144,14 @@ class TestMigrateActivityLog(amo.tests.TestCase):
         eq_(note_attach2.mimetype, 'txt')
 
 
-class TestMigrateApprovalNotes(amo.tests.TestCase):
+class TestMigrateApprovalNotes(TestCase):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = app_factory()
         self.version = self.app.latest_version
         self.thread = CommunicationThread.objects.create(
             _addon=self.app, _version=self.version)
-        self.user = amo.tests.user_factory()
+        self.user = user_factory()
         self.app.addonuser_set.create(user=self.user)
 
     def test_basic_migrate(self):
@@ -177,14 +177,14 @@ class TestMigrateApprovalNotes(amo.tests.TestCase):
         call_command('migrate_approval_notes')
 
 
-class TestFixDeveloperVersionNotes(amo.tests.TestCase):
+class TestFixDeveloperVersionNotes(TestCase):
 
     def setUp(self):
-        self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        self.app = app_factory(status=amo.STATUS_PENDING)
         self.version = self.app.latest_version
         self.thread = CommunicationThread.objects.create(
             _addon=self.app, _version=self.version)
-        self.user = amo.tests.user_factory()
+        self.user = user_factory()
         self.app.addonuser_set.create(user=self.user)
 
     def test_basic_fix(self):

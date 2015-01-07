@@ -8,17 +8,18 @@ from django.test.utils import override_settings
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import amo
 import mkt
 from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, TestCase
 from mkt.site.utils import urlparams
 from mkt.webapps.models import ContentRating, Geodata
 from mkt.users.models import UserProfile
 
 
-class TestAPI(amo.tests.TestCase):
+class TestAPI(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -56,10 +57,10 @@ class TestAPI(amo.tests.TestCase):
         eq_(Access.objects.filter(user=self.user).count(), 0)
 
 
-class TestContentRating(amo.tests.TestCase):
+class TestContentRating(TestCase):
 
     def setUp(self):
-        self.app = amo.tests.app_factory()
+        self.app = app_factory()
 
     def test_get_content_ratings(self):
         for body in (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.ESRB):
@@ -108,7 +109,7 @@ class TestContentRatingPingback(RestOAuth):
 
     def setUp(self):
         super(TestContentRatingPingback, self).setUp()
-        self.app = amo.tests.app_factory(status=amo.STATUS_NULL)
+        self.app = app_factory(status=amo.STATUS_NULL)
         self.url = reverse('content-ratings-pingback', args=[self.app.pk])
         self.data = {
             'ROW': {

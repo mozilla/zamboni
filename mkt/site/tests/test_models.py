@@ -6,8 +6,8 @@ from nose import SkipTest
 from nose.tools import eq_, ok_
 
 from mkt.site import models
-from amo.tests import app_factory, TestCase
 from mkt.site.models import manual_order
+from mkt.site.tests import app_factory, TestCase
 from mkt.webapps.models import Webapp
 
 

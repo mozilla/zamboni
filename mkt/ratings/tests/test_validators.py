@@ -1,10 +1,10 @@
 from django.core.exceptions import ValidationError
 
-import amo.tests
+import mkt.site.tests
 from mkt.ratings.validators import validate_rating
 
 
-class TestValidateRating(amo.tests.TestCase):
+class TestValidateRating(mkt.site.tests.TestCase):
 
     def test_valid(self):
         for value in [1, 2, 3, 4, 5]:

@@ -10,7 +10,7 @@ import waffle
 from django.conf import settings
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.site.tests.test_utils_ import get_image_path
 from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
@@ -57,7 +57,7 @@ TOTEM_INFO_HAS_AUDIO=False
 """
 
 
-class TestFFmpegVideo(amo.tests.TestCase):
+class TestFFmpegVideo(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.video = ffmpeg.Video(files['good'])
@@ -102,7 +102,7 @@ class TestFFmpegVideo(amo.tests.TestCase):
             os.remove(video)
 
 
-class TestBadFFmpegVideo(amo.tests.TestCase):
+class TestBadFFmpegVideo(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.video = ffmpeg.Video(files['bad'])
@@ -126,7 +126,7 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
                           amo.ADDON_PREVIEW_SIZES[0])
 
 
-class TestTotemVideo(amo.tests.TestCase):
+class TestTotemVideo(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.video = totem.Video(files['good'])
@@ -164,7 +164,7 @@ def test_choose(ffmpeg_, totem_):
     eq_(get_library(), None)
 
 
-class TestTask(amo.tests.TestCase):
+class TestTask(mkt.site.tests.TestCase):
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='video-encode', active=True)

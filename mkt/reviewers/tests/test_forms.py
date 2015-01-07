@@ -4,14 +4,12 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from mock import patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
-
 from mkt.comm.forms import CommAttachmentForm
+from mkt.site.tests import TestCase
 
 
 @patch.object(settings, 'MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE', 1024)
-class TestReviewAppAttachmentForm(amo.tests.TestCase):
+class TestReviewAppAttachmentForm(TestCase):
 
     def setUp(self):
         self.max_size = settings.MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE

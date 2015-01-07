@@ -13,13 +13,12 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
 import mkt
-from amo.tests import formset, initial
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
+from mkt.site.tests import formset, initial, TestCase
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -30,7 +29,7 @@ from mkt.users.notifications import app_surveys
 from mkt.webapps.models import AddonDeviceType, AddonUser, AppFeatures, Webapp
 
 
-class TestSubmit(amo.tests.TestCase):
+class TestSubmit(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -246,7 +245,7 @@ class UploadAddon(object):
         return r
 
 
-class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+class BaseWebAppTest(BaseUploadTest, UploadAddon, TestCase):
     fixtures = fixture('user_999', 'user_10482')
 
     def setUp(self):
@@ -461,7 +460,7 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         eq_(rs.status_code, 302)
 
 
-class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -1011,7 +1010,7 @@ class TestDone(TestSubmit):
         eq_(res.status_code, 200)
 
 
-class TestNextSteps(amo.tests.TestCase):
+class TestNextSteps(TestCase):
     # TODO: Delete this test suite once we deploy IARC.
     fixtures = fixture('user_999', 'webapp_337141')
 

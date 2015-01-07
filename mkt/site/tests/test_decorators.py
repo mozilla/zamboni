@@ -9,7 +9,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from amo import get_user, set_user
 from mkt.site.decorators import (login_required, json_response, json_view,
                                  permission_required, set_modified_on,
@@ -71,7 +71,7 @@ def test_write(commit_on_success):
     assert commit_on_success.called
 
 
-class TestTaskUser(amo.tests.TestCase):
+class TestTaskUser(mkt.site.tests.TestCase):
     fixtures = fixture('users')
 
     def test_set_task_user(self):
@@ -122,7 +122,7 @@ class TestLoginRequired(object):
         assert self.f.called
 
 
-class TestSetModifiedOn(amo.tests.TestCase):
+class TestSetModifiedOn(mkt.site.tests.TestCase):
     fixtures = fixture('users')
 
     @set_modified_on
@@ -147,7 +147,7 @@ class TestSetModifiedOn(amo.tests.TestCase):
             assert date < datetime.today().date()
 
 
-class TestPermissionRequired(amo.tests.TestCase):
+class TestPermissionRequired(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.f = mock.Mock()

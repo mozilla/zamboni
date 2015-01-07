@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import IARC_XML_Parser, render_xml
@@ -14,7 +14,7 @@ from lib.iarc.utils import IARC_XML_Parser, render_xml
 from mkt.constants import ratingsbodies
 
 
-class TestRenderAppInfo(amo.tests.TestCase):
+class TestRenderAppInfo(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.template = 'get_app_info.xml'
@@ -30,7 +30,7 @@ class TestRenderAppInfo(amo.tests.TestCase):
         assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
 
 
-class TestRenderSetStorefrontData(amo.tests.TestCase):
+class TestRenderSetStorefrontData(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.template = 'set_storefront_data.xml'
@@ -69,7 +69,7 @@ class TestRenderSetStorefrontData(amo.tests.TestCase):
         base64.b64encode(xml.encode('utf-8'))
 
 
-class TestRenderRatingChanges(amo.tests.TestCase):
+class TestRenderRatingChanges(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.template = 'get_rating_changes.xml'
@@ -85,7 +85,7 @@ class TestRenderRatingChanges(amo.tests.TestCase):
         assert '<FIELD NAME="date_to" VALUE="2011-02-01"' in xml
 
 
-class TestXMLParser(amo.tests.TestCase):
+class TestXMLParser(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.client = get_iarc_client('service')

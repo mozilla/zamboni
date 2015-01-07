@@ -4,16 +4,16 @@ import datetime
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import amo
 import mkt
-import mkt.constants
 from mkt.developers.cron import (_flag_rereview_adult, exclude_new_region,
                                  process_iarc_changes, send_new_region_emails)
 from mkt.developers.models import ActivityLog
+from mkt.site.tests import app_factory, TestCase, user_factory, WebappTestCase
 from mkt.webapps.models import IARCInfo, RatingDescriptors, RatingInteractives
 
 
-class TestSendNewRegionEmails(amo.tests.WebappTestCase):
+class TestSendNewRegionEmails(WebappTestCase):
 
     @mock.patch('mkt.developers.cron._region_email')
     def test_called(self, _region_email_mock):
@@ -36,7 +36,7 @@ class TestSendNewRegionEmails(amo.tests.WebappTestCase):
         eq_(list(_region_email_mock.call_args_list[0][0][0]), [])
 
 
-class TestExcludeNewRegion(amo.tests.WebappTestCase):
+class TestExcludeNewRegion(WebappTestCase):
 
     @mock.patch('mkt.developers.cron._region_exclude')
     def test_not_called_enable_new_regions_true(self, _region_exclude_mock):
@@ -58,7 +58,7 @@ class TestExcludeNewRegion(amo.tests.WebappTestCase):
         eq_(list(_region_exclude_mock.call_args_list[0][0][0]), [self.app.id])
 
 
-class TestIARCChangesCron(amo.tests.TestCase):
+class TestIARCChangesCron(TestCase):
 
     @mock.patch('lib.iarc.utils.render_xml')
     def test_no_date(self, _render):
@@ -82,8 +82,8 @@ class TestIARCChangesCron(amo.tests.TestCase):
         The mock client always returns the same data. Set up the app so it
         matches the submission ID and verify the data is saved as expected.
         """
-        amo.set_user(amo.tests.user_factory())
-        app = amo.tests.app_factory()
+        amo.set_user(user_factory())
+        app = app_factory()
         IARCInfo.objects.create(addon=app, submission_id=52,
                                 security_code='FZ32CU8')
         app.set_descriptors([
@@ -127,8 +127,8 @@ class TestIARCChangesCron(amo.tests.TestCase):
         ])
 
     def test_rereview_flag_adult(self):
-        amo.set_user(amo.tests.user_factory())
-        app = amo.tests.app_factory()
+        amo.set_user(user_factory())
+        app = app_factory()
 
         app.set_content_ratings({
             mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_E,

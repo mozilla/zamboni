@@ -1,13 +1,12 @@
 from nose.tools import eq_
 
-import amo
-import amo.tests
+from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
 
-from mkt.site.fixtures import fixture
 
-class TestAppSubmissionChecklist(amo.tests.TestCase):
+class TestAppSubmissionChecklist(TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

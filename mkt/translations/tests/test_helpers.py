@@ -5,8 +5,7 @@ import jingo
 from mock import Mock, patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
+from mkt.site.tests import TestCase
 from mkt.translations import helpers
 from mkt.translations.fields import save_signal
 from mkt.translations.models import PurifiedTranslation
@@ -90,7 +89,7 @@ def test_l10n_menu():
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
-class TestAllLocales(amo.tests.TestCase):
+class TestAllLocales(TestCase):
     def test_all_locales_none(self):
         addon = None
         field_name = 'description'

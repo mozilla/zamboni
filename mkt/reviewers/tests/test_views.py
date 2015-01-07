@@ -25,11 +25,9 @@ from pyquery import PyQuery as pq
 from requests.structures import CaseInsensitiveDict
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 import mkt.ratings
-from amo.tests import (app_factory, check_links, days_ago, formset, initial,
-                       req_factory_factory, user_factory, version_factory)
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
@@ -49,6 +47,9 @@ from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify, isotime
+from mkt.site.tests import (app_factory, check_links, days_ago, formset,
+                            initial, req_factory_factory, user_factory,
+                            version_factory)
 from mkt.site.utils import urlparams
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
@@ -91,7 +92,7 @@ class AttachmentManagementMixin(object):
         return data
 
 
-class AppReviewerTest(amo.tests.TestCase):
+class AppReviewerTest(mkt.site.tests.TestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'user_999')
 
@@ -197,7 +198,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def test_route_reviewer(self):
         # App reviewers go to apps home.
-        req = amo.tests.req_factory_factory(
+        req = mkt.site.tests.req_factory_factory(
             reverse('reviewers'),
             user=UserProfile.objects.get(username='editor'))
         r = route_reviewer(req)
@@ -580,7 +581,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         assert not doc('#addon-queue tbody tr').length
 
 
-class TestAppQueueES(amo.tests.ESTestCase, TestAppQueue):
+class TestAppQueueES(mkt.site.tests.ESTestCase, TestAppQueue):
 
     def setUp(self):
         super(TestAppQueueES, self).setUp()
@@ -783,7 +784,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestRereviewQueueES(amo.tests.ESTestCase, TestRereviewQueue):
+class TestRereviewQueueES(mkt.site.tests.ESTestCase, TestRereviewQueue):
 
     def setUp(self):
         super(TestRereviewQueueES, self).setUp()
@@ -1049,7 +1050,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             ok_(self.apps[1] in apps)
 
 
-class TestUpdateQueueES(amo.tests.ESTestCase, TestUpdateQueue):
+class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
 
     def setUp(self):
         super(TestUpdateQueueES, self).setUp()
@@ -1218,7 +1219,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
-class TestEscalationQueueES(amo.tests.ESTestCase, TestEscalationQueue):
+class TestEscalationQueueES(mkt.site.tests.ESTestCase, TestEscalationQueue):
 
     def setUp(self):
         super(TestEscalationQueueES, self).setUp()
@@ -1226,8 +1227,8 @@ class TestEscalationQueueES(amo.tests.ESTestCase, TestEscalationQueue):
         self.reindex(Webapp, 'webapp')
 
 
-class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
-                            amo.tests.MockBrowserIdMixin,
+class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixin,
+                            mkt.site.tests.MockBrowserIdMixin,
                             test.TransactionTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'webapp_337141')
@@ -1355,7 +1356,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
-        self.app = amo.tests.make_game(self.app, True)
+        self.app = mkt.site.tests.make_game(self.app, True)
         self.app.update(status=amo.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.latest_version
@@ -3424,7 +3425,7 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
 
 
-class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
+class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_editor',
                        'user_editor_group', 'group_editor')
 
@@ -3707,7 +3708,7 @@ class TestQueueSort(AppReviewerTest):
         version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[1],
                         nomination=days_ago(20))
 
-        req = amo.tests.req_factory_factory(
+        req = mkt.site.tests.req_factory_factory(
             url, user=user, data={'sort': 'nomination'})
         res = queue_apps(req)
         doc = pq(res.content)
@@ -3715,7 +3716,7 @@ class TestQueueSort(AppReviewerTest):
         eq_(doc('tbody tr')[0].get('data-addon'), str(version_1.addon.id))
         eq_(doc('tbody tr')[2].get('data-addon'), str(version_0.addon.id))
 
-        req = amo.tests.req_factory_factory(
+        req = mkt.site.tests.req_factory_factory(
             url, user=user, data={'sort': 'nomination', 'order': 'desc'})
         res = queue_apps(req)
         doc = pq(res.content)
@@ -3874,7 +3875,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         eq_(len(res.context['apps']), 2)
 
 
-class TestAttachmentDownload(amo.tests.TestCase):
+class TestAttachmentDownload(mkt.site.tests.TestCase):
     fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
                        'user_999', 'webapp_337141')
 
@@ -3976,7 +3977,7 @@ class TestLeaderboard(AppReviewerTest):
              users[0].display_name])
 
 
-class TestReviewPage(amo.tests.TestCase):
+class TestReviewPage(mkt.site.tests.TestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
@@ -4031,7 +4032,7 @@ class TestReviewTranslate(RestOAuth):
         self.login_user()
         self.create_switch('reviews-translate')
         user = UserProfile.objects.create(username='diego')
-        app = amo.tests.app_factory(slug='myapp')
+        app = mkt.site.tests.app_factory(slug='myapp')
         self.review = app.reviews.create(title=u'yes', body=u'oui',
                                          addon=app, user=user,
                                          editorreview=True, rating=4)
@@ -4089,7 +4090,7 @@ class TestReviewTranslate(RestOAuth):
         eq_(res.status_code, 400)
 
 
-class TestAdditionalReviewListingAccess(amo.tests.TestCase):
+class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -4114,7 +4115,7 @@ class TestAdditionalReviewListingAccess(amo.tests.TestCase):
         eq_(self.listing().status_code, 200)
 
 
-class TestReviewHistory(amo.tests.TestCase, CommTestMixin):
+class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):

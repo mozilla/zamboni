@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 import zipfile
 
 from django import forms
@@ -10,9 +11,9 @@ from django.core.urlresolvers import reverse
 from mock import Mock, patch
 from nose.tools import eq_
 
-import amo.tests
 from mkt.files.helpers import FileViewer, DiffHelper
 from mkt.files.utils import SafeUnzip
+from mkt.site.tests import MktPaths, TestCase
 
 
 root = os.path.join(settings.ROOT, 'mkt/files/fixtures/files')
@@ -33,7 +34,7 @@ def make_file(pk, file_path, **kwargs):
 
 # TODO: It'd be nice if these used packaged app examples but these addons still
 # flex the code so it wasn't converted.
-class TestFileHelper(amo.tests.TestCase):
+class TestFileHelper(TestCase):
 
     def setUp(self):
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
@@ -179,10 +180,10 @@ class TestFileHelper(amo.tests.TestCase):
         eq_({}, self.viewer.get_files())
 
 
-class TestDiffHelper(amo.tests.TestCase):
+class TestDiffHelper(TestCase, MktPaths):
 
     def setUp(self):
-        src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
+        src = self.packaged_app_path('signed.zip')
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
@@ -201,13 +202,13 @@ class TestDiffHelper(amo.tests.TestCase):
 
     def test_diffable(self):
         self.helper.extract()
-        self.helper.select('install.js')
+        self.helper.select('index.html')
         assert self.helper.is_diffable()
 
     def test_diffable_one_missing(self):
         self.helper.extract()
-        os.remove(os.path.join(self.helper.right.dest, 'install.js'))
-        self.helper.select('install.js')
+        os.remove(os.path.join(self.helper.right.dest, 'index.html'))
+        self.helper.select('index.html')
         assert self.helper.is_diffable()
 
     def test_diffable_allow_empty(self):
@@ -222,12 +223,12 @@ class TestDiffHelper(amo.tests.TestCase):
 
     def test_diffable_deleted_files(self):
         self.helper.extract()
-        os.remove(os.path.join(self.helper.left.dest, 'install.js'))
-        eq_('install.js' in self.helper.get_deleted_files(), True)
+        os.remove(os.path.join(self.helper.left.dest, 'index.html'))
+        eq_('index.html' in self.helper.get_deleted_files(), True)
 
     def test_diffable_one_binary_same(self):
         self.helper.extract()
-        self.helper.select('install.js')
+        self.helper.select('main.js')
         self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
 
@@ -235,7 +236,7 @@ class TestDiffHelper(amo.tests.TestCase):
         self.helper.extract()
         self.change(self.helper.left.dest, 'asd')
         cache.clear()
-        self.helper.select('install.js')
+        self.helper.select('main.js')
         self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
 
@@ -244,14 +245,14 @@ class TestDiffHelper(amo.tests.TestCase):
         self.change(self.helper.left.dest, 'asd')
         self.change(self.helper.right.dest, 'asd123')
         cache.clear()
-        self.helper.select('install.js')
+        self.helper.select('main.js')
         self.helper.left.selected['binary'] = True
         self.helper.right.selected['binary'] = True
         assert self.helper.is_binary()
 
     def test_diffable_one_directory(self):
         self.helper.extract()
-        self.helper.select('install.js')
+        self.helper.select('main.js')
         self.helper.left.selected['directory'] = True
         assert not self.helper.is_diffable()
         assert self.helper.left.selected['msg'].startswith('This file')
@@ -259,53 +260,58 @@ class TestDiffHelper(amo.tests.TestCase):
     def test_diffable_parent(self):
         self.helper.extract()
         self.change(self.helper.left.dest, 'asd',
-                    filename='__MACOSX/._dictionaries')
+                    filename='META-INF/ids.json')
         cache.clear()
         files = self.helper.get_files()
-        eq_(files['__MACOSX/._dictionaries']['diff'], True)
-        eq_(files['__MACOSX']['diff'], True)
+        eq_(files['META-INF/ids.json']['diff'], True)
+        eq_(files['META-INF']['diff'], True)
 
-    def change(self, file, text, filename='install.js'):
+    def change(self, file, text, filename='main.js'):
         path = os.path.join(file, filename)
         data = open(path, 'r').read()
         data += text
         open(path, 'w').write(data)
 
 
-class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestSafeUnzipFile(TestCase, MktPaths):
 
     # TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
-        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
+        zip = SafeUnzip(self.packaged_app_path('full-tpa.zip'))
         self.assertRaises(forms.ValidationError, zip.is_valid)
 
     def test_unzip_fatal(self):
-        zip = SafeUnzip(self.xpi_path('search.xml'))
+        zip = SafeUnzip(self.manifest_path('mozball.webapp'))
         self.assertRaises(zipfile.BadZipfile, zip.is_valid)
 
     def test_unzip_not_fatal(self):
-        zip = SafeUnzip(self.xpi_path('search.xml'))
+        zip = SafeUnzip(self.manifest_path('mozball.webapp'))
         assert not zip.is_valid(fatal=False)
 
     def test_extract_path(self):
-        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
+        zip = SafeUnzip(self.packaged_app_path('mozball.zip'))
         assert zip.is_valid()
-        assert'locale browser de' in zip.extract_path('chrome.manifest')
+        desc_string = '"description": "Exciting Open Web development action!"'
+        assert desc_string in zip.extract_path('manifest.webapp')
 
     def test_not_secure(self):
-        zip = SafeUnzip(self.xpi_path('extension'))
+        zip = SafeUnzip(self.packaged_app_path('mozball.zip'))
         zip.is_valid()
         assert not zip.is_signed()
 
     def test_is_secure(self):
-        zip = SafeUnzip(self.xpi_path('signed'))
+        zip = SafeUnzip(self.packaged_app_path('signed.zip'))
         zip.is_valid()
         assert zip.is_signed()
 
     def test_is_broken(self):
-        zip = SafeUnzip(self.xpi_path('signed'))
+        zip = SafeUnzip(self.packaged_app_path('signed.zip'))
         zip.is_valid()
-        zip.info[2].filename = 'META-INF/foo.sf'
+        sf_re = re.compile('^META\-INF/(\w+)\.sf$')
+        for info in zip.info:
+            if sf_re.match(info.filename):
+                info.filename = 'META-INF/foo.foo'
+                break
         assert not zip.is_signed()

@@ -15,7 +15,7 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
 from mkt.site.fixtures import fixture
@@ -215,7 +215,7 @@ class FilesBase(object):
                                             amo.STATUS_CHOICES_API[f.status]))
 
 
-class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
+class TestFileViewer(FilesBase, mkt.site.tests.WebappTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'user_999', 'webapp_337141')
 
@@ -357,7 +357,7 @@ class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
         eq_(len(doc('#id_right option[value][selected]')), 0)
 
 
-class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
+class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'user_999', 'webapp_337141')
 

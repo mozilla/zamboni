@@ -2,7 +2,7 @@ from django.test.client import RequestFactory
 
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.account.utils import purchase_list
 from mkt.constants import apps
 from mkt.site.fixtures import fixture
@@ -10,7 +10,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import Installed, Webapp
 
 
-class TestUtils(amo.tests.TestCase):
+class TestUtils(mkt.site.tests.TestCase):
     # TODO: add some more tests for purchase_list.
     fixtures = fixture('user_2519', 'webapp_337141')
 

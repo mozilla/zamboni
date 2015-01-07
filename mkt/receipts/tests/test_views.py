@@ -12,25 +12,25 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
 from mkt.constants import apps
 from mkt.developers.models import AppLog
 from mkt.receipts.tests.test_models import TEST_LEEWAY
 from mkt.receipts.utils import create_test_receipt
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import app_factory, MktPaths, TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 from services.verify import settings as verify_settings
 from services.verify import decode_receipt
 
 
-class TestInstall(amo.tests.TestCase):
+class TestInstall(TestCase):
     fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
                        'group_editor')
 
     def setUp(self):
-        self.addon = amo.tests.app_factory(manifest_url='http://cbc.ca/man')
+        self.addon = app_factory(manifest_url='http://cbc.ca/man')
         self.url = self.addon.get_detail_url('record')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         assert self.client.login(username=self.user.email, password='password')
@@ -165,7 +165,7 @@ class TestInstall(amo.tests.TestCase):
         assert content.get('receipt'), content
 
 
-class TestReceiptVerify(amo.tests.TestCase):
+class TestReceiptVerify(TestCase):
     fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
                        'group_editor')
 
@@ -245,7 +245,7 @@ class TestReceiptVerify(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
 
-class TestReceiptIssue(amo.tests.TestCase):
+class TestReceiptIssue(TestCase):
     fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
                        'group_editor', 'webapp_337141')
 
@@ -307,7 +307,7 @@ class TestReceiptIssue(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
 
-class TestReceiptCheck(amo.tests.TestCase):
+class TestReceiptCheck(TestCase):
     fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
                        'group_editor', 'webapp_337141')
 
@@ -349,10 +349,10 @@ class RawRequestFactory(RequestFactory):
 
 
 @mock.patch.object(verify_settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
+                   MktPaths.sample_key())
 @mock.patch.object(settings, 'SITE_URL', 'https://foo.com')
 @mock.patch.object(verify_settings, 'DOMAIN', 'foo.com')
-class TestDevhubReceipts(amo.tests.TestCase):
+class TestDevhubReceipts(TestCase):
 
     def setUp(self):
         self.issue = reverse('receipt.test.issue')

@@ -5,7 +5,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 from mkt.users.models import UserProfile
 
 import mkt
@@ -17,7 +17,7 @@ _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'pt-PT']
 
 @mock.patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
-class TestRegionMiddleware(amo.tests.TestCase):
+class TestRegionMiddleware(mkt.site.tests.TestCase):
 
     def test_lang_set_with_region(self):
         for region in ('restofworld', 'us', 'br'):

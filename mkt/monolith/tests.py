@@ -9,9 +9,9 @@ from nose.tools import eq_, ok_
 from django.core.urlresolvers import reverse
 from django.test import client
 
-from amo.tests import TestCase
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 
 from .models import MonolithRecord, record_stat
 from .views import daterange

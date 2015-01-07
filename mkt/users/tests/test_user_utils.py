@@ -4,11 +4,11 @@ from nose.tools import eq_
 
 from django.conf import settings
 
-import amo.tests
+import mkt.site.tests
 from mkt.users.utils import autocreate_username
 
 
-class TestAutoCreateUsername(amo.tests.TestCase):
+class TestAutoCreateUsername(mkt.site.tests.TestCase):
 
     def test_invalid_characters(self):
         eq_(autocreate_username('testaccount+slug'), 'testaccountslug')

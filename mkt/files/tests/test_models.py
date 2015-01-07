@@ -10,7 +10,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
@@ -19,16 +19,13 @@ from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
 
-class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
+class UploadTest(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
-    def file_path(self, *args, **kw):
-        return self.file_fixture_path(*args, **kw)
-
     def get_upload(self, filename=None, abspath=None, validation=None,
                    user=None):
-        zip = open(abspath if abspath else self.file_path(filename)).read()
+        zip = open(abspath).read()
         upload = FileUpload.from_post([zip], filename=abspath or filename,
                                       size=1234)
         # Simulate what fetch_manifest() does after uploading an app.
@@ -164,7 +161,7 @@ class TestFileFromUpload(UploadTest):
         assert f.hash.startswith('sha256:ad85d6316166d46')
 
 
-class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     """
     Tests the methods of the File model.
     """
@@ -302,7 +299,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         ok_(settings.ADDONS_PATH not in f.file_path)
 
 
-class TestSignedPath(amo.tests.TestCase):
+class TestSignedPath(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

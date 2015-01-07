@@ -8,13 +8,12 @@ from rest_framework.request import Request
 from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
 
-import amo
-from amo.tests import TestCase
 from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
                             SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.carriers import CARRIER_MAP
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, TestCase
 from mkt.translations.models import Translation
 from mkt.webapps.models import Webapp
 
@@ -308,7 +307,7 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         eq_(into, {'addon': self.app})
 
     def test_parse_as_pks_many(self):
-        app2 = amo.tests.app_factory()
+        app2 = app_factory()
         into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              many=True)
@@ -324,7 +323,7 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         eq_(into, {'app': self.app})
 
     def test_parse_as_slugs_many(self):
-        app2 = amo.tests.app_factory(app_slug='foo')
+        app2 = app_factory(app_slug='foo')
         into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              slug_field='app_slug', many=True)
@@ -333,7 +332,7 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         eq_(into, {'apps': [self.app, app2]})
 
 
-class TestSlugChoiceField(amo.tests.TestCase):
+class TestSlugChoiceField(TestCase):
     field_class = SlugChoiceField
 
     def setUp(self):

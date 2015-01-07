@@ -9,7 +9,6 @@ from multidb.pinning import this_thread_is_pinned, unpin_this_thread
 from nose.tools import eq_, ok_
 from rest_framework.request import Request
 
-from amo.tests import TestCase
 from mkt.access.models import Group, GroupUser
 from mkt.api import authentication
 from mkt.api.middleware import (APIBaseMiddleware, RestOAuthMiddleware,
@@ -18,6 +17,7 @@ from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import OAuthClient
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 
 

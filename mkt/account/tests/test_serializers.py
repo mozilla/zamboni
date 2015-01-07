@@ -2,12 +2,12 @@ import mock
 from nose.tools import eq_
 
 import amo
-import amo.tests
+import mkt.site.tests
 from mkt.account.serializers import AccountSerializer, AccountInfoSerializer
 from mkt.users.models import UserProfile
 
 
-class TestAccountSerializer(amo.tests.TestCase):
+class TestAccountSerializer(mkt.site.tests.TestCase):
     def setUp(self):
         self.account = UserProfile()
 
@@ -25,7 +25,7 @@ class TestAccountSerializer(amo.tests.TestCase):
         eq_(self.serializer().data['enable_recommendations'], False)
 
 
-class TestAccountInfoSerializer(amo.tests.TestCase):
+class TestAccountInfoSerializer(mkt.site.tests.TestCase):
     UNKNOWN = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN]
     FIREFOX_ACCOUNTS = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_FXA]
     PERSONA = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_BROWSERID]

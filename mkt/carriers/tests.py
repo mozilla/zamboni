@@ -4,7 +4,7 @@ from django.test.client import RequestFactory
 import mock
 from nose.tools import eq_
 
-from amo.tests import TestCase
+from mkt.site.tests import TestCase
 from mkt.carriers import context_processors, get_carrier, set_carrier
 from mkt.carriers.middleware import CarrierURLMiddleware
 

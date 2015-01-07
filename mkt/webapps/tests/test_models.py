@@ -27,9 +27,7 @@ from mock import patch
 from nose.tools import eq_, ok_, raises
 
 import amo
-import amo.tests
 import mkt
-from amo.tests import app_factory, version_factory
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.utils import static_url
@@ -47,7 +45,8 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.tests import DynamicBoolFieldsTestMixin
+from mkt.site.tests import (app_factory, DynamicBoolFieldsTestMixin, ESTestCase,
+                            MktPaths, TestCase, WebappTestCase, version_factory)
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -62,7 +61,7 @@ from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
 from mkt.webapps.signals import version_changed as version_changed_signal
 
 
-class TestCleanSlug(amo.tests.TestCase):
+class TestCleanSlug(TestCase):
 
     def test_clean_slug_new_object(self):
         # Make sure there's at least an addon with the "webapp" slug,
@@ -201,7 +200,7 @@ class TestCleanSlug(amo.tests.TestCase):
             Webapp.objects.create(app_slug=long_slug)
 
 
-class TestPreviewModel(amo.tests.TestCase):
+class TestPreviewModel(mkt.site.tests.TestCase):
 
     def setUp(self):
         app = Webapp.objects.create()
@@ -227,7 +226,7 @@ class TestPreviewModel(amo.tests.TestCase):
         assert 'webm' in self.preview.image_path
 
 
-class TestRemoveLocale(amo.tests.TestCase):
+class TestRemoveLocale(mkt.site.tests.TestCase):
 
     def test_remove(self):
         app = Webapp.objects.create()
@@ -251,7 +250,7 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(sorted(qs), [u'en-us'])
 
 
-class TestUpdateNames(amo.tests.TestCase):
+class TestUpdateNames(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.addon = Webapp.objects.create()
@@ -339,7 +338,7 @@ class TestUpdateNames(amo.tests.TestCase):
         self.check_names(self.names)
 
 
-class TestAddonWatchDisabled(amo.tests.TestCase):
+class TestAddonWatchDisabled(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -377,7 +376,7 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
         assert not hide.called
 
 
-class TestAddonUpsell(amo.tests.TestCase):
+class TestAddonUpsell(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.one = Webapp.objects.create(name='free')
@@ -399,7 +398,7 @@ class TestAddonUpsell(amo.tests.TestCase):
         eq_(AddonUpsell.objects.count(), 0)
 
 
-class TestAddonPurchase(amo.tests.TestCase):
+class TestAddonPurchase(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
@@ -443,7 +442,7 @@ class TestAddonPurchase(amo.tests.TestCase):
             eq_(state, self.addon.get_purchase_type(self.user))
 
 
-class TestWebapp(amo.tests.WebappTestCase):
+class TestWebapp(WebappTestCase):
 
     def add_payment_account(self, app, provider_id, user=None):
         if not user:
@@ -751,7 +750,7 @@ class TestWebapp(amo.tests.WebappTestCase):
         ok_(not app.in_china_queue())
 
 
-class TestWebappLight(amo.tests.TestCase):
+class TestWebappLight(mkt.site.tests.TestCase):
     """
     Tests that don't require saving a Webapp to the database or want an empty
     database with no existing apps.
@@ -1149,7 +1148,7 @@ class TestWebappLight(amo.tests.TestCase):
         self.assertEqual(empty_result.count(), 0)
 
 
-class TestWebappContentRatings(amo.tests.TestCase):
+class TestWebappContentRatings(TestCase):
 
     def test_rated(self):
         assert app_factory(rated=True).is_rated()
@@ -1430,24 +1429,24 @@ class TestWebappContentRatings(amo.tests.TestCase):
         assert app.is_fully_complete(ignore_ratings=True)
 
 
-class DeletedAppTests(amo.tests.TestCase):
+class DeletedAppTests(TestCase):
 
     def test_soft_deleted_no_current_version(self):
-        webapp = amo.tests.app_factory()
+        webapp = mkt.site.tests.app_factory()
         webapp._current_version = None
         webapp.save()
         webapp.delete()
         eq_(webapp.current_version, None)
 
     def test_soft_deleted_no_latest_version(self):
-        webapp = amo.tests.app_factory()
+        webapp = mkt.site.tests.app_factory()
         webapp._latest_version = None
         webapp.save()
         webapp.delete()
         eq_(webapp.latest_version, None)
 
 
-class TestExclusions(amo.tests.TestCase):
+class TestExclusions(TestCase):
     fixtures = fixture('prices')
 
     def setUp(self):
@@ -1484,11 +1483,11 @@ class TestExclusions(amo.tests.TestCase):
         ok_(mkt.regions.DE.id in excluded)
 
 
-class TestPackagedAppManifestUpdates(amo.tests.TestCase):
+class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
     # Note: More extensive tests for `.update_names` are above.
 
     def setUp(self):
-        self.webapp = amo.tests.app_factory(is_packaged=True,
+        self.webapp = mkt.site.tests.app_factory(is_packaged=True,
                                             default_locale='en-US')
         self.webapp.name = {'en-US': 'Packaged App'}
         self.webapp.save()
@@ -1537,7 +1536,7 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
         eq_(self.webapp.name, u'Good App Name')
 
 
-class TestWebappVersion(amo.tests.TestCase):
+class TestWebappVersion(mkt.site.tests.TestCase):
 
     def test_no_version(self):
         eq_(Webapp().get_latest_file(), None)
@@ -1557,7 +1556,7 @@ class TestWebappVersion(amo.tests.TestCase):
         eq_(webapp.get_latest_file().pk, new_file.pk)
 
 
-class TestWebappManager(amo.tests.TestCase):
+class TestWebappManager(TestCase):
 
     def test_by_identifier(self):
         w = Webapp.objects.create(app_slug='foo')
@@ -1586,7 +1585,7 @@ class TestManifest(BaseWebAppTest):
                 manifest_json)
 
 
-class PackagedFilesMixin(amo.tests.AMOPaths):
+class PackagedFilesMixin(MktPaths):
 
     def setUp(self):
         self.package = self.packaged_app_path('mozball.zip')
@@ -1603,7 +1602,7 @@ class PackagedFilesMixin(amo.tests.AMOPaths):
                             self.file.file_path)
 
 
-class TestPackagedModel(amo.tests.TestCase):
+class TestPackagedModel(mkt.site.tests.TestCase):
 
     @override_settings(SITE_URL='http://hy.fr')
     def test_get_package_path(self):
@@ -1812,7 +1811,7 @@ class TestDomainFromURL(unittest.TestCase):
         eq_(Webapp.domain_from_url(None, allow_none=True), None)
 
 
-class TestTransformer(amo.tests.TestCase):
+class TestTransformer(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -1869,7 +1868,7 @@ class TestTransformer(amo.tests.TestCase):
             eq_(webapp.device_types, [])
 
 
-class TestDetailsComplete(amo.tests.TestCase):
+class TestDetailsComplete(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
@@ -1910,7 +1909,7 @@ class TestDetailsComplete(amo.tests.TestCase):
         eq_(self.webapp.details_complete(), True)
 
 
-class TestAddonExcludedRegion(amo.tests.WebappTestCase):
+class TestAddonExcludedRegion(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestAddonExcludedRegion, self).setUp()
@@ -1937,7 +1936,7 @@ class TestAddonExcludedRegion(amo.tests.WebappTestCase):
         eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.UK.slug))
 
 
-class TestContentRating(amo.tests.WebappTestCase):
+class TestContentRating(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         self.app = self.get_app()
@@ -2002,7 +2001,7 @@ class TestContentRating(amo.tests.WebappTestCase):
             '10')
 
 
-class TestContentRatingsIn(amo.tests.WebappTestCase):
+class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
 
     def test_not_in_region(self):
         for region in mkt.regions.ALL_REGIONS:
@@ -2038,7 +2037,7 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
         assert crs not in self.app.content_ratings_in(region=mkt.regions.BR)
 
 
-class TestIARCInfo(amo.tests.WebappTestCase):
+class TestIARCInfo(mkt.site.tests.WebappTestCase):
 
     def test_no_info(self):
         with self.assertRaises(IARCInfo.DoesNotExist):
@@ -2051,7 +2050,7 @@ class TestIARCInfo(amo.tests.WebappTestCase):
         eq_(self.app.iarc_info.security_code, 's3kr3t')
 
 
-class TestQueue(amo.tests.WebappTestCase):
+class TestQueue(mkt.site.tests.WebappTestCase):
 
     def test_in_rereview_queue(self):
         assert not self.app.in_rereview_queue()
@@ -2064,7 +2063,7 @@ class TestQueue(amo.tests.WebappTestCase):
         assert self.app.in_escalation_queue()
 
 
-class TestPackagedSigning(amo.tests.WebappTestCase):
+class TestPackagedSigning(mkt.site.tests.WebappTestCase):
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_packaged(self, sign):
@@ -2087,7 +2086,7 @@ class TestPackagedSigning(amo.tests.WebappTestCase):
         eq_(sign.call_args[1]['reviewer'], True)
 
 
-class TestUpdateStatus(amo.tests.TestCase):
+class TestUpdateStatus(mkt.site.tests.TestCase):
 
     def setUp(self):
         # Disabling signals to simplify these tests. We call update_status()
@@ -2119,22 +2118,22 @@ class TestUpdateStatus(amo.tests.TestCase):
         eq_(app.status, amo.STATUS_NULL)
 
     def test_only_version_deleted(self):
-        app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
+        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_NULL)
 
     def test_other_version_deleted(self):
-        app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
-        amo.tests.version_factory(addon=app)
+        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED)
+        mkt.site.tests.version_factory(addon=app)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_REJECTED)
 
     def test_one_version_pending(self):
-        app = amo.tests.app_factory(status=amo.STATUS_REJECTED,
+        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED,
                                     file_kw=dict(status=amo.STATUS_DISABLED))
-        amo.tests.version_factory(addon=app,
+        mkt.site.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = True
@@ -2142,9 +2141,9 @@ class TestUpdateStatus(amo.tests.TestCase):
         eq_(app.status, amo.STATUS_PENDING)
 
     def test_one_version_pending_not_fully_complete(self):
-        app = amo.tests.app_factory(status=amo.STATUS_REJECTED,
+        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED,
                                     file_kw=dict(status=amo.STATUS_DISABLED))
-        amo.tests.version_factory(addon=app,
+        mkt.site.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = False
@@ -2152,28 +2151,28 @@ class TestUpdateStatus(amo.tests.TestCase):
         eq_(app.status, amo.STATUS_REJECTED)  # Didn't change.
 
     def test_one_version_public(self):
-        app = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
-        amo.tests.version_factory(addon=app,
+        app = mkt.site.tests.app_factory(status=amo.STATUS_PUBLIC)
+        mkt.site.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, amo.STATUS_PUBLIC)
 
     def test_was_approved_then_new_version(self):
-        app = amo.tests.app_factory(status=amo.STATUS_APPROVED)
+        app = mkt.site.tests.app_factory(status=amo.STATUS_APPROVED)
         File.objects.filter(version__addon=app).update(status=app.status)
-        amo.tests.version_factory(addon=app,
+        mkt.site.tests.version_factory(addon=app,
                                   file_kw=dict(status=amo.STATUS_PENDING))
         app.update_status()
         eq_(app.status, amo.STATUS_APPROVED)
 
     def test_blocklisted(self):
-        app = amo.tests.app_factory(status=amo.STATUS_BLOCKED)
+        app = mkt.site.tests.app_factory(status=amo.STATUS_BLOCKED)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_BLOCKED)
 
 
-class TestInstalled(amo.tests.TestCase):
+class TestInstalled(mkt.site.tests.TestCase):
 
     def setUp(self):
         user = UserProfile.objects.create(email='f@f.com')
@@ -2187,7 +2186,7 @@ class TestInstalled(amo.tests.TestCase):
         assert self.m(install_type=apps.INSTALL_TYPE_REVIEWER)[1]
 
 
-class TestAppFeatures(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
+class TestAppFeatures(DynamicBoolFieldsTestMixin, mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestAppFeatures, self).setUp()
@@ -2223,7 +2222,7 @@ class TestAppFeatures(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         eq_(getattr(obj, 'has_%s' % self.flags[0].lower()), False)
 
 
-class TestRatingDescriptors(amo.tests.TestCase):
+class TestRatingDescriptors(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestRatingDescriptors, self).setUp()
@@ -2247,7 +2246,7 @@ class TestRatingDescriptors(amo.tests.TestCase):
         eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), 'Blood')
 
 
-class TestRatingInteractives(amo.tests.TestCase):
+class TestRatingInteractives(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestRatingInteractives, self).setUp()
@@ -2270,7 +2269,7 @@ class TestRatingInteractives(amo.tests.TestCase):
             ['Shares Info', 'Users Interact'])
 
 
-class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
+class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -2368,7 +2367,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         Webapp.from_upload(upload)
 
 
-class TestGeodata(amo.tests.WebappTestCase):
+class TestGeodata(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestGeodata, self).setUp()
@@ -2418,7 +2417,7 @@ class TestGeodata(amo.tests.WebappTestCase):
 
 @mock.patch.object(settings, 'PRE_GENERATE_APKS', True)
 @mock.patch('mkt.webapps.tasks.pre_generate_apk')
-class TestPreGenAPKs(amo.tests.WebappTestCase):
+class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestPreGenAPKs, self).setUp()
@@ -2461,7 +2460,7 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
             'task should be called for tablet apps')
 
 
-class TestSearchSignals(amo.tests.ESTestCase):
+class TestSearchSignals(ESTestCase):
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
@@ -2476,12 +2475,12 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
     def test_create(self):
         eq_(WebappIndexer.search().count(), 0)
-        amo.tests.app_factory()
+        mkt.site.tests.app_factory()
         self.refresh()
         eq_(WebappIndexer.search().count(), 1)
 
     def test_update(self):
-        app = amo.tests.app_factory()
+        app = mkt.site.tests.app_factory()
         self.refresh()
         eq_(WebappIndexer.search().count(), 1)
 

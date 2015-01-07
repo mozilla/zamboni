@@ -4,7 +4,7 @@ from django.test.client import RequestFactory
 
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.constants import APP_FEATURES
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
@@ -45,7 +45,7 @@ class TestAppFeaturesSerializer(BaseOAuth):
                             [f.lower() for f in APP_FEATURES])
 
 
-class TestSimpleAppSerializer(amo.tests.TestCase):
+class TestSimpleAppSerializer(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

@@ -1,10 +1,10 @@
 import amo
-import amo.tests
+import mkt.site.tests
 
 import mkt.constants.comm as comm
 
 
-class TestCommConstants(amo.tests.TestCase):
+class TestCommConstants(mkt.site.tests.TestCase):
 
     def setUp(self):
         # TODO (hi mat): remove these from amo/log.py.

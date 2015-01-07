@@ -6,14 +6,14 @@ from mock import Mock, patch
 from nose.tools import eq_
 import requests
 
-import amo.tests
+import mkt.site.tests
 from mkt.site.monitors import receipt_signer as signer, package_signer
 
 
 @patch.object(settings, 'SIGNED_APPS_SERVER_ACTIVE', True)
 @patch.object(settings, 'SIGNING_SERVER', 'http://foo/')
 @patch.object(settings, 'SIGNED_APPS_SERVER', 'http://baz/')
-class TestMonitor(amo.tests.TestCase):
+class TestMonitor(mkt.site.tests.TestCase):
     # Some rudimentary tests for the rest of the monitor would be nice.
 
     def _make_receipt(self):

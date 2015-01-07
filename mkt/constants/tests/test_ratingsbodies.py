@@ -3,12 +3,12 @@ from contextlib import contextmanager
 from nose.tools import eq_
 from tower import activate
 
-import amo.tests
+import mkt.site.tests
 
 import mkt.constants.ratingsbodies as ratingsbodies
 
 
-class TestRatingsBodies(amo.tests.TestCase):
+class TestRatingsBodies(mkt.site.tests.TestCase):
 
     def test_all_ratings(self):
         ratings = ratingsbodies.ALL_RATINGS()

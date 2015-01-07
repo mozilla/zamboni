@@ -1,14 +1,14 @@
 from datetime import datetime
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.constants.base import LOGIN_SOURCE_FXA
 from mkt.site.fixtures import fixture
 from mkt.users.management.commands.fxa_mail import get_user_ids
 from mkt.users.models import UserProfile
 
 
-class TestCommand(amo.tests.TestCase):
+class TestCommand(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):

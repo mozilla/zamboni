@@ -4,7 +4,7 @@ from nose.tools import eq_, ok_
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-import amo.tests
+import mkt.site.tests
 from mkt.constants.carriers import TELEFONICA, AMERICA_MOVIL
 from mkt.constants.regions import BR, FR
 from mkt.operators.models import OperatorPermission
@@ -12,7 +12,7 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
 
-class TestCommand(amo.tests.TestCase):
+class TestCommand(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):

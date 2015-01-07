@@ -5,7 +5,7 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
+import mkt.site.tests
 
 from mkt.ecosystem.urls import APP_SLUGS
 
@@ -26,7 +26,7 @@ REDIRECT_PAGES = (
 )
 
 
-class TestLanding(amo.tests.TestCase):
+class TestLanding(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('ecosystem.landing')
@@ -71,7 +71,7 @@ class TestLanding(amo.tests.TestCase):
         assert subscribe_mock.called
 
 
-class TestDevHub(amo.tests.TestCase):
+class TestDevHub(mkt.site.tests.TestCase):
 
     def test_content_pages(self):
         for page in VIEW_PAGES:

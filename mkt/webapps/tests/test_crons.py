@@ -11,7 +11,7 @@ import mock
 from nose.tools import eq_
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
@@ -26,7 +26,7 @@ from mkt.webapps.models import Trending, Webapp
 from mkt.webapps.tasks import _get_trending
 
 
-class TestLastUpdated(amo.tests.TestCase):
+class TestLastUpdated(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def test_catchall(self):
@@ -47,7 +47,7 @@ class TestLastUpdated(amo.tests.TestCase):
             eq_(addon.last_updated, addon.created)
 
 
-class TestHideDisabledFiles(amo.tests.TestCase):
+class TestHideDisabledFiles(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     msg = 'Moving disabled file: %s => %s'
@@ -120,7 +120,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         assert not mv_mock.called, mv_mock.call_args
 
 
-class TestWeeklyDownloads(amo.tests.TestCase):
+class TestWeeklyDownloads(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
@@ -192,7 +192,7 @@ class TestWeeklyDownloads(amo.tests.TestCase):
         eq_(self.app.total_downloads, 0)
 
 
-class TestCleanup(amo.tests.TestCase):
+class TestCleanup(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.file = os.path.join(settings.SIGNED_APPS_REVIEWER_PATH,
@@ -210,17 +210,17 @@ class TestCleanup(amo.tests.TestCase):
 
 
 @mock.patch('lib.crypto.packaged.sign_app')
-class TestSignApps(amo.tests.TestCase):
+class TestSignApps(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.app = Webapp.objects.get(id=337141)
         self.app.update(is_packaged=True)
-        self.app2 = amo.tests.app_factory(
+        self.app2 = mkt.site.tests.app_factory(
             name=u'Mozillaball ょ', app_slug='test',
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
-        self.app3 = amo.tests.app_factory(
+        self.app3 = mkt.site.tests.app_factory(
             name='Test app 3', app_slug='test3', status=amo.STATUS_REJECTED,
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
@@ -245,7 +245,7 @@ class TestSignApps(amo.tests.TestCase):
             (file2.file_path, file2.signed_file_path))
 
 
-class TestUpdateTrending(amo.tests.TestCase):
+class TestUpdateTrending(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
@@ -396,7 +396,7 @@ class TestUpdateTrending(amo.tests.TestCase):
 @mock.patch('os.stat')
 @mock.patch('os.listdir')
 @mock.patch('os.remove')
-class TestGarbage(amo.tests.TestCase):
+class TestGarbage(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create(

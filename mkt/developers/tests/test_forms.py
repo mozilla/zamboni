@@ -13,13 +13,13 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo
-import amo.tests
+import mkt.site.tests
 import mkt
-from amo.tests import app_factory, version_factory
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, version_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.tags.models import Tag
 from mkt.translations.models import Translation
@@ -27,7 +27,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
 
-class TestPreviewForm(amo.tests.TestCase):
+class TestPreviewForm(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -75,7 +75,7 @@ class TestPreviewForm(amo.tests.TestCase):
         eq_(self.check_file_type('x.foo'), 'image/png')
 
 
-class TestCategoryForm(amo.tests.WebappTestCase):
+class TestCategoryForm(mkt.site.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
@@ -112,7 +112,7 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         ok_(self.form.errors)
 
 
-class TestRegionForm(amo.tests.WebappTestCase):
+class TestRegionForm(mkt.site.tests.WebappTestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -413,7 +413,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
             assert not form.low_memory_regions, 'expected no low memory region'
 
 
-class TestNewManifestForm(amo.tests.TestCase):
+class TestNewManifestForm(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.developers.forms.verify_app_domain')
     def test_normal_validator(self, _verify_app_domain):
@@ -430,7 +430,7 @@ class TestNewManifestForm(amo.tests.TestCase):
         assert not _verify_app_domain.called
 
 
-class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
+class TestPackagedAppForm(mkt.site.tests.MktPaths, mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestPackagedAppForm, self).setUp()
@@ -468,7 +468,7 @@ class TestPackagedAppForm(amo.tests.AMOPaths, amo.tests.WebappTestCase):
             'allowed.')
 
 
-class TestTransactionFilterForm(amo.tests.TestCase):
+class TestTransactionFilterForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         (app_factory(), app_factory())
@@ -499,7 +499,7 @@ class TestTransactionFilterForm(amo.tests.TestCase):
             assert assertion, '(%s, %s) not in choices' % (app.id, app.name)
 
 
-class TestAppFormBasic(amo.tests.TestCase):
+class TestAppFormBasic(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.data = {
@@ -528,7 +528,7 @@ class TestAppFormBasic(amo.tests.TestCase):
             {'slug': ['This slug is already in use. Please choose another.']})
 
 
-class TestAppVersionForm(amo.tests.TestCase):
+class TestAppVersionForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = mock.Mock()
@@ -577,7 +577,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
 
 
-class TestPublishForm(amo.tests.TestCase):
+class TestPublishForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = app_factory(status=amo.STATUS_PUBLIC)
@@ -631,7 +631,7 @@ class TestPublishForm(amo.tests.TestCase):
         assert not form.is_valid()
 
 
-class TestPublishFormPackaged(amo.tests.TestCase):
+class TestPublishFormPackaged(mkt.site.tests.TestCase):
     """
     Test that changing the app visibility doesn't affect the version statuses
     in weird ways.
@@ -805,7 +805,7 @@ class TestAdminSettingsForm(TestAdmin):
         eq_(form.initial['banner_regions'], [])
 
 
-class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
+class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
 
     def _get_form(self, app=None, **kwargs):
         data = {
@@ -842,7 +842,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         self.app.set_iarc_info(1, 'a')
         eq_(IARCInfo.objects.count(), 1)
 
-        some_app = amo.tests.app_factory()
+        some_app = mkt.site.tests.app_factory()
         form = self._get_form(app=some_app)
         ok_(not form.is_valid())
 
@@ -906,7 +906,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
             form.save()
 
 
-class TestAPIForm(amo.tests.WebappTestCase):
+class TestAPIForm(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestAPIForm, self).setUp()

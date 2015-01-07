@@ -9,11 +9,10 @@ import mock
 from elasticsearch_dsl.search import Search
 from nose.tools import eq_, ok_
 
-import amo.tests
+import amo
 import mkt.carriers
 import mkt.feed.constants as feed
 import mkt.regions
-from amo.tests import app_factory
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import applications
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
@@ -23,6 +22,7 @@ from mkt.feed.views import FeedView
 from mkt.fireplace.tests.test_views import assert_fireplace_app
 from mkt.operators.models import OperatorPermission
 from mkt.site.fixtures import fixture
+from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview, Webapp
 
@@ -47,7 +47,7 @@ class BaseTestFeedItemViewSet(RestOAuth, FeedTestMixin):
         self.grant_permission(self.profile, 'Feed:Curate')
 
 
-class BaseTestFeedESView(amo.tests.ESTestCase):
+class BaseTestFeedESView(ESTestCase):
     def setUp(self):
         Webapp.get_indexer().index_ids(
             list(Webapp.objects.values_list('id', flat=True)))
@@ -1251,7 +1251,7 @@ class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(not data['collections'])
 
 
-class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
+class TestFeedShelfPublishView(BaseTestFeedItemViewSet, mkt.site.tests.TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
@@ -1273,12 +1273,12 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
 
     def test_publish_anon(self):
         res = self.client.put(self.url)
-        data = json.loads(res.content)
+        json.loads(res.content)
         eq_(res.status_code, 403)
 
     def test_publish_no_obj_permission(self):
         res = self.client.put(self.url)
-        data = json.loads(res.content)
+        json.loads(res.content)
         eq_(res.status_code, 403)
 
     def test_publish_obj_permission(self):
@@ -1287,7 +1287,7 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         OperatorPermission.objects.create(user=self.user, region=region.id,
                                           carrier=carrier.id)
         res = self.client.put(self.url)
-        data = json.loads(res.content)
+        json.loads(res.content)
         eq_(res.status_code, 201)
 
     def test_publish_overwrite(self):
@@ -1556,7 +1556,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_fallback_if_apps_filtered(self):
         # Create fallback item.
         coll = self.feed_collection_factory(
-            app_ids=[amo.tests.app_factory().id])
+            app_ids=[mkt.site.tests.app_factory().id])
         FeedItem.objects.create(collection=coll, item_type=feed.FEED_TYPE_COLL,
                                 region=1)
 
@@ -1569,7 +1569,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_many_apps(self):
         for x in range(4):
             coll = self.feed_collection_factory(
-                app_ids=[amo.tests.app_factory().id for x in range(3)])
+                app_ids=[mkt.site.tests.app_factory().id for x in range(3)])
             FeedItem.objects.create(collection=coll,
                                     item_type=feed.FEED_TYPE_COLL, region=1)
 
@@ -1616,9 +1616,9 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_coll(self):
         # Longest set up ever. Create apps for different devices.
-        app_gaia = amo.tests.app_factory()
-        app_android = amo.tests.app_factory()
-        app_desktop = amo.tests.app_factory()
+        app_gaia = mkt.site.tests.app_factory()
+        app_android = mkt.site.tests.app_factory()
+        app_desktop = mkt.site.tests.app_factory()
         app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         app_android.addondevicetype_set.create(
@@ -1680,7 +1680,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['objects'])
 
     def test_no_filtering(self):
-        app_gaia = amo.tests.app_factory()
+        app_gaia = mkt.site.tests.app_factory()
         app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         coll = self.feed_collection_factory(app_ids=[app_gaia.id])
@@ -1721,8 +1721,8 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['objects'])
 
     def test_coll(self):
-        app_excluded_br = amo.tests.app_factory()
-        app_excluded_de = amo.tests.app_factory()
+        app_excluded_br = mkt.site.tests.app_factory()
+        app_excluded_de = mkt.site.tests.app_factory()
         app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
         app_excluded_de.addonexcludedregion.create(region=mkt.regions.DE.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id,
@@ -1749,7 +1749,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
             app_excluded_de.id)
 
     def test_no_filtering(self):
-        app_excluded_br = amo.tests.app_factory()
+        app_excluded_br = mkt.site.tests.app_factory()
         app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id])
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
@@ -1783,8 +1783,8 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 404)
 
     def test_coll(self):
-        app_pending = amo.tests.app_factory(status=amo.STATUS_PENDING)
-        app_public = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
+        app_pending = app_factory(status=amo.STATUS_PENDING)
+        app_public = app_factory(status=amo.STATUS_PUBLIC)
 
         coll = self.feed_collection_factory(
             app_ids=[app_pending.id, app_public.id])
@@ -1805,7 +1805,7 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 404)
 
 
-class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
+class TestFeedViewQueries(BaseTestFeedItemViewSet, TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
@@ -1976,9 +1976,9 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 404)
 
     def test_device_filtering(self):
-        app_gaia = amo.tests.app_factory()
-        app_android = amo.tests.app_factory()
-        app_desktop = amo.tests.app_factory()
+        app_gaia = mkt.site.tests.app_factory()
+        app_android = mkt.site.tests.app_factory()
+        app_desktop = mkt.site.tests.app_factory()
         app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         app_android.addondevicetype_set.create(

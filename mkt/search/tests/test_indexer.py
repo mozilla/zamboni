@@ -1,10 +1,10 @@
 from nose.tools import eq_
 
-import amo
 from mkt.search.indexers import BaseIndexer
+from mkt.site.tests import TestCase
 
 
-class TestBaseIndexer(amo.tests.TestCase):
+class TestBaseIndexer(TestCase):
 
     def setUp(self):
         self.indexer = BaseIndexer

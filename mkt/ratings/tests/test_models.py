@@ -1,7 +1,7 @@
 from mock import patch
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.ratings.models import check_spam, Review, Spam
 from mkt.ratings.tasks import addon_review_aggregates
 from mkt.site.fixtures import fixture
@@ -9,7 +9,7 @@ from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
-class TestSpamTest(amo.tests.TestCase):
+class TestSpamTest(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):

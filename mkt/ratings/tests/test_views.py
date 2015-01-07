@@ -20,7 +20,7 @@ from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
 from mkt.users.models import UserProfile
 
 
-class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
+class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
@@ -71,7 +71,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
                                     body=u'I lôve this app',
                                     rating=5)
         pk = rev.pk
-        ver = amo.tests.version_factory(addon=self.app, version='2.0',
+        ver = mkt.site.tests.version_factory(addon=self.app, version='2.0',
                                         file_kw=dict(status=amo.STATUS_PUBLIC))
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.pk)
@@ -142,7 +142,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         self._get_filter(user='mine', client=self.anon, expected_status=403)
 
     def test_filter_by_app_slug(self):
-        self.app2 = amo.tests.app_factory()
+        self.app2 = mkt.site.tests.app_factory()
         Review.objects.create(addon=self.app2, user=self.user, body='no')
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         res, data = self._get_filter(app=self.app.app_slug)
@@ -150,7 +150,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_filter_by_app_pk(self):
-        self.app2 = amo.tests.app_factory()
+        self.app2 = mkt.site.tests.app_factory()
         Review.objects.create(addon=self.app2, user=self.user, body='no')
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         res, data = self._get_filter(app=self.app.pk)
@@ -215,7 +215,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         res, data = self._get_url(self.list_url, client=self.anon)
         eq_(res.status_code, 200)
-        assert not 'user' in data
+        assert 'user' not in data
         eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['body'], 'yes')
 
@@ -274,7 +274,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_already_rated_version(self):
         self.app.update(is_packaged=True)
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        amo.tests.version_factory(addon=self.app, version='3.0')
+        mkt.site.tests.version_factory(addon=self.app, version='3.0')
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         data = json.loads(res.content)
@@ -359,7 +359,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     def test_new_rating_for_new_version(self):
         self.app.update(is_packaged=True)
         self._create()
-        version = amo.tests.version_factory(addon=self.app, version='3.0')
+        version = mkt.site.tests.version_factory(addon=self.app, version='3.0')
         self.app.update_version()
         eq_(self.app.reload().current_version, version)
         res, data = self._create()
@@ -475,7 +475,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
 
     def test_update_change_app(self):
         _, previous_data = self._create_default_review()
-        self.app2 = amo.tests.app_factory()
+        self.app2 = mkt.site.tests.app_factory()
         new_data = {
             'body': 'Totally rocking the free web.',
             'rating': 4,
@@ -557,7 +557,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)
 
 
-class TestRatingResourcePagination(RestOAuth, amo.tests.AMOPaths):
+class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
     fixtures = fixture('user_2519', 'user_999', 'webapp_337141')
 
     def setUp(self):
@@ -631,7 +631,7 @@ class TestRatingResourcePagination(RestOAuth, amo.tests.AMOPaths):
         eq_(data['meta']['total_count'], 10)
 
 
-class TestReviewFlagResource(RestOAuth, amo.tests.AMOPaths):
+class TestReviewFlagResource(RestOAuth, mkt.site.tests.MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):

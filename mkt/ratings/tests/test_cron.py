@@ -6,7 +6,7 @@ from django.utils.encoding import smart_str
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.ratings.cron import email_daily_ratings
 from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
@@ -15,12 +15,12 @@ from mkt.users.models import UserProfile
 
 
 @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-class TestEmailDailyRatings(amo.tests.TestCase):
+class TestEmailDailyRatings(mkt.site.tests.TestCase):
     fixtures = fixture('users')
 
     def setUp(self):
-        self.app = amo.tests.app_factory(name='test')
-        self.app2 = amo.tests.app_factory(name='test2')
+        self.app = mkt.site.tests.app_factory(name='test')
+        self.app2 = mkt.site.tests.app_factory(name='test2')
 
         self.user = UserProfile.objects.get(username='regularuser')
         AddonUser.objects.create(addon=self.app, user=self.user)

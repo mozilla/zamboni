@@ -7,7 +7,7 @@ from dateutil.tz import tzutc
 from mock import patch
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 from mkt.site.fixtures import fixture
 from mkt.site.middleware import lang_from_accept_header
 from mkt.users.models import UserProfile
@@ -19,7 +19,7 @@ _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 @patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
-class TestLocaleMiddleware(amo.tests.TestCase):
+class TestLocaleMiddleware(mkt.site.tests.TestCase):
 
     def test_accept_good_locale(self):
         locales = [
@@ -166,7 +166,7 @@ class TestLocaleMiddleware(amo.tests.TestCase):
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 @patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
-class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
+class TestLocaleMiddlewarePersistence(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def test_save_lang(self):
@@ -175,7 +175,7 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
         eq_(UserProfile.objects.get(pk=999).lang, 'de')
 
 
-class TestVaryMiddleware(amo.tests.TestCase):
+class TestVaryMiddleware(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def test_vary_headers(self):
@@ -223,7 +223,7 @@ class TestVaryMiddleware(amo.tests.TestCase):
             'User-Agent should not be in the "Vary" header.')
 
 
-class TestDeviceMiddleware(amo.tests.TestCase):
+class TestDeviceMiddleware(mkt.site.tests.TestCase):
     devices = ['mobile', 'gaia']
 
     def test_no_effect(self):
@@ -271,7 +271,7 @@ class TestDeviceMiddleware(amo.tests.TestCase):
             assert getattr(r.context['request'], device.upper())
 
 
-class TestCacheHeadersMiddleware(amo.tests.TestCase):
+class TestCacheHeadersMiddleware(mkt.site.tests.TestCase):
     CACHE_DURATION = 60 * 2
 
     def _test_headers_set(self, res, max_age):
@@ -368,7 +368,7 @@ def test_parse_accept_language():
         yield accept_check, x, y
 
 
-class TestShorter(amo.tests.TestCase):
+class TestShorter(mkt.site.tests.TestCase):
 
     def test_no_shorter_language(self):
         accept_check('zh', 'zh-CN')

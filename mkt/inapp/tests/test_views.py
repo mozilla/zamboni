@@ -9,7 +9,7 @@ import mock
 from nose.tools import eq_
 from rest_framework import status
 
-import amo.tests
+import mkt.site.tests
 from mkt.users.models import UserProfile
 
 from mkt.api.tests.test_oauth import JSONClient, RestOAuthClient
@@ -21,7 +21,7 @@ from mkt.webapps.models import Webapp
 from mkt.prices.models import Price
 
 
-class BaseInAppProductViewSetTests(amo.tests.TestCase):
+class BaseInAppProductViewSetTests(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):

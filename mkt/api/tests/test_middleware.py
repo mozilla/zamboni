@@ -10,7 +10,7 @@ import mock
 from multidb import this_thread_is_pinned
 from nose.tools import eq_, ok_
 
-import amo.tests
+import mkt.site.tests
 import mkt.regions
 from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
                                 APIPinningMiddleware, AuthenticationMiddleware,
@@ -20,7 +20,7 @@ from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
 fireplace_url = 'http://firepla.ce:1234'
 
 
-class TestCORS(amo.tests.TestCase):
+class TestCORS(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.mware = CORSMiddleware()
@@ -59,7 +59,7 @@ class TestCORS(amo.tests.TestCase):
         eq_(res['Access-Control-Allow-Credentials'], 'true')
 
 
-class TestPinningMiddleware(amo.tests.TestCase):
+class TestPinningMiddleware(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.pin = APIPinningMiddleware()
@@ -130,7 +130,7 @@ class TestPinningMiddleware(amo.tests.TestCase):
 
 
 @override_settings(API_CURRENT_VERSION=2)
-class TestAPIBaseMiddleware(amo.tests.TestCase):
+class TestAPIBaseMiddleware(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.api_version_middleware = APIBaseMiddleware()
@@ -182,7 +182,7 @@ class TestAPIBaseMiddleware(amo.tests.TestCase):
         eq_(self.header(res, 'API-Status'), None)
 
 
-class TestFilterMiddleware(amo.tests.TestCase):
+class TestFilterMiddleware(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.middleware = APIFilterMiddleware()
@@ -265,7 +265,7 @@ class TestFilterMiddleware(amo.tests.TestCase):
         self._header(response_cls=HttpResponseServerError)
 
 
-class TestGzipMiddleware(amo.tests.TestCase):
+class TestGzipMiddleware(mkt.site.tests.TestCase):
     @mock.patch('django.middleware.gzip.GZipMiddleware.process_response')
     def test_enabled_for_api(self, django_gzip_middleware):
         request = mock.Mock()
@@ -288,7 +288,7 @@ class TestGzipMiddleware(amo.tests.TestCase):
             'mkt.api.middleware.GZipMiddleware')
 
 
-class TestAuthenticationMiddleware(amo.tests.TestCase):
+class TestAuthenticationMiddleware(mkt.site.tests.TestCase):
     @mock.patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
     def test_does_not_auth_for_api(self, django_authentication_middleware):
         request = mock.Mock()

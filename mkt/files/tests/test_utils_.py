@@ -3,11 +3,11 @@ from django import forms
 import mock
 from nose.tools import eq_
 
-import amo.tests
+import mkt.site.tests
 from mkt.files.utils import WebAppParser
 
 
-class TestWebAppParser(amo.tests.TestCase):
+class TestWebAppParser(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_no_developer_name(self, get_json_data):
@@ -102,7 +102,6 @@ class TestWebAppParser(amo.tests.TestCase):
         eq_(parsed_results['name'].get('pt'), None)
         eq_(parsed_results['name'].get('en'), None)
         eq_(parsed_results['default_locale'], 'en-US')
-
 
     @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_name_with_translations_and_weird_format(self, get_json_data):

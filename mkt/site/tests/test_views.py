@@ -10,13 +10,12 @@ from lxml import etree
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
+import mkt.site.tests
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
-class Test403(amo.tests.TestCase):
+class Test403(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
@@ -41,7 +40,7 @@ class Test403(amo.tests.TestCase):
         self._test_403('/reviewers')
 
 
-class Test404(amo.tests.TestCase):
+class Test404(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def _test_404(self, url):
@@ -68,7 +67,7 @@ class Test404(amo.tests.TestCase):
         eq_(res.content, '')
 
 
-class TestManifest(amo.tests.TestCase):
+class TestManifest(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('manifest.webapp')
@@ -121,7 +120,7 @@ class TestManifest(amo.tests.TestCase):
         eq_(resp.status_code, 304)
 
 
-class TestRobots(amo.tests.TestCase):
+class TestRobots(mkt.site.tests.TestCase):
 
     @override_settings(CARRIER_URLS=['seavanworld'])
     @override_settings(ENGAGE_ROBOTS=True)
@@ -136,7 +135,7 @@ class TestRobots(amo.tests.TestCase):
         self.assertContains(rs, 'Disallow: /')
 
 
-class TestContribute(amo.tests.TestCase):
+class TestContribute(mkt.site.tests.TestCase):
 
     def test_contribute(self):
         response = self.client.get('/contribute.json')
@@ -146,7 +145,7 @@ class TestContribute(amo.tests.TestCase):
             'urls', 'participate', 'keywords', 'description'])
 
 
-class TestOpensearch(amo.tests.TestCase):
+class TestOpensearch(mkt.site.tests.TestCase):
 
     def test_opensearch_declaration(self):
         """Look for opensearch declaration in templates."""
@@ -170,7 +169,7 @@ class TestOpensearch(amo.tests.TestCase):
 
 
 @mock.patch('mkt.site.views.log_cef')
-class TestCSP(amo.tests.TestCase):
+class TestCSP(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('mkt.csp.report')
