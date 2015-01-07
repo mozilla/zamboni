@@ -116,14 +116,16 @@ class TestSearchView(RestOAuth, ESTestCase):
         data = res.json['objects'][0]
         eq_(data['user'], None)
 
-    def test_only_64px_icons(self):
+    def test_icons(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         objects = res.json['objects']
         data = objects[0]['icons']
-        eq_(len(data), 1)
+        eq_(len(data), 2)
         eq_(urlparse(data['64'])[0:3],
             urlparse(self.webapp.get_icon_url(64))[0:3])
+        eq_(urlparse(data['128'])[0:3],
+            urlparse(self.webapp.get_icon_url(128))[0:3])
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):
