@@ -187,7 +187,7 @@ msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr "{review} za {addpn} napisane."
+msgstr "{review} za {addon} napisane."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
