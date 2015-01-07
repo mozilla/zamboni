@@ -562,9 +562,7 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Ospravedlňujeme sa! Počas získavania histórie kontrol nastala chyba. Skúste "
-"sa prosím prihlásiť znova.<p>"
+msgstr "Ospravedlňujeme sa! Počas získavania histórie kontrol nastala chyba. Skúste sa prosím prihlásiť znova.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63

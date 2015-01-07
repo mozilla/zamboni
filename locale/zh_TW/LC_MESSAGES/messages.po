@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-07 08:56-0700\n"
 "PO-Revision-Date: 2014-12-11 03:15+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgstr "已要求超級審核者進行審核"
 msgid "Comment on {addon} {version}."
 msgstr "在 {addon} {version} 上的意見。"
 
-#: apps/amo/log.py:234 mkt/reviewers/utils.py:479
+#: apps/amo/log.py:234 mkt/reviewers/utils.py:480
 msgid "Comment"
 msgstr "意見"
 
@@ -531,8 +531,8 @@ msgstr "付費日期"
 msgid "Price"
 msgstr "價格"
 
-#: mkt/account/utils.py:65 mkt/developers/forms_payments.py:617 mkt/developers/views.py:87 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:65 mkt/developers/forms_payments.py:618 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "名稱"
 
@@ -552,11 +552,11 @@ msgstr "語言代碼 {lang_code} 無效。"
 msgid "Unknown"
 msgstr "未知"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:55 mkt/reviewers/forms.py:176 mkt/submit/forms.py:314
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:176 mkt/submit/forms.py:314
 msgid "Yes"
 msgstr "可以"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:55 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:177 mkt/submit/forms.py:315
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:177 mkt/submit/forms.py:315
 msgid "No"
 msgstr "不行"
 
@@ -600,11 +600,11 @@ msgstr "Firefox Marketplace 是網頁平台的官方應用程式商城。"
 msgid "Desktop"
 msgstr "桌面"
 
-#: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:26 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
+#: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
 msgstr "Firefox Mobile"
 
-#: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
+#: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:28 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
@@ -1630,7 +1630,7 @@ msgstr "尚比亞"
 msgid "Zimbabwe"
 msgstr "辛巴威"
 
-#: mkt/constants/base.py:26 mkt/lookup/views.py:150
+#: mkt/constants/base.py:26 mkt/lookup/views.py:149
 msgid "Incomplete"
 msgstr "尚未完成"
 
@@ -2300,6 +2300,14 @@ msgstr "512MB RAM 裝置"
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "此應用程式需要裝置至少有 512MB 的 RAM。"
 
+#: mkt/constants/features.py:333
+msgid "1GB RAM Device"
+msgstr ""
+
+#: mkt/constants/features.py:334
+msgid "The app requires the device to have at least 1GB RAM."
+msgstr ""
+
 # 專有名詞
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2357,23 +2365,23 @@ msgstr "已收到付款，但尚未完成付款流程，等待處理中。"
 msgid "Completed"
 msgstr "完成"
 
-#: mkt/constants/platforms.py:7 mkt/constants/tests/test_platforms.py:15
+#: mkt/constants/platforms.py:7 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
 msgstr "Firefox 桌面版"
 
-#: mkt/constants/platforms.py:35 mkt/constants/platforms.py:39
+#: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
 msgstr "完全開放的手機平台生態系統"
 
-#: mkt/constants/platforms.py:36
+#: mkt/constants/platforms.py:42 mkt/constants/platforms.py:48
 msgid "Windows, Mac and Linux"
 msgstr "Windows, Mac 與 Linux"
 
-#: mkt/constants/platforms.py:37 mkt/constants/platforms.py:40 mkt/ecosystem/templates/ecosystem/partners.html:95
+#: mkt/constants/platforms.py:43 mkt/constants/platforms.py:46 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
 msgstr "Android 智慧手機"
 
-#: mkt/constants/platforms.py:38 mkt/constants/platforms.py:41
+#: mkt/constants/platforms.py:44 mkt/constants/platforms.py:47
 msgid "Tablets"
 msgstr "平板"
 
@@ -2671,7 +2679,7 @@ msgstr "文字"
 msgid "You must agree to the Privacy Policy."
 msgstr "您必須同意隱私權政策。"
 
-#: mkt/developers/forms.py:1096 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1096 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "國家"
 
@@ -2743,173 +2751,174 @@ msgstr "此 IARC 證明已被其他應用程式使用，請建立新的 IARC 分
 msgid "Invalid submission ID or security code."
 msgstr "無效的提交 ID 或安全代碼。"
 
-#: mkt/developers/forms_payments.py:58
+#: mkt/developers/forms_payments.py:59
 msgid "App Price"
 msgstr "應用程式價格"
 
-#: mkt/developers/forms_payments.py:111
+#: mkt/developers/forms_payments.py:112
 msgid "Free (with in-app payments)"
 msgstr "免費 (啟用應用程式內付款)"
 
-#: mkt/developers/forms_payments.py:122
+#: mkt/developers/forms_payments.py:123
 msgid "Promotional Pricing"
 msgstr "優惠價格"
 
-#: mkt/developers/forms_payments.py:135
+#: mkt/developers/forms_payments.py:136
 msgid "Only supports carrier billing"
 msgstr "僅支援電信帳單結帳"
 
-#: mkt/developers/forms_payments.py:138
+#: mkt/developers/forms_payments.py:139
 msgid "Only supports credit-card billing"
 msgstr "僅支持信用卡結帳"
 
-#: mkt/developers/forms_payments.py:142
+#: mkt/developers/forms_payments.py:143
 msgid "Supports all billing methods"
 msgstr "支援所有結帳方式"
 
-#: mkt/developers/forms_payments.py:214
+#: mkt/developers/forms_payments.py:215
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "如果應用程式是免費的，應用程式內付款（in-app payment）必須開啟。"
 
-#: mkt/developers/forms_payments.py:221
+#: mkt/developers/forms_payments.py:222
 msgid "Not a valid choice"
 msgstr "不是有效的選項"
 
 # 75%
-#: mkt/developers/forms_payments.py:325 mkt/developers/templates/developers/payments/premium.html:291
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
 msgstr "這個付費版本升級此附加元件:"
 
-#: mkt/developers/forms_payments.py:326
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "不是一個升級"
 
-#: mkt/developers/forms_payments.py:368
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr "銀行帳號戶名"
 
-#: mkt/developers/forms_payments.py:370
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "公司名"
 
-#: mkt/developers/forms_payments.py:372
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "廠商名"
 
-#: mkt/developers/forms_payments.py:374
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "財務訊息電子郵件信箱"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "管理員電子郵件信箱"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "技術支援信箱"
 
-#: mkt/developers/forms_payments.py:384
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "地址"
 
-#: mkt/developers/forms_payments.py:386
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "地址2"
 
-#: mkt/developers/forms_payments.py:388
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "市/區"
 
-#: mkt/developers/forms_payments.py:390
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "州/省/地區"
 
-#: mkt/developers/forms_payments.py:392
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "郵遞區號"
 
-#: mkt/developers/forms_payments.py:394
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "電話"
 
-#: mkt/developers/forms_payments.py:399
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "偏好的支付方式"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "增值稅號碼"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "銀行帳號"
 
-#: mkt/developers/forms_payments.py:408
+#. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "SWIFT 碼"
 
-#: mkt/developers/forms_payments.py:410
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "銀行名稱"
 
-#: mkt/developers/forms_payments.py:412
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "銀行地址"
 
-#: mkt/developers/forms_payments.py:414
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "銀行地址2"
 
-#: mkt/developers/forms_payments.py:416
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "銀行所在城市/區"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
 msgstr "銀行所在州/省/地區"
 
-#: mkt/developers/forms_payments.py:421
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "銀行郵政區號"
 
-#: mkt/developers/forms_payments.py:423
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "銀行所在國家"
 
-#: mkt/developers/forms_payments.py:425 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "帳號名稱"
 
-#: mkt/developers/forms_payments.py:454
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "付款帳號"
 
-#: mkt/developers/forms_payments.py:524
+#: mkt/developers/forms_payments.py:525
 msgid "You cannot remove a payment account from an app."
 msgstr "您不能從一個應用程式移除付款帳號。"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:529
 msgid "You are not permitted to change payment accounts."
 msgstr "您不被允許修改付款帳號。"
 
-#: mkt/developers/forms_payments.py:616 mkt/developers/forms_payments.py:632
+#: mkt/developers/forms_payments.py:617 mkt/developers/forms_payments.py:633
 msgid "Account name"
 msgstr "帳號名稱"
 
-#: mkt/developers/forms_payments.py:618 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:619 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "電子郵件"
 
-#: mkt/developers/forms_payments.py:635
+#: mkt/developers/forms_payments.py:636
 msgid "Service ID"
 msgstr "服務 ID"
 
-#: mkt/developers/forms_payments.py:642
+#: mkt/developers/forms_payments.py:643
 msgid "Service ID is not valid"
 msgstr "服務 ID 無效"
 
-#: mkt/developers/forms_payments.py:656
+#: mkt/developers/forms_payments.py:657
 msgid "No payment account set up for that app"
 msgstr "該應用程式尚未設定付款帳號。"
 
@@ -2938,7 +2947,7 @@ msgstr "版本 {0}"
 msgid "Reference Implementation"
 msgstr "參照工具"
 
-#: mkt/developers/providers.py:372
+#: mkt/developers/providers.py:371
 msgid "Boku"
 msgstr "Boku"
 
@@ -2974,140 +2983,140 @@ msgstr "{region} 區域已新增至 Firefox Marketplace"
 msgid "New regions added to the Firefox Marketplace"
 msgstr "新區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/utils.py:60
+#: mkt/developers/utils.py:61
 msgid "Video support not enabled."
 msgstr "未啟用視訊支援。"
 
-#: mkt/developers/utils.py:73
+#: mkt/developers/utils.py:74
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: mkt/developers/utils.py:75
+#: mkt/developers/utils.py:76
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: mkt/developers/utils.py:80
+#: mkt/developers/utils.py:81
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: mkt/developers/utils.py:82
+#: mkt/developers/utils.py:83
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
 # 80%
-#: mkt/developers/utils.py:91
+#: mkt/developers/utils.py:92
 msgid "Please use files smaller than %s."
 msgstr "請使用小於 %s MB 的圖片。"
 
-#: mkt/developers/utils.py:101
+#: mkt/developers/utils.py:102
 msgid "Icon could not be opened."
 msgstr "無法開啟圖示。"
 
-#: mkt/developers/utils.py:103
+#: mkt/developers/utils.py:104
 msgid "Preview could not be opened."
 msgstr "無法開啟預覽圖。"
 
-#: mkt/developers/utils.py:110
+#: mkt/developers/utils.py:111
 msgid "Icons must be at least 128px by 128px."
 msgstr "圖示大小至少要為 128px 長 128px 寬。"
 
-#: mkt/developers/utils.py:113
+#: mkt/developers/utils.py:114
 msgid "Icons must be square."
 msgstr "圖示必須為正方形。"
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
-#: mkt/developers/utils.py:123
+#: mkt/developers/utils.py:124
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "應用程式預覽圖應至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
-#: mkt/developers/views.py:88
+#: mkt/developers/views.py:87
 msgid "Created"
 msgstr "建立日期"
 
 # 75%
-#: mkt/developers/views.py:150
+#: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "無法刪除此付費附加元件，請直接停用。"
 
-#: mkt/developers/views.py:160
+#: mkt/developers/views.py:159
 msgid "App deleted."
 msgstr "已刪除應用程式。"
 
-#: mkt/developers/views.py:165
+#: mkt/developers/views.py:164
 msgid "Password was incorrect. App was not deleted."
 msgstr "密碼不正確。尚未刪除應用程式。"
 
-#: mkt/developers/views.py:209
+#: mkt/developers/views.py:208
 msgid "App successfully resubmitted."
 msgstr "已重新提交應用程式。"
 
-#: mkt/developers/views.py:242
+#: mkt/developers/views.py:241
 msgid "New version successfully added."
 msgstr "成功新增新版本。"
 
-#: mkt/developers/views.py:306 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:430 mkt/reviewers/views.py:660
+#: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:667
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: mkt/developers/views.py:313
+#: mkt/developers/views.py:312
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "恭喜，您的應用程式已經送出，很會就會審核完成！"
 
-#: mkt/developers/views.py:315
+#: mkt/developers/views.py:314
 msgid "Content ratings successfully saved."
 msgstr "已儲存內容分級。"
 
-#: mkt/developers/views.py:439
+#: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
 msgstr "已送出預載應用程式。"
 
-#: mkt/developers/views.py:442
+#: mkt/developers/views.py:441
 msgid "There was an error with the form."
 msgstr "表單中有錯誤。"
 
-#: mkt/developers/views.py:473
+#: mkt/developers/views.py:471
 msgid "Version successfully edited."
 msgstr "編輯版本成功。"
 
-#: mkt/developers/views.py:508
+#: mkt/developers/views.py:506
 msgid "Version successfully made active."
 msgstr "成功公開版本。"
 
 # 77%
-#: mkt/developers/views.py:523
+#: mkt/developers/views.py:521
 msgid "Version \"{0}\" deleted."
 msgstr "已刪除版本 \"{0}\"。"
 
-#: mkt/developers/views.py:653
+#: mkt/developers/views.py:651
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: mkt/developers/views.py:950
+#: mkt/developers/views.py:948
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: mkt/developers/views.py:1001
+#: mkt/developers/views.py:999
 msgid "Terms of service accepted."
 msgstr "已接受服務條款。"
 
-#: mkt/developers/views.py:1013
+#: mkt/developers/views.py:1011
 msgid "Users with the admin role cannot use the API."
 msgstr "擁有管理員資格的使用者不能使用這個 API。"
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1019
 msgid "No such API key."
 msgstr "沒有此 API 金錀。"
 
-#: mkt/developers/views.py:1033
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "已產生新的 API 金鑰。"
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "封鎖的版本已建立。"
 
-#: mkt/developers/views.py:1053
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "應用程式已被封鎖。"
 
@@ -3115,35 +3124,35 @@ msgstr "應用程式已被封鎖。"
 msgid "We encountered a problem connecting to the payment server."
 msgstr "在連線到付款伺服器時發生錯誤。"
 
-#: mkt/developers/views_payments.py:171 mkt/files/forms.py:28
+#: mkt/developers/views_payments.py:175 mkt/files/forms.py:28
 msgid "All"
 msgstr "全部"
 
-#: mkt/developers/views_payments.py:172
+#: mkt/developers/views_payments.py:176
 msgid "Credit card"
 msgstr "信用卡"
 
-#: mkt/developers/views_payments.py:173
+#: mkt/developers/views_payments.py:177
 msgid "Carrier"
 msgstr "電信帳單"
 
-#: mkt/developers/views_payments.py:322
+#: mkt/developers/views_payments.py:326
 msgid "A server error occurred when retrieving the application key."
 msgstr "取得應用程式金鑰時發生伺服器錯誤。"
 
-#: mkt/developers/views_payments.py:329
+#: mkt/developers/views_payments.py:333
 msgid "Secret was reset successfully."
 msgstr "密錀重設成功。"
 
-#: mkt/developers/views_payments.py:333
+#: mkt/developers/views_payments.py:337
 msgid "Key and secret were created successfully."
 msgstr "成功新增金錀與密錀。"
 
-#: mkt/developers/views_payments.py:359
+#: mkt/developers/views_payments.py:363
 msgid "Your app is not configured for in-app payments."
 msgstr "您的應用程式並未設定應用程式內付款。"
 
-#: mkt/developers/views_payments.py:362
+#: mkt/developers/views_payments.py:366
 msgid "No payment account for this app."
 msgstr "這個應用程式沒有付款帳號。"
 
@@ -3225,7 +3234,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a>。"
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:309
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3529,7 +3538,7 @@ msgstr "狀態 & 版本"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:158 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -4674,34 +4683,30 @@ msgid "Enable"
 msgstr "啟用"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
-msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
-msgstr "您的應用程式必須封裝好，並指定 <a href=\"%(origin)s\">來源</a> 以使用此應用程式內付款系統。"
+msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
+msgstr ""
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:36
-msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
-msgstr "您的應用程式必須在安裝資訊中指定 <a href=\"%(origin)s\">來源</a>，這樣才能正確驗證明細。"
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:43
+#: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr "此功能正在努力開發中，請參考 <a target=\"_blank\" href=\"%(doc_link)s\">文件</a> 取得更多資訊。"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:48
+#: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "若您發現問題請 <a target=\"_blank\" href=\"%(bug_link)s\">回報 bug</a>。"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:61
+#: mkt/developers/templates/developers/payments/in-app-products.html:56
 msgid "Icon"
 msgstr "圖示"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
+#: mkt/developers/templates/developers/payments/in-app-products.html:58
 msgid "Price Point"
 msgstr "價格點"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:64
+#: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Product ID"
 msgstr "產品 ID"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:76
+#: mkt/developers/templates/developers/payments/in-app-products.html:71
 msgid "Add a product"
 msgstr "新增產品"
 
@@ -5447,15 +5452,15 @@ msgstr "Mozilla Web apps (English)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Mozilla Web apps (Brazilian Portuguese)"
 
-#: mkt/feed/fields.py:188
+#: mkt/feed/fields.py:185
 msgid "Invalid URL %(url)s"
 msgstr "網址無效 %(url)s"
 
-#: mkt/feed/fields.py:193
+#: mkt/feed/fields.py:190
 msgid "Error downloading image from %(url)s"
 msgstr "自 %(url)s 下載圖片時發生錯誤"
 
-#: mkt/feed/fields.py:201
+#: mkt/feed/fields.py:198
 msgid "Image from %(url)s could not be parsed"
 msgstr "無法剖析來自 %(url)s 的圖片"
 
@@ -5463,24 +5468,24 @@ msgstr "無法剖析來自 %(url)s 的圖片"
 msgid "Cannot diff a version against itself"
 msgstr "無法判斷一個版本與其自身的差異"
 
-#: mkt/files/helpers.py:151
+#: mkt/files/helpers.py:152
 msgid "That file no longer exists."
 msgstr "此檔案已經不存在了。"
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:160
+#: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
 msgstr "檔案大小超過 {0} 的限制。"
 
-#: mkt/files/helpers.py:174
+#: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
 msgstr "解碼 {0} 時遇到問題。"
 
-#: mkt/files/helpers.py:212
+#: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "您無法線上檢視此檔案。請下載此檔案後檢視其內容。"
 
-#: mkt/files/helpers.py:220
+#: mkt/files/helpers.py:221
 msgid "This file is a directory."
 msgstr "此檔案是一個目錄。"
 
@@ -5524,11 +5529,11 @@ msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
-#: mkt/files/views.py:43
+#: mkt/files/views.py:42
 msgid "Back to review"
 msgstr "返回審核頁面"
 
-#: mkt/files/views.py:48
+#: mkt/files/views.py:47
 msgid "Back to app"
 msgstr "返回應用程式"
 
@@ -5647,27 +5652,27 @@ msgstr "請輸入退款詳細資訊以便進行退款交易"
 msgid "Reason for Deletion"
 msgstr "刪除原因"
 
-#: mkt/lookup/views.py:140
+#: mkt/lookup/views.py:139
 msgid "Currently unable to retrieve refund status."
 msgstr "目前無法讀取退款狀態。"
 
-#: mkt/lookup/views.py:167
+#: mkt/lookup/views.py:166
 msgid "A refund has already been processed."
 msgstr "退款已處理。"
 
-#: mkt/lookup/views.py:190
+#: mkt/lookup/views.py:189
 msgid "You cannot make a refund request for this transaction."
 msgstr "這個交易不能退款。"
 
-#: mkt/lookup/views.py:211
+#: mkt/lookup/views.py:213
 msgid "Refund for this transaction now pending."
 msgstr "這個交易的退款正在處理中。"
 
-#: mkt/lookup/views.py:219
+#: mkt/lookup/views.py:221
 msgid "Refund for this transaction successfully approved."
 msgstr "這個交易的退款已經核准通過。"
 
-#: mkt/lookup/views.py:224
+#: mkt/lookup/views.py:226
 msgid "Refund request for this transaction failed."
 msgstr "這個交易的退款要求失敗。"
 
@@ -6030,6 +6035,7 @@ msgstr "加入預載"
 msgid "Test Plan"
 msgstr "測試計劃"
 
+#. {0} and {1} are category names.
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
 msgstr "{0}、{1}"
@@ -6168,7 +6174,7 @@ msgstr "收據類型"
 msgid "Manifest location"
 msgstr "資訊清單位置"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:95
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
 msgid "Install"
 msgstr "安裝"
 
@@ -6248,7 +6254,7 @@ msgstr "Tarako 可用"
 msgid "Reviewer Tools"
 msgstr "審核工具"
 
-#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:174
+#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:173
 msgid "Apps"
 msgstr "應用程式"
 
@@ -6332,110 +6338,110 @@ msgstr "評論"
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
 
-#: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:455 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "同意"
 
-#: mkt/reviewers/utils.py:455
+#: mkt/reviewers/utils.py:456
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "將會通過此應用程式並允許作者發布。"
 
-#: mkt/reviewers/utils.py:459 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:460 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "退回"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:462
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "將會退回應用程式、自審核佇列中移除、若已發布也將會下架。"
 
-#: mkt/reviewers/utils.py:466
+#: mkt/reviewers/utils.py:467
 msgid "Request more information"
 msgstr "要求更多資訊"
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:469
 msgid "This will send the author(s) an email requesting more information."
 msgstr "這將會向作者傳送一封電子郵件要求更多資訊。"
 
 # 88%
-#: mkt/reviewers/utils.py:472
+#: mkt/reviewers/utils.py:473
 msgid "Escalate"
 msgstr "向上呈報"
 
-#: mkt/reviewers/utils.py:474
+#: mkt/reviewers/utils.py:475
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "標示此應用程式交由管理員審查。留言將傳送給管理員，而非程式作者。"
 
-#: mkt/reviewers/utils.py:481
+#: mkt/reviewers/utils.py:482
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr "對此程式留言，程式作者不會看到這些留言。"
 
-#: mkt/reviewers/utils.py:485
+#: mkt/reviewers/utils.py:486
 msgid "Clear Escalation"
 msgstr "清除向上呈報"
 
-#: mkt/reviewers/utils.py:487
+#: mkt/reviewers/utils.py:488
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自提升審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:492
+#: mkt/reviewers/utils.py:493
 msgid "Clear Re-review"
 msgstr "清除再次審核"
 
-#: mkt/reviewers/utils.py:494
+#: mkt/reviewers/utils.py:495
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自重新審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:499
+#: mkt/reviewers/utils.py:500
 msgid "Ban app"
 msgstr "封鎖應用程式"
 
-#: mkt/reviewers/utils.py:501
+#: mkt/reviewers/utils.py:502
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "自 Marketplace 封鎖應用程式，與退回審查相同，但作者無法重新送出審查，僅在特殊案例使用。"
 
 # 80%
-#: mkt/reviewers/views.py:124
+#: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
 msgstr "新進應用程式 (5天內)"
 
-#: mkt/reviewers/views.py:125
+#: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
 msgstr "可通過 (五至十天)"
 
-#: mkt/reviewers/views.py:126
+#: mkt/reviewers/views.py:127
 msgid "Overdue (Over 10 days)"
 msgstr "逾期 (超過十天)"
 
-#: mkt/reviewers/views.py:240
+#: mkt/reviewers/views.py:239
 msgid "Self-reviews are not allowed."
 msgstr "不允許自我審核。"
 
-#: mkt/reviewers/views.py:246
+#: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "只有資深審核者可以審核已封鎖的應用程式。"
 
-#: mkt/reviewers/views.py:296
+#: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "審核者變更了裝置: {0}"
 
-#: mkt/reviewers/views.py:298 mkt/reviewers/views.py:320 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: mkt/reviewers/views.py:297 mkt/reviewers/views.py:319 mkt/submit/forms.py:31 mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "{0} 新增"
 
-#: mkt/reviewers/views.py:300 mkt/reviewers/views.py:321 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:299 mkt/reviewers/views.py:320 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr "已移除 {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:323
+#: mkt/reviewers/views.py:322
 msgid "Requirements changed by reviewer: {0}"
 msgstr "需求已被審核者更改: {0}"
 
-#: mkt/reviewers/views.py:350
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "「{0}」處理成功（+{1} 點數，共 {2} 點）。"
 
-#: mkt/reviewers/views.py:352
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "審核流程已順利開始。"
 
@@ -7105,12 +7111,12 @@ msgstr "一旦它通過審核。"
 msgid "Not until I manually make it public."
 msgstr "直到我手動公開。"
 
-#: mkt/site/helpers.py:164
+#: mkt/site/helpers.py:163
 msgid "Home"
 msgstr "首頁"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:319
+#: mkt/site/helpers.py:318
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -7487,6 +7493,7 @@ msgstr "清除"
 msgid "Expand"
 msgstr "展開"
 
+#. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 msgstr "在地化成: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7503,6 +7510,7 @@ msgstr "現有的語系"
 msgid "New Locales"
 msgstr "新語系"
 
+#. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr "您在 <b>{0}</b> 語系還有未儲存的變更。您想要在切換語系前先儲存您的變更嗎？"
@@ -7511,6 +7519,7 @@ msgstr "您在 <b>{0}</b> 語系還有未儲存的變更。您想要在切換語
 msgid "Discard Changes"
 msgstr "放棄變更"
 
+#. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
@@ -7519,7 +7528,7 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
-#: mkt/users/models.py:58
+#: mkt/users/models.py:59
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
@@ -7764,7 +7773,7 @@ msgstr "{region} 審核狀態"
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 
-#: mkt/webapps/tasks.py:154
+#: mkt/webapps/tasks.py:155
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "在 Firefox Marketplace 中，您應用程式「{app}」的相關問題"
 
