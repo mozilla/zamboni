@@ -263,7 +263,7 @@ class CORSMiddleware(object):
                     ('X-HTTP-Method-Override', 'Content-Type')))
 
         error_allowed_methods = []
-        if response.status_code >= 400 and request.API:
+        if response.status_code >= 300 and request.API:
             error_allowed_methods = [request.method]
 
         cors_allowed_methods = getattr(request, 'CORS', error_allowed_methods)

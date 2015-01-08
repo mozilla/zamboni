@@ -77,6 +77,14 @@ class TestCORS(mkt.site.tests.TestCase):
         eq_(res['Access-Control-Allow-Origin'], '*')
         eq_(res['Access-Control-Allow-Methods'], 'OPTIONS')
 
+    def test_redirect_madness(self):
+        # Because this test is dependent upon the order of middleware in the
+        # settings file, this does a full request.
+        res = self.client.get('/api/v1/apps/category')
+        eq_(res.status_code, 301)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
 
 class TestPinningMiddleware(mkt.site.tests.TestCase):
 
