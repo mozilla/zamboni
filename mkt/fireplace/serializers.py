@@ -3,8 +3,11 @@ from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
 class BaseFireplaceAppSerializer(object):
     def get_icons(self, app):
-        # Fireplace only requires 64px-sized icons.
-        return {64: app.get_icon_url(64)}
+        # Fireplace only requires 64px and 128px icons.
+        return {
+            64: app.get_icon_url(64),
+            128: app.get_icon_url(128)
+        }
 
 
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
