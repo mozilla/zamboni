@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-08 14:30+0000\n"
+"PO-Revision-Date: 2015-01-08 15:29+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420727402.0\n"
+"X-POOTLE-MTIME: 1420730995.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4686,6 +4686,11 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
+"Slědowacy kluč/slědowace tajne słowo dowola wam jenož simulaciju płaćenjow w "
+"nałoženju, mjeztym zo swoje nałoženja wuwiwaće. Zo byšće kluč za "
+"woprawdźite płaćenja w nałoženju tworił, dyrbiće swoje nałoženje <a href=\"%"
+"(submit)s\">zapodać</a>, waše płaćenske daty připrawić a nowy kluč specielnje "
+"za tute nałoženje tworić."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4698,6 +4703,9 @@ msgstr "Kluče w nałoženju"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Kluče za płaćenja w nałoženju móža płaćenja we wašim nałoženju za "
+"někajkižkuli płaćiznowy dypk přiwzać. Sće zamołwity za definowanje a "
+"rjadowanje produktow."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
@@ -4730,6 +4738,8 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Jeli problem namakaće, prošu <a target=\"_blank\" href=\"%(bug_link)s\">pisajće "
+"zmylkowu rozprawu</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:56
 msgid "Icon"
