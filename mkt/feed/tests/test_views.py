@@ -924,23 +924,6 @@ class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
         eq_(crush_mock.call_args_list[0][1]['set_modified_on'][0], coll)
 
     @mock.patch('mkt.feed.fields.requests.get')
-    def test_background_image_crush(self, download_mock):
-        res_mock = mock.Mock()
-        res_mock.status_code = 200
-        res_mock.content = open(
-            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
-        download_mock.return_value = res_mock
-
-        self.feed_permission()
-        data = dict(self.obj_data)
-        data.update({'background_image_upload_url': 'ngokevin.com'})  # SEO.
-        res, data = self.create(self.client, **data)
-
-        coll = FeedCollection.objects.all()[0]
-        ok_(coll.image_hash != 'e83ad266')  # Hash of the original bacon image.
-        ok_(os.path.getsize(coll.image_path()) < 312000)  # Size of bacon.
-
-    @mock.patch('mkt.feed.fields.requests.get')
     def test_background_image_404(self, download_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 404
