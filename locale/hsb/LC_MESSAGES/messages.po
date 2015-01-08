@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-08 11:27+0000\n"
+"PO-Revision-Date: 2015-01-08 14:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420716425.0\n"
+"X-POOTLE-MTIME: 1420727402.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4527,6 +4527,8 @@ msgstr "Sće swoje nałoženje hižo pohódnoćić dał?"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Jeli waše nałoženje je so hižo přez IARC-nastroj za globalne pohódnoćenja "
+"pohódnoćiło a hižo maće wěstotny kod IARC, móžeće jón tu manuelnje zapodać."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -4535,6 +4537,8 @@ msgstr "Zapodawanski ID"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"Zapodawanski ID da so na certifikaće namakać, kotryž je so wam připósłał. Je "
+"numeriska hódnota kaž &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -4543,6 +4547,8 @@ msgstr "Wěstotny kod"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Wěstoty kod da so na certifikaće namakać, kotryž je so wam připósłał. Je "
+"změšk pismikow a ličbow kaž &quot;AB12CD2&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
@@ -4613,10 +4619,15 @@ msgstr[3] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowych dnjow"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"Najwjace nałoženjow so za tydźeń přepruwuje. Jeli waše přepruwowanje je "
+"dlěje trało, móžeće e-mejlku na %(email)s słać, zo byšće status kontrolował."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Wubjerće kontrolne kašćiki funkcijow, kotrež waše nałoženje trjeba, zo by "
+"porjadnje fungowało. Waše nałoženje schowa so před wužiwarjemi, kotrychž "
+"graty jo njepodpěruja."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4641,6 +4652,9 @@ msgstr "Kluče za płaćenja w nałoženju"
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"Torhošćo Firefox dowola wašemu nałoženju, płaćenja w nałoženju akceptować. "
+"<a href=\"{guide}\">Přewodnik za płaćenja w nałoženju</a> wujasnja, kak móžeće "
+"swoje nałoženje za płaćenja ze slědowacymi parametrami konfigurować."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
