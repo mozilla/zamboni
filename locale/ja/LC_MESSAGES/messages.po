@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-12-10 13:01-0500\n"
+"PO-Revision-Date: 2015-01-07 22:56-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2300,15 +2300,15 @@ msgstr "512MB RAM 端末"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr "このアプリは少なくとも 512MB の RAM を搭載した端末を必要とします。"
+msgstr "このアプリを使うには少なくとも 512MB の RAM を搭載した端末が必要です。"
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM 端末"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "このアプリを使うには少なくとも 1GB の RAM を搭載した端末が必要です。"
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -4676,7 +4676,7 @@ msgstr "有効化"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr ""
+msgstr "アプリ内商品は、ホスト型アプリもしくはマニフェスト内で <a href=\"%(origin)s\">origin</a> が設定されたパッケージ型アプリのみの対応となります。このアプリには origin が設定されていません。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
