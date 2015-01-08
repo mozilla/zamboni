@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-12-28 12:38+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2015-01-08 18:01+0000\n"
+"Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419770320.0\n"
+"X-POOTLE-MTIME: 1420740101.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2303,11 +2304,11 @@ msgstr "Апликација захтева уређај који има бар�
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Уређај са 1GB RAM меморије"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Апликација захтева да уређај има барем 1GB RAM меморије."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -4697,6 +4698,9 @@ msgstr "Омогући"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"Производи унутар апликације су подржани само за хостоване или упаковане "
+"апликације које дефинишу <a href=\"%(origin)s\">порекло</a> у манифесту. Ваша "
+"апликација не дефинише порекло."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
