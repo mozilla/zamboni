@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 15:31+0000\n"
+"PO-Revision-Date: 2015-01-09 16:22+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420817476.0\n"
+"X-POOTLE-MTIME: 1420820524.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2613,7 +2613,9 @@ msgstr "Waše komentary"
 
 #: mkt/developers/forms.py:795
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
-msgstr "<b>Wozjewjeny</b>: Widźomny za wšě na torhošću a w pytanskich wuslědkach a lisćinwoych stronach naspomnjeny."
+msgstr ""
+"<b>Wozjewjeny</b>: Widźomny za wšě na Torhošću a w pytanskich wuslědkach a "
+"lisćinwoych stronach naspomnjeny."
 
 #: mkt/developers/forms.py:799
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
@@ -3356,7 +3358,9 @@ msgstr "Testowanje"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr "Wužiwajće tute nastroje, zo byšće swoje nałoženja testował, prjedy hač je w Torhošću Firefox zapodał."
+msgstr ""
+"Wužiwajće tute nastroje, zo byšće swoje nałoženja testował, prjedy hač je na "
+"Torhošću Firefox zapodał."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3466,7 +3470,10 @@ msgstr "Witajće k wuwiwarskemu přehladej"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
-msgstr "Njejsće hišće žane nałoženje w Torhošću Firefox zapodał. Hdyž sće <a href=\"%(app_url)s\">swoje nałoženje wutworił</a>, klikńće na \"Waše nałoženje zapodać\"."
+msgstr ""
+"Njejsće hišće žane nałoženje na Torhošću Firefox zapodał. Hdyž sće <a href=\""
+"%(app_url)s\">swoje nałoženje wutworił</a>, klikńće na \"Waše nałoženje "
+"zapodać\"."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -3786,11 +3793,15 @@ msgstr "Nałoženje z lisćiny wotstronić"
 
 #: mkt/developers/templates/developers/apps/status.html:395
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "Lisćinowy zapisk wašeho nałoženja je so znjemóžnił a njebudźe so w Torhošću Firefox jewić. Móžeće jón kóždy čas zaso zmóžnić."
+msgstr ""
+"Lisćinowy zapisk wašeho nałoženja je so znjemóžnił a njebudźe so na Torhošću "
+"Firefox jewić. Móžeće jón kóždy čas zaso zmóžnić."
 
 #: mkt/developers/templates/developers/apps/status.html:400
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
-msgstr "Jeli lisćinowy zapisk swojeho nałoženja wotstronjeće, budźe so nałoženje nihdźe w Torhošću jewić."
+msgstr ""
+"Jeli lisćinowy zapisk swojeho nałoženja wotstronjeće, budźe so nałoženje "
+"nihdźe na Torhošću jewić."
 
 #: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
@@ -4171,7 +4182,9 @@ msgstr "Wužiwa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr "Jeli waše nałoženje Flash wužiwa, schowa so w Torhošću, jeli so graty bjez podpěry Flash wužiwaja."
+msgstr ""
+"Jeli waše nałoženje Flash wužiwa, schowa so na Torhošću, jeli so graty bjez "
+"podpěry Flash wužiwaja."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -4491,7 +4504,7 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
-"Zo byšće swoje nałoženje w Torhošću měł, trjebaće certifikat wot "
+"Zo byšće swoje nałoženje na Torhošću měł, trjebaće certifikat wot "
 "International Age Rating Coalition (IARC). Hdyž na slědowace tłóčatko "
 "kliknjeće, budźe so nowe wokno wočinjeć, hdźež móžeće krótki "
 "haj-ně-naprašnik wo wobsahu swojeho nałoženja wupjelnić. Po wupjelnjenju so "
@@ -4987,7 +5000,7 @@ msgstr "Mjeno zregistrowaneho předewzaća abo wosoby."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr "Mjeno konto w Torhošću (njesćele so na Bango)."
+msgstr "Mjeno konto na Torhošću (njesćele so na Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -5098,10 +5111,15 @@ msgstr "Zhońće, čehoždla někotre regiony su wobmjezowane."
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
 msgstr ""
+"Waše nałoženje so we wěstych regionach hižo njenalistuje, dokelž tute "
+"regiony płaćenja njepodpěruja. Smy waš wuběr regionow přenjesli. Prošu "
+"přepruwujće změny, prjedy hač składujeće."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
 msgstr ""
+"Waše nałoženje zwobraznja so na kóždym regionalnym Torhošću, kotrež so "
+"pozdźišo přidawa. "
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
