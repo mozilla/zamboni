@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 17:10+0000\n"
+"PO-Revision-Date: 2015-01-09 21:24+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420823434.0\n"
+"X-POOTLE-MTIME: 1420838697.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5210,40 +5210,50 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
 msgstr ""
+"Wšě nastroje, dokumenty a žórła, kotrež za wuwiće a testowanje swojeho "
+"nałoženja trjebaće"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
 msgstr ""
+"Zhońće, kak móžeće swoje nałoženja na wotewrjenym torhošću rozdźělić, kotrež "
+"wužiwarjow a wuwiwarjow na prěnje městno staja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
-msgstr ""
+msgstr "Maće nałoženje, kotrež je hotowe za start?"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr ""
+msgstr "Zapodajće swoje nałoženje do Torhošća"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Přidružće so zhromadźenstwu"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
-msgstr ""
+msgstr "Hladajće, štóž hižo k njemu słuša"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
 msgstr ""
+"Sće webpředewzaće, třeći poskićowar abo OEM ze zajimom na partnerstwje z "
+"Mozilla? <a href=\"%(partner_url)s\">Dalše informacije na partnerskej "
+"stronje</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "Platforma za nałoženja Mozilla"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
+"Wuwiwanje nałoženjow dawa wuwiwarjam połnu kontrolu nad wobsahom, "
+"funkcionalnosću a rozdźělenjom nałoženjow, inkluziwnje přistup k stam "
+"milionow wužiwarjow Firefox přez Torhošćo Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -5289,10 +5299,12 @@ msgstr "Natwarće zahe fanowu skupinu a dobudźće woblubowanosć."
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
 msgstr ""
+"Wzmiće sej technisce wersěrowanych nałožowarjow jako cilowu skupinu swojeho "
+"nałoženja."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
-msgstr ""
+msgstr "Nałoženja a programowanske rozrisanja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
@@ -5300,15 +5312,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
-msgstr ""
+msgstr "Wuwiwarske graty"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code &amp; Tools"
-msgstr ""
+msgstr "Kod a nastroje"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events &amp; Meetups"
-msgstr ""
+msgstr "Podawki a zetkanja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
@@ -5316,7 +5328,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
-msgstr ""
+msgstr "Zregistrujće mje!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
@@ -5356,40 +5368,40 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:113
 msgid "For Current Web Developers"
-msgstr ""
+msgstr "Za aktualnych webwuwiwarjow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:117
 msgid "For Current Mobile Developers"
-msgstr ""
+msgstr "Za aktualnych wuwiwarjow mobilnych gratow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:121
 msgid "Using Apps Offline"
-msgstr ""
+msgstr "Wužiwanje nałoženjow offline"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:125
 msgid "Developing Game Apps"
-msgstr ""
+msgstr "Wuwiwanje hrajnych nałoženjow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1492
 msgid "Payments"
-msgstr ""
+msgstr "Płaćenja"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
-msgstr ""
+msgstr "Nałoženski generator"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143
 msgid "App Validator"
-msgstr ""
+msgstr "Nałoženski přepruwowar"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:147
 msgid "App Manager"
-msgstr ""
+msgstr "Zrjadowak nałoženjow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
-msgstr ""
+msgstr "Wuwiwarske nastroje Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Marketplace Submission"
@@ -5422,6 +5434,8 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\" class=\"button\">Nětko zapodać</a> <span>abo</span> "
+"<a href=\"%(api_url)s\" class=\"button api\">Přez API zapodać</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
