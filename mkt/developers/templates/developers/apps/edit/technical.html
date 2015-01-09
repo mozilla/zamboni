@@ -78,6 +78,18 @@
             </td>
           </tr>
         {% endif %}
+        <tr>
+          <th>
+            <label for="id_guid">
+              {{ _('GUID') }}
+              {{ tip(None,
+                     _('Internal identifier for this app on the Firefox Marketplace.')) }}
+            </label>
+          </th>
+          <td>
+            {{ addon.guid }}
+          </td>
+        </tr>
       </tbody>
     </table>
     {% if editable %}
