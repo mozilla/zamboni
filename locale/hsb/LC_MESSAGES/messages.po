@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-08 15:29+0000\n"
+"PO-Revision-Date: 2015-01-09 10:28+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420730995.0\n"
+"X-POOTLE-MTIME: 1420799326.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4718,6 +4718,9 @@ msgstr "Produkty w nałoženju"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Produkty w nałoženju zmóžnjeja wam, płaćenja we wašim nałoženju přiwzać a "
+"proces so zjednorja, zmóžnjejo wam waše produkty we wuwiwarskim róžku "
+"Torhošća Firefox wutworić a rjadować."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -4730,10 +4733,15 @@ msgstr "Zmóžnić"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"Produkty w nałoženju so jenož za hospodowane abo zapakowane nałoženja  "
+"podpěruja, kotrež <a href=\"%(origin)s\">pochad</a> w manifesće podawaja. Waše "
+"nałoženje pochad njepodawa."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Tuta funkcija so tuchwilu wuwiwa. Prošu hlejće <a target=\"_blank\" href=\"%"
+"(doc_link)s\">dokumentaciju</a> za dalše informacije."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
@@ -4768,10 +4776,12 @@ msgstr "Na \"darmo\" změnić"
 #: mkt/developers/templates/developers/payments/premium.html:72
 msgid "Changing to Free will put your app back into review."
 msgstr ""
+"Hdyž status na Darmo stajiće, so waše nałoženje wróćo do přepruwowanja "
+"pósćele."
 
 #: mkt/developers/templates/developers/payments/premium.html:88
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "Płaćomny modus sej wužaduje, zo waše nałoženje jenož tole podpěruje:"
 
 #: mkt/developers/templates/developers/payments/premium.html:89 mkt/developers/templates/developers/payments/premium.html:91 mkt/submit/templates/submit/manifest.html:38
 msgid "Paid / In-app"
@@ -4784,10 +4794,15 @@ msgstr "Na Płaćomny změnić"
 #: mkt/developers/templates/developers/payments/premium.html:101
 msgid "Changing to Paid will put your app back into review."
 msgstr ""
+"Hdyž status na Płaćomny stajiće, so waše nałoženje wróćo do přepruwowanja "
+"pósćele."
 
 #: mkt/developers/templates/developers/payments/premium.html:109
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
+"Zhońće wjace wo <a href=\"%(payments_url)s\" target=\"_blank\">rozdźělnych "
+"płaćenskich typach</a>.<br /> Zhońće wjace wo <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">přepruwowanju kupnych dokładow</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:120 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -4796,6 +4811,8 @@ msgstr "Płaćenske konta"
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
 msgstr ""
+"Waše nałoženje je tuchwilu njedospołne. Wubjerće płaćenske konto a "
+"płaćiznowy dypk, zo byšće jo wobnowił."
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -4803,7 +4820,7 @@ msgstr "Kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:160
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Transakcije za waše płaćenske konta přidać, rjadować abo sej wobhladać"
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "Prices and Countries"
@@ -4811,7 +4828,7 @@ msgstr "Płaćizny a kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr ""
+msgstr "Wužiwa waše nałoženje platformu Mozilla za płaćenja w nałoženju?"
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "A server error occurred. Please try again later."
@@ -4832,6 +4849,9 @@ msgstr "K dispoziciji stejace regiony"
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Wobhladajće sej <a href=\"%(status_url)s\" target=\"_blank\">statusowu "
+"stronu</a>, zo byšće widźał, kotre kraje su tuchwilu k dispoziciji za "
+"předań."
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Your app will be available in the following selected regions:"
