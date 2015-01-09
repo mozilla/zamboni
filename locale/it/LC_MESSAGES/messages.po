@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 22:33+0000\n"
+"PO-Revision-Date: 2015-01-09 22:35+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420842792.0\n"
+"X-POOTLE-MTIME: 1420842922.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -3515,7 +3515,8 @@ msgstr "Informazioni sui ruoli dei membri del team"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr "Le app possono avere un numero qualsiasi di autori con quattro possibili ruoli:"
+msgstr ""
+"Le app possono avere un numero qualsiasi di autori con 4 possibili ruoli:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
