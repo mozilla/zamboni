@@ -70,17 +70,27 @@ class Command(BaseCommand):
             pprint.pprint(data['objects'], indent=2)
         else:
             for p in data['objects']:
-                pr = Price.objects.create(name=p['name'].split(' ')[-1],
-                                          active=p['active'],
-                                          method=p['method'],
-                                          price=p['price'])
+                params = dict(name=p['name'].split(' ')[-1],
+                              active=p['active'],
+                              method=p['method'],
+                              price=p['price'])
+                print p['price']
+                if Price.objects.filter(**params).count():
+                    pr = Price.objects.filter(**params).get()
+                    print 'Skipping existing price:', pr
+                else:
+                    pr = Price.objects.create(**params)
                 for pc in p['prices']:
-                    pr.pricecurrency_set.create(currency=pc['currency'],
-                                                carrier=pc['carrier'],
-                                                price=pc['price'],
-                                                paid=pc['paid'],
-                                                tier=pc['tier'],
-                                                dev=pc['dev'],
-                                                provider=pc['provider'],
-                                                method=pc['method'],
-                                                region=pc['region'])
+                    cur_params = dict(currency=pc['currency'],
+                                      carrier=pc['carrier'],
+                                      price=pc['price'],
+                                      paid=pc['paid'],
+                                      tier=pc['tier'],
+                                      dev=pc['dev'],
+                                      provider=pc['provider'],
+                                      method=pc['method'],
+                                      region=pc['region'])
+                    if pr.pricecurrency_set.filter(**cur_params).count():
+                        print 'Skipping currency', pc['currency']
+                    else:
+                        pr.pricecurrency_set.create(**cur_params)
