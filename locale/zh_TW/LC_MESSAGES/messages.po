@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-12-11 03:15+0000\n"
+"PO-Revision-Date: 2015-01-09 04:05+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418267755.0\n"
+"X-POOTLE-MTIME: 1420776319.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2302,11 +2302,11 @@ msgstr "此應用程式需要裝置至少有 512MB 的 RAM。"
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM 裝置"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "此應用程式要求裝置必須要有至少 1GB 的記憶體。"
 
 # 專有名詞
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
@@ -4685,6 +4685,8 @@ msgstr "啟用"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"僅有架設的應用程式或是在安裝資訊檔中指定了 <a href=\"%(origin)s\">origin</a> "
+"的封裝應用程式支援應用程式內消費。您的應用程式並未指定 origin。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
