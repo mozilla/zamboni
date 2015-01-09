@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 04:05+0000\n"
+"PO-Revision-Date: 2015-01-09 05:54+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420776319.0\n"
+"X-POOTLE-MTIME: 1420782844.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -438,7 +438,7 @@ msgstr "已編輯欄位：設定 {2} 到 {0}。"
 
 #: apps/amo/log.py:567
 msgid "Deleted: {1}."
-msgstr "已刪除： {1}。"
+msgstr "已刪除: {1}。"
 
 #: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
