@@ -1,3 +1,6 @@
+# These should all be in our wheelhouse to avoid compiling on production and
+# automated testing machines
+
 Jinja2==2.7.2
 MarkupSafe==0.18
 lxml==2.2.6
@@ -5,7 +8,7 @@ Pillow==2.3.0
 
 # For JWT to sign App receipts:
 # Temporary.
-M2Crypto==0.20.2
+M2Crypto==0.22.3
 
 # For pyjwkest, for JWT signing.
 pycrypto==2.6.1
