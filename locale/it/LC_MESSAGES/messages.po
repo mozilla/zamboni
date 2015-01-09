@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-12-14 08:56+0000\n"
+"PO-Revision-Date: 2015-01-09 22:33+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418547364.0\n"
+"X-POOTLE-MTIME: 1420842792.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2305,11 +2305,11 @@ msgstr "L’app necessita di un dispositivo con almeno 512MB di RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Dispositivi con RAM 1GB"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "L’app richiede un dispositivo con almeno 1GB di RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -4702,6 +4702,9 @@ msgstr "Attiva"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"L’utilizzo dei prodotti in-app è consentito solo per le app remote e locali "
+"che definiscono un’<a href=\"%(origin)s\">origine</a> nel manifesto. Questa "
+"app non specifica alcuna origine."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
