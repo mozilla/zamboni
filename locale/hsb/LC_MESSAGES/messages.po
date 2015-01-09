@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 16:22+0000\n"
+"PO-Revision-Date: 2015-01-09 17:10+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420820524.0\n"
+"X-POOTLE-MTIME: 1420823434.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5124,10 +5124,12 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
 msgstr ""
+"(Pod wuměnjenjom, zo płaćenja su k dispoziciji w tutym regionje za wubrany "
+"płaćiznowy dypk)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
-msgstr ""
+msgstr "Dóstanjeće e-mejlku, hdyž so nowy region přidawa."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
@@ -5140,66 +5142,70 @@ msgstr "Wulki dźak za waš abonement!"
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
+"Je nam žel, ale zmylk je w našim systemje wustupił. Prošu spytajće pozdźišo "
+"hišće raz."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Wuhotować"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Koncept: Wulkotne nałoženje"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
-msgstr ""
+msgstr "Zakłady designa"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:28 mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:19
 msgid "UI Guidelines"
-msgstr ""
+msgstr "Směrnicy za wužiwarske powjerchi"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
-msgstr ""
+msgstr "Wuwiwać"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
-msgstr ""
+msgstr "Spěšny start"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox-OS-Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
-msgstr ""
+msgstr "Referencne nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:42
 msgid "Publish"
-msgstr ""
+msgstr "Wozjewić"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Rozdźělenje wašeho nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:180
 msgid "Hosted Apps"
-msgstr ""
+msgstr "Hospodowane nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Packaged Apps"
-msgstr ""
+msgstr "Zapakowane nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Přitykowaki, chorhoje a symbole"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr ""
+msgstr "Wuwiwajće webnałoženja z HTML5 za wotewrjene torhošćo."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
+"Zhońće, kak nałoženja wuhotujeće, kotrež wužiwarske dožiwjenje skića, kotrež "
+"je za Firefox OS a Mobile optimizowane."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
@@ -5250,24 +5256,35 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
+"Torhošćo Firefox dawa wužiwarjam móžnosć, nałoženja a za nich wažne wobsahi "
+"namakać, wupruwować a kupić. To woznamjenja, rozbudźace, wužitne a "
+"kwalitatiwnje wysokohódnotne nałoženja, kotrež su relewantne za lokalne wiki "
+"we wšěch kategorijach a kotrež wužiwarjo móža wužiwać, zo bychu najwjace ze "
+"swojeho žiwjenja won ćahnyli."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
+"Gobalny dosah Mozilla wopřijima sta milionow wužiwarjow Firefox swětodaloko. "
+"Přez inteligentne wothladowanje Torhošća a efektiwne wužiwanje "
+"marketingowych kanalow Mozilla, móže Mozilla wuwiwarjam pomhać, jich "
+"nałoženje do rukow wužiwarjow jich ciloweje skupiny na cyłym swěće połožić."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
+"Torhošćo Firefox je nětko wočinjene a akceptuje nałoženja. Zapodajće swoje "
+"nałoženje pola:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "Testujće swoje nałoženje z angažowanej skupinu zažnych nałožowarjow."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
-msgstr ""
+msgstr "Natwarće zahe fanowu skupinu a dobudźće woblubowanosć."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
