@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 10:49+0000\n"
+"PO-Revision-Date: 2015-01-09 15:31+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420800575.0\n"
+"X-POOTLE-MTIME: 1420817476.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -4894,10 +4894,14 @@ msgstr "Za to jako aktualizaciju za darmotnu wersiju wabić"
 #: mkt/developers/templates/developers/payments/premium.html:292
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr ""
+"Jeli maće darmotne nałoženje, móžeće jo ze swojim premiumowym nałoženjom "
+"zwjazać a za njo pódla darmotneje wersije wabić."
 
 #: mkt/developers/templates/developers/payments/premium.html:300
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr ""
+"Hdyž tute nałoženje zwjazujeće, budźe so za waše premiumowe nałoženje pódla "
+"darmotneje wersije wabić."
 
 #: mkt/developers/templates/developers/payments/premium.html:307
 msgid "No free apps"
@@ -4943,10 +4947,13 @@ msgstr "Płaćenske konto zhašeć"
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"Aktualne płaćenske konto je so z wot wobsedźerja nałoženja z nałoženjom "
+"zwjazało."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"Maće njedospołne płaćenske konto. Wudospołńće jo abo załožće deleka nowe."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -5008,6 +5015,10 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Zo byšće płaćenske konto Boku přidał, dyrbiće so na websydle Boku za nowe "
+"specifiske konto Mozilla registrować. Po registrowanju budźe 24 - 48 hodźin "
+"trać, doniž Boku konto njeschwali. Dokumentaciju a přistup na Boku-websydło "
+"namakaće na Mozilla Developer Network."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
@@ -5016,6 +5027,8 @@ msgstr "K Boku-dokumentaciji na MDN"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"Sće za Boku-konto registrował a je so waše konto schwaliło? Prošu wutworće "
+"kontowe mjeno a swój ID Boku-słužby."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
@@ -5024,6 +5037,9 @@ msgstr "Wutworće mjeno za tute konto."
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"Alfanumeriski ID, kotryž je na Boku-websydle pod \"Service Name\" podaty. "
+"Zhońće wjace na <a href=\"%(boku_docs_url)s\" target=\"_blank\">Boku-stronje "
+"MDN</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -5040,6 +5056,8 @@ msgstr "Bango-konto změnić"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
 msgstr ""
+"Mjeno, z kotrymž so konto na Torhošću wobznamjenja, kotrež so na Bango "
+"njesćele."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5053,7 +5071,7 @@ msgstr "Boku-konto změnić"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "Tuchwilu wobdźěłowanje Boku-konta móžno njeje."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5066,14 +5084,16 @@ msgstr "Regiony, kotrež sej wosebite wobkedźbowanje wužaduja:"
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
 msgstr ""
+"Dyrbiće <a href=\"{status_page}\">přepruwowanje požadać</a>, zo by so waše "
+"nałoženje na gratach z mało składowakom pokazać dało."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "graty z mało składowakom"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
-msgstr ""
+msgstr "Zhońće, čehoždla někotre regiony su wobmjezowane."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
