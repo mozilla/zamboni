@@ -4,7 +4,6 @@
 
 -r compiled.txt
 
-coverage==3.7.1
 psutil==0.2.0
 nose-blockage==0.1.2
 nosenicedots==0.5
