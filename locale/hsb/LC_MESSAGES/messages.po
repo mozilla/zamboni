@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-10 19:23+0000\n"
+"PO-Revision-Date: 2015-01-10 19:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420917816.0\n"
+"X-POOTLE-MTIME: 1420918457.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5611,27 +5611,27 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
-msgstr ""
+msgstr "Webnałoženja Mozilla (jendźelsce)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr ""
+msgstr "Webnałoženja Mozilla (brazilska portugalšćina)"
 
 #: mkt/feed/fields.py:185
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "Njepłaćiwy URL %(url)s"
 
 #: mkt/feed/fields.py:190
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Zmylk při sćahowanju wobraza wot %(url)s"
 
 #: mkt/feed/fields.py:198
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Wobraz wot %(url)s njeda so parsować"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Wersija njeda so ze sobu přirunać"
 
 #: mkt/files/helpers.py:152
 msgid "That file no longer exists."
@@ -5700,7 +5700,7 @@ msgstr "Njepłaćiwy archiw."
 
 #: mkt/files/views.py:42
 msgid "Back to review"
-msgstr ""
+msgstr "Wróćo k přepruwowanju"
 
 #: mkt/files/views.py:47
 msgid "Back to app"
@@ -5713,14 +5713,16 @@ msgstr ""
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
+"Wersija: %(version)s • wulkosć: %(size)s • MD5 kontrolna suma: %(md5)s • "
+"MIME-typ: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Datajowe přirunanje :: Nastroje za přepruwowarjow"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Datajowy wobhladowak :: Nastroje za přepruwowarjow "
 
 #: mkt/files/templates/fileviewer/viewer.html:15
 msgid "Validation failed:"
@@ -5736,7 +5738,7 @@ msgstr "Nałoženje so předźěłuje, prošu čakajće."
 
 #: mkt/files/templates/fileviewer/viewer.html:37
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Přepruwowanske wuslědki so wotwołuja..."
 
 #: mkt/files/templates/fileviewer/viewer.html:45
 msgid "Files:"
@@ -5752,23 +5754,23 @@ msgstr "Tabulatorowy wotstawk:"
 
 #: mkt/files/templates/fileviewer/viewer.html:72 mkt/files/templates/fileviewer/viewer.html:73
 msgid "Up file"
-msgstr ""
+msgstr "Předchadna dataja"
 
 #: mkt/files/templates/fileviewer/viewer.html:77 mkt/files/templates/fileviewer/viewer.html:78
 msgid "Down file"
-msgstr ""
+msgstr "Přichadna dataja"
 
 #: mkt/files/templates/fileviewer/viewer.html:83 mkt/files/templates/fileviewer/viewer.html:84
 msgid "Previous diff"
-msgstr ""
+msgstr "Předchadny rozdźěl"
 
 #: mkt/files/templates/fileviewer/viewer.html:86 mkt/files/templates/fileviewer/viewer.html:87
 msgid "Previous note"
-msgstr ""
+msgstr "Předchadna přispomnjenka"
 
 #: mkt/files/templates/fileviewer/viewer.html:93 mkt/files/templates/fileviewer/viewer.html:94
 msgid "Next diff"
-msgstr ""
+msgstr "Přichodny rozdźěl"
 
 #: mkt/files/templates/fileviewer/viewer.html:96 mkt/files/templates/fileviewer/viewer.html:97
 msgid "Next note"
