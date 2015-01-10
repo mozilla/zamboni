@@ -6,7 +6,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
@@ -92,7 +92,7 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         eq_(Version.with_deleted.count(), 1)
 
         # Ensure deleted version's files get disabled.
-        eq_(version.all_files[0].status, amo.STATUS_DISABLED)
+        eq_(version.all_files[0].status, mkt.STATUS_DISABLED)
 
     def test_has_files(self):
         assert self.version.has_files, 'Version with files not recognized.'
@@ -132,28 +132,28 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         assert storage_mock.delete.called
 
     def test_version_delete_files(self):
-        eq_(self.version.files.all()[0].status, amo.STATUS_PUBLIC)
+        eq_(self.version.files.all()[0].status, mkt.STATUS_PUBLIC)
         self.version.delete()
-        eq_(self.version.files.all()[0].status, amo.STATUS_DISABLED)
+        eq_(self.version.files.all()[0].status, mkt.STATUS_DISABLED)
 
     @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
         addon = Webapp.objects.get(pk=337141)
         # The status doesn't change for public files.
         qs = File.objects.filter(version=addon.current_version)
-        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        eq_(qs.all()[0].status, mkt.STATUS_PUBLIC)
         Version.objects.create(addon=addon)
-        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        eq_(qs.all()[0].status, mkt.STATUS_PUBLIC)
         assert not hide_mock.called
 
-        qs.update(status=amo.STATUS_PENDING)
+        qs.update(status=mkt.STATUS_PENDING)
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
-        eq_(qs.all()[0].status, amo.STATUS_DISABLED)
+        eq_(qs.all()[0].status, mkt.STATUS_DISABLED)
         assert hide_mock.called
 
     def _reset_version(self, version):
-        version.all_files[0].status = amo.STATUS_PUBLIC
+        version.all_files[0].status = mkt.STATUS_PUBLIC
         version.deleted = False
 
     def test_version_is_public(self):
@@ -165,7 +165,7 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
 
         # Non-public file.
         self._reset_version(version)
-        version.all_files[0].status = amo.STATUS_DISABLED
+        version.all_files[0].status = mkt.STATUS_DISABLED
         eq_(version.is_public(), False)
 
         # Deleted version.

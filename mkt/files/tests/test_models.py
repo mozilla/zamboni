@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 import mock
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
@@ -212,34 +212,34 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_disable_signal(self, hide_mock):
         f = File.objects.get()
-        f.status = amo.STATUS_PUBLIC
+        f.status = mkt.STATUS_PUBLIC
         f.save()
         assert not hide_mock.called
 
-        f.status = amo.STATUS_DISABLED
+        f.status = mkt.STATUS_DISABLED
         f.save()
         assert hide_mock.called
 
     @mock.patch('mkt.files.models.File.unhide_disabled_file')
     def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get()
-        f.status = amo.STATUS_PUBLIC
+        f.status = mkt.STATUS_PUBLIC
         f.save()
         assert not unhide_mock.called
 
         f = File.objects.get()
-        f.status = amo.STATUS_DISABLED
+        f.status = mkt.STATUS_DISABLED
         f.save()
         assert not unhide_mock.called
 
         f = File.objects.get()
-        f.status = amo.STATUS_PUBLIC
+        f.status = mkt.STATUS_PUBLIC
         f.save()
         assert unhide_mock.called
 
     def test_unhide_disabled_files(self):
         f = File.objects.get()
-        f.status = amo.STATUS_PUBLIC
+        f.status = mkt.STATUS_PUBLIC
         with storage.open(f.guarded_file_path, 'wb') as fp:
             fp.write('some data\n')
         f.unhide_disabled_file()
@@ -289,12 +289,12 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         f = File.objects.get()
         addon_id = f.version.addon_id
         addon = Webapp.objects.no_cache().get(pk=addon_id)
-        addon.update(status=amo.STATUS_DELETED)
+        addon.update(status=mkt.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
 
     def test_disabled_file_uses_guarded_path(self):
         f = File.objects.get()
-        f.update(status=amo.STATUS_DISABLED)
+        f.update(status=mkt.STATUS_DISABLED)
         ok_(settings.GUARDED_ADDONS_PATH in f.file_path)
         ok_(settings.ADDONS_PATH not in f.file_path)
 

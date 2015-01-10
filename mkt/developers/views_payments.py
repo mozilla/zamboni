@@ -16,7 +16,7 @@ from curling.lib import HttpClientError
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
-import amo
+import mkt
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access import acl
@@ -89,8 +89,8 @@ def payments(request, addon_id, addon, webapp=False):
                                u'payment server.'))
                 raise  # We want to see these exceptions!
 
-            is_free_inapp = addon.premium_type == amo.ADDON_FREE_INAPP
-            is_now_paid = (addon.premium_type in amo.ADDON_PREMIUMS
+            is_free_inapp = addon.premium_type == mkt.ADDON_FREE_INAPP
+            is_now_paid = (addon.premium_type in mkt.ADDON_PREMIUMS
                            or is_free_inapp)
 
             # If we haven't changed to a free app, check the upsell.
@@ -132,7 +132,7 @@ def payments(request, addon_id, addon, webapp=False):
         invalid_paid_platform_state += [('desktop', True)]
 
     cannot_be_paid = (
-        addon.premium_type == amo.ADDON_FREE and
+        addon.premium_type == mkt.ADDON_FREE and
         any(premium_form.device_data['free-%s' % x] == y
             for x, y in invalid_paid_platform_state))
 
@@ -161,8 +161,8 @@ def payments(request, addon_id, addon, webapp=False):
                    'form': premium_form, 'upsell_form': upsell_form,
                    'tier_zero_id': tier_zero_id, 'region_form': region_form,
                    'PLATFORMS_NAMES': PLATFORMS_NAMES,
-                   'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
-                               or addon.premium_type == amo.ADDON_FREE_INAPP),
+                   'is_paid': (addon.premium_type in mkt.ADDON_PREMIUMS
+                               or addon.premium_type == mkt.ADDON_FREE_INAPP),
                    'cannot_be_paid': cannot_be_paid,
                    'paid_platform_names': paid_platform_names,
                    'is_packaged': addon.is_packaged,
@@ -357,7 +357,7 @@ def require_in_app_payments(render_view):
     def inner(request, addon_id, addon, *args, **kwargs):
         setup_url = reverse('mkt.developers.apps.payments',
                             args=[addon.app_slug])
-        if addon.premium_type not in amo.ADDON_INAPPS:
+        if addon.premium_type not in mkt.ADDON_INAPPS:
             messages.error(
                     request,
                     _('Your app is not configured for in-app payments.'))
@@ -478,7 +478,7 @@ def bango_portal_from_addon(request, addon_id, addon, webapp=True):
         account = bango.payment_account
 
     if not ((addon.authors.filter(pk=request.user.pk,
-                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()) and
+                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()) and
             (account.solitude_seller.user.id == request.user.id)):
         log.error(('User not allowed to reach the Bango portal; '
                    'pk=%s') % request.user.pk)

@@ -91,7 +91,7 @@ interface to Elasticsearch::
 Testing with Elasticsearch
 --------------------------
 
-All test cases using Elasticsearch should inherit from ``amo.tests.ESTestCase``.
+All test cases using Elasticsearch should inherit from ``mkt.site.tests.ESTestCase``.
 All such tests will be skipped by the test runner unless::
 
     RUN_ES_TESTS = True

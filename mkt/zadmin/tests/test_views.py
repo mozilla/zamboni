@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.access.models import Group, GroupUser
 from mkt.reviewers.models import RereviewQueue
@@ -94,7 +94,7 @@ class TestEmailDevs(mkt.site.tests.TestCase):
                                      preview_only=preview_only))
 
     def test_preview(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.post(recipients='payments', preview_only=True)
         self.assertNoFormErrors(res)
         preview = EmailPreviewTopic(topic='email-devs')
@@ -103,19 +103,19 @@ class TestEmailDevs(mkt.site.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_apps_with_payments(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.post(recipients='payments')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
         mail.outbox = []
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         res = self.post(recipients='payments')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
         mail.outbox = []
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         res = self.post(recipients='payments')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
@@ -142,7 +142,7 @@ class TestEmailDevs(mkt.site.tests.TestCase):
 
     def test_only_apps_with_payments_and_new_regions(self):
         self.addon.update(enable_new_regions=False)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.post(recipients='payments_region_enabled')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
@@ -163,26 +163,26 @@ class TestEmailDevs(mkt.site.tests.TestCase):
 
     def test_only_desktop_apps(self):
         AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_MOBILE.id)
+            device_type=mkt.DEVICE_MOBILE.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
         mail.outbox = []
         AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_DESKTOP.id)
+            device_type=mkt.DEVICE_DESKTOP.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
         mail.outbox = []
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)
 
         mail.outbox = []
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
@@ -193,14 +193,14 @@ class TestEmailDevs(mkt.site.tests.TestCase):
         eq_(len(mail.outbox), 1)
 
     def test_ignore_deleted_always(self):
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         for name, label in DevMailerForm._choices:
             res = self.post(recipients=name)
             self.assertNoFormErrors(res)
             eq_(len(mail.outbox), 0)
 
     def test_exclude_pending_for_addons(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         for name, label in DevMailerForm._choices:
             if name in ('payments', 'desktop_apps'):
                 continue

@@ -12,7 +12,7 @@ import waffle
 from PIL import Image
 from tower import ugettext as _
 
-import amo
+import mkt
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
@@ -38,7 +38,7 @@ def check_upload(file_obj, upload_type, content_type):
     upload_hash = ''
     is_icon = upload_type == 'icon'
     is_preview = upload_type == 'preview'
-    is_video = content_type in amo.VIDEO_TYPES
+    is_video = content_type in mkt.VIDEO_TYPES
 
     if not any([is_icon, is_preview, is_video]):
         raise ValueError('Unknown upload type.')
@@ -68,7 +68,7 @@ def check_upload(file_obj, upload_type, content_type):
     else:
         check = ImageCheck(file_obj)
         if (not check.is_image() or
-            content_type not in amo.IMG_TYPES):
+            content_type not in mkt.IMG_TYPES):
             do_not_open = True
             if is_icon:
                 errors.append(_('Icons must be either PNG or JPG.'))
@@ -136,7 +136,7 @@ def escalate_app(app, version, user, msg, email_template, log_type):
                      note_type=comm.ACTION_MAP(log_type))
 
     # Log action
-    amo.log(log_type, app, version, created=datetime.now(),
+    mkt.log(log_type, app, version, created=datetime.now(),
             details={'comments': msg})
     log.info(u'[app:%s] escalated - %s' % (app.name, msg))
 
@@ -154,7 +154,7 @@ def handle_vip(addon, version, user):
     escalate_app(
         addon, version, user, u'VIP app updated',
         'developers/emails/vip_escalation.ltxt',
-        amo.LOG.ESCALATION_VIP_APP)
+        mkt.LOG.ESCALATION_VIP_APP)
 
 
 def escalate_prerelease_permissions(app, validation, version):
@@ -167,4 +167,4 @@ def escalate_prerelease_permissions(app, validation, version):
         escalate_app(
             app, version, nobody, 'App uses prerelease permissions',
             'developers/emails/prerelease_escalation.ltxt',
-            amo.LOG.ESCALATION_PRERELEASE_APP)
+            mkt.LOG.ESCALATION_PRERELEASE_APP)

@@ -8,7 +8,7 @@ from django.utils.translation.trans_real import to_language
 from .hold import add_translation, make_key, save_translations
 from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
                      NoLinksTranslation, NoLinksNoMarkupTranslation)
-from .utils import to_language as amo_to_language
+from .utils import to_language as mkt_to_language
 from .widgets import TransInput, TransTextarea
 
 
@@ -182,7 +182,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         """
         rv = None
         for locale, string in dict_.items():
-            loc = amo_to_language(locale)
+            loc = mkt_to_language(locale)
             if loc not in settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES:
                 continue
             # The Translation is created and saved in here.

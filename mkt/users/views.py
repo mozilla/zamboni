@@ -16,7 +16,7 @@ from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
-import amo
+import mkt
 from lib.metrics import record_action
 from mkt.site.decorators import json_view, login_required
 from mkt.site.utils import escape_all, log_cef
@@ -143,7 +143,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
         return profile, None
 
     username = autocreate_username(email.partition('@')[0])
-    source = amo.LOGIN_SOURCE_MMO_BROWSERID
+    source = mkt.LOGIN_SOURCE_MMO_BROWSERID
     profile = UserProfile.objects.create(username=username, email=email,
                                          source=source, display_name=username,
                                          is_verified=verified)

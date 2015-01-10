@@ -12,9 +12,8 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from waffle.models import Switch
 
-import amo
-import mkt.site.tests
 import mkt
+import mkt.site.tests
 from mkt.constants.payments import (ACCESS_PURCHASE, ACCESS_SIMULATE,
                                     PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
@@ -56,7 +55,7 @@ class InappTest(mkt.site.tests.TestCase):
         self.pay_key_secret = 'hex-secret-for-in-app-payments'
         self.generic_product_id = '1'
         self.app = Webapp.objects.get(pk=337141)
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP,
+        self.app.update(premium_type=mkt.ADDON_FREE_INAPP,
                         solitude_public_id=self.public_id)
         self.user = UserProfile.objects.get(pk=31337)
         self.other = UserProfile.objects.get(pk=999)
@@ -100,13 +99,13 @@ class TestInappConfig(InappTest):
     def test_other_developer_can_get_config(self):
         self.login(self.other)
         AddonUser.objects.create(addon=self.app, user=self.other,
-                                 role=amo.AUTHOR_ROLE_DEV)
+                                 role=mkt.AUTHOR_ROLE_DEV)
         # Developer can read, but not reset.
         eq_(self.client.get(self.url).status_code, 200)
         eq_(self.client.post(self.url).status_code, 403)
 
     def test_not_inapp(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         eq_(self.client.get(self.url).status_code, 302)
 
     def test_no_pay_account(self):
@@ -122,7 +121,7 @@ def render_in_app_view(request, addon_id, addon, *args, **kwargs):
 class TestRequireInAppPayments(mkt.site.tests.TestCase):
 
     def good_app(self):
-        addon = mock.Mock(premium_type=amo.ADDON_INAPPS[0], app_slug='foo')
+        addon = mock.Mock(premium_type=mkt.ADDON_INAPPS[0], app_slug='foo')
         addon.has_payment_account.return_value = True
         return addon
 
@@ -134,7 +133,7 @@ class TestRequireInAppPayments(mkt.site.tests.TestCase):
     @mock.patch('django.contrib.messages.error')
     def test_not_inapp(self, error):
         addon = self.good_app()
-        addon.premium_type = amo.ADDON_FREE
+        addon.premium_type = mkt.ADDON_FREE
         response = render_in_app_view(addon=addon, request=None, addon_id=None)
         eq_(response.status_code, 302)
 
@@ -275,7 +274,7 @@ class TestInappSecret(InappTest):
         self.set_mocks()
         self.login(self.other)
         AddonUser.objects.create(addon=self.app, user=self.other,
-                                 role=amo.AUTHOR_ROLE_DEV)
+                                 role=mkt.AUTHOR_ROLE_DEV)
         resp = self.client.get(self.url)
         eq_(resp.content, self.pay_key_secret)
 
@@ -379,7 +378,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         super(TestPayments, self).setUp()
         self.webapp = self.get_webapp()
         AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
+            addon=self.webapp, device_type=mkt.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
 
         self.user = UserProfile.objects.get(pk=31337)
@@ -414,31 +413,31 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
     def test_free(self):
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free'}), follow=True)
-        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
+        eq_(self.get_webapp().premium_type, mkt.ADDON_FREE)
         eq_(res.context['is_paid'], False)
 
     def test_premium_passes(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         res = self.client.post(self.url,
                                self.get_postdata({'toggle-paid': 'paid'}),
                                follow=True)
-        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
+        eq_(self.get_webapp().premium_type, mkt.ADDON_PREMIUM)
         eq_(res.context['is_paid'], True)
 
     def test_check_api_url_in_context(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         res = self.client.get(self.url)
         eq_(res.context['api_pricelist_url'], reverse('price-list'))
 
     def test_regions_display_free(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#regions-island')), 1)
         eq_(len(pqr('#paid-regions-island')), 0)
 
     def test_regions_display_premium(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#regions-island')), 0)
@@ -446,7 +445,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_free_with_in_app_tier_id_in_content(self):
         price_tier_zero = Price.objects.get(price='0.00')
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#region-list[data-tier-zero-id]')), 1)
@@ -454,13 +453,13 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             'data-tier-zero-id')), price_tier_zero.pk)
 
     def test_not_applicable_data_attr_in_content(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#region-list[data-not-applicable-msg]')), 1)
 
     def test_pay_method_ids_in_context(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         self.assertSetEqual(res.context['payment_methods'].keys(),
                             [PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
@@ -471,7 +470,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         new_upsell_app = Webapp.objects.create(
             status=self.webapp.status,
             name='upsell-%s' % self.webapp.id,
-            premium_type=amo.ADDON_FREE)
+            premium_type=mkt.ADDON_FREE)
         new_upsell = AddonUpsell(premium=self.webapp)
         new_upsell.free = new_upsell_app
         new_upsell.save()
@@ -485,7 +484,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         eq_(AddonPremium.objects.all().count(), 0)
 
     def test_premium_in_app_passes(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'paid'}))
         self.assert3xx(res, self.url)
@@ -494,20 +493,20 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
-        eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM_INAPP)
+        eq_(self.get_webapp().premium_type, mkt.ADDON_PREMIUM_INAPP)
 
     @mock.patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_later_then_free(self, complete_mock):
         complete_mock.return_value = True
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM,
-                           status=amo.STATUS_NULL,
-                           highest_status=amo.STATUS_PENDING)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM,
+                           status=mkt.STATUS_NULL,
+                           highest_status=mkt.STATUS_PENDING)
         self.make_premium(self.webapp)
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free',
                                          'price': self.price.pk}))
         self.assert3xx(res, self.url)
-        eq_(self.get_webapp().status, amo.STATUS_PENDING)
+        eq_(self.get_webapp().status, mkt.STATUS_PENDING)
         eq_(AddonPremium.objects.all().count(), 0)
 
     def test_premium_price_initial_already_set(self):
@@ -519,7 +518,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
     def test_premium_price_initial_use_default(self):
         Price.objects.create(price='10.00')  # Make one more tier.
 
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         res = self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'paid'}), follow=True)
         pqr = pq(res.content)
@@ -527,7 +526,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             str(Price.objects.get(price='0.99').id))
 
     def test_starting_with_free_inapp_has_free_selected(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.webapp.update(premium_type=mkt.ADDON_FREE_INAPP)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
@@ -541,20 +540,20 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         eq_(pqr('select[name=price] option[selected]').attr('value'), 'free')
 
     def test_made_free_inapp_then_free(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         self.make_premium(self.webapp)
         self.client.post(
             self.url, self.get_postdata({'price': 'free',
                                          'allow_inapp': 'True',
                                          'regions': ALL_REGION_IDS}))
-        eq_(self.get_webapp().premium_type, amo.ADDON_FREE_INAPP)
+        eq_(self.get_webapp().premium_type, mkt.ADDON_FREE_INAPP)
         self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'free',
                                          'regions': ALL_REGION_IDS}))
-        eq_(self.get_webapp().premium_type, amo.ADDON_FREE)
+        eq_(self.get_webapp().premium_type, mkt.ADDON_FREE)
 
     def test_free_with_inapp_without_account_has_incomplete_status(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         # Toggle to paid
         self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'paid'}))
@@ -563,14 +562,14 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
                                          'allow_inapp': 'True',
                                          'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
-        eq_(self.get_webapp().status, amo.STATUS_NULL)
+        eq_(self.get_webapp().status, mkt.STATUS_NULL)
         eq_(AddonPremium.objects.all().count(), 0)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-island-incomplete:not(.hidden)')), 1)
 
     def test_paid_app_without_account_has_incomplete_status(self):
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         # Toggle to paid
         self.client.post(
             self.url, self.get_postdata({'toggle-paid': 'paid'}))
@@ -579,7 +578,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
                                          'allow_inapp': 'False',
                                          'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
-        eq_(self.get_webapp().status, amo.STATUS_NULL)
+        eq_(self.get_webapp().status, mkt.STATUS_NULL)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-island-incomplete:not(.hidden)')), 1)
@@ -597,7 +596,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         if not user:
             user = self.user
 
-        amo.set_user(user)
+        mkt.set_user(user)
 
         if make_owner:
             # Make owner.
@@ -614,7 +613,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def is_owner(self, user):
         return (self.webapp.authors.filter(pk=user.pk,
-                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
+                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
 
     def test_associate_acct_to_app_free_inapp(self):
         acct, user = self.setup_payment_acct(make_owner=True)
@@ -816,10 +815,10 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}),
                                          follow=True)
-        amo.set_user(self.other)
+        mkt.set_user(self.other)
         # Make this user a dev so they have access to the payments page.
         AddonUser.objects.create(addon=self.webapp,
-                                 user=self.other, role=amo.AUTHOR_ROLE_DEV)
+                                 user=self.other, role=mkt.AUTHOR_ROLE_DEV)
         self.login(self.other)
         # Make sure not an owner.
         assert not self.is_owner(self.other)
@@ -865,11 +864,11 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         self.make_premium(self.webapp, price=self.price.price)
         self.login(self.user)
         addon_account = setup_payment_account(self.webapp, self.user)
-        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        eq_(self.webapp.status, mkt.STATUS_PUBLIC)
         self.client.post(reverse(
             'mkt.developers.provider.delete_payment_account',
             args=[addon_account.payment_account.pk]))
-        eq_(self.webapp.reload().status, amo.STATUS_NULL)
+        eq_(self.webapp.reload().status, mkt.STATUS_NULL)
 
     def test_addon_payment_accounts_with_or_without_addons(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -886,7 +885,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def setup_bango_portal(self):
         self.user = UserProfile.objects.get(pk=31337)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         self.login(self.user)
         self.account = setup_payment_account(self.webapp, self.user)
         self.portal_url = self.webapp.get_dev_url(
@@ -948,7 +947,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         # Checks that only the owner can access the page (vs. developers).
         self.setup_bango_portal()
         addon_user = self.user.addonuser_set.all()[0]
-        addon_user.role = amo.AUTHOR_ROLE_DEV
+        addon_user.role = mkt.AUTHOR_ROLE_DEV
         addon_user.save()
         assert not self.is_owner(self.user)
         res = self.client.get(self.portal_url)
@@ -960,9 +959,9 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         self.login(self.other)
         other_webapp = Webapp.objects.create(status=self.webapp.status,
                                              name='other-%s' % self.webapp.id,
-                                             premium_type=amo.ADDON_PREMIUM)
+                                             premium_type=mkt.ADDON_PREMIUM)
         AddonUser.objects.create(addon=other_webapp,
-                                 user=self.other, role=amo.AUTHOR_ROLE_OWNER)
+                                 user=self.other, role=mkt.AUTHOR_ROLE_OWNER)
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 403)
 
@@ -977,7 +976,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_device_checkboxes_present_with_android_payments(self):
         self.create_flag('android-payments')
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 1)
@@ -985,13 +984,13 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_device_checkboxes_present_with_desktop_payments(self):
         self.create_flag('desktop-payments')
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-desktop input[type="checkbox"]')), 1)
 
     def test_device_checkboxes_not_present_without_android_payments(self):
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 0)
@@ -1000,22 +999,22 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
     def test_cannot_be_paid_with_android_payments_just_ffos(self):
         self.create_flag('android-payments')
         self.webapp.addondevicetype_set.get_or_create(
-            device_type=amo.DEVICE_GAIA.id)
+            device_type=mkt.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_without_android_payments_just_ffos(self):
         self.webapp.addondevicetype_set.filter(
-            device_type=amo.DEVICE_GAIA.id).delete()
+            device_type=mkt.DEVICE_GAIA.id).delete()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
 
     def test_cannot_be_paid_with_android_payments(self):
         self.create_flag('android-payments')
-        for device_type in (amo.DEVICE_GAIA,
-                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+        for device_type in (mkt.DEVICE_GAIA,
+                            mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1024,7 +1023,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_cannot_be_paid_with_desktop_payments(self):
         self.create_flag('desktop-payments')
-        for device_type in (amo.DEVICE_GAIA, amo.DEVICE_DESKTOP):
+        for device_type in (mkt.DEVICE_GAIA, mkt.DEVICE_DESKTOP):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1032,8 +1031,8 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_without_android_payments(self):
-        for device_type in (amo.DEVICE_GAIA,
-                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+        for device_type in (mkt.DEVICE_GAIA,
+                            mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1042,8 +1041,8 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_cannot_be_paid_pkg_with_desktop_pkg(self):
         self.webapp.update(is_packaged=True)
-        for device_type in (amo.DEVICE_GAIA,
-                            amo.DEVICE_DESKTOP):
+        for device_type in (mkt.DEVICE_GAIA,
+                            mkt.DEVICE_DESKTOP):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1053,15 +1052,15 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
     def test_cannot_be_paid_pkg_without_desktop_pkg(self):
         self.webapp.update(is_packaged=True)
         self.webapp.addondevicetype_set.get_or_create(
-            device_type=amo.DEVICE_GAIA.id)
+            device_type=mkt.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_pkg_with_android_pkg_no_android_payments(self):
         self.webapp.update(is_packaged=True)
-        for device_type in (amo.DEVICE_GAIA,
-                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+        for device_type in (mkt.DEVICE_GAIA,
+                            mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1071,8 +1070,8 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
     def test_cannot_be_paid_pkg_with_android_pkg_w_android_payments(self):
         self.create_flag('android-payments')
         self.webapp.update(is_packaged=True)
-        for device_type in (amo.DEVICE_GAIA,
-                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+        for device_type in (mkt.DEVICE_GAIA,
+                            mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET):
             self.webapp.addondevicetype_set.get_or_create(
                 device_type=device_type.id)
         res = self.client.get(self.url)
@@ -1100,7 +1099,7 @@ class TestRegions(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
+            addon=self.webapp, device_type=mkt.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
         self.username = 'admin@mozilla.com'
         assert self.client.login(username=self.username, password='password')

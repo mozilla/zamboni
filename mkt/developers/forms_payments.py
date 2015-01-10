@@ -12,7 +12,7 @@ import happyforms
 from curling.lib import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-import amo
+import mkt
 
 from lib.pay_server import client
 from mkt.api.forms import SluggableModelChoiceField
@@ -39,8 +39,8 @@ def _restore_app_status(app, save=True):
 
     log.info('Changing app from incomplete to previous status: %d' % app.pk)
     app.status = (app.highest_status if
-                  app.highest_status != amo.STATUS_NULL else
-                  amo.STATUS_PENDING)
+                  app.highest_status != mkt.STATUS_NULL else
+                  mkt.STATUS_PENDING)
     if save:
         app.save()
 
@@ -65,10 +65,10 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         self.user = kw.pop('user')
 
         kw['initial'] = {
-            'allow_inapp': self.addon.premium_type in amo.ADDON_INAPPS
+            'allow_inapp': self.addon.premium_type in mkt.ADDON_INAPPS
         }
 
-        if self.addon.premium_type == amo.ADDON_FREE_INAPP:
+        if self.addon.premium_type == mkt.ADDON_FREE_INAPP:
             kw['initial']['price'] = 'free'
         elif self.addon.premium and self.addon.premium.price:
             # If the app has a premium object, set the initial price.
@@ -86,7 +86,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         # Get the list of supported devices and put them in the data.
         self.device_data = {}
-        supported_devices = [amo.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
+        supported_devices = [mkt.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
                              self.addon.device_types]
         self.initial.setdefault('free_platforms', [])
         self.initial.setdefault('paid_platforms', [])
@@ -163,12 +163,12 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.addon._premium
 
     def is_paid(self):
-        is_paid = (self.addon.premium_type in amo.ADDON_PREMIUMS
+        is_paid = (self.addon.premium_type in mkt.ADDON_PREMIUMS
                    or self.is_free_inapp())
         return is_paid
 
     def is_free_inapp(self):
-        return self.addon.premium_type == amo.ADDON_FREE_INAPP
+        return self.addon.premium_type == mkt.ADDON_FREE_INAPP
 
     def is_toggling(self):
         value = self.request.POST.get('toggle-paid')
@@ -200,8 +200,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def clean_price(self):
         price_value = self.cleaned_data.get('price')
         premium_type = self.cleaned_data.get('premium_type')
-        if ((premium_type in amo.ADDON_PREMIUMS
-                or premium_type == amo.ADDON_FREE_INAPP)
+        if ((premium_type in mkt.ADDON_PREMIUMS
+                or premium_type == mkt.ADDON_FREE_INAPP)
                 and not price_value and not self.is_toggling()):
             raise ValidationError(Field.default_error_messages['required'])
 
@@ -231,14 +231,14 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         # in-app payments.
         is_paid = self.is_paid()
 
-        if toggle == 'paid' and self.addon.premium_type == amo.ADDON_FREE:
+        if toggle == 'paid' and self.addon.premium_type == mkt.ADDON_FREE:
             # Toggle free apps to paid by giving them a premium object.
             premium = self._make_premium()
             premium.price_id = self._initial_price_id()
             premium.save()
 
-            self.addon.premium_type = amo.ADDON_PREMIUM
-            self.addon.status = amo.STATUS_NULL
+            self.addon.premium_type = mkt.ADDON_PREMIUM
+            self.addon.status = mkt.STATUS_NULL
 
             is_paid = True
 
@@ -256,7 +256,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
             log.debug('[1@%s] Setting app premium_type to FREE' %
                           self.addon.pk)
-            self.addon.premium_type = amo.ADDON_FREE
+            self.addon.premium_type = mkt.ADDON_FREE
 
             # Remove addonpremium
             try:
@@ -278,7 +278,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # If price is free then we want to make this an app that's
             # free with in-app payments.
             if price == 'free':
-                self.addon.premium_type = amo.ADDON_FREE_INAPP
+                self.addon.premium_type = mkt.ADDON_FREE_INAPP
                 log.debug('[1@%s] Changing to free with in_app'
                           % self.addon.pk)
 
@@ -301,9 +301,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                 # paid app with an existing bank account.
                 premium = self._make_premium()
                 self.addon.premium_type = (
-                    amo.ADDON_PREMIUM_INAPP if
+                    mkt.ADDON_PREMIUM_INAPP if
                     self.cleaned_data.get('allow_inapp') == 'True' else
-                    amo.ADDON_PREMIUM)
+                    mkt.ADDON_PREMIUM)
 
                 if price and price != 'free':
                     log.debug('[1@%s] Updating app price (%s)' %
@@ -338,8 +338,8 @@ class UpsellForm(happyforms.Form):
 
         self.fields['upsell_of'].queryset = (
             self.user.addons.exclude(pk=self.addon.pk,
-                                     status=amo.STATUS_DELETED)
-                            .filter(premium_type__in=amo.ADDON_FREES))
+                                     status=mkt.STATUS_DELETED)
+                            .filter(premium_type__in=mkt.ADDON_FREES))
 
     def save(self):
         current_upsell = self.addon.upsold
@@ -464,7 +464,7 @@ class AccountListForm(happyforms.Form):
         self.is_owner = None
         if self.addon:
             self.is_owner = self.addon.authors.filter(pk=self.user.pk,
-                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
+                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()
 
         self.fields['accounts'].queryset = self.agreed_payment_accounts
 
@@ -555,8 +555,8 @@ class AccountListForm(happyforms.Form):
             # If the app is marked as paid and the information is complete
             # and the app is currently marked as incomplete, put it into the
             # re-review queue.
-            if (self.addon.status == amo.STATUS_NULL and
-                self.addon.highest_status in amo.WEBAPPS_APPROVED_STATUSES):
+            if (self.addon.status == mkt.STATUS_NULL and
+                self.addon.highest_status in mkt.WEBAPPS_APPROVED_STATUSES):
                 # FIXME: This might cause noise in the future if bank accounts
                 # get manually closed by Bango and we mark apps as STATUS_NULL
                 # until a new account is selected. That will trigger a
@@ -565,7 +565,7 @@ class AccountListForm(happyforms.Form):
                 log.info(u'[Webapp:%s] (Re-review) Public app, premium type '
                          u'upgraded.' % self.addon)
                 RereviewQueue.flag(
-                    self.addon, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
+                    self.addon, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
             if (self.addon.has_incomplete_status() and
                     self.addon.is_fully_complete()):
@@ -648,7 +648,7 @@ class BokuAccountForm(happyforms.Form):
 class PaymentCheckForm(happyforms.Form):
     app = SluggableModelChoiceField(
         queryset=Webapp.objects.filter(
-            premium_type__in=amo.ADDON_HAS_PAYMENTS),
+            premium_type__in=mkt.ADDON_HAS_PAYMENTS),
         sluggable_to_field_name='app_slug')
 
     def clean_app(self):

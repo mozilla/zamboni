@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 
-import amo
+import mkt
 from . import views
 
 
@@ -40,14 +40,14 @@ urlpatterns = patterns('',
         name='commonplace.fireplace'),
     url('^fxa-authorize$', views.fxa_authorize,
         name='commonplace.fxa_authorize'),
-    ('^app/%s/' % amo.APP_SLUG, include(fireplace_app_patterns)),
+    ('^app/%s/' % mkt.APP_SLUG, include(fireplace_app_patterns)),
     url(r'^iframe-install.html/?$', views.iframe_install,
         name='commonplace.iframe-install'),
     url(r'^potatolytics.html$', views.potatolytics,
         name='commonplace.potatolytics'),
 
     # Commbadge:
-    url('^comm/app/%s$' % amo.APP_SLUG, views.commonplace,
+    url('^comm/app/%s$' % mkt.APP_SLUG, views.commonplace,
         {'repo': 'commbadge'},
         name='commonplace.commbadge.app_dashboard'),
     url('^comm/thread/(?P<thread_id>\d+)$', views.commonplace,
@@ -61,7 +61,7 @@ urlpatterns = patterns('',
         name='commonplace.transonic'),
 
     # Stats:
-    url('^statistics/app/%s$' % amo.APP_SLUG, views.commonplace,
+    url('^statistics/app/%s$' % mkt.APP_SLUG, views.commonplace,
         {'repo': 'marketplace-stats'},
         name='commonplace.stats.app_dashboard'),
     url('^statistics/.*$', views.commonplace, {'repo': 'marketplace-stats'},

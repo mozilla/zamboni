@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 from rest_framework.routers import SimpleRouter
 
-import amo
+import mkt
 from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
 from mkt.developers.api_payments import (
@@ -156,8 +156,8 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.apps.in_app_key_secret'),
 
     # URLs for a single app.
-    url('^app/%s/' % amo.APP_SLUG, include(app_detail_patterns)),
-    url('^ajax/app/%s/' % amo.APP_SLUG, include(ajax_patterns)),
+    url('^app/%s/' % mkt.APP_SLUG, include(app_detail_patterns)),
+    url('^ajax/app/%s/' % mkt.APP_SLUG, include(ajax_patterns)),
 
     url('^terms$', views.terms, name='mkt.developers.apps.terms'),
     url('^api$', views.api, name='mkt.developers.apps.api'),

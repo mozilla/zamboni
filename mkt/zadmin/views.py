@@ -15,7 +15,7 @@ import commonware.log
 import elasticsearch
 import jinja2
 
-import amo
+import mkt
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File
 from mkt.prices.utils import update_from_csv
@@ -101,19 +101,19 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                 amo.AUTHOR_ROLE_OWNER))
+        qs = (AddonUser.objects.filter(role__in=(mkt.AUTHOR_ROLE_DEV,
+                                                 mkt.AUTHOR_ROLE_OWNER))
                                .exclude(user__email=None))
 
         if data['recipients'] in ('payments', 'desktop_apps'):
-            qs = qs.exclude(addon__status=amo.STATUS_DELETED)
+            qs = qs.exclude(addon__status=mkt.STATUS_DELETED)
         else:
-            qs = qs.filter(addon__status__in=amo.LISTED_STATUSES)
+            qs = qs.filter(addon__status__in=mkt.LISTED_STATUSES)
 
         if data['recipients'] in ('payments', 'payments_region_enabled',
                                   'payments_region_disabled'):
-            qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
-                                                     amo.ADDON_OTHER_INAPP))
+            qs = qs.exclude(addon__premium_type__in=(mkt.ADDON_FREE,
+                                                     mkt.ADDON_OTHER_INAPP))
             if data['recipients'] == 'payments_region_enabled':
                 qs = qs.filter(addon__enable_new_regions=True)
             elif data['recipients'] == 'payments_region_disabled':
@@ -126,7 +126,7 @@ def email_devs(request):
                 qs = qs.filter(addon__enable_new_regions=False)
         elif data['recipients'] == 'desktop_apps':
             qs = (qs.filter(
-                addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
+                addon__addondevicetype__device_type=mkt.DEVICE_DESKTOP.id))
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')
@@ -233,7 +233,7 @@ def price_tiers(request):
 def manifest_revalidation(request):
     if request.method == 'POST':
         # Collect the apps to revalidate.
-        qs = Q(is_packaged=False, status=amo.STATUS_PUBLIC,
+        qs = Q(is_packaged=False, status=mkt.STATUS_PUBLIC,
                disabled_by_user=False)
         webapp_pks = Webapp.objects.filter(qs).values_list('pk', flat=True)
 

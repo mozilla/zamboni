@@ -31,7 +31,7 @@ from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import GenericViewSet
 
-import amo
+import mkt
 from lib.metrics import record_action
 from mkt.users.models import UserProfile
 from mkt.users.tasks import send_fxa_mail
@@ -60,7 +60,7 @@ log = commonware.log.getLogger('z.account')
 def user_relevant_apps(user):
     return {
         'developed': list(user.addonuser_set.filter(
-            role=amo.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True)),
+            role=mkt.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True)),
         'installed': list(user.installed_set.values_list('addon_id',
             flat=True)),
         'purchased': list(user.purchase_ids()),
@@ -240,14 +240,14 @@ def find_or_create_user(email, fxa_uid, userid):
         profile = UserProfile.objects.create(
             username=fxa_uid,
             email=email,
-            source=amo.LOGIN_SOURCE_FXA,
+            source=mkt.LOGIN_SOURCE_FXA,
             display_name=email.partition('@')[0],
             is_verified=True)
 
-    if profile.source != amo.LOGIN_SOURCE_FXA:
+    if profile.source != mkt.LOGIN_SOURCE_FXA:
         log.info('Set account to FxA for {0}'.format(email))
         statsd.incr('z.mkt.user.fxa')
-        profile.update(source=amo.LOGIN_SOURCE_FXA)
+        profile.update(source=mkt.LOGIN_SOURCE_FXA)
 
     return profile, created
 

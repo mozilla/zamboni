@@ -4,7 +4,7 @@ import datetime
 
 from django.db.models import Q
 
-import amo
+import mkt
 import mkt.constants.reviewers as rvw
 from mkt.site.utils import chunked
 from mkt.developers.models import ActivityLog
@@ -25,7 +25,7 @@ def run():
     reject = '"action": %s' % rvw.ACTION_REJECT
     al = ActivityLog.objects.filter(
         Q(_details__contains=approve) | Q(_details__contains=reject),
-        action=amo.LOG.THEME_REVIEW.id, created__lte=start_date)
+        action=mkt.LOG.THEME_REVIEW.id, created__lte=start_date)
 
     for chunk in chunked(al, 50):
         # Review and thou shall receive.

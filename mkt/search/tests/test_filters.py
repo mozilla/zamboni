@@ -5,7 +5,7 @@ from nose.tools import eq_, ok_
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
-import amo
+import mkt
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants.applications import DEVICE_CHOICES_IDS
@@ -72,7 +72,7 @@ class TestSearchFilters(BaseOAuth):
         qs_str = json.dumps(qs)
         ok_('fuzzy' not in qs_str)
 
-    def _status_check(self, query, expected=amo.STATUS_PUBLIC):
+    def _status_check(self, query, expected=mkt.STATUS_PUBLIC):
         qs = self._filter(self.req, query)
         ok_({'term': {'status': expected}}
             in qs['query']['filtered']['filter']['bool']['must'],
@@ -120,7 +120,7 @@ class TestSearchFilters(BaseOAuth):
             in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_premium_types(self):
-        ptype = lambda p: amo.ADDON_PREMIUM_API_LOOKUP.get(p)
+        ptype = lambda p: mkt.ADDON_PREMIUM_API_LOOKUP.get(p)
         # Test a single premium type.
         qs = self._filter(self.req, {'premium_types': ['free']})
         ok_({'terms': {'premium_type': [ptype('free')]}}

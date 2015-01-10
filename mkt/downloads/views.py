@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 import commonware.log
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.files.models import File
 from mkt.site.decorators import allow_cross_site_request
@@ -20,13 +20,13 @@ def download_file(request, file_id, type=None):
     webapp = get_object_or_404(Webapp, pk=file.version.addon_id,
                                is_packaged=True)
 
-    if webapp.is_disabled or file.status == amo.STATUS_DISABLED:
+    if webapp.is_disabled or file.status == mkt.STATUS_DISABLED:
         if not acl.check_addon_ownership(request, webapp, viewer=True,
                                          ignore_disabled=True):
             raise http.Http404()
 
     # We treat blocked files like public files so users get the update.
-    if file.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]:
+    if file.status in [mkt.STATUS_PUBLIC, mkt.STATUS_BLOCKED]:
         path = webapp.sign_if_packaged(file.version_id)
 
     else:

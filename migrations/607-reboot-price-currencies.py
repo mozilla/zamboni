@@ -1,6 +1,6 @@
 from django.db import models
 
-import amo
+import mkt
 from market.models import Price
 
 tiers = {

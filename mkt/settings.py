@@ -106,7 +106,7 @@ DOMAIN = urlparse(os.environ.get('MARKETPLACE_URL',
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = (
-    'amo',  # amo comes first so it always takes precedence.
+    'mkt',  # mkt comes first so it always takes precedence.
     'cronjobs',
     'csp',
     'jingo_minify',
@@ -845,7 +845,6 @@ JINGO_EXCLUDE_PATHS = (
     'webapps/dump',
     'users/email',
     'reviews/emails',
-    'amo/emails',
 )
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).

@@ -1,4 +1,4 @@
-import amo
+import mkt
 import mkt.site.tests
 
 import mkt.constants.comm as comm
@@ -7,12 +7,12 @@ import mkt.constants.comm as comm
 class TestCommConstants(mkt.site.tests.TestCase):
 
     def setUp(self):
-        # TODO (hi mat): remove these from amo/log.py.
+        # TODO (hi mat): remove these from mkt/site/log.py.
         self.blocked = [
-            amo.LOG.RETAIN_VERSION.id,
-            amo.LOG.REQUEST_VERSION.id,
-            amo.LOG.PRELIMINARY_VERSION.id,
-            amo.LOG.REQUEST_SUPER_REVIEW.id
+            mkt.LOG.RETAIN_VERSION.id,
+            mkt.LOG.REQUEST_VERSION.id,
+            mkt.LOG.PRELIMINARY_VERSION.id,
+            mkt.LOG.REQUEST_SUPER_REVIEW.id
         ]
 
     def test_review_queue_covered(self):
@@ -21,7 +21,7 @@ class TestCommConstants(mkt.site.tests.TestCase):
 
         If this test is failing, tell ngoke to add a new note type.
         """
-        for log_type in amo.LOG_REVIEW_QUEUE:
+        for log_type in mkt.LOG_REVIEW_QUEUE:
             if log_type in self.blocked:
                 continue
 

@@ -9,7 +9,7 @@ from django.utils.http import http_date
 import commonware.log
 from cache_nuggets.lib import Token
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
@@ -26,7 +26,7 @@ def allowed(request, file):
         except ObjectDoesNotExist:
             raise http.Http404
 
-        if addon.status in amo.REVIEWED_STATUSES:
+        if addon.status in mkt.REVIEWED_STATUSES:
             allowed = True
         else:
             allowed = acl.check_addon_ownership(request, addon, viewer=True,

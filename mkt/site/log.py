@@ -334,8 +334,8 @@ class DELETE_REVIEW(_LOG):
     """Requires review.id and add-on objects."""
     id = 41
     action_class = 'review'
-    format = _(u'Review {0} for {addon} deleted.')
-    editor_format = _(u'{user} deleted {0} for {addon}.')
+    format = _(u'Review {review} for {addon} deleted.')
+    editor_format = _(u'{user} deleted {review} for {addon}.')
     keep = True
     editor_event = True
 
@@ -707,14 +707,15 @@ LOG_HIDE_DEVELOPER = [l.id for l in LOGS
 
 def log(action, *args, **kw):
     """
-    e.g. amo.log(amo.LOG.CREATE_ADDON, []),
-         amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
+    e.g. mkt.log(mkt.LOG.CREATE_ADDON, []),
+         mkt.log(mkt.LOG.ADD_FILE_TO_VERSION, file, version)
     """
-    from amo import get_user, logger_log
+    from mkt import get_user
     from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                        AppLog, CommentLog, GroupLog, UserLog,
                                        VersionLog)
     from mkt.access.models import Group
+    from mkt.site.utils import log as logger_log
     from mkt.webapps.models import Webapp
     from mkt.users.models import UserProfile
     from mkt.versions.models import Version

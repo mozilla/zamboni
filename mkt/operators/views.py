@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import mixins, response, status, viewsets
 from waffle.decorators import waffle_switch
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -20,7 +20,7 @@ from .serializers import OperatorPermissionSerializer
 @permission_required([('Operators', '*')])
 @waffle_switch('preload-apps')
 def preloads(request):
-    preloads = (PreloadTestPlan.objects.filter(status=amo.STATUS_PUBLIC)
+    preloads = (PreloadTestPlan.objects.filter(status=mkt.STATUS_PUBLIC)
                                        .order_by('-created'))
     preloads = paginate(request, preloads, per_page=20)
 

@@ -5,7 +5,7 @@ import happyforms
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext_lazy as _lazy
 
-import amo
+import mkt
 from mkt.ratings import (REVIEW_MODERATE_DELETE, REVIEW_MODERATE_KEEP,
                          REVIEW_MODERATE_SKIP)
 from mkt.ratings.helpers import user_can_delete_review
@@ -39,7 +39,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                     review_addon = review.addon
                     review_id = review.id
                     review.delete()
-                    amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id,
+                    mkt.log(mkt.LOG.DELETE_REVIEW, review_addon, review_id,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,
@@ -51,7 +51,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                 elif action == REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
-                    amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review,
+                    mkt.log(mkt.LOG.APPROVE_REVIEW, review.addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,

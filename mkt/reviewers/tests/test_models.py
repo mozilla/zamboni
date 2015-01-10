@@ -8,7 +8,7 @@ from django.core import mail
 import mock
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.site.tests
 
 from mkt.constants import comm
@@ -28,7 +28,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
                        'user_999')
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory(status=amo.STATUS_PENDING)
+        self.app = mkt.site.tests.app_factory(status=mkt.STATUS_PENDING)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def _give_points(self, user=None, app=None, status=None):
@@ -42,72 +42,72 @@ class TestReviewerScore(mkt.site.tests.TestCase):
 
     def test_events_webapps(self):
         self.app = mkt.site.tests.app_factory()
-        self.check_event(amo.STATUS_PENDING,
-                         amo.REVIEWED_WEBAPP_HOSTED)
+        self.check_event(mkt.STATUS_PENDING,
+                         mkt.REVIEWED_WEBAPP_HOSTED)
 
         RereviewQueue.objects.create(addon=self.app)
-        self.check_event(amo.STATUS_PUBLIC,
-                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
-        self.check_event(amo.STATUS_UNLISTED,
-                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
-        self.check_event(amo.STATUS_APPROVED,
-                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        self.check_event(mkt.STATUS_PUBLIC,
+                         mkt.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        self.check_event(mkt.STATUS_UNLISTED,
+                         mkt.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        self.check_event(mkt.STATUS_APPROVED,
+                         mkt.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
         RereviewQueue.objects.all().delete()
 
         self.app.is_packaged = True
-        self.check_event(amo.STATUS_PENDING,
-                         amo.REVIEWED_WEBAPP_PACKAGED)
-        self.check_event(amo.STATUS_PUBLIC,
-                         amo.REVIEWED_WEBAPP_UPDATE)
-        self.check_event(amo.STATUS_UNLISTED,
-                         amo.REVIEWED_WEBAPP_UPDATE)
-        self.check_event(amo.STATUS_APPROVED,
-                         amo.REVIEWED_WEBAPP_UPDATE)
+        self.check_event(mkt.STATUS_PENDING,
+                         mkt.REVIEWED_WEBAPP_PACKAGED)
+        self.check_event(mkt.STATUS_PUBLIC,
+                         mkt.REVIEWED_WEBAPP_UPDATE)
+        self.check_event(mkt.STATUS_UNLISTED,
+                         mkt.REVIEWED_WEBAPP_UPDATE)
+        self.check_event(mkt.STATUS_APPROVED,
+                         mkt.REVIEWED_WEBAPP_UPDATE)
 
         self.app.latest_version.is_privileged = True
-        self.check_event(amo.STATUS_PENDING,
-                         amo.REVIEWED_WEBAPP_PRIVILEGED)
-        self.check_event(amo.STATUS_PUBLIC,
-                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
-        self.check_event(amo.STATUS_UNLISTED,
-                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
-        self.check_event(amo.STATUS_APPROVED,
-                         amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+        self.check_event(mkt.STATUS_PENDING,
+                         mkt.REVIEWED_WEBAPP_PRIVILEGED)
+        self.check_event(mkt.STATUS_PUBLIC,
+                         mkt.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+        self.check_event(mkt.STATUS_UNLISTED,
+                         mkt.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
+        self.check_event(mkt.STATUS_APPROVED,
+                         mkt.REVIEWED_WEBAPP_PRIVILEGED_UPDATE)
 
     def test_award_points(self):
         self._give_points()
         eq_(ReviewerScore.objects.all()[0].score,
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.app, 1)
         score = ReviewerScore.objects.all()[0]
-        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_APP_REVIEW))
-        eq_(score.note_key, amo.REVIEWED_APP_REVIEW)
+        eq_(score.score, mkt.REVIEWED_SCORES.get(mkt.REVIEWED_APP_REVIEW))
+        eq_(score.note_key, mkt.REVIEWED_APP_REVIEW)
 
     def test_award_additional_review_points(self):
         ReviewerScore.award_additional_review_points(self.user, self.app,
                                                      QUEUE_TARAKO)
         score = ReviewerScore.objects.all()[0]
-        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_WEBAPP_TARAKO))
-        eq_(score.note_key, amo.REVIEWED_WEBAPP_TARAKO)
+        eq_(score.score, mkt.REVIEWED_SCORES.get(mkt.REVIEWED_WEBAPP_TARAKO))
+        eq_(score.note_key, mkt.REVIEWED_WEBAPP_TARAKO)
 
     def test_extra_platform_points(self):
         AddonDeviceType.objects.create(addon=self.app, device_type=1)
         self._give_points()
-        score1 = amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED]
+        score1 = mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED]
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score1)
 
         AddonDeviceType.objects.create(addon=self.app, device_type=2)
         self._give_points()
-        score2 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
-                  amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA])
+        score2 = (mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
+                  mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA])
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score2)
 
         AddonDeviceType.objects.create(addon=self.app, device_type=3)
         self._give_points()
-        score3 = (amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
-                  amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2)
+        score3 = (mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
+                  mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2)
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score3)
 
     def test_get_total(self):
@@ -116,9 +116,9 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         self._give_points()
         self._give_points(user=user2)
         eq_(ReviewerScore.get_total(self.user),
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] * 2)
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] * 2)
         eq_(ReviewerScore.get_total(user2),
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
 
     def test_get_recent(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -128,8 +128,8 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
         eq_(len(scores), 2)
-        eq_(scores[0].score, amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
-        eq_(scores[1].score, amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
+        eq_(scores[0].score, mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
+        eq_(scores[1].score, mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
 
     def test_get_leaderboards(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
@@ -142,12 +142,12 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         eq_(leaders['leader_top'][0]['rank'], 1)
         eq_(leaders['leader_top'][0]['user_id'], self.user.id)
         eq_(leaders['leader_top'][0]['total'],
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED] +
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
         eq_(leaders['leader_top'][1]['rank'], 2)
         eq_(leaders['leader_top'][1]['user_id'], user2.id)
         eq_(leaders['leader_top'][1]['total'],
-            amo.REVIEWED_SCORES[amo.REVIEWED_WEBAPP_HOSTED])
+            mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED])
 
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -192,7 +192,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
 
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
-        amo.REVIEWED_LEVELS[0]['points'] = 120
+        mkt.REVIEWED_LEVELS[0]['points'] = 120
         self._give_points()
         self._give_points()
         self._give_points(user=user2)
@@ -201,7 +201,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         # First user.
         eq_(users[0]['total'], 120)
         eq_(users[0]['user_id'], self.user.id)
-        eq_(users[0]['level'], amo.REVIEWED_LEVELS[0]['name'])
+        eq_(users[0]['level'], mkt.REVIEWED_LEVELS[0]['name'])
         # Second user.
         eq_(users[1]['total'], 60)
         eq_(users[1]['user_id'], user2.id)
@@ -309,7 +309,7 @@ class TestAdditionalReview(mkt.site.tests.TestCase):
         ok_(not self.log_reviewer_action.called)
         self.review.execute_post_review_task()
         self.log_reviewer_action.assert_called_with(
-            self.app, reviewer, comment, amo.LOG.FAIL_ADDITIONAL_REVIEW,
+            self.app, reviewer, comment, mkt.LOG.FAIL_ADDITIONAL_REVIEW,
             queue=QUEUE_TARAKO)
 
     def test_log_reviewer_action_when_passed(self):
@@ -321,7 +321,7 @@ class TestAdditionalReview(mkt.site.tests.TestCase):
         ok_(not self.log_reviewer_action.called)
         self.review.execute_post_review_task()
         self.log_reviewer_action.assert_called_with(
-            self.app, reviewer, comment, amo.LOG.PASS_ADDITIONAL_REVIEW,
+            self.app, reviewer, comment, mkt.LOG.PASS_ADDITIONAL_REVIEW,
             queue=QUEUE_TARAKO)
 
     def test_log_reviewer_action_blank_comment_when_none(self):
@@ -332,7 +332,7 @@ class TestAdditionalReview(mkt.site.tests.TestCase):
         ok_(not self.log_reviewer_action.called)
         self.review.execute_post_review_task()
         self.log_reviewer_action.assert_called_with(
-            self.app, reviewer, '', amo.LOG.PASS_ADDITIONAL_REVIEW,
+            self.app, reviewer, '', mkt.LOG.PASS_ADDITIONAL_REVIEW,
             queue=QUEUE_TARAKO)
 
     def test_get_points(self):
@@ -366,30 +366,30 @@ class TestAdditionalReviewManager(mkt.site.tests.TestCase):
             queue='queue-one', and_approved=True)))
 
     def test_unreviewed_and_approved_all_approved(self):
-        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
-        self.unreviewed_too.app.update(status=amo.STATUS_APPROVED)
+        self.unreviewed.app.update(status=mkt.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=mkt.STATUS_APPROVED)
         eq_(set([self.unreviewed, self.unreviewed_too]),
             set(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
     def test_unreviewed_and_approved_one_approved_allow_unapproved(self):
-        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
-        self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
+        self.unreviewed.app.update(status=mkt.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=mkt.STATUS_REJECTED)
         eq_(set([self.unreviewed, self.unreviewed_too]),
             set(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
     def test_unreviewed_and_approved_one_approved_only_approved(self):
-        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
-        self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
+        self.unreviewed.app.update(status=mkt.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=mkt.STATUS_REJECTED)
         eq_(set([self.unreviewed]),
             set(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
 
     def test_becoming_approved_lists_the_app_when_showing_approved(self):
-        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
+        self.unreviewed.app.update(status=mkt.STATUS_PUBLIC)
         eq_(set([self.unreviewed]),
             set(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
-        self.unreviewed_too.app.update(status=amo.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=mkt.STATUS_PUBLIC)
         # Caching might return the old queryset, but we don't want it to.
         eq_(set([self.unreviewed, self.unreviewed_too]),
             set(AdditionalReview.objects.unreviewed(
@@ -543,6 +543,6 @@ class TestRereviewQueue(mkt.site.tests.TestCase):
         self.app = mkt.site.tests.app_factory()
 
     def test_flag_creates_notes(self):
-        RereviewQueue.flag(self.app, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
+        RereviewQueue.flag(self.app, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
         eq_(self.app.threads.all()[0].notes.all()[0].note_type,
             comm.REREVIEW_PREMIUM_TYPE_UPGRADE)

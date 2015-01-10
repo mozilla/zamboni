@@ -11,7 +11,6 @@ from django.test.utils import override_settings
 from mock import patch
 from nose.tools import eq_, ok_
 
-import amo
 import mkt
 import mkt.regions
 from mkt.access.middleware import ACLMiddleware
@@ -155,14 +154,14 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(objs[0]['slug'], self.webapp.app_slug)
 
     def test_search_no_approved_apps(self):
-        self.webapp.update(status=amo.STATUS_APPROVED)
+        self.webapp.update(status=mkt.STATUS_APPROVED)
         self.refresh('webapp')
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.json['objects'], [])
 
     def test_search_no_unlisted_apps(self):
-        self.webapp.update(status=amo.STATUS_UNLISTED)
+        self.webapp.update(status=mkt.STATUS_UNLISTED)
         self.refresh('webapp')
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
@@ -285,7 +284,7 @@ class TestSearchView(RestOAuth, ESTestCase):
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_upsell(self, get_excluded_region_ids):
         get_excluded_region_ids.return_value = []
-        upsell = app_factory(premium_type=amo.ADDON_PREMIUM)
+        upsell = app_factory(premium_type=mkt.ADDON_PREMIUM)
         AddonUpsell.objects.create(free=self.webapp, premium=upsell)
         self.webapp.save()
         self.refresh('webapp')
@@ -658,7 +657,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
-        eq_(obj['status'], amo.STATUS_PUBLIC)
+        eq_(obj['status'], mkt.STATUS_PUBLIC)
         eq_('latest_version' in obj, False)
 
     def test_word_delimiter_preserves_original(self):
@@ -779,7 +778,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.json['objects'][1]['id'], app1.id)
 
     def test_no_filter(self):
-        self.webapp.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.refresh()
         res = self.anon.get(self.url)
         eq_(len(res.json['objects']), 0)
@@ -799,7 +798,7 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Pick a few common device features.
         self.features = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                        geolocation=True, indexeddb=True,
@@ -952,7 +951,7 @@ class TestRocketbarView(ESTestCase):
         self.client = RestOAuthClient(None)
         self.profile = UserProfile.objects.get(pk=2519)
         self.app1 = Webapp.objects.get(pk=337141)
-        self.app1.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.app1.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.app1.save()
 
         self.app2 = app_factory(name=u'Something Second Something Something',
@@ -961,7 +960,7 @@ class TestRocketbarView(ESTestCase):
                                 icon_hash='fakehash',
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
-        self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.app2.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Add 2 installed records so this app is boosted higher than app1.
         Installed.objects.create(user=self.profile, addon=self.app2)
         Installed.objects.create(user=mkt.site.tests.user_factory(),

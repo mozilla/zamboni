@@ -15,8 +15,7 @@ from rest_framework.response import Response
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
-import amo
-import amo.log
+import mkt
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
 from lib.metrics import record_action
@@ -93,7 +92,7 @@ def _record(request, addon):
         if not addon.is_public():
             raise http.Http404
 
-    amo.log(amo.LOG.INSTALL_ADDON, addon)
+    mkt.log(mkt.LOG.INSTALL_ADDON, addon)
     record_action('install', request, {
         'app-domain': addon.domain_from_url(addon.origin, allow_none=True),
         'app-id': addon.pk,
@@ -149,7 +148,7 @@ def verify(request, uuid):
 
         if user and (acl.action_allowed_user(user, 'Apps', 'Review')
             or addon.has_author(user)):
-            amo.log(amo.LOG.RECEIPT_CHECKED, addon, user=user)
+            mkt.log(mkt.LOG.RECEIPT_CHECKED, addon, user=user)
             return response(output)
 
     return response(verify.invalid())
@@ -190,7 +189,7 @@ def check(request, uuid):
     addon = get_object_or_404(Webapp, guid=uuid)
     qs = (AppLog.objects.order_by('-created')
                 .filter(addon=addon,
-                        activity_log__action=amo.LOG.RECEIPT_CHECKED.id))
+                        activity_log__action=mkt.LOG.RECEIPT_CHECKED.id))
     return {'status': qs.exists()}
 
 

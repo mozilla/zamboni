@@ -7,7 +7,7 @@ import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.comm.models import CommunicationNote
 from mkt.constants.applications import DEVICE_TYPES
@@ -51,13 +51,13 @@ class TestVersion(mkt.site.tests.TestCase):
 
     def test_delete_link(self):
         # Hard "Delete App" link should be visible for only incomplete apps.
-        self.webapp.update(status=amo.STATUS_NULL)
+        self.webapp.update(status=mkt.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#modal-delete').length, 1)
 
     def test_pending(self):
-        self.webapp.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -65,7 +65,7 @@ class TestVersion(mkt.site.tests.TestCase):
         eq_(doc('#rejection').length, 0)
 
     def test_public(self):
-        eq_(self.webapp.status, amo.STATUS_PUBLIC)
+        eq_(self.webapp.status, mkt.STATUS_PUBLIC)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -73,7 +73,7 @@ class TestVersion(mkt.site.tests.TestCase):
         eq_(doc('#rejection').length, 0)
 
     def test_blocked(self):
-        self.webapp.update(status=amo.STATUS_BLOCKED)
+        self.webapp.update(status=mkt.STATUS_BLOCKED)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -83,14 +83,14 @@ class TestVersion(mkt.site.tests.TestCase):
 
     def test_rejected(self):
         comments = "oh no you di'nt!!"
-        amo.set_user(UserProfile.objects.get(username='admin'))
-        amo.log(amo.LOG.REJECT_VERSION, self.webapp,
+        mkt.set_user(UserProfile.objects.get(username='admin'))
+        mkt.log(mkt.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
-        self.webapp.update(status=amo.STATUS_REJECTED)
+        self.webapp.update(status=mkt.STATUS_REJECTED)
         mkt.site.tests.make_rated(self.webapp)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_DISABLED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -105,17 +105,17 @@ class TestVersion(mkt.site.tests.TestCase):
         self.assertRedirects(r, self.url, 302)
 
         webapp = self.get_webapp()
-        eq_(webapp.status, amo.STATUS_PENDING,
+        eq_(webapp.status, mkt.STATUS_PENDING,
             'Reapplied apps should get marked as pending')
-        eq_(webapp.versions.latest().all_files[0].status, amo.STATUS_PENDING,
+        eq_(webapp.versions.latest().all_files[0].status, mkt.STATUS_PENDING,
             'Files for reapplied apps should get marked as pending')
-        action = amo.LOG.WEBAPP_RESUBMIT
+        action = mkt.LOG.WEBAPP_RESUBMIT
         assert AppLog.objects.filter(
             addon=webapp, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
     def test_no_ratings_no_resubmit(self):
-        self.webapp.update(status=amo.STATUS_REJECTED)
+        self.webapp.update(status=mkt.STATUS_REJECTED)
         r = self.client.post(self.url, {'notes': 'lol',
                                         'resubmit-app': ''})
         eq_(r.status_code, 403)
@@ -126,11 +126,11 @@ class TestVersion(mkt.site.tests.TestCase):
         self.assert3xx(r, self.webapp.get_dev_url('versions'))
 
     def test_comm_thread_after_resubmission(self):
-        self.webapp.update(status=amo.STATUS_REJECTED)
+        self.webapp.update(status=mkt.STATUS_REJECTED)
         mkt.site.tests.make_rated(self.webapp)
-        amo.set_user(UserProfile.objects.get(username='admin'))
+        mkt.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_DISABLED))
         my_reply = 'no give up'
         self.client.post(self.url, {'notes': my_reply,
                                     'resubmit-app': ''})
@@ -141,13 +141,13 @@ class TestVersion(mkt.site.tests.TestCase):
     def test_rejected_packaged(self):
         self.webapp.update(is_packaged=True)
         comments = "oh no you di'nt!!"
-        amo.set_user(UserProfile.objects.get(username='admin'))
-        amo.log(amo.LOG.REJECT_VERSION, self.webapp,
+        mkt.set_user(UserProfile.objects.get(username='admin'))
+        mkt.log(mkt.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
-        self.webapp.update(status=amo.STATUS_REJECTED)
+        self.webapp.update(status=mkt.STATUS_REJECTED)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=amo.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_DISABLED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -188,7 +188,7 @@ class TestAddVersion(BaseAddVersionTest):
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
 
     def test_post_subscribers(self):
         # Same test as above, but add a suscriber. We only want to make sure
@@ -199,7 +199,7 @@ class TestAddVersion(BaseAddVersionTest):
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
 
     def test_unique_version(self):
         self.app.current_version.update(version='1.0')
@@ -216,15 +216,15 @@ class TestAddVersion(BaseAddVersionTest):
 
     def test_pending_on_new_version(self):
         # Test app rejection, then new version, updates app status to pending.
-        self.app.update(status=amo.STATUS_REJECTED)
+        self.app.update(status=mkt.STATUS_REJECTED)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_DISABLED)
+        files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
-        eq_(self.app.status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
+        eq_(self.app.status, mkt.STATUS_PENDING)
 
     @mock.patch('mkt.developers.views.run_validator')
     def test_prefilled_features(self, run_validator_):
@@ -244,28 +244,28 @@ class TestAddVersion(BaseAddVersionTest):
     def test_blocklist_on_new_version(self):
         # Test app blocked, then new version, doesn't update app status, and
         # app shows up in escalation queue.
-        self.app.update(status=amo.STATUS_BLOCKED)
+        self.app.update(status=mkt.STATUS_BLOCKED)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_DISABLED)
+        files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
-        eq_(self.app.status, amo.STATUS_BLOCKED)
+        eq_(self.app.status, mkt.STATUS_BLOCKED)
         assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'App not in escalation queue')
 
     def test_new_version_when_incomplete(self):
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=amo.STATUS_DISABLED)
+        files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
-        eq_(self.app.status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
+        eq_(self.app.status, mkt.STATUS_PENDING)
 
     def test_vip_app_added_to_escalation_queue(self):
         self.app.update(vip_app=True)
@@ -290,9 +290,9 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         ok_(EscalationQueue.objects.filter(addon=self.app).exists(),
             'App not in escalation queue')
 
@@ -311,9 +311,9 @@ class TestAddVersionNoPermissions(BaseAddVersionTest):
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
             'App in escalation queue')
 
@@ -349,7 +349,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_version_list_packaged(self):
         self.app.update(is_packaged=True)
         mkt.site.tests.version_factory(addon=self.app, version='2.0',
-                                  file_kw=dict(status=amo.STATUS_PENDING))
+                                  file_kw=dict(status=mkt.STATUS_PENDING))
         self.app = self.get_app()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
@@ -389,10 +389,10 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
         self.client.post(self.delete_url, {'version_id': version.pk})
         assert not Version.objects.filter(pk=version.pk).exists()
-        eq_(ActivityLog.objects.filter(action=amo.LOG.DELETE_VERSION.id)
+        eq_(ActivityLog.objects.filter(action=mkt.LOG.DELETE_VERSION.id)
                                .count(), 1)
         # Since this was the last version, the app status should be incomplete.
-        eq_(self.get_app().status, amo.STATUS_NULL)
+        eq_(self.get_app().status, mkt.STATUS_NULL)
 
     def test_delete_last_public_version(self):
         """
@@ -403,40 +403,40 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         """
         eq_(self.app.versions.count(), 1)
         ver1 = self.app.latest_version
-        ver1.all_files[0].update(status=amo.STATUS_APPROVED)
+        ver1.all_files[0].update(status=mkt.STATUS_APPROVED)
         ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
-            file_kw=dict(status=amo.STATUS_PUBLIC))
+            file_kw=dict(status=mkt.STATUS_PUBLIC))
 
         self.client.post(self.delete_url, {'version_id': ver2.pk})
 
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.status, mkt.STATUS_APPROVED)
         eq_(self.app.latest_version, ver1)
         eq_(self.app.current_version, None)
         eq_(self.app.versions.count(), 1)
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
-            amo.STATUS_DISABLED)
+            mkt.STATUS_DISABLED)
 
     def test_delete_version_app_public(self):
         """Test deletion of current_version when app is PUBLIC."""
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         ver1 = self.app.latest_version
         ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
-            file_kw=dict(status=amo.STATUS_PUBLIC))
+            file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
 
         self.client.post(self.delete_url, {'version_id': ver2.pk})
 
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         eq_(self.app.latest_version, ver1)
         eq_(self.app.current_version, ver1)
         eq_(self.app.versions.count(), 1)
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
-            amo.STATUS_DISABLED)
+            mkt.STATUS_DISABLED)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -444,11 +444,11 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_delete_version_app_hidden(self, update_name_mock,
                                        update_manifest_mock, index_mock):
         """Test deletion of current_version when app is UNLISTED."""
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         ver1 = self.app.latest_version
         ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
-            file_kw=dict(status=amo.STATUS_PUBLIC))
+            file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
 
@@ -458,12 +458,12 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.client.post(self.delete_url, {'version_id': ver2.pk})
 
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_UNLISTED)
+        eq_(self.app.status, mkt.STATUS_UNLISTED)
         eq_(self.app.latest_version, ver1)
         eq_(self.app.current_version, ver1)
         eq_(self.app.versions.count(), 1)
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
-            amo.STATUS_DISABLED)
+            mkt.STATUS_DISABLED)
 
         eq_(update_name_mock.call_count, 1)
         eq_(update_manifest_mock.delay.call_count, 1)
@@ -475,11 +475,11 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_delete_version_app_private(self, update_name_mock,
                                         update_manifest_mock, index_mock):
         """Test deletion of current_version when app is APPROVED."""
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         ver1 = self.app.latest_version
         ver2 = mkt.site.tests.version_factory(
             addon=self.app, version='2.0',
-            file_kw=dict(status=amo.STATUS_PUBLIC))
+            file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
 
@@ -489,12 +489,12 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.client.post(self.delete_url, {'version_id': ver2.pk})
 
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.status, mkt.STATUS_APPROVED)
         eq_(self.app.latest_version, ver1)
         eq_(self.app.current_version, ver1)
         eq_(self.app.versions.count(), 1)
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
-            amo.STATUS_DISABLED)
+            mkt.STATUS_DISABLED)
 
         eq_(update_name_mock.call_count, 1)
         eq_(update_manifest_mock.delay.call_count, 1)
@@ -507,7 +507,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         res = self.client.post(self.delete_url, {'version_id': version.pk})
         eq_(res.status_code, 302)
 
-        eq_(self.get_app().status, amo.STATUS_NULL)
+        eq_(self.get_app().status, mkt.STATUS_NULL)
         version = Version.with_deleted.get(pk=version.pk)
         assert version.deleted
 
@@ -529,8 +529,8 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_roles_and_delete(self, mock_version):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon_user = AddonUser.objects.create(user=user, addon=self.app)
-        allowed = [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV]
-        for role in [r[0] for r in amo.AUTHOR_CHOICES]:
+        allowed = [mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV]
+        for role in [r[0] for r in mkt.AUTHOR_CHOICES]:
             self.client.logout()
             addon_user.role = role
             addon_user.save()
@@ -550,7 +550,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_cannot_delete_blocked(self):
         v = self.app.versions.latest()
         f = v.all_files[0]
-        f.update(status=amo.STATUS_BLOCKED)
+        f.update(status=mkt.STATUS_BLOCKED)
         res = self.client.post(self.delete_url, dict(version_id=v.pk))
         eq_(res.status_code, 403)
 
@@ -571,8 +571,8 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.assert3xx(res, self.app.get_dev_url('versions'))
         app = self.app.reload()
         eq_(app.versions.count(), v_count + 1)
-        eq_(app.status, amo.STATUS_BLOCKED)
-        eq_(app.versions.latest().files.latest().status, amo.STATUS_BLOCKED)
+        eq_(app.status, mkt.STATUS_BLOCKED)
+        eq_(app.versions.latest().files.latest().status, mkt.STATUS_BLOCKED)
 
 
 class TestPreloadSubmit(mkt.site.tests.TestCase):
@@ -701,8 +701,8 @@ class TestPreloadSubmit(mkt.site.tests.TestCase):
         eq_(PreloadTestPlan.objects.count(), 2)
         xls = PreloadTestPlan.objects.get(filename__contains='xls')
         pdf = PreloadTestPlan.objects.get(filename__contains='pdf')
-        eq_(xls.status, amo.STATUS_DISABLED)
-        eq_(pdf.status, amo.STATUS_PUBLIC)
+        eq_(xls.status, mkt.STATUS_DISABLED)
+        eq_(pdf.status, mkt.STATUS_PUBLIC)
 
         # Check the link points to most recent one.
         req = req_factory_factory(self.url, user=self.user)

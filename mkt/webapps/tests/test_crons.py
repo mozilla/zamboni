@@ -10,7 +10,6 @@ from django.core.management import call_command
 import mock
 from nose.tools import eq_
 
-import amo
 import mkt
 import mkt.site.tests
 from mkt.api.models import Nonce
@@ -31,17 +30,17 @@ class TestLastUpdated(mkt.site.tests.TestCase):
         """Make sure the catch-all last_updated is stable and accurate."""
         # Nullify all datestatuschanged so the public add-ons hit the
         # catch-all.
-        (File.objects.filter(status=amo.STATUS_PUBLIC)
+        (File.objects.filter(status=mkt.STATUS_PUBLIC)
          .update(datestatuschanged=None))
         Webapp.objects.update(last_updated=None)
 
         cron.addon_last_updated()
-        for addon in Webapp.objects.filter(status=amo.STATUS_PUBLIC):
+        for addon in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
 
         # Make sure it's stable.
         cron.addon_last_updated()
-        for addon in Webapp.objects.filter(status=amo.STATUS_PUBLIC):
+        for addon in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
 
 
@@ -57,7 +56,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
-        stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)]
+        stati = [(mkt.STATUS_PUBLIC, mkt.STATUS_PUBLIC)]
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
@@ -69,8 +68,8 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
     def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Webapp.objects.update so the signal handler isn't called.
         Webapp.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        File.objects.update(status=amo.STATUS_PUBLIC)
+            status=mkt.STATUS_PUBLIC, disabled_by_user=True)
+        File.objects.update(status=mkt.STATUS_PUBLIC)
         cron.hide_disabled_files()
 
         # Check that f1 was moved.
@@ -83,8 +82,8 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
     @mock.patch('mkt.files.models.storage')
     def test_move_admin_disabled_addon(self, m_storage, mv_mock):
         Webapp.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_DISABLED)
-        File.objects.update(status=amo.STATUS_PUBLIC)
+            status=mkt.STATUS_DISABLED)
+        File.objects.update(status=mkt.STATUS_PUBLIC)
         cron.hide_disabled_files()
         # Check that f1 was moved.
         mv_mock.assert_called_with(self.f1.file_path,
@@ -96,8 +95,8 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
     @mock.patch('mkt.files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
         Webapp.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_REJECTED)
-        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
+            status=mkt.STATUS_REJECTED)
+        File.objects.filter(id=self.f1.id).update(status=mkt.STATUS_DISABLED)
         cron.hide_disabled_files()
         # f1 should have been moved.
         mv_mock.assert_called_with(self.f1.file_path,
@@ -121,7 +120,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
 class TestWeeklyDownloads(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
 
     def get_app(self):
         return Webapp.objects.get(pk=self.app.pk)
@@ -219,7 +218,7 @@ class TestSignApps(mkt.site.tests.TestCase):
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
         self.app3 = mkt.site.tests.app_factory(
-            name='Test app 3', app_slug='test3', status=amo.STATUS_REJECTED,
+            name='Test app 3', app_slug='test3', status=mkt.STATUS_REJECTED,
             is_packaged=True, version_kw={'version': '1.0',
                                           'created': None})
 
@@ -251,7 +250,7 @@ class TestGarbage(mkt.site.tests.TestCase):
     def setUp(self):
         self.user = UserProfile.objects.create(
             email='gc_test@example.com', name='gc_test')
-        amo.log(amo.LOG.CUSTOM_TEXT, 'testing', user=self.user,
+        mkt.log(mkt.LOG.CUSTOM_TEXT, 'testing', user=self.user,
                 created=datetime(2001, 1, 1))
 
     def test_garbage_collection(self, rm_mock, ls_mock, stat_mock):

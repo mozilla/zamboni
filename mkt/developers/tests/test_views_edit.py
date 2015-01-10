@@ -17,9 +17,8 @@ from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
-import amo
-import mkt.site.tests
 import mkt
+import mkt.site.tests
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
@@ -149,7 +148,7 @@ class TestEditListingWebapp(TestEdit):
     def test_edit_with_no_current_version(self):
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
-        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
         app.update_version()
 
         # Now try to display edit page.
@@ -171,7 +170,7 @@ class TestEditBasic(TestEdit):
     def setUp(self):
         super(TestEditBasic, self).setUp()
         self.cat = 'games'
-        self.dtype = amo.DEVICE_TYPES.keys()[0]
+        self.dtype = mkt.DEVICE_TYPES.keys()[0]
         self.webapp.update(categories=['games'])
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
@@ -394,7 +393,7 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 403)
 
         AddonUser.objects.create(addon=self.webapp, user_id=999,
-                                 role=amo.AUTHOR_ROLE_DEV)
+                                 role=mkt.AUTHOR_ROLE_DEV)
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
@@ -491,7 +490,7 @@ class TestEditBasic(TestEdit):
     def test_edit_basic_not_public(self):
         # Disable file for latest version, and then update app.current_version.
         app = self.get_webapp()
-        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
         app.update_version()
 
         # Now try to display edit page.
@@ -524,15 +523,15 @@ class TestEditBasic(TestEdit):
         eq_(res.status_code, 200)
         eq_(releasenotes, data['releasenotes'])
         # Make sure publish_type wasn't reset by accident.
-        eq_(self.webapp.reload().publish_type, amo.PUBLISH_IMMEDIATE)
+        eq_(self.webapp.reload().publish_type, mkt.PUBLISH_IMMEDIATE)
 
     def test_edit_release_notes_pending(self):
         # Like test_edit_release_notes, but with a pending app.
         file_ = self.webapp.current_version.all_files[0]
-        file_.update(status=amo.STATUS_PENDING)
-        self.webapp.update(status=amo.STATUS_PENDING)
+        file_.update(status=mkt.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.test_edit_release_notes()
-        eq_(self.webapp.reload().status, amo.STATUS_PENDING)
+        eq_(self.webapp.reload().status, mkt.STATUS_PENDING)
 
     def test_edit_release_notes_packaged(self):
         # You are not supposed to edit release notes from the basic edit
@@ -696,7 +695,7 @@ class TestEditMedia(TestEdit):
         self.test_edit_uploadedicon()
         log = ActivityLog.objects.all()
         eq_(log.count(), 1)
-        eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
+        eq_(log[0].action, mkt.LOG.CHANGE_ICON.id)
 
     def test_edit_uploadedicon_noresize(self):
         img = '%s/img/mkt/logos/128.png' % settings.MEDIA_ROOT
@@ -756,7 +755,7 @@ class TestEditMedia(TestEdit):
 
     # The check_image_type method uploads js, so let's try sending that
     # to ffmpeg to see what it thinks.
-    @mock.patch.object(amo, 'VIDEO_TYPES', ['application/javascript'])
+    @mock.patch.object(mkt, 'VIDEO_TYPES', ['application/javascript'])
     def test_edit_video_wrong_type(self):
         raise SkipTest
         self.check_image_type(self.preview_upload, 'Videos must be in WebM.')
@@ -1184,8 +1183,8 @@ class TestEditTechnical(TestEdit):
     def test_toggle_flash_rejected(self):
         # Reject the app.
         app = self.get_webapp()
-        app.update(status=amo.STATUS_REJECTED)
-        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update(status=mkt.STATUS_REJECTED)
+        app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
         app.update_version()
 
         self.test_toggle_flash()
@@ -1202,7 +1201,7 @@ class TestEditTechnical(TestEdit):
         self.assertNoFormErrors(r)
 
         self.compare({'public_stats': True})
-        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
+        eq_(o.filter(action=mkt.LOG.EDIT_PROPERTIES.id).count(), 1)
 
     def test_features_hosted(self):
         data_on = {'has_contacts': True}
@@ -1226,8 +1225,8 @@ class TestEditTechnical(TestEdit):
     def test_features_hosted_app_rejected(self):
         # Reject the app.
         app = self.get_webapp()
-        app.update(status=amo.STATUS_REJECTED)
-        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update(status=mkt.STATUS_REJECTED)
+        app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
         app.update_version()
 
         assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
@@ -1575,6 +1574,6 @@ class TestEditVersion(TestEdit):
         res = self.client.get(self.url)
         ok_(not pq(res.content)('#id_publish_immediately'))
 
-        self.webapp.latest_version.files.update(status=amo.STATUS_PENDING)
+        self.webapp.latest_version.files.update(status=mkt.STATUS_PENDING)
         res = self.client.get(self.url)
         ok_(pq(res.content)('#id_publish_immediately'))

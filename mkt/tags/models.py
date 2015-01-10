@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import NoReverseMatch, reverse
 
-import amo
+import mkt
 from mkt.site.models import ManagerBase, ModelBase
 
 
@@ -41,14 +41,14 @@ class Tag(ModelBase):
     def save_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         AddonTag.objects.get_or_create(addon=addon, tag=tag)
-        amo.log(amo.LOG.ADD_TAG, tag, addon)
+        mkt.log(mkt.LOG.ADD_TAG, tag, addon)
         return tag
 
     def remove_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         for addon_tag in AddonTag.objects.filter(addon=addon, tag=tag):
             addon_tag.delete()
-        amo.log(amo.LOG.REMOVE_TAG, tag, addon)
+        mkt.log(mkt.LOG.REMOVE_TAG, tag, addon)
 
 
 class AddonTag(ModelBase):

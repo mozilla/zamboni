@@ -9,7 +9,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 from PIL import Image, ImageChops
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
@@ -235,21 +235,21 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
 
     def test_status(self):
         res, data = self.get()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         eq_(data['status'], 'public')
         eq_(data['disabled_by_user'], False)
 
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         res, data = self.get()
         eq_(data['status'], 'unlisted')
         eq_(data['disabled_by_user'], False)
 
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         res, data = self.get()
         eq_(data['status'], 'incomplete')
         eq_(data['disabled_by_user'], False)
 
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res, data = self.get()
         eq_(data['status'], 'pending')
         eq_(data['disabled_by_user'], False)
@@ -273,7 +273,7 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         data = json.loads(res.content)
         eq_(data['status'], 'public')
         eq_(self.app.disabled_by_user, True)
-        eq_(self.app.status, amo.STATUS_PUBLIC)  # Unchanged, doesn't matter.
+        eq_(self.app.status, mkt.STATUS_PUBLIC)  # Unchanged, doesn't matter.
 
     def test_disable_not_mine(self):
         AddonUser.objects.get(user=self.user).delete()
@@ -289,18 +289,18 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         ok_('status' in data)
 
     def test_change_status_to_public_fails(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'public'}))
         eq_(res.status_code, 400)
         data = json.loads(res.content)
         ok_('status' in data)
-        eq_(self.app.reload().status, amo.STATUS_PENDING)
+        eq_(self.app.reload().status, mkt.STATUS_PENDING)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_incomplete_app(self, is_fully_complete):
         is_fully_complete.return_value = False
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'pending'}))
         eq_(res.status_code, 400)
@@ -313,16 +313,16 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
 
         # Statuses we want to check in (from, [to, ...]) tuples.
         status_changes = (
-            (amo.STATUS_NULL, [amo.STATUS_PENDING]),
-            (amo.STATUS_APPROVED, [amo.STATUS_UNLISTED, amo.STATUS_PUBLIC]),
-            (amo.STATUS_UNLISTED, [amo.STATUS_APPROVED, amo.STATUS_PUBLIC]),
-            (amo.STATUS_PUBLIC, [amo.STATUS_APPROVED, amo.STATUS_UNLISTED]),
+            (mkt.STATUS_NULL, [mkt.STATUS_PENDING]),
+            (mkt.STATUS_APPROVED, [mkt.STATUS_UNLISTED, mkt.STATUS_PUBLIC]),
+            (mkt.STATUS_UNLISTED, [mkt.STATUS_APPROVED, mkt.STATUS_PUBLIC]),
+            (mkt.STATUS_PUBLIC, [mkt.STATUS_APPROVED, mkt.STATUS_UNLISTED]),
         )
 
         for orig, new in status_changes:
             for to in new:
                 self.app.update(status=orig)
-                to_api_status = amo.STATUS_CHOICES_API[to]
+                to_api_status = mkt.STATUS_CHOICES_API[to]
                 res = self.client.patch(
                     self.get_url, data=json.dumps({'status': to_api_status}))
                 eq_(res.status_code, 200)
@@ -336,13 +336,13 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         # that.
         is_fully_complete.return_value = False
         self.grant_permission(self.user, 'Admin:%s')
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'pending'}))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['status'], 'pending')
-        eq_(self.app.reload().status, amo.STATUS_PENDING)
+        eq_(self.app.reload().status, mkt.STATUS_PENDING)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_senior_reviewer_incomplete_to_public(self, is_fully_complete):
@@ -350,13 +350,13 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         # that.
         is_fully_complete.return_value = False
         self.grant_permission(self.user, 'Admin:%s')
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'public'}))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['status'], 'public')
-        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+        eq_(self.app.reload().status, mkt.STATUS_PUBLIC)
 
 
 class TestPreviewHandler(RestOAuth, MktPaths):

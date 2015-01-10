@@ -78,7 +78,7 @@
     </li>
   {% endif %}
 
-  {% if addon.premium_type in amo.ADDON_INAPPS %}
+  {% if addon.premium_type in mkt.ADDON_INAPPS %}
     <li>
       <a class="action-link" href="{{ addon.get_dev_url('in_app_payments') }}">
         {{ _('In-App Payments') }}

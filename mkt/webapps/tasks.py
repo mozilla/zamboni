@@ -28,7 +28,6 @@ from PIL import Image
 from requests.exceptions import RequestException
 from tower import ugettext as _
 
-import amo
 import mkt
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
@@ -113,7 +112,7 @@ def update_manifests(ids, **kw):
     retries = kw.pop('retries', {})
     # Since we'll be logging the updated manifest change to the users log,
     # we'll need to log in as user.
-    amo.set_user(get_task_user())
+    mkt.set_user(get_task_user())
 
     for id in ids:
         _update_manifest(id, check_hash, retries)
@@ -132,7 +131,7 @@ def update_manifests(ids, **kw):
 
 
 def notify_developers_of_failure(app, error_message, has_link=False):
-    if (app.status not in amo.WEBAPPS_APPROVED_STATUSES or
+    if (app.status not in mkt.WEBAPPS_APPROVED_STATUSES or
         RereviewQueue.objects.filter(addon=app).exists()):
         # If the app isn't public, or has already been reviewed, we don't
         # want to send the mail.
@@ -184,8 +183,8 @@ def _update_manifest(id, check_hash, failed_fetches):
             # This is our 4th attempt, we should already have notified the
             # developer(s). Let's put the app in the re-review queue.
             _log(webapp, msg, rereview=True, exc_info=True)
-            if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
-                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+            if webapp.status in mkt.WEBAPPS_APPROVED_STATUSES:
+                RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_MANIFEST_CHANGE,
                                    msg)
             del failed_fetches[id]
         else:
@@ -218,9 +217,9 @@ def _update_manifest(id, check_hash, failed_fetches):
                     msg += u'* %s\n' % m['message']
             msg += u'\nValidation Result:\n%s' % v8n_url
             _log(webapp, msg, rereview=True)
-            if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
+            if webapp.status in mkt.WEBAPPS_APPROVED_STATUSES:
                 notify_developers_of_failure(webapp, msg, has_link=True)
-                RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+                RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_MANIFEST_CHANGE,
                                    msg)
             return
     else:
@@ -289,8 +288,8 @@ def _update_manifest(id, check_hash, failed_fetches):
     if rereview:
         msg = ' '.join(msg)
         _log(webapp, msg, rereview=True)
-        if webapp.status in amo.WEBAPPS_APPROVED_STATUSES:
-            RereviewQueue.flag(webapp, amo.LOG.REREVIEW_MANIFEST_CHANGE, msg)
+        if webapp.status in mkt.WEBAPPS_APPROVED_STATUSES:
+            RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_MANIFEST_CHANGE, msg)
 
     if iarc_storefront:
         webapp.set_iarc_storefront_data()
@@ -610,7 +609,7 @@ def import_manifests(ids, **kw):
         for version in app.versions.all():
             try:
                 file_ = version.files.latest()
-                if file_.status == amo.STATUS_DISABLED:
+                if file_.status == mkt.STATUS_DISABLED:
                     file_path = file_.guarded_file_path
                 else:
                     file_path = file_.file_path
@@ -1025,7 +1024,7 @@ def generate_ratings(app, num):
     for n in range(num):
         email = 'testuser%s@example.com' % (n,)
         user, _ = UserProfile.objects.get_or_create(
-            username=email, email=email, source=amo.LOGIN_SOURCE_UNKNOWN,
+            username=email, email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
             display_name=email)
         Review.objects.create(
             addon=app, user=user, rating=random.randrange(0, 6),
@@ -1190,7 +1189,7 @@ def fix_excluded_regions(ids, **kw):
 def delete_logs(items, **kw):
     task_log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
-        action__in=amo.LOG_KEEP).delete()
+        action__in=mkt.LOG_KEEP).delete()
 
 
 @task
@@ -1208,7 +1207,7 @@ def find_abuse_escalations(addon_id, **kw):
 
         # We have an abuse report... has it been detected and dealt with?
         logs = (AppLog.objects.filter(
-            activity_log__action=amo.LOG.ESCALATED_HIGH_ABUSE.id,
+            activity_log__action=mkt.LOG.ESCALATED_HIGH_ABUSE.id,
             addon=abuse.addon).order_by('-created'))
         if logs:
             abuse_since_log = AbuseReport.recent_high_abuse_reports(
@@ -1224,7 +1223,7 @@ def find_abuse_escalations(addon_id, **kw):
         msg = u'High number of abuse reports detected'
         if add_to_queue:
             EscalationQueue.objects.create(addon=abuse.addon)
-        amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
+        mkt.log(mkt.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
                 abuse.addon.current_version, details={'comments': msg})
         task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
 

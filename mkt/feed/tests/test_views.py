@@ -9,7 +9,7 @@ import mock
 from elasticsearch_dsl.search import Search
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.carriers
 import mkt.feed.constants as feed
 import mkt.regions
@@ -1761,13 +1761,13 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_feedapp(self):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
         app = feed_item.app.app
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         res, data = self._get()
         eq_(res.status_code, 404)
 
     def test_coll(self):
-        app_pending = app_factory(status=amo.STATUS_PENDING)
-        app_public = app_factory(status=amo.STATUS_PUBLIC)
+        app_pending = app_factory(status=mkt.STATUS_PENDING)
+        app_public = app_factory(status=mkt.STATUS_PUBLIC)
 
         coll = self.feed_collection_factory(
             app_ids=[app_pending.id, app_public.id])

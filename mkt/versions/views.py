@@ -2,7 +2,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import MethodNotAllowed, ParseError
 
-import amo
+import mkt
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -39,13 +39,13 @@ class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
         res = super(VersionStatusViewSet, self).update(
             request, *args, **kwargs)
         app = self.object.version.addon
-        res.data['app_status'] = amo.STATUS_CHOICES_API[app.status]
+        res.data['app_status'] = mkt.STATUS_CHOICES_API[app.status]
         return res
 
 
 class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin, viewsets.GenericViewSet):
-    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
+    queryset = Version.objects.exclude(addon__status=mkt.STATUS_DELETED)
     serializer_class = VersionSerializer
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

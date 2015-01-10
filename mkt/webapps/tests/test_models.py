@@ -26,7 +26,6 @@ import mock
 from mock import patch
 from nose.tools import eq_, ok_, raises
 
-import amo
 import mkt
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
@@ -83,7 +82,7 @@ class TestCleanSlug(TestCase):
         eq_(c.app_slug, 'webapp-2')
 
         # Even if an addon is deleted, don't clash with its slug.
-        c.status = amo.STATUS_DELETED
+        c.status = mkt.STATUS_DELETED
         # Now save the instance to the database for future clashes.
         c.save()
 
@@ -361,17 +360,17 @@ class TestAddonWatchDisabled(mkt.site.tests.TestCase):
     @patch('mkt.webapps.models.File.hide_disabled_file')
     @patch('mkt.webapps.models.File.unhide_disabled_file')
     def test_admin_disable_addon(self, unhide, hide):
-        self.app.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_DISABLED)
         assert not unhide.called
         assert hide.called
 
     @patch('mkt.webapps.models.File.hide_disabled_file')
     @patch('mkt.webapps.models.File.unhide_disabled_file')
     def test_enable_addon(self, unhide, hide):
-        self.app.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_DISABLED)
         unhide.reset_mock()
         hide.reset_mock()
-        self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
         assert unhide.called
         assert not hide.called
 
@@ -393,7 +392,7 @@ class TestAddonUpsell(mkt.site.tests.TestCase):
         self.upsell = AddonUpsell.objects.create(free=self.two,
                                                  premium=self.one)
         # Note: delete ignores if status 0.
-        self.one.update(status=amo.STATUS_PUBLIC)
+        self.one.update(status=mkt.STATUS_PUBLIC)
         self.one.delete()
         eq_(AddonUpsell.objects.count(), 0)
 
@@ -403,14 +402,14 @@ class TestAddonPurchase(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
-        self.addon = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM,
+        self.addon = Webapp.objects.create(premium_type=mkt.ADDON_PREMIUM,
                                            name='premium')
 
     def test_no_premium(self):
         # If you've purchased something, the fact that its now free
         # doesn't change the fact that you purchased it.
         self.addon.addonpurchase_set.create(user=self.user)
-        self.addon.update(premium_type=amo.ADDON_FREE)
+        self.addon.update(premium_type=mkt.ADDON_FREE)
         assert self.addon.has_purchased(self.user)
 
     def test_has_purchased(self):
@@ -426,18 +425,18 @@ class TestAddonPurchase(mkt.site.tests.TestCase):
 
     def test_is_refunded(self):
         self.addon.addonpurchase_set.create(user=self.user,
-                                            type=amo.CONTRIB_REFUND)
+                                            type=mkt.CONTRIB_REFUND)
         assert self.addon.is_refunded(self.user)
 
     def test_is_chargeback(self):
         self.addon.addonpurchase_set.create(user=self.user,
-                                            type=amo.CONTRIB_CHARGEBACK)
+                                            type=mkt.CONTRIB_CHARGEBACK)
         assert self.addon.is_chargeback(self.user)
 
     def test_purchase_state(self):
         purchase = self.addon.addonpurchase_set.create(user=self.user)
-        for state in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                      amo.CONTRIB_CHARGEBACK]:
+        for state in [mkt.CONTRIB_PURCHASE, mkt.CONTRIB_REFUND,
+                      mkt.CONTRIB_CHARGEBACK]:
             purchase.update(type=state)
             eq_(state, self.addon.get_purchase_type(self.user))
 
@@ -538,7 +537,7 @@ class TestWebapp(WebappTestCase):
 
     def test_soft_deleted_valid(self):
         app = self.get_app()
-        Webapp.objects.create(status=amo.STATUS_DELETED)
+        Webapp.objects.create(status=mkt.STATUS_DELETED)
         eq_(list(Webapp.objects.valid()), [app])
         eq_(list(Webapp.with_deleted.valid()), [app])
 
@@ -614,8 +613,8 @@ class TestWebapp(WebappTestCase):
         Test supported locales falls back to latest_version when not public.
         """
         app = self.get_app()
-        app.update(status=amo.STATUS_PENDING)
-        app.latest_version.files.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
+        app.latest_version.files.update(status=mkt.STATUS_PENDING)
         app.update_version()
         eq_(app.supported_locales,
             (u'English (US)',
@@ -708,45 +707,45 @@ class TestWebapp(WebappTestCase):
 
     def test_in_tarako_queue_pending_in_queue(self):
         app = self.get_app()
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         app.additionalreview_set.create(queue=QUEUE_TARAKO)
         ok_(app.in_tarako_queue())
 
     def test_in_tarako_queue_approved_in_queue(self):
         app = self.get_app()
-        app.update(status=amo.STATUS_APPROVED)
+        app.update(status=mkt.STATUS_APPROVED)
         app.additionalreview_set.create(queue=QUEUE_TARAKO)
         ok_(app.in_tarako_queue())
 
     def test_in_tarako_queue_pending_not_in_queue(self):
         app = self.get_app()
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         ok_(not app.in_tarako_queue())
 
     def test_in_tarako_queue_approved_not_in_queue(self):
         app = self.get_app()
-        app.update(status=amo.STATUS_APPROVED)
+        app.update(status=mkt.STATUS_APPROVED)
         ok_(not app.in_tarako_queue())
 
     def test_in_china_queue_pending_not_in_queue(self):
         app = self.get_app()
         app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=amo.STATUS_PENDING)
-        app.update(status=amo.STATUS_PENDING)
+                           region_cn_status=mkt.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         ok_(not app.in_china_queue())  # Need to be approved in general first.
 
     def test_in_china_queue_approved_in_queue(self):
         app = self.get_app()
         app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=amo.STATUS_PENDING)
-        app.update(status=amo.STATUS_APPROVED)
+                           region_cn_status=mkt.STATUS_PENDING)
+        app.update(status=mkt.STATUS_APPROVED)
         ok_(app.in_china_queue())
 
     def test_in_china_queue_approved_in_china_not_in_queue(self):
         app = self.get_app()
         app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=amo.STATUS_APPROVED)
-        app.update(status=amo.STATUS_APPROVED)
+                           region_cn_status=mkt.STATUS_APPROVED)
+        app.update(status=mkt.STATUS_APPROVED)
         ok_(not app.in_china_queue())
 
 
@@ -758,19 +757,19 @@ class TestWebappLight(mkt.site.tests.TestCase):
     fixtures = fixture('prices')
 
     def test_is_public(self):
-        app = Webapp(status=amo.STATUS_UNLISTED)
+        app = Webapp(status=mkt.STATUS_UNLISTED)
         assert app.is_public(), 'STATUS_UNLISTED app should be is_public()'
 
-        app.status = amo.STATUS_PUBLIC
+        app.status = mkt.STATUS_PUBLIC
         assert app.is_public(), 'STATUS_PUBLIC app should be is_public()'
 
         # Any non-public status
-        app.status = amo.STATUS_PENDING
+        app.status = mkt.STATUS_PENDING
         assert not app.is_public(), (
             'STATUS_PENDING app should not be is_public()')
 
         # Public, disabled.
-        app.status = amo.STATUS_PUBLIC
+        app.status = mkt.STATUS_PUBLIC
         app.disabled_by_user = True
         assert not app.is_public(), (
             'STATUS_PUBLIC, disabled app should not be is_public()')
@@ -843,10 +842,10 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(Webapp(premium_type=False).can_be_purchased(), False)
 
     def test_can_be_purchased(self):
-        w = Webapp(status=amo.STATUS_PUBLIC, premium_type=True)
+        w = Webapp(status=mkt.STATUS_PUBLIC, premium_type=True)
         eq_(w.can_be_purchased(), True)
 
-        w = Webapp(status=amo.STATUS_PUBLIC, premium_type=False)
+        w = Webapp(status=mkt.STATUS_PUBLIC, premium_type=False)
         eq_(w.can_be_purchased(), False)
 
     def test_get_previews(self):
@@ -871,9 +870,9 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_mark_done_pending(self):
         w = Webapp()
-        eq_(w.status, amo.STATUS_NULL)
+        eq_(w.status, mkt.STATUS_NULL)
         w.mark_done()
-        eq_(w.status, amo.WEBAPPS_UNREVIEWED_STATUS)
+        eq_(w.status, mkt.WEBAPPS_UNREVIEWED_STATUS)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_no_icon_in_manifest(self, get_manifest_json):
@@ -893,7 +892,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(webapp.current_version, None)
 
     def test_has_premium(self):
-        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         webapp._premium = mock.Mock()
         webapp._premium.price = 1
         eq_(webapp.has_premium(), True)
@@ -902,12 +901,12 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(webapp.has_premium(), True)
 
     def test_get_price_no_premium(self):
-        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         eq_(webapp.get_price(), None)
         eq_(webapp.get_price_locale(), None)
 
     def test_has_no_premium(self):
-        webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         webapp._premium = None
         eq_(webapp.has_premium(), False)
 
@@ -976,22 +975,22 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_is_premium_type_upgrade_check(self):
         app = Webapp()
-        ALL = set(amo.ADDON_FREES + amo.ADDON_PREMIUMS)
-        free_upgrade = ALL - set([amo.ADDON_FREE])
-        free_inapp_upgrade = ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP])
+        ALL = set(mkt.ADDON_FREES + mkt.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([mkt.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP])
 
         # Checking ADDON_FREE changes.
-        app.premium_type = amo.ADDON_FREE
+        app.premium_type = mkt.ADDON_FREE
         for pt in ALL:
             eq_(app.is_premium_type_upgrade(pt), pt in free_upgrade)
 
         # Checking ADDON_FREE_INAPP changes.
-        app.premium_type = amo.ADDON_FREE_INAPP
+        app.premium_type = mkt.ADDON_FREE_INAPP
         for pt in ALL:
             eq_(app.is_premium_type_upgrade(pt), pt in free_inapp_upgrade)
 
         # All else is false.
-        for pt_old in ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP]):
+        for pt_old in ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP]):
             app.premium_type = pt_old
             for pt_new in ALL:
                 eq_(app.is_premium_type_upgrade(pt_new), False)
@@ -1008,25 +1007,25 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_nomination_new(self):
         app = app_factory()
-        app.update(status=amo.STATUS_NULL)
+        app.update(status=mkt.STATUS_NULL)
         app.versions.latest().update(nomination=None)
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         assert app.versions.latest().nomination
 
     def test_nomination_rejected(self):
         app = app_factory()
-        app.update(status=amo.STATUS_REJECTED)
+        app.update(status=mkt.STATUS_REJECTED)
         app.versions.latest().update(nomination=self.days_ago(1))
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         self.assertCloseToNow(app.versions.latest().nomination)
 
     def test_nomination_pkg_pending_new_version(self):
         # New versions while pending inherit version nomination.
         app = app_factory()
-        app.update(status=amo.STATUS_PENDING, is_packaged=True)
+        app.update(status=mkt.STATUS_PENDING, is_packaged=True)
         old_ver = app.versions.latest()
         old_ver.update(nomination=self.days_ago(1))
-        old_ver.all_files[0].update(status=amo.STATUS_PENDING)
+        old_ver.all_files[0].update(status=mkt.STATUS_PENDING)
         v = Version.objects.create(addon=app, version='1.9')
         eq_(v.nomination, old_ver.nomination)
 
@@ -1042,10 +1041,10 @@ class TestWebappLight(mkt.site.tests.TestCase):
     def test_nomination_approved(self):
         # New versions while public waiting get a new version nomination.
         app = app_factory()
-        app.update(is_packaged=True, status=amo.STATUS_APPROVED)
+        app.update(is_packaged=True, status=mkt.STATUS_APPROVED)
         old_ver = app.versions.latest()
         old_ver.update(nomination=self.days_ago(1))
-        old_ver.all_files[0].update(status=amo.STATUS_APPROVED)
+        old_ver.all_files[0].update(status=mkt.STATUS_APPROVED)
         v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
 
@@ -1092,7 +1091,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
     def test_next_step(self, detail_step, rating_step, pay_step):
         for step in (detail_step, rating_step, pay_step):
             step.return_value = False
-        app = app_factory(status=amo.STATUS_NULL)
+        app = app_factory(status=mkt.STATUS_NULL)
         self.make_premium(app)
         eq_(app.next_step()['url'], app.get_dev_url())
 
@@ -1162,10 +1161,10 @@ class TestWebappContentRatings(TestCase):
 
         rb = mkt.ratingsbodies
 
-        app = app_factory(status=amo.STATUS_NULL)
+        app = app_factory(status=mkt.STATUS_NULL)
         app.set_content_ratings({})
         assert not app.is_rated()
-        eq_(app.status, amo.STATUS_NULL)
+        eq_(app.status, mkt.STATUS_NULL)
 
         # Create.
         app.set_content_ratings({
@@ -1178,7 +1177,7 @@ class TestWebappContentRatings(TestCase):
             assert ContentRating.objects.filter(
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
-        eq_(app.reload().status, amo.STATUS_PENDING)
+        eq_(app.reload().status, mkt.STATUS_PENDING)
 
         # Update.
         app.set_content_ratings({
@@ -1192,7 +1191,7 @@ class TestWebappContentRatings(TestCase):
             assert ContentRating.objects.filter(
                 addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
-        eq_(app.reload().status, amo.STATUS_PENDING)
+        eq_(app.reload().status, mkt.STATUS_PENDING)
 
     def test_app_delete_clears_iarc_data(self):
         app = app_factory(rated=True)
@@ -1238,14 +1237,14 @@ class TestWebappContentRatings(TestCase):
 
     def test_set_content_ratings_purge_unexclude(self):
         app = app_factory()
-        app.update(status=amo.STATUS_DISABLED, iarc_purged=True)
+        app.update(status=mkt.STATUS_DISABLED, iarc_purged=True)
 
         app.set_content_ratings({
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
         })
 
         ok_(not app.reload().iarc_purged)
-        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_PUBLIC)
 
     def test_set_descriptors(self):
         app = app_factory()
@@ -1364,7 +1363,7 @@ class TestWebappContentRatings(TestCase):
     @mock.patch('mkt.webapps.models.Webapp.current_version', new=None)
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_no_version(self, storefront_mock):
-        app = app_factory(rated=True, status=amo.STATUS_PUBLIC)
+        app = app_factory(rated=True, status=mkt.STATUS_PUBLIC)
         ok_(not app.current_version)
         app.set_iarc_storefront_data()
         assert storefront_mock.called
@@ -1372,7 +1371,7 @@ class TestWebappContentRatings(TestCase):
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_invalid_status(self, storefront_mock):
         app = app_factory()
-        for status in (amo.STATUS_NULL, amo.STATUS_PENDING):
+        for status in (mkt.STATUS_NULL, mkt.STATUS_PENDING):
             app.update(status=status)
             app.set_iarc_storefront_data()
             assert not storefront_mock.called
@@ -1411,7 +1410,7 @@ class TestWebappContentRatings(TestCase):
     def test_delete_with_iarc(self, storefront_mock):
         app = app_factory(rated=True)
         app.delete()
-        eq_(app.status, amo.STATUS_DELETED)
+        eq_(app.status, mkt.STATUS_DELETED)
         assert storefront_mock.called
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
@@ -1450,7 +1449,7 @@ class TestExclusions(TestCase):
     fixtures = fixture('prices')
 
     def setUp(self):
-        self.app = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM)
+        self.app = Webapp.objects.create(premium_type=mkt.ADDON_PREMIUM)
         self.app.addonexcludedregion.create(region=mkt.regions.US.id)
         self.geodata = self.app._geodata
 
@@ -1525,7 +1524,7 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
             'name': u'Good App Name',
         }
         latest_version = version_factory(addon=self.webapp, version='2.3',
-            file_kw=dict(status=amo.STATUS_DISABLED))
+            file_kw=dict(status=mkt.STATUS_DISABLED))
         current_version = self.webapp.current_version
         AppManifest.objects.create(version=current_version,
                                    manifest=json.dumps(good_manifest))
@@ -1635,13 +1634,13 @@ class TestPackagedModel(mkt.site.tests.TestCase):
         v = app.versions.latest()
         f = v.files.latest()
 
-        eq_(app.status, amo.STATUS_BLOCKED)
+        eq_(app.status, mkt.STATUS_BLOCKED)
         eq_(app.versions.count(), 2)
         eq_(v.version, 'blocklisted')
 
         eq_(app._current_version, v)
         assert 'blocklisted' in f.filename
-        eq_(f.status, amo.STATUS_BLOCKED)
+        eq_(f.status, mkt.STATUS_BLOCKED)
 
         # Check manifest.
         url = app.get_manifest_url()
@@ -1665,9 +1664,9 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     def test_get_manifest_json(self):
         webapp = self.post_addon()
-        webapp.update(status=amo.STATUS_PUBLIC)
+        webapp.update(status=mkt.STATUS_PUBLIC)
         file_ = webapp.latest_version.all_files[0]
-        file_.update(status=amo.STATUS_PUBLIC)
+        file_.update(status=mkt.STATUS_PUBLIC)
         assert webapp.current_version
         assert webapp.current_version.has_files
         # Test without file argument.
@@ -1680,12 +1679,12 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_get_manifest_json_multiple_versions(self):
         """Test `get_manifest_json` gets the right version."""
         webapp = self.post_addon()
-        webapp.update(status=amo.STATUS_PUBLIC)
+        webapp.update(status=mkt.STATUS_PUBLIC)
         latest_version = webapp.latest_version
-        latest_version.files.update(status=amo.STATUS_PUBLIC)
+        latest_version.files.update(status=mkt.STATUS_PUBLIC)
         version = version_factory(addon=webapp, version='0.5',
                                   created=self.days_ago(1),
-                                  file_kw={'status': amo.STATUS_PENDING})
+                                  file_kw={'status': mkt.STATUS_PENDING})
         version.files.update(created=self.days_ago(1))
         webapp = Webapp.objects.get(pk=webapp.pk)
         eq_(webapp.current_version, latest_version)
@@ -1697,11 +1696,11 @@ class TestPackagedManifest(BasePackagedAppTest):
         # Post an app, then emulate a reviewer reject and add a new, pending
         # version.
         webapp = self.post_addon()
-        webapp.latest_version.files.update(status=amo.STATUS_DISABLED)
+        webapp.latest_version.files.update(status=mkt.STATUS_DISABLED)
         webapp.latest_version.update(created=self.days_ago(1))
-        webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
+        webapp.update(status=mkt.STATUS_REJECTED, _current_version=None)
         version = version_factory(addon=webapp, version='2.0',
-                                  file_kw={'status': amo.STATUS_PENDING})
+                                  file_kw={'status': mkt.STATUS_PENDING})
         mf = self._get_manifest_json()
         AppManifest.objects.create(version=version,
                                    manifest=json.dumps(mf))
@@ -1731,10 +1730,10 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_cached_manifest_contents(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
-        webapp.update(status=amo.STATUS_PUBLIC)
+        webapp.update(status=mkt.STATUS_PUBLIC)
         version = webapp.latest_version
         self.file = version.all_files[0]
-        self.file.update(status=amo.STATUS_PUBLIC)
+        self.file.update(status=mkt.STATUS_PUBLIC)
         self.setup_files()
         manifest = self._get_manifest_json()
 
@@ -1754,10 +1753,10 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_package_path(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
-        webapp.update(status=amo.STATUS_PUBLIC)
+        webapp.update(status=mkt.STATUS_PUBLIC)
         version = webapp.latest_version
         file = version.all_files[0]
-        file.update(status=amo.STATUS_PUBLIC)
+        file.update(status=mkt.STATUS_PUBLIC)
         res = self.client.get(file.get_url_path('manifest'))
         eq_(res.status_code, 200)
         eq_(res['content-type'], 'application/zip')
@@ -1872,7 +1871,7 @@ class TestDetailsComplete(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
-        self.webapp = Webapp.objects.create(status=amo.STATUS_NULL)
+        self.webapp = Webapp.objects.create(status=mkt.STATUS_NULL)
 
     def fail(self, value):
         assert not self.webapp.details_complete(), value
@@ -2107,69 +2106,69 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
                             dispatch_uid='version_update_status')
 
     def test_no_versions(self):
-        app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
         app.update_status()
-        eq_(app.status, amo.STATUS_NULL)
+        eq_(app.status, mkt.STATUS_NULL)
 
     def test_version_no_files(self):
-        app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
         Version(addon=app).save()
         app.update_status()
-        eq_(app.status, amo.STATUS_NULL)
+        eq_(app.status, mkt.STATUS_NULL)
 
     def test_only_version_deleted(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED)
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED)
         app.latest_version.delete()
         app.update_status()
-        eq_(app.status, amo.STATUS_NULL)
+        eq_(app.status, mkt.STATUS_NULL)
 
     def test_other_version_deleted(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED)
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED)
         mkt.site.tests.version_factory(addon=app)
         app.latest_version.delete()
         app.update_status()
-        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(app.status, mkt.STATUS_REJECTED)
 
     def test_one_version_pending(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED,
-                                    file_kw=dict(status=amo.STATUS_DISABLED))
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED,
+                                    file_kw=dict(status=mkt.STATUS_DISABLED))
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=amo.STATUS_PENDING))
+                                  file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = True
             app.update_status()
-        eq_(app.status, amo.STATUS_PENDING)
+        eq_(app.status, mkt.STATUS_PENDING)
 
     def test_one_version_pending_not_fully_complete(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_REJECTED,
-                                    file_kw=dict(status=amo.STATUS_DISABLED))
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED,
+                                    file_kw=dict(status=mkt.STATUS_DISABLED))
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=amo.STATUS_PENDING))
+                                  file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = False
             app.update_status()
-        eq_(app.status, amo.STATUS_REJECTED)  # Didn't change.
+        eq_(app.status, mkt.STATUS_REJECTED)  # Didn't change.
 
     def test_one_version_public(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_PUBLIC)
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_PUBLIC)
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=amo.STATUS_DISABLED))
+                                  file_kw=dict(status=mkt.STATUS_DISABLED))
         app.update_status()
-        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_PUBLIC)
 
     def test_was_approved_then_new_version(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_APPROVED)
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_APPROVED)
         File.objects.filter(version__addon=app).update(status=app.status)
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=amo.STATUS_PENDING))
+                                  file_kw=dict(status=mkt.STATUS_PENDING))
         app.update_status()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
 
     def test_blocklisted(self):
-        app = mkt.site.tests.app_factory(status=amo.STATUS_BLOCKED)
+        app = mkt.site.tests.app_factory(status=mkt.STATUS_BLOCKED)
         app.latest_version.delete()
         app.update_status()
-        eq_(app.status, amo.STATUS_BLOCKED)
+        eq_(app.status, mkt.STATUS_BLOCKED)
 
 
 class TestInstalled(mkt.site.tests.TestCase):
@@ -2384,22 +2383,22 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
             u'%s (restricted): <Webapp 337141>' % self.geo.id)
 
     def test_get_status(self):
-        status = amo.STATUS_PENDING
+        status = mkt.STATUS_PENDING
         eq_(self.geo.get_status(mkt.regions.CN), status)
         eq_(self.geo.region_cn_status, status)
 
-        status = amo.STATUS_PUBLIC
+        status = mkt.STATUS_PUBLIC
         self.geo.update(region_cn_status=status)
         eq_(self.geo.get_status(mkt.regions.CN), status)
         eq_(self.geo.region_cn_status, status)
 
     def test_set_status(self):
-        status = amo.STATUS_PUBLIC
+        status = mkt.STATUS_PUBLIC
 
         # Called with `save=False`.
         self.geo.set_status(mkt.regions.CN, status)
         eq_(self.geo.region_cn_status, status)
-        eq_(self.geo.reload().region_cn_status, amo.STATUS_PENDING,
+        eq_(self.geo.reload().region_cn_status, mkt.STATUS_PENDING,
             '`set_status(..., save=False)` should not save the value')
 
         # Called with `save=True`.
@@ -2422,10 +2421,10 @@ class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
     def setUp(self):
         super(TestPreGenAPKs, self).setUp()
         self.manifest_url = 'http://some-app.com/manifest.webapp'
-        self.app.update(status=amo.STATUS_PUBLIC,
+        self.app.update(status=mkt.STATUS_PUBLIC,
                         manifest_url=self.manifest_url)
         # Set up the app to support Android.
-        self.app.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+        self.app.addondevicetype_set.create(device_type=mkt.DEVICE_MOBILE.id)
 
     def switch_device(self, device_id):
         self.app.addondevicetype_set.all().delete()
@@ -2437,7 +2436,7 @@ class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
         pre_gen_task.delay.assert_called_with(self.app.id)
 
     def test_unapproved_apps(self, pre_gen_task):
-        self.app.update(status=amo.STATUS_REJECTED)
+        self.app.update(status=mkt.STATUS_REJECTED)
         assert not pre_gen_task.delay.called, (
             'APKs for unapproved apps should not be pre-generated')
 
@@ -2448,13 +2447,13 @@ class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
             'task should not be called if PRE_GENERATE_APKS is False')
 
     def test_ignore_firefox_os_apps(self, pre_gen_task):
-        self.switch_device(amo.DEVICE_GAIA.id)
+        self.switch_device(mkt.DEVICE_GAIA.id)
         self.app.save()
         assert not pre_gen_task.delay.called, (
             'task should not be called for Firefox OS apps')
 
     def test_treat_tablet_as_android(self, pre_gen_task):
-        self.switch_device(amo.DEVICE_TABLET.id)
+        self.switch_device(mkt.DEVICE_TABLET.id)
         self.app.save()
         assert pre_gen_task.delay.called, (
             'task should be called for tablet apps')

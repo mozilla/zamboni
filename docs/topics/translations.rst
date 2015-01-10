@@ -33,10 +33,10 @@ A minimal model with translations in zamboni would look like this::
 
     from django.db import models
 
-    import amo.models
+    import mkt.site.models
     import mkt.translations
 
-    class MyModel(amo.models.ModelBase):
+    class MyModel(mkt.site.models.ModelBase):
         description = translations.fieldsTranslatedField()
 
     models.signals.pre_save.connect(translations.fields.save_signal,

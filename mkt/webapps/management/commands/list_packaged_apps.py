@@ -3,16 +3,16 @@ from optparse import make_option
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 
-import amo
+import mkt
 from mkt.files.models import File
 
 HELP = 'List all Marketplace packaged apps'
 
 
-statuses = {'pending': amo.STATUS_PENDING,
-            'public': amo.STATUS_PUBLIC,
-            'approved': amo.STATUS_APPROVED,
-            'rejected': amo.STATUS_DISABLED}
+statuses = {'pending': mkt.STATUS_PENDING,
+            'public': mkt.STATUS_PUBLIC,
+            'approved': mkt.STATUS_APPROVED,
+            'rejected': mkt.STATUS_DISABLED}
 
 
 class Command(BaseCommand):

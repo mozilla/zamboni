@@ -2,7 +2,7 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
 
-import amo
+import mkt
 from mkt.receipts.urls import receipt_patterns
 from mkt.reviewers import views
 
@@ -27,14 +27,14 @@ url_patterns = patterns('',
         name='reviewers.apps.queue_moderated'),
     url(r'^apps/queue/device/$', views.queue_device,
         name='reviewers.apps.queue_device'),
-    url(r'^apps/review/%s$' % amo.APP_SLUG, views.app_review,
+    url(r'^apps/review/%s$' % mkt.APP_SLUG, views.app_review,
         name='reviewers.apps.review'),
-    url(r'^app/%s/$' % amo.APP_SLUG, views.app_review),
-    url(r'^apps/review/%s/manifest$' % amo.APP_SLUG, views.app_view_manifest,
+    url(r'^app/%s/$' % mkt.APP_SLUG, views.app_review),
+    url(r'^apps/review/%s/manifest$' % mkt.APP_SLUG, views.app_view_manifest,
         name='reviewers.apps.review.manifest'),
     url(r'^apps/review/attachment/(\d+)$', views.attachment,
         name='reviewers.apps.review.attachment'),
-    url(r'^apps/review/%s/abuse$' % amo.APP_SLUG, views.app_abuse,
+    url(r'^apps/review/%s/abuse$' % mkt.APP_SLUG, views.app_abuse,
         name='reviewers.apps.review.abuse'),
     url(r'^apps/logs$', views.logs, name='reviewers.apps.logs'),
     url(r'^apps/motd$', views.motd, name='reviewers.apps.motd'),
@@ -46,9 +46,9 @@ url_patterns = patterns('',
         name='reviewers.apps.apps_reviewing'),
 
     url(r'^receipt/', include(receipt_patterns)),
-    url(r'^%s/(?P<version_id>\d+)/mini-manifest$' % amo.APP_SLUG,
+    url(r'^%s/(?P<version_id>\d+)/mini-manifest$' % mkt.APP_SLUG,
         views.mini_manifest, name='reviewers.mini_manifest'),
-    url(r'^signed/%s/(?P<version_id>\d+)$' % amo.APP_SLUG,
+    url(r'^signed/%s/(?P<version_id>\d+)$' % mkt.APP_SLUG,
         views.get_signed_packaged, name='reviewers.signed'),
 
     url(r'''^performance/(?P<username>[^/<>"']+)?$''', views.performance,

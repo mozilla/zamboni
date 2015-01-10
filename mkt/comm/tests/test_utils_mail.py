@@ -8,7 +8,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
@@ -186,7 +186,7 @@ class TestEmailReplySaving(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
-        self.app = app_factory(name='Antelope', status=amo.STATUS_PENDING)
+        self.app = app_factory(name='Antelope', status=mkt.STATUS_PENDING)
         self.profile = UserProfile.objects.get(pk=999)
         t = CommunicationThread.objects.create(
             _addon=self.app, _version=self.app.current_version,

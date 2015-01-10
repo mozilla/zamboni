@@ -4,7 +4,7 @@ import datetime
 
 from celeryutils import task
 
-import amo
+import mkt
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
 from mkt.site.decorators import write
@@ -80,12 +80,12 @@ def _get_monolith_jobs(date=None):
         'mmo_user_count_total': [{
             'count': UserProfile.objects.filter(
                 created__lt=next_date,
-                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+                source=mkt.LOGIN_SOURCE_MMO_BROWSERID).count,
         }],
         'mmo_user_count_new': [{
             'count': UserProfile.objects.filter(
                 created__range=(date, next_date),
-                source=amo.LOGIN_SOURCE_MMO_BROWSERID).count,
+                source=mkt.LOGIN_SOURCE_MMO_BROWSERID).count,
         }],
 
         # New developers.
@@ -108,8 +108,8 @@ def _get_monolith_jobs(date=None):
     premium_counts = []
 
     # privileged==packaged for our consideration.
-    package_types = amo.ADDON_WEBAPP_TYPES.copy()
-    package_types.pop(amo.ADDON_WEBAPP_PRIVILEGED)
+    package_types = mkt.ADDON_WEBAPP_TYPES.copy()
+    package_types.pop(mkt.ADDON_WEBAPP_PRIVILEGED)
 
     for region_slug, region in REGIONS_CHOICES_SLUG:
         # Apps added by package type and region.
@@ -124,7 +124,7 @@ def _get_monolith_jobs(date=None):
             })
 
         # Apps added by premium type and region.
-        for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
+        for premium_type, pt_name in mkt.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': (apps
                           .filter(premium_type=premium_type)
@@ -139,7 +139,7 @@ def _get_monolith_jobs(date=None):
 
     # Add various "Apps Available" for all the dimensions we need.
     apps = Webapp.objects.filter(_current_version__reviewed__lt=next_date,
-                                 status__in=amo.LISTED_STATUSES,
+                                 status__in=mkt.LISTED_STATUSES,
                                  disabled_by_user=False)
     package_counts = []
     premium_counts = []
@@ -157,7 +157,7 @@ def _get_monolith_jobs(date=None):
             })
 
         # Apps available by premium type and region.
-        for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
+        for premium_type, pt_name in mkt.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': (apps
                           .filter(premium_type=premium_type)

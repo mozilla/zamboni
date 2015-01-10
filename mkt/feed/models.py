@@ -18,7 +18,7 @@ from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
-import amo
+import mkt
 import mkt.carriers
 import mkt.regions
 from mkt.constants.categories import CATEGORY_CHOICES
@@ -93,7 +93,7 @@ class BaseFeedCollection(ModelBase):
         """
         filters = {
             'disabled_by_user': False,
-            'status': amo.STATUS_PUBLIC
+            'status': mkt.STATUS_PUBLIC
         }
         return self._apps.order_by(self.membership_relation).filter(**filters)
 

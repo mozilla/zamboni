@@ -28,7 +28,6 @@ from jinja2.filters import do_dictsort
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
-import amo
 import mkt
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
@@ -148,7 +147,7 @@ def clean_slug(instance, slug_field='app_slug'):
 class AddonDeviceType(ModelBase):
     addon = models.ForeignKey('Webapp', db_constraint=False)
     device_type = models.PositiveIntegerField(
-        default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
+        default=mkt.DEVICE_DESKTOP, choices=do_dictsort(mkt.DEVICE_TYPES),
         db_index=True)
 
     class Meta:
@@ -160,7 +159,7 @@ class AddonDeviceType(ModelBase):
 
     @property
     def device(self):
-        return amo.DEVICE_TYPES[self.device_type]
+        return mkt.DEVICE_TYPES[self.device_type]
 
 
 @receiver(signals.version_changed, dispatch_uid='version_changed')
@@ -181,7 +180,7 @@ def attach_prices(addons):
     addon_dict = dict((a.id, a) for a in addons)
     prices = (AddonPremium.objects
               .filter(addon__in=addon_dict,
-                      addon__premium_type__in=amo.ADDON_PREMIUMS)
+                      addon__premium_type__in=mkt.ADDON_PREMIUMS)
               .values_list('addon', 'price__price'))
     for addon, price in prices:
         addon_dict[addon].price = price
@@ -203,8 +202,8 @@ def attach_tags(addons):
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
-    role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
-                                    choices=amo.AUTHOR_CHOICES)
+    role = models.SmallIntegerField(default=mkt.AUTHOR_ROLE_OWNER,
+                                    choices=mkt.AUTHOR_CHOICES)
     listed = models.BooleanField(_lazy(u'Listed'), default=True)
     position = models.IntegerField(default=0)
 
@@ -338,15 +337,15 @@ class WebappManager(ManagerBase):
         qs = super(WebappManager, self).get_query_set()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
-            qs = qs.exclude(status=amo.STATUS_DELETED)
+            qs = qs.exclude(status=mkt.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
 
     def valid(self):
-        return self.filter(status__in=amo.LISTED_STATUSES,
+        return self.filter(status__in=mkt.LISTED_STATUSES,
                            disabled_by_user=False)
 
     def visible(self):
-        return self.filter(status__in=amo.LISTED_STATUSES,
+        return self.filter(status__in=mkt.LISTED_STATUSES,
                            disabled_by_user=False)
 
     @skip_cache
@@ -361,10 +360,10 @@ class WebappManager(ManagerBase):
         return self.filter(**{
             # Only nominated apps should show up.
             '%s_nominated__isnull' % column_prefix: False,
-            'status__in': amo.WEBAPPS_APPROVED_STATUSES,
+            'status__in': mkt.WEBAPPS_APPROVED_STATUSES,
             'disabled_by_user': False,
             'escalationqueue__isnull': True,
-            '%s_status' % column_prefix: amo.STATUS_PENDING,
+            '%s_status' % column_prefix: mkt.STATUS_PENDING,
         }).order_by('-%s_nominated' % column_prefix)
 
     def rated(self):
@@ -419,7 +418,7 @@ class UUIDModelMixin(object):
 
 class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
-    STATUS_CHOICES = amo.STATUS_CHOICES.items()
+    STATUS_CHOICES = mkt.STATUS_CHOICES.items()
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
@@ -465,7 +464,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                                      related_name='addons')
     categories = json_field.JSONField(default=None)
     premium_type = models.PositiveIntegerField(
-        choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
+        choices=mkt.ADDON_PREMIUM_TYPES.items(), default=mkt.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
@@ -520,7 +519,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # To avoid a circular import.
         from . import tasks
 
-        if self.status == amo.STATUS_DELETED:
+        if self.status == mkt.STATUS_DELETED:
             return  # We're already done.
 
         id = self.id
@@ -537,7 +536,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         log.debug('Deleting app: %s' % self.id)
 
         to = [settings.APP_DELETION_EMAIL]
-        user = amo.get_user()
+        user = mkt.get_user()
 
         context = {
             'atype': 'App',
@@ -572,7 +571,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         # Update or NULL out various fields.
         models.signals.pre_delete.send(sender=Webapp, instance=self)
-        self.update(status=amo.STATUS_DELETED, slug=None, app_slug=None,
+        self.update(status=mkt.STATUS_DELETED, slug=None, app_slug=None,
                     app_domain=None, _current_version=None)
         models.signals.post_delete.send(sender=Webapp, instance=self)
 
@@ -585,7 +584,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     @use_master
     def clean_slug(self, slug_field='app_slug'):
-        if self.status == amo.STATUS_DELETED:
+        if self.status == mkt.STATUS_DELETED:
             return
         clean_slug(self, slug_field)
 
@@ -621,7 +620,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Webapp(**dict((k, v) for k, v in data.items() if k in fields))
-        addon.status = amo.STATUS_NULL
+        addon.status = mkt.STATUS_NULL
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +
@@ -638,7 +637,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         addon.save()
         Version.from_upload(upload, addon)
 
-        amo.log(amo.LOG.CREATE_ADDON, addon)
+        mkt.log(mkt.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
 
         return addon
@@ -694,40 +693,40 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         """
         return (not self.disabled_by_user and
-                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNLISTED))
+                self.status in (mkt.STATUS_PUBLIC, mkt.STATUS_UNLISTED))
 
     def is_approved(self):
         """
-        True if the app has status equal to amo.STATUS_APPROVED.
+        True if the app has status equal to mkt.STATUS_APPROVED.
 
         This app has been approved by a reviewer but is currently private and
         only visitble to the app authors.
 
         """
-        return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
+        return not self.disabled_by_user and self.status == mkt.STATUS_APPROVED
 
     def is_published(self):
         """
-        True if the app status is amo.STATUS_PUBLIC.
+        True if the app status is mkt.STATUS_PUBLIC.
 
         This means we can display the app in listing pages and index it in our
         search backend.
 
         """
-        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
+        return not self.disabled_by_user and self.status == mkt.STATUS_PUBLIC
 
     def is_incomplete(self):
-        return self.status == amo.STATUS_NULL
+        return self.status == mkt.STATUS_NULL
 
     def is_pending(self):
-        return self.status == amo.STATUS_PENDING
+        return self.status == mkt.STATUS_PENDING
 
     def is_rejected(self):
-        return self.status == amo.STATUS_REJECTED
+        return self.status == mkt.STATUS_REJECTED
 
     @property
     def is_deleted(self):
-        return self.status == amo.STATUS_DELETED
+        return self.status == mkt.STATUS_DELETED
 
     @property
     def is_disabled(self):
@@ -735,7 +734,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         It could be disabled by an admin or disabled by the developer
         """
-        return self.status == amo.STATUS_DISABLED or self.disabled_by_user
+        return self.status == mkt.STATUS_DISABLED or self.disabled_by_user
 
     def can_become_premium(self):
         if self.upsell or self.is_premium():
@@ -748,7 +747,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         and have a price of zero. Primarily of use in the devhub to determine
         if an app is intending to be premium.
         """
-        return self.premium_type in amo.ADDON_PREMIUMS
+        return self.premium_type in mkt.ADDON_PREMIUMS
 
     def is_free(self):
         """
@@ -760,11 +759,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                     self.premium.price)
 
     def is_free_inapp(self):
-        return self.premium_type == amo.ADDON_FREE_INAPP
+        return self.premium_type == mkt.ADDON_FREE_INAPP
 
     def needs_payment(self):
         return (self.premium_type not in
-                (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
+                (mkt.ADDON_FREE, mkt.ADDON_OTHER_INAPP))
 
     def can_be_deleted(self):
         return not self.is_deleted
@@ -775,8 +774,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Get the queries used to calculate addon.last_updated.
         """
         return (Webapp.objects.no_cache()
-                .filter(status=amo.STATUS_PUBLIC,
-                        versions__files__status=amo.STATUS_PUBLIC)
+                .filter(status=mkt.STATUS_PUBLIC,
+                        versions__files__status=mkt.STATUS_PUBLIC)
                 .values('id')
                 .annotate(last_updated=Max('versions__created')))
 
@@ -808,13 +807,13 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def has_author(self, user, roles=None):
         """True if ``user`` is an author with any of the specified ``roles``.
 
-        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
+        ``roles`` should be a list of valid roles (see mkt.AUTHOR_ROLE_*). If
         not specified, has_author will return true if the user has any role.
         """
         if user is None or user.is_anonymous():
             return False
         if roles is None:
-            roles = dict(amo.AUTHOR_CHOICES).keys()
+            roles = dict(mkt.AUTHOR_CHOICES).keys()
         return AddonUser.objects.filter(addon=self, user=user,
                                         role__in=roles).exists()
 
@@ -837,13 +836,13 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 pass
 
     def has_purchased(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_PURCHASE
+        return self.get_purchase_type(user) == mkt.CONTRIB_PURCHASE
 
     def is_refunded(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_REFUND
+        return self.get_purchase_type(user) == mkt.CONTRIB_REFUND
 
     def is_chargeback(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_CHARGEBACK
+        return self.get_purchase_type(user) == mkt.CONTRIB_CHARGEBACK
 
     def can_review(self, user):
         if user and self.has_author(user):
@@ -1005,11 +1004,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over.
-        if (size not in amo.APP_ICON_SIZES
-                and size >= amo.APP_ICON_SIZES[0]):
-            size = [s for s in amo.APP_ICON_SIZES if s < size][-1]
-        elif size < amo.APP_ICON_SIZES[0]:
-            size = amo.APP_ICON_SIZES[0]
+        if (size not in mkt.APP_ICON_SIZES
+                and size >= mkt.APP_ICON_SIZES[0]):
+            size = [s for s in mkt.APP_ICON_SIZES if s < size][-1]
+        elif size < mkt.APP_ICON_SIZES[0]:
+            size = mkt.APP_ICON_SIZES[0]
 
         # Figure out what to return for an image URL.
         if not self.icon_type:
@@ -1084,20 +1083,20 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def get_public_version(self):
         """Retrieves the latest PUBLIC version of an addon."""
-        if self.status not in amo.WEBAPPS_APPROVED_STATUSES:
+        if self.status not in mkt.WEBAPPS_APPROVED_STATUSES:
             # Apps that aren't in an approved status have no current version.
             return None
 
         try:
             return (self.versions.no_cache()
-                    .filter(files__status=amo.STATUS_PUBLIC)
+                    .filter(files__status=mkt.STATUS_PUBLIC)
                     .extra(where=[
                         """
                         NOT EXISTS (
                             SELECT 1 FROM versions as v2
                             INNER JOIN files AS f2 ON (f2.version_id = v2.id)
                             WHERE v2.id = versions.id
-                            AND f2.status != %s)""" % amo.STATUS_PUBLIC])[0])
+                            AND f2.status != %s)""" % mkt.STATUS_PUBLIC])[0])
 
         except (IndexError, Version.DoesNotExist):
             return None
@@ -1181,7 +1180,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def current_version(self):
         """Returns the current_version or None if the app is deleted or not
         created yet"""
-        if not self.id or self.status == amo.STATUS_DELETED:
+        if not self.id or self.status == mkt.STATUS_DELETED:
             return None
         try:
             return self._current_version
@@ -1193,7 +1192,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def latest_version(self):
         """Returns the latest_version or None if the app is deleted or not
         created yet"""
-        if not self.id or self.status == amo.STATUS_DELETED:
+        if not self.id or self.status == mkt.STATUS_DELETED:
             return None
         try:
             return self._latest_version
@@ -1325,7 +1324,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             # TODO: Remove this when we're satisified the above is working.
             log.info('Falling back to loading manifest from file system. '
                      'Webapp:%s File:%s' % (self.id, file_.id))
-            if file_.status == amo.STATUS_DISABLED:
+            if file_.status == mkt.STATUS_DISABLED:
                 file_path = file_.guarded_file_path
             else:
                 file_path = file_.file_path
@@ -1363,7 +1362,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         log.info('[Webapp:%s] Copied updated manifest to %s' % (
             self, version.path_prefix))
 
-        amo.log(amo.LOG.MANIFEST_UPDATED, self)
+        mkt.log(mkt.LOG.MANIFEST_UPDATED, self)
 
     def has_incomplete_status(self):
         return self.is_incomplete()
@@ -1515,26 +1514,26 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def mark_done(self):
         """When the submission process is done, update status accordingly."""
-        self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        self.update(status=mkt.WEBAPPS_UNREVIEWED_STATUS)
 
     def update_status(self, **kwargs):
-        if self.is_deleted or self.status == amo.STATUS_BLOCKED:
+        if self.is_deleted or self.status == mkt.STATUS_BLOCKED:
             return
 
         def _log(reason, old=self.status):
             log.info(u'Update app status [%s]: %s => %s (%s).' % (
                 self.id, old, self.status, reason))
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+            mkt.log(mkt.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         # Handle the case of no versions.
         if not self.versions.exists():
-            self.update(status=amo.STATUS_NULL)
+            self.update(status=mkt.STATUS_NULL)
             _log('no versions')
             return
 
         # Handle the case of versions with no files.
         if not self.versions.filter(files__isnull=False).exists():
-            self.update(status=amo.STATUS_NULL)
+            self.update(status=mkt.STATUS_NULL)
             _log('no versions with files')
             return
 
@@ -1545,23 +1544,23 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # If there are no public versions and at least one pending, set status
         # to pending.
         has_public = self.versions.filter(
-            files__status=amo.STATUS_PUBLIC).exists()
+            files__status=mkt.STATUS_PUBLIC).exists()
         has_approved = self.versions.filter(
-            files__status=amo.STATUS_APPROVED).exists()
+            files__status=mkt.STATUS_APPROVED).exists()
         has_pending = self.versions.filter(
-            files__status=amo.STATUS_PENDING).exists()
+            files__status=mkt.STATUS_PENDING).exists()
 
         # If no public versions but there are approved versions, set app to
         # approved.
         if not has_public and has_approved:
             _log('has approved but no public files')
-            self.update(status=amo.STATUS_APPROVED)
+            self.update(status=mkt.STATUS_APPROVED)
             return
 
         # If no public versions but there are pending versions, set app to
         # pending.
         if not has_public and has_pending and not self.is_pending():
-            self.update(status=amo.STATUS_PENDING)
+            self.update(status=mkt.STATUS_PENDING)
             _log('has pending but no public files')
             return
 
@@ -1573,7 +1572,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                                       authors__in=self.listed_authors))
 
     def can_be_purchased(self):
-        return self.is_premium() and self.status in amo.REVIEWED_STATUSES
+        return self.is_premium() and self.status in mkt.REVIEWED_STATUSES
 
     def can_purchase(self):
         return self.is_premium() and self.premium and self.is_public()
@@ -1837,14 +1836,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Returns True if changing self.premium_type from current value to passed
         in value is considered an upgrade that should trigger a re-review.
         """
-        ALL = set(amo.ADDON_FREES + amo.ADDON_PREMIUMS)
-        free_upgrade = ALL - set([amo.ADDON_FREE])
-        free_inapp_upgrade = ALL - set([amo.ADDON_FREE, amo.ADDON_FREE_INAPP])
+        ALL = set(mkt.ADDON_FREES + mkt.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([mkt.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP])
 
-        if (self.premium_type == amo.ADDON_FREE and
+        if (self.premium_type == mkt.ADDON_FREE and
             premium_type in free_upgrade):
             return True
-        if (self.premium_type == amo.ADDON_FREE_INAPP and
+        if (self.premium_type == mkt.ADDON_FREE_INAPP and
             premium_type in free_inapp_upgrade):
             return True
         return False
@@ -1858,7 +1857,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         blocklisted_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
                                         'blocklisted.zip')
         v = Version.objects.create(addon=self, version='blocklisted')
-        f = File(version=v, status=amo.STATUS_BLOCKED)
+        f = File(version=v, status=mkt.STATUS_BLOCKED)
         f.filename = f.generate_filename()
         copy_stored_file(blocklisted_path, f.file_path)
         log.info(u'[Webapp:%s] Copied blocklisted app from %s to %s' % (
@@ -1869,7 +1868,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         mf = WebAppParser().get_json_data(f.file_path)
         AppManifest.objects.create(version=v, manifest=json.dumps(mf))
         self.sign_if_packaged(v.pk)
-        self.status = amo.STATUS_BLOCKED
+        self.status = mkt.STATUS_BLOCKED
         self._current_version = v
         self.save()
 
@@ -1928,10 +1927,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Used by ES.
         """
         if self.latest_version and self.latest_version.is_privileged:
-            return amo.ADDON_WEBAPP_PRIVILEGED
+            return mkt.ADDON_WEBAPP_PRIVILEGED
         elif self.is_packaged:
-            return amo.ADDON_WEBAPP_PACKAGED
-        return amo.ADDON_WEBAPP_HOSTED
+            return mkt.ADDON_WEBAPP_PACKAGED
+        return mkt.ADDON_WEBAPP_HOSTED
 
     @property
     def app_type(self):
@@ -1939,7 +1938,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Returns string of 'hosted', 'packaged', or 'privileged'.
         Used in the API.
         """
-        return amo.ADDON_WEBAPP_TYPES[self.app_type_id]
+        return mkt.ADDON_WEBAPP_TYPES[self.app_type_id]
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -2089,8 +2088,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         geodata.region_de_iarc_exclude = False
 
         # Un-disable apps that were disabled by the great IARC purge.
-        if (self.status == amo.STATUS_DISABLED and self.iarc_purged):
-            self.update(status=amo.STATUS_PUBLIC, iarc_purged=False)
+        if (self.status == mkt.STATUS_DISABLED and self.iarc_purged):
+            self.update(status=mkt.STATUS_PUBLIC, iarc_purged=False)
 
         if save:
             geodata.save()
@@ -2142,11 +2141,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         release_date = datetime.date.today()
 
-        if self.status in amo.WEBAPPS_APPROVED_STATUSES:
+        if self.status in mkt.WEBAPPS_APPROVED_STATUSES:
             version = self.current_version
             if version and version.reviewed:
                 release_date = version.reviewed
-        elif self.status in amo.WEBAPPS_EXCLUDED_STATUSES:
+        elif self.status in mkt.WEBAPPS_EXCLUDED_STATUSES:
             # Using `_latest_version` since the property returns None when
             # deleted.
             version = self._latest_version
@@ -2301,12 +2300,12 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             '[Webapp:{id}] Status changed from {old_status}:{old_status_name} '
             'to {new_status}:{new_status_name}'.format(
                 id=addon.id, old_status=old_status,
-                old_status_name=amo.STATUS_CHOICES_API.get(old_status,
+                old_status_name=mkt.STATUS_CHOICES_API.get(old_status,
                                                            'unknown'),
                 new_status=new_status,
-                new_status_name=amo.STATUS_CHOICES_API[new_status]))
+                new_status_name=mkt.STATUS_CHOICES_API[new_status]))
 
-    if new_status == amo.STATUS_PENDING and old_status != new_status:
+    if new_status == mkt.STATUS_PENDING and old_status != new_status:
         # We always set nomination date when app switches to PENDING, even if
         # previously rejected.
         try:
@@ -2346,10 +2345,10 @@ def pre_generate_apk(sender=None, instance=None, **kw):
         return
     from . import tasks
     generated = False
-    if instance.status in amo.WEBAPPS_APPROVED_STATUSES:
+    if instance.status in mkt.WEBAPPS_APPROVED_STATUSES:
         app_devs = set(d.id for d in instance.device_types)
-        if (amo.DEVICE_MOBILE.id in app_devs or
-                amo.DEVICE_TABLET.id in app_devs):
+        if (mkt.DEVICE_MOBILE.id in app_devs or
+                mkt.DEVICE_TABLET.id in app_devs):
             tasks.pre_generate_apk.delay(instance.id)
             generated = True
 
@@ -2365,7 +2364,7 @@ class Installed(ModelBase):
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
-        null=True, default=None, choices=amo.ADDON_PREMIUM_TYPES.items())
+        null=True, default=None, choices=mkt.ADDON_PREMIUM_TYPES.items())
     install_type = models.PositiveIntegerField(
         db_index=True, default=apps.INSTALL_TYPE_USER,
         choices=apps.INSTALL_TYPES.items())
@@ -2518,7 +2517,7 @@ def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
     if (instance.addon.has_incomplete_status() and
         instance.addon.is_fully_complete()):
-        instance.addon.update(status=amo.STATUS_PENDING)
+        instance.addon.update(status=mkt.STATUS_PENDING)
 
 
 models.signals.post_save.connect(update_status_content_ratings,
@@ -2716,7 +2715,7 @@ class Geodata(ModelBase):
         Return the status of listing in a given region (e.g., China).
         """
         return getattr(self, 'region_%s_status' % parse_region(region).slug,
-                       amo.STATUS_PUBLIC)
+                       mkt.STATUS_PUBLIC)
 
     def set_status(self, region, status, save=False):
         """Return a tuple of `(value, changed)`."""
@@ -2737,9 +2736,9 @@ class Geodata(ModelBase):
 
     def get_status_slug(self, region):
         return {
-            amo.STATUS_PENDING: 'pending',
-            amo.STATUS_PUBLIC: 'public',
-            amo.STATUS_REJECTED: 'rejected',
+            mkt.STATUS_PENDING: 'pending',
+            mkt.STATUS_PUBLIC: 'public',
+            mkt.STATUS_REJECTED: 'rejected',
         }.get(self.get_status(region), 'unavailable')
 
     @classmethod
@@ -2803,8 +2802,8 @@ class Geodata(ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-        choices=amo.STATUS_CHOICES.items(), db_index=True,
-        default=amo.STATUS_PENDING)
+        choices=mkt.STATUS_CHOICES.items(), db_index=True,
+        default=mkt.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 
     help_text = _('{region} nomination date').format(region=region.name)

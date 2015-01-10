@@ -10,7 +10,7 @@ from mock import Mock, patch
 from nose.tools import eq_, ok_
 from rest_framework.request import Request
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
                                          PaymentAppViewSet)
@@ -62,7 +62,7 @@ class UpsellCase(TestCase):
     def setUp(self):
         self.free = Webapp.objects.get(pk=337141)
         self.free_url = self.url(self.free)
-        self.premium = app_factory(premium_type=amo.ADDON_PREMIUM)
+        self.premium = app_factory(premium_type=mkt.ADDON_PREMIUM)
         self.premium_url = self.url(self.premium)
         self.upsell_list = reverse('app-upsell-list')
 
@@ -122,7 +122,7 @@ class TestUpsell(RestOAuth, UpsellCase):
         # Trying to patch to a new object you do not have access to.
         self.create_upsell()
         self.create_allowed()
-        another = app_factory(premium_type=amo.ADDON_PREMIUM)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
         eq_(res.status_code, 403)
@@ -132,7 +132,7 @@ class TestUpsell(RestOAuth, UpsellCase):
         self.create_upsell()
         AddonUser.objects.create(addon=self.free, user=self.profile)
         # We did not give you access to patch away from self.premium.
-        another = app_factory(premium_type=amo.ADDON_PREMIUM)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
         AddonUser.objects.create(addon=another, user=self.profile)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
@@ -141,7 +141,7 @@ class TestUpsell(RestOAuth, UpsellCase):
     def test_patch(self):
         self.create_upsell()
         self.create_allowed()
-        another = app_factory(premium_type=amo.ADDON_PREMIUM)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
         AddonUser.objects.create(addon=another, user=self.profile)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
@@ -152,7 +152,7 @@ class AccountCase(Patcher, TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
         self.account = PaymentAccount.objects.create(user_id=2519,
             solitude_seller=self.seller, account_id=123, name='mine')
@@ -215,7 +215,7 @@ class TestSerializer(AccountCase):
     def test_free(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
-        self.app.update(premium_type=amo.ADDON_FREE)
+        self.app.update(premium_type=mkt.ADDON_FREE)
         res = AddonPaymentAccountSerializer(self.payment)
         ok_(not res.is_valid())
 
@@ -357,7 +357,7 @@ class TestAddonPaymentAccount(AccountCase, RestOAuth):
         eq_(account.payment_account, self.account)
 
     def test_cant_change_addon(self):
-        app = app_factory(premium_type=amo.ADDON_PREMIUM)
+        app = app_factory(premium_type=mkt.ADDON_PREMIUM)
         AddonUser.objects.create(addon=app, user=self.profile)
         self.create()
         self.create_price()
@@ -441,7 +441,7 @@ class TestPaymentDebug(AccountCase, RestOAuth):
         client.api.bango.debug.get.return_value = {'bango':
                                                    {'environment': 'dev'}}
         get_client.return_value = client
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.app.update(premium_type=mkt.ADDON_FREE_INAPP)
         self.grant_permission(self.profile, 'Transaction:Debug')
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)

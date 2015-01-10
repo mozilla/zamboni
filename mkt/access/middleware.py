@@ -6,7 +6,7 @@ from functools import partial
 
 import commonware.log
 
-import amo
+import mkt
 from mkt.access import acl
 
 
@@ -21,12 +21,12 @@ class ACLMiddleware(object):
 
         # figure out our list of groups...
         if request.user.is_authenticated():
-            amo.set_user(request.user)
+            mkt.set_user(request.user)
             request.groups = request.user.groups.all()
 
     def process_response(self, request, response):
-        amo.set_user(None)
+        mkt.set_user(None)
         return response
 
     def process_exception(self, request, exception):
-        amo.set_user(None)
+        mkt.set_user(None)

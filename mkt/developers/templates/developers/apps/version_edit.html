@@ -60,7 +60,7 @@
             </td>
           </tr>
 
-          {% if version.all_files[0].status == amo.STATUS_PENDING %}
+          {% if version.all_files[0].status == mkt.STATUS_PENDING %}
             <tr>
               <td colspan="2">
                 {{ form_field(form.publish_immediately) }}

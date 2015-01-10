@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 import mock
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.comm.models import CommunicationNote
 from mkt.constants.features import APP_FEATURES
@@ -64,24 +64,24 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
                                     'upload': self.file.uuid},
                                    request=self.request)
         assert form.is_valid()
-        eq_(form.get_paid(), amo.ADDON_PREMIUM)
+        eq_(form.get_paid(), mkt.ADDON_PREMIUM)
 
     def test_free(self):
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
-        eq_(form.get_paid(), amo.ADDON_FREE)
+        eq_(form.get_paid(), mkt.ADDON_FREE)
 
     def test_platform(self):
         mappings = (
-            ({'free_platforms': ['free-firefoxos']}, [amo.DEVICE_GAIA]),
-            ({'paid_platforms': ['paid-firefoxos']}, [amo.DEVICE_GAIA]),
+            ({'free_platforms': ['free-firefoxos']}, [mkt.DEVICE_GAIA]),
+            ({'paid_platforms': ['paid-firefoxos']}, [mkt.DEVICE_GAIA]),
             ({'free_platforms': ['free-firefoxos',
                                  'free-android-mobile']},
-             [amo.DEVICE_GAIA, amo.DEVICE_MOBILE]),
+             [mkt.DEVICE_GAIA, mkt.DEVICE_MOBILE]),
             ({'free_platforms': ['free-android-mobile',
                                  'free-android-tablet']},
-             [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
+             [mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET]),
         )
         for data, res in mappings:
             data['upload'] = self.file.uuid
@@ -185,7 +185,7 @@ class TestAppDetailsBasicForm(mkt.site.tests.TestCase):
             'privacy_policy': '...',
             'support_email': 'test@example.com',
             'notes': '',
-            'publish_type': amo.PUBLISH_IMMEDIATE,
+            'publish_type': mkt.PUBLISH_IMMEDIATE,
         }
         default.update(kwargs)
         return default
@@ -212,16 +212,16 @@ class TestAppDetailsBasicForm(mkt.site.tests.TestCase):
     def test_publish_type(self):
         app = self.get_app()
         form = forms.AppDetailsBasicForm(
-            self.get_data(publish_type=amo.PUBLISH_PRIVATE),
+            self.get_data(publish_type=mkt.PUBLISH_PRIVATE),
             request=self.request, instance=app)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(app.publish_type, amo.PUBLISH_PRIVATE)
+        eq_(app.publish_type, mkt.PUBLISH_PRIVATE)
 
     def test_help_text_uses_safetext_and_includes_url(self):
         app = self.get_app()
         form = forms.AppDetailsBasicForm(
-            self.get_data(publish_type=amo.PUBLISH_PRIVATE),
+            self.get_data(publish_type=mkt.PUBLISH_PRIVATE),
             request=self.request, instance=app)
 
         help_text = form.base_fields['privacy_policy'].help_text
@@ -276,7 +276,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        amo.set_user(UserProfile.objects.all()[0])
+        mkt.set_user(UserProfile.objects.all()[0])
         self.form = forms.AppFeaturesForm()
         self.app = Webapp.objects.get(pk=337141)
         self.features = self.app.current_version.features
@@ -317,7 +317,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(self.features.has_apps)
         ok_(not self.features.has_sms)
         ok_(not self.features.has_contacts)
-        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
+        action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert AppLog.objects.filter(addon=self.app,
             activity_log__action=action_id).exists()
         eq_(RereviewQueue.objects.count(), 1)
@@ -330,7 +330,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(not self.features.has_apps)
         ok_(self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
-        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
+        action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(addon=self.app,
              activity_log__action=action_id).exists()
 
@@ -342,6 +342,6 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(self.features.has_apps)
         ok_(not self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
-        action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
+        action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(addon=self.app,
              activity_log__action=action_id).exists()

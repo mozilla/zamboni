@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 
 from celery.task.sets import TaskSet
 
-import amo
+import mkt
 from lib.crypto.packaged import sign
 from mkt.webapps.models import Webapp
 
@@ -36,7 +36,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         qs = Webapp.objects.filter(is_packaged=True,
-                                   status__in=amo.LISTED_STATUSES)
+                                   status__in=mkt.LISTED_STATUSES)
         if kw['webapps']:
             pks = [int(a.strip()) for a in kw['webapps'].split(',')]
             qs = qs.filter(pk__in=pks)

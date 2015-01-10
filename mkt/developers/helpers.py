@@ -5,7 +5,7 @@ import jinja2
 from jingo import register
 from tower import ugettext as _
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.constants import CATEGORY_CHOICES_DICT
 from mkt.site.helpers import mkt_breadcrumbs, page_title
@@ -74,27 +74,27 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
 
 @register.function
 def mkt_status_class(addon):
-    if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
+    if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED:
         cls = 'disabled'
     else:
-        cls = amo.STATUS_CHOICES_API.get(addon.status, 'none')
+        cls = mkt.STATUS_CHOICES_API.get(addon.status, 'none')
     return 'status-' + cls
 
 
 @register.function
 def mkt_file_status_class(addon, version):
-    if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
+    if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED:
         cls = 'disabled'
     else:
         file = version.all_files[0]
-        cls = amo.STATUS_CHOICES_API.get(file.status, 'none')
+        cls = mkt.STATUS_CHOICES_API.get(file.status, 'none')
     return 'status-' + cls
 
 
 @register.function
 def log_action_class(action_id):
-    if action_id in amo.LOG_BY_ID:
-        cls = amo.LOG_BY_ID[action_id].action_class
+    if action_id in mkt.LOG_BY_ID:
+        cls = mkt.LOG_BY_ID[action_id].action_class
         if cls is not None:
             return 'action-' + cls
 

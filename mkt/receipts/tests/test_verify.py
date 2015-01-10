@@ -15,7 +15,7 @@ from browserid.errors import ExpiredSignatureError
 from nose.tools import eq_, ok_
 from services import utils, verify
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPurchase, Price
@@ -90,7 +90,7 @@ class TestVerify(ReceiptTest):
         return AddonPurchase.objects.create(addon=self.app, user=self.user,
                                             uuid='some-uuid')
 
-    def make_contribution(self, type=amo.CONTRIB_PURCHASE):
+    def make_contribution(self, type=mkt.CONTRIB_PURCHASE):
         contribution = Contribution.objects.create(addon=self.app,
                                                    user=self.user,
                                                    type=type)
@@ -99,7 +99,7 @@ class TestVerify(ReceiptTest):
         AddonPurchase.objects.get().update(uuid='some-uuid')
         return contribution
 
-    def make_inapp_contribution(self, type=amo.CONTRIB_PURCHASE):
+    def make_inapp_contribution(self, type=mkt.CONTRIB_PURCHASE):
         return Contribution.objects.create(
             addon=self.app,
             inapp_product=self.inapp,
@@ -213,13 +213,13 @@ class TestVerify(ReceiptTest):
         eq_(res['status'], 'expired')
 
     def test_premium_app_not_purchased(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
 
     def test_premium_dont_check(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.verify_receipt_data(
             self.sample_app_receipt(),
             check_purchase=False
@@ -230,14 +230,14 @@ class TestVerify(ReceiptTest):
 
     @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         receipt_data = self.sample_app_receipt()
         receipt_data['typ'] = 'developer-receipt'
         res = self.verify_receipt_data(receipt_data, check_purchase=False)
         eq_(res['status'], 'ok', res)
 
     def test_premium_app_purchased(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         self.make_purchase()
         res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
@@ -248,7 +248,7 @@ class TestVerify(ReceiptTest):
         eq_(res['status'], 'ok', res)
 
     def test_premium_app_contribution(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         # There's no purchase, but the last entry we have is a sale.
         self.make_contribution()
         res = self.verify_receipt_data(self.sample_app_receipt())
@@ -256,9 +256,9 @@ class TestVerify(ReceiptTest):
 
     @mock.patch('services.verify.receipt_cef.log')
     def test_premium_app_refund(self, log):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         purchase = self.make_purchase()
-        for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
+        for type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
             purchase.update(type=type)
             res = self.verify_receipt_data(self.sample_app_receipt())
             eq_(res['status'], 'refunded')
@@ -266,7 +266,7 @@ class TestVerify(ReceiptTest):
 
     @mock.patch('services.verify.receipt_cef.log')
     def test_inapp_refund(self, log):
-        for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
+        for type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
             contribution = self.make_inapp_contribution(type=type)
             res = self.verify_receipt_data(
                 self.sample_inapp_receipt(contribution))
@@ -274,20 +274,20 @@ class TestVerify(ReceiptTest):
         eq_(log.call_count, 2)
 
     def test_premium_no_charge(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         purchase = self.make_purchase()
-        purchase.update(type=amo.CONTRIB_NO_CHARGE)
+        purchase.update(type=mkt.CONTRIB_NO_CHARGE)
         res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
 
     def test_inapp_no_charge(self):
-        contribution = self.make_inapp_contribution(type=amo.CONTRIB_NO_CHARGE)
+        contribution = self.make_inapp_contribution(type=mkt.CONTRIB_NO_CHARGE)
         res = self.verify_receipt_data(self.sample_inapp_receipt(contribution))
         eq_(res['status'], 'ok', res)
 
     def test_other_premiums(self):
         self.make_purchase()
-        for k in (amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP):
+        for k in (mkt.ADDON_PREMIUM, mkt.ADDON_PREMIUM_INAPP):
             self.app.update(premium_type=k)
             res = self.verify_receipt_data(self.sample_app_receipt())
             eq_(res['status'], 'ok', res)

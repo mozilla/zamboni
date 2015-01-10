@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 
-import amo
+import mkt
 from mkt.site.decorators import write
 from mkt.site.storage_utils import walk_storage
 from mkt.site.utils import chunked, resize_image
@@ -13,7 +13,7 @@ from mkt.webapps.models import Webapp
 
 
 extensions = ['.png', '.jpg', '.gif']
-sizes = amo.APP_ICON_SIZES
+sizes = mkt.APP_ICON_SIZES
 size_suffixes = ['-%s' % s for s in sizes]
 
 
