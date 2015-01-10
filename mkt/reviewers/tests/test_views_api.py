@@ -11,7 +11,7 @@ import mock
 from cache_nuggets.lib import Token
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.regions
 from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
@@ -86,7 +86,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
 
         self.webapp = Webapp.objects.get(pk=337141)
 
-        self.webapp.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.refresh('webapp')
 
     def test_fields(self):
@@ -132,7 +132,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 0)
 
-        self.webapp.update(status=amo.STATUS_REJECTED)
+        self.webapp.update(status=mkt.STATUS_REJECTED)
         self.refresh('webapp')
 
         res = self.client.get(self.url, {'status': 'rejected'})
@@ -140,7 +140,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        self.webapp.update(status=amo.STATUS_PUBLIC)
+        self.webapp.update(status=mkt.STATUS_PUBLIC)
         self.refresh('webapp')
 
         res = self.client.get(self.url, {'status': 'public'})
@@ -241,7 +241,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         qs = {'q': 'something', 'pro': feature_profile, 'dev': 'firefoxos'}
 
         # Enable an app feature that doesn't match one in our profile.
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.latest_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -253,7 +253,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_filtering(self):
-        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.latest_version.all_files[0].update(uses_flash=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -263,8 +263,8 @@ class TestApiReviewer(RestOAuth, ESTestCase):
 
     def test_no_premium_filtering(self):
         self.webapp.addondevicetype_set.create(
-            device_type=amo.DEVICE_MOBILE.id)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+            device_type=mkt.DEVICE_MOBILE.id)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
         self.refresh('webapp')
         res = self.client.get(self.url, {'dev': 'android', 'device': 'mobile'})
         eq_(res.status_code, 200)
@@ -305,7 +305,7 @@ class TestApproveRegion(RestOAuth):
         self.grant_permission(self.profile, 'Apps:ReviewRegionBR')
 
         app = Webapp.objects.get(id=337141)
-        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_status('cn', mkt.STATUS_PENDING, save=True)
 
         res = self.client.post(self.url())
         eq_(res.status_code, 403)
@@ -314,7 +314,7 @@ class TestApproveRegion(RestOAuth):
         self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
 
         app = Webapp.objects.get(id=337141)
-        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_status('cn', mkt.STATUS_PENDING, save=True)
 
         res = self.client.post(self.url(region='br'))
         eq_(res.status_code, 403)
@@ -323,27 +323,27 @@ class TestApproveRegion(RestOAuth):
         self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
 
         app = Webapp.objects.get(id=337141)
-        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_status('cn', mkt.STATUS_PENDING, save=True)
         app.geodata.set_nominated_date('cn', save=True)
 
         res = self.client.post(self.url())
         eq_(res.status_code, 200)
         obj = json.loads(res.content)
         eq_(obj['approved'], False)
-        eq_(app.geodata.reload().get_status('cn'), amo.STATUS_REJECTED)
+        eq_(app.geodata.reload().get_status('cn'), mkt.STATUS_REJECTED)
 
     def test_good_approved(self):
         self.grant_permission(self.profile, 'Apps:ReviewRegionCN')
 
         app = Webapp.objects.get(id=337141)
-        app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_status('cn', mkt.STATUS_PENDING, save=True)
         app.geodata.set_nominated_date('cn', save=True)
 
         res = self.client.post(self.url(), data=json.dumps({'approve': '1'}))
         eq_(res.status_code, 200)
         obj = json.loads(res.content)
         eq_(obj['approved'], True)
-        eq_(app.geodata.reload().get_status('cn'), amo.STATUS_PUBLIC)
+        eq_(app.geodata.reload().get_status('cn'), mkt.STATUS_PUBLIC)
 
 
 class TestGenerateToken(RestOAuth):
@@ -533,7 +533,7 @@ class TestCreateAdditionalReview(RestOAuth):
 
     def test_only_one_pending_review(self):
         AdditionalReview.objects.create(queue=QUEUE_TARAKO, app=self.app)
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         eq_(AdditionalReview.objects.filter(app=self.app).count(), 1)
         response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
         eq_(response.status_code, 400)
@@ -688,7 +688,7 @@ class TestReviewerScoreAPI(RestOAuth):
     def setUp(self):
         super(TestReviewerScoreAPI, self).setUp()
         self.score = ReviewerScore.objects.create(user=self.profile,
-            note='This is a note.', score=42, note_key=amo.REVIEWED_MANUAL)
+            note='This is a note.', score=42, note_key=mkt.REVIEWED_MANUAL)
         self.url_list = reverse('reviewerscore-list')
         self.url_detail = reverse('reviewerscore-detail',
                                   kwargs={'pk': self.score.pk})
@@ -749,7 +749,7 @@ class TestReviewerScoreAPI(RestOAuth):
         # Add an extra instance that shouldn't be returned because of its
         # note_key.
         ReviewerScore.objects.create(user=self.profile,
-            note='Hide me!', score=43, note_key=amo.REVIEWED_APP_REVIEW)
+            note='Hide me!', score=43, note_key=mkt.REVIEWED_APP_REVIEW)
         self.grant_permission(self.profile, 'Admin:ReviewerTools')
         res = self.client.get(self.url_list)
         eq_(res.status_code, 200)
@@ -774,7 +774,7 @@ class TestReviewerScoreAPI(RestOAuth):
         # Add an extra instance that shouldn't be returned because of its
         # note_key.
         score = ReviewerScore.objects.create(user=self.profile,
-            note='Hide me!', score=43, note_key=amo.REVIEWED_APP_REVIEW)
+            note='Hide me!', score=43, note_key=mkt.REVIEWED_APP_REVIEW)
         url_detail = reverse('reviewerscore-detail',
                              kwargs={'pk': score.pk})
         res = self.client.get(url_detail)
@@ -796,7 +796,7 @@ class TestReviewerScoreAPI(RestOAuth):
         eq_(res.json['score'], score.score)
         eq_(res.json['note'], score.note)
         eq_(res.json['user'], score.user.pk)
-        eq_(score.note_key, amo.REVIEWED_MANUAL)
+        eq_(score.note_key, mkt.REVIEWED_MANUAL)
 
     def test_post_no_note(self):
         self.grant_permission(self.profile, 'Admin:ReviewerTools')
@@ -860,14 +860,14 @@ class TestReviewerScoreAPI(RestOAuth):
         self.grant_permission(self.profile, 'Admin:ReviewerTools')
         res = self.client.patch(self.url_detail, json.dumps({
             'score': 46,
-            'note_key': amo.REVIEWED_APP_REVIEW
+            'note_key': mkt.REVIEWED_APP_REVIEW
         }))
         eq_(res.status_code, 200)
         eq_(ReviewerScore.objects.count(), 1)
         self.score.reload()
         eq_(res.json['score'], 46)
         eq_(res.json['score'], self.score.score)
-        eq_(self.score.note_key, amo.REVIEWED_MANUAL)
+        eq_(self.score.note_key, mkt.REVIEWED_MANUAL)
 
     def test_put_but_not_everything(self):
         self.grant_permission(self.profile, 'Admin:ReviewerTools')

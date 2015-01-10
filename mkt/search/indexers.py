@@ -8,7 +8,7 @@ from celeryutils import task
 from elasticsearch import helpers
 from elasticsearch_dsl import Search
 
-import amo
+import mkt
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
 from mkt.site.decorators import write
@@ -189,7 +189,7 @@ class BaseIndexer(object):
             'filter': ['lowercase'],
         }
 
-        for lang, stemmer in amo.STEMMER_MAP.items():
+        for lang, stemmer in mkt.STEMMER_MAP.items():
             filters['%s_stem_filter' % lang] = {
                 'type': 'stemmer',
                 'name': stemmer,

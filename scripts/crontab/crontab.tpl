@@ -25,7 +25,7 @@ HOME=/tmp
 45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
 45 9 * * * %(z_cron)s clean_old_signed --settings=settings_local_mkt
 45 10 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
-00 11 * * * %(django)s update_app_trending --settings=settings_local_mkt
+00 11 * * * %(z_cron)s update_app_trending --settings=settings_local_mkt
 45 11 * * * %(django)s export_data --settings=settings_local_mkt
 
 MAILTO=root

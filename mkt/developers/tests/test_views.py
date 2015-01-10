@@ -20,7 +20,7 @@ from nose.plugins.attrib import attr
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 import mkt
 from lib.iarc.utils import get_iarc_app_title
@@ -141,7 +141,7 @@ class TestAppDashboard(AppHubTest):
 
     def test_incomplete_app(self):
         app = self.get_app()
-        app.update(status=amo.STATUS_NULL)
+        app.update(status=mkt.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
@@ -173,7 +173,7 @@ class TestAppDashboard(AppHubTest):
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,
-                   premium_type=amo.ADDON_PREMIUM_INAPP)
+                   premium_type=mkt.ADDON_PREMIUM_INAPP)
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
@@ -268,7 +268,7 @@ class TestDevRequired(AppHubTest):
         self.user = UserProfile.objects.get(username='31337')
         assert self.client.login(username=self.user.email, password='password')
         self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
-        eq_(self.au.role, amo.AUTHOR_ROLE_OWNER)
+        eq_(self.au.role, mkt.AUTHOR_ROLE_OWNER)
         self.make_price()
 
     def test_anon(self):
@@ -284,21 +284,21 @@ class TestDevRequired(AppHubTest):
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
 
     def test_viewer_get(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.role = mkt.AUTHOR_ROLE_VIEWER
         self.au.save()
         eq_(self.client.get(self.get_url).status_code, 200)
 
     def test_viewer_post(self):
-        self.au.role = amo.AUTHOR_ROLE_VIEWER
+        self.au.role = mkt.AUTHOR_ROLE_VIEWER
         self.au.save()
         eq_(self.client.post(self.get_url).status_code, 403)
 
     def test_disabled_post_dev(self):
-        self.webapp.update(status=amo.STATUS_DISABLED)
+        self.webapp.update(status=mkt.STATUS_DISABLED)
         eq_(self.client.post(self.get_url).status_code, 403)
 
     def test_disabled_post_admin(self):
-        self.webapp.update(status=amo.STATUS_DISABLED)
+        self.webapp.update(status=mkt.STATUS_DISABLED)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.assertRedirects(self.client.post(self.post_url), self.get_url)
@@ -311,8 +311,8 @@ class TestMarketplace(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.addon = Webapp.objects.get(id=337141)
-        self.addon.update(status=amo.STATUS_PUBLIC,
-                          highest_status=amo.STATUS_PUBLIC)
+        self.addon.update(status=mkt.STATUS_PUBLIC,
+                          highest_status=mkt.STATUS_PUBLIC)
 
         self.url = self.addon.get_dev_url('payments')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -324,12 +324,12 @@ class TestMarketplace(mkt.site.tests.TestCase):
     def setup_premium(self):
         self.price = Price.objects.get(pk=1)
         self.price_two = Price.objects.get(pk=3)
-        self.other_addon = Webapp.objects.create(premium_type=amo.ADDON_FREE)
-        self.other_addon.update(status=amo.STATUS_PUBLIC)
+        self.other_addon = Webapp.objects.create(premium_type=mkt.ADDON_FREE)
+        self.other_addon.update(status=mkt.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.other_addon,
                                  user=self.addon.authors.all()[0])
         AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.paid_regions = self.get_price_regions(self.price)
         self.paid_regions_two = self.get_price_regions(self.price_two)
 
@@ -347,7 +347,7 @@ class TestMarketplace(mkt.site.tests.TestCase):
 
     def test_initial_free(self):
         AddonDeviceType.objects.create(
-            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
+            addon=self.addon, device_type=mkt.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert 'Change to Paid' in res.content
@@ -391,8 +391,8 @@ class TestMarketplace(mkt.site.tests.TestCase):
         upsell = AddonUpsell.objects.create(free=self.other_addon,
                                             premium=self.addon)
         # And this will become our new upsell, replacing the one above.
-        new = Webapp.objects.create(premium_type=amo.ADDON_FREE,
-                                    status=amo.STATUS_PUBLIC)
+        new = Webapp.objects.create(premium_type=mkt.ADDON_FREE,
+                                    status=mkt.STATUS_PUBLIC)
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
         eq_(self.addon._upsell_to.all()[0], upsell)
@@ -430,11 +430,11 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
 
     def test_logout(self):
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_APPROVED)
+            status=mkt.STATUS_APPROVED)
         self.client.logout()
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_latest_version_status(), amo.STATUS_APPROVED)
+        eq_(self.get_latest_version_status(), mkt.STATUS_APPROVED)
 
     def test_publicise_get(self):
         eq_(self.client.get(self.url).status_code, 405)
@@ -448,9 +448,9 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
                                             index_webapps):
         """ Test publishing the latest, approved version when the app is
         already public, with a current version also already public. """
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         ver = version_factory(addon=self.app, version='2.0',
-                              file_kw=dict(status=amo.STATUS_APPROVED))
+                              file_kw=dict(status=mkt.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
         ok_(self.app.current_version != ver)
 
@@ -461,7 +461,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
 
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(ver.reload().all_files[0].status, amo.STATUS_PUBLIC)
+        eq_(ver.reload().all_files[0].status, mkt.STATUS_PUBLIC)
         eq_(self.get_webapp().current_version, ver)
 
         eq_(update_name.call_count, 1)
@@ -477,9 +477,9 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
             index_webapps):
         """ Test publishing the latest, approved version when the app is
         unlisted, with a current version also already public. """
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         ver = version_factory(addon=self.app, version='2.0',
-                              file_kw=dict(status=amo.STATUS_APPROVED))
+                              file_kw=dict(status=mkt.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
         ok_(self.app.current_version != ver)
 
@@ -490,7 +490,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
 
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(ver.reload().all_files[0].status, amo.STATUS_PUBLIC)
+        eq_(ver.reload().all_files[0].status, mkt.STATUS_PUBLIC)
         eq_(self.get_webapp().current_version, ver)
 
         eq_(update_name.call_count, 1)
@@ -506,10 +506,10 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
             index_webapps):
         """ Test publishing when the app is in a weird state: public but with
         only one version, which is approved. """
-        self.app.latest_version.all_files[0].update(status=amo.STATUS_APPROVED,
+        self.app.latest_version.all_files[0].update(status=mkt.STATUS_APPROVED,
                                                    _signal=False)
         eq_(self.app.current_version, self.app.latest_version)
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
 
         index_webapps.delay.reset_mock()
         update_cached_manifests.delay.reset_mock()
@@ -520,8 +520,8 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         res = self.post()
         eq_(res.status_code, 302)
         eq_(self.app.current_version, self.app.latest_version)
-        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
-        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+        eq_(self.get_latest_version_status(), mkt.STATUS_PUBLIC)
+        eq_(self.app.reload().status, mkt.STATUS_PUBLIC)
 
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
@@ -538,9 +538,9 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
                                             index_webapps):
         """ Test publishing when the only version of the app is approved
         doesn't change the app status. """
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_APPROVED)
+            status=mkt.STATUS_APPROVED)
         eq_(self.app.current_version, self.app.latest_version)
 
         index_webapps.delay.reset_mock()
@@ -551,8 +551,8 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         res = self.post()
         eq_(res.status_code, 302)
         eq_(self.app.current_version, self.app.latest_version)
-        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
-        eq_(self.app.reload().status, amo.STATUS_APPROVED)
+        eq_(self.get_latest_version_status(), mkt.STATUS_PUBLIC)
+        eq_(self.app.reload().status, mkt.STATUS_APPROVED)
 
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
@@ -567,9 +567,9 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
                                             index_webapps):
         """ Test publishing a version of an unlisted app when the only
         version of the app is approved. """
-        self.app.update(status=amo.STATUS_UNLISTED, _current_version=None)
+        self.app.update(status=mkt.STATUS_UNLISTED, _current_version=None)
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_APPROVED)
+            status=mkt.STATUS_APPROVED)
 
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
@@ -580,8 +580,8 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         eq_(res.status_code, 302)
         app = self.app.reload()
         eq_(app.current_version, self.app.latest_version)
-        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
-        eq_(app.status, amo.STATUS_UNLISTED)
+        eq_(self.get_latest_version_status(), mkt.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_UNLISTED)
 
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
@@ -595,17 +595,17 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
                                        update_cached_manifests, index_webapps):
         """ Test publishing a pending version isn't allowed. """
         ver = version_factory(addon=self.app, version='2.0',
-                              file_kw=dict(status=amo.STATUS_PENDING))
+                              file_kw=dict(status=mkt.STATUS_PENDING))
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_latest_version_status(), amo.STATUS_PENDING)
+        eq_(self.get_latest_version_status(), mkt.STATUS_PENDING)
         assert self.app.current_version != ver
         assert not update_name.called
         assert not update_locales.called
 
     def test_status(self):
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_APPROVED)
+            status=mkt.STATUS_APPROVED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -619,7 +619,7 @@ class TestStatus(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
         self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=amo.STATUS_DISABLED)
+        self.file.update(status=mkt.STATUS_DISABLED)
         self.status_url = self.webapp.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
@@ -645,7 +645,7 @@ class TestStatus(mkt.site.tests.TestCase):
         eq_(doc('#blocklist-app').length, 1)
 
     def test_status_when_packaged_rejected_dev(self):
-        self.webapp.update(is_packaged=True, status=amo.STATUS_REJECTED)
+        self.webapp.update(is_packaged=True, status=mkt.STATUS_REJECTED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -656,7 +656,7 @@ class TestStatus(mkt.site.tests.TestCase):
     def test_status_when_packaged_rejected_admin(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.webapp.update(is_packaged=True, status=amo.STATUS_REJECTED)
+        self.webapp.update(is_packaged=True, status=mkt.STATUS_REJECTED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -668,7 +668,7 @@ class TestStatus(mkt.site.tests.TestCase):
         version = self.webapp.versions.latest()
         self.webapp.update(is_packaged=True, _current_version=version,
                            _latest_version=version)
-        self.file.update(status=amo.STATUS_PUBLIC)
+        self.file.update(status=mkt.STATUS_PUBLIC)
         version.update(version='<script>alert("xss")</script>')
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
@@ -1052,13 +1052,13 @@ class TestDeleteApp(mkt.site.tests.TestCase):
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete(self):
-        self.webapp.update(status=amo.STATUS_NULL)
+        self.webapp.update(status=mkt.STATUS_NULL)
         r = self.client.post(self.url)
         self.assertRedirects(r, self.dev_url)
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = mkt.site.tests.app_factory(name='Boop', status=amo.STATUS_NULL)
+        webapp = mkt.site.tests.app_factory(name='Boop', status=mkt.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],
@@ -1262,11 +1262,11 @@ class TestTransactionList(mkt.site.tests.TestCase):
 
         # Set up transactions.
         tx0 = Contribution.objects.create(addon=self.apps[0],
-                                          type=amo.CONTRIB_PURCHASE,
+                                          type=mkt.CONTRIB_PURCHASE,
                                           user=self.user,
                                           uuid=12345)
         tx1 = Contribution.objects.create(addon=self.apps[1],
-                                          type=amo.CONTRIB_REFUND,
+                                          type=mkt.CONTRIB_REFUND,
                                           user=self.user,
                                           uuid=67890)
         tx0.update(created=datetime.date(2011, 12, 25))
@@ -1417,7 +1417,7 @@ class TestContentRatings(mkt.site.tests.TestCase):
 class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = app_factory(status=amo.STATUS_NULL)
+        self.app = app_factory(status=mkt.STATUS_NULL)
 
     def _make_complete(self, complete_errs):
         complete_errs.return_value = {}
@@ -1427,28 +1427,28 @@ class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):
 
     def test_create_rating_still_incomplete(self):
         self._rate_app()
-        eq_(_ratings_success_msg(self.app, amo.STATUS_NULL, None),
+        eq_(_ratings_success_msg(self.app, mkt.STATUS_NULL, None),
             _submission_msgs()['content_ratings_saved'])
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_create_rating_now_complete(self, complete_errs):
         self._rate_app()
-        self.app.update(status=amo.STATUS_PENDING)
-        eq_(_ratings_success_msg(self.app, amo.STATUS_NULL, None),
+        self.app.update(status=mkt.STATUS_PENDING)
+        eq_(_ratings_success_msg(self.app, mkt.STATUS_NULL, None),
             _submission_msgs()['complete'])
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_create_rating_public_app(self, complete_errs):
         self._rate_app()
-        self.app.update(status=amo.STATUS_PUBLIC)
-        eq_(_ratings_success_msg(self.app, amo.STATUS_PUBLIC, None),
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        eq_(_ratings_success_msg(self.app, mkt.STATUS_PUBLIC, None),
             _submission_msgs()['content_ratings_saved'])
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_update_rating_still_complete(self, complete_errs):
         self._rate_app()
-        self.app.update(status=amo.STATUS_PENDING)
-        eq_(_ratings_success_msg(self.app, amo.STATUS_PENDING,
+        self.app.update(status=mkt.STATUS_PENDING)
+        eq_(_ratings_success_msg(self.app, mkt.STATUS_PENDING,
                                  self.days_ago(5).isoformat()),
             _submission_msgs()['content_ratings_saved'])
 

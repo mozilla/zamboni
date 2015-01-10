@@ -14,7 +14,7 @@ from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
@@ -36,7 +36,7 @@ class FilesBase(object):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.app.update(is_packaged=True, status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        self.app.update(is_packaged=True, status=mkt.WEBAPPS_UNREVIEWED_STATUS)
         self.dev = self.app.authors.all()[0]
         self.regular = UserProfile.objects.get(pk=999)
         self.version = self.app.versions.latest()
@@ -209,10 +209,10 @@ class FilesBase(object):
         eq_(vers.eq(0).text(), '')
         f = self.versions[1].all_files[0]
         eq_(vers.eq(1).text(), '%s (%s)' % (self.versions[1].version,
-                                            amo.STATUS_CHOICES_API[f.status]))
+                                            mkt.STATUS_CHOICES_API[f.status]))
         f = self.versions[0].all_files[0]
         eq_(vers.eq(2).text(), '%s (%s)' % (self.versions[0].version,
-                                            amo.STATUS_CHOICES_API[f.status]))
+                                            mkt.STATUS_CHOICES_API[f.status]))
 
 
 class TestFileViewer(FilesBase, mkt.site.tests.WebappTestCase):

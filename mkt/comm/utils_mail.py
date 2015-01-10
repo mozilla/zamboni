@@ -13,7 +13,7 @@ from django.utils import translation
 import waffle
 from email_reply_parser import EmailReplyParser
 
-import amo
+import mkt
 
 from mkt.access import acl
 from mkt.access.models import Group
@@ -135,7 +135,7 @@ def get_mail_context(note):
         app.name = app.app_slug
 
     return {
-        'amo': amo,
+        'mkt': mkt,
         'app': app,
         'comm': comm,
         'note': note,

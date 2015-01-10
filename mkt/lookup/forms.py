@@ -4,18 +4,18 @@ from django.conf import settings
 import happyforms
 from tower import ugettext_lazy as _lazy
 
-import amo
+import mkt
 
 
 STATUS_CHOICES = []
-for status in amo.STATUS_CHOICES:
-    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.STATUS_CHOICES[status]))
+for status in mkt.STATUS_CHOICES:
+    STATUS_CHOICES.append((mkt.STATUS_CHOICES_API[status],
+                           mkt.STATUS_CHOICES[status]))
 
 FILE_STATUS_CHOICES = []
-for status in amo.MKT_STATUS_FILE_CHOICES:
-    FILE_STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                                amo.MKT_STATUS_FILE_CHOICES[status]))
+for status in mkt.MKT_STATUS_FILE_CHOICES:
+    FILE_STATUS_CHOICES.append((mkt.STATUS_CHOICES_API[status],
+                                mkt.MKT_STATUS_FILE_CHOICES[status]))
 
 
 class NoAutoCompleteChoiceField(forms.ChoiceField):

@@ -3,17 +3,17 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
-import amo
+import mkt
 from mkt.site.decorators import write
 from . import views
 
 
 # These URLs start with /developers/submit/app/<app_slug>/.
 submit_apps_patterns = patterns('',
-    url('^details/%s$' % amo.APP_SLUG, views.details,
+    url('^details/%s$' % mkt.APP_SLUG, views.details,
         name='submit.app.details'),
-    url('^done/%s$' % amo.APP_SLUG, views.done, name='submit.app.done'),
-    url('^resume/%s$' % amo.APP_SLUG, views.resume, name='submit.app.resume'),
+    url('^done/%s$' % mkt.APP_SLUG, views.done, name='submit.app.done'),
+    url('^resume/%s$' % mkt.APP_SLUG, views.resume, name='submit.app.resume'),
 )
 
 

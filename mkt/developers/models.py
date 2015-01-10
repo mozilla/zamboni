@@ -17,7 +17,7 @@ import commonware.log
 import jinja2
 from tower import ugettext as _
 
-import amo
+import mkt
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access.models import Group
@@ -116,7 +116,7 @@ class PaymentAccount(ModelBase):
                          'because of payment account deletion'.format(
                              acc_ref.addon_id))
 
-                acc_ref.addon.update(status=amo.STATUS_NULL)
+                acc_ref.addon.update(status=mkt.STATUS_NULL)
             log.info('Deleting AddonPaymentAccount for app: {0} because of '
                      'payment account deletion'.format(acc_ref.addon_id))
             acc_ref.delete()
@@ -192,7 +192,7 @@ class PreloadTestPlan(ModelBase):
     addon = models.ForeignKey('webapps.Webapp')
     last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
-    status = models.PositiveSmallIntegerField(default=amo.STATUS_PUBLIC)
+    status = models.PositiveSmallIntegerField(default=mkt.STATUS_PUBLIC)
 
     class Meta:
         db_table = 'preload_test_plans'
@@ -301,24 +301,24 @@ class ActivityLogManager(ManagerBase):
         return self.filter(pk__in=list(vals))
 
     def for_developer(self):
-        return self.exclude(action__in=amo.LOG_ADMINS + amo.LOG_HIDE_DEVELOPER)
+        return self.exclude(action__in=mkt.LOG_ADMINS + mkt.LOG_HIDE_DEVELOPER)
 
     def admin_events(self):
-        return self.filter(action__in=amo.LOG_ADMINS)
+        return self.filter(action__in=mkt.LOG_ADMINS)
 
     def editor_events(self):
-        return self.filter(action__in=amo.LOG_EDITORS)
+        return self.filter(action__in=mkt.LOG_EDITORS)
 
     def review_queue(self, webapp=False):
         qs = self._by_type(webapp)
-        return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
+        return (qs.filter(action__in=mkt.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
     def total_reviews(self, webapp=False):
         qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
         return (qs.values('user', 'user__display_name', 'user__username')
-                  .filter(action__in=amo.LOG_REVIEW_QUEUE)
+                  .filter(action__in=mkt.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -330,7 +330,7 @@ class ActivityLogManager(ManagerBase):
         created_date = datetime(now.year, now.month, 1)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
-                          action__in=amo.LOG_REVIEW_QUEUE)
+                          action__in=mkt.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -365,7 +365,7 @@ class SafeFormatter(string.Formatter):
 
 
 class ActivityLog(ModelBase):
-    TYPES = sorted([(value.id, key) for key, value in amo.LOG.items()])
+    TYPES = sorted([(value.id, key) for key, value in mkt.LOG.items()])
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')
@@ -450,10 +450,10 @@ class ActivityLog(ModelBase):
 
     @property
     def log(self):
-        return amo.LOG_BY_ID[self.action]
+        return mkt.LOG_BY_ID[self.action]
 
     def to_string(self, type_=None):
-        log_type = amo.LOG_BY_ID[self.action]
+        log_type = mkt.LOG_BY_ID[self.action]
         if type_ and hasattr(log_type, '%s_format' % type_):
             format = getattr(log_type, '%s_format' % type_)
         else:

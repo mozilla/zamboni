@@ -5,7 +5,7 @@ import cronjobs
 from celery.task.sets import TaskSet
 from tower import ugettext as _
 
-import amo
+import mkt
 import lib.iarc
 from mkt.constants.iarc_mappings import RATINGS
 from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
@@ -104,7 +104,7 @@ def process_iarc_changes(date=None):
 
             # Log change reason.
             reason = row.get('change_reason')
-            amo.log(amo.LOG.CONTENT_RATING_CHANGED, app,
+            mkt.log(mkt.LOG.CONTENT_RATING_CHANGED, app,
                     details={'comments': '%s:%s, %s' %
                              (ratings_body.name, rating.name, reason)})
 
@@ -122,5 +122,5 @@ def _flag_rereview_adult(app, ratings_body, rating):
 
     if rating.adult and not old_rating[0].get_rating().adult:
         RereviewQueue.flag(
-            app, amo.LOG.CONTENT_RATING_TO_ADULT,
+            app, mkt.LOG.CONTENT_RATING_TO_ADULT,
             message=_('Content rating changed to Adult.'))

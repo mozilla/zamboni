@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
-import amo
+import mkt
 from mkt.account.urls import user_patterns
 from mkt.api import oauth
 from mkt.detail.views import manifest as mini_manifest
@@ -26,8 +26,8 @@ handler500 = 'mkt.site.views.handler500'
 
 urlpatterns = patterns('',
     # Non-commonplace app pages
-    ('^app/%s/' % amo.APP_SLUG, include('mkt.detail.urls')),
-    url('^app/%s/manifest.webapp$' % amo.ADDON_UUID, mini_manifest,
+    ('^app/%s/' % mkt.APP_SLUG, include('mkt.detail.urls')),
+    url('^app/%s/manifest.webapp$' % mkt.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
 
     # Dev Ecosystem

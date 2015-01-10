@@ -6,7 +6,7 @@ from django.utils import translation
 import mock
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.constants import apps
 from mkt.constants.payments import (PROVIDER_BOKU, PROVIDER_REFERENCE)
@@ -204,7 +204,7 @@ class ContributionMixin(object):
 
     def purchased(self):
         return (self.addon.addonpurchase_set
-                          .filter(user=self.user, type=amo.CONTRIB_PURCHASE)
+                          .filter(user=self.user, type=mkt.CONTRIB_PURCHASE)
                           .exists())
 
     def type(self):
@@ -215,90 +215,90 @@ class TestContribution(ContributionMixin, mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def test_purchase(self):
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_PURCHASE)
         assert self.purchased()
 
     def test_refund(self):
-        self.create(amo.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_REFUND)
         assert not self.purchased()
 
     def test_purchase_and_refund(self):
-        self.create(amo.CONTRIB_PURCHASE)
-        self.create(amo.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_REFUND)
         assert not self.purchased()
-        eq_(self.type(), amo.CONTRIB_REFUND)
+        eq_(self.type(), mkt.CONTRIB_REFUND)
 
     def test_refund_and_purchase(self):
         # This refund does nothing, there was nothing there to refund.
-        self.create(amo.CONTRIB_REFUND)
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_PURCHASE)
         assert self.purchased()
-        eq_(self.type(), amo.CONTRIB_PURCHASE)
+        eq_(self.type(), mkt.CONTRIB_PURCHASE)
 
     def test_really_cant_decide(self):
-        self.create(amo.CONTRIB_PURCHASE)
-        self.create(amo.CONTRIB_REFUND)
-        self.create(amo.CONTRIB_PURCHASE)
-        self.create(amo.CONTRIB_REFUND)
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_PURCHASE)
         assert self.purchased()
-        eq_(self.type(), amo.CONTRIB_PURCHASE)
+        eq_(self.type(), mkt.CONTRIB_PURCHASE)
 
     def test_purchase_and_chargeback(self):
-        self.create(amo.CONTRIB_PURCHASE)
-        self.create(amo.CONTRIB_CHARGEBACK)
+        self.create(mkt.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_CHARGEBACK)
         assert not self.purchased()
-        eq_(self.type(), amo.CONTRIB_CHARGEBACK)
+        eq_(self.type(), mkt.CONTRIB_CHARGEBACK)
 
     def test_other_user(self):
         other = UserProfile.objects.get(email='admin@mozilla.com')
-        Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
+        Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
                                     addon=self.addon, user=other)
-        self.create(amo.CONTRIB_PURCHASE)
-        self.create(amo.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_REFUND)
         eq_(self.addon.addonpurchase_set.filter(user=other).count(), 1)
 
     def set_role(self, role):
         AddonUser.objects.create(addon=self.addon, user=self.user, role=role)
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_PURCHASE)
         installed = self.user.installed_set.filter(addon=self.addon)
         eq_(installed.count(), 1)
         eq_(installed[0].install_type, apps.INSTALL_TYPE_DEVELOPER)
 
     def test_user_dev(self):
-        self.set_role(amo.AUTHOR_ROLE_DEV)
+        self.set_role(mkt.AUTHOR_ROLE_DEV)
 
     def test_user_owner(self):
-        self.set_role(amo.AUTHOR_ROLE_OWNER)
+        self.set_role(mkt.AUTHOR_ROLE_OWNER)
 
     def test_user_installed_dev(self):
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_PURCHASE)
         eq_(self.user.installed_set.filter(addon=self.addon).count(), 1)
 
     def test_user_not_purchased(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         eq_(list(self.user.purchase_ids()), [])
 
     def test_user_purchased(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.addon.addonpurchase_set.create(user=self.user)
         eq_(list(self.user.purchase_ids()), [337141L])
 
     def test_user_refunded(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.addon.addonpurchase_set.create(user=self.user,
-                                            type=amo.CONTRIB_REFUND)
+                                            type=mkt.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
 
     def test_user_cache(self):
         # Tests that the purchase_ids caches.
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         eq_(list(self.user.purchase_ids()), [])
-        self.create(amo.CONTRIB_PURCHASE)
+        self.create(mkt.CONTRIB_PURCHASE)
         eq_(list(self.user.purchase_ids()), [337141L])
         # This caches.
         eq_(list(self.user.purchase_ids()), [337141L])
-        self.create(amo.CONTRIB_REFUND)
+        self.create(mkt.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
 
 
@@ -307,7 +307,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestRefundContribution, self).setUp()
-        self.contribution = self.create(amo.CONTRIB_PURCHASE)
+        self.contribution = self.create(mkt.CONTRIB_PURCHASE)
 
     def do_refund(self, expected, status, refund_reason=None,
                   rejection_reason=None):
@@ -327,7 +327,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved=None,
                         declined=None)
-        refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
+        refund = self.do_refund(expected, mkt.REFUND_PENDING, reason)
         self.assertCloseToNow(refund.requested)
 
     def test_pending_to_approved(self):
@@ -336,7 +336,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved=None,
                         declined=None)
-        refund = self.do_refund(expected, amo.REFUND_PENDING, reason)
+        refund = self.do_refund(expected, mkt.REFUND_PENDING, reason)
         self.assertCloseToNow(refund.requested)
 
         # Change `requested` date to some date in the past.
@@ -348,7 +348,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved__isnull=False,
                         declined=None)
-        refund = self.do_refund(expected, amo.REFUND_APPROVED)
+        refund = self.do_refund(expected, mkt.REFUND_APPROVED)
         eq_(refund.requested, requested_date,
             'Expected date `requested` to remain unchanged.')
         self.assertCloseToNow(refund.approved)
@@ -358,7 +358,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved__isnull=False,
                         declined=None)
-        refund = self.do_refund(expected, amo.REFUND_APPROVED_INSTANT)
+        refund = self.do_refund(expected, mkt.REFUND_APPROVED_INSTANT)
         self.assertCloseToNow(refund.requested)
         self.assertCloseToNow(refund.approved)
 
@@ -371,7 +371,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved=None,
                         declined=None)
-        refund = self.do_refund(expected, amo.REFUND_PENDING, refund_reason)
+        refund = self.do_refund(expected, mkt.REFUND_PENDING, refund_reason)
         self.assertCloseToNow(refund.requested)
 
         requested_date = refund.requested - datetime.timedelta(hours=1)
@@ -383,7 +383,7 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                         requested__isnull=False,
                         approved=None,
                         declined__isnull=False)
-        refund = self.do_refund(expected, amo.REFUND_DECLINED,
+        refund = self.do_refund(expected, mkt.REFUND_DECLINED,
                                 rejection_reason=rejection_reason)
         eq_(refund.requested, requested_date,
             'Expected date `requested` to remain unchanged.')
@@ -397,9 +397,9 @@ class TestRefundManager(mkt.site.tests.TestCase):
         self.addon = Webapp.objects.get(id=337141)
         self.user = UserProfile.objects.get(id=999)
         self.expected = {}
-        for status in amo.REFUND_STATUSES.keys():
+        for status in mkt.REFUND_STATUSES.keys():
             c = Contribution.objects.create(addon=self.addon, user=self.user,
-                                            type=amo.CONTRIB_PURCHASE)
+                                            type=mkt.CONTRIB_PURCHASE)
             self.expected[status] = Refund.objects.create(contribution=c,
                                                           status=status,
                                                           user=self.user)
@@ -410,30 +410,30 @@ class TestRefundManager(mkt.site.tests.TestCase):
 
     def test_pending(self):
         eq_(list(Refund.objects.pending(self.addon)),
-            [self.expected[amo.REFUND_PENDING]])
+            [self.expected[mkt.REFUND_PENDING]])
 
     def test_approved(self):
         eq_(list(Refund.objects.approved(self.addon)),
-            [self.expected[amo.REFUND_APPROVED]])
+            [self.expected[mkt.REFUND_APPROVED]])
 
     def test_instant(self):
         eq_(list(Refund.objects.instant(self.addon)),
-            [self.expected[amo.REFUND_APPROVED_INSTANT]])
+            [self.expected[mkt.REFUND_APPROVED_INSTANT]])
 
     def test_declined(self):
         eq_(list(Refund.objects.declined(self.addon)),
-            [self.expected[amo.REFUND_DECLINED]])
+            [self.expected[mkt.REFUND_DECLINED]])
 
     def test_by_addon(self):
         other = Webapp.objects.create()
         c = Contribution.objects.create(addon=other, user=self.user,
-                                        type=amo.CONTRIB_PURCHASE)
-        ref = Refund.objects.create(contribution=c, status=amo.REFUND_DECLINED,
+                                        type=mkt.CONTRIB_PURCHASE)
+        ref = Refund.objects.create(contribution=c, status=mkt.REFUND_DECLINED,
                                     user=self.user)
 
-        declined = Refund.objects.filter(status=amo.REFUND_DECLINED)
+        declined = Refund.objects.filter(status=mkt.REFUND_DECLINED)
         eq_(sorted(r.id for r in declined),
-            sorted(r.id for r in [self.expected[amo.REFUND_DECLINED], ref]))
+            sorted(r.id for r in [self.expected[mkt.REFUND_DECLINED], ref]))
 
         eq_(sorted(r.id for r in Refund.objects.by_addon(addon=self.addon)),
             sorted(r.id for r in self.expected.values()))

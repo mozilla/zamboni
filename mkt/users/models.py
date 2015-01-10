@@ -18,7 +18,7 @@ import waffle
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
-import amo
+import mkt
 from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.site.utils import cached_property
 from mkt.translations.fields import save_signal
@@ -82,7 +82,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                              editable=False)
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
-    source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
+    source = models.PositiveIntegerField(default=mkt.LOGIN_SOURCE_UNKNOWN,
                                          editable=False, db_index=True)
 
     is_verified = models.BooleanField(default=True)
@@ -206,7 +206,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         def ids(pk):
             return (AddonPurchase.objects.filter(user=pk)
                                  .values_list('addon_id', flat=True)
-                                 .filter(type=amo.CONTRIB_PURCHASE)
+                                 .filter(type=mkt.CONTRIB_PURCHASE)
                                  .order_by('pk'))
         return ids(self.pk)
 
@@ -224,7 +224,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def can_migrate_to_fxa(self):
         return (waffle.switch_is_active('fx-accounts-migration')
-                and self.source != amo.LOGIN_SOURCE_FXA)
+                and self.source != mkt.LOGIN_SOURCE_FXA)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,

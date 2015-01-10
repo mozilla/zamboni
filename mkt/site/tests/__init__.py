@@ -33,7 +33,6 @@ from redisutils import mock_redis, reset_redis
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
-import amo
 import mkt
 from lib.es.management.commands import reindex
 from lib.post_request_task import task as post_request_task
@@ -345,7 +344,7 @@ JINJA_INSTRUMENTED = False
 
 
 class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
-    """Base class for all amo tests."""
+    """Base class for all mkt tests."""
     client_class = TestClient
 
     def shortDescription(self):
@@ -380,7 +379,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
             JINJA_INSTRUMENTED = True
 
     def _post_teardown(self):
-        amo.set_user(None)
+        mkt.set_user(None)
         clean_translations(None)  # Make sure queued translations are removed.
         super(TestCase, self)._post_teardown()
 
@@ -594,7 +593,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
 
     def make_premium(self, addon, price='1.00'):
         price_obj = self.make_price(price=Decimal(price))
-        addon.update(premium_type=amo.ADDON_PREMIUM)
+        addon.update(premium_type=mkt.ADDON_PREMIUM)
         addon._premium = AddonPremium.objects.create(addon=addon,
                                                      price=price_obj)
         if hasattr(Price, '_currencies'):
@@ -733,7 +732,7 @@ def _get_created(created):
                         random.randint(0, 59))  # Seconds
 
 
-def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
+def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     """
     Create an app.
 
@@ -761,7 +760,7 @@ def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         # status will be set a few lines below, after the update_version()
         # call. This prevents issues when calling app_factory with
         # STATUS_DELETED.
-        'status': amo.STATUS_PUBLIC,
+        'status': mkt.STATUS_PUBLIC,
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
         'bayesian_rating': random.uniform(1, 5),
@@ -803,7 +802,7 @@ def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
 def file_factory(**kw):
     v = kw['version']
-    status = kw.pop('status', amo.STATUS_PUBLIC)
+    status = kw.pop('status', mkt.STATUS_PUBLIC)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
                             status=status, **kw)
     return f
@@ -883,8 +882,8 @@ class ESTestCase(TestCase):
                             % e.args[0]] + list(e.args[1:]))
             raise
 
-        cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
-        amo.SEARCH_ANALYZER_MAP = {
+        cls._SEARCH_ANALYZER_MAP = mkt.SEARCH_ANALYZER_MAP
+        mkt.SEARCH_ANALYZER_MAP = {
             'english': ['en-us'],
             'spanish': ['es'],
         }
@@ -921,7 +920,7 @@ class ESTestCase(TestCase):
                         delete_translation(addon, field.name)
                 addons.delete()
                 unindex_webapps([a.id for a in cls._addons])
-            amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+            mkt.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
             # Make sure we're calling super's tearDownClass even if something
             # went wrong in the code above, as otherwise we'd run into bug

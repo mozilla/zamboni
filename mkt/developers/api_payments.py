@@ -16,7 +16,7 @@ from rest_framework.serializers import (HyperlinkedModelSerializer,
 from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
 
-import amo
+import mkt
 from lib.pay_server import get_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -139,10 +139,10 @@ class UpsellSerializer(HyperlinkedModelSerializer):
         view_name = 'app-upsell-detail'
 
     def validate(self, attrs):
-        if attrs['free'].premium_type not in amo.ADDON_FREES:
+        if attrs['free'].premium_type not in mkt.ADDON_FREES:
             raise ValidationError('Upsell must be from a free app.')
 
-        if attrs['premium'].premium_type in amo.ADDON_FREES:
+        if attrs['premium'].premium_type in mkt.ADDON_FREES:
             raise ValidationError('Upsell must be to a premium app.')
 
         return attrs
@@ -211,7 +211,7 @@ class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
         view_name = 'app-payment-account-detail'
 
     def validate(self, attrs):
-        if attrs['addon'].premium_type in amo.ADDON_FREES:
+        if attrs['addon'].premium_type in mkt.ADDON_FREES:
             raise ValidationError('App must be a premium app.')
 
         return attrs

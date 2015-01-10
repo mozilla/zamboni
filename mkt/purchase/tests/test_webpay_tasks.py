@@ -5,7 +5,7 @@ from django.core import mail
 from mock import patch
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 
 from mkt.purchase import tasks as tasks
 from mkt.purchase.models import Contribution
@@ -19,7 +19,7 @@ class TestReceiptEmail(PurchaseTest):
         self.contrib = Contribution.objects.create(addon_id=self.addon.id,
                                                    amount=self.price.price,
                                                    uuid=str(uuid.uuid4()),
-                                                   type=amo.CONTRIB_PURCHASE,
+                                                   type=mkt.CONTRIB_PURCHASE,
                                                    user=self.user,
                                                    source_locale='en-us')
 

@@ -9,7 +9,7 @@ from django.http import QueryDict
 from mock import patch
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.models import ActivityLog
@@ -72,7 +72,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                                     rating=5)
         pk = rev.pk
         ver = mkt.site.tests.version_factory(addon=self.app, version='2.0',
-                                        file_kw=dict(status=amo.STATUS_PUBLIC))
+                                        file_kw=dict(status=mkt.STATUS_PUBLIC))
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.pk)
 
@@ -165,7 +165,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_nonpublic_app(self, get_region_mock):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         get_region_mock.return_value = mkt.regions.US
         res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
@@ -174,13 +174,13 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_filter_by_nonpublic_app_admin(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.grant_permission(self.user, 'Apps:Edit')
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         self._get_filter(app=self.app.app_slug)
 
     def test_filter_by_nonpublic_app_owner(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         AddonUser.objects.create(user=self.user, addon=self.app)
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         self._get_filter(app=self.app.app_slug)
 
     @patch('mkt.ratings.views.get_region')
@@ -233,14 +233,14 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_can_rate_unpurchased(self, exclude_mock):
         exclude_mock.return_value = []
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         assert not res.json['user']['can_rate']
 
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_can_rate_purchased(self, exclude_mock):
         exclude_mock.return_value = []
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         AddonPurchase.objects.create(addon=self.app, user=self.user)
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         assert res.json['user']['can_rate']
@@ -306,7 +306,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     @patch('mkt.ratings.views.record_action')
     def test_create(self, record_action):
-        log_review_id = amo.LOG.ADD_REVIEW.id
+        log_review_id = mkt.LOG.ADD_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)
         res, data = self._create()
         eq_(201, res.status_code)
@@ -347,7 +347,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(403, res.status_code)
 
     def test_create_for_nonpublic(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res, data = self._create(version=self.app.latest_version)
         eq_(403, res.status_code)
 
@@ -380,14 +380,14 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_rate_unpurchased_premium(self, exclude_mock):
         exclude_mock.return_value = []
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res, data = self._create()
         eq_(403, res.status_code)
 
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_rate_purchased_premium(self, exclude_mock):
         exclude_mock.return_value = []
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         AddonPurchase.objects.create(addon=self.app, user=self.user)
         res, data = self._create()
         eq_(201, res.status_code)
@@ -432,7 +432,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
             'body': 'Totally rocking the free web.',
             'rating': 4,
         }
-        log_review_id = amo.LOG.EDIT_REVIEW.id
+        log_review_id = mkt.LOG.EDIT_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)
         res, data = self._update(new_data)
         eq_(res.status_code, 200)
@@ -453,7 +453,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
             'body': 'Edited by admin',
             'rating': 1,
         }
-        log_review_id = amo.LOG.EDIT_REVIEW.id
+        log_review_id = mkt.LOG.EDIT_REVIEW.id
         res = self.client.put(reverse('ratings-detail', kwargs={'pk': rev.pk}),
                               json.dumps(new_data))
         eq_(res.status_code, 200)
@@ -504,7 +504,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         res = self.client.delete(url)
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_delete_comment_mine(self):
@@ -513,7 +513,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         res = self.client.delete(url)
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_delete_addons_admin(self):
@@ -524,7 +524,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         res = self.client.delete(url)
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_delete_users_admin(self):
@@ -535,7 +535,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         res = self.client.delete(url)
         eq_(res.status_code, 204)
         eq_(Review.objects.count(), 0)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_delete_not_mine(self):
@@ -546,14 +546,14 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         res = self.client.delete(url)
         eq_(res.status_code, 403)
         eq_(Review.objects.count(), 1)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)
 
     def test_delete_not_there(self):
         url = reverse('ratings-detail', kwargs={'pk': 123})
         res = self.client.delete(url)
         eq_(res.status_code, 404)
-        log_review_id = amo.LOG.DELETE_REVIEW.id
+        log_review_id = mkt.LOG.DELETE_REVIEW.id
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 0)
 
 

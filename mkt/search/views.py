@@ -11,7 +11,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -33,12 +33,13 @@ DEFAULT_SORTING = {
     'created': '-created',
     'reviewed': '-reviewed',
     'name': 'name_sort',
+    'trending': '-trending',
 }
 
 
 def _get_locale_analyzer():
-    analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
-    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
+    analyzer = mkt.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    if not settings.ES_USE_PLUGINS and analyzer in mkt.SEARCH_ANALYZER_PLUGINS:
         return None
     return analyzer
 
@@ -47,7 +48,7 @@ def get_custom_analyzer(language):
     """
     Returns name of analyzer based on language name.
     """
-    if language in amo.STEMMER_MAP:
+    if language in mkt.STEMMER_MAP:
         return '%s_analyzer' % language
     return language
 
@@ -120,6 +121,8 @@ def _sort_search(request, sq, data):
         if 'popularity' in data['sort'] and region and not region.adolescent:
             # Mature regions sort by their popularity field.
             order_by = ['-popularity_%s' % region.id]
+        elif 'trending' in data['sort'] and region and not region.adolescent:
+            order_by = ['-trending_%s' % region.id]
         else:
             order_by = [DEFAULT_SORTING[name] for name in data['sort']
                         if name in DEFAULT_SORTING]

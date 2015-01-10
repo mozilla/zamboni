@@ -49,7 +49,7 @@
           {% else %}
             {{ _('Hosted app') }};
           {% endif %}
-          {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
+          {{ mkt.ADDON_PREMIUM_TYPES[app.premium_type] }}
           {% if price %}
             ({{ price.tier_locale() }})
           {% endif %}
@@ -69,7 +69,7 @@
                   <button data-api-url="{{ url('app-status-detail', pk=app.pk) }}" class="button disabled">{{ _('OK') }}</button>
                 </div>
               {% else %}
-                {{ amo.STATUS_CHOICES[app.status] }}
+                {{ mkt.STATUS_CHOICES[app.status] }}
               {% endif %}
             {% endif %}
             {% if app.priority_review %}
@@ -173,7 +173,7 @@
                       <button data-api-url="{{ url('version-status', pk=v.pk) }}" class="button disabled">{{ _('OK') }}</button>
                     </div>
                   {% else %}
-                    {{ amo.STATUS_CHOICES[file.status] }}
+                    {{ mkt.STATUS_CHOICES[file.status] }}
                   {% endif %}
                 </td>
               {% endwith %}

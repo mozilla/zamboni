@@ -1,4 +1,4 @@
-import amo
+import mkt
 
 
 def match_rules(rules, app, action):
@@ -70,19 +70,19 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     if admin and action_allowed(request, 'Apps', 'Edit'):
         return True
     # Only admins can edit banned addons.
-    if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
+    if addon.status == mkt.STATUS_DISABLED and not ignore_disabled:
         return False
     # Addon owners can do everything else.
-    roles = (amo.AUTHOR_ROLE_OWNER,)
+    roles = (mkt.AUTHOR_ROLE_OWNER,)
     if dev:
-        roles += (amo.AUTHOR_ROLE_DEV,)
+        roles += (mkt.AUTHOR_ROLE_DEV,)
     # Viewer privs are implied for devs.
     elif viewer:
-        roles += (amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_VIEWER,
-                  amo.AUTHOR_ROLE_SUPPORT)
+        roles += (mkt.AUTHOR_ROLE_DEV, mkt.AUTHOR_ROLE_VIEWER,
+                  mkt.AUTHOR_ROLE_SUPPORT)
     # Support can do support.
     elif support:
-        roles += (amo.AUTHOR_ROLE_SUPPORT,)
+        roles += (mkt.AUTHOR_ROLE_SUPPORT,)
     return addon.authors.filter(pk=request.user.pk,
                                 addonuser__role__in=roles).exists()
 

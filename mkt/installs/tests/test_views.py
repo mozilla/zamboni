@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from mock import ANY, patch
 from nose.tools import eq_
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_DEVELOPER, INSTALL_TYPE_USER
 from mkt.site.fixtures import fixture
@@ -34,12 +34,12 @@ class TestAPI(RestOAuth):
         eq_(self.post().status_code, 400)
 
     def test_not_public(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=mkt.STATUS_DISABLED)
         self.data = json.dumps({'app': self.addon.app_slug})
         eq_(self.post().status_code, 403)
 
     def test_not_paid(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.data = json.dumps({'app': self.addon.app_slug})
         eq_(self.post().status_code, 400)
 
@@ -83,5 +83,5 @@ class TestAPI(RestOAuth):
             INSTALL_TYPE_DEVELOPER)
 
     def test_app_install_developer_not_public(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=mkt.STATUS_DISABLED)
         self.test_app_install_developer()

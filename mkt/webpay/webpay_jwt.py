@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 import commonware.log
 
-import amo
+import mkt
 from lib.crypto.webpay import sign_webpay_jwt
 from mkt.site.helpers import absolutify
 from mkt.webpay.utils import make_external_id, strip_tags
@@ -89,7 +89,7 @@ class WebAppProduct(object):
 
     def icons(self):
         icons = {}
-        for size in amo.APP_ICON_SIZES:
+        for size in mkt.APP_ICON_SIZES:
             icons[str(size)] = absolutify(self.webapp.get_icon_url(size))
 
         return icons

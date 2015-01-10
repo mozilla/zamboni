@@ -5,7 +5,7 @@ from django.core.files.storage import default_storage as storage
 import commonware.log
 from tower import ugettext as _, ungettext as ngettext
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.site.utils import slug_validator, slugify
 from mkt.tags.models import Tag
@@ -35,9 +35,9 @@ def clean_tags(request, tags):
     target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
     target = set(filter(None, target))
 
-    min_len = amo.MIN_TAG_LENGTH
+    min_len = mkt.MIN_TAG_LENGTH
     max_len = Tag._meta.get_field('tag_text').max_length
-    max_tags = amo.MAX_TAGS
+    max_tags = mkt.MAX_TAGS
     total = len(target)
 
     blocked = (Tag.objects.values_list('tag_text', flat=True)

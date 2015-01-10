@@ -17,7 +17,7 @@ from elasticsearch_dsl import Q as ES_Q, query
 from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
-import amo
+import mkt
 import mkt.constants.lookup as lkp
 from lib.pay_server import client
 from mkt.access import acl
@@ -61,7 +61,7 @@ def user_summary(request, user_id):
     # All refunds that this user has requested (probably as a consumer).
     req = Refund.objects.filter(contribution__user=user)
     # All instantly-approved refunds that this user has requested.
-    appr = req.filter(status=amo.REFUND_APPROVED_INSTANT)
+    appr = req.filter(status=mkt.REFUND_APPROVED_INSTANT)
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
     user_addons = user.addons.order_by('-created')
@@ -74,7 +74,7 @@ def user_summary(request, user_id):
     # If the user is deleted, get the log detailing the delete.
     try:
         delete_log = ActivityLog.objects.for_user(user).filter(
-            action=amo.LOG.DELETE_USER_LOOKUP.id)[0]
+            action=mkt.LOG.DELETE_USER_LOOKUP.id)[0]
     except IndexError:
         delete_log = None
 
@@ -99,7 +99,7 @@ def user_delete(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     user.deleted = True
     user.save()  # Must call the save function to delete user.
-    amo.log(amo.LOG.DELETE_USER_LOOKUP, user,
+    mkt.log(mkt.LOG.DELETE_USER_LOOKUP, user,
             details={'reason': delete_form.cleaned_data['delete_reason']},
             user=request.user)
 
@@ -130,7 +130,7 @@ def _transaction_summary(tx_uuid):
 
     # Get refund status.
     refund_status = None
-    if refund_contrib and refund_contrib.refund.status == amo.REFUND_PENDING:
+    if refund_contrib and refund_contrib.refund.status == mkt.REFUND_PENDING:
         try:
             status = client.api.bango.refund.status.get(
                 data={'uuid': refund_contrib.transaction_id})['status']
@@ -146,9 +146,9 @@ def _transaction_summary(tx_uuid):
         'app': contrib.addon,
         'contrib': contrib,
         'related': contrib.related,
-        'type': amo.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
+        'type': mkt.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
         # Filter what is refundable.
-        'is_refundable': ((contrib.type == amo.CONTRIB_PURCHASE)
+        'is_refundable': ((contrib.type == mkt.CONTRIB_PURCHASE)
                           and not refund_contrib),
     }
 
@@ -158,7 +158,7 @@ def _transaction_summary(tx_uuid):
 @permission_required([('Transaction', 'Refund')])
 def transaction_refund(request, tx_uuid):
     contrib = get_object_or_404(Contribution, uuid=tx_uuid,
-                                type=amo.CONTRIB_PURCHASE)
+                                type=mkt.CONTRIB_PURCHASE)
     refund_contribs = contrib.get_refund_contribs()
     refund_contrib = refund_contribs[0] if refund_contribs.exists() else None
 
@@ -198,7 +198,7 @@ def transaction_refund(request, tx_uuid):
                  'with transaction_id of: {1}'
                  .format(contrib.id, res['uuid']))
         refund_contrib.update(
-            type=amo.CONTRIB_REFUND, related=contrib,
+            type=mkt.CONTRIB_REFUND, related=contrib,
             uuid=str(uuid.uuid4()),
             amount=-refund_contrib.amount if refund_contrib.amount else None,
             transaction_id=res['uuid'])
@@ -206,7 +206,7 @@ def transaction_refund(request, tx_uuid):
     if res['status'] == PENDING:
         # Create pending Refund.
         refund_contrib.enqueue_refund(
-            amo.REFUND_PENDING, request.user,
+            mkt.REFUND_PENDING, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund pending: %s' % tx_uuid)
         messages.success(
@@ -214,7 +214,7 @@ def transaction_refund(request, tx_uuid):
     elif res['status'] == COMPLETED:
         # Create approved Refund.
         refund_contrib.enqueue_refund(
-            amo.REFUND_APPROVED, request.user,
+            mkt.REFUND_APPROVED, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund approved: %s' % tx_uuid)
         messages.success(
@@ -239,11 +239,11 @@ def app_summary(request, addon_id):
         # Create notes and log entries.
         create_comm_note(app, app.latest_version, request.user, msg,
                          note_type=comm.PRIORITY_REVIEW_REQUESTED)
-        amo.log(amo.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
+        mkt.log(mkt.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
                 created=datetime.now(), details={'comments': msg})
 
-    authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
-                                                       amo.AUTHOR_ROLE_OWNER))
+    authors = (app.authors.filter(addonuser__role__in=(mkt.AUTHOR_ROLE_DEV,
+                                                       mkt.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))
 
     if app.premium and app.premium.price:
@@ -256,14 +256,14 @@ def app_summary(request, addon_id):
     versions = None
 
     status_form = APIStatusForm(initial={
-        'status': amo.STATUS_CHOICES_API[app.status]
+        'status': mkt.STATUS_CHOICES_API[app.status]
     })
     version_status_forms = {}
     if app.is_packaged:
         versions = app.versions.all().order_by('-created')
         for v in versions:
             version_status_forms[v.pk] = APIFileStatusForm(initial={
-                'status': amo.STATUS_CHOICES_API[v.all_files[0].status]
+                'status': mkt.STATUS_CHOICES_API[v.all_files[0].status]
             })
 
     permissions = {}
@@ -291,9 +291,9 @@ def app_activity(request, addon_id):
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
 
     user_items = ActivityLog.objects.for_apps([app]).exclude(
-        action__in=amo.LOG_HIDE_DEVELOPER)
+        action__in=mkt.LOG_HIDE_DEVELOPER)
     admin_items = ActivityLog.objects.for_apps([app]).filter(
-        action__in=amo.LOG_HIDE_DEVELOPER)
+        action__in=mkt.LOG_HIDE_DEVELOPER)
 
     user_items = paginate(request, user_items, per_page=20)
     admin_items = paginate(request, admin_items, per_page=20)
@@ -338,10 +338,10 @@ def user_activity(request, user_id):
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
 
     user_items = ActivityLog.objects.for_user(user).exclude(
-        action__in=amo.LOG_HIDE_DEVELOPER)
+        action__in=mkt.LOG_HIDE_DEVELOPER)
     admin_items = ActivityLog.objects.for_user(user).filter(
-        action__in=amo.LOG_HIDE_DEVELOPER)
-    amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.user, user=user)
+        action__in=mkt.LOG_HIDE_DEVELOPER)
+    mkt.log(mkt.LOG.ADMIN_VIEWED_LOG, request.user, user=user)
     return render(request, 'lookup/user_activity.html',
                   {'pager': products, 'account': user, 'is_admin': is_admin,
                    'listing_filter': listing,
@@ -466,7 +466,7 @@ def _app_summary(user_id):
     """
     cursor = connection.cursor()
     cursor.execute(sql, {'user_id': user_id,
-                         'purchase': amo.CONTRIB_PURCHASE})
+                         'purchase': mkt.CONTRIB_PURCHASE})
     summary = {'app_total': 0,
                'app_amount': {}}
     cols = [cd[0] for cd in cursor.description]
@@ -490,9 +490,9 @@ def _app_purchases_and_refunds(addon):
                            .annotate(total=Count('id'),
                                      amount=Sum('amount'))
                            .filter(addon=addon)
-                           .exclude(type__in=[amo.CONTRIB_REFUND,
-                                              amo.CONTRIB_CHARGEBACK,
-                                              amo.CONTRIB_PENDING]))
+                           .exclude(type__in=[mkt.CONTRIB_REFUND,
+                                              mkt.CONTRIB_CHARGEBACK,
+                                              mkt.CONTRIB_PENDING]))
     for typ, start_date in (('last_24_hours', now - timedelta(hours=24)),
                             ('last_7_days', now - timedelta(days=7)),
                             ('alltime', None),):
@@ -505,7 +505,7 @@ def _app_purchases_and_refunds(addon):
                                                               s['currency'])
                                       for s in sums if s['currency']]}
     refunds = {}
-    rejected_q = Q(status=amo.REFUND_DECLINED) | Q(status=amo.REFUND_FAILED)
+    rejected_q = Q(status=mkt.REFUND_DECLINED) | Q(status=mkt.REFUND_FAILED)
     qs = Refund.objects.filter(contribution__addon=addon)
 
     refunds['requested'] = qs.exclude(rejected_q).count()
@@ -514,9 +514,9 @@ def _app_purchases_and_refunds(addon):
     if total:
         percent = (refunds['requested'] / float(total)) * 100.0
     refunds['percent_of_purchases'] = '%.1f%%' % percent
-    refunds['auto-approved'] = (qs.filter(status=amo.REFUND_APPROVED_INSTANT)
+    refunds['auto-approved'] = (qs.filter(status=mkt.REFUND_APPROVED_INSTANT)
                                 .count())
-    refunds['approved'] = qs.filter(status=amo.REFUND_APPROVED).count()
+    refunds['approved'] = qs.filter(status=mkt.REFUND_APPROVED).count()
     refunds['rejected'] = qs.filter(rejected_q).count()
 
     return purchases, refunds

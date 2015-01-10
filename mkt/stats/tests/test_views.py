@@ -7,7 +7,7 @@ from rest_framework.reverse import reverse
 
 from django.conf import settings
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
@@ -140,7 +140,7 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
 
     def setUp(self):
         super(TestAppStatsResource, self).setUp()
-        self.app = app_factory(status=amo.STATUS_PUBLIC)
+        self.app = app_factory(status=mkt.STATUS_PUBLIC)
         self.app.addonuser_set.create(user=self.user)
         self.data = {'start': '2013-04-01', 'end': '2013-04-15',
                      'interval': 'day'}
@@ -214,7 +214,7 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
 
     def setUp(self):
         super(TestAppStatsTotalResource, self).setUp()
-        self.app = app_factory(status=amo.STATUS_PUBLIC)
+        self.app = app_factory(status=mkt.STATUS_PUBLIC)
         self.app.addonuser_set.create(user=self.user)
         self.data = None  # For the mixin tests.
 

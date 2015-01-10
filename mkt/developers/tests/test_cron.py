@@ -4,7 +4,6 @@ import datetime
 import mock
 from nose.tools import eq_
 
-import amo
 import mkt
 from mkt.developers.cron import (_flag_rereview_adult, exclude_new_region,
                                  process_iarc_changes, send_new_region_emails)
@@ -82,7 +81,7 @@ class TestIARCChangesCron(TestCase):
         The mock client always returns the same data. Set up the app so it
         matches the submission ID and verify the data is saved as expected.
         """
-        amo.set_user(user_factory())
+        mkt.set_user(user_factory())
         app = app_factory()
         IARCInfo.objects.create(addon=app, submission_id=52,
                                 security_code='FZ32CU8')
@@ -108,7 +107,7 @@ class TestIARCChangesCron(TestCase):
         eq_(cr.rating, mkt.ratingsbodies.ESRB_M.id)
 
         assert ActivityLog.objects.filter(
-            action=amo.LOG.CONTENT_RATING_CHANGED.id).count()
+            action=mkt.LOG.CONTENT_RATING_CHANGED.id).count()
 
         # Check descriptors.
         rd = RatingDescriptors.objects.get(addon=app)
@@ -127,7 +126,7 @@ class TestIARCChangesCron(TestCase):
         ])
 
     def test_rereview_flag_adult(self):
-        amo.set_user(user_factory())
+        mkt.set_user(user_factory())
         app = app_factory()
 
         app.set_content_ratings({
@@ -138,14 +137,14 @@ class TestIARCChangesCron(TestCase):
                              mkt.ratingsbodies.ESRB_T)
         assert not app.rereviewqueue_set.count()
         assert not ActivityLog.objects.filter(
-            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).exists()
+            action=mkt.LOG.CONTENT_RATING_TO_ADULT.id).exists()
 
         # Adult should get flagged to rereview.
         _flag_rereview_adult(app, mkt.ratingsbodies.ESRB,
                              mkt.ratingsbodies.ESRB_A)
         eq_(app.rereviewqueue_set.count(), 1)
         eq_(ActivityLog.objects.filter(
-            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
+            action=mkt.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
 
         # Test things same same if rating stays the same as adult.
         app.set_content_ratings({
@@ -155,4 +154,4 @@ class TestIARCChangesCron(TestCase):
                              mkt.ratingsbodies.ESRB_A)
         eq_(app.rereviewqueue_set.count(), 1)
         eq_(ActivityLog.objects.filter(
-            action=amo.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
+            action=mkt.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)

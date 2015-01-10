@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 from rest_framework import serializers
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.api.fields import ReverseChoiceField
 from mkt.files.models import FileUpload
@@ -12,19 +12,19 @@ from mkt.webapps.models import Preview, Webapp
 
 
 class AppStatusSerializer(serializers.ModelSerializer):
-    status = ReverseChoiceField(choices_dict=amo.STATUS_CHOICES_API,
+    status = ReverseChoiceField(choices_dict=mkt.STATUS_CHOICES_API,
                                 required=False)
     disabled_by_user = serializers.BooleanField(required=False)
 
     allowed_statuses = {
         # You can push to the pending queue.
-        amo.STATUS_NULL: [amo.STATUS_PENDING],
+        mkt.STATUS_NULL: [mkt.STATUS_PENDING],
         # Approved apps can be public or unlisted.
-        amo.STATUS_APPROVED: [amo.STATUS_PUBLIC, amo.STATUS_UNLISTED],
+        mkt.STATUS_APPROVED: [mkt.STATUS_PUBLIC, mkt.STATUS_UNLISTED],
         # Public apps can choose to become private (APPROVED) or unlisted.
-        amo.STATUS_PUBLIC: [amo.STATUS_APPROVED, amo.STATUS_UNLISTED],
+        mkt.STATUS_PUBLIC: [mkt.STATUS_APPROVED, mkt.STATUS_UNLISTED],
         # Unlisted apps can become private or public.
-        amo.STATUS_UNLISTED: [amo.STATUS_APPROVED, amo.STATUS_PUBLIC],
+        mkt.STATUS_UNLISTED: [mkt.STATUS_APPROVED, mkt.STATUS_PUBLIC],
     }
 
     class Meta:

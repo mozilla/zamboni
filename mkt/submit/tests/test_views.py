@@ -12,7 +12,6 @@ import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-import amo
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
@@ -361,23 +360,23 @@ class TestCreateWebApp(BaseWebAppTest):
         addon = self.post_addon()
         files = addon.latest_version.files.all()
         eq_(len(files), 1)
-        eq_(files[0].status, amo.STATUS_PENDING)
+        eq_(files[0].status, mkt.STATUS_PENDING)
 
     def test_set_platform(self):
         app = self.post_addon(
             {'free_platforms': ['free-android-tablet', 'free-desktop']})
         self.assertSetEqual(app.device_types,
-                            [amo.DEVICE_TABLET, amo.DEVICE_DESKTOP])
+                            [mkt.DEVICE_TABLET, mkt.DEVICE_DESKTOP])
 
     def test_free(self):
         app = self.post_addon({'free_platforms': ['free-firefoxos']})
-        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
-        eq_(app.premium_type, amo.ADDON_FREE)
+        self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
+        eq_(app.premium_type, mkt.ADDON_FREE)
 
     def test_premium(self):
         app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
-        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
-        eq_(app.premium_type, amo.ADDON_PREMIUM)
+        self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
+        eq_(app.premium_type, mkt.ADDON_PREMIUM)
 
     def test_supported_locales(self):
         addon = self.post_addon()
@@ -586,7 +585,7 @@ class TestDetails(TestSubmit):
     def setUp(self):
         super(TestDetails, self).setUp()
         self.webapp = self.get_webapp()
-        self.webapp.update(status=amo.STATUS_NULL)
+        self.webapp.update(status=mkt.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
         self.cat1 = 'books'
 
@@ -680,7 +679,7 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1],
             'flash': '1',
-            'publish_type': amo.PUBLISH_IMMEDIATE,
+            'publish_type': mkt.PUBLISH_IMMEDIATE,
             'notes': 'yes'
         }
         # Add the required screenshot.
@@ -704,7 +703,7 @@ class TestDetails(TestSubmit):
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
             'uses_flash': True,
-            'publish_type': amo.PUBLISH_IMMEDIATE,
+            'publish_type': mkt.PUBLISH_IMMEDIATE,
         }
         if expected:
             expected_data.update(expected)
@@ -729,7 +728,7 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
-        eq_(self.webapp.status, amo.STATUS_NULL)
+        eq_(self.webapp.status, mkt.STATUS_NULL)
 
         assert record_action.called
 
@@ -745,8 +744,8 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
-        eq_(self.webapp.status, amo.STATUS_NULL)
-        eq_(self.webapp.highest_status, amo.STATUS_PENDING)
+        eq_(self.webapp.status, mkt.STATUS_NULL)
+        eq_(self.webapp.highest_status, mkt.STATUS_PENDING)
 
     def test_success_prefill_device_types_if_empty(self):
         """
@@ -757,7 +756,7 @@ class TestDetails(TestSubmit):
         self._step()
 
         AddonDeviceType.objects.all().delete()
-        self.device_types = amo.DEVICE_TYPES.values()
+        self.device_types = mkt.DEVICE_TYPES.values()
 
         data = self.get_dict()
         r = self.client.post(self.url, data)
@@ -769,12 +768,12 @@ class TestDetails(TestSubmit):
     def test_success_for_approved(self):
         self._step()
 
-        data = self.get_dict(publish_type=amo.PUBLISH_PRIVATE)
+        data = self.get_dict(publish_type=mkt.PUBLISH_PRIVATE)
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
 
         self.check_dict(data=data,
-                        expected={'publish_type': amo.PUBLISH_PRIVATE})
+                        expected={'publish_type': mkt.PUBLISH_PRIVATE})
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
@@ -810,7 +809,7 @@ class TestDetails(TestSubmit):
         eq_(rp.status_code, 302)
         ad = self.get_webapp()
         eq_(ad.icon_type, 'image/png')
-        for size in amo.APP_ICON_SIZES:
+        for size in mkt.APP_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
             assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
                 'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
@@ -850,7 +849,7 @@ class TestDetails(TestSubmit):
         self.assertNoFormErrors(r)
         app = Webapp.objects.exclude(app_slug=self.webapp.app_slug)[0]
         self.assert3xx(r, reverse('submit.app.done', args=[app.app_slug]))
-        eq_(self.get_webapp().status, amo.STATUS_NULL)
+        eq_(self.get_webapp().status, mkt.STATUS_NULL)
 
     def test_slug_invalid(self):
         self._step()
@@ -946,7 +945,7 @@ class TestDetails(TestSubmit):
 
     def test_categories_max(self):
         self._step()
-        eq_(amo.MAX_CATEGORIES, 2)
+        eq_(mkt.MAX_CATEGORIES, 2)
         cat2 = 'games'
         cat3 = 'social'
         cats = [self.cat1, cat2, cat3]
@@ -1018,7 +1017,7 @@ class TestNextSteps(TestCase):
         self.user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=self.user.email, password='password')
         self.webapp = Webapp.objects.get(id=337141)
-        self.webapp.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.url = reverse('submit.app.done', args=[self.webapp.app_slug])
 
     def test_200(self, **kw):

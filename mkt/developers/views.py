@@ -29,7 +29,7 @@ from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _, ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
 
-import amo
+import mkt
 import lib.iarc
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
@@ -170,7 +170,7 @@ def delete(request, addon_id, addon):
 @require_POST
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
-    amo.log(amo.LOG.USER_ENABLE, addon)
+    mkt.log(mkt.LOG.USER_ENABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -178,7 +178,7 @@ def enable(request, addon_id, addon):
 @require_POST
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
-    amo.log(amo.LOG.USER_DISABLE, addon)
+    mkt.log(mkt.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -227,9 +227,9 @@ def status(request, addon_id, addon):
             data = defaultdict.fromkeys(keys, True)
 
             # Set "Smartphone-Sized Displays" if it's a mobile-only app.
-            qhd_devices = (set((amo.DEVICE_GAIA,)),
-                           set((amo.DEVICE_MOBILE,)),
-                           set((amo.DEVICE_GAIA, amo.DEVICE_MOBILE,)))
+            qhd_devices = (set((mkt.DEVICE_GAIA,)),
+                           set((mkt.DEVICE_MOBILE,)),
+                           set((mkt.DEVICE_GAIA, mkt.DEVICE_MOBILE,)))
             mobile_only = (addon.latest_version and
                            addon.latest_version.features.has_qhd)
             if set(addon.device_types) in qhd_devices or mobile_only:
@@ -269,11 +269,11 @@ def status(request, addon_id, addon):
         version_strings['num'] = len(versions)
         ctx['version_strings'] = json.dumps(version_strings)
 
-    if addon.status == amo.STATUS_REJECTED:
+    if addon.status == mkt.STATUS_REJECTED:
         try:
             entry = (AppLog.objects
                      .filter(addon=addon,
-                             activity_log__action=amo.LOG.REJECT_VERSION.id)
+                             activity_log__action=mkt.LOG.REJECT_VERSION.id)
                      .order_by('-created'))[0]
         except IndexError:
             entry = None
@@ -282,7 +282,7 @@ def status(request, addon_id, addon):
 
     if waffle.switch_is_active('preload-apps'):
         test_plan = PreloadTestPlan.objects.filter(
-            addon=addon, status=amo.STATUS_PUBLIC)
+            addon=addon, status=mkt.STATUS_PUBLIC)
         if test_plan.exists():
             test_plan = test_plan[0]
             if (test_plan.last_submission <
@@ -429,7 +429,7 @@ def preload_submit(request, addon_id, addon):
 
             # Log test plan.
             PreloadTestPlan.objects.filter(addon=addon).update(
-                status=amo.STATUS_DISABLED
+                status=mkt.STATUS_DISABLED
             )
             PreloadTestPlan.objects.create(addon=addon, filename=filename)
 
@@ -493,9 +493,9 @@ def version_publicise(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
 
-    if version.all_files[0].status == amo.STATUS_APPROVED:
-        File.objects.filter(version=version).update(status=amo.STATUS_PUBLIC)
-        amo.log(amo.LOG.CHANGE_VERSION_STATUS, unicode(version.status[0]),
+    if version.all_files[0].status == mkt.STATUS_APPROVED:
+        File.objects.filter(version=version).update(status=mkt.STATUS_PUBLIC)
+        mkt.log(mkt.LOG.CHANGE_VERSION_STATUS, unicode(version.status[0]),
                 version)
         # Call update_version, so various other bits of data update.
         addon.update_version()
@@ -514,7 +514,7 @@ def version_publicise(request, addon_id, addon):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    if version.all_files[0].status == amo.STATUS_BLOCKED:
+    if version.all_files[0].status == mkt.STATUS_BLOCKED:
         raise PermissionDenied
     version.delete()
     messages.success(request,
@@ -536,18 +536,18 @@ def ownership(request, addon_id, addon):
         for author in authors:
             action = None
             if not author.id or author.user_id != author._original_user_id:
-                action = amo.LOG.ADD_USER_WITH_ROLE
+                action = mkt.LOG.ADD_USER_WITH_ROLE
                 author.addon = addon
             elif author.role != author._original_role:
-                action = amo.LOG.CHANGE_USER_WITH_ROLE
+                action = mkt.LOG.CHANGE_USER_WITH_ROLE
 
             author.save()
             if action:
-                amo.log(action, author.user, author.get_role_display(), addon)
+                mkt.log(action, author.user, author.get_role_display(), addon)
 
             if (author._original_user_id and
                 author.user_id != author._original_user_id):
-                amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
+                mkt.log(mkt.LOG.REMOVE_USER_WITH_ROLE,
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
                 # Unsubscribe user from emails (Commbadge).
@@ -559,7 +559,7 @@ def ownership(request, addon_id, addon):
                 # The current user removed their own access to the app.
                 redirect_url = reverse('mkt.developers.apps')
 
-            amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+            mkt.log(mkt.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
             # Unsubscribe user from emails (Commbadge).
             author.user.comm_thread_cc.filter(thread___addon=addon).delete()
@@ -883,9 +883,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 editable = False
                 if section == 'media':
-                    amo.log(amo.LOG.CHANGE_ICON, addon)
+                    mkt.log(mkt.LOG.CHANGE_ICON, addon)
                 else:
-                    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+                    mkt.log(mkt.LOG.EDIT_PROPERTIES, addon)
 
                 valid_slug = addon.app_slug
         else:
@@ -1044,7 +1044,7 @@ def blocklist(request, addon):
     """
     Blocklists the app by creating a new version/file.
     """
-    if addon.status != amo.STATUS_BLOCKED:
+    if addon.status != mkt.STATUS_BLOCKED:
         addon.create_blocklisted_version()
         messages.success(request, _('Created blocklisted version.'))
     else:
@@ -1058,7 +1058,7 @@ def blocklist(request, addon):
 def transactions(request):
     form, transactions = _get_transactions(request)
     return render(request, 'developers/transactions.html',
-                  {'form': form, 'CONTRIB_TYPES': amo.CONTRIB_TYPES,
+                  {'form': form, 'CONTRIB_TYPES': mkt.CONTRIB_TYPES,
                    'count': transactions.count(),
                    'transactions': paginate(request, transactions, per_page=50)})
 
@@ -1066,7 +1066,7 @@ def transactions(request):
 def _get_transactions(request):
     apps = addon_listing(request)[0]
     transactions = Contribution.objects.filter(addon__in=list(apps),
-                                               type__in=amo.CONTRIB_TYPES)
+                                               type__in=mkt.CONTRIB_TYPES)
 
     form = TransactionFilterForm(request.GET, apps=apps)
     if form.is_valid():
@@ -1201,7 +1201,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
                 log.info('Updating app status from IARC pingback for app:%s' %
                          app.id)
                 # Don't call update to prevent recursion in update_status.
-                app.update(status=amo.STATUS_PENDING)
+                app.update(status=mkt.STATUS_PENDING)
                 log.info('Updated app status from IARC pingback for app:%s' %
                          app.id)
             elif app.has_incomplete_status():

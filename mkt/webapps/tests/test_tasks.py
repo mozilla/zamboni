@@ -19,7 +19,6 @@ import mock
 from nose.tools import eq_, ok_
 from requests.exceptions import RequestException
 
-import amo
 import mkt
 import mkt.site.tests
 from mkt.developers.models import ActivityLog
@@ -108,14 +107,14 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self.version = Version.objects.create(addon=self.addon,
                                               _developer_name='Mozilla')
         self.file = File.objects.create(
-            version=self.version, hash=ohash, status=amo.STATUS_PUBLIC,
+            version=self.version, hash=ohash, status=mkt.STATUS_PUBLIC,
             filename='%s-%s' % (self.addon.id, self.version.id))
 
         self.addon.name = {
             'en-US': 'MozillaBall',
             'de': 'Mozilla Kugel',
         }
-        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.status = mkt.STATUS_PUBLIC
         self.addon.manifest_url = 'http://nowhere.allizom.org/manifest.webapp'
         self.addon.save()
 
@@ -204,19 +203,19 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_pending(self, mock_):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_approved(self, mock_):
-        self.addon.update(status=amo.STATUS_APPROVED)
+        self.addon.update(status=mkt.STATUS_APPROVED)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_ignore_disabled(self, mock_):
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=mkt.STATUS_DISABLED)
         call_command('process_addons', task='update_manifests')
         assert not mock_.called
 
@@ -228,7 +227,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_get_webapp(self, mock_):
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
@@ -266,13 +265,13 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         ok_(u'MozillaBall' in mail.outbox[1].subject)
 
     def test_notify_failure_with_rereview(self):
-        RereviewQueue.flag(self.addon, amo.LOG.REREVIEW_MANIFEST_CHANGE,
+        RereviewQueue.flag(self.addon, mkt.LOG.REREVIEW_MANIFEST_CHANGE,
                            'This app is flagged!')
         notify_developers_of_failure(self.addon, 'blah')
         eq_(len(mail.outbox), 0)
 
     def test_notify_failure_not_public(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         notify_developers_of_failure(self.addon, 'blah')
         eq_(len(mail.outbox), 0)
 
@@ -381,7 +380,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
-            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+            action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
             u'Locales added: "eso" (es).')
         ok_(not _iarc.called)
@@ -400,7 +399,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
-            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+            action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
             u'Locales updated: "Mozilla Kugel" -> "Bippity Bop" (de).')
         ok_(not _iarc.called)
@@ -422,7 +421,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
         eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
-            action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
+            action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
             u'Manifest name changed from "MozillaBall" to "Mozilla Balón". '
             u'Default locale changed from "en-US" to "es". '
@@ -523,21 +522,21 @@ class TestDumpApps(mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.dump_app')
     def test_not_public(self, dump_app):
         app = Webapp.objects.get(pk=337141)
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         call_command('process_addons', task='dump_apps')
         assert not dump_app.called
 
     def test_removed(self):
         # At least one public app must exist for dump_apps to run.
-        mkt.site.tests.app_factory(name='second app', status=amo.STATUS_PUBLIC)
+        mkt.site.tests.app_factory(name='second app', status=mkt.STATUS_PUBLIC)
         app_path = os.path.join(settings.DUMPED_APPS_PATH, 'apps', '337',
                                 '337141.json')
         app = Webapp.objects.get(pk=337141)
-        app.update(status=amo.STATUS_PUBLIC)
+        app.update(status=mkt.STATUS_PUBLIC)
         call_command('process_addons', task='dump_apps')
         assert os.path.exists(app_path)
 
-        app.update(status=amo.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
         call_command('process_addons', task='dump_apps')
         assert not os.path.exists(app_path)
 
@@ -611,19 +610,19 @@ class TestFixMissingIcons(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.tasks._fix_missing_icons')
     def test_pending(self, mock_):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         call_command('process_addons', task='fix_missing_icons')
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._fix_missing_icons')
     def test_approved(self, mock_):
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         call_command('process_addons', task='fix_missing_icons')
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._fix_missing_icons')
     def test_ignore_disabled(self, mock_):
-        self.app.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_DISABLED)
         call_command('process_addons', task='fix_missing_icons')
         assert not mock_.called
 
@@ -819,7 +818,7 @@ class TestFixExcludedRegions(mkt.site.tests.TestCase):
 class TestUpdateTrending(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
 
     @mock.patch('mkt.webapps.tasks._get_trending')
     def test_trending_saved(self, _mock):

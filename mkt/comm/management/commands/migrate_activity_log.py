@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 
 import commonware.log
 
-import amo
+import mkt
 from mkt.comm.tasks import _migrate_activity_log
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.site.utils import chunked
@@ -19,7 +19,7 @@ class Command(BaseCommand):
         applog_ids = AppLog.objects.values_list('activity_log', flat=True)
 
         ids = (ActivityLog.objects.filter(
-            pk__in=list(applog_ids), action__in=amo.LOG_REVIEW_QUEUE)
+            pk__in=list(applog_ids), action__in=mkt.LOG_REVIEW_QUEUE)
             .order_by('created').values_list('id', flat=True))
 
         for log_chunk in chunked(ids, 100):

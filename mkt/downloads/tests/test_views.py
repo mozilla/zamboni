@@ -5,7 +5,7 @@ import mock
 from nose import SkipTest
 from nose.tools import eq_
 
-import amo
+import mkt
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.site.fixtures import fixture
@@ -30,18 +30,18 @@ class TestDownload(BasePackagedAppTest):
         assert settings.XSENDFILE_HEADER in res
 
     def test_disabled(self):
-        self.app.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_DISABLED)
         eq_(self.client.get(self.url).status_code, 404)
 
     def test_not_public(self):
-        self.file.update(status=amo.STATUS_PENDING)
+        self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 404)
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_public_but_owner(self, sign):
         self.client.login(username='steamcube@mozilla.com',
                           password='password')
-        self.file.update(status=amo.STATUS_PENDING)
+        self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 200)
         assert not sign.called
 
@@ -49,7 +49,7 @@ class TestDownload(BasePackagedAppTest):
     def test_not_public_not_owner(self, sign):
         self.client.login(username='regular@mozilla.com',
                           password='password')
-        self.file.update(status=amo.STATUS_PENDING)
+        self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 404)
 
     @mock.patch.object(packaged, 'sign', mock_sign)
@@ -68,7 +68,7 @@ class TestDownload(BasePackagedAppTest):
     def test_file_blocklisted(self):
         if not settings.XSENDFILE:
             raise SkipTest
-        self.file.update(status=amo.STATUS_BLOCKED)
+        self.file.update(status=mkt.STATUS_BLOCKED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert settings.XSENDFILE_HEADER in res

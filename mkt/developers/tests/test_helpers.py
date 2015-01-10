@@ -6,7 +6,7 @@ from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.developers import helpers
 from mkt.site.tests.test_helpers import render
@@ -97,7 +97,7 @@ class TestDevBreadcrumbs(mkt.site.tests.TestCase):
 
 def test_log_action_class():
     v = Mock()
-    for k, v in amo.LOG_BY_ID.iteritems():
+    for k, v in mkt.LOG_BY_ID.iteritems():
         if v.action_class is not None:
             cls = 'action-' + v.action_class
         else:

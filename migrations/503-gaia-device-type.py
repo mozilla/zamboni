@@ -5,7 +5,7 @@ from celeryutils import task
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
-import amo
+import mkt
 from addons.models import AddonDeviceType as ADT
 from mkt.site.utils import chunked
 from mkt.site.decorators import write
@@ -32,14 +32,14 @@ def _task(**kw):
                 device.delete()
 
     # `DEVICE_MOBILE` -> `DEVICE_MOBILE` and `DEVICE_GAIA`.
-    devices = ADT.objects.filter(device_type=amo.DEVICE_MOBILE.id)
+    devices = ADT.objects.filter(device_type=mkt.DEVICE_MOBILE.id)
 
     for chunk in chunked(devices, 50):
         for device in chunk:
-            if amo.DEVICE_GAIA in device.addon.device_types:
+            if mkt.DEVICE_GAIA in device.addon.device_types:
                 continue
             device.id = None
-            device.device_type = amo.DEVICE_GAIA.id
+            device.device_type = mkt.DEVICE_GAIA.id
             device.save()
             device.addon.save()
 

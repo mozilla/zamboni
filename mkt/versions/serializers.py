@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-import amo
+import mkt
 from mkt.api.fields import ReverseChoiceField
 from mkt.features.serializers import AppFeaturesSerializer
 from mkt.files.models import File
@@ -50,7 +50,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
 
 class FileStatusSerializer(serializers.ModelSerializer):
-    status = ReverseChoiceField(choices_dict=amo.STATUS_CHOICES_API,
+    status = ReverseChoiceField(choices_dict=mkt.STATUS_CHOICES_API,
                                 required=True)
 
     class Meta:

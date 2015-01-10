@@ -15,7 +15,6 @@ from rest_framework.status import (HTTP_201_CREATED, HTTP_202_ACCEPTED,
                                    HTTP_400_BAD_REQUEST)
 from rest_framework.viewsets import GenericViewSet
 
-import amo
 import mkt
 from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -190,7 +189,7 @@ def details(request, addon_id, addon):
         # If this is an incomplete app from the legacy submission flow, it may
         # not have device types set yet - so assume it works everywhere.
         if not addon.device_types:
-            for device in amo.DEVICE_TYPES:
+            for device in mkt.DEVICE_TYPES:
                 addon.addondevicetype_set.create(device_type=device)
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
@@ -198,8 +197,8 @@ def details(request, addon_id, addon):
         if addon.needs_payment():
             # Paid apps get STATUS_NULL until payment information and content
             # ratings entered.
-            addon.update(status=amo.STATUS_NULL,
-                         highest_status=amo.STATUS_PENDING)
+            addon.update(status=mkt.STATUS_NULL,
+                         highest_status=mkt.STATUS_PENDING)
 
         # Mark as pending in special regions (i.e., China).
         # By default, the column is set to pending when the row is inserted.

@@ -5,7 +5,7 @@ from curling.lib import HttpClientError
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR)
@@ -30,7 +30,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
 
         self.addon = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(
-            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
+            addon=self.addon, device_type=mkt.DEVICE_GAIA.id)
         self.platforms = {'free_platforms': ['free-firefoxos'],
                           'paid_platforms': ['paid-firefoxos']}
 
@@ -48,12 +48,12 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
-        eq_(self.addon.status, amo.STATUS_NULL)
+        eq_(self.addon.premium_type, mkt.ADDON_PREMIUM)
+        eq_(self.addon.status, mkt.STATUS_NULL)
 
     def test_free_to_premium_pending(self):
         # Pending apps shouldn't get re-reviewed.
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
 
         self.request.POST = {'toggle-paid': 'paid'}
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
@@ -72,7 +72,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid()
         form.save()
-        eq_(self.addon.premium_type, amo.ADDON_FREE_INAPP)
+        eq_(self.addon.premium_type, mkt.ADDON_FREE_INAPP)
 
     def test_tier_zero_inapp_is_optional(self):
         self.platforms.update(price='free', allow_inapp='False')
@@ -93,8 +93,8 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
         eq_(RereviewQueue.objects.count(), 0)
-        eq_(self.addon.premium_type, amo.ADDON_FREE)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.premium_type, mkt.ADDON_FREE)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
 
     def test_is_paid_premium(self):
         self.make_premium(self.addon)
@@ -102,54 +102,54 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         eq_(form.is_paid(), True)
 
     def test_free_inapp_price_required(self):
-        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.addon.update(premium_type=mkt.ADDON_FREE_INAPP)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert not form.is_valid()
 
     def test_is_paid_premium_inapp(self):
-        self.addon.update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM_INAPP)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         eq_(form.is_paid(), True)
 
     def test_is_paid_free_inapp(self):
-        self.addon.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.addon.update(premium_type=mkt.ADDON_FREE_INAPP)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         eq_(form.is_paid(), True)
 
     def test_not_is_paid_free(self):
-        self.addon.update(premium_type=amo.ADDON_FREE)
+        self.addon.update(premium_type=mkt.ADDON_FREE)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         eq_(form.is_paid(), False)
 
     def test_add_device(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         self.platforms['free_platforms'].append('free-desktop')
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.DEVICE_DESKTOP in self.addon.device_types
         eq_(RereviewQueue.objects.count(), 0)
-        eq_(self.addon.status, amo.STATUS_PENDING)
+        eq_(self.addon.status, mkt.STATUS_PENDING)
 
     def test_add_device_public_rereview(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=mkt.STATUS_PUBLIC)
         self.platforms['free_platforms'].append('free-desktop')
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.DEVICE_DESKTOP in self.addon.device_types
         eq_(RereviewQueue.objects.count(), 1)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
 
     def test_add_device_approved_rereview(self):
-        self.addon.update(status=amo.STATUS_APPROVED)
+        self.addon.update(status=mkt.STATUS_APPROVED)
         self.platforms['free_platforms'].append('free-desktop')
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.DEVICE_DESKTOP in self.addon.device_types
         eq_(RereviewQueue.objects.count(), 1)
-        eq_(self.addon.status, amo.STATUS_APPROVED)
+        eq_(self.addon.status, mkt.STATUS_APPROVED)
 
     def test_update(self):
         self.make_premium(self.addon)
@@ -167,7 +167,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         """
         # Don't give the app an initial price.
         self.addon._premium = AddonPremium.objects.create(addon=self.addon)
-        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.premium_type = mkt.ADDON_PREMIUM
 
         price = Price.objects.create(price='9.99')
         self.platforms.update(price=price.pk)
@@ -179,7 +179,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
     def test_update_new_with_acct(self):
         # This was the situation for a new app that was getting linked to an
         # existing bank account.
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.platforms.update(price=self.price.pk)
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
@@ -189,7 +189,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
 
     def test_update_with_bogus_price(self):
         AddonPremium.objects.create(addon=self.addon)
-        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.premium_type = mkt.ADDON_PREMIUM
         self.platforms.update(price='bogus')
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         eq_(form.is_valid(), False)
@@ -198,7 +198,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
 
     def test_premium_with_empty_price(self):
         AddonPremium.objects.create(addon=self.addon)
-        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.premium_type = mkt.ADDON_PREMIUM
         self.platforms.update(price='')
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         eq_(form.is_valid(), False)
@@ -207,7 +207,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
 
     def test_premium_with_price_does_not_exist(self):
         AddonPremium.objects.create(addon=self.addon)
-        self.addon.premium_type = amo.ADDON_PREMIUM
+        self.addon.premium_type = mkt.ADDON_PREMIUM
         self.platforms.update(price=9999)
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         form.fields['price'].choices = ((9999, 'foo'),)
@@ -237,8 +237,8 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
-        eq_(self.addon.status, amo.STATUS_NULL)
+        eq_(self.addon.premium_type, mkt.ADDON_PREMIUM)
+        eq_(self.addon.status, mkt.STATUS_NULL)
 
         self.assertSetEqual(self.addon.device_types, form.get_devices())
 
@@ -257,7 +257,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
 
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP])
+        self.assertSetEqual(self.addon.device_types, [mkt.DEVICE_DESKTOP])
 
     def test_can_change_devices_for_packaged_app(self):
         self.platforms = {'free_platforms': ['free-android-mobile'],
@@ -267,7 +267,7 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
 
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE])
+        self.assertSetEqual(self.addon.device_types, [mkt.DEVICE_MOBILE])
 
     def test_can_change_devices_for_android_app_behind_flag(self):
         self.create_flag('android-payments')
@@ -277,8 +277,8 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         form = forms_payments.PremiumForm(data=data, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE,
-                                                      amo.DEVICE_GAIA])
+        self.assertSetEqual(self.addon.device_types, [mkt.DEVICE_MOBILE,
+                                                      mkt.DEVICE_GAIA])
 
     def test_can_change_devices_for_desktop_app_behind_flag(self):
         self.create_flag('desktop-payments')
@@ -288,8 +288,8 @@ class TestPremiumForm(mkt.site.tests.TestCase):
         form = forms_payments.PremiumForm(data=data, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP,
-                                                      amo.DEVICE_GAIA])
+        self.assertSetEqual(self.addon.device_types, [mkt.DEVICE_DESKTOP,
+                                                      mkt.DEVICE_GAIA])
 
     def test_initial(self):
         form = forms_payments.PremiumForm(**self.kwargs)
@@ -308,14 +308,14 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestAccountListForm, self).setUp()
         self.addon = Webapp.objects.get(pk=337141)
-        self.addon.update(status=amo.STATUS_NULL,
-                          highest_status=amo.STATUS_PUBLIC)
+        self.addon.update(status=mkt.STATUS_NULL,
+                          highest_status=mkt.STATUS_PUBLIC)
         self.provider = get_provider(name='bango')
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
 
         self.user = UserProfile.objects.get(pk=31337)
-        amo.set_user(self.user)
+        mkt.set_user(self.user)
 
         self.other = UserProfile.objects.get(pk=999)
         self.admin = UserProfile.objects.get(email='admin@mozilla.com')
@@ -339,11 +339,11 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
 
     def make_owner(self, user):
         AddonUser.objects.create(addon=self.addon,
-                                 user=user, role=amo.AUTHOR_ROLE_OWNER)
+                                 user=user, role=mkt.AUTHOR_ROLE_OWNER)
 
     def is_owner(self, user):
         return (self.addon.authors.filter(pk=user.pk,
-                addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
+                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
 
     def associate_owner_account(self):
         owner_account = self.create_user_account(self.user)
@@ -488,13 +488,13 @@ class TestPaidRereview(Patcher, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestPaidRereview, self).setUp()
         self.addon = Webapp.objects.get(pk=337141)
-        self.addon.update(status=amo.STATUS_NULL,
-                          highest_status=amo.STATUS_PUBLIC)
+        self.addon.update(status=mkt.STATUS_NULL,
+                          highest_status=mkt.STATUS_PUBLIC)
         self.provider = get_provider(name='bango')
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
-        amo.set_user(self.user)
+        mkt.set_user(self.user)
         seller = models.SolitudeSeller.objects.create(
             resource_uri='/path/to/sel', user=self.user)
 
@@ -515,7 +515,7 @@ class TestPaidRereview(Patcher, mkt.site.tests.TestCase):
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
         eq_(RereviewQueue.objects.count(), 1)
 
         form = forms_payments.AccountListForm(None, **self.kwargs)
@@ -533,12 +533,12 @@ class TestPaidRereview(Patcher, mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.is_fully_complete',
                 new=mock.MagicMock())
     def test_norereview(self):
-        self.addon.update(highest_status=amo.STATUS_PENDING)
+        self.addon.update(highest_status=mkt.STATUS_PENDING)
         form = forms_payments.AccountListForm(
             data={'accounts': self.account.pk}, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        eq_(self.addon.status, amo.STATUS_PENDING)
+        eq_(self.addon.status, mkt.STATUS_PENDING)
         eq_(RereviewQueue.objects.count(), 0)
 
 
@@ -547,18 +547,18 @@ class TestRestoreAppStatus(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.addon = Webapp.objects.get(pk=337141)
-        self.addon.status = amo.STATUS_NULL
+        self.addon.status = mkt.STATUS_NULL
 
     def test_to_public(self):
-        self.addon.highest_status = amo.STATUS_PUBLIC
+        self.addon.highest_status = mkt.STATUS_PUBLIC
         forms_payments._restore_app_status(self.addon)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
 
     def test_to_null(self):
-        self.addon.highest_status = amo.STATUS_NULL
+        self.addon.highest_status = mkt.STATUS_NULL
         forms_payments._restore_app_status(self.addon)
         # Apps without a highest status default to PENDING.
-        eq_(self.addon.status, amo.STATUS_PENDING)
+        eq_(self.addon.status, mkt.STATUS_PENDING)
 
 
 class TestBangoAccountForm(Patcher, mkt.site.tests.TestCase):

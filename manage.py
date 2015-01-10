@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import logging
 import os
-import site
 import sys
 
 from django.core.management import execute_from_command_line
@@ -12,10 +11,10 @@ if not 'DJANGO_SETTINGS_MODULE' in os.environ:
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mkt.settings')
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-path = lambda *a: os.path.join(ROOT, *a)
-
-site.addsitedir(path('apps'))
+# waffle and mkt form an import cycle because mkt patches waffle and
+# waffle loads the user model, so we have to make sure mkt gets
+# imported before anything else imports waffle.
+import mkt
 
 import session_csrf
 session_csrf.monkeypatch()
@@ -30,11 +29,6 @@ trans_log = logging.getLogger('z.trans')
 # Mostly to shut Raven the hell up.
 from lib.log_settings_base import log_configure
 log_configure()
-
-# waffle and amo form an import cycle because amo patches waffle and
-# waffle loads the user model, so we have to make sure amo gets
-# imported before anything else imports waffle.
-import amo
 
 # Hardcore monkeypatching action.
 import jingo.monkey

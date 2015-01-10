@@ -14,7 +14,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from slumber import exceptions
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
@@ -147,14 +147,14 @@ class TestAcctSummary(SummaryTest):
         self.verify_bango_boku_portals(app, res)
 
     def test_app_counts(self):
-        self.buy_stuff(amo.CONTRIB_PURCHASE)
+        self.buy_stuff(mkt.CONTRIB_PURCHASE)
         sm = self.summary().context['app_summary']
         eq_(sm['app_total'], 3)
         eq_(sm['app_amount']['USD'], 4.0)
         eq_(sm['app_amount']['GBR'], 2.0)
 
     def test_requested_refunds(self):
-        contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
+        contrib = Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
                                               user_id=self.user.pk,
                                               addon=self.steamcube,
                                               currency='USD',
@@ -165,13 +165,13 @@ class TestAcctSummary(SummaryTest):
         eq_(res.context['refund_summary']['approved'], 0)
 
     def test_approved_refunds(self):
-        contrib = Contribution.objects.create(type=amo.CONTRIB_PURCHASE,
+        contrib = Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
                                               user_id=self.user.pk,
                                               addon=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
         Refund.objects.create(contribution=contrib,
-                              status=amo.REFUND_APPROVED_INSTANT,
+                              status=mkt.REFUND_APPROVED_INSTANT,
                               user=self.user)
         res = self.summary()
         eq_(res.context['refund_summary']['requested'], 1)
@@ -198,7 +198,7 @@ class TestAcctSummary(SummaryTest):
     def test_no_duplicate_payment_data(self):
         role = AddonUser.objects.create(user=self.user,
                                         addon=self.otherapp,
-                                        role=amo.AUTHOR_ROLE_DEV)
+                                        role=mkt.AUTHOR_ROLE_DEV)
         self.otherapp.addonuser_set.add(role)
         payment_data = self.payment_data()
         AddonPaymentData.objects.create(addon=self.steamcube,
@@ -231,7 +231,7 @@ class TestAcctSummary(SummaryTest):
         # Test data.
         assert UserProfile.objects.get(id=self.user.id).deleted
         eq_(staff, ActivityLog.objects.for_user(self.user).filter(
-            action=amo.LOG.DELETE_USER_LOOKUP.id)[0].user)
+            action=mkt.LOG.DELETE_USER_LOOKUP.id)[0].user)
 
         # Test frontend.
         req = req_factory_factory(
@@ -254,7 +254,7 @@ class TestBangoRedirect(TestCase):
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
         self.login(UserProfile.objects.get(username='support_staff'))
-        self.steamcube.update(premium_type=amo.ADDON_PREMIUM)
+        self.steamcube.update(premium_type=mkt.ADDON_PREMIUM)
         self.account = setup_payment_account(self.steamcube, self.user)
         self.portal_url = reverse('lookup.bango_portal_from_package',
             args=[self.account.payment_account.account_id])
@@ -416,9 +416,9 @@ class TestTransactionSummary(TestCase):
     @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def create_test_refund(self):
         refund_contrib = Contribution.objects.create(
-            addon=self.app, related=self.contrib, type=amo.CONTRIB_REFUND,
+            addon=self.app, related=self.contrib, type=mkt.CONTRIB_REFUND,
             transaction_id='testtransactionid', user=self.user)
-        refund_contrib.enqueue_refund(amo.REFUND_PENDING, self.user)
+        refund_contrib.enqueue_refund(mkt.REFUND_PENDING, self.user)
 
     def test_transaction_summary(self):
         data = _transaction_summary(self.uuid)
@@ -439,7 +439,7 @@ class TestTransactionSummary(TestCase):
     def test_is_refundable(self, solitude):
         solitude.api.bango.refund.status.get.return_value = {'status': PENDING}
 
-        self.contrib.update(type=amo.CONTRIB_PURCHASE)
+        self.contrib.update(type=mkt.CONTRIB_PURCHASE)
         data = _transaction_summary(self.uuid)
         eq_(data['contrib'].pk, self.contrib.pk)
         eq_(data['is_refundable'], True)
@@ -486,7 +486,7 @@ class TestTransactionRefund(TestCase):
         self.req = self.request({'refund_reason': 'text'})
         self.contrib = Contribution.objects.create(
             addon=self.app, user=self.user, uuid=self.uuid,
-            type=amo.CONTRIB_PURCHASE, amount=1, transaction_id='123')
+            type=mkt.CONTRIB_PURCHASE, amount=1, transaction_id='123')
         # Fix Django 1.4 RequestFactory bug with MessageMiddleware.
         setattr(self.req, 'session', 'session')
         messages = FallbackStorage(self.req)
@@ -545,7 +545,7 @@ class TestTransactionRefund(TestCase):
 
         # Check Refund created.
         assert refund.exists()
-        eq_(refund[0].status, amo.REFUND_PENDING)
+        eq_(refund[0].status, mkt.REFUND_PENDING)
         assert self.req.POST['refund_reason'] in refund[0].refund_reason
 
         # Check refund Contribution created.
@@ -568,7 +568,7 @@ class TestTransactionRefund(TestCase):
         self.assert3xx(res, self.summary_url)
 
     def test_cant_refund(self):
-        self.contrib.update(type=amo.CONTRIB_PENDING)
+        self.contrib.update(type=mkt.CONTRIB_PENDING)
         resp = self.client.post(self.url, {'refund_reason': 'text'})
         eq_(resp.status_code, 404)
 
@@ -642,7 +642,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
     def test_by_name_unreviewed(self):
         # Just the same as the above test, but with an unreviewed app.
-        self.app.status = amo.STATUS_PENDING
+        self.app.status = mkt.STATUS_PENDING
         self.test_by_name_part()
 
     def test_by_deleted_app(self):
@@ -772,10 +772,10 @@ class TestAppSummary(AppSummaryTest):
 
     def test_visible_authors(self):
         AddonUser.objects.all().delete()
-        for role in (amo.AUTHOR_ROLE_DEV,
-                     amo.AUTHOR_ROLE_OWNER,
-                     amo.AUTHOR_ROLE_VIEWER,
-                     amo.AUTHOR_ROLE_SUPPORT):
+        for role in (mkt.AUTHOR_ROLE_DEV,
+                     mkt.AUTHOR_ROLE_OWNER,
+                     mkt.AUTHOR_ROLE_VIEWER,
+                     mkt.AUTHOR_ROLE_SUPPORT):
             user = UserProfile.objects.create(username=role)
             role = AddonUser.objects.create(user=user,
                                             addon=self.app,
@@ -784,12 +784,12 @@ class TestAppSummary(AppSummaryTest):
         res = self.summary()
 
         eq_(sorted([u.username for u in res.context['authors']]),
-            [str(amo.AUTHOR_ROLE_DEV), str(amo.AUTHOR_ROLE_OWNER)])
+            [str(mkt.AUTHOR_ROLE_DEV), str(mkt.AUTHOR_ROLE_OWNER)])
 
     def test_details(self):
         res = self.summary()
         eq_(res.context['app'].manifest_url, self.app.manifest_url)
-        eq_(res.context['app'].premium_type, amo.ADDON_FREE)
+        eq_(res.context['app'].premium_type, mkt.ADDON_FREE)
         eq_(res.context['price'], None)
 
     def test_price(self):
@@ -893,7 +893,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
         eq_(data['total'], 0)
         eq_(sorted(data['amounts']), [])
 
-    def purchase(self, created=None, typ=amo.CONTRIB_PURCHASE):
+    def purchase(self, created=None, typ=mkt.CONTRIB_PURCHASE):
         for curr, amount in (('USD', '2.00'), ('EUR', '1.00')):
             for i in range(3):
                 c = Contribution.objects.create(addon=self.app,
@@ -933,9 +933,9 @@ class TestAppSummaryPurchases(AppSummaryTest):
         self.assert_totals(res.context['purchases']['alltime'])
 
     def test_ignore_non_purchases(self):
-        for typ in [amo.CONTRIB_REFUND,
-                    amo.CONTRIB_CHARGEBACK,
-                    amo.CONTRIB_PENDING]:
+        for typ in [mkt.CONTRIB_REFUND,
+                    mkt.CONTRIB_CHARGEBACK,
+                    mkt.CONTRIB_PENDING]:
             self.purchase(typ=typ)
         res = self.summary()
         self.assert_empty(res.context['purchases']['alltime'])
@@ -959,7 +959,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
                                            amount=Decimal('0.99'),
                                            currency='USD',
                                            paykey='AP-1235',
-                                           type=amo.CONTRIB_PURCHASE)
+                                           type=mkt.CONTRIB_PURCHASE)
 
     def refund(self, refunds):
         for contrib, status in refunds:
@@ -968,10 +968,10 @@ class TestAppSummaryRefunds(AppSummaryTest):
                                   user=self.user)
 
     def test_requested(self):
-        self.refund(((self.contrib1, amo.REFUND_APPROVED),
-                     (self.contrib2, amo.REFUND_APPROVED),
-                     (self.contrib3, amo.REFUND_DECLINED),
-                     (self.contrib4, amo.REFUND_DECLINED)))
+        self.refund(((self.contrib1, mkt.REFUND_APPROVED),
+                     (self.contrib2, mkt.REFUND_APPROVED),
+                     (self.contrib3, mkt.REFUND_DECLINED),
+                     (self.contrib4, mkt.REFUND_DECLINED)))
         res = self.summary()
         eq_(res.context['refunds']['requested'], 2)
         eq_(res.context['refunds']['percent_of_purchases'], '50.0%')
@@ -985,21 +985,21 @@ class TestAppSummaryRefunds(AppSummaryTest):
         eq_(res.context['refunds']['rejected'], 0)
 
     def test_auto_approved(self):
-        self.refund(((self.contrib1, amo.REFUND_APPROVED),
-                     (self.contrib2, amo.REFUND_APPROVED_INSTANT)))
+        self.refund(((self.contrib1, mkt.REFUND_APPROVED),
+                     (self.contrib2, mkt.REFUND_APPROVED_INSTANT)))
         res = self.summary()
         eq_(res.context['refunds']['auto-approved'], 1)
 
     def test_approved(self):
-        self.refund(((self.contrib1, amo.REFUND_APPROVED),
-                     (self.contrib2, amo.REFUND_DECLINED)))
+        self.refund(((self.contrib1, mkt.REFUND_APPROVED),
+                     (self.contrib2, mkt.REFUND_DECLINED)))
         res = self.summary()
         eq_(res.context['refunds']['approved'], 1)
 
     def test_rejected(self):
-        self.refund(((self.contrib1, amo.REFUND_APPROVED),
-                     (self.contrib2, amo.REFUND_DECLINED),
-                     (self.contrib3, amo.REFUND_FAILED)))
+        self.refund(((self.contrib1, mkt.REFUND_APPROVED),
+                     (self.contrib2, mkt.REFUND_DECLINED),
+                     (self.contrib3, mkt.REFUND_FAILED)))
         res = self.summary()
         eq_(res.context['refunds']['rejected'], 2)
 
@@ -1029,7 +1029,7 @@ class TestPurchases(mkt.site.tests.TestCase):
 
     def test_purchase_shows_up(self):
         Contribution.objects.create(user=self.user, addon=self.app,
-                                    amount=1, type=amo.CONTRIB_PURCHASE)
+                                    amount=1, type=mkt.CONTRIB_PURCHASE)
         self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -1038,7 +1038,7 @@ class TestPurchases(mkt.site.tests.TestCase):
             self.app.get_detail_url())
 
     def test_no_support_link(self):
-        for type_ in [amo.CONTRIB_PURCHASE]:
+        for type_ in [mkt.CONTRIB_PURCHASE]:
             Contribution.objects.create(user=self.user, addon=self.app,
                                         amount=1, type=type_)
         self.login(self.reviewer)
@@ -1074,14 +1074,14 @@ class TestActivity(mkt.site.tests.TestCase):
     def test_log(self):
         self.login(self.reviewer)
         self.client.get(self.url)
-        log_item = ActivityLog.objects.get(action=amo.LOG.ADMIN_VIEWED_LOG.id)
+        log_item = ActivityLog.objects.get(action=mkt.LOG.ADMIN_VIEWED_LOG.id)
         eq_(len(log_item.arguments), 1)
         eq_(log_item.arguments[0].id, self.reviewer.id)
         eq_(log_item.user, self.user)
 
     def test_display(self):
-        amo.log(amo.LOG.PURCHASE_ADDON, self.app, user=self.user)
-        amo.log(amo.LOG.ADMIN_USER_EDITED, self.user, 'spite', user=self.user)
+        mkt.log(mkt.LOG.PURCHASE_ADDON, self.app, user=self.user)
+        mkt.log(mkt.LOG.ADMIN_USER_EDITED, self.user, 'spite', user=self.user)
         self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -1114,10 +1114,10 @@ class TestAppActivity(mkt.site.tests.TestCase):
 
     def test_logs(self):
         # Admin log.
-        amo.log(amo.LOG.COMMENT_VERSION, self.app, self.app.current_version,
+        mkt.log(mkt.LOG.COMMENT_VERSION, self.app, self.app.current_version,
                 user=self.user)
         # Regular log.
-        amo.log(amo.LOG.MANIFEST_UPDATED, self.app, user=self.user)
+        mkt.log(mkt.LOG.MANIFEST_UPDATED, self.app, user=self.user)
 
         self.login(self.reviewer)
         res = self.client.get(self.url)

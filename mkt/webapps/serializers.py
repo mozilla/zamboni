@@ -8,7 +8,6 @@ import commonware.log
 from rest_framework import response, serializers
 from tower import ungettext as ngettext
 
-import amo
 import mkt
 from drf_compound_fields.fields import ListField
 from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
@@ -62,7 +61,7 @@ class RegionSerializer(serializers.Serializer):
 
 class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
-        choices=amo.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
+        choices=mkt.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
     banner_message = TranslationSerializerField(read_only=True,
         source='geodata.banner_message')
@@ -92,7 +91,7 @@ class AppSerializer(serializers.ModelSerializer):
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
     premium_type = ReverseChoiceField(
-        choices_dict=amo.ADDON_PREMIUM_API, required=False)
+        choices_dict=mkt.ADDON_PREMIUM_API, required=False)
     previews = PreviewSerializer(many=True, required=False,
                                  source='all_previews')
     price = SemiSerializerMethodField('get_price')
@@ -171,7 +170,7 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
-                     for icon_size in amo.APP_ICON_SIZES])
+                     for icon_size in mkt.APP_ICON_SIZES])
 
     def get_payment_account(self, app):
 
@@ -246,7 +245,7 @@ class AppSerializer(serializers.ModelSerializer):
             user = request.user
             return {
                 'developed': app.addonuser_set.filter(
-                    user=user, role=amo.AUTHOR_ROLE_OWNER).exists(),
+                    user=user, role=mkt.AUTHOR_ROLE_OWNER).exists(),
                 'installed': app.has_installed(user),
                 'purchased': app.pk in user.purchase_ids(),
             }
@@ -268,7 +267,7 @@ class AppSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('This field is required.')
         set_categories = set(attrs[source])
         total = len(set_categories)
-        max_cat = amo.MAX_CATEGORIES
+        max_cat = mkt.MAX_CATEGORIES
 
         if total > max_cat:
             # L10n: {0} is the number of categories.
@@ -284,7 +283,7 @@ class AppSerializer(serializers.ModelSerializer):
             return [n.api_name for n in app.device_types]
 
     def save_device_types(self, obj, new_types):
-        new_types = [amo.DEVICE_LOOKUP[d].id for d in new_types]
+        new_types = [mkt.DEVICE_LOOKUP[d].id for d in new_types]
         old_types = [x.id for x in obj.device_types]
 
         added_devices = set(new_types) - set(old_types)
@@ -296,7 +295,7 @@ class AppSerializer(serializers.ModelSerializer):
             obj.addondevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
-        if added_devices and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
+        if added_devices and obj.status in mkt.WEBAPPS_APPROVED_STATUSES:
             mark_for_rereview(obj, added_devices, removed_devices)
 
     def save_upsold(self, obj, upsold):
@@ -325,14 +324,14 @@ class AppSerializer(serializers.ModelSerializer):
         if attrs.get('device_types') is None:
             raise serializers.ValidationError('This field is required.')
         for v in attrs['device_types']:
-            if v not in amo.DEVICE_LOOKUP.keys():
+            if v not in mkt.DEVICE_LOOKUP.keys():
                 raise serializers.ValidationError(
                     str(v) + ' is not one of the available choices.')
         return attrs
 
     def validate_price(self, attrs, source):
-        if attrs.get('premium_type', None) not in (amo.ADDON_FREE,
-                                                   amo.ADDON_FREE_INAPP):
+        if attrs.get('premium_type', None) not in (mkt.ADDON_FREE,
+                                                   mkt.ADDON_FREE_INAPP):
             valid_prices = Price.objects.exclude(
                 price='0.00').values_list('price', flat=True)
             price = attrs.get('price')
@@ -408,8 +407,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Webapp and related models from ES data."""
-        is_packaged = data['app_type'] != amo.ADDON_WEBAPP_HOSTED
-        is_privileged = data['app_type'] == amo.ADDON_WEBAPP_PRIVILEGED
+        is_packaged = data['app_type'] != mkt.ADDON_WEBAPP_HOSTED
+        is_privileged = data['app_type'] == mkt.ADDON_WEBAPP_PRIVILEGED
 
         obj = Webapp(id=data['id'], app_slug=data['app_slug'],
                      is_packaged=is_packaged, icon_type='image/png')

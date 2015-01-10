@@ -10,7 +10,7 @@ import basket
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-import amo
+import mkt
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
@@ -28,11 +28,11 @@ from mkt.webapps.models import AppFeatures, BlockedSlug, Webapp
 
 def mark_for_rereview(addon, added_devices, removed_devices):
     msg = _(u'Device(s) changed: {0}').format(', '.join(
-        [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+        [_(u'Added {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
          for d in added_devices] +
-        [_(u'Removed {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+        [_(u'Removed {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
          for d in removed_devices]))
-    RereviewQueue.flag(addon, amo.LOG.REREVIEW_DEVICES_ADDED, msg)
+    RereviewQueue.flag(addon, mkt.LOG.REREVIEW_DEVICES_ADDED, msg)
 
 
 def mark_for_rereview_features_change(addon, added_features, removed_features):
@@ -40,7 +40,7 @@ def mark_for_rereview_features_change(addon, added_features, removed_features):
     msg = _(u'Requirements changed: {0}').format(', '.join(
         [_(u'Added {0}').format(f) for f in added_features] +
         [_(u'Removed {0}').format(f) for f in removed_features]))
-    RereviewQueue.flag(addon, amo.LOG.REREVIEW_FEATURES_CHANGED, msg)
+    RereviewQueue.flag(addon, mkt.LOG.REREVIEW_FEATURES_CHANGED, msg)
 
 
 class DeviceTypeForm(happyforms.Form):
@@ -60,7 +60,7 @@ class DeviceTypeForm(happyforms.Form):
         submitted_data = self.get_devices(t.split('-', 1)[1] for t in data)
 
         new_types = set(dev.id for dev in submitted_data)
-        old_types = set(amo.DEVICE_TYPES[x.id].id for x in addon.device_types)
+        old_types = set(mkt.DEVICE_TYPES[x.id].id for x in addon.device_types)
 
         added_devices = new_types - old_types
         removed_devices = old_types - new_types
@@ -71,7 +71,7 @@ class DeviceTypeForm(happyforms.Form):
             addon.addondevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
-        if added_devices and addon.status in amo.WEBAPPS_APPROVED_STATUSES:
+        if added_devices and addon.status in mkt.WEBAPPS_APPROVED_STATUSES:
             mark_for_rereview(addon, added_devices, removed_devices)
 
     def _add_error(self, msg):
@@ -105,10 +105,10 @@ class DeviceTypeForm(happyforms.Form):
         if source is None:
             source = self._get_combined()
 
-        platforms = {'firefoxos': amo.DEVICE_GAIA,
-                     'desktop': amo.DEVICE_DESKTOP,
-                     'android-mobile': amo.DEVICE_MOBILE,
-                     'android-tablet': amo.DEVICE_TABLET}
+        platforms = {'firefoxos': mkt.DEVICE_GAIA,
+                     'desktop': mkt.DEVICE_DESKTOP,
+                     'android-mobile': mkt.DEVICE_MOBILE,
+                     'android-tablet': mkt.DEVICE_TABLET}
         return map(platforms.get, source)
 
     def is_paid(self):
@@ -120,7 +120,7 @@ class DeviceTypeForm(happyforms.Form):
 
         """
 
-        return amo.ADDON_PREMIUM if self.is_paid() else amo.ADDON_FREE
+        return mkt.ADDON_PREMIUM if self.is_paid() else mkt.ADDON_FREE
 
 
 class DevAgreementForm(happyforms.Form):
@@ -262,10 +262,10 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
 
 
     PUBLISH_CHOICES = (
-        (amo.PUBLISH_IMMEDIATE,
+        (mkt.PUBLISH_IMMEDIATE,
          _lazy(u'Publish my app and make it visible to everyone in the '
                u'Marketplace and include it in search results.')),
-        (amo.PUBLISH_PRIVATE,
+        (mkt.PUBLISH_PRIVATE,
          _lazy(u'Do not publish my app. Notify me and I will adjust app '
                u'visibility after it is approved.')),
     )
@@ -322,7 +322,7 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
             u'the app reviewers here.'))
     publish_type = forms.TypedChoiceField(
         label=_lazy(u'Once your app is approved, choose a publishing option:'),
-        choices=PUBLISH_CHOICES, initial=amo.PUBLISH_IMMEDIATE,
+        choices=PUBLISH_CHOICES, initial=mkt.PUBLISH_IMMEDIATE,
         widget=forms.RadioSelect())
     is_offline = forms.BooleanField(
         label=_lazy(u'My app works without an Internet connection.'),
@@ -427,7 +427,7 @@ class AppFeaturesForm(happyforms.ModelForm):
         addon.save(update_fields=['modified'])
         # Trigger a re-review if necessary.
         if (self.instance and mark_for_rereview and
-                addon.status in amo.WEBAPPS_APPROVED_STATUSES and
+                addon.status in mkt.WEBAPPS_APPROVED_STATUSES and
                 sorted(self.instance.to_keys()) != self.initial_features):
             added_features, removed_features = self._changed_features()
             mark_for_rereview_features_change(addon,

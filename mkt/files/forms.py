@@ -8,7 +8,7 @@ import happyforms
 import jinja2
 from tower import ugettext as _
 
-import amo
+import mkt
 from mkt.files.models import File
 from mkt.versions.models import Version
 
@@ -21,25 +21,25 @@ class FileSelectWidget(widgets.Select):
         def option(files, label=None):
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
-            files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
-                                     (b.status == amo.STATUS_DISABLED)))
+            files.sort(lambda a, b: ((a.status == mkt.STATUS_DISABLED) -
+                                     (b.status == mkt.STATUS_DISABLED)))
 
             if label is None:
                 label = _('All')
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
-            if files[0].status == amo.STATUS_DISABLED:
+            if files[0].status == mkt.STATUS_DISABLED:
                 # Disabled files can be diffed on Marketplace.
                 output.append(u' disabled')
             if selected in files:
                 output.append(u' selected="true"')
 
-            status = set(u'status-%s' % amo.STATUS_CHOICES_API[f.status]
+            status = set(u'status-%s' % mkt.STATUS_CHOICES_API[f.status]
                          for f in files)
             output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
 
             # Extend apps to show file status in selects.
-            label += ' (%s)' % amo.STATUS_CHOICES_API[f.status]
+            label += ' (%s)' % mkt.STATUS_CHOICES_API[f.status]
 
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output

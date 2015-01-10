@@ -8,7 +8,7 @@ from django.core.files.storage import default_storage as storage
 import mock
 from nose.tools import eq_
 
-import amo
+import mkt
 import mkt.site.tests
 
 from mkt.constants import MANIFEST_CONTENT_TYPE
@@ -79,26 +79,26 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         eq_(res.status_code, 404)
 
     def test_app_pending(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
     def test_app_pending_reviewer(self):
         self.login_as_reviewer()
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
     def test_app_pending_author(self):
         self.login_as_author()
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_unlisted(self, _mock):
         _mock.return_value = self._mocked_json()
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
@@ -106,7 +106,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
     def test_app_unlisted_reviewer(self, _mock):
         _mock.return_value = self._mocked_json()
         self.login_as_reviewer()
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
@@ -114,12 +114,12 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
     def test_app_unlisted_author(self, _mock):
         _mock.return_value = self._mocked_json()
         self.login_as_author()
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
     def test_app_private(self):
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
@@ -127,7 +127,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
     def test_app_private_reviewer(self, _mock):
         _mock.return_value = self._mocked_json()
         self.login_as_reviewer()
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         res = self.client.get(self.url)
         eq_(res.status_code, 404)
 
@@ -135,7 +135,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
     def test_app_private_author(self, _mock):
         _mock.return_value = self._mocked_json()
         self.login_as_author()
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 

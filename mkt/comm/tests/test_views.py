@@ -10,7 +10,7 @@ import mock
 from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.constants.comm as comm
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.models import (CommAttachment, CommunicationNote,
@@ -109,7 +109,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(res.json['addon'], self.addon.id)
 
     def test_response_deleted_app(self):
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
 
         thread = self._thread_factory(note=True)
         res = self.client.get(
@@ -120,7 +120,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(res.json['addon_meta']['name'], self.addon.name)
 
     def test_response_deleted_version_app(self):
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         thread = self._thread_factory(note=True)
         version = version_factory(addon=self.addon)
         version.update(deleted=True)
@@ -390,7 +390,7 @@ class TestNote(NoteSetupMixin):
         eq_(res.json['body'], 'something')
 
     def test_create_app_deleted(self):
-        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 201)

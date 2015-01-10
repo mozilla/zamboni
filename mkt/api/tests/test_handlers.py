@@ -13,7 +13,6 @@ from mock import patch
 from nose.tools import eq_
 from rest_framework.request import Request
 
-import amo
 import mkt
 from mkt.access.models import Group, GroupUser
 from mkt.api.fields import LargeTextField
@@ -176,7 +175,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
     def test_get_device(self):
         app = self.create_app()
         AddonDeviceType.objects.create(addon=app,
-                                       device_type=amo.DEVICE_DESKTOP.id)
+                                       device_type=mkt.DEVICE_DESKTOP.id)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         content = json.loads(res.content)
@@ -189,7 +188,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_get_public(self):
         app = self.create_app()
-        app.update(status=amo.STATUS_PUBLIC)
+        app.update(status=mkt.STATUS_PUBLIC)
         res = self.anon.get(self.get_url)
         eq_(res.status_code, 200)
 
@@ -251,7 +250,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
             'description': 'wat...',
             'premium_type': 'free',
             'regions': ['us'],
-            'device_types': amo.DEVICE_LOOKUP.keys()
+            'device_types': mkt.DEVICE_LOOKUP.keys()
         }
 
     def test_put(self):
@@ -274,7 +273,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_anon(self):
         app = self.create_app()
-        app.update(status=amo.STATUS_PUBLIC)
+        app.update(status=mkt.STATUS_PUBLIC)
         res = self.anon.put(self.get_url, data=json.dumps(self.base_data()))
         eq_(res.status_code, 403)
 
@@ -318,7 +317,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(set(app.categories), set(data['categories']))
         eq_(data['current_version'], version and version.version)
         self.assertSetEqual(data['device_types'],
-                            [n.api_name for n in amo.DEVICE_TYPES.values()])
+                            [n.api_name for n in mkt.DEVICE_TYPES.values()])
         eq_(data['homepage'], u'http://www.whatever.com')
         eq_(data['is_packaged'], False)
         eq_(data['author'], 'Mozilla Labs')
@@ -368,12 +367,12 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
     def test_put_devices_worked(self):
         app = self.create_app()
         data = self.base_data()
-        data['device_types'] = [a.api_name for a in amo.DEVICE_TYPES.values()]
+        data['device_types'] = [a.api_name for a in mkt.DEVICE_TYPES.values()]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(set(d for d in app.device_types),
-            set(amo.DEVICE_TYPES[d] for d in amo.DEVICE_TYPES.keys()))
+            set(mkt.DEVICE_TYPES[d] for d in mkt.DEVICE_TYPES.keys()))
 
     def test_put_desktop_error_nice(self):
         self.create_app()
@@ -411,7 +410,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(str(app.get_price(region=regions.US.id)), '1.07')
-        eq_(app.premium_type, amo.ADDON_PREMIUM_INAPP)
+        eq_(app.premium_type, mkt.ADDON_PREMIUM_INAPP)
 
     def test_put_bad_price(self):
         self.create_app()
@@ -654,7 +653,7 @@ class TestAppDetail(RestOAuth):
         eq_(self.app.get_manifest_url(), data['manifest_url'])
 
     def test_get_upsold(self):
-        free = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        free = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
         AddonUpsell.objects.create(premium_id=337141, free=free)
         res = self.client.get(self.get_url)
         eq_(res.json['upsold'],
@@ -853,7 +852,7 @@ class TestPriceTier(RestOAuth):
         p = Price.objects.get(pk=pk)
         eq_(p.name, '3')
         eq_(p.price, Decimal('3.14'))
-        eq_(p.method, amo.PAYMENT_METHOD_ALL)
+        eq_(p.method, mkt.PAYMENT_METHOD_ALL)
         assert p.active
 
     def test_put_unauthorized(self):
@@ -872,7 +871,7 @@ class TestPriceTier(RestOAuth):
         p = Price.objects.get(pk=1)
         eq_(p.name, '1')
         eq_(p.price, Decimal('0.10'))
-        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        eq_(p.method, mkt.PAYMENT_METHOD_OPERATOR)
         assert p.active
 
     def test_delete_unauthorized(self):
@@ -954,7 +953,7 @@ class TestPriceCurrency(RestOAuth):
         p = PriceCurrency.objects.get(pk=pk)
         eq_(p.tier_id, 1)
         eq_(p.price, Decimal('10.05'))
-        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        eq_(p.method, mkt.PAYMENT_METHOD_OPERATOR)
         eq_(p.currency, 'PHP')
 
     def test_put_unauthorized(self):
@@ -979,7 +978,7 @@ class TestPriceCurrency(RestOAuth):
         p = PriceCurrency.objects.get(pk=1)
         eq_(p.tier_id, 1)
         eq_(p.price, Decimal('10.05'))
-        eq_(p.method, amo.PAYMENT_METHOD_OPERATOR)
+        eq_(p.method, mkt.PAYMENT_METHOD_OPERATOR)
         eq_(p.currency, 'USD')
         eq_(p.region, 11)
         eq_(p.paid, True)

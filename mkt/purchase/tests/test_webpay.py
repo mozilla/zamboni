@@ -13,7 +13,7 @@ from mock import ANY
 from mozpay.exc import RequestExpired
 from nose.tools import eq_, raises
 
-import amo
+import mkt
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPurchase, Price
@@ -48,7 +48,7 @@ class TestWebAppPurchase(PurchaseTest):
         contribution = Contribution.objects.create(addon_id=self.addon.id,
                                                    amount=self.price.price,
                                                    uuid=uuid,
-                                                   type=amo.CONTRIB_PENDING,
+                                                   type=mkt.CONTRIB_PENDING,
                                                    user=self.user)
 
         data = self.get(reverse('webpay.pay_status',
@@ -56,7 +56,7 @@ class TestWebAppPurchase(PurchaseTest):
 
         eq_(data['status'], 'incomplete')
 
-        contribution.update(type=amo.CONTRIB_PURCHASE)
+        contribution.update(type=mkt.CONTRIB_PURCHASE)
 
         data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid]))
@@ -68,7 +68,7 @@ class TestWebAppPurchase(PurchaseTest):
         Contribution.objects.create(addon_id=self.addon.id,
                                     amount=self.price.price,
                                     uuid=uuid,
-                                    type=amo.CONTRIB_PURCHASE,
+                                    type=mkt.CONTRIB_PURCHASE,
                                     user=self.user)
         self.client.logout()
         assert self.client.login(username='admin@mozilla.com',
@@ -93,7 +93,7 @@ class TestWebAppPurchase(PurchaseTest):
     def test_status_for_already_purchased(self):
         AddonPurchase.objects.create(addon=self.addon,
                                      user=self.user,
-                                     type=amo.CONTRIB_PURCHASE)
+                                     type=mkt.CONTRIB_PURCHASE)
 
         with self.assertRaises(AlreadyPurchased):
             self.client.post(self.prepare_pay)
@@ -114,7 +114,7 @@ class PostbackTest(PurchaseTest):
             addon_id=self.addon.id,
             amount=self.price.price,
             uuid='<some uuid>',
-            type=amo.CONTRIB_PENDING,
+            type=mkt.CONTRIB_PENDING,
             user=self.user
         )
         self.buyer_email = 'buyer@example.com'
@@ -184,7 +184,7 @@ class TestPostbackWithDecoding(PostbackTest):
         resp = self.post()
         eq_(resp.status_code, 400)
         cn = Contribution.objects.get(pk=self.contrib.pk)
-        eq_(cn.type, amo.CONTRIB_PENDING)
+        eq_(cn.type, mkt.CONTRIB_PENDING)
 
     def test_empty_notice(self):
         resp = self.client.post(reverse('webpay.postback'), data={})
@@ -219,7 +219,7 @@ class TestPostback(PostbackTest):
         eq_(resp.status_code, 200)
         eq_(resp.content, '<webpay-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
-        eq_(cn.type, amo.CONTRIB_PURCHASE)
+        eq_(cn.type, mkt.CONTRIB_PURCHASE)
         eq_(cn.transaction_id, '<webpay-trans-id>')
         eq_(cn.amount, Decimal('10.99'))
         eq_(cn.currency, 'BRL')
@@ -249,7 +249,7 @@ class TestPostback(PostbackTest):
         eq_(resp.content, response_trans_id)
 
         cn = Contribution.objects.get(pk=self.contrib.pk)
-        eq_(cn.type, amo.CONTRIB_PURCHASE)
+        eq_(cn.type, mkt.CONTRIB_PURCHASE)
 
         assert not self.tasks.send_purchase_receipt.delay.called
 
@@ -262,10 +262,10 @@ class TestPostback(PostbackTest):
         cn = Contribution.objects.get(pk=self.contrib.pk)
         user = UserProfile.objects.get(email=self.buyer_email)
         eq_(cn.user, user)
-        eq_(cn.user.source, amo.LOGIN_SOURCE_WEBPAY)
+        eq_(cn.user.source, mkt.LOGIN_SOURCE_WEBPAY)
 
     def test_valid_duplicate(self):
-        self.contrib.update(type=amo.CONTRIB_PURCHASE,
+        self.contrib.update(type=mkt.CONTRIB_PURCHASE,
                             transaction_id='<webpay-trans-id>')
 
         resp = self.post(fake_decode=True)
@@ -279,7 +279,7 @@ class TestPostback(PostbackTest):
         jwt_encoded = self.jwt(req=jwt_dict)
         self.decode.return_value = jwt_dict
 
-        self.contrib.update(type=amo.CONTRIB_PURCHASE,
+        self.contrib.update(type=mkt.CONTRIB_PURCHASE,
                             transaction_id='<webpay-trans-id>')
 
         with self.assertRaises(LookupError):

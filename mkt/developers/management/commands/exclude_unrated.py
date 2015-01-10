@@ -2,7 +2,6 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-import amo
 import mkt
 from mkt.webapps.models import Geodata, Webapp
 from mkt.webapps.tasks import index_webapps
@@ -18,7 +17,7 @@ class Command(BaseCommand):
 
         ids_to_reindex = []
         apps = Webapp.objects.filter(
-            status__in=(amo.STATUS_PUBLIC, amo.STATUS_APPROVED))
+            status__in=(mkt.STATUS_PUBLIC, mkt.STATUS_APPROVED))
 
         for app in apps:
             save = False

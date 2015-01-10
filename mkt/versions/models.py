@@ -12,7 +12,7 @@ from django.db import models
 import commonware.log
 import jinja2
 
-import amo
+import mkt
 from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
@@ -114,7 +114,7 @@ class Version(ModelBase):
             version_uploaded.send(sender=v)
 
         # If packaged app and app is blocked, put in escalation queue.
-        if addon.is_packaged and addon.status == amo.STATUS_BLOCKED:
+        if addon.is_packaged and addon.status == mkt.STATUS_BLOCKED:
             # To avoid circular import.
             from mkt.reviewers.models import EscalationQueue
             EscalationQueue.objects.create(addon=addon)
@@ -127,7 +127,7 @@ class Version(ModelBase):
 
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
-        amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
+        mkt.log(mkt.LOG.DELETE_VERSION, self.addon, str(self.version))
 
         models.signals.pre_delete.send(sender=Version, instance=self)
 
@@ -139,7 +139,7 @@ class Version(ModelBase):
 
         # Set file status to disabled.
         f = self.all_files[0]
-        f.update(status=amo.STATUS_DISABLED, _signal=False)
+        f.update(status=mkt.STATUS_DISABLED, _signal=False)
         f.hide_disabled_file()
 
         # If version deleted was the current version and there now exists
@@ -172,10 +172,10 @@ class Version(ModelBase):
 
     @property
     def status(self):
-        status_choices = amo.MKT_STATUS_FILE_CHOICES
+        status_choices = mkt.MKT_STATUS_FILE_CHOICES
 
         if self.deleted:
-            return [status_choices[amo.STATUS_DELETED]]
+            return [status_choices[mkt.STATUS_DELETED]]
         else:
             return [status_choices[f.status] for f in self.all_files]
 
@@ -189,7 +189,7 @@ class Version(ModelBase):
         # addon, and all its attached files must have public status.
         try:
             return (not self.deleted and self.addon.is_public() and
-                    all(f.status == amo.STATUS_PUBLIC for f in self.all_files))
+                    all(f.status == mkt.STATUS_PUBLIC for f in self.all_files))
         except ObjectDoesNotExist:
             return False
 
@@ -245,10 +245,10 @@ class Version(ModelBase):
         qs = File.objects.filter(version__addon=self.addon_id,
                                  version__lt=self.id,
                                  version__deleted=False,
-                                 status__in=[amo.STATUS_PENDING])
+                                 status__in=[mkt.STATUS_PENDING])
         # Use File.update so signals are triggered.
         for f in qs:
-            f.update(status=amo.STATUS_DISABLED)
+            f.update(status=mkt.STATUS_DISABLED)
 
     @property
     def developer_name(self):
@@ -309,11 +309,11 @@ def inherit_nomination(sender, instance, **kw):
                                    .exclude(pk=instance.pk)
                                    .order_by('-nomination'))
         if (last_ver.exists() and
-            last_ver[0].all_files[0].status == amo.STATUS_PENDING):
+            last_ver[0].all_files[0].status == mkt.STATUS_PENDING):
             instance.update(nomination=last_ver[0].nomination, _signal=False)
             log.debug('[Webapp:%s] Inheriting nomination from prior pending '
                       'version' % addon.id)
-        elif (addon.status in amo.WEBAPPS_APPROVED_STATUSES and
+        elif (addon.status in mkt.WEBAPPS_APPROVED_STATUSES and
               not instance.nomination):
             log.debug('[Webapp:%s] Setting nomination date to now for new '
                       'version.' % addon.id)

@@ -13,7 +13,7 @@ from cache_nuggets.lib import memoize_key
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
-import amo
+import mkt
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
@@ -294,8 +294,8 @@ def update_price_currency(sender, instance, **kw):
 
 class AddonPurchase(ModelBase):
     addon = models.ForeignKey('webapps.Webapp')
-    type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
-                                       choices=do_dictsort(amo.CONTRIB_TYPES),
+    type = models.PositiveIntegerField(default=mkt.CONTRIB_PURCHASE,
+                                       choices=do_dictsort(mkt.CONTRIB_TYPES),
                                        db_index=True)
     user = models.ForeignKey(UserProfile)
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
@@ -327,13 +327,13 @@ def create_addon_purchase(sender, instance, **kw):
     delete from the AddonPurchase table.
     """
     if (kw.get('raw') or
-        instance.type not in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                              amo.CONTRIB_CHARGEBACK]):
+        instance.type not in [mkt.CONTRIB_PURCHASE, mkt.CONTRIB_REFUND,
+                              mkt.CONTRIB_CHARGEBACK]):
         # Filter the types we care about. Forget about the rest.
         return
 
     log.info('Processing addon purchase type: {t}, addon {a}, user {u}'
-             .format(t=unicode(amo.CONTRIB_TYPES[instance.type]),
+             .format(t=unicode(mkt.CONTRIB_TYPES[instance.type]),
                      a=instance.addon and instance.addon.pk,
                      u=instance.user and instance.user.pk))
 
@@ -343,25 +343,25 @@ def create_addon_purchase(sender, instance, **kw):
                                                        c=instance))
         return
 
-    if instance.type == amo.CONTRIB_PURCHASE:
+    if instance.type == mkt.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'
                   % (instance.addon.pk, instance.user.pk))
 
         data = {'addon': instance.addon, 'user': instance.user}
         purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
-        purchase.update(type=amo.CONTRIB_PURCHASE)
+        purchase.update(type=mkt.CONTRIB_PURCHASE)
         from mkt.webapps.models import Installed  # Circular import
         # Ensure that devs have the correct installed object found
         # or created.
         #
         is_dev = instance.addon.has_author(instance.user,
-                 (amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV))
+                 (mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV))
         install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
                         else apps.INSTALL_TYPE_USER)
         Installed.objects.safer_get_or_create(user=instance.user,
             addon=instance.addon, install_type=install_type)
 
-    elif instance.type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
+    elif instance.type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
                                                  user=instance.user)
         for p in purchases:
@@ -393,23 +393,23 @@ class RefundManager(ManagerBase):
         return self.filter(contribution__addon=addon)
 
     def pending(self, addon=None):
-        return self.by_addon(addon).filter(status=amo.REFUND_PENDING)
+        return self.by_addon(addon).filter(status=mkt.REFUND_PENDING)
 
     def approved(self, addon):
-        return self.by_addon(addon).filter(status=amo.REFUND_APPROVED)
+        return self.by_addon(addon).filter(status=mkt.REFUND_APPROVED)
 
     def instant(self, addon):
-        return self.by_addon(addon).filter(status=amo.REFUND_APPROVED_INSTANT)
+        return self.by_addon(addon).filter(status=mkt.REFUND_APPROVED_INSTANT)
 
     def declined(self, addon):
-        return self.by_addon(addon).filter(status=amo.REFUND_DECLINED)
+        return self.by_addon(addon).filter(status=mkt.REFUND_DECLINED)
 
     def failed(self, addon):
-        return self.by_addon(addon).filter(status=amo.REFUND_FAILED)
+        return self.by_addon(addon).filter(status=mkt.REFUND_FAILED)
 
 
 class Refund(ModelBase):
-    # This refers to the original object with `type=amo.CONTRIB_PURCHASE`.
+    # This refers to the original object with `type=mkt.CONTRIB_PURCHASE`.
     contribution = models.OneToOneField(Contribution)
 
     # Pending => 0
@@ -417,8 +417,8 @@ class Refund(ModelBase):
     # Instantly Approved => 2
     # Declined => 3
     # Failed => 4
-    status = models.PositiveIntegerField(default=amo.REFUND_PENDING,
-        choices=do_dictsort(amo.REFUND_STATUSES), db_index=True)
+    status = models.PositiveIntegerField(default=mkt.REFUND_PENDING,
+        choices=do_dictsort(mkt.REFUND_STATUSES), db_index=True)
 
     refund_reason = models.TextField(default='', blank=True)
     rejection_reason = models.TextField(default='', blank=True)

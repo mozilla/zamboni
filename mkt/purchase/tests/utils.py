@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import mock
 
-import amo
+import mkt
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.inapp.models import InAppProduct
@@ -30,7 +30,7 @@ class PurchaseTest(TestCase):
 
     def setup_base(self):
         self.addon = Webapp.objects.get(pk=337141)
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         self.price = Price.objects.get(pk=1)
         AddonPremium.objects.create(addon=self.addon, price=self.price)
 

@@ -5,7 +5,7 @@ from optparse import make_option
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-import amo
+import mkt
 from mkt.access.models import Group, GroupUser
 from mkt.api.models import Access
 from mkt.users.models import UserProfile
@@ -22,7 +22,7 @@ def create_user(email, password, group_name=None, overwrite=False):
     """
     # Create the user.
     profile, created = UserProfile.objects.get_or_create(
-        username=email, email=email, source=amo.LOGIN_SOURCE_UNKNOWN,
+        username=email, email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
         display_name=email)
 
     if not profile.read_dev_agreement:

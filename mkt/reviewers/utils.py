@@ -14,7 +14,7 @@ import waffle
 from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
-import amo
+import mkt
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -63,7 +63,7 @@ class ReviewBase(object):
         self.files = None
         self.comm_thread = None
         self.attachment_formset = attachment_formset
-        self.in_pending = self.addon.status == amo.STATUS_PENDING
+        self.in_pending = self.addon.status == mkt.STATUS_PENDING
         self.in_rereview = RereviewQueue.objects.filter(
             addon=self.addon).exists()
         self.in_escalate = EscalationQueue.objects.filter(
@@ -126,7 +126,7 @@ class ReviewBase(object):
             attachments=self.attachment_formset)
 
         # ActivityLog (ye olde).
-        amo.log(action, self.addon, self.version, user=self.user,
+        mkt.log(action, self.addon, self.version, user=self.user,
                 created=datetime.now(), details=details,
                 attachments=self.attachment_formset)
 
@@ -189,7 +189,7 @@ class ReviewBase(object):
     def request_information(self):
         """Send a request for information to the authors."""
         emails = list(self.addon.authors.values_list('email', flat=True))
-        self.create_note(amo.LOG.REQUEST_INFORMATION)
+        self.create_note(mkt.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
@@ -214,10 +214,10 @@ class ReviewApp(ReviewBase):
 
         # Hold onto the status before we change it.
         status = self.addon.status
-        if self.addon.publish_type == amo.PUBLISH_IMMEDIATE:
-            self._process_public(amo.STATUS_PUBLIC)
-        elif self.addon.publish_type == amo.PUBLISH_HIDDEN:
-            self._process_public(amo.STATUS_UNLISTED)
+        if self.addon.publish_type == mkt.PUBLISH_IMMEDIATE:
+            self._process_public(mkt.STATUS_PUBLIC)
+        elif self.addon.publish_type == mkt.PUBLISH_HIDDEN:
+            self._process_public(mkt.STATUS_UNLISTED)
         else:
             self._process_private()
 
@@ -261,17 +261,17 @@ class ReviewApp(ReviewBase):
         # version needs to be PUBLIC when an app is approved to set a
         # ``current_version``.
         if File.objects.filter(version__addon__pk=self.addon.pk,
-                               status=amo.STATUS_PUBLIC).count() == 0:
-            self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
+                               status=mkt.STATUS_PUBLIC).count() == 0:
+            self.set_files(mkt.STATUS_PUBLIC, self.version.files.all())
         else:
-            self.set_files(amo.STATUS_APPROVED, self.version.files.all())
+            self.set_files(mkt.STATUS_APPROVED, self.version.files.all())
 
-        if self.addon.status not in (amo.STATUS_PUBLIC, amo.STATUS_UNLISTED):
-            self.set_addon(status=amo.STATUS_APPROVED,
-                           highest_status=amo.STATUS_APPROVED)
+        if self.addon.status not in (mkt.STATUS_PUBLIC, mkt.STATUS_UNLISTED):
+            self.set_addon(status=mkt.STATUS_APPROVED,
+                           highest_status=mkt.STATUS_APPROVED)
         self.set_reviewed()
 
-        self.create_note(amo.LOG.APPROVE_VERSION_PRIVATE)
+        self.create_note(mkt.LOG.APPROVE_VERSION_PRIVATE)
         self.notify_email('pending_to_approved',
                           u'App approved but private: %s')
 
@@ -286,19 +286,19 @@ class ReviewApp(ReviewBase):
         self.addon.sign_if_packaged(self.version.pk)
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
+        self.set_files(mkt.STATUS_PUBLIC, self.version.files.all())
         # If app is already an approved status, don't change it when approving
         # a version.
-        if self.addon.status not in amo.WEBAPPS_APPROVED_STATUSES:
+        if self.addon.status not in mkt.WEBAPPS_APPROVED_STATUSES:
             self.set_addon(status=status, highest_status=status)
         self.set_reviewed()
 
         set_storefront_data.delay(self.addon.pk)
 
-        self.create_note(amo.LOG.APPROVE_VERSION)
-        if status == amo.STATUS_PUBLIC:
+        self.create_note(mkt.LOG.APPROVE_VERSION)
+        if status == mkt.STATUS_PUBLIC:
             self.notify_email('pending_to_public', u'App approved: %s')
-        elif status == amo.STATUS_UNLISTED:
+        elif status == mkt.STATUS_UNLISTED:
             self.notify_email('pending_to_unlisted',
                               u'App approved but unlisted: %s')
 
@@ -313,22 +313,22 @@ class ReviewApp(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
+        self.set_files(mkt.STATUS_DISABLED, self.version.files.all(),
                        hide_disabled_file=True)
         # If this app is not packaged (packaged apps can have multiple
         # versions) or if there aren't other versions with already reviewed
         # files, reject the app also.
         if (not self.addon.is_packaged or
             not self.addon.versions.exclude(id=self.version.id)
-                .filter(files__status__in=amo.REVIEWED_STATUSES).exists()):
-            self.set_addon(status=amo.STATUS_REJECTED)
+                .filter(files__status__in=mkt.REVIEWED_STATUSES).exists()):
+            self.set_addon(status=mkt.STATUS_REJECTED)
 
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
-        self.create_note(amo.LOG.REJECT_VERSION)
+        self.create_note(mkt.LOG.REJECT_VERSION)
         self.notify_email('pending_to_reject',
                           u'Your submission has been rejected: %s')
 
@@ -345,7 +345,7 @@ class ReviewApp(ReviewBase):
         Creates Escalation note/email.
         """
         EscalationQueue.objects.get_or_create(addon=self.addon)
-        self.create_note(amo.LOG.ESCALATE_MANUAL)
+        self.create_note(mkt.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
         self.notify_email('author_super_review', u'Submission Update: %s')
         log.info(u'Escalated review requested for %s' % self.addon)
@@ -365,7 +365,7 @@ class ReviewApp(ReviewBase):
         Creates Reviewer Comment note/email.
         """
         self.version.update(has_editor_comment=True)
-        self.create_note(amo.LOG.COMMENT_VERSION)
+        self.create_note(mkt.LOG.COMMENT_VERSION)
 
     def process_clear_escalation(self):
         """
@@ -374,7 +374,7 @@ class ReviewApp(ReviewBase):
         Doesn't create note/email.
         """
         EscalationQueue.objects.filter(addon=self.addon).delete()
-        self.create_note(amo.LOG.ESCALATION_CLEARED)
+        self.create_note(mkt.LOG.ESCALATION_CLEARED)
         log.info(u'Escalation cleared for app: %s' % self.addon)
 
     def process_clear_rereview(self):
@@ -384,7 +384,7 @@ class ReviewApp(ReviewBase):
         Doesn't create note/email.
         """
         RereviewQueue.objects.filter(addon=self.addon).delete()
-        self.create_note(amo.LOG.REREVIEW_CLEARED)
+        self.create_note(mkt.LOG.REREVIEW_CLEARED)
         log.info(u'Re-review cleared for app: %s' % self.addon)
         # Assign reviewer incentive scores.
         return ReviewerScore.award_points(self.request.user, self.addon,
@@ -400,10 +400,10 @@ class ReviewApp(ReviewBase):
             return
 
         # Disable disables all files, not just those in this version.
-        self.set_files(amo.STATUS_DISABLED,
+        self.set_files(mkt.STATUS_DISABLED,
                        File.objects.filter(version__addon=self.addon),
                        hide_disabled_file=True)
-        self.addon.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=mkt.STATUS_DISABLED)
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
@@ -412,7 +412,7 @@ class ReviewApp(ReviewBase):
         set_storefront_data.delay(self.addon.pk, disable=True)
 
         self.notify_email('disabled', u'App banned by reviewer: %s')
-        self.create_note(amo.LOG.APP_DISABLED)
+        self.create_note(mkt.LOG.APP_DISABLED)
         log.info(u'App %s has been banned by a reviewer.' % self.addon)
 
 
@@ -515,7 +515,7 @@ class ReviewHelper(object):
         multiple_versions = (File.objects.exclude(version=self.version)
                                          .filter(
                                              version__addon=self.addon,
-                                             status__in=amo.REVIEWED_STATUSES)
+                                             status__in=mkt.REVIEWED_STATUSES)
                                          .exists())
 
         show_privileged = (not self.version.is_privileged
@@ -523,10 +523,10 @@ class ReviewHelper(object):
                                                  'ReviewPrivileged'))
 
         # Public.
-        if ((self.addon.is_packaged and amo.STATUS_PUBLIC not in file_status
+        if ((self.addon.is_packaged and mkt.STATUS_PUBLIC not in file_status
              and show_privileged)
             or (not self.addon.is_packaged and
-                self.addon.status != amo.STATUS_PUBLIC)):
+                self.addon.status != mkt.STATUS_PUBLIC)):
             actions['public'] = public
 
         # Reject.
@@ -534,21 +534,21 @@ class ReviewHelper(object):
             # Packaged apps reject the file only, or the app itself if there's
             # only a single version.
             if (not multiple_versions and
-                self.addon.status not in [amo.STATUS_REJECTED,
-                                          amo.STATUS_DISABLED]):
+                self.addon.status not in [mkt.STATUS_REJECTED,
+                                          mkt.STATUS_DISABLED]):
                 actions['reject'] = reject
-            elif multiple_versions and amo.STATUS_DISABLED not in file_status:
+            elif multiple_versions and mkt.STATUS_DISABLED not in file_status:
                 actions['reject'] = reject
         elif not self.addon.is_packaged:
             # Hosted apps reject the app itself.
-            if self.addon.status not in [amo.STATUS_REJECTED,
-                                         amo.STATUS_DISABLED]:
+            if self.addon.status not in [mkt.STATUS_REJECTED,
+                                         mkt.STATUS_DISABLED]:
                 actions['reject'] = reject
 
         # Ban/Disable.
         if (acl.action_allowed(self.handler.request, 'Apps', 'Edit') and (
-                self.addon.status != amo.STATUS_DISABLED or
-                amo.STATUS_DISABLED not in file_status)):
+                self.addon.status != mkt.STATUS_DISABLED or
+                mkt.STATUS_DISABLED not in file_status)):
             actions['disable'] = disable
 
         # Clear escalation.
@@ -679,7 +679,7 @@ class AppsReviewing(object):
             apps = []
         apps.append(addon_id)
         cache.set(self.key, ','.join(map(str, set(apps))),
-                  amo.EDITOR_VIEWING_INTERVAL * 2)
+                  mkt.EDITOR_VIEWING_INTERVAL * 2)
 
 
 def device_queue_search(request):
@@ -688,7 +688,7 @@ def device_queue_search(request):
     specific queue.
     """
     filters = {
-        'status': amo.STATUS_PENDING,
+        'status': mkt.STATUS_PENDING,
         'disabled_by_user': False,
     }
     sig = request.GET.get('pro')
@@ -704,7 +704,7 @@ def device_queue_search(request):
 def log_reviewer_action(addon, user, msg, action, **kwargs):
     create_comm_note(addon, addon.latest_version, user, msg,
                      note_type=comm.ACTION_MAP(action.id))
-    amo.log(action, addon, addon.latest_version, details={'comments': msg},
+    mkt.log(action, addon, addon.latest_version, details={'comments': msg},
             **kwargs)
 
 
@@ -733,17 +733,17 @@ class ReviewersQueuesHelper(object):
     def get_pending_queue(self):
         if self.use_es:
             must = [
-                es_filter.Term(status=amo.STATUS_PENDING),
-                es_filter.Term(**{'latest_version.status': amo.STATUS_PENDING}),
+                es_filter.Term(status=mkt.STATUS_PENDING),
+                es_filter.Term(**{'latest_version.status': mkt.STATUS_PENDING}),
                 es_filter.Term(is_escalated=False),
                 es_filter.Term(is_disabled=False),
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
         return (Version.objects.no_cache().filter(
-            files__status=amo.STATUS_PENDING,
+            files__status=mkt.STATUS_PENDING,
             addon__disabled_by_user=False,
-            addon__status=amo.STATUS_PENDING)
+            addon__status=mkt.STATUS_PENDING)
             .exclude(addon__id__in=self.excluded_ids)
             .order_by('nomination', 'created')
             .select_related('addon', 'files').no_transforms())
@@ -764,10 +764,10 @@ class ReviewersQueuesHelper(object):
     def get_updates_queue(self):
         if self.use_es:
             must = [
-                es_filter.Terms(status=amo.WEBAPPS_APPROVED_STATUSES),
-                es_filter.Term(**{'latest_version.status': amo.STATUS_PENDING}),
-                es_filter.Terms(app_type=[amo.ADDON_WEBAPP_PACKAGED,
-                                          amo.ADDON_WEBAPP_PRIVILEGED]),
+                es_filter.Terms(status=mkt.WEBAPPS_APPROVED_STATUSES),
+                es_filter.Term(**{'latest_version.status': mkt.STATUS_PENDING}),
+                es_filter.Terms(app_type=[mkt.ADDON_WEBAPP_PACKAGED,
+                                          mkt.ADDON_WEBAPP_PRIVILEGED]),
                 es_filter.Term(is_disabled=False),
                 es_filter.Term(is_escalated=False),
             ]
@@ -776,10 +776,10 @@ class ReviewersQueuesHelper(object):
         return (Version.objects.no_cache().filter(
             # Note: this will work as long as we disable files of existing
             # unreviewed versions when a new version is uploaded.
-            files__status=amo.STATUS_PENDING,
+            files__status=mkt.STATUS_PENDING,
             addon__disabled_by_user=False,
             addon__is_packaged=True,
-            addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
+            addon__status__in=mkt.WEBAPPS_APPROVED_STATUSES)
             .exclude(addon__id__in=self.excluded_ids)
             .order_by('nomination', 'created')
             .select_related('addon', 'files').no_transforms())
@@ -787,7 +787,7 @@ class ReviewersQueuesHelper(object):
     def get_moderated_queue(self):
         return (Review.objects.no_cache()
                 .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
-                .exclude(addon__status=amo.STATUS_DELETED)
+                .exclude(addon__status=mkt.STATUS_DELETED)
                 .filter(editorreview=True)
                 .order_by('reviewflag__created'))
 
