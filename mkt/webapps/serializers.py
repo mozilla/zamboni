@@ -173,7 +173,6 @@ class AppSerializer(serializers.ModelSerializer):
                      for icon_size in mkt.APP_ICON_SIZES])
 
     def get_payment_account(self, app):
-
         # Avoid a query for payment_account if the app is not premium.
         if not app.is_premium():
             return None
@@ -195,16 +194,12 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_price(self, app):
         if app.has_premium():
-            region = self._get_region_id()
-            if region in app.get_price_region_ids():
-                return app.get_price(region=region)
+            return app.get_price(region=self._get_region_id())
         return None
 
     def get_price_locale(self, app):
         if app.has_premium():
-            region = self._get_region_id()
-            if region in app.get_price_region_ids():
-                return app.get_price_locale(region=region)
+            return app.get_price_locale(region=self._get_region_id())
         return None
 
     def get_ratings_aggregates(self, app):

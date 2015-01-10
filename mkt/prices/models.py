@@ -108,11 +108,10 @@ class Price(ModelBase):
         Returns the PriceCurrency object or none.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to restofworld.
+        :param optional region: an int for the region.
         :param optional provider: an int for the provider. Defaults to bango.
         """
         from mkt.developers.providers import ALL_PROVIDERS
-        region = region or RESTOFWORLD.id
         # Unless you specify a provider, we will give you the Bango tier.
         # This is probably ok for now, because Bango is the default fall back
         # however we might need to think about this for the long term.
@@ -133,29 +132,33 @@ class Price(ModelBase):
 
         return price_currency
 
-    def get_price_data(self, carrier=None, region=None, provider=None):
+    def get_price_data(self, carrier=None, regions=None, provider=None):
         """
-        Returns a tuple of Decimal(price), currency, locale.
+        Returns a tuple of Decimal(price), currency.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to restofworld.
+        :param optional regions:
+            a list of ints for the region to try in order, if not given
+            default to RESTOFWORLD.
         :param optional provider: an int for the provider. Defaults to bango.
         """
-        price_currency = self.get_price_currency(carrier=carrier,
-                                                 region=region,
-                                                 provider=provider)
-        if price_currency:
-            return price_currency.price, price_currency.currency
+        for region in regions:
+            price_currency = self.get_price_currency(carrier=carrier,
+                                                     region=region,
+                                                     provider=provider)
+            if price_currency:
+                return price_currency.price, price_currency.currency
+
         return None, None
 
-    def get_price(self, carrier=None, region=None, provider=None):
+    def get_price(self, carrier=None, regions=None, provider=None):
         """Return the price as a decimal for the current locale."""
-        return self.get_price_data(carrier=carrier, region=region,
+        return self.get_price_data(carrier=carrier, regions=regions,
                                    provider=provider)[0]
 
-    def get_price_locale(self, carrier=None, region=None, provider=None):
+    def get_price_locale(self, carrier=None, regions=None, provider=None):
         """Return the price as a nicely localised string for the locale."""
-        price, currency = self.get_price_data(carrier=carrier, region=region,
+        price, currency = self.get_price_data(carrier=carrier, regions=regions,
                                               provider=provider)
         if price is not None and currency is not None:
             return price_locale(price, currency)

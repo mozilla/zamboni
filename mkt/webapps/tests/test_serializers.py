@@ -13,6 +13,7 @@ import mkt
 import mkt.site.tests
 from mkt.constants import ratingsbodies, regions
 from mkt.constants.payments import PROVIDER_REFERENCE
+from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.prices.models import PriceCurrency
@@ -240,8 +241,8 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
-        region_id = list(upsell.get_excluded_region_ids())[0]
-        self.request.REGION = mkt.regions.REGIONS_CHOICES_ID[region_id][1]
+        upsell.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.request.REGION = mkt.regions.BR
 
         res = self.serialize(self.app)
         eq_(res['upsell'], False)
@@ -278,8 +279,16 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
         eq_(res['price_locale'], '$0.00')
         eq_(res['payment_required'], False)
 
-    def test_wrong_region(self):
+    def test_fallback(self):
         self.make_premium(self.app, price='0.99')
+        res = self.serialize(self.app, region=regions.PL)
+        eq_(res['price'], Decimal('0.99'))
+        eq_(res['price_locale'], '$0.99')
+        eq_(res['payment_required'], True)
+
+    def test_fallback_excluded(self):
+        self.make_premium(self.app, price='0.99')
+        self.app.addonexcludedregion.create(region=RESTOFWORLD.id)
         res = self.serialize(self.app, region=regions.PL)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
@@ -304,20 +313,6 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
         res = self.serialize(self.app)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
-
-    def test_cannot_purchase(self):
-        self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.UK)
-        eq_(res['price'], None)
-        eq_(res['price_locale'], None)
-        eq_(res['payment_required'], True)
-
-    def test_can_purchase(self):
-        self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.UK)
-        eq_(res['price'], None)
-        eq_(res['price_locale'], None)
-        eq_(res['payment_required'], True)
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
@@ -646,14 +641,12 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_upsell_region_without_payments(self):
         upsell = mkt.site.tests.app_factory()
+        upsell.addonexcludedregion.create(region=mkt.regions.BR.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
 
-        region_id = list(upsell.get_excluded_region_ids())[0]
-        region = mkt.regions.REGIONS_CHOICES_ID[region_id][1]
-        self.request.REGION = region
-
+        self.request.REGION = mkt.regions.BR
         res = self.serialize()
         eq_(res['upsell'], False)
 

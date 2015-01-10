@@ -245,6 +245,8 @@ define('payments', [], function() {
                         moveAnimate($label, $newParent, $tds);
                     }
                 });
+
+                $('.paid-regions input[name="regions"][value="1"]:checked').trigger('change', [true])
             },
             dataType: "json"
         }).fail(function() {
@@ -298,6 +300,8 @@ define('payments', [], function() {
                 status = checked ? 'pending' : 'unavailable';
             }
             $this.closest('li').find('.status-label').text(labels[status] || '');
+        }).on('change', '.paid-regions input[name="regions"][value="1"]', function() {
+            $('#regions .rest-of-world').toggle();
         });
 
         // Initialize special checkboxes.

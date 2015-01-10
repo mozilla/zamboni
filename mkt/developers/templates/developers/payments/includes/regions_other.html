@@ -4,7 +4,7 @@
 <div class="hint note">
     {{ _('Your app will be displayed in any regional Marketplace that is added in the future.')}}
     {% if region_form._product_is_paid() %}
-      <em>{{ _('(Subject to payments being available in that region for the selected price point).') }}</em>
+      <em>{{ _('(Subject to payments being available in that region for the selected price point or "Rest of World" being selected as a payment option).') }}</em>
     {% endif %}
     {{  _('You will receive an email notification when a new region is added.') }}
 </div>
