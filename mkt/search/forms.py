@@ -17,6 +17,7 @@ SORT_CHOICES = [
     ('created', _lazy(u'Newest')),
     ('reviewed', _lazy(u'Reviewed')),
     ('name', _lazy(u'Name')),
+    ('trending', _lazy(u'Trending')),
 ]
 
 FREE_SORT_CHOICES = [(k, v) for k, v in SORT_CHOICES if k != 'price']

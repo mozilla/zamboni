@@ -211,3 +211,13 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'sort': ['rating', 'created']})
         ok_({'bayesian_rating': {'order': 'desc'}} in qs['sort'])
         ok_({'created': {'order': 'desc'}} in qs['sort'])
+
+    def test_sort_regional(self):
+        """Popularity and trending use regional sorting for mature regions."""
+        self.req.REGION = regions.BR
+        # Popularity.
+        qs = self._filter(self.req, {'sort': ['popularity']})
+        ok_({'popularity_%s' % regions.BR.id: {'order': 'desc'}} in qs['sort'])
+        # Trending.
+        qs = self._filter(self.req, {'sort': ['trending']})
+        ok_({'trending_%s' % regions.BR.id: {'order': 'desc'}} in qs['sort'])

@@ -33,6 +33,7 @@ DEFAULT_SORTING = {
     'created': '-created',
     'reviewed': '-reviewed',
     'name': 'name_sort',
+    'trending': '-trending',
 }
 
 
@@ -120,6 +121,8 @@ def _sort_search(request, sq, data):
         if 'popularity' in data['sort'] and region and not region.adolescent:
             # Mature regions sort by their popularity field.
             order_by = ['-popularity_%s' % region.id]
+        elif 'trending' in data['sort'] and region and not region.adolescent:
+            order_by = ['-trending_%s' % region.id]
         else:
             order_by = [DEFAULT_SORTING[name] for name in data['sort']
                         if name in DEFAULT_SORTING]

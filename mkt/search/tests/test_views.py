@@ -182,7 +182,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         # Make sure elasticsearch is actually accepting the params.
         for api_sort, es_sort in DEFAULT_SORTING.items():
             res = self.anon.get(self.url, [('sort', api_sort)])
-            eq_(res.status_code, 200)
+            eq_(res.status_code, 200, res.content)
 
     def test_multiple_sort(self):
         res = self.anon.get(self.url, [('sort', 'rating'),
@@ -763,6 +763,17 @@ class TestSearchView(RestOAuth, ESTestCase):
         app2._reviews.create(user=user, rating=5)
         self.refresh()
         res = self.anon.get(self.url, {'sort': 'rating'})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['id'], app2.id)
+        eq_(res.json['objects'][1]['id'], app1.id)
+
+    def test_trending_sort(self):
+        app1 = self.webapp
+        app2 = app_factory()
+        app1.trending.get_or_create(value='2.0')
+        app2.trending.get_or_create(value='12.0')
+        self.refresh()
+        res = self.anon.get(self.url, {'sort': 'trending'})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['id'], app2.id)
         eq_(res.json['objects'][1]['id'], app1.id)
