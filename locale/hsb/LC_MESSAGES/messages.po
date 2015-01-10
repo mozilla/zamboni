@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-09 21:24+0000\n"
+"PO-Revision-Date: 2015-01-10 12:19+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420838697.0\n"
+"X-POOTLE-MTIME: 1420892390.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5260,6 +5260,10 @@ msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
+"Hdyž so wotewrjene webstandardy a API wuhotowane wot Mozilla wuužiwaja, "
+"hodźa so wulkotne nałoženske dožiwjenja přez rozdźělne platformy, graty a "
+"dźěłowe systemy dodawać &mdash; to wupjelnja prěni raz dźěru mjez webowymi a "
+"systemowymi nałoženjemi."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -5309,6 +5313,9 @@ msgstr "Nałoženja a programowanske rozrisanja"
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"Zregistrujće so za naš měsačny powěsćowy list wo Firefox OS, Torhošću a "
+"ekosystemje nałoženjow. <a href=\"%(dev_phone_url)s\">Wobhladajće sej "
+"wuwiwarski přehlad telefona</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -5325,6 +5332,8 @@ msgstr "Podawki a zetkanja"
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
 msgstr ""
+"Sym přezjedny, zo Mozilla z tutymi informacijemi po <a href=\"%"
+"(privacy_link)s\">prawidłach priwatnosće</a> wobchadźa."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
@@ -5332,39 +5341,39 @@ msgstr "Zregistrujće mje!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "Zawjedźenje do nałoženjow wotewrjeneho weba"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:37
 msgid "Intro to Firefox OS"
-msgstr ""
+msgstr "Zawjedźenje do Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:57
 msgid "Chrono"
-msgstr ""
+msgstr "Chrono"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:65
 msgid "Face Value"
-msgstr ""
+msgstr "Face Value"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:73
 msgid "Podcasts"
-msgstr ""
+msgstr "Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:81
 msgid "Roller"
-msgstr ""
+msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:89
 msgid "Webfighter"
-msgstr ""
+msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:97
 msgid "General Notes"
-msgstr ""
+msgstr "General Notes"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:109
 msgid "Intro to Manifests"
-msgstr ""
+msgstr "Zawjedźenje do manifestow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:113
 msgid "For Current Web Developers"
@@ -5405,27 +5414,27 @@ msgstr "Wuwiwarske nastroje Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Marketplace Submission"
-msgstr ""
+msgstr "Zapodawanje do Torhošća"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:170
 msgid "Marketplace Review Criteria"
-msgstr ""
+msgstr "Přepruwowanske kriterije Torhošća"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:189
 msgid "Payments Status"
-msgstr ""
+msgstr "Płaćenski status"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:236
 msgid "View with subtitles"
-msgstr ""
+msgstr "Z podtitulemi sej wobhladać"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:269
 msgid "Made in partnership with our friends at Treehouse"
-msgstr ""
+msgstr "Wuwity w zhromadnym dźěle z našimi přećelemi pola Treehouse"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:271
 msgid "Check them out!"
-msgstr ""
+msgstr "Wobhladajće sej je!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
@@ -5475,31 +5484,31 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
-msgstr ""
+msgstr "Wy + Mozilla = Špica"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "Wostańće zwjazany."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
-msgstr ""
+msgstr "Blog nałoženjow"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr ""
+msgstr "Youtube-kanal Torhošća Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Přitykowaki, chorhoje a symbole"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
@@ -5507,7 +5516,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Směrnicy"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -5547,31 +5556,31 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr ""
+msgstr "Što ja měł wědźeć, prjedy hač nałoženje wutworju?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr ""
+msgstr "Kak móžu swoje nałoženje do Torhošća Firefox nahrać?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr ""
+msgstr "Trjebam pomoc za manifest nałoženja."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr ""
+msgstr "Kak wuwiwam instalujomne nałoženje?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "Kak funguja płaćenja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Kak rjaduju dawki swojich předanjow?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "Maće hišće dalše prašenja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
@@ -5579,7 +5588,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Staplowy přeběh"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
@@ -5616,11 +5625,11 @@ msgstr ""
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Datajowa wulkosć překročuje limit {0}."
 
 #: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemy při dekodowanju {0}."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
@@ -5628,15 +5637,15 @@ msgstr ""
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
-msgstr ""
+msgstr "Tuta dataja je rjadowak."
 
 #: mkt/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Při přistupje na dataju %s je zmylk wustupił. %s."
 
 #: mkt/files/tasks.py:31
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Při přistupje na dataju %s je zmylk wustupił."
 
 #: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
@@ -5648,7 +5657,7 @@ msgstr ""
 
 #: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
-msgstr ""
+msgstr "Manifest webnałoženja płaćiwy JSON njeje."
 
 #: mkt/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
