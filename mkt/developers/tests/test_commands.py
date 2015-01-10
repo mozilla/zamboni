@@ -2,9 +2,8 @@
 import mock
 from nose.tools import eq_, ok_
 
-import amo
-import mkt.site.tests
 import mkt
+import mkt.site.tests
 from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 exclude_unrated,
                                                 migrate_geodata,
@@ -27,7 +26,7 @@ class TestCommandViews(mkt.site.tests.TestCase):
         cleanup_addon_premium.Command().handle()
         eq_(AddonPremium.objects.all().count(), 1)
 
-        self.webapp.update(premium_type=amo.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.ADDON_FREE)
         cleanup_addon_premium.Command().handle()
         eq_(AddonPremium.objects.all().count(), 0)
 

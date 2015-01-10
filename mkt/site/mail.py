@@ -14,8 +14,8 @@ from mkt.users.notifications import NOTIFICATIONS_BY_SHORT
 from mkt.zadmin.models import get_config
 
 
-maillog = logging.getLogger('z.amo.mail')
-log = commonware.log.getLogger('z.amo')
+maillog = logging.getLogger('z.mkt.mail')
+log = commonware.log.getLogger('z.mkt')
 
 
 class FakeEmailBackend(BaseEmailBackend):

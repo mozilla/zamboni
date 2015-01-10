@@ -10,7 +10,7 @@ from jwkest.jws import JWS
 from jwkest.jwk import RSAKey, import_rsa_key_from_file
 from tower import ugettext_lazy as _lazy
 
-import amo
+import mkt
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
 from mkt.site.helpers import absolutify
@@ -86,8 +86,8 @@ class PurchasesFilter(BaseFilter):
 def purchase_list(request, user, product_id):
     cs = (Contribution.objects
           .filter(user=user,
-                  type__in=[amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
-                            amo.CONTRIB_CHARGEBACK])
+                  type__in=[mkt.CONTRIB_PURCHASE, mkt.CONTRIB_REFUND,
+                            mkt.CONTRIB_CHARGEBACK])
           .order_by('created'))
     if product_id:
         cs = cs.filter(addon__guid=product_id)

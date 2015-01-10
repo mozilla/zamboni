@@ -8,7 +8,7 @@ from django.db.models import Sum
 import commonware.log
 import waffle
 
-import amo
+import mkt
 import mkt.constants.comm as comm
 from mkt.comm.utils import create_comm_note
 from mkt.site.mail import send_mail_jinja
@@ -54,7 +54,7 @@ class ReviewerScore(ModelBase):
     addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
     # For automated point rewards.
-    note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
+    note_key = models.SmallIntegerField(choices=mkt.REVIEWED_CHOICES.items(),
                                         default=0)
     # For manual point rewards with a note.
     note = models.CharField(max_length=255, blank=True)
@@ -86,22 +86,22 @@ class ReviewerScore(ModelBase):
 
         """
         if addon.is_packaged:
-            if status in amo.WEBAPPS_APPROVED_STATUSES:
-                if addon.app_type_id == amo.ADDON_WEBAPP_PRIVILEGED:
-                    return amo.REVIEWED_WEBAPP_PRIVILEGED_UPDATE
+            if status in mkt.WEBAPPS_APPROVED_STATUSES:
+                if addon.app_type_id == mkt.ADDON_WEBAPP_PRIVILEGED:
+                    return mkt.REVIEWED_WEBAPP_PRIVILEGED_UPDATE
                 else:
-                    return amo.REVIEWED_WEBAPP_UPDATE
+                    return mkt.REVIEWED_WEBAPP_UPDATE
             else:  # If it's not PUBLIC, assume it's a new submission.
-                if addon.app_type_id == amo.ADDON_WEBAPP_PRIVILEGED:
-                    return amo.REVIEWED_WEBAPP_PRIVILEGED
+                if addon.app_type_id == mkt.ADDON_WEBAPP_PRIVILEGED:
+                    return mkt.REVIEWED_WEBAPP_PRIVILEGED
                 else:
-                    return amo.REVIEWED_WEBAPP_PACKAGED
+                    return mkt.REVIEWED_WEBAPP_PACKAGED
         else:  # It's a hosted app.
             in_rereview = kwargs.pop('in_rereview', False)
-            if status in amo.WEBAPPS_APPROVED_STATUSES and in_rereview:
-                return amo.REVIEWED_WEBAPP_REREVIEW
+            if status in mkt.WEBAPPS_APPROVED_STATUSES and in_rereview:
+                return mkt.REVIEWED_WEBAPP_REREVIEW
             else:
-                return amo.REVIEWED_WEBAPP_HOSTED
+                return mkt.REVIEWED_WEBAPP_HOSTED
 
     @classmethod
     def get_extra_platform_points(cls, addon, status):
@@ -110,10 +110,10 @@ class ReviewerScore(ModelBase):
         submissions get extra points (for now).
 
         """
-        if status in amo.WEBAPPS_APPROVED_STATUSES:
+        if status in mkt.WEBAPPS_APPROVED_STATUSES:
             return 0
-        event = amo.REVIEWED_WEBAPP_PLATFORM_EXTRA
-        platform_bonus = amo.REVIEWED_SCORES.get(event)
+        event = mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA
+        platform_bonus = mkt.REVIEWED_SCORES.get(event)
         devices_count = len(addon.device_types)
         if devices_count < 2:
             return 0
@@ -129,7 +129,7 @@ class ReviewerScore(ModelBase):
 
         """
         event = cls.get_event(addon, status, **kwargs)
-        score = amo.REVIEWED_SCORES.get(event)
+        score = mkt.REVIEWED_SCORES.get(event)
         if score:
             score += cls.get_extra_platform_points(addon, status)
             cls.objects.create(user=user, addon=addon, score=score,
@@ -137,34 +137,34 @@ class ReviewerScore(ModelBase):
             cls.get_key(invalidate=True)
             user_log.info(
                 (u'Awarding %s points to user %s for "%s" for addon %s'
-                 % (score, user, amo.REVIEWED_CHOICES[event], addon.id))
+                 % (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
                 .encode('utf-8'))
         return score
 
     @classmethod
     def award_moderation_points(cls, user, addon, review_id):
         """Awards points to user based on moderated review."""
-        event = amo.REVIEWED_APP_REVIEW
-        score = amo.REVIEWED_SCORES.get(event)
+        event = mkt.REVIEWED_APP_REVIEW
+        score = mkt.REVIEWED_SCORES.get(event)
 
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
             u'Awarding %s points to user %s for "%s" for review %s' % (
-                score, user, amo.REVIEWED_CHOICES[event], review_id))
+                score, user, mkt.REVIEWED_CHOICES[event], review_id))
 
     @classmethod
     def award_additional_review_points(cls, user, addon, queue):
         """Awards points to user based on additional (Tarako) review."""
         # TODO: generalize with other additional reviews queues
-        event = amo.REVIEWED_WEBAPP_TARAKO
-        score = amo.REVIEWED_SCORES.get(event)
+        event = mkt.REVIEWED_WEBAPP_TARAKO
+        score = mkt.REVIEWED_SCORES.get(event)
 
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
             u'Awarding %s points to user %s for "%s" for addon %s' %
-                (score, user, amo.REVIEWED_CHOICES[event], addon.id))
+                (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
     def get_total(cls, user):
@@ -335,8 +335,8 @@ class ReviewerScore(ModelBase):
 
         for row in query:
             user_id, name, total = row
-            user_level = len(amo.REVIEWED_LEVELS) - 1
-            for i, level in enumerate(amo.REVIEWED_LEVELS):
+            user_level = len(mkt.REVIEWED_LEVELS) - 1
+            for i, level in enumerate(mkt.REVIEWED_LEVELS):
                 if total < level['points']:
                     user_level = i - 1
                     break
@@ -345,7 +345,7 @@ class ReviewerScore(ModelBase):
             if user_level < 0:
                 level = ''
             else:
-                level = amo.REVIEWED_LEVELS[user_level]['name']
+                level = mkt.REVIEWED_LEVELS[user_level]['name']
 
             scores.append({
                 'user_id': user_id,
@@ -381,10 +381,10 @@ class RereviewQueue(ModelBase):
     def flag(cls, addon, event, message=None):
         cls.objects.get_or_create(addon=addon)
         if message:
-            amo.log(event, addon, addon.current_version,
+            mkt.log(event, addon, addon.current_version,
                     details={'comments': message})
         else:
-            amo.log(event, addon, addon.current_version)
+            mkt.log(event, addon, addon.current_version)
 
         # TODO: if we ever get rid of ActivityLog for reviewer notes, replace
         # all flag calls to use the comm constant and not have to use
@@ -427,7 +427,7 @@ class AdditionalReviewManager(ManagerBase):
             'queue': queue,
         }
         if and_approved:
-            query['app__status__in'] = amo.WEBAPPS_APPROVED_STATUSES
+            query['app__status__in'] = mkt.WEBAPPS_APPROVED_STATUSES
         if descending:
             created_order = '-created'
         else:
@@ -480,10 +480,10 @@ class AdditionalReview(ModelBase):
             raise ValueError('cannot execute post-review task when unreviewed')
         elif self.passed:
             tarako_passed(self)
-            action = amo.LOG.PASS_ADDITIONAL_REVIEW
+            action = mkt.LOG.PASS_ADDITIONAL_REVIEW
         else:
             tarako_failed(self)
-            action = amo.LOG.FAIL_ADDITIONAL_REVIEW
+            action = mkt.LOG.FAIL_ADDITIONAL_REVIEW
         self.log_reviewer_action(
             self.app, self.reviewer, self.comment or '', action,
             queue=self.queue)

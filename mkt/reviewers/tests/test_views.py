@@ -24,10 +24,9 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from requests.structures import CaseInsensitiveDict
 
-import amo
-import mkt.site.tests
 import mkt
 import mkt.ratings
+import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
@@ -158,42 +157,42 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         super(TestReviewersHome, self).setUp()
         self.url = reverse('reviewers.home')
         self.apps = [app_factory(name='Antelope',
-                                 status=amo.STATUS_PENDING,
-                                 file_kw={'status': amo.STATUS_PENDING}),
+                                 status=mkt.STATUS_PENDING,
+                                 file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='Bear',
-                                 status=amo.STATUS_PENDING,
-                                 file_kw={'status': amo.STATUS_PENDING}),
+                                 status=mkt.STATUS_PENDING,
+                                 file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='Cougar',
-                                 status=amo.STATUS_PENDING,
-                                 file_kw={'status': amo.STATUS_PENDING})]
+                                 status=mkt.STATUS_PENDING,
+                                 file_kw={'status': mkt.STATUS_PENDING})]
         self.packaged_app = app_factory(name='Dinosaur',
-                                        status=amo.STATUS_PUBLIC,
+                                        status=mkt.STATUS_PUBLIC,
                                         is_packaged=True)
         version_factory(addon=self.packaged_app,
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
 
         # Add a disabled app for good measure.
         app_factory(name='Elephant', disabled_by_user=True,
-                    status=amo.STATUS_PENDING)
+                    status=mkt.STATUS_PENDING)
 
         # Escalate one app to make sure it doesn't affect stats.
         escalated = app_factory(name='Eyelash Pit Viper',
-                                status=amo.STATUS_PENDING)
+                                status=mkt.STATUS_PENDING)
         EscalationQueue.objects.create(addon=escalated)
 
         # Add a public app under re-review.
-        rereviewed = app_factory(name='Finch', status=amo.STATUS_PUBLIC)
+        rereviewed = app_factory(name='Finch', status=mkt.STATUS_PUBLIC)
         rq = RereviewQueue.objects.create(addon=rereviewed)
         rq.update(created=self.days_ago(1))
 
         # Add an app with latest update deleted. It shouldn't affect anything.
         app = app_factory(name='Great White Shark',
-                          status=amo.STATUS_PUBLIC,
+                          status=mkt.STATUS_PUBLIC,
                           version_kw={'version': '1.0'},
                           is_packaged=True)
         v = version_factory(addon=app,
                         version='2.1',
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
         v.update(deleted=True)
 
     def test_route_reviewer(self):
@@ -233,19 +232,19 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def test_progress_updated(self):
         extra_app = app_factory(name='Jackalope',
-                                status=amo.STATUS_PUBLIC,
+                                status=mkt.STATUS_PUBLIC,
                                 is_packaged=True,
                                 created=self.days_ago(35))
         version_factory(addon=extra_app,
-                        file_kw={'status': amo.STATUS_PENDING},
+                        file_kw={'status': mkt.STATUS_PENDING},
                         created=self.days_ago(25),
                         nomination=self.days_ago(8))
         extra_app = app_factory(name='Jackrabbit',
-                                status=amo.STATUS_PUBLIC,
+                                status=mkt.STATUS_PUBLIC,
                                 is_packaged=True,
                                 created=self.days_ago(35))
         version_factory(addon=extra_app,
-                        file_kw={'status': amo.STATUS_PENDING},
+                        file_kw={'status': mkt.STATUS_PENDING},
                         created=self.days_ago(25),
                         nomination=self.days_ago(25))
         counts, percentages = _progress()
@@ -302,7 +301,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # 1st user reviews 2, 2nd user only 1.
         users = cycle(reviewers)
         for app in self.apps:
-            amo.log(amo.LOG.APPROVE_VERSION, app, app.latest_version,
+            mkt.log(mkt.LOG.APPROVE_VERSION, app, app.latest_version,
                     user=users.next(), details={'comments': 'hawt'})
 
         doc = pq(self.client.get(self.url).content.decode('utf-8'))
@@ -336,7 +335,7 @@ class FlagsMixin(object):
         eq_(flag.length, 1)
 
     def test_flag_premium_app(self):
-        self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         eq_(self.apps[0].is_premium(), True)
@@ -347,7 +346,7 @@ class FlagsMixin(object):
         eq_(flags.length, 1)
 
     def test_flag_free_inapp_app(self):
-        self.apps[0].update(premium_type=amo.ADDON_FREE_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
@@ -355,7 +354,7 @@ class FlagsMixin(object):
         eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
 
     def test_flag_premium_inapp_app(self):
-        self.apps[0].update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM_INAPP)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
@@ -404,13 +403,13 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def setUp(self):
         super(TestAppQueue, self).setUp()
         self.apps = [app_factory(name='XXX',
-                                 status=amo.STATUS_PENDING,
+                                 status=mkt.STATUS_PENDING,
                                  version_kw={'nomination': self.days_ago(2)},
-                                 file_kw={'status': amo.STATUS_PENDING}),
+                                 file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='YYY',
-                                 status=amo.STATUS_PENDING,
+                                 status=mkt.STATUS_PENDING,
                                  version_kw={'nomination': self.days_ago(1)},
-                                 file_kw={'status': amo.STATUS_PENDING}),
+                                 file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='ZZZ')]
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(1))
@@ -437,7 +436,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
         apps = Webapp.objects.filter(
-            status=amo.STATUS_PENDING).order_by('created')
+            status=mkt.STATUS_PENDING).order_by('created')
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
@@ -459,8 +458,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_action_buttons_rejected(self):
         # Check action buttons for a previously rejected app.
-        self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].update(status=mkt.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=mkt.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -475,7 +474,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     @mock.patch('mkt.versions.models.Version.is_privileged', True)
     def test_action_buttons_privileged_cantreview(self):
         self.apps[0].update(is_packaged=True)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_PENDING)
+        self.apps[0].latest_version.files.update(status=mkt.STATUS_PENDING)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -490,7 +489,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_action_buttons_privileged_canreview(self):
         self.login_as_senior_reviewer()
         self.apps[0].update(is_packaged=True)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_PENDING)
+        self.apps[0].latest_version.files.update(status=mkt.STATUS_PENDING)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -515,17 +514,17 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(tds('ul li:not(.unavailable)').length, 2)
 
     def test_payments(self):
-        self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
-        self.apps[1].update(premium_type=amo.ADDON_FREE_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
+        self.apps[1].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
         eq_(tds.eq(0).text(),
-            unicode(amo.ADDON_PREMIUM_TYPES[amo.ADDON_PREMIUM]))
+            unicode(mkt.ADDON_PREMIUM_TYPES[mkt.ADDON_PREMIUM]))
         eq_(tds.eq(1).text(),
-            unicode(amo.ADDON_PREMIUM_TYPES[amo.ADDON_FREE_INAPP]))
+            unicode(mkt.ADDON_PREMIUM_TYPES[mkt.ADDON_FREE_INAPP]))
 
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
@@ -572,7 +571,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_incomplete_no_in_queue(self):
-        [app.update(status=amo.STATUS_NULL) for app in self.apps]
+        [app.update(status=mkt.STATUS_NULL) for app in self.apps]
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         req = req_factory_factory(self.url,
@@ -594,19 +593,19 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def setUp(self):
         self.apps = [app_factory(name='WWW',
-                                 status=amo.STATUS_PUBLIC),
+                                 status=mkt.STATUS_PUBLIC),
                      app_factory(name='XXX',
-                                 status=amo.STATUS_APPROVED),
+                                 status=mkt.STATUS_APPROVED),
                      app_factory(name='YYY',
-                                 status=amo.STATUS_PUBLIC),
+                                 status=mkt.STATUS_PUBLIC),
                      app_factory(name='ZZZ',
-                                 status=amo.STATUS_PENDING)]
+                                 status=mkt.STATUS_PENDING)]
         # WWW and XXX are the only ones actually requested to be public.
-        self.apps[0].geodata.update(region_cn_status=amo.STATUS_PENDING,
+        self.apps[0].geodata.update(region_cn_status=mkt.STATUS_PENDING,
             region_cn_nominated=self.days_ago(2))
-        self.apps[1].geodata.update(region_cn_status=amo.STATUS_PENDING,
+        self.apps[1].geodata.update(region_cn_status=mkt.STATUS_PENDING,
             region_cn_nominated=self.days_ago(1))
-        self.apps[2].geodata.update(region_cn_status=amo.STATUS_PUBLIC)
+        self.apps[2].geodata.update(region_cn_status=mkt.STATUS_PUBLIC)
 
         self.user = UserProfile.objects.get(username='editor')
         self.grant_permission(self.user, 'Apps:ReviewRegionCN')
@@ -719,8 +718,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.check_actions(expected, actions)
 
     def test_action_buttons_reject(self):
-        self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].update(status=mkt.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=mkt.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -808,10 +807,10 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         version_factory(addon=app1, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
         version_factory(addon=app2, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
 
         self.apps = list(Webapp.objects.order_by('id'))
         self.login_as_editor()
@@ -840,7 +839,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         check_links(expected, links, verify=False)
 
     def test_action_buttons_public_senior_reviewer(self):
-        self.apps[0].versions.latest().files.update(status=amo.STATUS_PUBLIC)
+        self.apps[0].versions.latest().files.update(status=mkt.STATUS_PUBLIC)
         self.login_as_senior_reviewer()
 
         r = self.client.get(self.review_url(self.apps[0]))
@@ -856,7 +855,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.check_actions(expected, actions)
 
     def test_action_buttons_public(self):
-        self.apps[0].versions.latest().files.update(status=amo.STATUS_PUBLIC)
+        self.apps[0].versions.latest().files.update(status=mkt.STATUS_PUBLIC)
 
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
@@ -870,7 +869,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.check_actions(expected, actions)
 
     def test_action_buttons_reject(self):
-        self.apps[0].versions.latest().files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].versions.latest().files.update(status=mkt.STATUS_DISABLED)
 
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
@@ -947,9 +946,9 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_only_updates_in_queue(self):
         # Add new packaged app, which should only show up in the pending queue.
         app = app_factory(is_packaged=True, name='ZZZ',
-                          status=amo.STATUS_PENDING,
+                          status=mkt.STATUS_PENDING,
                           version_kw={'version': '1.0'},
-                          file_kw={'status': amo.STATUS_PENDING})
+                          file_kw={'status': mkt.STATUS_PENDING})
         self.apps.append(app)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
@@ -966,7 +965,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_approved_update_in_queue(self):
         app = app_factory(is_packaged=True, name='YYY',
-                          status=amo.STATUS_APPROVED,
+                          status=mkt.STATUS_APPROVED,
                           version_kw={'version': '1.0',
                                       'created': self.days_ago(2),
                                       'nomination': self.days_ago(2)})
@@ -975,7 +974,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
 
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
@@ -988,7 +987,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_update_queue_with_empty_nomination(self):
         app = app_factory(is_packaged=True, name='YYY',
-                          status=amo.STATUS_NULL,
+                          status=mkt.STATUS_NULL,
                           version_kw={'version': '1.0',
                                       'created': self.days_ago(2),
                                       'nomination': None})
@@ -996,10 +995,10 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         first_version = app.latest_version
         version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=None,
-                        file_kw={'status': amo.STATUS_PENDING})
+                        file_kw={'status': mkt.STATUS_PENDING})
 
         # Now that we have a version with nomination=None, reset app status.
-        app.update(status=amo.STATUS_APPROVED)
+        app.update(status=mkt.STATUS_APPROVED)
         File.objects.filter(version=first_version).update(status=app.status)
 
         # Safeguard: we /really/ want to test with nomination=None.
@@ -1023,11 +1022,11 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         app = self.apps[0]
         # File is PENDING and delete current version.
         old_ver = app.versions.order_by('id')[0]
-        old_ver.files.latest().update(status=amo.STATUS_PENDING)
+        old_ver.files.latest().update(status=mkt.STATUS_PENDING)
         old_ver.delete()
         # "Approve" the app.
-        app.versions.latest().files.latest().update(status=amo.STATUS_PUBLIC)
-        eq_(app.reload().status, amo.STATUS_PUBLIC)
+        app.versions.latest().files.latest().update(status=mkt.STATUS_PUBLIC)
+        eq_(app.reload().status, mkt.STATUS_PUBLIC)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
 
@@ -1073,8 +1072,8 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
                                             'nomination': self.days_ago(2)})
         self.app2.versions.latest().features.update(has_mp3=True)
 
-        self.app1.update(status=amo.STATUS_PENDING)
-        self.app2.update(status=amo.STATUS_PENDING)
+        self.app1.update(status=mkt.STATUS_PENDING)
+        self.app2.update(status=mkt.STATUS_PENDING)
 
         self.apps = list(Webapp.objects.order_by('id'))
         self.login_as_editor()
@@ -1130,7 +1129,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
     def test_flag_blocked(self):
         # Blocklisted apps should only be in the update queue, so this flag
         # check is here rather than in FlagsMixin.
-        self.apps[0].update(status=amo.STATUS_BLOCKED)
+        self.apps[0].update(status=mkt.STATUS_BLOCKED)
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
@@ -1184,8 +1183,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         self.check_actions(expected, actions)
 
     def test_action_buttons_reject(self):
-        self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[0].latest_version.files.update(status=amo.STATUS_DISABLED)
+        self.apps[0].update(status=mkt.STATUS_REJECTED)
+        self.apps[0].latest_version.files.update(status=mkt.STATUS_DISABLED)
         r = self.client.get(self.review_url(self.apps[0]))
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
@@ -1246,10 +1245,10 @@ class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixi
     def test_public_sign(self, sign_mock, json_mock, update_cached_manifests):
         self.app = self.get_app()
         self.version = self.app.latest_version
-        self.version.files.all().update(status=amo.STATUS_PENDING)
-        self.app.update(status=amo.STATUS_PENDING, is_packaged=True,
+        self.version.files.all().update(status=mkt.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING, is_packaged=True,
                         _current_version=None, _signal=False)
-        eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(self.get_app().status, mkt.STATUS_PENDING)
 
         update_cached_manifests.reset_mock()
         sign_mock.return_value = None  # Didn't fail.
@@ -1263,7 +1262,7 @@ class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixi
             reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
         eq_(resp.status_code, 302)
 
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(update_cached_manifests.delay.call_count, 1)
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -1277,10 +1276,10 @@ class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixi
 
         self.app = self.get_app()
         self.version = self.app.latest_version
-        self.version.files.all().update(status=amo.STATUS_PENDING)
-        self.app.update(status=amo.STATUS_PENDING, is_packaged=True,
+        self.version.files.all().update(status=mkt.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING, is_packaged=True,
                         _current_version=None, _signal=False)
-        eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(self.get_app().status, mkt.STATUS_PENDING)
 
         sign_mock.side_effect = packaged.SigningError
         json_mock.return_value = {'name': 'Something'}
@@ -1293,7 +1292,7 @@ class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixi
             reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
         eq_(resp.status_code, 302)
 
-        eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(self.get_app().status, mkt.STATUS_PENDING)
         eq_(update_cached_manifests.delay.call_count, 0)
 
 
@@ -1343,7 +1342,7 @@ class TestReviewMixin(object):
     def _check_score(self, reviewed_type):
         scores = ReviewerScore.objects.all()
         assert len(scores) > 0
-        eq_(scores[0].score, amo.REVIEWED_SCORES[reviewed_type])
+        eq_(scores[0].score, mkt.REVIEWED_SCORES[reviewed_type])
         eq_(scores[0].note_key, reviewed_type)
 
 
@@ -1357,10 +1356,10 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.app = mkt.site.tests.make_game(self.app, True)
-        self.app.update(status=amo.STATUS_PENDING,
+        self.app.update(status=mkt.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.latest_version
-        self.version.files.all().update(status=amo.STATUS_PENDING)
+        self.version.files.all().update(status=mkt.STATUS_PENDING)
         self.file = self.version.all_files[0]
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.setup_files()
@@ -1394,7 +1393,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
             self.assert3xx(res, reverse('reviewers.home'))
 
     def test_cannot_review_blocklisted_app(self):
-        self.app.update(status=amo.STATUS_BLOCKED)
+        self.app.update(status=mkt.STATUS_BLOCKED)
         res = self.client.get(self.url)
         self.assert3xx(res, reverse('reviewers.home'))
         res = self.client.post(self.url)
@@ -1419,7 +1418,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(response.status_code, 200)
 
     def test_sr_can_review_blocklisted_app(self):
-        self.app.update(status=amo.STATUS_BLOCKED)
+        self.app.update(status=mkt.STATUS_BLOCKED)
         self.login_as_senior_reviewer()
         eq_(self.client.get(self.url).status_code, 200)
         data = {'action': 'public', 'comments': 'yo'}
@@ -1430,20 +1429,20 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     def test_pending_to_reject_w_device_overrides(self):
         # This shouldn't be possible unless there's form hacking.
         AddonDeviceType.objects.create(addon=self.app,
-                                       device_type=amo.DEVICE_DESKTOP.id)
+                                       device_type=mkt.DEVICE_DESKTOP.id)
         AddonDeviceType.objects.create(addon=self.app,
-                                       device_type=amo.DEVICE_TABLET.id)
-        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
+                                       device_type=mkt.DEVICE_TABLET.id)
+        eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
                 'comments': 'something',
-                'device_override': [amo.DEVICE_DESKTOP.id]}
+                'device_override': [mkt.DEVICE_DESKTOP.id]}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
-        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
+        eq_(app.status, mkt.STATUS_REJECTED)
         eq_(set([o.id for o in app.device_types]),
-            set([amo.DEVICE_DESKTOP.id, amo.DEVICE_TABLET.id]))
+            set([mkt.DEVICE_DESKTOP.id, mkt.DEVICE_TABLET.id]))
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
@@ -1459,9 +1458,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data)
         app = self.get_app()
         assert app.latest_version.features.has_sms
-        eq_(app.publish_type, amo.PUBLISH_PRIVATE)
-        eq_(app.status, amo.STATUS_APPROVED)
-        self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
+        eq_(app.publish_type, mkt.PUBLISH_PRIVATE)
+        eq_(app.status, mkt.STATUS_APPROVED)
+        self._check_log(mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
@@ -1477,8 +1476,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data)
         app = self.get_app()
         assert not app.latest_version.features.has_sms
-        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
-        eq_(app.status, amo.STATUS_REJECTED)
+        eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
+        eq_(app.status, mkt.STATUS_REJECTED)
 
     def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
         self.version.features.update(has_sms=True)
@@ -1489,22 +1488,22 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data)
         app = self.get_app()
         assert app.latest_version.features.has_sms
-        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
-        eq_(app.status, amo.STATUS_PUBLIC)
-        action_id = amo.LOG.REVIEW_FEATURES_OVERRIDE.id
+        eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
+        eq_(app.status, mkt.STATUS_PUBLIC)
+        action_id = mkt.LOG.REVIEW_FEATURES_OVERRIDE.id
         assert not AppLog.objects.filter(
             addon=self.app, activity_log__action=action_id).exists()
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
     def test_incomplete_cant_approve(self):
-        self.app.update(status=amo.STATUS_NULL)
-        self.app.latest_version.files.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
+        self.app.latest_version.files.update(status=mkt.STATUS_NULL)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
 
         # Still incomplete.
-        eq_(self.get_app().status, amo.STATUS_NULL)
+        eq_(self.get_app().status, mkt.STATUS_NULL)
 
     def test_notification_email_translation(self):
         """Test that the app name is translated with the app's default_locale
@@ -1541,7 +1540,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.client.post(self.url, data)
-        eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(self.get_app().status, mkt.STATUS_PENDING)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_no_mozilla_contact(self, storefront_mock):
@@ -1551,15 +1550,15 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved', with_mozilla_contact=False)
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         assert storefront_mock.called
 
@@ -1569,7 +1568,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         eq_(EscalationQueue.objects.count(), 1)
-        self._check_log(amo.LOG.ESCALATE_MANUAL)
+        self._check_log(mkt.LOG.ESCALATE_MANUAL)
 
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
@@ -1583,42 +1582,42 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     def test_pending_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.latest_version.files.all()[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(app.status, mkt.STATUS_DISABLED)
+        eq_(app.latest_version.files.all()[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_pending_to_disable(self):
         # Only senior reviewers can ban apps.
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data)
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(len(mail.outbox), 0)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_escalation_to_public(self, storefront_mock):
         EscalationQueue.objects.create(addon=self.app)
-        eq_(self.app.status, amo.STATUS_PENDING)
+        eq_(self.app.status, mkt.STATUS_PENDING)
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(app.current_version.files.all()[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_PUBLIC)
+        eq_(app.current_version.files.all()[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
         eq_(len(mail.outbox), 1)
@@ -1630,137 +1629,137 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
     def test_escalation_to_reject(self):
         EscalationQueue.objects.create(addon=self.app)
-        eq_(self.app.status, amo.STATUS_PENDING)
+        eq_(self.app.status, mkt.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         app = self.get_app()
-        eq_(app.status, amo.STATUS_REJECTED)
-        eq_(File.objects.filter(id__in=files)[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(app.status, mkt.STATUS_REJECTED)
+        eq_(File.objects.filter(id__in=files)[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
     def test_escalation_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.app)
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         app = self.get_app()
-        eq_(app.status, amo.STATUS_DISABLED)
-        eq_(app.latest_version.files.all()[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(app.status, mkt.STATUS_DISABLED)
+        eq_(app.latest_version.files.all()[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='escalated')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(EscalationQueue.objects.count(), 1)
         eq_(len(mail.outbox), 0)
 
     def test_clear_escalation(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         EscalationQueue.objects.create(addon=self.app)
         data = {'action': 'clear_escalation', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         eq_(EscalationQueue.objects.count(), 0)
-        self._check_log(amo.LOG.ESCALATION_CLEARED)
+        self._check_log(mkt.LOG.ESCALATION_CLEARED)
         # Ensure we don't send email on clearing escalations.
         eq_(len(mail.outbox), 0)
 
     def test_rereview_to_reject(self):
         RereviewQueue.objects.create(addon=self.app)
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='rereview')
-        eq_(self.get_app().status, amo.STATUS_REJECTED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(self.get_app().status, mkt.STATUS_REJECTED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
         eq_(RereviewQueue.objects.count(), 0)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
+        self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
         RereviewQueue.objects.create(addon=self.app)
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'device_types': '', 'browsers': '',
                 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='rereview')
-        eq_(self.get_app().status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.APP_DISABLED)
+        eq_(self.get_app().status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.APP_DISABLED)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='rereview')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
-        eq_(self.get_app().status, amo.STATUS_PUBLIC)
+        eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 1)
         eq_(len(mail.outbox), 0)
 
     def test_clear_rereview(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
-        self._check_log(amo.LOG.REREVIEW_CLEARED)
+        self._check_log(mkt.LOG.REREVIEW_CLEARED)
         # Ensure we don't send email on clearing re-reviews.
         eq_(len(mail.outbox), 0)
-        self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
+        self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_clear_rereview_unlisted(self):
-        self.app.update(status=amo.STATUS_UNLISTED)
-        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_UNLISTED)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
-        self._check_log(amo.LOG.REREVIEW_CLEARED)
+        self._check_log(mkt.LOG.REREVIEW_CLEARED)
         # Ensure we don't send email on clearing re-reviews.
         eq_(len(mail.outbox), 0)
-        self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
+        self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_escalation(self):
         RereviewQueue.objects.create(addon=self.app)
@@ -1768,7 +1767,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='rereview')
         eq_(EscalationQueue.objects.count(), 1)
-        self._check_log(amo.LOG.ESCALATE_MANUAL)
+        self._check_log(mkt.LOG.ESCALATE_MANUAL)
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
         dev_msg = mail.outbox[0]
@@ -1781,8 +1780,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data = {'action': 'info', 'comments': 'Knead moor in faux'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
-        eq_(self.get_app().status, amo.STATUS_PENDING)
-        self._check_log(amo.LOG.REQUEST_INFORMATION)
+        eq_(self.get_app().status, mkt.STATUS_PENDING)
+        self._check_log(mkt.LOG.REQUEST_INFORMATION)
         vqs = self.get_app().versions.all()
         eq_(vqs.count(), 1)
         eq_(vqs.filter(has_info_request=True).count(), 1)
@@ -1808,14 +1807,14 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         eq_(len(mail.outbox), 0)
-        self._check_log(amo.LOG.COMMENT_VERSION)
+        self._check_log(mkt.LOG.COMMENT_VERSION)
 
     def test_receipt_no_node(self):
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('#receipt-check-result')), 0)
 
     def test_receipt_has_node(self):
-        self.get_app().update(premium_type=amo.ADDON_PREMIUM)
+        self.get_app().update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('.reviewers-desktop #receipt-check-result')),
             1)
@@ -2096,7 +2095,7 @@ class TestCannedResponses(AppReviewerTest):
     def setUp(self):
         super(TestCannedResponses, self).setUp()
         self.login_as_editor()
-        self.app = app_factory(name='XXX', status=amo.STATUS_PENDING)
+        self.app = app_factory(name='XXX', status=mkt.STATUS_PENDING)
         self.cr = CannedResponse.objects.create(
             name=u'app reason', response=u'app reason body',
             sort_group=u'public')
@@ -2138,8 +2137,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
-        self.file.update(status=amo.STATUS_PENDING)
-        self.app.update(status=amo.STATUS_PENDING,
+        self.file.update(status=mkt.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact,
                         _current_version=None)
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
@@ -2165,16 +2164,16 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_PUBLIC)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
         self._check_message(messages)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         eq_(update_name.call_count, 0)  # Not a packaged app.
         eq_(update_locales.call_count, 1)
@@ -2186,7 +2185,7 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
     def test_pending_to_hidden(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
                                messages, storefront_mock):
-        self.get_app().update(publish_type=amo.PUBLISH_HIDDEN)
+        self.get_app().update(publish_type=mkt.PUBLISH_HIDDEN)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2198,15 +2197,15 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_UNLISTED)
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_UNLISTED)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but unlisted')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 0)  # Not a packaged app.
@@ -2219,7 +2218,7 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
     def test_pending_to_approved(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
                                  messages, storefront_mock):
-        self.get_app().update(publish_type=amo.PUBLISH_PRIVATE)
+        self.get_app().update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2231,17 +2230,17 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
         # File status is PUBLIC since it is the only version.
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
         self._check_message(messages)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         # The app is not private but can still be installed by team members,
         # so we should call those:
@@ -2267,16 +2266,16 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         self.post(data)
         eq_(index_webapps.delay.call_count, 1)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_REJECTED)
-        eq_(self.file.reload().status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(app.status, mkt.STATUS_REJECTED)
+        eq_(self.file.reload().status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
         self._check_message(messages)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
+        self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         eq_(update_name.call_count, 0)  # Not a packaged app.
         eq_(update_locales.call_count, 0)
@@ -2307,8 +2306,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
-        self.file.update(status=amo.STATUS_PENDING)
-        self.app.update(status=amo.STATUS_PENDING,
+        self.file.update(status=mkt.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact,
                         _current_version=None, is_packaged=True)
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
@@ -2335,15 +2334,15 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_PUBLIC)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2356,7 +2355,7 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
     def test_pending_to_hidden(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
                                messages, storefront_mock, sign_mock):
-        self.get_app().update(publish_type=amo.PUBLISH_HIDDEN)
+        self.get_app().update(publish_type=mkt.PUBLISH_HIDDEN)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2368,15 +2367,15 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_UNLISTED)
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.status, mkt.STATUS_UNLISTED)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but unlisted')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2389,7 +2388,7 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
     def test_pending_to_approved(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
                                  messages, storefront_mock, sign_mock):
-        self.get_app().update(publish_type=amo.PUBLISH_PRIVATE)
+        self.get_app().update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2401,15 +2400,15 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(app.status, mkt.STATUS_APPROVED)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2433,14 +2432,14 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_REJECTED)
-        eq_(self.file.reload().status, amo.STATUS_DISABLED)
+        eq_(app.status, mkt.STATUS_REJECTED)
+        eq_(self.file.reload().status, mkt.STATUS_DISABLED)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 0)
@@ -2459,12 +2458,12 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         packaged review (not an update) and set the approved version to PUBLIC
         since the proir verison is DISABLED. See bug 1075042.
         """
-        self.app.update(status=amo.STATUS_REJECTED,
-                        publish_type=amo.PUBLISH_PRIVATE)
-        self.file.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_REJECTED,
+                        publish_type=mkt.PUBLISH_PRIVATE)
+        self.file.update(status=mkt.STATUS_DISABLED)
         self.new_version = version_factory(
             addon=self.app, version='1.1',
-            file_kw={'status': amo.STATUS_PENDING})
+            file_kw={'status': mkt.STATUS_PENDING})
 
         index_webapps.delay.reset_mock()
         update_cached_manifests.delay.reset_mock()
@@ -2480,17 +2479,17 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
         eq_(app.latest_version, self.new_version)
         eq_(app.current_version, self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2524,12 +2523,12 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
-        self.app.update(status=amo.STATUS_PUBLIC,
+        self.app.update(status=mkt.STATUS_PUBLIC,
                         mozilla_contact=self.mozilla_contact,
                         is_packaged=True)
         self.new_version = version_factory(
             addon=self.app, version='2.0',
-            file_kw={'status': amo.STATUS_PENDING})
+            file_kw={'status': mkt.STATUS_PENDING})
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def get_app(self):
@@ -2554,16 +2553,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_PUBLIC)
         eq_(app.current_version, self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2577,7 +2576,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
                                          update_cached_manifests,
                                          index_webapps, messages,
                                          storefront_mock, sign_mock):
-        self.app.update(publish_type=amo.PUBLISH_PRIVATE)
+        self.app.update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2589,17 +2588,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_PUBLIC)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_APPROVED)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2612,7 +2611,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_public_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2624,16 +2623,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_UNLISTED)
+        eq_(app.status, mkt.STATUS_UNLISTED)
         eq_(app.current_version, self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2646,8 +2645,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_approved_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_UNLISTED,
-                        publish_type=amo.PUBLISH_PRIVATE)
+        self.app.update(status=mkt.STATUS_UNLISTED,
+                        publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2659,17 +2658,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_UNLISTED)
+        eq_(app.status, mkt.STATUS_UNLISTED)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_APPROVED)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2682,7 +2681,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_public_app_private(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2694,16 +2693,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
         eq_(app.current_version, self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        self._check_log(amo.LOG.APPROVE_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2716,8 +2715,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_approved_app_private(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_APPROVED,
-                        publish_type=amo.PUBLISH_PRIVATE)
+        self.app.update(status=mkt.STATUS_APPROVED,
+                        publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2729,17 +2728,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_APPROVED)
-        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
+        self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'App approved but private')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 1)
@@ -2752,7 +2751,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_rejected_app_public(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_PUBLIC)
+        self.app.update(status=mkt.STATUS_PUBLIC)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2764,17 +2763,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC)
+        eq_(app.status, mkt.STATUS_PUBLIC)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 0)
@@ -2787,7 +2786,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_rejected_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_UNLISTED)
+        self.app.update(status=mkt.STATUS_UNLISTED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2799,17 +2798,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_UNLISTED)
+        eq_(app.status, mkt.STATUS_UNLISTED)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 0)
@@ -2822,7 +2821,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     def test_version_pending_to_rejected_app_private(
             self, update_name, update_locales, update_cached_manifests,
             index_webapps, messages, storefront_mock, sign_mock):
-        self.app.update(status=amo.STATUS_APPROVED)
+        self.app.update(status=mkt.STATUS_APPROVED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2834,17 +2833,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.status, mkt.STATUS_APPROVED)
         ok_(app.current_version != self.new_version)
-        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, amo.STATUS_DISABLED)
-        self._check_log(amo.LOG.REJECT_VERSION)
+        eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        self._check_log(mkt.LOG.REJECT_VERSION)
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
-        self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
+        self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
         eq_(update_name.call_count, 0)
@@ -2864,9 +2863,9 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         # Note: if `created` is not specified, `app_factory` uses a randomly
         # generated timestamp.
         self.apps = [app_factory(name='XXX', created=days_ago(3),
-                                 status=amo.STATUS_PENDING),
+                                 status=mkt.STATUS_PENDING),
                      app_factory(name='YYY', created=days_ago(2),
-                                 status=amo.STATUS_PENDING)]
+                                 status=mkt.STATUS_PENDING)]
         self.url = reverse('reviewers.apps.logs')
 
         self.task_user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -2882,11 +2881,11 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         d = 1
         for app in self.apps:
             days_ago = self.days_ago(d)
-            amo.log(amo.LOG.REJECT_VERSION, app, app.latest_version,
+            mkt.log(mkt.LOG.REJECT_VERSION, app, app.latest_version,
                     user=self.get_user(), details={'comments': 'youwin'},
                     created=days_ago)
             # Throw in a few tasks logs that shouldn't get queried.
-            amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, app, app.latest_version,
+            mkt.log(mkt.LOG.REREVIEW_MANIFEST_CHANGE, app, app.latest_version,
                     user=self.task_user, details={'comments': 'foo'},
                     created=days_ago)
             d += 1
@@ -2899,7 +2898,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
             user = self.get_user()
         if not app:
             app = self.apps[0]
-        amo.log(action, app, app.latest_version, user=user,
+        mkt.log(action, app, app.latest_version, user=user,
                 details={'comments': comment})
 
     def test_basic(self):
@@ -2924,7 +2923,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
 
     def test_search_app_soft_deleted(self):
         self.make_approvals()
-        self.apps[0].update(status=amo.STATUS_DELETED)
+        self.apps[0].update(status=mkt.STATUS_DELETED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -2937,7 +2936,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         a = self.apps[0]
         a.name = '<script>alert("xss")</script>'
         a.save()
-        amo.log(amo.LOG.REJECT_VERSION, a, a.latest_version,
+        mkt.log(mkt.LOG.REJECT_VERSION, a, a.latest_version,
                 user=self.get_user(), details={'comments': 'xss!'})
 
         r = self.client.get(self.url)
@@ -2974,14 +2973,14 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
 
     def test_search_comment_exists(self):
         """Search by comment."""
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, comment='hello')
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, comment='hello')
         r = self.client.get(self.url, dict(search='hello'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#log-listing tbody tr.hide').eq(0).text(), 'hello')
 
     def test_search_comment_doesnt_exist(self):
         """Search by comment, with no results."""
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, comment='hello')
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, comment='hello')
         r = self.client.get(self.url, dict(search='bye'))
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
@@ -2989,7 +2988,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_exists(self):
         """Search by author."""
         self.make_approvals()
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, username='editor',
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='editor',
                               comment='hi')
 
         r = self.client.get(self.url, dict(search='editor'))
@@ -3002,7 +3001,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_doesnt_exist(self):
         """Search by author, with no results."""
         self.make_approvals()
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL, username='editor')
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='editor')
 
         r = self.client.get(self.url, dict(search='wrong'))
         eq_(r.status_code, 200)
@@ -3045,13 +3044,13 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
             'App has been deleted.')
 
     def test_request_info_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
+        self.make_an_approval(mkt.LOG.REQUEST_INFORMATION)
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'More information requested')
 
     def test_escalate_logs(self):
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL)
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL)
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'Reviewer escalation')
@@ -3059,7 +3058,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_no_double_encode(self):
         version = self.apps[0].latest_version
         version.update(version='<foo>')
-        self.make_an_approval(amo.LOG.ESCALATE_MANUAL)
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL)
         r = self.client.get(self.url)
         assert '<foo>' in pq(r.content)('#log-listing tr td').eq(1).text(), (
             'Double-encoded string was found in reviewer log.')
@@ -3123,7 +3122,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
     def setUp(self):
         super(TestReviewAppComm, self).setUp()
         self.create_switch('comm-dashboard', db=True)
-        self.app = app_factory(rated=True, status=amo.STATUS_PENDING,
+        self.app = app_factory(rated=True, status=mkt.STATUS_PENDING,
                                mozilla_contact='contact@mozilla.com')
         self.app.addonuser_set.create(user=user_factory(username='dev'))
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
@@ -3373,14 +3372,14 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         self._post(mkt.ratings.REVIEW_MODERATE_DELETE)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 1)
-        eq_(self._get_logs(amo.LOG.DELETE_REVIEW).count(), 1)
+        eq_(self._get_logs(mkt.LOG.DELETE_REVIEW).count(), 1)
 
     def test_keep(self):
         # Keep the first review, which leaves one.
         self._post(mkt.ratings.REVIEW_MODERATE_KEEP)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 1)
-        eq_(self._get_logs(amo.LOG.APPROVE_REVIEW).count(), 1)
+        eq_(self._get_logs(mkt.LOG.APPROVE_REVIEW).count(), 1)
 
     def test_no_reviews(self):
         Review.objects.all().delete()
@@ -3552,8 +3551,8 @@ class TestMiniManifestView(BasePackagedAppTest):
     def test_rejected(self):
         # Rejected sets file.status to DISABLED and moves to a guarded path.
         self.setup_files()
-        self.app.update(status=amo.STATUS_REJECTED)
-        self.file.update(status=amo.STATUS_DISABLED)
+        self.app.update(status=mkt.STATUS_REJECTED)
+        self.file.update(status=mkt.STATUS_DISABLED)
         manifest = self.app.get_manifest_json(self.file)
 
         res = self.client.get(self.url)
@@ -3635,19 +3634,19 @@ class TestQueueSort(AppReviewerTest):
     def setUp(self):
         """Create and set up apps for some filtering fun."""
         self.apps = [app_factory(name='Lillard',
-                                 status=amo.STATUS_PENDING,
+                                 status=mkt.STATUS_PENDING,
                                  is_packaged=False,
                                  version_kw={'version': '1.0'},
-                                 file_kw={'status': amo.STATUS_PENDING},
-                                 premium_type=amo.ADDON_FREE),
+                                 file_kw={'status': mkt.STATUS_PENDING},
+                                 premium_type=mkt.ADDON_FREE),
                      app_factory(name='Batum',
-                                 status=amo.STATUS_PENDING,
+                                 status=mkt.STATUS_PENDING,
                                  is_packaged=True,
                                  version_kw={'version': '1.0',
                                              'has_editor_comment': True,
                                              'has_info_request': True},
-                                 file_kw={'status': amo.STATUS_PENDING},
-                                 premium_type=amo.ADDON_PREMIUM)]
+                                 file_kw={'status': mkt.STATUS_PENDING},
+                                 premium_type=mkt.ADDON_PREMIUM)]
 
         # Set up app attributes.
         self.apps[0].update(created=self.days_ago(2))
@@ -3658,9 +3657,9 @@ class TestQueueSort(AppReviewerTest):
             user=UserProfile.objects.create(username='illmatic',
                                             email='brandon@roy.com'))
         self.apps[0].addondevicetype_set.create(
-            device_type=amo.DEVICE_DESKTOP.id)
+            device_type=mkt.DEVICE_DESKTOP.id)
         self.apps[1].addondevicetype_set.create(
-            device_type=amo.DEVICE_MOBILE.id)
+            device_type=mkt.DEVICE_MOBILE.id)
 
         self.url = reverse('reviewers.apps.queue_pending')
 
@@ -3701,11 +3700,11 @@ class TestQueueSort(AppReviewerTest):
         version_1.update(nomination=days_ago(2))
 
         # Throw in some disabled versions, they shouldn't affect order.
-        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[0],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[0],
                         nomination=days_ago(10))
-        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[1],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[1],
                         nomination=days_ago(1))
-        version_factory({'status': amo.STATUS_DISABLED}, addon=self.apps[1],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[1],
                         nomination=days_ago(20))
 
         req = mkt.site.tests.req_factory_factory(
@@ -3758,11 +3757,11 @@ class TestQueueSort(AppReviewerTest):
 
         # Set up the priority review flagged app.
         self.apps.append(app_factory(name='Foxkeh',
-                                     status=amo.STATUS_PENDING,
+                                     status=mkt.STATUS_PENDING,
                                      is_packaged=False,
                                      version_kw={'version': '1.0'},
-                                     file_kw={'status': amo.STATUS_PENDING},
-                                     premium_type=amo.ADDON_FREE,
+                                     file_kw={'status': mkt.STATUS_PENDING},
+                                     premium_type=mkt.ADDON_FREE,
                                      priority_review=True))
 
         # Set up app attributes.
@@ -3771,7 +3770,7 @@ class TestQueueSort(AppReviewerTest):
             user=UserProfile.objects.create(username='redpanda',
                                             email='redpanda@mozilla.com'))
         self.apps[2].addondevicetype_set.create(
-            device_type=amo.DEVICE_DESKTOP.id)
+            device_type=mkt.DEVICE_DESKTOP.id)
 
         # And check it also comes out top of waiting time with Webapp model.
         rf = RequestFactory()
@@ -3794,9 +3793,9 @@ class TestQueueSort(AppReviewerTest):
         version_1.update(nomination=days_ago(2))
 
         qs = (Version.objects.no_cache().filter(
-              files__status=amo.STATUS_PENDING,
+              files__status=mkt.STATUS_PENDING,
               addon__disabled_by_user=False,
-              addon__status=amo.STATUS_PENDING)
+              addon__status=mkt.STATUS_PENDING)
               .order_by('nomination', 'created')
               .select_related('addon', 'files').no_transforms())
 
@@ -3838,11 +3837,11 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         super(TestAppsReviewing, self).setUp()
         self.url = reverse('reviewers.apps.apps_reviewing')
         self.apps = [app_factory(name='Antelope',
-                                 status=amo.STATUS_PENDING),
+                                 status=mkt.STATUS_PENDING),
                      app_factory(name='Bear',
-                                 status=amo.STATUS_PENDING),
+                                 status=mkt.STATUS_PENDING),
                      app_factory(name='Cougar',
-                                 status=amo.STATUS_PENDING)]
+                                 status=mkt.STATUS_PENDING)]
 
     def _view_app(self, app_id):
         self.client.post(reverse('reviewers.review_viewing'), {
@@ -3892,7 +3891,7 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
         editor = UserProfile.objects.get(pk=5497308)
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.latest_version
-        self.al = amo.log(amo.LOG.COMMENT_VERSION, self.app,
+        self.al = mkt.log(mkt.LOG.COMMENT_VERSION, self.app,
                           self.version, user=editor)
         self.ala = self._attachment(self.al)
 
@@ -3928,10 +3927,10 @@ class TestLeaderboard(AppReviewerTest):
 
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
         self.login_as_editor()
-        amo.set_user(self.user)
+        mkt.set_user(self.user)
 
     def _award_points(self, user, score):
-        ReviewerScore.objects.create(user=user, note_key=amo.REVIEWED_MANUAL,
+        ReviewerScore.objects.create(user=user, note_key=mkt.REVIEWED_MANUAL,
                                      score=score, note='Thing.')
 
     def test_leaderboard_ranks(self):
@@ -3939,9 +3938,9 @@ class TestLeaderboard(AppReviewerTest):
                  UserProfile.objects.get(email='regular@mozilla.com'),
                  UserProfile.objects.get(email='clouserw@gmail.com'))
 
-        self._award_points(users[0], amo.REVIEWED_LEVELS[0]['points'] - 1)
-        self._award_points(users[1], amo.REVIEWED_LEVELS[0]['points'] + 1)
-        self._award_points(users[2], amo.REVIEWED_LEVELS[0]['points'] + 2)
+        self._award_points(users[0], mkt.REVIEWED_LEVELS[0]['points'] - 1)
+        self._award_points(users[1], mkt.REVIEWED_LEVELS[0]['points'] + 1)
+        self._award_points(users[2], mkt.REVIEWED_LEVELS[0]['points'] + 2)
 
         def get_cells():
             doc = pq(self.client.get(self.url).content.decode('utf-8'))
@@ -3954,7 +3953,7 @@ class TestLeaderboard(AppReviewerTest):
         eq_(get_cells(),
             [users[2].display_name,
              users[1].display_name,
-             amo.REVIEWED_LEVELS[0]['name'],
+             mkt.REVIEWED_LEVELS[0]['name'],
              users[0].display_name])
 
         self._award_points(users[0], 1)
@@ -3963,17 +3962,17 @@ class TestLeaderboard(AppReviewerTest):
             [users[2].display_name,
              users[1].display_name,
              users[0].display_name,
-             amo.REVIEWED_LEVELS[0]['name']])
+             mkt.REVIEWED_LEVELS[0]['name']])
 
         self._award_points(users[0], -1)
-        self._award_points(users[2], (amo.REVIEWED_LEVELS[1]['points'] -
-                                      amo.REVIEWED_LEVELS[0]['points']))
+        self._award_points(users[2], (mkt.REVIEWED_LEVELS[1]['points'] -
+                                      mkt.REVIEWED_LEVELS[0]['points']))
 
         eq_(get_cells(),
             [users[2].display_name,
-             amo.REVIEWED_LEVELS[1]['name'],
+             mkt.REVIEWED_LEVELS[1]['name'],
              users[1].display_name,
-             amo.REVIEWED_LEVELS[0]['name'],
+             mkt.REVIEWED_LEVELS[0]['name'],
              users[0].display_name])
 
 
@@ -3981,12 +3980,12 @@ class TestReviewPage(mkt.site.tests.TestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.app = app_factory(status=amo.STATUS_PENDING)
+        self.app = app_factory(status=mkt.STATUS_PENDING)
         self.reviewer = UserProfile.objects.get(username='editor')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_iarc_ratingless_disable_approve_btn(self):
-        self.app.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
         req = req_factory_factory(self.url, user=self.reviewer)
         res = app_review(req, app_slug=self.app.app_slug)
         doc = pq(res.content)

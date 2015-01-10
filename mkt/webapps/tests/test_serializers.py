@@ -9,9 +9,8 @@ from django.test.utils import override_settings
 import mock
 from nose.tools import eq_, ok_
 
-import amo
-import mkt.site.tests
 import mkt
+import mkt.site.tests
 from mkt.constants import ratingsbodies, regions
 from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
@@ -252,7 +251,7 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory(premium_type=amo.ADDON_PREMIUM)
+        self.app = mkt.site.tests.app_factory(premium_type=mkt.ADDON_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
         self.create_flag('override-app-purchase', everyone=True)
         self.request = RequestFactory().get('/')
@@ -492,7 +491,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_devices(self):
         AddonDeviceType.objects.create(addon=self.app,
-                                       device_type=amo.DEVICE_GAIA.id)
+                                       device_type=mkt.DEVICE_GAIA.id)
         self.app.save()
         self.refresh('webapp')
 
@@ -615,13 +614,13 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         eq_(res['upsell'], False)
 
     def test_upsell_is_made_public_later(self):
-        upsell = mkt.site.tests.app_factory(status=amo.STATUS_PENDING)
+        upsell = mkt.site.tests.app_factory(status=mkt.STATUS_PENDING)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
         # Don't use .reload() because it doesn't reset cached_property.
         upsell = Webapp.objects.get(pk=upsell.pk)
-        upsell.update(status=amo.STATUS_PUBLIC)
+        upsell.update(status=mkt.STATUS_PUBLIC)
 
         # Note that we shouldn't have to call self.app.save(), because saving
         # the upsell should have triggered the reindex of self.app.

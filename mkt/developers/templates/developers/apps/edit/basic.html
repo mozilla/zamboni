@@ -150,9 +150,9 @@
             {{ req_if_edit }}
           </th>
           <td id="addon-categories-edit"
-              data-max-categories="{{ cat_form.max_categories() if cat_form else amo.MAX_CATEGORIES }}">
+              data-max-categories="{{ cat_form.max_categories() if cat_form else mkt.MAX_CATEGORIES }}">
             {% if editable %}
-              {{ select_cats(amo.MAX_CATEGORIES, cat_form) }}
+              {{ select_cats(mkt.MAX_CATEGORIES, cat_form) }}
             {% else %}
               {% set categories = addon.categories|categories_names %}
               {% call empty_unless(categories) %}

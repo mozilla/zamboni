@@ -6,7 +6,6 @@ import waffle
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
-import amo
 import mkt
 from mkt.access import acl
 from mkt.zadmin.models import get_config
@@ -87,7 +86,7 @@ def global_settings(request):
 
     context.update(account_links=account_links,
                    settings=settings,
-                   amo=amo, mkt=mkt,
+                   mkt=mkt,
                    tools_links=tools_links,
                    tools_title=tools_title,
                    footer_links=footer_links,

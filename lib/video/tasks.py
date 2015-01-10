@@ -6,7 +6,7 @@ from django.conf import settings
 
 from celeryutils import task
 
-import amo
+import mkt
 import waffle
 from lib.video import library
 from mkt.site.decorators import set_modified_on
@@ -37,7 +37,7 @@ def resize_video(src, instance, user=None, **kw):
 
 def _resize_error(src, instance, user):
     """An error occurred in processing the video, deal with that approp."""
-    amo.log(amo.LOG.VIDEO_ERROR, instance, user=user)
+    mkt.log(mkt.LOG.VIDEO_ERROR, instance, user=user)
     instance.delete()
 
 
@@ -61,7 +61,7 @@ def _resize_video(src, instance, lib=None, **kw):
     if waffle.switch_is_active('video-encode'):
         # Do the video encoding.
         try:
-            video_file = video.get_encoded(amo.ADDON_PREVIEW_SIZES[1])
+            video_file = video.get_encoded(mkt.ADDON_PREVIEW_SIZES[1])
         except Exception:
             log.info('Error encoding video for %s, %s' %
                      (instance.pk, video.meta), exc_info=True)
@@ -70,7 +70,7 @@ def _resize_video(src, instance, lib=None, **kw):
     # Do the thumbnail next, this will be the signal that the
     # encoding has finished.
     try:
-        thumbnail_file = video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
+        thumbnail_file = video.get_screenshot(mkt.ADDON_PREVIEW_SIZES[0])
     except Exception:
         # We'll have this file floating around because the video
         # encoded successfully, or something has gone wrong in which case
@@ -96,8 +96,8 @@ def _resize_video(src, instance, lib=None, **kw):
     # Ensure everyone has read permission on the file.
     os.chmod(instance.image_path, 0644)
     os.chmod(instance.thumbnail_path, 0644)
-    instance.sizes = {'thumbnail': amo.ADDON_PREVIEW_SIZES[0],
-                      'image': amo.ADDON_PREVIEW_SIZES[1]}
+    instance.sizes = {'thumbnail': mkt.ADDON_PREVIEW_SIZES[0],
+                      'image': mkt.ADDON_PREVIEW_SIZES[1]}
     instance.save()
     log.info('Completed encoding video: %s' % instance.pk)
     return True

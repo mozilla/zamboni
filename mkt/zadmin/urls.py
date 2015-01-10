@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     # AMO stuff.
     url('^$', views.index, name='zadmin.index'),
     url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
-    url('^env$', views.env, name='amo.env'),
+    url('^env$', views.env, name='mkt.env'),
     url('^memcache$', views.memcache, name='zadmin.memcache'),
     url('^settings', views.show_settings, name='zadmin.settings'),
     url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),

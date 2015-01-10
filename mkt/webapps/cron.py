@@ -12,7 +12,7 @@ import commonware.log
 import cronjobs
 from celery import chain, chord
 
-import amo
+import mkt
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
@@ -77,8 +77,8 @@ def hide_disabled_files():
     # also due to bug 980916.
     ids = (File.objects
            .filter(version__deleted=False)
-           .filter(Q(status=amo.STATUS_DISABLED) |
-                   Q(version__addon__status=amo.STATUS_DISABLED) |
+           .filter(Q(status=mkt.STATUS_DISABLED) |
+                   Q(version__addon__status=mkt.STATUS_DISABLED) |
                    Q(version__addon__disabled_by_user=True))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
@@ -93,9 +93,9 @@ def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
     log = logging.getLogger('z.files.disabled')
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
+    q = (Q(version__addon__status=mkt.STATUS_DISABLED)
          | Q(version__addon__disabled_by_user=True))
-    files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
+    files = set(File.objects.filter(q | Q(status=mkt.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
@@ -135,7 +135,7 @@ def update_app_trending():
     """
     chunk_size = 50
 
-    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC,
+    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
                                          disabled_by_user=False)
                    .values_list('id', flat=True))
 
@@ -182,7 +182,7 @@ def update_app_downloads():
     chunk_size = 50
     seconds_between = 2
 
-    all_ids = list(Webapp.objects.filter(status=amo.STATUS_PUBLIC)
+    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC)
                    .values_list('id', flat=True))
 
     countdown = 0
@@ -206,7 +206,7 @@ def mkt_gc(**kw):
 
     log.debug('Collecting data to delete')
     logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
-            .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
+            .exclude(action__in=mkt.LOG_KEEP).values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         chunk.sort()

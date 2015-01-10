@@ -5,7 +5,7 @@ from django.test.client import RequestFactory
 import mock
 from nose.tools import eq_
 
-import amo
+import mkt
 from mkt.site.tests import app_factory, TestCase
 from mkt.webapps import decorators as dec
 from mkt.webapps.models import Webapp
@@ -66,13 +66,13 @@ class TestWebappDecorators(TestCase):
         eq_(res, mock.sentinel.OK)
 
     def test_alternate_qs_404_by_id(self):
-        qs = lambda: Webapp.objects.filter(status=amo.STATUS_DELETED)
+        qs = lambda: Webapp.objects.filter(status=mkt.STATUS_DELETED)
         view = dec.app_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, str(self.app.id))
 
     def test_alternate_qs_404_by_slug(self):
-        qs = lambda: Webapp.objects.filter(status=amo.STATUS_DELETED)
+        qs = lambda: Webapp.objects.filter(status=mkt.STATUS_DELETED)
         view = dec.app_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, self.app.slug)

@@ -42,13 +42,13 @@
                   <td class="flags">{{ app_flags(app) }}</td>
                   <td class="waiting-time">{{ app.created|es2datetime|timelabel }}</td>
                   <td>{{ device_list_es(app) }}</td>
-                  <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}</td>
+                  <td class="payments reviewers-desktop">{{ mkt.ADDON_PREMIUM_TYPES[app.premium_type] }}</td>
                 </tr>
                 <tr class="extra-info reviewers-mobile">
                   <td colspan="5">
                     <em>
                       {{ _('Payment Category:') }}
-                      {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
+                      {{ mkt.ADDON_PREMIUM_TYPES[app.premium_type] }}
                     </em>
                   </td>
                 </tr>
@@ -63,13 +63,13 @@
                   <td class="flags">{{ app_flags(qa.app) }}</td>
                   <td class="waiting-time">{{ qa.created|timelabel }}</td>
                   <td>{{ device_list(qa.app) }}</td>
-                  <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+                  <td class="payments reviewers-desktop">{{ mkt.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
                 </tr>
                 <tr class="extra-info reviewers-mobile">
                   <td colspan="5">
                     <em>
                       {{ _('Payment Category:') }}
-                      {{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}
+                      {{ mkt.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}
                     </em>
                   </td>
                 </tr>

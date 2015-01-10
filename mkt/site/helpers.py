@@ -221,7 +221,7 @@ def mkt_admin_site_links():
             ('Django admin pages', reverse('zadmin.home')),
         ],
         'tools': [
-            ('View request environment', reverse('amo.env')),
+            ('View request environment', reverse('mkt.env')),
             ('View elasticsearch settings', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Generate error', reverse('zadmin.generate-error')),

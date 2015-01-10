@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 import mock
 from nose.tools import eq_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.site.fixtures import fixture
@@ -54,7 +54,7 @@ class TestReceipt(mkt.site.tests.TestCase):
                 != create_receipt(self.app, self.other_user, 'other-uuid'))
 
     def test_addon_premium(self):
-        for type_ in amo.ADDON_PREMIUMS:
+        for type_ in mkt.ADDON_PREMIUMS:
             self.app.update(premium_type=type_)
             assert create_receipt(self.app, self.user, 'some-uuid')
 
@@ -63,7 +63,7 @@ class TestReceipt(mkt.site.tests.TestCase):
         assert install.uuid.startswith(str(install.pk))
 
     def test_install_not_premium(self):
-        for type_ in amo.ADDON_FREES:
+        for type_ in mkt.ADDON_FREES:
             self.app.update(premium_type=type_)
             Installed.objects.all().delete()
             install = self.create_install(self.user,
@@ -71,7 +71,7 @@ class TestReceipt(mkt.site.tests.TestCase):
             eq_(install.premium_type, type_)
 
     def test_install_premium(self):
-        for type_ in amo.ADDON_PREMIUMS:
+        for type_ in mkt.ADDON_PREMIUMS:
             self.app.update(premium_type=type_)
             Installed.objects.all().delete()
             install = self.create_install(self.user, self.app)

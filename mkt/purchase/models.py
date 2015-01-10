@@ -9,7 +9,7 @@ from babel import Locale, numbers
 from jingo import env
 from jinja2.filters import do_dictsort
 
-import amo
+import mkt
 from mkt.site.fields import DecimalCharField
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
@@ -35,8 +35,8 @@ class Contribution(ModelBase):
     amount = DecimalCharField(max_digits=9, decimal_places=2,
                               nullify_invalid=True, null=True)
     currency = models.CharField(max_length=3,
-                                choices=do_dictsort(amo.PAYPAL_CURRENCIES),
-                                default=amo.CURRENCY_DEFAULT)
+                                choices=do_dictsort(mkt.PAYPAL_CURRENCIES),
+                                default=mkt.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
     source_locale = models.CharField(max_length=10, null=True)
     # This is the external id that you can communicate to the world.
@@ -50,8 +50,8 @@ class Contribution(ModelBase):
     # Marketplace specific.
     # TODO(andym): figure out what to do when we delete the user.
     user = models.ForeignKey('users.UserProfile', blank=True, null=True)
-    type = models.PositiveIntegerField(default=amo.CONTRIB_TYPE_DEFAULT,
-                                       choices=do_dictsort(amo.CONTRIB_TYPES))
+    type = models.PositiveIntegerField(default=mkt.CONTRIB_TYPE_DEFAULT,
+                                       choices=do_dictsort(mkt.CONTRIB_TYPES))
     price_tier = models.ForeignKey('prices.Price', blank=True, null=True,
                                    on_delete=models.PROTECT)
     # If this is a refund or a chargeback, which charge did it relate to.
@@ -103,12 +103,12 @@ class Contribution(ModelBase):
 
         # Determine which timestamps to update.
         timestamps = []
-        if status in (amo.REFUND_PENDING, amo.REFUND_APPROVED_INSTANT,
-                      amo.REFUND_FAILED):
+        if status in (mkt.REFUND_PENDING, mkt.REFUND_APPROVED_INSTANT,
+                      mkt.REFUND_FAILED):
             timestamps.append('requested')
-        if status in (amo.REFUND_APPROVED, amo.REFUND_APPROVED_INSTANT):
+        if status in (mkt.REFUND_APPROVED, mkt.REFUND_APPROVED_INSTANT):
             timestamps.append('approved')
-        elif status == amo.REFUND_DECLINED:
+        elif status == mkt.REFUND_DECLINED:
             timestamps.append('declined')
         for ts in timestamps:
             setattr(refund, ts, datetime.datetime.now())
@@ -139,7 +139,7 @@ class Contribution(ModelBase):
     def get_refund_contribs(self):
         """Get related set of refund contributions."""
         return Contribution.objects.filter(
-            related=self, type=amo.CONTRIB_REFUND).order_by('-modified')
+            related=self, type=mkt.CONTRIB_REFUND).order_by('-modified')
 
     def is_refunded(self):
         """
@@ -148,6 +148,6 @@ class Contribution(ModelBase):
         pages.
         """
         return (Contribution.objects.filter(related=self,
-                                            type__in=[amo.CONTRIB_REFUND,
-                                                      amo.CONTRIB_CHARGEBACK])
+                                            type__in=[mkt.CONTRIB_REFUND,
+                                                      mkt.CONTRIB_CHARGEBACK])
                                     .exists())

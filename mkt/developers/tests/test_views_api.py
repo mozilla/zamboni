@@ -8,7 +8,6 @@ from django.test.utils import override_settings
 import mock
 from nose.tools import eq_
 
-import amo
 import mkt
 from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
@@ -109,7 +108,7 @@ class TestContentRatingPingback(RestOAuth):
 
     def setUp(self):
         super(TestContentRatingPingback, self).setUp()
-        self.app = app_factory(status=amo.STATUS_NULL)
+        self.app = app_factory(status=mkt.STATUS_NULL)
         self.url = reverse('content-ratings-pingback', args=[self.app.pk])
         self.data = {
             'ROW': {
@@ -233,7 +232,7 @@ class TestContentRatingPingback(RestOAuth):
     def test_post_content_ratings_pingback(self, details_mock,
                                            storefront_mock):
         details_mock.return_value = True
-        eq_(self.app.status, amo.STATUS_NULL)
+        eq_(self.app.status, mkt.STATUS_NULL)
 
         res = self.anon.post(self.url, data=json.dumps(self.data))
         eq_(res.status_code, 200)
@@ -271,7 +270,7 @@ class TestContentRatingPingback(RestOAuth):
             ['has_shares_info', 'has_shares_location',
              'has_digital_purchases', 'has_users_interact'])
 
-        eq_(app.status, amo.STATUS_PENDING)
+        eq_(app.status, mkt.STATUS_PENDING)
         assert app.latest_version.nomination
 
     @override_settings(SECRET_KEY='foo')

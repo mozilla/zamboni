@@ -5,7 +5,7 @@ from django.conf import settings
 import mock
 from nose.tools import eq_
 
-import amo
+import mkt
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import AppLog
 from mkt.reviewers.models import EscalationQueue
@@ -54,7 +54,7 @@ class TestAbuseEscalationTask(TestCase):
         # Simulate a reviewer clearing an escalation... remove app from queue,
         # and write a log.
         EscalationQueue.objects.filter(addon=self.app).delete()
-        amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
+        mkt.log(mkt.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
                 details={'comments': 'All clear'})
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
@@ -73,7 +73,7 @@ class TestAbuseEscalationTask(TestCase):
         # Simulate a reviewer clearing an escalation... remove app from queue,
         # and write a log.
         EscalationQueue.objects.filter(addon=self.app).delete()
-        amo.log(amo.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
+        mkt.log(mkt.LOG.ESCALATION_CLEARED, self.app, self.app.current_version,
                 details={'comments': 'All clear'})
         eq_(EscalationQueue.objects.filter(addon=self.app).count(), 0)
 
@@ -90,7 +90,7 @@ class TestAbuseEscalationTask(TestCase):
     def test_already_escalated_for_other_still_logs(self):
         # Add app to queue for high refunds.
         EscalationQueue.objects.create(addon=self.app)
-        amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, self.app,
+        mkt.log(mkt.LOG.ESCALATED_HIGH_REFUNDS, self.app,
                 self.app.current_version, details={'comments': 'hi refunds'})
 
         # Set up abuses.
@@ -99,7 +99,7 @@ class TestAbuseEscalationTask(TestCase):
         find_abuse_escalations(self.app.id)
 
         # Verify it logged the high abuse reports.
-        action = amo.LOG.ESCALATED_HIGH_ABUSE
+        action = mkt.LOG.ESCALATED_HIGH_ABUSE
         assert AppLog.objects.filter(
             addon=self.app, activity_log__action=action.id).exists(), (
                 u'Expected high abuse to be logged')

@@ -20,7 +20,7 @@ from appvalidator.testcases.packagelayout import (
     blacklisted_extensions as blocked_extensions,
     blacklisted_magic_numbers as blocked_magic_numbers)
 
-import amo
+import mkt
 from mkt.files.utils import extract_xpi, get_md5
 from mkt.site.utils import rm_local_tmp_dir
 
@@ -74,7 +74,7 @@ class FileViewer(object):
         self.file = file_obj
         self.addon = self.file.version.addon
         self.src = (file_obj.guarded_file_path
-                    if file_obj.status == amo.STATUS_DISABLED
+                    if file_obj.status == mkt.STATUS_DISABLED
                     else file_obj.file_path)
         self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
                                  str(file_obj.pk))

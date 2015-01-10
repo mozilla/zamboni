@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-import amo
+import mkt
 from . import views
 
 
@@ -12,11 +12,11 @@ app_receipt_patterns = patterns('',
 )
 
 receipt_patterns = patterns('',
-    url(r'^verify/%s$' % amo.ADDON_UUID, views.verify,
+    url(r'^verify/%s$' % mkt.ADDON_UUID, views.verify,
         name='receipt.verify'),
-    url(r'^issue/%s$' % amo.APP_SLUG, views.issue,
+    url(r'^issue/%s$' % mkt.APP_SLUG, views.issue,
         name='receipt.issue'),
-    url(r'^check/%s$' % amo.ADDON_UUID, views.check,
+    url(r'^check/%s$' % mkt.ADDON_UUID, views.check,
         name='receipt.check'),
 )
 

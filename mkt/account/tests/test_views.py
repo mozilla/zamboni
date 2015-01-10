@@ -15,7 +15,7 @@ from django.utils.http import urlencode
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 from mkt.account.views import MineMixin
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
@@ -405,7 +405,7 @@ class TestLoginHandler(TestCase):
         http_request.return_value = FakeResponse(
             200, lambda: {'status': 'okay', 'email': 'cvan@mozilla.com'})
         res = self.post({'assertion': 'fake-assertion',
-                         'audience': 'fakeamo.org'})
+                         'audience': 'fakemkt.org'})
         eq_(res.status_code, 201)
         data = json.loads(res.content)
         eq_(data['token'],
@@ -464,7 +464,7 @@ class TestLoginHandler(TestCase):
         http_request.return_value = FakeResponse(
             200, lambda: {'status': 'busted'})
         res = self.post({'assertion': 'fake-assertion',
-                         'audience': 'fakeamo.org'})
+                         'audience': 'fakemkt.org'})
         eq_(res.status_code, 403)
 
     def test_login_empty(self):
@@ -528,7 +528,7 @@ class TestFxaLoginHandler(TestCase):
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
-        eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(profile.reload().source, mkt.LOGIN_SOURCE_FXA)
         eq_(data['settings']['display_name'], 'seavan')
         eq_(data['settings']['email'], 'cvan@mozilla.com')
         eq_(data['settings']['enable_recommendations'], True)
@@ -555,7 +555,7 @@ class TestFxaLoginHandler(TestCase):
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login(state=Signer().sign(str(profile.pk)))
-        eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(profile.reload().source, mkt.LOGIN_SOURCE_FXA)
         eq_(data['settings']['display_name'], 'seavan')
         eq_(data['settings']['email'], 'cvan@mozilla.com')
         eq_(data['settings']['enable_recommendations'], True)
@@ -844,7 +844,7 @@ class TestAccountInfoView(RestOAuth):
     def setUp(self):
         super(TestAccountInfoView, self).setUp()
         # Make sure there is at least one FxA user.
-        self.profile.update(source=amo.LOGIN_SOURCE_FXA,
+        self.profile.update(source=mkt.LOGIN_SOURCE_FXA,
                             last_login_attempt=datetime(2014, 06, 20))
 
     def url(self, email):
@@ -865,19 +865,19 @@ class TestAccountInfoView(RestOAuth):
         eq_(response.json['source'], 'unknown')
 
     def test_unknown_source_user(self):
-        self.profile.update(source=amo.LOGIN_SOURCE_UNKNOWN)
+        self.profile.update(source=mkt.LOGIN_SOURCE_UNKNOWN)
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'persona')
 
     def test_browser_id_source_user(self):
-        self.profile.update(source=amo.LOGIN_SOURCE_BROWSERID)
+        self.profile.update(source=mkt.LOGIN_SOURCE_BROWSERID)
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'persona')
 
     def test_fxa_user(self):
-        self.profile.update(source=amo.LOGIN_SOURCE_FXA)
+        self.profile.update(source=mkt.LOGIN_SOURCE_FXA)
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'firefox-accounts')

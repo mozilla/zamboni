@@ -7,7 +7,7 @@
         <tbody>
           {% for p in points %}
             <tr>
-              <td>{{ amo.REVIEWED_CHOICES[p.note_key] }}</td>
+              <td>{{ mkt.REVIEWED_CHOICES[p.note_key] }}</td>
               <td class="number">+{{ p.score }}</td>
             </tr>
           {% endfor %}

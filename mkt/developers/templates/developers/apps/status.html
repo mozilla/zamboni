@@ -25,10 +25,10 @@
         <div class="status-info">
 
           {# Show important app status changes regardless of packaged or hosted. #}
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+          {% if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED %}
             {{ status(_('You have <b>delisted</b> this app.')) }}
 
-          {% elif addon.status == amo.STATUS_NULL %}
+          {% elif addon.status == mkt.STATUS_NULL %}
             {# Links to complete app submission. #}
             {{ status(_('This app is <b>incomplete</b>.')) }}
             {% if next_step %}
@@ -38,7 +38,7 @@
               {% endtrans %}
             {% endif %}
 
-          {% elif addon.status == amo.STATUS_DISABLED %}
+          {% elif addon.status == mkt.STATUS_DISABLED %}
             {% if addon.iarc_purged %}
               {{ status(_('This app has been <b>disabled by Mozilla</b>.')) }}
               {% trans ratings_url=addon.get_dev_url('ratings') %}
@@ -54,14 +54,14 @@
               {% endtrans %}
             {% endif %}
 
-          {% elif addon.status == amo.STATUS_BLOCKED %}
+          {% elif addon.status == mkt.STATUS_BLOCKED %}
             {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
               Your app was blocked by a site administrator. If you have any
               questions, please email {{ email }}.
             {% endtrans %}
 
-          {% elif addon.status == amo.STATUS_REJECTED %}
+          {% elif addon.status == mkt.STATUS_REJECTED %}
             {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')) }}
 
           {% endif %}
@@ -69,13 +69,13 @@
           {% if not addon.disabled_by_user %}
 
             {# Showing version information for packaged apps in approved statuses. #}
-            {% if addon.is_packaged and addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.is_packaged and addon.status in mkt.WEBAPPS_APPROVED_STATUSES %}
               {# Display some extra information about the status of the versions. #}
               {% if addon.current_version %}
                 {% set file_status = addon.current_version.all_files[0].status %}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
               {% endif %}
               {% if addon.current_version and addon.latest_version != addon.current_version %}
@@ -83,23 +83,23 @@
                 {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
-                {% if file_status == amo.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
+                {% if file_status == mkt.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
               {% endif %}
             {% endif %}
 
-            {% if addon.status == amo.STATUS_PENDING %}
+            {% if addon.status == mkt.STATUS_PENDING %}
               <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
               {{ queue_position(addon, 'p') }}
               <p>{{ _('You will receive an email when the review is complete.') }}</p>
 
-            {% elif addon.status == amo.STATUS_PUBLIC and not addon.is_packaged %}
+            {% elif addon.status == mkt.STATUS_PUBLIC and not addon.is_packaged %}
               <p>
                 {{ status(_('This app is <b>published</b>.')) }}
               </p>
 
-            {% elif addon.status == amo.STATUS_UNLISTED %}
+            {% elif addon.status == mkt.STATUS_UNLISTED %}
               {% if not addon.is_packaged %}
                 {{ status(_('Your app has been <b>approved</b> and is currently <b>unlisted</b>.')) }}
               {% endif %}
@@ -110,7 +110,7 @@
                 {% endtrans %}
               </p>
 
-            {% elif addon.status == amo.STATUS_APPROVED %}
+            {% elif addon.status == mkt.STATUS_APPROVED %}
               {% if not addon.is_packaged %}
                 {{ status(_('Your app has been <b>approved</b> and is currently only visible to team members.')) }}
               {% endif %}
@@ -123,13 +123,13 @@
 
             {% endif %}
 
-            {% if addon.status not in amo.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.status not in mkt.WEBAPPS_APPROVED_STATUSES %}
               <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
                  target="_blank">{{ _('Learn about Review Criteria for apps') }}</a></p>
             {% endif %}
 
             {# If app is in an approved status, show the app visibility form. #}
-            {% if addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.status in mkt.WEBAPPS_APPROVED_STATUSES %}
               <form method="post">
                 {{ form_field(publish_form.publish_type) }}
                 {{ form_field(publish_form.limited, cls='field-limited') }}
@@ -141,7 +141,7 @@
               </form>
             {% endif %}
 
-            {% if addon.status == amo.STATUS_REJECTED %}
+            {% if addon.status == mkt.STATUS_REJECTED %}
               {% if rejection %}
                 <div class="island swagger" id="rejection">
                   <h3>
@@ -223,10 +223,10 @@
                     </td>
                     <td class="date" title="{{ version.created|isotime }}">{{ version.created|babel_date('long') }}</td>
                     <td>
-                      {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
+                      {% if version.all_files[0].status != mkt.STATUS_BLOCKED %}
                         <div class="buttons">
                           <a href="{{ version.all_files[0].get_url_path('') }}" class="download">{{ _('Download') }}</a>
-                          {% if version.all_files[0].status == amo.STATUS_APPROVED %}
+                          {% if version.all_files[0].status == mkt.STATUS_APPROVED %}
                             <form method="post" action="{{ addon.get_dev_url('versions.publicise') }}">
                               {{ csrf() }}
                               <input type="hidden" name="version_id" value="{{ version.id }}">
@@ -386,7 +386,7 @@
     {% endif %}
 
     {% if check_addon_ownership(request, addon, dev=True) %}
-      {% set is_disabled = addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
+      {% set is_disabled = addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED %}
       <section>
         <h2>{{ _('List App') if is_disabled else _('Delist App') }}</h2>
         <div class="island c">
@@ -434,7 +434,7 @@
       </section>
     {% endif %}
 
-    {% if addon.is_packaged and addon.status == amo.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
+    {% if addon.is_packaged and addon.status == mkt.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
       <h2>{{ _('Blocklist App') }}</h2>
 
       <section>

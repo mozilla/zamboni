@@ -12,9 +12,8 @@ from django.test.client import RequestFactory
 import mock
 from nose.tools import eq_, ok_
 
-import amo
-import mkt.site.tests
 import mkt
+import mkt.site.tests
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
@@ -235,7 +234,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
     def test_restofworld_valid_choice_paid(self):
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         form = forms.RegionForm(
             {'restricted': '1',
              'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
@@ -250,7 +249,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         """
 
-        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         form = forms.RegionForm(
             {'restricted': '1',
              'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
@@ -277,7 +276,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         self.create_flag('special-regions')
 
         # Mark app as pending/rejected in China.
-        for status in (amo.STATUS_PENDING, amo.STATUS_REJECTED):
+        for status in (mkt.STATUS_PENDING, mkt.STATUS_REJECTED):
             self.app.geodata.set_status(mkt.regions.CN, status, save=True)
             eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
@@ -289,7 +288,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
             # China should be checked if it's pending and
             # unchecked if rejected.
             cn = mkt.regions.CN.id
-            if status == amo.STATUS_PENDING:
+            if status == mkt.STATUS_PENDING:
                 assert cn in form.initial['regions'], (
                     status, form.initial['regions'])
             else:
@@ -306,7 +305,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
             self.app = self.app.reload()
             eq_(self.app.listed_in(mkt.regions.CN), False)
             eq_(self.app.geodata.get_status(mkt.regions.CN),
-                amo.STATUS_PENDING)
+                mkt.STATUS_PENDING)
 
     def test_china_excluded_if_pending_or_rejected(self):
         self._test_china_excluded_if_pending_or_rejected()
@@ -330,7 +329,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         self.create_flag('special-regions')
 
         # Mark app as pending in China.
-        status = amo.STATUS_PENDING
+        status = mkt.STATUS_PENDING
         self.app.geodata.set_status(mkt.regions.CN, status, save=True)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
@@ -349,13 +348,13 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         # App should be unlisted in China and now null.
         self.app = self.app.reload()
         eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), amo.STATUS_NULL)
+        eq_(self.app.geodata.get_status(mkt.regions.CN), mkt.STATUS_NULL)
 
     def test_china_included_if_approved_but_unchecked(self):
         self.create_flag('special-regions')
 
         # Mark app as public in China.
-        status = amo.STATUS_PUBLIC
+        status = mkt.STATUS_PUBLIC
         self.app.geodata.set_status(mkt.regions.CN, status, save=True)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
@@ -374,13 +373,13 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         # App should be unlisted in China and now null.
         self.app = self.app.reload()
         eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), amo.STATUS_NULL)
+        eq_(self.app.geodata.get_status(mkt.regions.CN), mkt.STATUS_NULL)
 
     def test_china_included_if_approved_and_checked(self):
         self.create_flag('special-regions')
 
         # Mark app as public in China.
-        status = amo.STATUS_PUBLIC
+        status = mkt.STATUS_PUBLIC
         self.app.geodata.set_status(mkt.regions.CN, status, save=True)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
@@ -532,11 +531,11 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = mock.Mock()
-        self.app = app_factory(publish_type=amo.PUBLISH_IMMEDIATE,
+        self.app = app_factory(publish_type=mkt.PUBLISH_IMMEDIATE,
                                version_kw={'version': '1.0',
                                            'created': self.days_ago(5)})
         version_factory(addon=self.app, version='2.0',
-                        file_kw=dict(status=amo.STATUS_PENDING))
+                        file_kw=dict(status=mkt.STATUS_PENDING))
         self.app.reload()
 
     def _get_form(self, version, data=None):
@@ -546,7 +545,7 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, True)
 
-        self.app.update(publish_type=amo.PUBLISH_PRIVATE)
+        self.app.update(publish_type=mkt.PUBLISH_PRIVATE)
         self.app.reload()
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, False)
@@ -558,14 +557,14 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
+        eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
 
         form = self._get_form(self.app.latest_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_PRIVATE)
+        eq_(self.app.publish_type, mkt.PUBLISH_PRIVATE)
 
     def test_post_publish_not_pending(self):
         # Using the current_version, which is public.
@@ -574,57 +573,57 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
+        eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
 
 
 class TestPublishForm(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = app_factory(status=amo.STATUS_PUBLIC)
+        self.app = app_factory(status=mkt.STATUS_PUBLIC)
         self.form = forms.PublishForm
 
     def test_initial(self):
-        app = Webapp(status=amo.STATUS_PUBLIC)
+        app = Webapp(status=mkt.STATUS_PUBLIC)
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_IMMEDIATE)
+            mkt.PUBLISH_IMMEDIATE)
         eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
-        app.status = amo.STATUS_UNLISTED
+        app.status = mkt.STATUS_UNLISTED
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_HIDDEN)
+            mkt.PUBLISH_HIDDEN)
         eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
-        app.status = amo.STATUS_APPROVED
+        app.status = mkt.STATUS_APPROVED
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_HIDDEN)
+            mkt.PUBLISH_HIDDEN)
         eq_(self.form(None, addon=app).fields['limited'].initial, True)
 
     def test_go_public(self):
-        self.app.update(status=amo.STATUS_APPROVED)
-        form = self.form({'publish_type': amo.PUBLISH_IMMEDIATE,
+        self.app.update(status=mkt.STATUS_APPROVED)
+        form = self.form({'publish_type': mkt.PUBLISH_IMMEDIATE,
                           'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
 
     def test_go_unlisted(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
                           'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_UNLISTED)
+        eq_(self.app.status, mkt.STATUS_UNLISTED)
 
     def test_go_private(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
                           'limited': True}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.status, mkt.STATUS_APPROVED)
 
     def test_invalid(self):
         form = self.form({'publish_type': 999}, addon=self.app)
@@ -638,60 +637,60 @@ class TestPublishFormPackaged(mkt.site.tests.TestCase):
     """
 
     def setUp(self):
-        self.app = app_factory(status=amo.STATUS_PUBLIC, is_packaged=True)
+        self.app = app_factory(status=mkt.STATUS_PUBLIC, is_packaged=True)
         self.ver1 = self.app.current_version
         self.ver1.update(created=self.days_ago(1))
         self.ver2 = version_factory(addon=self.app, version='2.0',
-                                    file_kw=dict(status=amo.STATUS_APPROVED))
+                                    file_kw=dict(status=mkt.STATUS_APPROVED))
         self.app.update(_latest_version=self.ver2)
         self.form = forms.PublishForm
 
     def test_initial(self):
-        app = Webapp(status=amo.STATUS_PUBLIC)
+        app = Webapp(status=mkt.STATUS_PUBLIC)
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_IMMEDIATE)
+            mkt.PUBLISH_IMMEDIATE)
         eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
-        app.status = amo.STATUS_UNLISTED
+        app.status = mkt.STATUS_UNLISTED
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_HIDDEN)
+            mkt.PUBLISH_HIDDEN)
         eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
-        app.status = amo.STATUS_APPROVED
+        app.status = mkt.STATUS_APPROVED
         eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_HIDDEN)
+            mkt.PUBLISH_HIDDEN)
         eq_(self.form(None, addon=app).fields['limited'].initial, True)
 
     def test_go_public(self):
-        self.app.update(status=amo.STATUS_APPROVED)
-        form = self.form({'publish_type': amo.PUBLISH_IMMEDIATE,
+        self.app.update(status=mkt.STATUS_APPROVED)
+        form = self.form({'publish_type': mkt.PUBLISH_IMMEDIATE,
                           'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.status, mkt.STATUS_PUBLIC)
         eq_(self.app.current_version, self.ver1)
         eq_(self.app.latest_version, self.ver2)
 
     def test_go_private(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
                           'limited': True}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.status, mkt.STATUS_APPROVED)
         eq_(self.app.current_version, self.ver1)
         eq_(self.app.latest_version, self.ver2)
 
     def test_go_unlisted(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
                           'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
-        eq_(self.app.status, amo.STATUS_UNLISTED)
+        eq_(self.app.status, mkt.STATUS_UNLISTED)
         eq_(self.app.current_version, self.ver1)
         eq_(self.app.latest_version, self.ver2)
 

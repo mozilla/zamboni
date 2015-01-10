@@ -42,7 +42,7 @@
         <td class="flags">{{ app_flags(qa.app) }}</td>
         <td class="waiting-time">{{ qa.created|timelabel }}</td>
         <td>{{ device_list(qa.app) }}</td>
-        <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+        <td class="payments">{{ mkt.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
         {% if not comments %}
           <td class="action">
             <a class="button approve" data-action="approve">{{ approve_text or _("Approve") }}</a>

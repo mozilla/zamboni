@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import amo
+import mkt
 
 from aesfield.field import AESField
 

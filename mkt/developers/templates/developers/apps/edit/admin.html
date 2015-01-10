@@ -170,7 +170,7 @@
               {{ tip(None,
                 _('Tags help users find your app and should be short '
                   'descriptors such as tabs, toolbar, or twitter. You '
-                  'may have a maximum of {0} tags.').format(amo.MAX_TAGS)) }}
+                  'may have a maximum of {0} tags.').format(mkt.MAX_TAGS)) }}
             </label>
           </th>
           <td>
@@ -180,7 +180,7 @@
               <div>
                 {{ ngettext('Comma-separated, minimum of {0} character.',
                             'Comma-separated, minimum of {0} characters.',
-                            amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                            mkt.MIN_TAG_LENGTH)|f(mkt.MIN_TAG_LENGTH) }}
                 {{ _('Example: dark, cinema, noir. Limit 20.') }}
               </div>
               {% if restricted_tags %}

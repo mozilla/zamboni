@@ -33,7 +33,7 @@
               {% if this_app.is_packaged %}
                 <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
               {% endif %}
-              {% if this_app.status == amo.STATUS_BLOCKED %}
+              {% if this_app.status == mkt.STATUS_BLOCKED %}
                 <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
               {% endif %}
               {% if this_app.is_premium() %}

@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 
 import commonware.log
 
-import amo
+import mkt
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
 from lib.metrics import record_action
@@ -58,7 +58,7 @@ def _prepare_pay(request, addon):
         price_tier=addon.premium.price,
         source=request.REQUEST.get('src', ''),
         source_locale=request.LANG,
-        type=amo.CONTRIB_PENDING,
+        type=mkt.CONTRIB_PENDING,
         user=request.user,
         uuid=str(uuid.uuid4()),
     )
@@ -83,7 +83,7 @@ def pay_status(request, addon, contrib_uuid):
     """
     qs = Contribution.objects.filter(uuid=contrib_uuid,
                                      addon__addonpurchase__user=request.user,
-                                     type=amo.CONTRIB_PURCHASE)
+                                     type=mkt.CONTRIB_PURCHASE)
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
 
@@ -163,7 +163,7 @@ def postback(request):
         user_profile = user_profile.get()
     else:
         buyer_username = autocreate_username(buyer_email.partition('@')[0])
-        source = amo.LOGIN_SOURCE_WEBPAY
+        source = mkt.LOGIN_SOURCE_WEBPAY
         user_profile = UserProfile.objects.create(
             display_name=buyer_username,
             email=buyer_email,
@@ -183,7 +183,7 @@ def postback(request):
                     severity=3)
 
     contrib.update(transaction_id=trans_id,
-                   type=amo.CONTRIB_PURCHASE,
+                   type=mkt.CONTRIB_PURCHASE,
                    user=user_profile,
                    amount=Decimal(data['response']['price']['amount']),
                    currency=data['response']['price']['currency'])
@@ -203,7 +203,7 @@ def simulated_postback(contrib, trans_id):
             'Not sure how exactly to update contibutions for '
             'non-successful simulations')
 
-    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE)
+    contrib.update(transaction_id=trans_id, type=mkt.CONTRIB_PURCHASE)
     return http.HttpResponse(trans_id)
 
 

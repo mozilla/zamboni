@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
                              CommunicationThreadToken, user_has_perm_app,
@@ -111,7 +111,7 @@ class TestCommunicationThread(PermissionTestMixin, TestCase):
         self.obj = self.thread
 
     def test_addon_deleted(self):
-        self.thread.addon.update(status=amo.STATUS_DELETED)
+        self.thread.addon.update(status=mkt.STATUS_DELETED)
         eq_(self.thread.addon, self.addon)
 
     def test_version_deleted(self):
@@ -195,7 +195,7 @@ class TestCommAttachment(TestCase, CommTestMixin):
 
     def setUp(self):
         self.user = user_factory(username='porkbelly')
-        amo.set_user(self.user)
+        mkt.set_user(self.user)
         self.profile = self.user
         self.addon = Webapp.objects.get()
         self.version = self.addon.latest_version

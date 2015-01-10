@@ -8,7 +8,7 @@ import happyforms
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
-import amo
+import mkt
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
@@ -22,9 +22,9 @@ log = logging.getLogger('z.reviewers.forms')
 # We set 'any' here since we need to default this field
 # to PUBLIC if not specified for consumer pages.
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
-for status in amo.WEBAPPS_UNLISTED_STATUSES + amo.LISTED_STATUSES:
-    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.STATUS_CHOICES[status]))
+for status in mkt.WEBAPPS_UNLISTED_STATUSES + mkt.LISTED_STATUSES:
+    STATUS_CHOICES.append((mkt.STATUS_CHOICES_API[status],
+                           mkt.STATUS_CHOICES[status]))
 
 
 log = logging.getLogger('z.reviewers.forms')
@@ -80,7 +80,7 @@ class ReviewAppForm(happyforms.Form):
     browsers = forms.CharField(required=False,
                                label=_lazy(u'Browsers:'))
     device_override = forms.TypedMultipleChoiceField(
-        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
+        choices=[(k, v.name) for k, v in mkt.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
     notify = forms.BooleanField(
@@ -184,7 +184,7 @@ class ApiReviewersSearchForm(ApiSearchForm):
         if status == 'any':
             return 'any'
 
-        return amo.STATUS_CHOICES_API_LOOKUP.get(status, amo.STATUS_PENDING)
+        return mkt.STATUS_CHOICES_API_LOOKUP.get(status, mkt.STATUS_PENDING)
 
 
 class ApproveRegionForm(happyforms.Form):
@@ -200,12 +200,12 @@ class ApproveRegionForm(happyforms.Form):
         approved = self.cleaned_data['approve']
 
         if approved:
-            status = amo.STATUS_PUBLIC
+            status = mkt.STATUS_PUBLIC
             # Make it public in the previously excluded region.
             self.app.addonexcludedregion.filter(
                 region=self.region.id).delete()
         else:
-            status = amo.STATUS_REJECTED
+            status = mkt.STATUS_REJECTED
 
         value, changed = self.app.geodata.set_status(
             self.region, status, save=True)

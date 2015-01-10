@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
@@ -43,7 +43,7 @@ class TestEditAuthor(TestOwnership):
         # flip form-0-position
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
+                 role=mkt.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
@@ -66,7 +66,7 @@ class TestEditAuthor(TestOwnership):
 
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
+                 role=mkt.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
         self.assertRedirects(r, self.url, 302)
@@ -76,7 +76,7 @@ class TestEditAuthor(TestOwnership):
         # Add an author b/c we can't edit anything about the current one.
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=1)
+                 role=mkt.AUTHOR_ROLE_DEV, position=1)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
         eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed, True)
@@ -95,7 +95,7 @@ class TestEditAuthor(TestOwnership):
     def test_add_user_twice(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=1)
+                 role=mkt.AUTHOR_ROLE_DEV, position=1)
         data = self.formset(f.initial, u, u, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 200)
@@ -105,7 +105,7 @@ class TestEditAuthor(TestOwnership):
     def test_success_delete_user(self):
         # Add a new user so we have one to delete.
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                                 role=mkt.AUTHOR_ROLE_OWNER, position=1),
                             initial_count=0)
         self.client.post(self.url, data)
 
@@ -124,7 +124,7 @@ class TestEditAuthor(TestOwnership):
 
         # Add.
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                                 role=mkt.AUTHOR_ROLE_OWNER, position=1),
                             initial_count=0)
         self.client.post(self.url, data)
         # Delete.
@@ -138,7 +138,7 @@ class TestEditAuthor(TestOwnership):
     def test_delete_own_access(self):
         # Add a new user and then delete the first user.
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                                 role=mkt.AUTHOR_ROLE_OWNER, position=1),
                             initial_count=0)
         self.client.post(self.url, data)
         one, two = self.client.get(self.url).context['user_form'].initial_forms
@@ -157,7 +157,7 @@ class TestEditAuthor(TestOwnership):
         user.comm_thread_cc.create(thread=thread, user=user)
 
         data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
+                                 role=mkt.AUTHOR_ROLE_OWNER, position=1),
                             initial_count=0)
         self.client.post(self.url, data)
         one, two = self.client.get(self.url).context['user_form'].initial_forms
@@ -176,14 +176,14 @@ class TestEditAuthor(TestOwnership):
         eq_(r.status_code, 302)
         eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
         eq_(ActivityLog.objects.filter(
-            action=amo.LOG.ADD_USER_WITH_ROLE.id).count(), 1)
+            action=mkt.LOG.ADD_USER_WITH_ROLE.id).count(), 1)
         eq_(ActivityLog.objects.filter(
-            action=amo.LOG.REMOVE_USER_WITH_ROLE.id).count(), 1)
+            action=mkt.LOG.REMOVE_USER_WITH_ROLE.id).count(), 1)
 
     def test_only_owner_can_edit(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
         u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
+                 role=mkt.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
 
@@ -208,7 +208,7 @@ class TestEditAuthor(TestOwnership):
 
     def test_must_have_owner(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['role'] = amo.AUTHOR_ROLE_DEV
+        f.initial['role'] = mkt.AUTHOR_ROLE_DEV
         data = self.formset(f.initial, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.context['user_form'].non_form_errors(),
@@ -251,7 +251,7 @@ class TestEditWebappAuthors(mkt.site.tests.TestCase):
 
     def test_success_add_owner(self):
         u = UserProfile.objects.get(id=999)
-        u = dict(user=u.email, listed=True, role=amo.AUTHOR_ROLE_OWNER,
+        u = dict(user=u.email, listed=True, role=mkt.AUTHOR_ROLE_OWNER,
                  position=0)
         r = self.client.post(self.url, formset(u, initial_count=0))
         self.assertRedirects(r, self.url, 302)
@@ -266,11 +266,11 @@ class TestDeveloperRoleAccess(mkt.site.tests.TestCase):
     def setUp(self):
         self.client.login(username='regular@mozilla.com', password='password')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.update(premium_type=amo.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonUser.objects.create(addon=self.webapp, user=user,
-                                 role=amo.AUTHOR_ROLE_DEV)
+                                 role=mkt.AUTHOR_ROLE_DEV)
 
     def _check_it(self, url):
         res = self.client.get(url, follow=True)

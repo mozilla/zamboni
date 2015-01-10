@@ -9,7 +9,7 @@ import waffle
 
 from django.conf import settings
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.site.tests.test_utils_ import get_image_path
 from lib.video import dummy, ffmpeg, get_library, totem
@@ -87,7 +87,7 @@ class TestFFmpegVideo(mkt.site.tests.TestCase):
         raise SkipTest
         self.video.get_meta()
         try:
-            screenshot = self.video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
+            screenshot = self.video.get_screenshot(mkt.ADDON_PREVIEW_SIZES[0])
             assert os.stat(screenshot)[stat.ST_SIZE]
         finally:
             os.remove(screenshot)
@@ -96,7 +96,7 @@ class TestFFmpegVideo(mkt.site.tests.TestCase):
         raise SkipTest
         self.video.get_meta()
         try:
-            video = self.video.get_encoded(amo.ADDON_PREVIEW_SIZES[0])
+            video = self.video.get_encoded(mkt.ADDON_PREVIEW_SIZES[0])
             assert os.stat(video)[stat.ST_SIZE]
         finally:
             os.remove(video)
@@ -119,11 +119,11 @@ class TestBadFFmpegVideo(mkt.site.tests.TestCase):
 
     def test_screenshot(self):
         self.assertRaises(AssertionError, self.video.get_screenshot,
-                          amo.ADDON_PREVIEW_SIZES[0])
+                          mkt.ADDON_PREVIEW_SIZES[0])
 
     def test_encoded(self):
         self.assertRaises(AssertionError, self.video.get_encoded,
-                          amo.ADDON_PREVIEW_SIZES[0])
+                          mkt.ADDON_PREVIEW_SIZES[0])
 
 
 class TestTotemVideo(mkt.site.tests.TestCase):
@@ -181,7 +181,7 @@ class TestTask(mkt.site.tests.TestCase):
             resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
         assert self.mock.delete.called
         assert UserLog.objects.filter(user=user,
-                        activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
+                        activity_log__action=mkt.LOG.VIDEO_ERROR.id).exists()
 
     @patch('lib.video.tasks._resize_video')
     def test_resize_failed(self, _resize_video):

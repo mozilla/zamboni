@@ -15,7 +15,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-import amo
+import mkt
 from lib.cef_loggers import app_pay_cef
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -81,7 +81,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
             price_tier=app.premium.price,
             source=request._request.REQUEST.get('src', ''),
             source_locale=request._request.LANG,
-            type=amo.CONTRIB_PENDING,
+            type=mkt.CONTRIB_PENDING,
             user=request._request.user,
             uuid=str(uuid.uuid4()),
         )
@@ -133,7 +133,7 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
             price_tier=inapp.price,
             source=request._request.REQUEST.get('src', ''),
             source_locale=request._request.LANG,
-            type=amo.CONTRIB_PENDING,
+            type=mkt.CONTRIB_PENDING,
             user=None,
             uuid=str(uuid.uuid4()),
         )
@@ -164,7 +164,7 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
     permission_classes = []
     cors_allowed_methods = ['get']
     cors_allowed_headers = ('content-type', 'accept', 'x-fxpay-version')
-    queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
+    queryset = Contribution.objects.filter(type=mkt.CONTRIB_PURCHASE)
     lookup_field = 'uuid'
 
     def get_object(self):

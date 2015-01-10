@@ -6,7 +6,7 @@ import mock
 from nose.tools import eq_, ok_
 from receipts.receipts import Receipt
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
 from mkt.constants.payments import CONTRIB_NO_CHARGE
@@ -81,7 +81,7 @@ class TestAPI(RestOAuth):
         eq_(self.post().status_code, 201)
         logs = AppLog.objects.filter(addon=self.addon)
         eq_(logs.count(), 1)
-        eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
+        eq_(logs[0].activity_log.action, mkt.LOG.INSTALL_ADDON.id)
 
 
 class TestDevhubAPI(RestOAuth):
@@ -126,36 +126,36 @@ class TestReceipt(RestOAuth):
 
     def test_pending_free_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.profile)
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         eq_(self.post().status_code, 201)
 
     def test_pending_free_for_anonymous(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         self.anon.post(self.url)
         eq_(self.post(anon=True).status_code, 403)
 
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.profile)
-        self.addon.update(status=amo.STATUS_PENDING,
-                          premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(status=mkt.STATUS_PENDING,
+                          premium_type=mkt.ADDON_PREMIUM)
         eq_(self.post().status_code, 201)
         eq_(self.profile.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_DEVELOPER)
 
     def test_pending_paid_for_anonymous(self):
-        self.addon.update(status=amo.STATUS_PENDING,
-                          premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(status=mkt.STATUS_PENDING,
+                          premium_type=mkt.ADDON_PREMIUM)
         eq_(self.post(anon=True).status_code, 403)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         r = self.post()
         eq_(r.status_code, 201)
 
     def test_own_payments(self):
-        self.addon.update(premium_type=amo.ADDON_OTHER_INAPP)
+        self.addon.update(premium_type=mkt.ADDON_OTHER_INAPP)
         eq_(self.post().status_code, 201)
 
     def test_no_charge(self):
@@ -169,7 +169,7 @@ class TestReceipt(RestOAuth):
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):
         has_purchased.return_value = False
-        self.addon.update(premium_type=amo.ADDON_PREMIUM)
+        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
         eq_(self.post().status_code, 402)
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')

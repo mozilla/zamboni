@@ -2,7 +2,7 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-import amo
+import mkt
 from mkt.constants.regions import (REGIONS_CHOICES_ID_DICT,
                                    SPECIAL_REGION_IDS)
 
@@ -19,7 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from mkt.webapps.models import Webapp
 
-        paid_types = amo.ADDON_PREMIUMS + (amo.ADDON_FREE_INAPP,)
+        paid_types = mkt.ADDON_PREMIUMS + (mkt.ADDON_FREE_INAPP,)
 
         apps = Webapp.objects.all()
         for app in apps:

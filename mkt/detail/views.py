@@ -6,7 +6,7 @@ from django.views.decorators.http import etag
 
 import commonware.log
 
-import amo
+import mkt
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.site.decorators import allow_cross_site_request
 from mkt.webapps.decorators import app_view_factory
@@ -27,10 +27,10 @@ def manifest(request, uuid):
 
     """
     addon = get_object_or_404(Webapp, guid=uuid, is_packaged=True)
-    is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_UNLISTED,
-                                amo.STATUS_BLOCKED]
+    is_avail = addon.status in [mkt.STATUS_PUBLIC, mkt.STATUS_UNLISTED,
+                                mkt.STATUS_BLOCKED]
     is_owner = addon.authors.filter(pk=request.user.pk).exists()
-    is_owner_avail = addon.status == amo.STATUS_APPROVED
+    is_owner_avail = addon.status == mkt.STATUS_APPROVED
     package_etag = hashlib.sha256()
 
     if (addon.is_packaged and

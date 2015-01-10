@@ -35,7 +35,6 @@ from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
-import amo
 import mkt
 from lib.crypto.packaged import SigningError
 from mkt.abuse.models import AbuseReport
@@ -222,11 +221,11 @@ def _progress():
 
 
 def context(request, **kw):
-    statuses = dict((k, unicode(v)) for k, v in amo.STATUS_CHOICES_API.items())
+    statuses = dict((k, unicode(v)) for k, v in mkt.STATUS_CHOICES_API.items())
     ctx = dict(motd=unmemoized_get_config('mkt_reviewers_motd'),
                queue_counts=queue_counts(request),
                search_url=reverse('reviewers-search-api'),
-               statuses=statuses, point_types=amo.REVIEWED_MARKETPLACE)
+               statuses=statuses, point_types=mkt.REVIEWED_MARKETPLACE)
     ctx.update(kw)
     return ctx
 
@@ -239,7 +238,7 @@ def _review(request, addon, version):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
-    if (addon.status == amo.STATUS_BLOCKED and
+    if (addon.status == mkt.STATUS_BLOCKED and
             not acl.action_allowed(request, 'Apps', 'ReviewEscalated')):
         messages.warning(
             request, _('Only senior reviewers can review blocklisted apps.'))
@@ -281,8 +280,8 @@ def _review(request, addon, version):
             if old_types != new_types:
                 # The reviewer overrode the device types. We need to not
                 # publish this app immediately.
-                if addon.publish_type == amo.PUBLISH_IMMEDIATE:
-                    addon.update(publish_type=amo.PUBLISH_PRIVATE)
+                if addon.publish_type == mkt.PUBLISH_IMMEDIATE:
+                    addon.update(publish_type=mkt.PUBLISH_PRIVATE)
 
                 # And update the device types to what the reviewer set.
                 AddonDeviceType.objects.filter(addon=addon).delete()
@@ -294,20 +293,20 @@ def _review(request, addon, version):
                 removed_devices = old_types - new_types
                 msg = _(u'Device(s) changed by '
                         u'reviewer: {0}').format(', '.join(
-                    [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
+                    [_(u'Added {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
                      for d in added_devices] +
                     [_(u'Removed {0}').format(
-                     unicode(amo.DEVICE_TYPES[d].name))
+                     unicode(mkt.DEVICE_TYPES[d].name))
                      for d in removed_devices]))
 
                 log_reviewer_action(addon, request.user, msg,
-                                    amo.LOG.REVIEW_DEVICE_OVERRIDE)
+                                    mkt.LOG.REVIEW_DEVICE_OVERRIDE)
 
             if old_features != new_features:
                 # The reviewer overrode the requirements. We need to not
                 # publish this app immediately.
-                if addon.publish_type == amo.PUBLISH_IMMEDIATE:
-                    addon.update(publish_type=amo.PUBLISH_PRIVATE)
+                if addon.publish_type == mkt.PUBLISH_IMMEDIATE:
+                    addon.update(publish_type=mkt.PUBLISH_PRIVATE)
 
                 appfeatures_form.save(mark_for_rereview=False)
 
@@ -322,7 +321,7 @@ def _review(request, addon, version):
                 msg = _(u'Requirements changed by reviewer: {0}').format(fmt)
 
                 log_reviewer_action(addon, request.user, msg,
-                                    amo.LOG.REVIEW_FEATURES_OVERRIDE)
+                                    mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
 
@@ -344,7 +343,7 @@ def _review(request, addon, version):
             #       {2} is the points they now have total.
             success = _(
                 u'"{0}" successfully processed (+{1} points, {2} total).'
-                .format(unicode(amo.REVIEWED_CHOICES[score.note_key]),
+                .format(unicode(mkt.REVIEWED_CHOICES[score.note_key]),
                         score.score,
                         ReviewerScore.get_total(request.user)))
         else:
@@ -362,7 +361,7 @@ def _review(request, addon, version):
         show_diff = (addon.versions.exclude(id=version.id)
                                    .filter(files__isnull=False,
                                            created__lt=version.created,
-                                           files__status=amo.STATUS_PUBLIC)
+                                           files__status=mkt.STATUS_PUBLIC)
                                    .latest())
     except Version.DoesNotExist:
         show_diff = None
@@ -393,7 +392,7 @@ def _review(request, addon, version):
     ctx = context(request, version=version, product=addon, pager=pager,
                   num_pages=num_pages, count=count,
                   form=form, canned=canned, is_admin=is_admin,
-                  status_types=amo.STATUS_CHOICES, show_diff=show_diff,
+                  status_types=mkt.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
@@ -651,7 +650,7 @@ def logs(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = paginate(request, approvals, 50)
-    data = context(request, form=form, pager=pager, ACTION_DICT=amo.LOG_BY_ID,
+    data = context(request, form=form, pager=pager, ACTION_DICT=mkt.LOG_BY_ID,
                    tab='apps')
     return render(request, 'reviewers/logs.html', data)
 
@@ -1149,7 +1148,7 @@ def review_viewing(request):
     current_name = ''
     is_user = 0
     key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
-    interval = amo.EDITOR_VIEWING_INTERVAL
+    interval = mkt.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
     currently_viewing = cache.get(key)
@@ -1209,8 +1208,8 @@ class ReviewerScoreViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     serializer_class = ReviewerScoreSerializer
     cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']
 
-    # amo.REVIEWED_MANUAL is the default so we don't need to set it on the
+    # mkt.REVIEWED_MANUAL is the default so we don't need to set it on the
     # instance when we are creating a new one, but we do need to set it on
     # queryset to prevent instances with other note_key values from ever being
     # returned.
-    queryset = ReviewerScore.objects.filter(note_key=amo.REVIEWED_MANUAL)
+    queryset = ReviewerScore.objects.filter(note_key=mkt.REVIEWED_MANUAL)

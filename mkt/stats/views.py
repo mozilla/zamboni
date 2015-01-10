@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-import amo
+import mkt
 from lib.metrics import get_monolith_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -57,22 +57,22 @@ STATS = {
     'apps_added_by_package': {
         'metric': 'apps_added_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', mkt.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_added_by_premium': {
         'metric': 'apps_added_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', mkt.ADDON_PREMIUM_API.values()),
     },
     'apps_available_by_package': {
         'metric': 'apps_available_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', amo.ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', mkt.ADDON_WEBAPP_TYPES.values()),
     },
     'apps_available_by_premium': {
         'metric': 'apps_available_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', amo.ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', mkt.ADDON_PREMIUM_API.values()),
     },
     'apps_installed': {
         'metric': 'app_installs',
@@ -392,7 +392,7 @@ class TransactionAPI(CORSMixin, APIView):
             'id': transaction_id,
             'app_id': contrib.addon_id,
             'amount_USD': contrib.price_tier.price,
-            'type': amo.CONTRIB_TYPES[contrib.type],
+            'type': mkt.CONTRIB_TYPES[contrib.type],
         }
 
         return Response(data)

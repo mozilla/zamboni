@@ -8,7 +8,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 from requests.exceptions import RequestException, Timeout
 
-import amo
+import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase
@@ -123,10 +123,10 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
             ok_(k in objects[0], 'Key %s not found in response' % k)
 
     def test_filter_by_device(self):
-        self.apps[0].addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.reindex(Webapp, 'webapp')
 
-        res = self.client.get(self.url, {'dev': amo.DEVICE_GAIA.api_name})
+        res = self.client.get(self.url, {'dev': mkt.DEVICE_GAIA.api_name})
         eq_(res.status_code, 200)
         objects = res.json['objects']
         eq_(len(objects), 1)
@@ -134,17 +134,17 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
 
     def test_filter_by_desktop(self):
         self.apps[0].addondevicetype_set.create(
-            device_type=amo.DEVICE_DESKTOP.id)
+            device_type=mkt.DEVICE_DESKTOP.id)
         self.reindex(Webapp, 'webapp')
 
-        res = self.client.get(self.url, {'dev': amo.DEVICE_DESKTOP.api_name})
+        res = self.client.get(self.url, {'dev': mkt.DEVICE_DESKTOP.api_name})
         eq_(res.status_code, 200)
         objects = res.json['objects']
         eq_(len(objects), 1)
         self.assertSetEqual([a['id'] for a in objects], [self.apps[0].pk])
 
     def test_no_filter_if_no_dev(self):
-        self.apps[0].addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.url, {'dev': ''})

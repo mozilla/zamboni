@@ -7,7 +7,7 @@ from django.test.utils import override_settings
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
@@ -34,14 +34,14 @@ class TestActivityLogCount(mkt.site.tests.TestCase):
         bom = datetime(now.year, now.month, 1)
         self.lm = bom - timedelta(days=1)
         self.user = UserProfile.objects.filter()[0]
-        amo.set_user(self.user)
+        mkt.set_user(self.user)
 
     def test_not_review_count(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
+        mkt.log(mkt.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.monthly_reviews()), 0)
 
     def test_review_count(self):
-        amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
+        mkt.log(mkt.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.monthly_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 1)
@@ -49,29 +49,29 @@ class TestActivityLogCount(mkt.site.tests.TestCase):
 
     def test_review_count_few(self):
         for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
+            mkt.log(mkt.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.monthly_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
 
     def test_review_last_month(self):
-        log = amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
+        log = mkt.log(mkt.LOG['APPROVE_VERSION'], Webapp.objects.get())
         log.update(created=self.lm)
         eq_(len(ActivityLog.objects.monthly_reviews()), 0)
 
     def test_not_total(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
+        mkt.log(mkt.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.total_reviews()), 0)
 
     def test_total_few(self):
         for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
+            mkt.log(mkt.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.total_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
 
     def test_total_last_month(self):
-        log = amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
+        log = mkt.log(mkt.LOG['APPROVE_VERSION'], Webapp.objects.get())
         log.update(created=self.lm)
         result = ActivityLog.objects.total_reviews()
         eq_(len(result), 1)
@@ -79,12 +79,12 @@ class TestActivityLogCount(mkt.site.tests.TestCase):
         eq_(result[0]['user'], self.user.pk)
 
     def test_log_admin(self):
-        amo.log(amo.LOG['OBJECT_EDITED'], Webapp.objects.get())
+        mkt.log(mkt.LOG['OBJECT_EDITED'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.admin_events()), 1)
         eq_(len(ActivityLog.objects.for_developer()), 0)
 
     def test_log_not_admin(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
+        mkt.log(mkt.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.admin_events()), 0)
         eq_(len(ActivityLog.objects.for_developer()), 1)
 
@@ -145,10 +145,10 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
             addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
-        assert addon.reload().status != amo.STATUS_NULL
+        assert addon.reload().status != mkt.STATUS_NULL
         res.cancel(disable_refs=True)
         assert res.inactive
-        assert addon.reload().status == amo.STATUS_NULL
+        assert addon.reload().status == mkt.STATUS_NULL
         assert not AddonPaymentAccount.objects.exists()
 
     def test_cancel_shared(self):
@@ -180,10 +180,10 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
             addon=addon, account_uri='bar',
             payment_account=acct2, product_uri='asiuri')
 
-        ok_(addon.reload().status != amo.STATUS_NULL)
+        ok_(addon.reload().status != mkt.STATUS_NULL)
         acct1.cancel(disable_refs=True)
         ok_(acct1.inactive)
-        ok_(addon.reload().status != amo.STATUS_NULL)
+        ok_(addon.reload().status != mkt.STATUS_NULL)
         pks = AddonPaymentAccount.objects.values_list('pk', flat=True)
         eq_(len(pks), 1)
         eq_(pks[0], still_around.pk)
@@ -231,16 +231,16 @@ class TestActivityLogAttachment(mkt.site.tests.TestCase):
         self.user = self._user()
         addon = Webapp.objects.get(pk=337141)
         version = addon.latest_version
-        al = amo.log(amo.LOG.COMMENT_VERSION, addon, version, user=self.user)
+        al = mkt.log(mkt.LOG.COMMENT_VERSION, addon, version, user=self.user)
         self.attachment1, self.attachment2 = self._attachments(al)
 
     def tearDown(self):
-        amo.set_user(None)
+        mkt.set_user(None)
 
     def _user(self):
         """Create and return a user"""
         u = UserProfile.objects.create(username='porkbelly')
-        amo.set_user(u)
+        mkt.set_user(u)
         return u
 
     def _attachments(self, activity_log):

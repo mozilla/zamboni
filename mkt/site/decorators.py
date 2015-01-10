@@ -8,7 +8,7 @@ from django.core.exceptions import PermissionDenied
 
 import commonware.log
 
-from amo import get_user, set_user
+from mkt import get_user, set_user
 from mkt.site import models
 from mkt.site.utils import JSONEncoder, redirect_for_login
 from mkt.users.utils import get_task_user

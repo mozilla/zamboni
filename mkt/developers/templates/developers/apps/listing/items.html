@@ -5,7 +5,7 @@
 {% for addon in addons %}
   <div class="item addon" data-addonid="{{ addon.id }}">
     <div class="info">
-      {{ dev_heading(addon, amo) }}
+      {{ dev_heading(addon, mkt) }}
 
       {% if addon.has_incomplete_status() %}
         {% set next_step = addon.next_step() %}
@@ -24,7 +24,7 @@
                 <span class="{{ mkt_status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
                 <span class="{{ mkt_status_class(addon) }}">
-                  <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+                  <b>{{ mkt.STATUS_CHOICES[addon.status] }}</b></span>
               {% endif %}
             </a>
           </li>

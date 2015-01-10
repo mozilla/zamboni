@@ -10,7 +10,7 @@ from nose import SkipTest
 from nose.tools import eq_
 
 import mkt.site.tests
-from amo import get_user, set_user
+from mkt import get_user, set_user
 from mkt.site.decorators import (login_required, json_response, json_view,
                                  permission_required, set_modified_on,
                                  set_task_user, write)

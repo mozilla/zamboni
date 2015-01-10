@@ -46,7 +46,7 @@ To fail and stop running tests on the first failure::
 If you wish to add arguments, or run a specific test, overload the variables
 (check the Makefile for more information)::
 
-    make SETTINGS=settings_mkt ARGS='--verbosity 2 zamboni.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
+    make SETTINGS=settings_mkt ARGS='--verbosity 2 zamboni.mkt.site.tests.test_url_prefix:MiddlewareTest.test_get_app' test
 
 Those targets include some useful options, like the ``--with-id`` which allows
 you to re-run only the tests failed from the previous run::

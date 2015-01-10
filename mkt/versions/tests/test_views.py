@@ -7,7 +7,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse as rest_reverse
 
-import amo
+import mkt
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
@@ -52,7 +52,7 @@ class TestVersionViewSet(RestOAuth):
             ok_(getattr(version.features, 'has_' + key))
 
     def test_get_non_public(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 403)
@@ -61,14 +61,14 @@ class TestVersionViewSet(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_get_reviewer_non_public(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         self.grant_permission(self.profile, 'Apps:Review')
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 200)
 
     def test_get_owner_non_public(self):
-        self.app.update(status=amo.STATUS_PENDING)
+        self.app.update(status=mkt.STATUS_PENDING)
         self.app.addonuser_set.create(user=self.user)
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
@@ -165,7 +165,7 @@ class TestVersionStatusViewSet(RestOAuth):
         eq_(res.status_code, 200)
         eq_(json.loads(res.content), {'status': 'pending',
                                       'app_status': 'public'})
-        eq_(self.file.reload().status, amo.STATUS_PENDING)
+        eq_(self.file.reload().status, mkt.STATUS_PENDING)
 
     def test_patch_permissions_pk_clash(self):
         # By default, the File and Version objects we are creating share the
@@ -180,33 +180,33 @@ class TestVersionStatusViewSet(RestOAuth):
         # and this time we haven't patched is_fully_complete().
         eq_(json.loads(res.content), {'status': 'pending',
                                       'app_status': 'incomplete'})
-        eq_(self.new_file.reload().status, amo.STATUS_PENDING)
+        eq_(self.new_file.reload().status, mkt.STATUS_PENDING)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_patch_permission_status_affecting_app(self, is_fully_complete):
         is_fully_complete.return_value = True
-        self.app.update(status=amo.STATUS_NULL)
-        self.file.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
+        self.file.update(status=mkt.STATUS_NULL)
         self.grant_permission(self.user, 'Admin:%')
         data, res = self.do_patch(data={'status': 'pending'})
         eq_(res.status_code, 200)
         eq_(json.loads(res.content), {'status': 'pending',
                                       'app_status': 'pending'})
-        eq_(self.file.reload().status, amo.STATUS_PENDING)
-        eq_(self.app.reload().status, amo.STATUS_PENDING)
+        eq_(self.file.reload().status, mkt.STATUS_PENDING)
+        eq_(self.app.reload().status, mkt.STATUS_PENDING)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_patch_permission_status_not_affecting_app(self, is_fully_complete):
         is_fully_complete.return_value = False
-        self.app.update(status=amo.STATUS_NULL)
-        self.file.update(status=amo.STATUS_NULL)
+        self.app.update(status=mkt.STATUS_NULL)
+        self.file.update(status=mkt.STATUS_NULL)
         self.grant_permission(self.user, 'Admin:%')
         data, res = self.do_patch(data={'status': 'pending'})
         eq_(res.status_code, 200)
         eq_(json.loads(res.content), {'status': 'pending',
                                       'app_status': 'incomplete'})
-        eq_(self.file.reload().status, amo.STATUS_PENDING)
-        eq_(self.app.reload().status, amo.STATUS_NULL)
+        eq_(self.file.reload().status, mkt.STATUS_PENDING)
+        eq_(self.app.reload().status, mkt.STATUS_NULL)
 
     def test_patch_permissions_status(self):
         self.grant_permission(self.user, 'Admin:%')
@@ -214,13 +214,13 @@ class TestVersionStatusViewSet(RestOAuth):
         eq_(res.status_code, 200)
         eq_(json.loads(res.content), {'status': 'incomplete',
                                       'app_status': 'public'})
-        eq_(self.file.reload().status, amo.STATUS_NULL)
+        eq_(self.file.reload().status, mkt.STATUS_NULL)
 
         data, res = self.do_patch(data={'status': 'public'})
         eq_(res.status_code, 200)
         eq_(json.loads(res.content), {'status': 'public',
                                       'app_status': 'public'})
-        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
+        eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
 
     def test_patch_wrong_status(self):
         self.grant_permission(self.user, 'Admin:%')

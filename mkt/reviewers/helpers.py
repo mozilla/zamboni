@@ -12,7 +12,6 @@ from jingo import env, register
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
-import amo
 import mkt
 from mkt.access import acl
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore
@@ -172,14 +171,14 @@ def file_compare(file_obj, version):
 
 @register.function
 def file_review_status(addon, file):
-    if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
+    if file.status in [mkt.STATUS_DISABLED, mkt.STATUS_REJECTED]:
         if file.reviewed is not None:
             return _(u'Rejected')
         # Can't assume that if the reviewed date is missing its
         # unreviewed.  Especially for versions.
         else:
             return _(u'Rejected or Unreviewed')
-    return amo.STATUS_CHOICES[file.status]
+    return mkt.STATUS_CHOICES[file.status]
 
 
 @register.function
@@ -194,7 +193,7 @@ def reviewers_score_bar(context, types=None):
 
     return new_context(dict(
         request=context.get('request'),
-        amo=amo, settings=settings,
+        mkt=mkt, settings=settings,
         points=ReviewerScore.get_recent(user),
         total=ReviewerScore.get_total(user),
         **ReviewerScore.get_leaderboards(user, types=types)))
@@ -217,7 +216,7 @@ def get_avg_app_waiting_time():
         SELECT AVG(DATEDIFF(reviewed, nomination)) FROM versions
         RIGHT JOIN addons ON versions.addon_id = addons.id
         WHERE status = %s AND reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
-    ''', (amo.STATUS_PUBLIC, ))
+    ''', (mkt.STATUS_PUBLIC, ))
     row = cursor.fetchone()
     days = 0
     if row:
@@ -237,10 +236,10 @@ def get_position(addon):
     # should take the same time for reviewers to process an app in either
     # queue). Escalated apps are excluded just like in reviewer tools.
     qs = (Version.objects.filter(addon__disabled_by_user=False,
-                                 files__status=amo.STATUS_PENDING,
+                                 files__status=mkt.STATUS_PENDING,
                                  deleted=False)
-          .exclude(addon__status__in=(amo.STATUS_DISABLED,
-                                      amo.STATUS_DELETED, amo.STATUS_NULL))
+          .exclude(addon__status__in=(mkt.STATUS_DISABLED,
+                                      mkt.STATUS_DELETED, mkt.STATUS_NULL))
           .exclude(addon__id__in=excluded_ids)
           .order_by('nomination', 'created').select_related('addon')
           .no_transforms().values_list('addon_id', 'nomination'))

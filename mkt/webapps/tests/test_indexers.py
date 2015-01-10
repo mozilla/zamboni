@@ -4,7 +4,6 @@ from django.test.utils import override_settings
 import json
 from nose.tools import eq_, ok_
 
-import amo
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
@@ -73,7 +72,7 @@ class TestWebappIndexer(TestCase):
         eq_(doc['status'], obj.status)
         eq_(doc['trending'], 0)
         eq_(doc['is_escalated'], False)
-        eq_(doc['latest_version']['status'], amo.STATUS_PUBLIC)
+        eq_(doc['latest_version']['status'], mkt.STATUS_PUBLIC)
         eq_(doc['latest_version']['has_editor_comment'], False)
         eq_(doc['latest_version']['has_info_request'], False)
 
@@ -119,9 +118,9 @@ class TestWebappIndexer(TestCase):
                                   has_info_request=True,
                                   created=created_date,
                                   nomination=nomination_date,
-                                  file_kw=dict(status=amo.STATUS_REJECTED))
+                                  file_kw=dict(status=mkt.STATUS_REJECTED))
         obj, doc = self._get_doc()
-        eq_(doc['latest_version']['status'], amo.STATUS_REJECTED)
+        eq_(doc['latest_version']['status'], mkt.STATUS_REJECTED)
         eq_(doc['latest_version']['has_editor_comment'], True)
         eq_(doc['latest_version']['has_info_request'], True)
         eq_(doc['latest_version']['created_date'], created_date)
@@ -261,8 +260,8 @@ class TestAppFilter(ESTestCase):
 
     def test_no_filter(self):
         # Set a couple apps as non-public, the count should decrease.
-        self.apps[0].update(status=amo.STATUS_REJECTED)
-        self.apps[1].update(status=amo.STATUS_PENDING)
+        self.apps[0].update(status=mkt.STATUS_REJECTED)
+        self.apps[1].update(status=mkt.STATUS_PENDING)
         self.refresh('webapp')
         sq = WebappIndexer.get_app_filter(self.request, app_ids=self.app_ids)
         results = sq.execute().hits

@@ -8,7 +8,6 @@ from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
 
-import amo
 import mkt
 from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
@@ -60,7 +59,7 @@ class WebappIndexer(BaseIndexer):
 
         def _locale_field_mapping(field, analyzer):
             get_analyzer = lambda a: (
-                '%s_analyzer' % a if a in amo.STEMMER_MAP else a)
+                '%s_analyzer' % a if a in mkt.STEMMER_MAP else a)
             return {'%s_%s' % (field, analyzer): {
                 'type': 'string', 'analyzer': get_analyzer(analyzer)}}
 
@@ -207,9 +206,9 @@ class WebappIndexer(BaseIndexer):
                       'support_url'))
 
         # Add room for language-specific indexes.
-        for analyzer in amo.SEARCH_ANALYZER_MAP:
+        for analyzer in mkt.SEARCH_ANALYZER_MAP:
             if (not settings.ES_USE_PLUGINS and
-                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
                 log.info('While creating mapping, skipping the %s analyzer'
                          % analyzer)
                 continue
@@ -313,7 +312,7 @@ class WebappIndexer(BaseIndexer):
             set(string for _, string in obj.translations[obj.name_id]))
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
-                       obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
+                       obj.addonuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
         d['popularity'] = install_count
         for region in mkt.regions.ALL_REGION_IDS:
             d['popularity_%s' % region] = d['popularity']
@@ -383,7 +382,7 @@ class WebappIndexer(BaseIndexer):
             in geodata.translations[geodata.banner_message_id]]
 
         # Bump the boost if the add-on is public.
-        if obj.status == amo.STATUS_PUBLIC:
+        if obj.status == mkt.STATUS_PUBLIC:
             d['boost'] = max(d['boost'], 1) * 4
 
         # If the app is compatible with Firefox OS, push suggestion data in the
@@ -407,9 +406,9 @@ class WebappIndexer(BaseIndexer):
 
         # Indices for each language. languages is a list of locales we want to
         # index with analyzer if the string's locale matches.
-        for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
+        for analyzer, languages in mkt.SEARCH_ANALYZER_MAP.iteritems():
             if (not settings.ES_USE_PLUGINS and
-                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
                 continue
 
             d['name_' + analyzer] = list(
@@ -505,7 +504,7 @@ class WebappIndexer(BaseIndexer):
 
         # MUST.
         must = [
-            F('term', status=amo.STATUS_PUBLIC),
+            F('term', status=mkt.STATUS_PUBLIC),
             F('term', is_disabled=False),
         ] if not no_filter else []
 

@@ -86,7 +86,7 @@ If we run this command like so: ::
 
     all_pks = Webapp.objects.all().values_list('pk', flat=True)
     ts = [_update_addons_current_version.subtask(args=[pks])
-          for pks in amo.utils.chunked(all_pks, 300)]
+          for pks in mkt.site.utils.chunked(all_pks, 300)]
     TaskSet(ts).apply_async()
 
 All the Webapps with ids in ``pks`` will (eventually) have their

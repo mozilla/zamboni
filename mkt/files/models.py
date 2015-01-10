@@ -15,7 +15,7 @@ from django.utils.encoding import smart_str
 import commonware
 from uuidfield.fields import UUIDField
 
-import amo
+import mkt
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
@@ -30,14 +30,14 @@ EXTENSIONS = ('.webapp', '.json', '.zip')
 
 
 class File(OnChangeMixin, ModelBase):
-    STATUS_CHOICES = amo.STATUS_CHOICES.items()
+    STATUS_CHOICES = mkt.STATUS_CHOICES.items()
 
     version = models.ForeignKey('versions.Version', related_name='files')
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
-                                              default=amo.STATUS_PENDING)
+                                              default=mkt.STATUS_PENDING)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     reviewed = models.DateTimeField(null=True)
     # Whether a webapp uses flash or not.
@@ -72,7 +72,7 @@ class File(OnChangeMixin, ModelBase):
         f = cls(version=version)
         f.filename = f.generate_filename(extension=ext or '.zip')
         f.size = storage.size(upload.path)  # Size in bytes.
-        f.status = amo.STATUS_PENDING
+        f.status = mkt.STATUS_PENDING
         f.hash = f.generate_hash(upload.path)
         f.save()
 
@@ -121,7 +121,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        if self.status == amo.STATUS_DISABLED:
+        if self.status == mkt.STATUS_DISABLED:
             return self.guarded_file_path
         else:
             return self.approved_file_path
@@ -228,9 +228,9 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
     old, new = old_attr.get('status'), instance.status
-    if new == amo.STATUS_DISABLED and old != amo.STATUS_DISABLED:
+    if new == mkt.STATUS_DISABLED and old != mkt.STATUS_DISABLED:
         instance.hide_disabled_file()
-    elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
+    elif old == mkt.STATUS_DISABLED and new != mkt.STATUS_DISABLED:
         instance.unhide_disabled_file()
 
     # Log that the hash has changed.

@@ -36,14 +36,14 @@ from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
 from PIL import Image, ImageFile, PngImagePlugin
 
-import amo
+import mkt
 from mkt.api.paginator import ESPaginator
 from mkt.translations.models import Translation
 
 
 days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
 
-log = commonware.log.getLogger('z.amo')
+log = commonware.log.getLogger('z.mkt')
 
 
 def urlparams(url_, hash=None, **query):
@@ -256,7 +256,7 @@ def resize_image(src, dst, size=None, remove_src=True, locally=False):
 
 
 def remove_icons(destination):
-    for size in amo.APP_ICON_SIZES:
+    for size in mkt.APP_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
         if storage.exists(filename):
             storage.delete(filename)

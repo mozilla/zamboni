@@ -1,4 +1,4 @@
-{% macro dev_heading(addon, amo) %}
+{% macro dev_heading(addon, mkt) %}
   <h3>
     {% set details_complete = addon.details_complete() %}
     {% if details_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_
 
-import amo
+import mkt
 import mkt.site.tests
 from mkt.reviewers import helpers
 
@@ -23,25 +23,25 @@ class TestGetPosition(mkt.site.tests.TestCase):
 
         # Add to the queue 2 pending apps for good measure.
         mkt.site.tests.app_factory(
-            status=amo.STATUS_PENDING,
-            file_kw={'status': amo.STATUS_PENDING},
+            status=mkt.STATUS_PENDING,
+            file_kw={'status': mkt.STATUS_PENDING},
             version_kw={'nomination': self.days_ago(3)})
 
         mkt.site.tests.app_factory(
-            status=amo.STATUS_PENDING,
-            file_kw={'status': amo.STATUS_PENDING},
+            status=mkt.STATUS_PENDING,
+            file_kw={'status': mkt.STATUS_PENDING},
             version_kw={'nomination': self.days_ago(1)})
 
         # A deleted app that shouldn't change calculations.
         mkt.site.tests.app_factory(
-            status=amo.STATUS_DELETED,
-            file_kw={'status': amo.STATUS_PENDING},
+            status=mkt.STATUS_DELETED,
+            file_kw={'status': mkt.STATUS_PENDING},
             version_kw={'nomination': self.days_ago(1)})
 
     def test_min(self):
         pending_app = mkt.site.tests.app_factory(
-            status=amo.STATUS_PENDING,
-            file_kw={'status': amo.STATUS_PENDING},
+            status=mkt.STATUS_PENDING,
+            file_kw={'status': mkt.STATUS_PENDING},
             version_kw={'nomination': self.days_ago(42)})
         pos = helpers.get_position(pending_app)
         eq_(pos['days'], 1)
@@ -49,15 +49,15 @@ class TestGetPosition(mkt.site.tests.TestCase):
     def test_packaged_app(self):
         self.public_app.update(is_packaged=True)
         version = mkt.site.tests.version_factory(
-            addon=self.public_app, file_kw={'status': amo.STATUS_PENDING})
+            addon=self.public_app, file_kw={'status': mkt.STATUS_PENDING})
         self.public_app.reload()
         eq_(self.public_app.latest_version, version)
         self._test_position(self.public_app)
 
     def test_pending_app(self):
         pending_app = mkt.site.tests.app_factory(
-            status=amo.STATUS_PENDING,
-            file_kw={'status': amo.STATUS_PENDING})
+            status=mkt.STATUS_PENDING,
+            file_kw={'status': mkt.STATUS_PENDING})
         self._test_position(pending_app)
 
     def _test_position(self, app):

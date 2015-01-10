@@ -12,9 +12,8 @@ import jwt
 from mock import patch
 from nose.tools import eq_, ok_
 
-import amo
 import mkt
-from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
+from mkt import CONTRIB_PENDING, CONTRIB_PURCHASE
 from lib.crypto.receipt import crack
 from mkt.access.models import GroupUser
 from mkt.api.tests import BaseAPI
@@ -123,7 +122,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.status_code, 400, res.content)
 
     def test_non_public_parent_app_fails(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         res = self._post()
         eq_(res.status_code, 400, res.content)
 
@@ -133,7 +132,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.status_code, 400, res.content)
 
     def test_simulated_app_with_non_public_parent_succeeds(self):
-        self.addon.update(status=amo.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         self.inapp.update(simulate=json.dumps({'result': 'postback'}))
         res = self._post()
         eq_(res.status_code, 201, res.content)

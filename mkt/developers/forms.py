@@ -26,11 +26,10 @@ from mpconstants import regions as mpconstants_regions
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
-import amo
 import lib.iarc
 import mkt
-from amo import get_user
 from lib.video import tasks as vtasks
+from mkt import get_user
 from mkt.access import acl
 from mkt.api.models import Access
 from mkt.constants import (CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE,
@@ -80,9 +79,9 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
         if enabled_regions is not None:
             if region.id in enabled_regions:
                 # If it's not already enabled, mark as pending.
-                if status != amo.STATUS_PUBLIC:
+                if status != mkt.STATUS_PUBLIC:
                     # Developer requested for it to be in China.
-                    status = amo.STATUS_PENDING
+                    status = mkt.STATUS_PENDING
                     value, changed = app.geodata.set_status(region, status)
                     if changed:
                         log.info(u'[Webapp:%s] App marked as pending '
@@ -93,14 +92,14 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
                                  u'now for region (%s).' % (app, region.slug))
             else:
                 # Developer cancelled request for approval.
-                status = amo.STATUS_NULL
+                status = mkt.STATUS_NULL
                 value, changed = app.geodata.set_status(
                     region, status, save=True)
                 if changed:
                     log.info(u'[Webapp:%s] App marked as null special '
                              u'region (%s).' % (app, region.slug))
 
-        if status == amo.STATUS_PUBLIC:
+        if status == mkt.STATUS_PUBLIC:
             # Reviewer approved for it to be in China.
             aer = app.addonexcludedregion.filter(region=region.id)
             if aer.exists():
@@ -152,7 +151,7 @@ class BaseAuthorFormSet(BaseModelFormSet):
         # cleaned_data could be None if it's the empty extra form.
         data = filter(None, [f.cleaned_data for f in self.forms
                              if not f.cleaned_data.get('DELETE', False)])
-        if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
+        if not any(d['role'] == mkt.AUTHOR_ROLE_OWNER for d in data):
             raise forms.ValidationError(_('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
@@ -186,23 +185,23 @@ def trap_duplicate(request, manifest_url):
         return
     error_url = app.get_dev_url()
     msg = None
-    if app.status == amo.STATUS_PUBLIC:
+    if app.status == mkt.STATUS_PUBLIC:
         msg = _(u'Oops, looks like you already submitted that manifest '
                  'for %s, which is currently public. '
                  '<a href="%s">Edit app</a>')
-    elif app.status == amo.STATUS_PENDING:
+    elif app.status == mkt.STATUS_PENDING:
         msg = _(u'Oops, looks like you already submitted that manifest '
                  'for %s, which is currently pending. '
                  '<a href="%s">Edit app</a>')
-    elif app.status == amo.STATUS_NULL:
+    elif app.status == mkt.STATUS_NULL:
         msg = _(u'Oops, looks like you already submitted that manifest '
                  'for %s, which is currently incomplete. '
                  '<a href="%s">Resume app</a>')
-    elif app.status == amo.STATUS_REJECTED:
+    elif app.status == mkt.STATUS_REJECTED:
         msg = _(u'Oops, looks like you already submitted that manifest '
                  'for %s, which is currently rejected. '
                  '<a href="%s">Edit app</a>')
-    elif app.status == amo.STATUS_DISABLED:
+    elif app.status == mkt.STATUS_DISABLED:
         msg = _(u'Oops, looks like you already submitted that manifest '
                  'for %s, which is currently banned on Marketplace. '
                  '<a href="%s">Edit app</a>')
@@ -253,10 +252,10 @@ class PreviewForm(happyforms.ModelForm):
                                            upload_hash)
                 filetype = (os.path.splitext(upload_hash)[1][1:]
                                    .replace('-', '/'))
-                if filetype in amo.VIDEO_TYPES:
+                if filetype in mkt.VIDEO_TYPES:
                     self.instance.update(filetype=filetype)
                     vtasks.resize_video.delay(upload_path, self.instance,
-                                              user=amo.get_user(),
+                                              user=mkt.get_user(),
                                               set_modified_on=[self.instance])
                 else:
                     self.instance.update(filetype='image/png')
@@ -634,7 +633,7 @@ class AppFormBasic(AddonFormBase):
                        .format(before_url=before_url, after_url=after_url))
 
                 RereviewQueue.flag(self.instance,
-                                   amo.LOG.REREVIEW_MANIFEST_URL_CHANGE, msg)
+                                   mkt.LOG.REREVIEW_MANIFEST_URL_CHANGE, msg)
 
             # Refetch the new manifest.
             log.info('Manifest %s refreshed for %s'
@@ -706,7 +705,7 @@ class AppFormMedia(AddonFormBase):
 
             remove_icons(destination)
             tasks.resize_icon.delay(upload_path, destination,
-                                    amo.APP_ICON_SIZES,
+                                    mkt.APP_ICON_SIZES,
                                     set_modified_on=[addon])
 
         return super(AppFormMedia, self).save(commit)
@@ -776,13 +775,13 @@ class AppAppealForm(happyforms.Form):
         version = self.product.versions.latest()
         notes = self.cleaned_data['notes']
         if notes:
-            amo.log(amo.LOG.WEBAPP_RESUBMIT, self.product, version,
+            mkt.log(mkt.LOG.WEBAPP_RESUBMIT, self.product, version,
                     details={'comments': notes})
         else:
-            amo.log(amo.LOG.WEBAPP_RESUBMIT, self.product, version)
+            mkt.log(mkt.LOG.WEBAPP_RESUBMIT, self.product, version)
         # Mark app and file as pending again.
-        self.product.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
-        version.all_files[0].update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        self.product.update(status=mkt.WEBAPPS_UNREVIEWED_STATUS)
+        version.all_files[0].update(status=mkt.WEBAPPS_UNREVIEWED_STATUS)
         return version
 
 
@@ -791,11 +790,11 @@ class PublishForm(happyforms.Form):
     # submission flow because the app may have already been published.
     mark_safe_lazy = lazy(mark_safe, six.text_type)
     PUBLISH_CHOICES = (
-        (amo.PUBLISH_IMMEDIATE,
+        (mkt.PUBLISH_IMMEDIATE,
          mark_safe_lazy(_lazy(
              u'<b>Published</b>: Visible to everyone in the Marketplace and '
              u'included in search results and listing pages.'))),
-        (amo.PUBLISH_HIDDEN,
+        (mkt.PUBLISH_HIDDEN,
          mark_safe_lazy(_lazy(
              u'<b>Unlisted</b>: Visible to only people with the URL and '
              u'does not appear in search results and listing pages.'))),
@@ -803,9 +802,9 @@ class PublishForm(happyforms.Form):
 
     # Used for setting initial form values.
     PUBLISH_MAPPING = {
-        amo.STATUS_PUBLIC: amo.PUBLISH_IMMEDIATE,
-        amo.STATUS_UNLISTED: amo.PUBLISH_HIDDEN,
-        amo.STATUS_APPROVED: amo.PUBLISH_PRIVATE,
+        mkt.STATUS_PUBLIC: mkt.PUBLISH_IMMEDIATE,
+        mkt.STATUS_UNLISTED: mkt.PUBLISH_HIDDEN,
+        mkt.STATUS_APPROVED: mkt.PUBLISH_PRIVATE,
     }
     # Use in form processing to set status.
     STATUS_MAPPING = dict((v, k) for k, v in PUBLISH_MAPPING.items())
@@ -823,11 +822,11 @@ class PublishForm(happyforms.Form):
 
         limited = False
         publish = self.PUBLISH_MAPPING.get(self.addon.status,
-                                           amo.PUBLISH_IMMEDIATE)
-        if self.addon.status == amo.STATUS_APPROVED:
+                                           mkt.PUBLISH_IMMEDIATE)
+        if self.addon.status == mkt.STATUS_APPROVED:
             # Special case if app is currently private.
             limited = True
-            publish = amo.PUBLISH_HIDDEN
+            publish = mkt.PUBLISH_HIDDEN
 
         # Determine the current selection via STATUS to publish choice mapping.
         self.fields['publish_type'].initial = publish
@@ -840,13 +839,13 @@ class PublishForm(happyforms.Form):
         publish = self.cleaned_data['publish_type']
         limited = self.cleaned_data['limited']
 
-        if publish == amo.PUBLISH_HIDDEN and limited:
-            publish = amo.PUBLISH_PRIVATE
+        if publish == mkt.PUBLISH_HIDDEN and limited:
+            publish = mkt.PUBLISH_PRIVATE
 
         status = self.STATUS_MAPPING[publish]
         self.addon.update(status=status)
 
-        amo.log(amo.LOG.CHANGE_STATUS, self.addon.get_status_display(),
+        mkt.log(mkt.LOG.CHANGE_STATUS, self.addon.get_status_display(),
                 self.addon)
         # Call update_version, so various other bits of data update.
         self.addon.update_version()
@@ -910,7 +909,7 @@ class RegionForm(forms.Form):
         #
         # - unchecked ... if an app has been requested for approval in
         #   China or the app has been approved in China.
-        unchecked_statuses = (amo.STATUS_NULL, amo.STATUS_REJECTED)
+        unchecked_statuses = (mkt.STATUS_NULL, mkt.STATUS_REJECTED)
 
         for region in self.special_region_objs:
             if self.product.geodata.get_status(region) in unchecked_statuses:
@@ -957,8 +956,8 @@ class RegionForm(forms.Form):
         return value if value in ('free', 'paid') else False
 
     def _product_is_paid(self):
-        return (self.product.premium_type in amo.ADDON_PREMIUMS
-                or self.product.premium_type == amo.ADDON_FREE_INAPP)
+        return (self.product.premium_type in mkt.ADDON_PREMIUMS
+                or self.product.premium_type == mkt.ADDON_FREE_INAPP)
 
     def clean_regions(self):
         regions = self.cleaned_data['regions']
@@ -1041,13 +1040,13 @@ class CategoryForm(happyforms.Form):
         self.initial['categories'] = self.cats_before
 
     def max_categories(self):
-        return amo.MAX_CATEGORIES
+        return mkt.MAX_CATEGORIES
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
         set_categories = set(categories)
         total = len(set_categories)
-        max_cat = amo.MAX_CATEGORIES
+        max_cat = mkt.MAX_CATEGORIES
 
         if total > max_cat:
             # L10n: {0} is the number of categories.
@@ -1130,7 +1129,7 @@ class TransactionFilterForm(happyforms.Form):
     app = AddonChoiceField(queryset=None, required=False, label=_lazy(u'App'))
     transaction_type = forms.ChoiceField(
         required=False, label=_lazy(u'Transaction Type'),
-        choices=[(None, '')] + amo.MKT_TRANSACTION_CONTRIB_TYPES.items())
+        choices=[(None, '')] + mkt.MKT_TRANSACTION_CONTRIB_TYPES.items())
     transaction_id = forms.CharField(
         required=False, label=_lazy(u'Transaction ID'))
 
@@ -1184,16 +1183,16 @@ class AppVersionForm(happyforms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AppVersionForm, self).__init__(*args, **kwargs)
         self.fields['publish_immediately'].initial = (
-            self.instance.addon.publish_type == amo.PUBLISH_IMMEDIATE)
+            self.instance.addon.publish_type == mkt.PUBLISH_IMMEDIATE)
 
     def save(self, *args, **kwargs):
         rval = super(AppVersionForm, self).save(*args, **kwargs)
-        if self.instance.all_files[0].status == amo.STATUS_PENDING:
+        if self.instance.all_files[0].status == mkt.STATUS_PENDING:
             # If version is pending, allow changes to publish_type.
             if self.cleaned_data.get('publish_immediately'):
-                publish_type = amo.PUBLISH_IMMEDIATE
+                publish_type = mkt.PUBLISH_IMMEDIATE
             else:
-                publish_type = amo.PUBLISH_PRIVATE
+                publish_type = mkt.PUBLISH_PRIVATE
             self.instance.addon.update(publish_type=publish_type)
         return rval
 

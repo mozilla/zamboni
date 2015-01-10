@@ -9,7 +9,7 @@ from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
-import amo
+import mkt
 from lib.metrics import record_action
 from mkt.access.acl import check_addon_ownership
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -83,7 +83,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     def get_user(self, ident):
         pk = ident
         if pk == 'mine':
-            user = amo.get_user()
+            user = mkt.get_user()
             if not user or not user.is_authenticated():
                 # You must be logged in to use "mine".
                 raise NotAuthenticated()
@@ -118,7 +118,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
-        amo.log(amo.LOG.DELETE_REVIEW, obj.addon, obj)
+        mkt.log(mkt.LOG.DELETE_REVIEW, obj.addon, obj)
         log.debug('[Review:%s] Deleted by %s' %
             (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)
@@ -126,12 +126,12 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     def post_save(self, obj, created=False):
         app = obj.addon
         if created:
-            amo.log(amo.LOG.ADD_REVIEW, app, obj)
+            mkt.log(mkt.LOG.ADD_REVIEW, app, obj)
             log.debug('[Review:%s] Created by user %s ' %
                       (obj.pk, self.request.user.id))
             record_action('new-review', self.request, {'app-id': app.id})
         else:
-            amo.log(amo.LOG.EDIT_REVIEW, app, obj)
+            mkt.log(mkt.LOG.EDIT_REVIEW, app, obj)
             log.debug('[Review:%s] Edited by %s' %
                       (obj.pk, self.request.user.id))
 

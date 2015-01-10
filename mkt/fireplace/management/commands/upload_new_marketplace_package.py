@@ -7,7 +7,7 @@ from django.db import transaction, connections
 
 import commonware.log
 
-import amo
+import mkt
 from mkt.files.models import FileUpload
 from mkt.site.decorators import use_master
 from mkt.versions.models import Version
@@ -57,7 +57,7 @@ class Command(BaseCommand):
         self.info('Setting File to public...')
         file_ = version.all_files[0]
         file_.update(_signal=False, datestatuschanged=datetime.now(),
-                     reviewed=datetime.now(), status=amo.STATUS_PUBLIC)
+                     reviewed=datetime.now(), status=mkt.STATUS_PUBLIC)
         self.info('File for version %s set to public.' % version)
         self.info('Setting version %s as the current version...' % version)
         version.update(_signal=False, reviewed=datetime.now())
