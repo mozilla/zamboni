@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-11 12:30+0000\n"
+"PO-Revision-Date: 2015-01-11 15:29+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420979422.0\n"
+"X-POOTLE-MTIME: 1420990182.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -6048,14 +6048,17 @@ msgstr "Njepožadany"
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
+"Jeli je so manuelne zarunanje wot płaćenskeho poskićowarja předźěłało, "
+"zaktiwizujće tutón kontrolny kašćik. Přez to so zarunanje na serwerach "
+"Mozilla přewjedźe, bjez kontakta z płaćenskim poskićowarjom."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Tutu transakciju zarunać"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
-msgstr ""
+msgstr "Wuslědki kontoweje aktiwity za"
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
@@ -6071,7 +6074,7 @@ msgstr "Tutón wužiwar njeje nałoženja kupił."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
-msgstr ""
+msgstr "Wuslědki kontoweho pytanja za"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
@@ -6111,23 +6114,23 @@ msgstr "awtomatisce schwaleny"
 
 #: mkt/lookup/templates/lookup/user_summary.html:50
 msgid "Developer Program"
-msgstr ""
+msgstr "Wuwiwarski program"
 
 #: mkt/lookup/templates/lookup/user_summary.html:52
 msgid "Read agreement"
-msgstr ""
+msgstr "Dojednanje čitać"
 
 #: mkt/lookup/templates/lookup/user_summary.html:60
 msgid "Addresses"
-msgstr ""
+msgstr "Adresy"
 
 #: mkt/lookup/templates/lookup/user_summary.html:79
 msgid "Submissions"
-msgstr ""
+msgstr "Zapodaća"
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Unnamed"
-msgstr ""
+msgstr "Bjez mjena"
 
 #: mkt/lookup/templates/lookup/user_summary.html:98 mkt/lookup/templates/lookup/user_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:110
 #: mkt/lookup/templates/lookup/user_summary.html:114
@@ -6137,14 +6140,16 @@ msgstr "Wužiwarja zhašeć"
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Hdyž so tutón wužiwar zhaša, so <strong>na přeco</strong> konto tutoho "
+"zhaša."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Chceće woprawdźe tutoho wužiwarja zhašeć?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Tutón wužiwar je so hižo zhašał."
 
 #: mkt/lookup/templates/lookup/user_summary.html:123
 msgid "Deleted by"
@@ -6156,7 +6161,7 @@ msgstr "Přičina"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
-msgstr ""
+msgstr "Wuslědki nałoženskeho pytanja za"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
 msgid "App Detail"
@@ -6176,7 +6181,7 @@ msgstr "Konto zhašane"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
-msgstr ""
+msgstr "Nałoženske pytanje"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:88 mkt/search/forms.py:90
@@ -6210,7 +6215,7 @@ msgstr "Kategorija"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Za předinstalaciju přizjewić"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -6261,7 +6266,7 @@ msgstr "Předawar"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Wužiwanske wuměnjenja za Torhošćo Firefox namakaće pod:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
@@ -6273,43 +6278,43 @@ msgstr "Historija wašich kupjow:"
 
 #: mkt/ratings/forms.py:68
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Přepruwowanja wobchować, markěrowanja wotstronić"
 
 #: mkt/ratings/forms.py:69
 msgid "Skip for now"
-msgstr ""
+msgstr "Tuchwilu přeskočić"
 
 #: mkt/ratings/forms.py:70
 msgid "Delete review"
-msgstr ""
+msgstr "Pohódnocénje zhašeć"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Hišće njepřepruwowany"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam abo hinaši wobsah, kotryž pohódnoćenje njeje"
 
 #: mkt/ratings/models.py:118
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Njepřihódne słowa"
 
 #: mkt/ratings/models.py:119
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Deplacěrowana zmylkowa rozprawa abo podpěrowanske naprašowanje"
 
 #: mkt/ratings/models.py:120
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Druhe (prošu podać)"
 
 #: mkt/ratings/templates/ratings/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "z {0} z 5 hwěžkow pohódnoćeny"
 
 #: mkt/ratings/templates/ratings/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Z %(ratings)s z 5 hwěžkow pohódnoćeny"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6321,39 +6326,45 @@ msgstr "Testowa kwitowanka"
 
 #: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Spadnjena tesotwa kwitowanka"
 
 #: mkt/receipts/forms.py:21
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Njepłaćiwa testow kwitowanka"
 
 #: mkt/receipts/forms.py:22
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Zarunana testowa kwitowanka"
 
 #: mkt/receipts/views.py:89 mkt/receipts/views.py:180
 msgid "There was a problem installing the app."
-msgstr ""
+msgstr "Při instalowanju nałoženja je problem wustupił."
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Podrobnosće testoweje kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
 msgstr ""
+"To je strona zastupowacych symbolow  za podrobnosće kwitowanki. Hdy byšće "
+"woprawdźite nałoženje z Torhošća instalował, bychu so dalše podrobnosće na "
+"tutej stronje pokazali."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Testujće instalaciju swojeho nałoženja, prjedy hač jo k torhošću nahraće. "
+"Móžeće wšelake družiny kwitowankow wubrać, zo byšće wobchadźenje ze swojimi "
+"kwitowankami testował."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Typ kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Městno manifesta"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
 msgid "Install"
@@ -6392,19 +6403,21 @@ msgstr "Komentary:"
 
 #: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:138
 msgid "Device Types:"
-msgstr ""
+msgstr "Gratowe typy:"
 
 #: mkt/reviewers/forms.py:81 mkt/reviewers/templates/reviewers/review.html:142
 msgid "Browsers:"
-msgstr ""
+msgstr "Wobhladowaki:"
 
 #: mkt/reviewers/forms.py:84
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Přepisowanje gratoweho typa:"
 
 #: mkt/reviewers/forms.py:87
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
 msgstr ""
+"Informujće mje přichodny raz, hdyž so manifest aktualizuje. (naslědne "
+"aktualizacije e-mejlku njewutworja)"
 
 #: mkt/reviewers/forms.py:91
 msgid "This app works on Tarako devices."
@@ -6485,16 +6498,16 @@ msgstr "Aktualizacije ({0})"
 #: mkt/reviewers/helpers.py:103
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Daledaće přichodnemu wyšemu městnu ({0})"
 
 #: mkt/reviewers/helpers.py:107
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Moderěrowane přepruwowanja ({0})"
 
 #: mkt/reviewers/helpers.py:111
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Přepruwować ({0})"
 
 #: mkt/reviewers/helpers.py:117
 msgid "China ({0})"
@@ -6510,27 +6523,29 @@ msgstr "Grat ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgid "Reviews"
-msgstr ""
+msgstr "Přepruwowanja"
 
 #: mkt/reviewers/helpers.py:181
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Wotpokazany abo njepřepruwowany"
 
 #: mkt/reviewers/utils.py:455 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Schwalić"
 
 #: mkt/reviewers/utils.py:456
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "To schwali nałoženje a dowola awtoram ju wozjewić."
 
 #: mkt/reviewers/utils.py:460 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
-msgstr ""
+msgstr "Wotpokazać"
 
 #: mkt/reviewers/utils.py:462
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Přez to so nałoženje wotpokaza, so z čakanskeho rynka wotstroni a so "
+"njewozjewi, jeli je so hižo wozjewiło."
 
 #: mkt/reviewers/utils.py:467
 msgid "Request more information"
@@ -6575,14 +6590,16 @@ msgstr ""
 #: mkt/reviewers/utils.py:502
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Nałoženje na Torhošću zawrěć. to je podobne kaž Wotpokazać, ale awtorojo "
+"njemóža jo znowa zapodać. To so jenož w ekstremnych padach stawa."
 
 #: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
-msgstr ""
+msgstr "Nowe nałoženja (pod 5 dnjemi)"
 
 #: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Akceptabelny (5 hač do 10 dnjow)"
 
 #: mkt/reviewers/views.py:127
 msgid "Overdue (Over 10 days)"
