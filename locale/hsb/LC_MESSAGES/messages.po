@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-10 23:10+0000\n"
+"PO-Revision-Date: 2015-01-11 12:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420931445.0\n"
+"X-POOTLE-MTIME: 1420979422.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -5543,10 +5543,15 @@ msgstr "Njesměće přitykowak změnić"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Wužiwajo pódla logow za druhe torhošća (\"Get it on Google Play\", \"Donwload "
+"on the App Store\"), měł přitykowak Torhošća Firefox jenak wulki abo wjetši "
+"być."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"Přitykowak měł na stornu podrobnosćow nałoženja na torhošću Firefox "
+"pokazować<br> Na přikład: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -5567,6 +5572,8 @@ msgstr "Logo"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Zo byšće sej logo Torhošća Firefox wobhladał a sćahnył, wopytajće prošu <a "
+"href=\"%(style_guide_url)s\">Stilowy přewodnik Mozilla</a>."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -5603,6 +5610,9 @@ msgstr "Maće hišće dalše prašenja?"
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
+"Mjeztym zo na tym dźěłamy, cyły rjad kanalow wutworić, kotrež wam při "
+"rozrisowanju problemow pomhaja, možeće StackOverflow wopytać, zo byšće wšě "
+"swoje prašenja k wuwiwću webnałoženjow wujasnił."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
@@ -5611,6 +5621,8 @@ msgstr "Staplowy přeběh"
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
 msgstr ""
+"Jeli chceće so z wuwiwarjemi do zwiska stupić, přidružće so našim žiwym "
+"zhromadźenstwam w tychle rozsyłanskich lisćinach:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
@@ -5676,6 +5688,8 @@ msgstr ""
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Manifestowa dataja webnałoženja njeda so dekodować. Kontrolujće, hač waša "
+"manifestowa dataja nic-UTF-8-znamješka wobsahuje."
 
 #: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
@@ -5809,7 +5823,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Transakciske pytanje"
 
 #: mkt/lookup/forms.py:37
 msgid "Process a manual refund"
@@ -5825,7 +5839,7 @@ msgstr "Přičina za zhašenje"
 
 #: mkt/lookup/views.py:139
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Zarunanski status njeda so tuchwilu wotwołać."
 
 #: mkt/lookup/views.py:166
 msgid "A refund has already been processed."
@@ -5845,7 +5859,7 @@ msgstr "Zarunanje za tutu transakciju je so wuspěšnje schwaliło."
 
 #: mkt/lookup/views.py:226
 msgid "Refund request for this transaction failed."
-msgstr ""
+msgstr "Zarunanske naprašowanje za tutu transakciju je so nimokuliło."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5862,11 +5876,11 @@ msgstr "Administratiwne akcije"
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
-msgstr ""
+msgstr "poslednich 24 hodźin"
 
 #: mkt/lookup/templates/lookup/app_summary.html:9
 msgid "last 7 days"
-msgstr ""
+msgstr "poslednich 7 dnjow"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "all time"
@@ -5939,11 +5953,11 @@ msgstr "Přepruwowanje je so nimokuliło"
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:122
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Znjewužiwanske zdźělenja"
 
 #: mkt/lookup/templates/lookup/app_summary.html:101
 msgid "Permissions"
-msgstr ""
+msgstr "Schwalenja"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
@@ -5999,15 +6013,17 @@ msgstr "Datajowe mjeno (ID, wulkosć)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Nastroj pohladanja"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr ""
+msgstr "Nastroj pohladanja <small>Torhošća</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
 msgstr ""
+"Wuslědki transakciskeho pytanja za <a href=\"%(tx_url)s\">transakciju %"
+"(uuid)s</a>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
@@ -6170,19 +6186,19 @@ msgstr "Pytać"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Nałoženje: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
-msgstr ""
+msgstr "Kotowe pytanje"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Přehlad poskićowarjow mobilneho škričkowanja"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Přehlad <small>poskićowarjow mobilneho škričkowanja</small>"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
@@ -6229,11 +6245,11 @@ msgstr "Zličbowanka do:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Skazanske čisło:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Skazanski datum:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
@@ -6297,11 +6313,11 @@ msgstr ""
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
-msgstr ""
+msgstr "Žana kwitowanka"
 
 #: mkt/receipts/forms.py:19
 msgid "Test receipt"
-msgstr ""
+msgstr "Testowa kwitowanka"
 
 #: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
@@ -6341,38 +6357,38 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
 msgid "Install"
-msgstr ""
+msgstr "Instalować"
 
 #: mkt/reviewers/forms.py:24
 msgid "Any Status"
-msgstr ""
+msgstr "Někajki status"
 
 #: mkt/reviewers/forms.py:35
 msgid "View entries between"
-msgstr ""
+msgstr "Zapiski sej wobhladać mjez"
 
 #: mkt/reviewers/forms.py:37
 msgid "containing"
-msgstr ""
+msgstr "z"
 
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:43
 msgid "start"
-msgstr ""
+msgstr "spočatk"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:47
 msgid "end"
-msgstr ""
+msgstr "kónc"
 
 #. L10n: Description of what can be searched for
 #: mkt/reviewers/forms.py:50
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "přidatk, redaktor abo komentar"
 
 #: mkt/reviewers/forms.py:75
 msgid "Comments:"
-msgstr ""
+msgstr "Komentary:"
 
 #: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:138
 msgid "Device Types:"
@@ -6401,19 +6417,19 @@ msgstr ""
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:147
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "Nałoženje, přepruwowar abo komentar"
 
 #: mkt/reviewers/forms.py:156
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Ma komentar redaktora"
 
 #: mkt/reviewers/forms.py:160
 msgid "More Info Requested"
-msgstr ""
+msgstr "Dalše informacije požadane"
 
 #: mkt/reviewers/forms.py:168
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Hotowy za Tarako"
 
 #: mkt/reviewers/helpers.py:39 mkt/reviewers/helpers.py:70 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
@@ -6421,7 +6437,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:173
 msgid "Apps"
-msgstr ""
+msgstr "Nałoženja"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Re-reviews"
@@ -6454,17 +6470,17 @@ msgstr ""
 #: mkt/reviewers/helpers.py:92
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Nałoženja ({0})"
 
 #: mkt/reviewers/helpers.py:95
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Nowopohódnoćenja ({0})"
 
 #: mkt/reviewers/helpers.py:99
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Aktualizacije ({0})"
 
 #: mkt/reviewers/helpers.py:103
 msgctxt "escalated"
@@ -6482,15 +6498,15 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:117
 msgid "China ({0})"
-msgstr ""
+msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
-msgstr ""
+msgstr "Grat ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgid "Reviews"
@@ -6518,7 +6534,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:467
 msgid "Request more information"
-msgstr ""
+msgstr "Dalše informacije požadać"
 
 #: mkt/reviewers/utils.py:469
 msgid "This will send the author(s) an email requesting more information."
