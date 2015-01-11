@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-08 13:01+0000\n"
+"PO-Revision-Date: 2015-01-11 19:34+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420722082.0\n"
+"X-POOTLE-MTIME: 1421004890.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -307,11 +307,11 @@ msgstr "Gültige Quittung wurde geprüft für {addon}."
 
 #: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
-msgstr "Weitergabe an nächsthöhere Stelle freigegeben für {addon}."
+msgstr "Weitergabe an nächsthöhere Stelle gelöscht für {addon}."
 
 #: apps/amo/log.py:426 mkt/constants/comm.py:52
 msgid "Escalation cleared"
-msgstr "Weitergabe an nächsthöhere Stelle freigegeben"
+msgstr "Weitergabe an nächsthöhere Stelle gelöscht"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
@@ -5416,7 +5416,10 @@ msgstr "Sie dürfen den Anstecker nicht verändern"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr "Wenn er neben Logos für andere Marktplätze („Get it on Google Play“, „Download on the App Store“), sollte der Anstecker für den Firefox Marketplace gleich groß oder größer sein."
+msgstr ""
+"Wenn er neben Logos für andere Marktplätze („Get it on Google Play“, "
+"„Download on the App Store“) verwendet wird, sollte der Anstecker für den "
+"Firefox Marketplace gleich groß oder größer sein."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -6406,7 +6409,7 @@ msgstr "Einen Kommentar zur App abgeben. Der/die Autor(en) können diese Komment
 
 #: mkt/reviewers/utils.py:486
 msgid "Clear Escalation"
-msgstr "Weitergabe an nächsthöhere Stelle freigeben"
+msgstr "Weitergabe an nächsthöhere Stelle löschen"
 
 #: mkt/reviewers/utils.py:488
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
