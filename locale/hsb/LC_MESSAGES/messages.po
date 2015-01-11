@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-11 19:39+0000\n"
+"PO-Revision-Date: 2015-01-11 20:19+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421005165.0\n"
+"X-POOTLE-MTIME: 1421007582.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -6879,19 +6879,19 @@ msgstr "wot"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "W čakanskim rynku za nowopřepruwowanja"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
-msgstr ""
+msgstr "W čakanskim rynku za daledaće přichodnemu wyšemu městnu"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "W čakanskim rynku Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "W čakanskim rynku China"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6933,39 +6933,41 @@ msgstr "Přepytać"
 
 #: mkt/reviewers/templates/reviewers/review.html:174
 msgid "Attach another file"
-msgstr ""
+msgstr "Dalšu dataju připowěsnyć"
 
 #: mkt/reviewers/templates/reviewers/review.html:177
 msgid "Device Override:"
-msgstr ""
+msgstr "Přepisanje grata:"
 
 #: mkt/reviewers/templates/reviewers/review.html:190
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Přepisanje minimalnych žadanjow:"
 
 #: mkt/reviewers/templates/reviewers/review.html:209
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami "
+"wobhladał."
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9 mkt/reviewers/templates/reviewers/includes/review_history.html:82
 msgid "Attachments"
-msgstr ""
+msgstr "Přiwěški"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Tuta wersija njeje so přepruwowała"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "Device Types"
-msgstr ""
+msgstr "Gratowe typy"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:134
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Prawidła priwatnosće čitać"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:61
 msgid "Requirements"
@@ -7005,40 +7007,40 @@ msgstr "Statistiki pokazać"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:118 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111 mkt/search/forms.py:14
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Tydźenske sćehnjenja"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Disponibelnosć po regionach"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
-msgstr ""
+msgstr "Mjenje pokazać"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:151
 msgid "Images"
-msgstr ""
+msgstr "Wobrazy"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:161
 msgid "More about this app"
-msgstr ""
+msgstr "Wjace wo tutym nałoženju"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:164
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
 
 #. "Filter" is a button label (verb)
 #: mkt/reviewers/templates/reviewers/includes/macros.html:61 mkt/templates/mkt/header.html:18
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Pochad nałoženja"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
-msgstr ""
+msgstr "<strong>IDN-domena!</strong> Wersija Punycode: %(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Priority Review Needed"
@@ -7080,38 +7082,42 @@ msgstr "přełožować"
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Markěrowany wot wužiwarja %"
+"(user)s %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Wšě přepruwowanja su moderěrowane. Dobre dźěło!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
-msgstr ""
+msgstr "Rozšěrjene pytanje"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Pytanje zhašeć"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:15
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Wersija %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:20 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:26
 msgid "Files in this version:"
-msgstr ""
+msgstr "Dataje w tutej wersiji:"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:33
 msgid "Validation"
-msgstr ""
+msgstr "Přepruwowanje"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:30 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:35
 msgid "Contents"
-msgstr ""
+msgstr "Wobsah"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:33 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:38
 msgid "Compare"
-msgstr ""
+msgstr "Přirunać"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:72
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7127,35 +7133,37 @@ msgstr "Předchadna strona"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Historija nałoženja so začituje &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
-msgstr ""
+msgstr "K prěnjej stronje skočić"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:12 mkt/site/templates/site/impala_paginator.html:22
 msgid "Previous"
-msgstr ""
+msgstr "Předchadne"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26 mkt/site/templates/site/impala_paginator.html:5
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Strona <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
 #.                third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b> so pokazuja"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Najnowše dypki"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Hišće žane dypki rozdate."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -7192,39 +7200,39 @@ msgstr ""
 
 #: mkt/search/forms.py:17
 msgid "Newest"
-msgstr ""
+msgstr "Najnowše"
 
 #: mkt/search/forms.py:18
 msgid "Reviewed"
-msgstr ""
+msgstr "Přepruwowany"
 
 #: mkt/search/forms.py:25
 msgid "Any App Type"
-msgstr ""
+msgstr "Někajki nałoženski typ"
 
 #: mkt/search/forms.py:28
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Priwilegowane zapakowane nałoženje"
 
 #: mkt/search/forms.py:33
 msgid "Free with In-app"
-msgstr ""
+msgstr "Darmo z płaćenjom w nałoženju"
 
 #: mkt/search/forms.py:35
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium z płaćenjom w nałoženju"
 
 #: mkt/search/forms.py:36
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Druhi system za płaćenje w nałoženju"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
-msgstr ""
+msgstr "Někajki grat"
 
 #: mkt/search/forms.py:43
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
@@ -7264,39 +7272,41 @@ msgstr ""
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Wšudźe"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
-msgstr ""
+msgstr "Funguje offline"
 
 #: mkt/search/forms.py:112
 msgid "Supported languages"
-msgstr ""
+msgstr "Podpěrane rěče"
 
 #: mkt/search/forms.py:113
 msgid "Author name"
-msgstr ""
+msgstr "Mjeno awtora"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pytanje nic k dispoziciji"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Pytanje nachwilu k dispoziciji njeje. Prošu spytajće hišće raz za por "
+"mjeńšin."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
-msgstr ""
+msgstr "Kontowe nastajenja"
 
 #: mkt/site/context_processors.py:58
 msgid "Change Password"
-msgstr ""
+msgstr "Hesło změnić"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Wotzjewić"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
@@ -7337,27 +7347,29 @@ msgstr ""
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
-msgstr ""
+msgstr "Njedowoleny"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Hopla! Njedowoleny."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Sće spytał, něšto činić, štož njesměće."
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
 msgstr ""
+"Spytajće so k předchadnej stronje wróćić, začitajće ju znowa a spytajće "
+"hišće raz."
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "Strona njeje so namakała"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
+msgstr "Bohužel njemóžemy namakać, za čimž pytaće."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
@@ -7410,15 +7422,15 @@ msgstr ""
 
 #: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
-msgstr ""
+msgstr "Njemóže darmotne a płaćomne być."
 
 #: mkt/submit/forms.py:49
 msgid "Please select a device."
-msgstr ""
+msgstr "Prošu wubjerće grat."
 
 #: mkt/submit/forms.py:127
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Přizwolić a pokročować"
 
 #: mkt/submit/forms.py:153 mkt/submit/forms.py:225
 msgid "There was an error with your upload. Please try again."
@@ -7426,11 +7438,11 @@ msgstr ""
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Wersija %s hižo eksistuje."
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "Změny na \"pochadźe\" dowolene njejsu."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
