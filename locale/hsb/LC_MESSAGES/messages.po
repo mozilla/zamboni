@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-11 18:07+0000\n"
+"PO-Revision-Date: 2015-01-11 19:39+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420999620.0\n"
+"X-POOTLE-MTIME: 1421005165.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -6779,7 +6779,7 @@ msgstr "{0}%"
 
 #: mkt/reviewers/templates/reviewers/home.html:68
 msgid "Total Reviews"
-msgstr ""
+msgstr "Pohódnoćenja dohromady"
 
 #: mkt/reviewers/templates/reviewers/home.html:69
 msgid "Reviews This Month"
@@ -6787,39 +6787,39 @@ msgstr "Přepruwowanja tutoho měsaca"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:3 mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Lisćina porjada pohódnoćerjow"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Hišće žane pohódnoćenske dypki rozdźělene."
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
-msgstr ""
+msgstr "Rjad"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Staw po dypkach"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
-msgstr ""
+msgstr "Protkol nałoženskich přepruwowanjow"
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
 msgid "Event"
-msgstr ""
+msgstr "Podawk"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "Nałoženje je so zhašało."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
-msgstr ""
+msgstr "Komentary pokazać"
 
 #: mkt/reviewers/templates/reviewers/logs.html:45
 msgid "Hide Comments"
-msgstr ""
+msgstr "Komentary schować"
 
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
@@ -6859,23 +6859,23 @@ msgstr "Čakanski čas"
 
 #: mkt/reviewers/templates/reviewers/queue.html:50 mkt/reviewers/templates/reviewers/queue.html:71
 msgid "Payment Category:"
-msgstr ""
+msgstr "Płaćenska kategorija:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:101
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Pomocliwe wotkazy:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:102
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Přewodnik za přepruwowarjow"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:11
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "Pohódnoćenski čakanski rynk za {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
-msgstr ""
+msgstr "wot"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
