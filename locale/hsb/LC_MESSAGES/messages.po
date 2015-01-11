@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-11 20:19+0000\n"
+"PO-Revision-Date: 2015-01-11 22:19+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421007582.0\n"
+"X-POOTLE-MTIME: 1421014742.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7167,36 +7167,36 @@ msgstr "Hišće žane dypki rozdate."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Najlěpši přepruwowarjo (poslednich 7 dnjow)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Hišće žani najlěpši přepruwowarjo."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Cyły čas"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Maće <span>{0}</span> dypkow."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Žane wuslědki namakane."
 
 #: mkt/search/forms.py:12
 msgid "Relevance"
-msgstr ""
+msgstr "Relewanca"
 
 #: mkt/search/forms.py:13
 msgid "Popularity"
-msgstr ""
+msgstr "Woblubowanosć"
 
 #: mkt/search/forms.py:15
 msgid "Top Rated"
-msgstr ""
+msgstr "Najlěpje pohódnoćeny"
 
 #: mkt/search/forms.py:17
 msgid "Newest"
@@ -7236,39 +7236,39 @@ msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
-msgstr ""
+msgstr "Někajki gratowy typ"
 
 #: mkt/search/forms.py:52
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 #: mkt/search/forms.py:53
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: mkt/search/forms.py:56
 msgid "All Categories"
-msgstr ""
+msgstr "Wšě kategorije"
 
 #: mkt/search/forms.py:71
 msgid "Search for apps"
-msgstr ""
+msgstr "Za nałoženjemi pytać"
 
 #: mkt/search/forms.py:96
 msgid "Device type"
-msgstr ""
+msgstr "Gratowy typ"
 
 #: mkt/search/forms.py:99
 msgid "Premium types"
-msgstr ""
+msgstr "Premiumowe typy"
 
 #: mkt/search/forms.py:103
 msgid "App type"
-msgstr ""
+msgstr "Nałoženski typ"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Instalacije dowolene z"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
@@ -7310,7 +7310,7 @@ msgstr "Wotzjewić"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
-msgstr ""
+msgstr "Wuwiwarski róžk"
 
 #: mkt/site/context_processors.py:77
 msgid "Admin Tools"
@@ -7382,38 +7382,40 @@ msgstr ""
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr ""
+"Wopytajće <a class=\"sync\" href=\"%(home)s\">startowu stronu Torhošća "
+"Firefox</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Serwerowy zmylk"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Hopla! Pola nas je zmylk wustupił."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
-msgstr ""
+msgstr "Damy so bórze do jeho wotstronjenja."
 
 #: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
-msgstr ""
+msgstr "Móžeće tutu stronu znowa začitać, abo pozdźišo hišće raz spytać."
 
 #: mkt/stats/forms.py:9
 msgid "Day"
-msgstr ""
+msgstr "Dźeń"
 
 #: mkt/stats/forms.py:10
 msgid "Week"
-msgstr ""
+msgstr "Tydźeń"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Štwórćlěto"
 
 #: mkt/submit/forms.py:30
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Změnjene graty: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:40
@@ -7477,15 +7479,16 @@ msgstr ""
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Websydło:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
+"Jeli waše nałoženje ma websydło pomocy abo forum, zapodajće tu jeho adresu."
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-mejlowa adresa:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7493,11 +7496,11 @@ msgstr ""
 
 #: mkt/submit/forms.py:311
 msgid "Does your app require Flash support?"
-msgstr ""
+msgstr "Trjeba waše nałoženje podpěru za Flash?"
 
 #: mkt/submit/forms.py:317
 msgid "Your comments for reviewers"
-msgstr ""
+msgstr "Waše komentary za přepruwowarjow"
 
 #: mkt/submit/forms.py:319
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7550,11 +7553,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Dokónčene!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
-msgstr ""
+msgstr "Je so poradźiło! Što so nětko stawa?"
 
 #: mkt/submit/templates/submit/done.html:18
 msgid ""
@@ -7574,15 +7577,15 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
-msgstr ""
+msgstr "Moje nałoženje zrjadować"
 
 #: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
-msgstr ""
+msgstr "Dalše nałoženje zapodać"
 
 #: mkt/submit/templates/submit/manifest.html:101
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Minimalne žadanja nałoženja"
 
 #: mkt/submit/templates/submit/manifest.html:106
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -7590,7 +7593,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
-msgstr ""
+msgstr "Wozjewjene!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
@@ -7598,11 +7601,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "Manifest nałoženja zapodać"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
-msgstr ""
+msgstr "Podrobnosće nałoženja zapodać"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
@@ -7614,7 +7617,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
-msgstr ""
+msgstr "Na přepruwowanje čakać"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
