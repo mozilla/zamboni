@@ -4,7 +4,7 @@ from django.conf import settings
 
 import commonware.log
 
-from mkt.monolith import record_stat
+from mkt.monolith.models import record_stat
 
 
 log = commonware.log.getLogger('z.metrics')
