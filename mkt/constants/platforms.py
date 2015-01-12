@@ -22,15 +22,15 @@ def PAID_PLATFORMS(request=None):
     android_pay = request and active(request, 'android-payments')
     desktop_pay = request and active(request, 'desktop-payments')
 
+    if desktop_pay:
+        platforms += (
+            ('paid-desktop', _('Firefox for Desktop')),
+        )
+
     if android_pay:
         platforms += (
             ('paid-android-mobile', _('Firefox Mobile')),
             ('paid-android-tablet', _('Firefox Tablet')),
-        )
-
-    if desktop_pay:
-        platforms += (
-            ('paid-desktop', _('Firefox for Desktop')),
         )
 
     return platforms
@@ -43,7 +43,7 @@ PLATFORMS_NAMES = {
     'free-android-mobile': _('Android smartphones'),
     'free-android-tablet': _('Tablets'),
     'paid-firefoxos': _('Fully open mobile ecosystem'),
+    'paid-desktop': _('Windows, Mac and Linux'),
     'paid-android-mobile': _('Android smartphones'),
     'paid-android-tablet': _('Tablets'),
-    'paid-desktop': _('Windows, Mac and Linux'),
 }
