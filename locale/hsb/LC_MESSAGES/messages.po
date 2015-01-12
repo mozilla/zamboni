@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 18:42+0000\n"
+"PO-Revision-Date: 2015-01-12 18:57+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421088123.0\n"
+"X-POOTLE-MTIME: 1421089072.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7598,6 +7598,9 @@ msgstr ""
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
 msgstr ""
+"Prjedy hač waše nałoženje so schwali, dyrbiće płaćenske informacije podać. "
+"Tak ruče kaž sće płaćenske konto a płaćiznu přidał, so waše nałoženje za "
+"přepruwowanje zapoda."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
