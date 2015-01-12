@@ -81,7 +81,6 @@
             $this.find('input').prop('checked', nowSelected);
             $input.val(old).trigger('change');
             $compat_save_button.removeClass('hidden');
-            setTabState();
         })
     );
 
@@ -90,37 +89,6 @@
             .find('input').removeAttr('checked');
 
         $('#id_free_platforms, #id_paid_platforms').val([]);
-    }
-
-    // Best function name ever?
-    function allTabsDeselected() {
-        var freeTabs = $('#id_free_platforms option:selected').length;
-        var paidTabs = $('#id_paid_platforms option:selected').length;
-
-        return freeTabs === 0 && paidTabs === 0;
-    }
-
-    // Condition to show packaged tab.
-    function showPackagedTab() {
-        return $('#id_free_platforms option:selected').length ||
-            $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
-            $('#id_paid_platforms option[value="paid-android-mobile"]:selected').length ||
-            allTabsDeselected();
-    }
-
-    // Toggle packaged/hosted tab state.
-    function setTabState() {
-        if (!$('#id_free_platforms, #id_paid_platforms').length) {
-            return;
-        }
-
-        // If only free-os or paid-os is selected, show packaged.
-        if (showPackagedTab()) {
-            $('#packaged-tab-header').css('display', 'inline');
-        } else {
-            $('#packaged-tab-header').hide();
-            $('#hosted-tab-header').find('a').click();
-        }
     }
 
     // Deselect all checkboxes once tabs have been setup.
