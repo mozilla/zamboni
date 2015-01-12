@@ -1020,6 +1020,13 @@ class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
         ok_(data['background_image_landing'].endswith(obj.image_landing_hash))
         eq_(crush_mock.call_args_list[1][0][0], obj.image_path('_landing'))
 
+    def test_update_mismatched_carrier_region(self):
+        OperatorPermission.objects.create(
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,
+            user=self.user)
+        res, data = self.update(self.client, region='mx', carrier='telefonica')
+        eq_(res.status_code, 403)
+
     def test_delete_with_obj_permission(self):
         OperatorPermission.objects.create(
             carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,

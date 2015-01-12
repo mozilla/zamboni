@@ -412,6 +412,9 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
         checks in require_operator_permission for the carrier and region on the
         FeedShelf object they are attempting to update.
         """
+        if any(d in request.DATA for d in ['region', 'carrier']):
+            self.require_operator_permission(request.user, request.DATA.get('carrier'),
+                                             request.DATA.get('region'))
         self.require_object_permission(request.user, self.get_object())
         return super(FeedShelfViewSet, self).update(request, *args, **kwargs)
 
