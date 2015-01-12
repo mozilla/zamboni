@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-11 22:34+0000\n"
+"PO-Revision-Date: 2015-01-12 14:21+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421015675.0\n"
+"X-POOTLE-MTIME: 1421072476.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7326,15 +7326,15 @@ msgstr "Heksadecimalny barbny kod"
 
 #: mkt/site/fields.py:105
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "To dyrbi płaćiwy heksadecimalny barbny kod być, na př. #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Tak ruče hač je so schwaliło."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Nic, doniž jo manuelnje njewozjewjam."
 
 #: mkt/site/helpers.py:163
 msgid "Home"
@@ -7374,10 +7374,12 @@ msgstr "Bohužel njemóžemy namakać, za čimž pytaće."
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr ""
+"Strona abo dataja, kotruž sće požadał, njeje so na našim sydle namakała. "
+"Snano sće na wotkaz kliknył, kotryž je zestarjeny abo adresu wopak zapodał."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+msgstr "Hdyž sće adresu zapodał, přepruwujće prawopis hišće raz."
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
@@ -7420,7 +7422,7 @@ msgstr "Změnjene graty: {0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:40
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "Žadanja změnjene: {0}"
 
 #: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
@@ -7436,7 +7438,7 @@ msgstr "Přizwolić a pokročować"
 
 #: mkt/submit/forms.py:153 mkt/submit/forms.py:225
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Při nahrawanju je zmylk wustupił. Prošu spytajće hišće raz."
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
@@ -7448,19 +7450,23 @@ msgstr "Změny na \"pochadźe\" dowolene njejsu."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Wužiwar, kotryž přepruwowanje posrědkuje, jenak njeje."
 
 #: mkt/submit/forms.py:266
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Wozjewće moje nałoženje a čińće jo za kóždeho na Torhošću widźomne a "
+"zapřijmiće jo do pytanskich wuslědkow."
 
 #: mkt/submit/forms.py:269
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Njewozjewće moje nałoženje. Informujće mje a přiměrju widźomnosć nałoženja, "
+"po tym zo je so schwaliło."
 
 #: mkt/submit/forms.py:280
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Prawidła priwatnosće"
 
 #: mkt/submit/forms.py:282
 msgid ""
@@ -7471,11 +7477,11 @@ msgstr ""
 
 #: mkt/submit/forms.py:293
 msgid "Homepage:"
-msgstr ""
+msgstr "Startowa strona:"
 
 #: mkt/submit/forms.py:295
 msgid "If your app has another homepage, enter its address here."
-msgstr ""
+msgstr "Jeli waše nałoženje ma druhu startowu stronu, zapodajće tu adresu."
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
@@ -7512,20 +7518,20 @@ msgstr ""
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Moje nałoženje bjez internetneho zwiska funguje."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr ""
+msgstr "Podrobnosće nałoženja wobdźěłać"
 
 #: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:8 mkt/submit/templates/submit/manifest.html:22 mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
-msgstr ""
+msgstr "Nałoženje zapodać"
 
 #: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:6 mkt/submit/templates/submit/manifest.html:24 mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "Nałoženje zapodać"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
@@ -7533,19 +7539,19 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Stronu podrobnosćow wočinić"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Informacije wo pomocy:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
-msgstr ""
+msgstr "Foto wobrazowki abo widejo wašeho nałoženja:"
 
 #: mkt/submit/templates/submit/details.html:118
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Dyrbiće znajmjeńša jedne podać."
 
 #: mkt/submit/templates/submit/details.html:158
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
@@ -7590,6 +7596,8 @@ msgstr "Minimalne žadanja nałoženja"
 #: mkt/submit/templates/submit/manifest.html:106
 msgid "<b>What's next:</b> fill out the rest of your app's details"
 msgstr ""
+"<b>Štož jako přichodne přińdźe:</b> Zapisajće zbytne podrobnosće swojeho "
+"nałoženja"
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
@@ -7597,7 +7605,7 @@ msgstr "Wozjewjene!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
-msgstr ""
+msgstr "Nimale zdokonjany!"
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
@@ -7610,10 +7618,12 @@ msgstr "Podrobnosće nałoženja zapodać"
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
 msgstr ""
+"<span>Připrawće <a href=\"%(rating_url)s\">wobsahowe pohódnoćenja</a> "
+"ein</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr ""
+msgstr "<span>Připrawće <a href=\"%(pay_url)s\">płaćenja</a> ein</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
@@ -7621,15 +7631,19 @@ msgstr "Na přepruwowanje čakać"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
-msgstr ""
+msgstr "Móžeće kóždy čas"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr ""
+"podrobnosće swojeho nałoženja pod <a href=\"%(url)s\">Lisćinowy zapisk "
+"wobdźěłać</a> přiměrić"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr ""
+"sej lisćinu wšěch ze swojich zapodaćow pod <a href=\"%(url)s\">Moje "
+"zapodaća</a> wobhladać"
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
@@ -7650,19 +7664,22 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Tak ruče hač waše nałoženj je so přepruwowało, budźe so na lisćinwoych "
+"stronach a w pytanju jewić, zo bychu druzy na nim wjeselili."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
 msgstr ""
+"<strong>Štož jako přichodne přińdźe:</strong> Připrawće %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Štož jako přichodne přińdźe:</strong> Wozjewće swoje nałoženje"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "Wuwiwarski program Torhošća"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
@@ -7680,19 +7697,19 @@ msgstr ""
 
 #: mkt/submit/tests/test_forms.py:307
 msgid "Héllo"
-msgstr ""
+msgstr "Halo"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Kontowe nastajenja wobdźěłać"
 
 #: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Wróćo k Torhošću"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
-msgstr ""
+msgstr "Wotzjewić"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
@@ -7702,40 +7719,40 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Wužiwanske wuměnjenja"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Znjewužiwanje wikowanskeho znamjenja zdźělić"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Wróćo"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Zhašeć"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Pokazać"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Přełožować za : <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: mkt/translations/templates/translations/trans-menu.html:16 mkt/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: mkt/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksistowace rěče"
 
 #: mkt/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Nowe rěče"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
@@ -7744,7 +7761,7 @@ msgstr ""
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Změny zaćisnyć"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:56
@@ -7753,39 +7770,39 @@ msgstr ""
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Rěč zhašeć"
 
 #: mkt/users/models.py:59
 msgid "No user with that email."
-msgstr ""
+msgstr "Žadyn wužiwar z tutej e-mejlowej adresu."
 
 #: mkt/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "wuwiwar přidatka dźakuje so mi za přinošk"
 
 #: mkt/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "wuwiwar přidatk wotmołwja na moje pohódnoćenje"
 
 #: mkt/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "wuwiwar nałoženja wotmołwja na moje pohódnoćenje"
 
 #: mkt/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nowe přidatki abo funkcije Firefox su k dispoziciji"
 
 #: mkt/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "Kompatibelnosć mojeho přidatka je so wuspěšnje powyšiła"
 
 #: mkt/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mój přidatk na zakładźe SDK je so wuspěšnje zaktualizował"
 
 #: mkt/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "něchtó pisa pohódnoćenje mojeho přidatka"
 
 #: mkt/users/notifications.py:74
 msgid "someone writes a review of my app"
@@ -7797,15 +7814,15 @@ msgstr ""
 
 #: mkt/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kompatibelnosć mojeho přidatka njeda so powyšić"
 
 #: mkt/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mój přidatk na zakładźe SDK njeda so aktualizować"
 
 #: mkt/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "mój přidatk je so wot redaktora přepruwował"
 
 #: mkt/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
@@ -7813,11 +7830,11 @@ msgstr ""
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "moje nałoženje je so wot redaktora přepruwowało"
 
 #: mkt/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla dyrbi so ze mnu mojeho nałoženja dla do zwiska stajić"
 
 #: mkt/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
