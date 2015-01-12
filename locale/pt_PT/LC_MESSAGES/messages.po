@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-12-20 03:41+0000\n"
+"PO-Revision-Date: 2015-01-12 23:06+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419046889.0\n"
+"X-POOTLE-MTIME: 1421103977.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2305,11 +2305,11 @@ msgstr "A aplicação requer que o dispositivo tenha pelo menos 512MB de RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Dispositivo com 1GB de RAM"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "A aplicação requer que o dispositivo tenha pelo menos 1GB de RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -4712,6 +4712,9 @@ msgstr "Ativar"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"Produtos na aplicação são apenas suportados para aplicações alojadas ou "
+"aplicação empacotadas que definem uma <a href=\"%(origin)s\">origem</a> no "
+"manifesto. A sua aplicação não define uma origem."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
