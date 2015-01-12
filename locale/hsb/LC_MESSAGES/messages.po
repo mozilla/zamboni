@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 14:21+0000\n"
+"PO-Revision-Date: 2015-01-12 17:13+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421072476.0\n"
+"X-POOTLE-MTIME: 1421082804.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -6314,7 +6314,7 @@ msgstr "z {0} z 5 hwěžkow pohódnoćeny"
 
 #: mkt/ratings/templates/ratings/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Z %(ratings)s z 5 hwěžkow pohódnoćeny"
+msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -7474,6 +7474,13 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"Prawidła priwatnosće wujasnjeja, kak z datami wobchadźeće, kotrež přez waše "
+"nałoženje dóstawaće. Na přikład: kotre daty dóstawaće? Kak je wužiwaće? Z "
+"kim je dźěliće? Dóstawaće wosobinske informacije? Činiće naprawy, zo byšće "
+"je anonymne činił? Kotre wuběranske móžnosće maće wužiwarjo, zo bychu "
+"kontrolowali, kotre daty wy a druzy dóstawaja? Zapodajće wotkaz abo tekst k "
+"swojim prawidłam priwatnosće. Jeli nimaće prawidła priwatnosće, <a "
+"href=\"{url}\" target=\"_blank\">zhońće wjace wo tym, kak móžeće je pisać</a>."
 
 #: mkt/submit/forms.py:293
 msgid "Homepage:"
@@ -7499,6 +7506,9 @@ msgstr "E-mejlowa adresa:"
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"Tuta e-mejlowa adresa so zjawnje na Torhošću pokazuje a wužiwa so wot "
+"kónčnych wužiwarjow, zo bychu was problemow dla kontaktowali. Tuta e-mejlowa "
+"adresa so zjawnje na stronje podrobnosćow wašeho nałoženja pokazuje."
 
 #: mkt/submit/forms.py:311
 msgid "Does your app require Flash support?"
