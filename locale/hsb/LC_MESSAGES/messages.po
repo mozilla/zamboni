@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 19:41+0000\n"
+"PO-Revision-Date: 2015-01-12 20:42+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421091678.0\n"
+"X-POOTLE-MTIME: 1421095360.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7765,6 +7765,9 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
+"Jeli njeje hinak <a href=\"%(legal_url)s\">přispomnjene</a>, je wobsah tutoho "
+"sydła pod licencu <a href=\"%(cc_url)s\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> abo pozdźišej wersiju."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -7807,6 +7810,8 @@ msgstr "Nowe rěče"
 #: mkt/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr ""
+"Maće njeskładowane změny w rěči <b>{0}</b>. Chceće swoje změny składować, "
+"prjedy hač rěč změniće?"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -7816,6 +7821,7 @@ msgstr "Změny zaćisnyć"
 #: mkt/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
+"Chceće woprawdźe wšěch <b>{0}</b> přełožkow wotstronić? To njeda so cofnyć."
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -7888,10 +7894,14 @@ msgstr "Mozilla dyrbi so ze mnu mojeho nałoženja dla do zwiska stajić"
 #: mkt/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla chce so ze mnu dla relewantnych nowinkow a naprašowanjow za "
+"wuwiwarjow nałoženja do zwiska stajić"
 
 #: mkt/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla chce so ze mnu nowych regionow dla do zwiska stajić, kotrež su so "
+"Torhošću přidali"
 
 #: mkt/users/notifications.py:158
 msgid "User Notifications"
@@ -7916,10 +7926,12 @@ msgstr "Wužiwar z tutej e-mejlowej adresu njeeksistuje."
 #: mkt/users/views.py:75
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
+"Wužiwar z tutej e-mejlowej adresu njeeksistuje, abo wužiwar hišće njeje do "
+"wuwiwarskeho dojednanja zwolił."
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Awtentifikaciski zmylk Native FxA."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7940,10 +7952,16 @@ msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"Dóstawaće tutu e-mejlku, dokelž sće konto na Torhošću Firefox załožił. "
+"Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%"
+"(terms)s\">Wužiwanske wuměnjenja</a> | <a href=\"%(privacy)s\">Prawidła "
+"priwatnosće</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
 msgstr ""
+"Torhošćo Firefox je k Firefox Accounts přešło. Prošu zaktiwizujće swoje nowe "
+"konto Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
