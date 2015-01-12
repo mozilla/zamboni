@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 18:57+0000\n"
+"PO-Revision-Date: 2015-01-12 19:21+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421089072.0\n"
+"X-POOTLE-MTIME: 1421090472.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7607,6 +7607,10 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
+"Waše nałoženje je so składowało a hotowy za start! Waše nałoženje čaka "
+"tuchwilu na přepruwowanje a zjewi so na stronach lisćinowych zapiskow a w "
+"yptanskich wuslědkach, tak ruče hač je přepruwowane. Hač do toho móžeće "
+"podrobnosće a nastajenja wašeho nałoženja optimizować."
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
@@ -7675,18 +7679,28 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Požadajće, zo so waše nałoženje na gratach z mało składowakom pod <a href=\"%"
+"(status_url)s\">Status a wersije</a> pokazuje"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Požadajće, zo so waše nałoženje na gratach z mało składowakom pod <a href=\"%"
+"(status_url)s\">Status</a> pokazuje"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Tak ruče hač waše nałoženje je přepruwowane, dyrbiće swoje nałoženje přez <a "
+"href=\"%(url)s\">Status zrjadować</a> manuelnje wozjewić. Jewi so potom na "
+"stronach lisćinowych zapiskow a w pytanskich wuslědkach, zo bychu so druzy "
+"na tym wjeselili."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr ""
+"Waše nałoženje je so schwaliło! Jewi so nětko na stronach lisćinowych "
+"zapiskow a w pytanskich wuslědkach, zo bychu so druzy na tym wjeselili."
 
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
