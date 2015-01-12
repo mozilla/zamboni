@@ -557,6 +557,7 @@ def ownership(request, addon_id, addon):
                     thread___addon=addon).delete()
 
         for author in user_form.deleted_objects:
+            author.delete()
             if author.user_id == request.user.id:
                 # The current user removed their own access to the app.
                 redirect_url = reverse('mkt.developers.apps')
