@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 18:21+0000\n"
+"PO-Revision-Date: 2015-01-12 18:31+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421086880.0\n"
+"X-POOTLE-MTIME: 1421087491.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7521,10 +7521,13 @@ msgstr "Waše komentary za přepruwowarjow"
 #: mkt/submit/forms.py:319
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Waše nałoženje so wot Mozilla přepruwuje, prjedy hač so zjawnje na Torhošću "
+"pokazuje. Zapodajće wosebite instrukcije za přepruwowarjow nałoženja."
 
 #: mkt/submit/forms.py:324
 msgid "Once your app is approved, choose a publishing option:"
 msgstr ""
+"Tak ruče hač waše nałoženje je so schwaliło, wubjerće wozjewjensku opciju:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
@@ -7546,6 +7549,8 @@ msgstr "Nałoženje zapodać"
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
 msgstr ""
+"Prošu přepruwujće deleka informacije wašeho lisćinoweho zapiska. Smy tak "
+"wjele kaž móžno z wašeho manifesta do toho zapisali."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -7566,6 +7571,9 @@ msgstr "Dyrbiće znajmjeńša jedne podać."
 #: mkt/submit/templates/submit/details.html:158
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
 msgstr ""
+"PNG a JPG so podpěrujetej. Fota wobrazowki dyrbja znajmjeńša 320 px x 480 px "
+"wulke być. Fota wobrazowki, kotrež su k 320 px x 480 px proporcionalne, su "
+"optimalne. Za wideja so WebM podpěruje."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
