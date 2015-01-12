@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 17:13+0000\n"
+"PO-Revision-Date: 2015-01-12 17:23+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421082804.0\n"
+"X-POOTLE-MTIME: 1421083397.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7816,11 +7816,11 @@ msgstr "něchtó pisa pohódnoćenje mojeho přidatka"
 
 #: mkt/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "něchtó pisa pohódnoćenje za moje nałoženje"
 
 #: mkt/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "přidatkowe wubědźowanja abo podawki so připowěduja"
 
 #: mkt/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
@@ -7836,7 +7836,7 @@ msgstr "mój přidatk je so wot redaktora přepruwował"
 
 #: mkt/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla dyrbi so ze mnu mojeho přidatka dla do zwiska stajić"
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
@@ -7856,23 +7856,23 @@ msgstr ""
 
 #: mkt/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Wužiwarske zdźělenja"
 
 #: mkt/users/tasks.py:18 mkt/users/tasks.py:21
 msgid "Firefox Accounts is coming"
-msgstr ""
+msgstr "Firefox Accounts přińdźe"
 
 #: mkt/users/tasks.py:19 mkt/users/tasks.py:20 mkt/users/tasks.py:22 mkt/users/tasks.py:23
 msgid "Activate your Firefox Account"
-msgstr ""
+msgstr "Zaktiwizujće swoje konto Firefox"
 
 #: mkt/users/views.py:67
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mejlowa adresa je trěbna."
 
 #: mkt/users/views.py:74
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Wužiwar z tutej e-mejlowej adresu njeeksistuje."
 
 #: mkt/users/views.py:75
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
@@ -7884,15 +7884,17 @@ msgstr ""
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Prošu wužiwajće přepruwowanu e-mejlowu adresu za tute konto."
 
 #: mkt/users/templates/users/emails/base.html:98
 msgid "Activate now"
-msgstr ""
+msgstr "Nětko aktiwizować"
 
 #: mkt/users/templates/users/emails/base.html:122
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
 msgstr ""
+"Dalše informacije wo Firefox Accounts, hlejće <a href=\"%(faq)s\">Huste "
+"prašenja</a>."
 
 #: mkt/users/templates/users/emails/base.html:136
 msgid ""
