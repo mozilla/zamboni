@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 19:21+0000\n"
+"PO-Revision-Date: 2015-01-12 19:41+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421090472.0\n"
+"X-POOTLE-MTIME: 1421091678.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7727,6 +7727,10 @@ msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
+"Wjeselimy so, zo sće nałoženje z pomocu webtechnologijemi wuwił, a "
+"zapodowanje do Torhošća Firefox je za wužiwarjow najlěpša móžnosć, jo na "
+"wšěch gratach wotkryć a wužiwać. Najprjedy dyrbiće so deleka wuwiwarskemu "
+"programej Torhošća přidružić."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -7737,6 +7741,8 @@ msgstr ""
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
+"Mozilla smě mi e-mejlku z relewantnymi nowinkami a naprašowanjemi za "
+"wuwiwarjow nałoženja pósłać"
 
 #: mkt/submit/tests/test_forms.py:307
 msgid "Héllo"
