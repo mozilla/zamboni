@@ -146,8 +146,9 @@ class TestContribute(mkt.site.tests.TestCase):
         response = self.client.get('/contribute.json')
         eq_(response.status_code, 200)
         eq_(response['Content-Type'], 'application/json')
-        eq_(json.loads(response.content).keys(), ['name', 'repository', 'bugs',
-            'urls', 'participate', 'keywords', 'description'])
+        eq_(json.loads(''.join(response.streaming_content)).keys(),
+            ['name', 'repository', 'bugs', 'urls', 'participate', 'keywords',
+             'description'])
 
 
 class TestOpensearch(mkt.site.tests.TestCase):
