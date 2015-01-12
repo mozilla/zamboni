@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 07:30+0000\n"
+"PO-Revision-Date: 2015-01-12 22:21+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421047813.0\n"
+"X-POOTLE-MTIME: 1421101295.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7451,11 +7451,15 @@ msgstr "eine Liste aller Ihre Einreichungen unter <a href=\"%(url)s\">Meine Einr
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr "Fordern Sie auf <a href=\"%(status_url)s\">Status & Versionen</a> an, dass Ihre App auf Geräten mit wenig Speicher angezeigt wird"
+msgstr ""
+"Fordern Sie an, dass Ihre App auf Geräten mit wenig Speicher unter <a href=\""
+"%(status_url)s\">Status & Versionen</a> angezeigt wird"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr "Fordern Sie auf <a href=\"%(status_url)s\">Status</a> an, dass Ihre App auf Geräten mit wenig Speicher angezeigt wird"
+msgstr ""
+"Fordern Sie an, dass Ihre App auf Geräten mit wenig Speicher unter <a href=\""
+"%(status_url)s\">Status</a> angezeigt wird"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
@@ -7482,9 +7486,7 @@ msgstr "<strong>Was kommt als nächstes:</strong> Veröffentlichen Sie Ihre App"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
-"Wir freuen uns, dass Sie eine App mit Web-Technologien entwickelt haben und ein Einstellen in den Firefox Marketplace ist die beste Möglichkeit, damit Anwender sie entdecken und auf all ihren "
-"Geräten verwenden können. Zunächst müssen Sie sich im Folgenden dem Marketplace-Entwicklerprogramm anschließen."
+msgstr "Marketplace-Entwicklerprogramm"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
