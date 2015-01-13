@@ -3,6 +3,7 @@ import collections
 from contextlib import nested
 
 import django
+from django.apps import apps
 from django.conf import settings
 from django.db import connections, reset_queries
 from django.test import TransactionTestCase
@@ -24,7 +25,6 @@ from mkt.translations.models import (attach_trans_dict, LinkifiedTranslation,
                                      PurifiedTranslation, Translation,
                                      TranslationSequence)
 from mkt.translations.query import order_by_translation
-from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 
 
 def ids(qs):
@@ -84,36 +84,40 @@ class TranslationTestCase(TestCase):
 
     def setUp(self):
         super(TranslationTestCase, self).setUp()
+        testapp = apps.get_app_config('testapp')
+        self.TranslatedModel = testapp.get_model('TranslatedModel')
+        self.UntranslatedModel = testapp.get_model('UntranslatedModel')
+        self.FancyModel = testapp.get_model('FancyModel')
         translation.activate('en-US')
 
     def test_meta_translated_fields(self):
-        assert not hasattr(UntranslatedModel._meta, 'translated_fields')
+        assert not hasattr(self.UntranslatedModel._meta, 'translated_fields')
 
-        eq_(set(TranslatedModel._meta.translated_fields),
-            set([TranslatedModel._meta.get_field('no_locale'),
-                 TranslatedModel._meta.get_field('name'),
-                 TranslatedModel._meta.get_field('description')]))
+        eq_(set(self.TranslatedModel._meta.translated_fields),
+            set([self.TranslatedModel._meta.get_field('no_locale'),
+                 self.TranslatedModel._meta.get_field('name'),
+                 self.TranslatedModel._meta.get_field('description')]))
 
-        eq_(set(FancyModel._meta.translated_fields),
-            set([FancyModel._meta.get_field('purified'),
-                 FancyModel._meta.get_field('linkified')]))
+        eq_(set(self.FancyModel._meta.translated_fields),
+            set([self.FancyModel._meta.get_field('purified'),
+                 self.FancyModel._meta.get_field('linkified')]))
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
-        o = TranslatedModel.objects.get(id=1)
+        o = self.TranslatedModel.objects.get(id=1)
         trans_eq(o.name, 'some name', 'en-US')
         trans_eq(o.description, 'some description', 'en-US')
 
     def test_fetch_no_translations(self):
         """Make sure models with no translations aren't harmed."""
-        o = UntranslatedModel.objects.get(id=1)
+        o = self.UntranslatedModel.objects.get(id=1)
         eq_(o.number, 17)
 
     def test_fetch_translation_de_locale(self):
         """Check that locale fallbacks work."""
         try:
             translation.activate('de')
-            o = TranslatedModel.objects.get(id=1)
+            o = self.TranslatedModel.objects.get(id=1)
             trans_eq(o.name, 'German!! (unst unst)', 'de')
             trans_eq(o.description, 'some description', 'en-US')
         finally:
@@ -166,13 +170,13 @@ class TranslationTestCase(TestCase):
         eq_(fresh_english.description.id, fresh_german.description.id)
 
     def test_update_translation(self):
-        o = TranslatedModel.objects.get(id=1)
+        o = self.TranslatedModel.objects.get(id=1)
         translation_id = o.name.autoid
 
         o.name = 'new name'
         o.save()
 
-        o = TranslatedModel.objects.get(id=1)
+        o = self.TranslatedModel.objects.get(id=1)
         trans_eq(o.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
         eq_(o.name.autoid, translation_id)
@@ -180,23 +184,23 @@ class TranslationTestCase(TestCase):
     def test_create_with_dict(self):
         # Set translations with a dict.
         strings = {'en-US': 'right language', 'de': 'wrong language'}
-        o = TranslatedModel.objects.create(name=strings)
+        o = self.TranslatedModel.objects.create(name=strings)
 
         # Make sure we get the English text since we're in en-US.
         trans_eq(o.name, 'right language', 'en-US')
 
         # Check that de was set.
         translation.activate('de')
-        o = TranslatedModel.objects.get(id=o.id)
+        o = self.TranslatedModel.objects.get(id=o.id)
         trans_eq(o.name, 'wrong language', 'de')
 
         # We're in de scope, so we should see the de text.
-        de = TranslatedModel.objects.create(name=strings)
+        de = self.TranslatedModel.objects.create(name=strings)
         trans_eq(o.name, 'wrong language', 'de')
 
         # Make sure en-US was still set.
         translation.deactivate()
-        o = TranslatedModel.objects.get(id=de.id)
+        o = self.TranslatedModel.objects.get(id=de.id)
         trans_eq(o.name, 'right language', 'en-US')
 
     def test_update_with_dict(self):
@@ -229,7 +233,7 @@ class TranslationTestCase(TestCase):
 
     def test_dict_with_hidden_locale(self):
         with self.settings(HIDDEN_LANGUAGES=('xxx',)):
-            o = TranslatedModel.objects.get(id=1)
+            o = self.TranslatedModel.objects.get(id=1)
             o.name = {'en-US': 'active language', 'xxx': 'hidden language',
                       'de': 'another language'}
             o.save()
@@ -238,7 +242,7 @@ class TranslationTestCase(TestCase):
             ['de', 'en-US', 'xxx'])
 
     def test_dict_bad_locale(self):
-        m = TranslatedModel.objects.get(id=1)
+        m = self.TranslatedModel.objects.get(id=1)
         m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
         m.save()
 
@@ -254,7 +258,7 @@ class TranslationTestCase(TestCase):
         eq_(sorted([c, a, b]), [a, b, c])
 
     def test_sorting_en(self):
-        q = TranslatedModel.objects.all()
+        q = self.TranslatedModel.objects.all()
         expected = [4, 1, 3]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
@@ -262,31 +266,31 @@ class TranslationTestCase(TestCase):
 
     def test_sorting_mixed(self):
         translation.activate('de')
-        q = TranslatedModel.objects.all()
+        q = self.TranslatedModel.objects.all()
         expected = [1, 4, 3]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
     def test_sorting_by_field(self):
-        field = TranslatedModel._meta.get_field('default_locale')
-        TranslatedModel.get_fallback = classmethod(lambda cls: field)
+        field = self.TranslatedModel._meta.get_field('default_locale')
+        self.TranslatedModel.get_fallback = classmethod(lambda cls: field)
 
         translation.activate('de')
-        q = TranslatedModel.objects.all()
+        q = self.TranslatedModel.objects.all()
         expected = [3, 1, 4]
 
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
-        del TranslatedModel.get_fallback
+        del self.TranslatedModel.get_fallback
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_new_purified_field(self):
         # This is not a full test of the html sanitizing.  We expect the
         # underlying bleach library to have full tests.
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
-        m = FancyModel.objects.create(purified=s)
+        m = self.FancyModel.objects.create(purified=s)
         eq_(m.purified.localized_string_clean,
             '<a href="http://xxx.com">yay</a> '
             '<i><a href="http://yyy.com">http://yyy.com</a></i>')
@@ -295,7 +299,7 @@ class TranslationTestCase(TestCase):
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_new_linkified_field(self):
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
-        m = FancyModel.objects.create(linkified=s)
+        m = self.FancyModel.objects.create(linkified=s)
         eq_(m.linkified.localized_string_clean,
             '<a href="http://xxx.com">yay</a> &lt;i&gt;'
             '<a href="http://yyy.com">http://yyy.com</a>&lt;/i&gt;')
@@ -303,7 +307,7 @@ class TranslationTestCase(TestCase):
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_update_purified_field(self):
-        m = FancyModel.objects.get(id=1)
+        m = self.FancyModel.objects.get(id=1)
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m.purified = s
         m.save()
@@ -314,7 +318,7 @@ class TranslationTestCase(TestCase):
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_update_linkified_field(self):
-        m = FancyModel.objects.get(id=1)
+        m = self.FancyModel.objects.get(id=1)
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m.linkified = s
         m.save()
@@ -325,19 +329,19 @@ class TranslationTestCase(TestCase):
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_purified_field_str(self):
-        m = FancyModel.objects.get(id=1)
+        m = self.FancyModel.objects.get(id=1)
         eq_(u'%s' % m.purified,
             '<i>x</i> <a href="http://yyy.com">http://yyy.com</a>')
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_linkified_field_str(self):
-        m = FancyModel.objects.get(id=1)
+        m = self.FancyModel.objects.get(id=1)
         eq_(u'%s' % m.linkified,
             '&lt;i&gt;x&lt;/i&gt; '
             '<a href="http://yyy.com">http://yyy.com</a>')
 
     def test_purifed_linkified_fields_in_template(self):
-        m = FancyModel.objects.get(id=1)
+        m = self.FancyModel.objects.get(id=1)
         env = jinja2.Environment()
         t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
         s = t.render({'m': m})
@@ -345,7 +349,7 @@ class TranslationTestCase(TestCase):
                             m.linkified.localized_string_clean))
 
     def test_require_locale(self):
-        obj = TranslatedModel.objects.get(id=1)
+        obj = self.TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'en-US')
 
@@ -353,7 +357,7 @@ class TranslationTestCase(TestCase):
         obj.no_locale.locale = 'fr'
         obj.no_locale.save()
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = self.TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
         eq_(obj.no_locale.locale, 'fr')
 
@@ -362,40 +366,41 @@ class TranslationTestCase(TestCase):
         Test that deleting a translation sets the corresponding FK to NULL,
         if it was the only translation for this field.
         """
-        obj = TranslatedModel.objects.get(id=1)
+        obj = self.TranslatedModel.objects.get(id=1)
         trans_id = obj.description.id
         eq_(Translation.objects.filter(id=trans_id).count(), 1)
 
         obj.description.delete()
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = self.TranslatedModel.objects.get(id=1)
         eq_(obj.description_id, None)
         eq_(obj.description, None)
         eq_(Translation.objects.filter(id=trans_id).exists(), False)
 
-    @patch.object(TranslatedModel, 'get_fallback', create=True)
-    def test_delete_keep_other_translations(self, get_fallback):
-        # To make sure both translations for the name are used, set the
-        # fallback to the second locale, which is 'de'.
-        get_fallback.return_value = 'de'
+    def test_delete_keep_other_translations(self):
+        with patch.object(self.TranslatedModel,
+                          'get_fallback', create=True) as get_fallback:
+            # To make sure both translations for the name are used, set the
+            # fallback to the second locale, which is 'de'.
+            get_fallback.return_value = 'de'
 
-        obj = TranslatedModel.objects.get(id=1)
+            obj = self.TranslatedModel.objects.get(id=1)
 
-        orig_name_id = obj.name.id
-        eq_(obj.name.locale.lower(), 'en-us')
-        eq_(Translation.objects.filter(id=orig_name_id).count(), 2)
+            orig_name_id = obj.name.id
+            eq_(obj.name.locale.lower(), 'en-us')
+            eq_(Translation.objects.filter(id=orig_name_id).count(), 2)
 
-        obj.name.delete()
+            obj.name.delete()
 
-        obj = TranslatedModel.objects.get(id=1)
-        eq_(Translation.objects.filter(id=orig_name_id).count(), 1)
+            obj = self.TranslatedModel.objects.get(id=1)
+            eq_(Translation.objects.filter(id=orig_name_id).count(), 1)
 
-        # We shouldn't have set name_id to None.
-        eq_(obj.name_id, orig_name_id)
+            # We shouldn't have set name_id to None.
+            eq_(obj.name_id, orig_name_id)
 
-        # We should find a Translation.
-        eq_(obj.name.id, orig_name_id)
-        eq_(obj.name.locale, 'de')
+            # We should find a Translation.
+            eq_(obj.name.id, orig_name_id)
+            eq_(obj.name.locale, 'de')
 
 
 class TranslationMultiDbTests(TransactionTestCase):
@@ -403,6 +408,8 @@ class TranslationMultiDbTests(TransactionTestCase):
 
     def setUp(self):
         super(TranslationMultiDbTests, self).setUp()
+        self.TranslatedModel = (apps.get_app_config('testapp')
+                                    .get_model('TranslatedModel'))
         translation.activate('en-US')
 
     def tearDown(self):
@@ -426,7 +433,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     def test_translations_queries(self):
         # Make sure we are in a clean environnement.
         reset_queries()
-        TranslatedModel.objects.get(pk=1)
+        self.TranslatedModel.objects.get(pk=1)
         eq_(len(connections['default'].queries), 2)
 
     @override_settings(DEBUG=True)
@@ -436,7 +443,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.get(pk=1)
+                self.TranslatedModel.objects.get(pk=1)
                 eq_(len(connections['default'].queries), 0)
                 eq_(len(connections['slave-1'].queries), 0)
                 eq_(len(connections['slave-2'].queries), 2)
@@ -449,7 +456,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.using('slave-1').get(pk=1)
+                self.TranslatedModel.objects.using('slave-1').get(pk=1)
                 eq_(len(connections['default'].queries), 0)
                 eq_(len(connections['slave-1'].queries), 2)
                 eq_(len(connections['slave-2'].queries), 0)
@@ -462,7 +469,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 
             with nested(patch('multidb.get_slave', lambda: 'slave-2'),
                         multidb.pinning.use_master):
-                TranslatedModel.objects.get(pk=1)
+                self.TranslatedModel.objects.get(pk=1)
                 eq_(len(connections['default'].queries), 2)
                 eq_(len(connections['slave-1'].queries), 0)
                 eq_(len(connections['slave-2'].queries), 0)
@@ -875,8 +882,12 @@ class TestAttachTransDict(TestCase):
     Tests for attach_trans_dict.
     """
 
+    def setUp(self):
+        super(TestCase, self).setUp()
+        self.FancyModel = apps.get_app_config('testapp').get_model('FancyModel')
+
     def test_basic(self):
-        obj = FancyModel.objects.create(
+        obj = self.FancyModel.objects.create(
             purified='Purified <script>alert(42)</script>!',
             linkified='Linkified <script>alert(42)</script>!')
 
@@ -889,7 +900,7 @@ class TestAttachTransDict(TestCase):
         ok_('<script>' not in obj.linkified.localized_string_clean)
 
         # Attach trans dict.
-        attach_trans_dict(FancyModel, [obj])
+        attach_trans_dict(self.FancyModel, [obj])
         ok_(isinstance(obj.translations, collections.defaultdict))
         translations = dict(obj.translations)
 
@@ -909,14 +920,14 @@ class TestAttachTransDict(TestCase):
         eq_(translations, expected_translations)
 
     def test_multiple_objects_with_multiple_translations(self):
-        obj = FancyModel.objects.create()
+        obj = self.FancyModel.objects.create()
         obj.purified = {
             'fr': 'French Purified',
             'en-us': 'English Purified'
         }
         obj.save()
 
-        obj2 = FancyModel.objects.create(purified='English 2 Linkified')
+        obj2 = self.FancyModel.objects.create(purified='English 2 Linkified')
         obj2.linkified = {
             'fr': 'French 2 Linkified',
             'en-us': 'English 2 Linkified',
@@ -924,7 +935,7 @@ class TestAttachTransDict(TestCase):
         }
         obj2.save()
 
-        attach_trans_dict(FancyModel, [obj, obj2])
+        attach_trans_dict(self.FancyModel, [obj, obj2])
 
         eq_(set(obj.translations[obj.purified_id]),
             set([('en-us', 'English Purified'),
