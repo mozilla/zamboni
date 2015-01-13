@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-12 20:42+0000\n"
+"PO-Revision-Date: 2015-01-13 13:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421095360.0\n"
+"X-POOTLE-MTIME: 1421156045.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7966,10 +7966,14 @@ msgstr ""
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
 msgstr ""
+"Bórze so aktualny wužiwarski přizjewjenski system (Persona) přez wjele "
+"robustniši wužiwarski kontowy system z mjenom Firefox Accounts naruna."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
 msgstr ""
+"Hdyž přechad wot Persona k Firefox Accounts je hotowy, dóstanjeće e-mejlku z "
+"aktiwizowanskim wotkazom."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
@@ -7997,27 +8001,27 @@ msgstr ""
 #: mkt/webapps/forms.py:48
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Njepłaćiwe hesło: {0}"
+msgstr[1] "Njepłaćiwej hesle: {0}"
+msgstr[2] "Njepłaćiwe hesła: {0}"
+msgstr[3] "Njepłaćiwych hesłow: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:58
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "\"{0}\" je rezerwowane hesło a njeda so wužiwać."
+msgstr[1] "\"{0}\" ste rezerwowanej hesle a njedatej so wužiwać."
+msgstr[2] "\"{0}\" su rezerwowane hesła a njedadźa so wužiwać."
+msgstr[3] "\"{0}\" su rezerwowane hesła a njedadźa so wužiwać."
 
 #: mkt/webapps/forms.py:66
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Maće {0} hesło přewjele."
+msgstr[1] "Maće {0} hesle přewjele."
+msgstr[2] "Maće {0} hesła přewjele."
+msgstr[3] "Maće {0} hesłow přewjele."
 
 #: mkt/webapps/forms.py:71
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -8026,14 +8030,14 @@ msgstr ""
 #: mkt/webapps/forms.py:75
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšě hesła dyrbja ze znjamjeńša {0} znamješko wobstać."
+msgstr[1] "Wšě hesła dyrbja ze znjamjeńša {0} znamješce wobstać."
+msgstr[2] "Wšě hesła dyrbja ze znjamjeńša {0} znamješka wobstać."
+msgstr[3] "Wšě hesła dyrbja ze znjamjeńša {0} znamješkow wobstać."
 
 #: mkt/webapps/models.py:208
 msgid "Listed"
-msgstr ""
+msgstr "Pokazany"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
