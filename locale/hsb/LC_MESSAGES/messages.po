@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-13 13:34+0000\n"
+"PO-Revision-Date: 2015-01-13 14:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421156045.0\n"
+"X-POOTLE-MTIME: 1421157845.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -7980,22 +7980,34 @@ msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"Torhošćo Firefox je k Firefox Accounts přešło, zo by bóle integrowane "
+"dožiwjenje přez wšě słužby a produkty Mozilla poskićowało. Z kontom Firefox "
+"maće přistup na swoje nałoženja Torhošća a móžeće swoje nałoženja "
+"bjezposrědnje na wjacorych gratach wužiwać, dalše słužby so přihotuja."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
 msgstr ""
+"Aktiwizowanje wašeho konta je lochko. Přizjewće so prosće a wobkrućće swoje "
+"konto."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
 msgstr ""
+"Zo byšće přistup na swoje nałoženja na Torhošću Firefox měł a je rjadował, "
+"dyrbiće swoje konto Firefox aktiwizować."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
 msgstr ""
+"Torhošćo Firefox je k Firefox Accounts přešło. Prošu aktiwizujće swoje nowe "
+"konto."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
 msgstr ""
+"WAŽNY: Dyrbiće swoje konto Firefox aktiwizować, zo byšće přistup na swoje "
+"nałoženja na Torhošću Firefox měł a je rjadował."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -8026,6 +8038,8 @@ msgstr[3] "Maće {0} hesłow přewjele."
 #: mkt/webapps/forms.py:71
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Wšě hesła dyrbja z %s znamješkow abo mjenje wobstać, po tym zo su so "
+"njepłaćiwe znamješka wotstronili."
 
 #: mkt/webapps/forms.py:75
 msgid "All tags must be at least {0} character."
@@ -8041,103 +8055,103 @@ msgstr "Pokazany"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Dyrbiće e-mejlowu adresu abo URL za pomoc podać."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Dyrbiće mjeno nałoženja podać."
 
 #: mkt/webapps/models.py:1383
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Dyrbiće znajmjeńša jedyn gratowy typ podać."
 
 #: mkt/webapps/models.py:1386
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Dyrbiće znajmjeńša jednu kategoriju podać."
 
 #: mkt/webapps/models.py:1453
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Dyrbiće wobsahowe pohódnoćenja připrawić."
 
 #: mkt/webapps/models.py:1455
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Dyrbiće płaćenske konto připrawić."
 
 #: mkt/webapps/models.py:1480
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Zapodawanski proces nałoženja njeje so dospołnje zakónčił."
 
 #: mkt/webapps/models.py:1487
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Tute nałoženje trjeba wobsahowe pohódnoćenje."
 
 #: mkt/webapps/models.py:1493
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Tute nałoženje trjeba připrawjene płaćenske konto."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2749
 msgid "awaiting approval"
-msgstr ""
+msgstr "čaka na schwalenje"
 
 #. L10n: An app is rejected for a particular region.
 #: mkt/webapps/models.py:2751
 msgid "rejected"
-msgstr ""
+msgstr "wotpokazany"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2753
 msgid "requires additional review"
-msgstr ""
+msgstr "twužaduje sej přidatne přepruwowanje"
 
 #: mkt/webapps/models.py:2804
 msgid "{region} approval status"
-msgstr ""
+msgstr "schwalenski status za {region}"
 
 #: mkt/webapps/models.py:2810
 msgid "{region} nomination date"
-msgstr ""
+msgstr "Nominowanski datum za {region}"
 
 #: mkt/webapps/tasks.py:155
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Problem z wašim nałoženjom \"{app}\" na Torhošću Firefox"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
-msgstr ""
+msgstr "Sortěrować po:"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
-msgstr ""
+msgstr "Wotzjewić"
 
 #: mkt/zadmin/templates/admin/base.html:80
 msgid "Log in / Register"
-msgstr ""
+msgstr "Přizjewić / Registrować"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registrować"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
-msgstr ""
+msgstr "Firefox Account je dóšło"
 
 #: templates/base.html:122
 msgid "Learn how to transfer your account"
-msgstr ""
+msgstr "Zhońće wjace wo tym, kak swoje konto přenošujeće"
 
 #: templates/base.html:125
 msgid "It's easy."
-msgstr ""
+msgstr "Je lochko."
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
-msgstr ""
+msgstr "trěbny"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Trěbne pola"
 
 #: templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(na přeco)"
