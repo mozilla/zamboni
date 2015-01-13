@@ -170,13 +170,11 @@ MIDDLEWARE_CLASSES = (
     'mkt.api.middleware.GZipMiddleware',
     'mkt.site.middleware.CacheHeadersMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
-    'mkt.site.middleware.RemoveSlashMiddleware',
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
     'commonware.middleware.StrictTransportMiddleware',
     'waffle.middleware.WaffleMiddleware',
     'csp.middleware.CSPMiddleware',
-    'mkt.site.middleware.CommonMiddleware',
     'mkt.site.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'mkt.api.middleware.APIBaseMiddleware',
@@ -197,6 +195,10 @@ MIDDLEWARE_CLASSES = (
     'mkt.api.middleware.APIPinningMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'mkt.api.middleware.APIFilterMiddleware',
+    # Middleware that redirects needs to go after all the stuff, because if
+    # a middleware causes a redirect, then other middleware stops processing.
+    'mkt.site.middleware.RemoveSlashMiddleware',
+    'mkt.site.middleware.CommonMiddleware',
 )
 
 LANGUAGE_CODE = 'en-US'
