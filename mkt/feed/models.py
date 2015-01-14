@@ -265,11 +265,14 @@ class FeedCollection(GroupedAppsMixin, BaseFeedCollection,
     """
     _apps = models.ManyToManyField(Webapp, through=FeedCollectionMembership,
                                    related_name='app_feed_collections')
-    background_color = models.CharField(max_length=7, null=True, blank=True)
+    color = models.CharField(max_length=20, null=True, blank=True)
     name = PurifiedField()
     description = PurifiedField(blank=True, null=True)
     type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,
                             null=True)
+
+    # Deprecated.
+    background_color = models.CharField(max_length=7, null=True, blank=True)
 
     membership_class = FeedCollectionMembership
     membership_relation = 'feedcollectionmembership'
@@ -349,7 +352,7 @@ class FeedApp(BaseFeedImage, ModelBase):
     app = models.ForeignKey(Webapp)
     description = PurifiedField()
     slug = models.CharField(max_length=30, unique=True)
-    background_color = ColorField(null=True)
+    color = models.CharField(max_length=20, null=True, blank=True)
     type = models.CharField(choices=FEEDAPP_TYPE_CHOICES, max_length=30)
 
     # Optionally linked to a Preview (screenshot or video).
@@ -361,6 +364,9 @@ class FeedApp(BaseFeedImage, ModelBase):
     pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
         validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
+
+    # Deprecated.
+    background_color = ColorField(null=True)
 
     class Meta:
         db_table = 'mkt_feed_app'

@@ -82,16 +82,6 @@ BRAND_LAYOUTS = (
 )
 BRAND_LAYOUT_CHOICES = [(c, c) for c in BRAND_LAYOUTS]
 
-FEED_COLOR_CHOICES = (
-    ('#CE001C', 'Ruby',),
-    ('#F78813', 'Amber',),
-    ('#00953F', 'Emerald',),
-    ('#0099D0', 'Topaz',),
-    ('#1E1E9C', 'Sapphire',),
-    ('#5A197E', 'Amethyst',),
-    ('#A20D55', 'Garnet',)
-)
-
 COLLECTION_PROMO = 'promo'
 COLLECTION_LISTING = 'listing'
 COLLECTION_TYPES = (
