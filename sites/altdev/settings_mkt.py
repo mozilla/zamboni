@@ -113,20 +113,10 @@ APP_PURCHASE_AUD = DOMAIN
 APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
-# We upgraded to jQuery 1.9.1. Run this command to include jquery-migrate in the JS
-# bundle to see which APIs and features were removed from jQuery core.
-MINIFY_BUNDLES['js'].update(asset_bundles.jquery_migrated())
-
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 
 # This is mainly for Marionette tests.
 WEBAPP_MANIFEST_NAME = 'Marketplace Dev'
-
-# Replace LESS with Stylus.
-try:
-    MINIFY_BUNDLES['css'].update(asset_bundles.less2stylus())
-except AttributeError:
-    pass
 
 ENABLE_API_ERROR_SERVICE = True
 
