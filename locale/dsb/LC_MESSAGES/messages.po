@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-14 14:57+0000\n"
+"PO-Revision-Date: 2015-01-14 15:00+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421247472.0\n"
+"X-POOTLE-MTIME: 1421247622.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -202,16 +202,16 @@ msgstr "Dodank {addon} se w {0} južo njepśedstaja."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "Dodank {addon} se něnto pśedstaja."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "Dodank {addon} se wěcej njepśedstaja."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} pśidany."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
