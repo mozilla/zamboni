@@ -160,3 +160,7 @@ RECOMMENDATIONS_API_URL = 'https://recommend.allizom.org'
 RECOMMENDATIONS_ENABLED = True
 
 QA_APP_ID = 500427
+
+DEV_PAY_PROVIDERS = {
+    APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
+}

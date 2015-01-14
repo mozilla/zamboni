@@ -150,3 +150,7 @@ FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')
 FXA_SECRETS = {
     FXA_CLIENT_ID: FXA_CLIENT_SECRET,
 }
+
+DEV_PAY_PROVIDERS = {
+    APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
+}
