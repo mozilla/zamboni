@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-14 15:13+0000\n"
+"PO-Revision-Date: 2015-01-14 15:16+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421248402.0\n"
+"X-POOTLE-MTIME: 1421248614.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -298,7 +298,7 @@ msgstr "Zarownanje za dodank {addon} na {0} pśizwólone."
 
 #: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
-msgstr "Zarownanje ned jo se za dodanka {addon} pśizwólone."
+msgstr "Zarownanje ned jo za dodank {addon} pśizwólone."
 
 #: apps/amo/log.py:415
 msgid "Account updated."
