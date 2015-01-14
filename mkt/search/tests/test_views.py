@@ -863,6 +863,23 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    @patch('mkt.webapps.models.AppFeatures.to_dict')
+    def test_new_unused_feature_doesnt_require_reindex(self, mock_to_dict):
+        """Test that we still show apps even when they don't have the latest
+        list of features in the index, i.e. that we don't need to reindex apps
+        that are not using new features when we add some."""
+        # Mock what's returned when we fetch the features to specifically avoid
+        # having a value for the "new" feature.
+        mock_to_dict.return_value = {}
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data=self.qs)
+        eq_(res.status_code, 200)
+        objects = json.loads(res.content)['objects']
+        eq_(len(objects), 1)
+        obj = objects[0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
 
 class TestFeaturedSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')

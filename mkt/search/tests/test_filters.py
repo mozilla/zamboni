@@ -9,6 +9,7 @@ import mkt
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants.applications import DEVICE_CHOICES_IDS
+from mkt.constants.features import FeatureProfile
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
@@ -35,8 +36,12 @@ class TestSearchFilters(BaseOAuth):
         self.grant_permission(self.profile, rules)
         self.req.groups = self.profile.groups.all()
 
-    def _filter(self, req, filters, **kwargs):
-        form = self.form_class(filters)
+    def _filter(self, req, data, **kwargs):
+        # Note: both the request and the data sent to the form are important,
+        # because the form does not handle everything. In particular, it does
+        # not handle regions and features, since those are not-specific to the
+        # search form and apply to multiple API endpoints.
+        form = self.form_class(data)
         if form.is_valid():
             form_data = form.cleaned_data
             sq = WebappIndexer.get_app_filter(
@@ -44,6 +49,18 @@ class TestSearchFilters(BaseOAuth):
             return _sort_search(self.req, sq, form_data).to_dict()
         else:
             return form.errors.copy()
+
+    def _request_from_features(self, disabled_features=None, dev='firefoxos',
+                               region=None):
+        if disabled_features is None:
+            disabled_features = {}
+        profile = FeatureProfile().fromkeys(FeatureProfile(), True)
+        for feature in disabled_features:
+            profile[feature] = False
+        data = {'pro': profile.to_signature(), 'dev': dev}
+        request = RequestFactory().get('/', data=data)
+        request.REGION = region
+        return request
 
     def test_q(self):
         qs = self._filter(self.req, {'q': 'search terms'})
@@ -221,3 +238,31 @@ class TestSearchFilters(BaseOAuth):
         # Trending.
         qs = self._filter(self.req, {'sort': ['trending']})
         ok_({'trending_%s' % regions.BR.id: {'order': 'desc'}} in qs['sort'])
+
+    def test_filter_all_features_present(self):
+        self.req = self._request_from_features()
+        qs = self._filter(self.req, {'q': 'search terms'})
+        ok_(not 'must_not' in qs['query']['filtered']['filter']['bool'])
+
+    def test_filter_all_features_present_and_region(self):
+        self.req = self._request_from_features(region=regions.UK)
+        qs = self._filter(self.req, {'q': 'search terms'})
+        must_not = qs['query']['filtered']['filter']['bool']['must_not']
+        for conditions in must_not:
+            for term in conditions['term']:
+                ok_(not term.startswith('features'))
+
+    def test_filter_one_features_present(self):
+        self.req = self._request_from_features(disabled_features=['sms'])
+        qs = self._filter(self.req, {'q': 'search terms', 'region': 'None'})
+        ok_({'term': {'features.has_sms': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
+
+    def test_filter_multiple_features_present(self):
+        self.req = self._request_from_features(
+            disabled_features=['sms', 'apps'])
+        qs = self._filter(self.req, {'q': 'search terms', 'region': 'None'})
+        ok_({'term': {'features.has_sms': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
+        ok_({'term': {'features.has_apps': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])

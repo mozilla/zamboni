@@ -515,11 +515,6 @@ class WebappIndexer(BaseIndexer):
                 must.append(F(filter_type, **{field: data[field]}))
 
         if not no_filter:
-            if data['profile']:
-                # Feature filters.
-                profile = data['profile']
-                for k, v in profile.to_kwargs(prefix='features.has_').items():
-                    must.append(F('term', **{k: v}))
             if data['mobile'] or data['gaia']:
                 # Uses flash.
                 must.append(F('term', uses_flash=False))
@@ -532,14 +527,23 @@ class WebappIndexer(BaseIndexer):
             should = [es_filter.Terms(id=list(set(app_ids)))]
             sq = sq[0:len(set(app_ids))]
 
+        # MUST NOT.
+        must_not = []
+        if not no_filter:
+            if data['profile']:
+                # Feature filters.
+                profile = data['profile']
+                for k in profile.to_kwargs(prefix='features.has_').keys():
+                    must_not.append(F('term', **{k: True}))
+
+            if data['region']:
+                # Region exclusions.
+                must_not.append(F('term', region_exclusions=data['region']))
+
         # FILTER.
-        if must or should:
-            sq = sq.filter(es_filter.Bool(must=must, should=should))
-
-        if data['region'] and not no_filter:
-            # Region exclusions.
-            sq = sq.filter(~F('term', region_exclusions=data['region']))
-
+        if must or should or must_not:
+            sq = sq.filter(es_filter.Bool(must=must, should=should,
+                                          must_not=must_not))
         return sq
 
 
