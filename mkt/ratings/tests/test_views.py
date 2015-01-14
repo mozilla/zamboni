@@ -630,6 +630,10 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 10)
 
+    def test_pagination_invalid(self):
+        res = self.client.get(self.url, data={'offset': '%E2%98%83'})
+        eq_(res.status_code, 200)
+
 
 class TestReviewFlagResource(RestOAuth, mkt.site.tests.MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')

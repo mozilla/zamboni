@@ -716,6 +716,10 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 
+    def test_pagination_invalid(self):
+        res = self.anon.get(self.url, data={'offset': '%E2%98%83'})
+        eq_(res.status_code, 200)
+
     def test_content_ratings_reindex(self):
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.GENERIC: mkt.ratingsbodies.GENERIC_18

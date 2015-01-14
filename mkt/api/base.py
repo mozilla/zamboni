@@ -4,6 +4,7 @@ import json
 from django.db.models.sql import EmptyResultSet
 
 import commonware.log
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin
@@ -48,10 +49,12 @@ def form_errors(forms):
 
 
 def check_potatocaptcha(data):
-        if data.get('tuber', False):
-            return Response(json.dumps({'tuber': 'Invalid value'}), 400)
-        if data.get('sprout', None) != 'potato':
-            return Response(json.dumps({'sprout': 'Invalid value'}), 400)
+    if data.get('tuber', False):
+        return Response(json.dumps({'tuber': 'Invalid value'}),
+                        status=status.HTTP_400_BAD_REQUEST)
+    if data.get('sprout', None) != 'potato':
+        return Response(json.dumps({'sprout': 'Invalid value'}),
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 def get_region_from_request(request):
@@ -144,14 +147,18 @@ class MarketplaceView(object):
         return super(MarketplaceView, self).handle_exception(exc)
 
     def paginate_queryset(self, queryset, page_size=None):
-        page_query_param = self.request.QUERY_PARAMS.get(self.page_kwarg)
-        offset_query_param = self.request.QUERY_PARAMS.get('offset')
+        page = self.request.QUERY_PARAMS.get(self.page_kwarg)
+        offset = self.request.QUERY_PARAMS.get('offset')
 
         # If 'offset' (tastypie-style pagination) parameter is present and
-        # 'page' isn't, use offset it to find which page to use.
-        if page_query_param is None and offset_query_param is not None:
-            page_number = int(offset_query_param) / self.get_paginate_by() + 1
-            self.kwargs[self.page_kwarg] = page_number
+        # 'page' isn't, use offset to find which page to use.
+        if page is None and offset is not None:
+            try:
+                page_number = int(offset) / self.get_paginate_by() + 1
+                self.kwargs[self.page_kwarg] = page_number
+            except ValueError:
+                pass  # Swallow and ignore invalid input.
+
         return super(MarketplaceView, self).paginate_queryset(queryset,
             page_size=page_size)
 
