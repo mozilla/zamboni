@@ -180,3 +180,7 @@ FXA_SECRETS[FXA_CLIENT_ID] = FXA_CLIENT_SECRET
 
 RECOMMENDATIONS_API_URL = 'https://recommend-dev.allizom.org'
 RECOMMENDATIONS_ENABLED = True
+
+DEV_PAY_PROVIDERS = {
+    APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
+}

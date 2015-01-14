@@ -1214,3 +1214,10 @@ XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 # The UUID for Yogafire (Tarako Marketplace).
 YOGAFIRE_GUID = '3a8bbc18-3a91-4170-a25a-3ba2a8ae2c81'
+
+# A map of development pay providers for desktop payments.
+# This is used by Fireplace.
+# The mozPay providers are still controlled by device settings.
+DEV_PAY_PROVIDERS = {
+    APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
+}
