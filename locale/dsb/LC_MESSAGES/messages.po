@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-14 15:00+0000\n"
+"PO-Revision-Date: 2015-01-14 15:13+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421247622.0\n"
+"X-POOTLE-MTIME: 1421248402.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -216,27 +216,27 @@ msgstr "{0} {1} pśidany."
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Rola {0.name} za dodank {addon} do {1} změnjona."
 
 #: apps/amo/log.py:315
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Pšawidła dodanka {addon} změnjone."
 
 #: apps/amo/log.py:321
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Symbol dodanka {addon} změnjony."
 
 #: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "Pśeglědowanje {review} za dodank {addon} pśizwólone."
 
 #: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "Wužywaŕ {user} jo pógódnośenje {review} za dodank {addon} pśizwólił."
 
 #: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "Pógódnośenje {0} za dodank {addon} jo se wualšowało."
 
 #: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
@@ -278,31 +278,31 @@ msgstr "Pśizwólony, ale priwatny"
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
-msgstr ""
+msgstr "Dodank {addon} jo se kupił."
 
 #: apps/amo/log.py:390
 msgid "{addon} installed."
-msgstr ""
+msgstr "Dodank {addon} jo se zainstalěrował."
 
 #: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
-msgstr ""
+msgstr "Zarownanje za dodank {addon} pominane"
 
 #: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
-msgstr ""
+msgstr "Zarownanje za dodank {addon} na {0} wótpokazane."
 
 #: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
-msgstr ""
+msgstr "Zarownanje za dodank {addon} na {0} pśizwólone."
 
 #: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Zarownanje ned jo se za dodanka {addon} pśizwólone."
 
 #: apps/amo/log.py:415
 msgid "Account updated."
-msgstr ""
+msgstr "Konto jo se zaktualizěrowało."
 
 #: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
