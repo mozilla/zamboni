@@ -56,10 +56,9 @@ def compress_assets(arg=''):
 
 
 @task
-def schematic():
-    with lcd(ZAMBONI):
-        local("%s %s/bin/schematic migrations" %
-              (PYTHON, VIRTUALENV))
+def schematic(run_dir=ZAMBONI):
+    with lcd(run_dir):
+        local("../venv/bin/python ../venv/bin/schematic migrations")
 
 
 @task
@@ -136,6 +135,43 @@ def pre_update(ref=settings.UPDATE_REF):
     execute(disable_cron)
     execute(helpers.git_update, ZAMBONI, ref)
     execute(update_info, ref)
+
+
+@task
+def build():
+    execute(create_virtualenv, getattr(settings, 'DEV', False))
+    execute(update_locales)
+    execute(compress_assets, arg='--settings=settings_local_mkt')
+    managecmd('statsd_ping --key=build')
+
+
+@task
+def deploy_jenkins():
+    package_dirs = ['zamboni', 'venv']
+    if os.path.isdir(os.path.join(ROOT, 'aeskeys')):
+        package_dirs.append('aeskeys')
+
+    rpm = helpers.build_rpm(name='zamboni',
+                            env=settings.ENV,
+                            cluster=settings.CLUSTER,
+                            domain=settings.DOMAIN,
+                            root=ROOT,
+                            package_dirs=package_dirs)
+
+    execute(disable_cron)
+
+    rpm.local_install()
+
+    install_path = os.path.join(rpm.install_to, 'zamboni')
+    execute(schematic, install_path)
+
+    rpm.remote_install(['web', 'celery'])
+
+    helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
+    execute(update_celery)
+    execute(install_cron, rpm.install_to)
+
+    managecmd('cron cleanup_validation_results')
 
 
 @task
