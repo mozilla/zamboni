@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-10-25 08:32+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2015-01-08 18:01+0000\n"
+"Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1414225929.0\n"
+"X-POOTLE-MTIME: 1420740101.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1711,7 +1712,7 @@ msgstr "Recenzija pakovane aplikacije"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Recenzija privilegovanih aplikacija"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
@@ -1723,7 +1724,7 @@ msgstr "Ažurirana recenzija upakovane aplikacije"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Recenzija privilegovanih aplikacija je ažurirana"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1731,7 +1732,7 @@ msgstr "Recenzija uređene aplikacije"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Recenzija Tarako aplikacija"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1843,7 +1844,7 @@ msgstr "Banovan"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Privatan komentar recezenta"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1883,7 +1884,7 @@ msgstr "Ponovni pregled zbog promene URL adrese manifesta"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Recenzija za premium nadogradnju"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
@@ -1919,11 +1920,11 @@ msgstr "Pao dodatni pregled"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Zabeleške verzije za recezenta"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Javni komentar recezenta"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -1971,7 +1972,7 @@ msgstr "Arhiva"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Aplikacija zahteva `ArchiveReader` API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2019,7 +2020,7 @@ msgstr "Neaktivan"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Aplikacija zahteva platformu koja podržava `addIdleObserver` API."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2102,8 +2103,8 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
-"Aplikacija zahteva da platforma ima smartfon ekran (sa HD rezolucijom). Ova opcija znači da će aplikacija biti neupotrebljiva na većim ekranima (npr. tablet, desktop računarima ili telefonima "
-"velike rezolucije)."
+"Aplikacija zahteva da platforma ima smartfon ekran (sa HD rezolucijom). Ova opcija znači da će aplikacija biti neupotrebljiva na većim ekranima (npr. tablet, desktop računarima ili telefonima velike "
+"rezolucije)."
 
 #: mkt/constants/features.py:163
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -2279,35 +2280,35 @@ msgstr "Aplikacija zahteva sposobnost da dobije informacije o višestrukim mrež
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobile ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Aplikacija zahteva pristup `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js prekompilacija"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Ova aplikacija zahteva uređaj koji podržava prekompilaciju od `addIdleObserver` API-ja."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Uređaj sa 512MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Aplikacija zahteva uređaj koji ima barem 512MB RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Uređaj sa 1GB RAM memorije"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Aplikacija zahteva da uređaj ima barem 1GB RAM memorije."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2458,7 +2459,7 @@ msgstr "Ostatak sveta"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rusija"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2605,7 +2606,7 @@ msgstr "Pre zamene podrazumevanog lokala morate imati ime i opis u tom lokalu. N
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Morate obezbediti veb sajt ili e-poštu ili oboje."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
@@ -3808,8 +3809,8 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
-"Blokiranjem neke aplikacije će unaprediti korisnika na specijalnu verziju koja će učiniti aplikaciju nedostupnom na njihovim Firefox OS uređajima. Ovo će takođe ukloniti aplikaciju sa javnih "
-"stranica sve dok nova verzija ne bude prijavljena i odobrena. Ove promene se ne mogu poništiti. Molimo Vas da nastavite sa oprezom."
+"Blokiranjem neke aplikacije će unaprediti korisnika na specijalnu verziju koja će učiniti aplikaciju nedostupnom na njihovim Firefox OS uređajima. Ovo će takođe ukloniti aplikaciju sa javnih stranica "
+"sve dok nova verzija ne bude prijavljena i odobrena. Ove promene se ne mogu poništiti. Molimo Vas da nastavite sa oprezom."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
@@ -3890,8 +3891,8 @@ msgstr "Beleške o verziji"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
 msgstr ""
-"Informacije o promenama u ovom izdanju, novim mogućnostima, poznatim greškama i druge korisne informacije koje su specifične za ovo izdanje/verziju. Ova informacija je takođe prikazana u Apps "
-"Manager-u prilikom ažuriranja."
+"Informacije o promenama u ovom izdanju, novim mogućnostima, poznatim greškama i druge korisne informacije koje su specifične za ovo izdanje/verziju. Ova informacija je takođe prikazana u Apps Manager-"
+"u prilikom ažuriranja."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:65
@@ -4170,11 +4171,11 @@ msgstr "Ako Vaša aplikacija koristi Flash, biće sakrivena sa Marketplace-a na
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Radi van mreže"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr ""
+msgstr "Ako Vaša aplikacija radi bez internet konekcije onda ćemo je staviti kao \"Radi van mreže.\""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -4624,8 +4625,8 @@ msgstr "Ključevi za plaćanja unutar aplikacije"
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
-"The Firefox Marketplace Vam omogućava da Vaša aplikacija ima plaćanje u okviru nje. <a href=\"{guide}\">Vodič za plaćanja u okviru aplikacije</a> objašnjava kako da podesite Vašu aplikaciju za "
-"plaćanja sa parametrima ispod."
+"The Firefox Marketplace Vam omogućava da Vaša aplikacija ima plaćanje u okviru nje. <a href=\"{guide}\">Vodič za plaćanja u okviru aplikacije</a> objašnjava kako da podesite Vašu aplikaciju za plaćanja "
+"sa parametrima ispod."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4657,8 +4658,8 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
-"Sledeći/a ključ/tajna će Vam samo omogućiti da simulirate plaćanja u okviru aplikacije dok razvijate Vašu aplikaciju. Da bi ste stvorili ključeve za realna plaćanja u okviru aplikacije, morate <a "
-"href=\"%(submit)s\">prijaviti</a> Vašu aplikaciju, podesiti akredative plaćanja i stvoriti novi ključ specifičan za tu aplikaciju."
+"Sledeći/a ključ/tajna će Vam samo omogućiti da simulirate plaćanja u okviru aplikacije dok razvijate Vašu aplikaciju. Da bi ste stvorili ključeve za realna plaćanja u okviru aplikacije, morate <a href="
+"\"%(submit)s\">prijaviti</a> Vašu aplikaciju, podesiti akredative plaćanja i stvoriti novi ključ specifičan za tu aplikaciju."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4697,6 +4698,9 @@ msgstr "Omogući"
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"Proizvodi unutar aplikacije su podržani samo za hostovane ili upakovane "
+"aplikacije koje definišu <a href=\"%(origin)s\">poreklo</a> u manifestu. Vaša "
+"aplikacija ne definiše poreklo."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -5147,8 +5151,8 @@ msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Izgradnja aplikacija za veb omogućava programerima sa punom kontrolom nad sadržajem, funkcionalnost i kako su aplikacije distribuirane, uključujući i pristup stotinama miliona Firefox korisnika "
-"kroz Firefox Marketplace."
+"Izgradnja aplikacija za veb omogućava programerima sa punom kontrolom nad sadržajem, funkcionalnost i kako su aplikacije distribuirane, uključujući i pristup stotinama miliona Firefox korisnika kroz "
+"Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -6694,7 +6698,7 @@ msgstr "U Tarako redu za čekanje"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "U redu za Kinu"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
@@ -6810,7 +6814,7 @@ msgstr "Sedmična preuzimanja"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Region Availability"
-msgstr ""
+msgstr "Dostupnost po regionima"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:141
 msgid "Show less"
@@ -6835,7 +6839,7 @@ msgstr "Filtriraj"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Poreklo aplikacije"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7061,11 +7065,11 @@ msgstr "Tip aplikacije"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Instalacija je dozvoljena sa"
 
 #: mkt/search/forms.py:108
 msgid "Everywhere"
-msgstr ""
+msgstr "Bilo kog mesta"
 
 #: mkt/search/forms.py:110
 msgid "Works offline"
@@ -7255,9 +7259,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"Polisa privatnosti objašnjava kako se rukuje sa podacima koji su dobijeni kroz aplikaciju. Na primer: Koje podatke dobijate? Kako ih koristite? Sa kime ih delite? Da li dobijate lične podatke? Da "
-"li preduzimate korake da ih učinite anonimnim? Kakav izbor korisnici imaju kod kontrole podataka koje Vi i ostali dobijate? Unesite polisu privatnosti ili tekst iznad. Ako nemate polisu "
-"privatnosti, <a href=\"{url}\" target=\"_blank\">saznajte kako da je napravite.</a>"
+"Polisa privatnosti objašnjava kako se rukuje sa podacima koji su dobijeni kroz aplikaciju. Na primer: Koje podatke dobijate? Kako ih koristite? Sa kime ih delite? Da li dobijate lične podatke? Da li "
+"preduzimate korake da ih učinite anonimnim? Kakav izbor korisnici imaju kod kontrole podataka koje Vi i ostali dobijate? Unesite polisu privatnosti ili tekst iznad. Ako nemate polisu privatnosti, "
+"<a href=\"{url}\" target=\"_blank\">saznajte kako da je napravite.</a>"
 
 #: mkt/submit/forms.py:293
 msgid "Homepage:"
@@ -7269,7 +7273,7 @@ msgstr "Ako aplikacija ima još jednu početnu stranicu, unesite njenu adresu ov
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
-msgstr ""
+msgstr "Veb sajta:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
@@ -7277,7 +7281,7 @@ msgstr "Ako aplikacija ima podršku sajta ili foruma, unesite njihovu adresu ovd
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
-msgstr ""
+msgstr "E-pošte:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7303,7 +7307,7 @@ msgstr "Jednom kada se aplikacija odobri, izaberite opciju za objavljivanje:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Moja aplikacija radi bez internet konekcije."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7328,7 +7332,7 @@ msgstr "Otvori stranicu sa detaljima"
 
 #: mkt/submit/templates/submit/details.html:106
 msgid "Support Information:"
-msgstr ""
+msgstr "Informacije podrške:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
@@ -7355,8 +7359,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Sačuvali smo Vašu aplikaciju i spremna je! Vaša aplikacija trenutno čeka pregled i jednom kada bude pregledana, moraćete ručno da omogućite Vašu aplikaciju iz <a href=\"%(url)s\">Upravljaj "
-"statusnom stranicom</a> da bi se prikazala na listing stranicama i u pretrazi. Do tada, slobodno radite na detaljima i podešavanjima Vaše aplikacije."
+"Sačuvali smo Vašu aplikaciju i spremna je! Vaša aplikacija trenutno čeka pregled i jednom kada bude pregledana, moraćete ručno da omogućite Vašu aplikaciju iz <a href=\"%(url)s\">Upravljaj statusnom "
+"stranicom</a> da bi se prikazala na listing stranicama i u pretrazi. Do tada, slobodno radite na detaljima i podešavanjima Vaše aplikacije."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -7654,7 +7658,7 @@ msgstr "Korisnik sa ovom adresom e-pošte ne postoji, ili nije još prihvatio Sa
 
 #: mkt/users/views.py:114
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Autentifikacija nativnog FxA je neuspešna."
 
 #: mkt/users/views.py:138
 msgid "Please use the verified email for this account."
@@ -7753,7 +7757,7 @@ msgstr "U listi"
 
 #: mkt/webapps/models.py:1379
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Morate obezbediti e-poštu podrške ili URL."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
@@ -7828,7 +7832,7 @@ msgstr "Prijavi se / Registruj se"
 
 #: templates/base.html:75
 msgid "Register"
-msgstr ""
+msgstr "Registruj se"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"

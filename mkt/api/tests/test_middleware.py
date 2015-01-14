@@ -25,6 +25,7 @@ class TestCORS(mkt.site.tests.TestCase):
     def setUp(self):
         self.mware = CORSMiddleware()
         self.req = RequestFactory().get('/')
+        self.req.API = True
 
     def test_not_cors(self):
         res = self.mware.process_response(self.req, HttpResponse())
@@ -57,6 +58,32 @@ class TestCORS(mkt.site.tests.TestCase):
         eq_(res['Access-Control-Allow-Origin'], fireplace_url)
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
         eq_(res['Access-Control-Allow-Credentials'], 'true')
+
+    def test_403_get(self):
+        resp = HttpResponse()
+        resp.status_code = 403
+
+        res = self.mware.process_response(self.req, resp)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
+
+    def test_500_options(self):
+        req = RequestFactory().options('/')
+        req.API = True
+        resp = HttpResponse()
+        resp.status_code = 500
+
+        res = self.mware.process_response(req, resp)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'OPTIONS')
+
+    def test_redirect_madness(self):
+        # Because this test is dependent upon the order of middleware in the
+        # settings file, this does a full request.
+        res = self.client.get('/api/v1/apps/category')
+        eq_(res.status_code, 301)
+        eq_(res['Access-Control-Allow-Origin'], '*')
+        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
 
 
 class TestPinningMiddleware(mkt.site.tests.TestCase):
