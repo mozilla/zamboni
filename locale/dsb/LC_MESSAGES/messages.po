@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-13 14:20+0000\n"
+"PO-Revision-Date: 2015-01-14 14:56+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421158856.0\n"
+"X-POOTLE-MTIME: 1421247395.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -124,76 +124,76 @@ msgstr "Wótpokazany"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "Dodank {addon} {version} zaźažany."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Zaźažany"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "Dodank {addon} {version} jo se pśiducemu wušemu městnoju dalej dał."
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:48 mkt/reviewers/forms.py:164
 msgid "Escalated"
-msgstr ""
+msgstr "Pśiducemu wušemu městnoju dalej dany"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Pśeglědowanje dodanka {addon} {version} jo se pominało."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "Pśeglědowanje jo se pominało"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali"
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:47
 msgid "More information requested"
-msgstr ""
+msgstr "Dalšne informacije pominane"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Superpśeglědowanje dodanka {addon} {version} jo se pominało."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "Superpśeglědowanje pominane"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komentar k dodankoju {addon} {version}."
 
 #: apps/amo/log.py:234 mkt/reviewers/utils.py:480
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} jo se dodankoju {addon} pśidał."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} jo se z dodanka {addon} wótpórał."
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "Dodank {addon} jo se zběrce {collection} pśidał."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} za {addon} napisane."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "Dodank {addon} w {0} pśedstajony."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
@@ -240,39 +240,41 @@ msgstr ""
 
 #: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "Wužywaŕ {user} jo {0} za dodank {addon} wulašował."
 
 #: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maks. wersija nałoženja jo se za wersiju {version} zaktualizěrowała."
 
 #: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
+"Awtory su se wó kompatibelnosći wersije {version} pśez e-mejlku "
+"informěrowali."
 
 #: apps/amo/log.py:355
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mejlka wó kompatibelnosći dodanka jo se na awtora pósłała."
 
 #: apps/amo/log.py:360
 msgid "Password changed."
-msgstr ""
+msgstr "Gronidło změnjone."
 
 #: apps/amo/log.py:365
 msgid "{addon} changed to premium."
-msgstr ""
+msgstr "Dodank {addon} jo se na premium změnił."
 
 #: apps/amo/log.py:370
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Manifest dodanka {addon} jo se zaktualizěrował."
 
 #: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "Dodank {addon} {version} jo se pśizwólił, ale ako priwatny."
 
 #: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:51
 msgid "Approved but private"
-msgstr ""
+msgstr "Pśizwólony, ale priwatny"
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
