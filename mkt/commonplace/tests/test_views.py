@@ -190,7 +190,7 @@ class TestIFrames(CommonplaceTestMixin):
              'https://mp.dev',
              'https://hello.firefox.com',
              'https://call.firefox.com',
-             'http://loop-webapp.dev.mozaws.net'])
+             'https://loop-webapp-dev.stage.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
@@ -223,7 +223,7 @@ class TestIFrames(CommonplaceTestMixin):
              'https://mp.dev',
              'https://hello.firefox.com',
              'https://call.firefox.com',
-             'http://loop-webapp.dev.mozaws.net'])
+             'https://loop-webapp-dev.stage.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])

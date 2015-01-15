@@ -61,7 +61,7 @@ def get_allowed_origins(request, include_loop=True):
         # On dev, include loop dev origin as well.
         if development_server:
             allowed.extend([
-                'http://loop-webapp.dev.mozaws.net',
+                'https://loop-webapp-dev.stage.mozaws.net',
             ])
 
     return json.dumps(allowed)
