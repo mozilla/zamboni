@@ -10,6 +10,7 @@ import uuid
 import zipfile
 from contextlib import nested
 from datetime import datetime, timedelta
+from decimal import Decimal
 
 from django import forms
 from django.conf import settings
@@ -35,17 +36,20 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
                                          REVERSE_INTERACTIVES)
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.developers.providers import ALL_PROVIDERS
 from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
-from mkt.prices.models import AddonPremium, Price
+from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.tests import (app_factory, DynamicBoolFieldsTestMixin, ESTestCase,
-                            MktPaths, TestCase, WebappTestCase, version_factory)
+from mkt.site.tests import (app_factory, DynamicBoolFieldsTestMixin,
+                            ESTestCase, MktPaths, TestCase, WebappTestCase,
+                            version_factory)
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -902,6 +906,9 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_get_price_no_premium(self):
         webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
+        webapp.save()
+        # Needed because get_price accesses excluded, which triggers geodata
+        # which triggers a save to the db.
         eq_(webapp.get_price(), None)
         eq_(webapp.get_price_locale(), None)
 
@@ -1456,19 +1463,49 @@ class TestExclusions(TestCase):
     def make_tier(self):
         self.price = Price.objects.get(pk=1)
         AddonPremium.objects.create(addon=self.app, price=self.price)
+        self.row = PriceCurrency.objects.create(
+            currency='USD',
+            dev=True,
+            paid=True,
+            price=Decimal('0.99'),
+            provider=ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider,
+            region=RESTOFWORLD.id,
+            tier=self.price
+        )
 
     def test_not_premium(self):
+        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+
+    def test_not_paid(self):
+        PriceCurrency.objects.update(paid=False)
+        # The US is excluded because there are no valid prices.
         ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
 
     def test_premium(self):
         self.make_tier()
         ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
 
-    def test_premium_remove_tier(self):
+    def test_premium_not_remove_tier(self):
         self.make_tier()
         (self.price.pricecurrency_set
-             .filter(region=mkt.regions.PL.id).update(paid=False))
-        ok_(mkt.regions.PL.id in self.app.get_excluded_region_ids())
+             .filter(region=mkt.regions.PL.id).update(paid=True))
+        # Poland will not be excluded because we haven't excluded the rest
+        # of the world.
+        ok_(mkt.regions.PL.id not in self.app.get_excluded_region_ids())
+
+    def test_premium_remove_tier(self):
+        self.make_tier()
+        self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
+        # If we exclude the rest of the world, then we'll exclude Nicaragua
+        # which has no price currency.
+        ok_(mkt.regions.NI.id in self.app.get_excluded_region_ids())
+
+    def test_not_paid_worldwide(self):
+        self.make_tier()
+        self.row.update(paid=False)
+        # Rest of world has been set to not paid. Meaning that its not
+        # available right now, so we should exclude Nicaragua.
+        ok_(mkt.regions.NI.id in self.app.get_excluded_region_ids())
 
     def test_usk_rating_refused(self):
         self.geodata.update(region_de_usk_exclude=True)

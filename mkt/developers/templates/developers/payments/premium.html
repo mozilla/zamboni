@@ -239,14 +239,19 @@
                           {% endfor %}
                         </tbody>
                       </table>
+                      <p class="hint note rest-of-world">
+                        {% trans %}
+                          As "Rest of World" is selected your app will be
+                          available for purchase in all enabled
+                          "<a href="#regions-other">Other Regions</a>".
+                        {% endtrans %}
+                      </p>
                     </div>
 
-                    <h4>{{ _("Other regions") }}</h4>
+                    <h4 id="regions-other">{{ _("Other regions") }}</h4>
                     <p class="hint note">
                       {% trans %}
-                        Your app will become available in the following
-                        selected regions once payments become available
-                        based on your chosen price point. To exclude
+                        To exclude
                         your app from appearing in a region, you may
                         uncheck that region before saving.
                       {% endtrans %}

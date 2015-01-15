@@ -66,56 +66,66 @@ class TestPrice(mkt.site.tests.TestCase):
         eq_(self.tier_one.pricecurrency_set.count(), 3)
 
     def test_get(self):
-        eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
+        eq_(Price.objects.get(pk=1).get_price(regions=[RESTOFWORLD.id]),
+            Decimal('0.99'))
 
     def test_get_tier(self):
         translation.activate('en_CA')
-        eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
-        eq_(Price.objects.get(pk=1).get_price_locale(), u'US$0.99')
+        eq_(Price.objects.get(pk=1).get_price(regions=[RESTOFWORLD.id]),
+            Decimal('0.99'))
+        eq_(Price.objects.get(pk=1).get_price_locale(regions=[RESTOFWORLD.id]),
+            u'US$0.99')
 
     def test_get_tier_and_locale(self):
         translation.activate('pt_BR')
-        eq_(Price.objects.get(pk=2).get_price(), Decimal('1.99'))
-        eq_(Price.objects.get(pk=2).get_price_locale(), u'US$1,99')
+        eq_(Price.objects.get(pk=2).get_price(regions=[RESTOFWORLD.id]),
+            Decimal('1.99'))
+        eq_(Price.objects.get(pk=2).get_price_locale(regions=[RESTOFWORLD.id]),
+            u'US$1,99')
 
     def test_no_region(self):
-        eq_(Price.objects.get(pk=2).get_price_locale(region=HU.id), None)
+        eq_(Price.objects.get(pk=2).get_price_locale(regions=[HU.id]), None)
 
     def test_fallback(self):
         translation.activate('foo')
-        eq_(Price.objects.get(pk=1).get_price(), Decimal('0.99'))
-        eq_(Price.objects.get(pk=1).get_price_locale(), u'$0.99')
+        eq_(Price.objects.get(pk=1).get_price(regions=[RESTOFWORLD.id]),
+            Decimal('0.99'))
+        eq_(Price.objects.get(pk=1).get_price_locale(regions=[RESTOFWORLD.id]),
+            u'$0.99')
 
     def test_transformer(self):
         price = Price.objects.get(pk=1)
-        price.get_price_locale()
+        price.get_price_locale(regions=[RESTOFWORLD.id])
         # Warm up Price._currencies.
         with self.assertNumQueries(0):
-            eq_(price.get_price_locale(), u'$0.99')
+            eq_(price.get_price_locale(regions=[RESTOFWORLD.id]), u'$0.99')
 
     def test_get_tier_price(self):
-        eq_(Price.objects.get(pk=2).get_price_locale(region=BR.id), 'R$1.01')
+        eq_(Price.objects.get(pk=2).get_price_locale(regions=[BR.id]),
+            'R$1.01')
 
     def test_get_tier_price_provider(self):
         # Because we specify Boku, there is no tier to be found.
         eq_(Price.objects.get(pk=2)
-            .get_price_locale(region=BR.id, provider=PROVIDER_BOKU), None)
+            .get_price_locale(regions=[BR.id], provider=PROVIDER_BOKU),
+            None)
 
         # Turning on Boku will give us the tier.
         PriceCurrency.objects.get(pk=3).update(provider=PROVIDER_BOKU)
         eq_(Price.objects.get(pk=2)
-            .get_price_locale(region=BR.id, provider=PROVIDER_BOKU), 'R$1.01')
+            .get_price_locale(regions=[BR.id], provider=PROVIDER_BOKU),
+            'R$1.01')
 
     def test_get_free_tier_price(self):
         price = self.make_price('0.00')
-        eq_(price.get_price_locale(region=US.id), '$0.00')
+        eq_(price.get_price_locale(regions=[US.id]), '$0.00')
 
     def test_euro_placement(self):
         with self.activate('en-us'):
-            eq_(Price.objects.get(pk=2).get_price_locale(region=SPAIN.id),
+            eq_(Price.objects.get(pk=2).get_price_locale(regions=[SPAIN.id]),
                 u'\u20ac0.50')
         with self.activate('es'):
-            eq_(Price.objects.get(pk=2).get_price_locale(region=SPAIN.id),
+            eq_(Price.objects.get(pk=2).get_price_locale(regions=[SPAIN.id]),
                 u'0,50\xa0\u20ac')
 
     def test_prices(self):
@@ -126,7 +136,7 @@ class TestPrice(mkt.site.tests.TestCase):
     def test_wrong_currency(self):
         bad = 4999
         ok_(bad not in ALL_REGION_IDS)
-        ok_(not Price.objects.get(pk=1).get_price('foo', region=bad))
+        ok_(not Price.objects.get(pk=1).get_price('foo', regions=[bad]))
 
     def test_prices_provider(self):
         currencies = Price.objects.get(pk=1).prices(

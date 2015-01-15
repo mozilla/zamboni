@@ -796,13 +796,22 @@ class TestFixExcludedRegions(mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_paid(self, _mock):
         self.make_premium(self.app)
-        # `make_premium` adds a price in a US region. Excluded is everything
-        # but US and RESTOFWORLD.
-        excluded = (set(mkt.regions.ALL_REGION_IDS) -
-                    set([mkt.regions.RESTOFWORLD.id, mkt.regions.US.id]))
         fix_excluded_regions([self.app.pk])
-        self.assertSetEqual(self.app.get_excluded_region_ids(), excluded)
+        # There are no exclusions at all, because the payments fall back
+        # to rest of the world.
+        self.assertSetEqual(self.app.get_excluded_region_ids(), [])
         eq_(self.app.addonexcludedregion.count(), 0)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_paid_and_worldwide(self, _mock):
+        self.make_premium(self.app)
+        fix_excluded_regions([self.app.pk])
+        self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
+        # All the other countries are excluded, but not the US because they
+        # choose to exclude the rest of the world.
+        excluded = set(mkt.regions.ALL_REGION_IDS) - set([mkt.regions.US.id])
+        self.assertSetEqual(self.app.get_excluded_region_ids(), excluded)
+        eq_(self.app.addonexcludedregion.count(), 1)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_free_special_excluded(self, _mock):

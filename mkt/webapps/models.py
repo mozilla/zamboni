@@ -37,6 +37,7 @@ from mkt.access import acl
 from mkt.constants import APP_FEATURES, apps, iarc_mappings
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.payments import PROVIDER_CHOICES
+from mkt.constants.regions import RESTOFWORLD
 from mkt.files.models import File, nfd_str
 from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
@@ -1584,21 +1585,46 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """If the app is premium status and has a premium object."""
         return bool(self.is_premium() and self.premium)
 
+    def _setup_price_lookups(self, region, provider):
+        """
+        Alter the lookups for regions and provider.
+
+        If RESTOFWORLD is not excluded, add it in.
+        If the payment provider is not specified, set it to the default.
+        """
+        from mkt.developers.providers import ALL_PROVIDERS
+        regions = []
+        excluded = self.get_excluded_region_ids()
+
+        # Don't allow the region if its excluded.
+        if region not in excluded:
+            regions.append(region)
+
+        # Don't add in rest of the world if its excluded either.
+        if (RESTOFWORLD != region and RESTOFWORLD.id not in excluded):
+            regions.append(RESTOFWORLD.id)
+
+        if not provider:
+            provider = (
+                ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider)
+
+        return regions, provider
+
     def get_price(self, carrier=None, region=None, provider=None):
         """
         A shortcut to get the price as decimal. Returns None if their is no
         price for the app.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to restofworld.
-        :param optional provider: an int for the provider. Defaults to bango.
+        :param optional region: an int for the region. If RESTOFWORLD
+            is not excluded, it will be added as a region fallback.
+        :param optional provider: an int for the provider. Defaults to
+            settings.DEFAULT_PAYMENT_PROVIDER.
         """
-        from mkt.developers.providers import ALL_PROVIDERS
-        if not provider:
-            provider = ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER].provider
-
+        regions, provider = self._setup_price_lookups(region, provider)
         if self.has_premium() and self.premium.price:
-            return self.premium.price.get_price(carrier=carrier, region=region,
+            return self.premium.price.get_price(carrier=carrier,
+                                                regions=regions,
                                                 provider=provider)
 
     def get_price_locale(self, carrier=None, region=None, provider=None):
@@ -1607,12 +1633,15 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         their is no price for the app.
 
         :param optional carrier: an int for the carrier.
-        :param optional region: an int for the region. Defaults to restofworld.
-        :param optional provider: an int for the provider. Defaults to bango.
+        :param optional region: an int for the region. If RESTOFWORLD
+            is not excluded, it will be added as a region fallback.
+        :param optional provider: an int for the provider. Defaults to
+            settings.DEFAULT_PAYMENT_PROVIDER.
         """
+        regions, provider = self._setup_price_lookups(region, provider)
         if self.has_premium() and self.premium.price:
             return self.premium.price.get_price_locale(
-                carrier=carrier, region=region, provider=provider)
+                carrier=carrier, regions=regions, provider=provider)
 
     def get_tier(self):
         """
@@ -1669,12 +1698,19 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         excluded = set(self.addonexcludedregion
                            .values_list('region', flat=True))
 
+
         if self.is_premium():
             all_regions = set(mkt.regions.ALL_REGION_IDS)
             # Find every region that does not have payments supported
             # and add that into the exclusions.
-            excluded = excluded.union(
-                all_regions.difference(self.get_price_region_ids()))
+            #
+            # All the regions that are currently paid for an app.
+            price_ids = self.get_price_region_ids()
+            if RESTOFWORLD.id in excluded or RESTOFWORLD.id not in price_ids:
+                # If the "rest of the world" is excluded or its not in the
+                # list of valid price ids then we need to exclude all
+                # countries that don't have payments.
+                excluded = excluded.union(all_regions.difference(price_ids))
 
         geo = self.geodata
         if geo.region_de_iarc_exclude or geo.region_de_usk_exclude:

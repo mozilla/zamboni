@@ -1187,7 +1187,8 @@ def fix_excluded_regions(ids, **kw):
 
 @task
 def delete_logs(items, **kw):
-    task_log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
+    task_log.info('[%s@%s] Deleting logs'
+                  % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=mkt.LOG_KEEP).delete()
 
