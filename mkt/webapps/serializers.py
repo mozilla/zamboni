@@ -419,7 +419,6 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         obj._current_version = Version()
         obj._current_version.addon = obj
         obj._current_version._developer_name = data['author']
-        obj._current_version.size = data['file_size']
         obj._current_version.supported_locales = data['supported_locales']
         obj._current_version.version = data['current_version']
         obj._latest_version = Version()
