@@ -7,6 +7,7 @@ from django.utils.text import slugify
 
 import mock
 from elasticsearch_dsl.search import Search
+from mpconstants import collection_colors as coll_colors
 from nose.tools import eq_, ok_
 
 import mkt
@@ -402,10 +403,17 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         return res, data
 
     def test_create_with_background_color(self):
-        color = feed.FEED_COLOR_CHOICES[0][0]
+        # Deprecated.
+        color = coll_colors.COLLECTION_COLORS_CHOICES[0][0]
         self.feedapp_data.update(background_color=color)
         res, data = self.test_create_with_permission()
         eq_(data['background_color'], color)
+
+    def test_create_with_color(self):
+        color = coll_colors.COLLECTION_COLORS.keys()[0]
+        self.feedapp_data.update(color=color)
+        res, data = self.test_create_with_permission()
+        eq_(data['color'], color)
 
     def test_create_with_preview(self):
         preview = Preview.objects.create(addon=self.app, position=0)
@@ -829,7 +837,8 @@ class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
     obj_data = {
         'slug': 'potato',
         'type': 'promo',
-        'background_color': feed.FEED_COLOR_CHOICES[0][0],
+        'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
+        'color': coll_colors.COLLECTION_COLORS.keys()[0],
         'description': {'en-US': 'Potato french fries'},
         'name': {'en-US': 'Deep Fried'}
     }

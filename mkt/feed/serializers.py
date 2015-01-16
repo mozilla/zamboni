@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.text import slugify
 
+from mpconstants import collection_colors
 from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
 
@@ -123,10 +124,10 @@ class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'background_color', 'background_image', 'created',
-                  'description', 'id', 'preview', 'pullquote_attribution',
-                  'pullquote_rating', 'pullquote_text', 'slug', 'type',
-                  'url')
+        fields = ('app', 'background_color', 'background_image', 'color',
+                  'created', 'description', 'id', 'preview',
+                  'pullquote_attribution', 'pullquote_rating',
+                  'pullquote_text', 'slug', 'type', 'url')
         model = FeedApp
         url_basename = 'feedapps'
 
@@ -144,8 +145,8 @@ class FeedAppESSerializer(FeedAppSerializer, BaseESSerializer):
 
     def fake_object(self, data):
         feed_app = self._attach_fields(FeedApp(), data, (
-            'id', 'background_color', 'image_hash', 'pullquote_attribution',
-            'pullquote_rating', 'slug', 'type'
+            'id', 'background_color', 'color', 'image_hash',
+            'pullquote_attribution', 'pullquote_rating', 'slug', 'type'
         ))
         feed_app._preview = data.get('preview')
         feed_app = self._attach_translations(feed_app, data, (
@@ -207,29 +208,46 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     A serializer for the FeedCollection class.
     """
     type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
-    background_color = serializers.CharField(max_length=7, required=False)
     background_image = FeedImageField(
         source='*', view_name='api-v2:feed-collection-image-detail',
         format='png')
+    color = serializers.CharField(max_length=20, required=False)
     description = TranslationSerializerField(required=False)
     name = TranslationSerializerField()
     apps = serializers.SerializerMethodField('get_apps')
 
+    # Deprecated.
+    background_color = serializers.CharField(max_length=7, required=False)
+
     class Meta:
         fields = ('app_count', 'apps', 'background_color', 'background_image',
-                  'description', 'id', 'name', 'slug', 'type', 'url')
+                  'color', 'description', 'id', 'name', 'slug', 'type', 'url')
         model = FeedCollection
         url_basename = 'feedcollections'
 
     def validate_background_color(self, attrs, source):
+        """Background color is deprecated for color."""
         color = attrs.get(source, None)
         if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
             raise serializers.ValidationError(
                 '`background_color` is required for `promo` collections.'
             )
-        if color and color not in dict(constants.FEED_COLOR_CHOICES):
+        if (color and
+            color not in dict(collection_colors.COLLECTION_COLORS_REVERSE)):
             raise serializers.ValidationError(
                 '`Not a valid value for `background_color`.'
+            )
+        return attrs
+
+    def validate_color(self, attrs, source):
+        color = attrs.get(source, None)
+        if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
+            raise serializers.ValidationError(
+                '`color` is required for `promo` collections.'
+            )
+        if color and color not in dict(collection_colors.COLLECTION_COLORS):
+            raise serializers.ValidationError(
+                '`Not a valid value for `color`.'
             )
         return attrs
 
@@ -261,7 +279,7 @@ class FeedCollectionESSerializer(BaseFeedCollectionESSerializer,
 
     def fake_object(self, data):
         collection = self._attach_fields(FeedCollection(), data, (
-            'id', 'background_color', 'image_hash', 'slug', 'type'
+            'id', 'background_color', 'color', 'image_hash', 'slug', 'type'
         ))
         collection = self._attach_translations(collection, data, (
             'name', 'description'

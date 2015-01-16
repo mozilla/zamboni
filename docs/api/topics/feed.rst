@@ -300,6 +300,7 @@ Feed apps are represented thusly:
             "data": "..."
         },
         "background_color": "#A90000",
+        "color": "ruby",
         "description": {
             "en-US": "A featured app",
             "fr": "Une application sélectionnée"
@@ -321,6 +322,10 @@ Feed apps are represented thusly:
     *string* - background color in 6-digit hex format prepended by a hash. Must
     be one of ``#CE001C``, ``#F78813``, ``#00953F``, ``#0099D0``, ``#1E1E9C``,
     ``#5A197E``, ``#A20D55``.
+``color``
+    *string* - color code name. The actual color values are defined in the
+    frontend. Currently one of ``ruby``, ``amber``, ``emerald``, ``topaz``,
+    ``sapphire``, ``amethyst``, ``garnet``.
 ``description``
     *string|null* - a :ref:`translated <overview-translations>` description of
     the app being featured.
@@ -393,8 +398,11 @@ Create
 
     :param app: the ID of a :ref:`feed app <feed-apps>`.
     :type app: int|null
-    :param background_color: color in six-digit hex (with hash prefix)
+    :param background_color: [DEPRECATED] color in six-digit hex (with hash prefix)
     :type background_color: string
+    :param color: primary color used to style. Actual hex value defined in
+        frontend.
+    :type color: string
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -424,6 +432,7 @@ Create
         {
             "app": 710,
             "background_color": "#A90000",
+            "color": "ruby",
             "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "description": {
                 "en-US": "A featured app",
@@ -462,6 +471,10 @@ Update
         by a hash. Must be one of ``#CE001C``, ``#F78813``, ``#00953F``,
         ``#0099D0``, ``#1E1E9C``, ``#5A197E``, ``#A20D55``.
     :type background_color: string
+    :param color: primary color used to style. Actual hex value defined in
+        frontend. Currently one of ``ruby``, ``amber``, ``emerald``, ``topaz``,
+        ``sapphire``, ``amethyst``, ``garnet``.
+    :type color: string
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -891,9 +904,13 @@ Create
         :ref:`app list <feed-collections-grouped>`.
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
-    :param color: a hex color used in display of the collection. Currently must
-        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
-        ``#5F9B0A``, or ``#2C393B``.
+    :param background_color: [DEPRECATED] a hex color used in display of the
+        collection.  Currently must be one of ``#B90000``, ``#FF4E00``,
+        ``#CD6723``, ``#00AACC``, ``#5F9B0A``, or ``#2C393B``.
+    :type background_color: string
+    :param color: primary color used to style. Actual hex value defined in
+        frontend. Currently one of ``ruby``, ``amber``, ``emerald``, ``topaz``,
+        ``sapphire``, ``amethyst``, ``garnet``.
     :type color: string
     :param description: a :ref:`translated <overview-translations>` description
         of the feed collection.
@@ -950,9 +967,12 @@ Update
     :type apps: array
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
-    :param color: a hex color used in display of the collection. Currently must
-        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
-        ``#5F9B0A``, or ``#2C393B``.
+    :param background_color: [DEPRECATED] a hex color used in display of the
+        collection.  Currently must be one of ``#B90000``, ``#FF4E00``,
+        ``#CD6723``, ``#00AACC``, ``#5F9B0A``, or ``#2C393B``.
+    :param color: primary color used to style. Actual hex value defined in
+        frontend. Currently one of ``ruby``, ``amber``, ``emerald``, ``topaz``,
+        ``sapphire``, ``amethyst``, ``garnet``.
     :type color: string
     :param description: a :ref:`translated <overview-translations>` description
         of the feed collection.

@@ -40,6 +40,7 @@ class FeedAppIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'app': {'type': 'long'},
                     'background_color': cls.string_not_analyzed(),
+                    'color': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'image_hash': cls.string_not_analyzed(),
                     'item_type': cls.string_not_analyzed(),
@@ -72,6 +73,7 @@ class FeedAppIndexer(BaseIndexer):
             'id': obj.id,
             'app': obj.app_id,
             'background_color': obj.background_color,
+            'color': obj.color,
             'created': obj.created,
             'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_APP,
@@ -152,6 +154,7 @@ class FeedCollectionIndexer(BaseIndexer):
                     'apps': {'type': 'long'},
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'background_color': cls.string_not_analyzed(),
+                    'color': cls.string_not_analyzed(),
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
                     'image_hash': cls.string_not_analyzed(),
@@ -180,6 +183,7 @@ class FeedCollectionIndexer(BaseIndexer):
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
             'background_color': obj.background_color,
+            'color': obj.color,
             'created': obj.created,
             'group_apps': {},  # Map of app IDs to index in group_names below.
             'group_names': [],  # List of ES-serialized group names.

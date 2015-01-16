@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
 
+from mpconstants import collection_colors as coll_colors
 from nose.tools import eq_, ok_
 from rest_framework.serializers import ValidationError
 
@@ -21,7 +22,8 @@ class TestFeedAppSerializer(FeedTestMixin, mkt.site.tests.TestCase):
     def test_basic(self):
         data = {
             'app': 337141,
-            'background_color': '#B90000',
+            'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
+            'color': coll_colors.COLLECTION_COLORS.keys()[0],
             'type': 'icon',
             'description': {
                 'en-US': u'pan-fried potatoes'
@@ -134,7 +136,8 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestFeedCollectionSerializer, self).setUp()
         self.data = {
-            'background_color': feed.FEED_COLOR_CHOICES[0][0],
+            'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
+            'color': coll_colors.COLLECTION_COLORS.keys()[0],
             'name': {'en-US': 'Potato'},
             'description': {'en-US': 'Potato, tomato'},
             'type': COLLECTION_PROMO
