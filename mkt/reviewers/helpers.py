@@ -111,7 +111,7 @@ def queue_tabnav(context):
         ])
         if acl.action_allowed(request, 'Apps', 'ReviewRegionCN'):
             url_ = reverse('reviewers.apps.queue_region',
-                           args=[mkt.regions.CN.slug])
+                           args=[mkt.regions.CHN.slug])
             rv.append((url_, 'region',
                       _('China ({0})').format(counts['region_cn'])))
         if acl.action_allowed(request, 'Apps', 'ReviewTarako'):

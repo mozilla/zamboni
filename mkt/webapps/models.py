@@ -1714,9 +1714,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         geo = self.geodata
         if geo.region_de_iarc_exclude or geo.region_de_usk_exclude:
-            excluded.add(mkt.regions.DE.id)
+            excluded.add(mkt.regions.DEU.id)
         if geo.region_br_iarc_exclude:
-            excluded.add(mkt.regions.BR.id)
+            excluded.add(mkt.regions.BRA.id)
 
         return sorted(list(excluded))
 
@@ -1729,11 +1729,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def get_regions(self, regions=None, sort_by='slug'):
         """
         Return a list of regions objects the app is available in, e.g.:
-            [<class 'mkt.constants.regions.BR'>,
-             <class 'mkt.constants.regions.CA'>,
-             <class 'mkt.constants.regions.UK'>,
-             <class 'mkt.constants.regions.US'>,
-             <class 'mkt.constants.regions.RESTOFWORLD'>]
+             [<class 'mkt.constants.regions.GBR'>,...]
 
         if `regions` is provided we'll use that instead of calling
         self.get_region_ids()
@@ -1783,7 +1779,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return self.additionalreview_set.unreviewed(queue=QUEUE_TARAKO)
 
     def in_china_queue(self):
-        china_queue = self.__class__.objects.pending_in_region(mkt.regions.CN)
+        china_queue = self.__class__.objects.pending_in_region(mkt.regions.CHN)
         return china_queue.filter(pk=self.pk).exists()
 
     def get_package_path(self):
@@ -2465,10 +2461,10 @@ def get_excluded_in(region_id):
     # For pre-IARC unrated games in Brazil/Germany.
     geodata_qs = Q()
     region = parse_region(region_id)
-    if region in (mkt.regions.BR, mkt.regions.DE):
+    if region in (mkt.regions.BRA, mkt.regions.DEU):
         geodata_qs |= Q(**{'region_%s_iarc_exclude' % region.slug: True})
     # For USK_RATING_REFUSED apps in Germany.
-    if region == mkt.regions.DE:
+    if region == mkt.regions.DEU:
         geodata_qs |= Q(**{'region_de_usk_exclude': True})
 
     geodata_exclusions = []
@@ -2860,7 +2856,7 @@ for region in mkt.regions.SPECIAL_REGIONS:
 
 # Add a dynamic field to `Geodata` model to exclude pre-IARC public unrated
 # Brazil and Germany games.
-for region in (mkt.regions.BR, mkt.regions.DE):
+for region in (mkt.regions.BRA, mkt.regions.DEU):
     field = models.BooleanField(default=False)
     field.contribute_to_class(Geodata, 'region_%s_iarc_exclude' % region.slug)
 

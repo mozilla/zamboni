@@ -143,7 +143,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         # this test to make sure it's still only using v1.
         self.url = reverse('fireplace-consumer-info')
         ok_('/api/v1/' in self.url)
-        mock_lookup.return_value = mkt.regions.UK
+        mock_lookup.return_value = mkt.regions.GBR
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'uk')
@@ -152,7 +152,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
     @patch('mkt.regions.middleware.GeoIP.lookup')
     def test_geoip_called_api_v2(self, mock_lookup):
         self.url = reverse('api-v2:fireplace-consumer-info')
-        mock_lookup.return_value = mkt.regions.UK
+        mock_lookup.return_value = mkt.regions.GBR
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'uk')
@@ -160,7 +160,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_no_user_just_region(self, region_from_request):
-        region_from_request.return_value = mkt.regions.UK
+        region_from_request.return_value = mkt.regions.GBR
         res = self.anon.get(self.url)
         data = json.loads(res.content)
         eq_(len(data.keys()), 1)
@@ -168,7 +168,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_recommendation_opt_out(self, region_from_request):
-        region_from_request.return_value = mkt.regions.BR
+        region_from_request.return_value = mkt.regions.BRA
         for opt in (True, False):
             self.user.update(enable_recommendations=opt)
             res = self.client.get(self.url)
@@ -177,7 +177,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_developed(self, region_from_request):
-        region_from_request.return_value = mkt.regions.BR
+        region_from_request.return_value = mkt.regions.BRA
         developed_app = app_factory()
         AddonUser.objects.create(user=self.user, addon=developed_app)
         self.client.login(username=self.user.email, password='password')
@@ -190,7 +190,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_installed(self, region_from_request):
-        region_from_request.return_value = mkt.regions.BR
+        region_from_request.return_value = mkt.regions.BRA
         installed_app = app_factory()
         Installed.objects.create(user=self.user, addon=installed_app)
         self.client.login(username=self.user.email, password='password')
@@ -204,7 +204,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
     @patch('mkt.users.models.UserProfile.purchase_ids')
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_purchased(self, region_from_request, purchase_ids):
-        region_from_request.return_value = mkt.regions.BR
+        region_from_request.return_value = mkt.regions.BRA
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         self.client.login(username=self.user.email, password='password')

@@ -148,7 +148,7 @@ def queue_counts(request):
         'updates': queues_helper.get_updates_queue().count(),
         'escalated': queues_helper.get_escalated_queue().count(),
         'moderated': queues_helper.get_moderated_queue().count(),
-        'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
+        'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
         'additional_tarako': (
             AdditionalReview.objects
                             .unreviewed(queue=QUEUE_TARAKO, and_approved=True)

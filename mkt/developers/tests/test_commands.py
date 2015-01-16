@@ -39,7 +39,7 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
 
     def test_restricted_no_migration_of_paid_apps_exclusions(self):
         self.make_premium(self.webapp)
-        self.webapp.addonexcludedregion.create(region=mkt.regions.US.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
         eq_(self.webapp.geodata.reload().restricted, False)
 
         migrate_geodata.Command().handle()
@@ -48,7 +48,7 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
         eq_(self.webapp.geodata.reload().restricted, True)
 
     def test_unrestricted_migration_of_free_apps_exclusions(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.US.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
         eq_(self.webapp.geodata.reload().restricted, False)
 
         migrate_geodata.Command().handle()
@@ -59,7 +59,7 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
     def test_migration_of_regional_content(self):
         # Exclude in everywhere except Brazil.
         regions = list(mkt.regions.REGIONS_CHOICES_ID_DICT)
-        regions.remove(mkt.regions.BR.id)
+        regions.remove(mkt.regions.BRA.id)
         for region in regions:
             self.webapp.addonexcludedregion.create(region=region)
 
@@ -69,8 +69,8 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
 
         self.assertSetEqual(self.webapp.reload().addonexcludedregion
                                 .values_list('region', flat=True),
-                            [mkt.regions.CN.id])
-        eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BR.slug)
+                            [mkt.regions.CHN.id])
+        eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BRA.slug)
 
 
 @mock.patch('mkt.developers.management.commands.exclude_unrated.index_webapps')

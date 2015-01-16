@@ -196,7 +196,7 @@ class TestFeedItemViewSetCreate(FeedAppMixin, BaseTestFeedItemViewSet):
         res, data = self.create(self.client, app=self.feedapps[0].pk,
                                 item_type=feed.FEED_TYPE_APP,
                                 carrier=mkt.carriers.TELEFONICA.id,
-                                region=mkt.regions.BR.id)
+                                region=mkt.regions.BRA.id)
         eq_(res.status_code, 201)
         self.assertCORS(res, 'get', 'delete', 'post', 'put', 'patch')
         eq_(data['app']['id'], self.feedapps[0].pk)
@@ -272,10 +272,10 @@ class TestFeedItemViewSetUpdate(FeedAppMixin, BaseTestFeedItemViewSet):
     def test_update_with_permission(self):
         self.feed_permission()
         res, data = self.update(self.client, item_type=feed.FEED_TYPE_APP,
-                                region=mkt.regions.US.id)
+                                region=mkt.regions.USA.id)
         eq_(res.status_code, 200)
         eq_(data['id'], self.item.pk)
-        eq_(data['region'], mkt.regions.US.slug)
+        eq_(data['region'], mkt.regions.USA.slug)
 
     def test_update_no_items(self):
         self.feed_permission()
@@ -983,7 +983,7 @@ class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
 
     def test_create_with_obj_permission(self):
         OperatorPermission.objects.create(
-            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BRA.id,
             user=self.user)
         res, data = self.create(self.client, **self.obj_data)
         eq_(res.status_code, 201)
@@ -1031,7 +1031,7 @@ class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
 
     def test_delete_with_obj_permission(self):
         OperatorPermission.objects.create(
-            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BRA.id,
             user=self.user)
         res, data = self.delete(self.client)
         eq_(res.status_code, 204)
@@ -1046,9 +1046,9 @@ class TestFeedShelfViewSetMine(FeedTestMixin, RestOAuth):
         self.user2 = UserProfile.objects.get(id=999)
         self.url = reverse('api-v2:feedshelves-mine')
         self.feed_shelf_factory(
-            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id)
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BRA.id)
         self.feed_shelf_factory(
-            carrier=mkt.carriers.AMERICA_MOVIL.id, region=mkt.regions.FR.id)
+            carrier=mkt.carriers.AMERICA_MOVIL.id, region=mkt.regions.FRA.id)
 
     def list(self, client):
         res = client.get(self.url)
@@ -1067,7 +1067,7 @@ class TestFeedShelfViewSetMine(FeedTestMixin, RestOAuth):
 
     def test_operator_permission(self):
         carrier = mkt.carriers.TELEFONICA
-        region = mkt.regions.BR
+        region = mkt.regions.BRA
         self.feed_shelf_permission_factory(self.user, carrier=carrier.id,
                                            region=region.id)
         res, data = self.list(self.client)
@@ -1115,7 +1115,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
 
         eq_(FeedItem.objects.count(), 7)
         us_items = FeedItem.objects.filter(
-            region=mkt.regions.US.id).order_by('order')
+            region=mkt.regions.USA.id).order_by('order')
         eq_(us_items.count(), 4)
 
         # Test order.
@@ -1132,7 +1132,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
 
         # Test China feed.
         cn_items = FeedItem.objects.filter(
-            region=mkt.regions.CN.id).order_by('order')
+            region=mkt.regions.CHN.id).order_by('order')
         eq_(cn_items.count(), 3)
         eq_(cn_items[0].item_type, 'brand')
         eq_(cn_items[1].item_type, 'app')
@@ -1147,7 +1147,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         self._set_feed_items(self.data)
 
         us_items = FeedItem.objects.filter(
-            region=mkt.regions.US.id).order_by('order')
+            region=mkt.regions.USA.id).order_by('order')
         eq_(us_items[0].brand_id, self.brand.id)
         eq_(us_items[1].app_id, self.feed_apps[2].id)
 
@@ -1155,12 +1155,12 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         """Fill up China feed, then send an empty array for China."""
         self.feed_permission()
         self._set_feed_items(self.data)
-        ok_(FeedItem.objects.filter(region=mkt.regions.CN.id))
+        ok_(FeedItem.objects.filter(region=mkt.regions.CHN.id))
 
         self.data['cn'] = []
         self._set_feed_items(self.data)
-        ok_(FeedItem.objects.filter(region=mkt.regions.US.id))
-        ok_(not FeedItem.objects.filter(region=mkt.regions.CN.id))
+        ok_(FeedItem.objects.filter(region=mkt.regions.USA.id))
+        ok_(not FeedItem.objects.filter(region=mkt.regions.CHN.id))
 
     def test_no_perm(self):
         """Fill up China feed, then send an empty array for China."""
@@ -1468,7 +1468,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_restofworld_fallback_shelf_only(self):
         shelf = self.feed_shelf_factory()
-        shelf.feeditem_set.create(region=mkt.regions.US.id,
+        shelf.feeditem_set.create(region=mkt.regions.USA.id,
                                   carrier=mkt.carriers.AMERICA_MOVIL.id,
                                   item_type=feed.FEED_TYPE_SHELF)
 
@@ -1482,7 +1482,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_shelf_only_404(self):
         shelf = self.feed_shelf_factory()
-        shelf.feeditem_set.create(region=mkt.regions.US.id,
+        shelf.feeditem_set.create(region=mkt.regions.USA.id,
                                   item_type=feed.FEED_TYPE_SHELF)
         res, data = self._get()
         eq_(res.status_code, 404)
@@ -1703,7 +1703,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
         app = feed_item.app.app
         # Exclude from Germany.
-        app.addonexcludedregion.create(region=mkt.regions.DE.id)
+        app.addonexcludedregion.create(region=mkt.regions.DEU.id)
         res, data = self._get()
         ok_(data['objects'])
         res, data = self._get(region='de')
@@ -1715,8 +1715,8 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_coll(self):
         app_excluded_br = mkt.site.tests.app_factory()
         app_excluded_de = mkt.site.tests.app_factory()
-        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
-        app_excluded_de.addonexcludedregion.create(region=mkt.regions.DE.id)
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        app_excluded_de.addonexcludedregion.create(region=mkt.regions.DEU.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id,
                                                      app_excluded_de.id])
 
@@ -1742,7 +1742,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_no_filtering(self):
         app_excluded_br = mkt.site.tests.app_factory()
-        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BRA.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id])
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
                                 region=1)

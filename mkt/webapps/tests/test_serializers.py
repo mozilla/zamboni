@@ -156,7 +156,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         eq_(res['content_ratings']['body'], 'generic')
         eq_(res['content_ratings']['rating'], '18')
 
-        self.request.REGION = mkt.regions.BR
+        self.request.REGION = mkt.regions.BRA
         res = self.serialize(self.app)
         eq_(res['content_ratings']['body'], 'classind')
         eq_(res['content_ratings']['rating'], '18')
@@ -165,7 +165,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.app.set_descriptors(['has_esrb_blood', 'has_esrb_crime',
                                   'has_pegi_scary'])
 
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         res = self.serialize(self.app)
         self.assertSetEqual(res['content_ratings']['descriptors_text'],
                             ['Blood', 'Crime'])
@@ -210,7 +210,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         eq_(res['file_size'], 12345)
 
     def test_upsell(self):
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
@@ -224,7 +224,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
                                '/apps/app/%s/' % upsell.id)
 
     def test_upsell_not_public(self):
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         upsell = mkt.site.tests.app_factory(disabled_by_user=True)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
@@ -233,11 +233,11 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         eq_(res['upsell'], False)
 
     def test_upsell_excluded_from_region(self):
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
+        upsell.addonexcludedregion.create(region=mkt.regions.USA.id)
 
         res = self.serialize(self.app)
         eq_(res['upsell'], False)
@@ -247,8 +247,8 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
-        upsell.addonexcludedregion.create(region=mkt.regions.BR.id)
-        self.request.REGION = mkt.regions.BR
+        upsell.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.request.REGION = mkt.regions.BRA
 
         res = self.serialize(self.app)
         eq_(res['upsell'], False)
@@ -273,21 +273,21 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
 
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.US)
+        res = self.serialize(self.app, region=regions.USA)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
     def test_no_charge(self):
         self.make_premium(self.app, price='0.00')
-        res = self.serialize(self.app, region=regions.US)
+        res = self.serialize(self.app, region=regions.USA)
         eq_(res['price'], Decimal('0.00'))
         eq_(res['price_locale'], '$0.00')
         eq_(res['payment_required'], False)
 
     def test_fallback(self):
         self.make_premium(self.app, price='0.99')
-        res = self.serialize(self.app, region=regions.PL)
+        res = self.serialize(self.app, region=regions.POL)
         eq_(res['price'], Decimal('0.99'))
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
@@ -295,19 +295,19 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
     def test_fallback_excluded(self):
         self.make_premium(self.app, price='0.99')
         self.app.addonexcludedregion.create(region=RESTOFWORLD.id)
-        res = self.serialize(self.app, region=regions.PL)
+        res = self.serialize(self.app, region=regions.POL)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
         eq_(res['payment_required'], True)
 
     def test_with_locale(self):
         premium = self.make_premium(self.app, price='0.99')
-        PriceCurrency.objects.create(region=regions.PL.id, currency='PLN',
+        PriceCurrency.objects.create(region=regions.POL.id, currency='PLN',
                                      price='5.01', tier=premium.price,
                                      provider=PROVIDER_REFERENCE)
 
         with self.activate(locale='fr'):
-            res = self.serialize(self.app, region=regions.PL)
+            res = self.serialize(self.app, region=regions.POL)
             eq_(res['price'], Decimal('5.01'))
             eq_(res['price_locale'], u'5,01\xa0PLN')
 
@@ -328,7 +328,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
     def setUp(self):
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         self.request.user = self.profile
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
@@ -434,7 +434,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         # Check that when ?lang is passed, we get the right language and we get
         # empty strings instead of None if the strings don't exist.
         self.request = RequestFactory().get('/?lang=es')
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         self.request.user = AnonymousUser()
         res = self.serialize()
         expected = {
@@ -462,7 +462,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        self.request.REGION = mkt.regions.BD
+        self.request.REGION = mkt.regions.BGD
         res = self.serialize()
         eq_(res['content_ratings']['body'], 'generic')
         eq_(res['content_ratings']['rating'], '18')
@@ -476,7 +476,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             res['content_ratings']['interactives_text'],
             ['Digital Purchases', 'Shares Info'])
 
-        self.request.REGION = mkt.regions.BR
+        self.request.REGION = mkt.regions.BRA
         res = self.serialize()
         eq_(res['content_ratings']['body'], 'classind')
         eq_(res['content_ratings']['rating'], '18')
@@ -587,7 +587,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         eq_(res['release_notes'], {u'en-US': unicode(version.releasenotes)})
 
         self.request = RequestFactory().get('/?lang=whatever')
-        self.request.REGION = mkt.regions.US
+        self.request.REGION = mkt.regions.USA
         self.request.user = AnonymousUser()
         res = self.serialize()
         eq_(res['release_notes'], unicode(version.releasenotes))
@@ -638,7 +638,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_upsell_excluded_from_region(self):
         upsell = mkt.site.tests.app_factory()
-        upsell.addonexcludedregion.create(region=mkt.regions.US.id)
+        upsell.addonexcludedregion.create(region=mkt.regions.USA.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -648,12 +648,12 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_upsell_region_without_payments(self):
         upsell = mkt.site.tests.app_factory()
-        upsell.addonexcludedregion.create(region=mkt.regions.BR.id)
+        upsell.addonexcludedregion.create(region=mkt.regions.BRA.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
 
-        self.request.REGION = mkt.regions.BR
+        self.request.REGION = mkt.regions.BRA
         res = self.serialize()
         eq_(res['upsell'], False)
 

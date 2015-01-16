@@ -18,7 +18,7 @@ from mkt.constants.payments import (ACCESS_PURCHASE, ACCESS_SIMULATE,
                                     PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
                                     PROVIDER_BOKU, PROVIDER_REFERENCE)
-from mkt.constants.regions import ALL_REGION_IDS, SPAIN, UK, US
+from mkt.constants.regions import ALL_REGION_IDS, ESP, GBR, USA
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
 from mkt.developers.tests.test_providers import Patcher
@@ -664,14 +664,14 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         self.make_premium(self.webapp, price=self.price.price)
         res = self.client.get(self.url + '?lang=en')
         regions = res.context['provider_regions'][PROVIDER_BANGO]
-        eq_(regions, [SPAIN, UK, US])
+        eq_(regions, [ESP, GBR, USA])
         # Form choices sort in English.
         form_choices = [r[1] for r in
                         res.context['region_form']['regions'].field.choices]
-        # For EN, Spain comes before United Kingdom.
-        ok_(form_choices.index(SPAIN.name) < form_choices.index(UK.name))
+        # For EN, ESP comes before United Kingdom.
+        ok_(form_choices.index(ESP.name) < form_choices.index(GBR.name))
         # and United Kingdome comes before United States.
-        ok_(form_choices.index(UK.name) < form_choices.index(US.name))
+        ok_(form_choices.index(GBR.name) < form_choices.index(USA.name))
 
     def test_acct_region_sorting_by_locale_fr(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -680,14 +680,14 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         # En français: Espagne, États-Unis, Royaume-Uni
         # Without unicode normalization this would be:
         # Espagne, Royaume-Uni, États-Unis
-        eq_(regions, [SPAIN, US, UK])
+        eq_(regions, [ESP, USA, GBR])
         # Check we're also doing a normalized sort of the form choices.
         form_choices = [r[1] for r in
                         res.context['region_form']['regions'].field.choices]
         # For FR, Espagne comes before États-Unis.
-        ok_(form_choices.index(SPAIN.name) < form_choices.index(US.name))
+        ok_(form_choices.index(ESP.name) < form_choices.index(USA.name))
         # and États-Unis comes before Royaume-Uni.
-        ok_(form_choices.index(US.name) < form_choices.index(UK.name))
+        ok_(form_choices.index(USA.name) < form_choices.index(GBR.name))
 
     def test_associate_acct_to_app_when_not_owner(self):
         self.make_premium(self.webapp, price=self.price.price)

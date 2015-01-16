@@ -7,16 +7,18 @@ from mkt.regions.utils import parse_region, remove_accents
 
 def test_parse_region():
     eq_(parse_region('restofworld'), regions.RESTOFWORLD)
-    eq_(parse_region('br'), regions.BR)
-    eq_(parse_region('brazil'), regions.BR)
-    eq_(parse_region('bRaZiL'), regions.BR)
-    eq_(parse_region('7'), regions.BR)
-    eq_(parse_region(7), regions.BR)
-    eq_(parse_region(regions.BR), regions.BR)
+    eq_(parse_region('br'), regions.BRA)
+    eq_(parse_region('brazil'), regions.BRA)
+    eq_(parse_region('bRaZiL'), regions.BRA)
+    eq_(parse_region('7'), regions.BRA)
+    eq_(parse_region(7), regions.BRA)
+    eq_(parse_region(regions.BRA), regions.BRA)
     eq_(parse_region(''), None)
+
 
 def test_parse_worldwide_region_as_restofworld():
     eq_(parse_region('worldwide'), regions.RESTOFWORLD)
+
 
 def test_remove_accents():
     eq_(remove_accents(u'café'), u'cafe')

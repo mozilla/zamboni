@@ -773,24 +773,24 @@ class TestFixExcludedRegions(mkt.site.tests.TestCase):
     def test_ignore_restricted(self, _mock):
         """Set up exclusions and verify they still exist after the call."""
         self.app.geodata.update(restricted=True)
-        self.app.addonexcludedregion.create(region=mkt.regions.PE.id)
-        self.app.addonexcludedregion.create(region=mkt.regions.FR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.PER.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.FRA.id)
         fix_excluded_regions([self.app.pk])
         self.assertSetEqual(self.app.get_excluded_region_ids(),
-                            [mkt.regions.PE.id, mkt.regions.FR.id])
+                            [mkt.regions.PER.id, mkt.regions.FRA.id])
         eq_(self.app.addonexcludedregion.count(), 2)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_free_iarc_excluded(self, _mock):
         # Set a few exclusions that shouldn't survive.
-        self.app.addonexcludedregion.create(region=mkt.regions.PE.id)
-        self.app.addonexcludedregion.create(region=mkt.regions.FR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.PER.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.FRA.id)
         # Set IARC settings to influence region exclusions.
         self.app.geodata.update(region_de_iarc_exclude=True,
                                 region_br_iarc_exclude=True)
         fix_excluded_regions([self.app.pk])
         self.assertSetEqual(self.app.get_excluded_region_ids(),
-                            [mkt.regions.DE.id, mkt.regions.BR.id])
+                            [mkt.regions.DEU.id, mkt.regions.BRA.id])
         eq_(self.app.addonexcludedregion.count(), 0)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
@@ -809,7 +809,7 @@ class TestFixExcludedRegions(mkt.site.tests.TestCase):
         self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
         # All the other countries are excluded, but not the US because they
         # choose to exclude the rest of the world.
-        excluded = set(mkt.regions.ALL_REGION_IDS) - set([mkt.regions.US.id])
+        excluded = set(mkt.regions.ALL_REGION_IDS) - set([mkt.regions.USA.id])
         self.assertSetEqual(self.app.get_excluded_region_ids(), excluded)
         eq_(self.app.addonexcludedregion.count(), 1)
 

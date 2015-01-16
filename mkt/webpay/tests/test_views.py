@@ -33,7 +33,7 @@ from mkt.webpay.models import ProductIcon
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
-       lambda s, r: mkt.regions.US)
+       lambda s, r: mkt.regions.USA)
 class TestPrepareWebApp(PurchaseTest, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519', 'prices')
 
@@ -283,7 +283,7 @@ class TestStatus(BaseAPI):
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
-       lambda s, r: mkt.regions.BR)
+       lambda s, r: mkt.regions.BRA)
 class TestPrices(RestOAuth):
 
     def make_currency(self, amount, tier, currency, region):
@@ -294,13 +294,14 @@ class TestPrices(RestOAuth):
     def setUp(self):
         super(TestPrices, self).setUp()
         self.price = Price.objects.create(name='1', price=Decimal(1))
-        self.currency = self.make_currency(3, self.price, 'DE', regions.DE)
-        self.us_currency = self.make_currency(3, self.price, 'USD', regions.US)
+        self.currency = self.make_currency(3, self.price, 'DE', regions.DEU)
+        self.us_currency = self.make_currency(3, self.price, 'USD',
+                                              regions.USA)
         self.list_url = reverse('price-list')
         self.get_url = reverse('price-detail', kwargs={'pk': self.price.pk})
 
         # If regions change, this will blow up.
-        assert regions.BR.default_currency == 'BRL'
+        assert regions.BRA.default_currency == 'BRL'
 
     def get_currencies(self, data):
         return [p['currency'] for p in data['prices']]
@@ -363,7 +364,7 @@ class TestPrices(RestOAuth):
         ok_(isinstance(exception_handler_args[1]['request'], HttpRequest))
 
     def test_locale(self):
-        self.make_currency(5, self.price, 'BRL', regions.BR)
+        self.make_currency(5, self.price, 'BRL', regions.BRA)
         res = self.client.get(self.get_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(res.status_code, 200)
         eq_(res.json['localized']['locale'], 'R$5,00')
@@ -371,9 +372,9 @@ class TestPrices(RestOAuth):
     def test_locale_list(self):
         # Check that for each price tier a different localisation is
         # returned.
-        self.make_currency(2, self.price, 'BRL', regions.BR)
+        self.make_currency(2, self.price, 'BRL', regions.BRA)
         price_two = Price.objects.create(name='2', price=Decimal(1))
-        self.make_currency(12, price_two, 'BRL', regions.BR)
+        self.make_currency(12, price_two, 'BRL', regions.BRA)
 
         res = self.client.get(self.list_url, HTTP_ACCEPT_LANGUAGE='pt-BR')
         eq_(res.status_code, 200)

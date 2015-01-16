@@ -387,7 +387,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         # This is needed for the serialisation of the app.
         PriceCurrency.objects.create(tier=tier, price=price,
                                      provider=PROVIDER_REFERENCE,
-                                     region=regions.US.id)
+                                     region=regions.USA.id)
 
     def test_put_price(self):
         app = self.create_app()
@@ -398,7 +398,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(str(app.get_price(region=regions.US.id)), '1.07')
+        eq_(str(app.get_price(region=regions.USA.id)), '1.07')
 
     def test_put_premium_inapp(self):
         app = self.create_app()
@@ -409,7 +409,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(str(app.get_price(region=regions.US.id)), '1.07')
+        eq_(str(app.get_price(region=regions.USA.id)), '1.07')
         eq_(app.premium_type, mkt.ADDON_PREMIUM_INAPP)
 
     def test_put_bad_price(self):
@@ -443,7 +443,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         data['premium_type'] = 'free-inapp'
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
-        eq_(app.reload().get_price(region=regions.US.id), None)
+        eq_(app.reload().get_price(region=regions.USA.id), None)
 
 # TODO: renable when regions are sorted out.
 #    def test_put_region_bad(self):
@@ -459,7 +459,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 #        data['regions'] = ['br', 'us', 'uk']
 #        res = self.client.put(self.get_url, data=json.dumps(data))
 #        eq_(res.status_code, 202)
-#        eq_(app.get_regions(), [regions.BR, regions.UK, regions.US])
+#        eq_(app.get_regions(), [regions.BRA, regions.GBR, regions.USA])
+
 
     def test_put_not_mine(self):
         obj = self.create_app()
@@ -629,7 +630,7 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 404)
 
     def test_nonregion(self):
-        self.app.addonexcludedregion.create(region=regions.BR.id)
+        self.app.addonexcludedregion.create(region=regions.BRA.id)
         self.app.support_url = u'http://www.example.com/fake_support_url'
         self.app.save()
         res = self.client.get(self.get_url, data={'region': 'br'})
@@ -642,7 +643,7 @@ class TestAppDetail(RestOAuth):
     def test_owner_nonregion(self):
         AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
         AddonExcludedRegion.objects.create(addon_id=337141,
-                                           region=regions.BR.id)
+                                           region=regions.BRA.id)
         res = self.client.get(self.get_url, data={'region': 'br'})
         eq_(res.status_code, 200)
 
@@ -670,14 +671,14 @@ class TestAppDetail(RestOAuth):
 
     def test_banner_message(self):
         geodata = self.app.geodata
-        geodata.banner_regions = [mkt.regions.BR.id, mkt.regions.AR.id]
+        geodata.banner_regions = [mkt.regions.BRA.id, mkt.regions.ARG.id]
         geodata.banner_message = u'Hello!'
         geodata.save()
         res = self.client.get(self.get_url + '?lang=en')
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['banner_message'], unicode(geodata.banner_message))
-        eq_(data['banner_regions'], [mkt.regions.AR.slug, mkt.regions.BR.slug])
+        eq_(data['banner_regions'], [mkt.regions.ARG.slug, mkt.regions.BRA.slug])
 
 
 class TestCategoryHandler(RestOAuth):

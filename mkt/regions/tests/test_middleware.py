@@ -57,7 +57,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
     @mock.patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_url_param_override(self, mock_rfr, set_region):
         self.client.get('/api/v1/apps/?region=br')
-        set_region.assert_called_with(mkt.regions.BR)
+        set_region.assert_called_with(mkt.regions.BRA)
         assert not mock_rfr.called
 
     @mock.patch('mkt.regions.set_region')
@@ -77,7 +77,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
     def test_geoip_lookup_available(self, set_region, mock_lookup):
         mock_lookup.return_value = 'br'
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
-        set_region.assert_called_with(mkt.regions.BR)
+        set_region.assert_called_with(mkt.regions.BRA)
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
@@ -93,7 +93,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
     def test_geoip_missing_lang(self, set_region):
         """ Test for US region """
         self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
-        set_region.assert_called_with(mkt.regions.US)
+        set_region.assert_called_with(mkt.regions.USA)
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
@@ -102,7 +102,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
         """ Test that we fail gracefully if the GeoIP server is down. """
         mock_socket.connect.side_effect = IOError
         self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
-        set_region.assert_called_with(mkt.regions.US)
+        set_region.assert_called_with(mkt.regions.USA)
 
     @mock.patch.object(settings, 'GEOIP_DEFAULT_VAL', 'us')
     @mock.patch('socket.socket')
@@ -112,7 +112,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
         mock_socket.return_value.connect.return_value = True
         mock_socket.return_value.send.side_effect = socket.timeout
         self.client.get('/api/v1/apps/', REMOTE_ADDR='127.0.0.1')
-        set_region.assert_called_with(mkt.regions.US)
+        set_region.assert_called_with(mkt.regions.USA)
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
@@ -120,7 +120,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
     def test_geoip_gb(self, set_region, mock_lookup):
         mock_lookup.return_value = 'gb'
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
-        set_region.assert_called_with(mkt.regions.UK)
+        set_region.assert_called_with(mkt.regions.GBR)
 
     @mock.patch('mkt.regions.middleware.GeoIP.lookup')
     @mock.patch('mkt.regions.set_region')
@@ -131,7 +131,7 @@ class TestRegionMiddleware(mkt.site.tests.TestCase):
 
         self.client.get('/api/v2/apps/?region=fr',
                         HTTP_ACCEPT_LANGUAGE='sa-US')
-        set_region.assert_called_with(mkt.regions.FR)
+        set_region.assert_called_with(mkt.regions.FRA)
         eq_(mock_lookup.call_count, 0)
 
 

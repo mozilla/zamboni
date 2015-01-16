@@ -97,11 +97,11 @@ class TestWebappIndexer(TestCase):
             eq_(v, k in enabled)
 
     def test_extract_regions(self):
-        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
-        self.app.addonexcludedregion.create(region=mkt.regions.UK.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
         obj, doc = self._get_doc()
         self.assertSetEqual(doc['region_exclusions'],
-                            set([mkt.regions.BR.id, mkt.regions.UK.id]))
+                            set([mkt.regions.BRA.id, mkt.regions.GBR.id]))
 
     def test_extract_supported_locales(self):
         locales = 'en-US,es,pt-BR'

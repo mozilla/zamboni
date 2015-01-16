@@ -10,8 +10,8 @@ import mkt
 import mkt.site.tests
 from mkt.constants import apps
 from mkt.constants.payments import (PROVIDER_BOKU, PROVIDER_REFERENCE)
-from mkt.constants.regions import (ALL_REGION_IDS, BR, HU, RESTOFWORLD, SPAIN,
-                                   UK, US)
+from mkt.constants.regions import (ALL_REGION_IDS, BRA, ESP, GBR, HUN,
+                                   RESTOFWORLD, USA)
 from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
@@ -84,7 +84,7 @@ class TestPrice(mkt.site.tests.TestCase):
             u'US$1,99')
 
     def test_no_region(self):
-        eq_(Price.objects.get(pk=2).get_price_locale(regions=[HU.id]), None)
+        eq_(Price.objects.get(pk=2).get_price_locale(regions=[HUN.id]), None)
 
     def test_fallback(self):
         translation.activate('foo')
@@ -101,31 +101,31 @@ class TestPrice(mkt.site.tests.TestCase):
             eq_(price.get_price_locale(regions=[RESTOFWORLD.id]), u'$0.99')
 
     def test_get_tier_price(self):
-        eq_(Price.objects.get(pk=2).get_price_locale(regions=[BR.id]),
+        eq_(Price.objects.get(pk=2).get_price_locale(regions=[BRA.id]),
             'R$1.01')
 
     def test_get_tier_price_provider(self):
-        # Because we specify Boku, there is no tier to be found.
+        # BecaUSAe we specify Boku, there is no tier to be found.
         eq_(Price.objects.get(pk=2)
-            .get_price_locale(regions=[BR.id], provider=PROVIDER_BOKU),
+            .get_price_locale(regions=[BRA.id], provider=PROVIDER_BOKU),
             None)
 
-        # Turning on Boku will give us the tier.
+        # Turning on Boku will give USA the tier.
         PriceCurrency.objects.get(pk=3).update(provider=PROVIDER_BOKU)
         eq_(Price.objects.get(pk=2)
-            .get_price_locale(regions=[BR.id], provider=PROVIDER_BOKU),
+            .get_price_locale(regions=[BRA.id], provider=PROVIDER_BOKU),
             'R$1.01')
 
     def test_get_free_tier_price(self):
         price = self.make_price('0.00')
-        eq_(price.get_price_locale(regions=[US.id]), '$0.00')
+        eq_(price.get_price_locale(regions=[USA.id]), '$0.00')
 
     def test_euro_placement(self):
         with self.activate('en-us'):
-            eq_(Price.objects.get(pk=2).get_price_locale(regions=[SPAIN.id]),
+            eq_(Price.objects.get(pk=2).get_price_locale(regions=[ESP.id]),
                 u'\u20ac0.50')
         with self.activate('es'):
-            eq_(Price.objects.get(pk=2).get_price_locale(regions=[SPAIN.id]),
+            eq_(Price.objects.get(pk=2).get_price_locale(regions=[ESP.id]),
                 u'0,50\xa0\u20ac')
 
     def test_prices(self):
@@ -145,7 +145,7 @@ class TestPrice(mkt.site.tests.TestCase):
 
     def test_multiple_providers(self):
         PriceCurrency.objects.get(pk=2).update(provider=PROVIDER_BOKU)
-        # This used to be 0, so changing it to 3 puts in scope of the filter.
+        # This USAed to be 0, so changing it to 3 puts in scope of the filter.
         with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             currencies = Price.objects.get(pk=1).prices()
             eq_(len(currencies), 3)
@@ -153,35 +153,35 @@ class TestPrice(mkt.site.tests.TestCase):
     def test_region_ids_by_name_multi_provider(self):
         with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             eq_(Price.objects.get(pk=2).region_ids_by_name(),
-                [BR.id, SPAIN.id, UK.id, RESTOFWORLD.id])
+                [BRA.id, ESP.id, GBR.id, RESTOFWORLD.id])
 
     def test_region_ids_by_name(self):
         eq_(Price.objects.get(pk=2).region_ids_by_name(),
-            [BR.id, SPAIN.id, RESTOFWORLD.id])
+            [BRA.id, ESP.id, RESTOFWORLD.id])
 
     def test_region_ids_by_name_w_provider_boku(self):
         eq_(Price.objects.get(pk=2).region_ids_by_name(
-            provider=PROVIDER_BOKU), [UK.id])
+            provider=PROVIDER_BOKU), [GBR.id])
 
     def test_region_ids_by_name_w_provider_reference(self):
         eq_(Price.objects.get(pk=2).region_ids_by_name(
-            provider=PROVIDER_REFERENCE), [BR.id, SPAIN.id, RESTOFWORLD.id])
+            provider=PROVIDER_REFERENCE), [BRA.id, ESP.id, RESTOFWORLD.id])
 
     def test_provider_regions(self):
         with self.settings(PAYMENT_PROVIDERS=['reference', 'boku']):
             eq_(Price.objects.get(pk=2).provider_regions(), {
-                PROVIDER_REFERENCE: [BR, SPAIN, RESTOFWORLD],
-                PROVIDER_BOKU: [UK]})
+                PROVIDER_REFERENCE: [BRA, ESP, RESTOFWORLD],
+                PROVIDER_BOKU: [GBR]})
 
     def test_provider_regions_boku(self):
         with self.settings(PAYMENT_PROVIDERS=['boku']):
             eq_(Price.objects.get(pk=2).provider_regions(), {
-                PROVIDER_BOKU: [UK]})
+                PROVIDER_BOKU: [GBR]})
 
     def test_provider_regions_reference(self):
         with self.settings(PAYMENT_PROVIDERS=['reference']):
             eq_(Price.objects.get(pk=2).provider_regions(), {
-                PROVIDER_REFERENCE: [BR, SPAIN, RESTOFWORLD]})
+                PROVIDER_REFERENCE: [BRA, ESP, RESTOFWORLD]})
 
 
 class TestPriceCurrencyChanges(mkt.site.tests.TestCase):

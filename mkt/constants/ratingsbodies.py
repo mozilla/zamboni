@@ -284,7 +284,7 @@ class PEGI_18(RATING):
 
 class PEGI(RATING_BODY):
     """
-    The European game ratings body (i.e. UK, Poland, Spain).
+    The European game ratings body (i.e. GBR, Poland, Spain).
     """
     id = 4
     iarc_name = 'PEGI'
