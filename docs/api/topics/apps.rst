@@ -74,6 +74,7 @@ App
             "device_types": [
                 "firefoxos"
             ],
+            "file_size": 8675,
             "homepage": {
                 "en-US": "http://www.example.com/"
             },
@@ -200,6 +201,8 @@ App
     :param device_types: An array of strings representing the devices the app
         is marked as compatible with. Currently available devices names are
         ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``.
+    :param file_size: Size of the app's current version in bytes.
+    :type file_size: int
     :param homepage: The app's homepage.
     :type homepage: string|object
     :param icons: An object containing information about the app icons. The

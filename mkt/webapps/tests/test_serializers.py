@@ -203,6 +203,12 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         res = self.serialize(self.app)
         eq_(res['release_notes'], unicode(version.releasenotes))
 
+    def test_file_size(self):
+        f = self.app.current_version.all_files[0]
+        f.update(size=12345)
+        res = self.serialize(self.app)
+        eq_(res['file_size'], 12345)
+
     def test_upsell(self):
         self.request.REGION = mkt.regions.US
         upsell = mkt.site.tests.app_factory()

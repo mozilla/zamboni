@@ -76,6 +76,7 @@ class AppSerializer(serializers.ModelSerializer):
     device_types = SemiSerializerMethodField('get_device_types')
     description = TranslationSerializerField(required=False)
     homepage = TranslationSerializerField(required=False)
+    file_size = serializers.SerializerMethodField('get_file_size')
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
     is_disabled = serializers.BooleanField(read_only=True)
@@ -125,7 +126,7 @@ class AppSerializer(serializers.ModelSerializer):
         fields = [
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
-            'default_locale', 'description', 'device_types',
+            'default_locale', 'description', 'device_types', 'file_size',
             'homepage', 'icons', 'id', 'is_disabled', 'is_offline',
             'is_packaged', 'manifest_url', 'name', 'package_path',
             'payment_account', 'payment_required', 'premium_type', 'previews',
@@ -167,6 +168,17 @@ class AppSerializer(serializers.ModelSerializer):
                  app.rating_interactives.to_keys()]
                 if hasattr(app, 'rating_interactives') else []),
         }
+
+    def get_file_size(self, app):
+        """App size whether it be size of a package or size of a hosted app."""
+        try:
+            try:
+                return app.current_version.all_files[0].size
+            except AttributeError:
+                if app.latest_version:
+                    return app.latest_version.all_files[0].size
+        except IndexError:
+            return
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
