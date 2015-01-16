@@ -106,6 +106,7 @@ class WebappIndexer(BaseIndexer):
                             ('has_%s' % f.lower(), {'type': 'boolean'})
                             for f in APP_FEATURES)
                     },
+                    'file_size': {'type': 'long'},
                     'has_public_stats': {'type': 'boolean'},
                     'icon_hash': cls.string_not_indexed(),
                     'interactive_elements': cls.string_not_indexed(),
@@ -275,6 +276,7 @@ class WebappIndexer(BaseIndexer):
             set(string for _, string in obj.translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
+        d['file_size'] = obj.file_size
         d['has_public_stats'] = obj.public_stats
         d['icon_hash'] = obj.icon_hash
         try:

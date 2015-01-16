@@ -2022,6 +2022,18 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         if version:
             return version.developer_name
 
+    @property
+    def file_size(self):
+        """App size whether it be size of a package or size of a hosted app."""
+        try:
+            try:
+                return self.current_version.all_files[0].size
+            except AttributeError:
+                if self.latest_version:
+                    return self.latest_version.all_files[0].size
+        except IndexError:
+            return
+
     def get_trending(self, region=None):
         """
         Returns trending value.
