@@ -150,8 +150,8 @@ class TestAcctSummary(SummaryTest):
         self.buy_stuff(mkt.CONTRIB_PURCHASE)
         sm = self.summary().context['app_summary']
         eq_(sm['app_total'], 3)
-        eq_(sm['app_amount']['USD'], 4.0)
-        eq_(sm['app_amount']['GBR'], 2.0)
+        eq_(sm['app_amount']['USD'], Decimal('4.0'))
+        eq_(sm['app_amount']['GBR'], Decimal('2.0'))
 
     def test_requested_refunds(self):
         contrib = Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
