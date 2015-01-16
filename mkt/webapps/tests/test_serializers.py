@@ -368,6 +368,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
                 'fr': u'Déscriptîon in frènch'
             },
             'device_types': [],
+            'file_size': self.app.file_size,
             'homepage': None,
             'icons': dict((size, self.app.get_icon_url(size))
                           for size in (32, 48, 64, 128)),

@@ -76,7 +76,7 @@ class AppSerializer(serializers.ModelSerializer):
     device_types = SemiSerializerMethodField('get_device_types')
     description = TranslationSerializerField(required=False)
     homepage = TranslationSerializerField(required=False)
-    file_size = serializers.SerializerMethodField('get_file_size')
+    file_size = serializers.IntegerField(source='file_size', read_only=True)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
     is_disabled = serializers.BooleanField(read_only=True)
@@ -168,17 +168,6 @@ class AppSerializer(serializers.ModelSerializer):
                  app.rating_interactives.to_keys()]
                 if hasattr(app, 'rating_interactives') else []),
         }
-
-    def get_file_size(self, app):
-        """App size whether it be size of a package or size of a hosted app."""
-        try:
-            try:
-                return app.current_version.all_files[0].size
-            except AttributeError:
-                if app.latest_version:
-                    return app.latest_version.all_files[0].size
-        except IndexError:
-            return
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
@@ -382,6 +371,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     # Override those, because we want a different source. Also, related fields
     # will call self.queryset early if they are not read_only, so force that.
+    file_size = serializers.SerializerMethodField('get_file_size')
     is_disabled = serializers.BooleanField(source='_is_disabled')
     manifest_url = serializers.CharField(source='manifest_url')
     package_path = serializers.SerializerMethodField('get_package_path')
@@ -429,6 +419,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         obj._current_version = Version()
         obj._current_version.addon = obj
         obj._current_version._developer_name = data['author']
+        obj._current_version.size = data['file_size']
         obj._current_version.supported_locales = data['supported_locales']
         obj._current_version.version = data['current_version']
         obj._latest_version = Version()
@@ -526,6 +517,9 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def get_package_path(self, obj):
         return obj.es_data.get('package_path')
+
+    def get_file_size(self, obj):
+        return obj.es_data.get('file_size')
 
     def get_tags(self, obj):
         return obj.es_data['tags']

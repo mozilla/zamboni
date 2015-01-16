@@ -64,6 +64,327 @@ from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
 from mkt.webapps.signals import version_changed as version_changed_signal
 
 
+class TestWebapp(WebappTestCase):
+
+    def add_payment_account(self, app, provider_id, user=None):
+        if not user:
+            user = UserProfile.objects.create(email='a', username='b')
+        payment = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user,
+                                                          uuid=uuid.uuid4()),
+            provider=provider_id,
+            user=user,
+            seller_uri=uuid.uuid4(),
+            uri=uuid.uuid4())
+        return AddonPaymentAccount.objects.create(
+            addon=app, payment_account=payment, product_uri=uuid.uuid4())
+
+    def test_icon_url(self):
+        app = self.get_app()
+        expected = (static_url('ADDON_ICON_URL')
+                    % (str(app.id)[0:3], app.id, 32, 'never'))
+        assert app.icon_url.endswith(expected), (
+            'Expected %s, got %s' % (expected, app.icon_url))
+
+        app.icon_hash = 'abcdef'
+        assert app.icon_url.endswith('?modified=abcdef')
+
+        app.icon_type = None
+        assert app.icon_url.endswith('hub/default-32.png')
+
+    def test_thumbnail_url_no_preview(self):
+        app = self.get_app()
+        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
+            'No match for %s' % app.thumbnail_url)
+
+    def test_thumbnail_url(self):
+        app = self.get_app()
+        preview = Preview.objects.create(addon=app, filetype='image/png',
+                                         position=0)
+        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
+                                       % (preview.id / 1000, preview.id))
+
+    def test_has_payment_account(self):
+        app = self.get_app()
+        assert not app.has_payment_account()
+
+        self.add_payment_account(app, PROVIDER_BANGO)
+        assert app.has_payment_account()
+
+    def test_has_multiple_payment_accounts(self):
+        app = self.get_app()
+        assert not app.has_multiple_payment_accounts(), 'no accounts'
+
+        account = self.add_payment_account(app, PROVIDER_BANGO)
+        assert not app.has_multiple_payment_accounts(), 'one account'
+
+        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
+        ok_(app.has_multiple_payment_accounts(), 'two accounts')
+
+    def test_no_payment_account(self):
+        app = self.get_app()
+        assert not app.has_payment_account()
+        with self.assertRaises(app.PayAccountDoesNotExist):
+            app.payment_account(PROVIDER_BANGO)
+
+    def test_get_payment_account(self):
+        app = self.get_app()
+        acct = self.add_payment_account(app, PROVIDER_BANGO)
+        fetched_acct = app.payment_account(PROVIDER_BANGO)
+        eq_(acct, fetched_acct)
+
+    def test_delete_reason(self):
+        """Test deleting with a reason gives the reason in the mail."""
+        app = self.get_app()
+        reason = u'trêason'
+        eq_(len(mail.outbox), 0)
+        app.delete(msg='bye', reason=reason)
+        eq_(len(mail.outbox), 1)
+        assert reason in mail.outbox[0].body
+
+    def test_soft_deleted(self):
+        app = self.get_app()
+
+        eq_(len(Webapp.objects.all()), 1)
+        eq_(len(Webapp.with_deleted.all()), 1)
+
+        app.delete('boom shakalakalaka')
+        eq_(len(Webapp.objects.all()), 0)
+        eq_(len(Webapp.with_deleted.all()), 1)
+
+        # When an app is deleted its slugs and domain should get relinquished.
+        post_mortem = Webapp.with_deleted.filter(id=app.id)
+        eq_(post_mortem.count(), 1)
+        for attr in ('slug', 'app_slug', 'app_domain'):
+            eq_(getattr(post_mortem[0], attr), None)
+
+    def test_soft_deleted_valid(self):
+        app = self.get_app()
+        Webapp.objects.create(status=mkt.STATUS_DELETED)
+        eq_(list(Webapp.objects.valid()), [app])
+        eq_(list(Webapp.with_deleted.valid()), [app])
+
+    def test_delete_incomplete_with_deleted_version(self):
+        """Test deleting incomplete add-ons with no public version attached."""
+        app = self.get_app()
+        app.current_version.delete()
+        eq_(Version.objects.count(), 0)
+        eq_(Version.with_deleted.count(), 1)
+        app.update(status=0, highest_status=0)
+
+        # We want to be in the worst possible situation, no direct foreign key
+        # to the deleted versions, do we call update_version() now that we have
+        # an incomplete app.
+        app.update_version()
+        eq_(app.latest_version, None)
+        eq_(app.current_version, None)
+
+        app.delete()
+
+        # The app should have been soft-deleted.
+        eq_(len(mail.outbox), 1)
+        eq_(Webapp.objects.count(), 0)
+        eq_(Webapp.with_deleted.count(), 1)
+
+    def test_get_price(self):
+        app = self.get_app()
+        self.make_premium(app)
+        eq_(app.get_price(region=mkt.regions.US.id), 1)
+
+    def test_get_price_tier(self):
+        app = self.get_app()
+        self.make_premium(app)
+        eq_(str(app.get_tier().price), '1.00')
+        ok_(app.get_tier_name())
+
+    def test_get_price_tier_no_charge(self):
+        app = self.get_app()
+        self.make_premium(app, 0)
+        eq_(str(app.get_tier().price), '0')
+        ok_(app.get_tier_name())
+
+    @mock.patch('mkt.versions.models.Version.is_privileged', True)
+    def test_app_type_privileged(self):
+        app = self.get_app()
+        app.update(is_packaged=True)
+        eq_(app.app_type, 'privileged')
+
+    def test_excluded_in(self):
+        app = self.get_app()
+        region = mkt.regions.BR
+        AddonExcludedRegion.objects.create(addon=app, region=region.id)
+        self.assertSetEqual(get_excluded_in(region.id), [app.id])
+
+    def test_supported_locale_property(self):
+        app = self.get_app()
+        eq_(app.supported_locales,
+            (u'English (US)', [u'English (US)', u'Espa\xf1ol',
+                               u'Portugu\xeas (do\xa0Brasil)']))
+
+    def test_supported_locale_property_empty(self):
+        app = self.get_app()
+        app.current_version.update(supported_locales='')
+        eq_(app.supported_locales, (u'English (US)', []))
+
+    def test_supported_locale_property_bad(self):
+        app = self.get_app()
+        app.current_version.update(supported_locales='de,xx', _signal=False)
+        eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
+
+    def test_supported_locale_app_non_public(self):
+        """
+        Test supported locales falls back to latest_version when not public.
+        """
+        app = self.get_app()
+        app.update(status=mkt.STATUS_PENDING)
+        app.latest_version.files.update(status=mkt.STATUS_PENDING)
+        app.update_version()
+        eq_(app.supported_locales,
+            (u'English (US)',
+             [u'English (US)', u'Espa\xf1ol', u'Portugu\xeas (do\xa0Brasil)']))
+
+    def test_get_trending(self):
+        # Test no trending record returns zero.
+        app = self.get_app()
+        eq_(app.get_trending(), 0)
+
+        # Add a region specific trending and test the global one is returned
+        # because the region is not mature.
+        region = mkt.regions.REGIONS_DICT['me']
+        app.trending.create(value=20.0, region=0)
+        app.trending.create(value=10.0, region=region.id)
+        eq_(app.get_trending(region=region), 20.0)
+
+        # Now test the regional trending is returned when adolescent=False.
+        region.adolescent = False
+        eq_(app.get_trending(region=region), 10.0)
+
+    def test_guess_is_offline_when_appcache_path(self):
+        app = self.get_app()
+
+        # If there's no appcache_path defined, ain't an offline-capable app.
+        am = AppManifest.objects.get(version=app.current_version)
+        eq_(app.guess_is_offline(), False)
+
+        # If there's an appcache_path defined, this is an offline-capable app.
+        manifest = json.loads(am.manifest)
+        manifest['appcache_path'] = '/manifest.appcache'
+        am.update(manifest=json.dumps(manifest))
+        # reload isn't enough, it doesn't clear cached_property.
+        app = self.get_app()
+        eq_(app.guess_is_offline(), True)
+
+    def test_guess_is_offline_no_manifest(self):
+        app = Webapp()
+        eq_(app.guess_is_offline(), False)
+
+    @mock.patch('mkt.webapps.models.cache.get')
+    def test_is_offline_when_packaged(self, mock_get):
+        mock_get.return_value = ''
+        eq_(Webapp(is_packaged=True).guess_is_offline(), True)
+        eq_(Webapp(is_packaged=False).guess_is_offline(), False)
+
+    def test_guess_is_offline_no_version(self):
+        app = Webapp()
+        with mock.patch.object(Webapp, 'latest_version', None):
+            eq_(app.guess_is_offline(), False)
+
+    def test_guess_is_offline_no_files(self):
+        app = Webapp()
+        version = mock.MagicMock(all_files=[])
+        with mock.patch.object(Webapp, 'latest_version', version):
+            eq_(app.guess_is_offline(), False)
+
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_payments_complete(self, pay_mock):
+        # Default to complete if it's not needed.
+        pay_mock.return_value = False
+        app = self.get_app()
+        assert app.payments_complete()
+
+        self.make_premium(app)
+        assert not app.payments_complete()
+
+        pay_mock.return_value = True
+        assert app.payments_complete()
+
+    def test_get_region_ids_no_exclusions(self):
+        # This returns IDs for the *included* regions.
+        eq_(self.get_app().get_region_ids(), mkt.regions.REGION_IDS)
+
+    def test_get_regions_no_exclusions(self):
+        # This returns the class definitions for the *included* regions.
+        eq_(sorted(self.get_app().get_regions()),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
+
+    def test_get_regions_sort(self):
+        eq_(self.get_app().get_regions(),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.slug))
+        eq_(self.get_app().get_regions(sort_by='name'),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.name))
+        eq_(self.get_app().get_regions(sort_by='id'),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
+                   key=lambda x: x.id))
+
+    def test_in_tarako_queue_pending_in_queue(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_PENDING)
+        app.additionalreview_set.create(queue=QUEUE_TARAKO)
+        ok_(app.in_tarako_queue())
+
+    def test_in_tarako_queue_approved_in_queue(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_APPROVED)
+        app.additionalreview_set.create(queue=QUEUE_TARAKO)
+        ok_(app.in_tarako_queue())
+
+    def test_in_tarako_queue_pending_not_in_queue(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_PENDING)
+        ok_(not app.in_tarako_queue())
+
+    def test_in_tarako_queue_approved_not_in_queue(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_APPROVED)
+        ok_(not app.in_tarako_queue())
+
+    def test_in_china_queue_pending_not_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=mkt.STATUS_PENDING)
+        app.update(status=mkt.STATUS_PENDING)
+        ok_(not app.in_china_queue())  # Need to be approved in general first.
+
+    def test_in_china_queue_approved_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=mkt.STATUS_PENDING)
+        app.update(status=mkt.STATUS_APPROVED)
+        ok_(app.in_china_queue())
+
+    def test_in_china_queue_approved_in_china_not_in_queue(self):
+        app = self.get_app()
+        app.geodata.update(region_cn_nominated=datetime.now(),
+                           region_cn_status=mkt.STATUS_APPROVED)
+        app.update(status=mkt.STATUS_APPROVED)
+        ok_(not app.in_china_queue())
+
+    def test_file_size(self):
+        app = self.get_app()
+        ok_(app.file_size)
+
+        f = app.current_version.all_files[0]
+        f.update(size=12345)
+        eq_(app.file_size, 12345)
+
+        app.update(_current_version=None)
+        f = app.latest_version.all_files[0]
+        f.update(size=54321)
+        eq_(app.file_size, 54321)
+
+
 class TestCleanSlug(TestCase):
 
     def test_clean_slug_new_object(self):
@@ -443,314 +764,6 @@ class TestAddonPurchase(mkt.site.tests.TestCase):
                       mkt.CONTRIB_CHARGEBACK]:
             purchase.update(type=state)
             eq_(state, self.addon.get_purchase_type(self.user))
-
-
-class TestWebapp(WebappTestCase):
-
-    def add_payment_account(self, app, provider_id, user=None):
-        if not user:
-            user = UserProfile.objects.create(email='a', username='b')
-        payment = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user,
-                                                          uuid=uuid.uuid4()),
-            provider=provider_id,
-            user=user,
-            seller_uri=uuid.uuid4(),
-            uri=uuid.uuid4())
-        return AddonPaymentAccount.objects.create(
-            addon=app, payment_account=payment, product_uri=uuid.uuid4())
-
-    def test_icon_url(self):
-        app = self.get_app()
-        expected = (static_url('ADDON_ICON_URL')
-                    % (str(app.id)[0:3], app.id, 32, 'never'))
-        assert app.icon_url.endswith(expected), (
-            'Expected %s, got %s' % (expected, app.icon_url))
-
-        app.icon_hash = 'abcdef'
-        assert app.icon_url.endswith('?modified=abcdef')
-
-        app.icon_type = None
-        assert app.icon_url.endswith('hub/default-32.png')
-
-    def test_thumbnail_url_no_preview(self):
-        app = self.get_app()
-        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
-            'No match for %s' % app.thumbnail_url)
-
-    def test_thumbnail_url(self):
-        app = self.get_app()
-        preview = Preview.objects.create(addon=app, filetype='image/png',
-                                         position=0)
-        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
-                                       % (preview.id / 1000, preview.id))
-
-    def test_has_payment_account(self):
-        app = self.get_app()
-        assert not app.has_payment_account()
-
-        self.add_payment_account(app, PROVIDER_BANGO)
-        assert app.has_payment_account()
-
-    def test_has_multiple_payment_accounts(self):
-        app = self.get_app()
-        assert not app.has_multiple_payment_accounts(), 'no accounts'
-
-        account = self.add_payment_account(app, PROVIDER_BANGO)
-        assert not app.has_multiple_payment_accounts(), 'one account'
-
-        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
-        ok_(app.has_multiple_payment_accounts(), 'two accounts')
-
-    def test_no_payment_account(self):
-        app = self.get_app()
-        assert not app.has_payment_account()
-        with self.assertRaises(app.PayAccountDoesNotExist):
-            app.payment_account(PROVIDER_BANGO)
-
-    def test_get_payment_account(self):
-        app = self.get_app()
-        acct = self.add_payment_account(app, PROVIDER_BANGO)
-        fetched_acct = app.payment_account(PROVIDER_BANGO)
-        eq_(acct, fetched_acct)
-
-    def test_delete_reason(self):
-        """Test deleting with a reason gives the reason in the mail."""
-        app = self.get_app()
-        reason = u'trêason'
-        eq_(len(mail.outbox), 0)
-        app.delete(msg='bye', reason=reason)
-        eq_(len(mail.outbox), 1)
-        assert reason in mail.outbox[0].body
-
-    def test_soft_deleted(self):
-        app = self.get_app()
-
-        eq_(len(Webapp.objects.all()), 1)
-        eq_(len(Webapp.with_deleted.all()), 1)
-
-        app.delete('boom shakalakalaka')
-        eq_(len(Webapp.objects.all()), 0)
-        eq_(len(Webapp.with_deleted.all()), 1)
-
-        # When an app is deleted its slugs and domain should get relinquished.
-        post_mortem = Webapp.with_deleted.filter(id=app.id)
-        eq_(post_mortem.count(), 1)
-        for attr in ('slug', 'app_slug', 'app_domain'):
-            eq_(getattr(post_mortem[0], attr), None)
-
-    def test_soft_deleted_valid(self):
-        app = self.get_app()
-        Webapp.objects.create(status=mkt.STATUS_DELETED)
-        eq_(list(Webapp.objects.valid()), [app])
-        eq_(list(Webapp.with_deleted.valid()), [app])
-
-    def test_delete_incomplete_with_deleted_version(self):
-        """Test deleting incomplete add-ons with no public version attached."""
-        app = self.get_app()
-        app.current_version.delete()
-        eq_(Version.objects.count(), 0)
-        eq_(Version.with_deleted.count(), 1)
-        app.update(status=0, highest_status=0)
-
-        # We want to be in the worst possible situation, no direct foreign key
-        # to the deleted versions, do we call update_version() now that we have
-        # an incomplete app.
-        app.update_version()
-        eq_(app.latest_version, None)
-        eq_(app.current_version, None)
-
-        app.delete()
-
-        # The app should have been soft-deleted.
-        eq_(len(mail.outbox), 1)
-        eq_(Webapp.objects.count(), 0)
-        eq_(Webapp.with_deleted.count(), 1)
-
-    def test_get_price(self):
-        app = self.get_app()
-        self.make_premium(app)
-        eq_(app.get_price(region=mkt.regions.US.id), 1)
-
-    def test_get_price_tier(self):
-        app = self.get_app()
-        self.make_premium(app)
-        eq_(str(app.get_tier().price), '1.00')
-        ok_(app.get_tier_name())
-
-    def test_get_price_tier_no_charge(self):
-        app = self.get_app()
-        self.make_premium(app, 0)
-        eq_(str(app.get_tier().price), '0')
-        ok_(app.get_tier_name())
-
-    @mock.patch('mkt.versions.models.Version.is_privileged', True)
-    def test_app_type_privileged(self):
-        app = self.get_app()
-        app.update(is_packaged=True)
-        eq_(app.app_type, 'privileged')
-
-    def test_excluded_in(self):
-        app = self.get_app()
-        region = mkt.regions.BR
-        AddonExcludedRegion.objects.create(addon=app, region=region.id)
-        self.assertSetEqual(get_excluded_in(region.id), [app.id])
-
-    def test_supported_locale_property(self):
-        app = self.get_app()
-        eq_(app.supported_locales,
-            (u'English (US)', [u'English (US)', u'Espa\xf1ol',
-                               u'Portugu\xeas (do\xa0Brasil)']))
-
-    def test_supported_locale_property_empty(self):
-        app = self.get_app()
-        app.current_version.update(supported_locales='')
-        eq_(app.supported_locales, (u'English (US)', []))
-
-    def test_supported_locale_property_bad(self):
-        app = self.get_app()
-        app.current_version.update(supported_locales='de,xx', _signal=False)
-        eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
-
-    def test_supported_locale_app_non_public(self):
-        """
-        Test supported locales falls back to latest_version when not public.
-        """
-        app = self.get_app()
-        app.update(status=mkt.STATUS_PENDING)
-        app.latest_version.files.update(status=mkt.STATUS_PENDING)
-        app.update_version()
-        eq_(app.supported_locales,
-            (u'English (US)',
-             [u'English (US)', u'Espa\xf1ol', u'Portugu\xeas (do\xa0Brasil)']))
-
-    def test_get_trending(self):
-        # Test no trending record returns zero.
-        app = self.get_app()
-        eq_(app.get_trending(), 0)
-
-        # Add a region specific trending and test the global one is returned
-        # because the region is not mature.
-        region = mkt.regions.REGIONS_DICT['me']
-        app.trending.create(value=20.0, region=0)
-        app.trending.create(value=10.0, region=region.id)
-        eq_(app.get_trending(region=region), 20.0)
-
-        # Now test the regional trending is returned when adolescent=False.
-        region.adolescent = False
-        eq_(app.get_trending(region=region), 10.0)
-
-    def test_guess_is_offline_when_appcache_path(self):
-        app = self.get_app()
-
-        # If there's no appcache_path defined, ain't an offline-capable app.
-        am = AppManifest.objects.get(version=app.current_version)
-        eq_(app.guess_is_offline(), False)
-
-        # If there's an appcache_path defined, this is an offline-capable app.
-        manifest = json.loads(am.manifest)
-        manifest['appcache_path'] = '/manifest.appcache'
-        am.update(manifest=json.dumps(manifest))
-        # reload isn't enough, it doesn't clear cached_property.
-        app = self.get_app()
-        eq_(app.guess_is_offline(), True)
-
-    def test_guess_is_offline_no_manifest(self):
-        app = Webapp()
-        eq_(app.guess_is_offline(), False)
-
-    @mock.patch('mkt.webapps.models.cache.get')
-    def test_is_offline_when_packaged(self, mock_get):
-        mock_get.return_value = ''
-        eq_(Webapp(is_packaged=True).guess_is_offline(), True)
-        eq_(Webapp(is_packaged=False).guess_is_offline(), False)
-
-    def test_guess_is_offline_no_version(self):
-        app = Webapp()
-        with mock.patch.object(Webapp, 'latest_version', None):
-            eq_(app.guess_is_offline(), False)
-
-    def test_guess_is_offline_no_files(self):
-        app = Webapp()
-        version = mock.MagicMock(all_files=[])
-        with mock.patch.object(Webapp, 'latest_version', version):
-            eq_(app.guess_is_offline(), False)
-
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_payments_complete(self, pay_mock):
-        # Default to complete if it's not needed.
-        pay_mock.return_value = False
-        app = self.get_app()
-        assert app.payments_complete()
-
-        self.make_premium(app)
-        assert not app.payments_complete()
-
-        pay_mock.return_value = True
-        assert app.payments_complete()
-
-    def test_get_region_ids_no_exclusions(self):
-        # This returns IDs for the *included* regions.
-        eq_(self.get_app().get_region_ids(), mkt.regions.REGION_IDS)
-
-    def test_get_regions_no_exclusions(self):
-        # This returns the class definitions for the *included* regions.
-        eq_(sorted(self.get_app().get_regions()),
-            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
-
-    def test_get_regions_sort(self):
-        eq_(self.get_app().get_regions(),
-            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
-                   key=lambda x: x.slug))
-        eq_(self.get_app().get_regions(sort_by='name'),
-            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
-                   key=lambda x: x.name))
-        eq_(self.get_app().get_regions(sort_by='id'),
-            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
-                   key=lambda x: x.id))
-
-    def test_in_tarako_queue_pending_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_PENDING)
-        app.additionalreview_set.create(queue=QUEUE_TARAKO)
-        ok_(app.in_tarako_queue())
-
-    def test_in_tarako_queue_approved_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_APPROVED)
-        app.additionalreview_set.create(queue=QUEUE_TARAKO)
-        ok_(app.in_tarako_queue())
-
-    def test_in_tarako_queue_pending_not_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_PENDING)
-        ok_(not app.in_tarako_queue())
-
-    def test_in_tarako_queue_approved_not_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(not app.in_tarako_queue())
-
-    def test_in_china_queue_pending_not_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_PENDING)
-        app.update(status=mkt.STATUS_PENDING)
-        ok_(not app.in_china_queue())  # Need to be approved in general first.
-
-    def test_in_china_queue_approved_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_PENDING)
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(app.in_china_queue())
-
-    def test_in_china_queue_approved_in_china_not_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_APPROVED)
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(not app.in_china_queue())
 
 
 class TestWebappLight(mkt.site.tests.TestCase):
