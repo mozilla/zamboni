@@ -74,7 +74,8 @@ class TestElastic(mkt.site.tests.ESTestCase):
 
     def test_login(self):
         self.client.logout()
-        self.assertRedirects(self.client.get(self.url),
+        self.assert3xx(
+            self.client.get(self.url),
             reverse('users.login') + '?to=/admin/elastic')
 
 
@@ -249,8 +250,9 @@ class TestPerms(mkt.site.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         # Anonymous users should also get a 403.
         self.client.logout()
-        self.assertRedirects(self.client.get(reverse('zadmin.index')),
-                             reverse('users.login') + '?to=/admin/')
+        self.assert3xx(
+            self.client.get(reverse('zadmin.index')),
+            reverse('users.login') + '?to=/admin/')
 
 
 class TestHome(mkt.site.tests.TestCase):
