@@ -166,7 +166,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_filter_by_nonpublic_app(self, get_region_mock):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.app.update(status=mkt.STATUS_PENDING)
-        get_region_mock.return_value = mkt.regions.US
+        get_region_mock.return_value = mkt.regions.USA
         res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "us".')
@@ -187,8 +187,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_filter_by_app_excluded_in_region(self, get_region_mock):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BR.id)
-        get_region_mock.return_value = mkt.regions.BR
+                                           region=mkt.regions.BRA.id)
+        get_region_mock.return_value = mkt.regions.BRA
         res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "br".')
@@ -198,8 +198,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.grant_permission(self.user, 'Apps:Edit')
         AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BR.id)
-        get_region_mock.return_value = mkt.regions.BR
+                                           region=mkt.regions.BRA.id)
+        get_region_mock.return_value = mkt.regions.BRA
         self._get_filter(app=self.app.app_slug)
 
     @patch('mkt.ratings.views.get_region')
@@ -207,8 +207,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         AddonUser.objects.create(user=self.user, addon=self.app)
         AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BR.id)
-        get_region_mock.return_value = mkt.regions.BR
+                                           region=mkt.regions.BRA.id)
+        get_region_mock.return_value = mkt.regions.BRA
         self._get_filter(app=self.app.app_slug)
 
     def test_anonymous_get_list_without_app(self):
@@ -341,8 +341,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     @patch('mkt.ratings.serializers.get_region')
     def test_create_for_nonregion(self, get_region_mock):
         AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BR.id)
-        get_region_mock.return_value = mkt.regions.BR
+                                           region=mkt.regions.BRA.id)
+        get_region_mock.return_value = mkt.regions.BRA
         res, data = self._create()
         eq_(403, res.status_code)
 

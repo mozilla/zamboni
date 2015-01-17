@@ -130,11 +130,11 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
     def test_initial_excluded_in_region(self):
         self.app.geodata.update(restricted=True)
         self.app.update(enable_new_regions=False)
-        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
 
         # Everything except Brazil.
         regions = set(mkt.regions.ALL_REGION_IDS)
-        regions.remove(mkt.regions.BR.id)
+        regions.remove(mkt.regions.BRA.id)
         self.assertSetEqual(self.get_app().get_region_ids(restofworld=True),
             regions)
 
@@ -147,13 +147,13 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
     def test_initial_excluded_in_regions_and_future_regions(self):
         self.app.geodata.update(restricted=True)
         self.app.update(enable_new_regions=False)
-        regions = [mkt.regions.BR, mkt.regions.UK, mkt.regions.RESTOFWORLD]
+        regions = [mkt.regions.BRA, mkt.regions.GBR, mkt.regions.RESTOFWORLD]
         for region in regions:
             self.app.addonexcludedregion.create(region=region.id)
 
         regions = set(mkt.regions.ALL_REGION_IDS)
-        regions.remove(mkt.regions.BR.id)
-        regions.remove(mkt.regions.UK.id)
+        regions.remove(mkt.regions.BRA.id)
+        regions.remove(mkt.regions.GBR.id)
         regions.remove(mkt.regions.RESTOFWORLD.id)
 
         self.assertSetEqual(self.get_app().get_region_ids(),
@@ -215,7 +215,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         eq_(self.app.get_region_ids(True), mkt.regions.REGION_IDS)
 
     def test_reinclude_region(self):
-        self.app.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
 
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
                                  'enable_new_regions': True}, **self.kwargs)
@@ -268,7 +268,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
     def test_china_initially_included(self):
         self.create_flag('special-regions')
         form = forms.RegionForm(None, **self.kwargs)
-        cn = mkt.regions.CN.id
+        cn = mkt.regions.CHN.id
         assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
@@ -277,17 +277,17 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         # Mark app as pending/rejected in China.
         for status in (mkt.STATUS_PENDING, mkt.STATUS_REJECTED):
-            self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-            eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+            self.app.geodata.set_status(mkt.regions.CHN, status, save=True)
+            eq_(self.app.geodata.get_status(mkt.regions.CHN), status)
 
             # Post the form.
             form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
-                                     'special_regions': [mkt.regions.CN.id]},
+                                     'special_regions': [mkt.regions.CHN.id]},
                                     **self.kwargs)
 
             # China should be checked if it's pending and
             # unchecked if rejected.
-            cn = mkt.regions.CN.id
+            cn = mkt.regions.CHN.id
             if status == mkt.STATUS_PENDING:
                 assert cn in form.initial['regions'], (
                     status, form.initial['regions'])
@@ -303,15 +303,15 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
             # App should be unlisted in China and always pending after
             # requesting China.
             self.app = self.app.reload()
-            eq_(self.app.listed_in(mkt.regions.CN), False)
-            eq_(self.app.geodata.get_status(mkt.regions.CN),
+            eq_(self.app.listed_in(mkt.regions.CHN), False)
+            eq_(self.app.geodata.get_status(mkt.regions.CHN),
                 mkt.STATUS_PENDING)
 
     def test_china_excluded_if_pending_or_rejected(self):
         self._test_china_excluded_if_pending_or_rejected()
 
     def test_china_already_excluded_and_pending_or_rejected(self):
-        cn = mkt.regions.CN.id
+        cn = mkt.regions.CHN.id
         self.app.addonexcludedregion.create(region=cn)
 
         # If the app was already excluded in China, the checkbox should still
@@ -330,15 +330,15 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         # Mark app as pending in China.
         status = mkt.STATUS_PENDING
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+        self.app.geodata.set_status(mkt.regions.CHN, status, save=True)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), status)
 
         # Post the form.
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
                                 **self.kwargs)
 
         # China should be checked if it's pending.
-        cn = mkt.regions.CN.id
+        cn = mkt.regions.CHN.id
         assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
@@ -347,23 +347,23 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         # App should be unlisted in China and now null.
         self.app = self.app.reload()
-        eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), mkt.STATUS_NULL)
+        eq_(self.app.listed_in(mkt.regions.CHN), False)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), mkt.STATUS_NULL)
 
     def test_china_included_if_approved_but_unchecked(self):
         self.create_flag('special-regions')
 
         # Mark app as public in China.
         status = mkt.STATUS_PUBLIC
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+        self.app.geodata.set_status(mkt.regions.CHN, status, save=True)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), status)
 
         # Post the form.
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS},
                                 **self.kwargs)
 
         # China should be checked if it's public.
-        cn = mkt.regions.CN.id
+        cn = mkt.regions.CHN.id
         assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
@@ -372,28 +372,28 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         # App should be unlisted in China and now null.
         self.app = self.app.reload()
-        eq_(self.app.listed_in(mkt.regions.CN), False)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), mkt.STATUS_NULL)
+        eq_(self.app.listed_in(mkt.regions.CHN), False)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), mkt.STATUS_NULL)
 
     def test_china_included_if_approved_and_checked(self):
         self.create_flag('special-regions')
 
         # Mark app as public in China.
         status = mkt.STATUS_PUBLIC
-        self.app.geodata.set_status(mkt.regions.CN, status, save=True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+        self.app.geodata.set_status(mkt.regions.CHN, status, save=True)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), status)
 
         # Post the form.
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
-                                 'special_regions': [mkt.regions.CN.id]},
+                                 'special_regions': [mkt.regions.CHN.id]},
                                 **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
 
         # App should still be listed in China and still public.
         self.app = self.app.reload()
-        eq_(self.app.listed_in(mkt.regions.CN), True)
-        eq_(self.app.geodata.get_status(mkt.regions.CN), status)
+        eq_(self.app.listed_in(mkt.regions.CHN), True)
+        eq_(self.app.geodata.get_status(mkt.regions.CHN), status)
 
     def test_low_memory_regions_true(self):
         regions = {10: mock.MagicMock(low_memory=True),
@@ -781,18 +781,18 @@ class TestAdminSettingsForm(TestAdmin):
 
     def test_banner_regions_valid(self):  # Use strings
         self.data.update({
-            'banner_regions': [unicode(mkt.regions.BR.id),
-                               mkt.regions.SPAIN.id]
+            'banner_regions': [unicode(mkt.regions.BRA.id),
+                               mkt.regions.ESP.id]
         })
-        self.webapp.geodata.update(banner_regions=[mkt.regions.RS.id])
+        self.webapp.geodata.update(banner_regions=[mkt.regions.SRB.id])
         form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        eq_(form.initial['banner_regions'], [mkt.regions.RS.id])
+        eq_(form.initial['banner_regions'], [mkt.regions.SRB.id])
         assert form.is_valid(), form.errors
-        eq_(form.cleaned_data['banner_regions'], [mkt.regions.BR.id,
-                                                  mkt.regions.SPAIN.id])
+        eq_(form.cleaned_data['banner_regions'], [mkt.regions.BRA.id,
+                                                  mkt.regions.ESP.id])
         form.save(self.webapp)
         geodata = self.webapp.geodata.reload()
-        eq_(geodata.banner_regions, [mkt.regions.BR.id, mkt.regions.SPAIN.id])
+        eq_(geodata.banner_regions, [mkt.regions.BRA.id, mkt.regions.ESP.id])
 
     def test_banner_regions_initial(self):
         form = forms.AdminSettingsForm(self.data, **self.kwargs)

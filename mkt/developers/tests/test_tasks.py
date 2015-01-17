@@ -575,7 +575,7 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_one_new_region(self):
-        tasks.region_email([self.app.id], [mkt.regions.BR])
+        tasks.region_email([self.app.id], [mkt.regions.BRA])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: Brazil region added to the Firefox Marketplace'
                           % self.app.name)
@@ -592,7 +592,7 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_two_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.UK, mkt.regions.BR])
+                           [mkt.regions.GBR, mkt.regions.BRA])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                          % self.app.name)
@@ -609,10 +609,10 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_several_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.UK, mkt.regions.US, mkt.regions.BR])
+                           [mkt.regions.GBR, mkt.regions.USA, mkt.regions.BRA])
         msg = mail.outbox[0]
-        eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
-                          % self.app.name)
+        eq_(msg.subject,
+            '%s: New regions added to the Firefox Marketplace' % self.app.name)
         assert ' added a few new ' in msg.body
         assert ': Brazil, United Kingdom, and United States.' in msg.body
 
@@ -623,7 +623,7 @@ class TestRegionExclude(mkt.site.tests.WebappTestCase):
         tasks.region_exclude([], [])
         eq_(AER.objects.count(), 0)
 
-        tasks.region_exclude([], [mkt.regions.UK])
+        tasks.region_exclude([], [mkt.regions.GBR])
         eq_(AER.objects.count(), 0)
 
     def test_exclude_no_regions(self):
@@ -631,13 +631,13 @@ class TestRegionExclude(mkt.site.tests.WebappTestCase):
         eq_(AER.objects.count(), 0)
 
     def test_exclude_one_new_region(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.UK])
+        tasks.region_exclude([self.app.id], [mkt.regions.GBR])
         excluded = list(AER.objects.filter(addon=self.app)
                         .values_list('region', flat=True))
-        eq_(excluded, [mkt.regions.UK.id])
+        eq_(excluded, [mkt.regions.GBR.id])
 
     def test_exclude_several_new_regions(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.US, mkt.regions.UK])
+        tasks.region_exclude([self.app.id], [mkt.regions.USA, mkt.regions.GBR])
         excluded = sorted(AER.objects.filter(addon=self.app)
                           .values_list('region', flat=True))
-        eq_(excluded, sorted([mkt.regions.US.id, mkt.regions.UK.id]))
+        eq_(excluded, sorted([mkt.regions.USA.id, mkt.regions.GBR.id]))

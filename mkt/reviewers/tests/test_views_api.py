@@ -227,7 +227,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_region_filtering(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 

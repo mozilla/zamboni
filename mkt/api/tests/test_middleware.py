@@ -215,7 +215,7 @@ class TestFilterMiddleware(mkt.site.tests.TestCase):
         self.middleware = APIFilterMiddleware()
         self.factory = RequestFactory()
 
-    def _header(self, url='/', api=True, region=mkt.regions.US, lang='en-US',
+    def _header(self, url='/', api=True, region=mkt.regions.USA, lang='en-US',
                 gaia=True, tablet=True, mobile=True, pro='8a7d546c.32.1',
                 response_cls=HttpResponse):
         self.request = self.factory.get(url, {'pro': pro})
@@ -246,7 +246,7 @@ class TestFilterMiddleware(mkt.site.tests.TestCase):
         gc.return_value = carrier
         header = self._header()
         self.assertIsInstance(header, dict)
-        assert mkt.regions.US.slug in header['region']
+        assert mkt.regions.USA.slug in header['region']
         assert 'en-US' in header['lang']
         assert '8a7d546c.32.1' in header['pro']
         assert carrier in header['carrier']
@@ -271,7 +271,7 @@ class TestFilterMiddleware(mkt.site.tests.TestCase):
         assert 'carrier' not in header
 
     def test_region(self):
-        region = mkt.regions.BR
+        region = mkt.regions.BRA
         header = self._header(region=region)
         assert region.slug in header['region']
 

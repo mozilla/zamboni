@@ -41,16 +41,16 @@ class TestRegionContentRatings(TestCase):
         with self.tower_activate('pl'):
             region_names_pl = [r[1] for r in
                                regions.REGIONS_CHOICES_SORTED_BY_NAME()]
-            ok_(region_names_pl.index(regions.SPAIN.name) <
-                region_names_pl.index(regions.UK.name))
-            ok_(region_names_pl.index(regions.UK.name) >
-                region_names_pl.index(regions.US.name))
+            ok_(region_names_pl.index(regions.ESP.name) <
+                region_names_pl.index(regions.GBR.name))
+            ok_(region_names_pl.index(regions.GBR.name) >
+                region_names_pl.index(regions.USA.name))
 
     def test_localized_sorting_of_region_choices_fr(self):
         with self.tower_activate('fr'):
             region_names_fr = [unicode(r[1]) for r in
                                regions.REGIONS_CHOICES_SORTED_BY_NAME()]
-            ok_(region_names_fr.index(regions.SPAIN.name) <
-                region_names_fr.index(regions.US.name))
-            ok_(region_names_fr.index(regions.US.name) <
-                region_names_fr.index(regions.UK.name))
+            ok_(region_names_fr.index(regions.ESP.name) <
+                region_names_fr.index(regions.USA.name))
+            ok_(region_names_fr.index(regions.USA.name) <
+                region_names_fr.index(regions.GBR.name))

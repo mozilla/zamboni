@@ -6,7 +6,7 @@ from django.core.management.base import CommandError
 
 import mkt.site.tests
 from mkt.constants.carriers import TELEFONICA, AMERICA_MOVIL
-from mkt.constants.regions import BR, FR
+from mkt.constants.regions import BRA, FRA
 from mkt.operators.models import OperatorPermission
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
@@ -38,25 +38,25 @@ class TestCommand(mkt.site.tests.TestCase):
 
     def test_add(self):
         eq_(OperatorPermission.objects.all().count(), 0)
-        self.add(self.email, TELEFONICA.slug, BR.slug)
+        self.add(self.email, TELEFONICA.slug, BRA.slug)
         qs = OperatorPermission.objects.all()
         eq_(qs.count(), 1)
         eq_(qs[0].user, self.user)
         eq_(qs[0].carrier, TELEFONICA.id)
-        eq_(qs[0].region, BR.id)
+        eq_(qs[0].region, BRA.id)
 
     def test_add_dupe(self):
-        self.add(self.email, TELEFONICA.slug, BR.slug)
+        self.add(self.email, TELEFONICA.slug, BRA.slug)
         with self.assertRaises(CommandError):
-            self.add(self.email, TELEFONICA.slug, BR.slug)
+            self.add(self.email, TELEFONICA.slug, BRA.slug)
 
     def test_add_invalid_user(self):
         with self.assertRaises(CommandError):
-            self.add('foo@bar.com', TELEFONICA.slug, BR.slug)
+            self.add('foo@bar.com', TELEFONICA.slug, BRA.slug)
 
     def test_add_invalid_carrier(self):
         with self.assertRaises(CommandError):
-            self.add(self.email, 'foocarrier', BR.slug)
+            self.add(self.email, 'foocarrier', BRA.slug)
 
     def test_add_invalid_region(self):
         with self.assertRaises(CommandError):
@@ -66,27 +66,27 @@ class TestCommand(mkt.site.tests.TestCase):
         with self.assertRaises(CommandError):
             self.call('add', self.email)
         with self.assertRaises(CommandError):
-            self.call('add', self.email, TELEFONICA.slug, BR.slug, 'foo')
+            self.call('add', self.email, TELEFONICA.slug, BRA.slug, 'foo')
 
     def remove(self, email, carrier=None, region=None, all=False):
         self.call('remove', email, carrier, region, remove_all=all)
 
     def test_remove(self):
-        self.add(self.email, TELEFONICA.slug, BR.slug)
-        self.remove(self.email, TELEFONICA.slug, BR.slug)
+        self.add(self.email, TELEFONICA.slug, BRA.slug)
+        self.remove(self.email, TELEFONICA.slug, BRA.slug)
         eq_(OperatorPermission.objects.all().count(), 0)
 
     def test_remove_nonexistant(self):
         with self.assertRaises(CommandError):
-            self.remove(self.email, TELEFONICA.slug, BR.slug)
+            self.remove(self.email, TELEFONICA.slug, BRA.slug)
 
     def test_remove_invalid_user(self):
         with self.assertRaises(CommandError):
-            self.remove('foo@bar.com', TELEFONICA.slug, BR.slug)
+            self.remove('foo@bar.com', TELEFONICA.slug, BRA.slug)
 
     def test_remove_invalid_carrier(self):
         with self.assertRaises(CommandError):
-            self.remove(self.email, 'foocarrier', BR.slug)
+            self.remove(self.email, 'foocarrier', BRA.slug)
 
     def test_remove_invalid_region(self):
         with self.assertRaises(CommandError):
@@ -96,11 +96,11 @@ class TestCommand(mkt.site.tests.TestCase):
         with self.assertRaises(CommandError):
             self.call('remove', self.email)
         with self.assertRaises(CommandError):
-            self.call('remove', self.email, TELEFONICA.slug, BR.slug, 'foo')
+            self.call('remove', self.email, TELEFONICA.slug, BRA.slug, 'foo')
 
     def test_remove_all(self):
-        self.add(self.email, TELEFONICA.slug, BR.slug)
-        self.add(self.email, AMERICA_MOVIL.slug, FR.slug)
+        self.add(self.email, TELEFONICA.slug, BRA.slug)
+        self.add(self.email, AMERICA_MOVIL.slug, FRA.slug)
         self.remove(self.email, all=True)
         eq_(OperatorPermission.objects.all().count(), 0)
 
@@ -117,8 +117,8 @@ class TestCommand(mkt.site.tests.TestCase):
 
     def test_list(self):
         pairs = [
-            [TELEFONICA.slug, BR.slug],
-            [AMERICA_MOVIL.slug, FR.slug],
+            [TELEFONICA.slug, BRA.slug],
+            [AMERICA_MOVIL.slug, FRA.slug],
         ]
         for carrier, region in pairs:
             self.add(self.email, carrier, region)

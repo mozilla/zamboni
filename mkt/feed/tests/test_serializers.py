@@ -176,7 +176,7 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         coll = self.feed_collection_factory(app_ids=[app.id])
         data = serializers.FeedCollectionSerializer(coll, context={
             'request': mkt.site.tests.req_factory_factory('',
-                                                     REGION=mkt.regions.US)
+                                                     REGION=mkt.regions.USA)
         }).data
         eq_(data['apps'][0]['price'], 1)
 

@@ -611,7 +611,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.grant_permission(self.user, 'Apps:ReviewRegionCN')
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_region',
-                           args=[mkt.regions.CN.slug])
+                           args=[mkt.regions.CHN.slug])
 
     def test_template_links(self):
         r = self.client.get(self.url)

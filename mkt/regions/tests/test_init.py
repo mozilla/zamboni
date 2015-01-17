@@ -14,7 +14,7 @@ def test_get_region_empty():
 def test_get_region_not_empty(local):
     local.region = 'us'
 
-    eq_(get_region(), regions.US)
+    eq_(get_region(), regions.USA)
 
 
 @mock.patch('mkt.regions._local')
@@ -27,16 +27,16 @@ def test_get_region_worldwide(local):
 def test_set_region(local):
     local.region = 'us'
 
-    eq_(get_region(), regions.US)
+    eq_(get_region(), regions.USA)
     set_region('es')
-    eq_(get_region(), regions.SPAIN)
+    eq_(get_region(), regions.ESP)
 
 
 def test_set_region_object():
-    set_region(regions.US)
-    eq_(get_region(), regions.US)
-    set_region(regions.SPAIN)
-    eq_(get_region(), regions.SPAIN)
+    set_region(regions.USA)
+    eq_(get_region(), regions.USA)
+    set_region(regions.ESP)
+    eq_(get_region(), regions.ESP)
 
 
 def test_set_region_bad_slug():

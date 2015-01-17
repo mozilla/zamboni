@@ -108,8 +108,7 @@ for k, translation in lookup.items():
     if country.get('ratingsbody'):
         country['ratingsbody'] = getattr(ratingsbodies, country['ratingsbody'])
 
-    name = country['legacy']
-    globals()[name] = type(name, (REGION,), country)
+    globals()[k] = type(k, (REGION,), country)
 
 # Please adhere to the new region checklist when adding a new region:
 # https://mana.mozilla.org/wiki/display/MARKET/How+to+add+a+new+region
@@ -119,7 +118,7 @@ for k, translation in lookup.items():
 #
 #     [('restofworld', <class 'mkt.constants.regions.RESTOFWORLD'>),
 #      ('brazil', <class 'mkt.constants.regions.BR'>),
-#      ('usa', <class 'mkt.constants.regions.US'>)]
+#      ('usa', <class 'mkt.constants.regions.USA'>)]
 #
 
 DEFINED = sorted(inspect.getmembers(sys.modules[__name__], inspect.isclass),
@@ -145,9 +144,9 @@ REGIONS_DICT = dict(REGIONS_CHOICES)
 REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 # Provide a dict for looking up the region by slug that includes aliases:
 # - "worldwide" is an alias for RESTOFWORLD (bug 940561).
-# - "gb" is an alias for UK (bug 973883).
+# - "gb" is an alias for GBR (bug 973883).
 REGION_LOOKUP = dict(REGIONS_DICT.items() +
-                     [('worldwide', RESTOFWORLD), ('gb', UK)])
+                     [('worldwide', RESTOFWORLD), ('gb', GBR)])
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 

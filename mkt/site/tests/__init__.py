@@ -583,7 +583,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         price_obj, created = Price.objects.get_or_create(price=price,
                                                          name='1')
 
-        for region in [regions.US.id, regions.RESTOFWORLD.id]:
+        for region in [regions.USA.id, regions.RESTOFWORLD.id]:
             PriceCurrency.objects.create(region=region, currency='USD',
                                          price=price, tier=price_obj,
                                          provider=PROVIDER_REFERENCE)

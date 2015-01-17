@@ -189,7 +189,7 @@ class TestWebapp(WebappTestCase):
     def test_get_price(self):
         app = self.get_app()
         self.make_premium(app)
-        eq_(app.get_price(region=mkt.regions.US.id), 1)
+        eq_(app.get_price(region=mkt.regions.USA.id), 1)
 
     def test_get_price_tier(self):
         app = self.get_app()
@@ -211,7 +211,7 @@ class TestWebapp(WebappTestCase):
 
     def test_excluded_in(self):
         app = self.get_app()
-        region = mkt.regions.BR
+        region = mkt.regions.BRA
         AddonExcludedRegion.objects.create(addon=app, region=region.id)
         self.assertSetEqual(get_excluded_in(region.id), [app.id])
 
@@ -937,16 +937,16 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.US.id)
-        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BRA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.USA.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.GBR.id)
 
         w1_regions = list(mkt.regions.REGION_IDS)
-        w1_regions.remove(mkt.regions.BR.id)
-        w1_regions.remove(mkt.regions.US.id)
+        w1_regions.remove(mkt.regions.BRA.id)
+        w1_regions.remove(mkt.regions.USA.id)
 
         w2_regions = list(mkt.regions.REGION_IDS)
-        w2_regions.remove(mkt.regions.UK.id)
+        w2_regions.remove(mkt.regions.GBR.id)
 
         eq_(sorted(Webapp.objects.get(id=w1.id).get_region_ids()),
             sorted(w1_regions))
@@ -957,18 +957,18 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BR.id)
-        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.US.id)
-        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.UK.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BRA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.USA.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.GBR.id)
 
         all_regions = mkt.regions.REGIONS_CHOICES_ID_DICT.values()
 
         w1_regions = list(all_regions)
-        w1_regions.remove(mkt.regions.BR)
-        w1_regions.remove(mkt.regions.US)
+        w1_regions.remove(mkt.regions.BRA)
+        w1_regions.remove(mkt.regions.USA)
 
         w2_regions = list(all_regions)
-        w2_regions.remove(mkt.regions.UK)
+        w2_regions.remove(mkt.regions.GBR)
 
         eq_(sorted(Webapp.objects.get(id=w1.id).get_regions()),
             sorted(w1_regions))
@@ -1073,23 +1073,23 @@ class TestWebappLight(mkt.site.tests.TestCase):
         geodata = app._geodata
         geodata.update(region_br_iarc_exclude=True,
                        region_de_iarc_exclude=True)
-        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [app.id])
-        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
+        self.assertSetEqual(get_excluded_in(mkt.regions.BRA.id), [app.id])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DEU.id), [app.id])
 
     def test_excluded_in_iarc_de(self):
         app = app_factory()
         geodata = app._geodata
         geodata.update(region_br_iarc_exclude=False,
                        region_de_iarc_exclude=True)
-        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
-        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
+        self.assertSetEqual(get_excluded_in(mkt.regions.BRA.id), [])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DEU.id), [app.id])
 
     def test_excluded_in_usk_exclude(self):
         app = app_factory()
         geodata = app._geodata
         geodata.update(region_de_usk_exclude=True)
-        self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
-        self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
+        self.assertSetEqual(get_excluded_in(mkt.regions.BRA.id), [])
+        self.assertSetEqual(get_excluded_in(mkt.regions.DEU.id), [app.id])
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_completion_errors(self, complete_mock):
@@ -1470,7 +1470,7 @@ class TestExclusions(TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.create(premium_type=mkt.ADDON_PREMIUM)
-        self.app.addonexcludedregion.create(region=mkt.regions.US.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.USA.id)
         self.geodata = self.app._geodata
 
     def make_tier(self):
@@ -1487,49 +1487,49 @@ class TestExclusions(TestCase):
         )
 
     def test_not_premium(self):
-        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.USA.id in self.app.get_excluded_region_ids())
 
     def test_not_paid(self):
         PriceCurrency.objects.update(paid=False)
         # The US is excluded because there are no valid prices.
-        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.USA.id in self.app.get_excluded_region_ids())
 
     def test_premium(self):
         self.make_tier()
-        ok_(mkt.regions.US.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.USA.id in self.app.get_excluded_region_ids())
 
     def test_premium_not_remove_tier(self):
         self.make_tier()
         (self.price.pricecurrency_set
-             .filter(region=mkt.regions.PL.id).update(paid=True))
+             .filter(region=mkt.regions.POL.id).update(paid=True))
         # Poland will not be excluded because we haven't excluded the rest
         # of the world.
-        ok_(mkt.regions.PL.id not in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.POL.id not in self.app.get_excluded_region_ids())
 
     def test_premium_remove_tier(self):
         self.make_tier()
         self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
         # If we exclude the rest of the world, then we'll exclude Nicaragua
         # which has no price currency.
-        ok_(mkt.regions.NI.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.NIC.id in self.app.get_excluded_region_ids())
 
     def test_not_paid_worldwide(self):
         self.make_tier()
         self.row.update(paid=False)
         # Rest of world has been set to not paid. Meaning that its not
         # available right now, so we should exclude Nicaragua.
-        ok_(mkt.regions.NI.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.NIC.id in self.app.get_excluded_region_ids())
 
     def test_usk_rating_refused(self):
         self.geodata.update(region_de_usk_exclude=True)
-        ok_(mkt.regions.DE.id in self.app.get_excluded_region_ids())
+        ok_(mkt.regions.DEU.id in self.app.get_excluded_region_ids())
 
     def test_game_iarc(self):
         self.geodata.update(region_de_iarc_exclude=True,
                             region_br_iarc_exclude=True)
         excluded = self.app.get_excluded_region_ids()
-        ok_(mkt.regions.BR.id in excluded)
-        ok_(mkt.regions.DE.id in excluded)
+        ok_(mkt.regions.BRA.id in excluded)
+        ok_(mkt.regions.DEU.id in excluded)
 
 
 class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
@@ -1965,12 +1965,12 @@ class TestAddonExcludedRegion(mkt.site.tests.WebappTestCase):
         self.excluded = self.app.addonexcludedregion
 
         eq_(list(self.excluded.values_list('id', flat=True)), [])
-        self.er = self.app.addonexcludedregion.create(region=mkt.regions.UK.id)
+        self.er = self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
         eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
 
     def test_exclude_multiple(self):
         other = AddonExcludedRegion.objects.create(addon=self.app,
-                                                   region=mkt.regions.BR.id)
+                                                   region=mkt.regions.BRA.id)
         self.assertSetEqual(self.excluded.values_list('id', flat=True),
                             [self.er.id, other.id])
 
@@ -1979,10 +1979,10 @@ class TestAddonExcludedRegion(mkt.site.tests.WebappTestCase):
         eq_(list(self.excluded.values_list('id', flat=True)), [])
 
     def test_get_region(self):
-        eq_(self.er.get_region(), mkt.regions.UK)
+        eq_(self.er.get_region(), mkt.regions.GBR)
 
     def test_unicode(self):
-        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.UK.slug))
+        eq_(unicode(self.er), '%s: %s' % (self.app, mkt.regions.GBR.slug))
 
 
 class TestContentRating(mkt.site.tests.WebappTestCase):
@@ -1990,43 +1990,43 @@ class TestContentRating(mkt.site.tests.WebappTestCase):
     def setUp(self):
         self.app = self.get_app()
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+    @mock.patch.object(mkt.regions.BRA, 'ratingsbody',
                        mkt.ratingsbodies.CLASSIND)
-    @mock.patch.object(mkt.regions.US, 'ratingsbody', mkt.ratingsbodies.ESRB)
-    @mock.patch.object(mkt.regions.VE, 'ratingsbody',
+    @mock.patch.object(mkt.regions.USA, 'ratingsbody', mkt.ratingsbodies.ESRB)
+    @mock.patch.object(mkt.regions.VEN, 'ratingsbody',
                        mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs(self):
         classind_rating = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=0)
         regions = classind_rating.get_regions()
-        assert mkt.regions.BR in regions
-        assert mkt.regions.US not in regions
-        assert mkt.regions.VE not in regions
+        assert mkt.regions.BRA in regions
+        assert mkt.regions.USA not in regions
+        assert mkt.regions.VEN not in regions
 
         slugs = classind_rating.get_region_slugs()
-        assert mkt.regions.BR.slug in slugs
-        assert mkt.regions.US.slug not in slugs
-        assert mkt.regions.VE.slug not in slugs
+        assert mkt.regions.BRA.slug in slugs
+        assert mkt.regions.USA.slug not in slugs
+        assert mkt.regions.VEN.slug not in slugs
 
-    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+    @mock.patch.object(mkt.regions.BRA, 'ratingsbody',
                        mkt.ratingsbodies.CLASSIND)
-    @mock.patch.object(mkt.regions.DE, 'ratingsbody', mkt.ratingsbodies.ESRB)
-    @mock.patch.object(mkt.regions.VE, 'ratingsbody',
+    @mock.patch.object(mkt.regions.DEU, 'ratingsbody', mkt.ratingsbodies.ESRB)
+    @mock.patch.object(mkt.regions.VEN, 'ratingsbody',
                        mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs_generic_fallback(self):
         gen_rating = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=0)
         regions = gen_rating.get_regions()
-        assert mkt.regions.BR not in regions
-        assert mkt.regions.DE not in regions
-        assert mkt.regions.VE in regions
+        assert mkt.regions.BRA not in regions
+        assert mkt.regions.DEU not in regions
+        assert mkt.regions.VEN in regions
 
         slugs = gen_rating.get_region_slugs()
-        assert mkt.regions.BR.slug not in slugs
-        assert mkt.regions.DE.slug not in slugs
-        assert mkt.regions.VE.slug not in slugs
+        assert mkt.regions.BRA.slug not in slugs
+        assert mkt.regions.DEU.slug not in slugs
+        assert mkt.regions.VEN.slug not in slugs
 
         # We have a catch-all 'generic' region for all regions wo/ r.body.
         assert mkt.regions.GENERIC_RATING_REGION_SLUG in slugs
@@ -2072,18 +2072,18 @@ class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
         for region in mkt.regions.ALL_REGIONS:
             eq_(self.app.content_ratings_in(region=region, category=cat), [])
 
-    @mock.patch.object(mkt.regions.CO, 'ratingsbody', None)
-    @mock.patch.object(mkt.regions.BR, 'ratingsbody',
+    @mock.patch.object(mkt.regions.COL, 'ratingsbody', None)
+    @mock.patch.object(mkt.regions.BRA, 'ratingsbody',
                        mkt.ratingsbodies.CLASSIND)
     def test_generic_fallback(self):
         # Test region with no rating body returns generic content rating.
         crs = ContentRating.objects.create(
             addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=mkt.ratingsbodies.GENERIC_3.id)
-        eq_(self.app.content_ratings_in(region=mkt.regions.CO), [crs])
+        eq_(self.app.content_ratings_in(region=mkt.regions.COL), [crs])
 
         # Test region with rating body does not include generic content rating.
-        assert crs not in self.app.content_ratings_in(region=mkt.regions.BR)
+        assert crs not in self.app.content_ratings_in(region=mkt.regions.BRA)
 
 
 class TestIARCInfo(mkt.site.tests.WebappTestCase):
@@ -2434,25 +2434,25 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
 
     def test_get_status(self):
         status = mkt.STATUS_PENDING
-        eq_(self.geo.get_status(mkt.regions.CN), status)
+        eq_(self.geo.get_status(mkt.regions.CHN), status)
         eq_(self.geo.region_cn_status, status)
 
         status = mkt.STATUS_PUBLIC
         self.geo.update(region_cn_status=status)
-        eq_(self.geo.get_status(mkt.regions.CN), status)
+        eq_(self.geo.get_status(mkt.regions.CHN), status)
         eq_(self.geo.region_cn_status, status)
 
     def test_set_status(self):
         status = mkt.STATUS_PUBLIC
 
         # Called with `save=False`.
-        self.geo.set_status(mkt.regions.CN, status)
+        self.geo.set_status(mkt.regions.CHN, status)
         eq_(self.geo.region_cn_status, status)
         eq_(self.geo.reload().region_cn_status, mkt.STATUS_PENDING,
             '`set_status(..., save=False)` should not save the value')
 
         # Called with `save=True`.
-        self.geo.set_status(mkt.regions.CN, status, save=True)
+        self.geo.set_status(mkt.regions.CHN, status, save=True)
         eq_(self.geo.region_cn_status, status)
         eq_(self.geo.reload().region_cn_status, status)
 
@@ -2460,7 +2460,7 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
         eq_(self.geo.banner_regions, None)
         eq_(self.geo.banner_regions_names(), [])
 
-        self.geo.update(banner_regions=[mkt.regions.UK.id, mkt.regions.CN.id])
+        self.geo.update(banner_regions=[mkt.regions.GBR.id, mkt.regions.CHN.id])
         eq_(self.geo.banner_regions_names(), [u'China', u'United Kingdom'])
 
 

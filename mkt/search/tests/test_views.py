@@ -55,14 +55,14 @@ class TestGetRegion(TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all_v1(self, mock_request_region):
-        geoip_fallback = regions.PE  # Different than the default: restofworld.
+        geoip_fallback = regions.PER  # Different than the default: restofworld.
         mock_request_region.return_value = geoip_fallback
 
         # Test string values (should return region with that slug).
         eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
         ok_(not mock_request_region.called)
 
-        eq_(self.region_for('us'), regions.US)
+        eq_(self.region_for('us'), regions.USA)
         ok_(not mock_request_region.called)
 
         # Test fallback to request.REGION (should return GeoIP region if region
@@ -81,7 +81,7 @@ class TestGetRegion(TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all_v2(self, mock_request_region):
-        geoip_fallback = regions.PE  # Different than the default: restofworld.
+        geoip_fallback = regions.PER  # Different than the default: restofworld.
         mock_request_region.return_value = geoip_fallback
 
         self.api_version = 2
@@ -90,7 +90,7 @@ class TestGetRegion(TestCase):
         eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
         ok_(not mock_request_region.called)
 
-        eq_(self.region_for('us'), regions.US)
+        eq_(self.region_for('us'), regions.USA)
         ok_(not mock_request_region.called)
 
         # Test fallback to request.REGION. We are using api v2, so we shouldn't
@@ -305,7 +305,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         unindex_webapps([upsell.id])
 
     def test_dehydrate_regions(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -313,11 +313,11 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         regions = obj['regions']
-        ok_(mkt.regions.BR.slug not in [r['slug'] for r in regions])
+        ok_(mkt.regions.BRA.slug not in [r['slug'] for r in regions])
         eq_(len(regions), len(mkt.regions.ALL_REGION_IDS) - 1)
 
     def test_region_filtering(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 

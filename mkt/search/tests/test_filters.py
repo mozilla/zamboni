@@ -28,7 +28,7 @@ class TestSearchFilters(BaseOAuth):
         self.req.user = AnonymousUser()
 
         # Pick a region that has relatively few filters.
-        set_region(regions.UK.slug)
+        set_region(regions.GBR.slug)
 
         self.form_class = ApiSearchForm
 
@@ -211,9 +211,9 @@ class TestSearchFilters(BaseOAuth):
             "Unexpected 'installs_allowed_from' in query")
 
     def test_region_exclusions(self):
-        self.req.REGION = regions.CO
+        self.req.REGION = regions.COL
         qs = self._filter(self.req, {'q': 'search terms'})
-        ok_({'term': {'region_exclusions': regions.CO.id}}
+        ok_({'term': {'region_exclusions': regions.COL.id}}
             in qs['query']['filtered']['filter']['bool']['must_not'])
 
     def test_sort(self):
@@ -231,13 +231,14 @@ class TestSearchFilters(BaseOAuth):
 
     def test_sort_regional(self):
         """Popularity and trending use regional sorting for mature regions."""
-        self.req.REGION = regions.BR
+        self.req.REGION = regions.BRA
         # Popularity.
         qs = self._filter(self.req, {'sort': ['popularity']})
-        ok_({'popularity_%s' % regions.BR.id: {'order': 'desc'}} in qs['sort'])
+        ok_({'popularity_%s'
+             % regions.BRA.id: {'order': 'desc'}} in qs['sort'])
         # Trending.
         qs = self._filter(self.req, {'sort': ['trending']})
-        ok_({'trending_%s' % regions.BR.id: {'order': 'desc'}} in qs['sort'])
+        ok_({'trending_%s' % regions.BRA.id: {'order': 'desc'}} in qs['sort'])
 
     def test_filter_all_features_present(self):
         self.req = self._request_from_features()
@@ -245,7 +246,7 @@ class TestSearchFilters(BaseOAuth):
         ok_(not 'must_not' in qs['query']['filtered']['filter']['bool'])
 
     def test_filter_all_features_present_and_region(self):
-        self.req = self._request_from_features(region=regions.UK)
+        self.req = self._request_from_features(region=regions.GBR)
         qs = self._filter(self.req, {'q': 'search terms'})
         must_not = qs['query']['filtered']['filter']['bool']['must_not']
         for conditions in must_not:

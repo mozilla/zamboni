@@ -68,21 +68,21 @@ class TestOperatorPermissionsViewSet(RestOAuth, mkt.site.tests.ESTestCase):
         eq_(data['meta']['total_count'], 0)
 
     def test_authenticated_single(self):
-        self.create(mkt.carriers.TELEFONICA, mkt.regions.BR, self.user)
+        self.create(mkt.carriers.TELEFONICA, mkt.regions.BRA, self.user)
         res, data = self.get(self.client)
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['carrier'], mkt.carriers.TELEFONICA.slug)
-        eq_(data['objects'][0]['region'], mkt.regions.BR.slug)
+        eq_(data['objects'][0]['region'], mkt.regions.BRA.slug)
 
     def test_authenticated_multiple(self):
-        regions = (mkt.regions.BR, mkt.regions.FR)
+        regions = (mkt.regions.BRA, mkt.regions.FRA)
         for region in regions:
             self.create(mkt.carriers.TELEFONICA, region, self.user)
         res, data = self.get(self.client)
         eq_(data['meta']['total_count'], len(regions))
 
     def test_authenticated_other_people(self):
-        self.create(mkt.carriers.TELEFONICA, mkt.regions.BR, self.other_user)
+        self.create(mkt.carriers.TELEFONICA, mkt.regions.BRA, self.other_user)
         res, data = self.get(self.client)
         eq_(data['meta']['total_count'], 0)
 
