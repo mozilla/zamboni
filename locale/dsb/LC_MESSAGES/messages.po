@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-14 15:16+0000\n"
+"PO-Revision-Date: 2015-01-17 19:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421248614.0\n"
+"X-POOTLE-MTIME: 1421523299.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -306,75 +306,81 @@ msgstr "Konto jo se zaktualizěrowało."
 
 #: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "Płaśiwa kwitowanka jo se za dodank {addon} pśěglědała."
 
 #: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju za dodank {addon} pśizwólone."
 
 #: apps/amo/log.py:426 mkt/constants/comm.py:52
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju pśizwólone"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "Dodank {addon} jo zastajony."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "Nałoženje zastajone"
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
+"Dodank {addon} jo se dla wušokeje licby znjewužywańskich rozpšawow pśiducemu "
+"wušemu městnoju dalej dał."
 
 #: apps/amo/log.py:442
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Wjele znjewužiyańskich zdźělenjow"
 
 #: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr ""
+"Dodank {addon} jo se dla wusokeje licby zarunańskich pominanjow pśiducemu "
+"wušemu městnoju dalej dał."
 
 #: apps/amo/log.py:450
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Wjele zarunańskich pominanjow"
 
 #: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "Dodank {addon} jo se změny manifesta dla znowego pśeglědał."
 
 #: apps/amo/log.py:458
 msgid "Manifest Change"
-msgstr ""
+msgstr "Změna manifesta"
 
 #: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr ""
+"Dodank {addon} jo se znowego pśeglědał dokulaž nałoženje jo premiumowy typ "
+"rozšyriło."
 
 #: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Rozšyrjenje premiumowego typa"
 
 #: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Nowopśěgldanje za dodank {addon} pśizwólone."
 
 #: apps/amo/log.py:474 mkt/constants/comm.py:55
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Nowopśeglědanje pśizwólone"
 
 #: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "Pśepytowaŕ jo dodank {addon} pśiducemu wušemu městnoju dalej dał."
 
 #: apps/amo/log.py:482
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju pśez pśepytowarja"
 
 #: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Wideo dodanka {addon} jo se problema z wideo dla wótpórało."
 
 #: apps/amo/log.py:492
 msgid "Video removed"
@@ -418,39 +424,41 @@ msgstr ""
 
 #: apps/amo/log.py:530
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Změna manifestego URL"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"Dodank {addon} jo se awtomatiski pśiducemu wušemu městnoju dalej dał, "
+"dokulaž jo nałoženje za pśedwózjewjenje."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Awtomatiske dalejdaśe pśiducemu wušemu městnoju za pśedwózjewjenje"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
-msgstr ""
+msgstr "Napórany: {0}"
 
 #: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Wobźěłane pólo: {2} změnjony do: {0}."
 
 #: apps/amo/log.py:567
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Wulašowany: {1}"
 
 #: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Wužywaŕ {user} jo se wobźěłał, pśicyna: {1}"
 
 #: apps/amo/log.py:579
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se anonymizěrował."
 
 #: apps/amo/log.py:585
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se wobgranicował."
 
 #: apps/amo/log.py:591
 msgid "Admin {0} viewed activity log for {user}."
@@ -491,16 +499,16 @@ msgstr ""
 #. L10n: {0} is the status
 #: apps/amo/log.py:642
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Status wersije {version} jo se do {0} změnił."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Wužywaŕ {0.name} {0.id} jo se pśez rěd póglědanja wulašował."
 
 #: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenje dodanka {addon} na Dorosćony změnjone."
 
 #: apps/amo/log.py:661
 msgid "{addon} content rating changed."
