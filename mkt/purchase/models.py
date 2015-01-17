@@ -10,7 +10,6 @@ from jingo import env
 from jinja2.filters import do_dictsort
 
 import mkt
-from mkt.site.fields import DecimalCharField
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
 from mkt.site.models import ModelBase
@@ -32,8 +31,8 @@ class Contribution(ModelBase):
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
                                       blank=True, null=True)
-    amount = DecimalCharField(max_digits=9, decimal_places=2,
-                              nullify_invalid=True, null=True)
+    amount = models.DecimalField(max_digits=9, decimal_places=2, blank=True,
+                                 null=True)
     currency = models.CharField(max_length=3,
                                 choices=do_dictsort(mkt.PAYPAL_CURRENCIES),
                                 default=mkt.CURRENCY_DEFAULT)
