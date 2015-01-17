@@ -275,13 +275,13 @@ class TestDevRequired(AppHubTest):
         self.client.logout()
         r = self.client.get(self.get_url, follow=True)
         login = reverse('users.login')
-        self.assertRedirects(r, '%s?to=%s' % (login, self.get_url))
+        self.assert3xx(r, '%s?to=%s' % (login, self.get_url))
 
     def test_dev_get(self):
         eq_(self.client.get(self.get_url).status_code, 200)
 
     def test_dev_post(self):
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
     def test_viewer_get(self):
         self.au.role = mkt.AUTHOR_ROLE_VIEWER
@@ -301,7 +301,7 @@ class TestDevRequired(AppHubTest):
         self.webapp.update(status=mkt.STATUS_DISABLED)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
 @mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
@@ -691,7 +691,7 @@ class TestResumeStep(mkt.site.tests.TestCase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.webapp.get_dev_url('edit'), 302)
+        self.assert3xx(r, self.webapp.get_dev_url('edit'), 302)
 
     def test_step_redirects(self):
         AppSubmissionChecklist.objects.create(addon=self.webapp,
@@ -797,7 +797,7 @@ class TestUpload(BaseUploadTest):
         r = self.post()
         upload = FileUpload.objects.get()
         url = reverse('mkt.developers.upload_detail', args=[upload.pk, 'json'])
-        self.assertRedirects(r, url)
+        self.assert3xx(r, url)
 
 
 class TestStandaloneUpload(BaseUploadTest):
@@ -1048,13 +1048,13 @@ class TestDeleteApp(mkt.site.tests.TestCase):
 
     def test_delete_nonincomplete(self):
         r = self.client.post(self.url)
-        self.assertRedirects(r, self.dev_url)
+        self.assert3xx(r, self.dev_url)
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete(self):
         self.webapp.update(status=mkt.STATUS_NULL)
         r = self.client.post(self.url)
-        self.assertRedirects(r, self.dev_url)
+        self.assert3xx(r, self.dev_url)
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
@@ -1066,7 +1066,7 @@ class TestDeleteApp(mkt.site.tests.TestCase):
 
     def check_delete_redirect(self, src, dst):
         r = self.client.post(urlparams(self.url, to=src))
-        self.assertRedirects(r, dst)
+        self.assert3xx(r, dst)
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_redirect_to_dashboard(self):

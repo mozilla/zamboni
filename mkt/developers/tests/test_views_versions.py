@@ -102,7 +102,7 @@ class TestVersion(mkt.site.tests.TestCase):
         my_reply = 'fixed just for u, brah'
         r = self.client.post(self.url, {'notes': my_reply,
                                         'resubmit-app': ''})
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
 
         webapp = self.get_webapp()
         eq_(webapp.status, mkt.STATUS_PENDING,

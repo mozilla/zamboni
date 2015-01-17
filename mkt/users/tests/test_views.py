@@ -92,12 +92,12 @@ class TestLogout(TestCase):
         url = '/developers/'
         res = self.client.get(urlparams(reverse('users.logout'), to=url),
                             follow=True)
-        self.assertRedirects(res, url, status_code=302)
+        self.assert3xx(res, url, status_code=302)
 
         # Test that we don't follow domains
         url = urlparams(reverse('users.logout'), to='http://ev.il/developers/')
         res = self.client.get(url, follow=True)
-        self.assertRedirects(res, '/', status_code=302)
+        self.assert3xx(res, '/', status_code=302)
 
     def test_has_logged_in_is_set(self):
         res = self.client.get('/developers/', follow=True)

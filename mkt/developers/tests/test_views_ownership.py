@@ -56,7 +56,7 @@ class TestEditAuthor(TestOwnership):
 
         orig = ActivityLog.objects.all().count()
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
@@ -69,7 +69,7 @@ class TestEditAuthor(TestOwnership):
                  role=mkt.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         self.assertSetEqual(q.all(), [31337, 999])
 
     def test_success_edit_user(self):
@@ -88,7 +88,7 @@ class TestEditAuthor(TestOwnership):
         empty = dict(user='', listed=True, role=5, position=0)
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed,
             False)
 
@@ -148,7 +148,7 @@ class TestEditAuthor(TestOwnership):
 
         # We should be redirected to our My submissions page since we have
         # now lost access to the current app by deleting our own access.
-        self.assertRedirects(r, reverse('mkt.developers.apps'), 302)
+        self.assert3xx(r, reverse('mkt.developers.apps'), 302)
 
     def test_delete_own_access_unsub_comm(self):
         """Test that removing self will unsubscribe self from Comm threads."""
@@ -254,7 +254,7 @@ class TestEditWebappAuthors(mkt.site.tests.TestCase):
         u = dict(user=u.email, listed=True, role=mkt.AUTHOR_ROLE_OWNER,
                  position=0)
         r = self.client.post(self.url, formset(u, initial_count=0))
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         owners = (AddonUser.objects.filter(addon=self.webapp.id)
                   .values_list('user', flat=True))
         eq_(set(owners), set([31337, 999]))
