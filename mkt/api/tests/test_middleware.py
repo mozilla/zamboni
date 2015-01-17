@@ -50,15 +50,6 @@ class TestCORS(mkt.site.tests.TestCase):
         eq_(res['Access-Control-Allow-Headers'],
             'X-Something-Weird, Content-Type')
 
-    @mock.patch.object(settings, 'FIREPLACE_URL', fireplace_url)
-    def test_from_fireplace(self):
-        self.req.CORS = ['get']
-        self.req.META['HTTP_ORIGIN'] = fireplace_url
-        res = self.mware.process_response(self.req, HttpResponse())
-        eq_(res['Access-Control-Allow-Origin'], fireplace_url)
-        eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
-        eq_(res['Access-Control-Allow-Credentials'], 'true')
-
     def test_403_get(self):
         resp = HttpResponse()
         resp.status_code = 403

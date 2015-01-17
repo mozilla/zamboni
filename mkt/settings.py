@@ -706,9 +706,6 @@ FILE_VIEWER_SIZE_LIMIT = 1048576
 # The maximum file size that you can have inside a zip file.
 FILE_UNZIP_SIZE_LIMIT = 104857600
 
-# The origin URL for our Fireplace frontend, from which API requests come.
-FIREPLACE_URL = ''
-
 # Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'
 
