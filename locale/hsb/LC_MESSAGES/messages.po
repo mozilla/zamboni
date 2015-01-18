@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-17 19:36+0000\n"
+"PO-Revision-Date: 2015-01-18 20:48+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421523374.0\n"
+"X-POOTLE-MTIME: 1421614129.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -404,7 +404,9 @@ msgstr "Nowozapodaće nałoženja"
 
 #: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr "Přidakt {addon} je so awtomatisce přichodnemu wyšemu městnu dale dał, dokelž je VIP-nałoženje."
+msgstr ""
+"Přidatk {addon} je so awtomatisce přichodnemu wyšemu městnu dale dał, dokelž "
+"je VIP-nałoženje."
 
 #: apps/amo/log.py:522
 msgid "VIP auto-escalation"
