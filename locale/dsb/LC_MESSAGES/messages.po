@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-17 19:34+0000\n"
+"PO-Revision-Date: 2015-01-18 21:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421523299.0\n"
+"X-POOTLE-MTIME: 1421615064.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -384,43 +384,47 @@ msgstr "Wideo dodanka {addon} jo se problema z wideo dla wótpórało."
 
 #: apps/amo/log.py:492
 msgid "Video removed"
-msgstr ""
+msgstr "Wideo wótpórane"
 
 #: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Nowe pśeglědanje dodanka {addon} nowych rědow dla."
 
 #: apps/amo/log.py:498
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Rědy pśidane"
 
 #: apps/amo/log.py:505
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
+"Rědowa pódpěra za dodank {addon} jo se wót pśepytowarja manuelnje změniła."
 
 #: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Rědy wót pśepytowarja změnjone"
 
 #: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "Dodank {addon} jo se znowego za pśeglědowanje zapódał."
 
 #: apps/amo/log.py:514
 msgid "App Resubmission"
-msgstr ""
+msgstr "Nowozapódáse nałoženja"
 
 #: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr ""
+"Dodank {addon} jo se awtomatiski pśiducemu wušemu městnoju dalej dał, "
+"dokulaž jo VIP-nałoženje."
 
 #: apps/amo/log.py:522
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "Awtomatiske dalejdaśe VIP-dodanka pśiducemu wušemu městnoju"
 
 #: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr ""
+"Dodank {addon} jo se znowego pśeglědał, dokulaž jo se URL manifesta změnił."
 
 #: apps/amo/log.py:530
 msgid "Manifest URL Change"
@@ -463,38 +467,39 @@ msgstr "Wužywaŕ {user} jo se wobgranicował."
 #: apps/amo/log.py:591
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
+"Administrator {0} jo se protokol aktiwitow za wužywarja {user} woglědał."
 
 #: apps/amo/log.py:598
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} jo se za dodank {addon} zaktualizěrował."
 
 #: apps/amo/log.py:604
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "Dodank {addon} jo se pśeglědał."
 
 #: apps/amo/log.py:610
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Wužywaŕ {0.name} jo se kupce {group} pśidał."
 
 #: apps/amo/log.py:618
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Wužywaŕ {0.name} jo se z kupki {group} wótpórał."
 
 #: apps/amo/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Pśepytowaŕ jo minimalne pominanja dodanka {addon} manuelnje změnił."
 
 #: apps/amo/log.py:626
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Pominanja wót pśepytowarja změnjone"
 
 #: apps/amo/log.py:633
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Minimalne pominanja dodanka {addon} su se manuelnje změnili."
 
 #: apps/amo/log.py:634
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Pominanja změnjone"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:642
@@ -512,32 +517,32 @@ msgstr "Wopśimjeśowe pógódnośenje dodanka {addon} na Dorosćony změnjone."
 
 #: apps/amo/log.py:661
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenje dodanka {addon} jo se změniło."
 
 #: apps/amo/log.py:666
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Pśeglědowanje priority za dodank {addon} pominane."
 
 #: apps/amo/log.py:667
 msgid "Priority Review"
-msgstr ""
+msgstr "Pśeglědowanje priority"
 
 #: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "Dodank {addon} {version} jo pśeglědowanje {queue} wobstał."
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "Dodank {addon} je pśi pśeglědowanju {queue} pśepadnuł."
 
 #: mkt/account/utils.py:63
 msgid "Purchase Date"
-msgstr ""
+msgstr "Kupny datum"
 
 #: mkt/account/utils.py:64 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:77
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
-msgstr ""
+msgstr "Płaśizna"
 
 #: mkt/account/utils.py:65 mkt/developers/forms_payments.py:618 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
@@ -582,15 +587,15 @@ msgstr ""
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Wersija %s njeeksistěrujo"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "Pśidank:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:276
 msgid "Description:"
-msgstr ""
+msgstr "Wopisanje:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
@@ -598,7 +603,7 @@ msgstr ""
 
 #: mkt/comm/serializers.py:54
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -606,15 +611,15 @@ msgstr ""
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:28 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:44 mkt/search/forms.py:51
@@ -655,15 +660,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:24
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: mkt/constants/bango.py:25
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: mkt/constants/bango.py:26
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguilla"
 
 #: mkt/constants/bango.py:27
 msgid "Antarctica"
