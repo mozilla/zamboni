@@ -256,8 +256,6 @@ class CORSMiddleware(object):
         # hook for figuring out if a response should have the CORS headers on
         # it. That's because it will often error out with immediate HTTP
         # responses.
-        fireplace_url = settings.FIREPLACE_URL
-        fireplacey = request.META.get('HTTP_ORIGIN') == fireplace_url
         response['Access-Control-Allow-Headers'] = ', '.join(
             getattr(request, 'CORS_HEADERS',
                     ('X-HTTP-Method-Override', 'Content-Type')))
@@ -267,13 +265,8 @@ class CORSMiddleware(object):
             error_allowed_methods = [request.method]
 
         cors_allowed_methods = getattr(request, 'CORS', error_allowed_methods)
-        if fireplacey or cors_allowed_methods:
-            # If this is a request from our hosted frontend, allow cookies.
-            if fireplacey:
-                response['Access-Control-Allow-Origin'] = fireplace_url
-                response['Access-Control-Allow-Credentials'] = 'true'
-            else:
-                response['Access-Control-Allow-Origin'] = '*'
+        if cors_allowed_methods:
+            response['Access-Control-Allow-Origin'] = '*'
             methods = [h.upper() for h in cors_allowed_methods]
             if 'OPTIONS' not in methods:
                 methods.append('OPTIONS')
