@@ -95,7 +95,7 @@ tower==0.4.1
 urllib3==1.8.2
 
 ## Not on pypi.
--e git+https://github.com/mozilla/app-validator.git@395e683a34bf63dd0dfca16d2cec92e73013a681#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@9fdeeb3493983f1f90dd74ed1e1f237a7bb111ae#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
