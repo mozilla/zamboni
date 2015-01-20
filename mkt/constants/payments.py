@@ -96,7 +96,8 @@ PROVIDER_CHOICES = (
     (PROVIDER_BOKU, 'boku')
 )
 
-PROVIDER_LOOKUP = dict([(v, k) for k, v in PROVIDER_CHOICES])
+PROVIDER_LOOKUP = dict(PROVIDER_CHOICES)
+PROVIDER_LOOKUP_INVERTED = dict([(v, k) for k, v in PROVIDER_CHOICES])
 CARRIER_CHOICES = ()
 
 # Payment methods accepted by the PriceCurrency..

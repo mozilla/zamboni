@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import connection
 from django.db.models import Count, Q, Sum
@@ -25,6 +26,7 @@ from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
+                                    PROVIDER_LOOKUP,
                                     SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
@@ -125,28 +127,47 @@ def transaction_summary(request, tx_uuid):
 def _transaction_summary(tx_uuid):
     """Get transaction details from Solitude API."""
     contrib = get_object_or_404(Contribution, uuid=tx_uuid)
+    contrib_id = contrib.transaction_id
     refund_contribs = contrib.get_refund_contribs()
     refund_contrib = refund_contribs[0] if refund_contribs.exists() else None
+
+
+    lookup = {'status': True, 'transaction': True}
+    pay = {}
+    try:
+        pay = client.api.generic.transaction.get_object_or_404(uuid=contrib_id)
+    except ObjectDoesNotExist:
+        log.warning('Transaction not found in solitude: {0}'.format(tx_uuid))
+        lookup['transaction'] = False
 
     # Get refund status.
     refund_status = None
     if refund_contrib and refund_contrib.refund.status == mkt.REFUND_PENDING:
         try:
-            status = client.api.bango.refund.status.get(
-                data={'uuid': refund_contrib.transaction_id})['status']
-            refund_status = SOLITUDE_REFUND_STATUSES[status]
-        except HttpServerError:
-            refund_status = _('Currently unable to retrieve refund status.')
+            status = client.api.bango.refund.status.get_object_or_404(
+                data={'uuid': refund_contrib.transaction_id})
+            refund_status = SOLITUDE_REFUND_STATUSES[status['status']]
+        except (KeyError, HttpServerError):
+            lookup['status'] = False
+            log.warning('Refund lookup failed: {0}'.format(tx_uuid))
+
 
     return {
         # Solitude data.
+        'lookup': lookup,
+        'amount': pay.get('amount'),
+        'currency': pay.get('currency'),
+        'provider': PROVIDER_LOOKUP.get(pay.get('provider')),
         'refund_status': refund_status,
+        'support': pay.get('uid_support'),
+        'timestamp': pay.get('created'),
 
         # Zamboni data.
         'app': contrib.addon,
         'contrib': contrib,
         'related': contrib.related,
         'type': mkt.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
+
         # Filter what is refundable.
         'is_refundable': ((contrib.type == mkt.CONTRIB_PURCHASE)
                           and not refund_contrib),

@@ -6,15 +6,16 @@
 {% block content %}
   {% include 'lookup/includes/transaction_search.html' %}
 
-  <section class="island c">
+  <section class="island c" id="transaction-lookup">
     <h1>
       {% trans tx_url = url('lookup.transaction_summary', uuid) %}
-        Transaction Lookup results for <a href="{{ tx_url }}">Transaction {{ uuid }}</a>
+        Transaction Lookup
       {% endtrans %}
     </h1>
 
     {% if contrib %}
       <section id="prose">
+        <h2>{{ _('Marketplace information') }}</h2>
         <dl>
           <dt>{{ _('Transaction ID') }}</dt><dd>{{ contrib.uuid }}</dd>
           <dt>{{ _('Date') }}</dt><dd>{{ contrib.created|datetime('%B %e, %Y %H:%M:%S') }}</dd>
@@ -37,12 +38,51 @@
             </dd>
           {% endif %}
         </dl>
+
+        <h2>{{ _('Payment provider information') }}</h2>
+        {% if not lookup['transaction'] %}
+          <p>{{ _('Currently unable to retrieve transaction status.') }}</p>
+        {% endif %}
+
+        {% if provider == 'bango' %}
+          <p>
+            {% trans bango_support='support@bango.com' %}
+              This payment was made through Bango. To get more information
+              contact <a href="mailto:{{ bango_support }}">Bango support</a>
+              with the following information.
+            {% endtrans %}
+          </p>
+        {% endif %}
+
+        {% if provider == 'reference' %}
+          <p>
+            {% trans %}
+              This payment was made through the <b>reference implementation</b>.
+              It wasn't a real transaction.
+            {% endtrans %}
+          </p>
+        {% endif %}
+
+        {% if lookup['transaction'] %}
+          <dl>
+            <dt>{{ _('Amount paid') }}</dt>
+            <dd>{{ amount }} {{ currency }}</dd>
+            <dt>{{ _('Lookup id') }}</dt>
+            <dd>{{ support }}</dd>
+            <dt>{{ _('Timestamp') }}</dt>
+            <dd>{{ timestamp }} PST</dd>
+          </dl>
+        {% endif %}
       </section>
     {% else %}
       {{ no_results() }}
     {% endif %}
 
     <div class="refund-transaction c">
+      <h2>{{ _('Refund information') }}</h2>
+      {% if not lookup['status'] %}
+        <p>{{ _('Currently unable to retrieve refund status.') }}</p>
+      {% endif %}
       <dl>
         <dt>{{ _('Refund Status') }}</dt>
         <dd>{{ refund_status or _('Unrequested') }}</dd>

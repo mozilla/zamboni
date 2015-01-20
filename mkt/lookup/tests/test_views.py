@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 
@@ -31,7 +32,8 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, ESTestCase, req_factory_factory, TestCase
+from mkt.site.tests import (app_factory, ESTestCase, req_factory_factory,
+                            TestCase)
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
@@ -420,7 +422,8 @@ class TestTransactionSummary(TestCase):
             transaction_id='testtransactionid', user=self.user)
         refund_contrib.enqueue_refund(mkt.REFUND_PENDING, self.user)
 
-    def test_transaction_summary(self):
+    @mock.patch('mkt.lookup.views.client')
+    def test_transaction_summary(self, solitude):
         data = _transaction_summary(self.uuid)
 
         eq_(data['is_refundable'], False)
@@ -428,16 +431,43 @@ class TestTransactionSummary(TestCase):
 
     @mock.patch('mkt.lookup.views.client')
     def test_refund_status(self, solitude):
-        solitude.api.bango.refund.status.get.return_value = {'status': PENDING}
+        solitude.api.bango.refund.status.get_object_or_404.return_value = (
+            {'status': PENDING})
+        solitude.api.generic.transaction.get_object_or_404.return_value = (
+            {'uid_support': 'foo', 'provider': 2})
 
         self.create_test_refund()
         data = _transaction_summary(self.uuid)
 
+        eq_(data['support'], 'foo')
         eq_(data['refund_status'], SOLITUDE_REFUND_STATUSES[PENDING])
 
     @mock.patch('mkt.lookup.views.client')
+    def test_transaction_status(self, solitude):
+        solitude.api.generic.transaction.get_object_or_404.return_value = (
+            {'uid_support': 'foo', 'provider': 2})
+
+        self.create_test_refund()
+        data = _transaction_summary(self.uuid)
+
+        eq_(data['support'], 'foo')
+        eq_(data['provider'], 'reference')
+
+    @mock.patch('mkt.lookup.views.client')
+    def test_transaction_fails(self, solitude):
+        solitude.api.generic.transaction.get_object_or_404.side_effect = (
+            ObjectDoesNotExist)
+
+        self.create_test_refund()
+        data = _transaction_summary(self.uuid)
+
+        eq_(data['support'], None)
+        eq_(data['lookup']['transaction'], False)
+
+    @mock.patch('mkt.lookup.views.client')
     def test_is_refundable(self, solitude):
-        solitude.api.bango.refund.status.get.return_value = {'status': PENDING}
+        solitude.api.bango.refund.status.get_object_or_404.return_value = (
+            {'status': PENDING})
 
         self.contrib.update(type=mkt.CONTRIB_PURCHASE)
         data = _transaction_summary(self.uuid)

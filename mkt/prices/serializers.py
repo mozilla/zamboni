@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from mkt.constants.payments import PROVIDER_LOOKUP
+from mkt.constants.payments import PROVIDER_LOOKUP_INVERTED
 from mkt.prices.models import Price, price_locale
 
 
@@ -16,7 +16,7 @@ class PriceSerializer(serializers.ModelSerializer):
     def get_prices(self, obj):
         provider = self.context['request'].GET.get('provider', None)
         if provider:
-            provider = PROVIDER_LOOKUP[provider]
+            provider = PROVIDER_LOOKUP_INVERTED[provider]
         return obj.prices(provider=provider)
 
     def get_localized_prices(self, obj):
