@@ -24,9 +24,3 @@ def get_user():
 
 def set_user(user):
     _locals.user = user
-
-
-# We need to import waffle here to avoid a circular import with jingo which
-# loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
-# import jingo.
-import waffle
