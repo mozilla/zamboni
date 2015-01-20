@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-18 21:04+0000\n"
+"PO-Revision-Date: 2015-01-20 23:00+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421615064.0\n"
+"X-POOTLE-MTIME: 1421794800.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -547,43 +547,43 @@ msgstr "Płaśizna"
 #: mkt/account/utils.py:65 mkt/developers/forms_payments.py:618 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
-msgstr ""
+msgstr "Mě"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Wubjeŕśo płaśiwu opciju. %(value)s njejo k dispoziciji stojeca opcija."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Pólo musy nanejmjenjej {num} znamuškow dłujke byś."
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Rěcny kod {lang_code} jo njepłaśiwy."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznaty"
 
 #: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:176 mkt/submit/forms.py:314
 msgid "Yes"
-msgstr ""
+msgstr "Jo"
 
 #: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:177 mkt/submit/forms.py:315
 msgid "No"
-msgstr ""
+msgstr "Ně"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Formular njedajo se wótpósłaś."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "Tekst notice jo prozny."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Njepłaśiwy typ notice."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
@@ -599,7 +599,7 @@ msgstr "Wopisanje:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Pśidank pśekšaca maksimalnu wjelikosć %s."
 
 #: mkt/comm/serializers.py:54
 msgid "Mozilla"
@@ -607,7 +607,7 @@ msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Wikowanišćo Firefox jo oficielne žrědło nałoženjow za webplatformu."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
@@ -624,27 +624,27 @@ msgstr "Firefox Tablet"
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:44 mkt/search/forms.py:51
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: mkt/constants/apps.py:9
 msgid "User"
-msgstr ""
+msgstr "Wužywaŕ"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr ""
+msgstr "Pśepytowaŕ"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
-msgstr ""
+msgstr "Wuwijaŕ"
 
 #: mkt/constants/bango.py:19
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afghanistan"
 
 #: mkt/constants/bango.py:20
 msgid "Åland Islands"
-msgstr ""
+msgstr "Åland-kupy"
 
 #: mkt/constants/bango.py:21
 msgid "Albania"
@@ -700,39 +700,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbajdžan"
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamy"
 
 #: mkt/constants/bango.py:36
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrain"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:71
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladeš"
 
 #: mkt/constants/bango.py:38
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: mkt/constants/bango.py:39
 msgid "Belarus"
-msgstr ""
+msgstr "Běłoruska"
 
 #: mkt/constants/bango.py:40
 msgid "Belgium"
-msgstr ""
+msgstr "Belgiska"
 
 #: mkt/constants/bango.py:41
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: mkt/constants/bango.py:42
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: mkt/constants/bango.py:43
 msgid "Bermuda"
@@ -772,39 +772,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei Darussalam"
 
 #: mkt/constants/bango.py:53
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgarska"
 
 #: mkt/constants/bango.py:54
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: mkt/constants/bango.py:55
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: mkt/constants/bango.py:56
 msgid "Cambodia"
-msgstr ""
+msgstr "Kambodža"
 
 #: mkt/constants/bango.py:57
 msgid "Cameroon"
-msgstr ""
+msgstr "Kamerun"
 
 #: mkt/constants/bango.py:58
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr ""
+msgstr "Kapwerdiske kupy"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Kaimanske kupy"
 
 #: mkt/constants/bango.py:61
 msgid "Central African Republic"
@@ -844,39 +844,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "Kongo, Demokratiska republika"
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
-msgstr ""
+msgstr "Cookske kupy"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:76
 msgid "Costa Rica"
-msgstr ""
+msgstr "Kosta Rika"
 
 #: mkt/constants/bango.py:73
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "Słonokósćowy pśibrjog"
 
 #: mkt/constants/bango.py:74
 msgid "Croatia"
-msgstr ""
+msgstr "Chorwatska"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr ""
+msgstr "Kuba"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
-msgstr ""
+msgstr "Curaçao"
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
-msgstr ""
+msgstr "Cypern"
 
 #: mkt/constants/bango.py:78 mkt/constants/regions.py:77
 msgid "Czech Republic"
-msgstr ""
+msgstr "Česka republika"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark Do"
@@ -916,39 +916,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
-msgstr ""
+msgstr "Estniska"
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr ""
+msgstr " Etiopiska"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Falklandske kupy (Malwiny)"
 
 #: mkt/constants/bango.py:91
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Färöske kupy"
 
 #: mkt/constants/bango.py:92
 msgid "Fiji"
-msgstr ""
+msgstr "Fidži"
 
 #: mkt/constants/bango.py:93
 msgid "Finland"
-msgstr ""
+msgstr "Finska"
 
 #: mkt/constants/bango.py:94 mkt/constants/regions.py:81
 msgid "France"
-msgstr ""
+msgstr "Francojska"
 
 #: mkt/constants/bango.py:95
 msgid "French Guiana"
-msgstr ""
+msgstr "Francojska Guayana"
 
 #: mkt/constants/bango.py:96
 msgid "French Polynesia"
-msgstr ""
+msgstr "Francojska Polyneziska"
 
 #: mkt/constants/bango.py:97
 msgid "French Southern Territories"
@@ -988,39 +988,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:106
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: mkt/constants/bango.py:107
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadeloupe"
 
 #: mkt/constants/bango.py:108
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:109 mkt/constants/regions.py:84
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:110
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: mkt/constants/bango.py:111
 msgid "Guinea"
-msgstr ""
+msgstr "Guineja"
 
 #: mkt/constants/bango.py:112
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guineja-Bissau"
 
 #: mkt/constants/bango.py:113
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 #: mkt/constants/bango.py:114
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
