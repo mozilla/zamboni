@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-21 10:09+0000\n"
+"PO-Revision-Date: 2015-01-21 22:16+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421834953.0\n"
+"X-POOTLE-MTIME: 1421878608.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -652,11 +652,11 @@ msgstr "Albańska"
 
 #: mkt/constants/bango.py:22
 msgid "Algeria"
-msgstr ""
+msgstr "Algeriska"
 
 #: mkt/constants/bango.py:23
 msgid "American Samoa"
-msgstr ""
+msgstr "Amerikańska Samoa"
 
 #: mkt/constants/bango.py:24
 msgid "Andorra"
@@ -672,31 +672,31 @@ msgstr "Anguilla"
 
 #: mkt/constants/bango.py:27
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktis"
 
 #: mkt/constants/bango.py:28
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Antigua a Barbuda"
 
 #: mkt/constants/bango.py:29 mkt/constants/regions.py:70
 msgid "Argentina"
-msgstr ""
+msgstr "Argentinska"
 
 #: mkt/constants/bango.py:30
 msgid "Armenia"
-msgstr ""
+msgstr "Armeńska"
 
 #: mkt/constants/bango.py:31
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: mkt/constants/bango.py:32
 msgid "Australia"
-msgstr ""
+msgstr "Awstralska"
 
 #: mkt/constants/bango.py:33
 msgid "Austria"
-msgstr ""
+msgstr "Awstriska"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
@@ -736,39 +736,39 @@ msgstr "Benin"
 
 #: mkt/constants/bango.py:43
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: mkt/constants/bango.py:44
 msgid "Bhutan"
-msgstr ""
+msgstr "Bhutan"
 
 #: mkt/constants/bango.py:45
 msgid "Bolivia"
-msgstr ""
+msgstr "Boliwiska"
 
 #: mkt/constants/bango.py:46
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Sint Eustatius a Saba"
 
 #: mkt/constants/bango.py:47
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosniska a Hercegowina"
 
 #: mkt/constants/bango.py:48
 msgid "Botswana"
-msgstr ""
+msgstr "Botswana"
 
 #: mkt/constants/bango.py:49
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet-kupa"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
 msgid "Brazil"
-msgstr ""
+msgstr "Brazilska"
 
 #: mkt/constants/bango.py:51
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "Britiski teritorium w Indiskem oceanje"
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
@@ -808,39 +808,39 @@ msgstr "Kaimanske kupy"
 
 #: mkt/constants/bango.py:61
 msgid "Central African Republic"
-msgstr ""
+msgstr "Centralnoafriska republika"
 
 #: mkt/constants/bango.py:62
 msgid "Chad"
-msgstr ""
+msgstr "Čad"
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:73
 msgid "Chile"
-msgstr ""
+msgstr "Chilska"
 
 #: mkt/constants/bango.py:64 mkt/constants/regions.py:74
 msgid "China"
-msgstr ""
+msgstr "Chinska"
 
 #: mkt/constants/bango.py:65
 msgid "Christmas Island"
-msgstr ""
+msgstr "Gódowna kupa"
 
 #: mkt/constants/bango.py:66
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Kokoske (Keelingske) kupy"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:75
 msgid "Colombia"
-msgstr ""
+msgstr "Kolumbiska"
 
 #: mkt/constants/bango.py:68
 msgid "Comoros"
-msgstr ""
+msgstr "Komory"
 
 #: mkt/constants/bango.py:69
 msgid "Congo"
-msgstr ""
+msgstr "Kongo"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
@@ -880,39 +880,39 @@ msgstr "Česka republika"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark Do"
-msgstr ""
+msgstr "Dańska"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
-msgstr ""
+msgstr "Džibuti"
 
 #: mkt/constants/bango.py:81
 msgid "Dominica"
-msgstr ""
+msgstr "Dominika"
 
 #: mkt/constants/bango.py:82
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominikańska republika"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:79
 msgid "Ecuador"
-msgstr ""
+msgstr "Ekuador"
 
 #: mkt/constants/bango.py:84
 msgid "Egypt"
-msgstr ""
+msgstr "Egyptojska"
 
 #: mkt/constants/bango.py:85 mkt/constants/regions.py:97
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: mkt/constants/bango.py:86
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Ekwatorialna Guineja"
 
 #: mkt/constants/bango.py:87
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritreja"
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
@@ -952,7 +952,7 @@ msgstr "Francojska Polyneziska"
 
 #: mkt/constants/bango.py:97
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Francojske pódpołdnjowe teritoriumy"
 
 #: mkt/constants/bango.py:98
 msgid "Gabon"
@@ -1028,39 +1028,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Swěty stoł (Vatikańske město)"
 
 #: mkt/constants/bango.py:117
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: mkt/constants/bango.py:118
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hongkong"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:85
 msgid "Hungary"
-msgstr ""
+msgstr "Hungorska"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
-msgstr ""
+msgstr "Islandska"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:86
 msgid "India"
-msgstr ""
+msgstr "Indiska"
 
 #: mkt/constants/bango.py:122
 msgid "Indonesia"
-msgstr ""
+msgstr "Indoneziska"
 
 #: mkt/constants/bango.py:123
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "Iran, Islamska republika"
 
 #: mkt/constants/bango.py:124
 msgid "Iraq"
-msgstr ""
+msgstr "Irak"
 
 #: mkt/constants/bango.py:125
 msgid "Ireland"
@@ -1100,39 +1100,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:134
 msgid "Kenya"
-msgstr ""
+msgstr "Kenija"
 
 #: mkt/constants/bango.py:135
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "Koreja, Demokratiska ludowa republika"
 
 #: mkt/constants/bango.py:137
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Koreja, Republika"
 
 #: mkt/constants/bango.py:138
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosowo"
 
 #: mkt/constants/bango.py:139
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: mkt/constants/bango.py:140
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirgizistan"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "Laos, Demokratiska ludowa republika"
 
 #: mkt/constants/bango.py:142
 msgid "Latvia"
-msgstr ""
+msgstr "Letiska"
 
 #: mkt/constants/bango.py:143
 msgid "Lebanon"
@@ -1172,27 +1172,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagaskar"
 
 #: mkt/constants/bango.py:153
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: mkt/constants/bango.py:154
 msgid "Malaysia"
-msgstr ""
+msgstr "Malajzija"
 
 #: mkt/constants/bango.py:155
 msgid "Maldives"
-msgstr ""
+msgstr "Malediwy"
 
 #: mkt/constants/bango.py:156
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: mkt/constants/bango.py:157
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: mkt/constants/bango.py:158
 msgid "Marshall Islands"
