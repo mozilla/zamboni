@@ -30,10 +30,10 @@ from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Preview, Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
-                               fake_app_names, fix_excluded_regions,
-                               generate_app_data, notify_developers_of_failure,
-                               pre_generate_apk, PreGenAPKError, rm_directory,
-                               update_manifests, zip_apps)
+                               fix_excluded_regions,
+                               notify_developers_of_failure, pre_generate_apk,
+                               PreGenAPKError, rm_directory, update_manifests,
+                               zip_apps)
 
 
 original = {
@@ -715,51 +715,6 @@ class TestExportData(mkt.site.tests.TestCase):
         actual_files = tarball.getnames()
         for expected_file in expected_files:
             assert expected_file in actual_files, expected_file
-
-
-class AppGeneratorTests(mkt.site.tests.TestCase):
-    def test_tinyset(self):
-        size = 4
-        data = list(generate_app_data(size))
-        eq_(len(data), size)
-        ctr = collections.defaultdict(int)
-        for appname, cat in data:
-            ctr[cat] += 1
-        # Apps are binned into categories, at least 3 in each.
-        eq_(ctr.values(), [4])
-        # Names are unique.
-        eq_(len(set(appname for appname, cat in data)), size)
-        # Size is smaller than name list, so no names end in numbers.
-        ok_(not any(appname[-1].isdigit() for appname, cat in data))
-
-    def test_smallset(self):
-        size = 60
-        data = list(generate_app_data(size))
-        eq_(len(data), size)
-        ctr = collections.defaultdict(int)
-        for appname, cat in data:
-            ctr[cat] += 1
-        eq_(set(ctr.values()), set([3, 4]))
-        eq_(len(set(appname for appname, cat in data)), size)
-        ok_(not any(appname[-1].isdigit() for appname, cat in data))
-
-    def test_bigset(self):
-        size = 300
-        data = list(generate_app_data(size))
-        eq_(len(data), size)
-        ctr = collections.defaultdict(int)
-        for appname, cat in data:
-            ctr[cat] += 1
-        # Apps are spread between categories evenly - the difference between
-        # the largest and smallest category is less than 2.
-        ok_(max(ctr.values()) - min(ctr.values()) < 2)
-        eq_(len(set(appname for appname, cat in data)), size)
-        # Every name is used without a suffix.
-        eq_(sum(1 for appname, cat in data if not appname[-1].isdigit()),
-            len(fake_app_names))
-        # Every name is used with ' 1' as a suffix.
-        eq_(sum(1 for appname, cat in data if appname.endswith(' 1')),
-            len(fake_app_names))
 
 
 class TestFixExcludedRegions(mkt.site.tests.TestCase):
