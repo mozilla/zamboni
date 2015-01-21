@@ -15,7 +15,8 @@ RUN yum install -y redis \
     gcc-c++ \
     npm \
     wget \
-    totem
+    totem \
+    supervisor
 
 RUN mkdir -p /pip/{cache,build}
 
