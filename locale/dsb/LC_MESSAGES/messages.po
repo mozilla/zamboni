@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-22 14:47+0000\n"
+"PO-Revision-Date: 2015-01-22 23:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421938035.0\n"
+"X-POOTLE-MTIME: 1421969670.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1136,39 +1136,39 @@ msgstr "Letiska"
 
 #: mkt/constants/bango.py:143
 msgid "Lebanon"
-msgstr ""
+msgstr "Libanon"
 
 #: mkt/constants/bango.py:144
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: mkt/constants/bango.py:145
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Libyska"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Liechtensteinska"
 
 #: mkt/constants/bango.py:148
 msgid "Lithuania"
-msgstr ""
+msgstr "Litawska"
 
 #: mkt/constants/bango.py:149
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburgska"
 
 #: mkt/constants/bango.py:150
 msgid "Macao"
-msgstr ""
+msgstr "Makao"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "Makedońska, Něgajšna jugosłowjańska republika"
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
@@ -1196,7 +1196,7 @@ msgstr "Malta"
 
 #: mkt/constants/bango.py:158
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Maršalske kupy"
 
 #: mkt/constants/bango.py:159
 msgid "Martinique"
@@ -1236,35 +1236,35 @@ msgstr "Mongolska"
 
 #: mkt/constants/bango.py:168 mkt/constants/regions.py:90
 msgid "Montenegro"
-msgstr ""
+msgstr "Carnogórska"
 
 #: mkt/constants/bango.py:169
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: mkt/constants/bango.py:170
 msgid "Morocco"
-msgstr ""
+msgstr "Marokko"
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
-msgstr ""
+msgstr "Mosambik"
 
 #: mkt/constants/bango.py:172
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: mkt/constants/bango.py:173
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: mkt/constants/bango.py:174
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: mkt/constants/bango.py:175
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: mkt/constants/bango.py:176
 msgid "Netherlands"
@@ -1380,39 +1380,39 @@ msgstr "Ruanda"
 
 #: mkt/constants/bango.py:204
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "Saint Barthélemy"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
-msgstr ""
+msgstr "Saint Helena"
 
 #: mkt/constants/bango.py:206
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "Saint Kitts a Nevis"
 
 #: mkt/constants/bango.py:207
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Saint Lucia"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr ""
+msgstr "Saint Martin"
 
 #: mkt/constants/bango.py:209
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Saint Pierre a Miquelon"
 
 #: mkt/constants/bango.py:210
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "Saint Vincent a Grenadiny"
 
 #: mkt/constants/bango.py:211
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: mkt/constants/bango.py:212
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: mkt/constants/bango.py:213
 msgid "Sao Tome and Principe"
