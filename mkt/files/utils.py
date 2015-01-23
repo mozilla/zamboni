@@ -105,6 +105,12 @@ class WebAppParser(object):
 
     def parse(self, fileorpath):
         data = self.get_json_data(fileorpath)
+
+        if data.get('role') == 'langpack':
+            raise forms.ValidationError(
+                _(u'The "langpack" role is invalid for Web Apps. Please submit'
+                  u' this app as a language pack instead.'))
+
         loc = data.get('default_locale', translation.get_language())
         default_locale = self.trans_locale(loc)
         locales = data.get('locales', {})

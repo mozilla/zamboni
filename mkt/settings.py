@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'mkt.files',
     'mkt.fireplace',
     'mkt.inapp',
+    'mkt.langpacks',
     'mkt.lookup',
     'mkt.monolith',
     'mkt.operators',

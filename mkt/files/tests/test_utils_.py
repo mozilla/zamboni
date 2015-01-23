@@ -1,13 +1,42 @@
 from django import forms
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import mkt.site.tests
 from mkt.files.utils import WebAppParser
 
 
 class TestWebAppParser(mkt.site.tests.TestCase):
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
+    def test_langpack_role(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'role': 'langpack'
+        }
+        with self.assertRaises(forms.ValidationError) as e:
+            # The argument to parse() is supposed to be a filename, it doesn't
+            # matter here though since we are mocking get_json_data().
+            WebAppParser().parse('')
+        eq_(e.exception.messages,
+            [u'The "langpack" role is invalid for Web Apps. Please submit'
+             u' this app as a language pack instead.'])
+
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
+    def test_homescreen_role(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'role': 'homescreen'
+        }
+        # The argument to parse() is supposed to be a filename, it doesn't
+        # matter here though since we are mocking get_json_data().
+        ok_(WebAppParser().parse(''))
 
     @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_no_developer_name(self, get_json_data):
