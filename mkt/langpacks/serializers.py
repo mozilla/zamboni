@@ -33,8 +33,6 @@ class LangPackUploadSerializer(serializers.Serializer):
         return self.object
 
     def restore_object(self, attrs, instance=None):
-        # FIXME: make updating existing LangPack instance work (i.e.
-        # make sure instance/self.object/obj is correct).
         try:
             return LangPack.from_upload(attrs['upload'], instance=instance)
         except serializers.ValidationError, e:
