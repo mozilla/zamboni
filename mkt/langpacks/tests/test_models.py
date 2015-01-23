@@ -15,8 +15,8 @@ from mkt.langpacks.models import LangPack
 from mkt.site.tests import TestCase
 
 
-class TestLangPackUpload(UploadTest):
-    def upload(self, name):
+class UploadCreationMixin(object):
+    def upload(self, name, **kwargs):
         if os.path.splitext(name)[-1] not in ['.webapp', '.zip']:
             name = name + '.zip'
 
@@ -25,10 +25,17 @@ class TestLangPackUpload(UploadTest):
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
                 copyfileobj(open(fname), fs)
-        d = dict(path=fname, name=name,
-                 hash='sha256:%s' % name, validation=v)
-        return FileUpload.objects.create(**d)
+        data = {
+            'path': fname,
+            'name': name,
+            'hash': 'sha256:%s' % name,
+            'validation': v
+        }
+        data.update(**kwargs)
+        return FileUpload.objects.create(**data)
 
+
+class TestLangPackUpload(UploadTest, UploadCreationMixin):
     def test_upload_new(self):
         eq_(LangPack.objects.count(), 0)
         upload = self.upload('langpack')
