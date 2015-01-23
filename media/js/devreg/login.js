@@ -53,9 +53,8 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         if (options.action) {
             fxa_auth_url += '&action=' + options.action;
         }
-        window.open(fxa_auth_url,
-                    'fxa',
-                    'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+        var popup = window.open(fxa_auth_url, 'fxa',
+            'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
 
         window.addEventListener("message", function (msg) {
             if (!msg.data || !msg.data.auth_code) {
@@ -71,6 +70,9 @@ define('login', ['notification', 'storage'], function(notification, storage) {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 dataType: 'json'}).done(finishLogin);
+
+            // Close popup on receipt of message.
+            popup.close();
         });
     }
 
