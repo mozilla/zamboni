@@ -19,16 +19,16 @@ class TestLangPackViewSet(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestLangPackViewSetCreate, self).setUp()
+        super(TestLangPackViewSet, self).setUp()
         self.url = reverse('api-v2:langpack-list')
+        self.detail_url = reverse('api-v2:langpack-detail', kwargs={'pk': 42})
         self.user = UserProfile.objects.get(pk=2519)
 
-    def test_allowed_verbs(self):
-        pass
-
     def test_cors(self):
-        self.assertCORS(self.anon.options(self.url), 'get', 'delete',
-                                                     'patch', 'post', 'put')
+        self.assertCORS(self.anon.options(self.detail_url),
+                        'get', 'delete', 'patch', 'post', 'put')
+        self.assertCORS(self.anon.options(self.url),
+                        'get', 'delete', 'patch', 'post', 'put')
 
 
 class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
