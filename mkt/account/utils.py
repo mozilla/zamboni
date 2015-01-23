@@ -1,62 +1,15 @@
-import datetime
-import time
-
 from django import http
-from django.conf import settings
-from django.core.signing import Signer
-from django.core.urlresolvers import reverse
 
-from jwkest.jws import JWS
-from jwkest.jwk import RSAKey, import_rsa_key_from_file
 from tower import ugettext_lazy as _lazy
 
 import mkt
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
-from mkt.site.helpers import absolutify
 from mkt.site.models import manual_order
-from mkt.site.utils import paginate, urlparams
+from mkt.site.utils import paginate
 from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Webapp
 from mkt.webapps.views import BaseFilter
-
-
-PREVERIFY_KEY = RSAKey(key=import_rsa_key_from_file(
-    settings.PREVERIFIED_ACCOUNT_KEY), kid=1)
-
-
-def get_token_expiry(expiry):
-    expire_time = datetime.datetime.now() + expiry
-    return time.mktime(expire_time.timetuple())
-
-
-def fxa_preverify_token(user, expiry):
-    """
-    Takes a user and a timedelta and generates a preverify token for FxA OAuth.
-    See https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#preverifytoken
-    for details.
-    """
-    msg = {
-        'exp': get_token_expiry(expiry),
-        'aud': settings.FXA_AUTH_DOMAIN,
-        'sub': user.email,
-        'typ': 'mozilla/fxa/preVerifyToken/v1',
-    }
-    jws = JWS(msg, cty='JWT', alg='RS256',
-              kid=PREVERIFY_KEY.kid,
-              jku=absolutify(reverse('fxa-preverify-key')))
-    return jws.sign_compact([PREVERIFY_KEY])
-
-
-def fxa_preverify_url(user, expiry):
-    return urlparams('{0}/v1/authorization'.format(settings.FXA_OAUTH_URL),
-                     action='signup',
-                     client_id=settings.FXA_CLIENT_ID,
-                     email=user.email,
-                     preVerifyToken=fxa_preverify_token(user, expiry),
-                     scope='profile',
-                     state=Signer().sign(user.pk)
-                     )
 
 
 class PurchasesFilter(BaseFilter):

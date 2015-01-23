@@ -119,7 +119,6 @@ def commonplace(request, repo, **kwargs):
         'dev_pay_providers': settings.DEV_PAY_PROVIDERS,
         'fxa_auth_state': fxa_auth_state,
         'fxa_auth_url': fxa_auth_url,
-        'fxa_css_path': settings.FXA_CSS_PATH,
     }
 
     ctx = {

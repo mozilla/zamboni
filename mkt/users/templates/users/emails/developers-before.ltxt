@@ -1,6 +1,0 @@
-{% extends 'users/emails/base.ltxt' -%}
-{% block content %}
-{% trans %}Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts.{% endtrans %}
-
-{% trans %}When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link.{% endtrans %}
-{% endblock %}

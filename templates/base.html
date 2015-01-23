@@ -44,9 +44,6 @@
         data-fxa-state="{{ fxa_state }}"
         data-fxa-login-url="{{ fxa_url }}"
         data-fxa-auth-url="{{ url('fxa-account-login') }}"
-        {% if waffle.switch('fx-accounts-migration') %}
-          data-fxa-migrate-url="{{ settings.FXA_MIGRATION_URL }}"
-        {% endif %}
         data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
         data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>
@@ -111,20 +108,6 @@
           {% endif %}
         </div>
       </div>
-    {% endif %}
-    {% if waffle.switch('fx-accounts-migration') and
-          (not logged or user.can_migrate_to_fxa()) %}
-      <mkt-banner id="fxa-migration-banner" class="mkt-cloak" success dismiss="off">
-        <span>
-          {{ _('Firefox Accounts has arrived') }}
-        </span>
-        <mkt-login link>
-          {{ _("Learn how to transfer your account") }}
-        </mkt-login>
-        <small>
-          {{ _("It's easy.") }}
-        </small>
-      </mkt-banner>
     {% endif %}
 
     <div id="wrap">
