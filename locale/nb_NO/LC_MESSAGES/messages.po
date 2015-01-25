@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-25 02:19+0000\n"
+"PO-Revision-Date: 2015-01-25 21:50+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422152343.0\n"
+"X-POOTLE-MTIME: 1422222611.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1231,7 +1231,7 @@ msgstr "Montserrat"
 
 #: mkt/constants/bango.py:170
 msgid "Morocco"
-msgstr ""
+msgstr "Marokko"
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
@@ -1355,115 +1355,115 @@ msgstr "Réunion"
 
 #: mkt/constants/bango.py:201
 msgid "Romania"
-msgstr ""
+msgstr "Romania"
 
 #: mkt/constants/bango.py:202
 msgid "Russian Federation"
-msgstr ""
+msgstr "Russland"
 
 #: mkt/constants/bango.py:203
 msgid "Rwanda"
-msgstr ""
+msgstr "Rwanda"
 
 #: mkt/constants/bango.py:204
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "Saint-Barthélemy"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
-msgstr ""
+msgstr "St. Helena"
 
 #: mkt/constants/bango.py:206
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "Saint Kitts og Nevis"
 
 #: mkt/constants/bango.py:207
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Saint Lucia"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr ""
+msgstr "Saint Martin"
 
 #: mkt/constants/bango.py:209
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Saint-Pierre og Miquelon"
 
 #: mkt/constants/bango.py:210
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "Saint Vincent og Grenadinene"
 
 #: mkt/constants/bango.py:211
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: mkt/constants/bango.py:212
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: mkt/constants/bango.py:213
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "São Tomé og Príncipe"
 
 #: mkt/constants/bango.py:214
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Saudi-Arabia"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:98
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Serbia og Montenegro"
 
 #: mkt/constants/bango.py:218
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychellene"
 
 #: mkt/constants/bango.py:219
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leone"
 
 #: mkt/constants/bango.py:220
 msgid "Singapore"
-msgstr ""
+msgstr "Singapore"
 
 #: mkt/constants/bango.py:221
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "Sint Maarten (Nederlansk del)"
 
 #: mkt/constants/bango.py:222
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovakia"
 
 #: mkt/constants/bango.py:223
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovenia"
 
 #: mkt/constants/bango.py:224
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Salomonøyene"
 
 #: mkt/constants/bango.py:225
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:102
 msgid "South Africa"
-msgstr ""
+msgstr "Sør-Afrika"
 
 #: mkt/constants/bango.py:227
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Sør-Georgia og Sør-Sandwichøyene"
 
 #: mkt/constants/bango.py:228
 msgid "South Sudan"
-msgstr ""
+msgstr "Sør-Sudan"
 
 #: mkt/constants/bango.py:229 mkt/constants/regions.py:80
 msgid "Spain"
@@ -1479,7 +1479,7 @@ msgstr "Sudan"
 
 #: mkt/constants/bango.py:232
 msgid "Suriname"
-msgstr ""
+msgstr "Surinam"
 
 #: mkt/constants/bango.py:233
 msgid "Svalbard and Jan Mayen"
@@ -1499,7 +1499,7 @@ msgstr "Sveits"
 
 #: mkt/constants/bango.py:237
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Syria"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
@@ -1623,11 +1623,11 @@ msgstr "Jemen"
 
 #: mkt/constants/bango.py:268
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: mkt/constants/bango.py:269
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:149
 msgid "Incomplete"
@@ -1639,11 +1639,11 @@ msgstr "Venter på godkjenning"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Publisert"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Utestengt fra Marketplace"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1655,11 +1655,11 @@ msgstr "Blokkert"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Ulistet"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Foreldet"
 
 #: mkt/constants/base.py:108 mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
@@ -1757,75 +1757,75 @@ msgstr "Level 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "Bøker"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Forretning"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Undervisning"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Underholdning"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "Spill"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Helse og trening"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "Livsstil"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Kart og navigasjon"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "Musikk"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "Nyheter og vær"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "Foto og video"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "Produktivitet"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "Oppslagsverk"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "Shopping"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "Sosialt"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "Reise"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
-msgstr ""
+msgstr "Hjelpemidler"
 
 #: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
