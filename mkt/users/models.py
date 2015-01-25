@@ -222,10 +222,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         yield
         tower.activate(old)
 
-    def can_migrate_to_fxa(self):
-        return (waffle.switch_is_active('fx-accounts-migration')
-                and self.source != mkt.LOGIN_SOURCE_FXA)
-
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')

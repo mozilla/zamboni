@@ -8,11 +8,6 @@
     });
 })(require);
 
-// Do this right away so it doesn't appear and get removed.
-if (require('storage').getItem('fxa-migrated')) {
-    $('#fxa-migration-banner').remove();
-}
-
 $(document).ready(function() {
 
     // Show daily message if it hasn't been seen yet

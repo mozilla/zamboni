@@ -1,4 +1,3 @@
-import datetime
 import hashlib
 import hmac
 import json
@@ -7,7 +6,6 @@ import urlparse
 
 from django import http
 from django.conf import settings
-from django.core.signing import BadSignature, Signer
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
 from django.utils.datastructures import MultiValueDictKeyError
@@ -19,12 +17,9 @@ from django_statsd.clients import statsd
 
 from requests_oauthlib import OAuth2Session
 from rest_framework import status
-from rest_framework.decorators import (authentication_classes,
-                                       permission_classes)
 from rest_framework.exceptions import AuthenticationFailed, ParseError
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
-                                     RetrieveAPIView, RetrieveUpdateAPIView,
-                                     UpdateAPIView)
+                                     RetrieveAPIView, RetrieveUpdateAPIView)
 from rest_framework.mixins import ListModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -34,19 +29,17 @@ from rest_framework.viewsets import GenericViewSet
 import mkt
 from lib.metrics import record_action
 from mkt.users.models import UserProfile
-from mkt.users.tasks import send_fxa_mail
 from mkt.users.views import browserid_authenticate
 
-from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
-                                     FeedbackSerializer, FxALoginSerializer,
-                                     LoginSerializer, NewsletterSerializer,
+from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
+                                     FxALoginSerializer, LoginSerializer,
+                                     NewsletterSerializer,
                                      PermissionsSerializer)
-from mkt.account.utils import PREVERIFY_KEY, fxa_preverify_token
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowSelf, AllowOwner
-from mkt.api.base import CORSMixin, MarketplaceView, cors_api_view
+from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import log_cef
@@ -61,8 +54,8 @@ def user_relevant_apps(user):
     return {
         'developed': list(user.addonuser_set.filter(
             role=mkt.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True)),
-        'installed': list(user.installed_set.values_list('addon_id',
-            flat=True)),
+        'installed': list(user.installed_set.values_list(
+            'addon_id', flat=True)),
         'purchased': list(user.purchase_ids()),
     }
 
@@ -153,31 +146,6 @@ class AnonymousUserMixin(object):
         return user
 
 
-class AccountInfoView(AnonymousUserMixin, CORSMixin, RetrieveAPIView):
-    permission_classes = []
-    cors_allowed_methods = ['get']
-    # Only select users with an FxA source, everything else will be unkown.
-    queryset = UserProfile.objects.filter(
-        last_login_attempt__gt=datetime.datetime(2014, 4, 30))
-    serializer_class = AccountInfoSerializer
-    lookup_field = 'email'
-
-
-class ConfirmFxAVerificationView(AnonymousUserMixin, UpdateAPIView):
-    permission_classes = []
-    authentication_classes = []
-    queryset = UserProfile.objects.filter(is_verified=True)
-    lookup_field = 'email'
-
-    def update(self, request, *args, **kwargs):
-        user = self.get_object()
-        if user.is_verified:
-            send_fxa_mail.delay([user.pk], 'customers-during', True)
-            return Response({'notified': True})
-        else:
-            return Response({'notified': False})
-
-
 class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
     class FeedbackThrottle(UserRateThrottle):
         THROTTLE_RATES = {
@@ -222,7 +190,7 @@ def fxa_oauth_api(name):
     return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
 
 
-def find_or_create_user(email, fxa_uid, userid):
+def find_or_create_user(email, fxa_uid):
 
     def find_user(**kwargs):
         try:
@@ -230,8 +198,7 @@ def find_or_create_user(email, fxa_uid, userid):
         except UserProfile.DoesNotExist:
             return None
 
-    profile = (find_user(pk=userid) or find_user(username=fxa_uid)
-               or find_user(email=email))
+    profile = find_user(username=fxa_uid) or find_user(email=email)
     if profile:
         created = False
         profile.update(username=fxa_uid, email=email)
@@ -276,19 +243,13 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
             scope=u'profile',
             state=serializer.data['state'])
 
-        try:
-            # Maybe this was a preverified login to migrate a user.
-            userid = Signer().unsign(serializer.data['state'])
-        except BadSignature:
-            userid = None
-
         auth_response = serializer.data['auth_response']
         fxa_authorization = fxa_authorize(session, secret, auth_response)
 
         if 'user' in fxa_authorization:
             email = fxa_authorization['email']
             fxa_uid = fxa_authorization['user']
-            profile, created = find_or_create_user(email, fxa_uid, userid)
+            profile, created = find_or_create_user(email, fxa_uid)
             if created:
                 log_cef('New Account', 5, request, username=fxa_uid,
                         signature='AUTHNOTICE',
@@ -333,25 +294,6 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
         return data
 
 
-@cors_api_view(['POST'])
-@authentication_classes([RestOAuthAuthentication,
-                         RestSharedSecretAuthentication])
-@permission_classes([IsAuthenticated])
-def fxa_preverify_view(request):
-    if not request.user.is_verified:
-        return Response("User's email is not verified", status=403)
-
-    return http.HttpResponse(
-        fxa_preverify_token(request.user, datetime.timedelta(minutes=10)),
-        content_type='application/jwt')
-
-
-def fxa_preverify_key(request):
-    return http.HttpResponse(
-        json.dumps({'keys': [PREVERIFY_KEY.to_dict()]}),
-        content_type='application/jwk-set+json')
-
-
 class LoginView(CORSMixin, CreateAPIViewWithoutModel):
     authentication_classes = []
     serializer_class = LoginSerializer
@@ -360,8 +302,8 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
                 request, serializer.data['assertion'],
-                browserid_audience=serializer.data['audience'] or
-                                   get_audience(request),
+                browserid_audience=(serializer.data['audience'] or
+                                    get_audience(request)),
                 is_mobile=serializer.data['is_mobile'],
             )
         if profile is None:

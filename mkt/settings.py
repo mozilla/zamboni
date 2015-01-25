@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'mkt.files',
     'mkt.fireplace',
     'mkt.inapp',
+    'mkt.langpacks',
     'mkt.lookup',
     'mkt.monolith',
     'mkt.operators',
@@ -711,8 +712,6 @@ FFMPEG_BINARY = 'ffmpeg'
 
 FXA_AUTH_DOMAIN = 'stable.dev.lcip.org'  # Domain only, no protocol.
 FXA_OAUTH_URL = 'https://oauth-' + FXA_AUTH_DOMAIN
-FXA_MIGRATION_URL = '/fxa-migration'
-FXA_CSS_PATH = 'fireplace/css/fxa.css'
 
 FXA_SECRETS = {
     # http://mp.dev - marketplace-docker.
@@ -982,9 +981,6 @@ PREINSTALL_TEST_PLAN_PATH = os.path.join(
     MEDIA_ROOT, PREINSTALL_TEST_PLAN_URL + '/en-US.xlsx')
 PREINSTALL_TEST_PLAN_LATEST = datetime.datetime.fromtimestamp(
     os.stat(PREINSTALL_TEST_PLAN_PATH).st_mtime)
-
-# The key we'll use to sign preverified-account assertions.
-PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
 
 # Number of days the webpay product icon is valid for.
 # After this period, the icon will be re-fetched from its external URL.

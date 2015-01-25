@@ -214,10 +214,10 @@ def cleanup_file(sender, instance, **kw):
     # Use getattr so the paths are accessed inside the try block.
     for path in ('file_path', 'guarded_file_path'):
         try:
-            filename = getattr(instance, path)
+            filename = getattr(instance, path, None)
         except models.ObjectDoesNotExist:
             return
-        if storage.exists(filename):
+        if filename and storage.exists(filename):
             log.info('Removing filename: %s for file: %s'
                      % (filename, instance.pk))
             storage.delete(filename)
