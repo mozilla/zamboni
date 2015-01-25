@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2015-01-24 23:40+0000\n"
+"PO-Revision-Date: 2015-01-25 00:59+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422142859.0\n"
+"X-POOTLE-MTIME: 1422147576.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -67,8 +67,8 @@ msgstr "Feil med {0}"
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "Validering av app mislykket med {0} feil."
-msgstr[1] "Validering av app mislykket med {0} feil."
+msgstr[0] "Validering av app feilet med {0} feil."
+msgstr[1] "Validering av app feilet med {0} feil."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
@@ -137,13 +137,13 @@ msgstr "Intern serverfeil ved app-installasjon."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr "Installering mislykket. Prøv igjen senere."
+msgstr "Installering feilet. Prøv igjen senere."
 
 #: media/js/devreg/devhub.js:218
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Validering av app var mislykket med {0} feil og {1} melding(er)."
-msgstr[1] "Validering av app var mislykket med {0} feil og {1} melding(er)."
+msgstr[0] "Validering av app feilet med {0} feil og {1} melding(er)."
+msgstr[1] "Validering av app var feilet med {0} feil og {1} melding(er)."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors and {0} message."
@@ -217,11 +217,13 @@ msgstr "Fjern denne oversettelsen"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-innlogging mislykket. Du har kanskje ikke en konto med den e-postadressen registrert?"
+msgstr ""
+"Persona-innlogging feilet. Har du kanskje ikke en konto med den "
+"e-postadressen registrert?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
+msgstr "Persona-innlogging feilet. En serverfeil oppstod."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
@@ -493,7 +495,7 @@ msgstr "Hopp over for nå"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr "Betaling mislykket. Prøv igjen senere."
+msgstr "Betaling feilet. Prøv igjen senere."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
@@ -549,7 +551,7 @@ msgstr "Feil under passering av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Feil ved feiling av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
