@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2014-07-06 20:06+0000\n"
+"PO-Revision-Date: 2015-01-24 23:51+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404677187.0\n"
+"X-POOTLE-MTIME: 1422143460.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -267,11 +267,11 @@ msgstr "{addon}-manifest oppdatert."
 
 #: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} godkjent, men privat."
 
 #: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:51
 msgid "Approved but private"
-msgstr ""
+msgstr "Godkjent, men privat"
 
 #: apps/amo/log.py:385
 msgid "{addon} purchased."
@@ -315,11 +315,11 @@ msgstr "Eskalering opphevet"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} utestengt."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "App utestengt."
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
@@ -391,7 +391,7 @@ msgstr "{addon} enhetsstøtte manuelt endret av anmelder."
 
 #: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Enhet(er) endret av anmelder."
 
 #: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
@@ -403,27 +403,27 @@ msgstr "Ny innsending av app"
 
 #: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} auto-eskalert fordi det er en VIP-app."
 
 #: apps/amo/log.py:522
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP auto-eskalering"
 
 #: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} revudert pågrunn av endring av manifest-URL."
 
 #: apps/amo/log.py:530
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Endring av manifest-url"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} auto-eskalert fordi appen er en forhåndsutgave."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Forhåndsutgave auto-eskalering"
 
 #: apps/amo/log.py:555
 msgid "Created: {0}."
@@ -497,19 +497,19 @@ msgstr "Bruker {0.name} {0.id} slettet via lookup-verktøy."
 
 #: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Innholdsvurdering for {addon} ble endret til voksen."
 
 #: apps/amo/log.py:661
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Innholdsvurdering for {addon} ble endret."
 
 #: apps/amo/log.py:666
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Prioritertsvurdering forespurt for {addon}."
 
 #: apps/amo/log.py:667
 msgid "Priority Review"
-msgstr ""
+msgstr "Prioritertsvurdering"
 
 #: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."

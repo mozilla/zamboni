@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:47-0700\n"
-"PO-Revision-Date: 2014-07-06 19:45+0000\n"
+"PO-Revision-Date: 2015-01-24 23:40+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404675954.0\n"
+"X-POOTLE-MTIME: 1422142859.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -165,11 +165,11 @@ msgstr "Skriv inn e-postadresse til nytt teammedlem"
 
 #: media/js/devreg/devhub.js:481
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest oppdatert"
 
 #: media/js/devreg/devhub.js:486
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Kunne ikke oppdatere manifest. Prøv igjen senere."
 
 #: media/js/devreg/devhub.js:667
 msgid "There was an error uploading your file."
@@ -201,11 +201,11 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Aktivert"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktivert"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -225,11 +225,11 @@ msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status er endret til \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Kunne ikke endre status til \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -362,7 +362,7 @@ msgstr "Søk i utvidelser etter <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Noe gikk galt. Prøv igjen."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -545,7 +545,7 @@ msgstr "Feil ved avvising av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Feil under passering av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
@@ -554,6 +554,8 @@ msgstr ""
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"En feil oppstod ved henting vurderingshistorikken. Prøv å logge inn på "
+"nytt.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
