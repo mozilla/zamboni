@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-22 23:34+0000\n"
+"PO-Revision-Date: 2015-01-25 21:49+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421969670.0\n"
+"X-POOTLE-MTIME: 1422222595.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1268,7 +1268,7 @@ msgstr "Nepal"
 
 #: mkt/constants/bango.py:176
 msgid "Netherlands"
-msgstr ""
+msgstr "Nižozemska"
 
 #: mkt/constants/bango.py:177
 msgid "New Caledonia"
@@ -1308,39 +1308,39 @@ msgstr "Norwegska"
 
 #: mkt/constants/bango.py:186
 msgid "Oman"
-msgstr ""
+msgstr "Oman"
 
 #: mkt/constants/bango.py:187
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: mkt/constants/bango.py:188
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Palestinske awtonomijowe teritoriumy"
 
 #: mkt/constants/bango.py:190 mkt/constants/regions.py:92
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: mkt/constants/bango.py:191
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua-Nowa Guineja"
 
 #: mkt/constants/bango.py:192
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:93
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:94
 msgid "Philippines"
-msgstr ""
+msgstr "Filipiny"
 
 #: mkt/constants/bango.py:195
 msgid "Pitcairn"
@@ -1452,35 +1452,35 @@ msgstr "Sint Maarten (nižozemski źěl)"
 
 #: mkt/constants/bango.py:222
 msgid "Slovakia"
-msgstr ""
+msgstr "Słowakska"
 
 #: mkt/constants/bango.py:223
 msgid "Slovenia"
-msgstr ""
+msgstr "Słowjeńska"
 
 #: mkt/constants/bango.py:224
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Salomony"
 
 #: mkt/constants/bango.py:225
 msgid "Somalia"
-msgstr ""
+msgstr "Somalija"
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:102
 msgid "South Africa"
-msgstr ""
+msgstr "Pódpołdnjowa Afrika"
 
 #: mkt/constants/bango.py:227
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Pódpołdnjowa Georgiska a pódpołdnjowe Sandwich-kupy"
 
 #: mkt/constants/bango.py:228
 msgid "South Sudan"
-msgstr ""
+msgstr "Pódpołdnjowy Sudan"
 
 #: mkt/constants/bango.py:229 mkt/constants/regions.py:80
 msgid "Spain"
-msgstr ""
+msgstr "Špańska"
 
 #: mkt/constants/bango.py:230
 msgid "Sri Lanka"
@@ -1592,39 +1592,39 @@ msgstr "Zjadnośone staty"
 
 #: mkt/constants/bango.py:257
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "United States Minor Outlying Islands"
 
 #: mkt/constants/bango.py:258 mkt/constants/regions.py:99
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: mkt/constants/bango.py:259
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Usbekistan"
 
 #: mkt/constants/bango.py:260
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: mkt/constants/bango.py:261
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Venezuela, Boliwarska republika"
 
 #: mkt/constants/bango.py:262
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: mkt/constants/bango.py:263
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Knježniske kupy, Britiske"
 
 #: mkt/constants/bango.py:264
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "Knježniske kupy, Amerikańske"
 
 #: mkt/constants/bango.py:265
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "Wallis a Futuna"
 
 #: mkt/constants/bango.py:266
 msgid "Western Sahara"
@@ -1664,41 +1664,41 @@ msgstr ""
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
-msgstr ""
+msgstr "Blokěrowany"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Njepódany"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Zestarjony"
 
 #: mkt/constants/base.py:108 mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
-msgstr ""
+msgstr "Wobsejźaŕ"
 
 #: mkt/constants/base.py:110 mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
-msgstr ""
+msgstr "Wobglědowaŕ"
 
 #: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:64
 msgid "Support"
-msgstr ""
+msgstr "Pomoc"
 
 #: mkt/constants/base.py:134 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:32
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
-msgstr ""
+msgstr "Dermo"
 
 #: mkt/constants/base.py:135 mkt/search/forms.py:34
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: mkt/constants/base.py:136
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium z płaśenim w nałoženju"
 
 #: mkt/constants/base.py:137
 msgid "Free with in-app payments"
@@ -1738,39 +1738,39 @@ msgstr ""
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Moderěrowane pśeglědowanje nałoženja"
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Pśeglědowanje Taroko-nałoženja"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
-msgstr ""
+msgstr "Schójźeńk 1"
 
 #: mkt/constants/base.py:231
 msgid "Level 2"
-msgstr ""
+msgstr "Schójźeńk 2"
 
 #: mkt/constants/base.py:232
 msgid "Level 3"
-msgstr ""
+msgstr "Schójźeńk 3"
 
 #: mkt/constants/base.py:233
 msgid "Level 4"
-msgstr ""
+msgstr "Schójźeńk 4"
 
 #: mkt/constants/base.py:234
 msgid "Level 5"
-msgstr ""
+msgstr "Schójźeńk 5"
 
 #: mkt/constants/base.py:235
 msgid "Level 6"
-msgstr ""
+msgstr "Schójźeńk 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "Knigły"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1810,39 +1810,39 @@ msgstr ""
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "Foto a wideo"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "Produktiwita"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "Pśirucnice"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "Nakupowanje"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "Socialne seśi"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "Drogowanje"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
-msgstr ""
+msgstr "Rědy"
 
 #: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
-msgstr ""
+msgstr "Rědy"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
@@ -1882,39 +1882,39 @@ msgstr ""
 
 #: mkt/constants/comm.py:59
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Pominanja změnjone pśez pśepytowarja"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Nowe pśeglědowanje změny manifesta dla"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Nowe pśeglědowanje změny manifestego URL dla"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Nowe pśeglědowanje aktualizacije premiumowego typa dla"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Nowe pśeglědowanje pśidanych rědow dla"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Nowe pśeglědowanje změnjonych pominanjow dla"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Nowe pśeglědowanje zastopnjowanja za dorosćone dla"
 
 #: mkt/constants/comm.py:66
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju VIP-nałoženja dla"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju nałoženja za pśedwózjawjenje dla"
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
@@ -1954,39 +1954,39 @@ msgstr ""
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Webpłaśenje"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozApps\"."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Webaktiwity"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Nałoženje pomina se webaktiwity (API \"MozActivity\")"
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Wokolinowy swětłosensor"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "Nałoženje pomina se wokolinowy swětłosensor (API \"ondevicelight\")"
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Archiw"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"ArchiveReader\"."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "Baterija"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
@@ -2026,39 +2026,41 @@ msgstr ""
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Prozny chód"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Nałoženje pomina se pódpěru API \"addIdleObserver\" na platformje."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
-msgstr ""
+msgstr "Seśowe informacije"
 
 #: mkt/constants/features.py:94
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Nałoženje pomina se móžnosć, informacije wó seśowem zwisku dostaś (API "
+"\"navigator.mozConnection)."
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
-msgstr ""
+msgstr "Seśowa statistika"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozNetworkStats\"."
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
-msgstr ""
+msgstr "Bliskosć"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Nałoženje pomina se bliskostny sensor (API \"ondeviceproximity\")."
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
-msgstr ""
+msgstr "Jadnory push"
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
@@ -2098,7 +2100,7 @@ msgstr ""
 
 #: mkt/constants/features.py:145
 msgid "Touch"
-msgstr ""
+msgstr "Dotyknjenje"
 
 #: mkt/constants/features.py:146
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
@@ -2106,7 +2108,7 @@ msgstr ""
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Wobrazowki we wjelikosći smartfona (qHD)"
 
 #: mkt/constants/features.py:153
 msgid ""
@@ -2120,7 +2122,7 @@ msgstr ""
 
 #: mkt/constants/features.py:168
 msgid "Audio"
-msgstr ""
+msgstr "Awdio"
 
 #: mkt/constants/features.py:169
 msgid "The app requires that the platform supports the HTML5 audio API."
@@ -2128,7 +2130,7 @@ msgstr ""
 
 #: mkt/constants/features.py:174
 msgid "Web Audio"
-msgstr ""
+msgstr "Webawdio"
 
 #: mkt/constants/features.py:175
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
@@ -2176,7 +2178,7 @@ msgstr ""
 
 #: mkt/constants/features.py:221
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:222
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -2192,7 +2194,7 @@ msgstr ""
 
 #: mkt/constants/features.py:234
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:235
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
@@ -2200,7 +2202,7 @@ msgstr ""
 
 #: mkt/constants/features.py:241
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:242
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
