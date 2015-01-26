@@ -15,36 +15,70 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
 
-class TestLangPackViewSet(RestOAuth):
+class TestLangPackViewSetMixin(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestLangPackViewSet, self).setUp()
-        self.url = reverse('api-v2:langpack-list')
-        self.detail_url = reverse('api-v2:langpack-detail', kwargs={'pk': 42})
+        super(TestLangPackViewSetMixin, self).setUp()
+        self.list_url = reverse('api-v2:langpack-list')
         self.user = UserProfile.objects.get(pk=2519)
+
+    def create_langpack(self, **kwargs):
+        data = {
+            'filename': 'dummy.zip',
+            'hash': 'dummy-hash',
+            'size': 666,
+            'active': True,
+            'version': '0.1',
+            'language': 'fr',
+            'fxos_version': '2.2'
+        }
+        data.update(kwargs)
+        return LangPack.objects.create(**data)
+
+
+class TestLangPackViewSetBase(TestLangPackViewSetMixin):
+    def setUp(self):
+        super(TestLangPackViewSetBase, self).setUp()
+        self.detail_url = reverse('api-v2:langpack-detail', kwargs={'pk': 42})
 
     def test_cors(self):
         self.assertCORS(self.anon.options(self.detail_url),
                         'get', 'delete', 'patch', 'post', 'put')
-        self.assertCORS(self.anon.options(self.url),
+        self.assertCORS(self.anon.options(self.list_url),
                         'get', 'delete', 'patch', 'post', 'put')
 
 
-class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
+class TestLangPackViewSetList(TestLangPackViewSetMixin, UploadCreationMixin, UploadTest):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestLangPackViewSetCreate, self).setUp()
-        self.url = reverse('api-v2:langpack-list')
-        self.user = UserProfile.objects.get(pk=2519)
+        super(TestLangPackViewSetList, self).setUp()
+        self.langpack = self.create_langpack()
+        self.detail_url = reverse('api-v2:langpack-detail',
+                                  kwargs={'pk': self.langpack.pk})
 
+    # Anonymously, you can view all active langpacks.
+    # Logged in view the right permission ('LangPacks', '%') you get them
+    # all if you use active=0.
+
+    def test_anonymous_detail(self):
+        response = self.anon.get(self.detail_url)
+        eq_(response.status_code, 200)
+
+    def test_anonymous_list(self):
+        response = self.anon.get(self.list_url)
+        eq_(response.status_code, 200)
+
+
+
+class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin, UploadTest):
     def test_anonymous(self):
-        response = self.anon.post(self.url)
+        response = self.anon.post(self.list_url)
         eq_(response.status_code, 403)
 
     def test_no_perms(self):
-        response = self.client.post(self.url)
+        response = self.client.post(self.list_url)
         eq_(response.status_code, 403)
 
     @patch('mkt.langpacks.serializers.LangPackUploadSerializer.is_valid',
@@ -54,20 +88,20 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
     def test_with_perm(self, mock_save, mock_is_valid):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url)
+        response = self.client.post(self.list_url)
         eq_(response.status_code, 201)
 
     def test_no_upload(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url)
+        response = self.client.post(self.list_url)
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'This field is required.']})
 
     def test_upload_does_not_exist(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url, data=json.dumps({
+        response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-non-existing-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
@@ -76,7 +110,7 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url, data=json.dumps({
+        response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
@@ -85,7 +119,7 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url, data=json.dumps({
+        response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'Upload not valid.']})
@@ -96,7 +130,7 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url, data=json.dumps({
+        response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'detail': [u'foo bar']})
@@ -106,7 +140,7 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
         upload = self.upload('langpack.zip', valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.post(self.url, data=json.dumps({
+        response = self.client.post(self.list_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 201)
         eq_(LangPack.objects.count(), 1)
@@ -119,27 +153,18 @@ class TestLangPackViewSetCreate(RestOAuth, UploadCreationMixin, UploadTest):
         eq_(response.data['active'], langpack.active)
 
 
-class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
-    fixtures = fixture('user_2519')
-
+class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, UploadTest):
     def setUp(self):
         super(TestLangPackViewSetUpdate, self).setUp()
-        self.create_langpack()
-        self.url = reverse('api-v2:langpack-detail',
-                           kwargs={'pk': self.langpack.pk})
-        self.user = UserProfile.objects.get(pk=2519)
-
-    def create_langpack(self):
-        self.langpack = LangPack.objects.create(
-            filename='dummy.zip', active=True, hash='dummy-hash',
-            version='0.1', language='fr', fxos_version='2.2')
-
+        self.langpack = self.create_langpack()
+        self.detail_url = reverse('api-v2:langpack-detail',
+                                  kwargs={'pk': self.langpack.pk})
     def test_anonymous(self):
-        response = self.anon.put(self.url)
+        response = self.anon.put(self.detail_url)
         eq_(response.status_code, 403)
 
     def test_no_perms(self):
-        response = self.client.put(self.url)
+        response = self.client.put(self.detail_url)
         eq_(response.status_code, 403)
 
     @patch('mkt.langpacks.serializers.LangPackUploadSerializer.is_valid',
@@ -149,20 +174,20 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
     def test_with_perm(self, mock_save, mock_is_valid):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url)
+        response = self.client.put(self.detail_url)
         eq_(response.status_code, 200)
 
     def test_no_upload(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url)
+        response = self.client.put(self.detail_url)
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'This field is required.']})
 
     def test_upload_does_not_exist(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-non-existing-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
@@ -171,7 +196,7 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
@@ -180,7 +205,7 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'Upload not valid.']})
@@ -191,7 +216,7 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'detail': [u'foo bar']})
@@ -200,7 +225,7 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         upload = self.upload('langpack.zip', valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
@@ -219,7 +244,7 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         upload = self.upload('langpack.zip', valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.put(self.url, data=json.dumps({
+        response = self.client.put(self.detail_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
@@ -234,33 +259,26 @@ class TestLangPackViewSetUpdate(RestOAuth, UploadCreationMixin, UploadTest):
         eq_(response.data['active'], langpack.active)
 
 
-class TestLangPackViewSetPartialUpdate(RestOAuth):
-    fixtures = fixture('user_2519')
-
+class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
     def setUp(self):
         super(TestLangPackViewSetPartialUpdate, self).setUp()
-        self.create_langpack()
-        self.url = reverse('api-v2:langpack-detail',
-                           kwargs={'pk': self.langpack.pk})
-        self.user = UserProfile.objects.get(pk=2519)
-
-    def create_langpack(self):
-        self.langpack = LangPack.objects.create(
-            filename='dummy.zip', active=True, hash='dummy-hash',
-            version='0.1', language='fr', fxos_version='2.2')
+        self.langpack = self.create_langpack()
+        self.detail_url = reverse('api-v2:langpack-detail',
+                                  kwargs={'pk': self.langpack.pk})
 
     def test_anonymous(self):
-        response = self.anon.patch(self.url)
+        response = self.anon.patch(self.detail_url)
         eq_(response.status_code, 403)
 
     def test_no_perms(self):
-        response = self.client.patch(self.url)
+        response = self.client.patch(self.detail_url)
         eq_(response.status_code, 403)
 
     def test_with_perm(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.patch(self.url, json.dumps({'active': False}))
+        response = self.client.patch(self.detail_url,
+                                     json.dumps({'active': False}))
         eq_(response.status_code, 200)
         eq_(response.data['active'], False)
         self.langpack.reload()
@@ -270,7 +288,7 @@ class TestLangPackViewSetPartialUpdate(RestOAuth):
     def test_not_allowed_fields(self):
         self.grant_permission(self.user, 'LangPacks:%')
 
-        response = self.client.patch(self.url, json.dumps({
+        response = self.client.patch(self.detail_url, json.dumps({
             'active': False,
             'filename': 'dummy-data',
             'fxos_version': 'dummy-data',
