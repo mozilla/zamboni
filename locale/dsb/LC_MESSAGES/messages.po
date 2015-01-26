@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-25 21:49+0000\n"
+"PO-Revision-Date: 2015-01-26 11:01+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422222595.0\n"
+"X-POOTLE-MTIME: 1422270062.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1484,7 +1484,7 @@ msgstr "Špańska"
 
 #: mkt/constants/bango.py:230
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: mkt/constants/bango.py:231
 msgid "Sudan"
@@ -1524,39 +1524,39 @@ msgstr "Tadžikistan"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tansanija, Zjadnośona republika"
 
 #: mkt/constants/bango.py:241
 msgid "Thailand"
-msgstr ""
+msgstr "Thailandska"
 
 #: mkt/constants/bango.py:242
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Pódzajtšny Timor"
 
 #: mkt/constants/bango.py:243
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: mkt/constants/bango.py:244
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: mkt/constants/bango.py:245
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: mkt/constants/bango.py:246
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad a Tobago"
 
 #: mkt/constants/bango.py:247
 msgid "Tunisia"
-msgstr ""
+msgstr "Tuneziska"
 
 #: mkt/constants/bango.py:248
 msgid "Turkey"
-msgstr ""
+msgstr "Turkojska"
 
 #: mkt/constants/bango.py:249
 msgid "Turkmenistan"
@@ -1628,35 +1628,35 @@ msgstr "Wallis a Futuna"
 
 #: mkt/constants/bango.py:266
 msgid "Western Sahara"
-msgstr ""
+msgstr "Pódwjacorna Sahara"
 
 #: mkt/constants/bango.py:267
 msgid "Yemen"
-msgstr ""
+msgstr "Jemen"
 
 #: mkt/constants/bango.py:268
 msgid "Zambia"
-msgstr ""
+msgstr "Sambija"
 
 #: mkt/constants/bango.py:269
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Simbabwe"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:149
 msgid "Incomplete"
-msgstr ""
+msgstr "Njedopołny"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
-msgstr ""
+msgstr "Caka na pśizwólenje"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Wózjawjony"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Z wikowanišća wuzamknjony"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1774,39 +1774,39 @@ msgstr "Knigły"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Pśekupniske"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Kubłanje"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Rozdrosćenje"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "Graśa"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Strowje a fitnes"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "Lifestyle"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Kórty a nawigacija"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "Powěsći a wjedro"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
@@ -1918,39 +1918,43 @@ msgstr "Dalejdaśe pśiducemu wušemu městnoju nałoženja za pśedwózjawjenje
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
-msgstr ""
+msgstr "Pśeglědowanje priority pominane"
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
-msgstr ""
+msgstr "Pśidatne pśeglědowanje wobstate"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr ""
+msgstr "Pśidatne pśeglědowanje njewobstate"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Wersijowe pokaze za pśepytowarja"
 
 #: mkt/constants/comm.py:72
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Zjawny pśepytowarski komentar"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API za zastojanje nałoženjow"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"Nałoženje pomina se API \"navigator.mozApps\" za instalěrowanje a zastojanje "
+"drugich nałoženjow."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API za instalěrowanje zapakowanych nałoženjow"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
+"Nałoženje pomina se API \"navigator.mozApps.installPackage\" za instalěrowanje "
+"drugich zapakowanych nałoženjow."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -2064,39 +2068,39 @@ msgstr "Jadnory push"
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozPush\"."
 
 #: mkt/constants/features.py:117
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Wusměrjenje wobrazowki"
 
 #: mkt/constants/features.py:118
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Nałoženje pomina se pódpěru API \"ondeviceorientation\" na platformje."
 
 #: mkt/constants/features.py:123
 msgid "Time/Clock"
-msgstr ""
+msgstr "Cas/Zeger"
 
 #: mkt/constants/features.py:124
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozTime\"."
 
 #: mkt/constants/features.py:128
 msgid "Vibration"
-msgstr ""
+msgstr "Wibracija"
 
 #: mkt/constants/features.py:129
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr ""
+msgstr "Nałoženje pomina se pódpěru wibracije (API navigator.vibrate) na rěźe."
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozFM\" abo \"navigator.mozFMRadio\"."
 
 #: mkt/constants/features.py:141
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozSms\"."
 
 #: mkt/constants/features.py:145
 msgid "Touch"
@@ -2154,27 +2158,34 @@ msgstr ""
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: mkt/constants/features.py:200
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"Nałoženje pomina se pódpěru API gamepada (\"navigator.getGamepads\") na "
+"platformje."
 
 #: mkt/constants/features.py:205
 msgid "Quota Management"
-msgstr ""
+msgstr "Zastojanje kwotow"
 
 #: mkt/constants/features.py:206
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"Nałoženje se pomina, až platforma dowólujo, až trajny składowański limit "
+"pówušujo se nad normalnje dowólone limity za nałoženje (\"window.StorageInfo\" "
+"abo \"window.persistentStorage\")."
 
 #: mkt/constants/features.py:214
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:215
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Nałoženje se pomina, až platforma dowólujo pśistup na wideo z kamery rěda "
+"pśez objekt LocalMediaStream."
 
 #: mkt/constants/features.py:221
 msgid "Microphone"
@@ -2183,14 +2194,18 @@ msgstr "Mikrofon"
 #: mkt/constants/features.py:222
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"Nałoženje se pomina, až platforma dowólujo pśistup na zuk rědowego "
+"mikrofona."
 
 #: mkt/constants/features.py:227
 msgid "Screen Capture"
-msgstr ""
+msgstr "Fota wobrazowki"
 
 #: mkt/constants/features.py:228
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"Nałoženje se pomina, až platforma dowólujo pśistup na wobrazowku rěda za "
+"fota."
 
 #: mkt/constants/features.py:234
 msgid "WebRTC MediaStream"
