@@ -41,6 +41,8 @@ Detail
     Returns a single langpack. If the request is authenticated and the user has the ``LangPacks:%`` permission, inactive langpacks
     can be returned.
 
+    **Response**
+
     :param uuid: Unique identifier for this langpack.
     :type uuid: string
     :param language: The language this langpack provides translations for.
