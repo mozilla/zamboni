@@ -47,10 +47,9 @@ class LangPack(ModelBase):
     # future, if we want to do that, call it user (single owner) or authors
     # (multiple authors) to be compatible with the API permission classes.
 
-
     class Meta:
-        # FIXME: unique_together ? Maybe not for now.
-        index_together = (('fxos_version', 'language', 'active'),)
+        ordering = (('-created'), )
+        index_together = (('fxos_version', 'language', 'active', 'created'),)
 
 
     def is_public(self):
