@@ -61,7 +61,7 @@ urlpatterns = patterns('',
     url(r'^feed/shelves/(?P<pk>[^/.]+)/publish/$',
         views.FeedShelfPublishView.as_view(),
         name='feed-shelf-publish'),
-    url(r'^langpacks/', include(langpacks.urls)),
+    url(r'^langpacks', include(langpacks.urls)),
     # Remove fireplace version once fireplace has been updated to use
     # consumer/feed/ with ?app_serializer=fireplace.
     url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
