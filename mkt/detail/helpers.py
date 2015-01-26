@@ -1,9 +1,7 @@
 import jinja2
 from jingo import env, register
-from tower import ungettext as ngettext
 
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.site.helpers import numberfmt
 
 
 @register.function
@@ -23,10 +21,3 @@ def device_list_es(product):
     return jinja2.Markup(t.render({
         'device_types': device_types,
         'all_device_types': DEVICE_TYPES.values()}))
-
-
-@register.filter
-def weekly_downloads(product):
-    cnt = product.weekly_downloads
-    return ngettext('{0} weekly download', '{0} weekly downloads',
-                    cnt).format(numberfmt(cnt))

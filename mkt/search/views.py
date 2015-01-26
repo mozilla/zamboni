@@ -27,8 +27,6 @@ from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,
 
 DEFAULT_SORTING = {
     'popularity': '-popularity',
-    # TODO: Should popularity replace downloads?
-    'downloads': '-weekly_downloads',
     'rating': '-bayesian_rating',
     'created': '-created',
     'reviewed': '-reviewed',

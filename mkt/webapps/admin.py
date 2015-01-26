@@ -23,7 +23,7 @@ class WebappAdmin(admin.ModelAdmin):
         }),
         ('Stats', {
             'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
-                       'weekly_downloads', 'total_downloads'),
+                       'total_downloads'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'public_stats'),

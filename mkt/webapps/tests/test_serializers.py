@@ -399,7 +399,6 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'supported_locales': [u'en-US', u'es', u'pt-BR'],
             'upsell': False,
             # 'version's handled below to support API URL assertions.
-            'weekly_downloads': None,
         }
 
         if self.request.user.is_authenticated():
@@ -483,13 +482,6 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         self.assertSetEqual(
             res['content_ratings']['descriptors'],
             ['has_classind_shocking'])
-
-    def test_show_downloads_count(self):
-        """Show weekly_downloads in results if app stats are public."""
-        self.app.update(public_stats=True)
-        self.refresh('webapp')
-        res = self.serialize()
-        eq_(res['weekly_downloads'], 9999)
 
     def test_devices(self):
         AddonDeviceType.objects.create(addon=self.app,

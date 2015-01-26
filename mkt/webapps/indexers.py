@@ -183,7 +183,6 @@ class WebappIndexer(BaseIndexer):
                             'resource_uri': cls.string_not_indexed(),
                         }
                     },
-                    'weekly_downloads': {'type': 'long', 'doc_values': True},
                 }
             }
         }
@@ -256,7 +255,7 @@ class WebappIndexer(BaseIndexer):
 
         attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
                  'last_updated', 'modified', 'premium_type', 'status',
-                 'uses_flash', 'weekly_downloads')
+                 'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['boost'] = install_count or 1

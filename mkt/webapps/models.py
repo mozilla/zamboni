@@ -451,8 +451,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                                         db_column='bayesianrating')
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
-    weekly_downloads = models.PositiveIntegerField(
-        default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
         default=0, db_column='totaldownloads')
     last_updated = models.DateTimeField(
@@ -1697,7 +1695,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         excluded = set(self.addonexcludedregion
                            .values_list('region', flat=True))
-
 
         if self.is_premium():
             all_regions = set(mkt.regions.ALL_REGION_IDS)

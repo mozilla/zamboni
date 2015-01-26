@@ -22,7 +22,7 @@ from mkt.webapps.models import AddonUser, Installed, Webapp
 FIREPLACE_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
     'regions', 'resource_uri', 'supported_locales', 'tags', 'upsold',
-    'versions', 'weekly_downloads')
+    'versions')
 
 
 def assert_fireplace_app(data):

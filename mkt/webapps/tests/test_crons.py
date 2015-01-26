@@ -19,7 +19,7 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import cron
-from mkt.webapps.cron import clean_old_signed, mkt_gc, update_downloads
+from mkt.webapps.cron import clean_old_signed, mkt_gc
 from mkt.webapps.models import Webapp
 
 
@@ -115,78 +115,6 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         cron.hide_disabled_files()
         # Mock shouldn't have been called.
         assert not mv_mock.called, mv_mock.call_args
-
-
-class TestWeeklyDownloads(mkt.site.tests.TestCase):
-
-    def setUp(self):
-        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
-
-    def get_app(self):
-        return Webapp.objects.get(pk=self.app.pk)
-
-    @mock.patch('mkt.webapps.tasks.get_monolith_client')
-    def test_weekly_downloads(self, _mock):
-        client = mock.Mock()
-        raw = {
-            'facets': {
-                'installs': {
-                    '_type': 'date_histogram',
-                    'entries': [
-                        {'count': 3,
-                         'time': 1390780800000,
-                         'total': 19.0},
-                        {'count': 62,
-                         'time': 1391385600000,
-                         'total': 236.0}
-                    ]
-                }
-            }
-        }
-        client.raw.return_value = raw
-        _mock.return_value = client
-
-        eq_(self.app.weekly_downloads, 0)
-
-        update_downloads([self.app.pk])
-
-        self.app.reload()
-        eq_(self.app.weekly_downloads, 255)
-
-    @mock.patch('mkt.webapps.tasks.get_monolith_client')
-    def test_total_downloads(self, _mock):
-        client = mock.Mock()
-        raw = {
-            'facets': {
-                'installs': {
-                    u'_type': u'statistical',
-                    u'count': 49,
-                    u'total': 6638.0
-                }
-            }
-        }
-        client.raw.return_value = raw
-        _mock.return_value = client
-
-        eq_(self.app.total_downloads, 0)
-
-        update_downloads([self.app.pk])
-
-        self.app.reload()
-        eq_(self.app.total_downloads, 6638)
-
-    @mock.patch('mkt.webapps.tasks.get_monolith_client')
-    def test_monolith_error(self, _mock):
-        client = mock.Mock()
-        client.side_effect = ValueError
-        client.raw.side_effect = Exception
-        _mock.return_value = client
-
-        update_downloads([self.app.pk])
-
-        self.app.reload()
-        eq_(self.app.weekly_downloads, 0)
-        eq_(self.app.total_downloads, 0)
 
 
 class TestCleanup(mkt.site.tests.TestCase):

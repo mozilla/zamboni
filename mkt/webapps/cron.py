@@ -21,7 +21,7 @@ from mkt.site.utils import chunked, walkfiles
 
 from .models import Installed, Webapp
 from .tasks import (delete_logs, dump_user_installs, reindex_trending,
-                    update_downloads, update_trending, zip_users)
+                    update_trending, zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
@@ -168,27 +168,6 @@ def dump_user_installs_cron():
     post = zip_users.subtask(immutable=True)
     ts = chord(grouping, post)
     ts.apply_async()
-
-
-@cronjobs.register
-def update_app_downloads():
-    """
-    Update download/install stats for all apps.
-
-    Spread these tasks out successively by `seconds_between` seconds so they
-    don't hit Monolith all at once.
-
-    """
-    chunk_size = 50
-    seconds_between = 2
-
-    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC)
-                   .values_list('id', flat=True))
-
-    countdown = 0
-    for ids in chunked(all_ids, chunk_size):
-        update_downloads.delay(ids, countdown=countdown)
-        countdown += seconds_between
 
 
 def _remove_stale_files(path, age, msg):

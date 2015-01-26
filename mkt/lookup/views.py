@@ -448,7 +448,7 @@ def _app_downloads(app):
 
     # Webapps populate these fields via Monolith.
     stats['last_24_hours'] = 'N/A'
-    stats['last_7_days'] = app.weekly_downloads
+    stats['last_7_days'] = 'N/A'
     stats['alltime'] = app.total_downloads
     return stats
 

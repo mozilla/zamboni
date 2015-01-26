@@ -118,8 +118,6 @@ class AppSerializer(serializers.ModelSerializer):
         required=False, queryset=Webapp.objects.all())
     user = serializers.SerializerMethodField('get_user_info')
     versions = serializers.SerializerMethodField('get_versions')
-    weekly_downloads = serializers.SerializerMethodField(
-        'get_weekly_downloads')
 
     class Meta:
         model = Webapp
@@ -133,7 +131,7 @@ class AppSerializer(serializers.ModelSerializer):
             'price', 'price_locale', 'privacy_policy', 'public_stats',
             'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
             'status', 'support_email', 'support_url', 'supported_locales',
-            'tags', 'upsell', 'upsold', 'user', 'versions', 'weekly_downloads'
+            'tags', 'upsell', 'upsold', 'user', 'versions'
         ]
 
     def _get_region_id(self):
@@ -253,10 +251,6 @@ class AppSerializer(serializers.ModelSerializer):
         # use .values() / .values_list() because those aren't cached :(
         return dict((v.version, reverse('version-detail', kwargs={'pk': v.pk}))
                     for v in app.versions.all().no_transforms())
-
-    def get_weekly_downloads(self, app):
-        if app.public_stats:
-            return app.weekly_downloads
 
     def validate_categories(self, attrs, source):
         if not attrs.get('categories'):
@@ -437,7 +431,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
             obj, data, ('created', 'modified', 'default_locale',
                         'icon_hash', 'is_escalated', 'is_offline',
                         'manifest_url', 'premium_type', 'regions', 'reviewed',
-                        'status', 'weekly_downloads'))
+                        'status'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(
@@ -572,7 +566,7 @@ class SimpleAppSerializer(AppSerializer):
     class Meta(AppSerializer.Meta):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
                    'default_locale', 'package_path', 'payment_account',
-                   'supported_locales', 'weekly_downloads', 'upsold', 'tags']
+                   'supported_locales', 'upsold', 'tags']
 
 
 class SimpleESAppSerializer(ESAppSerializer):

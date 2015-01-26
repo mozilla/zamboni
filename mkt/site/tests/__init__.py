@@ -764,7 +764,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
         'bayesian_rating': random.uniform(1, 5),
-        'weekly_downloads': popularity or random.randint(200, 2000),
+        'total_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
     }

@@ -108,10 +108,6 @@
               <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
             {% endif %}
           </dd>
-          <dt>{{ _('Weekly Downloads') }}</dt>
-          <dd class="meta-stats">
-            <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
-          </dd>
           <dt>{{ _('Abuse Reports') }}</dt>
           <dd class="abuse-reports">
             <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
