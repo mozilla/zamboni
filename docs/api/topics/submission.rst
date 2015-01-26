@@ -29,8 +29,8 @@ Validate
 ========
 
 .. note:: The validation does not require you to be authenticated, however you
-    cannot create apps from those validations. To validate and submit an app
-    you must be authenticated for both steps.
+    cannot create apps from those validations. To validate and then submit an
+    app you must be authenticated with the same account for both steps.
 
 .. _validation-post-label:
 

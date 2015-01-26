@@ -6,6 +6,7 @@ import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
+from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import RocketbarViewV2
@@ -33,6 +34,11 @@ subfeedshelf.register('image', views.FeedShelfImageViewSet,
 subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
                       base_name='feed-shelf-landing-image')
 
+
+langpacks = SimpleRouter()
+langpacks.register(r'', LangPackViewSet, base_name='langpack')
+
+
 urlpatterns = patterns('',
     url(r'^apps/search/featured/.*', endpoint_removed),
     url(r'^rocketfuel/collections/.*', endpoint_removed),
@@ -55,6 +61,7 @@ urlpatterns = patterns('',
     url(r'^feed/shelves/(?P<pk>[^/.]+)/publish/$',
         views.FeedShelfPublishView.as_view(),
         name='feed-shelf-publish'),
+    url(r'^langpacks', include(langpacks.urls)),
     # Remove fireplace version once fireplace has been updated to use
     # consumer/feed/ with ?app_serializer=fireplace.
     url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',

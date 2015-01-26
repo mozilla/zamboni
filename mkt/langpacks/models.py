@@ -43,11 +43,17 @@ class LangPack(ModelBase):
     # Fields that can be modified using the API.
     active = models.BooleanField(default=False)
 
+    # Note: we don't need to link a LangPack to an user right now, but in the
+    # future, if we want to do that, call it user (single owner) or authors
+    # (multiple authors) to be compatible with the API permission classes.
 
     class Meta:
-        # FIXME: unique_together ? Maybe not for now.
-        index_together = (('fxos_version', 'language', 'active'),)
+        ordering = (('-created'), )
+        index_together = (('fxos_version', 'language', 'active', 'created'),)
 
+
+    def is_public(self):
+        return self.active
 
     @property
     def path_prefix(self):
