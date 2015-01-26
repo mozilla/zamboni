@@ -433,3 +433,31 @@ class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
             'size': [u'This field is read-only.']})
         self.langpack.reload()
         eq_(self.langpack.active, True)  # Not changed.
+
+
+class TestLangPackViewSetDelete(TestLangPackViewSetMixin):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestLangPackViewSetDelete, self).setUp()
+        self.langpack = self.create_langpack()
+        self.detail_url = reverse('api-v2:langpack-detail',
+                                  kwargs={'pk': self.langpack.pk})
+
+    def test_anonymous(self):
+        response = self.anon.delete(self.detail_url)
+        eq_(response.status_code, 403)
+
+    def test_no_perms(self):
+        response = self.client.delete(self.detail_url)
+        eq_(response.status_code, 403)
+
+    def test_with_perm(self):
+        self.grant_permission(self.user, 'LangPacks:%')
+        langpack_to_keep = self.create_langpack()
+        eq_(LangPack.objects.count(), 2)
+
+        response = self.client.delete(self.detail_url)
+        eq_(response.status_code, 204)
+        eq_(LangPack.objects.count(), 1)
+        eq_(LangPack.objects.get().pk, langpack_to_keep.pk)
