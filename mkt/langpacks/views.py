@@ -17,12 +17,6 @@ from mkt.langpacks.serializers import (LangPackSerializer,
 log = commonware.log.getLogger('z.api')
 
 
-
-# Flow is similar to apps (FIXME: add this to docs/):
-# - Submit your package through ValidationViewSet (authenticated)
-# - With the same user, take the upload id and send it to the LangPackViewSet
-#   create view (using POST)
-
 class LangPackViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     model = LangPack
     cors_allowed_methods = ('get', 'post', 'put', 'patch', 'delete')
