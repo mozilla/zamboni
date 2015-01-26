@@ -72,7 +72,9 @@ define('login', ['notification', 'storage'], function(notification, storage) {
                 dataType: 'json'}).done(finishLogin);
 
             // Close popup on receipt of message.
-            popup.close();
+            if (popup) {
+                popup.close();
+            }
         });
     }
 
