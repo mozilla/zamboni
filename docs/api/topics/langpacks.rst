@@ -38,7 +38,7 @@ Detail
 .. _langpack-response-label:
 .. http:get:: /api/v2/langpacks/(string:uuid)/
 
-    Returns a single langpack. If the request is authenticated and the user has the ``LangPacks:%``, inactive langpacks
+    Returns a single langpack. If the request is authenticated and the user has the ``LangPacks:%`` permission, inactive langpacks
     can be returned.
 
     :param uuid: Unique identifier for this langpack.
