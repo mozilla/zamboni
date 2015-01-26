@@ -63,5 +63,5 @@ class InAppPurchaseTest(PurchaseTest):
     def setup_base(self):
         super(InAppPurchaseTest, self).setup_base()
         self.inapp = InAppProduct.objects.create(
-            logo_url='logo.png', name='Inapp Object', price=self.price,
-            webapp=self.addon)
+            logo_url='logo.png', name=u'Ivan Krsti\u0107',
+            price=self.price, webapp=self.addon)

@@ -167,7 +167,10 @@ class PostbackTest(PurchaseTest):
                 'productData': 'contrib_uuid=%s' % contrib_uuid
             },
             'response': {
-                'transactionID': '<webpay-trans-id>',
+                # Return ID as a Unicode object just like real in life.
+                # This is here to protect against subtle string coercion
+                # regressions!
+                'transactionID': u'<webpay-trans-id>',
                 'price': {'amount': '10.99', 'currency': 'BRL'}
             },
         }
@@ -223,6 +226,25 @@ class TestPostback(PostbackTest):
         eq_(cn.transaction_id, '<webpay-trans-id>')
         eq_(cn.amount, Decimal('10.99'))
         eq_(cn.currency, 'BRL')
+        self.tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
+
+    def test_valid_in_app_product(self):
+        inapp = InAppProduct.objects.create(
+            logo_url='logo.png', name=u'Ivan Krsti\u0107',
+            price=self.price, webapp=self.addon)
+        self.contrib.update(inapp_product=inapp, addon=inapp.webapp,
+                            user=self.user)
+        jwt_dict = self.jwt_dict()
+        self.decode.return_value = jwt_dict
+
+        resp = self.post(req=self.jwt(req=jwt_dict))
+
+        eq_(resp.status_code, 200)
+        eq_(resp.content, '<webpay-trans-id>')
+
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        eq_(cn.transaction_id, '<webpay-trans-id>')
+
         self.tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     def test_simulation(self):
