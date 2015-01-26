@@ -84,7 +84,8 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # we are also creating access tokens for OAuth, here are the keys and
     # secrets used for them
     API_PASSWORD = getattr(private_mkt, 'API_PASSWORD', FAKEAUTH_TOKEN)
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 

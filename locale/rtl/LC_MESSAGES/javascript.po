@@ -1,0 +1,571 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AMO-JS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"PO-Revision-Date: 2009-02-26 15:08-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: media/js/common/upload-base.js:61
+msgid "The filetype you uploaded isn't recognized."
+msgstr "‮⊥ɥǝ ɟıʅǝʇʎdǝ ʎon ndʅoɐpǝp ısu,ʇ ɹǝɔoƃuızǝp˙"
+
+#: media/js/common/upload-base.js:83
+msgid "You cancelled the upload."
+msgstr "‮⅄on ɔɐuɔǝʅʅǝp ʇɥǝ ndʅoɐp˙"
+
+#: media/js/common/upload-image.js:98
+msgid "Images must be either PNG or JPG."
+msgstr "‮Iɯɐƃǝs ɯnsʇ qǝ ǝıʇɥǝɹ ԀN⅁ oɹ ſԀ⅁˙"
+
+#: media/js/common/upload-image.js:102
+msgid "Videos must be in WebM."
+msgstr "‮Ʌıpǝos ɯnsʇ qǝ ıu ＭǝqW˙"
+
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+msgid "There was a problem contacting the server."
+msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ sǝɹʌǝɹ˙"
+
+#: media/js/common/upload-packaged-app.js:52
+msgid "Select a file..."
+msgstr "‮Sǝʅǝɔʇ ɐ ɟıʅǝ˙˙˙"
+
+#: media/js/common/upload-packaged-app.js:53
+msgid "Your packaged app should end with <code>.zip</code>."
+msgstr "‮⅄onɹ dɐɔʞɐƃǝp ɐdd sɥonʅp ǝup ʍıʇɥ <code>‮˙zıd</code>‮˙"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: media/js/common/upload-packaged-app.js:89
+msgid "{0}% complete"
+msgstr "{0}% c‮oɯdʅǝʇǝ"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: media/js/common/upload-packaged-app.js:92
+msgid "{0} of {1}"
+msgstr "{0}‮ oɟ {1}"
+
+#: media/js/common/upload-packaged-app.js:120
+msgid "Cancel"
+msgstr "‮Ↄɐuɔǝʅ"
+
+#: media/js/common/upload-packaged-app.js:142
+msgid "Uploading {0}"
+msgstr "‮∩dʅoɐpıuƃ {0}"
+
+#: media/js/common/upload-packaged-app.js:164
+msgid "Error with {0}"
+msgstr "‮Ǝɹɹoɹ ʍıʇɥ {0}"
+
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+msgid "Your app failed validation with {0} error."
+msgid_plural "Your app failed validation with {0} errors."
+msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ˙"
+msgstr[1] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs˙"
+
+#: media/js/common/upload-packaged-app.js:184
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
+msgstr[1] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
+
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+msgid "See full validation report"
+msgstr "‮Sǝǝ ɟnʅʅ ʌɐʅıpɐʇıou ɹǝdoɹʇ"
+
+#: media/js/common/upload-packaged-app.js:211
+msgid "Validating {0}"
+msgstr "‮Ʌɐʅıpɐʇıuƃ {0}"
+
+#. L10n: first argument is an HTTP status code
+#: media/js/common/upload-packaged-app.js:247
+msgid "Received an empty response from the server; status: {0}"
+msgstr "‮ᴚǝɔǝıʌǝp ɐu ǝɯdʇʎ ɹǝsdousǝ ɟɹoɯ ʇɥǝ sǝɹʌǝɹ; sʇɐʇns: {0}"
+
+#: media/js/common/upload-packaged-app.js:257
+msgid "Unexpected server error while validating."
+msgstr "‮∩uǝxdǝɔʇǝp sǝɹʌǝɹ ǝɹɹoɹ ʍɥıʅǝ ʌɐʅıpɐʇıuƃ˙"
+
+#: media/js/common/upload-packaged-app.js:294
+msgid "Finished validating {0}"
+msgstr "‮Ⅎıuısɥǝp ʌɐʅıpɐʇıuƃ {0}"
+
+#: media/js/common/upload-packaged-app.js:300
+msgid "Your app passed validation with no errors and {0} warning."
+msgid_plural "Your app passed validation with no errors and {0} warnings."
+msgstr[0] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ʍɐɹuıuƃ˙"
+msgstr[1] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ʍɐɹuıuƃs˙"
+
+#: media/js/common/upload-packaged-app.js:305
+msgid "Your app passed validation with no errors or warnings."
+msgstr "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ʍɐɹuıuƃs˙"
+
+#: media/js/devreg/apps.js:84
+msgid "The manifest could not be found at the given location."
+msgstr "‮⊥ɥǝ ɯɐuıɟǝsʇ ɔonʅp uoʇ qǝ ɟonup ɐʇ ʇɥǝ ƃıʌǝu ʅoɔɐʇıou˙"
+
+#: media/js/devreg/apps.js:87
+msgid "App host could not be reached."
+msgstr "‮∀dd ɥosʇ ɔonʅp uoʇ qǝ ɹǝɐɔɥǝp˙"
+
+#: media/js/devreg/apps.js:90
+msgid "App manifest is unparsable."
+msgstr "‮∀dd ɯɐuıɟǝsʇ ıs nudɐɹsɐqʅǝ˙"
+
+#: media/js/devreg/apps.js:93
+msgid "App manifest is invalid."
+msgstr "‮∀dd ɯɐuıɟǝsʇ ıs ıuʌɐʅıp˙"
+
+#: media/js/devreg/apps.js:96
+msgid "App is already installed."
+msgstr "‮∀dd ıs ɐʅɹǝɐpʎ ıusʇɐʅʅǝp˙"
+
+#: media/js/devreg/apps.js:100
+msgid "Internal server error."
+msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ˙"
+
+#: media/js/devreg/apps.js:103
+msgid "Internal server error on app installation."
+msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ ou ɐdd ıusʇɐʅʅɐʇıou˙"
+
+#: media/js/devreg/apps.js:106
+msgid "Install failed. Please try again later."
+msgstr "‮Iusʇɐʅʅ ɟɐıʅǝp˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
+
+#: media/js/devreg/devhub.js:218
+msgid "Your app failed validation with {0} error and {1} message(s)."
+msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
+msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ ɐup {1}‮ ɯǝssɐƃǝ(s)˙"
+msgstr[1] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs ɐup {1}‮ ɯǝssɐƃǝ(s)˙"
+
+#: media/js/devreg/devhub.js:232
+msgid "Your app passed validation with no errors and {0} message."
+msgid_plural "Your app passed validation with no errors and {0} messages."
+msgstr[0] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝ˙"
+msgstr[1] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝs˙"
+
+#: media/js/devreg/devhub.js:237
+msgid "Your app passed validation with no errors or messages."
+msgstr "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ɯǝssɐƃǝs˙"
+
+#: media/js/devreg/devhub.js:452
+msgid "Changes Saved"
+msgstr "‮Ↄɥɐuƃǝs Sɐʌǝp"
+
+#: media/js/devreg/devhub.js:468
+msgid "Enter a new team member's email address"
+msgstr "‮Ǝuʇǝɹ ɐ uǝʍ ʇǝɐɯ ɯǝɯqǝɹ,s ǝɯɐıʅ ɐppɹǝss"
+
+#: media/js/devreg/devhub.js:481
+msgid "Manifest refreshed"
+msgstr "‮Wɐuıɟǝsʇ ɹǝɟɹǝsɥǝp"
+
+#: media/js/devreg/devhub.js:486
+msgid "Could not refresh manifest. Try again later."
+msgstr "‮Ↄonʅp uoʇ ɹǝɟɹǝsɥ ɯɐuıɟǝsʇ˙ ⊥ɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
+
+#: media/js/devreg/devhub.js:667
+msgid "There was an error uploading your file."
+msgstr "‮⊥ɥǝɹǝ ʍɐs ɐu ǝɹɹoɹ ndʅoɐpıuƃ ʎonɹ ɟıʅǝ˙"
+
+#: media/js/devreg/devhub.js:952
+msgid "Learn more"
+msgstr "‮⅂ǝɐɹu ɯoɹǝ"
+
+#: media/js/devreg/devhub.js:956
+msgid "Example"
+msgstr "‮Ǝxɐɯdʅǝ"
+
+#: media/js/devreg/devhub.js:1225
+msgid "Image changes being processed"
+msgstr "‮Iɯɐƃǝ ɔɥɐuƃǝs qǝıuƃ dɹoɔǝssǝp"
+
+#: media/js/devreg/ecosystem.js:26
+msgid "This video requires a browser with support for open video "
+msgstr "‮⊥ɥıs ʌıpǝo ɹǝbnıɹǝs ɐ qɹoʍsǝɹ ʍıʇɥ snddoɹʇ ɟoɹ odǝu ʌıpǝo "
+
+#: media/js/devreg/ecosystem.js:27
+msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
+msgstr "‮oɹ ʇɥǝ <a href=\"http://www.adobe.com/go/getflashplayer\">‮∀poqǝ "
+
+#: media/js/devreg/ecosystem.js:28
+msgid "Flash Player</a>."
+msgstr "‮Ⅎʅɐsɥ Ԁʅɐʎǝɹ</a>‮˙"
+
+#: media/js/devreg/in_app_products.js:281
+msgid "Enabled"
+msgstr "‮Ǝuɐqʅǝp"
+
+#: media/js/devreg/in_app_products.js:283
+msgid "Disabled"
+msgstr "‮ᗡısɐqʅǝp"
+
+#: media/js/devreg/init.js:35
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ""
+"‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ "
+"Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
+
+#: media/js/devreg/l10n.js:45
+msgid "Remove this localization"
+msgstr "‮ᴚǝɯoʌǝ ʇɥıs ʅoɔɐʅızɐʇıou"
+
+#: media/js/devreg/login.js:126
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr ""
+"‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ "
+"ɐppɹǝss¿"
+
+#: media/js/devreg/login.js:131
+msgid "Persona login failed. A server error was encountered."
+msgstr "‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ ∀ sǝɹʌǝɹ ǝɹɹoɹ ʍɐs ǝuɔonuʇǝɹǝp˙"
+
+#: media/js/devreg/lookup-tool.js:24
+msgid "Status successfully changed to \"{0}\""
+msgstr "‮Sʇɐʇns snɔɔǝssɟnʅʅʎ ɔɥɐuƃǝp ʇo „{0}‮„"
+
+#: media/js/devreg/lookup-tool.js:29
+msgid "Could not change status to \"{0}\""
+msgstr "‮Ↄonʅp uoʇ ɔɥɐuƃǝ sʇɐʇns ʇo „{0}‮„"
+
+#: media/js/devreg/lookup-tool.js:98
+msgid "Show All Results"
+msgstr "‮Sɥoʍ ∀ʅʅ ᴚǝsnʅʇs"
+
+#: media/js/devreg/lookup-tool.js:101
+msgid "Over {0} results found, consider refining your search."
+msgstr "‮Oʌǝɹ {0}‮ ɹǝsnʅʇs ɟonup´ ɔousıpǝɹ ɹǝɟıuıuƃ ʎonɹ sǝɐɹɔɥ˙"
+
+#: media/js/devreg/manifest.js:47
+msgid "Requested Permissions:"
+msgstr "‮ᴚǝbnǝsʇǝp Ԁǝɹɯıssıous:"
+
+#: media/js/devreg/manifest.js:55
+msgid "Certified"
+msgstr "‮Ↄǝɹʇıɟıǝp"
+
+#: media/js/devreg/manifest.js:58
+msgid "Privileged"
+msgstr "‮Ԁɹıʌıʅǝƃǝp"
+
+#: media/js/devreg/manifest.js:61
+msgid "Unprivileged"
+msgstr "‮∩udɹıʌıʅǝƃǝp"
+
+#: media/js/devreg/manifest.js:67
+msgid "No reason given"
+msgstr "‮No ɹǝɐsou ƃıʌǝu"
+
+#: media/js/devreg/overlay.js:41
+msgid "OK"
+msgstr "‮OӼ"
+
+#: media/js/devreg/payments-enroll.js:9
+msgid "Spanish Banking Code"
+msgstr "‮Sdɐuısɥ Ԑɐuʞıuƃ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:11
+msgid "Irish Sort Code"
+msgstr "‮Iɹısɥ Soɹʇ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:13
+msgid "Belgian Sort Code"
+msgstr "‮Ԑǝʅƃıɐu Soɹʇ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:15
+msgid "Spanish/French/Italian/Dutch Banking Code"
+msgstr "‮Sdɐuısɥ/French/Italian/Dutch‮ Ԑɐuʞıuƃ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:17
+msgid "Dutch/US Sort Code"
+msgstr "‮ᗡnʇɔɥ/∩S Soɹʇ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:19
+msgid "Canadian Transit Number/German Routing Code"
+msgstr "‮Ↄɐuɐpıɐu ⊥ɹɐusıʇ Nnɯqǝɹ/German‮ ᴚonʇıuƃ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:21
+msgid "Korean Bank and Branch/Indonesian Bank Code"
+msgstr "‮Ӽoɹǝɐu Ԑɐuʞ ɐup Ԑɹɐuɔɥ/Indonesian‮ Ԑɐuʞ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:23
+msgid "Greek HEBIC/Indonesian Bank Code"
+msgstr "‮⅁ɹǝǝʞ HƎԐIↃ/Indonesian‮ Ԑɐuʞ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:25
+msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
+msgstr "‮∩Ӽ/Irish‮ Soɹʇ Ↄopǝ oɹ NZ ∀ɔɔonuʇ Ԁɹǝɟıx oɹ ∀nsʇɹɐʅıɐu ԐSԐ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:27
+msgid "Austrian/Swiss Bank Code"
+msgstr "‮∀nsʇɹıɐu/Swiss‮ Ԑɐuʞ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:29
+msgid "Danish/Swiss Bank Code"
+msgstr "‮ᗡɐuısɥ/Swiss‮ Ԑɐuʞ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:31
+msgid "Swiss/Iraqi Bank Code"
+msgstr "‮Sʍıss/Iraqi‮ Ԑɐuʞ Ↄopǝ"
+
+#: media/js/devreg/payments-enroll.js:33
+msgid "Iraqi Bank Code"
+msgstr "‮Iɹɐbı Ԑɐuʞ Ↄopǝ"
+
+#. L10n: {0} is the name of a bank detected from the bank account code.
+#: media/js/devreg/payments-enroll.js:136
+msgid "Detected: {0}"
+msgstr "‮ᗡǝʇǝɔʇǝp: {0}"
+
+#. L10n: This sentence introduces a list of applications.
+#: media/js/devreg/payments-manage.js:32
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] ""
+"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
+"ɟoʅʅoʍıuƃ ɐdds˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
+"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+msgstr[1] ""
+"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
+"ɟoʅʅoʍıuƃ ɐdd˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
+"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+
+#: media/js/devreg/payments-manage.js:45
+msgid "{appName} payment accounts:"
+msgstr "‮{ɐddNɐɯǝ} dɐʎɯǝuʇ ɐɔɔonuʇs:"
+
+#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+msgid "Error"
+msgstr "‮Ǝɹɹoɹ"
+
+#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+msgid "There was a problem contacting the payment server."
+msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ dɐʎɯǝuʇ sǝɹʌǝɹ˙"
+
+#: media/js/devreg/payments-manage.js:129
+msgid "Authentication error"
+msgstr "‮∀nʇɥǝuʇıɔɐʇıou ǝɹɹoɹ"
+
+#: media/js/devreg/payments-manage.js:185
+msgid "You do not currently have any payment accounts."
+msgstr "‮⅄on po uoʇ ɔnɹɹǝuʇʅʎ ɥɐʌǝ ɐuʎ dɐʎɯǝuʇ ɐɔɔonuʇs˙"
+
+#: media/js/devreg/suggestions.js:66
+msgid "Search themes for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ʇɥǝɯǝs ɟoɹ <b>{0}</b>"
+
+#: media/js/devreg/suggestions.js:68
+msgid "Search apps for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ɐdds ɟoɹ <b>{0}</b>"
+
+#: media/js/devreg/suggestions.js:70
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ɐpp-ous ɟoɹ <b>{0}</b>"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr "‮Soɯǝʇɥıuƃ ʍǝuʇ ʍɹouƃ˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu˙"
+
+#. L10n: {0} is the number of characters left.
+#: media/js/devreg/utils.js:89
+msgid "{0} character left."
+msgid_plural "{0} characters left."
+msgstr[0] "{0}‮ ɔɥɐɹɐɔʇǝɹ ʅǝɟʇ˙"
+msgstr[1] "{0}‮ ɔɥɐɹɐɔʇǝɹs ʅǝɟʇ˙"
+
+#: media/js/devreg/validator.js:71
+msgid "All tests passed successfully."
+msgstr "‮∀ʅʅ ʇǝsʇs dɐssǝp snɔɔǝssɟnʅʅʎ˙"
+
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+msgid "These tests were not run."
+msgstr "‮⊥ɥǝsǝ ʇǝsʇs ʍǝɹǝ uoʇ ɹnu˙"
+
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+msgid "Tests"
+msgstr "‮⊥ǝsʇs"
+
+#: media/js/devreg/validator.js:192
+msgid "Warning"
+msgstr "‮Ｍɐɹuıuƃ"
+
+#: media/js/devreg/validator.js:279
+msgid "Compatibility Tests"
+msgstr "‮Ↄoɯdɐʇıqıʅıʇʎ ⊥ǝsʇs"
+
+#: media/js/devreg/validator.js:327
+msgid "App failed validation."
+msgstr "‮∀dd ɟɐıʅǝp ʌɐʅıpɐʇıou˙"
+
+#: media/js/devreg/validator.js:329
+msgid "App passed validation."
+msgstr "‮∀dd dɐssǝp ʌɐʅıpɐʇıou˙"
+
+#: media/js/devreg/validator.js:359
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0}‮ ǝɹɹoɹ"
+msgstr[1] "{0}‮ ǝɹɹoɹs"
+
+#: media/js/devreg/validator.js:361
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0}‮ ʍɐɹuıuƃ"
+msgstr[1] "{0}‮ ʍɐɹuıuƃs"
+
+#: media/js/devreg/validator.js:439
+msgid "Validation task could not complete or completed with errors"
+msgstr "‮Ʌɐʅıpɐʇıou ʇɐsʞ ɔonʅp uoʇ ɔoɯdʅǝʇǝ oɹ ɔoɯdʅǝʇǝp ʍıʇɥ ǝɹɹoɹs"
+
+#: media/js/devreg/validator.js:457
+msgid "Internal server error"
+msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ"
+
+#: media/js/devreg/reviewers/buttons.js:38
+msgid "Purchasing"
+msgstr "‮Ԁnɹɔɥɐsıuƃ"
+
+#: media/js/devreg/reviewers/buttons.js:44
+msgid "Purchased"
+msgstr "‮Ԁnɹɔɥɐsǝp"
+
+#: media/js/devreg/reviewers/buttons.js:70
+msgid "Launch"
+msgstr "‮⅂ɐnuɔɥ"
+
+#: media/js/devreg/reviewers/editors.js:138
+msgid "{name} was viewing this page first."
+msgstr "‮{uɐɯǝ} ʍɐs ʌıǝʍıuƃ ʇɥıs dɐƃǝ ɟıɹsʇ˙"
+
+#: media/js/devreg/reviewers/editors.js:188
+msgid "Receipt checked by app."
+msgstr "‮ᴚǝɔǝıdʇ ɔɥǝɔʞǝp qʎ ɐdd˙"
+
+#: media/js/devreg/reviewers/editors.js:190
+msgid "Receipt was not checked by app."
+msgstr "‮ᴚǝɔǝıdʇ ʍɐs uoʇ ɔɥǝɔʞǝp qʎ ɐdd˙"
+
+#: media/js/devreg/reviewers/editors.js:240
+msgid "{name} was viewing this add-on first."
+msgstr "‮{uɐɯǝ} ʍɐs ʌıǝʍıuƃ ʇɥıs ɐpp-ou ɟıɹsʇ˙"
+
+#: media/js/devreg/reviewers/editors.js:251
+msgid "Loading&hellip;"
+msgstr "‮⅂oɐpıuƃ&hellip;"
+
+#: media/js/devreg/reviewers/editors.js:256
+msgid "Version Notes"
+msgstr "‮Ʌǝɹsıou Noʇǝs"
+
+#: media/js/devreg/reviewers/editors.js:261
+msgid "Notes for Reviewers"
+msgstr "‮Noʇǝs ɟoɹ ᴚǝʌıǝʍǝɹs"
+
+#: media/js/devreg/reviewers/editors.js:266
+msgid "No version notes found"
+msgstr "‮No ʌǝɹsıou uoʇǝs ɟonup"
+
+#: media/js/devreg/reviewers/editors.js:291
+msgid "Select an application first"
+msgstr "‮Sǝʅǝɔʇ ɐu ɐddʅıɔɐʇıou ɟıɹsʇ"
+
+#: media/js/devreg/reviewers/editors.js:355
+msgid "Error loading translation"
+msgstr "‮Ǝɹɹoɹ ʅoɐpıuƃ ʇɹɐusʅɐʇıou"
+
+#: media/js/devreg/reviewers/expandable.js:15
+msgid "more..."
+msgstr "‮ɯoɹǝ˙˙˙"
+
+#: media/js/devreg/reviewers/expandable.js:18
+msgid "less..."
+msgstr "‮ʅǝss˙˙˙"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
+msgstr "‮Ӽǝǝd ɹǝʌıǝʍ / ᴚǝɯoʌǝ ɟʅɐƃs"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:8
+msgid "Delete review"
+msgstr "‮ᗡǝʅǝʇǝ ɹǝʌıǝʍ"
+
+#: media/js/devreg/reviewers/mobile_review_actions.js:9
+msgid "Skip for now"
+msgstr "‮Sʞıd ɟoɹ uoʍ"
+
+#: media/js/devreg/reviewers/payments.js:69
+msgid "Payment failed. Try again later."
+msgstr "‮Ԁɐʎɯǝuʇ ɟɐıʅǝp˙ ⊥ɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
+
+#: media/js/devreg/reviewers/reviewers.js:97
+msgid "Packaged App"
+msgstr "‮Ԁɐɔʞɐƃǝp ∀dd"
+
+#: media/js/devreg/reviewers/reviewers.js:101
+msgid "Privileged App"
+msgstr "‮Ԁɹıʌıʅǝƃǝp ∀dd"
+
+#: media/js/devreg/reviewers/reviewers.js:104
+msgid "More Information Requested"
+msgstr "‮Woɹǝ Iuɟoɹɯɐʇıou ᴚǝbnǝsʇǝp"
+
+#: media/js/devreg/reviewers/reviewers.js:107
+msgid "Contains Editor Comment"
+msgstr "‮Ↄouʇɐıus Ǝpıʇoɹ Ↄoɯɯǝuʇ"
+
+#: media/js/devreg/reviewers/reviewers.js:111
+msgid "Premium App"
+msgstr "‮Ԁɹǝɯınɯ ∀dd"
+
+#: media/js/devreg/reviewers/reviewers.js:114
+msgid "Escalated"
+msgstr "‮Ǝsɔɐʅɐʇǝp"
+
+#: media/js/devreg/reviewers/reviewers.js:122
+msgid "Free"
+msgstr "‮Ⅎɹǝǝ"
+
+#: media/js/devreg/reviewers/reviewers.js:219
+msgid "Any"
+msgstr "‮∀uʎ"
+
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+msgid "Approved app: {app}"
+msgstr "‮∀ddɹoʌǝp ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+msgid "Rejected app: {app}"
+msgstr "‮ᴚǝɾǝɔʇǝp ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers.js:255
+msgid "Error approving app: {app}"
+msgstr "‮Ǝɹɹoɹ ɐddɹoʌıuƃ ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers.js:256
+msgid "Error rejecting app: {app}"
+msgstr "‮Ǝɹɹoɹ ɹǝɾǝɔʇıuƃ ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers.js:307
+msgid "Error passing app: {app}"
+msgstr "‮Ǝɹɹoɹ dɐssıuƃ ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers.js:308
+msgid "Error failing app: {app}"
+msgstr "‮Ǝɹɹoɹ ɟɐıʅıuƃ ɐdd: {ɐdd}"
+
+#: media/js/devreg/reviewers/reviewers_commbadge.js:43
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr ""
+"‮Soɹɹʎ¡ Ｍǝ ɥɐp ɐu ǝɹɹoɹ ɟǝʇɔɥıuƃ ʇɥǝ ɹǝʌıǝʍ ɥısʇoɹʎ˙ Ԁʅǝɐsǝ ʇɹʎ ʅoƃƃıuƃ ıu "
+"ɐƃɐıu˙<p>"
+
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+msgid "By {0} on {1}"
+msgstr "‮Ԑʎ {0}‮ ou {1}"
