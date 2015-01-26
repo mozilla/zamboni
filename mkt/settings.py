@@ -381,7 +381,7 @@ PRODUCT_ICON_URL = '/product-icons'
 # The verification URL, the addon id will be appended to this. This will
 # have to be altered to the right domain for each server, eg:
 # https://receiptcheck.addons.mozilla.org/verify/
-WEBAPPS_RECEIPT_URL = '/verify/'
+WEBAPPS_RECEIPT_URL = '/receipt-verifier/'
 
 ###########################################
 # Celery
