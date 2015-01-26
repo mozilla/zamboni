@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-26 11:01+0000\n"
+"PO-Revision-Date: 2015-01-26 11:22+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422270062.0\n"
+"X-POOTLE-MTIME: 1422271376.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1660,7 +1660,7 @@ msgstr "Z wikowanišća wuzamknjony"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
-msgstr ""
+msgstr "Wulašowany"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1702,39 +1702,39 @@ msgstr "Premium z płaśenim w nałoženju"
 
 #: mkt/constants/base.py:137
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Dermo z płaśenim w nałoženju"
 
 #: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Wužywam swójski system za płaśenja w nałoženju"
 
 #: mkt/constants/base.py:194
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Pśirucnica za pśepytowarske dypki"
 
 #: mkt/constants/base.py:195
 msgid "Web App Review"
-msgstr ""
+msgstr "Pśeglědowanje webnałoženja"
 
 #: mkt/constants/base.py:196
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Pśeglědowanje zapakowanego nałoženja"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Pśeglědowanje priwilegěrowanego nałoženja"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Wóspjetne pśeglědowanje webnałoženja"
 
 #: mkt/constants/base.py:199
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Pśeglědowanje zaktualizěrowanego zapakowanego nałoženja"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Pśeglědowanje zaktualizěrowanego priwilegěrowanego nałoženja"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1846,35 +1846,36 @@ msgstr "Rědy"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Žedna akcija"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Zastajony"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Priwatny pśepytowarski komentar"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "Zasejzapódaśe nałoženja"
 
 #: mkt/constants/comm.py:53
 msgid "Escalated due to High Abuse Reports"
 msgstr ""
+"Wjele znjewužywańskich zdźělenjow dla pśiducemu wušemu městnoju dalej dany"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Wjele zarunańskich napšašowanjow pśiducemu wušemu městnoju dalej dany"
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
-msgstr ""
+msgstr "Pokaze za zapódaśe nałoženja"
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "Wuwijarski komentar"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
@@ -2109,6 +2110,8 @@ msgstr "Dotyknjenje"
 #: mkt/constants/features.py:146
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"Nałoženje pomina se pódpěru dotyknjeńskich tšojeńkow na platformje. Toś ta "
+"opcija pokazujo, až nałoženje njefunkcioněrujo, gaž se z myšku wužywa."
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
@@ -2119,10 +2122,15 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"Nałoženje se pomina, až platforma ma wobrazowku we wjelikosći smartfona (t. "
+"gr. ma qHD-rozeznaśe). Toś ta opcija pokazujo, až nałoženje njedajo se na "
+"wětšych wobrazowkach wužywaś (na pś. na tabletach, desktopowych PC abo "
+"mobilnych telefonach z wjele DPI)."
 
 #: mkt/constants/features.py:163
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
+"Nałoženje se pomina, až platforma móžo MP3-dataje dekoděrowaś a wótgraś."
 
 #: mkt/constants/features.py:168
 msgid "Audio"
@@ -2130,7 +2138,7 @@ msgstr "Awdio"
 
 #: mkt/constants/features.py:169
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Nałoženje se pomina, až platforma pódpěra API \"HTML5 audio\"."
 
 #: mkt/constants/features.py:174
 msgid "Web Audio"
@@ -2139,22 +2147,30 @@ msgstr "Webawdio"
 #: mkt/constants/features.py:175
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Nałoženje se pomina, až platforma pódpěra API Web Audio "
+"(\"window.AudioContext\")."
 
 #: mkt/constants/features.py:181
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Nałoženje se pomina, až platforma móžo dataje H.264-wideo dekoděrowaś a "
+"wótgraś."
 
 #: mkt/constants/features.py:187
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"Nałoženje se pomina, až platforma móžo wideowe dataje WebM (VP8) dekoděrowaś "
+"a wótgraś."
 
 #: mkt/constants/features.py:192
 msgid "Full Screen"
-msgstr ""
+msgstr "Połna wobrazowka"
 
 #: mkt/constants/features.py:193
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"Nałoženje pomina se API Full Screen (\"requestFullScreen\" abo "
+"\"mozRequestFullScreen\")."
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
@@ -2254,18 +2270,22 @@ msgstr ""
 #: mkt/constants/features.py:268
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"Nałoženje se pomina, až platforma staja pśidatne informacije a kontrolu wó "
+"pokazowarju k dispozicij."
 
 #: mkt/constants/features.py:274
 msgid "Notifications"
-msgstr ""
+msgstr "Zdźělenja"
 
 #: mkt/constants/features.py:275
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"Nałoženje se pomina, až platforma dowólujo zwobraznjenje telefonowych a "
+"desktopowych zdźělenjow do wužywarja."
 
 #: mkt/constants/features.py:281
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmy"
 
 #: mkt/constants/features.py:282
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
