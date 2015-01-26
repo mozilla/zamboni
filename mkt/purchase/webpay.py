@@ -44,6 +44,7 @@ def prepare_pay(request, addon):
         raise AlreadyPurchased
     return _prepare_pay(request, addon)
 
+
 def _prepare_pay(request, addon):
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
@@ -130,30 +131,32 @@ def postback(request):
                             'Postback sent again for: %s, but with new '
                             'trans_id: %s' % (contrib.addon.pk, trans_id),
                             severity=7)
-            raise LookupError('JWT (iss:%s, aud:%s) for trans_id %s is for '
-                              'contrib %s that is already paid and has '
-                              'existing differnet trans_id: %s'
-                              % (data['iss'], data['aud'],
-                                 data['response']['transactionID'],
-                                 contrib_uuid, contrib.transaction_id))
+            raise LookupError(
+                'JWT (iss:{iss}, aud:{aud}) for trans_id {jwt_trans} is '
+                'for contrib {contrib_uuid} that is already paid and has '
+                'a different trans_id: {contrib_trans}'
+                .format(iss=data['iss'], aud=data['aud'],
+                        jwt_trans=data['response']['transactionID'],
+                        contrib_uuid=contrib_uuid,
+                        contrib_trans=contrib.transaction_id))
 
     try:
         transaction_data = (solitude.api.generic
                                         .transaction
                                         .get_object_or_404)(uuid=trans_id)
     except ObjectDoesNotExist:
-        raise LookupError('Unable to look up transaction: '
-                          '{trans_id} in Solitude'.format(
-                              trans_id=trans_id))
+        raise LookupError(
+            'Unable to look up transaction: {trans_id} in Solitude'
+            .format(trans_id=trans_id))
 
     buyer_uri = transaction_data['buyer']
 
     try:
         buyer_data = solitude.api.by_url(buyer_uri).get_object_or_404()
     except ObjectDoesNotExist:
-        raise LookupError('Unable to look up buyer: '
-                          '{buyer_uri} in Solitude'.format(
-                              buyer_uri=buyer_uri))
+        raise LookupError(
+            'Unable to look up buyer: {buyer_uri} in Solitude'
+            .format(buyer_uri=buyer_uri))
 
     buyer_email = buyer_data['email']
 
@@ -176,8 +179,8 @@ def postback(request):
                 msg='A new account was created from Webpay (using FxA)')
         record_action('new-user', request)
 
-    log.info('webpay postback: fulfilling purchase for contrib %s with '
-             'transaction %s' % (contrib, trans_id))
+    log.info(u'webpay postback: fulfilling purchase for contrib {c} with '
+             u'transaction {t}'.format(c=contrib, t=trans_id))
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
                     'Purchase complete for: %s' % (contrib.addon.pk),
                     severity=3)
