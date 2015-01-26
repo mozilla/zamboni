@@ -79,17 +79,13 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
     # Logged in view the right permission ('LangPacks', '%') you get them
     # all if you use active=0.
 
-    def test_list_active(self):
+    def test_list_active_anonymous(self):
         response = self.anon.get(self.list_url)
         eq_(response.status_code, 200)
         ok_(len(response.json['objects']), 1)
         self.check_langpack(response.json['objects'][0])
 
-        response = self.client.get(self.list_url)
-        eq_(response.status_code, 200)
-        ok_(len(response.json['objects']), 1)
-        self.check_langpack(response.json['objects'][0])
-
+    def test_list_active_no_perm_needed(self):
         response = self.client.get(self.list_url)
         eq_(response.status_code, 200)
         ok_(len(response.json['objects']), 1)
