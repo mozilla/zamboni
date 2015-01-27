@@ -45,7 +45,7 @@ define('login', ['notification', 'storage'], function(notification, storage) {
     function startFxALogin(options) {
         options = options || {};
         var w = 320;
-        var h = 500;
+        var h = 600;
         var i = getCenteredCoordinates(w, h);
         requestedLogin = true;
 
@@ -54,7 +54,8 @@ define('login', ['notification', 'storage'], function(notification, storage) {
             fxa_auth_url += '&action=' + options.action;
         }
         var popup = window.open(fxa_auth_url, 'fxa',
-            'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+            'scrollbars=yes,width=' + w + ',height=' + h +
+            ',left=' + i[0] + ',top=' + i[1]);
 
         window.addEventListener("message", function (msg) {
             if (!msg.data || !msg.data.auth_code) {
