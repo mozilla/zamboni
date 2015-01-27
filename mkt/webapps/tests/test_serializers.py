@@ -684,3 +684,6 @@ class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):
         ok_('regions' in self.serializer.data)
         eq_(len(self.serializer.data['regions']),
             len(self.webapp.get_regions()))
+
+    def test_categories_present(self):
+        ok_('categories' in self.serializer.data)

@@ -564,9 +564,9 @@ class SimpleAppSerializer(AppSerializer):
                                        source='all_previews')
 
     class Meta(AppSerializer.Meta):
-        exclude = ['absolute_url', 'app_type', 'categories', 'created',
-                   'default_locale', 'package_path', 'payment_account',
-                   'supported_locales', 'upsold', 'tags']
+        exclude = ['absolute_url', 'app_type', 'created', 'default_locale',
+                   'package_path', 'payment_account', 'supported_locales',
+                   'upsold', 'tags']
 
 
 class SimpleESAppSerializer(ESAppSerializer):
