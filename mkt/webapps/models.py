@@ -2023,6 +2023,29 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         except IndexError:
             return
 
+    def get_installs(self, region=None):
+        """
+        Returns popularity value.
+
+        If no region, uses global value.
+        If region and region is not mature, uses global value.
+        Otherwise uses regional popularity value.
+
+        """
+        # We ignore this app as it is used for testing app installs.
+        if self.pk == settings.QA_APP_ID:
+            return 0
+
+        if region and not region.adolescent:
+            by_region = region.id
+        else:
+            by_region = 0
+
+        try:
+            return self.installs.get(region=by_region).value
+        except ObjectDoesNotExist:
+            return 0
+
     def get_trending(self, region=None):
         """
         Returns trending value.
@@ -2032,6 +2055,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Otherwise uses regional trending value.
 
         """
+        # We ignore this app as it is used for testing app installs.
+        if self.pk == settings.QA_APP_ID:
+            return 0
+
         if region and not region.adolescent:
             by_region = region.id
         else:
@@ -2264,6 +2291,17 @@ def cleanup_upsell(sender, instance, **kw):
 
 dbsignals.post_delete.connect(cleanup_upsell, sender=Webapp,
                               dispatch_uid='addon_upsell')
+
+
+class Installs(ModelBase):
+    addon = models.ForeignKey(Webapp, related_name='installs')
+    value = models.FloatField(default=0.0)
+    # When region=0, we count across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        db_table = 'addons_installs'
+        unique_together = ('addon', 'region')
 
 
 class Trending(ModelBase):

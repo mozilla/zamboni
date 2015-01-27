@@ -20,8 +20,9 @@ from mkt.site.decorators import write
 from mkt.site.utils import chunked, walkfiles
 
 from .models import Installed, Webapp
-from .tasks import (delete_logs, dump_user_installs, reindex_trending,
-                    update_trending, zip_users)
+from .tasks import (delete_logs, dump_user_installs, reindex_popular,
+                    reindex_trending, update_installs, update_trending,
+                    zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
@@ -123,6 +124,27 @@ def clean_old_signed(seconds=60 * 60):
         if age > seconds:
             log.debug('Removing signed app: %s, %dsecs old.' % (full, age))
             shutil.rmtree(full)
+
+
+@cronjobs.register
+def update_app_installs():
+    """
+    Update app install counts for all published apps.
+
+    We chain these so we don't hit Monolith all at once.
+
+    """
+    chunk_size = 50
+
+    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
+                                         disabled_by_user=False)
+                   .values_list('id', flat=True))
+
+    tasks = [update_installs.si(ids) for ids in chunked(all_ids, chunk_size)]
+    # Add a reindex task when all done to update trending apps.
+    tasks.append(reindex_popular.si())
+
+    chain(*tasks).apply_async()
 
 
 @cronjobs.register

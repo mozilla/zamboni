@@ -3,7 +3,7 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.models import Count, Min
+from django.db.models import Min
 from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
@@ -226,8 +226,7 @@ class WebappIndexer(BaseIndexer):
         from mkt.webapps.models import (AppFeatures, attach_devices,
                                         attach_prices, attach_tags,
                                         attach_translations, Geodata,
-                                        Installed, RatingDescriptors,
-                                        RatingInteractives)
+                                        RatingDescriptors, RatingInteractives)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
@@ -248,17 +247,12 @@ class WebappIndexer(BaseIndexer):
         except IndexError:
             status = None
 
-        install_count = 0
-        if obj.pk != settings.QA_APP_ID:
-            install_count = (Installed.objects.filter(addon=obj)
-                             .aggregate(Count('id')).get('id__count', 0))
-
         attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
                  'last_updated', 'modified', 'premium_type', 'status',
                  'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['boost'] = install_count or 1
+        d['boost'] = obj.get_installs() or 1
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -314,9 +308,9 @@ class WebappIndexer(BaseIndexer):
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
-        d['popularity'] = install_count
-        for region in mkt.regions.ALL_REGION_IDS:
-            d['popularity_%s' % region] = d['popularity']
+        d['popularity'] = obj.get_installs()
+        for region in mkt.regions.ALL_REGIONS:
+            d['popularity_%s' % region.id] = obj.get_installs(region)
 
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
@@ -393,7 +387,7 @@ class WebappIndexer(BaseIndexer):
             d['name_suggest'] = {
                 'input': d['name'],
                 'output': unicode(obj.id),  # We only care about the payload.
-                'weight': d['boost'],
+                'weight': int(d['boost']),
                 'payload': {
                     'default_locale': d['default_locale'],
                     'icon_hash': d['icon_hash'],

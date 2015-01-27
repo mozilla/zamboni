@@ -27,7 +27,7 @@ from mkt.tags.models import AddonTag, Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, AddonUpsell, Installed, Webapp
+from mkt.webapps.models import AddonDeviceType, AddonUpsell, Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -982,10 +982,8 @@ class TestRocketbarView(ESTestCase):
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
-        # Add 2 installed records so this app is boosted higher than app1.
-        Installed.objects.create(user=self.profile, addon=self.app2)
-        Installed.objects.create(user=mkt.site.tests.user_factory(),
-                                 addon=self.app2)
+        # Add some installs so this app is boosted higher than app1.
+        self.app2.installs.create(region=0, value=10.0)
         self.app2.save()
         self.refresh('webapp')
 

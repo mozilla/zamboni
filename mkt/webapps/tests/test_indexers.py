@@ -12,7 +12,7 @@ from mkt.site.tests import ESTestCase, TestCase
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, ContentRating, Installed, Webapp
+from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
 
 
 class TestWebappIndexer(TestCase):
@@ -199,32 +199,35 @@ class TestWebappIndexer(TestCase):
         eq_(doc['installs_allowed_from'], ['http://a.com', 'http://b.com'])
 
     def test_installs_to_popularity(self):
-        user2 = UserProfile.objects.create()
-
         # No installs.
         obj, doc = self._get_doc()
         # Boost is multiplied by 4 if it's public.
         eq_(doc['boost'], 1 * 4)
         eq_(doc['popularity'], 0)
 
-        # One install.
-        Installed.objects.create(addon=self.app, user=self.user)
-        obj, doc = self._get_doc()
-        eq_(doc['boost'], 1 * 4)
-        eq_(doc['popularity'], 1)
+        # Many installs.
+        self.app.installs.create(region=0, value=50.0)
+        # Test an adolescent region.
+        self.app.installs.create(region=2, value=10.0)
+        # Test a mature region.
+        self.app.installs.create(region=7, value=10.0)
 
-        # Two installs.
-        Installed.objects.create(addon=self.app, user=user2)
         obj, doc = self._get_doc()
-        eq_(doc['boost'], 2 * 4)
-        eq_(doc['popularity'], 2)
+        eq_(doc['boost'], 50 * 4)
+        eq_(doc['popularity'], 50)
+        # An adolescent region uses the global trending value.
+        eq_(doc['popularity_2'], 50)
+        eq_(doc['popularity_7'], 10)
 
     @override_settings(QA_APP_ID=337141)
     def test_popularity_qa_app(self):
-        Installed.objects.create(addon=self.app, user=self.user)
+        self.app.installs.create(region=0, value=50.0)
         obj, doc = self._get_doc()
         eq_(doc['boost'], 1 * 4)
         eq_(doc['popularity'], 0)
+        eq_(doc['popularity_7'], 0)
+        eq_(doc['trending'], 0)
+        eq_(doc['trending_7'], 0)
 
     def test_trending(self):
         self.app.trending.create(region=0, value=10.0)

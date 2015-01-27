@@ -48,7 +48,7 @@ from mkt.site.utils import chunked, days_ago, JSONEncoder, slugify
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AppManifest, Preview, Trending, Webapp
+from mkt.webapps.models import AppManifest, Installs, Preview, Trending, Webapp
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -627,6 +627,151 @@ def import_manifests(ids, **kw):
             except Exception as e:
                 task_log.info('[Webapp:%s] Error loading manifest for version '
                               '%s: %s' % (app.id, version.id, e))
+
+
+def _get_installs(app_id):
+    """
+    Calculate popularity of app for all regions and per region.
+
+    Returns value in the format of::
+
+        {'all': <global installs>,
+         <region_slug>: <regional installs>,
+         ...}
+
+    """
+    # How many days back do we include when calculating popularity.
+    POPULARITY_PERIOD = 90
+
+    client = get_monolith_client()
+
+    popular = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(POPULARITY_PERIOD).date().isoformat(),
+                    'lte': days_ago(1).date().isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
+
+    query = {
+        'query': {
+            'filtered': {
+                'query': {'match_all': {}},
+                'filter': {'term': {'app-id': app_id}}
+            }
+        },
+        'aggregations': {
+            'popular': popular,
+            'region': {
+                'terms': {
+                    'field': 'region',
+                    # Add size so we get all regions, not just the top 10.
+                    'size': len(mkt.regions.ALL_REGIONS)
+                },
+                'aggregations': {
+                    'popular': popular
+                }
+            }
+        },
+        'size': 0
+    }
+
+    try:
+        res = client.raw(query)
+    except ValueError as e:
+        task_log.error('Error response from Monolith: {0}'.format(e))
+        return {}
+
+    if 'aggregations' not in res:
+        task_log.error('No installs for app {}'.format(app_id))
+        return {}
+
+    results = {
+        'all': res['aggregations']['popular']['total_installs']['value']
+    }
+
+    if 'region' in res['aggregations']:
+        for regional_res in res['aggregations']['region']['buckets']:
+            region_slug = regional_res['key']
+            popular = regional_res['popular']['total_installs']['value']
+            results[region_slug] = popular
+
+    return results
+
+
+@task
+@write
+def update_installs(ids, **kw):
+
+    count = 0
+    times = []
+
+    for app in Webapp.objects.filter(id__in=ids).no_transforms():
+
+        count += 1
+        now = datetime.datetime.now()
+        t_start = time.time()
+
+        scores = _get_installs(app.id)
+
+        # Update global installs, then per-region installs below.
+        value = scores.get('all')
+        if value > 0:
+            installs, created = app.installs.get_or_create(
+                region=0, defaults={'value': value})
+            if not created:
+                installs.update(value=value, modified=now)
+        else:
+            # The value is <= 0 so we can just ignore it.
+            app.installs.filter(region=0).delete()
+
+        for region in mkt.regions.REGIONS_DICT.values():
+            value = scores.get(region.slug)
+            if value > 0:
+                installs, created = app.installs.get_or_create(
+                    region=region.id, defaults={'value': value})
+                if not created:
+                    installs.update(value=value, modified=now)
+            else:
+                # The value is <= 0 so we can just ignore it.
+                app.installs.filter(region=region.id).delete()
+
+        times.append(time.time() - t_start)
+
+    task_log.info('Installs calculated for %s apps. Avg time overall: '
+                  '%0.2fs' % (count, sum(times) / count))
+
+
+@task
+def reindex_popular(**kwargs):
+    """
+    Task to reindex only the popular apps.
+
+    We run this after updating the popular apps table so the data in
+    Elasticsearch is updated.
+
+    """
+    # Before reindexing, purge any popular items that were leftover from the
+    # last run and not updated. We force updating of `modified` even if no
+    # data changes so any records with older modified times can be purged.
+    now = datetime.datetime.now()
+    midnight = datetime.datetime(year=now.year, month=now.month, day=now.day)
+    Installs.objects.filter(modified__lte=midnight).delete()
+
+    # Now reindex what's left.
+    ids = Installs.objects.all().values_list('addon', flat=True)
+    for ids in chunked(ids, 100):
+        WebappIndexer.index_ids(ids, no_delay=True)
 
 
 def _get_trending(app_id):

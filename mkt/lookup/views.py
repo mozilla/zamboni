@@ -272,9 +272,8 @@ def app_summary(request, addon_id):
 
     return render(request, 'lookup/app_summary.html', {
         'abuse_reports': app.abuse_reports.count(), 'app': app,
-        'authors': authors, 'downloads': _app_downloads(app),
-        'purchases': purchases, 'refunds': refunds, 'price': price,
-        'provider_portals': provider_portals,
+        'authors': authors, 'purchases': purchases, 'refunds': refunds,
+        'price': price, 'provider_portals': provider_portals,
         'status_form': status_form, 'versions': versions,
         'is_tarako': app.tags.filter(tag_text=QUEUE_TARAKO).exists(),
         'tarako_review':
@@ -439,19 +438,6 @@ def app_search(request):
                     'name': name,
                 })
     return {'results': results}
-
-
-def _app_downloads(app):
-    stats = {'last_7_days': 0,
-             'last_24_hours': 0,
-             'alltime': 0}
-
-    # Webapps populate these fields via Monolith.
-    # TODO: Update this to use monolith or link to stats or use 90d numbers?
-    stats['last_24_hours'] = 'N/A'
-    stats['last_7_days'] = 'N/A'
-    stats['alltime'] = 'N/A'
-    return stats
 
 
 def _app_summary(user_id):

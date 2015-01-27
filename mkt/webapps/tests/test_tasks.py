@@ -28,13 +28,13 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonUser, Preview, Trending, Webapp
-from mkt.webapps.tasks import (_get_trending, dump_app, dump_user_installs,
-                               export_data, fake_app_names,
+from mkt.webapps.models import AddonUser, Installs, Preview, Trending, Webapp
+from mkt.webapps.tasks import (_get_installs, _get_trending, dump_app,
+                               dump_user_installs, export_data, fake_app_names,
                                fix_excluded_regions, generate_app_data,
                                notify_developers_of_failure, pre_generate_apk,
-                               PreGenAPKError, rm_directory, update_manifests,
-                               update_trending, zip_apps)
+                               PreGenAPKError, rm_directory, update_installs,
+                               update_manifests, update_trending, zip_apps)
 
 
 original = {
@@ -970,3 +970,70 @@ class TestUpdateTrending(mkt.site.tests.TestCase):
         _mock.return_value = client
 
         eq_(_get_trending(self.app.id), {})
+
+
+class TestUpdateInstalls(mkt.site.tests.TestCase):
+
+    def setUp(self):
+        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
+
+    @mock.patch('mkt.webapps.tasks._get_installs')
+    def test_installs_saved(self, _mock):
+        _mock.return_value = {'all': 12.0}
+        update_installs([self.app.id])
+
+        eq_(self.app.get_installs(), 12.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_installs(region=region), 12.0)
+            else:
+                eq_(self.app.get_installs(region=region), 0.0)
+
+        # Test running again updates the values as we'd expect.
+        _mock.return_value = {'all': 2.0}
+        update_installs([self.app.id])
+        eq_(self.app.get_installs(), 2.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_installs(region=region), 2.0)
+            else:
+                eq_(self.app.get_installs(region=region), 0.0)
+
+    @mock.patch('mkt.webapps.tasks._get_installs')
+    def test_installs_deleted(self, _mock):
+        self.app.trending.get_or_create(region=0, value=12.0)
+
+        _mock.return_value = {'all': 0.0}
+        update_installs([self.app.id])
+
+        with self.assertRaises(Installs.DoesNotExist):
+            self.app.installs.get(region=0)
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_get_trending(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = {
+            'aggregations': {
+                'popular': {'total_installs': {'value': 123}},
+                'region': {
+                    'buckets': [
+                        {
+                            'key': 'br',
+                            'popular': {'total_installs': {'value': 12}}
+                        }
+                    ]
+                }
+            }
+        }
+        _mock.return_value = client
+
+        eq_(_get_installs(self.app.id)['all'], 123.0)
+        eq_(_get_installs(self.app.id)['br'], 12.0)
+
+    @mock.patch('mkt.webapps.tasks.get_monolith_client')
+    def test_get_installs_error(self, _mock):
+        client = mock.Mock()
+        client.raw.side_effect = ValueError
+        _mock.return_value = client
+
+        eq_(_get_installs(self.app.id), {})
