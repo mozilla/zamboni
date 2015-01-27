@@ -769,7 +769,7 @@ def reindex_popular(**kwargs):
     Installs.objects.filter(modified__lte=midnight).delete()
 
     # Now reindex what's left.
-    ids = Installs.objects.all().values_list('addon', flat=True)
+    ids = Installs.objects.all().values_list('addon', flat=True).distinct()
     for ids in chunked(ids, 100):
         WebappIndexer.index_ids(ids, no_delay=True)
 
@@ -962,7 +962,8 @@ def reindex_trending(**kwargs):
     Trending.objects.filter(modified__lte=midnight).delete()
 
     # Now reindex what's left.
-    trending_ids = Trending.objects.all().values_list('addon', flat=True)
+    trending_ids = (Trending.objects.all()
+                    .values_list('addon', flat=True).distinct())
     for ids in chunked(trending_ids, 100):
         WebappIndexer.index_ids(ids, no_delay=True)
 
