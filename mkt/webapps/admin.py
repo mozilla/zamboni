@@ -22,8 +22,7 @@ class WebappAdmin(admin.ModelAdmin):
             'fields': ('support_url', 'support_email'),
         }),
         ('Stats', {
-            'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
-                       'total_downloads'),
+            'fields': ('average_rating', 'bayesian_rating', 'total_reviews'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'public_stats'),

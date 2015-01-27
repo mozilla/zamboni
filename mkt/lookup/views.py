@@ -447,9 +447,10 @@ def _app_downloads(app):
              'alltime': 0}
 
     # Webapps populate these fields via Monolith.
+    # TODO: Update this to use monolith or link to stats or use 90d numbers?
     stats['last_24_hours'] = 'N/A'
     stats['last_7_days'] = 'N/A'
-    stats['alltime'] = app.total_downloads
+    stats['alltime'] = 'N/A'
     return stats
 
 

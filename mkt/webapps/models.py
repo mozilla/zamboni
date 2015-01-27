@@ -451,8 +451,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                                         db_column='bayesianrating')
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
-    total_downloads = models.PositiveIntegerField(
-        default=0, db_column='totaldownloads')
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
@@ -546,7 +544,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             'reason': reason,
             'name': self.name,
             'slug': self.app_slug,
-            'total_downloads': self.total_downloads,
             'url': absolutify(self.get_url_path()),
             'user_str': ("%s, %s (%s)" % (user.display_name or
                                           user.username, user.email,
@@ -561,7 +558,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         ID: %(id)s
         GUID: %(guid)s
         AUTHORS: %(authors)s
-        TOTAL DOWNLOADS: %(total_downloads)s
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s
         """ % context

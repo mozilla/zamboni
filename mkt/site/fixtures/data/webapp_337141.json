@@ -90,7 +90,6 @@
         "model": "webapps.webapp",
         "fields": {
             "last_updated": "2011-10-18 16:28:24",
-            "total_downloads": 0,
             "premium_type": 0,
             "app_slug": "something-something",
             "_current_version": 1268829,

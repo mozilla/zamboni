@@ -101,13 +101,6 @@
             <dt>{{ _('Rating') }}</dt>
             <dd>{{ impala_reviews_link(product) }}</dd>
           {% endif %}
-          <dt>{{ _('Total Downloads') }}</dt>
-          <dd class="meta-stats">
-            <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
-            {% if product.public_stats %}
-              <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
-            {% endif %}
-          </dd>
           <dt>{{ _('Abuse Reports') }}</dt>
           <dd class="abuse-reports">
             <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">

@@ -748,7 +748,6 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     rated = kw.pop('rated', False)
     if complete:
         kw.setdefault('support_email', 'support@example.com')
-    popularity = kw.pop('popularity', None)
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -764,7 +763,6 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
         'bayesian_rating': random.uniform(1, 5),
-        'total_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
     }
