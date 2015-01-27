@@ -76,7 +76,7 @@ BANGO_COUNTRIES = [
     ('CUW', _lazy(u'Curaçao')),
     ('CYP', _lazy(u'Cyprus')),
     ('CZE', _lazy(u'Czech Republic')),
-    ('DNK', _lazy(u'Denmark Do')),
+    ('DNK', _lazy(u'Denmark')),
     ('DJI', _lazy(u'Djibouti')),
     ('DMA', _lazy(u'Dominica')),
     ('DOM', _lazy(u'Dominican Republic')),
