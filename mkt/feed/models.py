@@ -246,8 +246,8 @@ class FeedBrand(BaseFeedCollection):
 
 class FeedCollectionMembership(BaseFeedCollectionMembership):
     """
-    An app's membership to a `FeedCollection` class, used as the through model for
-    `FeedBrand._apps`.
+    An app's membership to a `FeedCollection` class, used as the through model
+    for `FeedBrand._apps`.
     """
     obj = models.ForeignKey('FeedCollection')
     group = PurifiedField(blank=True, null=True)
@@ -361,8 +361,8 @@ class FeedApp(BaseFeedImage, ModelBase):
     # Optionally linked to a pull quote.
     pullquote_attribution = models.CharField(max_length=50, null=True,
                                              blank=True)
-    pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
-        validators=[validate_rating])
+    pullquote_rating = models.PositiveSmallIntegerField(
+        null=True, blank=True, validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
 
     # Deprecated.
@@ -474,13 +474,11 @@ models.signals.pre_save.connect(
 
 
 # Delete membership instances when their apps are deleted.
-def remove_deleted_app_on(cls):
-    def inner(*args, **kwargs):
-        instance = kwargs.get('instance')
+def remove_memberships(*args, **kwargs):
+    instance = kwargs.get('instance')
+    for cls in [FeedBrandMembership, FeedCollectionMembership,
+                FeedShelfMembership]:
         cls.objects.filter(app_id=instance.pk).delete()
-    return inner
 
-for cls in [FeedBrandMembership, FeedCollectionMembership,
-            FeedShelfMembership]:
-    post_delete.connect(remove_deleted_app_on(cls), sender=Webapp,
-                        dispatch_uid='apps_collections_cleanup')
+post_delete.connect(remove_memberships, sender=Webapp, weak=False,
+                    dispatch_uid='cleanup_feed_membership')
