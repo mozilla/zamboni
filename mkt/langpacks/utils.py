@@ -7,6 +7,9 @@ from mkt.files.utils import WebAppParser
 
 
 class LanguagePackParser(WebAppParser):
+    def __init__(self, instance=None):
+        self.instance = instance
+
     def parse(self, upload):
         """Parse the FileUpload passed in argument and return langpack data.
         May raise forms.ValidationError()"""
@@ -42,9 +45,18 @@ class LanguagePackParser(WebAppParser):
                 _(u'Your language pack contains too many targets. Only one '
                   u'target per pack is supported.'))
 
+        version = data.get('version')
+        if version is None:
+            raise forms.ValidationError(
+                _(u'Your language pack should contain a version.'))
+        if self.instance and self.instance.version == version:
+            raise forms.ValidationError(
+                _(u'Your language pack version must be different to the one '
+                  u'you are replacing.'))
+
         output = {
             'language': languages_provided[0],
             'fxos_version': languages_target[0],
-            'version': data.get('version', '1.0'),
+            'version': version,
         }
         return output

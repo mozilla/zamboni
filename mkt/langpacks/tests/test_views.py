@@ -7,6 +7,7 @@ from django.forms import ValidationError
 from mock import patch
 from nose.tools import eq_, ok_
 
+from lib.crypto.packaged import SigningError
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.files.models import FileUpload
 from mkt.langpacks.models import LangPack
@@ -213,6 +214,17 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
             'upload': 'my-uuid'}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'detail': [u'foo bar']})
+
+    @patch('mkt.langpacks.models.sign_app')
+    def test_signing_error(self, sign_app_mock):
+        sign_app_mock.side_effect = SigningError(u'Fake signing error')
+        upload = self.upload('langpack.zip', valid=True, user=self.user)
+        self.grant_permission(self.user, 'LangPacks:%')
+
+        response = self.client.post(self.list_url, data=json.dumps({
+            'upload': upload.uuid}))
+        eq_(response.status_code, 503)
+        eq_(response.json, {u'detail': [u'Fake signing error']})
 
     def test_create(self):
         eq_(LangPack.objects.count(), 0)
