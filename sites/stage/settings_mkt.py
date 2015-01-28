@@ -154,7 +154,7 @@ FXA_SECRETS = {
 }
 
 DEFAULT_PAYMENT_PROVIDER = 'bango'
-PAYMENT_PROVIDERS = ['bango']
+PAYMENT_PROVIDERS = ['bango', 'boku']
 
 RECOMMENDATIONS_API_URL = 'https://recommend.allizom.org'
 RECOMMENDATIONS_ENABLED = True
