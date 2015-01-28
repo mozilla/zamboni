@@ -375,7 +375,6 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
         Return all shelves a user can administer. Anonymous users will always
         receive an empty list.
         """
-        data = self.req_data()
         qs = self.queryset.no_cache()
         if request.user.is_anonymous():
             qs = self.queryset.none()
@@ -423,7 +422,6 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
         """
         self.require_object_permission(request.user, self.get_object())
         return super(FeedShelfViewSet, self).destroy(request, *args, **kwargs)
-
 
 
 class FeedShelfPublishView(FeedShelfPermissionMixin, CORSMixin, APIView):
@@ -552,7 +550,8 @@ class FeedShelfImageViewSet(FeedShelfPermissionMixin, CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
 
 
-class FeedShelfLandingImageViewSet(FeedShelfPermissionMixin, CollectionImageViewSet):
+class FeedShelfLandingImageViewSet(FeedShelfPermissionMixin,
+                                   CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
     hash_field = 'image_landing_hash'
     image_suffix = '_landing'
@@ -750,9 +749,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
 
         ordering_fn = es_function.FieldValueFactor(
-             field='order', modifier='reciprocal',
-             filter=es_filter.Bool(must=[region_filter],
-                                   must_not=[shelf_filter]))
+            field='order', modifier='reciprocal',
+            filter=es_filter.Bool(must=[region_filter],
+                                  must_not=[shelf_filter]))
         boost_fn = es_function.BoostFactor(value=10000.0,
                                            filter=shelf_filter)
 

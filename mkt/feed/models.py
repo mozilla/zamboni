@@ -246,8 +246,8 @@ class FeedBrand(BaseFeedCollection):
 
 class FeedCollectionMembership(BaseFeedCollectionMembership):
     """
-    An app's membership to a `FeedCollection` class, used as the through model for
-    `FeedBrand._apps`.
+    An app's membership to a `FeedCollection` class, used as the through model
+    for `FeedBrand._apps`.
     """
     obj = models.ForeignKey('FeedCollection')
     group = PurifiedField(blank=True, null=True)
@@ -361,8 +361,8 @@ class FeedApp(BaseFeedImage, ModelBase):
     # Optionally linked to a pull quote.
     pullquote_attribution = models.CharField(max_length=50, null=True,
                                              blank=True)
-    pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
-        validators=[validate_rating])
+    pullquote_rating = models.PositiveSmallIntegerField(
+        null=True, blank=True, validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
 
     # Deprecated.
