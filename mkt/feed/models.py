@@ -474,13 +474,11 @@ models.signals.pre_save.connect(
 
 
 # Delete membership instances when their apps are deleted.
-def remove_deleted_app_on(cls):
-    def inner(*args, **kwargs):
-        instance = kwargs.get('instance')
+def remove_memberships(*args, **kwargs):
+    instance = kwargs.get('instance')
+    for cls in [FeedBrandMembership, FeedCollectionMembership,
+                FeedShelfMembership]:
         cls.objects.filter(app_id=instance.pk).delete()
-    return inner
 
-for cls in [FeedBrandMembership, FeedCollectionMembership,
-            FeedShelfMembership]:
-    post_delete.connect(remove_deleted_app_on(cls), sender=Webapp,
-                        dispatch_uid='apps_collections_cleanup')
+post_delete.connect(remove_memberships, sender=Webapp, weak=False,
+                    dispatch_uid='cleanup_feed_membership')

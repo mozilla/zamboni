@@ -10,11 +10,11 @@ import mkt.site.tests
 import mkt.feed.constants as feed
 from mkt.feed import serializers
 from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
-from mkt.feed.models import FeedShelf
+from mkt.feed.models import FeedShelf, FeedShelfMembership
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.regions import RESTOFWORLD
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Preview
+from mkt.webapps.models import Preview, Webapp
 
 
 class TestFeedAppSerializer(FeedTestMixin, mkt.site.tests.TestCase):
@@ -283,6 +283,20 @@ class TestFeedShelfSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.shelf.feeditem_set.create()
         data = serializers.FeedShelfSerializer(self.shelf).data
         assert data['is_published']
+
+    def test_shelf_get_apps_deleted_app(self):
+        """
+        Regression test for bug 1124319; ensures that deleted apps also delete
+        any respective FeedShelfMembership objects.
+        """
+        app_id = self.app_ids.pop()
+        ok_(FeedShelfMembership.objects.filter(app__id=app_id).count() >= 1)
+        Webapp.objects.get(pk=app_id).delete()
+        eq_(FeedShelfMembership.objects.filter(app__id=app_id).count(), 0)
+        try:
+            serializers.FeedShelfSerializer(self.shelf).data
+        except Webapp.DoesNotExist:
+            self.fail('Deleted app does not delete shelf membership object.')
 
 
 class TestFeedShelfESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
