@@ -1,5 +1,8 @@
-from rest_framework import exceptions, serializers
+from rest_framework import serializers
+from rest_framework.exceptions import ParseError
 
+from lib.crypto.packaged import SigningError
+from mkt.api.exceptions import ServiceUnavailable
 from mkt.files.models import FileUpload
 from mkt.langpacks.models import LangPack
 
@@ -36,7 +39,11 @@ class LangPackUploadSerializer(serializers.Serializer):
         try:
             return LangPack.from_upload(attrs['upload'], instance=instance)
         except serializers.ValidationError, e:
-            raise exceptions.ParseError(e.messages)
+            raise ParseError(e.messages)
+        except SigningError, e:
+            # A SigningError could mean the package is corrupted but it often
+            # means something is wrong on our end, so return a 503.
+            raise ServiceUnavailable([e.message])
 
 
 class LangPackSerializer(serializers.ModelSerializer):
