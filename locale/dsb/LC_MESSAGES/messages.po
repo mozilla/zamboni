@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-26 11:22+0000\n"
+"PO-Revision-Date: 2015-01-28 23:03+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422271376.0\n"
+"X-POOTLE-MTIME: 1422486223.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -1879,7 +1879,7 @@ msgstr "Wuwijarski komentar"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Rědy pśez pśepytowarja změnjone"
 
 #: mkt/constants/comm.py:59
 msgid "Requirement(s) changed by reviewer"
@@ -1995,39 +1995,41 @@ msgstr "Baterija"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"naqvigator.battery\"."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozBluetooth\"."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakty"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Nałoženje pomina se API \"navigator.mozContacts\"."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Rědowy składowak"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Nałoženje pomina se API \"Rědowy składowak\", aby pśistup na datajowy system "
+"měło."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Nałoženje pomina se pódpěru IndexedDB na platformje."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Póstajenje stojnišćow"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr ""
+msgstr "Nałoženje pomina se pódpěru API \"navigator.geolocation\" na platformje."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
@@ -2230,6 +2232,8 @@ msgstr "WebRTC MediaStream"
 #: mkt/constants/features.py:235
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"Nałoženje se pomina, až platforma komunikaciju napšawdnego casa mjazy "
+"wobglědowakami pśez dochadajuce medijowe prudy dowólujo."
 
 #: mkt/constants/features.py:241
 msgid "WebRTC DataChannel"
@@ -2238,30 +2242,36 @@ msgstr "WebRTC DataChannel"
 #: mkt/constants/features.py:242
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Nałoženje se pomina, až platforma direktnu wuměnu hynakšych datow ako awdio "
+"a wideo dowólujo."
 
 #: mkt/constants/features.py:248
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:249
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Nałoženje se pomina, až platforma komunikaciju tšugajucych datow mjazy "
+"licadłami w kompjuterowej seśi dowólujo."
 
 #: mkt/constants/features.py:255
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:256
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr ""
+"Nałoženje se pomina, až platforma wužywanje tekst-do-powědanja dowólujo."
 
 #: mkt/constants/features.py:261
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:262
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"Nałoženje se pomina, až platforma wužywanje powědanje-do-teksta dowólujo."
 
 #: mkt/constants/features.py:267
 msgid "Pointer Lock"
@@ -2325,39 +2335,39 @@ msgstr ""
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "ID mobilnego telefona"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Nałoženje pomina se pśistup na API \"navigator.getMobileIdAssertion\"."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Pśedkompilěrowanje Asm.js"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Nałoženje se pomina, až rěd pśedkompilěrowanje koda asm.js pódpěra."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Rěd z 512 MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Nałoženje se pomina, až rěd ma nanejmjenjej 512 MB RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Rěd z 1 GB RAM"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Nałoženje se pomina, až rěd ma nanejmjenjej 1 GB RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Slědkpłaśenje"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
@@ -2397,39 +2407,39 @@ msgstr ""
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "Płaśenje njejo se raźiło."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "Storněrowanje njejo se raźiło."
 
 #: mkt/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
-msgstr ""
+msgstr "Płaśenje jo se dostało, ale njejo se dokóńcyło a caka na pśeźěłowanje."
 
 #: mkt/constants/payments.py:121
 msgid "Completed"
-msgstr ""
+msgstr "Dokóńcony"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox za Desktop"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Dopołnje wótwórjony mobilny ekosystem"
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:48
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac a Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:46 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Androidowe smartfony"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:47
 msgid "Tablets"
-msgstr ""
+msgstr "Tablety"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
@@ -2470,29 +2480,29 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Za starstwo wót 12 lět"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Wót 17 lět"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Dorosćone wót 18 lět"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Amerika, mimo Brazilskeje"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Pśeglědowanišćo za rozdrosćeńsku software"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
