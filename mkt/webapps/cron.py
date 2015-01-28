@@ -10,19 +10,19 @@ from django.db.models import Q
 
 import commonware.log
 import cronjobs
-from celery import chain, chord
+from celery import chord
 
 import mkt
+from lib.metrics import get_monolith_client
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import write
-from mkt.site.utils import chunked, walkfiles
+from mkt.site.utils import chunked, days_ago, walkfiles
 
-from .models import Installed, Webapp
-from .tasks import (delete_logs, dump_user_installs, reindex_popular,
-                    reindex_trending, update_installs, update_trending,
-                    zip_users)
+from .indexers import WebappIndexer
+from .models import Installed, Installs, Trending, Webapp
+from .tasks import delete_logs, dump_user_installs, zip_users
 
 
 log = commonware.log.getLogger('z.cron')
@@ -126,46 +126,388 @@ def clean_old_signed(seconds=60 * 60):
             shutil.rmtree(full)
 
 
+def _get_installs(app_id):
+    """
+    Calculate popularity of app for all regions and per region.
+
+    Returns value in the format of::
+
+        {'all': <global installs>,
+         <region_slug>: <regional installs>,
+         ...}
+
+    """
+    # How many days back do we include when calculating popularity.
+    POPULARITY_PERIOD = 90
+
+    client = get_monolith_client()
+
+    popular = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(POPULARITY_PERIOD).date().isoformat(),
+                    'lte': days_ago(1).date().isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
+
+    query = {
+        'query': {
+            'filtered': {
+                'query': {'match_all': {}},
+                'filter': {'term': {'app-id': app_id}}
+            }
+        },
+        'aggregations': {
+            'popular': popular,
+            'region': {
+                'terms': {
+                    'field': 'region',
+                    # Add size so we get all regions, not just the top 10.
+                    'size': len(mkt.regions.ALL_REGIONS)
+                },
+                'aggregations': {
+                    'popular': popular
+                }
+            }
+        },
+        'size': 0
+    }
+
+    try:
+        res = client.raw(query)
+    except ValueError as e:
+        task_log.error('Error response from Monolith: {0}'.format(e))
+        return {}
+
+    if 'aggregations' not in res:
+        task_log.error('No installs for app {}'.format(app_id))
+        return {}
+
+    results = {
+        'all': res['aggregations']['popular']['total_installs']['value']
+    }
+
+    if 'region' in res['aggregations']:
+        for regional_res in res['aggregations']['region']['buckets']:
+            region_slug = regional_res['key']
+            popular = regional_res['popular']['total_installs']['value']
+            results[region_slug] = popular
+
+    return results
+
+
 @cronjobs.register
+@write
 def update_app_installs():
     """
     Update app install counts for all published apps.
 
-    We chain these so we don't hit Monolith all at once.
+    We break these into chunks so we can bulk index them. Each chunk will
+    process the apps in it and reindex them in bulk. After all the chunks are
+    processed we find records that haven't been updated and purge/reindex those
+    so we nullify their values.
 
     """
-    chunk_size = 50
+    chunk_size = 100
 
-    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
-                                         disabled_by_user=False)
-                   .values_list('id', flat=True))
+    ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
+                                     disabled_by_user=False)
+                     .values_list('id', flat=True))
 
-    tasks = [update_installs.si(ids) for ids in chunked(all_ids, chunk_size)]
-    # Add a reindex task when all done to update trending apps.
-    tasks.append(reindex_popular.si())
+    for chunk in chunked(ids, chunk_size):
 
-    chain(*tasks).apply_async()
+        count = 0
+        times = []
+        reindex_ids = []
+
+        for app in Webapp.objects.filter(id__in=chunk).no_transforms():
+
+            reindex = False
+            count += 1
+            now = datetime.now()
+            t_start = time.time()
+
+            scores = _get_installs(app.id)
+
+            # Update global installs, then per-region installs below.
+            value = scores.get('all')
+            if value > 0:
+                reindex = True
+                installs, created = app.installs.get_or_create(
+                    region=0, defaults={'value': value})
+                if not created:
+                    installs.update(value=value, modified=now)
+            else:
+                # The value is <= 0 so we can just ignore it.
+                app.installs.filter(region=0).delete()
+
+            for region in mkt.regions.REGIONS_DICT.values():
+                value = scores.get(region.slug)
+                if value > 0:
+                    reindex = True
+                    installs, created = app.installs.get_or_create(
+                        region=region.id, defaults={'value': value})
+                    if not created:
+                        installs.update(value=value, modified=now)
+                else:
+                    # The value is <= 0 so we can just ignore it.
+                    app.installs.filter(region=region.id).delete()
+
+            if reindex:
+                reindex_ids.append(app.id)
+
+            times.append(time.time() - t_start)
+
+        # Now reindex the apps that actually have a popularity value.
+        if reindex_ids:
+            WebappIndexer.run_indexing(reindex_ids)
+
+        log.info('Installs calculated for %s apps. Avg time overall: '
+                 '%0.2fs' % (count, sum(times) / count))
+
+    # Purge any records that were not updated.
+    #
+    # Note: We force update `modified` even if no data changes so any records
+    # with older modified times can be purged.
+    now = datetime.now()
+    midnight = datetime(year=now.year, month=now.month, day=now.day)
+
+    qs = Installs.objects.filter(modified__lte=midnight)
+    # First get the IDs so we know what to reindex.
+    purged_ids = qs.values_list('addon', flat=True).distinct()
+    # Then delete them.
+    qs.delete()
+
+    for ids in chunked(purged_ids, chunk_size):
+        WebappIndexer.run_indexing(ids)
+
+
+def _get_trending(app_id):
+    """
+    Calculate trending for app for all regions and per region.
+
+    a = installs from 8 days ago to 1 day ago
+    b = installs from 29 days ago to 9 days ago, averaged per week
+    trending = (a - b) / b if a > 100 and b > 1 else 0
+
+    Returns value in the format of::
+
+        {'all': <global trending score>,
+         <region_slug>: <regional trending score>,
+         ...}
+
+    """
+    # How many app installs are required in the prior week to be considered
+    # "trending". Adjust this as total Marketplace app installs increases.
+    #
+    # Note: AMO uses 1000.0 for add-ons.
+    PRIOR_WEEK_INSTALL_THRESHOLD = 100.0
+
+    client = get_monolith_client()
+
+    week1 = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(8).date().isoformat(),
+                    'lte': days_ago(1).date().isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
+    week3 = {
+        'filter': {
+            'range': {
+                'date': {
+                    'gte': days_ago(29).date().isoformat(),
+                    'lte': days_ago(9).date().isoformat()
+                }
+            }
+        },
+        'aggs': {
+            'total_installs': {
+                'sum': {
+                    'field': 'app_installs'
+                }
+            }
+        }
+    }
+
+    query = {
+        'query': {
+            'filtered': {
+                'query': {'match_all': {}},
+                'filter': {'term': {'app-id': app_id}}
+            }
+        },
+        'aggregations': {
+            'week1': week1,
+            'week3': week3,
+            'region': {
+                'terms': {
+                    'field': 'region',
+                    # Add size so we get all regions, not just the top 10.
+                    'size': len(mkt.regions.ALL_REGIONS)
+                },
+                'aggregations': {
+                    'week1': week1,
+                    'week3': week3
+                }
+            }
+        },
+        'size': 0
+    }
+
+    try:
+        res = client.raw(query)
+    except ValueError as e:
+        task_log.error('Error response from Monolith: {0}'.format(e))
+        return {}
+
+    if 'aggregations' not in res:
+        task_log.error('No installs for app {}'.format(app_id))
+        return {}
+
+    def _score(week1, week3):
+        # If last week app installs are < 100, this app isn't trending.
+        if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
+            return 0.0
+
+        score = 0.0
+        if week3 > 1.0:
+            score = (week1 - week3) / week3
+        if score < 0.0:
+            score = 0.0
+        return score
+
+    # Global trending score.
+    week1 = res['aggregations']['week1']['total_installs']['value']
+    week3 = res['aggregations']['week3']['total_installs']['value'] / 3.0
+
+    if week1 < PRIOR_WEEK_INSTALL_THRESHOLD:
+        # If global installs over the last week aren't over 100, we
+        # short-circuit and return a zero-like value as this is not a trending
+        # app by definition. Since global installs aren't above 100, per-region
+        # installs won't be either.
+        return {}
+
+    results = {
+        'all': _score(week1, week3)
+    }
+
+    if 'region' in res['aggregations']:
+        for regional_res in res['aggregations']['region']['buckets']:
+            region_slug = regional_res['key']
+            week1 = regional_res['week1']['total_installs']['value']
+            week3 = regional_res['week3']['total_installs']['value'] / 3.0
+            results[region_slug] = _score(week1, week3)
+
+    return results
 
 
 @cronjobs.register
+@write
 def update_app_trending():
     """
     Update trending for all published apps.
 
-    We chain these so we don't hit Monolith all at once.
+    We break these into chunks so we can bulk index them. Each chunk will
+    process the apps in it and reindex them in bulk. After all the chunks are
+    processed we find records that haven't been updated and purge/reindex those
+    so we nullify their values.
 
     """
-    chunk_size = 50
+    chunk_size = 100
 
-    all_ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
-                                         disabled_by_user=False)
-                   .values_list('id', flat=True))
+    ids = list(Webapp.objects.filter(status=mkt.STATUS_PUBLIC,
+                                     disabled_by_user=False)
+                     .values_list('id', flat=True))
 
-    tasks = [update_trending.si(ids) for ids in chunked(all_ids, chunk_size)]
-    # Add a reindex task when all done to update trending apps.
-    tasks.append(reindex_trending.si())
+    for chunk in chunked(ids, chunk_size):
 
-    chain(*tasks).apply_async()
+        count = 0
+        times = []
+        reindex_ids = []
+
+        for app in Webapp.objects.filter(id__in=chunk).no_transforms():
+
+            reindex = False
+            count += 1
+            now = datetime.now()
+            t_start = time.time()
+
+            scores = _get_trending(app.id)
+
+            # Update global trending, then per-region trending below.
+            value = scores.get('all')
+            if value > 0:
+                reindex = True
+                trending, created = app.trending.get_or_create(
+                    region=0, defaults={'value': value})
+                if not created:
+                    trending.update(value=value, modified=now)
+            else:
+                # The value is <= 0 so the app is not trending. Let's remove it
+                # from the trending table.
+                app.trending.filter(region=0).delete()
+
+            for region in mkt.regions.REGIONS_DICT.values():
+                value = scores.get(region.slug)
+                if value > 0:
+                    reindex = True
+                    trending, created = app.trending.get_or_create(
+                        region=region.id, defaults={'value': value})
+                    if not created:
+                        trending.update(value=value, modified=now)
+                else:
+                    # The value is <= 0 so the app is not trending. Let's remove it
+                    # from the trending table.
+                    app.trending.filter(region=region.id).delete()
+
+            times.append(time.time() - t_start)
+
+            if reindex:
+                reindex_ids.append(app.id)
+
+        # Now reindex the apps that actually have a trending score.
+        if reindex_ids:
+            WebappIndexer.run_indexing(reindex_ids)
+
+        log.info('Trending calculated for %s apps. Avg time overall: '
+                 '%0.2fs' % (count, sum(times) / count))
+
+    # Purge any records that were not updated.
+    #
+    # Note: We force update `modified` even if no data changes so any records
+    # with older modified times can be purged.
+    now = datetime.now()
+    midnight = datetime(year=now.year, month=now.month, day=now.day)
+
+    qs = Trending.objects.filter(modified__lte=midnight)
+    # First get the IDs so we know what to reindex.
+    purged_ids = qs.values_list('addon', flat=True).distinct()
+    # Then delete them.
+    qs.delete()
+
+    for ids in chunked(purged_ids, chunk_size):
+        WebappIndexer.run_indexing(ids)
 
 
 @cronjobs.register

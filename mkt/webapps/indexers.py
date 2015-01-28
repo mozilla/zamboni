@@ -1,4 +1,3 @@
-import sys
 from operator import attrgetter
 
 from django.conf import settings
@@ -208,7 +207,7 @@ class WebappIndexer(BaseIndexer):
         # Add room for language-specific indexes.
         for analyzer in mkt.SEARCH_ANALYZER_MAP:
             if (not settings.ES_USE_PLUGINS and
-                analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
+                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
                 log.info('While creating mapping, skipping the %s analyzer'
                          % analyzer)
                 continue
@@ -403,7 +402,7 @@ class WebappIndexer(BaseIndexer):
         # index with analyzer if the string's locale matches.
         for analyzer, languages in mkt.SEARCH_ANALYZER_MAP.iteritems():
             if (not settings.ES_USE_PLUGINS and
-                analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
+                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
                 continue
 
             d['name_' + analyzer] = list(
@@ -423,19 +422,21 @@ class WebappIndexer(BaseIndexer):
         return Webapp.with_deleted.all()
 
     @classmethod
-    def run_indexing(cls, ids, ES, index=None, **kw):
+    def run_indexing(cls, ids, ES=None, index=None, **kw):
         """Override run_indexing to use app transformers."""
         from mkt.webapps.models import Webapp
-        sys.stdout.write('Indexing %s webapps\n' % len(ids))
+
+        log.info('Indexing %s webapps' % len(ids))
 
         qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
+        ES = ES or cls.get_es()
 
         docs = []
         for obj in qs:
             try:
                 docs.append(cls.extract_document(obj.id, obj=obj))
             except Exception as e:
-                sys.stdout.write('Failed to index webapp {0}: {1}\n'.format(
+                log.error('Failed to index webapp {0}: {1}'.format(
                     obj.id, e))
 
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())

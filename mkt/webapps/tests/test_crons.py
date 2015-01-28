@@ -19,8 +19,9 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import cron
-from mkt.webapps.cron import clean_old_signed, mkt_gc
-from mkt.webapps.models import Webapp
+from mkt.webapps.cron import (_get_installs, _get_trending, clean_old_signed,
+                              mkt_gc, update_app_installs, update_app_trending)
+from mkt.webapps.models import Installs, Trending, Webapp
 
 
 class TestLastUpdated(mkt.site.tests.TestCase):
@@ -234,3 +235,218 @@ class StatMock(object):
         self.st_mtime = time.mktime(
             (datetime.now() - timedelta(days_ago)).timetuple())
         self.st_size = 100
+
+
+class TestUpdateInstalls(mkt.site.tests.TestCase):
+
+    def setUp(self):
+        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
+
+    @mock.patch('mkt.webapps.cron._get_installs')
+    def test_installs_saved(self, _mock):
+        _mock.return_value = {'all': 12.0}
+        update_app_installs()
+
+        eq_(self.app.get_installs(), 12.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_installs(region=region), 12.0)
+            else:
+                eq_(self.app.get_installs(region=region), 0.0)
+
+        # Test running again updates the values as we'd expect.
+        _mock.return_value = {'all': 2.0}
+        update_app_installs()
+        eq_(self.app.get_installs(), 2.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_installs(region=region), 2.0)
+            else:
+                eq_(self.app.get_installs(region=region), 0.0)
+
+    @mock.patch('mkt.webapps.cron._get_installs')
+    def test_installs_deleted(self, _mock):
+        self.app.trending.get_or_create(region=0, value=12.0)
+
+        _mock.return_value = {'all': 0.0}
+        update_app_installs()
+
+        with self.assertRaises(Installs.DoesNotExist):
+            self.app.installs.get(region=0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = {
+            'aggregations': {
+                'popular': {'total_installs': {'value': 123}},
+                'region': {
+                    'buckets': [
+                        {
+                            'key': 'br',
+                            'popular': {'total_installs': {'value': 12}}
+                        }
+                    ]
+                }
+            }
+        }
+        _mock.return_value = client
+
+        eq_(_get_installs(self.app.id)['all'], 123.0)
+        eq_(_get_installs(self.app.id)['br'], 12.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_installs_error(self, _mock):
+        client = mock.Mock()
+        client.raw.side_effect = ValueError
+        _mock.return_value = client
+
+        eq_(_get_installs(self.app.id), {})
+
+
+class TestUpdateTrending(mkt.site.tests.TestCase):
+
+    def setUp(self):
+        self.app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
+
+    @mock.patch('mkt.webapps.cron._get_trending')
+    def test_trending_saved(self, _mock):
+        _mock.return_value = {'all': 12.0}
+        update_app_trending()
+
+        eq_(self.app.get_trending(), 12.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_trending(region=region), 12.0)
+            else:
+                eq_(self.app.get_trending(region=region), 0.0)
+
+        # Test running again updates the values as we'd expect.
+        _mock.return_value = {'all': 2.0}
+        update_app_trending()
+        eq_(self.app.get_trending(), 2.0)
+        for region in mkt.regions.REGIONS_DICT.values():
+            if region.adolescent:
+                eq_(self.app.get_trending(region=region), 2.0)
+            else:
+                eq_(self.app.get_trending(region=region), 0.0)
+
+    @mock.patch('mkt.webapps.cron._get_trending')
+    def test_trending_deleted(self, _mock):
+        self.app.trending.get_or_create(region=0, value=12.0)
+
+        _mock.return_value = {'all': 0.0}
+        update_app_trending()
+
+        with self.assertRaises(Trending.DoesNotExist):
+            self.app.trending.get(region=0)
+
+    def _return_value(self, week1, week3):
+        return {
+            'aggregations': {
+                'week1': {'total_installs': {'value': week1}},
+                'week3': {'total_installs': {'value': week3}},
+            }
+        }
+
+    def _return_value_with_regions(self, week1, week3, rweek1, rweek3):
+        return {
+            'aggregations': {
+                'week1': {'total_installs': {'value': week1}},
+                'week3': {'total_installs': {'value': week3}},
+                'region': {
+                    'buckets': [
+                        {
+                            'key': 'br',
+                            'week1': {'total_installs': {'value': rweek1}},
+                            'week3': {'total_installs': {'value': rweek3}},
+                        },
+                    ]
+                }
+            }
+        }
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(255, 255)
+        _mock.return_value = client
+
+        # 1st week count: 255
+        # Prior 3 weeks get averaged: (255) / 3 = 85
+        # (255 - 85) / 85 = 2.0
+        eq_(_get_trending(self.app.id), {'all': 2.0})
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_threshold(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(99, 2)
+        _mock.return_value = client
+
+        # 1st week count: 99
+        # 99 is less than 100 so we return {} as not trending.
+        eq_(_get_trending(self.app.id), {})
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_negative(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value(100, 1000)
+        _mock.return_value = client
+
+        # 1st week count: 100
+        # Prior 3 week count: 1000/3 = 333.3
+        # (100 - 333.3) / 333.3 = -0.7 which gets set to 0.0.
+        eq_(_get_trending(self.app.id), {'all': 0.0})
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_regional(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  255, 102)
+        _mock.return_value = client
+
+        # We set global counts to anything over 100. See above tests. I chose
+        # 102 to divide equally by 3 w/o a crazy remainder.
+        #
+        # 1st week regional count: 255
+        # Prior 3 week regional count: 102/3 = 34
+        # (255 - 34) / 34 = 6.5
+        eq_(_get_trending(self.app.id)['br'], 6.5)
+        # Make sure global trending is still correct.
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_regional_threshold(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  99, 99)
+        _mock.return_value = client
+
+        # 1st week regional count: 99
+        # Prior 3 week regional count: 99/3 = 33
+        # (99 - 33) / 33 = 2.0 but week1 isn't > 100 so we set to zero.
+        eq_(_get_trending(self.app.id)['br'], 0.0)
+        # Make sure global trending is still correct.
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_regional_negative(self, _mock):
+        client = mock.Mock()
+        client.raw.return_value = self._return_value_with_regions(102, 102,
+                                                                  100, 1000)
+        _mock.return_value = client
+
+        # 1st week regional count: 99
+        # Prior 3 week regional count: 99/3 = 33
+        # (99 - 33) / 33 = 2.0 but week1 isn't > 100 so we set to zero.
+        eq_(_get_trending(self.app.id)['br'], 0.0)
+        # Make sure global trending is still correct.
+        eq_(_get_trending(self.app.id)['all'], 2.0)
+
+    @mock.patch('mkt.webapps.cron.get_monolith_client')
+    def test_get_trending_error(self, _mock):
+        client = mock.Mock()
+        client.raw.side_effect = ValueError
+        _mock.return_value = client
+
+        eq_(_get_trending(self.app.id), {})
