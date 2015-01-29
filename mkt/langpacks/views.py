@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+import hashlib
+import json
+from uuid import UUID
+
+from django.http import Http404, HttpResponse, HttpResponseServerError
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import condition
+
 import commonware
 from rest_framework import viewsets
 
@@ -9,9 +17,12 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import (AllowReadOnlyIfPublic, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.langpacks.models import LangPack
 from mkt.langpacks.serializers import (LangPackSerializer,
                                        LangPackUploadSerializer)
+from mkt.site.decorators import allow_cross_site_request
+from mkt.site.utils import HttpResponseSendFile
 
 
 log = commonware.log.getLogger('z.api')
@@ -60,3 +71,48 @@ class LangPackViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
             return LangPackUploadSerializer
         else:
             return LangPackSerializer
+
+
+@allow_cross_site_request
+def manifest(request, uuid):
+    """Returns the "mini" manifest for a langpack."""
+    try:
+        uuid_hex = UUID(uuid).hex
+    except ValueError:
+        raise Http404
+
+    langpack = get_object_or_404(LangPack, pk=uuid_hex)
+
+    if langpack.active or action_allowed(request, 'LangPacks', '%'):
+        manifest_contents = json.dumps(langpack.get_minifest_contents())
+        langpack_etag = hashlib.sha256()
+        langpack_etag.update(manifest_contents)
+        langpack_etag.update(langpack.hash)
+
+        @condition(last_modified_func=lambda request: langpack.modified,
+                   etag_func=lambda request: langpack_etag.hexdigest())
+        def _inner_view(request):
+            return HttpResponse(manifest_contents,
+                                content_type=MANIFEST_CONTENT_TYPE)
+        return _inner_view(request)
+    raise Http404
+
+
+@allow_cross_site_request
+def download(request, langpack_id, **kwargs):
+    langpack = get_object_or_404(LangPack, pk=langpack_id)
+
+    if langpack.active or action_allowed(request, 'LangPacks', '%'):
+        if not langpack.filename:
+            # Should not happen, but let's handle it in a way that we can
+            # easily distinguish from the rest.
+            raise Exception(
+                u'Attempting to download langpack %s, '
+                u'which does not have a filename.' % langpack.pk)
+        log.info('Downloading package: %s from %s' % (langpack.pk,
+                                              langpack.file_path))
+        return HttpResponseSendFile(request, langpack.file_path,
+                                    content_type='application/zip',
+                                    etag=langpack.hash.split(':')[-1])
+    else:
+        raise Http404

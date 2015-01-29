@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
+from django.test.utils import override_settings
+from django.utils.http import parse_http_date
 
 from mock import patch
 from nose.tools import eq_, ok_
 
 from lib.crypto.packaged import SigningError
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.files.models import FileUpload
 from mkt.langpacks.models import LangPack
 from mkt.langpacks.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 
 
@@ -41,9 +47,7 @@ class TestLangPackViewSetMixin(RestOAuth):
         if instance is None:
             instance = self.langpack
         eq_(instance.pk, langpack_data['uuid'])
-        # FIXME: To implement in bug 1122279, don't expose the filename, expose
-        # the minifest_url instead.
-        eq_(instance.filename, langpack_data['filename'])
+        eq_(instance.manifest_url, langpack_data['manifest_url'])
         eq_(instance.hash, langpack_data['hash'])
         eq_(instance.size, langpack_data['size'])
         eq_(instance.active, langpack_data['active'])
@@ -68,8 +72,6 @@ class TestLangPackViewSetBase(TestLangPackViewSetMixin):
 
 
 class TestLangPackViewSetGet(TestLangPackViewSetMixin):
-    fixtures = fixture('user_2519')
-
     def setUp(self):
         super(TestLangPackViewSetGet, self).setUp()
         self.langpack = self.create_langpack()
@@ -104,7 +106,7 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
 
     def test_list_inactive_has_perm(self):
         inactive_langpack = self.create_langpack(active=False)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
         response = self.client.get(self.list_url, {'active': 'false'})
         eq_(response.status_code, 200)
         ok_(len(response.json['objects']), 1)
@@ -114,7 +116,7 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
     def test_list_all_has_perm(self):
         inactive_langpack = self.create_langpack(active=False)
         inactive_langpack.update(created=self.days_ago(1))
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
         response = self.client.get(self.list_url, {'active': 'null'})
         eq_(response.status_code, 200)
         ok_(len(response.json['objects']), 2)
@@ -144,15 +146,15 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
 
     def test_inactive_has_perm(self):
         self.langpack.update(active=False)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.get(self.detail_url)
         eq_(response.status_code, 200)
         self.check_langpack(response.json)
 
 
-class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
-                                UploadTest):
+class TestLangPackViewSetCreate(TestLangPackViewSetMixin,
+                                UploadCreationMixin, UploadTest):
     def test_anonymous(self):
         response = self.anon.post(self.list_url)
         eq_(response.status_code, 403)
@@ -166,20 +168,20 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
     @patch('mkt.langpacks.serializers.LangPackUploadSerializer.save',
            return_value=None)
     def test_with_perm(self, mock_save, mock_is_valid):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url)
         eq_(response.status_code, 201)
 
     def test_no_upload(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url)
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'This field is required.']})
 
     def test_upload_does_not_exist(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-non-existing-uuid'}))
@@ -188,7 +190,7 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
 
     def test_dont_own_the_upload(self):
         FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -197,7 +199,7 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
 
     def test_invalid_upload(self):
         FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -208,7 +210,7 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
     def test_errors_returned_by_from_upload(self, mock_from_upload):
         mock_from_upload.side_effect = ValidationError('foo bar')
         FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -219,7 +221,7 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
     def test_signing_error(self, sign_app_mock):
         sign_app_mock.side_effect = SigningError(u'Fake signing error')
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': upload.uuid}))
@@ -229,15 +231,15 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
     def test_create(self):
         eq_(LangPack.objects.count(), 0)
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 201)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(response.data['uuid'], langpack.uuid)
         eq_(response.data['hash'], langpack.hash)
@@ -247,7 +249,7 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
         self.langpack = self.create_langpack()
         eq_(LangPack.objects.count(), 1)
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
             'upload': upload.uuid}))
@@ -255,8 +257,8 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
         ok_(response.json['uuid'] != self.langpack.pk)
         eq_(LangPack.objects.count(), 2)
         langpack = LangPack.objects.get(pk=response.json['uuid'])
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
@@ -265,7 +267,8 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin, UploadCreationMixin,
         eq_(response.data['active'], langpack.active)
 
 
-class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, UploadTest):
+class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
+                                UploadTest):
     def setUp(self):
         super(TestLangPackViewSetUpdate, self).setUp()
         self.langpack = self.create_langpack()
@@ -284,20 +287,20 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
     @patch('mkt.langpacks.serializers.LangPackUploadSerializer.save',
            return_value=None)
     def test_with_perm(self, mock_save, mock_is_valid):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url)
         eq_(response.status_code, 200)
 
     def test_no_upload(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url)
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'This field is required.']})
 
     def test_upload_does_not_exist(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-non-existing-uuid'}))
@@ -306,7 +309,7 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
 
     def test_dont_own_the_upload(self):
         FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -315,7 +318,7 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
 
     def test_invalid_upload(self):
         FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -326,7 +329,7 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
     def test_errors_returned_by_from_upload(self, mock_from_upload):
         mock_from_upload.side_effect = ValidationError('foo bar')
         FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': 'my-uuid'}))
@@ -335,15 +338,15 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
 
     def test_update(self):
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         eq_(langpack.active, True)  # Langpack was already active.
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
@@ -355,15 +358,15 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
         self.langpack = self.create_langpack()
         eq_(LangPack.objects.count(), 2)
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 2)
         langpack = LangPack.objects.get(pk=response.json['uuid'])
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         eq_(langpack.active, True)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
@@ -374,15 +377,15 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin, U
     def test_update_was_inactive(self):
         self.langpack.update(active=False)
         upload = self.upload('langpack.zip', valid=True, user=self.user)
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
             'upload': upload.uuid}))
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
@@ -407,7 +410,7 @@ class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
         eq_(response.status_code, 403)
 
     def test_with_perm(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.patch(self.detail_url,
                                      json.dumps({'active': False}))
@@ -418,7 +421,8 @@ class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
         eq_(self.langpack.active, response.data['active'])
 
     def test_not_allowed_fields(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
+        original_filename = self.langpack.filename
 
         response = self.client.patch(self.detail_url, json.dumps({
             'active': False,
@@ -436,16 +440,16 @@ class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
             'hash': [u'This field is read-only.'],
             'language': [u'This field is read-only.'],
             'fxos_version': [u'This field is read-only.'],
-            'filename': [u'This field is read-only.'],
             'version': [u'This field is read-only.'],
             'size': [u'This field is read-only.']})
         self.langpack.reload()
-        eq_(self.langpack.active, True)  # Not changed.
+        # Verify that nothing has changed.
+        eq_(self.langpack.active, True)
+        # Not changed either (not even exposed, so does not trigger an error)
+        eq_(self.langpack.filename, original_filename)
 
 
 class TestLangPackViewSetDelete(TestLangPackViewSetMixin):
-    fixtures = fixture('user_2519')
-
     def setUp(self):
         super(TestLangPackViewSetDelete, self).setUp()
         self.langpack = self.create_langpack()
@@ -461,7 +465,7 @@ class TestLangPackViewSetDelete(TestLangPackViewSetMixin):
         eq_(response.status_code, 403)
 
     def test_with_perm(self):
-        self.grant_permission(self.user, 'LangPacks:%')
+        self.grant_permission(self.user, 'LangPacks:Admin')
         langpack_to_keep = self.create_langpack()
         eq_(LangPack.objects.count(), 2)
 
@@ -469,3 +473,122 @@ class TestLangPackViewSetDelete(TestLangPackViewSetMixin):
         eq_(response.status_code, 204)
         eq_(LangPack.objects.count(), 1)
         eq_(LangPack.objects.get().pk, langpack_to_keep.pk)
+
+
+class TestLangPackNonAPIViews(TestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestLangPackNonAPIViews, self).setUp()
+        self.langpack = LangPack.objects.create(filename='temporary-file.zip',
+                                                hash='fake-hash', active=True)
+        self.user = UserProfile.objects.get(pk=2519)
+        with storage.open(self.langpack.file_path, 'w') as f:
+            f.write('sample data\n')
+
+    @override_settings(XSENDFILE=True)
+    def test_download(self):
+        ok_(self.langpack.download_url)
+        response = self.client.get(self.langpack.download_url)
+        eq_(response.status_code, 200)
+        eq_(response[settings.XSENDFILE_HEADER], self.langpack.file_path)
+        eq_(response['Content-Type'], 'application/zip')
+        eq_(response['etag'], '"fake-hash"')
+
+        self.login(self.user)
+        response = self.client.get(self.langpack.download_url)
+        eq_(response.status_code, 200)
+
+    def test_download_no_filename(self):
+        self.langpack.update(filename='')
+        # This should not happen, so we voluntarily raise an exception in the
+        # view.
+        with self.assertRaises(Exception) as e:
+            self.client.get(self.langpack.download_url)
+        expected_msg = ('Attempting to download langpack %s, '
+                        'which does not have a filename.' % self.langpack.pk)
+        eq_(e.exception.message, expected_msg)
+
+    def test_download_inactive(self):
+        self.langpack.update(active=False)
+        ok_(self.langpack.download_url)
+        response = self.client.get(self.langpack.download_url)
+        eq_(response.status_code, 404)
+
+        self.login(self.user)
+        response = self.client.get(self.langpack.download_url)
+        eq_(response.status_code, 404)
+
+    @override_settings(XSENDFILE=True)
+    def test_download_inactive_has_perm(self):
+        self.langpack.update(active=False)
+        self.grant_permission(self.user, 'LangPacks:Admin')
+        self.login(self.user)
+        ok_(self.langpack.download_url)
+        response = self.client.get(self.langpack.download_url)
+        eq_(response.status_code, 200)
+        eq_(response[settings.XSENDFILE_HEADER], self.langpack.file_path)
+        eq_(response['Content-Type'], 'application/zip')
+        eq_(response['etag'], '"fake-hash"')
+
+    def test_manifest(self):
+        ok_(self.langpack.manifest_url)
+        response = self.client.get(self.langpack.manifest_url)
+        eq_(response.status_code, 200)
+        eq_(response['Content-Type'], MANIFEST_CONTENT_TYPE)
+        manifest_contents = self.langpack.get_minifest_contents()
+        data = json.loads(response.content)
+        eq_(data, manifest_contents)
+
+    def test_manifest_etag(self):
+        response = self.client.get(self.langpack.manifest_url)
+        eq_(response.status_code, 200)
+        original_etag = response['ETag']
+        ok_(original_etag)
+        self.assertCloseToNow(response['Last-Modified'],
+                              now=self.langpack.modified)
+
+        # Test that the etag is different if the langpack hash changes.
+        self.langpack.update(hash='new-fake-hash')
+        response = self.client.get(self.langpack.manifest_url)
+        eq_(response.status_code, 200)
+        new_etag = response['ETag']
+        ok_(new_etag)
+        ok_(original_etag != new_etag)
+
+        # Test that the etag is different if just the minifest contents change,
+        # but not the langpack instance itself.
+        minifest_contents = self.langpack.get_minifest_contents()
+        minifest_contents['name'] = 'Different Name'
+        patch_method = 'mkt.langpacks.models.LangPack.get_minifest_contents'
+        with patch(patch_method) as get_minifest_contents_mock:
+            get_minifest_contents_mock.return_value = minifest_contents
+            response = self.client.get(self.langpack.manifest_url)
+            eq_(response.status_code, 200)
+            yet_another_etag = response['ETag']
+            ok_(yet_another_etag)
+            ok_(original_etag != new_etag != yet_another_etag)
+
+    def test_manifest_inactive(self):
+        manifest_url = self.langpack.manifest_url
+        ok_(manifest_url)
+        self.langpack.update(active=False)
+        # We don't return a manifest url when the langpack is inactive.
+        eq_(self.langpack.manifest_url, '')
+        response = self.client.get(manifest_url)
+        eq_(response.status_code, 404)
+
+    def test_manifest_inactive_has_perm(self):
+        manifest_url = self.langpack.manifest_url
+        ok_(manifest_url)
+        self.langpack.update(active=False)
+        self.grant_permission(self.user, 'LangPacks:Admin')
+        self.login(self.user)
+        # We don't return a manifest url when the langpack is inactive, but
+        # it should still work if you have the right permission.
+        eq_(self.langpack.manifest_url, '')
+        response = self.client.get(manifest_url)
+        eq_(response.status_code, 200)
+        manifest_contents = self.langpack.get_minifest_contents()
+        data = json.loads(response.content)
+        eq_(data, manifest_contents)

@@ -11,6 +11,7 @@ from mkt.account.urls import user_patterns
 from mkt.api import oauth
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
+from mkt.langpacks.views import manifest as mini_langpack_manifest
 from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
@@ -29,6 +30,8 @@ urlpatterns = patterns('',
     ('^app/%s/' % mkt.APP_SLUG, include('mkt.detail.urls')),
     url('^app/%s/manifest.webapp$' % mkt.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
+    url('^langpack/%s/manifest.webapp$' % mkt.ADDON_UUID,
+        mini_langpack_manifest, name='langpack.manifest'),
 
     # Dev Ecosystem
     ('^developers/', include('mkt.ecosystem.urls')),

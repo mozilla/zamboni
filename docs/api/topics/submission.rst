@@ -75,14 +75,14 @@ Validate
 
 .. _validation-response-label:
 
-.. http:get:: /api/v2/apps/validation/(int:id)/
+.. http:get:: /api/v2/apps/validation/(string:id)/
 
     **Response**
 
     Returns a particular validation.
 
     :param id: the id of the validation.
-    :type id: int
+    :type id: string
     :param processed: if the validation has been processed. Hosted apps are
         done immediately but packaged apps are queued. Clients will have to
         poll the results URL until the validation has been processed.

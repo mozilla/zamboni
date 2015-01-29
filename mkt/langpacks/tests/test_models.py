@@ -16,6 +16,35 @@ from mkt.langpacks.models import LangPack
 from mkt.site.tests import TestCase
 
 
+class TestLangPackBasic(TestCase):
+    def test_download_url(self):
+        langpack = LangPack(pk='12345678123456781234567812345678')
+        ok_(langpack.download_url.endswith(
+            '/12345678123456781234567812345678/langpack.zip'))
+
+    def test_manifest_url(self):
+        langpack = LangPack(pk='12345678123456781234567812345678')
+        eq_(langpack.manifest_url, '')  # Inactive langpack.
+        langpack.active = True
+        ok_(langpack.manifest_url.endswith(
+            '/12345678-1234-5678-1234-567812345678/manifest.webapp'))
+
+    # FIXME: once translators finish translating the new strings, we should
+    # add a new test with a different language, like pt-BR. The name should
+    # follow the locale the language pack was made for.
+    def test_get_minifest_contents(self):
+        langpack = LangPack(
+            pk='12345678123456781234567812345678',
+            fxos_version='2.2',
+            version='0.3',
+            size=666)
+        eq_(langpack.get_minifest_contents(),
+            {'version': '0.3', 'size': 666,
+             'name': u'English (US) language pack for Firefox OS 2.2',
+             'package_path': langpack.download_url,
+             'developer': {'name': 'Mozilla'}})
+
+
 class UploadCreationMixin(object):
     def upload(self, name, **kwargs):
         if os.path.splitext(name)[-1] not in ['.webapp', '.zip']:
@@ -58,8 +87,8 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path.startswith(langpack.path_prefix))
         ok_(os.path.exists(langpack.file_path))
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         return langpack
@@ -81,8 +110,8 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.file_path != original_file_path)
         ok_(langpack.file_version > original_file_version)
         ok_(os.path.exists(langpack.file_path))
-        eq_(langpack.hash[0:23], 'sha256:f0fa5a4f5c0edf2d')
-        eq_(langpack.size, 499)
+        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
+        eq_(langpack.size, 1062)
         ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
 
@@ -92,14 +121,16 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         get_json_data_mock.return_value = {
             'role': 'langpack',
             'languages-provided': {
-                'es': {}
+                'pt-BR': {}
             },
             'languages-target': {
                 'app://*.gaiamobile.org/manifest.webapp': '2.2'
             },
             'version': '0.1'
         }
-        ok_(LangPack.from_upload(upload))
+        langpack = LangPack.from_upload(upload)
+        ok_(langpack.pk)
+        eq_(langpack.language, 'pt-BR')
         get_json_data_mock.return_value['languages-provided'] = {
             'invalid-lang': {}
         }
