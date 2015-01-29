@@ -29,9 +29,10 @@ class Command(BaseCommand):
         if len(args) < 1:
             raise CommandError("Number of apps required.")
         num_apps = int(args[0])
+        vs = (4,) * kwargs['versions']
         if kwargs['type'] == 'hosted':
-            generate_apps(hosted=num_apps, versions=kwargs['versions'])
+            generate_apps(hosted=num_apps, versions=vs)
         elif kwargs['type'] == 'packaged':
-            generate_apps(packaged=num_apps, versions=kwargs['versions'])
+            generate_apps(packaged=num_apps, versions=vs)
         elif kwargs['type'] == 'privileged':
-            generate_apps(privileged=num_apps, versions=kwargs['versions'])
+            generate_apps(privileged=num_apps, versions=vs)
