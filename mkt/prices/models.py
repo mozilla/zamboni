@@ -17,8 +17,8 @@ import mkt
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
-                                PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
-                                PROVIDER_CHOICES, PROVIDER_LOOKUP)
+                                    PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
+                                    PROVIDER_CHOICES, PROVIDER_LOOKUP_INVERTED)
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
@@ -35,7 +35,7 @@ def default_providers():
     Returns a list of the default providers from the settings as the
     appropriate constants.
     """
-    return [PROVIDER_LOOKUP[p] for p in settings.PAYMENT_PROVIDERS]
+    return [PROVIDER_LOOKUP_INVERTED[p] for p in settings.PAYMENT_PROVIDERS]
 
 
 def price_locale(price, currency):
