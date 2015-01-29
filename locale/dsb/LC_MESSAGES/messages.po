@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-28 23:05+0000\n"
+"PO-Revision-Date: 2015-01-29 10:16+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422486341.0\n"
+"X-POOTLE-MTIME: 1422526616.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2275,7 +2275,7 @@ msgstr ""
 
 #: mkt/constants/features.py:267
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Zastajenje pokazowarja"
 
 #: mkt/constants/features.py:268
 msgid "The app requires the platform to provide additional information and control about the pointer."
@@ -2300,6 +2300,8 @@ msgstr "Alarmy"
 #: mkt/constants/features.py:282
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"Nałoženje se pomina, až platforma pśistup na alarmowe nastajenja rěda "
+"dowólujo, aby powěźeńki a tšojenja za wěsty cas planowało."
 
 #: mkt/constants/features.py:289
 msgid "SystemXHR"
@@ -2308,10 +2310,12 @@ msgstr "SystemXHR"
 #: mkt/constants/features.py:290
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"Nałoženje se pomina, až platforma słanje asynchronych HTTP-napšašowanjow "
+"bźez wobgranicowanjow togo samskego póchada dowólujo."
 
 #: mkt/constants/features.py:296
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
