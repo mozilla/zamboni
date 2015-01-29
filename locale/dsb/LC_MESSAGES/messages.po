@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-29 10:16+0000\n"
+"PO-Revision-Date: 2015-01-29 10:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422526616.0\n"
+"X-POOTLE-MTIME: 1422528317.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -337,12 +337,12 @@ msgstr "Wjele znjewužiyańskich zdźělenjow"
 #: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr ""
-"Dodank {addon} jo se dla wusokeje licby zarunańskich pominanjow pśiducemu "
+"Dodank {addon} jo se dla wusokeje licby zarownańskich pominanjow pśiducemu "
 "wušemu městnoju dalej dał."
 
 #: apps/amo/log.py:450
 msgid "High Refund Requests"
-msgstr "Wjele zarunańskich pominanjow"
+msgstr "Wjele zarownańskich pominanjow"
 
 #: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
@@ -1867,7 +1867,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Refund Requests"
-msgstr "Wjele zarunańskich napšašowanjow pśiducemu wušemu městnoju dalej dany"
+msgstr "Wjele zarownańskich napšašowanjow pśiducemu wušemu městnoju dalej dany"
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
@@ -2319,23 +2319,26 @@ msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Nałoženje se pomina, až platforma wócynjanje Raw TCP Sockets dowólujo."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Pódpěra za tastatury tśeśich póbitowarjow"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
 msgstr ""
+"Nałoženje se pomina, až platforma tastatury tśeśich póbitowarjow pódpěra."
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Informacije wó někotarych seśach"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
+"Nałoženje pomina se móžnosć, se informacije wó někotarych seśowych zwiskach "
+"wobstaraś."
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
@@ -2375,39 +2378,39 @@ msgstr "Slědkpłaśenje"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
-msgstr ""
+msgstr "Druge"
 
 #: mkt/constants/payments.py:42 mkt/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Kupiś"
 
 #: mkt/constants/payments.py:43 mkt/constants/payments.py:50
 msgid "Refund"
-msgstr ""
+msgstr "Zarownanje"
 
 #: mkt/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Dobrowólny"
 
 #: mkt/constants/payments.py:63 mkt/constants/payments.py:120
 msgid "Pending"
-msgstr ""
+msgstr "Felujo"
 
 #: mkt/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Ned pśizwólony"
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Wótpokazany"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:122
 msgid "Failed"
-msgstr ""
+msgstr "Njejo se raźiło"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "Płaśenje jo se dostało, ale njejo se dokóńcyło."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
@@ -2447,20 +2450,20 @@ msgstr "Tablety"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Za wšykne starstwowe kupki"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "Za starstwa wót %d lět"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Zastopnjowanje wótpokazane"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Zastopnjowanje felujo"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -2530,43 +2533,43 @@ msgstr ""
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
-msgstr ""
+msgstr "Zapakowany"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
-msgstr ""
+msgstr "Dojadnanje"
 
 #: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
-msgstr ""
+msgstr "Wótpósłaś"
 
 #: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1479
 msgid "Details"
-msgstr ""
+msgstr "Drobnostki"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Pśiduce kšace"
 
 #: mkt/detail/helpers.py:31
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} tyźeńske ześěgnjenje"
+msgstr[1] "{0} tyźeńskej ześěgnjeni"
+msgstr[2] "{0} tyźeńske ześěgnjenja"
+msgstr[3] "{0} tyźeńskych ześěgnjenjow"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
-msgstr ""
+msgstr "(Njepódprěty)"
 
 #: mkt/developers/api_payments.py:103
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Zwisk z płaśeńskim serwerom njejo móžno."
 
 #: mkt/developers/api_payments.py:127
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Źelone konto njedajo se lašowaś"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
@@ -2607,26 +2610,34 @@ msgstr ""
 #: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež jo "
+"tuchylu wótpokazane. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež jo "
+"tuchylu za Wikowanišćo zastajone. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež jo "
+"tuchylu znjemóžnjone. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:225
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
+"Nałoženje z tós teju domenu južo eksistěrujo; jano jadno nałoženje jo na "
+"domenu dowólone."
 
 #: mkt/developers/forms.py:343
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Njepłaśiwy region wubrany."
 
 #: mkt/developers/forms.py:422 mkt/webapps/models.py:1388
 msgid "You must upload at least one screenshot or video."
-msgstr ""
+msgstr "Musyśo nanejmjenjej jadno foto wobrazowki abo wideo nagraś."
 
 #: mkt/developers/forms.py:463
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
