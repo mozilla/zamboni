@@ -5,7 +5,9 @@ from nose.tools import eq_
 from django.conf import settings
 
 import mkt.site.tests
-from mkt.users.utils import autocreate_username
+from mkt.access.models import Group
+from mkt.api.models import Access
+from mkt.users.utils import autocreate_username, create_user
 
 
 class TestAutoCreateUsername(mkt.site.tests.TestCase):
@@ -36,3 +38,17 @@ class TestAutoCreateUsername(mkt.site.tests.TestCase):
         filter = (filter.expects_call().returns_fake().expects('count')
                   .returns(1).next_call().returns(1).next_call().returns(0))
         eq_(autocreate_username('existingname'), 'existingname3')
+
+
+class TestCreateFakeUsers(mkt.site.tests.TestCase):
+    def test_create_user(self):
+        email = "faketestuser@example.com"
+        key = "fake oauth key"
+        secret = "fake oauth secret"
+        Group.objects.create(name="Admins", rules="*:*")
+        u = create_user(email, "Admins", oauth_key=key, oauth_secret=secret)
+        eq_(u.email, email)
+        eq_([g.name for g in u.groups.all()], ['Admins'])
+        a = Access.objects.get(user=u)
+        eq_(a.key, key)
+        eq_(a.secret, secret)

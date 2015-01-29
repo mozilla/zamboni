@@ -13,7 +13,7 @@ import mkt.site.tests
 from mkt.users.models import UserProfile
 
 from mkt.api.tests.test_oauth import JSONClient, RestOAuthClient
-from mkt.api.models import Access, generate
+from mkt.api.models import Access
 from mkt.inapp.models import InAppProduct
 from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
@@ -49,7 +49,7 @@ class BaseInAppProductViewSetTests(mkt.site.tests.TestCase):
 
     def setup_client(self, user):
         access = Access.objects.create(key='test_oauth_key_owner',
-                                       secret=generate(), user=user)
+                                       secret='super secret', user=user)
         return RestOAuthClient(access)
 
     def mock_logo_url(self, resource='logo-64.png', url_side_effect=None):

@@ -1,49 +1,8 @@
-import hashlib
-from datetime import datetime
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
-from django.db import transaction
 
-import mkt
-from mkt.access.models import Group, GroupUser
-from mkt.api.models import Access
-from mkt.users.models import UserProfile
-
-
-@transaction.commit_on_success
-def create_user(email, password, group_name=None, overwrite=False):
-    """Create an user if he doesn't exist already, assign him to a group and
-    create a token for him.
-
-    On token creation, we generate the token key and the token secret. Each of
-    them are generated in a predictible way: sha512(password + email + 'key')
-    or sha512(password + email + 'secret').
-    """
-    # Create the user.
-    profile, created = UserProfile.objects.get_or_create(
-        username=email, email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
-        display_name=email)
-
-    if not profile.read_dev_agreement:
-        profile.read_dev_agreement = datetime.now()
-        profile.save()
-
-    # Now, find the group we want.
-    if (group_name and not profile.groups.filter(
-            groupuser__group__name=group_name).exists()):
-        group = Group.objects.get(name=group_name)
-        GroupUser.objects.create(group=group, user=profile)
-
-    # We also want to grant these users access, so let's create tokens for
-    # them.
-    if overwrite:
-        Access.objects.filter(user=profile.user).delete()
-
-    if not Access.objects.filter(user=profile).exists():
-        key = hashlib.sha512(password + email + 'key').hexdigest()
-        secret = hashlib.sha512(password + email + 'secret').hexdigest()
-        Access.objects.create(key=key, secret=secret, user=profile)
+from mkt.users.utils import create_user
 
 
 class Command(BaseCommand):

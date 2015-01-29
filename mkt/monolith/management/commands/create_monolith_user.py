@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 
-from mkt.site.management.commands.add_test_users import create_user
+from mkt.users.utils import create_user
 
 
 class Command(BaseCommand):

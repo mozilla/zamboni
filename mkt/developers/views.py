@@ -34,7 +34,7 @@ import lib.iarc
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
-from mkt.api.models import Access, generate
+from mkt.api.models import Access
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
@@ -1018,13 +1018,7 @@ def api(request):
             except Access.DoesNotExist:
                 messages.error(request, _('No such API key.'))
         else:
-            key = 'mkt:%s:%s:%s' % (
-                request.user.pk,
-                request.user.email,
-                Access.objects.filter(user=request.user).count())
-            access = Access.objects.create(key=key,
-                                           user=request.user,
-                                           secret=generate())
+            access = Access.create_for_user(request.user)
             form = APIConsumerForm(request.POST, instance=access)
             if form.is_valid():
                 form.save()

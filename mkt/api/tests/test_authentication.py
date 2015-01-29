@@ -13,7 +13,7 @@ from mkt.access.models import Group, GroupUser
 from mkt.api import authentication
 from mkt.api.middleware import (APIBaseMiddleware, RestOAuthMiddleware,
                                 RestSharedSecretMiddleware)
-from mkt.api.models import Access, generate
+from mkt.api.models import Access
 from mkt.api.tests.test_oauth import OAuthClient
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -29,7 +29,7 @@ class TestRestOAuthAuthentication(TestCase):
         self.profile = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.today())
         self.access = Access.objects.create(key='test_oauth_key',
-                                            secret=generate(),
+                                            secret='super secret',
                                             user=self.profile)
         self.auth = authentication.RestOAuthAuthentication()
         self.middlewares = [APIBaseMiddleware, RestOAuthMiddleware]

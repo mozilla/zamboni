@@ -14,7 +14,7 @@ from nose.tools import eq_, ok_
 import mkt
 import mkt.regions
 from mkt.access.models import GroupUser
-from mkt.api.models import Access, generate
+from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
@@ -81,7 +81,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         self.grant_permission(self.profile, 'Apps:Review')
 
         self.access = Access.objects.create(
-            key='test_oauth_key', secret=generate(), user=self.user)
+            key='test_oauth_key', secret='ultra secret', user=self.user)
         self.url = reverse('reviewers-search-api')
 
         self.webapp = Webapp.objects.get(pk=337141)
@@ -111,7 +111,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
     def test_owner_still_non_reviewer_access(self):
         user = Webapp.objects.get(pk=337141).authors.all()[0]
         access = Access.objects.create(
-            key='test_oauth_key_owner', secret=generate(), user=user)
+            key='test_oauth_key_owner', secret='super secret', user=user)
         client = RestOAuthClient(access)
         res = client.get(self.url)
         eq_(res.status_code, 403)
