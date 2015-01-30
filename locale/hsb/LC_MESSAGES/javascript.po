@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2015-01-01 15:13+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} so nahrawa"
 msgid "Error with {0}"
 msgstr "Zmylk z {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Waše nałoženje je při přepruwowanju z {0} zmylkom přepadnyło."
@@ -80,7 +80,7 @@ msgstr[1] "&hellip;a {0} dalšej"
 msgstr[2] "&hellip;a {0} dalše"
 msgstr[3] "&hellip;a {0} dalšich"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Dospołnu přepruwowansku rozprawu čitać"
 
@@ -145,7 +145,7 @@ msgstr "Nutřkowny serwerowy zmylk při instalowanju nałoženja."
 msgid "Install failed. Please try again later."
 msgstr "Instalacija je so nimokuliła. Prošu spytajće pozdźišo hišće raz."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Waše nałoženje je při přepruwowanju z {0} zmylkom a {1} zdźělenku přepadnyło."
@@ -153,7 +153,7 @@ msgstr[1] "Waše nałoženje je při přepruwowanju z {0} zmylkomaj a {1} zdźě
 msgstr[2] "Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami přepadnyło."
 msgstr[3] "Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami přepadnyło."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenku wobstało."
@@ -161,39 +161,39 @@ msgstr[1] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenko
 msgstr[2] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
 msgstr[3] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Waše nałoženje je přepruwowanje bjeze zmylkow abo zdźělenkow wobstało."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Změny su so składowali"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Zapodajće e-mejlowu adresu noweho teamoweho čłona"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Manifest je so zaktualizował"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Manifest njeda so aktualizować. Spytajće pozdźišo hišće raz."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Při nahrawanju wašeje dataje je zmylk wustupił."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Dalše informacije"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Přikład"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Změny wobrazow so předźěłuja"
 

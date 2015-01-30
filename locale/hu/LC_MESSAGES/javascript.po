@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2014-02-27 16:18+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -66,7 +66,7 @@ msgstr "{0} feltöltése"
 msgid "Error with {0}"
 msgstr "Hiba ezzel: {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Az alkalmazás ellenőrzése {0} hiba miatt sikertelen."
@@ -78,7 +78,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; és további {0}"
 msgstr[1] "&hellip; és további {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Teljes ellenőrzési jelentés megjelenítése"
 
@@ -141,51 +141,51 @@ msgstr "Belső szerverhiba a telepítéskor."
 msgid "Install failed. Please try again later."
 msgstr "A telepítés sikertelen. Próbálja meg később."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Az app ellenőrzése {0} hiba és {1} üzenet miatt sikertelen."
 msgstr[1] "Az app ellenőrzése {0} hiba és {1} üzenet miatt sikertelen."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Az alkalmazás hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] "Az alkalmazás hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Az alkalmazás hiba és üzenetek nélkül átment az ellenőrzésen."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Adja meg az új csapattag e-mail címét"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Példa"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 

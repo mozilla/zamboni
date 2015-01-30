@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2014-09-17 12:36+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Otpremam {0}"
 msgid "Error with {0}"
 msgstr "Greška sa {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Vaša aplikacija nije prošla proveru zbog {0} greške."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip;i još {0}"
 msgstr[1] "&hellip;i još {0}"
 msgstr[2] "&hellip;i još {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Pogledajte potpuni izveštaj pregleda"
 
@@ -142,53 +142,53 @@ msgstr "Serverska greška tokom instalacije aplikacije."
 msgid "Install failed. Please try again later."
 msgstr "Instalacija je neuspešna. Molimo Vas pokušajte kasnije."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Vaša aplikacija nije prošla proveru - {0} greška i {1} poruka."
 msgstr[1] "Vaša aplikacija nije prošla proveru - {0} greške i {1} poruka."
 msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} poruka."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} porukom."
 msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruke."
 msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruka."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Vaša aplikacija je prošla proveru bez grešaka ili poruka."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Izmene sačuvane"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Unesite adresu e-pošte novog člana tima"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Manifest osvežen"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Ne možemo da osvežimo manifest. Pokušajte ponovo kasnije."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Saznajte više"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Primer"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Izmene na slici se obrađuju"
 

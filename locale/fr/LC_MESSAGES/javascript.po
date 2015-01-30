@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2014-09-06 11:46+0200\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -70,7 +70,7 @@ msgstr "Envoi de {0}"
 msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "La validation de votre application a renvoyé {0} erreur."
@@ -82,7 +82,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; et {0} plus"
 msgstr[1] "&hellip; et {0} plus"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
 
@@ -145,51 +145,51 @@ msgstr "Erreur interne du serveur pendant l'installation de l'application."
 msgid "Install failed. Please try again later."
 msgstr "Échec d'installation. Merci de réessayer plus tard."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Votre application a échouée à la validation avec {0} erreur et {1} message(s)."
 msgstr[1] "Votre application a échouée à la validation avec {0} erreurs et {1} message(s)."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Votre application a passé la validation sans erreur et avec {0} message."
 msgstr[1] "Votre application a passé la validation sans erreur et avec {0} messages."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Votre application a passé la validation sans erreur ni message."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Changements enregistrés"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Saisissez l'adresse courriel du nouveau membre de l'équipe"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Manifeste mis à jour"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Impossible de mettre à jour le manifeste. Merci de réessayer plus tard."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Une erreur est survenue pendant l'envoi de votre fichier."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "En savoir plus"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Exemple"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Changements d'images en cours"
 

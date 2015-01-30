@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -62,7 +62,7 @@ msgstr "‮∩dʅoɐpıuƃ {0}"
 msgid "Error with {0}"
 msgstr "‮Ǝɹɹoɹ ʍıʇɥ {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ˙"
@@ -74,7 +74,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
 msgstr[1] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "‮Sǝǝ ɟnʅʅ ʌɐʅıpɐʇıou ɹǝdoɹʇ"
 
@@ -137,51 +137,51 @@ msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ ou ɐdd ıusʇɐʅʅɐʇıou˙"
 msgid "Install failed. Please try again later."
 msgstr "‮Iusʇɐʅʅ ɟɐıʅǝp˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ ɐup {1}‮ ɯǝssɐƃǝ(s)˙"
 msgstr[1] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs ɐup {1}‮ ɯǝssɐƃǝ(s)˙"
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝ˙"
 msgstr[1] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝs˙"
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ɯǝssɐƃǝs˙"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "‮Ↄɥɐuƃǝs Sɐʌǝp"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "‮Ǝuʇǝɹ ɐ uǝʍ ʇǝɐɯ ɯǝɯqǝɹ,s ǝɯɐıʅ ɐppɹǝss"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "‮Wɐuıɟǝsʇ ɹǝɟɹǝsɥǝp"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "‮Ↄonʅp uoʇ ɹǝɟɹǝsɥ ɯɐuıɟǝsʇ˙ ⊥ɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "‮⊥ɥǝɹǝ ʍɐs ɐu ǝɹɹoɹ ndʅoɐpıuƃ ʎonɹ ɟıʅǝ˙"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "‮⅂ǝɐɹu ɯoɹǝ"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "‮Ǝxɐɯdʅǝ"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "‮Iɯɐƃǝ ɔɥɐuƃǝs qǝıuƃ dɹoɔǝssǝp"
 
@@ -207,9 +207,7 @@ msgstr "‮ᗡısɐqʅǝp"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ "
-"Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
+msgstr "‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -217,9 +215,7 @@ msgstr "‮ᴚǝɯoʌǝ ʇɥıs ʅoɔɐʅızɐʇıou"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ "
-"ɐppɹǝss¿"
+msgstr "‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ ɐppɹǝss¿"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -326,14 +322,8 @@ msgstr "‮ᗡǝʇǝɔʇǝp: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
-"ɟoʅʅoʍıuƃ ɐdds˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
-"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
-msgstr[1] ""
-"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
-"ɟoʅʅoʍıuƃ ɐdd˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
-"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+msgstr[0] "‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ ɟoʅʅoʍıuƃ ɐdds˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+msgstr[1] "‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ ɟoʅʅoʍıuƃ ɐdd˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -561,9 +551,7 @@ msgstr "‮Ǝɹɹoɹ ɟɐıʅıuƃ ɐdd: {ɐdd}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"‮Soɹɹʎ¡ Ｍǝ ɥɐp ɐu ǝɹɹoɹ ɟǝʇɔɥıuƃ ʇɥǝ ɹǝʌıǝʍ ɥısʇoɹʎ˙ Ԁʅǝɐsǝ ʇɹʎ ʅoƃƃıuƃ ıu "
-"ɐƃɐıu˙<p>"
+msgstr "‮Soɹɹʎ¡ Ｍǝ ɥɐp ɐu ǝɹɹoɹ ɟǝʇɔɥıuƃ ʇɥǝ ɹǝʌıǝʍ ɥısʇoɹʎ˙ Ԁʅǝɐsǝ ʇɹʎ ʅoƃƃıuƃ ıu ɐƃɐıu˙<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63

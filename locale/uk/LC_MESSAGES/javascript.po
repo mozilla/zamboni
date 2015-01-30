@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2014-09-06 12:16+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Вивантаження {0}"
 msgid "Error with {0}"
 msgstr "Помилка з {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
 msgstr[2] "&hellip;і ще {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Переглянути повний звіт перевірки"
 
@@ -142,53 +142,53 @@ msgstr "Внутрішня помилка сервера при встановл
 msgid "Install failed. Please try again later."
 msgstr "Встановлення невдале. Спробуйте ще раз пізніше."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
 msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 msgstr[2] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваша програма пройшла перевірку без помилок чи повідомлень."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Введіть адресу ел. пошти нового члена команди"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Маніфест оновлено"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Неможливо оновити маніфест. Спробуйте знову пізніше."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Приклад"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Обробка змін зображення"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2015-01-03 22:37+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -64,7 +64,7 @@ msgstr "Odosiela sa {0}"
 msgid "Error with {0}"
 msgstr "Chyba pre {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip; a jedna ďalšia"
 msgstr[1] "&hellip; a {0} ďalšie"
 msgstr[2] "&hellip; a {0} ďalších"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
@@ -142,53 +142,53 @@ msgstr "Pri inštalácii aplikácie nastala vnútorná chyba servera."
 msgid "Install failed. Please try again later."
 msgstr "Inštalácia zlyhala. Skúste to, prosím, neskôr."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou a upozorneniami ({1})."
 msgstr[1] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 msgstr[2] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozornením."
 msgstr[1] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 msgstr[2] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Overenie vašej aplikácie bolo úspešné bez chýb a upozornení."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Zadajte e-mailovú adresu nového člena tímu"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Manifest obnovený"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Obnovenie manifestu sa nepodarilo. Skúste to znovu neskôr."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Príklad"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 

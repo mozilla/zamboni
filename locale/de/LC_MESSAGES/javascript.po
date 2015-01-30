@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:47-0700\n"
+"POT-Creation-Date: 2015-01-30 08:52-0700\n"
 "PO-Revision-Date: 2014-11-11 19:50+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} wird hochgeladen"
 msgid "Error with {0}"
 msgstr "Fehler bei {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:213
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ihre App ist bei der Überprüfung mit {0} Fehler durchgefallen."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; und {0} weiterer"
 msgstr[1] "&hellip; und {0} weitere"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:175
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Vollständigen Überprüfungsbericht lesen"
 
@@ -139,51 +139,51 @@ msgstr "Interner Server-Fehler bei der App-Installation."
 msgid "Install failed. Please try again later."
 msgstr "Installation fehlgeschlagen. Bitte versuchen Sie es später erneut."
 
-#: media/js/devreg/devhub.js:218
+#: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Ihre App ist mit {0} Fehler und {1} Nachricht(en) durch die Überprüfung gefallen."
 msgstr[1] "Ihre App ist mit {0} Fehlern und {1} Nachricht(en) durch die Überprüfung gefallen."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweis bestanden."
 msgstr[1] "Ihre App hat die Überprüfung ohne Fehler und mit {0} Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:237
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ihre App hat die Überprüfung mit null Fehlern und Hinweisen bestanden."
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Änderungen gespeichert"
 
-#: media/js/devreg/devhub.js:468
+#: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
 msgstr "Geben Sie die E-Mail-Adresse eines neuen Team-Mitglieds ein"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
 msgstr "Manifest aktualisiert"
 
-#: media/js/devreg/devhub.js:486
+#: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
 msgstr "Manifest konnte nicht aktualisiert werden. Versuchen Sie es später erneut."
 
-#: media/js/devreg/devhub.js:667
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Beim Hochladen Ihrer Datei ist ein Fehler aufgetreten."
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:947
 msgid "Learn more"
 msgstr "Erfahren Sie mehr"
 
-#: media/js/devreg/devhub.js:956
+#: media/js/devreg/devhub.js:951
 msgid "Example"
 msgstr "Beispiel"
 
-#: media/js/devreg/devhub.js:1225
+#: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 
