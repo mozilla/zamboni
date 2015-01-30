@@ -36,4 +36,5 @@ media/marketplace-stats
 media/transonic
 *.signed.zip
 *.po~
-logs/*.log
+logs/*
+supervisord.pid
