@@ -85,6 +85,15 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         eq_(score.score, mkt.REVIEWED_SCORES.get(mkt.REVIEWED_APP_REVIEW))
         eq_(score.note_key, mkt.REVIEWED_APP_REVIEW)
 
+        ReviewerScore.award_moderation_points(self.user, self.app, 1,
+                                              undo=True)
+        score = ReviewerScore.objects.all()[1]
+        eq_(score.score, mkt.REVIEWED_SCORES.get(mkt.REVIEWED_APP_REVIEW_UNDO))
+        eq_(score.note_key, mkt.REVIEWED_APP_REVIEW_UNDO)
+
+        # If we change the _UNDO score to be different this test will fail.
+        eq_(ReviewerScore.get_total(self.user), 0)
+
     def test_award_additional_review_points(self):
         ReviewerScore.award_additional_review_points(self.user, self.app,
                                                      QUEUE_TARAKO)

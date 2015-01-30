@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import datetime
 import json
 import os
 import time
+from datetime import datetime, timedelta
 from itertools import cycle
 from os import path
 
@@ -92,25 +92,27 @@ class AttachmentManagementMixin(object):
 
 
 class AppReviewerTest(mkt.site.tests.TestCase):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
-                       'user_999')
 
     def setUp(self):
         super(AppReviewerTest, self).setUp()
+        self.reviewer_user = user_factory(username='editor')
+        self.grant_permission(self.reviewer_user, 'Apps:Review')
+        self.snr_reviewer_user = user_factory(username='snrreviewer')
+        self.grant_permission(self.snr_reviewer_user,'Apps:Review,Apps:Edit,'
+                              'Apps:ReviewEscalated,Apps:ReviewPrivileged')
+        self.admin_user = user_factory(username='admin')
+        self.grant_permission(self.admin_user, '*:*')
+        self.regular_user = user_factory(username='regular')
         self.login_as_editor()
 
     def login_as_admin(self):
-        self.login('admin@mozilla.com')
+        self.login(self.admin_user)
 
     def login_as_editor(self):
-        self.login('editor@mozilla.com')
+        self.login(self.reviewer_user)
 
     def login_as_senior_reviewer(self):
-        self.client.logout()
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.grant_permission(user, 'Apps:Edit,Apps:ReviewEscalated,'
-                                    'Apps:ReviewPrivileged')
-        self.login_as_editor()
+        self.login(self.snr_reviewer_user)
 
     def check_actions(self, expected, elements):
         """Check the action buttons on the review page.
@@ -153,7 +155,6 @@ class SearchMixin(object):
 class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def setUp(self):
-        self.login_as_editor()
         super(TestReviewersHome, self).setUp()
         self.url = reverse('reviewers.home')
         self.apps = [app_factory(name='Antelope',
@@ -592,6 +593,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
 
     def setUp(self):
+        super(TestRegionQueue, self).setUp()
         self.apps = [app_factory(name='WWW',
                                  status=mkt.STATUS_PUBLIC),
                      app_factory(name='XXX',
@@ -607,8 +609,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             region_cn_nominated=self.days_ago(1))
         self.apps[2].geodata.update(region_cn_status=mkt.STATUS_PUBLIC)
 
-        self.user = UserProfile.objects.get(username='editor')
-        self.grant_permission(self.user, 'Apps:ReviewRegionCN')
+        self.grant_permission(self.reviewer_user, 'Apps:ReviewRegionCN')
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_region',
                            args=[mkt.regions.CHN.slug])
@@ -627,6 +628,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         check_links(expected, links, verify=False)
 
     def test_escalated_not_in_queue(self):
+        self.grant_permission(self.snr_reviewer_user, 'Apps:ReviewRegionCN')
         self.login_as_senior_reviewer()
         self.apps[0].escalationqueue_set.create()
         res = self.client.get(self.url)
@@ -638,6 +640,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         XSSMixin):
 
     def setUp(self):
+        super(TestRereviewQueue, self).setUp()
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
@@ -796,6 +799,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
 
     def setUp(self):
+        super(TestUpdateQueue, self).setUp()
         app1 = app_factory(is_packaged=True, name='XXX',
                            version_kw={'version': '1.0',
                                        'created': self.days_ago(2),
@@ -1060,6 +1064,7 @@ class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
 class TestDeviceQueue(AppReviewerTest, AccessMixin):
 
     def setUp(self):
+        super(TestDeviceQueue, self).setUp()
         self.app1 = app_factory(name='XXX',
                                 version_kw={'version': '1.0',
                                             'created': self.days_ago(2),
@@ -1101,6 +1106,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
                           SearchMixin, XSSMixin):
 
     def setUp(self):
+        super(TestEscalationQueue, self).setUp()
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
@@ -1139,10 +1145,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(flags.length, 1)
 
     def test_no_access_regular_reviewer(self):
-        # Since setUp added a new group, remove all groups and start over.
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-        GroupUser.objects.filter(user=user).delete()
-        self.grant_permission(user, 'Apps:Review')
+        self.login_as_editor()
         res = self.client.get(self.url)
         eq_(res.status_code, 403)
 
@@ -1348,7 +1351,7 @@ class TestReviewMixin(object):
 
 class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
                     AttachmentManagementMixin, PackagedFilesMixin):
-    fixtures = AppReviewerTest.fixtures + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
@@ -2130,10 +2133,10 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
     We're doing this to make the mocks easier to handle.
 
     """
-    fixtures = AppReviewerTest.fixtures + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.login_as_editor()
+        super(TestApproveHostedApp, self).setUp()
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
@@ -2299,10 +2302,10 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
     We're doing this to make the mocks easier to handle.
 
     """
-    fixtures = AppReviewerTest.fixtures + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.login_as_editor()
+        super(TestApprovePackagedApp, self).setUp()
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
@@ -2516,10 +2519,10 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
     We're doing this to make the mocks easier to handle.
 
     """
-    fixtures = AppReviewerTest.fixtures + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.login_as_editor()
+        super(TestApprovePackagedVersions, self).setUp()
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.file = self.app.latest_version.files.all()[0]
@@ -2855,10 +2858,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
 
 
 class TestReviewLog(AppReviewerTest, AccessMixin):
-    fixtures = AppReviewerTest.fixtures + fixture('user_admin')
 
     def setUp(self):
-        self.login_as_editor()
         super(TestReviewLog, self).setUp()
         # Note: if `created` is not specified, `app_factory` uses a randomly
         # generated timestamp.
@@ -2868,14 +2869,13 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
                                  status=mkt.STATUS_PENDING)]
         self.url = reverse('reviewers.apps.logs')
 
-        self.task_user = UserProfile.objects.get(email='admin@mozilla.com')
         patcher = mock.patch.object(settings, 'TASK_USER_ID',
-                                    self.task_user.id)
+                                    self.admin_user.id)
         patcher.start()
         self.addCleanup(patcher.stop)
 
     def get_user(self):
-        return UserProfile.objects.all()[0]
+        return self.reviewer_user
 
     def make_approvals(self):
         d = 1
@@ -2886,7 +2886,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
                     created=days_ago)
             # Throw in a few tasks logs that shouldn't get queried.
             mkt.log(mkt.LOG.REREVIEW_MANIFEST_CHANGE, app, app.latest_version,
-                    user=self.task_user, details={'comments': 'foo'},
+                    user=self.admin_user, details={'comments': 'foo'},
                     created=days_ago)
             d += 1
 
@@ -2988,10 +2988,10 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_exists(self):
         """Search by author."""
         self.make_approvals()
-        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='editor',
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='regular',
                               comment='hi')
 
-        r = self.client.get(self.url, dict(search='editor'))
+        r = self.client.get(self.url, dict(search='regular'))
         eq_(r.status_code, 200)
         rows = pq(r.content)('#log-listing tbody tr')
 
@@ -3076,8 +3076,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
         self.client.logout()
         req = self.client.get(self.url, follow=True)
         self.assert3xx(req, '%s?to=%s' % (reverse('users.login'), self.url))
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.client.login('regular@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_perms_not_motd(self):
@@ -3092,7 +3091,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
 
     def test_motd_change(self):
         # Only users in the MOTD group can POST.
-        user = UserProfile.objects.get(email='editor@mozilla.com')
+        user = self.reviewer_user
         self.grant_permission(user, 'AppReviewerMOTD:Edit')
         self.login_as_editor()
 
@@ -3116,8 +3115,6 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
     Integration test that notes are created and that emails are
     sent to the right groups of people.
     """
-    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
-                       'group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
         super(TestReviewAppComm, self).setUp()
@@ -3316,13 +3313,13 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
 
 class TestModeratedQueue(AppReviewerTest, AccessMixin):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
-                       'user_2519', 'user_999')
+    fixtures = fixture('user_2519')
 
     def setUp(self):
+        super(TestModeratedQueue, self).setUp()
         self.app = app_factory()
 
-        self.reviewer = UserProfile.objects.get(email='editor@mozilla.com')
+        self.reviewer = self.reviewer_user
         self.users = list(UserProfile.objects.exclude(pk=self.reviewer.id))
 
         self.url = reverse('reviewers.apps.queue_moderated')
@@ -3605,8 +3602,7 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
 
     def setUp(self):
         super(TestReviewersScores, self).setUp()
-        self.login_as_editor()
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.user = self.reviewer_user
         self.url = reverse('reviewers.performance', args=[self.user.username])
 
     def test_404(self):
@@ -3632,6 +3628,7 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
 class TestQueueSort(AppReviewerTest):
 
     def setUp(self):
+        super(TestQueueSort, self).setUp()
         """Create and set up apps for some filtering fun."""
         self.apps = [app_factory(name='Lillard',
                                  status=mkt.STATUS_PENDING,
@@ -3730,7 +3727,7 @@ class TestQueueSort(AppReviewerTest):
 
         earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
         later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
-        later_rrq.created += datetime.timedelta(days=1)
+        later_rrq.created += timedelta(days=1)
         later_rrq.save()
 
         request = rf.get(url, {'sort': 'created'})
@@ -3811,10 +3808,10 @@ class TestQueueSort(AppReviewerTest):
         url = reverse('reviewers.apps.queue_rereview')
 
         earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
-        earlier_rrq.created += datetime.timedelta(days=1)
+        earlier_rrq.created += timedelta(days=1)
         earlier_rrq.save()
         later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
-        later_rrq.created += datetime.timedelta(days=2)
+        later_rrq.created += timedelta(days=2)
         later_rrq.save()
         pri_rrq = RereviewQueue.objects.create(addon=self.apps[2])
         pri_rrq.save()
@@ -3829,11 +3826,8 @@ class TestQueueSort(AppReviewerTest):
 
 
 class TestAppsReviewing(AppReviewerTest, AccessMixin):
-    fixtures = AppReviewerTest.fixtures + fixture(
-        'user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
-        self.login_as_editor()
         super(TestAppsReviewing, self).setUp()
         self.url = reverse('reviewers.apps.apps_reviewing')
         self.apps = [app_factory(name='Antelope',
@@ -3920,13 +3914,13 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
 
 
 class TestLeaderboard(AppReviewerTest):
-    fixtures = AppReviewerTest.fixtures + fixture('user_10482')
+    fixtures = fixture('user_10482')
 
     def setUp(self):
+        super(TestLeaderboard, self).setUp()
         self.url = reverse('reviewers.leaderboard')
 
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.login_as_editor()
+        self.user = self.reviewer_user
         mkt.set_user(self.user)
 
     def _award_points(self, user, score):
@@ -4005,14 +3999,13 @@ class TestReviewPage(mkt.site.tests.TestCase):
 
 
 class TestAbusePage(AppReviewerTest):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
+        super(TestAbusePage, self).setUp()
         self.app = app_factory(name=u'My app é <script>alert(5)</script>')
         self.url = reverse('reviewers.apps.review.abuse',
                            args=[self.app.app_slug])
         AbuseReport.objects.create(addon=self.app, message=self.app.name)
-        self.login_as_editor()
 
     def testXSS(self):
         from django.utils.encoding import smart_unicode
@@ -4146,3 +4139,114 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
         eq_(doc('#history .item-history').attr('data-comm-thread-url'),
             reverse('comm-thread-list') + '?limit=1&app=' +
             self.addon.app_slug)
+
+
+class ModerateLogTest(AppReviewerTest):
+
+    def setUp(self):
+        super(ModerateLogTest, self).setUp()
+        self.review = Review.objects.create(addon=app_factory(), body='body',
+                                            user=user_factory(), rating=4,
+                                            editorreview=True)
+        mkt.set_user(UserProfile.objects.get(username='editor'))
+
+
+class TestModerateLog(ModerateLogTest, AccessMixin):
+
+    def setUp(self):
+        super(TestModerateLog, self).setUp()
+        self.url = reverse('reviewers.apps.moderatelog')
+
+    def test_log(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_start_filter(self):
+        r = self.client.get(self.url, dict(start='2011-01-01'))
+        eq_(r.status_code, 200)
+
+    def test_enddate_filter(self):
+        """
+        Make sure that if our end date is 1/1/2011, that we include items from
+        1/1/2011.
+        """
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.addon,
+                created=datetime(2011, 1, 1))
+
+        r = self.client.get(self.url, dict(end='2011-01-01'))
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('tbody td').eq(0).text(), 'Jan 1, 2011 12:00:00 AM')
+
+    def test_action_filter(self):
+        """
+        Based on setup we should see only two items if we filter for deleted
+        reviews.
+        """
+        for i in xrange(2):
+            mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.addon, self.review)
+            mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review)
+        r = self.client.get(self.url, dict(search='deleted'))
+        eq_(pq(r.content)('tbody tr').length, 2)
+
+    def test_no_results(self):
+        r = self.client.get(self.url, dict(end='2004-01-01'))
+        no_results = 'No events found for this period.'
+        assert no_results in r.content, 'Expected no results to be found.'
+
+    def test_display_name_xss(self):
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.addon,
+                user=self.admin_user)
+        self.admin_user.display_name = '<script>alert("xss")</script>'
+        self.admin_user.save()
+        assert '<script>' in self.admin_user.display_name, (
+            'Expected <script> to be in display name')
+        r = self.client.get(self.url)
+        inner_html = pq(r.content)('#log-listing tbody td').eq(1).html()
+        assert '<script>' not in r.content
+        assert '&lt;script&gt;' in r.content
+
+
+class TestModerateLogDetail(ModerateLogTest, AccessMixin):
+
+    def setUp(self):
+        super(TestModerateLogDetail, self).setUp()
+        # AccessMixin needs a url property.
+        self.url = self._url(0)
+
+    def _url(self, id):
+        return reverse('reviewers.apps.moderatelog.detail', args=[id])
+
+    def test_detail_page(self):
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.addon, self.review)
+        e_id = ActivityLog.objects.editor_events()[0].id
+        r = self.client.get(self._url(e_id))
+        eq_(r.status_code, 200)
+
+    def test_undelete_selfmoderation(self):
+        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
+        self.review.delete()
+        r = self.client.post(self._url(e_id), {'action': 'undelete'})
+        eq_(r.status_code, 302)
+        self.review = Review.objects.get(id=self.review.id)
+        assert not self.review.deleted, 'Review should be undeleted now.'
+
+    def test_undelete_admin(self):
+        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
+        self.review.delete()
+        self.client.logout()
+        self.login_as_admin()
+        r = self.client.post(self._url(e_id), {'action': 'undelete'})
+        eq_(r.status_code, 302)
+        self.review = Review.objects.get(id=self.review.id)
+        assert not self.review.deleted, 'Review should be undeleted now.'
+
+    def test_undelete_unauthorized(self):
+        # Delete as admin (or any other user than the reviewer).
+        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review,
+                user=self.admin_user).id
+        self.review.delete()
+        # Try to undelete as normal reviewer.
+        r = self.client.post(self._url(e_id), {'action': 'undelete'})
+        eq_(r.status_code, 403)
+        self.review = Review.with_deleted.get(id=self.review.id)
+        assert self.review.deleted, 'Review shouldn`t have been undeleted.'

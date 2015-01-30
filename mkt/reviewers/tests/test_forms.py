@@ -1,10 +1,14 @@
+from datetime import date
+
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from mock import patch
 from nose.tools import eq_
 
+import mkt
 from mkt.comm.forms import CommAttachmentForm
+from mkt.reviewers.forms import ModerateLogForm
 from mkt.site.tests import TestCase
 
 
@@ -53,3 +57,19 @@ class TestReviewAppAttachmentForm(TestCase):
             file_data = self.file_data()
         form = CommAttachmentForm(post_data, file_data)
         eq_(form.is_valid(), valid)
+
+
+class TestModerationLogForm(TestCase):
+
+    def test_clean(self):
+        post_data = {
+            'start': '2014-12-01',
+            'end': '2015-01-01',
+            'search': 'approved',
+        }
+        form = ModerateLogForm(post_data)
+        assert form.is_valid()
+        eq_(form.cleaned_data['start'], date(2014,12,01))
+        # End date should a day ahead.
+        eq_(form.cleaned_data['end'], date(2015,01,02))
+        eq_(form.cleaned_data['search'], mkt.LOG.APPROVE_REVIEW)

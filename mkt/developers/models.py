@@ -494,7 +494,7 @@ class ActivityLog(ModelBase):
 
         try:
             kw = dict(addon=addon, review=review, version=version, group=group,
-                      collection=collection, tag=tag, user=self.user.username)
+                      collection=collection, tag=tag, user=self.user.display_name)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

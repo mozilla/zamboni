@@ -1,0 +1,46 @@
+{% extends "reviewers/base.html" %}
+
+{% block breadcrumbs %}
+{{ reviewers_breadcrumbs(
+      items=[(url('reviewers.apps.moderatelog'),_('Moderated Review Log')),
+      (None, _('Log Details'))]) }}
+{% endblock %}
+
+{% block content %}
+  <div class="featured">
+    <div class="featured-inner featured-inner-padded">
+      <h2>{{ _('Log details') }}</h2>
+      <p>{{ log.to_string('editor') }}</p>
+      {% if log.details %}
+        <dl>
+          <dt>{{ _('Moderation date') }}</dt>
+          <dd>{{ log.created|babel_datetime }}</dd>
+          <dt>{{ _('App title') }}</dt>
+          <dd>{{ log.details.addon_title }}</dd>
+          <dt>{{ _('Review title') }}</dt>
+          <dd>{{ log.details.title }}</dd>
+          <dt>{{ _('Review text') }}</dt>
+          <dd>{{ log.details.body }}</dd>
+        </dl>
+        {% if log.details.is_flagged %}
+          <p><strong>{{ _('Review was flagged prior to moderation.') }}</strong></p>
+        {% endif %}
+      {% endif %}
+
+      {% if review %}
+        <dl>
+          <dt>{{ _('Current review status') }}</dt>
+          <dd>{{ _('Deleted') if review.deleted else _('Alive') }}</dd>
+        </dl>
+      {% endif %}
+      {% if can_undelete %}
+        <form method="post">
+          {{ csrf() }}
+          {{ form.action }}
+          <input type="submit" id="submit-undelete-review" value="{{ _('Undelete') }}">
+        </form>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

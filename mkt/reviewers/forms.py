@@ -18,7 +18,6 @@ from mkt.webapps.models import AddonDeviceType
 
 log = logging.getLogger('z.reviewers.forms')
 
-
 # We set 'any' here since we need to default this field
 # to PUBLIC if not specified for consumer pages.
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
@@ -26,8 +25,35 @@ for status in mkt.WEBAPPS_UNLISTED_STATUSES + mkt.LISTED_STATUSES:
     STATUS_CHOICES.append((mkt.STATUS_CHOICES_API[status],
                            mkt.STATUS_CHOICES[status]))
 
+MODERATE_ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),
+                           ('deleted', _lazy(u'Deleted reviews')))
 
-log = logging.getLogger('z.reviewers.forms')
+MODERATE_ACTION_DICT = {'approved': mkt.LOG.APPROVE_REVIEW,
+                        'deleted': mkt.LOG.DELETE_REVIEW}
+
+
+class ModerateLogForm(happyforms.Form):
+    start = forms.DateField(required=False,
+                            label=_lazy(u'View entries between'))
+    end = forms.DateField(required=False,
+                          label=_lazy(u'and'))
+    search = forms.ChoiceField(required=False, choices=MODERATE_ACTION_FILTERS,
+                               label=_lazy(u'Filter by type/action'))
+
+    def clean(self):
+        data = self.cleaned_data
+        # We want this to be inclusive of the end date.
+        if 'end' in data and data['end']:
+            data['end'] += timedelta(days=1)
+
+        if 'search' in data and data['search']:
+            data['search'] = MODERATE_ACTION_DICT[data['search']]
+        return data
+
+
+class ModerateLogDetailForm(happyforms.Form):
+    action = forms.CharField(required=True,
+                widget=forms.HiddenInput(attrs={'value': 'undelete',}))
 
 
 class ReviewLogForm(happyforms.Form):
@@ -46,10 +72,10 @@ class ReviewLogForm(happyforms.Form):
         # L10n: end, as in "end date"
         self.fields['end'].widget.attrs = {'size': 10, 'placeholder': _('end')}
 
-        # L10n: Description of what can be searched for
-        search_ph = _('add-on, editor or comment')
-        self.fields['search'].widget.attrs = {'placeholder': search_ph,
-                                              'size': 30}
+        self.fields['search'].widget.attrs = {
+            # L10n: Descript of what can be searched for.
+            'placeholder': _lazy(u'app, reviewer, or comment'),
+            'size': 30}
 
     def clean(self):
         data = self.cleaned_data
@@ -136,16 +162,6 @@ def get_review_form(data, files, request=None, addon=None, version=None,
     helper = ReviewHelper(request=request, addon=addon, version=version,
                           attachment_formset=attachment_formset)
     return ReviewAppForm(data=data, files=files, helper=helper)
-
-
-class ReviewAppLogForm(ReviewLogForm):
-
-    def __init__(self, *args, **kwargs):
-        super(ReviewAppLogForm, self).__init__(*args, **kwargs)
-        self.fields['search'].widget.attrs = {
-            # L10n: Descript of what can be searched for.
-            'placeholder': _lazy(u'app, reviewer, or comment'),
-            'size': 30}
 
 
 class ApiReviewersSearchForm(ApiSearchForm):

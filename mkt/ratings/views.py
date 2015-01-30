@@ -118,7 +118,11 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
-        mkt.log(mkt.LOG.DELETE_REVIEW, obj.addon, obj)
+        mkt.log(mkt.LOG.DELETE_REVIEW, obj.addon, obj,
+                details=dict(title=unicode(obj.title),
+                             body=unicode(obj.body),
+                             addon_id=obj.addon.id,
+                             addon_title=unicode(obj.addon.name)))
         log.debug('[Review:%s] Deleted by %s' %
             (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)

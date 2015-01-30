@@ -133,6 +133,12 @@ class TestModelBase(TestCase):
         assert not c
         eq_(a, b)
 
+    def test_deleted_updated(self):
+        addon = self.testapp
+        addon.delete()
+        addon.update(public_stats=False)
+        assert not addon.public_stats, 'addon.public_stats should be False now.'
+
 
 def test_cache_key():
     # Test that we are not taking the db into account when building our
