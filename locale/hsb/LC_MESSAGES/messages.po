@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-30 10:20+0000\n"
+"PO-Revision-Date: 2015-01-30 22:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422613256.0\n"
+"X-POOTLE-MTIME: 1422657250.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -359,7 +360,7 @@ msgstr "Čěska republika"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Danska"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -3713,11 +3714,11 @@ msgstr "Tute nałoženje funkcije grata njetrjeba"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Nutřkowny identifikator za tute nałoženje na Torhošću Firefox."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4343,6 +4344,8 @@ msgstr "Płaćenska metoda"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Dokelž je \"Zbytk swěta\" wubrana, budźe waše nałoženje we wšěch zmóžnjenych "
+"\"<a href=\"#regions-other\">druhich regionach</a>\" na předań."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4351,6 +4354,8 @@ msgstr "Druhe regiony"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Zo byšće wobešoł, zo so waše nałoženje we wěstym regionje jewi, wotstrońće "
+"hóčku před regionom, prjedy hač składujeće."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4555,6 +4560,8 @@ msgstr "Waše nałoženje zwobraznja so na kóždym regionalnym Torhošću, kotr
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Pod wuměnjenjom, zo płaćenja su k dispoziciji w tutym regionje za wubrany "
+"płaćiznowy dypk abo \"zbytk swěta\" je jako płaćenska opcija wubrany.)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5060,6 +5067,8 @@ msgstr "Manifest webnałoženja płaćiwy JSON njeje."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Róla \"langpack\" je njepłaćiwa za webnałoženja. Prošu zapodajće město toho "
+"tute nałoženje jako rěčny pakćik."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5183,31 +5192,39 @@ msgstr "Produktowe logo dyrbi wobraz z wulkosću 64x64 być. Skontrolujće, hač
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Waš rěčny pakćik měł \"role\": \"langpack\" wobsahować."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Waš rěčny pakćik dyrbi w objekće \"languages-provided\" jednu rěč wobsahować."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Waš rěčny pakćik přewjele rěčow wobsahuje. Jenož jedna rěč so na pakćik "
+"podpěruje."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Waš rěčny pakćik dyrbi w objekće \"languages-target\" jednu rěč wobsahować."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Waš rěčny pakćik přewjele cilow wobsahuje. Jenož jedyn cil so na pakćik "
+"podpěruje."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Waš rěčny pakćik měł wersiju wobsahować."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"Wersija wašeho rěčneho pakćika dyrbi so wot tuteje rozeznawać, kotruž "
+"wuměnjeće."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5401,7 +5418,7 @@ msgstr "Nastroj pohladanja <small>Torhošća</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Informacije Torhošća"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5417,35 +5434,40 @@ msgstr "Podobna transakcija"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informacije płaćenskeho poskićowarja"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Transakciski status njeda so tuchwilu wowtwołać."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Tute płaćenje je so přez Bango přewjedło. Zo byšće dalše informacije dóstał, "
+"stajće so z <a href=\"mailto:%(bango_support)s\">pomocu Bango</a> ze "
+"slědowacymi informacijemi do zwiska."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Tute płaćenje je so přez <b>referencne implementowanje</b> přewjedło</b>. "
+"Njeje woprawdźita transakcija było."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Zapłaćena suma"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "ID pytać"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Časowy kołk"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Zarunanske informacije"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6584,7 +6606,7 @@ msgstr "Přepruwowany"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Běžny"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6924,11 +6946,11 @@ msgstr "Wužiwar {user} je pohódnoćenje {review} za přidatk {addon} schwalił
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Pohódnoćenje {review} za {addon} zhašane."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} je {review} za {addon} zhašał."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
