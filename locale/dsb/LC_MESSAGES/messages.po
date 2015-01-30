@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-30 10:20+0000\n"
+"PO-Revision-Date: 2015-01-30 10:27+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422613218.0\n"
+"X-POOTLE-MTIME: 1422613646.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2611,6 +2611,8 @@ msgstr ""
 #: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež jo "
+"tuchylu njedopołne. <a href=\"%s\">Z nałoženim pókšacować</a>"
 
 #: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
