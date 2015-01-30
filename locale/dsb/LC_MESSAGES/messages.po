@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:56-0700\n"
-"PO-Revision-Date: 2015-01-29 10:45+0000\n"
+"PO-Revision-Date: 2015-01-30 10:20+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422528317.0\n"
+"X-POOTLE-MTIME: 1422613218.0\n"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
@@ -2467,23 +2467,23 @@ msgstr "Zastopnjowanje felujo"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Wótźělba za justicu, pógódnośowanje, titele a kwalifikaciju"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
-msgstr ""
+msgstr "Powšykny"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Gremium za sebjekontrolu rozdrozćeńskeje software"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Za kužde starstwo"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Za starstwo wót 10 lět"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
@@ -2513,23 +2513,23 @@ msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Paneuropske informacije wó graśach"
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
-msgstr ""
+msgstr "Zbytk swěta"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Ruska"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:26 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
-msgstr ""
+msgstr "Hostowany"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
@@ -2573,35 +2573,40 @@ msgstr "Źelone konto njedajo se lašowaś"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenje jo se na status \"Dorosćony\" změniło."
 
 #: mkt/developers/forms.py:66
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Njamóžośo {region} wubraś."
 
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
+"Wšykne teamowe cłonki muse wuwijarske dojadnanje cytaś a jomu pśigłosowaś."
 
 #: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Nanjemjenjej jaden wobsejźaŕ musy pódany byś."
 
 #: mkt/developers/forms.py:159
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Nanejmjenjej jaden teamowy cłonk musy pódany byś."
 
 #: mkt/developers/forms.py:163
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "Teamowy cłonk smějo se jano jaden raz pódaś."
 
 #: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež jo "
+"tuchylu zjawne. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež "
+"tuchylu hyšći  felujo. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
@@ -2677,39 +2682,43 @@ msgstr ""
 
 #: mkt/developers/forms.py:743 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Musyśo pak websedło, e-mailowu adresu pak wobej pódaś."
 
 #: mkt/developers/forms.py:768
 msgid "Your comments"
-msgstr ""
+msgstr "Waše komentary"
 
 #: mkt/developers/forms.py:795
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Wózjawjony</b>: Widobny za wšykne na Wikowanišću a w pytańskich "
+"wuslědkach a na lisćinwoych bokach nalicone."
 
 #: mkt/developers/forms.py:799
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Njenalicony</b>: Widobny jano za wósoby z URL a njepokazujo se w "
+"pytańskich wuslědkach a na lisćinowych bokach."
 
 #: mkt/developers/forms.py:815
 msgid "App Visibility:"
-msgstr ""
+msgstr "Widobnosć nałoženja"
 
 #: mkt/developers/forms.py:817
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Na mój team wobgranicowaś</b>. Widobny jano za teamowe cłonki."
 
 #: mkt/developers/forms.py:862
 msgid "Choose the regions your app will be listed in:"
-msgstr ""
+msgstr "Wubjeŕśo regiony, w kótarychž wašo nałoženje jo pomjenjone:"
 
 #: mkt/developers/forms.py:866 mkt/developers/forms.py:968
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Musyśo nanejmjenjej jaden region wubraś."
 
 #: mkt/developers/forms.py:871
 msgid "Enable new regions"
-msgstr ""
+msgstr "Nowe regiony zmóžniś"
 
 #: mkt/developers/forms.py:873
 msgid "Make my app available in most regions"
@@ -2755,41 +2764,43 @@ msgstr ""
 
 #: mkt/developers/forms.py:1096 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Kraj"
 
 #: mkt/developers/forms.py:1130 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Nałoženje"
 
 #: mkt/developers/forms.py:1132
 msgid "Transaction Type"
-msgstr ""
+msgstr "Typ transakcije"
 
 #: mkt/developers/forms.py:1135 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
-msgstr ""
+msgstr "ID transakcije"
 
 #: mkt/developers/forms.py:1141
 msgid "From"
-msgstr ""
+msgstr "Wót"
 
 #: mkt/developers/forms.py:1144
 msgid "To"
-msgstr ""
+msgstr "Až do"
 
 #: mkt/developers/forms.py:1155
 msgid "Web site"
-msgstr ""
+msgstr "Websedło"
 
 #: mkt/developers/forms.py:1156
 msgid "Command line"
-msgstr ""
+msgstr "Pśikazowa smužka"
 
 #: mkt/developers/forms.py:1177
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"To k aktiwnej wersiji mójogo nałoženja cyniś, gaž jo se pśeglědało a "
+"pśizwóliło."
 
 #: mkt/developers/forms.py:1204
 msgid ""
@@ -2831,39 +2842,39 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:112
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Dermo (z płaśenjami w nałoženju)"
 
 #: mkt/developers/forms_payments.py:123
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Wabjeńska płaśizna"
 
 #: mkt/developers/forms_payments.py:136
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Pódpěra jano wótlicenje pśez póbitowarja mobilneje telefonije"
 
 #: mkt/developers/forms_payments.py:139
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Pódpěra jano wótlicenje pśez kreditnu kórtu"
 
 #: mkt/developers/forms_payments.py:143
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Pódpěra wšykne wótliceńske metody"
 
 #: mkt/developers/forms_payments.py:215
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Jolic nałoženje jo dermotne, muse płaśenja w nałoženju zmóžnjone byś"
 
 #: mkt/developers/forms_payments.py:222
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Žeden płaśiwy wuběrk"
 
 #: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "To jo zapłaśona aktualizacija"
 
 #: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Žedna aktualizacija"
 
 #: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
@@ -2903,40 +2914,40 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Stat/Prowinca/Region"
 
 #: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "Postowa licba"
 
 #: mkt/developers/forms_payments.py:395
 msgid "Phone"
-msgstr ""
+msgstr "Telefonowy numer"
 
 #: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Mam lubjej płaśenja w"
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
-msgstr ""
+msgstr "Identifikaciski numer wobrotowego danka (IWD)"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Numer bankowego konta"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT-kod"
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
-msgstr ""
+msgstr "Mě banki"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
-msgstr ""
+msgstr "Adresa banki"
 
 #: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
@@ -2976,41 +2987,41 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:617 mkt/developers/forms_payments.py:633
 msgid "Account name"
-msgstr ""
+msgstr "Kontowe mě"
 
 #: mkt/developers/forms_payments.py:619 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: mkt/developers/forms_payments.py:636
 msgid "Service ID"
-msgstr ""
+msgstr "Słužbny ID"
 
 #: mkt/developers/forms_payments.py:643
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "Słužbny ID njejo płaśiwy"
 
 #: mkt/developers/forms_payments.py:657
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Za toś to nałoženje hišće njejo žedno płaśeńske konto"
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
-msgstr ""
+msgstr "Wuwijarje"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:68
 msgid "My Submissions"
-msgstr ""
+msgstr "Móje zapódaśa"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "{0} pósćiś"
 
 #: mkt/developers/models.py:479
 msgid "Review"
-msgstr ""
+msgstr "Pśeglědanje"
 
 #: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
@@ -3050,39 +3061,39 @@ msgstr ""
 
 #: mkt/developers/tasks.py:541
 msgid "{region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "Region {region} jo se Wikowanišćoju Firefox pśidał"
 
 #: mkt/developers/tasks.py:545
 msgid "New regions added to the Firefox Marketplace"
-msgstr ""
+msgstr "Nowe regiony su se Wikowanišćoju Firefox pśidali"
 
 #: mkt/developers/utils.py:61
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Wideopódpěra njejo zmóžnjona."
 
 #: mkt/developers/utils.py:74
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Symbole muse w formaśe PNG abo JPG byś."
 
 #: mkt/developers/utils.py:76
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobraze muse w formaśe PNG abo JPG byś."
 
 #: mkt/developers/utils.py:81
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Symbole njesměju animěrowane byś."
 
 #: mkt/developers/utils.py:83
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Wobraze njesměju animěrowane byś."
 
 #: mkt/developers/utils.py:92
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "Pšosym wužywajśo dataje, kótarež su mjeńše ako %s."
 
 #: mkt/developers/utils.py:102
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Symbol njedajo se wócyniś."
 
 #: mkt/developers/utils.py:104
 msgid "Preview could not be opened."
@@ -3124,23 +3135,25 @@ msgstr ""
 
 #: mkt/developers/views.py:241
 msgid "New version successfully added."
-msgstr ""
+msgstr "Nowa wersija jo se wuspěšnje pśidała."
 
 #: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:667
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Změny su se wuspěšnje składowali."
 
 #: mkt/developers/views.py:312
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
+"Wutšobne glukužycenje, wašo nałožeńske zapódaśe jo něnto dopołne a buźo se "
+"skóro pśeglědowaś!"
 
 #: mkt/developers/views.py:314
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenja su se wuspěšnje składłi."
 
 #: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "Nałoženje jo se za pśedinstalaciju zapódało."
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
