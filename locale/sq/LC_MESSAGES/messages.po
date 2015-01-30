@@ -258,7 +258,7 @@ msgstr "{user} fshiu {0} për {addon}."
 
 #: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
-msgstr "U përditësua versioni maksimal i zbatimit për {version}."
+msgstr "U përditësua versioni maksimal i aplikacionit për {version}."
 
 #: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
@@ -337,7 +337,7 @@ msgstr "{addon} e ndaluar."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr "Zbatim i ndaluar"
+msgstr "Aplikacion i ndaluar"
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
@@ -365,7 +365,7 @@ msgstr "Ndryshim Manifesti"
 
 #: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "{addon} e rishqyrtuar, ngaqë zbatimi u përmirësua me lloj me pagesë."
+msgstr "{addon} e rishqyrtuar, ngaqë aplikacioni u përmirësua me lloj me pagesë."
 
 #: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
@@ -418,11 +418,11 @@ msgstr "{addon} u riparashtrua për shqyrtim."
 
 #: apps/amo/log.py:514
 msgid "App Resubmission"
-msgstr "Riparashtrim Zbatimi"
+msgstr "Riparashtrim aplikacioni"
 
 #: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr "Për {addon} u kërkua automatikisht shqyrtim i mëtejshëm, ngaqë është zbatim VIP."
+msgstr "Për {addon} u kërkua automatikisht shqyrtim i mëtejshëm, ngaqë është aplikacion VIP."
 
 #: apps/amo/log.py:522
 msgid "VIP auto-escalation"
@@ -438,7 +438,7 @@ msgstr "Ndryshim URL-je Manifesti"
 
 #: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr "{addon} u vetëkalua për shqyrtim të mëtejshëm, ngaqë është zbatim paraqarkullim."
+msgstr "{addon} u vetëkalua për shqyrtim të mëtejshëm, ngaqë është aplikacion paraqarkullim."
 
 #: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
@@ -630,7 +630,7 @@ msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr "Firefox Marketplace-i është burimi zyrtar i zbatimeve për platformën web."
+msgstr "Firefox Marketplace-i është burimi zyrtar i aplikacioneve për platformën web."
 
 #: mkt/constants/applications.py:6
 #: mkt/ecosystem/templates/ecosystem/partners.html:104
@@ -746,7 +746,7 @@ msgstr "Austri"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
-msgstr "Azerbaixhan"
+msgstr "Azerbajxhan"
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
@@ -799,7 +799,7 @@ msgstr "Boner, Shën Evstathi dhe Saba"
 
 #: mkt/constants/bango.py:47
 msgid "Bosnia and Herzegovina"
-msgstr "Bosnjë dhe Herzegovinë"
+msgstr "Bosnjë dhe Hercegovinë"
 
 #: mkt/constants/bango.py:48
 msgid "Botswana"
@@ -849,7 +849,7 @@ msgstr "Kanada"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr "Kepi i Gjelbërt"
+msgstr "Kepi i Gjelbër"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
@@ -1401,7 +1401,7 @@ msgstr "Papua Guinea e Re"
 
 #: mkt/constants/bango.py:192
 msgid "Paraguay"
-msgstr "Paraguaj"
+msgstr "Paraguai"
 
 #: mkt/constants/bango.py:193
 #: mkt/constants/regions.py:93
@@ -1591,7 +1591,7 @@ msgstr "Republika Arabe e Sirisë"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr "Taivan, Provincë e Kinës"
+msgstr "Tajvan, Provincë e Kinës"
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
@@ -1674,7 +1674,7 @@ msgstr "Ishujt e Vegjël të Përtejmë të Shteteve të Bashkuara"
 #: mkt/constants/bango.py:258
 #: mkt/constants/regions.py:99
 msgid "Uruguay"
-msgstr "Uruguaj"
+msgstr "Uruguai"
 
 #: mkt/constants/bango.py:259
 msgid "Uzbekistan"
@@ -1806,27 +1806,27 @@ msgstr "Pikë Shqyrtuesi Dorazi"
 
 #: mkt/constants/base.py:195
 msgid "Web App Review"
-msgstr "Shqyrtim Zbatimi Web"
+msgstr "Shqyrtim Aplikacioni Web"
 
 #: mkt/constants/base.py:196
 msgid "Packaged App Review"
-msgstr "Shqyrtim Zbatimi të Paketuar"
+msgstr "Shqyrtim Aplikacioni të Paketuar"
 
 #: mkt/constants/base.py:197
 msgid "Privileged App Review"
-msgstr "Shqyrtim Zbatimi të Privilegjuar"
+msgstr "Shqyrtim Aplikacioni të Privilegjuar"
 
 #: mkt/constants/base.py:198
 msgid "Web App Re-review"
-msgstr "Rishqyrtim Zbatimi Web"
+msgstr "Rishqyrtim Aplikacioni Web"
 
 #: mkt/constants/base.py:199
 msgid "Updated Packaged App Review"
-msgstr "Shqyrtim i Përditësuar Zbatimi të Paketuar"
+msgstr "Shqyrtim i Përditësuar Aplikacioni të Paketuar"
 
 #: mkt/constants/base.py:200
 msgid "Updated Privileged App Review"
-msgstr "U përditësua Shqyrtim i Zbatimit të Privilegjuar"
+msgstr "U përditësua Shqyrtim i Aplikacionit të Privilegjuar"
 
 #: mkt/constants/base.py:201
 msgid "Moderated App Review"
@@ -1834,7 +1834,7 @@ msgstr "Shqyrtim i Moderuar "
 
 #: mkt/constants/base.py:202
 msgid "Tarako App Review"
-msgstr "Shqyrtim Zbatimi për Tarako-n"
+msgstr "Shqyrtim Aplikacioni për Tarako-n"
 
 #: mkt/constants/base.py:230
 msgid "Level 1"
@@ -1954,7 +1954,7 @@ msgstr "Koment privat shqyrtuesi"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr "Riparashtrim zbatimi"
+msgstr "Riparashtrim aplikacioni"
 
 #: mkt/constants/comm.py:53
 msgid "Escalated due to High Abuse Reports"
@@ -1966,7 +1966,7 @@ msgstr "Kaluar për shqyrtim të mëtejshëm, për shkak Kërkesash të Shumta R
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
-msgstr "Shënime parashtimi zbatimi "
+msgstr "Shënime parashtrimi aplikacioni "
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
@@ -2010,7 +2010,7 @@ msgstr " Juaj"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to Prelease App"
-msgstr "Për Shqyrtim të Mëtejshëm, si Zbatim Paraqarkullim"
+msgstr "Për Shqyrtim të Mëtejshëm, si Aplikacion Paraqarkullim"
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
@@ -2034,19 +2034,19 @@ msgstr "Koment publik shqyrtuesi"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr "API Administrimi Zbatimesh"
+msgstr "API Administrimi Aplikacionesh"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
-msgstr "Zbatimi lyp API-n `navigator.mozApps` që të instalojë dhe administrojë zbatime të tjera."
+msgstr "Aplikacioni lyp API-n `navigator.mozApps` që të instalojë dhe administrojë aplikacione të tjera."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr "API Instalimi Zbatimesh të Paketuar"
+msgstr "API Instalimi Aplikacionesh të Paketuar"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "Zbatimi lyp API-n `navigator.mozApps.installPackage` që të instalojë të tjera zbatime të paketuara."
+msgstr "Aplikacioni lyp API-n `navigator.mozApps.installPackage` që të instalojë të tjera aplikacione të paketuara."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -2054,7 +2054,7 @@ msgstr "Pagesa Web"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr "Zbatimi lyp API-n `navigator.mozApps`."
+msgstr "Aplikacioni lyp API-n `navigator.mozApps`."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
@@ -2062,7 +2062,7 @@ msgstr "Veprimtari Web"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr "Zbatimi lyp Veprimtari Web (API-n `MozActivity`)."
+msgstr "Aplikacioni lyp Veprimtari Web (API-n `MozActivity`)."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -2070,7 +2070,7 @@ msgstr "Ndijues Drite Mjedisi"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr "Zbatimi lyp një ndijues drite mjedisi (API-n `ondevicelight`)."
+msgstr "Aplikacioni lyp një ndijues drite mjedisi (API-n `ondevicelight`)."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -2078,7 +2078,7 @@ msgstr "Arkiv"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr "Zbatimi lyp API-n `ArchiveReader`."
+msgstr "Aplikacioni lyp API-n `ArchiveReader`."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -2086,11 +2086,11 @@ msgstr "Bateri"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr "Zbatimi lyp API-n `navigator.battery`."
+msgstr "Aplikacioni lyp API-n `navigator.battery`."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr "Zbatimi lyp API-n `navigator.mozBluetooth`."
+msgstr "Aplikacioni lyp API-n `navigator.mozBluetooth`."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
@@ -2098,7 +2098,7 @@ msgstr "Kontakte"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr "Zbatim lyp API-n `navigator.mozContacts`."
+msgstr "Aplikacioni lyp API-n `navigator.mozContacts`."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
@@ -2106,11 +2106,11 @@ msgstr "Depozitim Në Pajisje"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr "Zbatimi lyp API-n Device Storage që të hyjë në kartela te sistemi i kartelave."
+msgstr "Aplikacioni lyp API-n Device Storage që të hyjë në kartela te sistemi i kartelave."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr "Zbatim lyp platformën për mbulim të IndexedDB-së."
+msgstr "Aplikacioni lyp platformën për mbulim të IndexedDB-së."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
@@ -2118,7 +2118,7 @@ msgstr "Gjeovendndodhje"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr "Zbatimi lyp platformën për mbulim të API-t `navigator.geolocation`."
+msgstr "Aplikacioni lyp platformën për mbulim të API-t `navigator.geolocation`."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
@@ -2126,7 +2126,7 @@ msgstr "Pa ngarkesë"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr "Zbatimi lyp platformën për mbulim të API-t `addIdleObserver` API."
+msgstr "Aplikacioni lyp platformën për mbulim të API-t `addIdleObserver` API."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -2134,7 +2134,7 @@ msgstr "Të dhëna Rrjeti"
 
 #: mkt/constants/features.py:94
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr "Zbatimi lyp aftësinë për marrje informacioni rreth lidhjes në rrjet (API-n `navigator.mozConnection`)."
+msgstr "Aplikacioni lyp aftësinë për marrje informacioni rreth lidhjes në rrjet (API-n `navigator.mozConnection`)."
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
@@ -2142,7 +2142,7 @@ msgstr "Statistika Rrjeti"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr "Zbatimi lyp API-n `navigator.mozNetworkStats`."
+msgstr "Aplikacioni lyp API-n `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
@@ -2150,7 +2150,7 @@ msgstr "Afërsi"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr "Zbatim lyp një ndijues afërsie (the `ondeviceproximity` API)."
+msgstr "Aplikacioni lyp një ndijues afërsie (the `ondeviceproximity` API)."
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
@@ -2158,7 +2158,7 @@ msgstr ""
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
-msgstr "Zbatimi lyp API-n `navigator.mozPush`."
+msgstr "Aplikacioni lyp API-n `navigator.mozPush`."
 
 #: mkt/constants/features.py:117
 msgid "Screen Orientation"
@@ -2166,7 +2166,7 @@ msgstr "Drejtim Ekrani"
 
 #: mkt/constants/features.py:118
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr "Zbatim lyp platformën për mbulim të API-t `ondeviceorientation`."
+msgstr "Aplikacioni lyp platformën për mbulim të API-t `ondeviceorientation`."
 
 #: mkt/constants/features.py:123
 msgid "Time/Clock"
@@ -2174,7 +2174,7 @@ msgstr "Kohë/Orë"
 
 #: mkt/constants/features.py:124
 msgid "The app requires the `navigator.mozTime` API."
-msgstr "Zbatim lyp API-n `navigator.mozTime`."
+msgstr "Aplikacioni lyp API-n `navigator.mozTime`."
 
 #: mkt/constants/features.py:128
 msgid "Vibration"
@@ -2182,15 +2182,15 @@ msgstr "Dridhje"
 
 #: mkt/constants/features.py:129
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr "Zbatimi lyp që pajisja të mbulojë dridhjet (API-n `navigator.vibrate`)."
+msgstr "Aplikacioni lyp që pajisja të mbulojë dridhjet (API-n `navigator.vibrate`)."
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr "Zbatim lyp API-n `navigator.mozFM` ose `navigator.mozFMRadio`."
+msgstr "Aplikacioni lyp API-n `navigator.mozFM` ose `navigator.mozFMRadio`."
 
 #: mkt/constants/features.py:141
 msgid "The app requires the `navigator.mozSms` API."
-msgstr "Zbatim lyp API-n `navigator.mozSms`."
+msgstr "Aplikacioni lyp API-n `navigator.mozSms`."
 
 #: mkt/constants/features.py:145
 msgid "Touch"
@@ -2198,7 +2198,7 @@ msgstr "Me prekje"
 
 #: mkt/constants/features.py:146
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr "Zbatimi lyp platformën për mbulim akte prekjesh. Kjo mundësi tregon që zbatimi nuk do të funksionojë kur përdoret me një mi."
+msgstr "Aplikacioni lyp platformën për mbulim akte prekjesh. Kjo mundësi tregon që aplikacioni nuk do të funksionojë kur përdoret me një mi."
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
@@ -2206,11 +2206,11 @@ msgstr "Ekrane Sa të Telefonave të Mençur (qHD)"
 
 #: mkt/constants/features.py:153
 msgid "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or high-DPI phones)."
-msgstr "Zbatimi lyp që platforma të ketë ekran telefonash të mençur (të ketë qartësi qHD). Kjo mundësi tregon që zbatimi do të jetë i papërdorshëm në ekrane më të mëdhenj (p.sh., tablete, desktop, telefona të mëdhenj ose high-DPI)."
+msgstr "Aplikacioni lyp që platforma të ketë ekran telefonash të mençur (të ketë qartësi qHD). Kjo mundësi tregon që aplikacioni do të jetë i papërdorshëm në ekrane më të mëdhenj (p.sh., tablete, desktop, telefona të mëdhenj ose high-DPI)."
 
 #: mkt/constants/features.py:163
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr "Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela MP3."
+msgstr "Aplikacioni lyp që platforma të mund të çkodojë dhe luajë kartela MP3."
 
 #: mkt/constants/features.py:168
 msgid "Audio"
@@ -2218,7 +2218,7 @@ msgstr "Audio"
 
 #: mkt/constants/features.py:169
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr "Zbatimi lyp që platforma të mbulojë API-n për audio HTML5."
+msgstr "Aplikacioni lyp që platforma të mbulojë API-n për audio HTML5."
 
 #: mkt/constants/features.py:174
 msgid "Web Audio"
@@ -2226,15 +2226,15 @@ msgstr "Audio Web"
 
 #: mkt/constants/features.py:175
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr "Zbatimi lyp që platforma të mbulojë API-n Web Audio (`window.AudioContext`)."
+msgstr "Aplikacioni lyp që platforma të mbulojë API-n Web Audio (`window.AudioContext`)."
 
 #: mkt/constants/features.py:181
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr "Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video H.264."
+msgstr "Aplikacioni lyp që platforma të mund të çkodojë dhe luajë kartela video H.264."
 
 #: mkt/constants/features.py:187
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr "Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video WebM (VP8)."
+msgstr "Aplikacioni lyp që platforma të mund të çkodojë dhe luajë kartela video WebM (VP8)."
 
 #: mkt/constants/features.py:192
 msgid "Full Screen"
@@ -2242,7 +2242,7 @@ msgstr "Tërë Ekrani"
 
 #: mkt/constants/features.py:193
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
-msgstr "Zbatimi lyp API-n Full Screen (`requestFullScreen` ose `mozRequestFullScreen`)."
+msgstr "Aplikacioni lyp API-n Krejt Ekrani (`requestFullScreen` ose `mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
@@ -2250,7 +2250,7 @@ msgstr ""
 
 #: mkt/constants/features.py:200
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr "Zbatimi lyp që platforma të mbulojë API-n për gamepad-e (`navigator.getGamepads`)."
+msgstr "Aplikacioni lyp që platforma të mbulojë API-n për gamepad-e (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:205
 msgid "Quota Management"
@@ -2258,7 +2258,7 @@ msgstr "Administrim Kuotash"
 
 #: mkt/constants/features.py:206
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
-msgstr "Zbatimi lyp që platforma të lejojë rritje të qëndrueshme kufiri depozitimi mbi kufijtë e lejuar normalisht për një zbatim (`window.StorageInfo` ose `window.persistentStorage`)."
+msgstr "Aplikacioni lyp që platforma të lejojë rritje të qëndrueshme kufiri depozitimi mbi kufijtë e lejuar normalisht për një aplikacion (`window.StorageInfo` ose `window.persistentStorage`)."
 
 #: mkt/constants/features.py:214
 msgid "Camera"
@@ -2266,7 +2266,7 @@ msgstr "Kamera"
 
 #: mkt/constants/features.py:215
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr "Zbatimi lyp që platforma të lejojë hyrje në video prej një kamera pajisjeje përmes një objekti LocalMediaStream."
+msgstr "Aplikacioni lyp që platforma të lejojë hyrje në video prej një kamera pajisjeje përmes një objekti LocalMediaStream."
 
 #: mkt/constants/features.py:221
 msgid "Microphone"
@@ -2274,7 +2274,7 @@ msgstr "Mikrofon"
 
 #: mkt/constants/features.py:222
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr "Zbatimi lyp që platforma të lejojë hyrje në audio prej një mikrofoni pajisjeje."
+msgstr "Aplikacioni lyp që platforma të lejojë hyrje në audio prej një mikrofoni pajisjeje."
 
 #: mkt/constants/features.py:227
 msgid "Screen Capture"
@@ -2282,7 +2282,7 @@ msgstr "Foto Ekrani"
 
 #: mkt/constants/features.py:228
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr "Zbatimi lyp që platforma të lejojë hyrje në ekran pajisjeje për marrje."
+msgstr "Aplikacioni lyp që platforma të lejojë hyrje në ekran pajisjeje për marrje."
 
 #: mkt/constants/features.py:234
 msgid "WebRTC MediaStream"
@@ -2290,7 +2290,7 @@ msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:235
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr "Zbatimi lyp që platforma të lejojë rrjedha media të brendshme komunikimi web të atypëratyshëm shfletues-me-shfletues."
+msgstr "Aplikacioni lyp që platforma të lejojë rrjedha media të brendshme komunikimi web të atypëratyshëm shfletues-me-shfletues."
 
 #: mkt/constants/features.py:241
 msgid "WebRTC DataChannel"
@@ -2298,7 +2298,7 @@ msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:242
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr "Zbatimi lyp që platforma të lejojë hyrje shkëmbim të dhënash peer-to-peer tjetër nga audio dhe video."
+msgstr "Aplikacioni lyp që platforma të lejojë hyrje shkëmbim të dhënash peer-to-peer tjetër nga audio dhe video."
 
 #: mkt/constants/features.py:248
 msgid "WebRTC PeerConnection"
@@ -2306,7 +2306,7 @@ msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:249
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr "Zbatimi lyp që platforma të lejojë komunikim të dhënash streaming mes palësh."
+msgstr "Aplikacioni lyp që platforma të lejojë komunikim të dhënash streaming mes palësh."
 
 #: mkt/constants/features.py:255
 msgid "Web Speech Synthesis"
@@ -2314,7 +2314,7 @@ msgstr "Sintezë e Folure në Web"
 
 #: mkt/constants/features.py:256
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr "Zbatimi lyp platformën që lejon përdorimin e mekanizmit nga-tekts-në-të-folur."
+msgstr "Aplikacioni lyp platformën që lejon përdorimin e mekanizmit nga-tekts-në-të-folur."
 
 #: mkt/constants/features.py:261
 msgid "Web Speech Recognition"
@@ -2322,7 +2322,7 @@ msgstr "Dallim të Folure në Web"
 
 #: mkt/constants/features.py:262
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr "Zbatimi lyp platformën që lejon përdorimin e mekanizmit nga-e-folur-në-tekst."
+msgstr "Aplikacioni lyp platformën që lejon përdorimin e mekanizmit nga-e-folur-në-tekst."
 
 #: mkt/constants/features.py:267
 msgid "Pointer Lock"
@@ -2330,7 +2330,7 @@ msgstr ""
 
 #: mkt/constants/features.py:268
 msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr "Zbatimi lyp që platforma të japë të dhëna të mëtejshme dhe kontroll mbi kursorin."
+msgstr "Aplikacioni lyp që platforma të japë të dhëna të mëtejshme dhe kontroll mbi kursorin."
 
 #: mkt/constants/features.py:274
 msgid "Notifications"
@@ -2338,7 +2338,7 @@ msgstr "Njoftime"
 
 #: mkt/constants/features.py:275
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr "Zbatimi lyp që platforma të lejojë shfaqje për përdoruesin të njoftimeve për telefon dhe desktop."
+msgstr "Aplikacioni lyp që platforma të lejojë shfaqje për përdoruesin të njoftimeve për telefon dhe desktop."
 
 #: mkt/constants/features.py:281
 msgid "Alarms"
@@ -2346,7 +2346,7 @@ msgstr "Alarme"
 
 #: mkt/constants/features.py:282
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr "Zbatimi lyp që platforma të ofrojë hyrje te rregullimet për alarme të pajisjes që të planifikohen njoftime dhe veprime për një kohë të dhënë."
+msgstr "Aplikacioni lyp që platforma të ofrojë hyrje te rregullimet për alarme të pajisjes që të planifikohen njoftime dhe veprime për një kohë të dhënë."
 
 #: mkt/constants/features.py:289
 msgid "SystemXHR"
@@ -2354,7 +2354,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:290
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr "Zbatimi lyp që platforma të lejojë hyrje dërgimin e kërkesave asinkrone HTTP pa kufizime nga rregullat e së njëjtës origjinë."
+msgstr "Aplikacioni lyp që platforma të lejojë hyrje dërgimin e kërkesave asinkrone HTTP pa kufizime nga rregullat e së njëjtës origjinë."
 
 #: mkt/constants/features.py:296
 msgid "TCP Sockets"
@@ -2362,7 +2362,7 @@ msgstr "Socket-e TCP"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr "Zbatimi lyp që platforma të lejojë hapje socket-esh TCP raw."
+msgstr "Aplikacioni lyp që platforma të lejojë hapje socket-esh TCP raw."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
@@ -2370,7 +2370,7 @@ msgstr "Mbulim Tastierash Palësh të Treta"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr "Zbatimi lyp platformën për mbulim tastierash palësh të treta."
+msgstr "Aplikacioni lyp platformën për mbulim tastierash palësh të treta."
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
@@ -2378,7 +2378,7 @@ msgstr "Të dhëna Rrjeti të Shumëfishtë"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr "Zbatimi lyp aftësinë për marrje informacioni rreth lidhjesh të shumëfishta në rrjet."
+msgstr "Aplikacioni lyp aftësinë për marrje informacioni rreth lidhjesh të shumëfishta në rrjet."
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
@@ -2386,7 +2386,7 @@ msgstr "ID Celulari"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr "Zbatimi lyp hyrje te API `navigator.getMobileIdAssertion` API."
+msgstr "Aplikacioni lyp hyrje te API `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
@@ -2394,7 +2394,7 @@ msgstr "Parapërpilim Asm.js"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr "Zbatimi lyp që pajisja të mbulojë parapërpilin kodi asm.js."
+msgstr "Aplikacioni lyp që pajisja të mbulojë parapërpilim kodi asm.js."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
@@ -2402,7 +2402,7 @@ msgstr "Pajisje me 512MB"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr "Zbatimi lyp që pajisja të ketë e pakta 512MB RAM."
+msgstr "Aplikacioni lyp që pajisja të ketë e pakta 512MB RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
@@ -2661,31 +2661,31 @@ msgstr "Një anëtar ekipi duhet shfaqur vetëm një herë."
 
 #: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është publik tani. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është publik tani. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është në pritje të miratimit. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është në pritje të miratimit. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është jo i plotë hëpërhë. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është jo i plotë hëpërhë. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hedhur tej. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hedhur tej. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hëpërhë i ndaluar nga Marketplace-i. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hëpërhë i ndaluar nga Marketplace-i. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hëpërhë i çaktivizuar. <a href=\"%s\">Përpunoni zbatimin</a>"
+msgstr "Hmmm, duket se e keni parashtruar një herë atë manifest për %s, i cili është hëpërhë i çaktivizuar. <a href=\"%s\">Përpunoni aplikacionin</a>"
 
 #: mkt/developers/forms.py:225
 msgid "An app already exists on this domain; only one app per domain is allowed."
-msgstr "Ka tashmë një zbatim nën këtë përkatësi; lejohet vetëm një zbatim për përkatësi."
+msgstr "Ka tashmë një aplikacion nën këtë përkatësi; lejohet vetëm një aplikacion për përkatësi."
 
 #: mkt/developers/forms.py:343
 msgid "Invalid region(s) selected."
@@ -2698,7 +2698,7 @@ msgstr "Duhet të ngarkoni të paktën një foto ekrani ose video."
 
 #: mkt/developers/forms.py:463
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr "Zbatimi i paketuar është shumë i madh për parashtrim. Paketat duhet të jenë më të vogla se %s."
+msgstr "Aplikacioni i paketuar është shumë i madh për parashtrim. Paketat duhet të jenë më të vogla se %s."
 
 #: mkt/developers/forms.py:478
 msgid "Error extracting manifest from zip file."
@@ -2706,7 +2706,7 @@ msgstr "Gabim në përftimin e manifestit prej kartelës zip."
 
 #: mkt/developers/forms.py:559
 msgid "Provide a detailed description of your app"
-msgstr "Jepni një përshkrim të hollësishëm të zbatimit tuaj"
+msgstr "Jepni një përshkrim të hollësishëm të aplikacionit tuaj"
 
 #: mkt/developers/forms.py:560
 #: mkt/submit/forms.py:277
@@ -2731,7 +2731,7 @@ msgstr "URL-ja e manifestit ndryshoi nga {before_url} në {after_url}"
 
 #: mkt/developers/forms.py:654
 msgid "Please specify your app's Privacy Policy"
-msgstr "Ju lutemi, përcaktoni Rregullat e Privatësisë për zbatimin tuaj"
+msgstr "Ju lutemi, përcaktoni Rregullat e Privatësisë për aplikacionin tuaj"
 
 #: mkt/developers/forms.py:675
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
@@ -2756,7 +2756,7 @@ msgstr "<b>I pashfaqur</b>: I dukshëm vetëm për persona me URL-në dhe nuk sh
 
 #: mkt/developers/forms.py:815
 msgid "App Visibility:"
-msgstr "Dukshmëri Zbatimi:"
+msgstr "Dukshmëri aplikacioni:"
 
 #: mkt/developers/forms.py:817
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -2764,7 +2764,7 @@ msgstr "<b>Kufizoje për ekipin tim</b>: I dukshëm vetëm për Anëtarët e Eki
 
 #: mkt/developers/forms.py:862
 msgid "Choose the regions your app will be listed in:"
-msgstr "Zgjidhni rajonin për të cilin do të paraqitet zbatimi juaj:"
+msgstr "Zgjidhni rajonin për të cilin do të paraqitet aplikacioni juaj:"
 
 #: mkt/developers/forms.py:866
 #: mkt/developers/forms.py:968
@@ -2777,11 +2777,11 @@ msgstr "Aktivizoni rajone të rinj"
 
 #: mkt/developers/forms.py:873
 msgid "Make my app available in most regions"
-msgstr "Bëje zbatimin tim të passhëm në shumicën e rajoneve"
+msgstr "Bëje aplikacionin tim të passhëm në shumicën e rajoneve"
 
 #: mkt/developers/forms.py:874
 msgid "Choose where my app is made available"
-msgstr "Zgjidhni se ku do të jetë i passshëm zbatimi juaj"
+msgstr "Zgjidhni se ku do të jetë i passhëm aplikacioni juaj"
 
 #: mkt/developers/forms.py:1029
 #: mkt/developers/templates/developers/apps/edit/basic.html:146
@@ -2865,11 +2865,11 @@ msgstr "Rresht urdhrash"
 
 #: mkt/developers/forms.py:1177
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
-msgstr "Kaloje këtë si versionin Aktiv të zbatimit tim, sapo të jetë shqyrtuar dhe miratuar."
+msgstr "Kaloje këtë si versionin Aktiv të aplikacionit tim, sapo të jetë shqyrtuar dhe miratuar."
 
 #: mkt/developers/forms.py:1204
 msgid "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my app."
-msgstr "Ju lutemi, shiheni zbatimin si një kandidat për të qenë i parangarkuar në një pajisje Firefox OS. Pajtohem me termat dhe kushtet e përvijuara më sipër. E kuptoj që ky dokument nuk është një zotim për ta parangarkuar zbatimin tim."
+msgstr "Ju lutemi, shiheni aplikacionin si një kandidat për të qenë i parangarkuar në një pajisje Firefox OS. Pajtohem me termat dhe kushtet e përvijuara më sipër. E kuptoj që ky dokument nuk është një zotim për ta parangarkuar aplikacionin tim."
 
 #: mkt/developers/forms.py:1211
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -2893,16 +2893,16 @@ msgstr "Ju lutemi, jepni një ID të vlefshme parashtrimi."
 
 #: mkt/developers/forms.py:1280
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
-msgstr "Kjo dëshmi IARC është tashmë në përdorim për një zbatim tjetër. Ju lutemi, krijoni një Dëshmi të re Klasifikimesh IARC."
+msgstr "Kjo dëshmi IARC është tashmë në përdorim për një aplikacion tjetër. Ju lutemi, krijoni një Dëshmi të re Klasifikimesh IARC."
 
 #: mkt/developers/forms.py:1315
 #: mkt/developers/forms.py:1327
 msgid "Invalid submission ID or security code."
-msgstr "ID ose kod sigurie parashtrimi i pavlefshmë."
+msgstr "ID ose kod sigurie parashtrimi i pavlefshëm."
 
 #: mkt/developers/forms_payments.py:59
 msgid "App Price"
-msgstr "Çmim Zbatimi"
+msgstr "Çmim aplikacioni"
 
 #: mkt/developers/forms_payments.py:112
 msgid "Free (with in-app payments)"
@@ -2926,7 +2926,7 @@ msgstr "Mbulon krejt metodat e faturimit"
 
 #: mkt/developers/forms_payments.py:215
 msgid "If app is Free, in-app payments must be enabled"
-msgstr "Nëse zbatimi është Falas, pagesat in-app duhen aktivizuar"
+msgstr "Nëse aplikacioni është Falas, pagesat in-app duhen aktivizuar"
 
 #: mkt/developers/forms_payments.py:222
 msgid "Not a valid choice"
@@ -3045,7 +3045,7 @@ msgstr "Llogari Pagesash"
 
 #: mkt/developers/forms_payments.py:525
 msgid "You cannot remove a payment account from an app."
-msgstr "Nuk mund të hiqni llogari pagesash nga një zbatim."
+msgstr "Nuk mund të hiqni llogari pagesash nga një aplikacion."
 
 #: mkt/developers/forms_payments.py:529
 msgid "You are not permitted to change payment accounts."
@@ -3074,7 +3074,7 @@ msgstr "ID-ja e shërbimit nuk është e vlefshme"
 
 #: mkt/developers/forms_payments.py:657
 msgid "No payment account set up for that app"
-msgstr "Për atë zbatim nuk ka rregulluar llogari pagesash"
+msgstr "Për atë aplikacion nuk ka rregulluar llogari pagesash"
 
 #: mkt/developers/helpers.py:31
 #: mkt/developers/helpers.py:50
@@ -3187,7 +3187,7 @@ msgstr "Ikonat duhet të jenë katrore."
 #. in px.
 #: mkt/developers/utils.py:124
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr "Paraparjet e zbatimit duhet të jenë e pakta {0}px me {1}px ose {1}px me {0}px."
+msgstr "Paraparjet e aplikacionit duhet të jenë e pakta {0}px me {1}px ose {1}px me {0}px."
 
 #: mkt/developers/views.py:87
 msgid "Created"
@@ -3195,19 +3195,19 @@ msgstr "U krijua"
 
 #: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr "Zbatimet me pagesë nuk mund të fshihen. Në vend të kësaj, çaktivizojeni këtë zbatim."
+msgstr "Aplikacionet me pagesë nuk mund të fshihen. Në vend të kësaj, çaktivizojeni këtë aplikacion."
 
 #: mkt/developers/views.py:159
 msgid "App deleted."
-msgstr "Zbatimi u fshi."
+msgstr "Aplikacioni u fshi."
 
 #: mkt/developers/views.py:164
 msgid "Password was incorrect. App was not deleted."
-msgstr "Fjalëkalimi qe i pasaktë. Zbatimi nuk u fshi."
+msgstr "Fjalëkalimi qe i pasaktë. Aplikacioni nuk u fshi."
 
 #: mkt/developers/views.py:208
 msgid "App successfully resubmitted."
-msgstr "Zbatimi u riparashtrua me sukses."
+msgstr "Aplikacioni u riparashtrua me sukses."
 
 #: mkt/developers/views.py:241
 msgid "New version successfully added."
@@ -3223,7 +3223,7 @@ msgstr "Ndryshimet u ruajtën me sukses."
 
 #: mkt/developers/views.py:312
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr "Përgëzime, parashtrimi i zbatimit tuaj u plotësua dhe do të shqyrtohet së shpejti!"
+msgstr "Përgëzime, parashtrimi i aplikacionit tuaj u plotësua dhe do të shqyrtohet së shpejti!"
 
 #: mkt/developers/views.py:314
 msgid "Content ratings successfully saved."
@@ -3231,7 +3231,7 @@ msgstr "Klasifikimi i lëndës u ruajt me sukses."
 
 #: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
-msgstr "Zbatimi u parashtrua me sukses për parangarkim."
+msgstr "Aplikacioni u parashtrua me sukses për parangarkim."
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
@@ -3279,7 +3279,7 @@ msgstr "U krijuar version i bllokuar"
 
 #: mkt/developers/views.py:1051
 msgid "App already blocklisted."
-msgstr "Zbatimi është tashmë i bllokuar."
+msgstr "Aplikacioni është tashmë i bllokuar."
 
 #: mkt/developers/views_payments.py:88
 #: mkt/developers/views_payments.py:106
@@ -3301,7 +3301,7 @@ msgstr "Operator"
 
 #: mkt/developers/views_payments.py:326
 msgid "A server error occurred when retrieving the application key."
-msgstr "Ndodhi një gabim shërbyesi teksa merrej kyçi i zbatimit."
+msgstr "Ndodhi një gabim shërbyesi teksa merrej kyçi i aplikacionit."
 
 #: mkt/developers/views_payments.py:333
 msgid "Secret was reset successfully."
@@ -3313,11 +3313,11 @@ msgstr "Kyçi dhe sekreti u krijuan me sukses."
 
 #: mkt/developers/views_payments.py:363
 msgid "Your app is not configured for in-app payments."
-msgstr "Zbatimi juaj nuk është formësuar për pagesa in-app."
+msgstr "Aplikacioni juaj nuk është formësuar për pagesa in-app."
 
 #: mkt/developers/views_payments.py:366
 msgid "No payment account for this app."
-msgstr "Nuk ka llogari pagesash për këtë zbatim."
+msgstr "Nuk ka llogari pagesash për këtë aplikacion."
 
 #: mkt/developers/templates/developers/api.html:2
 #: mkt/developers/templates/developers/nav.html:12
@@ -3343,7 +3343,7 @@ msgstr "Lloj klienti"
 #: mkt/developers/templates/developers/api.html:40
 #: mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr "Emër Zbatimi"
+msgstr "Emër Aplikacioni"
 
 #: mkt/developers/templates/developers/api.html:43
 #: mkt/developers/templates/developers/api.html:71
@@ -3391,7 +3391,7 @@ msgstr "<p>Shembull përdorimi i një librarie Python për rresht urdhrash në M
 #: mkt/developers/templates/developers/base_impala.html:26
 #: mkt/developers/templates/developers/apps/status.html:36
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr "Duhe të rregulloni <a href=\"%(next_url)s\">%(next_step_name)s</a> përpara se zbatimi juaj të shqyrtohet ose botohet."
+msgstr "Duhet të rregulloni <a href=\"%(next_url)s\">%(next_step_name)s</a> përpara se aplikacioni juaj të shqyrtohet ose botohet."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
@@ -3449,11 +3449,11 @@ msgstr "Dokumentim"
 #: mkt/developers/templates/developers/nav.html:9
 #: mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr "Testim Zbatimesh"
+msgstr "Testim Aplikacionesh"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
-msgstr "Parashtroni Zbatim të Ri"
+msgstr "Parashtroni Aplikacion të Ri"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -3484,7 +3484,7 @@ msgstr "Referencë API"
 #: mkt/developers/templates/developers/skeleton_impala.html:62
 #: templates/base.html:66
 msgid "Submit an app"
-msgstr "Parashtroni një zbatim"
+msgstr "Parashtroni një aplikacion"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64
 #: mkt/ecosystem/templates/ecosystem/partners.html:115
@@ -3523,7 +3523,7 @@ msgstr "Ju lutemi, futuni"
 #: mkt/developers/templates/developers/skeleton_impala.html:127
 #: templates/base.html:150
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr "Thjesht hyni ose regjistrohuni me <a href=\"%(url)s\">Firefox Accounts</a> më poshtë."
+msgstr "Thjesht hyni ose regjistrohuni te <a href=\"%(url)s\">Llogari Firefox-i</a> më poshtë."
 
 #: mkt/developers/templates/developers/terms.html:3
 #: mkt/templates/mkt/account-links.html:9
@@ -3554,7 +3554,7 @@ msgstr "Testim"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr "Përdorini këto mjete për të testuar zbatimet tuaja përpara parashtrimit të tyre te Firefox Marketplace."
+msgstr "Përdorini këto mjete për të testuar aplikacionet tuaja përpara parashtrimit të tyre te Firefox Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3572,7 +3572,7 @@ msgstr[1] "U gjetën {num} transaksione"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr "Zbatimi juaj hëpërhë nuk ka transaksione."
+msgstr "Aplikacioni juaj hëpërhë nuk ka transaksione."
 
 #: mkt/developers/templates/developers/transactions.html:42
 #: mkt/lookup/templates/lookup/app_summary.html:155
@@ -3600,7 +3600,7 @@ msgstr "Shumë"
 #: mkt/developers/templates/developers/validate_app.html:3
 #: mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr "Provoni Vlefshmërinë e Zbatimit"
+msgstr "Provoni Vlefshmërinë e Aplikacionit"
 
 #: mkt/developers/templates/developers/validate_app.html:17
 #: mkt/submit/templates/submit/manifest.html:50
@@ -3629,7 +3629,7 @@ msgstr "Mësoni më tepër mbi parashtrimin e një aplikimi."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
-msgstr "Vleftësuesi është një mjet i cili ju ndihmon ta provoni zbatimin për të zbuluar gabime, për t’i kontrolluar pajtueshmërinë me praktikat më të mira të programimit dhe përputhshmërinë me udhëzimet e Marketplace-it, përpara se ta parashtroni zbatimin tuaj për shqyrtim. Nëse ju intereson të mësoni se si funksionon ose nëse do të donit një kopje tuajën, kodin burim e keni <a href=\"%(repo)s\">në Github</a>."
+msgstr "Vleftësuesi është një mjet i cili ju ndihmon ta provoni aplikacionin për të zbuluar gabime, për t’i kontrolluar pajtueshmërinë me praktikat më të mira të programimit dhe përputhshmërinë me udhëzimet e Marketplace-it, përpara se ta parashtroni aplikacionin tuaj për shqyrtim. Nëse ju intereson të mësoni se si funksionon ose nëse do të donit një kopje tuajën, kodin burim e keni <a href=\"%(repo)s\">në Github</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -3679,11 +3679,11 @@ msgstr "Mirë se vini te Pulti i Zhvilluesit"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
-msgstr "Nuk keni parashtruar ndonjë zbatim te Firefox Marketplace. Pasi të keni <a href=\"%(app_url)s\">krijuar zbatimin tuaj</a>, klikoni mbi Parashtroni Zbatimin Tuaj më poshtë."
+msgstr "Nuk keni parashtruar ndonjë aplikacion te Firefox Marketplace. Pasi të keni <a href=\"%(app_url)s\">krijuar aplikacionin tuaj</a>, klikoni mbi Parashtroni Aplikacionin Tuaj më poshtë."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
-msgstr "Parashtroni Një Zbatim"
+msgstr "Parashtroni Një Aplikacion"
 
 #: mkt/developers/templates/developers/apps/edit.html:3
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:25
@@ -3716,7 +3716,7 @@ msgstr "Anëtarë Ekipi"
 #: mkt/developers/templates/developers/apps/owner.html:22
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr "Këtë faqe mund ta përpunojnë vetëm të zotët e zbatimit."
+msgstr "Këtë faqe mund ta përpunojnë vetëm të zotët e aplikacionit."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -3758,23 +3758,23 @@ msgstr "Rreth Roleve të Anëtarëve të Ekipit"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr "Zbatimet mund të kenë çfarëdo numri anëtarësh ekipi, me një nga 4 rolet e mundshme:"
+msgstr "Aplikacionet mund të kenë çfarëdo numri anëtarësh ekipi, me një nga 4 rolet e mundshme:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
-msgstr "Mund të administrojë krejt anët e lidhura me zbatimin, përfshi shtim dhe heqje anëtarësh ekipi"
+msgstr "Mund të administrojë krejt anët e lidhura me aplikacionin, përfshi shtim dhe heqje anëtarësh ekipi"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
-msgstr "Mund të administrojë krejt anët e lidhura me zbatimin, hiq shtim dhe heqje anëtarësh të tjerë të ekipit dhe administrim pagesash"
+msgstr "Mund të administrojë krejt anët e lidhura me aplikacionin, hiq shtim dhe heqje anëtarësh të tjerë të ekipit dhe administrim pagesash"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
-msgstr "Mund të shohë rregullimet e zbatimit, por nuk mund të bëjë dot ndonjë ndryshim"
+msgstr "Mund të shohë rregullimet e aplikacionit, por nuk mund të bëjë dot ndonjë ndryshim"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr "Mund të shohë rregullimet e zbatimit"
+msgstr "Mund të shohë rregullimet e aplikacionit"
 
 #: mkt/developers/templates/developers/apps/status.html:5
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:48
@@ -3805,53 +3805,53 @@ msgstr "Gjendje e Çastit"
 
 #: mkt/developers/templates/developers/apps/status.html:29
 msgid "You have <b>delisted</b> this app."
-msgstr "E keni <b>hequr prej liste</b> këtë zbatim."
+msgstr "E keni <b>hequr prej liste</b> këtë aplikacion."
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr "Ky zbatim është <b>i paplotë</b>."
+msgstr "Ky aplikacion është <b>i paplotë</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr "Kjo zbatim është <b>çaktivizuar prej Mozilla-s</b>."
+msgstr "Kjo aplikacion është <b>çaktivizuar prej Mozilla-s</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
-msgstr "Zbatimi juaj është çaktivizuar ngaqë është pa klasifikim lënde. Do të riaktivizohet vetvetiu pasi <a href=\"%(ratings_url)s\">të marrë klasifikim lënde</a>."
+msgstr "Aplikacioni juaj është çaktivizuar ngaqë është pa klasifikim lënde. Do të riaktivizohet vetvetiu pasi <a href=\"%(ratings_url)s\">të marrë klasifikim lënde</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr "Ky zbatim është <b>ndaluar në Marketplace</b>."
+msgstr "Ky aplikacion është <b>ndaluar në Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr "Zbatimi juaj është ndaluar nga një administrator sajti. Nëse keni ndonjë pyetje, dërgoni një email te %(email)s."
+msgstr "Aplikacioni juaj është ndaluar nga një administrator sajti. Nëse keni ndonjë pyetje, dërgoni një email te %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr "Zbatimi juaj është <b>bllokuar nga Mozilla</b>."
+msgstr "Aplikacioni juaj është <b>bllokuar nga Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
-msgstr "Zbatimi juaj është bllokuar nga një administrator i sajtit. Nëse keni ndonjë pyetje, dërgoni një email te %(email)s."
+msgstr "Aplikacioni juaj është bllokuar nga një administrator i sajtit. Nëse keni ndonjë pyetje, dërgoni një email te %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
-msgstr "Ky zbatim është <b>hedhur tej</b> nga një shqyrtues i Firefox Marketplace-it."
+msgstr "Ky aplikacion është <b>hedhur tej</b> nga një shqyrtues i Firefox Marketplace-it."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr "Versioni <b>{0}</b> i zbatimit tuaj është <b>{1}</b> dhe <b>Aktiv</b>"
+msgstr "Versioni <b>{0}</b> i aplikacionit tuaj është <b>{1}</b> dhe <b>Aktiv</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr "Versioni <b>{0}</b> i zbatimit tuaj është <b>{1}</b>"
+msgstr "Versioni <b>{0}</b> i aplikacionit tuaj është <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr "Ky zbatim është në <b>pritje të shqyrtimit</b> nga një shqyrtues i Firefox Marketplace-it."
+msgstr "Ky aplikacion është në <b>pritje të shqyrtimit</b> nga një shqyrtues i Firefox Marketplace-it."
 
 #: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
@@ -3859,31 +3859,31 @@ msgstr "Kur shqyrtimi të jetë i plotë, do të merrni një email."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
-msgstr "Ky zbatim është <b>i botuar</b>."
+msgstr "Ky aplikacion është <b>i botuar</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr "Zbatimi juaj është <b>miratuar</b> dhe hëpërhë <i>i hequr nga listat</i>."
+msgstr "Aplikacioni juaj është <b>miratuar</b> dhe hëpërhë <i>i hequr nga listat</i>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr "Vetëm ata me URL-në vijuese mund të shohin dhe instalojnë këtë zbatim:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgstr "Vetëm ata me URL-në vijuese mund të shohin dhe instalojnë këtë aplikacion:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
-msgstr "Zbatimi juaj është <b>miratuar</b> dhe hëpërhë është i dukshëm vetëm për anëtarët e ekipit."
+msgstr "Aplikacioni juaj është <b>miratuar</b> dhe hëpërhë është i dukshëm vetëm për anëtarët e ekipit."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr "Vetëm <b>anëtarët e ekipit</b> me URL-në vijuese mund të shohin dhe instalojnë këtë zbatim:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgstr "Vetëm <b>anëtarët e ekipit</b> me URL-në vijuese mund të shohin dhe instalojnë këtë aplikacion:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
-msgstr "Njihuni me Kritere Shqyrtimi për zbatimet"
+msgstr "Njihuni me Kritere Shqyrtimi për aplikacionet"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update App Visibility"
-msgstr "Përditësoni Dukjen e Zbatimit"
+msgstr "Përditësoni Dukjen e Aplikacionit"
 
 #: mkt/developers/templates/developers/apps/status.html:148
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3891,19 +3891,19 @@ msgstr "Shqyrtuar nga <b>%(reviewer)s</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:161
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
-msgstr "Pasi t’i keni parë këto çështje, mund ta <a href=\"%(resubmit_url)s\">riparashtroni zbatimin tuaj më poshtë</a>."
+msgstr "Pasi t’i keni parë këto çështje, mund ta <a href=\"%(resubmit_url)s\">riparashtroni aplikacionin tuaj më poshtë</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Once you have addressed these concerns, you may resubmit your app below."
-msgstr "Pasi t’i keni parë këto çështje, mund ta riparashtroni zbatimin tuaj më poshtë."
+msgstr "Pasi t’i keni parë këto çështje, mund ta riparashtroni aplikacionin tuaj më poshtë."
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
-msgstr "Riparashtroje Zbatimin"
+msgstr "Riparashtroje Aplikacionin"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
-msgstr "Duhet të <a href=\"%(ratings_url)s\">merrni klasifikim lënde</a>, përpara se të riparashtroni zbatimin tuaj."
+msgstr "Duhet të <a href=\"%(ratings_url)s\">merrni klasifikim lënde</a>, përpara se të riparashtroni aplikacionin tuaj."
 
 #: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
@@ -3934,11 +3934,11 @@ msgstr "Ngarkoni Version të Ri"
 
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
-msgstr "Ngarkoni një version të ri të këtij zbatimi të paketuar. Versionet e rinj duhen shqyrtuar përpara se të ofrohen për instalim."
+msgstr "Ngarkoni një version të ri të këtij aplikacioni të paketuar. Versionet e rinj duhen shqyrtuar përpara se të ofrohen për instalim."
 
 #: mkt/developers/templates/developers/apps/status.html:259
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
-msgstr "Mos harroni të përditësoni <a href=\"%(ratings_url)s\">klasifikimin e lëndës</a> për zbatimin, nëse ndryshohet një pjesë e madhe e lëndës së zbatimit."
+msgstr "Mos harroni të përditësoni <a href=\"%(ratings_url)s\">klasifikimin e lëndës</a> për aplikacionin, nëse ndryshohet një pjesë e madhe e lëndës së aplikacionit."
 
 #: mkt/developers/templates/developers/apps/status.html:275
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:171
@@ -3955,11 +3955,11 @@ msgstr "Pajisje Me Kujtesë të Pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr "Zbatimi juaj shfaqet në pajisje me kujtesë të pakët."
+msgstr "Aplikacioni juaj shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr "Zbatimi juaj nuk shfaqet në pajisje me kujtesë të pakët."
+msgstr "Aplikacioni juaj nuk shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
@@ -3967,15 +3967,15 @@ msgstr "Nuk keni kërkuar shqyrtim për pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr "Zbatimi juaj është në pritje të shqyrtimit."
+msgstr "Aplikacioni juaj është në pritje të shqyrtimit."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr "Shqyrtimi ynë më {review_date} pa se zbatimi juaj i mbulon pajisjet me kujtesë të pakët."
+msgstr "Shqyrtimi ynë më {review_date} pa se aplikacioni juaj i mbulon pajisjet me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr "Shqyrtimi ynë më {review_date} pa se zbatimi juaj nuk i mbulon pajisjet me kujtesë të pakët."
+msgstr "Shqyrtimi ynë më {review_date} pa se aplikacioni juaj nuk i mbulon pajisjet me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3983,7 +3983,7 @@ msgstr "Kërkuat shqyrtim më {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr "Zbatimi juaj nuk është i aktivizuar për ndonjë rajon me pajisje me kujtesë të pakët."
+msgstr "Aplikacioni juaj nuk është i aktivizuar për ndonjë rajon me pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
@@ -3991,7 +3991,7 @@ msgstr "Rajonet tuaj mund t’i përditësoni te <a href=\"{compatibility_page}\
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr "Nëse zbatimi juaj funksionon në pajisje me kujtesë të pakët, atëherë mundeni të kërkoni një shqyrtim lidhur me shfaqjen e tij në pajisje me kujtesë të pakët."
+msgstr "Nëse aplikacioni juaj funksionon në pajisje me kujtesë të pakët, atëherë mundeni të kërkoni një shqyrtim lidhur me shfaqjen e tij në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/apps/status.html:329
 #: mkt/developers/templates/developers/payments/includes/region_form.html:20
@@ -4001,7 +4001,7 @@ msgstr "Mësoni rreth pajisjeve me kujtesë të pakët."
 #: mkt/developers/templates/developers/apps/status.html:335
 #: mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr "Mos e shfaq zbatimin tim në pajisje me kujtesë të pakët"
+msgstr "Mos e shfaq aplikacionin tim në pajisje me kujtesë të pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
@@ -4009,11 +4009,11 @@ msgstr "Kërkoni shqyrtim për pajisje me kujtesë të pakët"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
-msgstr "Gjendje Parainstalimi e Zbatimit"
+msgstr "Gjendje Parainstalimi e Aplikacionit"
 
 #: mkt/developers/templates/developers/apps/status.html:360
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr "<strong class=\"submitted\">Zbatim i Parashtruar</strong> më %(last_submission)s"
+msgstr "<strong class=\"submitted\">Aplikacion i Parashtruar</strong> më %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
@@ -4029,7 +4029,7 @@ msgstr "Shihni planin e testimit të parashtruar së fundi"
 
 #: mkt/developers/templates/developers/apps/status.html:376
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "Mësoni se si ta kaloni zbatimin tuaj të parainstaluar te pajisje me FirefoxOS"
+msgstr "Mësoni se si ta kaloni aplikacionin tuaj të parainstaluar te pajisje me Firefox OS"
 
 #: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
@@ -4038,41 +4038,41 @@ msgstr "Përditësoni planin tuaj të testimit"
 #: mkt/developers/templates/developers/apps/status.html:391
 #: mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
-msgstr "Vëre Zbatimin Në Listë"
+msgstr "Vëre Aplikacionin Në Listë"
 
 #: mkt/developers/templates/developers/apps/status.html:391
 #: mkt/developers/templates/developers/apps/status.html:412
 #: mkt/developers/templates/developers/apps/status.html:472
 #: mkt/developers/templates/developers/apps/status.html:477
 msgid "Delist App"
-msgstr "Hiqe Zbatimin Nga Lista"
+msgstr "Hiqe Aplikacionin Nga Lista"
 
 #: mkt/developers/templates/developers/apps/status.html:395
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "Paraqitja e zbatimit tuaj është çaktivizuar dhe ai nuk do të shfaqet te Firefox Marketplace. Mund ta riparaqisni në çfarëdo kohe."
+msgstr "Paraqitja e aplikacionit tuaj është çaktivizuar dhe ai nuk do të shfaqet te Firefox Marketplace. Mund ta riparaqisni në çfarëdo kohe."
 
 #: mkt/developers/templates/developers/apps/status.html:400
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
-msgstr "Heqja e zbatimit tuaj nga lista do ta parandalojë shfaqjen e tij kudo në Marketplace."
+msgstr "Heqja e aplikacionit tuaj nga lista do ta parandalojë shfaqjen e tij kudo në Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:420
 #: mkt/developers/templates/developers/apps/status.html:431
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr "Fshije Zbatimin"
+msgstr "Fshije Aplikacionin"
 
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
-msgstr "Fshirja e zbatimit tuaj do ta fshijë atë përgjithmonë nga sajti. <strong>Pa rikthim.</strong>"
+msgstr "Fshirja e aplikacionit tuaj do ta fshijë atë përgjithmonë nga sajti. <strong>Pa rikthim.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
-msgstr "Bllokojeni Zbatimin"
+msgstr "Bllokojeni Aplikacionin"
 
 #: mkt/developers/templates/developers/apps/status.html:444
 msgid "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is submitted and approved. These changes cannot be undone. Please proceed with caution."
-msgstr "Bllokimi i një zbatimi do t’i kalojë përdoruesi në një version special i cili do ta bëjë zbatimin të papërdorshëm në pajisjet e tyre me Firefox OS. Kjo do ta heqë gjithashtu zbatimin nga faqet publike, deri çastin kur të parashtrohet dhe miratohet një version i ri. Këto ndryshime nuk mund të zhbëhen. Ju lutemi, ecni më tej me kujde."
+msgstr "Bllokimi i një aplikacioni do t’i kalojë përdoruesi në një version special i cili do ta bëjë aplikacionin të papërdorshëm në pajisjet e tyre me Firefox OS. Kjo do ta heqë gjithashtu aplikacionin nga faqet publike, deri çastin kur të parashtrohet dhe miratohet një version i ri. Këto ndryshime nuk mund të zhbëhen. Ju lutemi, ecni më tej me kujdes."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
@@ -4080,7 +4080,7 @@ msgstr "Bllokoje"
 
 #: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
-msgstr "Jeni i sigurt se doni të hiqet zbatimi juaj nga lista?"
+msgstr "Jeni i sigurt se doni të hiqet aplikacioni juaj nga lista?"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
@@ -4144,15 +4144,15 @@ msgstr "Fshirja e versionit të vetëm do të shkaktojë sa vijon:"
 
 #: mkt/developers/templates/developers/apps/status.html:491
 msgid "the app status will be marked as &quot;incomplete&quot;"
-msgstr "gjendja e zbatimit do të vihet si &quot;i paplotë&quot;"
+msgstr "gjendja e aplikacionit do të vihet si &quot;i paplotë&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:492
 msgid "the app will be removed from our review queue"
-msgstr "zbatimi do të hiqet prej radhës sonë të shqyrtimeve"
+msgstr "aplikacioni do të hiqet prej radhës sonë të shqyrtimeve"
 
 #: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app will not be listed in our public pages"
-msgstr "zbatimi nuk do të paraqitet te faqet tona publike"
+msgstr "aplikacioni nuk do të paraqitet te faqet tona publike"
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
@@ -4168,7 +4168,7 @@ msgstr "Fshije Versionin"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr "Jeni i sigurt se doni që të reshtë shfaqja e zbatimit tuaj në pajijse me kujtesë të pakët?"
+msgstr "Jeni i sigurt se doni që të reshtë shfaqja e aplikacionit tuaj në pajisje me kujtesë të pakët?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
@@ -4178,7 +4178,7 @@ msgstr "Shënime Versioni"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
-msgstr "Të dhëna rreth ndryshimesh në këtë hedhje në qarkullim, veçori të reja, të meta të njohura, dhe të tjera të dhëna të dobishme që lidhen posaçërisht me këtë hedhje në qarkullim/version. Këto të dhëna tregohen te Përgjegjësi i Zbatimeve, kur ndodh një përditësim."
+msgstr "Të dhëna rreth ndryshimesh në këtë hedhje në qarkullim, veçori të reja, të meta të njohura, dhe të tjera të dhëna të dobishme që lidhen posaçërisht me këtë hedhje në qarkullim/version. Këto të dhëna tregohen te Përgjegjësi i aplikacioneve, kur ndodh një përditësim."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:56
@@ -4188,7 +4188,7 @@ msgstr "Shënime për Shqyrtuesit"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "Në daçi, jepni çfarëdo të dhëne që mund të jetë e dobishme për Shqyrtuesin që merr në shqyrtim këtë zbatim, të tilla si të dhëna llogarie prove."
+msgstr "Në daçi, jepni çfarëdo të dhëne që mund të jetë e dobishme për Shqyrtuesin që merr në shqyrtim këtë aplikacion, të tilla si të dhëna llogarie prove."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
@@ -4198,7 +4198,7 @@ msgstr "Minimum Domosdoshmërish"
 #: mkt/developers/templates/developers/apps/version_edit.html:54
 #: mkt/developers/templates/developers/apps/edit/technical.html:66
 msgid "Device features required for this app to function."
-msgstr "Që ky zbatim të funksionojnë lypsen veçori pajisjeje."
+msgstr "Që ky aplikacion të funksionojnë lypsen veçori pajisjeje."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
@@ -4211,19 +4211,19 @@ msgstr "Kontakte Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr "Një adresë e-mail (ose adresa ndarë me presje) kontakti Mozilla për këtë zbatim, e cila do të jetë fushë CC në çfarëdo email shqyrtuesish."
+msgstr "Një adresë email (ose adresa ndarë me presje) kontakti Mozilla për këtë aplikacion, e cila do të jetë fushë CC në çfarëdo email shqyrtuesish."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr "Jepni adresa e-mail, ndarë me presje"
+msgstr "Jepni adresa email, ndarë me presje"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr "Zbatim Mozilla VIP"
+msgstr "Aplikacion Mozilla VIP"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
-msgstr "Është zbatim shumë i rëndësishëm që do të duhej trajtuar përherë nga Staf i Mozilla-s ose Shqyrtues të Sprovuar Zbatimesh?"
+msgstr "Është aplikacion shumë i rëndësishëm që do të duhej trajtuar përherë nga Staf i Mozilla-s ose Shqyrtues të Sprovuar Aplikacionesh?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -4231,11 +4231,11 @@ msgstr "Përdoreni me masë"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr "      "
+msgstr "Lyp shqyrtim me përparësi"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
-msgstr "Zbatimi do të trajtohet si përparësi dhe do të kalohet në krye të radhës për shqyrtime"
+msgstr "Aplikacioni do të trajtohet si përparësi dhe do të kalohet në krye të radhës për shqyrtime"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
@@ -4264,7 +4264,7 @@ msgstr "Etiketa"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Etiketat i ndihmojnë përdoruesit të gjejnë zbatimin tuaj dhe do të duhej të ishin përshkrime të shkurtra, të tilla si skeda, panele, ose twitter. Mund të përdorni deri në {0} etiketa."
+msgstr "Etiketat i ndihmojnë përdoruesit të gjejnë aplikacionin tuaj dhe do të duhej të ishin përshkrime të shkurtra, të tilla si skeda, panele, ose twitter. Mund të përdorni deri në {0} etiketa."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
@@ -4305,12 +4305,12 @@ msgstr "Emër Zhvilluesi"
 #: mkt/developers/templates/developers/apps/edit/basic.html:46
 #: mkt/submit/templates/submit/details.html:67
 msgid "App URL"
-msgstr "URL Zbatimi"
+msgstr "URL Aplikacioni"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47
 #: mkt/submit/templates/submit/details.html:69
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
-msgstr "Përzgjidhni një URL unike për faqen tuaj të hollësive. Përdorim emrin e zbatimit tuaj si parazgjedhje për krijimin e kësaj URL-je."
+msgstr "Përzgjidhni një URL unike për faqen tuaj të hollësive. Përdorim emrin e aplikacionit tuaj si parazgjedhje për krijimin e kësaj URL-je."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:60
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
@@ -4325,7 +4325,7 @@ msgstr "URL API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr "URL-ja për hyrje te ky zbatim duke përdorur API-n Marketplace"
+msgstr "URL-ja për hyrje te ky aplikacion duke përdorur API-n Marketplace"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
@@ -4344,7 +4344,7 @@ msgstr "Rifresko"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href=\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
-msgstr "Ju lutemi, përpiquni të mos e ndryshoni shumë shpesh URL-në e manifestit tuaj. Nëse e ndryshoni URL-në e manifestit tuaj, përdoruesit ekzistues nuk do të përdorin dot URL-në e re të manifestit. Për më tepër të dhëna, lexoni <a href=\"%(doc_url)s\" target=\"_blank\">dokumentimin mbi Përditësim Zbatimesh</a>."
+msgstr "Ju lutemi, përpiquni të mos e ndryshoni shumë shpesh URL-në e manifestit tuaj. Nëse e ndryshoni URL-në e manifestit tuaj, përdoruesit ekzistues nuk do të përdorin dot URL-në e re të manifestit. Për më tepër të dhëna, lexoni <a href=\"%(doc_url)s\" target=\"_blank\">dokumentimin mbi Përditësim Aplikacionesh</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
@@ -4353,7 +4353,7 @@ msgstr "Përshkrim"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
-msgstr "Një shpjegim i veçorive, funksioneve, dhe të tjera të dhëna të rëndësishme. Kjo fushë shfaqet te faqja e hollësive të zbatimit."
+msgstr "Një shpjegim i veçorive, funksioneve, dhe të tjera të dhëna të rëndësishme. Kjo fushë shfaqet te faqja e hollësive të aplikacionit."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
@@ -4361,15 +4361,15 @@ msgstr "Shënime Versioni"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
-msgstr "Informacion mbi ndryshime te hedhja e fundit në qarkullim, veçori të reja, të meta të njohura, dhe tjetë informacion i dobishëm që lidhet me këtë hedhje në qarkullim/version."
+msgstr "Informacion mbi ndryshime te hedhja e fundit në qarkullim, veçori të reja, të meta të njohura, dhe tjetër informacion i dobishëm që lidhet me këtë hedhje në qarkullim/version."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:147
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
-msgstr "Kategoritë janë rruga parësore me të cilën përdoruesit shfletojnë për zbatime. Për ekspozim sa më të madh, zgjidhni cilëndo që i përshtatet funksionit të zbatimit tuaj."
+msgstr "Kategoritë janë rruga parësore me të cilën përdoruesit shfletojnë për aplikacione. Për ekspozim sa më të madh, zgjidhni cilëndo që i përshtatet funksionit të aplikacionit tuaj."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr "Hollësi Zbatimi"
+msgstr "Hollësi Aplikacioni"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:17
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
@@ -4380,7 +4380,7 @@ msgstr "Gjuhë Parazgjedhje"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
-msgstr "Të dhënat rreth zbatimit tuaj shfaqen nën këtë vendore, veç në e anashkalofshi me një përkthim në një vendore të dhënë."
+msgstr "Të dhënat rreth aplikacionit tuaj shfaqen nën këtë vendore, veç në e anashkalofshi me një përkthim në një vendore të dhënë."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
@@ -4388,7 +4388,7 @@ msgstr "Faqe Hyrëse"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
 msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
-msgstr "Nëse zbatimit juaj ka një tjetër faqe hyrëse, jepeni adresën e saj këtu. Nëse sajti juaj web është i përkthyer në gjuhë të tjera, mund të shtohen përkthime shumëfishe të kësaj fushe."
+msgstr "Nëse aplikacionit juaj ka një tjetër faqe hyrëse, jepeni adresën e saj këtu. Nëse sajti juaj web është i përkthyer në gjuhë të tjera, mund të shtohen përkthime shumëfishe të kësaj fushe."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:55
@@ -4424,7 +4424,7 @@ msgstr "parazgjedhje"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr "Përpunoni gjuhën te kartela e manifestit të zbatimit tuaj"
+msgstr "Përpunoni gjuhën te kartela e manifestit të aplikacionit tuaj"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -4451,7 +4451,7 @@ msgstr "Sajt"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr "Nëse zbatimit juaj ka një sajt ose forum asistence, jepeni adresën e tij këtu. Nëse sajti juaj web është i përkthyer në gjuhë të tjera, mund të shtohen përkthime shumëfishe të kësaj fushe."
+msgstr "Nëse aplikacionit juaj ka një sajt ose forum asistence, jepeni adresën e tij këtu. Nëse sajti juaj web është i përkthyer në gjuhë të tjera, mund të shtohen përkthime shumëfishe të kësaj fushe."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4468,7 +4468,7 @@ msgstr "Përdor Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr "Nëse zbatimi juaj përdor Flash, do të fshihet prej Marketplace-it në pajisje pa mbulim Flash-i."
+msgstr "Nëse aplikacioni juaj përdor Flash, do të fshihet prej Marketplace-it në pajisje pa mbulim Flash-i."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -4476,7 +4476,7 @@ msgstr "Funksionon Edhe Jashtë Linje"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr "Nëse zbatimi juaj punon pa lidhje në Internet, do të shfaqim si zbatim që \"Funksionon Edhe Jashtë Linje.\""
+msgstr "Nëse aplikacioni juaj punon pa lidhje në Internet, do të shfaqim si aplikacion që \"Funksionon Edhe Jashtë Linje.\""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -4484,31 +4484,31 @@ msgstr "Statistika Publike?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
-msgstr "Të shfaqen ose jo statistika instalimi dhe përdorimi të zbatimit tuaj te parësi ynë në linjë."
+msgstr "Të shfaqen ose jo statistika instalimi dhe përdorimi të aplikacionit tuaj te parësi ynë në linjë."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
-msgstr "Statistikat e këtij zbatimit janë të dukshme publikisht."
+msgstr "Statistikat e këtij aplikacionit janë të dukshme publikisht."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "No, this app's stats are not publicly viewable."
-msgstr "Jo, statistikat e këtij zbatimit nuk janë të dukshme publikisht."
+msgstr "Jo, statistikat e këtij aplikacionit nuk janë të dukshme publikisht."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "This app does not require any device features"
-msgstr "Ky zbatim nuk lyp ndonjë veçori pajisjeje"
+msgstr "Ky aplikacion nuk lyp ndonjë veçori pajisjeje"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr "Ikonë Zbatimi"
+msgstr "Ikonë aplikacioni"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "Ngarkoni një ikonë për zbatimin tuaj, ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku gjendet zbatimi juaj. Figurat e ngarkuara duhet të jenë të njërit prej llojeve vijues për figurat: .png, .jpg"
+msgstr "Ngarkoni një ikonë për aplikacionin tuaj, ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku gjendet aplikacioni juaj. Figurat e ngarkuara duhet të jenë të njërit prej llojeve vijues për figurat: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr "Përzgjidhni për zbatimin tuaj një ikonë:"
+msgstr "Përzgjidhni për aplikacionin tuaj një ikonë:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -4526,7 +4526,7 @@ msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
-msgstr "E përdorur te faqja e hollësive të zbatimit."
+msgstr "E përdorur te faqja e hollësive të aplikacionit."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
@@ -4535,7 +4535,7 @@ msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
-msgstr "E përdorur në lista zbatimesh, të tilla si përfundime kërkimi dhe zbatime të zgjedhura."
+msgstr "E përdorur në lista aplikacionesh, të tilla si përfundime kërkimi dhe aplikacione të zgjedhura."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -4551,7 +4551,7 @@ msgstr "Pamje Ekrani ose Video"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr "Ju lutemi, sillni të paktën një foto ekrani ose video të zbatimit tuaj:"
+msgstr "Ju lutemi, sillni të paktën një foto ekrani ose video të aplikacionit tuaj:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:151
@@ -4600,11 +4600,11 @@ msgstr "Pasuesja"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr "Jeni i sigurt se dëshironi të fshihet zbatimi juaj?"
+msgstr "Jeni i sigurt se dëshironi të fshihet aplikacioni juaj?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
-msgstr "Ju lutemi, ta tregoni pse po e fshini zbatimin tuaj"
+msgstr "Ju lutemi, ta tregoni pse po e fshini aplikacionin tuaj"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
@@ -4663,7 +4663,7 @@ msgstr "Rimerr procesin e parashtrimit për këtë shtesë."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
 msgid "Get content ratings for the app."
-msgstr "Merrni klasifikim lënde për zbatimin tuaj."
+msgstr "Merrni klasifikim lënde për aplikacionin tuaj."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
@@ -4671,7 +4671,7 @@ msgstr "Rregulloni Klasifikime Lënde"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
-msgstr "Jepni të dhëna pagese për zbatimin tuaj."
+msgstr "Jepni të dhëna pagese për aplikacionin tuaj."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26
 #: mkt/submit/templates/submit/done.html:47
@@ -4680,15 +4680,15 @@ msgstr "Rregulloni Pagesat"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr "Fshijeni këtë zbatim."
+msgstr "Fshijeni këtë aplikacion."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
-msgstr "Përpunoni hollësitë e faqes ku shfaqet ky zbatim."
+msgstr "Përpunoni hollësitë e faqes ku shfaqet ky aplikacion."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
-msgstr "Shtoni një version të ri zbatimi të paketuar."
+msgstr "Shtoni një version të ri aplikacioni të paketuar."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
@@ -4748,7 +4748,7 @@ msgstr "Gjendje:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
-msgstr "Version Zbatimi të Paketuar:"
+msgstr "Version Aplikacioni të Paketuar:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
 msgid "Pending Version:"
@@ -4768,7 +4768,7 @@ msgstr "Ndryshoni Pajisje"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr "<a href=\"%(rating_url)s\">Rregulloni lasifikime Lënde</a>"
+msgstr "<a href=\"%(rating_url)s\">Rregulloni klasifikime Lënde</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10
 #: mkt/developers/templates/developers/apps/preload/submit.html:10
@@ -4777,7 +4777,7 @@ msgstr "I parangarkuar"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr "Zbatim i Parangarkuar"
+msgstr "Aplikacion i Parangarkuar"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
@@ -4790,23 +4790,23 @@ msgstr "Përfundoi Provimi?"
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr "Parashtrojeni zbatimin tuaj për parangarkim"
+msgstr "Parashtrojeni aplikacionin tuaj për parangarkim"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid "You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
-msgstr "Mund ta parashtroni zbatimin tuaj për t’u marrë në shqyrtim mundësia e <strong>parangarkimit të tij dhe shpërndarjes me pajisje FirefoxOS</strong> nga operatorët telefonikë. Për të shprehur dëshirën tuaj për parangarkim, mund të shkarkoni më poshtë një gjedhe prove prej nesh, ta provoni zbatimin tuaj, të plotësoni gjedhen dhe të na dërgoni përfundimet përmes <a href=\"%(submit_url)s\">formularit të parashtrimit të zbatimeve për parangarkim</a>. Përfundimet e provës suaj do t’i depozitojmë në shërbyesit tanë, prej ku do të shqyrtohen nga operatorët telefonikë të interesuar. Nëse keni pyetje të mëtejshme, mund të dërgoni një email te %(email)s."
+msgstr "Mund ta parashtroni aplikacionin tuaj për t’u marrë në shqyrtim mundësia e <strong>parangarkimit të tij dhe shpërndarjes me pajisje Firefox OS</strong> nga operatorët telefonikë. Për të shprehur dëshirën tuaj për parangarkim, mund të shkarkoni më poshtë një gjedhe prove prej nesh, ta provoni aplikacionin tuaj, të plotësoni gjedhen dhe të na dërgoni përfundimet përmes <a href=\"%(submit_url)s\">formularit të parashtrimit të aplikacioneve për parangarkim</a>. Përfundimet e provës suaj do t’i depozitojmë në shërbyesit tanë, prej ku do të shqyrtohen nga operatorët telefonikë të interesuar. Nëse keni pyetje të mëtejshme, mund të dërgoni një email te %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr "Terma dhe Kushte për Zbatime të Parangarkuar"
+msgstr "Terma dhe Kushte për Aplikacione të Parangarkuar"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr "Merrni Klasifikim Për Zbatimin Tim"
+msgstr "Merrni Klasifikim Për Aplikacionin Tim"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
-msgstr "Që ta keni zbatimin tuaj të radhitur te Marketplace, duhet ta pajisni me një dëshmi International Age Rating Coalition (IARC). Klikimi mbi butonin më poshtë do të hapë një dritare të re, te e cila mund të plotësoni një pyetësor të shkurtër, të llojit po-ose-jo, mbi lëndën e zbatimit tuaj. Pasi ta plotësoni, dritarja do të mbyllet dhe zbatimi juaj do të ketë mandej një klasifikim moshash."
+msgstr "Që ta keni aplikacionin tuaj të radhitur te Marketplace, duhet ta pajisni me një dëshmi International Age Rating Coalition (IARC). Klikimi mbi butonin më poshtë do të hapë një dritare të re, te e cila mund të plotësoni një pyetësor të shkurtër, të llojit po-ose-jo, mbi lëndën e aplikacionit tuaj. Pasi ta plotësoni, dritarja do të mbyllet dhe aplikacioni juaj do të ketë mandej një klasifikim moshash."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
@@ -4814,7 +4814,7 @@ msgstr "Duke përdorur mjetin për dëshmi klasifikimesh IARC, shprehni miratimi
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr "Procesi IARC për klasifikim lënde u plotësua, do të ridrejtoheni te <a href=\"%(ratings_url)s\">faqja e klasifikimit të lëndës</a> të zbatimit tuaj."
+msgstr "Procesi IARC për klasifikim lënde u plotësua, do të ridrejtoheni te <a href=\"%(ratings_url)s\">faqja e klasifikimit të lëndës</a> të aplikacionit tuaj."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
@@ -4822,15 +4822,15 @@ msgstr "Na ndjeni, pati një gabim në anën tonë të akteve për klasifikim l�
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr "Krijoni një Dshëmi Klasifikimesh IARC"
+msgstr "Krijoni një Dëshmi Klasifikimesh IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr "E keni Tashmë të Klasifikuar Zbatimin Tuaj?"
+msgstr "E keni Tashmë të Klasifikuar Aplikacionin Tuaj?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr "Nëse zbatimi juaj është klasifikuar tashmë përmes IARC Global Ratings Tool më sipër dhe keni tashmë një kod sigurie IARC, mund ta jepni atë dorazi këtu."
+msgstr "Nëse aplikacioni juaj është klasifikuar tashmë përmes IARC Global Ratings Tool më sipër dhe keni tashmë një kod sigurie IARC, mund ta jepni atë dorazi këtu."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -4895,7 +4895,7 @@ msgstr "Lejohet ca HTML."
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
-msgstr "Hiqe këtë zbatim"
+msgstr "Hiqe këtë aplikacion"
 
 #: mkt/developers/templates/developers/includes/macros.html:67
 #: mkt/developers/templates/developers/includes/macros.html:81
@@ -4918,11 +4918,11 @@ msgstr[1] "Kohë pritjeje e hamendësuar:</b> %(num)s ditë pune"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr "Shumica e zbatimeve shqyrtohen brenda një jave. Nëse shqyrtimi juaj ka zgjatur më shumë se kaq, mund të dërgoni një email te %(email)s që të kontrolloni se ç’bëhet."
+msgstr "Shumica e aplikacioneve shqyrtohen brenda një jave. Nëse shqyrtimi juaj ka zgjatur më shumë se kaq, mund të dërgoni një email te %(email)s që të kontrolloni se ç’bëhet."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
-msgstr "U vini shenjë kutizave të veçorive të domosdoshme për funksionimin e duhur të zbatimit tuaj. Zbatimi juaj nuk do t’u shfaqet përdoruesve me pajisje që nuk e mbulojnë atë."
+msgstr "U vini shenjë kutizave të veçorive të domosdoshme për funksionimin e duhur të aplikacionit tuaj. Aplikacioni juaj nuk do t’u shfaqet përdoruesve me pajisje që nuk e mbulojnë atë."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4935,7 +4935,7 @@ msgstr "Fshihi krejt"
 #: mkt/developers/templates/developers/includes/testing_nav.html:3
 #: mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr "Provoni Instalimin e Zbatimit"
+msgstr "Provoni Instalimin e Aplikacionit"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4
 #: mkt/developers/templates/developers/payments/in-app-keys.html:4
@@ -4948,12 +4948,12 @@ msgstr ">pagesash in-app</b>."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
-msgstr "Firefox Marketplace-i u lejon zbatimeve tuaja të pranojnë pagesa in-app. <a href=\"{guide}\">Udhërrëfyesi i pagesa in-app</a> shpjegon se si të formësohet zbatimi juaj për pagesa, përmes parametrave më poshtë."
+msgstr "Firefox Marketplace-i u lejon aplikacioneve tuaja të pranojnë pagesa in-app. <a href=\"{guide}\">Udhërrëfyesi i pagesa in-app</a> shpjegon se si të formësohet aplikacioni juaj për pagesa, përmes parametrave më poshtë."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31
 #: mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
-msgstr "Kyç Zbatimi"
+msgstr "Kyç Aplikacioni"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:35
 #: mkt/developers/templates/developers/payments/in-app-config.html:47
@@ -4965,7 +4965,7 @@ msgstr "Ende i paprodhuar."
 #: mkt/developers/templates/developers/payments/in-app-config.html:39
 #: mkt/developers/templates/developers/payments/in-app-keys.html:37
 msgid "Application Secret"
-msgstr "E fshehtë Zbatimi"
+msgstr "E fshehtë Aplikacioni"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:43
 #: mkt/developers/templates/developers/payments/in-app-keys.html:42
@@ -4983,7 +4983,7 @@ msgstr "Mësoni më tepër rreth <b>pagesash in-app</b>, te MDN-ja."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, set up your payment credentials, and generate a new key specifically for that app."
-msgstr "Çifti vijues kyç/sekret do t’ju lejojë të simuloni pagesa in-app vetëm teksa programoni zbatimin tuaj. Për të prodhuar një kyç për pagesa të njëmendta in-app duhet ta <a href=\"%(submit)s\">parashtroni</a> zbatimin tuaj, të rregulloni kredencialet tuaja për pagesat, dhe të prodhoni një kyç posaçërisht për atë zbatim."
+msgstr "Çifti vijues kyç/sekret do t’ju lejojë të simuloni pagesa in-app vetëm teksa programoni aplikacionin tuaj. Për të prodhuar një kyç për pagesa të njëmendta in-app duhet ta <a href=\"%(submit)s\">parashtroni</a> aplikacionin tuaj, të rregulloni kredencialet tuaja për pagesat, dhe të prodhoni një kyç posaçërisht për atë aplikacion."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4995,7 +4995,7 @@ msgstr "Kyçe In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr "Kyçet për Pagesa In-App ju lejojnë të pranoni pagesa te zbatimi për çfarëdo çmimi arbitrar shitjeje. Përgjegjësi për përkufizimin dhe administrimin e produkteve jeni ju vetë."
+msgstr "Kyçet për Pagesa In-App ju lejojnë të pranoni pagesa te aplikacioni për çfarëdo çmimi arbitrar shitjeje. Përgjegjësi për përkufizimin dhe administrimin e produkteve jeni ju vetë."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
@@ -5008,7 +5008,7 @@ msgstr "Produkte In-App"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr "Produktet In-App ju lejojnë të pranoni pagesa te zbatimi juaj dhe e thjeshtojnë procesin, ngaqë ju lejojnë t’i krijoni dhe administroni produktet tuaja te Qendra e Zhvilluesve për Firefox Marketplace."
+msgstr "Produktet In-App ju lejojnë të pranoni pagesa te aplikacioni juaj dhe e thjeshtojnë procesin, ngaqë ju lejojnë t’i krijoni dhe administroni produktet tuaja te Qendra e Zhvilluesve për Firefox Marketplace."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -5048,7 +5048,7 @@ msgstr "Shtoni një produkt"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
-msgstr "Përputhshmërie Zbatimi"
+msgstr "Përputhshmëri Aplikacioni"
 
 #: mkt/developers/templates/developers/payments/premium.html:71
 msgid "Change to Free"
@@ -5056,11 +5056,11 @@ msgstr "Kaloje të Lirë"
 
 #: mkt/developers/templates/developers/payments/premium.html:72
 msgid "Changing to Free will put your app back into review."
-msgstr "Kalimi te Falas do ta kalojë zbatimin tuaj sërish në shqyrtim."
+msgstr "Kalimi te Falas do ta kalojë aplikacionin tuaj sërish në shqyrtim."
 
 #: mkt/developers/templates/developers/payments/premium.html:88
 msgid "Paid mode requires that your app only supports:"
-msgstr "Mënyra me pagesë lyp që zbatimi juaj të mbulojë vetëm:"
+msgstr "Mënyra me pagesë lyp që aplikacioni juaj të mbulojë vetëm:"
 
 #: mkt/developers/templates/developers/payments/premium.html:89
 #: mkt/developers/templates/developers/payments/premium.html:91
@@ -5074,7 +5074,7 @@ msgstr "Kaloje me Pagesë"
 
 #: mkt/developers/templates/developers/payments/premium.html:101
 msgid "Changing to Paid will put your app back into review."
-msgstr "Kalimi te Me Pagesë do ta kalojë zbatimin tuaj sërish në shqyrtim."
+msgstr "Kalimi te Me Pagesë do ta kalojë aplikacionin tuaj sërish në shqyrtim."
 
 #: mkt/developers/templates/developers/payments/premium.html:109
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
@@ -5087,7 +5087,7 @@ msgstr "Llogari Pagesash"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Zbatimi juaj hëpërhë është jo i plotë. Përzgjidhni një llogari pagesash dhe një çmim, që të rikthehet."
+msgstr "Aplikacioni juaj hëpërhë është jo i plotë. Përzgjidhni një llogari pagesash dhe një çmim, që të rikthehet."
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -5103,7 +5103,7 @@ msgstr "Çmime dhe Vende"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr "A përdor zbatimi juaj paltformën e Mozilla-s për pagesa in-app?"
+msgstr "A përdor aplikacioni juaj platformën e Mozilla-s për pagesa in-app?"
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "A server error occurred. Please try again later."
@@ -5127,7 +5127,7 @@ msgstr "Kontrolloni te <a href=\"%(status_url)s\" target=\"_blank\">faqja e gjen
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Your app will be available in the following selected regions:"
-msgstr "Zbatimi juaj do të jetë i passhëm në rajonet e përzgjedhura vijuese:"
+msgstr "Aplikacioni juaj do të jetë i passhëm në rajonet e përzgjedhura vijuese:"
 
 #: mkt/developers/templates/developers/payments/premium.html:231
 msgid "Retail price"
@@ -5147,7 +5147,7 @@ msgstr "Rajone të tjera"
 
 #: mkt/developers/templates/developers/payments/premium.html:246
 msgid "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr "Zbatimi juaj do të jetë i passhëm në rajonet e përzgjedhura që tregohen më poshtë, pasi pagesat të jenë të mundura, bazuar në çmimin e zgjedhur prej jush. Që një zbatim të mos shfaqet në një rajon, hiqjani shenjën rajonit, përpara se të ruani këtë skenë."
+msgstr "Aplikacioni juaj do të jetë i passhëm në rajonet e përzgjedhura që tregohen më poshtë, pasi pagesat të jenë të mundura, bazuar në çmimin e zgjedhur prej jush. Që një aplikacion të mos shfaqet në një rajon, hiqjani shenjën rajonit, përpara se të ruani këtë skenë."
 
 #: mkt/developers/templates/developers/payments/premium.html:268
 msgid "Regions and Listings"
@@ -5159,15 +5159,15 @@ msgstr "Promovojeni si përmirësim të versionit falas"
 
 #: mkt/developers/templates/developers/payments/premium.html:292
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr "Nëse keni një zbatim falas, mund ta lidhni dhe promovoni zbatimin tuaj me pagesë në krah të versionit falas këtu."
+msgstr "Nëse keni një aplikacion falas, mund ta lidhni dhe promovoni aplikacionin tuaj me pagesë në krah të versionit falas këtu."
 
 #: mkt/developers/templates/developers/payments/premium.html:300
 msgid "Linking this app will promote your premium app next to the free version."
-msgstr "Lidhja e këtij zbatimi do të promovojë zbatimin tuaj me pagesë në krah të versionit falas."
+msgstr "Lidhja e këtij aplikacioni do të promovojë aplikacionin tuaj me pagesë në krah të versionit falas."
 
 #: mkt/developers/templates/developers/payments/premium.html:307
 msgid "No free apps"
-msgstr "Pa zbatime të lira"
+msgstr "Pa aplikacione të lira"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
@@ -5210,7 +5210,7 @@ msgstr "Fshini Llogari Pagesash"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
-msgstr "Llogaria e tanishme e pagesave i është përshoqëruar zbatimit nga një pronar zbatimesh."
+msgstr "Llogaria e tanishme e pagesave i është përshoqëruar aplikacionit nga një pronar aplikacionesh."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
@@ -5249,7 +5249,7 @@ msgstr "Emri i individit ose shoqërisë së regjistruar."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr "Emri i llogarisë në Marketplace (not sent to Bango)."
+msgstr "Emri i llogarisë në Marketplace (nuk i dërgohet Bango-s)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
@@ -5297,7 +5297,7 @@ msgstr "Krijoni një emër për këtë llogari."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr "Id alfa-numerike e shfaqurt te Emër Shërbimi, në sajtin web të Boku-t. Mësoni më tepër, te <a href=\"%(boku_docs_url)s\" target=\"_blank\">faqja e MDN-së mbi Boku-n</a>."
+msgstr "ID alfa-numerike e shfaqur te Emër Shërbimi, në sajtin web të Boku-t. Mësoni më tepër, te <a href=\"%(boku_docs_url)s\" target=\"_blank\">faqja e MDN-së mbi Boku-n</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
@@ -5341,7 +5341,7 @@ msgstr "Rajone që lypin shqyrtim ekstra të çështjes:"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr "Duhet të <a href=\"{status_page}\">kërkoni shqyrtim</a> që zbatimi juaj të shfaqet në pajisje me kujtesë të pakët."
+msgstr "Duhet të <a href=\"{status_page}\">kërkoni shqyrtim</a> që aplikacioni juaj të shfaqet në pajisje me kujtesë të pakët."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5353,11 +5353,11 @@ msgstr "Mësoni pse disa rajone kanë kufizime."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr "Zbatimi juaj nuk do të shfaqet më në disa nga rajonet, ngaqë këto rajone nuk mbulojnë pagesat. I kemi transferuar zgjedhjet tuaja për rajonet. Ju lutemi, shqyrtoni ndryshimet, para se t’i ruani."
+msgstr "Aplikacioni juaj nuk do të shfaqet më në disa nga rajonet, ngaqë këto rajone nuk mbulojnë pagesat. I kemi transferuar zgjedhjet tuaja për rajonet. Ju lutemi, shqyrtoni ndryshimet, para se t’i ruani."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr "Zbatimi juaj do të shfaqet në çfarëdo Marketplace-i rajonal që shtohet në të ardhmen."
+msgstr "Aplikacioni juaj do të shfaqet në çfarëdo Marketplace-i rajonal që shtohet në të ardhmen."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
@@ -5389,7 +5389,7 @@ msgstr "Dizajn"
 #: mkt/ecosystem/templates/ecosystem/landing.html:23
 #: mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr "Koncept: Një Zbatim i Shkëlqyer"
+msgstr "Koncept: Një Aplikacion i Shkëlqyer"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24
 #: mkt/ecosystem/templates/ecosystem/landing.html:25
@@ -5425,7 +5425,7 @@ msgstr "Simulues Firefox OS-i"
 #: mkt/ecosystem/templates/ecosystem/landing.html:44
 #: mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
-msgstr "Zbatime Referencash"
+msgstr "Aplikacione Referencash"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:50
 #: mkt/ecosystem/templates/ecosystem/landing.html:48
@@ -5438,19 +5438,19 @@ msgstr "Botoje"
 #: mkt/ecosystem/templates/ecosystem/landing.html:57
 #: mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
-msgstr "Zhvillimi i Zbatimeve Tuaja"
+msgstr "Zhvillimi i Aplikacioneve Tuaja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58
 #: mkt/ecosystem/templates/ecosystem/landing.html:59
 #: mkt/ecosystem/templates/ecosystem/macros.html:180
 msgid "Hosted Apps"
-msgstr "Zbatime të Strehuara"
+msgstr "Aplikacione të Strehuara"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62
 #: mkt/ecosystem/templates/ecosystem/landing.html:61
 #: mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Packaged Apps"
-msgstr "Zbatime të Paketuara"
+msgstr "Aplikacione të Paketuara"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66
 #: mkt/ecosystem/templates/ecosystem/macros.html:197
@@ -5459,27 +5459,27 @@ msgstr "Stema, Parulla, dhe Ikona"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "Zhvilloni Zbatime Web HTML5 për një tregtore të hapur."
+msgstr "Zhvilloni Aplikacione Web HTML5 për një tregtore të hapur."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Mësoni si të hartoni zbatime që i ofrojnë përdoruesit funksionim të optimizuar për Firefox OS-in &amp; Celularin"
+msgstr "Mësoni si të hartoni aplikacione që i ofrojnë përdoruesit funksionim të optimizuar për Firefox OS-in &amp; Celularin"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr "Krejt mjetet, dokumentet dhe referencat që do t’ju duhen për zhvillimin dhe testimin e zbatimit tuaj"
+msgstr "Krejt mjetet, dokumentet dhe referencat që do t’ju duhen për zhvillimin dhe testimin e aplikacionit tuaj"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Mësoni se si t’i shpërndani zbatimet tuaja në një tregtore të hapur që vendos mbi të gjitha përdoruesit dhe zhvilluesit"
+msgstr "Mësoni se si t’i shpërndani aplikacionet tuaja në një tregtore të hapur që vendos mbi të gjitha përdoruesit dhe zhvilluesit"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
-msgstr "Keni një zbatim gatim për ngritje?"
+msgstr "Keni një aplikacion gatim për ngritje?"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr "Parashtrojeni zbatimin tuaj te Marketplace-i"
+msgstr "Parashtrojeni aplikacionin tuaj te Marketplace-i"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
@@ -5495,31 +5495,31 @@ msgstr "Jeni kompani web, shërbim palë e tretë, ose OEM në kërkim të partn
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr "Platforma Mozilla për zbatimet"
+msgstr "Platforma Mozilla për aplikacionet"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the Firefox Marketplace."
-msgstr "Ndërtimi i zbatimeve për Web u furnizon zhvilluesve kontroll të plotë mbi lëndën, funksionet dhe mënyrën se si shpërndahen zbatimet, përfshi mbërritjen te qindra milionë përdorues të Firefox përmes Firefox Marketplace-it."
+msgstr "Ndërtimi i aplikacioneve për Web u furnizon zhvilluesve kontroll të plotë mbi lëndën, funksionet dhe mënyrën se si shpërndahen aplikacionet, përfshi mbërritjen te qindra milionë përdorues të Firefox përmes Firefox Marketplace-it."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native apps for the first time."
-msgstr "Duke përdorur standarde të hapura Web dhe API të hartuara nga Mozilla, mund të ofrohen zbatime të shkëlqyera në një shumicë platformash, pajisjesh dhe sistemesh operative &mdash; duke ngushtuar kështu për herë të parë hendekun mes zbatimeve Web dhe atyre të shkruar për një platformë të caktuar."
+msgstr "Duke përdorur standarde të hapura Web dhe API të hartuara nga Mozilla, mund të ofrohen aplikacione të shkëlqyera në një shumicë platformash, pajisjesh dhe sistemesh operative &mdash; duke ngushtuar kështu për herë të parë hendekun mes aplikacioneve Web dhe atyre të shkruar për një platformë të caktuar."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets across all categories that users can use to get the most out of their daily lives."
-msgstr "Firefox Marketplace-i u jep përdoruesve mundësi të gjejnë, provojnë dhe blejnë zbatime dhe lëndë që ka më tepër rëndësi për ta. Kjo nënkupton zbatime mbresëlënëse, të dobishme dhe me cilësi të lartë, që kanë kuptim për një treg të dhënë vendor, në të gjitha kategoritë, të cilat përdoruesit mund t’i shfrytëzojnë për të përfituar sa më shumë në jetën e përditshme."
+msgstr "Firefox Marketplace-i u jep përdoruesve mundësi të gjejnë, provojnë dhe blejnë aplikacione dhe lëndë që ka më tepër rëndësi për ta. Kjo nënkupton aplikacione mbresëlënëse, të dobishme dhe me cilësi të lartë, që kanë kuptim për një treg të dhënë vendor, në të gjitha kategoritë, të cilat përdoruesit mund t’i shfrytëzojnë për të përfituar sa më shumë në jetën e përditshme."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help developers can get their app into the hands of their target users around the world."
-msgstr "Shtrirja mbarëbotërore e Mozilla-s shkon në qindra milionë përdorues të Firefox-it kudo në botë. Përmes përkujdesjes me mençuri për Marketplace-in dhe përdorimin me efektshmëri të kanaleve të marketingut të Mozilla-s, ajo mund t’i ndihmojë zhvilluesit që zbatimet e tyre të mbërrijnë në duart e përdoruesve të synuar, anembanë botës."
+msgstr "Shtrirja mbarëbotërore e Mozilla-s shkon në qindra milionë përdorues të Firefox-it kudo në botë. Përmes përkujdesjes me mençuri për Marketplace-in dhe përdorimin me efektshmëri të kanaleve të marketingut të Mozilla-s, ajo mund t’i ndihmojë zhvilluesit që aplikacionet e tyre të mbërrijnë në duart e përdoruesve të synuar, anembanë botës."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr "Firefox Marketplace-i tani është hapur dhe pranon zbatime. Parashtroni zbatimin tuaj për:"
+msgstr "Firefox Marketplace-i tani është hapur dhe pranon aplikacione. Parashtroni aplikacionin tuaj për:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr "Vëreni zbatimin tuaj në provë me një grup të përkushtuar adoptuesish të hershëm."
+msgstr "Vëreni aplikacionin tuaj në provë me një grup të përkushtuar adoptuesish të hershëm."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
@@ -5527,15 +5527,15 @@ msgstr "Krijoni një bazë dashamirësish të hershëm dhe fitoni popullaritet."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr "Synoni me zbatimin tuaj konsumatorët që marrin vesh nga teknologjia"
+msgstr "Synoni me aplikacionin tuaj konsumatorët që marrin vesh nga teknologjia"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
-msgstr "Zbatime &amp; Trike për Firefox"
+msgstr "Aplikacione &amp; Trike për Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "Pajtohuni te buletini ynë i përmuajshëm mbi Firefox OS-in, Marketplace-in dhe ekosistemin e zbatimeve. <a href=\"%(dev_phone_url)s\">Hidhini një sy paraparjes së telefonit të zhvilluesve</a>"
+msgstr "Pajtohuni te buletini ynë i përmuajshëm mbi Firefox OS-in, Marketplace-in dhe ekosistemin e aplikacioneve. <a href=\"%(dev_phone_url)s\">Hidhini një sy paraparjes së telefonit të zhvilluesve</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -5559,7 +5559,7 @@ msgstr "Regjistromë!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
-msgstr "Hyrje te Zbatimet e Hapura Web"
+msgstr "Hyrje te Aplikacionet e Hapura Web"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:37
 msgid "Intro to Firefox OS"
@@ -5603,11 +5603,11 @@ msgstr "Për Zhvillues për Celularin"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:121
 msgid "Using Apps Offline"
-msgstr "Përdorimi i Zbatimeve Jashtë Linje"
+msgstr "Përdorimi i Aplikacioneve Jashtë Linje"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:125
 msgid "Developing Game Apps"
-msgstr "Programim Zbatimesh Lojërash"
+msgstr "Programim Aplikacionesh Lojërash"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129
 #: mkt/lookup/templates/lookup/app_summary.html:121
@@ -5621,15 +5621,15 @@ msgstr "Pagesa"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
-msgstr "Gjenerator Zbatimi"
+msgstr "Gjenerator Aplikacioni"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143
 msgid "App Validator"
-msgstr "Vleftësues Zbatimi"
+msgstr "Vleftësues Aplikacioni"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:147
 msgid "App Manager"
-msgstr "Përgjegjës Zbatimesh"
+msgstr "Përgjegjës Aplikacionesh"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
@@ -5661,7 +5661,7 @@ msgstr "Shihini!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "Bëhuni partner me Mozilla-n që t’i shpërndani zbatimet tuaja përmes një tregtoreje të hapur, drej më shumë 450 milionë përdoruesve"
+msgstr "Bëhuni partner me Mozilla-n që t’i shpërndani aplikacionet tuaja përmes një tregtoreje të hapur, drejt më shumë 450 milionë përdoruesve"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -5669,19 +5669,19 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">Parashtrojeni tani</a> <span
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr "Me një platformë web të fuqishme, një tregtore të hapur zbatimesh, dhe partnerë si ju, jemi gati të mirëpresim 2 miliardë përdoruesit e ardhshëm të Internetit"
+msgstr "Me një platformë web të fuqishme, një tregtore të hapur aplikacionesh, dhe partnerë si ju, jemi gati të mirëpresim 2 miliardë përdoruesit e ardhshëm të Internetit"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr "<strong>Web-i është Platforma</strong> &ndash;shkruajeni zbatimin tuaj në HTML5, vetëm një herë, dhe shpërndajeni në të gjithë web-in."
+msgstr "<strong>Web-i është Platforma</strong> &ndash;shkruajeni aplikacionin tuaj në HTML5, vetëm një herë, dhe shpërndajeni në të gjithë web-in."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr "<strong>Pagesa të Rrjedhshme</strong> &ndash; me modele të shumta pagesash dhe faturim të integruar te operatori, ju sjellim monetarizim të pacen për zbatimet tuaja."
+msgstr "<strong>Pagesa të Rrjedhshme</strong> &ndash; me modele të shumta pagesash dhe faturim të integruar te operatori, ju sjellim monetarizim të pacen për aplikacionet tuaja."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr "<strong>Publik Masiv</strong> &ndash; mbi 450 milionë përdorues e kanë Firefox-in vatrën e tyre, ofrojuni zbatimin tuaj që sot."
+msgstr "<strong>Publik Masiv</strong> &ndash; mbi 450 milionë përdorues e kanë Firefox-in vatrën e tyre, ofrojuni aplikacionin tuaj që sot."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -5689,11 +5689,11 @@ msgstr "Bëhuni pjesë e më të madhes dhe më të mirës"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr "Markat më popullore të botës dhe krej zbatimet tuaja të parapëlqyera po e pasqyrojnë përvojën e tyre te Firefox Marketplace-i."
+msgstr "Markat më popullore të botës dhe krejt aplikacionet tuaja të parapëlqyera po e pasqyrojnë përvojën e tyre te Firefox Marketplace-i."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr "Një vatër vërtet ndërplatformëshe, për shumë pajisje, jopronësore, e zbatimeve HTML5 vendore dhe globale më të mira në botë."
+msgstr "Një vatër vërtet ndërplatformëshe, për shumë pajisje, jopronësore, e aplikacioneve HTML5 vendore dhe globale më të mira në botë."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5713,7 +5713,7 @@ msgstr "Mbani lidhje."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
-msgstr "Blogu i Zbatimeve"
+msgstr "Blogu i Aplikacioneve"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
@@ -5749,7 +5749,7 @@ msgstr "Kur përdoret në krah logosh për tregtore të tjera (\"Merreni te Goog
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr "Stema duhet të jetë e lidhur te një faqe hollësish zbatimi brenda Firefox Marketplace-it<br> Për shembull: https://marketplace.firefox.com/app/twitter"
+msgstr "Stema duhet të jetë e lidhur te një faqe hollësish aplikacioni brenda Firefox Marketplace-it<br> Për shembull: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -5777,19 +5777,19 @@ msgstr "Pyetje të Bëra Shpesh"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr "Çfarë duhet të di përpara krijimit të një Zbatimi?"
+msgstr "Çfarë duhet të di përpara krijimit të një Aplikacioni?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr "Si mund ta ngarkoj Zbatimin tim te Firefox Marketplace-i?"
+msgstr "Si mund ta ngarkoj Aplikacionin tim te Firefox Marketplace-i?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr "Më duhet ndihmë me Manifestin e Zbatimit."
+msgstr "Më duhet ndihmë me Manifestin e Aplikacionit."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr "Si të krijoj një Zbatim të instalueshëm?"
+msgstr "Si të krijoj një Aplikacion të instalueshëm?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
@@ -5805,7 +5805,7 @@ msgstr "Keni ende pyetje?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
-msgstr "Ndërkohë që punojmë për krijimin e një grupi kanalesh, për t’ju ndihmuar kur keni probleme, mund të vizitoni StackOverflow për të parë për zgjidhje për krejt pyetjet tuaja lidhur me zhvillimin e zbatimeve Web."
+msgstr "Ndërkohë që punojmë për krijimin e një grupi kanalesh, për t’ju ndihmuar kur keni probleme, mund të vizitoni StackOverflow për të parë për zgjidhje për krejt pyetjet tuaja lidhur me zhvillimin e aplikacioneve Web."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58
 #: mkt/ecosystem/templates/ecosystem/support.html:60
@@ -5818,11 +5818,11 @@ msgstr "Nëse doni të ndërveproni me zhvillues të tjerë, merrni pjesë te ba
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
-msgstr "Zbatime Web Mozilla (Anglisht)"
+msgstr "Aplikacione Web Mozilla (Anglisht)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr "Zbatime Web Mozilla (Portugezçe Braziliane)"
+msgstr "Aplikacione Web Mozilla (Portugezçe Braziliane)"
 
 #: mkt/feed/fields.py:185
 msgid "Invalid URL %(url)s"
@@ -5871,7 +5871,7 @@ msgstr "Pati një gabim në përdorimin e kartelës %s."
 
 #: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr "Nuk u gjet kartela \"manifest.webapp\" në rrënjën e arkivës së zbatimit të paketuar."
+msgstr "Nuk u gjet kartela \"manifest.webapp\" në rrënjën e arkivit të aplikacionit të paketuar."
 
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
@@ -5883,11 +5883,11 @@ msgstr "Manifesti webapp nuk është JSON i vlefshëm."
 
 #: mkt/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
-msgstr "Vendoret e caktuara për zbatimin tuaj nuk janë në format të saktë."
+msgstr "Vendoret e caktuara për aplikacionin tuaj nuk janë në format të saktë."
 
 #: mkt/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr "Emri i zhvilluesit është i domosdoshëm te manifesti, që të mund të shfaqet te paraqitja e zbatimit."
+msgstr "Emri i zhvilluesit është i domosdoshëm te manifesti, që të mund të shfaqet te paraqitja e aplikacionit."
 
 #: mkt/files/utils.py:180
 msgid "Invalid file name in archive: {0}"
@@ -5907,7 +5907,7 @@ msgstr "Mbrapsht te shqyrtimi"
 
 #: mkt/files/views.py:47
 msgid "Back to app"
-msgstr "Mbrapsht te zbatimi"
+msgstr "Mbrapsht te aplikacioni"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
@@ -5915,7 +5915,7 @@ msgstr "Shkarko {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr "Version: %(version)s &bull; Madhësi: %(size)s &bull; Hash MD5: %(md5)s &bull; Lloj MiME: %(mimetype)s"
+msgstr "Version: %(version)s &bull; Madhësi: %(size)s &bull; Hash MD5: %(md5)s &bull; Lloj MIME: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -5935,7 +5935,7 @@ msgstr "Shko"
 
 #: mkt/files/templates/fileviewer/viewer.html:33
 msgid "App being processed, please wait."
-msgstr "Zbatimi po përpunohet, ju lutemi, prisni."
+msgstr "Aplikacioni po përpunohet, ju lutemi, prisni."
 
 #: mkt/files/templates/fileviewer/viewer.html:37
 msgid "Fetching validation results..."
@@ -6098,19 +6098,19 @@ msgstr "Shihni"
 #: mkt/reviewers/templates/reviewers/includes/details.html:13
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
-msgstr "Zbatim i Privilegjuar i Paketuar"
+msgstr "Aplikacion i Privilegjuar i Paketuar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47
 #: mkt/reviewers/templates/reviewers/includes/details.html:15
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
-msgstr "Zbatim i paketuar"
+msgstr "Aplikacion i paketuar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50
 #: mkt/reviewers/templates/reviewers/includes/details.html:18
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
 msgid "Hosted app"
-msgstr "Zbatim i strehuar"
+msgstr "Aplikacion i strehuar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:57
 msgid "Submitted"
@@ -6123,7 +6123,7 @@ msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:76
 msgid "Review Prioritized"
-msgstr "Shqyrtit Iu Dha Përparësi"
+msgstr "Shqyrtimit Iu Dha Përparësi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Prioritize Review?"
@@ -6273,7 +6273,7 @@ msgstr "Përfundime blerjeje për"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr "Ky përdoruesi nuk ka blerë ndonjë zbatim."
+msgstr "Ky përdoruesi nuk ka blerë ndonjë aplikacion."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
@@ -6305,7 +6305,7 @@ msgstr "Kredit Marketplace"
 
 #: mkt/lookup/templates/lookup/user_summary.html:40
 msgid "apps purchased"
-msgstr "zbatime të blera"
+msgstr "aplikacione të blera"
 
 #: mkt/lookup/templates/lookup/user_summary.html:43
 msgid "requested"
@@ -6364,11 +6364,11 @@ msgstr "Arsye"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
-msgstr "Përfundime Kërkimi Zbatimesh për"
+msgstr "Përfundime Kërkimi aplikacionesh për"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
 msgid "App Detail"
-msgstr "Hollësi Zbatimi"
+msgstr "Hollësi Aplikacioni"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
@@ -6384,7 +6384,7 @@ msgstr "Llogaria u Fshi"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
-msgstr "Kërkim Zbatimi"
+msgstr "Kërkim Aplikacioni"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8
 #: mkt/lookup/templates/lookup/includes/transaction_search.html:6
@@ -6401,7 +6401,7 @@ msgstr "Kërkoni"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr "Zbatim: {0}"
+msgstr "Aplikacion: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
@@ -6551,7 +6551,7 @@ msgstr "Dëftesë e rimbursuar prove"
 #: mkt/receipts/views.py:89
 #: mkt/receipts/views.py:180
 msgid "There was a problem installing the app."
-msgstr "Pati një problem në instalimin e zbatimit."
+msgstr "Pati një problem në instalimin e aplikacionit."
 
 #: mkt/receipts/templates/receipts/test_details.html:3
 #: mkt/receipts/templates/receipts/test_details.html:8
@@ -6561,11 +6561,11 @@ msgstr "Hollësi dëftese prove"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr "Ky është faqe e ruajtur për hollësitë e dëftesës. Nëse keni instaluar një zbatim të njëmendtë nga Marketplace-i, kjo faqe do të duhej të shfaqte më tepër hollësi."
+msgstr "Ky është faqe e ruajtur për hollësitë e dëftesës. Nëse keni instaluar një aplikacion të njëmendtë nga Marketplace-i, kjo faqe do të duhej të shfaqte më tepër hollësi."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te tregtorja. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshme dëftesash."
+msgstr "Provoni instalimin e aplikacionit tuaj para se ta ngarkoni te tregtorja. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshme dëftesash."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -6631,7 +6631,7 @@ msgstr "Njoftomë herës tjetër që përditësohet manifesti. (Përditësime t�
 
 #: mkt/reviewers/forms.py:91
 msgid "This app works on Tarako devices."
-msgstr "Ky zbatim funksionon në pajisje Tarako."
+msgstr "Ky aplikacion funksionon në pajisje Tarako."
 
 #: mkt/reviewers/forms.py:98
 msgid "Choose a canned response..."
@@ -6640,7 +6640,7 @@ msgstr "Zgjidhni një përgjigje të gatshme..."
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:147
 msgid "app, reviewer, or comment"
-msgstr "zbatim, shqyrtues, ose koment"
+msgstr "aplikacion, shqyrtues, ose koment"
 
 #: mkt/reviewers/forms.py:156
 msgid "Has Editor Comment"
@@ -6663,7 +6663,7 @@ msgstr "Mjete Shqyrtuesi"
 #: mkt/reviewers/helpers.py:42
 #: mkt/site/helpers.py:173
 msgid "Apps"
-msgstr "Zbatime"
+msgstr "Aplikacione"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Re-reviews"
@@ -6699,7 +6699,7 @@ msgstr "Radhë Rajonale"
 #: mkt/reviewers/helpers.py:92
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr "Zbatime ({0})"
+msgstr "Aplikacione ({0})"
 
 #: mkt/reviewers/helpers.py:95
 msgctxt "rereview"
@@ -6753,7 +6753,7 @@ msgstr "Miratoje"
 
 #: mkt/reviewers/utils.py:456
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr "Kështu do të miratohet zbatimi dhe do të lejohen autorët ta botojnë."
+msgstr "Kështu do të miratohet aplikacioni dhe do të lejohen autorët ta botojnë."
 
 #: mkt/reviewers/utils.py:460
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
@@ -6763,7 +6763,7 @@ msgstr "Hidhe tej"
 
 #: mkt/reviewers/utils.py:462
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
-msgstr "Kjo do ta hedhë tej zbatimin, do ta heqë atë prej radhës së shqyrtimeve dhe zhbotojë, në qoftë i botuar tashmë."
+msgstr "Kjo do ta hedhë tej aplikacionin, do ta heqë atë prej radhës së shqyrtimeve dhe zhbotojë, në qoftë i botuar tashmë."
 
 #: mkt/reviewers/utils.py:467
 msgid "Request more information"
@@ -6779,11 +6779,11 @@ msgstr "Shqyrtim i mëtejshëm"
 
 #: mkt/reviewers/utils.py:475
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr "I vini shenjë këtij zbatimi për shqyrtim nga një prej përgjegjësve. Komentet u dërgohen përgjegjësve, jo autorëve."
+msgstr "I vini shenjë këtij aplikacioni për shqyrtim nga një prej përgjegjësve. Komentet u dërgohen përgjegjësve, jo autorëve."
 
 #: mkt/reviewers/utils.py:482
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr "Bëni një koment rreth këtij zbatimi. Autori, ose autorët, nuk do të jenë në gjendje t’i shohin këto komente."
+msgstr "Bëni një koment rreth këtij aplikacioni. Autori, ose autorët, nuk do të jenë në gjendje t’i shohin këto komente."
 
 #: mkt/reviewers/utils.py:486
 msgid "Clear Escalation"
@@ -6791,7 +6791,7 @@ msgstr "Hiqja Kërkesën Për Shqyrtim të Mëtejshëm"
 
 #: mkt/reviewers/utils.py:488
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr "Hiqeni këtë zbatim nga radha e shqyrtimeve të mëtejshme. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
+msgstr "Hiqeni këtë aplikacion nga radha e shqyrtimeve të mëtejshme. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
 
 #: mkt/reviewers/utils.py:493
 msgid "Clear Re-review"
@@ -6799,19 +6799,19 @@ msgstr "Hiqja Kërkesën Për Rishqyrtim"
 
 #: mkt/reviewers/utils.py:495
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr "Hiqeni këtë zbatim nga radha e rishqyrtimeve. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
+msgstr "Hiqeni këtë aplikacion nga radha e rishqyrtimeve. Autorët nuk do të marrin email, as do të shohin komentet e këtushme."
 
 #: mkt/reviewers/utils.py:500
 msgid "Ban app"
-msgstr "Ndalojeni zbatimin"
+msgstr "Ndalojeni aplikacionin"
 
 #: mkt/reviewers/utils.py:502
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr "Dëbojeni zbatimin prej Marketplace-it. E ngjashme me Hedhjen, por autori nuk mund të riparashtrojë. Për përdorim vetëm në raste të skajshëm."
+msgstr "Dëbojeni aplikacionin prej Marketplace-it. E ngjashme me Hedhjen, por autori nuk mund të riparashtrojë. Për përdorim vetëm në raste të skajshëm."
 
 #: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
-msgstr "Zbatime të Reja (Nën 5 ditë)"
+msgstr "Aplikacione të Reja (Nën 5 ditë)"
 
 #: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
@@ -6827,7 +6827,7 @@ msgstr "Nuk lejohen shqyrtime nga vetja."
 
 #: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr "Vetëm shqyrtuesit senior mund të shqyrtojnë zbatime të bllokuara."
+msgstr "Vetëm shqyrtuesit senior mund të shqyrtojnë aplikacione të bllokuara."
 
 #: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
@@ -6896,7 +6896,7 @@ msgstr "Hëpërhë nuk ka objekte të këtij lloji që të shqyrtohen."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr "Nuk po shqyrtoni ndonjë zbatim."
+msgstr "Nuk po shqyrtoni ndonjë aplikacion."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/queue.html:30
@@ -6917,17 +6917,17 @@ msgstr "Pajisje"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34
 #: mkt/reviewers/templates/reviewers/includes/macros.html:87
 msgid "Packaged App"
-msgstr "Zbatim i Paketuar"
+msgstr "Aplikacion i Paketuar"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37
 #: mkt/reviewers/templates/reviewers/includes/macros.html:93
 msgid "Blocklisted App"
-msgstr "Zbatim i Bllokuar"
+msgstr "Aplikacion i Bllokuar"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40
 #: mkt/reviewers/templates/reviewers/includes/macros.html:101
 msgid "Premium App"
-msgstr "Zbatim Me Pagesë"
+msgstr "Aplikacion Me Pagesë"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43
 #: mkt/reviewers/templates/reviewers/includes/macros.html:105
@@ -6960,8 +6960,8 @@ msgstr "Mbrapsht te Mjete Shqyrtuesi"
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
-msgstr[0] "{num} Shqyrtim Zbatimi Në Pritje"
-msgstr[1] "{num} Shqyrtime Zbatimi Në Pritje"
+msgstr[0] "{num} Shqyrtim Aplikacioni Në Pritje"
+msgstr[1] "{num} Shqyrtime Aplikacioni Në Pritje"
 
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
@@ -6978,8 +6978,8 @@ msgstr[1] "{num} Përditësime Shqyrtimi"
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] "{c} parashtrim zbatimi të pashqyrtuar këtë javë."
-msgstr[1] "{c} parashtrime zbatimesh të pashqyrtuar këtë javë."
+msgstr[0] "{c} parashtrim aplikacioni të pashqyrtuar këtë javë."
+msgstr[1] "{c} parashtrime aplikacionesh të pashqyrtuar këtë javë."
 
 #: mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
@@ -6988,8 +6988,8 @@ msgstr "Kohë pritjeje hëpërhë:"
 #: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] "{0} zbatim"
-msgstr[1] "{0} zbatime"
+msgstr[0] "{0} aplikacion"
+msgstr[1] "{0} aplikacione"
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
@@ -7023,7 +7023,7 @@ msgstr "Pikë"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
-msgstr "Regjistër Shqyrtimesh Zbatimi"
+msgstr "Regjistër Shqyrtimesh Aplikacioni"
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
 msgid "Event"
@@ -7031,7 +7031,7 @@ msgstr "Ngjarje"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr "Zbatimi është fshirë."
+msgstr "Aplikacioni është fshirë."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -7104,7 +7104,7 @@ msgstr "nga"
 #: mkt/reviewers/templates/reviewers/review.html:31
 #: mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "Në radhë rishyrtimi"
+msgstr "Në radhë rishqyrtimi"
 
 #: mkt/reviewers/templates/reviewers/review.html:34
 #: mkt/reviewers/templates/reviewers/includes/details.html:24
@@ -7121,7 +7121,7 @@ msgstr "Në radhën e Kinës"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
-msgstr "Shqyrtojeni Këtë Zbatim"
+msgstr "Shqyrtojeni Këtë Aplikacion"
 
 #: mkt/reviewers/templates/reviewers/review.html:66
 msgid "More Information"
@@ -7131,7 +7131,7 @@ msgstr "Më Tepër të Dhëna"
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:3
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:2
 msgid "App History"
-msgstr "Historik Zbatimi"
+msgstr "Historik Aplikacioni"
 
 #: mkt/reviewers/templates/reviewers/review.html:68
 msgid "Resolution"
@@ -7139,7 +7139,7 @@ msgstr "Qartësi"
 
 #: mkt/reviewers/templates/reviewers/review.html:103
 msgid "App submission incomplete"
-msgstr "Parashtim i paplotë zbatimi"
+msgstr "Parashtrim i paplotë aplikacioni"
 
 #: mkt/reviewers/templates/reviewers/review.html:123
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -7218,7 +7218,7 @@ msgstr "Vlerësime"
 #: mkt/reviewers/templates/reviewers/includes/details.html:92
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr "Ky zbatim nuk është klasifikuar ende"
+msgstr "Ky aplikacion nuk është klasifikuar ende"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:95
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
@@ -7260,7 +7260,7 @@ msgstr "Figura"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:161
 msgid "More about this app"
-msgstr "Më tepër rreth këtij zbatimi"
+msgstr "Më tepër rreth këtij aplikacioni"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:164
 msgid "Nothing to see here! The developer did not include any details."
@@ -7274,7 +7274,7 @@ msgstr "Filtër"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr "Origjinë zbatimi"
+msgstr "Origjinë aplikacioni"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -7286,7 +7286,7 @@ msgstr "Lyp Shqyrtim Me Përparësi"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:89
 msgid "Privileged App"
-msgstr "Zbatim i Privilegjuar"
+msgstr "Aplikacion i Privilegjuar"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:97
 msgid "Premium with In-App"
@@ -7378,7 +7378,7 @@ msgstr "Faqja e Mëparshme"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr "Po ngarkohet Historik Zbatimi &hellip;"
+msgstr "Po ngarkohet Historik Aplikacioni &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 #: mkt/site/templates/site/impala_paginator.html:16
@@ -7456,11 +7456,11 @@ msgstr "Të shqyrtuar"
 
 #: mkt/search/forms.py:25
 msgid "Any App Type"
-msgstr "Çfarëdo Lloj Zbatimi"
+msgstr "Çfarëdo Lloj Aplikacioni"
 
 #: mkt/search/forms.py:28
 msgid "Privileged packaged app"
-msgstr "Zbatim i paletuar i privilegjuar"
+msgstr "Aplikacion i paketuar i privilegjuar"
 
 #: mkt/search/forms.py:33
 msgid "Free with In-app"
@@ -7500,7 +7500,7 @@ msgstr "Krejt Kategoritë"
 
 #: mkt/search/forms.py:71
 msgid "Search for apps"
-msgstr "Kërkoni për zbatime"
+msgstr "Kërkoni për aplikacione"
 
 #: mkt/search/forms.py:96
 msgid "Device type"
@@ -7512,7 +7512,7 @@ msgstr "Lloje me pagesë"
 
 #: mkt/search/forms.py:103
 msgid "App type"
-msgstr "Lloj zbatimi"
+msgstr "Lloj aplikacioni"
 
 #: mkt/search/forms.py:107
 msgid "Installs allowed from"
@@ -7695,11 +7695,11 @@ msgstr "Përdoruesi që po parashtron nuk përputhet."
 
 #: mkt/submit/forms.py:266
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr "Botojeni zbatimin tim dhe bëjeni të dukshëm për këdo në Marketplace dhe përfshijeni në përfundime kërkimesh."
+msgstr "Botojeni aplikacionin tim dhe bëjeni të dukshëm për këdo në Marketplace dhe përfshijeni në përfundime kërkimesh."
 
 #: mkt/submit/forms.py:269
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr "Mos e botoni zbatimin tim. Njoftomëni dhe do ta ujdis vetë dukshmërinë, pasi të jetë miratuar."
+msgstr "Mos e botoni aplikacionin tim. Njoftomëni dhe do ta ujdis vetë dukshmërinë, pasi të jetë miratuar."
 
 #: mkt/submit/forms.py:280
 msgid "Privacy Policy:"
@@ -7707,7 +7707,7 @@ msgstr "Rregulla Privatësie:"
 
 #: mkt/submit/forms.py:282
 msgid "A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
-msgstr "Rregullat e privatësisë shpjegonë se si i trajtoni të dhënat e marra përmes zbatimit tuaj. Për shembull: çfarë të dhënash merrni? Si i përdorni? Me kë i ndani? A merrni të dhëna personale? A ndërmerrni hapa për t’i bërë anonime? Çfarë zgjedhjesh i lejohen përdoruesit për të pasur kontroll mbi të dhënat që ju dhe të tjerë merrni prej tij? Jepni më sipër lidhjen për te ose tekstin e rregullave tuaja mbi privatësinë. Nëse nuk keni rregulla privatësie, <a href=\"{url}\" target=\"_blank\">mësoni më tepër se si mund të shkruani të tilla.</a>"
+msgstr "Rregullat e privatësisë shpjegojnë se si i trajtoni të dhënat e marra përmes aplikacionit tuaj. Për shembull: çfarë të dhënash merrni? Si i përdorni? Me kë i ndani? A merrni të dhëna personale? A ndërmerrni hapa për t’i bërë anonime? Çfarë zgjedhjesh i lejohen përdoruesit për të pasur kontroll mbi të dhënat që ju dhe të tjerë merrni prej tij? Jepni më sipër lidhjen për te ose tekstin e rregullave tuaja mbi privatësinë. Nëse nuk keni rregulla privatësie, <a href=\"{url}\" target=\"_blank\">mësoni më tepër se si mund të shkruani të tilla.</a>"
 
 #: mkt/submit/forms.py:293
 msgid "Homepage:"
@@ -7715,7 +7715,7 @@ msgstr "Faqe Hyrëse:"
 
 #: mkt/submit/forms.py:295
 msgid "If your app has another homepage, enter its address here."
-msgstr "Nëse zbatimi juaj ka një tjetër faqe hyrëse, jepeni adresën e saj këtu."
+msgstr "Nëse aplikacioni juaj ka një tjetër faqe hyrëse, jepeni adresën e saj këtu."
 
 #: mkt/submit/forms.py:298
 msgid "Website:"
@@ -7723,7 +7723,7 @@ msgstr "Sajt:"
 
 #: mkt/submit/forms.py:300
 msgid "If your app has a support website or forum, enter its address here."
-msgstr "Nëse zbatimi juaj ka një sajt ose forum web asistence, jepeni adresën e tij këtu."
+msgstr "Nëse aplikacioni juaj ka një sajt ose forum web asistence, jepeni adresën e tij këtu."
 
 #: mkt/submit/forms.py:304
 msgid "Email:"
@@ -7731,11 +7731,11 @@ msgstr "Email:"
 
 #: mkt/submit/forms.py:306
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
-msgstr "Kjo adresë email do të shfaqet botërisht te Marketplace-i dhe përdoret nga përdoruesit e zakonshëm për t’u lidhur me ju për çështje asistence. Kjo adresë email do të shfaqet botërisht te faqja e hollësive të zbatimit tuaj."
+msgstr "Kjo adresë email do të shfaqet botërisht te Marketplace-i dhe përdoret nga përdoruesit e zakonshëm për t’u lidhur me ju për çështje asistence. Kjo adresë email do të shfaqet botërisht te faqja e hollësive të aplikacionit tuaj."
 
 #: mkt/submit/forms.py:311
 msgid "Does your app require Flash support?"
-msgstr "Lyp zbatimi juaj mbulim të Flash-it?"
+msgstr "Lyp aplikacioni juaj mbulim të Flash-it?"
 
 #: mkt/submit/forms.py:317
 msgid "Your comments for reviewers"
@@ -7743,19 +7743,19 @@ msgstr "Komentet tuaja për shqyrtuesit"
 
 #: mkt/submit/forms.py:319
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
-msgstr "Para se të shfaqet publikisht në listat e Marketplace-it, zbatimi juaj do të merret në shqyrtim nga Mozilla. Jepni këtu çfarëdo udhëzimesh të veçanta për shqyrtuesit e zbatimit."
+msgstr "Para se të shfaqet publikisht në listat e Marketplace-it, aplikacioni juaj do të merret në shqyrtim nga Mozilla. Jepni këtu çfarëdo udhëzimesh të veçanta për shqyrtuesit e aplikacionit."
 
 #: mkt/submit/forms.py:324
 msgid "Once your app is approved, choose a publishing option:"
-msgstr "Pasi zbatimi juaj të jetë miratuar, zgjidhni një nga mundësitë e botimi:"
+msgstr "Pasi aplikacioni juaj të jetë miratuar, zgjidhni një nga mundësitë e botimi:"
 
 #: mkt/submit/forms.py:328
 msgid "My app works without an Internet connection."
-msgstr "Zbatimi im funksionon pa lidhje Internet."
+msgstr "Aplikacioni im funksionon pa lidhje Internet."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr "Përpunoni Hollësi Zbatimi"
+msgstr "Përpunoni Hollësi Aplikacioni"
 
 #: mkt/submit/templates/submit/details.html:16
 #: mkt/submit/templates/submit/done.html:8
@@ -7763,14 +7763,14 @@ msgstr "Përpunoni Hollësi Zbatimi"
 #: mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
-msgstr "Parashtrojeni Zbatimin"
+msgstr "Parashtrojeni Aplikacionin"
 
 #: mkt/submit/templates/submit/details.html:19
 #: mkt/submit/templates/submit/manifest.html:6
 #: mkt/submit/templates/submit/manifest.html:24
 #: mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr "Parashtroni një Zbatim"
+msgstr "Parashtroni një Aplikacion"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
@@ -7786,7 +7786,7 @@ msgstr "Të dhëna Asistence:"
 
 #: mkt/submit/templates/submit/details.html:115
 msgid "Screenshot or video of your app:"
-msgstr "Foto ekrani ose video e zbatimit tuaj:"
+msgstr "Foto ekrani ose video e aplikacionit tuaj:"
 
 #: mkt/submit/templates/submit/details.html:118
 msgid "You must provide at least one."
@@ -7806,31 +7806,31 @@ msgstr "Sukses! Po tani?"
 
 #: mkt/submit/templates/submit/done.html:18
 msgid "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
-msgstr "E ruajtëm zbatimin tuaj dhe e kemi gati! Zbatimi juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do t’ju duhet ta aktivizoni dorazi zbatimin prej <a href=\"%(url)s\">faqes Administroni Gjendje</a> që të jetë i dukshëm te faqet e zbatimeve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtimin e hollësive dhe rregullimeve të zbatimit tuaj."
+msgstr "E ruajtëm aplikacionin tuaj dhe e kemi gati! aplikacioni juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do t’ju duhet ta aktivizoni dorazi aplikacionin prej <a href=\"%(url)s\">faqes Administroni Gjendje</a> që të jetë i dukshëm te faqet e aplikacioneve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtimin e hollësive dhe rregullimeve të aplikacionit tuaj."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
-msgstr "Para se zbatimit juaj të marrë rrugën, lypset të jepni të dhëna për pagesa. Pasi të keni shtuar një llogari pagesash dhe çmime, zbatimi juaj do të parashtrohet për shqyrtim."
+msgstr "Para se aplikacionit juaj të marrë rrugën, lypset të jepni të dhëna për pagesa. Pasi të keni shtuar një llogari pagesash dhe çmime, aplikacioni juaj do të parashtrohet për shqyrtim."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's details and settings."
-msgstr "E ruajtëm zbatimin tuaj dhe e kemi gati! Zbatimi juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do të shfaqet te faqet e zbatimeve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtimin e hollësive dhe rregullimeve të zbatimit tuaj."
+msgstr "E ruajtëm aplikacionin tuaj dhe e kemi gati! aplikacioni juaj është në pritje të shqyrtimit dhe, pasi të jetë shqyrtuar, do të shfaqet te faqet e aplikacioneve dhe për kërkimet. Deri atëherë, jeni të lirë të merreni me përimtimin e hollësive dhe rregullimeve të aplikacionit tuaj."
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
-msgstr "Administro Zbatimet e Mia"
+msgstr "Administro Aplikacionet e Mia"
 
 #: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
-msgstr "Parashtroni Një Tjetër Zbatim"
+msgstr "Parashtroni Një Tjetër Aplikacion"
 
 #: mkt/submit/templates/submit/manifest.html:101
 msgid "App Minimum Requirements"
-msgstr "Domosdoshmëri Minimum të Zbatimit"
+msgstr "Domosdoshmëri Minimum të Aplikacionit"
 
 #: mkt/submit/templates/submit/manifest.html:106
 msgid "<b>What's next:</b> fill out the rest of your app's details"
-msgstr "<b>Po më tej:</b> plotësoni ç’mbetet nga hollësitë e zbatimit tuaj"
+msgstr "<b>Po më tej:</b> plotësoni ç’mbetet nga hollësitë e Aplikacionit tuaj"
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
@@ -7842,11 +7842,11 @@ msgstr "Thuajse Arritët!"
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr "Parashtroni Manifest Zbatimi"
+msgstr "Parashtroni Manifest Aplikacioni"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
-msgstr "Jepni Hollësi Zbatimi"
+msgstr "Jepni Hollësi Aplikacioni"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
@@ -7866,7 +7866,7 @@ msgstr "Në çfarëdo kohe, mundeni"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr "Rishikoni hollësitë e zbatimit tuaj te <a href=\"%(url)s\">Përpunoni Lista</a>"
+msgstr "Rishikoni hollësitë e aplikacionit tuaj te <a href=\"%(url)s\">Përpunoni Lista</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
@@ -7874,23 +7874,23 @@ msgstr "Shihni te <a href=\"%(url)s\">Parashtrimet e Mia</a> një listë të kre
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr "Kërkoni që zbatimi juaj të shfaqet për pajisje me kujtesë të pakët, te <a href=\"%(status_url)s\">Gjendje &amp; Versione</a>"
+msgstr "Kërkoni që aplikacioni juaj të shfaqet për pajisje me kujtesë të pakët, te <a href=\"%(status_url)s\">Gjendje &amp; Versione</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr "Kërkoni që zbatimi juaj të shfaqet për pajisje me kujtesë të pakët, te <a href=\"%(status_url)s\">Gjendje</a>"
+msgstr "Kërkoni që aplikacioni juaj të shfaqet për pajisje me kujtesë të pakët, te <a href=\"%(status_url)s\">Gjendje</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
-msgstr "Pasi zbatimi juaj të jetë shqyrtuar, do t’ju duhet ta botoni dorazi prej <a href=\"%(url)s\">Administroni Gjendje</a>. Mandej do të duket te faqet e listave dhe në kërkime, që të shijohet nga publiku."
+msgstr "Pasi aplikacioni juaj të jetë shqyrtuar, do t’ju duhet ta botoni dorazi prej <a href=\"%(url)s\">Administroni Gjendje</a>. Mandej do të duket te faqet e listave dhe në kërkime, që të shijohet nga publiku."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr "Zbatimi juaj u miratua! Tani duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
+msgstr "Aplikacioni juaj u miratua! Tani duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
 
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr "Pasi zbatimi juaj të jetë miratuar! do të duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
+msgstr "Pasi aplikacioni juaj të jetë miratuar! do të duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
@@ -7899,7 +7899,7 @@ msgstr "<strong>Po më tej:</strong> Rregulloni %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr "<strong>Po më tej:</strong> Botojeni Zbatimin Tuaj"
+msgstr "<strong>Po më tej:</strong> Botojeni Aplikacionin Tuaj"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
@@ -7907,7 +7907,7 @@ msgstr "Program Zhvilluesi për Marketplace-in"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to join the Marketplace Developer Program below."
-msgstr "Ngazëllehemi që ndërtuat një zbatim duke përdorur teknologji web, dhe parashtrimi te Firefox Marketplace-i është rruga më e mirë që përdoruesit ta gjejnë dhe ta shijojnë në pajisjet e tyre. Së pari, lypset të bëheni pjesë e Programit të Zhvilluesve për Marketplace më poshtë."
+msgstr "Ngazëllehemi që ndërtuat një aplikacion duke përdorur teknologji web, dhe parashtrimi te Firefox Marketplace-i është rruga më e mirë që përdoruesit ta gjejnë dhe ta shijojnë në pajisjet e tyre. Së pari, lypset të bëheni pjesë e Programit të Zhvilluesve për Marketplace më poshtë."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -7915,7 +7915,7 @@ msgstr "Për t’ia filluar, ju lutemi, lexoni dhe pranoni <strong>Marrëveshjen
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr "Mozilla mund të më dërgojë me email lajme dhe anketime që janë të fushës së Zhvilluesve të Zbatimeve"
+msgstr "Mozilla mund të më dërgojë me email lajme dhe anketime që janë të fushës së Zhvilluesve të Aplikacioneve"
 
 #: mkt/submit/tests/test_forms.py:307
 msgid "Héllo"
@@ -8007,7 +8007,7 @@ msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"
 
 #: mkt/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "një zhvillues zbatimi i përgjigjet një shqyrtimit tim"
+msgstr "një zhvillues aplikacioni i përgjigjet një shqyrtimit tim"
 
 #: mkt/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -8019,7 +8019,7 @@ msgstr "përputhshmëria e shtesës sime është përmirësuar me sukses"
 
 #: mkt/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr "shtesa sime e bazuar në sdk është përmirësuar me sukses"
+msgstr "shtesa ime e bazuar në sdk është përmirësuar me sukses"
 
 #: mkt/users/notifications.py:66
 msgid "someone writes a review of my add-on"
@@ -8027,7 +8027,7 @@ msgstr "dikush shkruan një shqyrtim të shtesës sime"
 
 #: mkt/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "dikush shkruan një shqyrtim të zbatimit tim"
+msgstr "dikush shkruan një shqyrtim të aplikacionit tim"
 
 #: mkt/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -8051,11 +8051,11 @@ msgstr "Mozilla ka nevojë të më kontaktojë rreth shtesës sime individuale"
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr "zbatimi im është shqyrtuar nga një redaktor"
+msgstr "aplikacioni im është shqyrtuar nga një redaktor"
 
 #: mkt/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr "Mozilla ka nevojë të më kontaktojë rreth zbatimit tim individual"
+msgstr "Mozilla ka nevojë të më kontaktojë rreth aplikacionit tim individual"
 
 #: mkt/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
@@ -8072,14 +8072,14 @@ msgstr "Njoftime Përdoruesish"
 #: mkt/users/tasks.py:18
 #: mkt/users/tasks.py:21
 msgid "Firefox Accounts is coming"
-msgstr "Firefox Accounts po vjen"
+msgstr "Llogari Firefox-i po vjen"
 
 #: mkt/users/tasks.py:19
 #: mkt/users/tasks.py:20
 #: mkt/users/tasks.py:22
 #: mkt/users/tasks.py:23
 msgid "Activate your Firefox Account"
-msgstr "Aktivizoni llogarinë tuaj Firefox Account"
+msgstr "Aktivizoni Llogarinë tuaj Firefox"
 
 #: mkt/users/views.py:67
 msgid "An email address is required."
@@ -8107,7 +8107,7 @@ msgstr "Aktivizojeni tani"
 
 #: mkt/users/templates/users/emails/base.html:122
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr "Për më tepër të dhëna mbi Firefox Accounts, ju lutemi, shihni <a href=\"%(faq)s\">FAQ</a>."
+msgstr "Për më tepër të dhëna mbi Llogari Firefox-i, ju lutemi, shihni <a href=\"%(faq)s\">FAQ</a>."
 
 #: mkt/users/templates/users/emails/base.html:136
 msgid "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href=\"%(privacy)s\">Privacy Policy</a>"
@@ -8115,21 +8115,21 @@ msgstr "Këtë email po e merrni ngaqë krijuat një llogari te Firefox Marketpl
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr "Firefox Marketplace ju ka kaluar te Firefox Accounts. Ju lutemi, aktivizoni llogarinë tuaj të re Firefox Account."
+msgstr "Firefox Marketplace ju ka kaluar te Llogari Firefox-i. Ju lutemi, aktivizoni Llogarinë tuaj të re Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:3
 #: mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr "Së shpejti, Firefox Marketplace do të shfuqizojë sistemin e tanishëm të hyrjeve (Persona-n), në favor të një sistemi llogarish përdoruesish shumë më të fuqishëm, të cilin e quajmë Firefox Accounts."
+msgstr "Së shpejti, Firefox Marketplace do të shfuqizojë sistemin e tanishëm të hyrjeve (Persona-n), në favor të një sistemi llogarish përdoruesish shumë më të fuqishëm, të cilin e quajmë Llogari Firefox-i."
 
 #: mkt/users/templates/users/emails/customers-before.html:4
 #: mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr "Kur kalimi nga Persona te Firefox Accounts të jetë gati, do të merrni një email me një lidhje aktivizimi."
+msgstr "Kur kalimi nga Persona te Llogari Firefox-i të jetë gati, do të merrni një email me një lidhje aktivizimi."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
-msgstr "Firefox Marketplace ka kaluar te Firefox Accounts, për të ofruar punim më të njëtrajtshëm dhe organik përmes krejt shërbimeve dhe produkteve Mozilla. Pasja e një llogarie Firefox Account ju lejon të përdorni zbatimet tuaja ekzistuese në Marketplace dhe t’i shijoni zbatimet njësoj në pajisje të ndryshme. Së afërmi priten më tepër shërbime."
+msgstr "Firefox Marketplace ka kaluar te Llogari Firefox-i, për të ofruar punim më të njëtrajtshëm dhe organik përmes krejt shërbimeve dhe produkteve Mozilla. Pasja e një Llogarie Firefox-i ju lejon të përdorni aplikacionet tuaja ekzistuese në Marketplace dhe t’i shijoni aplikacionet njësoj në pajisje të ndryshme. Së afërmi priten më tepër shërbime."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
@@ -8137,15 +8137,15 @@ msgstr "Aktivizimi i llogarisë suaj është i lehtë. Thjesht bëni hyrjen dhe 
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr "Që të mund të hyni dhe administroni zbatimet tuaja të shfaqur te Firefox Marketplace, duhet të aktivizoni llogarinë tuaj Firefox Account ."
+msgstr "Që të mund të hyni dhe administroni aplikacionet tuaja të shfaqur te Firefox Marketplace, duhet të aktivizoni Llogarinë tuaj Firefox."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr "Firefox Marketplace ju ka kaluar te Firefox Accounts. Ju lutemi, aktivizoni llogarinë tuaj të re."
+msgstr "Firefox Marketplace ju ka kaluar te Llogari Firefox-i. Ju lutemi, aktivizoni llogarinë tuaj të re."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr "E RËNDËSISHME: Duhet të aktivizoni llogarinë tuaj Firefox Account që të mund të hyni dhe administroni zbatimet tuaja të shfaqur te Firefox Marketplace."
+msgstr "E RËNDËSISHME: Duhet të aktivizoni Llogarinë tuaj Firefox që të mund të hyni dhe administroni aplikacionet tuaja të shfaqur te Firefox Marketplace."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -8188,7 +8188,7 @@ msgstr "Duhet të jepni një URL ose email asistence."
 
 #: mkt/webapps/models.py:1381
 msgid "You must provide an app name."
-msgstr "Duhet të jepni një emër zbatimi."
+msgstr "Duhet të jepni një emër aplikacioni."
 
 #: mkt/webapps/models.py:1383
 msgid "You must provide at least one device type."
@@ -8208,15 +8208,15 @@ msgstr "Duhet të rregulloni një llogari pagesash."
 
 #: mkt/webapps/models.py:1480
 msgid "This app's submission process has not been fully completed."
-msgstr "Procesi i parashtrimit për këtë zbatim nuk është plotësuar krejtësisht."
+msgstr "Procesi i parashtrimit për këtë aplikacion nuk është plotësuar krejtësisht."
 
 #: mkt/webapps/models.py:1487
 msgid "This app needs to get a content rating."
-msgstr "Ky zbatim duhet të marrë një klasifikim për lëndën."
+msgstr "Ky aplikacion duhet të marrë një klasifikim për lëndën."
 
 #: mkt/webapps/models.py:1493
 msgid "This app needs a payment account set up."
-msgstr "Ky zbatim lyp një llogari të rregulluar pagesash."
+msgstr "Ky aplikacion lyp një llogari të rregulluar pagesash."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2749
@@ -8243,7 +8243,7 @@ msgstr "Datë kandidimi në {region}"
 
 #: mkt/webapps/tasks.py:155
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr "Emetojeni me zbatimin tuaj app \"{app}\" te the Firefox Marketplace"
+msgstr "Emetojeni me aplikacionin tuaj \"{app}\" te the Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
@@ -8263,7 +8263,7 @@ msgstr "Regjistrohuni"
 
 #: templates/base.html:119
 msgid "Firefox Accounts has arrived"
-msgstr "Firefox Accounts mbërriti"
+msgstr "Llogari Firefox-i mbërriti"
 
 #: templates/base.html:122
 msgid "Learn how to transfer your account"

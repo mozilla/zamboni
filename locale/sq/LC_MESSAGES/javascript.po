@@ -44,7 +44,7 @@ msgstr "Përzgjidhni një kartelë..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Zbatimi juaj i paketuar do të duhej të përfundonte me <code>.zip</code>."
+msgstr "Aplikacioni juaj i paketuar do të duhej të përfundonte me <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
@@ -104,12 +104,12 @@ msgstr "Po përfundohet vleftësimi i {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Zbatimi juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizim."
-msgstr[1] "Zbatimi juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizime."
+msgstr[0] "Aplikacioni juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizim."
+msgstr[1] "Aplikacioni juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizime."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Zbatimi juaj e kaloi vleftësimin pa gabime ose sinjalizime."
+msgstr "Aplikacioni juaj e kaloi vleftësimin pa gabime ose sinjalizime."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -117,19 +117,19 @@ msgstr "Manifesti nuk u gjet dot në vendin e treguar."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "Nuk u kap dot streha e zbatimit."
+msgstr "Nuk u kap dot streha e aplikacionit."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr "Manifesti i zbatimit është i papërtypshëm."
+msgstr "Manifesti i aplikacionit është i papërtypshëm."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr "Manifesti i zbatimit është i pavlefshëm."
+msgstr "Manifesti i aplikacionit është i pavlefshëm."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "Zbatimi është tashmë i instaluar."
+msgstr "Aplikacioni është tashmë i instaluar."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
@@ -137,7 +137,7 @@ msgstr "Gabim i brendshëm shërbyesi"
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Gabim i brendshëm shërbyesi gjatë instalimit të zbatimit"
+msgstr "Gabim i brendshëm shërbyesi gjatë instalimit të aplikacionit"
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -146,8 +146,8 @@ msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
 #: media/js/devreg/devhub.js:218
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Zbatimi juaj dështoi në vleftësim me {0} gabim dhe {1} mesazh(e)."
-msgstr[1] "Zbatimi juaj dështoi në vleftësim me {0} gabime dhe {1} mesazh(e)."
+msgstr[0] "Aplikacioni juaj dështoi në vleftësim me {0} gabim dhe {1} mesazh(e)."
+msgstr[1] "Aplikacioni juaj dështoi në vleftësim me {0} gabime dhe {1} mesazh(e)."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors and {0} message."
@@ -328,8 +328,8 @@ msgstr "U zbulua: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimeve vijuese. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
-msgstr[1] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimit vijues. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
+msgstr[0] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej aplikacioneve vijuese. Aplikacionet pa një llogari pagesash nuk do të jepen më për shitje."
+msgstr[1] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej aplikacionit vijues. Aplikacionet pa një llogari pagesash nuk do të jepen më për shitje."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -358,7 +358,7 @@ msgstr "Kërkoni tema për <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "Kërkoni zbatime për <b>{0}</b>"
+msgstr "Kërkoni aplikacione për <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
@@ -397,11 +397,11 @@ msgstr "Prova Përputhshmërie"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "Vleftësimi i zbatimit dështoi."
+msgstr "Vleftësimi i aplikacionit dështoi."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr "Zbatimi e kaloi vleftësimin."
+msgstr "Aplikacioni e kaloi vleftësimin."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
@@ -441,11 +441,11 @@ msgstr "{name} po e shihte së pari këtë faqe."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr "Dëftesa u kontrollua nga zbatimi."
+msgstr "Dëftesa u kontrollua nga aplikacioni."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr "Dëftesa nuk qe kontrolluar nga zbatimi."
+msgstr "Dëftesa nuk qe kontrolluar nga aplikacioni."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
@@ -469,7 +469,7 @@ msgstr "S’u gjetën shënime versioni"
 
 #: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
-msgstr "Përzgjidhni së pari një zbatim"
+msgstr "Përzgjidhni së pari një aplikacion"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
@@ -501,11 +501,11 @@ msgstr "Pagimi dështoi. Riprovoni më vonë."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr "Zbatim i Paketuar"
+msgstr "Aplikacion i Paketuar"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr "Zbatim i Privilegjuar"
+msgstr "Aplikacion i Privilegjuar"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
@@ -517,7 +517,7 @@ msgstr "Përmban Koment Redaktori"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
-msgstr "Zbatim me Pagesë"
+msgstr "Aplikacion me Pagesë"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
@@ -533,27 +533,27 @@ msgstr "Çfarëdo"
 
 #: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr "Zbatim i miratuar: {app}"
+msgstr "Aplikacion i miratuar: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr "Zbatim i hedhur tej: {app}"
+msgstr "Aplikacion i hedhur tej: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr "Gabim në miratim zbatimi: {app}"
+msgstr "Gabim në miratim aplikacioni: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr "Gabim në hedhje tej zbatimi: {app}"
+msgstr "Gabim në hedhje tej aplikacioni: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr "Gabim në kalimin e zbatimit: {app}"
+msgstr "Gabim në kalimin e aplikacionit: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr "Gabim në ngeljen e zbatimit: {app}"
+msgstr "Gabim në ngeljen e aplikacionit: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
