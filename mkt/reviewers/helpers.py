@@ -139,7 +139,8 @@ def logs_tabnav(context):
     Each tuple contains three elements: (named url, tab_code, tab_text)
     """
     rv = [
-        ('reviewers.apps.logs', 'apps', _('Reviews'))
+        ('reviewers.apps.logs', 'logs', _('Reviews')),
+        ('reviewers.apps.moderatelog', 'moderatelog', _('Moderated Reviews')),
     ]
     return rv
 

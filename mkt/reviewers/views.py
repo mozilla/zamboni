@@ -50,6 +50,7 @@ from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
+                                 ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm)
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
                                   EditorSubscription, QUEUE_TARAKO,
@@ -630,7 +631,7 @@ def logs(request):
         today = datetime.date.today()
         data['start'] = today - datetime.timedelta(days=30)
 
-    form = forms.ReviewAppLogForm(data)
+    form = forms.ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_queue(webapp=True)
 
@@ -651,7 +652,7 @@ def logs(request):
 
     pager = paginate(request, approvals, 50)
     data = context(request, form=form, pager=pager, ACTION_DICT=mkt.LOG_BY_ID,
-                   tab='apps')
+                   tab='logs')
     return render(request, 'reviewers/logs.html', data)
 
 
@@ -1213,3 +1214,50 @@ class ReviewerScoreViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     # queryset to prevent instances with other note_key values from ever being
     # returned.
     queryset = ReviewerScore.objects.filter(note_key=mkt.REVIEWED_MANUAL)
+
+
+@reviewer_required
+def moderatelog(request):
+    form = ModerateLogForm(request.GET)
+    modlog = ActivityLog.objects.editor_events()
+    if form.is_valid():
+        if form.cleaned_data['start']:
+            modlog = modlog.filter(created__gte=form.cleaned_data['start'])
+        if form.cleaned_data['end']:
+            modlog = modlog.filter(created__lt=form.cleaned_data['end'])
+        if form.cleaned_data['search']:
+            modlog = modlog.filter(action=form.cleaned_data['search'].id)
+
+    pager = paginate(request, modlog, 50)
+    data = context(request, form=form, pager=pager, tab='moderatelog')
+    return render(request, 'reviewers/moderatelog.html', data)
+
+
+@reviewer_required
+def moderatelog_detail(request, eventlog_id):
+    log = get_object_or_404(ActivityLog.objects.editor_events(), pk=eventlog_id)
+    review = None
+    if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
+        review = log.arguments[1]
+
+    form = ModerateLogDetailForm(request.POST or None)
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    can_undelete = review and review.deleted and (
+                    is_admin or request.user.pk == log.user.pk)
+
+    if (request.method == 'POST' and form.is_valid() and
+        form.cleaned_data['action'] == 'undelete'):
+        if not can_undelete:
+            if not review:
+                raise RuntimeError('Review doesn`t exist.')
+            elif not review.deleted:
+                raise RuntimeError('Review isn`t deleted.')
+            else:
+                raise PermissionDenied
+        ReviewerScore.award_moderation_points(log.user, review.addon, review.id,
+                                              undo=True)
+        review.undelete()
+        return redirect('reviewers.apps.moderatelog.detail', eventlog_id)
+    data = context(request, log=log, form=form, review=review,
+                   can_undelete=can_undelete)
+    return render(request, 'reviewers/moderatelog_detail.html', data)

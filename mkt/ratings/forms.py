@@ -36,10 +36,8 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                 review = form.instance
                 addon = review.addon
                 if action == REVIEW_MODERATE_DELETE:
-                    review_addon = review.addon
-                    review_id = review.id
                     review.delete()
-                    mkt.log(mkt.LOG.DELETE_REVIEW, review_addon, review_id,
+                    mkt.log(mkt.LOG.DELETE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,
@@ -47,11 +45,11 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.user, addon, review_id)
+                            self.request.user, addon, review.id)
                 elif action == REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
-                    mkt.log(mkt.LOG.APPROVE_REVIEW, review.addon, review,
+                    mkt.log(mkt.LOG.APPROVE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,

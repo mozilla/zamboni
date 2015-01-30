@@ -5,6 +5,7 @@ from django.core.cache import cache
 from django.db import models
 
 import bleach
+from caching.base import CachingQuerySet
 from celeryutils import task
 from tower import ugettext_lazy as _
 
@@ -18,10 +19,30 @@ log = logging.getLogger('z.review')
 
 class ReviewManager(ManagerBase):
 
+    def __init__(self, include_deleted=False):
+        super(ReviewManager, self).__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(ReviewManager, self).get_queryset()
+        qs = qs._clone(klass=ReviewQuerySet)
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+        return qs
+
     def valid(self):
         """Get all reviews that aren't replies."""
-        # Use extra because Django wants to do a LEFT OUTER JOIN.
-        return self.extra(where=['reply_to IS NULL'])
+        return self.filter(reply_to__isnull=True)
+
+
+class ReviewQuerySet(CachingQuerySet):
+    """
+    A queryset modified for soft deletion.
+    """
+
+    def delete(self):
+        for review in self:
+            review.delete()
 
 
 class Review(ModelBase):
@@ -39,7 +60,7 @@ class Review(ModelBase):
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
-    sandbox = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
 
     # Denormalized fields for easy lookup queries.
     # TODO: index on addon, user, latest
@@ -51,6 +72,7 @@ class Review(ModelBase):
         help_text="How many previous reviews by the user for this add-on?")
 
     objects = ReviewManager()
+    with_deleted = ReviewManager(include_deleted=True)
 
     class Meta:
         db_table = 'reviews'
@@ -58,6 +80,12 @@ class Review(ModelBase):
 
     def get_url_path(self):
         return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
+
+    def delete(self):
+        self.update(deleted=True)
+
+    def undelete(self):
+        self.update(deleted=False)
 
     @classmethod
     def get_replies(cls, reviews):
@@ -73,12 +101,6 @@ class Review(ModelBase):
         if created:
             # Avoid slave lag with the delay.
             check_spam.apply_async(args=[instance.id], countdown=600)
-
-    @staticmethod
-    def post_delete(sender, instance, **kwargs):
-        if kwargs.get('raw'):
-            return
-        instance.refresh(update_denorm=True)
 
     def refresh(self, update_denorm=False):
         from . import tasks
@@ -101,8 +123,6 @@ class Review(ModelBase):
 
 models.signals.post_save.connect(Review.post_save, sender=Review,
                                  dispatch_uid='review_post_save')
-models.signals.post_delete.connect(Review.post_delete, sender=Review,
-                                   dispatch_uid='review_post_delete')
 models.signals.pre_save.connect(save_signal, sender=Review,
                                 dispatch_uid='review_translations')
 

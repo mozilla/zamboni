@@ -38,3 +38,8 @@ class TestSpamTest(mkt.site.tests.TestCase):
         index_webapps.reset_mock()
         addon_review_aggregates(self.app.pk)
         assert index_webapps.called
+
+    def test_soft_delete(self):
+        Review.objects.all()[0].delete()
+        eq_(Review.objects.count(), 1)
+        eq_(Review.with_deleted.count(), 2)

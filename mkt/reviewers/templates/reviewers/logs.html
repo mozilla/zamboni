@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  {{ macros.log_filter(form) }}
+  {{ macros.log_filter(form, 'reviewers.apps.logs') }}
   {{ macros.tabnav('logs', tab, logs_tabnav() ) }}
 
   <section class="island">
