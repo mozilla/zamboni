@@ -17,7 +17,7 @@ from rest_framework.request import Request
 
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
-from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
+from mkt.api.models import Access, ACCESS_TOKEN, REQUEST_TOKEN, Token
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -127,7 +127,7 @@ class BaseOAuth(BaseAPI):
         self.profile = self.user = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',
-                                            secret=generate(),
+                                            secret='super secret',
                                             user=self.user)
         self.client = OAuthClient(self.access, api_name=api_name)
         self.anon = OAuthClient(None, api_name=api_name)
@@ -154,7 +154,7 @@ class RestOAuth(BaseOAuth):
     def login_user(self):
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',
-                                            secret=generate(),
+                                            secret='super secret',
                                             user=self.user)
         self.client = RestOAuthClient(self.access)
         self.anon = RestOAuthClient(None)
@@ -170,7 +170,7 @@ class Test3LeggedOAuthFlow(TestCase):
         self.app_name = 'Mkt Test App'
         self.redirect_uri = 'https://example.com/redirect_target'
         self.access = Access.objects.create(key='oauthClientKeyForTests',
-                                            secret=generate(),
+                                            secret='super secret',
                                             user=self.user,
                                             redirect_uri=self.redirect_uri,
                                             app_name=self.app_name)
@@ -203,8 +203,8 @@ class Test3LeggedOAuthFlow(TestCase):
         Token.generate_new(ACCESS_TOKEN, creds=self.access, user=self.user2)
         url, auth_header = self._oauth_request_info(
             url, client_key=self.access.key,
-            client_secret=self.access.secret, resource_owner_key=generate(),
-            resource_owner_secret=generate())
+            client_secret=self.access.secret, resource_owner_key='test_ro_key',
+            resource_owner_secret='test_ro_secret')
         auth = authentication.RestOAuthAuthentication()
         req = RequestFactory().get(
             url, HTTP_HOST='testserver',
@@ -283,8 +283,9 @@ class Test3LeggedOAuthFlow(TestCase):
                                reverse('mkt.developers.oauth_access_request'))
         url, auth_header = self._oauth_request_info(
             url, client_key=t.key, client_secret=t.secret,
-            resource_owner_key=generate(), resource_owner_secret=generate(),
-            verifier=generate(), callback_uri=self.access.redirect_uri)
+            resource_owner_key='test_ro_key',
+            resource_owner_secret='test_ro_secret',
+            verifier='test_verifier', callback_uri=self.access.redirect_uri)
         res = self.client.get(url, HTTP_HOST='testserver',
                               HTTP_AUTHORIZATION=auth_header)
         eq_(res.status_code, 401)
@@ -310,7 +311,7 @@ class Test3LeggedOAuthFlow(TestCase):
         url = urlparse.urljoin(settings.SITE_URL,
                                reverse('mkt.developers.oauth_token_request'))
         url, auth_header = self._oauth_request_info(
-            url, client_key=self.access.key, client_secret=generate(),
+            url, client_key=self.access.key, client_secret='test_cli_secret',
             callback_uri=self.access.redirect_uri)
 
         res = self.client.get(url, HTTP_HOST='testserver',
@@ -328,7 +329,7 @@ class Test2LeggedOAuthFlow(TestCase):
         self.app_name = 'Mkt Test App'
         self.redirect_uri = 'https://example.com/redirect_target'
         self.access = Access.objects.create(key='oauthClientKeyForTests',
-                                            secret=generate(),
+                                            secret='test_2leg_secret',
                                             user=self.user,
                                             redirect_uri=self.redirect_uri,
                                             app_name=self.app_name)
