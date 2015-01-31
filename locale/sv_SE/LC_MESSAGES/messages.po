@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-07 22:51+0000\n"
+"PO-Revision-Date: 2015-01-31 16:59+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420671098.0\n"
+"X-POOTLE-MTIME: 1422723588.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -359,7 +359,7 @@ msgstr "Tjeckien"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Danmark"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -1974,7 +1974,7 @@ msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
-msgstr "Resten av världen"
+msgstr "Övriga världen"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
@@ -3706,11 +3706,11 @@ msgstr "Denna app kräver inga funktioner på enheten"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Intern identifierare för denna app på Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4328,6 +4328,8 @@ msgstr "Faktureringsmetod"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Eftersom \"Övriga världen\" har valts kommer appen att kunna köpas i alla "
+"aktiverade \"<a href=\"#regions-other\">andra regioner</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4336,6 +4338,8 @@ msgstr "Andra regioner"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"För att utesluta din app från att visas i en region, kan du avmarkera den "
+"regionen innan du sparar."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4540,6 +4544,8 @@ msgstr "Din app kommer att visas i de regionala Marketplace som läggs till i fr
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Med förbehåll för betalningar är tillgängliga i den regionen för den valda "
+"prisnivån eller \"Övriga världen\" har valts som betalningsalternativ)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -4754,7 +4760,7 @@ msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:97
 msgid "General Notes"
-msgstr "General Notes"
+msgstr "Allmänna anteckningar"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:109
 msgid "Intro to Manifests"
@@ -5045,6 +5051,8 @@ msgstr "Webbappens manifest är inte giltig JSON."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Rollen \"langpack\" är ogiltigt för Webbappar. Skicka in denna app som ett "
+"språkpaket istället."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5168,31 +5176,36 @@ msgstr "Produktens logotyp måste vara en 64x64px bild. Kontrollera att URL:en �
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Ditt språkpaket bör innehålla \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Ditt språkpaket måste innehålla ett språk i objektet `languages-provided`."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Ditt språkpaket innehåller för många språk. Endast ett språk per paket "
+"stöds."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Ditt språkpaket måste innehålla ett språk i objektet `languages-target`."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Ditt språkpaket innehåller för många mål. Endast ett mål per paket stöds."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Ditt språkpaket bör innehålla en version."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr ""
+msgstr "Versionen för ditt språkpaket måste skilja sig för den du byter ut."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5386,7 +5399,7 @@ msgstr "<small>Marketplace</small> sökverktyg"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Information Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5402,35 +5415,40 @@ msgstr "Relaterad transaktion"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Information betalningsleverantör"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "För närvarande kan inte transaktionsstatus hämtas."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Denna betalning gjordes genom Bango. För att få mer information kontakta <a "
+"href=\"mailto:%(bango_support)s\">support för Bango</a> med följande "
+"information."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Denna betalning gjordes genom en <b>referensimplementering</ b>. Det var "
+"ingen riktig transaktion."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Betalat belopp"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "Sök-id"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Tidsstämpel"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Återbetalningsinformation"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6557,11 +6575,11 @@ msgstr "Granskad"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Trend"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
-msgstr "Alla app-typer"
+msgstr "Trend"
 
 #: mkt/search/forms.py:29
 msgid "Privileged packaged app"
@@ -6897,11 +6915,11 @@ msgstr "{user} godkände {review} för {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Granskning {review} för {addon} borttagen."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} tog bort {review} för {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
