@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-09 13:30+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-01-31 15:13+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420810207.0\n"
+"X-POOTLE-MTIME: 1422717188.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -365,7 +365,7 @@ msgstr "Česká Republika"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Dánsko"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -3717,11 +3717,11 @@ msgstr "Tato aplikace nevyžaduje žádnou funkci zařízení"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Interní identifikátor této aplikace na Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4343,6 +4343,9 @@ msgstr "Platební metoda"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Jelikož je pro vaši aplikaci zvoleno \"Zbytek světa\", aplikace bude dostupná "
+"k zakoupení ve všech povolených \"<a href=\"#regions-other\">Ostatních "
+"regionech</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4351,6 +4354,8 @@ msgstr "Ostatní regiony"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Pokud chcete nastavit, aby se aplikace v určitém regionu nezobrazovala, "
+"zrušte jeho označení před uložením."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -5059,6 +5064,8 @@ msgstr "Manifest webapp není platný formát JSON."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Role \"langpack\" je pro webové aplikace neplatná. Nahrajte prosím tuto "
+"aplikace jako jazykový balíček."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5182,31 +5189,41 @@ msgstr "Logo produktu musí být obrázek o rozměrech 64x64. Zkontrolujte, zda 
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Váš jazykový balíček by měl obsahovat \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Váš jazykový balíček smí obsahovat pouze jeden jazyk v objektu `languages-"
+"provided`."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Váš jazykový balíček obsahuje příliš mnoho jazyků. Pro jeden balíček je "
+"podporován pouze jeden jazyk."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Váš jazykový balíček smí obsahovat pouze jeden jazyk v objektu `languages-"
+"target`."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Váš jazykový balíček obsahuje příliš mnoho cílů. Pro jeden balíček je "
+"podporován pouze jeden cíl."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Váš jazykový balíček by měl obsahovat verzi."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"Verze vašeho jazykového balíčku musí být odlišná od verze, kterou "
+"nahrazujete."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5402,7 +5419,7 @@ msgstr "Nástroje redaktora <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Informace Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5418,35 +5435,40 @@ msgstr "Související transakce"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informace poskytovatele platby"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Stav transakce nyní nelze zjistit."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Tato platba byla odeslána přes Bango. Pro více informací kontaktujte <a "
+"href=\"mailto:%(bango_support)s\">podporu Bango</a> s následujícími "
+"informacemi."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Tato platba byla odeslána přes <b>referenční implementaci</b>. Nejde o "
+"skutečnou transakci."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Výše platby"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "Lookup id"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Časová značka"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Informace pro vrácení"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6923,11 +6945,11 @@ msgstr "Uživatel {user} schválil recenzi {review} pro doplněk {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Recenze {review} pro {addon} byla smazána."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} smazal(a) {review} pro {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
