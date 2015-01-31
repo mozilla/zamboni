@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-30 22:34+0000\n"
+"PO-Revision-Date: 2015-01-31 19:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422657250.0\n"
+"X-POOTLE-MTIME: 1422732628.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2410,7 +2410,7 @@ msgstr "Płaćenske mjeno"
 
 #: mkt/developers/forms_payments.py:525
 msgid "You cannot remove a payment account from an app."
-msgstr "Móžeće płaćenske konto z nałoženja wotstronić."
+msgstr "Njemóžeće płaćenske konto z nałoženja wotstronić."
 
 #: mkt/developers/forms_payments.py:529
 msgid "You are not permitted to change payment accounts."
