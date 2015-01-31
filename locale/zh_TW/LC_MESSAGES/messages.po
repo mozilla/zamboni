@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-09 05:54+0000\n"
+"PO-Revision-Date: 2015-01-31 14:46+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420782844.0\n"
+"X-POOTLE-MTIME: 1422715563.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -360,7 +360,7 @@ msgstr "捷克"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "丹麥"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -3705,11 +3705,11 @@ msgstr "這個應用程式不需要裝置支援任何功能就能運作。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "此應用程式在 Firefox Marketplace 上的內部識別代號。"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4327,7 +4327,7 @@ msgstr "付款方式"
 
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr ""
+msgstr "選擇「世界上的其他地區」代表您的程式將會在「<a href=\"#regions-other\">其他地區</a>」上架。"
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4335,7 +4335,7 @@ msgstr "其他地區"
 
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr ""
+msgstr "要讓您的程式不在某個地區上架，您可以取消勾選該地區並儲存。"
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4537,7 +4537,7 @@ msgstr "您的應用程式將於未來 Marketplace 可用的所有區域上架�
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr ""
+msgstr "（視該區域是否已開放使用指定的價格來購買程式，或付款選項中選擇了「世界上的其他地區」）。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5036,7 +5036,7 @@ msgstr "這個 webapp 的安裝資訊檔不是有效的 JSON。"
 
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
-msgstr ""
+msgstr "網頁應用程式沒有「langpack」的角色，請將此程式改用語言包的方式上架。"
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5167,31 +5167,31 @@ msgstr "產品圖示必須是 64x64 的圖像，請確認網址是否正確。"
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "您的語言包應包含 \"role\": \"langpack\"。"
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
-msgstr ""
+msgstr "您的語言包的 `languages-provided` 物件中必須包含一種語言。"
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
-msgstr ""
+msgstr "您的語言包當中有太多語言，一個語言包中僅能包含一種語言。"
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
-msgstr ""
+msgstr "您的語言包的 `languages-target` 物件中必須包含一種語言。"
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
-msgstr ""
+msgstr "您的語言包中有太多目標，一個語言包中僅能有一個目標。"
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "您的語言包應該要有版本。"
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr ""
+msgstr "您的語言包版本應該與您正要取代的版本不同。"
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5389,7 +5389,7 @@ msgstr "<small>Marketplace</small> 尋找工具"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Marketplace 資訊"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5405,35 +5405,37 @@ msgstr "相關交易"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "付款服務供應商資訊"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "目前無法取回交易狀態。"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"此交易係經由 Bango 完成。若需更多資訊，請聯絡 <a href=\"mailto:%(bango_support)s\">Bango "
+"技術支援</a>，並在信中包含下列資訊。"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr ""
+msgstr "此交易係經由 <b>參考實作</b> 完成，這不是真的交易。"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "付款金額"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "Lookup id"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "時間戳記"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "退款資訊"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6566,7 +6568,7 @@ msgstr "已審核"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "趨勢"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6909,11 +6911,11 @@ msgstr "{user} 已通過 {addon} 的 {review}。"
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "已刪除 {addon} 的評論 {review}。"
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} 刪除了 {addon} 的評論 {review}。"
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
