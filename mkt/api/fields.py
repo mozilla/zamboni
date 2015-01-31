@@ -73,14 +73,15 @@ class TranslationSerializerField(fields.WritableField):
       dictionary. If a string is given, it'll be considered to be in the
       default language.
 
-    - When serializing, its behavior depends on the parent's serializer context:
+    - When serializing, its behavior depends on the parent's serializer
+      context:
 
-      If a request was included, and its method is 'GET', and a 'lang' parameter
-      was passed, then only returns one translation (letting the TranslatedField
-      figure out automatically which language to use).
+      If a request was included, and its method is 'GET', and a 'lang'
+      parameter was passed, then only returns one translation (letting the
+      TranslatedField figure out automatically which language to use).
 
-      Else, just returns a dict with all translations for the given `field_name`
-      on `obj`, with languages as the keys.
+      Else, just returns a dict with all translations for the given
+      `field_name` on `obj`, with languages as the keys.
     """
     default_error_messages = {
         'min_length': _('The field must have a length of at least {num} '
@@ -104,10 +105,10 @@ class TranslationSerializerField(fields.WritableField):
             self.requested_language = request.GET['lang']
 
     def fetch_all_translations(self, obj, source, field):
-        translations = field.__class__.objects.filter(id=field.id,
-            localized_string__isnull=False)
+        translations = field.__class__.objects.filter(
+            id=field.id, localized_string__isnull=False)
         return dict((to_language(trans.locale), unicode(trans))
-                        for trans in translations) if translations else None
+                    for trans in translations) if translations else None
 
     def fetch_single_translation(self, obj, source, field):
         return unicode(field) if field else None
@@ -207,8 +208,8 @@ class ESTranslationSerializerField(TranslationSerializerField):
     def field_to_native(self, obj, field_name):
         if field_name:
             field_name = '%s%s' % (field_name, self.suffix)
-        return super(ESTranslationSerializerField, self).field_to_native(obj,
-            field_name)
+        return super(ESTranslationSerializerField, self).field_to_native(
+            obj, field_name)
 
 
 class SplitField(fields.Field):
@@ -263,7 +264,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
     `render_as` argument (either "pk" or "slug") to indicate how to
     serialize.
     """
-    default_error_messages = serializers.SlugRelatedField.default_error_messages
+    default_error_messages = (serializers.SlugRelatedField
+                              .default_error_messages)
     read_only = False
 
     def __init__(self, *args, **kwargs):
@@ -283,8 +285,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
 
     def from_native(self, data):
         if self.queryset is None:
-            raise Exception('Writable related fields must include a `queryset` '
-                            'argument')
+            raise Exception('Writable related fields must include a '
+                            '`queryset` argument')
 
         try:
             return self.queryset.get(pk=data)
@@ -356,7 +358,7 @@ class SlugChoiceField(serializers.ChoiceField):
         data = super(SlugChoiceField, self).metadata()
         data['choices'] = [{'value': v,
                             'display_name': unicode(getattr(n, 'name', n))}
-                            for v, n in self.choices]
+                           for v, n in self.choices]
         return data
 
     def to_native(self, value):

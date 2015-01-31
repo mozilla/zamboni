@@ -145,8 +145,10 @@ REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 # Provide a dict for looking up the region by slug that includes aliases:
 # - "worldwide" is an alias for RESTOFWORLD (bug 940561).
 # - "gb" is an alias for GBR (bug 973883).
-REGION_LOOKUP = dict(REGIONS_DICT.items() +
-                     [('worldwide', RESTOFWORLD), ('gb', GBR)])
+# Note: GBR is inserted into globals() above
+REGION_LOOKUP = dict(
+    REGIONS_DICT.items() +
+    [('worldwide', RESTOFWORLD), ('gb', GBR)])  # flake8: noqa
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 

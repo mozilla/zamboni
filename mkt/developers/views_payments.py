@@ -180,7 +180,7 @@ def payments(request, addon_id, addon, webapp=False):
                    'all_paid_region_ids_by_name': paid_region_ids_by_name,
                    'providers': providers,
                    'provider_regions': provider_regions,
-                  })
+                   })
 
 
 @login_required
@@ -359,8 +359,8 @@ def require_in_app_payments(render_view):
                             args=[addon.app_slug])
         if addon.premium_type not in mkt.ADDON_INAPPS:
             messages.error(
-                    request,
-                    _('Your app is not configured for in-app payments.'))
+                request,
+                _('Your app is not configured for in-app payments.'))
             return redirect(setup_url)
         if not addon.has_payment_account():
             messages.error(request, _('No payment account for this app.'))
@@ -477,8 +477,9 @@ def bango_portal_from_addon(request, addon_id, addon, webapp=True):
     else:
         account = bango.payment_account
 
-    if not ((addon.authors.filter(pk=request.user.pk,
-                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()) and
+    if not ((addon.authors.filter(
+             pk=request.user.pk,
+             addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()) and
             (account.solitude_seller.user.id == request.user.id)):
         log.error(('User not allowed to reach the Bango portal; '
                    'pk=%s') % request.user.pk)

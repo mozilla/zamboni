@@ -10,8 +10,9 @@ SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
 SITE_URL = 'https://marketplace-dev.allizom.org'
 BROWSERID_AUDIENCES = [SITE_URL, 'localhost', 'localhost:8675']
-STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev-cdn.allizom.org/')
-#STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev.mozflare.net/')
+STATIC_URL = os.getenv('CUSTOM_CDN',
+                       'https://marketplace-dev-cdn.allizom.org/')
+# STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev.mozflare.net/')
 
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 
@@ -39,10 +40,15 @@ SYSLOG_CSP = "http_app_mkt_dev_csp"
 STATSD_PREFIX = 'marketplace-dev'
 
 # Redis
-REDIS_BACKEND = getattr(private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
-REDIS_BACKENDS_CACHE_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE', private.REDIS_BACKENDS_CACHE_SLAVE)
-REDIS_BACKENDS_MASTER = getattr(private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
-REDIS_BACKENDS_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
+REDIS_BACKEND = getattr(
+    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
+REDIS_BACKENDS_CACHE_SLAVE = getattr(
+    private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE',
+    private.REDIS_BACKENDS_CACHE_SLAVE)
+REDIS_BACKENDS_MASTER = getattr(
+    private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
+REDIS_BACKENDS_SLAVE = getattr(
+    private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
 
 REDIS_BACKENDS = {
     'cache': REDIS_BACKEND,
@@ -51,7 +57,7 @@ REDIS_BACKENDS = {
     'slave': REDIS_BACKENDS_SLAVE,
 }
 
-## Celery
+# Celery
 BROKER_URL = private_mkt.BROKER_URL
 CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
@@ -89,12 +95,12 @@ HIDDEN_LANGUAGES = (
     'cy',
 )
 
-#Bug 748403
+# Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
 
-#Bug 793876
+# Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
@@ -106,7 +112,7 @@ GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
-#RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
+# RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
@@ -146,9 +152,9 @@ IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # flake8: noqa
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # flake8: noqa
 IARC_ALLOW_CERT_REUSE = True
 
 # We'll use zippy, the reference implementation on -dev.

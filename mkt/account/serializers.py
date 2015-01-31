@@ -111,8 +111,10 @@ class PermissionsSerializer(serializers.Serializer):
             'developer': request.user.is_developer,
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
-            'curator': allowed('Collections', 'Curate') or
-                       allowed('Feed', 'Curate'),
+            'curator': (
+                allowed('Collections', 'Curate') or
+                allowed('Feed', 'Curate')
+            ),
             'reviewer': acl.action_allowed(request, 'Apps', 'Review'),
             'webpay': (allowed('Transaction', 'NotifyFailure')
                        and allowed('ProductIcon', 'Create')),

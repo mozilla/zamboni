@@ -578,7 +578,7 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
         tasks.region_email([self.app.id], [mkt.regions.BRA])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: Brazil region added to the Firefox Marketplace'
-                          % self.app.name)
+            % self.app.name)
         eq_(msg.to, ['steamcube@mozilla.com'])
         dev_url = ('http://omg.org/developers/app/something-something/'
                    'edit#details')

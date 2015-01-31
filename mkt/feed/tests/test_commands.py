@@ -1,7 +1,7 @@
 from django.core.management import call_command
 
 from mpconstants import collection_colors as colors
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 from mkt.feed.models import FeedApp, FeedCollection
 from mkt.site.tests import app_factory, TestCase

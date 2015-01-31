@@ -149,8 +149,8 @@ class _TestTranslationSerializerField(object):
         """
         # Note that we don't go through the middlewares etc so the actual
         # language for the process isn't changed, we don't care as
-        # _expect_single_string() method simply tests with the current language,
-        # whatever it is.
+        # _expect_single_string() method simply tests with the current
+        # language, whatever it is.
         request = Request(self.factory.get('/', {'lang': 'lol'}))
         eq_(request.GET['lang'], 'lol')
         mock_serializer = Serializer()
@@ -168,11 +168,13 @@ class _TestTranslationSerializerField(object):
         eq_(result, None)
 
 
-class TestTranslationSerializerField(_TestTranslationSerializerField, TestCase):
+class TestTranslationSerializerField(_TestTranslationSerializerField,
+                                     TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
 
-class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase):
+class TestESTranslationSerializerField(_TestTranslationSerializerField,
+                                       TestCase):
     field_class = ESTranslationSerializerField
 
     def setUp(self):
@@ -214,8 +216,8 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase
             }]
         }
         self.app = Webapp()
-        self.field_class().attach_translations(self.app, data, 'foo',
-            target_name='bar')
+        self.field_class().attach_translations(
+            self.app, data, 'foo', target_name='bar')
         eq_(self.app.bar_translations, {'testlang': 'teststring',
                                         'testlang2': 'teststring2'})
 
@@ -312,7 +314,7 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              many=True)
         field.field_from_native({'apps': [self.app.pk, app2.pk]}, None,
-                                 'apps', into)
+                                'apps', into)
         eq_(into, {'apps': [self.app, app2]})
 
     def test_parse_as_slug(self):

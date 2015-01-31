@@ -36,7 +36,7 @@ class TestEmailPreview(mkt.site.tests.TestCase):
                              from_email='admin@mozilla.org',
                              recipient_list=['funnyguy@mozilla.org'])
         r = self.client.get(reverse('zadmin.email_preview_csv',
-                            args=[self.topic.topic]))
+                                    args=[self.topic.topic]))
         eq_(r.status_code, 200)
         rdr = csv.reader(StringIO(r.content))
         eq_(rdr.next(), ['from_email', 'recipient_list', 'subject', 'body'])
@@ -164,14 +164,14 @@ class TestEmailDevs(mkt.site.tests.TestCase):
 
     def test_only_desktop_apps(self):
         AddonDeviceType.objects.create(addon=self.addon,
-            device_type=mkt.DEVICE_MOBILE.id)
+                                       device_type=mkt.DEVICE_MOBILE.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
         mail.outbox = []
         AddonDeviceType.objects.create(addon=self.addon,
-            device_type=mkt.DEVICE_DESKTOP.id)
+                                       device_type=mkt.DEVICE_DESKTOP.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)

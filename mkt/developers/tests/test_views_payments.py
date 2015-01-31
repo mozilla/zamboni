@@ -38,13 +38,12 @@ TEST_PACKAGE_ID = '2'
 
 def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
     seller = SolitudeSeller.objects.create(user=user, uuid=uid)
-    payment = PaymentAccount.objects.create(user=user, solitude_seller=seller,
-                                            agreed_tos=True, seller_uri=uid,
-                                            uri=uid,
-                                            account_id=package_id)
-    return AddonPaymentAccount.objects.create(addon=app,
-        product_uri='/path/to/%s/' % app.pk, account_uri=payment.uri,
-        payment_account=payment)
+    payment = PaymentAccount.objects.create(
+        user=user, solitude_seller=seller, agreed_tos=True, seller_uri=uid,
+        uri=uid, account_id=package_id)
+    return AddonPaymentAccount.objects.create(
+        addon=app, product_uri='/path/to/%s/' % app.pk,
+        account_uri=payment.uri, payment_account=payment)
 
 
 class InappTest(mkt.site.tests.TestCase):
@@ -612,8 +611,8 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         return acct, user
 
     def is_owner(self, user):
-        return (self.webapp.authors.filter(pk=user.pk,
-                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
+        return (self.webapp.authors.filter(
+            pk=user.pk, addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
 
     def test_associate_acct_to_app_free_inapp(self):
         acct, user = self.setup_payment_acct(make_owner=True)
@@ -649,7 +648,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             self.url, self.get_postdata({'price': self.price.pk,
                                          'accounts': acct.pk,
                                          'regions': ALL_REGION_IDS}),
-                                         follow=True)
+            follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('#paid-island-incomplete.hidden')), 1)
@@ -771,7 +770,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             self.url, self.get_postdata({'accounts': owner_acct.pk,
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}),
-                                         follow=True)
+            follow=True)
         assert (AddonPaymentAccount.objects
                                    .filter(addon=self.webapp).exists())
 
@@ -794,7 +793,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             self.url, self.get_postdata({'accounts': owner_acct2.pk,
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}),
-                                         follow=True)
+            follow=True)
         eq_(res.status_code, 200)
         self.assertNoFormErrors(res)
         pqr = pq(res.content)
@@ -814,7 +813,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
             self.url, self.get_postdata({'accounts': acct.pk,
                                          'price': self.price.pk,
                                          'regions': ALL_REGION_IDS}),
-                                         follow=True)
+            follow=True)
         mkt.set_user(self.other)
         # Make this user a dev so they have access to the payments page.
         AddonUser.objects.create(addon=self.webapp,
@@ -840,10 +839,10 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         assert self.is_owner(self.other)
         # Associate account with app.
         res = self.client.post(self.url,
-                  self.get_postdata({'accounts': owner_acct.pk,
-                                     'price': self.price.pk,
-                                     'regions': ALL_REGION_IDS}),
-                                     follow=True)
+                               self.get_postdata({'accounts': owner_acct.pk,
+                                                  'price': self.price.pk,
+                                                  'regions': ALL_REGION_IDS}),
+                               follow=True)
         self.assertNoFormErrors(res)
         # Login as admin.
         self.login(self.admin)
@@ -889,7 +888,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         self.login(self.user)
         self.account = setup_payment_account(self.webapp, self.user)
         self.portal_url = self.webapp.get_dev_url(
-                               'payments.bango_portal_from_addon')
+            'payments.bango_portal_from_addon')
 
     def test_template_switches(self):
         payments_url = self.webapp.get_dev_url('payments')
@@ -906,7 +905,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         payments_url = self.webapp.get_dev_url('payments')
         res = self.client.get(payments_url)
         account_template = self.extract_script_template(
-                                res.content, '#account-row-template')
+            res.content, '#account-row-template')
         eq_(len(account_template('.portal-account')), 1)
 
     @mock.patch('mkt.developers.views_payments.client.api')

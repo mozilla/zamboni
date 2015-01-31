@@ -56,14 +56,14 @@ class TestPotatoCaptchaSerializer(TestCase):
 
 class TestURLSerializerMixin(TestCase):
     SerializerClass = type('Potato', (URLSerializerMixin, Serializer),
-                          {'Meta': None})
+                           {'Meta': None})
     Struct = type('Struct', (object,), {})
     url_basename = 'potato'
 
     def setUp(self):
         self.SerializerClass.Meta = type('Meta', (self.Struct,),
-                                        {'model': UserProfile,
-                                         'url_basename': self.url_basename})
+                                         {'model': UserProfile,
+                                          'url_basename': self.url_basename})
         self.request = RequestFactory().get('/')
         self.request.API_VERSION = 1
         self.serializer = self.SerializerClass(

@@ -38,27 +38,25 @@ from mkt.api.models import Access
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
-                                  AppFormMedia, AppFormSupport,
-                                  AppFormTechnical, AppVersionForm,
-                                  CategoryForm, ContentRatingForm,
-                                  IARCGetAppInfoForm, MOTDForm,
-                                  NewPackagedAppForm, PreloadTestPlanForm,
-                                  PreviewFormSet, TransactionFilterForm,
-                                  trap_duplicate)
+from mkt.developers.forms import (
+    APIConsumerForm, AppFormBasic, AppFormDetails, AppFormMedia,
+    AppFormSupport, AppFormTechnical, AppVersionForm, CategoryForm,
+    ContentRatingForm, IARCGetAppInfoForm, MOTDForm, NewPackagedAppForm,
+    PreloadTestPlanForm, PreviewFormSet, TransactionFilterForm, trap_duplicate)
 from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
-from mkt.developers.tasks import (fetch_manifest, file_validator, run_validator,
-                                  save_test_plan, validator)
-from mkt.developers.utils import (check_upload, escalate_prerelease_permissions,
-                                  handle_vip)
+from mkt.developers.tasks import (
+    fetch_manifest, file_validator, run_validator,
+    save_test_plan, validator)
+from mkt.developers.utils import (
+    check_upload, escalate_prerelease_permissions, handle_vip)
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
 from mkt.purchase.webpay import _prepare_pay
 from mkt.reviewers.models import QUEUE_TARAKO
-from mkt.site.decorators import (json_view, login_required, permission_required,
-                                 skip_cache, write)
+from mkt.site.decorators import (
+    json_view, login_required, permission_required, skip_cache, write)
 from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.users.models import UserProfile
@@ -117,7 +115,7 @@ def dashboard(request):
     data = dict(addons=addons, sorting=filter.field, filter=filter,
                 sort_opts=filter.opts,
                 motd=unmemoized_get_config('mkt_developers_motd')
-    )
+                )
     return render(request, 'developers/apps/dashboard.html', data)
 
 
@@ -128,7 +126,7 @@ def edit(request, addon_id, addon):
         'addon': addon,
         'valid_slug': addon.app_slug,
         'tags': addon.tags.not_blocked().values_list('tag_text',
-                                                         flat=True),
+                                                     flat=True),
         'previews': addon.get_previews(),
         'version': addon.current_version or addon.latest_version
     }
@@ -286,7 +284,7 @@ def status(request, addon_id, addon):
         if test_plan.exists():
             test_plan = test_plan[0]
             if (test_plan.last_submission <
-                settings.PREINSTALL_TEST_PLAN_LATEST):
+                    settings.PREINSTALL_TEST_PLAN_LATEST):
                 ctx['outdated_test_plan'] = True
             ctx['next_step_suffix'] = 'submit'
         else:
@@ -546,7 +544,7 @@ def ownership(request, addon_id, addon):
                 mkt.log(action, author.user, author.get_role_display(), addon)
 
             if (author._original_user_id and
-                author.user_id != author._original_user_id):
+                    author.user_id != author._original_user_id):
                 mkt.log(mkt.LOG.REMOVE_USER_WITH_ROLE,
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
@@ -635,9 +633,13 @@ def _upload_manifest(request, is_standalone=False):
         # Helpful error if user already submitted the same manifest.
         dup_msg = trap_duplicate(request, request.POST.get('manifest'))
         if dup_msg:
-            return {'validation': {'errors': 1, 'success': False,
-                    'messages': [{'type': 'error', 'message': dup_msg,
-                                  'tier': 1}]}}
+            return {
+                'validation': {
+                    'errors': 1, 'success': False,
+                    'messages': [{
+                        'type': 'error', 'message': dup_msg, 'tier': 1}]
+                }
+            }
     if form.is_valid():
         user = request.user if request.user.is_authenticated() else None
         upload = FileUpload.objects.create(user=user)
@@ -810,9 +812,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
     # Users with 'Apps:Configure' can edit the admin settings.
-    if (section != 'admin' and not is_dev) or (section == 'admin' and
-        not acl.action_allowed(request, 'Apps', 'Configure') and
-        not acl.action_allowed(request, 'Apps', 'ViewConfiguration')):
+    if ((section != 'admin' and not is_dev)
+            or (section == 'admin' and
+                not acl.action_allowed(request, 'Apps', 'Configure') and
+                not acl.action_allowed(request, 'Apps', 'ViewConfiguration'))):
         raise PermissionDenied
 
     if section == 'basic':
@@ -844,11 +847,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
         if request.method == 'POST':
 
             if (section == 'admin' and
-                not acl.action_allowed(request, 'Apps', 'Configure')):
+                    not acl.action_allowed(request, 'Apps', 'Configure')):
                 raise PermissionDenied
 
             form = models[section](formdata, request.FILES, instance=addon,
-                                   version=version,request=request)
+                                   version=version, request=request)
 
             all_forms = [form, previews]
             for additional_form in (appfeatures_form, cat_form, version_form):
@@ -1051,10 +1054,11 @@ def blocklist(request, addon):
 @login_required
 def transactions(request):
     form, transactions = _get_transactions(request)
-    return render(request, 'developers/transactions.html',
-                  {'form': form, 'CONTRIB_TYPES': mkt.CONTRIB_TYPES,
-                   'count': transactions.count(),
-                   'transactions': paginate(request, transactions, per_page=50)})
+    return render(
+        request, 'developers/transactions.html',
+        {'form': form, 'CONTRIB_TYPES': mkt.CONTRIB_TYPES,
+         'count': transactions.count(),
+         'transactions': paginate(request, transactions, per_page=50)})
 
 
 def _get_transactions(request):
@@ -1191,7 +1195,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             log.info('Checking app:%s completeness after IARC pingback.'
                      % app.id)
             if (app.has_incomplete_status() and
-                app.is_fully_complete(ignore_ratings=True)):
+                    app.is_fully_complete(ignore_ratings=True)):
                 log.info('Updating app status from IARC pingback for app:%s' %
                          app.id)
                 # Don't call update to prevent recursion in update_status.

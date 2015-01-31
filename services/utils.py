@@ -6,9 +6,9 @@ import os
 # get the right settings module
 settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
 if settingmodule.startswith(('zamboni',  # typical git clone destination
-                       'workspace',  # Jenkins
-                       'project',  # vagrant VM
-                       'freddo')):
+                             'workspace',  # Jenkins
+                             'project',  # vagrant VM
+                             'freddo')):
     settingmodule = settingmodule.split('.', 1)[1]
 
 
@@ -20,8 +20,9 @@ import sqlalchemy.pool as pool
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
-from mkt.constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
-                                CONTRIB_PURCHASE, CONTRIB_REFUND)
+from mkt.constants.payments import (
+    CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
+    CONTRIB_PURCHASE, CONTRIB_REFUND)  # flake8: noqa
 
 from lib.log_settings_base import formatters, handlers
 

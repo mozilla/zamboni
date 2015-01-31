@@ -58,7 +58,7 @@ SECRET_KEY = private.SECRET_KEY
 
 LOG_LEVEL = logging.DEBUG
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_ALWAYS_EAGER = False

@@ -190,7 +190,8 @@ class TestAppDashboard(AppHubTest):
             ('Transactions', urlparams(
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
-        mkt.site.tests.check_links(expected, doc('a.action-link'), verify=False)
+        mkt.site.tests.check_links(
+            expected, doc('a.action-link'), verify=False)
 
     def test_xss(self):
         app = self.get_app()
@@ -507,7 +508,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         """ Test publishing when the app is in a weird state: public but with
         only one version, which is approved. """
         self.app.latest_version.all_files[0].update(status=mkt.STATUS_APPROVED,
-                                                   _signal=False)
+                                                    _signal=False)
         eq_(self.app.current_version, self.app.latest_version)
         eq_(self.app.status, mkt.STATUS_PUBLIC)
 
@@ -1058,7 +1059,8 @@ class TestDeleteApp(mkt.site.tests.TestCase):
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = mkt.site.tests.app_factory(name='Boop', status=mkt.STATUS_NULL)
+        webapp = mkt.site.tests.app_factory(
+            name='Boop', status=mkt.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],
@@ -1397,8 +1399,9 @@ class TestContentRatings(mkt.site.tests.TestCase):
                             [body.name for body in ratings])
         self.assertSetEqual([name.text.strip() for name in doc('.descriptor')],
                             ['Sexo'])
-        self.assertSetEqual([name.text.strip() for name in doc('.interactive')],
-                            ['Users Interact'])
+        self.assertSetEqual(
+            [name.text.strip() for name in doc('.interactive')],
+            ['Users Interact'])
 
     def test_edit_iarc_app_form(self):
         self.req._messages = default_storage(self.req)

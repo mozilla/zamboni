@@ -16,7 +16,7 @@ from mkt.features.views import AppFeaturesList
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import api_patterns as reviewer_api_patterns
 from mkt.search.views import (FeaturedSearchView, RocketbarView, SearchView,
-                            SuggestionsView)
+                              SuggestionsView)
 from mkt.stats.urls import stats_api_patterns, txn_api_patterns
 from mkt.submit.views import PreviewViewSet, StatusViewSet, ValidationViewSet
 from mkt.webapps.views import AppTagViewSet, AppViewSet, PrivacyPolicyViewSet
@@ -44,11 +44,12 @@ if settings.ENABLE_API_ERROR_SERVICE:
 services.register(r'carrier', CarrierViewSet, base_name='carriers')
 services.register(r'region', RegionViewSet, base_name='regions')
 services.register(r'price-tier', PriceTierViewSet,
-              base_name='price-tier')
+                  base_name='price-tier')
 services.register(r'price-currency', PriceCurrencyViewSet,
-              base_name='price-currency')
+                  base_name='price-currency')
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('', include('mkt.fireplace.urls')),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),

@@ -37,14 +37,14 @@ class YesImSure(happyforms.Form):
 
 class GenerateErrorForm(happyforms.Form):
     error = forms.ChoiceField(choices=(
-                    ['zerodivisionerror', 'Zero Division Error (will email)'],
-                    ['iorequesterror', 'IORequest Error (no email)'],
-                    ['heka_statsd', 'Heka statsd message'],
-                    ['heka_json', 'Heka JSON message'],
-                    ['heka_cef', 'Heka CEF message'],
-                    ['heka_sentry', 'Heka Sentry message'],
-                    ['amo_cef', 'AMO CEF message'],
-                    ))
+        ['zerodivisionerror', 'Zero Division Error (will email)'],
+        ['iorequesterror', 'IORequest Error (no email)'],
+        ['heka_statsd', 'Heka statsd message'],
+        ['heka_json', 'Heka JSON message'],
+        ['heka_cef', 'Heka CEF message'],
+        ['heka_sentry', 'Heka Sentry message'],
+        ['amo_cef', 'AMO CEF message'],
+    ))
 
     def explode(self):
         error = self.cleaned_data.get('error')
@@ -57,24 +57,24 @@ class GenerateErrorForm(happyforms.Form):
             raise IOError('request data read error')
         elif error == 'heka_cef':
             environ = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
-                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
-                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+                       'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                       'HTTP_USER_AGENT': 'MySuperBrowser'}
 
             config = {'cef.version': '0',
-                           'cef.vendor': 'Mozilla',
-                           'cef.device_version': '3',
-                           'cef.product': 'zamboni',
-                           'cef': True}
+                      'cef.vendor': 'Mozilla',
+                      'cef.device_version': '3',
+                      'cef.product': 'zamboni',
+                      'cef': True}
 
             settings.HEKA.cef('xx\nx|xx\rx', 5, environ, config,
-                    username='me', ext1='ok=ok', ext2='ok\\ok',
-                    logger_info='settings.HEKA')
+                              username='me', ext1='ok=ok', ext2='ok\\ok',
+                              logger_info='settings.HEKA')
         elif error == 'heka_statsd':
             settings.HEKA.incr(name=LOGGER_NAME)
         elif error == 'heka_json':
             settings.HEKA.heka(type="heka_json",
-                    fields={'foo': 'bar', 'secret': 42,
-                            'logger_type': 'settings.HEKA'})
+                               fields={'foo': 'bar', 'secret': 42,
+                                       'logger_type': 'settings.HEKA'})
 
         elif error == 'heka_sentry':
             # These are local variables only used
@@ -90,8 +90,8 @@ class GenerateErrorForm(happyforms.Form):
         elif error == 'amo_cef':
             from mkt.site.utils import log_cef
             env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
-                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
-                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+                   'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                   'HTTP_USER_AGENT': 'MySuperBrowser'}
             log_cef(settings.STATSD_PREFIX, 6, env)
 
 

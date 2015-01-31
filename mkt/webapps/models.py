@@ -1409,8 +1409,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return qs.get()
         except AddonPaymentAccount.DoesNotExist, exc:
             log.info('non-existant payment account for app {app}: '
-                    '{exc.__class__.__name__}: {exc}'
-                    .format(app=self, exc=exc))
+                     '{exc.__class__.__name__}: {exc}'
+                     .format(app=self, exc=exc))
 
             raise self.PayAccountDoesNotExist(
                 'No payment account for {app} named {pr}. '
@@ -1866,10 +1866,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         free_inapp_upgrade = ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP])
 
         if (self.premium_type == mkt.ADDON_FREE and
-            premium_type in free_upgrade):
+                premium_type in free_upgrade):
             return True
         if (self.premium_type == mkt.ADDON_FREE_INAPP and
-            premium_type in free_inapp_upgrade):
+                premium_type in free_inapp_upgrade):
             return True
         return False
 
@@ -2555,7 +2555,7 @@ class ContentRating(ModelBase):
             generic_regions = mkt.regions.ALL_REGIONS_WITHOUT_CONTENT_RATINGS()
 
         return ([x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
-                if self.get_body_class() == x.ratingsbody] +
+                 if self.get_body_class() == x.ratingsbody] +
                 list(generic_regions))
 
     def get_region_slugs(self):
@@ -2591,7 +2591,7 @@ class ContentRating(ModelBase):
 def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
     if (instance.addon.has_incomplete_status() and
-        instance.addon.is_fully_complete()):
+            instance.addon.is_fully_complete()):
         instance.addon.update(status=mkt.STATUS_PENDING)
 
 
@@ -2876,8 +2876,10 @@ class Geodata(ModelBase):
 # the developer requested approval for each region.
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
-    field = models.PositiveIntegerField(help_text=help_text,
-        choices=mkt.STATUS_CHOICES.items(), db_index=True,
+    field = models.PositiveIntegerField(
+        help_text=help_text,
+        choices=mkt.STATUS_CHOICES.items(),
+        db_index=True,
         default=mkt.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 

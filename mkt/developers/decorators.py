@@ -36,7 +36,7 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
             if support:
                 # Let developers and support people do their thangs.
                 if (acl.check_addon_ownership(request, addon, support=True) or
-                    acl.check_addon_ownership(request, addon, dev=True)):
+                        acl.check_addon_ownership(request, addon, dev=True)):
                     return fun()
             else:
                 # Require an owner or dev for POST requests.

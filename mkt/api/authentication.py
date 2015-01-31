@@ -17,7 +17,7 @@ class RestOAuthAuthentication(BaseAuthentication):
     def authenticate(self, request):
         # Most of the work here is in the RestOAuthMiddleware.
         if (request._request.user.is_authenticated() and
-            'RestOAuth' in getattr(request._request, 'authed_from', [])):
+                'RestOAuth' in getattr(request._request, 'authed_from', [])):
             request.user = request._request.user
             return request.user, None
 

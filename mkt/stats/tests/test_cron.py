@@ -133,11 +133,10 @@ class TestMonolithStats(mkt.site.tests.TestCase):
         p = UserProfile.objects.create(username='foo',
                                        source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         p.update(created=day)
-        eq_(tasks._get_monolith_jobs(day)['mmo_user_count_total'][0]['count'](),
-            1)
-        eq_(tasks._get_monolith_jobs()['mmo_user_count_total'][0]['count'](),
-            1)
-        eq_(tasks._get_monolith_jobs()['mmo_user_count_new'][0]['count'](), 0)
+        jobs = tasks._get_monolith_jobs
+        eq_(jobs(day)['mmo_user_count_total'][0]['count'](), 1)
+        eq_(jobs()['mmo_user_count_total'][0]['count'](), 1)
+        eq_(jobs()['mmo_user_count_new'][0]['count'](), 0)
 
     def test_user_new(self):
         UserProfile.objects.create(username='foo',

@@ -43,11 +43,11 @@ class NotePermission(ThreadPermission):
             thread_id = note.thread_id
 
         # We save the thread in the view object so we can use it later.
-        view.comm_thread = get_object_or_404(CommunicationThread,
-            id=thread_id)
+        view.comm_thread = get_object_or_404(
+            CommunicationThread, id=thread_id)
 
-        return ThreadPermission.has_object_permission(self,
-            request, view, view.comm_thread)
+        return ThreadPermission.has_object_permission(
+            self, request, view, view.comm_thread)
 
     def has_object_permission(self, request, view, obj):
         # Has thread obj-level permission AND note obj-level permission.

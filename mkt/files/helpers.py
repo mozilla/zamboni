@@ -144,7 +144,7 @@ class FileViewer(object):
 
             # If this is a webapp manifest, we should try to pretty print it.
             if (self.selected and
-                self.selected.get('filename') == 'manifest.webapp'):
+                    self.selected.get('filename') == 'manifest.webapp'):
                 file_data = self._process_manifest(file_data)
 
             return file_data
@@ -170,7 +170,7 @@ class FileViewer(object):
                 return cont.decode(codec)
             except UnicodeDecodeError:
                 cont = cont.decode(codec, 'ignore')
-                #L10n: {0} is the filename.
+                # L10n: {0} is the filename.
                 self.selected['msg'] = (
                     _('Problems decoding {0}.').format(codec))
                 return cont
@@ -359,7 +359,6 @@ class DiffHelper(object):
                        args=[self.left.file.id, self.right.file.id,
                              'file', short])
 
-    #@memoize(prefix='file-viewer-get-files', time=60 * 60)
     def get_files(self):
         """
         Get the files from the primary and:
@@ -385,7 +384,6 @@ class DiffHelper(object):
 
         return left_files
 
-    #@memoize(prefix='file-viewer-get-deleted-files', time=60 * 60)
     def get_deleted_files(self):
         """
         Get files that exist in right, but not in left. These

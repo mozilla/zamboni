@@ -503,7 +503,8 @@ class PurifiedTranslationTest(TestCase):
         s = u'<b>markup</b> http://example.com'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://example.com">http://example.com</a>')
+            u'<b>markup</b> '
+            u'<a href="http://example.com">http://example.com</a>')
 
     def test_newlines_normal(self):
         before = ("Paragraph one.\n"

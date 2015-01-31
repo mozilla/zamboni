@@ -122,7 +122,8 @@ class TestProductAsDict(mkt.site.tests.TestCase):
         eq_(data['categories'], [])
         eq_(data['name'], 'Something Something Steamcube!')
         eq_(data['id'], '337141')
-        eq_(data['manifest_url'], 'http://micropipes.com/temp/steamcube.webapp')
+        eq_(data['manifest_url'],
+            'http://micropipes.com/temp/steamcube.webapp')
 
         tokenUrl = '/reviewers/app/something-something/token'
         recordUrl = '/app/something-something/purchase/record?src=poop'

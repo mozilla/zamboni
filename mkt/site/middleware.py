@@ -4,7 +4,8 @@ from types import MethodType
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import HttpRequest, HttpResponsePermanentRedirect, SimpleCookie
+from django.http import (HttpRequest, HttpResponsePermanentRedirect,
+                         SimpleCookie)
 from django.middleware import common
 from django.utils.cache import (get_max_age, patch_cache_control,
                                 patch_response_headers, patch_vary_headers)
@@ -132,7 +133,7 @@ class LocaleMiddleware(object):
         # We want to change the cookie, but didn't have the response in
         # process request.
         if (hasattr(request, 'LANG_COOKIE') and
-            not getattr(request, 'API', False)):
+                not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
 
         if request.REQUEST.get('vary') == '0':
@@ -275,9 +276,9 @@ class RemoveSlashMiddleware(object):
 
     def process_response(self, request, response):
         if (response.status_code == 404
-            and request.path_info.endswith('/')
-            and not is_valid_path(request.path_info)
-            and is_valid_path(request.path_info[:-1])):
+                and request.path_info.endswith('/')
+                and not is_valid_path(request.path_info)
+                and is_valid_path(request.path_info[:-1])):
             # Use request.path because we munged app/locale in path_info.
             newurl = request.path[:-1]
             if request.GET:

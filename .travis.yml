@@ -11,6 +11,7 @@ install:
   - pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
 before_script:
   - mysql -e 'create database zamboni;'
+  - flake8 . --exclude=./docs/conf.py
 script:
   - ./manage.py test lib mkt --noinput --logging-clear-handlers --with-blockage --with-nicedots
 notifications:

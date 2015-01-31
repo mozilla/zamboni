@@ -20,7 +20,8 @@ def login(request):
 admin.site.login = login
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # AMO stuff.
     url('^$', views.index, name='zadmin.index'),
     url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),

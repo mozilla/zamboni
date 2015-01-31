@@ -32,14 +32,14 @@ CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 LOG_LEVEL = logging.DEBUG
 # The django statsd client to use, see django-statsd for more.
-#STATSD_CLIENT = 'django_statsd.clients.moz_heka'
+# STATSD_CLIENT = 'django_statsd.clients.moz_heka'
 
 SYSLOG_TAG = "http_app_mkt_paymentsalt"
 SYSLOG_TAG2 = "http_app_mkt_paymentsalt_timer"
 SYSLOG_CSP = "http_app_mkt_paymentsalt_csp"
 STATSD_PREFIX = 'marketplace-paymentsalt'
 
-## Celery
+# Celery
 BROKER_URL = private_mkt.BROKER_URL
 
 CELERY_ALWAYS_EAGER = False
@@ -74,11 +74,14 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
-    AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\
-                              + AUTHENTICATION_BACKENDS
+    AUTHENTICATION_BACKENDS = (
+        ('django_fakeauth.FakeAuthBackend',)
+        + AUTHENTICATION_BACKENDS
+    )
     MIDDLEWARE_CLASSES.insert(
-            MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
-            'django_fakeauth.FakeAuthMiddleware')
+        MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
+        'django_fakeauth.FakeAuthMiddleware'
+    )
     FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
 
     # we are also creating access tokens for OAuth, here are the keys and
@@ -90,12 +93,12 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
-#Bug 748403
+# Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 SIGNING_VALID_ISSUERS = [DOMAIN]
 
-#Bug 793876
+# Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
@@ -129,9 +132,9 @@ IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # flake8: noqa
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # flake8: noqa
 IARC_ALLOW_CERT_REUSE = True
 
 PRE_GENERATE_APKS = False

@@ -57,7 +57,8 @@ class TestAPI(RestOAuth):
     def test_logged(self, record_action):
         self.data = json.dumps({'app': self.addon.pk})
         eq_(self.post().status_code, 201)
-        record_action.assert_called_with('install', ANY,
+        record_action.assert_called_with(
+            'install', ANY,
             {'app-domain': u'http://micropipes.com', 'app-id': 337141L,
              'region': 'restofworld', 'anonymous': False})
 
@@ -65,7 +66,8 @@ class TestAPI(RestOAuth):
     def test_logged_anon(self, record_action):
         self.data = json.dumps({'app': self.addon.pk})
         eq_(self.post(anon=True).status_code, 201)
-        record_action.assert_called_with('install', ANY,
+        record_action.assert_called_with(
+            'install', ANY,
             {'app-domain': u'http://micropipes.com', 'app-id': 337141L,
              'region': 'restofworld', 'anonymous': True})
 

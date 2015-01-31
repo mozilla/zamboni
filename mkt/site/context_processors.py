@@ -13,8 +13,8 @@ from mkt.zadmin.models import get_config
 
 def i18n(request):
     return {'LANGUAGES': settings.LANGUAGES,
-            'LANG': settings.LANGUAGE_URL_MAP.get(translation.get_language())
-                    or translation.get_language(),
+            'LANG': (settings.LANGUAGE_URL_MAP.get(translation.get_language())
+                     or translation.get_language()),
             'DIR': 'rtl' if translation.get_language_bidi() else 'ltr',
             }
 
@@ -71,10 +71,10 @@ def global_settings(request):
             })
         if acl.action_allowed(request, 'AccountLookup', '%'):
             footer_links.append({'text': _('Lookup Tool'),
-                                'href': reverse('lookup.home')})
+                                 'href': reverse('lookup.home')})
         if acl.action_allowed(request, 'Admin', '%'):
             footer_links.append({'text': _('Admin Tools'),
-                                'href': reverse('zadmin.home')})
+                                 'href': reverse('zadmin.home')})
 
         tools_links += footer_links
         logged = True

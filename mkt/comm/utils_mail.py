@@ -212,7 +212,7 @@ class CommEmailParser(object):
             uuid = addr[len(self.address_prefix):].split('@')[0]
         else:
             log.info('TO: address missing or not related to comm. (%s)'
-                      % unicode(self.email).strip())
+                     % unicode(self.email).strip())
             return False
 
         return uuid

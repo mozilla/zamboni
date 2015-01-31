@@ -319,7 +319,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(not self.features.has_contacts)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert AppLog.objects.filter(addon=self.app,
-            activity_log__action=action_id).exists()
+                                     activity_log__action=action_id).exists()
         eq_(RereviewQueue.objects.count(), 1)
 
     def test_no_changes_not_marked_for_rereview(self):
@@ -331,8 +331,9 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
-        assert not AppLog.objects.filter(addon=self.app,
-             activity_log__action=action_id).exists()
+        assert not AppLog.objects.filter(
+            addon=self.app,
+            activity_log__action=action_id).exists()
 
     def test_changes_mark_for_rereview_bypass(self):
         self.features.update(has_sms=True)
@@ -343,5 +344,6 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(not self.features.has_sms)
         eq_(RereviewQueue.objects.count(), 0)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
-        assert not AppLog.objects.filter(addon=self.app,
-             activity_log__action=action_id).exists()
+        assert not AppLog.objects.filter(
+            addon=self.app,
+            activity_log__action=action_id).exists()

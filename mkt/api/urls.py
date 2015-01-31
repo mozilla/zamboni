@@ -41,7 +41,8 @@ def include_version(version):
     return include('mkt.api.v%d.urls' % version, **kwargs)
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^v2/', include_version(2)),
     url('^v1/', include_version(1)),
 

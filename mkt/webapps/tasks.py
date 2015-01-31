@@ -112,7 +112,7 @@ def update_manifests(ids, **kw):
                                    kwargs={'check_hash': check_hash,
                                            'retries': retries},
                                    eta=datetime.datetime.now() +
-                                       datetime.timedelta(seconds=retry_secs),
+                                   datetime.timedelta(seconds=retry_secs),
                                    max_retries=5)
         except RetryTaskError:
             _log(id, 'Retrying task in %d seconds.' % retry_secs)
@@ -249,7 +249,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         rereview = True
         iarc_storefront = True
         msg.append(u'Developer name changed from "%s" to "%s".'
-            % (version.developer_name, new_version.developer_name))
+                   % (version.developer_name, new_version.developer_name))
 
     # Get names in "locales" as {locale: name}.
     locale_names = get_locale_properties(new, 'name', webapp.default_locale)

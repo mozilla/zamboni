@@ -107,6 +107,6 @@ class ReviewerScoreSerializer(serializers.ModelSerializer):
     def validate_note(self, attrs, source):
         # If note is absent but DRF tries to validate it (because we're dealing
         # with a PUT or POST), then add a blank one.
-        if not source in attrs:
+        if source not in attrs:
             attrs[source] = ''
         return attrs

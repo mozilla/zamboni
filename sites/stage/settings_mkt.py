@@ -74,11 +74,11 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
-    AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\
-                              + AUTHENTICATION_BACKENDS
+    AUTHENTICATION_BACKENDS = (
+        ('django_fakeauth.FakeAuthBackend',) + AUTHENTICATION_BACKENDS)
     MIDDLEWARE_CLASSES.insert(
-            MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
-            'django_fakeauth.FakeAuthMiddleware')
+        MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
+        'django_fakeauth.FakeAuthMiddleware')
     FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
 
     # we are also creating access tokens for OAuth, here are the keys and
@@ -89,12 +89,12 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-#Bug 748403
+# Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 SIGNING_VALID_ISSUERS = ['marketplace-cdn.allizom.org']
 
-#Bug 793876
+# Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
@@ -134,16 +134,18 @@ IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # flake8: noqa
+
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # flake8: noqa
+
 IARC_ALLOW_CERT_REUSE = True
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
 
-BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'
+BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'  # flake8: noqa
 
 FXA_AUTH_DOMAIN = 'api.accounts.firefox.com'
 FXA_OAUTH_URL = 'https://oauth.accounts.firefox.com'

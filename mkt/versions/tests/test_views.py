@@ -196,7 +196,7 @@ class TestVersionStatusViewSet(RestOAuth):
         eq_(self.app.reload().status, mkt.STATUS_PENDING)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
-    def test_patch_permission_status_not_affecting_app(self, is_fully_complete):
+    def test_patch_permission_status_not_affecting(self, is_fully_complete):
         is_fully_complete.return_value = False
         self.app.update(status=mkt.STATUS_NULL)
         self.file.update(status=mkt.STATUS_NULL)

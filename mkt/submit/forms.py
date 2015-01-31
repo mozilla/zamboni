@@ -138,7 +138,8 @@ class DevAgreementForm(happyforms.Form):
         self.instance.read_dev_agreement = datetime.datetime.now()
         self.instance.save()
         if self.cleaned_data.get('newsletter'):
-            UserNotification.update_or_create(user=self.instance,
+            UserNotification.update_or_create(
+                user=self.instance,
                 notification_id=app_surveys.id, update={'enabled': True})
             basket.subscribe(self.instance.email,
                              'app-dev',
@@ -152,12 +153,13 @@ class DevAgreementForm(happyforms.Form):
 class NewWebappVersionForm(happyforms.Form):
     upload_error = _lazy(u'There was an error with your upload. '
                          u'Please try again.')
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+    upload = forms.ModelChoiceField(
+        widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': upload_error})
 
     def __init__(self, *args, **kw):
-        request = kw.pop('request', None)
+        kw.pop('request', None)
         self.addon = kw.pop('addon', None)
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
@@ -183,7 +185,7 @@ class NewWebappVersionForm(happyforms.Form):
 
             ver = pkg.get('version')
             if (ver and self.addon and
-                self.addon.versions.filter(version=ver).exists()):
+                    self.addon.versions.filter(version=ver).exists()):
                 errors.append(_(u'Version %s already exists.') % ver)
 
             origin = pkg.get('origin')
@@ -220,7 +222,8 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
     ERRORS = DeviceTypeForm.ERRORS.copy()
     ERRORS['user'] = _lazy('User submitting validation does not match.')
 
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+    upload = forms.ModelChoiceField(
+        widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy(
             u'There was an error with your upload. Please try again.')})
@@ -259,7 +262,6 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
     PRIVACY_MDN_URL = (
         'https://developer.mozilla.org/Marketplace/'
         'Publishing/Policies_and_Guidelines/Privacy_policies')
-
 
     PUBLISH_CHOICES = (
         (mkt.PUBLISH_IMMEDIATE,
@@ -306,7 +308,8 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         help_text=_lazy(
             u'This email address will be listed publicly on the Marketplace '
             u'and used by end users to contact you with support issues. This '
-            u'email address will be listed publicly on your app details page.'))
+            u'email address will be listed publicly on your app details page.'
+            ))
     flash = forms.TypedChoiceField(
         label=_lazy(u'Does your app require Flash support?'),
         required=False, coerce=lambda x: bool(int(x)),

@@ -31,7 +31,7 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         if (getattr(request, 'API_VERSION', None) > 1
-            and request.REGION == mkt.regions.RESTOFWORLD):
+                and request.REGION == mkt.regions.RESTOFWORLD):
             # In API v2 and onwards, geoip is not done automatically, so we
             # need to do it ourselves.
             region_middleware = mkt.regions.middleware.RegionMiddleware()
@@ -43,7 +43,8 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
         }
         if request.user.is_authenticated():
             data['apps'] = user_relevant_apps(request.user)
-            data['enable_recommendations'] = request.user.enable_recommendations
+            data['enable_recommendations'] = (
+                request.user.enable_recommendations)
 
         # Return an HttpResponse directly to be as fast as possible.
         return Response(data)

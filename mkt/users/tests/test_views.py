@@ -27,7 +27,8 @@ class TestAjax(TestCase):
         eq_(r.status_code, 404)
 
     def test_ajax_success(self):
-        u = UserProfile.objects.create(email='ajax@mozilla.com',
+        u = UserProfile.objects.create(
+            email='ajax@mozilla.com',
             username=u'àjæx', read_dev_agreement=datetime.now())
         r = self.client.get(reverse('users.ajax'), {'q': 'ajax@mozilla.com'},
                             follow=True)
@@ -91,7 +92,7 @@ class TestLogout(TestCase):
     def test_redirect(self):
         url = '/developers/'
         res = self.client.get(urlparams(reverse('users.logout'), to=url),
-                            follow=True)
+                              follow=True)
         self.assert3xx(res, url, status_code=302)
 
         # Test that we don't follow domains

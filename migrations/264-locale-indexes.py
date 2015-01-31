@@ -4,6 +4,7 @@ import elasticutils
 
 from addons.search import setup_mapping
 
+
 def columns():
     es = elasticutils.get_es()
     index = settings.ES_INDEXES['default']
@@ -17,4 +18,3 @@ def run():
     else:
         print 'skippint'
     assert 'name_finnish' in columns()
-

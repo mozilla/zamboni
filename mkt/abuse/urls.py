@@ -8,6 +8,7 @@ abuse = SimpleRouter()
 abuse.register('user', UserAbuseViewSet, base_name='user-abuse')
 abuse.register('app', AppAbuseViewSet, base_name='app-abuse')
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     url('^abuse/', include(abuse.urls)),
 )

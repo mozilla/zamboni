@@ -5,7 +5,7 @@ import sys
 
 from django.core.management import execute_from_command_line
 
-if not 'DJANGO_SETTINGS_MODULE' in os.environ:
+if 'DJANGO_SETTINGS_MODULE' not in os.environ:
     if len(sys.argv) > 1 and sys.argv[1] == 'test':
         os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
     else:
@@ -14,7 +14,7 @@ if not 'DJANGO_SETTINGS_MODULE' in os.environ:
 # waffle and mkt form an import cycle because mkt patches waffle and
 # waffle loads the user model, so we have to make sure mkt gets
 # imported before anything else imports waffle.
-import mkt
+import mkt  # flake8: noqa
 
 import session_csrf
 session_csrf.monkeypatch()
@@ -33,7 +33,7 @@ log_configure()
 # We need to import waffle here to avoid a circular import with jingo which
 # loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
 # import jingo.
-import waffle
+import waffle  # flake8: noqa
 
 # Hardcore monkeypatching action.
 import jingo.monkey

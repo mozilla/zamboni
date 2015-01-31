@@ -134,7 +134,8 @@ class TestPinningMiddleware(mkt.site.tests.TestCase):
 
     def pinned_header(self):
         self.attach_user(anon=True)
-        return self.pin.process_response(self.req, HttpResponse())['API-Pinned']
+        return self.pin.process_response(
+            self.req, HttpResponse())['API-Pinned']
 
     @mock.patch('mkt.api.middleware.this_thread_is_pinned')
     def test_pinned_header_true(self, mock_pinned):
@@ -158,7 +159,8 @@ class TestAPIBaseMiddleware(mkt.site.tests.TestCase):
         resp = self.api_version_middleware.process_request(req)
         if resp:
             return resp
-        return self.api_version_middleware.process_response(req, HttpResponse())
+        return self.api_version_middleware.process_response(
+            req, HttpResponse())
 
     def header(self, res, header):
         return res.get(header, None)
@@ -307,14 +309,16 @@ class TestGzipMiddleware(mkt.site.tests.TestCase):
 
 
 class TestAuthenticationMiddleware(mkt.site.tests.TestCase):
-    @mock.patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
+    @mock.patch('django.contrib.auth.middleware.'
+                'AuthenticationMiddleware.process_request')
     def test_does_not_auth_for_api(self, django_authentication_middleware):
         request = mock.Mock()
         request.API = True
         AuthenticationMiddleware().process_request(request)
         ok_(not django_authentication_middleware.called)
 
-    @mock.patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
+    @mock.patch('django.contrib.auth.middleware.'
+                'AuthenticationMiddleware.process_request')
     def test_auths_for_non_api(self, django_authentication_middleware):
         request = mock.Mock()
         request.API = False

@@ -27,7 +27,7 @@ class CommonplaceTestMixin(mkt.site.tests.TestCase):
         if not url_kwargs:
             url_kwargs = {}
         res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip',
-            **{'wsgi.url_scheme': 'https'})
+                              **{'wsgi.url_scheme': 'https'})
         eq_(res.status_code, 200)
         eq_(res['Content-Encoding'], 'gzip')
         eq_(sorted(res['Vary'].split(', ')),

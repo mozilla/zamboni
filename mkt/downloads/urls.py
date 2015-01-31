@@ -4,7 +4,8 @@ from mkt.downloads.views import download_file
 from mkt.langpacks.views import download as download_langpack
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # .* at the end to match filenames.
     # /file/:id/type:attachment
     url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',

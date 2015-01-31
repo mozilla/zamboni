@@ -88,7 +88,7 @@ def _migrate_approval_notes(ids):
             continue
 
         if (thread.notes.filter(
-            note_type=comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER).exists()):
+                note_type=comm.DEVELOPER_VERSION_NOTE_FOR_REVIEWER).exists()):
             # Don't need to do if it's already been done.
             continue
 

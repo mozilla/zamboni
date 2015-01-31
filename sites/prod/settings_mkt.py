@@ -34,10 +34,15 @@ SYSLOG_TAG2 = "http_app_mkt_prod_timer"
 SYSLOG_CSP = "http_app_mkt_prod_csp"
 
 # Redis
-REDIS_BACKEND = getattr(private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
-REDIS_BACKENDS_CACHE_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE', private.REDIS_BACKENDS_CACHE_SLAVE)
-REDIS_BACKENDS_MASTER = getattr(private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
-REDIS_BACKENDS_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
+REDIS_BACKEND = getattr(
+    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
+REDIS_BACKENDS_CACHE_SLAVE = getattr(
+    private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE',
+    private.REDIS_BACKENDS_CACHE_SLAVE)
+REDIS_BACKENDS_MASTER = getattr(
+    private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
+REDIS_BACKENDS_SLAVE = getattr(
+    private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
 
 REDIS_BACKENDS = {
     'cache': REDIS_BACKEND,
@@ -48,8 +53,7 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_ENABLED = True
 
-## Celery
-
+# Celery
 BROKER_URL = private_mkt.BROKER_URL
 
 CELERY_ALWAYS_EAGER = False
@@ -102,7 +106,7 @@ CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 
 # Pass through the DSN to the Raven client and force signal
 # registration so that exceptions are passed through to sentry
-#RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
+# RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 
@@ -137,12 +141,13 @@ IARC_ENV = 'prod'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'  # flake8: noqa
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'  # flake8: noqa
+
 IARC_ALLOW_CERT_REUSE = False
 
-BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku'
+BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku'  # flake8: noqa
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'

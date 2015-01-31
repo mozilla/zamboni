@@ -39,7 +39,8 @@ langpacks = SimpleRouter()
 langpacks.register(r'', LangPackViewSet, base_name='langpack')
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^apps/search/featured/.*', endpoint_removed),
     url(r'^rocketfuel/collections/.*', endpoint_removed),
 

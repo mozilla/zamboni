@@ -209,13 +209,15 @@ class TestEditBasic(TestEdit):
 
     def test_edit_slug_max_length(self):
         r = self.client.post(self.edit_url, self.get_dict(slug='x' * 31))
-        self.assertFormError(r, 'form', 'slug',
+        self.assertFormError(
+            r, 'form', 'slug',
             'Ensure this value has at most 30 characters (it has 31).')
 
     def test_edit_slug_dupe(self):
         Webapp.objects.create(app_slug='dupe')
         r = self.client.post(self.edit_url, self.get_dict(slug='dupe'))
-        self.assertFormError(r, 'form', 'slug',
+        self.assertFormError(
+            r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
         webapp = self.get_webapp()
         # Nothing changed.
@@ -282,7 +284,7 @@ class TestEditBasic(TestEdit):
     def test_view_manifest_changed_dupe_app_domain(self, fetch):
         self.create_switch('webapps-unique-by-domain')
         mkt.site.tests.app_factory(name='Super Duper',
-                              app_domain='https://ballin.com')
+                                   app_domain='https://ballin.com')
         self.login('admin')
 
         # POST with new manifest URL.
@@ -1076,7 +1078,7 @@ class TestEditDetails(TestEdit):
                     default_locale='pt-BR', privacy_policy='pp')
         rp = self.client.post(self.edit_url, data)
         self.assertContains(rp,
-            'Before changing your default locale you must')
+                            'Before changing your default locale you must')
 
     def test_edit_locale(self):
         self.webapp.update(default_locale='en-US')
@@ -1126,7 +1128,8 @@ class TestEditSupport(TestEdit):
 
     def test_edit_support_required(self):
         res = self.client.post(self.edit_url, {})
-        self.assertFormError(res, 'form', 'support',
+        self.assertFormError(
+            res, 'form', 'support',
             'You must provide either a website, an email, or both.')
 
     def test_edit_support_only_one_is_required(self):
@@ -1144,14 +1147,14 @@ class TestEditSupport(TestEdit):
         data = dict(support_email='', support_url='http://my')
         res = self.client.post(self.edit_url, data)
         self.assertFormError(res, 'form', 'support_url',
-            'Enter a valid URL.')
+                             'Enter a valid URL.')
         ok_(not pq(res.content)('#trans-support_email+.errorlist'))
         ok_(pq(res.content)('#trans-support_url+.errorlist'))
 
         data = dict(support_email='test', support_url='')
         res = self.client.post(self.edit_url, data)
         self.assertFormError(res, 'form', 'support_email',
-            'Enter a valid email address.')
+                             'Enter a valid email address.')
         ok_(pq(res.content)('#trans-support_email+.errorlist'))
         ok_(not pq(res.content)('#trans-support_url+.errorlist'))
 

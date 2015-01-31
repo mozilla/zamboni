@@ -20,7 +20,8 @@ from . import views_payments
 
 
 def provider_patterns(prefix):
-    return patterns('',
+    return patterns(
+        '',
         url('^accounts$', views_payments.payment_accounts,
             name='mkt.developers.%s.payment_accounts' % prefix),
 
@@ -44,7 +45,8 @@ def provider_patterns(prefix):
 
 
 # These will all start with /app/<app_slug>/
-app_detail_patterns = patterns('',
+app_detail_patterns = patterns(
+    '',
     # Redirect people who go to / instead of /edit.
     ('^$', lambda r, app_slug: http.HttpResponseRedirect(
      reverse('mkt.developers.apps.edit', args=[app_slug]))),
@@ -122,12 +124,14 @@ app_detail_patterns = patterns('',
 )
 
 # These will all start with /ajax/app/<app_slug>/
-ajax_patterns = patterns('',
+ajax_patterns = patterns(
+    '',
     url('^image/status$', views.image_status,
         name='mkt.developers.apps.ajax.image.status'),
 )
 
-urlpatterns = decorate(write, patterns('',
+urlpatterns = decorate(write, patterns(
+    '',
     # Redirect people who have /apps/ instead of /app/.
     ('^apps/\d+/.*',
      lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
@@ -200,14 +204,16 @@ app_payments.register(r'payments/status', PaymentCheckViewSet,
 app_payments.register(r'payments/debug', PaymentDebugViewSet,
                       base_name='app-payments-debug')
 
-payments_api_patterns = patterns('',
+payments_api_patterns = patterns(
+    '',
     url(r'^payments/', include(api_payments.urls)),
     url(r'^payments/(?P<origin>(app|https?)://[^/]+)/',
         include(in_app_products.urls)),
     url(r'^apps/app/', include(app_payments.urls)),
 )
 
-dev_api_patterns = patterns('',
+dev_api_patterns = patterns(
+    '',
     url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/pingback/',
         ContentRatingsPingback.as_view(), name='content-ratings-pingback'),
     url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/',

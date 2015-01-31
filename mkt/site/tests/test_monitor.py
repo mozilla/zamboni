@@ -51,6 +51,7 @@ class TestMonitor(mkt.site.tests.TestCase):
         eq_(libraries_result, [('PIL+JPEG', True, 'Got it!'),
                                ('M2Crypto', True, 'Got it!'),
                                ('Spidermonkey is ready!', True, None)])
+
     def test_elastic(self):
         status, elastic_result = monitors.elastic()
         eq_(status, '')

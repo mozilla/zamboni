@@ -6,7 +6,7 @@ api_url = 'https://marketplace.firefox.com/api/v1/apps/category/?lang=%s'
 
 english_categories = {  # Stolen from fireplace's categories.js
     'games': 'Games',
-    #'books': 'Books',  # Commented because already present in .po files.
+    # 'books': 'Books',  # Commented because already present in .po files.
     'business': 'Business',
     'education': 'Education',
     'entertainment': 'Entertainment',
@@ -27,7 +27,7 @@ english_categories = {  # Stolen from fireplace's categories.js
 
 
 def build_locale_dict(data):
-    if not 'objects' in data:
+    if 'objects' not in data:
         return None
     return dict(((d['slug'], d['name']) for d in data['objects']
                  if d['slug'] in english_categories))
@@ -40,7 +40,6 @@ def write_po(filename, locale_categories):
             f.write('#: /mkt/search/forms.py\n')
             f.write('msgid "%s"\n' % english_categories[slug])
             f.write('msgstr "%s"\n' % locale_categories[slug].encode('utf-8'))
-
 
 
 def main():

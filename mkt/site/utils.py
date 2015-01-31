@@ -62,7 +62,7 @@ def urlparams(url_, hash=None, **query):
     query_dict.update((k, v) for k, v in query.items())
 
     query_string = _urlencode([(k, v) for k, v in query_dict.items()
-                             if v is not None])
+                              if v is not None])
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()

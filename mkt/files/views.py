@@ -14,8 +14,9 @@ from tower import ugettext as _
 
 from mkt.access import acl
 from mkt.files import forms
-from mkt.files.decorators import (compare_webapp_file_view, etag, last_modified,
-                                  webapp_file_view, webapp_file_view_token)
+from mkt.files.decorators import (compare_webapp_file_view, etag,
+                                  last_modified, webapp_file_view,
+                                  webapp_file_view_token)
 from mkt.files.tasks import extract_file
 from mkt.site.decorators import json_view
 from mkt.site.utils import HttpResponseSendFile, urlparams
@@ -101,7 +102,7 @@ def browse(request, viewer, key=None, type_='file'):
 
         binary = viewer.is_binary()
         if (not viewer.is_directory() and
-            (not binary or binary != 'image')):
+                (not binary or binary != 'image')):
             data['content'] = viewer.read_file()
 
     else:

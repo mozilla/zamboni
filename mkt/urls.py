@@ -25,7 +25,8 @@ handler404 = 'mkt.site.views.handler404'
 handler500 = 'mkt.site.views.handler500'
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Non-commonplace app pages
     ('^app/%s/' % mkt.APP_SLUG, include('mkt.detail.urls')),
     url('^app/%s/manifest.webapp$' % mkt.ADDON_UUID, mini_manifest,
@@ -96,14 +97,16 @@ urlpatterns = patterns('',
 if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
 
 if settings.SERVE_TMP_PATH and settings.DEBUG:
     # Serves any URL like /tmp/* from your local ./tmp/ dir
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         (r'^tmp/img/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.TMP_PATH}),
     )

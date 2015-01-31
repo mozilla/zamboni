@@ -52,7 +52,7 @@ class RestOAuthMiddleware(object):
 
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
         if (not auth_header_value and
-            'oauth_token' not in request.META['QUERY_STRING']):
+                'oauth_token' not in request.META['QUERY_STRING']):
             self.user = AnonymousUser()
             log.info('No HTTP_AUTHORIZATION header')
             return
@@ -61,7 +61,7 @@ class RestOAuthMiddleware(object):
         auth_header = {'Authorization': auth_header_value}
         method = getattr(request, 'signed_method', request.method)
         if ('oauth_token' in request.META['QUERY_STRING'] or
-            'oauth_token' in auth_header_value):
+                'oauth_token' in auth_header_value):
             # This is 3-legged OAuth.
             log.info('Trying 3 legged OAuth')
             try:
@@ -325,6 +325,7 @@ class APIFilterMiddleware(object):
     Add an API-Filter header containing a urlencoded string of filters applied
     to API requests.
     """
+
     def process_response(self, request, response):
         if getattr(request, 'API', False) and response.status_code < 500:
             devices = []
@@ -348,6 +349,7 @@ class TimingMiddleware(GraphiteRequestTimingMiddleware):
     A wrapper around django_statsd timing middleware that sends different
     statsd pings if being used in API.
     """
+
     def process_view(self, request, *args):
         if getattr(request, 'API', False):
             TastyPieRequestTimingMiddleware().process_view(request, *args)
@@ -377,6 +379,7 @@ class GZipMiddleware(BaseGZipMiddleware):
     http://breachattack.com/
     https://bugzilla.mozilla.org/show_bug.cgi?id=960752
     """
+
     def process_response(self, request, response):
         if not getattr(request, 'API', False):
             return response
@@ -389,6 +392,7 @@ class AuthenticationMiddleware(BaseAuthenticationMiddleware):
     Wrapper around AuthenticationMiddleware, which only performs the django
     session based auth for non-API requests.
     """
+
     def process_request(self, request):
         if getattr(request, 'API', False):
             request.user = AnonymousUser()

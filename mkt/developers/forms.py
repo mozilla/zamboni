@@ -187,28 +187,28 @@ def trap_duplicate(request, manifest_url):
     msg = None
     if app.status == mkt.STATUS_PUBLIC:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently public. '
-                 '<a href="%s">Edit app</a>')
+                'for %s, which is currently public. '
+                '<a href="%s">Edit app</a>')
     elif app.status == mkt.STATUS_PENDING:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently pending. '
-                 '<a href="%s">Edit app</a>')
+                'for %s, which is currently pending. '
+                '<a href="%s">Edit app</a>')
     elif app.status == mkt.STATUS_NULL:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently incomplete. '
-                 '<a href="%s">Resume app</a>')
+                'for %s, which is currently incomplete. '
+                '<a href="%s">Resume app</a>')
     elif app.status == mkt.STATUS_REJECTED:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently rejected. '
-                 '<a href="%s">Edit app</a>')
+                'for %s, which is currently rejected. '
+                '<a href="%s">Edit app</a>')
     elif app.status == mkt.STATUS_DISABLED:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently banned on Marketplace. '
-                 '<a href="%s">Edit app</a>')
+                'for %s, which is currently banned on Marketplace. '
+                '<a href="%s">Edit app</a>')
     elif app.disabled_by_user:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently disabled. '
-                 '<a href="%s">Edit app</a>')
+                'for %s, which is currently disabled. '
+                '<a href="%s">Edit app</a>')
     if msg:
         return msg % (jinja2_escape(app.name), error_url)
 
@@ -361,7 +361,7 @@ class AdminSettingsForm(PreviewForm):
 
     def save(self, addon, commit=True):
         if (self.cleaned_data.get('DELETE') and
-            'upload_hash' not in self.changed_data and self.promo.id):
+                'upload_hash' not in self.changed_data and self.promo.id):
             self.promo.delete()
         elif self.promo and 'upload_hash' in self.changed_data:
             self.promo.delete()
@@ -414,7 +414,7 @@ class BasePreviewFormSet(BaseModelFormSet):
         at_least_one = False
         for form in self.forms:
             if (not form.cleaned_data.get('DELETE') and
-                form.cleaned_data.get('upload_hash') is not None):
+                    form.cleaned_data.get('upload_hash') is not None):
                 at_least_one = True
         if not at_least_one:
             raise forms.ValidationError(
@@ -518,8 +518,8 @@ class NewPackagedAppForm(happyforms.Form):
         }
 
         self.file_upload = FileUpload.objects.create(
-                user=self.user, name=getattr(upload, 'name', ''),
-                validation=json.dumps(validation))
+            user=self.user, name=getattr(upload, 'name', ''),
+            validation=json.dumps(validation))
 
         # Return a ValidationError to be raised by the view.
         return forms.ValidationError(' '.join(e['message'] for e in errors))
@@ -554,7 +554,8 @@ class AppFormBasic(AddonFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField()
-    description = TransField(required=True,
+    description = TransField(
+        required=True,
         label=_lazy(u'Provide a detailed description of your app'),
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea)
@@ -649,7 +650,8 @@ class AppFormDetails(AddonFormBase):
 
     default_locale = forms.TypedChoiceField(required=False, choices=LOCALES)
     homepage = TransField.adapt(forms.URLField)(required=False)
-    privacy_policy = TransField(widget=TransTextarea(), required=True,
+    privacy_policy = TransField(
+        widget=TransTextarea(), required=True,
         label=_lazy(u"Please specify your app's Privacy Policy"))
 
     class Meta:
@@ -678,7 +680,8 @@ class AppFormDetails(AddonFormBase):
 
 
 class AppFormMedia(AddonFormBase):
-    icon_type = forms.CharField(required=False,
+    icon_type = forms.CharField(
+        required=False,
         widget=forms.RadioSelect(renderer=IconWidgetRenderer, choices=[]))
     icon_upload_hash = forms.CharField(required=False)
     unsaved_icon_data = forms.CharField(required=False,
@@ -725,7 +728,7 @@ class AppSupportFormMixin(object):
         Make sure either support email or support url are present.
         """
         if ('support_email' in self._errors or
-            'support_url' in self._errors):
+                'support_url' in self._errors):
             # If there are already errors for those fields, bail out, that
             # means at least one of them was filled, the user just needs to
             # correct the error.
@@ -857,23 +860,21 @@ class PublishForm(happyforms.Form):
 
 
 class RegionForm(forms.Form):
-    regions = forms.MultipleChoiceField(required=False,
+    regions = forms.MultipleChoiceField(
+        required=False, choices=[], widget=forms.CheckboxSelectMultiple,
         label=_lazy(u'Choose the regions your app will be listed in:'),
-        choices=[],
-        widget=forms.CheckboxSelectMultiple,
         error_messages={'required':
-            _lazy(u'You must select at least one region.')})
-    special_regions = forms.MultipleChoiceField(required=False,
-        choices=[(x.id, x.name) for x in mkt.regions.SPECIAL_REGIONS],
-        widget=forms.CheckboxSelectMultiple)
-    enable_new_regions = forms.BooleanField(required=False,
-        label=_lazy(u'Enable new regions'))
-    restricted = forms.TypedChoiceField(required=False,
+                        _lazy(u'You must select at least one region.')})
+    special_regions = forms.MultipleChoiceField(
+        required=False, widget=forms.CheckboxSelectMultiple,
+        choices=[(x.id, x.name) for x in mkt.regions.SPECIAL_REGIONS])
+    enable_new_regions = forms.BooleanField(
+        required=False, label=_lazy(u'Enable new regions'))
+    restricted = forms.TypedChoiceField(
+        required=False, initial=0, coerce=int,
         choices=[(0, _lazy('Make my app available in most regions')),
                  (1, _lazy('Choose where my app is made available'))],
-        widget=forms.RadioSelect(attrs={'class': 'choices'}),
-        initial=0,
-        coerce=int)
+        widget=forms.RadioSelect(attrs={'class': 'choices'}))
 
     def __init__(self, *args, **kw):
         self.product = kw.pop('product', None)

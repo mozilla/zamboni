@@ -1,7 +1,6 @@
 import logging
 import os
 import sys
-from optparse import make_option
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage

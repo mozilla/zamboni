@@ -160,10 +160,11 @@ class ReviewBase(object):
         cc_email = self.addon.get_mozilla_contacts()
 
         log.info(u'Sending email for %s' % self.addon)
-        send_reviewer_mail(subject % data['name'],
-                           'reviewers/emails/decisions/%s.txt' % template, data,
-                           emails, perm_setting='app_reviewed', cc=cc_email,
-                           attachments=self.get_attachments())
+        send_reviewer_mail(
+            subject % data['name'],
+            'reviewers/emails/decisions/%s.txt' % template, data,
+            emails, perm_setting='app_reviewed', cc=cc_email,
+            attachments=self.get_attachments())
 
     def get_context_data(self):
         # We need to display the name in some language that is relevant to the
@@ -353,10 +354,11 @@ class ReviewApp(ReviewBase):
         # Special senior reviewer email.
         if not waffle.switch_is_active('comm-dashboard'):
             data = self.get_context_data()
-            send_reviewer_mail(u'Escalated Review Requested: %s' % data['name'],
-                               'reviewers/emails/super_review.txt', data,
-                               [settings.REVIEW_ESCALATION_EMAIL],
-                               attachments=self.get_attachments())
+            send_reviewer_mail(
+                u'Escalated Review Requested: %s' % data['name'],
+                'reviewers/emails/super_review.txt', data,
+                [settings.REVIEW_ESCALATION_EMAIL],
+                attachments=self.get_attachments())
 
     def process_comment(self):
         """
@@ -499,9 +501,9 @@ class ReviewHelper(object):
             'method': self.handler.process_disable,
             'label': _lazy(u'Ban app'),
             'minimal': True,
-            'details': _lazy(u'Ban the app from Marketplace. Similar to Reject '
-                             u'but the author(s) can\'t resubmit. To only be '
-                             u'used in extreme cases.')}
+            'details': _lazy(u'Ban the app from Marketplace. Similar to '
+                             u'Reject but the author(s) can\'t resubmit. To '
+                             u'only be used in extreme cases.')}
 
         actions = SortedDict()
 
@@ -734,7 +736,8 @@ class ReviewersQueuesHelper(object):
         if self.use_es:
             must = [
                 es_filter.Term(status=mkt.STATUS_PENDING),
-                es_filter.Term(**{'latest_version.status': mkt.STATUS_PENDING}),
+                es_filter.Term(**{'latest_version.status':
+                                  mkt.STATUS_PENDING}),
                 es_filter.Term(is_escalated=False),
                 es_filter.Term(is_disabled=False),
             ]
@@ -757,15 +760,16 @@ class ReviewersQueuesHelper(object):
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
-        return (RereviewQueue.objects.no_cache()
-            .filter(addon__disabled_by_user=False)
-            .exclude(addon__in=self.excluded_ids))
+        return (RereviewQueue.objects.no_cache().
+                filter(addon__disabled_by_user=False).
+                exclude(addon__in=self.excluded_ids))
 
     def get_updates_queue(self):
         if self.use_es:
             must = [
                 es_filter.Terms(status=mkt.WEBAPPS_APPROVED_STATUSES),
-                es_filter.Term(**{'latest_version.status': mkt.STATUS_PENDING}),
+                es_filter.Term(**{'latest_version.status':
+                                  mkt.STATUS_PENDING}),
                 es_filter.Terms(app_type=[mkt.ADDON_WEBAPP_PACKAGED,
                                           mkt.ADDON_WEBAPP_PRIVILEGED]),
                 es_filter.Term(is_disabled=False),
@@ -819,8 +823,8 @@ class ReviewersQueuesHelper(object):
     def _do_sort_queue_obj(self, qs, date_sort):
         """
         Column sorting logic based on request GET parameters.
-        Deals with objects with joins on the Addon (e.g. RereviewQueue, Version).
-        Returns qs of apps.
+        Deals with objects with joins on the Addon (e.g. RereviewQueue,
+        Version). Returns qs of apps.
         """
         sort_type, order = clean_sort_param(self.request, date_sort=date_sort)
         sort_str = sort_type
@@ -829,16 +833,17 @@ class ReviewersQueuesHelper(object):
             sort_str = 'addon__' + sort_type
 
         # sort_str includes possible joins when ordering.
-        # sort_type is the name of the field to sort on without desc/asc markers.
-        # order_by is the name of the field to sort on with desc/asc markers.
+        # sort_type is the name of the field to sort on without desc/asc
+        # markers. order_by is the name of the field to sort on with desc/asc
+        # markers.
         order_by = ('-' if order == 'desc' else '') + sort_str
 
         # Sort.
         if sort_type == 'name':
             # Sorting by name translation through an addon foreign key.
             return order_by_translation(
-                Webapp.objects.filter(id__in=qs.values_list('addon', flat=True)),
-                order_by)
+                Webapp.objects.filter(
+                    id__in=qs.values_list('addon', flat=True)), order_by)
 
         # Convert sorted queue object queryset to sorted app queryset.
         sorted_app_ids = (qs.order_by('-addon__priority_review', order_by)

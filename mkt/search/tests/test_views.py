@@ -55,7 +55,8 @@ class TestGetRegion(TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all_v1(self, mock_request_region):
-        geoip_fallback = regions.PER  # Different than the default: restofworld.
+        # Different than the default: restofworld.
+        geoip_fallback = regions.PER
         mock_request_region.return_value = geoip_fallback
 
         # Test string values (should return region with that slug).
@@ -81,7 +82,8 @@ class TestGetRegion(TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all_v2(self, mock_request_region):
-        geoip_fallback = regions.PER  # Different than the default: restofworld.
+        # Different than the default: restofworld.
+        geoip_fallback = regions.PER
         mock_request_region.return_value = geoip_fallback
 
         self.api_version = 2
@@ -169,7 +171,7 @@ class TestSearchView(RestOAuth, ESTestCase):
 
     def test_wrong_category(self):
         res = self.anon.get(self.url,
-                              data={'cat': self.category + 'xq'})
+                            data={'cat': self.category + 'xq'})
         eq_(res.status_code, 400)
         eq_(res['Content-Type'], 'application/json')
 
@@ -496,7 +498,7 @@ class TestSearchView(RestOAuth, ESTestCase):
 
         # Second test that adding ?lang returns only that localization.
         res = self.anon.get(self.url,
-                              data={'q': 'something', 'lang': 'es'})
+                            data={'q': 'something', 'lang': 'es'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -569,21 +571,21 @@ class TestSearchView(RestOAuth, ESTestCase):
 
     def test_premium_types(self):
         res = self.anon.get(self.url,
-                              data={'premium_types': 'free'})
+                            data={'premium_types': 'free'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
         res = self.anon.get(self.url,
-                              data={'premium_types': 'premium'})
+                            data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
 
     def test_multiple_premium_types(self):
         res = self.anon.get(self.url,
-                              data={'premium_types': ['free', 'premium']})
+                            data={'premium_types': ['free', 'premium']})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -626,7 +628,7 @@ class TestSearchView(RestOAuth, ESTestCase):
             eq_(obj['slug'], self.webapp.app_slug)
 
             res = self.anon.get(self.url,
-                                  data={'app_type': 'privileged'})
+                                data={'app_type': 'privileged'})
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 1)
             obj = res.json['objects'][0]

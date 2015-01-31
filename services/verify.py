@@ -24,7 +24,7 @@ from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE, CONTRIB_PURCHASE,
 log_configure()
 
 # This has to be imported after the settings (utils).
-import receipts  # NOQA, used for patching in the tests
+import receipts  # flake8: noqa
 
 status_codes = {
     200: '200 OK',
@@ -371,8 +371,8 @@ def decode_receipt(receipt):
     """
     with statsd.timer('services.decode'):
         if settings.SIGNING_SERVER_ACTIVE:
-            verifier = certs.ReceiptVerifier(valid_issuers=
-                                             settings.SIGNING_VALID_ISSUERS)
+            verifier = certs.ReceiptVerifier(
+                valid_issuers=settings.SIGNING_VALID_ISSUERS)
             try:
                 result = verifier.verify(receipt)
             except ExpiredSignatureError:

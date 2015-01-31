@@ -82,13 +82,14 @@ class IndexCompiler(compiler.SQLCompiler):
             if not self.query.alias_refcount[alias]:
                 continue
             try:
-                name, alias, join_type, lhs, join_cols, _, join_field = self.query.alias_map[alias]
+                name, alias, join_type, lhs, join_cols, _, join_field = (
+                    self.query.alias_map[alias])
             except KeyError:
                 # Extra tables can end up in self.tables, but not in the
                 # alias_map if they aren't in a join. That's OK. We skip them.
                 continue
             alias_str = (alias != name and ' %s' % alias or '')
-            ### jbalogh wuz here. ###
+            # jbalogh wuz here.
             if name in index_map:
                 use_index = 'USE INDEX (%s)' % qn(index_map[name])
             else:
@@ -108,20 +109,22 @@ class IndexCompiler(compiler.SQLCompiler):
                 for index, (lhs_col, rhs_col) in enumerate(join_cols):
                     if index != 0:
                         result.append(' AND ')
-                    result.append('%s.%s = %s.%s' %
-                    (qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col)))
+                    result.append('%s.%s = %s.%s' % (
+                        qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col)))
                 result.append('%s)' % extra_sql)
             else:
                 connector = connector = '' if first else ', '
-                result.append('%s%s%s %s' % (connector, qn(name), alias_str, use_index))
-            ### jbalogh out. ###
+                result.append('%s%s%s %s' %
+                              (connector, qn(name), alias_str, use_index))
+            # jbalogh out.
             first = False
         for t in self.query.extra_tables:
             alias, unused = self.query.table_alias(t)
             # Only add the alias if it's not already present (the table_alias()
             # calls increments the refcount, so an alias refcount of one means
             # this is the only reference.
-            if alias not in self.query.alias_map or self.query.alias_refcount[alias] == 1:
+            if (alias not in self.query.alias_map or
+                    self.query.alias_refcount[alias] == 1):
                 connector = not first and ', ' or ''
                 result.append('%s%s' % (connector, qn(alias)))
                 first = False

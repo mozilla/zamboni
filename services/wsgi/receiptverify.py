@@ -10,4 +10,4 @@ for path in ['../',
              '../../vendor/lib/python']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
 
-from verify import application
+from verify import application  # flake8: noqa

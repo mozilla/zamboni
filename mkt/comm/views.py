@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 import waffle
@@ -10,8 +9,7 @@ from rest_framework.authentication import BaseAuthentication
 from rest_framework.decorators import (api_view, authentication_classes,
                                        permission_classes)
 from rest_framework.exceptions import ParseError
-from rest_framework.fields import BooleanField
-from rest_framework.filters import BaseFilterBackend, OrderingFilter
+from rest_framework.filters import OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.parsers import FormParser, JSONParser
@@ -59,7 +57,7 @@ class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         return Response('Requested update operation not supported',
-            status=status.HTTP_403_FORBIDDEN)
+                        status=status.HTTP_403_FORBIDDEN)
 
 
 class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
@@ -95,7 +93,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 
             # Thread IDs and version numbers from same app.
             data['app_threads'] = list(queryset.order_by('_version__version')
-                .values('id', '_version__version'))
+                                       .values('id', '_version__version'))
             for app_thread in data['app_threads']:
                 app_thread['version__version'] = app_thread.pop(
                     '_version__version')

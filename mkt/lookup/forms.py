@@ -55,10 +55,10 @@ class DeleteUserForm(happyforms.Form):
 
 
 class APIStatusForm(happyforms.Form):
-    status = NoAutoCompleteChoiceField(required=False,
-        choices=STATUS_CHOICES, label=_lazy(u'Status'))
+    status = NoAutoCompleteChoiceField(
+        required=False, choices=STATUS_CHOICES, label=_lazy(u'Status'))
 
 
 class APIFileStatusForm(happyforms.Form):
-    status = NoAutoCompleteChoiceField(required=False,
-        choices=FILE_STATUS_CHOICES, label=_lazy(u'Status'))
+    status = NoAutoCompleteChoiceField(
+        required=False, choices=FILE_STATUS_CHOICES, label=_lazy(u'Status'))

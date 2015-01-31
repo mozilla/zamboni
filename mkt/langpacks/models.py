@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import hashlib
 import json
 import os.path
@@ -65,7 +65,6 @@ class LangPack(ModelBase):
     class Meta:
         ordering = (('-created'), )
         index_together = (('fxos_version', 'language', 'active', 'created'),)
-
 
     def is_public(self):
         return self.active

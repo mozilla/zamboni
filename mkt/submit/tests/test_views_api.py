@@ -48,7 +48,7 @@ class ValidationHandler(RestOAuth):
                           data=json.dumps({'manifest': manifest_url}))
         data = json.loads(res.content)
         self.get_url = reverse('app-validation-detail',
-            kwargs={'pk': data['id']})
+                               kwargs={'pk': data['id']})
         eq_(tasks_mock.fetch_manifest.call_args[0][0], manifest_url)
         eq_(tasks_mock.fetch_manifest.call_args[0][1], data['id'])
         return res, data
@@ -112,7 +112,7 @@ class TestPackagedValidation(MktPaths, ValidationHandler):
                           data=json.dumps({'upload': self.data}))
         data = json.loads(res.content)
         self.get_url = reverse('app-validation-detail',
-            kwargs={'pk': data['id']})
+                               kwargs={'pk': data['id']})
         eq_(tasks_mock.validator.delay.call_args[0][0], data['id'])
         return res
 
@@ -367,7 +367,8 @@ class TestPreviewHandler(RestOAuth, MktPaths):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(user=self.user, addon=self.app)
-        self.file = base64.b64encode(open(get_image_path('preview.jpg'), 'r').read())
+        self.file = base64.b64encode(
+            open(get_image_path('preview.jpg'), 'r').read())
         self.list_url = reverse('app-preview',
                                 kwargs={'pk': self.app.pk})
         self.good = {'file': {'data': self.file, 'type': 'image/jpg'},

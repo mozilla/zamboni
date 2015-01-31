@@ -85,7 +85,8 @@ class Command(BaseCommand):
                 qs = OperatorPermission.objects.filter(user=user)
                 if len(qs):
                     qs.delete()
-                    self.stdout.write('Removed all permissions for %s' % args[1])
+                    self.stdout.write('Removed all permissions for %s'
+                                      % args[1])
                 else:
                     raise CommandError('No permissions for %s' % args[1])
 

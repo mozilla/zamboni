@@ -428,7 +428,8 @@ IARC_ICONS = {
     },
     'descriptors': {
         'pegi': {
-            'has_pegi_discrimination': pth('descriptors/pegi_discrimination.png'),
+            'has_pegi_discrimination':
+                pth('descriptors/pegi_discrimination.png'),
             'has_pegi_drugs': pth('descriptors/pegi_drugs.png'),
             'has_pegi_gambling': pth('descriptors/pegi_gambling.png'),
             'has_pegi_lang': pth('descriptors/pegi_language.png'),
@@ -450,8 +451,10 @@ IARC_ICONS = {
     },
     'interactive_elements': {
         'has_shares_info': pth('interactives/ESRB_shares-info_small.png'),
-        'has_shares_location': pth('interactives/ESRB_shares-location_small.png'),
-        'has_users_interact': pth('interactives/ESRB_users-interact_small.png'),
+        'has_shares_location':
+            pth('interactives/ESRB_shares-location_small.png'),
+        'has_users_interact':
+            pth('interactives/ESRB_users-interact_small.png'),
         'has_digital_purchases': pth(
             'interactives/ESRB_digital-purchases_small.png'),
     }

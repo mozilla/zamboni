@@ -21,10 +21,11 @@ DUMMY_SECRET = u'DummyOAuthSecret'
 
 log = commonware.log.getLogger('z.api')
 
+
 def get_request_headers(request):
     return {
         'Authorization': request.META.get('HTTP_AUTHORIZATION'),
-        'Content-Type':  request.META.get('CONTENT_TYPE', '')
+        'Content-Type': request.META.get('CONTENT_TYPE', '')
     }
 
 
@@ -80,7 +81,7 @@ class MarketplaceOAuthRequestValidator(oauth1.RequestValidator):
         return True
 
     def validate_realms(self, client_key, token, request, uri=None,
-            realms=None):
+                        realms=None):
         return True
 
     def validate_redirect_uri(self, client_key, redirect_uri, request):

@@ -71,8 +71,9 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                                     body=u'I lôve this app',
                                     rating=5)
         pk = rev.pk
-        ver = mkt.site.tests.version_factory(addon=self.app, version='2.0',
-                                        file_kw=dict(status=mkt.STATUS_PUBLIC))
+        ver = mkt.site.tests.version_factory(
+            addon=self.app, version='2.0',
+            file_kw=dict(status=mkt.STATUS_PUBLIC))
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.pk)
 
@@ -167,7 +168,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         self.app.update(status=mkt.STATUS_PENDING)
         get_region_mock.return_value = mkt.regions.USA
-        res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
+        res, data = self._get_filter(
+            app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "us".')
 
@@ -189,7 +191,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BRA.id)
         get_region_mock.return_value = mkt.regions.BRA
-        res, data = self._get_filter(app=self.app.app_slug, expected_status=403)
+        res, data = self._get_filter(
+            app=self.app.app_slug, expected_status=403)
         eq_(data['detail'], 'The app requested is not public or not available '
                             'in region "br".')
 
@@ -622,9 +625,9 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['meta']['total_count'], 0)
 
         Review.objects.create(addon=self.app, user=self.user,
-                      version=self.app.current_version,
-                      body=u'I häte this app',
-                      rating=0)
+                              version=self.app.current_version,
+                              body=u'I häte this app',
+                              rating=0)
         self.app.update(total_reviews=10)
         res = self.client.get(self.url)
         data = json.loads(res.content)

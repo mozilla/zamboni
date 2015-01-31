@@ -113,7 +113,7 @@ class TestSendMail(TestCase):
         to = user.email
         n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+                                               user=user, enabled=True)
 
         # Confirm we're reading from the database
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -127,10 +127,11 @@ class TestSendMail(TestCase):
     def test_user_mandatory(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
+        n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT[
+            'individual_contact']
 
         UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+                                               user=user, enabled=True)
 
         assert n.mandatory, "Notification isn't mandatory"
 
@@ -145,7 +146,7 @@ class TestSendMail(TestCase):
         to = user.email
         n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=False)
+                                               user=user, enabled=False)
 
         # Confirm we're reading from the database.
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -180,12 +181,13 @@ class TestSendMail(TestCase):
         subject = u'Test'
         html_template = 'purchase/receipt.html'
         text_template = 'purchase/receipt.ltxt'
-        send_html_mail_jinja(subject, html_template, text_template,
-                             context={}, recipient_list=emails,
-                             from_email=settings.NOBODY_EMAIL,
-                             use_blocked=False,
-                             perm_setting='individual_contact',
-                             headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
+        send_html_mail_jinja(
+            subject, html_template, text_template,
+            context={}, recipient_list=emails,
+            from_email=settings.NOBODY_EMAIL,
+            use_blocked=False,
+            perm_setting='individual_contact',
+            headers={'Reply-To': settings.MKT_REVIEWERS_EMAIL})
 
         msg = mail.outbox[0]
         message = msg.message()
@@ -242,9 +244,9 @@ class TestSendMail(TestCase):
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
         assert send_mail('test subject',
-                          'test body',
-                          async=True,
-                          recipient_list=['somebody@mozilla.org'])
+                         'test body',
+                         async=True,
+                         recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('mkt.site.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):

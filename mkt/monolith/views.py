@@ -25,9 +25,9 @@ log = logging.getLogger('z.monolith')
 STATS = {
     'apps_ratings': {
         'qs': Review.objects
-            .filter(editorreview=0)
-            .values('addon')
-            .annotate(count=Count('addon')),
+        .filter(editorreview=0)
+        .values('addon')
+        .annotate(count=Count('addon')),
         'type': 'slice',
         'field_map': {
             'count': 'count',
@@ -35,9 +35,9 @@ STATS = {
     },
     'apps_average_rating': {
         'qs': Review.objects
-            .filter(editorreview=0)
-            .values('addon')
-            .annotate(avg=Avg('rating')),
+        .filter(editorreview=0)
+        .values('addon')
+        .annotate(avg=Avg('rating')),
         'type': 'total',
         'field_map': {
             'count': 'avg',
@@ -45,8 +45,8 @@ STATS = {
     },
     'apps_abuse_reports': {
         'qs': AbuseReport.objects
-            .values('addon')
-            .annotate(count=Count('addon')),
+        .values('addon')
+        .annotate(count=Count('addon')),
         'type': 'slice',
         'field_map': {
             'count': 'count',
@@ -95,7 +95,7 @@ def _get_query_result(key, start, end):
             'user_hash': None,
             'value': {'count': d.get(stat['field_map']['count']),
                       'app-id': d.get(stat['field_map']['app-id'])}}
-            for d in date_filtered])
+                     for d in date_filtered])
 
     return data
 

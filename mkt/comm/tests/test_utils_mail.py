@@ -24,11 +24,11 @@ sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
 multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
                            'email_multipart.txt')
 quopri_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
-                           'email_quoted_printable.txt')
+                            'email_quoted_printable.txt')
 attach_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
-                           'email_attachment.txt')
+                            'email_attachment.txt')
 attach_email2 = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
-                            'email_attachment2.txt')
+                             'email_attachment2.txt')
 
 
 class TestSendMailComm(TestCase, CommTestMixin):

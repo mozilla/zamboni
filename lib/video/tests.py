@@ -180,8 +180,8 @@ class TestTask(mkt.site.tests.TestCase):
         with self.assertRaises(ValueError):
             resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
         assert self.mock.delete.called
-        assert UserLog.objects.filter(user=user,
-                        activity_log__action=mkt.LOG.VIDEO_ERROR.id).exists()
+        assert UserLog.objects.filter(
+            user=user, activity_log__action=mkt.LOG.VIDEO_ERROR.id).exists()
 
     @patch('lib.video.tasks._resize_video')
     def test_resize_failed(self, _resize_video):

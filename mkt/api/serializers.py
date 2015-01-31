@@ -99,6 +99,7 @@ class URLSerializerMixin(serializers.ModelSerializer):
             namespace = ''
             if request.API_VERSION != settings.API_CURRENT_VERSION:
                 namespace = 'api-v%d:' % request.API_VERSION
-            return reverse('%s%s-detail' % (namespace, self.Meta.url_basename,),
-                           request=request, kwargs={'pk': obj.pk})
+            return reverse(
+                '%s%s-detail' % (namespace, self.Meta.url_basename,),
+                request=request, kwargs={'pk': obj.pk})
         return None

@@ -264,7 +264,8 @@ class TestAdditionalReview(mkt.site.tests.TestCase):
         self.log_reviewer_action = self.patch_object(
             self.review, 'log_reviewer_action')
         self.award_additional_review_points = self.patch(
-            'mkt.reviewers.models.ReviewerScore.award_additional_review_points')
+            'mkt.reviewers.models.ReviewerScore.'
+            'award_additional_review_points')
 
     def patch(self, patch_string):
         patcher = mock.patch(patch_string)
@@ -490,7 +491,8 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         super(TestSendTarakoMail, self).setUp()
         self.send_mail = self.patch('mkt.reviewers.models.send_mail_jinja')
         self.award_additional_review_points = self.patch(
-            'mkt.reviewers.models.ReviewerScore.award_additional_review_points')
+            'mkt.reviewers.models.ReviewerScore.'
+            'award_additional_review_points')
 
     def test_send_tarako_mail_review_passed(self):
         ok_(not self.send_mail.called)

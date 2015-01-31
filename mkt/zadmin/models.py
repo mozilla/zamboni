@@ -70,10 +70,10 @@ class EmailPreviewTopic(object):
                   from_email=settings.DEFAULT_FROM_EMAIL,
                   recipient_list=tuple([])):
         return EmailPreview.objects.create(
-                        topic=self.topic,
-                        subject=subject, body=body,
-                        recipient_list=u','.join(recipient_list),
-                        from_email=from_email)
+            topic=self.topic,
+            subject=subject, body=body,
+            recipient_list=u','.join(recipient_list),
+            from_email=from_email)
 
 
 class EmailPreview(ModelBase):

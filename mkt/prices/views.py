@@ -25,5 +25,3 @@ class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
     authentication_classes = [RestAnonymousAuthentication]
     permission_classes = [AllowAny]
     filter_class = PriceFilter
-
-

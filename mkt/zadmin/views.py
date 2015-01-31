@@ -255,6 +255,6 @@ def elastic(request):
         'health': es.cluster.health(),
         'state': es.cluster.state(),
         'mappings': [(index, es.indices.get_mapping(index=index))
-                      for index in indexes],
+                     for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)

@@ -1,7 +1,7 @@
 """private_mkt will be populated from puppet and placed in this directory"""
 
-from mkt.settings import *
-from settings_base import *
+from mkt.settings import *  # flake8: noqa
+from settings_base import *  # flake8: noqa
 
 import private_mkt
 
@@ -23,9 +23,9 @@ UNVERIFIED_ISSUER = 'firefoxos.anosrep.org'
 
 # This is a B2G (or other native) verifier. Adjust accordingly.
 NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
-                                             % NATIVE_BROWSERID_DOMAIN)
+                                     % NATIVE_BROWSERID_DOMAIN)
 NATIVE_BROWSERID_JS_URL = ('https://%s/include.js'
-                                   % NATIVE_BROWSERID_DOMAIN)
+                           % NATIVE_BROWSERID_DOMAIN)
 
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
@@ -50,7 +50,7 @@ SYSLOG_TAG2 = "http_app_marketplace_identity_stage_timer"
 SYSLOG_CSP = "http_app_marketplace_identity_stage_csp"
 STATSD_PREFIX = 'marketplace-identity-stage'
 
-## Celery
+# Celery
 BROKER_URL = private_mkt.BROKER_URL
 
 CELERY_ALWAYS_EAGER = True
@@ -85,11 +85,13 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
-    AUTHENTICATION_BACKENDS = ('django_fakeauth.FakeAuthBackend',)\
-                              + AUTHENTICATION_BACKENDS
+    AUTHENTICATION_BACKENDS = (
+        ('django_fakeauth.FakeAuthBackend',)
+        + AUTHENTICATION_BACKENDS
+    )
     MIDDLEWARE_CLASSES.insert(
-            MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
-            'django_fakeauth.FakeAuthMiddleware')
+        MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),
+        'django_fakeauth.FakeAuthMiddleware')
     FAKEAUTH_TOKEN = private_mkt.FAKEAUTH_TOKEN
 
     # we are also creating access tokens for OAuth, here are the keys and
@@ -99,12 +101,12 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-#Bug 748403
+# Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
 SIGNING_VALID_ISSUERS = ['identity-stage-marketplace-cdn.allizom.org']
 
-#Bug 793876
+# Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER

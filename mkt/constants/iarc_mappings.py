@@ -96,7 +96,8 @@ DESCS = {
         u'Drug and Alcohol Reference': 'has_esrb_drug_alcohol_ref',
         u'Drug and Tobacco Reference': 'has_esrb_drug_tobacco_ref',
         u'Drug Reference': 'has_esrb_drug_ref',
-        u'Drug, Alcohol and Tobacco Reference': 'has_esrb_drug_alcohol_tobacco_ref',
+        u'Drug, Alcohol and Tobacco Reference':
+            'has_esrb_drug_alcohol_tobacco_ref',
         u'Fantasy Violence': 'has_esrb_fantasy_violence',
         u'Hate Speech': 'has_esrb_hate_speech',
         u'Intense Violence': 'has_esrb_intense_violence',
@@ -129,7 +130,8 @@ DESCS = {
         u'Use of Alcohol and Tobacco': 'has_esrb_alcohol_tobacco_use',
         u'Use of Drug and Alcohol': 'has_esrb_drug_alcohol_use',
         u'Use of Drug and Tobacco': 'has_esrb_drug_tobacco_use',
-        u'Use of Drug, Alcohol and Tobacco': 'has_esrb_drug_alcohol_tobacco_use',
+        u'Use of Drug, Alcohol and Tobacco':
+            'has_esrb_drug_alcohol_tobacco_use',
         u'Use of Drugs': 'has_esrb_drug_use',
         u'Use of Tobacco': 'has_esrb_tobacco_use',
         u'Violence': 'has_esrb_violence',

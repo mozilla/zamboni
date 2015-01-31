@@ -35,7 +35,7 @@ def manifest(request, uuid):
 
     if (addon.is_packaged and
         not addon.disabled_by_user and
-        (is_avail or (is_owner_avail and is_owner))):
+            (is_avail or (is_owner_avail and is_owner))):
 
         manifest_content = addon.get_cached_manifest()
         package_etag.update(manifest_content)
