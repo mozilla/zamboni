@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-31 18:45+0000\n"
+"PO-Revision-Date: 2015-01-31 19:29+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422729930.0\n"
+"X-POOTLE-MTIME: 1422732587.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2238,38 +2238,46 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Pšosym zapśimjejśo mójo nałoženje ako kandidat za pśedinstalaciju na rěźe "
+"Firefox OS. Som z górjejce wuwjeźonymi wužywańskimi wuměnjenjami wobjadny. "
+"Rozměju, až toś ten dokument njejo pśigrono, mójo nałoženje "
+"pśedinstalěrowaś."
 
 #: mkt/developers/forms.py:1210
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Nagrajśo swój testowy plan (.pdf, .xls mjenjej ako 2,5 MB)"
 
 #: mkt/developers/forms.py:1226
 msgid "Test plan required."
-msgstr ""
+msgstr "Testowy plan trěbny."
 
 #: mkt/developers/forms.py:1233
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
+"Dataja jo pśewjelika. Dataja smějo maksimalnje %s wjelika byś. Aktualna "
+"wjelikosć jo %s."
 
 #: mkt/developers/forms.py:1239
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Njepłaśiwy datajowy typ {0}. Jano {1} se pódpěra."
 
 #: mkt/developers/forms.py:1263
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Pšosym zapódajśo płaśiwy pśenosowański ID."
 
 #: mkt/developers/forms.py:1279
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"IARC-certifikat wužywa se južo za druge nałoženje. Pšosym napórajśo nowy "
+"pógódnośeński IARC-certifikat."
 
 #: mkt/developers/forms.py:1314 mkt/developers/forms.py:1326
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Njepłaśiwy pśenosowański ID abo wěstotny kod."
 
 #: mkt/developers/forms_payments.py:59
 msgid "App Price"
-msgstr ""
+msgstr "Płaśizna nałoženja"
 
 #: mkt/developers/forms_payments.py:112
 msgid "Free (with in-app payments)"
@@ -2309,7 +2317,7 @@ msgstr "Žedna aktualizacija"
 
 #: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Mě mějarja bankowego konta"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
@@ -2386,31 +2394,31 @@ msgstr "Adresa banki 2"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Město/Gmejna banki"
 
 #: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Stat/Prowinca/Region banki"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Postowa licba banki"
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
-msgstr ""
+msgstr "Kraj banki"
 
 #: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Kontowe mě"
 
 #: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
-msgstr ""
+msgstr "Płaśeńske mě"
 
 #: mkt/developers/forms_payments.py:525
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "Njamóžośo płaśeńske konto z nałoženja wótpóraś."
 
 #: mkt/developers/forms_payments.py:529
 msgid "You are not permitted to change payment accounts."
