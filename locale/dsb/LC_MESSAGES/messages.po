@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-30 11:21+0000\n"
+"PO-Revision-Date: 2015-01-31 18:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422616913.0\n"
+"X-POOTLE-MTIME: 1422729930.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -359,7 +360,7 @@ msgstr "Česka republika"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Dańska"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -2084,35 +2085,37 @@ msgstr "Zapakowane nałoženje jo pśewjelike za pśenosowanje. Pakety muse mje�
 
 #: mkt/developers/forms.py:477
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Zmólka pśi wupakowanju manifesta ze ZIP-dataje."
 
 #: mkt/developers/forms.py:558
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Pódajśo nadrobne wopisanje swójogo nałoženja"
 
 #: mkt/developers/forms.py:559 mkt/submit/forms.py:277
 msgid "This description will appear on the details page."
-msgstr ""
+msgstr "Wopisanje pokažo se na boku drobnostkow."
 
 #: mkt/developers/forms.py:600 mkt/submit/forms.py:358 mkt/webapps/forms.py:26
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Toś to adresowe mě se južo wužywa. Pšosym wubjeŕśo druge."
 
 #: mkt/developers/forms.py:603 mkt/submit/forms.py:362 mkt/webapps/forms.py:29
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Adresowe mě njamóžo \"%s\" byś. Pšosym wubjeŕśo druge."
 
 #: mkt/developers/forms.py:631
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "URL manifesta jo se z {before_url} do {after_url} změnił."
 
 #: mkt/developers/forms.py:653
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "Pšosym pódajśo pšawidła priwatnosći swójogo nałoženja"
 
 #: mkt/developers/forms.py:674
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Nježli až pódaśo swóju standardnu lokalu, musyśo mě a wopsianje w rěcy toś "
+"teje lokale měś. Wam %s felujo."
 
 #: mkt/developers/forms.py:742 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
@@ -2152,45 +2155,45 @@ msgstr "Nowe regiony zmóžniś"
 
 #: mkt/developers/forms.py:872
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Mójo nałoženje w nejwěcej regionach k dispoziciji stajiś"
 
 #: mkt/developers/forms.py:873
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Wubjeŕśo, źož mójo nałoženje buźo k dispoziciji"
 
 #: mkt/developers/forms.py:1028 mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:123
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:133 mkt/search/forms.py:92
 msgid "Categories"
-msgstr ""
+msgstr "Kategorije"
 
 #. L10n: {0} is the number of categories.
 #: mkt/developers/forms.py:1053 mkt/webapps/serializers.py:264
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Móžośo jano {0} kategoriju wubraś."
+msgstr[1] "Móžośo jano {0} kategoriji wubraś."
+msgstr[2] "Móžośo jano {0} kategorije wubraś."
+msgstr[3] "Móžośo jano {0} kategorijow wubraś."
 
 #: mkt/developers/forms.py:1067
 msgid "Agree"
-msgstr ""
+msgstr "Pśigłosowaś"
 
 #: mkt/developers/forms.py:1084
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Pšosym zapódajśo płaśiwu e-mailowu adresu."
 
 #: mkt/developers/forms.py:1087
 msgid "Your email address"
-msgstr ""
+msgstr "Waša e-mailowa adresa"
 
 #: mkt/developers/forms.py:1090
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: mkt/developers/forms.py:1094
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Musyśo do pšawidłow priwatnosći zwóliś"
 
 #: mkt/developers/forms.py:1095 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -2310,35 +2313,35 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
-msgstr ""
+msgstr "Firmowe mě"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
-msgstr ""
+msgstr "Mě pśedawarja"
 
 #: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
-msgstr ""
+msgstr "Financna e-mailowa adresa"
 
 #: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
-msgstr ""
+msgstr "Administratiwna e-mailowa adresa"
 
 #: mkt/developers/forms_payments.py:381
 msgid "Support Email"
-msgstr ""
+msgstr "E-mailowa adresa pomocy"
 
 #: mkt/developers/forms_payments.py:385
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address 2"
-msgstr ""
+msgstr "Adresa 2"
 
 #: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
-msgstr ""
+msgstr "Město/Gmejna"
 
 #: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
@@ -2379,7 +2382,7 @@ msgstr "Adresa banki"
 
 #: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Adresa banki 2"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
@@ -2457,11 +2460,11 @@ msgstr ""
 
 #: mkt/developers/providers.py:285
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Pśikładna implementacija"
 
 #: mkt/developers/providers.py:371
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
