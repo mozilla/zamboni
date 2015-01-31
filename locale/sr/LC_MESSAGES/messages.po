@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-08 18:01+0000\n"
-"Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
+"PO-Revision-Date: 2015-01-31 10:26+0000\n"
+"Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420740101.0\n"
+"X-POOTLE-MTIME: 1422699968.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -362,7 +363,7 @@ msgstr "Чешка"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Данска"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -3714,11 +3715,11 @@ msgstr "Ова апликација не захтева никакве кара�
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Интерни идентификатор за ову апликацију на Firefox Marketplace-у."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4341,6 +4342,8 @@ msgstr "Начин плаћања"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Ако је \"Остатак света\" изабран у Вашој апликацији она ће бити доступна за "
+"куповину у свим \"<a href=\"#regions-other\">Осталим регионима</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4349,6 +4352,8 @@ msgstr "Остали региони"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Ако желите да се Ваша апликација не појављује у одређеном региону, можете "
+"поништити одабир пре снимања."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -5063,6 +5068,8 @@ msgstr "Манифест webapp није валидан JSON."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Улога \"langpack\" је неважећа у веб апликацијама. Молимо Вас поднесите "
+"језички пакет уместо тога."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5186,31 +5193,39 @@ msgstr "Лого производа мора бити слика величин�
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Ваш језички пакет треба да садржи \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Ваш језички пакет треба да садржи један језик у `languages-provided` "
+"објекту."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Ваш језички пакет садржи превише језика. Само је подржан један језик по "
+"пакету."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Ваш језички пакет треба да садржи један језик у `languages-target` објекту."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Ваш језички пакет садржи превише циљева. Само је подржан један циљ по "
+"пакету."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Ваш језички пакет треба да садржи верзију."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"Ваш језички пакет треба да буде другачији у односу на онај кога замењујете."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5404,7 +5419,7 @@ msgstr "<small>Marketplace</small> алат за претрагу"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Marketplace информација"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5420,11 +5435,11 @@ msgstr "Повезане трансакције"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Информација о пружаоцу уплата"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Тренутно не могу добити статус трансакције."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
@@ -5436,19 +5451,19 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Износ плаћен"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "Lookup id"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Време"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Информација о поврату новца"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6581,7 +6596,7 @@ msgstr "Прегледано"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "У тренду"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6921,11 +6936,11 @@ msgstr "{user} је одобрио {review} за {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Рецензија {review} за {addon} је избрисана."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} је избрисао {review} за {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
