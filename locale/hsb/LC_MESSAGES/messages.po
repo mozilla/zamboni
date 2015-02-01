@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-31 19:30+0000\n"
+"PO-Revision-Date: 2015-02-01 13:08+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422732628.0\n"
+"X-POOTLE-MTIME: 1422796107.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2550,7 +2550,8 @@ msgstr "Wutworjeny"
 
 #: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr "Płaćomne nałoženja njedadźa so zhašeć. Znjemóžńće je město toho."
+msgstr ""
+"Płaćomne nałoženja njedadźa so zhašeć. Znjemóžńće tute nałoženje město toho."
 
 #: mkt/developers/views.py:159
 msgid "App deleted."
@@ -2734,7 +2735,9 @@ msgstr "OAuth-přikład"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr "<p>Přikład z pomocu Pythonowej biblioteku za přikazowu linku na Mac OX X z pomocu wašich přizjewjenskich datow:</p>"
+msgstr ""
+"<p>Přikład z pomocu Pythonoweje biblioteki za přikazowu linku na Mac OX X z "
+"pomocu wašich přizjewjenskich datow:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -2926,7 +2929,10 @@ msgstr "<strong>Njezabudźće protokol</strong> Spytajće pak <a href=\"#\">%(ht
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr "Manifestowe URL dyrbja z protokolom započeć (na přikład <code>http://</code> abo <code>https://</code>) a w normalnym padźe sufiks<code>.webapp</code> wužiwać."
+msgstr ""
+"Manifestowe URL dyrbja so z protokolom započeć (na přikład "
+"<code>http://</code> abo <code>https://</code>) a w normalnym padźe "
+"sufiks<code>.webapp</code> wužiwać."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
