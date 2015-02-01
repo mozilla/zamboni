@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-08 02:54+0000\n"
+"PO-Revision-Date: 2015-02-01 14:08+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420685698.0\n"
+"X-POOTLE-MTIME: 1422799716.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -364,7 +364,7 @@ msgstr "Tsjechië"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Denemarken"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -3564,8 +3564,10 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
-"Probeer uw manifest URL niet te vaak te wijzigen. Als u uw manifest-URL wijzigt, worden bestaande gebruikers niet bijgewerkt naar de nieuwe manifest-URL. Lees voor meer informatie de <a href="
-"\"%(doc_url)s\" target=\"_blank\">documentatie over het bijwerken van apps</a>."
+"Probeer uw manifest-URL niet te vaak te wijzigen. Als u uw manifest-URL "
+"wijzigt, worden bestaande gebruikers niet naar de nieuwe manifest-URL "
+"bijgewerkt. Lees voor meer informatie de <a href=\"%(doc_url)s\" "
+"target=\"_blank\">documentatie over het bijwerken van apps</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:136
 msgid "Description"
@@ -3716,11 +3718,11 @@ msgstr "Deze app heeft geen apparaatfuncties nodig"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Interne identificatie voor deze app op de Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -3728,7 +3730,10 @@ msgstr "App-pictogram"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "Upload een pictogram voor uw app of kier er één van ons. Het pictogram wordt vrijwel overal bij uw app weergegeven. Geüploade afbeeldingen dienen van het type .png of .jpg te zijn"
+msgstr ""
+"Upload een pictogram voor uw app of kier er één van ons. Het pictogram wordt "
+"vrijwel overal bij uw app weergegeven. Geüploade afbeeldingen moeten van "
+"het type .png of .jpg zijn."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
@@ -4276,7 +4281,10 @@ msgstr "Wijzigen naar betaald zet uw app terug in beoordelingsmodus."
 
 #: mkt/developers/templates/developers/payments/premium.html:109
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
-msgstr "Lees over <a href=\"%(payments_url)s\" target=\"_blank\">verschillende betalingstypes</a>.<br /> Lees over <a href=\"%(receipts_url)s\" target=\"_blank\">validatie van aankoopbewijzen</a>."
+msgstr ""
+"Lees over <a href=\"%(payments_url)s\" target=\"_blank\">verschillende "
+"betalingstypen</a>.<br /> Lees over <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">validatie van aankoopbewijzen</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:120 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -4284,7 +4292,9 @@ msgstr "Betalingsaccounts"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Uw app is nog niet volledig. Selecteer een betalingsmethode en prijspunt om de app aan te vullen."
+msgstr ""
+"Uw app is nog niet volledig. Selecteer een betalingsaccount en prijspunt om "
+"de app aan te vullen."
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -4341,6 +4351,9 @@ msgstr "Factureringsmethode"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Aangezien “Rest van de wereld” is geselecteerd, zal uw app in alle "
+"ingeschakelde \"<a href=\"#regions-other\">Overige regio’s</a>\" voor aankoop "
+"beschikbaar zijn."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4349,6 +4362,8 @@ msgstr "Overige regio’s"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Om uw app niet in een regio te laten verschijnen, kunt u die regio voor het "
+"opslaan uitvinken."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4553,6 +4568,8 @@ msgstr "Uw app wordt weergegeven in elke toekomstige regionale Marketplace."
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Afhankelijk van beschikbare betalingen in die regio voor het geselecteerde "
+"prijspunt of geselecteerd zijn van “Rest van de wereld” als betalingsoptie)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5061,6 +5078,8 @@ msgstr "Het webapp-manifest is geen geldige JSON."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"De “langpack”-rol is niet geldig voor webapps. Dien deze app in als "
+"taalpakket."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5184,31 +5203,37 @@ msgstr "Productlogo moet een afbeelding van 64x64 zijn. Controleer de URL."
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Uw taalpakket dient “role”: “langpack” te bevatten."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Uw taalpakket moet één taal in het object ‘languages-provided’ bevatten."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Uw taalpakket bevat te veel talen. Er wordt maar één taal per pakket "
+"ondersteund."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
-msgstr ""
+msgstr "Uw taalpakket moet één taal in het object ‘languages-target’ bevatten."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Uw taalpakket bevat te veel doelen. Er wordt maar één doel per pakket "
+"ondersteund."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Uw taalpakket dient een versie te bevatten."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"De versie van uw taalpakket  moet anders zijn dan degene die u vervangt."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5402,7 +5427,7 @@ msgstr "<small>Marketplace</small>-zoekhulpmiddel"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Marketplace-informatie"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5418,35 +5443,40 @@ msgstr "Gerelateerde transactie"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Betalingsprovider-informatie"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Kan momenteel geen transactiestatus ophalen."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Deze betaling is gedaan via Bango. Neem voor meer informatie contact op met "
+"<a href=\"mailto:%(bango_support)s\">Bango Support</a> met de volgende "
+"informatie."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Deze betaling is gedaan via de <b>referentie-implementatie</b>. Het was geen "
+"echte transactie."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Betaald bedrag"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "Opzoek-id"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Tijdstempel"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Restitutiegegevens"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -5463,8 +5493,9 @@ msgstr "Niet aangevraagd"
 #: mkt/lookup/templates/lookup/transaction_summary.html:100
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
-"Vink dit veld aan als een handmatige restitutie is verwerkt door de betalingsaanbieder. Hierdoor wordt de restitutie verwerkt op de Mozilla-servers, maar wordt geen contact gelegd met de "
-"betalingsprovider."
+"Vink dit veld aan als een handmatige restitutie is verwerkt door de "
+"betalingsprovider. Hierdoor wordt de restitutie verwerkt op de Mozilla-"
+"servers, maar wordt geen contact gelegd met de betalingsprovider."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:106
 msgid "Refund this transaction"
@@ -5810,7 +5841,7 @@ msgstr "Opmerkingen:"
 
 #: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:138
 msgid "Device Types:"
-msgstr "Apparaattypes:"
+msgstr "Apparaattypen:"
 
 #: mkt/reviewers/forms.py:81 mkt/reviewers/templates/reviewers/review.html:142
 msgid "Browsers:"
@@ -6345,7 +6376,7 @@ msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr "Apparaattypes"
+msgstr "Apparaattypen"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
@@ -6577,7 +6608,7 @@ msgstr "Beoordeeld"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Trends"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6633,7 +6664,7 @@ msgstr "Apparaattype"
 
 #: mkt/search/forms.py:100
 msgid "Premium types"
-msgstr "Premium-types"
+msgstr "Premium-typen"
 
 #: mkt/search/forms.py:104
 msgid "App type"
@@ -6917,11 +6948,11 @@ msgstr "{user} heeft {review} voor {addon} goedgekeurd."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Beoordeling {review} voor {addon} verwijderd."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} heeft {review} voor {addon} verwijderd."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
@@ -7083,11 +7114,11 @@ msgstr "Automatische VIP-escalatie"
 
 #: mkt/site/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr "{addon} opnieuw beoordeeld vanwege URL-wijziging manifest."
+msgstr "{addon} opnieuw beoordeeld vanwege URL-wijziging van manifest."
 
 #: mkt/site/log.py:530
 msgid "Manifest URL Change"
-msgstr "URL-wijziging manifest"
+msgstr "URL-wijziging van manifest"
 
 #: mkt/site/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
