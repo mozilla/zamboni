@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-01 13:20+0000\n"
+"PO-Revision-Date: 2015-02-01 23:11+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422796839.0\n"
+"X-POOTLE-MTIME: 1422832276.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3006,54 +3006,57 @@ msgstr "Móje zapódaśa zastojaś"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:10 mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
-msgstr ""
+msgstr "Pśipowěźeńka"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:12 mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Pśipowěźeńku zachyśiś"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:83
 msgid "Edit"
-msgstr ""
+msgstr "Wobźěłaś"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:27
 msgid "Welcome to the Developer Dashboard"
-msgstr ""
+msgstr "Witajśo k wuwijarskemu pśeglědoju"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Njejsćo hyšći žedno nałoženje na Wikowanišću Firefox zapódał. Gaž sćo <a "
+"href=\"%(app_url)s\">swójo nałoženje napórał</a>, klikniśo na \"Wašo nałoženje "
+"zapódaś\"."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
-msgstr ""
+msgstr "Nałoženje zapódaś"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/reviewers/templates/reviewers/review.html:61
 msgid "Edit Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk wobźěłaś"
 
 #: mkt/developers/templates/developers/apps/edit.html:13 mkt/developers/templates/developers/includes/macros.html:17 mkt/developers/templates/developers/payments/includes/regions_toggle.html:7
 #: mkt/lookup/templates/lookup/app_summary.html:30 mkt/lookup/templates/lookup/user_summary.html:75 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:46
 #: mkt/translations/templates/translations/all-locales.html:6
 msgid "None"
-msgstr ""
+msgstr "Žedno"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:90
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:28 mkt/reviewers/templates/reviewers/includes/details.html:116 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Team Members"
-msgstr ""
+msgstr "Teamowe cłonki"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Jano wobsejźarje nałoženja mógu toś ten bok wobźěłaś."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
-msgstr ""
+msgstr "Wó rolach teamowych cłonkow"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:203
 #: mkt/developers/templates/developers/apps/edit/basic.html:168 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
@@ -3061,7 +3064,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:105 mkt/developers/templates/developers/payments/premium.html:163 mkt/developers/templates/developers/payments/premium.html:267
 #: mkt/developers/templates/developers/payments/premium.html:281 mkt/developers/templates/developers/payments/premium.html:320 mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr ""
+msgstr "Změny składowaś"
 
 #: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
@@ -3069,27 +3072,31 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
-msgstr ""
+msgstr "zacyniś"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "Wó rolach teamowych cłonkow"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr ""
+msgstr "Nałoženja mógu wjele teamowych cłonkow z 4 móžnymi rolami měś:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
 msgstr ""
+"Móžo wšykne aspekty lisćinowego zapiska zastojaś inkluziwnje pśidawanje a "
+"wótpóranje drugich teamowych cłonkow"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
 msgstr ""
+"Móžo wšykne aspekty lisćinowego zapiska zastojaś, mimo pśidawanja a "
+"wótpóranja drugich teamowych cłonkow a zastojanja płaśenjow"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
-msgstr ""
+msgstr "Móžo se nastajenja nałoženja woglědaś, ale njamóžo změny pśewjasć"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
@@ -3137,37 +3144,41 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr ""
+msgstr "Wašo nałoženje jo se <b>wót Mozilla zablokěrowało</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Wašo nałoženje jo se wót sedłowego administratora zablokěrowało. Jolic maśo "
+"pšašanja, pósćelśo mejlku na %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "Pśepytowaŕ Wikowanišća Firefox jo toś to nałoženje <b>wótpokazał</b>."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "Wersija <b>{0}</b> wašogo nałoženja jo <b>{1}</b> a <b>aktiwna</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "Wersija <b>{0}</b> wašogo nałoženja jo <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"Toś to nałoženje <b>caka hyšći na pśeglědowanje</b> pśez pśepytarja "
+"Wikowanišća Firefox."
 
 #: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž pśeglědowanje jo dokóńcone."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Toś to nałoženje jo <b>wózjawjone</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
