@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-31 19:29+0000\n"
+"PO-Revision-Date: 2015-02-01 10:56+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422732587.0\n"
+"X-POOTLE-MTIME: 1422788160.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2422,7 +2422,7 @@ msgstr "Njamóžośo płaśeńske konto z nałoženja wótpóraś."
 
 #: mkt/developers/forms_payments.py:529
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Njesmějośo płaśeńske konta změniś."
 
 #: mkt/developers/forms_payments.py:617 mkt/developers/forms_payments.py:633
 msgid "Account name"
@@ -2464,7 +2464,7 @@ msgstr "Pśeglědanje"
 
 #: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
-msgstr ""
+msgstr "Wersija {0}"
 
 #: mkt/developers/providers.py:285
 msgid "Reference Implementation"
@@ -2477,26 +2477,32 @@ msgstr "Boku"
 #: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
+"Pód toś tym URL njejo se žeden manifest namakał. Wubjeŕśo adresu a wopytajśo "
+"hyšći raz."
 
 #: mkt/developers/tasks.py:434
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
+"Manifesty muse se z HTTP-głowu \"Content-Type: application/x-web-app-"
+"manifest)json\" wudaś. Pód %s dostanjośo dalšne informacije."
 
 #: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
-msgstr ""
+msgstr "Waš manifest musy mjeńšy ako %s bajtow byś."
 
 #: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
-msgstr ""
+msgstr "Waš manifest njejo se ako płaśiwy UTF-8 skoděrował."
 
 #: mkt/developers/tasks.py:462
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
+"Koděrowanje manifesta njegóźi se k znamuškowej sajźbje pódanej w HTTP "
+"Content-Type."
 
 #: mkt/developers/tasks.py:521 mkt/developers/tasks.py:527 mkt/reviewers/forms.py:36
 msgid "and"
-msgstr ""
+msgstr "a"
 
 #: mkt/developers/tasks.py:541
 msgid "{region} region added to the Firefox Marketplace"
@@ -2536,41 +2542,45 @@ msgstr "Symbol njedajo se wócyniś."
 
 #: mkt/developers/utils.py:104
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Pśeglěd njedajo so wócyniś."
 
 #: mkt/developers/utils.py:111
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Symbole muse nanejmjenjej 128 px raz128 px wjelike byś."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be square."
-msgstr ""
+msgstr "Symbole muse kwadratiske byś."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
 #: mkt/developers/utils.py:124
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Pśeglědy nałoženjow muse nanejmjenjej {0} px raz {1} px abo {1} raz {0} px "
+"wjelike byś."
 
 #: mkt/developers/views.py:87
 msgid "Created"
-msgstr ""
+msgstr "Napórany"
 
 #: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr ""
+"Nałoženja z płaśenim njedaju se lašowaś. Znjemóžniśo toś to nałoženje město "
+"togo."
 
 #: mkt/developers/views.py:159
 msgid "App deleted."
-msgstr ""
+msgstr "Nałoženje wulašowane."
 
 #: mkt/developers/views.py:164
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "Gronidło jo wopaki było. Nałoženje njejo se wulašowało."
 
 #: mkt/developers/views.py:208
 msgid "App successfully resubmitted."
-msgstr ""
+msgstr "Nałoženje jo se wuspěšnje zasejzapódało."
 
 #: mkt/developers/views.py:241
 msgid "New version successfully added."
@@ -2594,67 +2604,68 @@ msgstr "Nałoženje jo se za pśedinstalaciju zapódało."
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Zmólka z formularom jo nastała."
 
 #: mkt/developers/views.py:471
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Wersija jo se wuspěšnje wobźěłała."
 
 #: mkt/developers/views.py:506
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Wersija jo se wuspěšnje zaktiwěrowała."
 
 #: mkt/developers/views.py:521
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "Wersija \"{0}\" jo se wulašowała."
 
 #: mkt/developers/views.py:651
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Pśi pśenosowanju jo zmólka nastała."
 
 #: mkt/developers/views.py:948
+#, fuzzy
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
 #: mkt/developers/views.py:999
 msgid "Terms of service accepted."
-msgstr ""
+msgstr "Wužywańske wuměnjenja su se akceptěrowali."
 
 #: mkt/developers/views.py:1011
 msgid "Users with the admin role cannot use the API."
-msgstr ""
+msgstr "Wužywarje z rolu administratora njamógu API wužywaś."
 
 #: mkt/developers/views.py:1019
 msgid "No such API key."
-msgstr ""
+msgstr "Taki API-kluc njeeksistěrujo."
 
 #: mkt/developers/views.py:1025
 msgid "New API key generated."
-msgstr ""
+msgstr "Nowy API-kluc napórany."
 
 #: mkt/developers/views.py:1043
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Zastajona wersija jo se napórała."
 
 #: mkt/developers/views.py:1045
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Nałoženje jo južo zastajone."
 
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
-msgstr ""
+msgstr "Pśi zwězowanju z płaśeńskim serwerom jo problem nastał."
 
 #: mkt/developers/views_payments.py:175 mkt/files/forms.py:28
 msgid "All"
-msgstr ""
+msgstr "Wšykne"
 
 #: mkt/developers/views_payments.py:176
 msgid "Credit card"
-msgstr ""
+msgstr "Kreditna kórta"
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
-msgstr ""
+msgstr "Póbitowaŕ mobilneje telefonije"
 
 #: mkt/developers/views_payments.py:326
 msgid "A server error occurred when retrieving the application key."
@@ -2697,41 +2708,41 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Klientowy typ"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Mě nałoženja"
 
 #: mkt/developers/templates/developers/api.html:43 mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
-msgstr ""
+msgstr "Dalejpósrědnjański URL"
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr ""
+msgstr "Napóraś"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth-kluce"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Kluc"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Pótajmne słowo"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
 #: mkt/developers/templates/developers/payments/includes/account_list.html:51
 msgid "Delete"
-msgstr ""
+msgstr "Lašowaś"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "Tuchylu njamaśo API-kluc."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
@@ -2775,40 +2786,40 @@ msgstr ""
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Powěsć dnja aktualizěrowaś"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:213
 msgid "Save"
-msgstr ""
+msgstr "Składowaś"
 
 #: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:24 mkt/developers/templates/developers/payments/in-app-payments.html:41
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentacija"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testowanje nałoženjow"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
-msgstr ""
+msgstr "Nowe nałoženje zapódaś"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Pśistup awtorizěrowaś"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s co pśistup na wašo konto Wikowanišća měś."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Pśizwóliś"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Wótpokazaś"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
@@ -2849,27 +2860,29 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Pśizjawśo se jadnorje abo registrěrujśo se dołojce z <a href=\"%"
+"(url)s\">Firefox Accounts</a>."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Wužywańske wuměnjenja"
 
 #: mkt/developers/templates/developers/terms.html:18 mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
-msgstr ""
+msgstr "Śišćobna wersija"
 
 #: mkt/developers/templates/developers/terms.html:22 mkt/submit/templates/submit/terms.html:41
 msgid "Additional Marketplace Policies"
-msgstr ""
+msgstr "Pśidatne pšawidła Wikowanišća"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr ""
+msgstr "Sćo južo do wuwijarskego dojadnanja zwólił."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testowanje"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
