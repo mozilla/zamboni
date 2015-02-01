@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-01 10:56+0000\n"
+"PO-Revision-Date: 2015-02-01 13:07+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422788160.0\n"
+"X-POOTLE-MTIME: 1422796050.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2623,7 +2623,6 @@ msgid "There was an error with the submission."
 msgstr "Pśi pśenosowanju jo zmólka nastała."
 
 #: mkt/developers/views.py:948
-#, fuzzy
 msgid "There was an error uploading your preview."
 msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
@@ -2669,35 +2668,40 @@ msgstr "Póbitowaŕ mobilneje telefonije"
 
 #: mkt/developers/views_payments.py:326
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Pśi wótwołowanju nałožeńskego kluca jo serwerowa zmólka nastała."
 
 #: mkt/developers/views_payments.py:333
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "Pótajmne słowo jo se wuspěšnje slědk stajiło."
 
 #: mkt/developers/views_payments.py:337
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "Kluc a pótajmne słowo stej se wuspěšnje napórałej."
 
 #: mkt/developers/views_payments.py:363
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Waše nałoženje njejo se za płaśenja w nałoženju konfigurěrowało."
 
 #: mkt/developers/views_payments.py:366
 msgid "No payment account for this app."
-msgstr ""
+msgstr "Žedne płaśeńske konto za toś to nałoženje."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace-API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Aby pśistup na API Marketplace měł, napórajśo por OAuth-klucow z pomocu "
+"slědujucego formulara."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"Aby pśistup na API Marketplace měł, akceptěrujśo <a href=\"%"
+"(terms)s\">wužywańske wuměnjenja</a> a napórajśo por OAuth-klucow z pomocu "
+"slědujucego formulara."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -2705,6 +2709,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p>Stej dwa głownej nałožowańskej zaměra za API Marketplace. Z drugego "
+"websedła z pomocu tradicionelnego OAuth-woóběga abo z rěda pśikazoweje "
+"smužki Rozdźěl se w <a href=\"https://firefox-marketplace-api.readthedocs.org"
+"/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> "
+"diskutěrujo. Testowanje by měło se na <a href=\"https://marketplace-"
+"dev.allizom.org\">wuwijańskem serwerje</a> wótměwaś a nic na produkciskem "
+"serwerje.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -2746,43 +2757,47 @@ msgstr "Tuchylu njamaśo API-kluc."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth-pśikład"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Pśikład z pomocu Pythonoweje biblioteki za pśikazowu smužku na Mac OX X z "
+"pomocu wašych pśizjawjeńskich datow:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr ""
+"Musyśo <a href=\"%(next_url)s\">%(next_step_name)s</a> zarědowaś, nježli až "
+"wašo nałoženje dajo se pśeglědowaś abo wózjawiś."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Musyśo <a href=\"%(next_url)s\">%(next_step_name)s</a> zarědowaś."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Wikowanišćo Firefox"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Pśizjawiś"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Musyśo se pśizjawiś, aby pókšacował."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:133 templates/base.html:139
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Pśizjawiś / Registrěrowaś"
 
 #: mkt/developers/templates/developers/motd.html:3 mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Powěsć dnja"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
@@ -2823,39 +2838,43 @@ msgstr "Wótpokazaś"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Wuwijarje Wikowanišća Firefox"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:59 templates/base.html:60
 msgid "API Reference"
-msgstr ""
+msgstr "API-referenca"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:62 templates/base.html:63
 msgid "Submit an app"
-msgstr ""
+msgstr "Nałoženje zapódaś"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:67
 msgid "Marketplace"
-msgstr ""
+msgstr "Wikowanišćo"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68 mkt/templates/mkt/header.html:28 templates/base.html:74
 msgid "Sign In"
-msgstr ""
+msgstr "Pśizjawiś"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:75 mkt/templates/mkt/header.html:21 templates/base.html:81
 msgid "Settings"
-msgstr ""
+msgstr "Nastajenja"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92 mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
+"Někotare funkcije su nachylu znjemóžnjone, mjaztym až websedło wótwardujomy. "
+"Buźomy skóro połnu funkcionalnosć wótnowjaś."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
+"Wužywańske wuměnjenja su se změnili, wót togo, až sćo do nich zwólił Pšosym "
+"cytajśo a akceptěrujśo <a href=\"%(url)s\">nowe wuměnjenja</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
-msgstr ""
+msgstr "Pšosym pśizjawśo se"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
@@ -2887,10 +2906,12 @@ msgstr "Testowanje"
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Wužywajśo toś te rědy, aby swóje nałoženja testował, nježli až jo na "
+"Wikowanišću Firefox zapódał."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Transakciske drobnostki"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
@@ -2941,14 +2962,19 @@ msgstr ""
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr ""
+"<strong>Njezabywajśo protokol</strong> Wopytajśo pak <a href=\"#\">%"
+"(http)s</a> pak <a href=\"#\">%(https)s</a> pśidawaś."
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr ""
+"Manifestowe URL muse se z protokolom zachopiś (na pśikład "
+"<code>http://</code> abo <code>https://</code>) a w normalnem paźe "
+"sufiks<code>.webapp</code> wužywaś."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Zgóńśo wěcej wó zapódawanju nałoženja."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
