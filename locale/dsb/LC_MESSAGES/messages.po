@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-01 13:07+0000\n"
+"PO-Revision-Date: 2015-02-01 13:20+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422796050.0\n"
+"X-POOTLE-MTIME: 1422796839.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2915,49 +2915,49 @@ msgstr "Transakciske drobnostki"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Transakcije filtrowaś"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} transakcija namakana"
+msgstr[1] "{num} transakciji namakanej"
+msgstr[2] "{num} transakcije namakane"
+msgstr[3] "{num} transakcijow namakane"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "Waše nałoženja njamaju tuchylu žedne transakcije."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:149 mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:41 mkt/lookup/templates/lookup/transaction_summary.html:22
 #: mkt/reviewers/templates/reviewers/includes/details.html:9 mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Pjenjeze"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Suma"
 
 #: mkt/developers/templates/developers/validate_app.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Nałožeńske pśeglědanje testowaś"
 
 #: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:50
 msgid "Submit your app manifest URL"
-msgstr ""
+msgstr "Pśenjasćo URL wašogo nałožeńskego manifesta"
 
 #: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:59
 msgid "Validate"
-msgstr ""
+msgstr "Pśeglědowaś"
 
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
@@ -2981,23 +2981,28 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"Walidator jo rěd, kótaryž móžo pśi testowanju wašogo nałoženja za zmólkami, "
+"nejlěpšymi póstupowańskimi wašnjami a wótpowědowanim ze směrnicami "
+"Wikowanišća pomagaś, nježli až swójo nałoženje napšawdu za pśeglědowanje "
+"zapódajośo. Jolic se za to zajmujośo, kak rěd funkcioněrujo, abo cośo jen "
+"wužywaś, namakajośo žrědłowy tekst <a href=\"%(repo)s\">na Github</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Pśeglědowańske wuslědki za {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Pśeglědowańske wuslědki"
 
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Pśeglědany:"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Móje zapódaśa zastojaś"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:10 mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
