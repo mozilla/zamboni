@@ -133,10 +133,15 @@ class TestIFrames(CommonplaceTestMixin):
         self.iframe_install_url = reverse('commonplace.iframe-install')
         self.potatolytics_url = reverse('commonplace.potatolytics')
 
+    def _test_trailing_slashes(self, allowed_origins):
+        """Utility method to test that no origin ends with a trailing slash."""
+        eq_(filter(lambda v: v.endswith('/'), allowed_origins), [])
+
     @override_settings(DOMAIN='marketplace.firefox.com')
     def test_basic(self):
         res = self._test_url(self.iframe_install_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
@@ -147,6 +152,7 @@ class TestIFrames(CommonplaceTestMixin):
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace.firefox.com',
              'app://marketplace.firefox.com',
@@ -157,6 +163,7 @@ class TestIFrames(CommonplaceTestMixin):
     def test_basic_stage(self):
         res = self._test_url(self.iframe_install_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
@@ -167,6 +174,7 @@ class TestIFrames(CommonplaceTestMixin):
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace.allizom.org',
              'app://marketplace.allizom.org',
@@ -177,6 +185,7 @@ class TestIFrames(CommonplaceTestMixin):
     def test_basic_dev(self):
         res = self._test_url(self.iframe_install_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
@@ -190,10 +199,12 @@ class TestIFrames(CommonplaceTestMixin):
              'https://mp.dev',
              'https://hello.firefox.com',
              'https://call.firefox.com',
-             'https://loop-webapp-dev.stage.mozaws.net'])
+             'https://loop-webapp-dev.stage.mozaws.net',
+             'https://call.stage.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.marketplace-dev.allizom.org',
              'app://marketplace-dev.allizom.org',
@@ -210,6 +221,7 @@ class TestIFrames(CommonplaceTestMixin):
     def test_basic_debug_true(self):
         res = self._test_url(self.iframe_install_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.example.com',
              'app://example.com',
@@ -223,10 +235,12 @@ class TestIFrames(CommonplaceTestMixin):
              'https://mp.dev',
              'https://hello.firefox.com',
              'https://call.firefox.com',
-             'https://loop-webapp-dev.stage.mozaws.net'])
+             'https://loop-webapp-dev.stage.mozaws.net',
+             'https://call.stage.mozaws.net'])
 
         res = self._test_url(self.potatolytics_url)
         allowed_origins = json.loads(res.context['allowed_origins'])
+        self._test_trailing_slashes(allowed_origins)
         eq_(allowed_origins,
             ['app://packaged.example.com',
              'app://example.com',
