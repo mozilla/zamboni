@@ -4,7 +4,7 @@
 
 -r compiled.txt
 
-# Flake 8 requirements
+# Flake8 requirements
 flake8==2.3.0
 pyflakes==0.8.1
 pep8==1.5.7

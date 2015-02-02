@@ -3,7 +3,7 @@ import hashlib
 import json
 from uuid import UUID
 
-from django.http import Http404, HttpResponse, HttpResponseServerError
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import condition
 
@@ -109,8 +109,8 @@ def download(request, langpack_id, **kwargs):
             raise Exception(
                 u'Attempting to download langpack %s, '
                 u'which does not have a filename.' % langpack.pk)
-        log.info('Downloading package: %s from %s' % (langpack.pk,
-                                              langpack.file_path))
+        log.info('Downloading package: %s from %s' % (
+                 langpack.pk, langpack.file_path))
         return HttpResponseSendFile(request, langpack.file_path,
                                     content_type='application/zip',
                                     etag=langpack.hash.split(':')[-1])

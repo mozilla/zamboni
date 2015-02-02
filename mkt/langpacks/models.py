@@ -88,7 +88,7 @@ class LangPack(ModelBase):
     @property
     def download_url(self):
         url = ('%s/langpack.zip' %
-            reverse('downloads.langpack', args=[unicode(self.pk)]))
+               reverse('downloads.langpack', args=[unicode(self.pk)]))
         return absolutify(url)
 
     @property

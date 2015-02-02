@@ -10,6 +10,7 @@ urlpatterns = patterns(
     # /file/:id/type:attachment
     url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',
         download_file, name='downloads.file'),
-    url('^langpack/(?P<langpack_id>[0-9a-f]{32})(?:/type:(?P<type>\w+))?(?:/.*)?',
+    url('^langpack/(?P<langpack_id>[0-9a-f]{32})'
+        '(?:/type:(?P<type>\w+))?(?:/.*)?',
         download_langpack, name='downloads.langpack'),
 )
