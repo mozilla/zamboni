@@ -52,15 +52,18 @@ class LangPackSerializer(serializers.ModelSerializer):
     # is the source of truth. DRF has read_only_fields to do that, but we
     # want to be stricter and throw 400 errors if we encounter any of the
     # read-only fields.
-    allowed_fields = ('active',)
-
+    write_allowed_fields = ('active',)
+    # manifest_url is a @property so we need to manually choose a field for it.
+    manifest_url = serializers.CharField(source='manifest_url')
     class Meta:
         model = LangPack
+        fields = ('active', 'created', 'fxos_version', 'hash', 'language',
+                  'manifest_url', 'modified', 'size', 'uuid', 'version')
 
     def validate(self, attrs):
         errors = {}
         for key in attrs:
-            if key not in self.allowed_fields:
+            if key not in self.write_allowed_fields:
                 errors[key] = ['This field is read-only.']
         if errors:
             raise serializers.ValidationError(errors)

@@ -2,19 +2,25 @@
 import hashlib
 import json
 import os.path
+from uuid import UUID
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import lazy
+from django.utils import translation
 
 import commonware.log
 from django_statsd.clients import statsd
+from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.langpacks.utils import LanguagePackParser
+from mkt.translations.utils import to_language
+from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase
 from mkt.site.utils import smart_path
 
@@ -22,7 +28,12 @@ from mkt.site.utils import smart_path
 log = commonware.log.getLogger('z.versions')
 
 
-LANGUAGE_CHOICES = lazy(lambda l: dict(l).items(), list)(settings.LANGUAGES)
+def _make_language_choices(languages):
+    return [(to_language(lang_code), lang_name)
+            for lang_code, lang_name in languages.items()]
+
+
+LANGUAGE_CHOICES = lazy(_make_language_choices, list)(settings.LANGUAGES)
 
 
 class LangPack(ModelBase):
@@ -33,7 +44,8 @@ class LangPack(ModelBase):
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
     language = models.CharField(choices=LANGUAGE_CHOICES,
-                                default=settings.LANGUAGE_CODE, max_length=10)
+                                default=settings.LANGUAGE_CODE,
+                                max_length=10)
     fxos_version = models.CharField(max_length=255, default='')
     version = models.CharField(max_length=255, default='')
 
@@ -65,6 +77,44 @@ class LangPack(ModelBase):
     @property
     def file_path(self):
         return os.path.join(self.path_prefix, nfd_str(self.filename))
+
+    @property
+    def download_url(self):
+        url = ('%s/langpack.zip' %
+            reverse('downloads.langpack', args=[unicode(self.pk)]))
+        return absolutify(url)
+
+    @property
+    def manifest_url(self):
+        """Return URL to the minifest for the langpack"""
+        if self.active:
+            return absolutify(
+                reverse('langpack.manifest', args=[unicode(UUID(self.pk))]))
+        return ''
+
+    def get_minifest_contents(self):
+        """Return generated mini-manifest for the langpack."""
+        # For now, langpacks have no icons, their developer name is fixed
+        # (Mozilla, we refuse third-party langpacks) and we can generate their
+        # name and description, so we don't need to look in the real manifest
+        # in the zip file. When we do, we'll need to add caching and refactor
+        # to avoid code duplication with mkt.detail.manifest() and
+        # mkt.webapps.Webapp.get_cached_manifest().
+        with translation.override(self.language):
+            name = _('%(lang)s language pack for Firefox OS %(version)s' % {
+                'lang': self.get_language_display(),
+                'version': self.fxos_version
+            })
+        manifest = {
+            'name': name,
+            'developer': {
+                'name': 'Mozilla'
+            },
+            'package_path': self.download_url,
+            'size': self.size,
+            'version': self.version
+        }
+        return manifest
 
     def generate_filename(self):
         return '%s-%s.zip' % (self.uuid, self.version)

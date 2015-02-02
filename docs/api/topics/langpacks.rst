@@ -57,6 +57,8 @@ Detail
     :type hash: string
     :param active: A boolean representing the langpack state. Inactive langpacks are hidden by default.
     :type active: boolean
+    :param manifest_url: The URL to the mini-manifest for this package, which contains everything needed to install and update the language pack.
+    :type active: string
 
 Langpack properties edition
 ===========================
