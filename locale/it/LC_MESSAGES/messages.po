@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-01-09 22:35+0000\n"
+"PO-Revision-Date: 2015-02-02 22:29+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420842922.0\n"
+"X-POOTLE-MTIME: 1422916179.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -364,7 +364,7 @@ msgstr "Repubblica Ceca"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Danimarca"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -2456,7 +2456,7 @@ msgstr "Fai una donazione a favore di {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
-msgstr "Recensione"
+msgstr "Revisione"
 
 #: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
@@ -3714,11 +3714,11 @@ msgstr "Questa app non richiede particolari caratteristiche dal dispositivo"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Identificatore interno dell’app in Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4349,6 +4349,9 @@ msgstr "Metodo di accredito"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Selezionando “Resto del mondo”, l’app sarà disponibile per l’acquisto in "
+"tutte le regioni abilitate inserite nella categoria “<a href=\"#regions-"
+"other\">Altre regioni</a>”."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4357,6 +4360,8 @@ msgstr "Altre regioni"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Per fare in modo che l’app non venga visualizzata in una particolare "
+"regione, deseleziona la regione in questione prima di salvare."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4561,6 +4566,8 @@ msgstr "L’app verrà visualizzata in ogni Marketplace regionale aggiunto succe
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Salvo pagamenti disponibili in quella regione per il prezzo selezionato, "
+"sarà \"Resto del Mondo\" ad essere impostato come opzione di pagamento.)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5074,6 +5081,8 @@ msgstr "Il file manifesto dell’app web non è in un formato JSON valido."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Non è possibile assegnare il valore “langpack” al parametro “role” di una "
+"app web. Carica questa app come language pack."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5197,31 +5206,40 @@ msgstr "Il formato dell’immagine del logo del prodotto deve essere 64x64. Veri
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Il language pack deve contenere la specifica “role\": \"langpack”."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Il language pack deve contenere una lingua nell’oggetto `languages-"
+"provided`."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Il language pack contiene più di una lingua. È supportata una sola lingua "
+"per language pack."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Il language pack deve contenere una lingua nell’oggetto `languages-target`."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Il language pack contiene più di un target. È supportato un solo target per "
+"language pack."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Il language pack deve contenere un numero di versione."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"La nuova versione del language pack non può essere identica alla versione "
+"che intende sostituire."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5415,7 +5433,7 @@ msgstr "Strumento di ricerca del <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Informazioni dal Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5431,35 +5449,40 @@ msgstr "Transazione correlata"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informazioni dal provider dei pagamenti"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Al momento non è possibile recuperare lo stato della transazione."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Il pagamento è stato effettuato tramite Bango. Per ulteriori informazioni "
+"contatta il <a href=\"mailto:%(bango_support)s\">supporto di Bango</a>, "
+"includendo nella mail le informazioni sottostanti."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Il pagamento è stato effettuato tramite un modello basato sulla <b>reference "
+"implementation</b>, non costituisce pertanto una transazione reale."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Importo pagato"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "ID ricerca"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Data e ora"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Informazioni sul rimborso"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -6591,7 +6614,7 @@ msgstr "Revisionata"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Tendenza"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6931,11 +6954,11 @@ msgstr "{user} ha approvato la {review} per {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "La recensione {review} su {addon} è stata eliminata."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} ha eliminato la recensione {review} su {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
@@ -7638,7 +7661,7 @@ msgstr "uno sviluppatore risponde alla mia recensione"
 
 #: mkt/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "uno sviluppatore di app risponde a un mio commento"
+msgstr "uno sviluppatore di app risponde a una mia recensione"
 
 #: mkt/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
