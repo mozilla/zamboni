@@ -6,7 +6,6 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
-from django.utils.http import parse_http_date
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -53,6 +52,8 @@ class TestLangPackViewSetMixin(RestOAuth):
         eq_(instance.active, langpack_data['active'])
         eq_(instance.language, langpack_data['language'])
         eq_(instance.fxos_version, langpack_data['fxos_version'])
+        eq_(instance.name, langpack_data['name'])
+        eq_(instance.get_language_display(), langpack_data['language_display'])
 
 
 class TestLangPackViewSetBase(TestLangPackViewSetMixin):

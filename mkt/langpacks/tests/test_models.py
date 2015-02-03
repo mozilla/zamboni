@@ -2,6 +2,7 @@
 import json
 import os
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms import ValidationError
 
@@ -43,6 +44,16 @@ class TestLangPackBasic(TestCase):
              'name': u'English (US) language pack for Firefox OS 2.2',
              'package_path': langpack.download_url,
              'developer': {'name': 'Mozilla'}})
+
+    def test_name(self):
+        langpack = LangPack(fxos_version='2.5.1')
+        eq_(langpack.name, u'English (US) language pack for Firefox OS 2.5.1')
+
+    def test_language_choices_and_display(self):
+        field = LangPack._meta.get_field('language')
+        eq_(len(field.choices), len(settings.LANGUAGES))
+        eq_(LangPack(language='fr').get_language_display(), u'Français')
+        eq_(LangPack(language='en-US').get_language_display(), u'English (US)')
 
 
 class UploadCreationMixin(object):
