@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-04 20:39+0000\n"
+"PO-Revision-Date: 2015-02-04 22:12+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423082340.0\n"
+"X-POOTLE-MTIME: 1423087970.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3406,10 +3406,12 @@ msgstr "Nałoženje lašowaś"
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
+"Jolic swójo nałoženje wótpórajośo, buźo se wóno na pśecej ze sedła "
+"wótwónoźeś. <strong>To njedajo se anulěrowaś.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
-msgstr ""
+msgstr "Nałoženje zastajiś"
 
 #: mkt/developers/templates/developers/apps/status.html:444
 msgid ""
@@ -3419,11 +3421,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
-msgstr ""
+msgstr "Lisćina zastajenjow"
 
 #: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
-msgstr ""
+msgstr "Cośo lisćinowy zapisk napšawdz z lisćiny wótpóraś?"
 
 #. This 'or' goes between two choices in a dialog.
 #: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
@@ -3471,15 +3473,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
-msgstr ""
+msgstr "Toś te změny njedaju se anulěrowaś."
 
 #: mkt/developers/templates/developers/apps/status.html:496
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Cośo toś tu wersiju napšawdu lašowaś?"
 
 #: mkt/developers/templates/developers/apps/status.html:499
 msgid "Delete Version"
-msgstr ""
+msgstr "Wersiju lašowaś"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
@@ -3488,7 +3490,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:55
 msgid "Version Notes"
-msgstr ""
+msgstr "Pśipiski k wersiji"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
@@ -3506,7 +3508,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
-msgstr ""
+msgstr "Minimalne pominanja"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:66
 msgid "Device features required for this app to function."
@@ -3514,11 +3516,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
-msgstr ""
+msgstr "Wabjenje pśidaś"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25
 msgid "Mozilla Contact"
-msgstr ""
+msgstr "Kontakt Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
@@ -3530,7 +3532,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "VIP-nałoženje Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
@@ -3542,7 +3544,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Pśeglědowanje priority trěbne"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
@@ -3579,10 +3581,10 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pśez komu źělony, nanejmjenjej {0} znamuško."
+msgstr[1] "Pśez komu źělony, nanejmjenjej {0} znamušce."
+msgstr[2] "Pśez komu źělony, nanejmjenjej {0} znamuška."
+msgstr[3] "Pśez komu źělony, nanejmjenjej {0} znamuškow."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
 msgid "Example: dark, cinema, noir. Limit 20."
