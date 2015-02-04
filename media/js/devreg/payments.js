@@ -203,11 +203,11 @@ define('payments', [], function() {
                     var $chkbox = $regions.find('input:checkbox[value=' + regionId + ']');
                     var $row = $('#paid-regions tr[data-region=' + regionId + ']');
 
-                    // If we've already dealt with this region append this provider to existing row and break.
+                    // If we've already dealt with this region append this provider to existing row and continue.
                     if (regionSeen && $row.length) {
                         var $billingMethodCell = $row.find('.lm');
                         $billingMethodCell.text($billingMethodCell.text() + ', ' + localMethod + ' (' + provider + ')');
-                        break;
+                        continue;
                     }
 
                     if ($row.length) {
