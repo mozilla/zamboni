@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-01-30 18:42+0000\n"
+"PO-Revision-Date: 2015-02-04 18:35+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422643331.0\n"
+"X-POOTLE-MTIME: 1423074909.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1235,7 +1235,7 @@ msgstr "Moderierte App-Bewertung"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Moderation der App-Bewertung rückgängig gemacht"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -5197,7 +5197,7 @@ msgstr "Produktlogo muss eine 64×64-Grafik sein. Stellen Sie sicher, dass die U
 #: mkt/langpacks/models.py:77
 msgctxt "version"
 msgid "%(lang)s language pack for Firefox OS %(version)slang"
-msgstr ""
+msgstr "Sprachpaket %(lang)s für Firefox OS %(version)slang"
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
@@ -5799,11 +5799,11 @@ msgstr "Beliebiger Status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Freigeschaltete Bewertungen"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Gelöschte Bewertungen"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
@@ -5811,7 +5811,7 @@ msgstr "Einträge ansehen zwischen"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Nach Typ/Aktion filtern"
 
 #: mkt/reviewers/forms.py:63
 msgid "containing"
@@ -6236,55 +6236,55 @@ msgstr "Keine Überprüfungen für diesen Zeitraum gefunden."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Protokoll moderierter Bewertungen"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Weitere Details."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Für diesen Zeitraum wurden keine Ereignisse gefunden."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Protokolldetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Protokolldetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderationsdatum"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "App-Titel"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Titel der Bewertung"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Text der Bewertung"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Bewertung wurde vor Moderation gemeldet."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Aktueller Bewertungsstatus"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Aktiv"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Wiederherstellen"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
