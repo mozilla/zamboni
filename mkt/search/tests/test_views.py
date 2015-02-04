@@ -796,6 +796,32 @@ class TestSearchView(RestOAuth, ESTestCase):
         res = self.client.get(self.url, data={'filtering': 0})
         eq_(len(res.json['objects']), 1)
 
+    def test_no_filter_excludes_deleted(self):
+        self.grant_permission(self.profile, 'Feed:Curate')
+
+        # Ensure we find the app first.
+        res = self.client.get(self.url, data={'filtering': 0})
+        eq_(len(res.json['objects']), 1)
+
+        # Set as DELETED.
+        self.webapp.update(status=mkt.STATUS_DELETED)
+        self.refresh()
+        res = self.client.get(self.url, data={'filtering': 0})
+        eq_(len(res.json['objects']), 0)
+
+    def test_no_filter_excludes_disabled(self):
+        self.grant_permission(self.profile, 'Feed:Curate')
+
+        # Ensure we find the app first.
+        res = self.client.get(self.url, data={'filtering': 0})
+        eq_(len(res.json['objects']), 1)
+
+        # Set disabled.
+        self.webapp.update(disabled_by_user=True)
+        self.refresh()
+        res = self.client.get(self.url, data={'filtering': 0})
+        eq_(len(res.json['objects']), 0)
+
 
 class TestSearchViewFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
