@@ -18,7 +18,7 @@ _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 @patch.object(settings, 'LANGUAGE_URL_MAP',
-                   dict([x.lower(), x] for x in _langs))
+              dict([x.lower(), x] for x in _langs))
 class TestLocaleMiddleware(mkt.site.tests.TestCase):
 
     def test_accept_good_locale(self):
@@ -165,7 +165,7 @@ class TestLocaleMiddleware(mkt.site.tests.TestCase):
 
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 @patch.object(settings, 'LANGUAGE_URL_MAP',
-                   dict([x.lower(), x] for x in _langs))
+              dict([x.lower(), x] for x in _langs))
 class TestLocaleMiddlewarePersistence(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
@@ -282,7 +282,7 @@ class TestCacheHeadersMiddleware(mkt.site.tests.TestCase):
         now = datetime.datetime.now(tzutc())
 
         self.assertCloseToNow(res['Expires'],
-            now=now + datetime.timedelta(seconds=max_age))
+                              now=now + datetime.timedelta(seconds=max_age))
         self.assertCloseToNow(res['Last-Modified'], now=now)
 
     def _test_headers_missing(self, res):
@@ -363,7 +363,7 @@ def test_parse_accept_language():
          ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
          # Consolidated languages.
          ('es-PE', 'es'),
-    )
+         )
     for x, y in d:
         yield accept_check, x, y
 

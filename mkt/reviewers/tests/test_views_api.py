@@ -93,9 +93,11 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
-        self.assertSetEqual(obj.keys(), ['device_types', 'id', 'is_escalated',
-            'is_packaged', 'latest_version', 'name', 'premium_type', 'price',
-            'slug', 'status'])
+        self.assertSetEqual(
+            obj.keys(),
+            ['device_types', 'id', 'is_escalated',
+             'is_packaged', 'latest_version', 'name', 'premium_type', 'price',
+             'slug', 'status'])
         eq_(obj['latest_version']['status'], 4)
 
     def test_anonymous_access(self):
@@ -549,7 +551,8 @@ class TestCreateAdditionalReview(RestOAuth):
 
 class TestCannedResponseAPI(RestOAuth):
     def setUp(self):
-        self.canned = CannedResponse.objects.create(name='canned',
+        self.canned = CannedResponse.objects.create(
+            name='canned',
             response='This is a canned response.', sort_group='sortme')
         self.url_list = reverse('cannedresponse-list')
         self.url_detail = reverse('cannedresponse-detail',
@@ -687,7 +690,8 @@ class TestCannedResponseAPI(RestOAuth):
 class TestReviewerScoreAPI(RestOAuth):
     def setUp(self):
         super(TestReviewerScoreAPI, self).setUp()
-        self.score = ReviewerScore.objects.create(user=self.profile,
+        self.score = ReviewerScore.objects.create(
+            user=self.profile,
             note='This is a note.', score=42, note_key=mkt.REVIEWED_MANUAL)
         self.url_list = reverse('reviewerscore-list')
         self.url_detail = reverse('reviewerscore-detail',
@@ -748,7 +752,8 @@ class TestReviewerScoreAPI(RestOAuth):
     def test_list(self):
         # Add an extra instance that shouldn't be returned because of its
         # note_key.
-        ReviewerScore.objects.create(user=self.profile,
+        ReviewerScore.objects.create(
+            user=self.profile,
             note='Hide me!', score=43, note_key=mkt.REVIEWED_APP_REVIEW)
         self.grant_permission(self.profile, 'Admin:ReviewerTools')
         res = self.client.get(self.url_list)
@@ -773,7 +778,8 @@ class TestReviewerScoreAPI(RestOAuth):
         self.grant_permission(self.profile, 'Admin:ReviewerTools')
         # Add an extra instance that shouldn't be returned because of its
         # note_key.
-        score = ReviewerScore.objects.create(user=self.profile,
+        score = ReviewerScore.objects.create(
+            user=self.profile,
             note='Hide me!', score=43, note_key=mkt.REVIEWED_APP_REVIEW)
         url_detail = reverse('reviewerscore-detail',
                              kwargs={'pk': score.pk})

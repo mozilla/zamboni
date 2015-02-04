@@ -15,7 +15,8 @@ import mkt.constants.comm as comm
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
-from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
+from mkt.comm.views import (EmailCreationPermission, post_email,
+                            ThreadPermission)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import (app_factory, req_factory_factory, user_factory,
                             version_factory)
@@ -244,7 +245,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
 
         for thread in (thread1, thread2):
             res = self.client.get(reverse('comm-thread-detail',
-                                  args=[thread.pk]))
+                                          args=[thread.pk]))
             eq_(res.status_code, 200)
             eq_(json.loads(res.content)['app_threads'],
                 [{"id": thread2.id, "version__version": version2.version},
@@ -283,7 +284,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
     def test_app_slug(self):
         thread = CommunicationThread.objects.create(_addon=self.addon)
         CommunicationNote.objects.create(author=self.profile, thread=thread,
-            note_type=0, body='something')
+                                         note_type=0, body='something')
 
         self.grant_permission(self.user, 'Apps:Review')
         res = self.client.get(self.list_url, {'app': self.addon.app_slug})

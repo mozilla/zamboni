@@ -16,6 +16,7 @@ def _reverse(viewname, args=None, kwargs=None, request=None, format=None,
 
 _reverse.patched = 'patched'
 
+
 # Monkeypatch this in.
 def patch():
     relations.reverse = _reverse

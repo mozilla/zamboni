@@ -71,7 +71,7 @@ REFUND_STATUSES = {
     # Declined manually by developer.
     REFUND_DECLINED: _('Declined'),
 
-    #Refund didn't work somehow.
+    # Refund didn't work somehow.
     REFUND_FAILED: _('Failed'),
 }
 

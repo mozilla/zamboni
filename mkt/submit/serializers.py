@@ -41,7 +41,7 @@ class AppStatusSerializer(serializers.ModelSerializer):
         # Admins can change any status, skip validation for them.
         # It's dangerous, but with great powers comes great responsability.
         if ('request' in self.context and self.context['request'].user and
-            acl.action_allowed(self.context['request'], 'Admin', '%')):
+                acl.action_allowed(self.context['request'], 'Admin', '%')):
             return attrs
 
         # An incomplete app's status can not be changed.
@@ -52,9 +52,10 @@ class AppStatusSerializer(serializers.ModelSerializer):
         # Only some specific changes are possible depending on the app current
         # status.
         if (self.object.status not in self.allowed_statuses or
-            attrs[source] not in self.allowed_statuses[self.object.status]):
-                raise serializers.ValidationError(
-                    'App status can not be changed to the one you specified.')
+                attrs[source] not in
+                self.allowed_statuses[self.object.status]):
+            raise serializers.ValidationError(
+                'App status can not be changed to the one you specified.')
 
         return attrs
 

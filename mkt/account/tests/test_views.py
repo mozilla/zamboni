@@ -2,12 +2,10 @@
 import collections
 import json
 import uuid
-from datetime import datetime
 from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
-from django.core.signing import Signer
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.utils.http import urlencode

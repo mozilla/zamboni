@@ -175,7 +175,8 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
 
         # Non-public addon.
         self._reset_version(version)
-        with mock.patch('mkt.webapps.models.Webapp.is_public') as is_addon_public:
+        with mock.patch('mkt.webapps.models.Webapp.is_public') \
+                as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
 

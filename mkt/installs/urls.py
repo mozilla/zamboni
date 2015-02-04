@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url
 from mkt.installs.views import install
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^installs/record/', install, name='app-install-list')
 )

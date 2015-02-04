@@ -52,4 +52,5 @@ class TestEmailDailyRatings(mkt.site.tests.TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [self.user.email])
         eq_(str(self.app2_review.body) in smart_str(mail.outbox[0].body), True)
-        eq_(str(self.app2_review2.body) in smart_str(mail.outbox[0].body), True)
+        eq_(str(self.app2_review2.body) in smart_str(mail.outbox[0].body),
+            True)

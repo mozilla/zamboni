@@ -50,11 +50,11 @@ tasks = {
                  disabled_by_user=False)]
     },
     'regenerate_icons_and_thumbnails':
-                             {'method': regenerate_icons_and_thumbnails,
-                              'qs': [Q(status__in=[mkt.STATUS_PENDING,
-                                                   mkt.STATUS_PUBLIC,
-                                                   mkt.STATUS_APPROVED],
-                                       disabled_by_user=False)]},
+    {'method': regenerate_icons_and_thumbnails,
+     'qs': [Q(status__in=[mkt.STATUS_PENDING,
+                          mkt.STATUS_PUBLIC,
+                          mkt.STATUS_APPROVED],
+              disabled_by_user=False)]},
     'import_manifests': {'method': import_manifests,
                          'qs': [Q(disabled_by_user=False)]},
 }

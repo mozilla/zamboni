@@ -52,8 +52,9 @@ class ModerateLogForm(happyforms.Form):
 
 
 class ModerateLogDetailForm(happyforms.Form):
-    action = forms.CharField(required=True,
-                widget=forms.HiddenInput(attrs={'value': 'undelete',}))
+    action = forms.CharField(
+        required=True,
+        widget=forms.HiddenInput(attrs={'value': 'undelete', }))
 
 
 class ReviewLogForm(happyforms.Form):
@@ -88,6 +89,7 @@ class ReviewLogForm(happyforms.Form):
 
 class NonValidatingChoiceField(forms.ChoiceField):
     """A ChoiceField that doesn't validate."""
+
     def validate(self, value):
         pass
 

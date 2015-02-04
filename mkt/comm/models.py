@@ -54,19 +54,19 @@ def check_acls_comm_obj(obj, profile):
         return True
 
     if (obj.read_permission_reviewer and
-        check_acls(profile, obj, 'reviewer')):
+            check_acls(profile, obj, 'reviewer')):
         return True
 
     if (obj.read_permission_senior_reviewer and
-        check_acls(profile, obj, 'senior_reviewer')):
+            check_acls(profile, obj, 'senior_reviewer')):
         return True
 
     if (obj.read_permission_mozilla_contact and
-        check_acls(profile, obj, 'moz_contact')):
+            check_acls(profile, obj, 'moz_contact')):
         return True
 
     if (obj.read_permission_staff and
-        check_acls(profile, obj, 'admin')):
+            check_acls(profile, obj, 'admin')):
         return True
 
     return False
@@ -168,7 +168,7 @@ class CommunicationThreadCC(ModelBase):
     thread = models.ForeignKey(CommunicationThread,
                                related_name='thread_cc')
     user = models.ForeignKey('users.UserProfile',
-        related_name='comm_thread_cc')
+                             related_name='comm_thread_cc')
 
     class Meta:
         db_table = 'comm_thread_cc'
@@ -258,9 +258,10 @@ class CommAttachment(ModelBase):
 class CommunicationThreadToken(ModelBase):
     thread = models.ForeignKey(CommunicationThread, related_name='token')
     user = models.ForeignKey('users.UserProfile',
-        related_name='comm_thread_tokens')
+                             related_name='comm_thread_tokens')
     uuid = UUIDField(unique=True, auto=True)
-    use_count = models.IntegerField(default=0,
+    use_count = models.IntegerField(
+        default=0,
         help_text='Stores the number of times the token has been used')
 
     class Meta:

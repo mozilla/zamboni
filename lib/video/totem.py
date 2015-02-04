@@ -80,7 +80,7 @@ class Video(VideoBase):
         if 'VP8' not in self.meta.get('formats', ''):
             self.errors.append(_('Videos must be in WebM.'))
 
-        #TODO(andym): More checks on duration, file size, bit rate?
+        # TODO(andym): More checks on duration, file size, bit rate?
         return not self.errors
 
     @classmethod

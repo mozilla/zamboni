@@ -68,8 +68,9 @@ def clean_tags(request, tags):
         raise forms.ValidationError(msg)
 
     if any(t for t in target if len(t) > max_len):
-        raise forms.ValidationError(_('All tags must be %s characters '
-                'or less after invalid characters are removed.' % max_len))
+        raise forms.ValidationError(
+            _('All tags must be %s characters '
+              'or less after invalid characters are removed.' % max_len))
 
     if any(t for t in target if len(t) < min_len):
         msg = ngettext("All tags must be at least {0} character.",
@@ -88,7 +89,7 @@ def icons():
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
     dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
     for fname in files:
-        if '32' in fname and not 'default' in fname:
+        if '32' in fname and 'default' not in fname:
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons

@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import hashlib
 import json
 import os.path
@@ -66,7 +66,6 @@ class LangPack(ModelBase):
         ordering = (('-created'), )
         index_together = (('fxos_version', 'language', 'active', 'created'),)
 
-
     def is_public(self):
         return self.active
 
@@ -89,7 +88,7 @@ class LangPack(ModelBase):
     @property
     def download_url(self):
         url = ('%s/langpack.zip' %
-            reverse('downloads.langpack', args=[unicode(self.pk)]))
+               reverse('downloads.langpack', args=[unicode(self.pk)]))
         return absolutify(url)
 
     @property

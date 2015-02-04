@@ -27,8 +27,9 @@ class Command(BaseCommand):
                     dest='action', help='Action: create, delete.'),
         make_option('--dir', action='store', type='string',
                     dest='dir', help='Directory to read or write data.'),
-        make_option('--number', action='store', type='int', default='10',
-            dest='number', help='Number of receipts, default: %default')
+        make_option('--number', action='store', type='int',
+                    default='10', dest='number',
+                    help='Number of receipts, default: %default')
     )
 
     def filename(self, rest):
@@ -74,8 +75,8 @@ class Command(BaseCommand):
 
         for x in xrange(number):
             installed = Installed.objects.create(
-                            addon_id=created['webapps'][x],
-                            user_id=created['users'][x])
+                addon_id=created['webapps'][x],
+                user_id=created['users'][x])
             created['installed'].append(installed.pk)
             filename = self.filename('%s.%s.receipt' %
                                      (created['webapps'][x], x))

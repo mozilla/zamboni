@@ -1,5 +1,4 @@
 import calendar
-import json
 import time
 from urllib import urlencode
 from urlparse import urljoin

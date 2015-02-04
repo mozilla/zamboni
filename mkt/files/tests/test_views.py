@@ -233,7 +233,7 @@ class TestFileViewer(FilesBase, mkt.site.tests.WebappTestCase):
             status_code = self.client.get(url).status_code
             assert status_code == status, (
                 'Request to %s returned status code %d (expected %d)' %
-                    (url, status_code, status))
+                (url, status_code, status))
 
     def add_file(self, name, contents):
         dest = os.path.join(self.file_viewer.dest, name)
@@ -384,7 +384,7 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
             status_code = self.client.get(url).status_code
             assert status_code == status, (
                 'Request to %s returned status code %d (expected %d)' %
-                    (url, status_code, status))
+                (url, status_code, status))
 
     def test_tree_no_file(self):
         self.file_viewer.extract()

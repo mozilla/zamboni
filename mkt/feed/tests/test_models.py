@@ -97,7 +97,8 @@ class FeedTestMixin(object):
         feed_item.save()
         return feed_item
 
-    def feed_factory(self, carrier=1, region=1, item_types=None, num_items=None):
+    def feed_factory(self, carrier=1, region=1, item_types=None,
+                     num_items=None):
         """
         Iterates over a list of feed element types and creates `num_items`
         FeedItems, cycling over those types. By default, creates one of each

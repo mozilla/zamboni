@@ -17,8 +17,8 @@ import mkt
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
-                                    PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
-                                    PROVIDER_CHOICES, PROVIDER_LOOKUP_INVERTED)
+                                    PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES,
+                                    PROVIDER_LOOKUP_INVERTED)
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
@@ -342,8 +342,9 @@ def create_addon_purchase(sender, instance, **kw):
 
     if instance.is_inapp_simulation():
         log.info('Simulated in-app product {i} for contribution {c}: '
-                 'not adding a purchase record'.format(i=instance.inapp_product,
-                                                       c=instance))
+                 'not adding a purchase record'.format(
+                     i=instance.inapp_product,
+                     c=instance))
         return
 
     if instance.type == mkt.CONTRIB_PURCHASE:
@@ -357,12 +358,13 @@ def create_addon_purchase(sender, instance, **kw):
         # Ensure that devs have the correct installed object found
         # or created.
         #
-        is_dev = instance.addon.has_author(instance.user,
-                 (mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV))
+        is_dev = instance.addon.has_author(
+            instance.user, (mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV))
         install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
                         else apps.INSTALL_TYPE_USER)
-        Installed.objects.safer_get_or_create(user=instance.user,
-            addon=instance.addon, install_type=install_type)
+        Installed.objects.safer_get_or_create(
+            user=instance.user, addon=instance.addon,
+            install_type=install_type)
 
     elif instance.type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
         purchases = AddonPurchase.objects.filter(addon=instance.addon,
@@ -420,8 +422,9 @@ class Refund(ModelBase):
     # Instantly Approved => 2
     # Declined => 3
     # Failed => 4
-    status = models.PositiveIntegerField(default=mkt.REFUND_PENDING,
-        choices=do_dictsort(mkt.REFUND_STATUSES), db_index=True)
+    status = models.PositiveIntegerField(
+        default=mkt.REFUND_PENDING, choices=do_dictsort(mkt.REFUND_STATUSES),
+        db_index=True)
 
     refund_reason = models.TextField(default='', blank=True)
     rejection_reason = models.TextField(default='', blank=True)

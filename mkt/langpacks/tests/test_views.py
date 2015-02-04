@@ -275,6 +275,7 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
         self.langpack = self.create_langpack()
         self.detail_url = reverse('api-v2:langpack-detail',
                                   kwargs={'pk': self.langpack.pk})
+
     def test_anonymous(self):
         response = self.anon.put(self.detail_url)
         eq_(response.status_code, 403)

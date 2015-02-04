@@ -16,12 +16,14 @@ def fireplace_route(path, name=None):
     return url('^%s$' % path, views.commonplace, {'repo': 'fireplace'},
                **kwargs)
 
-fireplace_reviews_patterns = patterns('',
+fireplace_reviews_patterns = patterns(
+    '',
     fireplace_route('flag', 'ratings.flag'),
     fireplace_route('delete', 'ratings.delete'),
 )
 
-fireplace_app_patterns = patterns('',
+fireplace_app_patterns = patterns(
+    '',
     fireplace_route('', 'detail'),
     fireplace_route('abuse', 'detail.abuse'),
     fireplace_route('privacy', 'detail.privacy'),
@@ -31,7 +33,8 @@ fireplace_app_patterns = patterns('',
     url('^(?P<review_id>\d+)/', include(fireplace_reviews_patterns)),
 )
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Fireplace:
     url('^$', views.commonplace, {'repo': 'fireplace'}, name='home'),
     url('^server.html$', views.commonplace, {'repo': 'fireplace'},
@@ -76,7 +79,8 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
     # More Fireplace stuff, only for local dev:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         fireplace_route('category/.*'),
         fireplace_route('categories'),
         fireplace_route('collection/.*'),

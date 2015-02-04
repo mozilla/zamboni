@@ -113,12 +113,13 @@ class TestWebappIndexer(TestCase):
         created_date = self.days_ago(5).replace(microsecond=0)
         nomination_date = self.days_ago(3).replace(microsecond=0)
 
-        mkt.site.tests.version_factory(addon=self.app, version='43.0',
-                                  has_editor_comment=True,
-                                  has_info_request=True,
-                                  created=created_date,
-                                  nomination=nomination_date,
-                                  file_kw=dict(status=mkt.STATUS_REJECTED))
+        mkt.site.tests.version_factory(
+            addon=self.app, version='43.0',
+            has_editor_comment=True,
+            has_info_request=True,
+            created=created_date,
+            nomination=nomination_date,
+            file_kw=dict(status=mkt.STATUS_REJECTED))
         obj, doc = self._get_doc()
         eq_(doc['latest_version']['status'], mkt.STATUS_REJECTED)
         eq_(doc['latest_version']['has_editor_comment'], True)

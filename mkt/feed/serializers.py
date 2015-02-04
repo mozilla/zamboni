@@ -32,6 +32,7 @@ class ValidateSlugMixin(object):
     Rather than raise validation errors on slugs, coerce them into something
     safer.
     """
+
     def validate_slug(self, attrs, source):
         if source in attrs:
             attrs[source] = slugify(unicode(attrs[source]))
@@ -233,7 +234,8 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
                 '`background_color` is required for `promo` collections.'
             )
         if (color and
-            color not in dict(collection_colors.COLLECTION_COLORS_REVERSE)):
+                color not in
+                dict(collection_colors.COLLECTION_COLORS_REVERSE)):
             raise serializers.ValidationError(
                 '`Not a valid value for `background_color`.'
             )
@@ -396,9 +398,9 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     feed.
     """
     carrier = SlugChoiceField(required=False,
-        choices_dict=mkt.carriers.CARRIER_MAP)
+                              choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
-        choices_dict=mkt.regions.REGION_LOOKUP)
+                             choices_dict=mkt.regions.REGION_LOOKUP)
     category = UnicodeChoiceField(required=False, choices=CATEGORY_CHOICES)
     item_type = serializers.SerializerMethodField('get_item_type')
 
@@ -430,7 +432,7 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         if item_changed and num_defined != 1:
             message = ('A valid value for exactly one of the following '
                        'parameters must be defined: %s' % ','.join(
-                        self.Meta.item_types))
+                           self.Meta.item_types))
             raise serializers.ValidationError(message)
         return attrs
 

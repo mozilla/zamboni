@@ -68,7 +68,7 @@ def check_upload(file_obj, upload_type, content_type):
     else:
         check = ImageCheck(file_obj)
         if (not check.is_image() or
-            content_type not in mkt.IMG_TYPES):
+                content_type not in mkt.IMG_TYPES):
             do_not_open = True
             if is_icon:
                 errors.append(_('Icons must be either PNG or JPG.'))
@@ -89,7 +89,8 @@ def check_upload(file_obj, upload_type, content_type):
     if max_size and file_obj.size > max_size:
         do_not_open = True
         if is_icon or is_video:
-            errors.append(_('Please use files smaller than %s.') %
+            errors.append(
+                _('Please use files smaller than %s.') %
                 filesizeformat(max_size))
 
     if (is_icon or is_preview) and not is_video and not do_not_open:
@@ -146,8 +147,10 @@ def escalate_app(app, version, user, msg, email_template, log_type):
                    'review_url': absolutify(reverse('reviewers.apps.review',
                                                     args=[app.app_slug])),
                    'SITE_URL': settings.SITE_URL}
-        send_reviewer_mail(u'%s: %s' % (msg, app.name), email_template, context,
-                           [settings.REVIEW_ESCALATION_EMAIL])
+        send_reviewer_mail(
+            u'%s: %s' % (msg, app.name),
+            email_template, context,
+            [settings.REVIEW_ESCALATION_EMAIL])
 
 
 def handle_vip(addon, version, user):

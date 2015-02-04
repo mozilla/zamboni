@@ -6,7 +6,8 @@ from mkt.account.views import (AccountView, FeedbackView, FxALoginView,
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
-drf_patterns = patterns('',
+drf_patterns = patterns(
+    '',
     url('^feedback/$', FeedbackView.as_view(), name='account-feedback'),
     url('^installed/mine/$',
         InstalledViewSet.as_view({'get': 'list'}), name='installed-apps'),
@@ -25,11 +26,13 @@ drf_patterns = patterns('',
         {'get': 'mine'}), name='feedshelves-mine'),
 )
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     url('^account/', include(drf_patterns)),
 )
 
-user_patterns = patterns('',
+user_patterns = patterns(
+    '',
     url('^ajax$', views.ajax, name='users.ajax'),
     url('^browserid-login', views.browserid_login,
         name='users.browserid_login'),

@@ -165,7 +165,7 @@ class ReviewerScore(ModelBase):
         cls.get_key(invalidate=True)
         user_log.info(
             u'Awarding %s points to user %s for "%s" for addon %s' %
-                (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
+            (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
     def get_total(cls, user):
@@ -224,7 +224,8 @@ class ReviewerScore(ModelBase):
         """
         Returns sum of reviewer points since the given datetime.
         """
-        key = cls.get_key('get_performance:%s:%s' % (user.id, since.isoformat()))
+        key = cls.get_key('get_performance:%s:%s' % (
+            user.id, since.isoformat()))
         val = cache.get(key)
         if val is not None:
             return val

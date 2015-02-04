@@ -145,7 +145,7 @@ def set_modified_on(f):
                 set_modified_on_object.apply_async(
                     args=[obj], kwargs=extra_kwargs,
                     eta=datetime.datetime.now() +
-                        datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+                    datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
         return result
     return wrapper
 

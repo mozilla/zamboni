@@ -44,14 +44,16 @@ class TestValidate(TestCase):
                 validate_settings()
 
     def test_update_csp(self):
-        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self', 'http://f.c'),
+        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self',
+                                           'http://f.c'),
                            DEBUG=False,
                            IN_TEST_SUITE=False):
             update_csp()
             self.assertSetEqual(set(settings.CSP_SCRIPT_SRC),
                                 set(('https://f.c', 'self')))
 
-        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self', 'http://f.c'),
+        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self',
+                                           'http://f.c'),
                            DEBUG=True):
             update_csp()
             self.assertSetEqual(set(settings.CSP_SCRIPT_SRC),

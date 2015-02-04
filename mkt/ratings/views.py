@@ -98,7 +98,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         current_region = get_region()
         if ((not app.is_public()
              or not app.listed_in(region=current_region))
-             and not check_addon_ownership(self.request, app)):
+                and not check_addon_ownership(self.request, app)):
             # App owners and admin can see the app even if it's not public
             # or not available in the current region. Regular users or
             # anonymous users can't.
@@ -124,7 +124,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                              addon_id=obj.addon.id,
                              addon_title=unicode(obj.addon.name)))
         log.debug('[Review:%s] Deleted by %s' %
-            (obj.pk, self.request.user.id))
+                  (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)
 
     def post_save(self, obj, created=False):

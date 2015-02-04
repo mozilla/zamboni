@@ -8,7 +8,8 @@ from mkt.reviewers import views
 
 
 # All URLs under /reviewers/.
-url_patterns = patterns('',
+url_patterns = patterns(
+    '',
     url(r'^apps/$', views.home, name='reviewers.home'),
     url(r'^$', views.route_reviewer, name='reviewers'),
     url(r'^apps/queue/$', views.queue_apps,
@@ -67,7 +68,8 @@ reviewers_router.register(r'canned-responses', views.CannedResponseViewSet)
 reviewers_router.register(r'scores', views.ReviewerScoreViewSet)
 
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     url(r'reviewers/', include(reviewers_router.urls)),
     url('^reviewers/search', views.ReviewersSearchView.as_view(),
         name='reviewers-search-api'),

@@ -136,7 +136,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         regions = set(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BRA.id)
         self.assertSetEqual(self.get_app().get_region_ids(restofworld=True),
-            regions)
+                            regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
 
@@ -157,7 +157,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         regions.remove(mkt.regions.RESTOFWORLD.id)
 
         self.assertSetEqual(self.get_app().get_region_ids(),
-            regions)
+                            regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
         self.assertSetEqual(form.initial['regions'], regions)
@@ -417,19 +417,20 @@ class TestNewManifestForm(mkt.site.tests.TestCase):
     @mock.patch('mkt.developers.forms.verify_app_domain')
     def test_normal_validator(self, _verify_app_domain):
         form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
-            is_standalone=False)
+                                     is_standalone=False)
         assert form.is_valid()
         assert _verify_app_domain.called
 
     @mock.patch('mkt.developers.forms.verify_app_domain')
     def test_standalone_validator(self, _verify_app_domain):
         form = forms.NewManifestForm({'manifest': 'http://omg.org/yes.webapp'},
-            is_standalone=True)
+                                     is_standalone=True)
         assert form.is_valid()
         assert not _verify_app_domain.called
 
 
-class TestPackagedAppForm(mkt.site.tests.MktPaths, mkt.site.tests.WebappTestCase):
+class TestPackagedAppForm(mkt.site.tests.MktPaths,
+                          mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestPackagedAppForm, self).setUp()
@@ -553,14 +554,14 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
     def test_post_publish(self):
         # Using the latest_version, which is pending.
         form = self._get_form(self.app.latest_version,
-                             data={'publish_immediately': True})
+                              data={'publish_immediately': True})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
         eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
 
         form = self._get_form(self.app.latest_version,
-                             data={'publish_immediately': False})
+                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
@@ -770,7 +771,7 @@ class TestAdminSettingsForm(TestAdmin):
         eq_(unicode(Translation.objects.get(id=trans_id, locale='es')),
             self.data['banner_message_es'])
         eq_(unicode(Translation.objects.get(id=trans_id, locale='en-us')),
-           self.data['banner_message_en-us'])
+            self.data['banner_message_en-us'])
 
     def test_banner_regions_garbage(self):
         self.data.update({

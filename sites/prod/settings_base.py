@@ -57,7 +57,7 @@ CACHES = {
 }
 
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_ALWAYS_EAGER = False

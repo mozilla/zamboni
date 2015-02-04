@@ -349,7 +349,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     def test_version_list_packaged(self):
         self.app.update(is_packaged=True)
         mkt.site.tests.version_factory(addon=self.app, version='2.0',
-                                  file_kw=dict(status=mkt.STATUS_PENDING))
+                                       file_kw=dict(status=mkt.STATUS_PENDING))
         self.app = self.get_app()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)

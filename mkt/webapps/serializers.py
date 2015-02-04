@@ -63,7 +63,8 @@ class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
         choices=mkt.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
-    banner_message = TranslationSerializerField(read_only=True,
+    banner_message = TranslationSerializerField(
+        read_only=True,
         source='geodata.banner_message')
     banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
     categories = ListField(serializers.ChoiceField(choices=CATEGORY_CHOICES),
@@ -102,7 +103,8 @@ class AppSerializer(serializers.ModelSerializer):
     public_stats = serializers.BooleanField(read_only=True)
     ratings = serializers.SerializerMethodField('get_ratings_aggregates')
     regions = RegionSerializer(read_only=True, source='get_regions')
-    release_notes = TranslationSerializerField(read_only=True,
+    release_notes = TranslationSerializerField(
+        read_only=True,
         source='current_version.releasenotes')
     resource_uri = serializers.HyperlinkedIdentityField(view_name='app-detail')
     slug = serializers.CharField(source='app_slug', required=False)
@@ -420,7 +422,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         obj._geodata = Geodata()
         obj.all_previews = [
             Preview(id=p['id'], modified=self.to_datetime(p['modified']),
-            filetype=p['filetype'], sizes=p.get('sizes', {}))
+                    filetype=p['filetype'], sizes=p.get('sizes', {}))
             for p in data['previews']]
         obj.categories = data['category']
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
@@ -500,7 +502,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
             exclusions = upsell.get('region_exclusions')
             if exclusions is not None and region_id not in exclusions:
                 upsell['resource_uri'] = reverse('app-detail',
-                    kwargs={'pk': upsell['id']})
+                                                 kwargs={'pk': upsell['id']})
             else:
                 upsell = False
         return upsell

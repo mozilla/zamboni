@@ -233,7 +233,8 @@ JS = {
         'js/devreg/reviewers/expandable.js',
         'js/devreg/reviewers/mobile_review_actions.js',
         'js/common/fakefilefield.js',
-        'js/common/formsets.js',  # Used by Reviewer Attachments in devreg/init.js.
+        # Used by Reviewer Attachments in devreg/init.js.
+        'js/common/formsets.js',
         'js/devreg/reviewers/reviewers_init.js',
     ),
     'mkt/in-app-payments': (
@@ -246,7 +247,7 @@ JS = {
         'js/devreg/storage.js',
     ),
     'mkt/in-app-products': (
-        'js/lib/es5-shim.min.js', # We might already assume these work.
+        'js/lib/es5-shim.min.js',  # We might already assume these work.
         'js/lib/flight.min.js',
         'js/devreg/in_app_products.js',
     ),

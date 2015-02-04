@@ -23,9 +23,5 @@ app_purchase_patterns = patterns(
 
 urlpatterns = patterns(
     '',
-    # TODO: Port these views.
-    #url('^thanks/$', views.purchase_thanks, name='purchase.thanks'),
-    #url('^error/$', views.purchase_error, name='purchase.error'),
-
     ('', include(app_purchase_patterns)),
 )

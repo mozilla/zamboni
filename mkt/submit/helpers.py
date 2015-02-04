@@ -1,6 +1,5 @@
 from jingo import register, env
 import jinja2
-from tower import ugettext as _
 
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
@@ -11,7 +10,7 @@ def del_by_key(data, delete):
     data = list(data)
     for idx, item in enumerate(data):
         if ((isinstance(item[0], basestring) and item[0] == delete) or
-            (isinstance(item[0], (list, tuple)) and item[0] in delete)):
+                (isinstance(item[0], (list, tuple)) and item[0] in delete)):
             del data[idx]
     return data
 

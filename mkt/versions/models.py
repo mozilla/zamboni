@@ -105,7 +105,8 @@ class Version(ModelBase):
         update_supported_locales_single.apply_async(
             args=[addon.id], kwargs={'latest': True},
             eta=datetime.datetime.now() +
-                datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+            datetime.timedelta(seconds=settings.NFS_LAG_DELAY)
+        )
 
         v.disable_old_files()
         # After the upload has been copied, remove the upload.
@@ -309,7 +310,7 @@ def inherit_nomination(sender, instance, **kw):
                                    .exclude(pk=instance.pk)
                                    .order_by('-nomination'))
         if (last_ver.exists() and
-            last_ver[0].all_files[0].status == mkt.STATUS_PENDING):
+                last_ver[0].all_files[0].status == mkt.STATUS_PENDING):
             instance.update(nomination=last_ver[0].nomination, _signal=False)
             log.debug('[Webapp:%s] Inheriting nomination from prior pending '
                       'version' % addon.id)

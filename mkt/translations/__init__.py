@@ -1,4 +1,4 @@
-### Here be dragons.
+# Here be dragons.
 # Django decided to require that ForeignKeys be unique.  That's generally
 # reasonable, but Translations break that in their quest for all things unholy.
 # Here we monkeypatch the error collector Django uses in validation to skip any

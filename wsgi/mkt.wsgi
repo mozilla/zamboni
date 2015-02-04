@@ -1,6 +1,5 @@
 import os
 import site
-import sys
 from datetime import datetime
 
 # Tell manage that we need to pull in the default settings file.
@@ -17,7 +16,7 @@ wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
 # manage adds /apps, /lib, and /vendor to the Python path.
-import manage
+import manage  # flake8: noqa
 
 import django.conf
 import django.core.handlers.wsgi

@@ -58,6 +58,7 @@ class PaymentAccountSerializer(Serializer):
     Fake serializer that returns PaymentAccount details when
     serializing a PaymentAccount instance. Use only for read operations.
     """
+
     def to_native(self, obj):
         data = obj.get_provider().account_retrieve(obj)
         data['resource_uri'] = reverse('payment-account-detail',
@@ -101,7 +102,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
             except HttpServerError as e:
                 log.error('Error creating Bango payment account; %s' % e)
                 return Response(_(u'Could not connect to payment server.'),
-                               status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             serializer = self.get_serializer(obj)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -189,11 +190,11 @@ class AddonPaymentAccountPermission(BasePermission):
             else:
                 log.info('AddonPaymentAccount access %(account)s denied '
                          'for %(user)s: wrong user, not shared.'.format(
-                         {'account': account.pk, 'user': request.user.pk}))
+                             {'account': account.pk, 'user': request.user.pk}))
         else:
             log.info('AddonPaymentAccount access %(account)s denied '
                      'for %(user)s: no app permission.'.format(
-                     {'account': account.pk, 'user': request.user.pk}))
+                         {'account': account.pk, 'user': request.user.pk}))
         return False
 
     def has_object_permission(self, request, view, object):
@@ -225,7 +226,8 @@ class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
     serializer_class = AddonPaymentAccountSerializer
 
     def pre_save(self, obj):
-        if not AddonPaymentAccountPermission().check(self.request,
+        if not AddonPaymentAccountPermission().check(
+                self.request,
                 obj.addon, obj.payment_account):
             raise PermissionDenied('Not allowed to alter that object.')
 
@@ -260,8 +262,8 @@ class PaymentCheckViewSet(PaymentAppViewSet):
         client = get_client()
 
         res = client.api.bango.status.post(
-                data={'seller_product_bango':
-                      self.app.payment_account(PROVIDER_BANGO).account_uri})
+            data={'seller_product_bango':
+                  self.app.payment_account(PROVIDER_BANGO).account_uri})
 
         filtered = {
             'bango': {
@@ -282,8 +284,8 @@ class PaymentDebugViewSet(PaymentAppViewSet):
 
         client = get_client()
         res = client.api.bango.debug.get(
-                data={'seller_product_bango':
-                      self.app.payment_account(PROVIDER_BANGO).account_uri})
+            data={'seller_product_bango':
+                  self.app.payment_account(PROVIDER_BANGO).account_uri})
         filtered = {
             'bango': res['bango'],
         }

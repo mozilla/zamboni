@@ -11,7 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import commonware.log
-import waffle
 from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
 from tower import ugettext as _
@@ -39,7 +38,7 @@ def user_view(f):
             key = 'username'
             # If the username is `me` then show the current user's profile.
             if (user_id == 'me' and request.user.is_authenticated() and
-                request.user.username):
+                    request.user.username):
                 user_id = request.user.username
         user = get_object_or_404(UserProfile, **{key: user_id})
         return f(request, user, *args, **kw)

@@ -338,9 +338,9 @@ def manual_order(qs, pks, pk_name='id'):
     if not pks:
         return qs.none()
     return qs.filter(id__in=pks).extra(
-            select={'_manual': 'FIELD(%s, %s)'
+        select={'_manual': 'FIELD(%s, %s)'
                 % (pk_name, ','.join(map(str, pks)))},
-            order_by=['_manual'])
+        order_by=['_manual'])
 
 
 class DynamicBoolFieldsMixin(object):

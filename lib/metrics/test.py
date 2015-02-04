@@ -14,5 +14,6 @@ class TestMetrics(mkt.site.tests.TestCase):
         request.LANG = 'en'
         request.META = {'HTTP_USER_AGENT': 'py'}
         record_action('install', request, {})
-        record_stat.assert_called_with('install', request,
+        record_stat.assert_called_with(
+            'install', request,
             **{'locale': 'en', 'src': 'foo', 'user-agent': 'py'})

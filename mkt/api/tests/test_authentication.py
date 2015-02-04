@@ -40,8 +40,8 @@ class TestRestOAuthAuthentication(TestCase):
         # Make a fake POST somewhere. We use POST in order to properly test db
         # pinning after auth.
         url = absolutify('/api/whatever')
-        req = RequestFactory().post(url,
-            HTTP_HOST='testserver',
+        req = RequestFactory().post(
+            url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=client.sign('POST', url)[1]['Authorization'])
         req.user = AnonymousUser()
         for m in self.middlewares:
@@ -186,8 +186,8 @@ class TestMultipleAuthenticationDRF(TestCase):
         RestOAuthMiddleware().process_request(request)
 
         drf_request.authenticators = (
-                authentication.RestSharedSecretAuthentication(),
-                authentication.RestOAuthAuthentication())
+            authentication.RestSharedSecretAuthentication(),
+            authentication.RestOAuthAuthentication())
 
         eq_(drf_request.user, self.profile)
         eq_(drf_request._request.user, self.profile)
@@ -202,8 +202,8 @@ class TestMultipleAuthenticationDRF(TestCase):
         drf_request = Request(request)
         request.user = AnonymousUser()
         drf_request.authenticators = (
-                authentication.RestSharedSecretAuthentication(),
-                authentication.RestOAuthAuthentication())
+            authentication.RestSharedSecretAuthentication(),
+            authentication.RestOAuthAuthentication())
 
         eq_(drf_request.user.is_authenticated(), False)
         eq_(drf_request._request.user.is_authenticated(), False)

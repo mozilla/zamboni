@@ -477,8 +477,8 @@ def update_app_trending():
                     if not created:
                         trending.update(value=value, modified=now)
                 else:
-                    # The value is <= 0 so the app is not trending. Let's remove it
-                    # from the trending table.
+                    # The value is <= 0 so the app is not trending.
+                    # Let's remove it from the trending table.
                     app.trending.filter(region=region.id).delete()
 
             times.append(time.time() - t_start)

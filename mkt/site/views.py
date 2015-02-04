@@ -92,7 +92,8 @@ def manifest(request):
 
     @etag(lambda r: manifest_etag)
     def _inner_view(request):
-        response = HttpResponse(manifest_content,
+        response = HttpResponse(
+            manifest_content,
             content_type='application/x-web-app-manifest+json')
         return response
 

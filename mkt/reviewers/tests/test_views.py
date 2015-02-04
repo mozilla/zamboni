@@ -30,7 +30,7 @@ import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
-from mkt.access.models import Group, GroupUser
+from mkt.access.models import Group
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
@@ -39,8 +39,8 @@ from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.reviewers.models import (CannedResponse, EscalationQueue, QUEUE_TARAKO,
-                                  RereviewQueue, ReviewerScore)
+from mkt.reviewers.models import (CannedResponse, EscalationQueue,
+                                  RereviewQueue, ReviewerScore, QUEUE_TARAKO)
 from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
@@ -98,7 +98,7 @@ class AppReviewerTest(mkt.site.tests.TestCase):
         self.reviewer_user = user_factory(username='editor')
         self.grant_permission(self.reviewer_user, 'Apps:Review')
         self.snr_reviewer_user = user_factory(username='snrreviewer')
-        self.grant_permission(self.snr_reviewer_user,'Apps:Review,Apps:Edit,'
+        self.grant_permission(self.snr_reviewer_user, 'Apps:Review,Apps:Edit,'
                               'Apps:ReviewEscalated,Apps:ReviewPrivileged')
         self.admin_user = user_factory(username='admin')
         self.grant_permission(self.admin_user, '*:*')
@@ -192,8 +192,8 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                           version_kw={'version': '1.0'},
                           is_packaged=True)
         v = version_factory(addon=app,
-                        version='2.1',
-                        file_kw={'status': mkt.STATUS_PENDING})
+                            version='2.1',
+                            file_kw={'status': mkt.STATUS_PENDING})
         v.update(deleted=True)
 
     def test_route_reviewer(self):
@@ -575,7 +575,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         [app.update(status=mkt.STATUS_NULL) for app in self.apps]
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
-        req = req_factory_factory(self.url,
+        req = req_factory_factory(
+            self.url,
             user=UserProfile.objects.get(username='editor'))
         doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
@@ -604,9 +605,9 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                  status=mkt.STATUS_PENDING)]
         # WWW and XXX are the only ones actually requested to be public.
         self.apps[0].geodata.update(region_cn_status=mkt.STATUS_PENDING,
-            region_cn_nominated=self.days_ago(2))
+                                    region_cn_nominated=self.days_ago(2))
         self.apps[1].geodata.update(region_cn_status=mkt.STATUS_PENDING,
-            region_cn_nominated=self.days_ago(1))
+                                    region_cn_nominated=self.days_ago(1))
         self.apps[2].geodata.update(region_cn_status=mkt.STATUS_PUBLIC)
 
         self.grant_permission(self.reviewer_user, 'Apps:ReviewRegionCN')
@@ -919,7 +920,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         res = self.client.get(self.url)
         if self.uses_es():
             eq_([a.id for a in res.context['addons']],
-                 [a.id for a in self.apps[1:]])
+                [a.id for a in self.apps[1:]])
         else:
             eq_([a.app for a in res.context['addons']], self.apps[1:])
 
@@ -1229,7 +1230,8 @@ class TestEscalationQueueES(mkt.site.tests.ESTestCase, TestEscalationQueue):
         self.reindex(Webapp, 'webapp')
 
 
-class TestReviewTransaction(AttachmentManagementMixin, mkt.site.tests.MockEsMixin,
+class TestReviewTransaction(AttachmentManagementMixin,
+                            mkt.site.tests.MockEsMixin,
                             mkt.site.tests.MockBrowserIdMixin,
                             test.TransactionTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
@@ -3543,7 +3545,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(data['developer']['name'], 'Mozilla Marketplace')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
-                       args=[self.app.app_slug, self.version.id])))
+                               args=[self.app.app_slug, self.version.id])))
 
     def test_rejected(self):
         # Rejected sets file.status to DISABLED and moves to a guarded path.
@@ -3559,8 +3561,8 @@ class TestMiniManifestView(BasePackagedAppTest):
         eq_(data['developer']['name'], 'Mozilla Marketplace')
         eq_(data['package_path'],
             absolutify(reverse('reviewers.signed',
-                       args=[self.app.app_slug,
-                             self.version.id])))
+                               args=[self.app.app_slug,
+                                     self.version.id])))
 
     def test_minifest_name_matches_manifest_name(self):
         self.setup_files()
@@ -4201,7 +4203,7 @@ class TestModerateLog(ModerateLogTest, AccessMixin):
         assert '<script>' in self.admin_user.display_name, (
             'Expected <script> to be in display name')
         r = self.client.get(self.url)
-        inner_html = pq(r.content)('#log-listing tbody td').eq(1).html()
+        pq(r.content)('#log-listing tbody td').eq(1).html()
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content
 
@@ -4223,7 +4225,8 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
         eq_(r.status_code, 200)
 
     def test_undelete_selfmoderation(self):
-        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
+        e_id = mkt.log(
+            mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
         self.review.delete()
         r = self.client.post(self._url(e_id), {'action': 'undelete'})
         eq_(r.status_code, 302)
@@ -4231,7 +4234,8 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
         assert not self.review.deleted, 'Review should be undeleted now.'
 
     def test_undelete_admin(self):
-        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
+        e_id = mkt.log(
+            mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
         self.review.delete()
         self.client.logout()
         self.login_as_admin()
@@ -4243,7 +4247,7 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
     def test_undelete_unauthorized(self):
         # Delete as admin (or any other user than the reviewer).
         e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review,
-                user=self.admin_user).id
+                       user=self.admin_user).id
         self.review.delete()
         # Try to undelete as normal reviewer.
         r = self.client.post(self._url(e_id), {'action': 'undelete'})

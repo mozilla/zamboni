@@ -80,7 +80,7 @@ class FeedAppIndexer(BaseIndexer):
             'preview': {'id': obj.preview.id,
                         'thumbnail_size': obj.preview.thumbnail_size,
                         'thumbnail_url': obj.preview.thumbnail_url}
-                       if getattr(obj, 'preview') else None,
+            if getattr(obj, 'preview') else None,
             'pullquote_attribution': obj.pullquote_attribution,
             'pullquote_rating': obj.pullquote_rating,
             'search_names': list(
@@ -273,7 +273,6 @@ class FeedShelfIndexer(BaseIndexer):
             'slug': obj.slug,
         }
 
-
         # Grouped apps. Key off of translation, pointed to app IDs.
         memberships = obj.feedshelfmembership_set.all()
         attach_trans_dict(FeedShelfMembership, memberships)
@@ -327,19 +326,19 @@ class FeedItemIndexer(BaseIndexer):
 
         return {
             'id': obj.id,
-            'app': obj.app_id if obj.item_type == feed.FEED_TYPE_APP
-                   else None,
-            'brand': obj.brand_id if obj.item_type == feed.FEED_TYPE_BRAND
-                     else None,
+            'app': (obj.app_id if obj.item_type == feed.FEED_TYPE_APP
+                    else None),
+            'brand': (obj.brand_id if obj.item_type == feed.FEED_TYPE_BRAND
+                      else None),
             'carrier': obj.carrier,
             'category': obj.category,
-            'collection': obj.collection_id if
-                          obj.item_type == feed.FEED_TYPE_COLL else None,
+            'collection': (obj.collection_id if
+                           obj.item_type == feed.FEED_TYPE_COLL else None),
             'item_type': obj.item_type,
             # If no order, put it at end. Make sure order > 0 since we do a
             # ES reciprocal modifier query.
             'order': obj.order + 1 if obj.order is not None else 100,
             'region': obj.region,
-            'shelf': obj.shelf_id if obj.item_type == feed.FEED_TYPE_SHELF
-                     else None,
+            'shelf': (obj.shelf_id if obj.item_type == feed.FEED_TYPE_SHELF
+                      else None),
         }

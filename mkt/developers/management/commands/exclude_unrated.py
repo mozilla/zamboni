@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
             # Germany.
             if (not app.content_ratings.filter(
-                ratings_body=mkt.ratingsbodies.USK.id).exists()):
+                    ratings_body=mkt.ratingsbodies.USK.id).exists()):
                 save = True
                 geodata.region_de_iarc_exclude = True
                 log.info('[App %s - %s] Excluded in region de'
@@ -33,7 +33,7 @@ class Command(BaseCommand):
 
             # Brazil.
             if (not app.content_ratings.filter(
-                ratings_body=mkt.ratingsbodies.CLASSIND.id).exists()):
+                    ratings_body=mkt.ratingsbodies.CLASSIND.id).exists()):
                 save = True
                 geodata.region_br_iarc_exclude = True
                 log.info('[App %s - %s] Excluded in region br'

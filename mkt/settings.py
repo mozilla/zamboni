@@ -289,7 +289,7 @@ USE_I18N = True
 
 ###########################################
 # Team Emails
-ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'
+ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'  # flake8: noqa
 APP_DELETION_EMAIL = 'marketplace-staff+deletions@mozilla.org'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
@@ -413,7 +413,8 @@ CELERY_ROUTES = {
     'mkt.users.tasks.send_mail': {'queue': 'priority'},
     'mkt.users.tasks.send_fxa_mail': {'queue': 'priority'},
     'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
-    'mkt.versions.tasks.update_supported_locales_single': {'queue': 'priority'},
+    'mkt.versions.tasks.update_supported_locales_single':
+        {'queue': 'priority'},
     'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
     'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
@@ -490,7 +491,7 @@ AMO_LANGUAGES = (
 
 def langs(languages):
     return dict([i.lower(), mozilla_languages.LANGUAGES[i]['native']]
-                 for i in languages if i in mozilla_languages.LANGUAGES)
+                for i in languages if i in mozilla_languages.LANGUAGES)
 
 # Override Django's built-in with our native names, this is a Django setting
 # but we are putting it here because its being overridden.
@@ -715,23 +716,32 @@ FXA_OAUTH_URL = 'https://oauth-' + FXA_AUTH_DOMAIN
 
 FXA_SECRETS = {
     # http://mp.dev - marketplace-docker.
-    '7943afb7b9f54089': '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a',
+    '7943afb7b9f54089':
+        '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a',
     # http://localhost:2600 - zamboni default
-    '6b00a7db54f9efee': '8caf59671cf97387d4804f64f5b8bbaed3877ef25faf423bbad4794295571e0c',
+    '6b00a7db54f9efee':
+        '8caf59671cf97387d4804f64f5b8bbaed3877ef25faf423bbad4794295571e0c',
     # http://localhost:8000 - zamboni bonus
-    '82c894ff06812072': 'd5c9d80eda1f86b3c92d404a921395f2eeaebb85ac037f9807aea7e41beb1844',
+    '82c894ff06812072':
+        'd5c9d80eda1f86b3c92d404a921395f2eeaebb85ac037f9807aea7e41beb1844',
     # https://localhost:8080.
-    '56fc6da8d185c8e4': 'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a4',
+    '56fc6da8d185c8e4':
+        'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a4',
     # http://localhost:8675 - markteplace-frontend.
-    '124ae9dff020ba79': '4a7f6a52fc6e66f693be105f31af02c2caa1ea4ec1491aacba75dbda221eb68d',
+    '124ae9dff020ba79':
+        '4a7f6a52fc6e66f693be105f31af02c2caa1ea4ec1491aacba75dbda221eb68d',
     # http://localhost:8676 - marketplace-comm-dashboard.
-    '31b549f7dfb4de69': 'f8683bb74f87b74a41e87127bf074876f6e3bfae0007a70d269b266bc8a65ff7',
+    '31b549f7dfb4de69':
+        'f8683bb74f87b74a41e87127bf074876f6e3bfae0007a70d269b266bc8a65ff7',
     # http://localhost:8677 - marketplace-stats.
-    'cc389d4ccd6cd34d': '83edbdf17b431d4341fc4428720ee11d90661e78867fd922fce962e40babd7f7',
+    'cc389d4ccd6cd34d':
+        '83edbdf17b431d4341fc4428720ee11d90661e78867fd922fce962e40babd7f7',
     # http://localhost:8678 - marketplace-editorial-tools.
-    '47354b86fb361c7e': '7ea6cfee791063d8d5c1235e3924598b3ac99e7381de126f421c22fd42ab0bbb',
+    '47354b86fb361c7e':
+        '7ea6cfee791063d8d5c1235e3924598b3ac99e7381de126f421c22fd42ab0bbb',
     # http://localhost:8679 - marketplace-operator-dashboard.
-    '049d4b105daa1cb9': '2b8661ab4ee0b996009ab5413359b74064c433b4afae61b02fd455631fb6c198',
+    '049d4b105daa1cb9':
+        '2b8661ab4ee0b996009ab5413359b74064c433b4afae61b02fd455631fb6c198',
 }
 
 FXA_CLIENT_ID = os.environ.get('FXA_CLIENT_ID', '6b00a7db54f9efee')

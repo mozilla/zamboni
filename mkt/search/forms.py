@@ -153,7 +153,7 @@ class ApiSearchForm(forms.Form):
 
         # Include privileged apps even when we search for packaged.
         if (mkt.ADDON_WEBAPP_PACKAGED in at_ids and
-            mkt.ADDON_WEBAPP_PRIVILEGED not in at_ids):
+                mkt.ADDON_WEBAPP_PRIVILEGED not in at_ids):
             at_ids.append(mkt.ADDON_WEBAPP_PRIVILEGED)
 
         return at_ids

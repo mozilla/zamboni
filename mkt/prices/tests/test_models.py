@@ -323,8 +323,8 @@ class TestRefundContribution(ContributionMixin, mkt.site.tests.TestCase):
                   rejection_reason=None):
         """Checks that a refund is enqueued and contains the correct values."""
         self.contribution.enqueue_refund(status, self.user,
-            refund_reason=refund_reason,
-            rejection_reason=rejection_reason)
+                                         refund_reason=refund_reason,
+                                         rejection_reason=rejection_reason)
         expected.update(contribution=self.contribution, status=status)
         eq_(Refund.objects.count(), 1)
         refund = Refund.objects.filter(**expected)

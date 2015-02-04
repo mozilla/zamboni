@@ -69,7 +69,7 @@ class TestModerationLogForm(TestCase):
         }
         form = ModerateLogForm(post_data)
         assert form.is_valid()
-        eq_(form.cleaned_data['start'], date(2014,12,01))
+        eq_(form.cleaned_data['start'], date(2014, 12, 01))
         # End date should a day ahead.
-        eq_(form.cleaned_data['end'], date(2015,01,02))
+        eq_(form.cleaned_data['end'], date(2015, 01, 02))
         eq_(form.cleaned_data['search'], mkt.LOG.APPROVE_REVIEW)

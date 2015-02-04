@@ -14,7 +14,6 @@ from django.utils.functional import lazy
 
 import commonware.log
 import tower
-import waffle
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
 

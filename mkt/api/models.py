@@ -1,4 +1,3 @@
-import os
 import time
 
 from django.db import models
@@ -36,6 +35,7 @@ class Access(ModelBase):
             user=user,
             secret=get_random_string())
 
+
 class Token(ModelBase):
     token_type = models.SmallIntegerField(choices=TOKEN_TYPES)
     creds = models.ForeignKey(Access)
@@ -56,8 +56,8 @@ class Token(ModelBase):
             key=get_random_string(),
             secret=get_random_string(),
             timestamp=time.time(),
-            verifier=(get_random_string() if token_type == REQUEST_TOKEN
-                                          else None),
+            verifier=(get_random_string()
+                      if token_type == REQUEST_TOKEN else None),
             user=user)
 
 

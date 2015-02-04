@@ -159,8 +159,8 @@ class MarketplaceView(object):
             except ValueError:
                 pass  # Swallow and ignore invalid input.
 
-        return super(MarketplaceView, self).paginate_queryset(queryset,
-            page_size=page_size)
+        return super(MarketplaceView, self).paginate_queryset(
+            queryset, page_size=page_size)
 
     def get_region_from_request(self, request):
         """

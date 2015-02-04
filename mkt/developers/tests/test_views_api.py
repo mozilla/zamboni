@@ -248,13 +248,14 @@ class TestContentRatingPingback(RestOAuth):
         # Ratings.
         eq_(app.content_ratings.count(), 5)
         for rb, rating in [
-            (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.CLASSIND_14),
-            (mkt.ratingsbodies.ESRB, mkt.ratingsbodies.ESRB_M),
-            (mkt.ratingsbodies.GENERIC, mkt.ratingsbodies.GENERIC_16),
-            (mkt.ratingsbodies.PEGI, mkt.ratingsbodies.PEGI_16),
-            (mkt.ratingsbodies.USK, mkt.ratingsbodies.USK_REJECTED)]:
-            eq_(app.content_ratings.get(ratings_body=rb.id).rating, rating.id,
-                'Unexpected rating for rating body %s.' % rb)
+                (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.CLASSIND_14),
+                (mkt.ratingsbodies.ESRB, mkt.ratingsbodies.ESRB_M),
+                (mkt.ratingsbodies.GENERIC, mkt.ratingsbodies.GENERIC_16),
+                (mkt.ratingsbodies.PEGI, mkt.ratingsbodies.PEGI_16),
+                (mkt.ratingsbodies.USK, mkt.ratingsbodies.USK_REJECTED)
+                ]:
+            eq_(app.content_ratings.get(ratings_body=rb.id).rating,
+                rating.id, 'Unexpected rating for rating body %s.' % rb)
 
         # Descriptors.
         self.assertSetEqual(

@@ -74,6 +74,7 @@ def custom_exception_handler(exc):
 
     return response
 
+
 class HttpLegallyUnavailable(APIException):
     status_code = 451
     default_detail = 'Legally unavailable.'

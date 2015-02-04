@@ -120,7 +120,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # Special case price tier 0.
             if price.price == Decimal('0.00'):
                 price_choices.append((price.pk, '%s (%s)' %
-                    (unicode(price), _('Promotional Pricing'))))
+                                      (unicode(price),
+                                       _('Promotional Pricing'))))
             # Tiers that can only be operator billed.
             elif price.method == PAYMENT_METHOD_OPERATOR:
                 operator_billed.append(choice)
@@ -180,7 +181,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         if not is_toggling:
             # If a platform wasn't selected, raise an error.
             if not self.cleaned_data[
-                '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
+                    '%s_platforms' % ('paid' if self.is_paid() else 'free')]:
 
                 self._add_error('none')
 
@@ -248,14 +249,14 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             upsell = self.addon.upsold
             if upsell:
                 log.debug('[1@%s] Removing upsell; switching to free' %
-                              self.addon.pk)
+                          self.addon.pk)
                 upsell.delete()
 
             log.debug('[1@%s] Removing app payment account' % self.addon.pk)
             AddonPaymentAccount.objects.filter(addon=self.addon).delete()
 
             log.debug('[1@%s] Setting app premium_type to FREE' %
-                          self.addon.pk)
+                      self.addon.pk)
             self.addon.premium_type = mkt.ADDON_FREE
 
             # Remove addonpremium
@@ -266,7 +267,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
                 pass
 
             if (self.addon.has_incomplete_status() and
-                self.addon.is_fully_complete()):
+                    self.addon.is_fully_complete()):
                 _restore_app_status(self.addon, save=False)
 
             is_paid = False
@@ -322,9 +323,10 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
 
 class UpsellForm(happyforms.Form):
-    upsell_of = AddonChoiceField(queryset=Webapp.objects.none(), required=False,
-                                 label=_lazy(u'This is a paid upgrade of'),
-                                 empty_label=_lazy(u'Not an upgrade'))
+    upsell_of = AddonChoiceField(
+        queryset=Webapp.objects.none(), required=False,
+        label=_lazy(u'This is a paid upgrade of'),
+        empty_label=_lazy(u'Not an upgrade'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -339,7 +341,7 @@ class UpsellForm(happyforms.Form):
         self.fields['upsell_of'].queryset = (
             self.user.addons.exclude(pk=self.addon.pk,
                                      status=mkt.STATUS_DELETED)
-                            .filter(premium_type__in=mkt.ADDON_FREES))
+            .filter(premium_type__in=mkt.ADDON_FREES))
 
     def save(self):
         current_upsell = self.addon.upsold
@@ -463,7 +465,8 @@ class AccountListForm(happyforms.Form):
 
         self.is_owner = None
         if self.addon:
-            self.is_owner = self.addon.authors.filter(pk=self.user.pk,
+            self.is_owner = self.addon.authors.filter(
+                pk=self.user.pk,
                 addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()
 
         self.fields['accounts'].queryset = self.agreed_payment_accounts
@@ -519,7 +522,7 @@ class AccountListForm(happyforms.Form):
         # empty string we need to check the raw data.
         accounts_submitted = 'accounts' in self.data
         if (AddonPaymentAccount.objects.filter(addon=self.addon).exists() and
-            accounts_submitted and not accounts):
+                accounts_submitted and not accounts):
 
             raise forms.ValidationError(
                 _('You cannot remove a payment account from an app.'))
@@ -556,7 +559,8 @@ class AccountListForm(happyforms.Form):
             # and the app is currently marked as incomplete, put it into the
             # re-review queue.
             if (self.addon.status == mkt.STATUS_NULL and
-                self.addon.highest_status in mkt.WEBAPPS_APPROVED_STATUSES):
+                    self.addon.highest_status
+                    in mkt.WEBAPPS_APPROVED_STATUSES):
                 # FIXME: This might cause noise in the future if bank accounts
                 # get manually closed by Bango and we mark apps as STATUS_NULL
                 # until a new account is selected. That will trigger a

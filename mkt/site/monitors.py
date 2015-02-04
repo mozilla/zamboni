@@ -49,9 +49,8 @@ def memcache():
                 s.close()
 
             memcache_results.append((ip, port, result))
-        if (not using_twemproxy
-            and len(hosts) > 1
-            and len(memcache_results) < 2):
+        if (not using_twemproxy and len(hosts) > 1
+                and len(memcache_results) < 2):
             # If the number of requested hosts is greater than 1, but less
             # than 2 replied, raise an error.
             status = ('2+ memcache servers are required.'
@@ -239,7 +238,7 @@ def receipt_signer():
         return msg, msg
 
     cert_json = resp.json()
-    if not cert_json or not 'jwk' in cert_json:
+    if not cert_json or 'jwk' not in cert_json:
         msg = cert_err_msg % (location, 'Not valid JSON/JWK')
         return msg, msg
 

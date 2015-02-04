@@ -243,7 +243,7 @@ class TestSearchFilters(BaseOAuth):
     def test_filter_all_features_present(self):
         self.req = self._request_from_features()
         qs = self._filter(self.req, {'q': 'search terms'})
-        ok_(not 'must_not' in qs['query']['filtered']['filter']['bool'])
+        ok_('must_not' not in qs['query']['filtered']['filter']['bool'])
 
     def test_filter_all_features_present_and_region(self):
         self.req = self._request_from_features(region=regions.GBR)

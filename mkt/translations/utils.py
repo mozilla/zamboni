@@ -97,7 +97,7 @@ def transfield_changed(field, initial, data):
                                                          'en-br': 'y'}
     """
     initial = [(k, v.localized_string) for k, v in initial.iteritems()
-               if '%s_' % field in k and v != None]
+               if '%s_' % field in k and v is not None]
     data = [('%s_%s' % (field, k), v) for k, v in data[field].iteritems()
             if k != 'init']
     return set(initial) != set(data)

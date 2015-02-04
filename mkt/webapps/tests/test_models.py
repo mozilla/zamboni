@@ -1131,9 +1131,12 @@ class TestWebappLight(mkt.site.tests.TestCase):
         useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
                          'support_email', 'support_url')
 
-        self.assertSetEqual(Webapp._meta.translated_fields,
-            [Webapp._meta.get_field(f) for f in useless_fields + useful_fields])
-        self.assertSetEqual(Webapp._meta.translated_fields,
+        self.assertSetEqual(
+            Webapp._meta.translated_fields,
+            [Webapp._meta.get_field(f) for f in
+                useless_fields + useful_fields])
+        self.assertSetEqual(
+            Webapp._meta.translated_fields,
             [Webapp._meta.get_field(f) for f in useful_fields])
 
         # Build fake data with all fields, and use it to create an app.
@@ -1537,7 +1540,7 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.webapp = mkt.site.tests.app_factory(is_packaged=True,
-                                            default_locale='en-US')
+                                                 default_locale='en-US')
         self.webapp.name = {'en-US': 'Packaged App'}
         self.webapp.save()
 
@@ -1573,7 +1576,8 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
         good_manifest = {
             'name': u'Good App Name',
         }
-        latest_version = version_factory(addon=self.webapp, version='2.3',
+        latest_version = version_factory(
+            addon=self.webapp, version='2.3',
             file_kw=dict(status=mkt.STATUS_DISABLED))
         current_version = self.webapp.current_version
         AppManifest.objects.create(version=current_version,
@@ -1965,7 +1969,8 @@ class TestAddonExcludedRegion(mkt.site.tests.WebappTestCase):
         self.excluded = self.app.addonexcludedregion
 
         eq_(list(self.excluded.values_list('id', flat=True)), [])
-        self.er = self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
+        self.er = self.app.addonexcludedregion.create(
+            region=mkt.regions.GBR.id)
         eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
 
     def test_exclude_multiple(self):
@@ -2045,8 +2050,8 @@ class TestContentRating(mkt.site.tests.WebappTestCase):
 
         # When already has label set.
         eq_(ContentRating.objects.create(
-                addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
-                rating=mkt.ratingsbodies.ESRB_E.id).get_rating().label,
+            addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
+            rating=mkt.ratingsbodies.ESRB_E.id).get_rating().label,
             '10')
 
 
@@ -2180,20 +2185,22 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
         eq_(app.status, mkt.STATUS_REJECTED)
 
     def test_one_version_pending(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED,
-                                    file_kw=dict(status=mkt.STATUS_DISABLED))
+        app = mkt.site.tests.app_factory(
+            status=mkt.STATUS_REJECTED,
+            file_kw=dict(status=mkt.STATUS_DISABLED))
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=mkt.STATUS_PENDING))
+                                       file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = True
             app.update_status()
         eq_(app.status, mkt.STATUS_PENDING)
 
     def test_one_version_pending_not_fully_complete(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED,
-                                    file_kw=dict(status=mkt.STATUS_DISABLED))
+        app = mkt.site.tests.app_factory(
+            status=mkt.STATUS_REJECTED,
+            file_kw=dict(status=mkt.STATUS_DISABLED))
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=mkt.STATUS_PENDING))
+                                       file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = False
             app.update_status()
@@ -2201,8 +2208,9 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
 
     def test_one_version_public(self):
         app = mkt.site.tests.app_factory(status=mkt.STATUS_PUBLIC)
-        mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=mkt.STATUS_DISABLED))
+        mkt.site.tests.version_factory(
+            addon=app,
+            file_kw=dict(status=mkt.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, mkt.STATUS_PUBLIC)
 
@@ -2210,7 +2218,7 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
         app = mkt.site.tests.app_factory(status=mkt.STATUS_APPROVED)
         File.objects.filter(version__addon=app).update(status=app.status)
         mkt.site.tests.version_factory(addon=app,
-                                  file_kw=dict(status=mkt.STATUS_PENDING))
+                                       file_kw=dict(status=mkt.STATUS_PENDING))
         app.update_status()
         eq_(app.status, mkt.STATUS_APPROVED)
 
@@ -2460,7 +2468,8 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
         eq_(self.geo.banner_regions, None)
         eq_(self.geo.banner_regions_names(), [])
 
-        self.geo.update(banner_regions=[mkt.regions.GBR.id, mkt.regions.CHN.id])
+        self.geo.update(
+            banner_regions=[mkt.regions.GBR.id, mkt.regions.CHN.id])
         eq_(self.geo.banner_regions_names(), [u'China', u'United Kingdom'])
 
 

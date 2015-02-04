@@ -258,7 +258,8 @@ class TestBangoRedirect(TestCase):
         self.login(UserProfile.objects.get(username='support_staff'))
         self.steamcube.update(premium_type=mkt.ADDON_PREMIUM)
         self.account = setup_payment_account(self.steamcube, self.user)
-        self.portal_url = reverse('lookup.bango_portal_from_package',
+        self.portal_url = reverse(
+            'lookup.bango_portal_from_package',
             args=[self.account.payment_account.account_id])
         self.authentication_token = u'D0A44686-D4A3-4B2F-9BEB-5E4975E35192'
 

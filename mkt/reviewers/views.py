@@ -292,13 +292,15 @@ def _review(request, addon, version):
                 # Log that the reviewer changed the device types.
                 added_devices = new_types - old_types
                 removed_devices = old_types - new_types
+                msg_list = [
+                    _(u'Added {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
+                    for d in added_devices
+                ] + [
+                    _(u'Removed {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
+                    for d in removed_devices
+                ]
                 msg = _(u'Device(s) changed by '
-                        u'reviewer: {0}').format(', '.join(
-                    [_(u'Added {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
-                     for d in added_devices] +
-                    [_(u'Removed {0}').format(
-                     unicode(mkt.DEVICE_TYPES[d].name))
-                     for d in removed_devices]))
+                        u'reviewer: {0}').format(', '.join(msg_list))
 
                 log_reviewer_action(addon, request.user, msg,
                                     mkt.LOG.REVIEW_DEVICE_OVERRIDE)
@@ -927,8 +929,8 @@ def _retrieve_translation(text, language):
         log.error(e)
         raise
     try:
-        translated = (HTMLParser.HTMLParser().unescape(r.json()['data']
-                      ['translations'][0]['translatedText']))
+        translated = (HTMLParser.HTMLParser().unescape(
+            r.json()['data']['translations'][0]['translatedText']))
     except (KeyError, IndexError):
         translated = ''
     return translated, r
@@ -1235,7 +1237,8 @@ def moderatelog(request):
 
 @reviewer_required
 def moderatelog_detail(request, eventlog_id):
-    log = get_object_or_404(ActivityLog.objects.editor_events(), pk=eventlog_id)
+    log = get_object_or_404(
+        ActivityLog.objects.editor_events(), pk=eventlog_id)
     review = None
     if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
         review = log.arguments[1]
@@ -1243,10 +1246,10 @@ def moderatelog_detail(request, eventlog_id):
     form = ModerateLogDetailForm(request.POST or None)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
     can_undelete = review and review.deleted and (
-                    is_admin or request.user.pk == log.user.pk)
+        is_admin or request.user.pk == log.user.pk)
 
     if (request.method == 'POST' and form.is_valid() and
-        form.cleaned_data['action'] == 'undelete'):
+            form.cleaned_data['action'] == 'undelete'):
         if not can_undelete:
             if not review:
                 raise RuntimeError('Review doesn`t exist.')
@@ -1254,8 +1257,8 @@ def moderatelog_detail(request, eventlog_id):
                 raise RuntimeError('Review isn`t deleted.')
             else:
                 raise PermissionDenied
-        ReviewerScore.award_moderation_points(log.user, review.addon, review.id,
-                                              undo=True)
+        ReviewerScore.award_moderation_points(
+            log.user, review.addon, review.id, undo=True)
         review.undelete()
         return redirect('reviewers.apps.moderatelog.detail', eventlog_id)
     data = context(request, log=log, form=form, review=review,

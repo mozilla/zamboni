@@ -438,7 +438,8 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         res = self.serialize()
         expected = {
             'id': 337141,
-            'description': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
+            'description':
+                u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
             'homepage': None,
             'name': u'Algo Algo Steamcube!',
             'support_email': u'foo@bar.com',
@@ -676,7 +677,8 @@ class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):
         self.reindex(Webapp, 'webapp')
         self.indexer = WebappIndexer.search().filter(
             'term', id=self.webapp.id).execute().hits[0]
-        self.serializer = SimpleESAppSerializer(self.indexer,
+        self.serializer = SimpleESAppSerializer(
+            self.indexer,
             context={'request': self.request})
 
     def test_regions_present(self):

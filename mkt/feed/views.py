@@ -64,6 +64,7 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
         image_fields = ('background_image_upload_url', 'image_hash', '')
 
     """
+
     def pre_save(self, obj):
         """Download and validate image URL."""
         for image_field, hash_field, suffix in self.image_fields:
@@ -311,6 +312,7 @@ class FeedShelfPermissionMixin(object):
 
     This mixin provides all the necessary methods to do so.
     """
+
     def req_data(self):
         """
         Returns a MultiDict containing the request data. This is shimmed to
@@ -659,7 +661,7 @@ class BaseFeedESView(CORSMixin, APIView):
 
         # Enforce minimum apps on collections.
         if (item_type == feed.FEED_TYPE_COLL and
-            feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
+                feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
             return None
 
         return feed_element

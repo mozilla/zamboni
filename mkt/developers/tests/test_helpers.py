@@ -46,7 +46,7 @@ class TestDevBreadcrumbs(mkt.site.tests.TestCase):
     def test_with_items(self):
         s = render("""{{ hub_breadcrumbs(items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}'""",
-                  {'request': self.request})
+                   {'request': self.request})
         crumbs = pq(s)('li')
         expected = [
             ('Home', reverse('home')),
@@ -78,7 +78,7 @@ class TestDevBreadcrumbs(mkt.site.tests.TestCase):
         product.id = 9999
         product.app_slug = 'scube'
         product.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
-                                                 args=[product.app_slug])
+                                                   args=[product.app_slug])
         s = render("""{{ hub_breadcrumbs(product,
                                          items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}""",
@@ -109,6 +109,7 @@ class TestDevAgreement(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile()
+        self.days = lambda x: self.days_ago(x).date()
 
     def test_none(self):
         with self.settings(DEV_AGREEMENT_LAST_UPDATED=None):
@@ -122,15 +123,15 @@ class TestDevAgreement(mkt.site.tests.TestCase):
         # The user has never agreed to it so in this case we don't need to
         # worry them about changes.
         self.user.update(read_dev_agreement=None)
-        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days_ago(10).date()):
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days(10)):
             eq_(helpers.dev_agreement_ok(self.user), True)
 
     def test_past_agreed(self):
         self.user.update(read_dev_agreement=self.days_ago(10))
-        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days_ago(5).date()):
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days(5)):
             eq_(helpers.dev_agreement_ok(self.user), False)
 
     def test_not_past(self):
         self.user.update(read_dev_agreement=self.days_ago(5))
-        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days_ago(10).date()):
+        with self.settings(DEV_AGREEMENT_LAST_UPDATED=self.days(10)):
             eq_(helpers.dev_agreement_ok(self.user), True)

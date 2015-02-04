@@ -85,9 +85,10 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(self.count(), 0)
 
     def test_not_there(self):
-        res = self.client.post(self.list_url,
-                               data=json.dumps({'manifest':
-                                   'some-random-32-character-stringy'}))
+        res = self.client.post(
+            self.list_url,
+            data=json.dumps({'manifest':
+                             'some-random-32-character-stringy'}))
         eq_(res.status_code, 400)
         eq_(res.json['detail'], 'No upload found.')
         eq_(self.count(), 0)
@@ -461,7 +462,6 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 #        eq_(res.status_code, 202)
 #        eq_(app.get_regions(), [regions.BRA, regions.GBR, regions.USA])
 
-
     def test_put_not_mine(self):
         obj = self.create_app()
         obj.authors.clear()
@@ -678,7 +678,8 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['banner_message'], unicode(geodata.banner_message))
-        eq_(data['banner_regions'], [mkt.regions.ARG.slug, mkt.regions.BRA.slug])
+        eq_(data['banner_regions'], [mkt.regions.ARG.slug,
+                                     mkt.regions.BRA.slug])
 
 
 class TestCategoryHandler(RestOAuth):

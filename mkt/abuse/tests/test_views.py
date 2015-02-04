@@ -103,7 +103,8 @@ class AbuseResourceTests(object):
         eq_(potato_res.status_code, 400)
 
 
-class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
+class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
+                            RestOAuth):
     resource_name = 'user'
 
     def setUp(self):
@@ -121,7 +122,8 @@ class TestUserAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth
         assert 'Invalid' in data['user'][0]
 
 
-class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource, RestOAuth):
+class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
+                           RestOAuth):
     fixtures = RestOAuth.fixtures + fixture('webapp_337141')
     resource_name = 'app'
 

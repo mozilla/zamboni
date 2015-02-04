@@ -1,7 +1,7 @@
 import atexit
 import tempfile
 
-from mkt.settings import *
+from mkt.settings import *  # flake8: noqa
 
 
 _tmpdirs = set()

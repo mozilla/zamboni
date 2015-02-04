@@ -174,10 +174,11 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         app = mkt.site.tests.app_factory()
         self.make_premium(app)
         coll = self.feed_collection_factory(app_ids=[app.id])
-        data = serializers.FeedCollectionSerializer(coll, context={
-            'request': mkt.site.tests.req_factory_factory('',
-                                                     REGION=mkt.regions.USA)
-        }).data
+        data = serializers.FeedCollectionSerializer(
+            coll, context={
+                'request':
+                mkt.site.tests.req_factory_factory('', REGION=mkt.regions.USA)
+            }).data
         eq_(data['apps'][0]['price'], 1)
 
 
@@ -237,7 +238,8 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.collection.update(type=feed.COLLECTION_LISTING)
         self.data_es = self.collection.get_indexer().extract_document(
             None, obj=self.collection)
-        data = serializers.FeedCollectionESHomeSerializer(self.data_es,
+        data = serializers.FeedCollectionESHomeSerializer(
+            self.data_es,
             context={'app_map': self.app_map,
                      'request': mkt.site.tests.req_factory_factory('')}
         ).data
@@ -255,7 +257,8 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.collection.update(type=feed.COLLECTION_PROMO)
         self.data_es = self.collection.get_indexer().extract_document(
             None, obj=self.collection)
-        data = serializers.FeedCollectionESHomeSerializer(self.data_es,
+        data = serializers.FeedCollectionESHomeSerializer(
+            self.data_es,
             context={'app_map': self.app_map,
                      'request': mkt.site.tests.req_factory_factory('')}
         ).data

@@ -3,8 +3,7 @@ import hashlib
 from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
-from rest_framework.serializers import (Field, ModelSerializer,
-                                        SerializerMethodField)
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from tower import ugettext as _
 
 from mkt.comm.models import (CommAttachment, CommunicationNote,

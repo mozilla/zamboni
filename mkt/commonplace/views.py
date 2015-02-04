@@ -1,5 +1,4 @@
 import datetime
-import importlib
 import json
 import os
 from urlparse import urlparse
@@ -104,7 +103,8 @@ def commonplace(request, repo, **kwargs):
     detect_region_with_geoip = False
     if repo == 'fireplace':
         include_splash = True
-        has_sim_info_in_query = ('mccs' in request.GET or
+        has_sim_info_in_query = (
+            'mccs' in request.GET or
             ('mcc' in request.GET and 'mnc' in request.GET))
         if not has_sim_info_in_query:
             # If we didn't receive mcc/mnc, then use geoip to detect region,

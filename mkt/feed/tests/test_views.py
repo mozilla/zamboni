@@ -73,6 +73,7 @@ class BaseTestGroupedApps(object):
     """
     Base class containing utilities for testing grouped app collections.
     """
+
     def ungrouped_apps(self):
         apps = [app_factory() for i in xrange(3)]
         return [app.pk for app in apps]
@@ -512,6 +513,7 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
     """
     Tests the handling of GET requests to detail endpoints of FeedAppViewSet.
     """
+
     def setUp(self):
         super(TestFeedAppViewSetDetail, self).setUp()
         self.feedapp = self.create_feedapps(1)[0]
@@ -604,6 +606,7 @@ class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
     Tests the handling of DELETE requests to detail endpoints of
     FeedAppViewSet.
     """
+
     def setUp(self):
         super(TestFeedAppViewSetDelete, self).setUp()
         self.feedapp = self.create_feedapps(1)[0]
@@ -1243,7 +1246,8 @@ class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(not data['collections'])
 
 
-class TestFeedShelfPublishView(BaseTestFeedItemViewSet, mkt.site.tests.TestCase):
+class TestFeedShelfPublishView(BaseTestFeedItemViewSet,
+                               mkt.site.tests.TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
@@ -1856,8 +1860,8 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, TestCase):
             in sq['query']['function_score']['functions'][0]
             ['filter']['bool']['must'])
         ok_({'term': {'item_type': 'shelf'}}
-             in sq['query']['function_score']['functions'][0]
-             ['filter']['bool']['must_not'])
+            in sq['query']['function_score']['functions'][0]
+            ['filter']['bool']['must_not'])
         eq_(sq['query']['function_score']['functions'][0]
             ['field_value_factor'], {'field': 'order',
                                      'modifier': 'reciprocal'})
@@ -1908,7 +1912,7 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         url = reverse('api-v2:feed.feed_element_get',
                       args=['apps', app.slug])
         res, data = self._get(url, app_serializer='fireplace',
-                                   region='restofworld')
+                              region='restofworld')
         self._assert(app, data)
         assert_fireplace_app(data['app'])
 

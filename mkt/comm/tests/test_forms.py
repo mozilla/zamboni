@@ -13,10 +13,10 @@ class TestCreateCommThreadForm(mkt.site.tests.TestCase):
 
     def _data(self, **kwargs):
         data = {
-           'app': self.app.app_slug,
-           'version': self.app.current_version.version,
-           'note_type': comm.NO_ACTION,
-           'body': 'note body'
+            'app': self.app.app_slug,
+            'version': self.app.current_version.version,
+            'note_type': comm.NO_ACTION,
+            'body': 'note body'
         }
         data.update(**kwargs)
         return data

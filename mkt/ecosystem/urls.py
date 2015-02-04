@@ -21,7 +21,8 @@ def redirect_doc(uri, request=None):
     return view(request) if request else view
 
 
-redirect_patterns = patterns('',
+redirect_patterns = patterns(
+    '',
     url('^docs/firefox_os_guideline$',
         redirect_doc('/Web/Apps/Design'),
         name='ecosystem.ffos_guideline'),
@@ -117,7 +118,8 @@ redirect_patterns = patterns('',
 )
 
 
-urlpatterns = redirect_patterns + patterns('',
+urlpatterns = redirect_patterns + patterns(
+    '',
     url('^$', views.landing, name='ecosystem.landing'),
     url('^partners$', views.partners, name='ecosystem.partners'),
     url('^support$', views.support, name='ecosystem.support'),

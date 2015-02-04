@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from mkt.prices.models import Price, PriceCurrency
 
+
 def update(tiers):
     """
     Updates the prices and price currency objects based on the tiers.

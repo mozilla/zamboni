@@ -47,8 +47,8 @@ class SeparatedValuesField(fields.Field):
 
 class ColorField(models.CharField):
     """
-    Model field that only accepts 7-character hexadecimal color representations,
-    e.g. #FF0035.
+    Model field that only accepts 7-character hexadecimal color
+    representations, e.g. #FF0035.
     """
     description = _('Hexadecimal color')
 

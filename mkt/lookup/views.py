@@ -96,7 +96,7 @@ def user_delete(request, user_id):
     if not delete_form.is_valid():
         messages.error(request, delete_form.errors)
         return HttpResponseRedirect(reverse('lookup.user_summary',
-                                    args=[user_id]))
+                                            args=[user_id]))
 
     user = get_object_or_404(UserProfile, pk=user_id)
     user.deleted = True
@@ -121,7 +121,7 @@ def transaction_summary(request, tx_uuid):
     return render(request, 'lookup/transaction_summary.html',
                   dict({'uuid': tx_uuid, 'tx_form': tx_form,
                         'tx_refund_form': tx_refund_form}.items() +
-                        tx_data.items()))
+                       tx_data.items()))
 
 
 def _transaction_summary(tx_uuid):
@@ -130,7 +130,6 @@ def _transaction_summary(tx_uuid):
     contrib_id = contrib.transaction_id
     refund_contribs = contrib.get_refund_contribs()
     refund_contrib = refund_contribs[0] if refund_contribs.exists() else None
-
 
     lookup = {'status': True, 'transaction': True}
     pay = {}
@@ -150,7 +149,6 @@ def _transaction_summary(tx_uuid):
         except (KeyError, HttpServerError):
             lookup['status'] = False
             log.warning('Refund lookup failed: {0}'.format(tx_uuid))
-
 
     return {
         # Solitude data.
@@ -265,7 +263,7 @@ def app_summary(request, addon_id):
 
     authors = (app.authors.filter(addonuser__role__in=(mkt.AUTHOR_ROLE_DEV,
                                                        mkt.AUTHOR_ROLE_OWNER))
-                          .order_by('display_name'))
+               .order_by('display_name'))
 
     if app.premium and app.premium.price:
         price = app.premium.price

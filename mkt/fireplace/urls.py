@@ -15,7 +15,7 @@ apps.register(r'app', AppViewSet, base_name='fireplace-app')
 
 @allow_cross_site_request
 def redirect_to_feed_element(request, slug):
-    url = reverse('api-v2:feed.fire_feed_element_get', 
+    url = reverse('api-v2:feed.fire_feed_element_get',
                   kwargs={'item_type': 'collections', 'slug': slug})
     query_string = request.META.get('QUERY_STRING', '')
     if query_string:
@@ -23,7 +23,8 @@ def redirect_to_feed_element(request, slug):
     return redirect(url + query_string, permanent=True)
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^fireplace/', include(apps.urls)),
 
     # Compatibility for old apps that still hit the rocketfuel collection API,

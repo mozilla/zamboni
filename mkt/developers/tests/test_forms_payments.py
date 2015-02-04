@@ -342,8 +342,9 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
                                  user=user, role=mkt.AUTHOR_ROLE_OWNER)
 
     def is_owner(self, user):
-        return (self.addon.authors.filter(pk=user.pk,
-                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
+        return (self.addon.authors.filter(
+            pk=user.pk,
+            addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists())
 
     def associate_owner_account(self):
         owner_account = self.create_user_account(self.user)
@@ -363,7 +364,7 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
         form = forms_payments.AccountListForm(None, user=user,
-                                                  **self.kwargs)
+                                              **self.kwargs)
         eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
@@ -372,7 +373,7 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
         account = self.create_user_account(self.user)
         shared = self.create_user_account(self.other, shared=True)
         form = forms_payments.AccountListForm(user=self.user,
-                                                   **self.kwargs)
+                                              **self.kwargs)
         self.assertSetEqual(form.fields['accounts'].queryset,
                             (account, shared))
 
@@ -436,7 +437,7 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
         eq_(form.fields['accounts'].widget.attrs.get('disabled'), None)
         form.save()
         form = forms_payments.AccountListForm(None, user=user,
-                                                   **self.kwargs)
+                                              **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
 
@@ -476,7 +477,7 @@ class TestAccountListForm(Patcher, mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
         form = forms_payments.AccountListForm(None, user=user,
-                                                   **self.kwargs)
+                                              **self.kwargs)
         eq_(form.fields['accounts'].empty_label, None)
         eq_(form.initial['accounts'], account)
         assert form.current_payment_account is None

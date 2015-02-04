@@ -34,8 +34,8 @@ def send_purchase_receipt(contrib_id, **kw):
                 contrib.source_locale)),
             'date': jingo.helpers.datetime(contrib.created.date()),
             'purchaser_email': contrib.user.email,
-            #'purchaser_phone': '',  # TODO: See bug 894614.
-            #'purchaser_last_four': '',
+            # 'purchaser_phone': '',  # TODO: See bug 894614.
+            # 'purchaser_last_four': '',
             'transaction_id': contrib.uuid,
             'purchases_url': absolutify('/purchases'),
             'support_url': addon.support_url,

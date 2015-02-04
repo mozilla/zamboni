@@ -271,7 +271,7 @@ class TestCreateWebApp(BaseWebAppTest):
         r = self.post()
         webapp = Webapp.objects.get()
         self.assert3xx(r,
-            reverse('submit.app.details', args=[webapp.app_slug]))
+                       reverse('submit.app.details', args=[webapp.app_slug]))
         assert fi_mock.delay.called, (
             'The fetch_icon task was expected to be called')
 
@@ -543,7 +543,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         res = self.post()
         webapp = Webapp.objects.order_by('-created')[0]
         self.assert3xx(res,
-            reverse('submit.app.details', args=[webapp.app_slug]))
+                       reverse('submit.app.details', args=[webapp.app_slug]))
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     @mock.patch('mkt.submit.forms.verify_app_domain')
@@ -614,7 +614,8 @@ class TestDetails(TestSubmit):
 
     def _step(self):
         self.user.update(read_dev_agreement=datetime.datetime.now())
-        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp,
+        self.cl = AppSubmissionChecklist.objects.create(
+            addon=self.webapp,
             terms=True, manifest=True)
 
         # Associate app with user.
@@ -857,7 +858,8 @@ class TestDetails(TestSubmit):
         d = self.get_dict(app_slug='slug!!! aksl23%%')
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form_basic', 'app_slug',
+        self.assertFormError(
+            r, 'form_basic', 'app_slug',
             "Enter a valid 'slug' consisting of letters, numbers, underscores "
             "or hyphens.")
 
@@ -928,8 +930,9 @@ class TestDetails(TestSubmit):
         self._step()
         res = self.client.post(self.url, self.get_dict(support_email=None,
                                                        support_url=None))
-        self.assertFormError(res, 'form_basic', 'support',
-                'You must provide either a website, an email, or both.')
+        self.assertFormError(
+            res, 'form_basic', 'support',
+            'You must provide either a website, an email, or both.')
         ok_(pq(res.content)('#support-fields .error #trans-support_url'))
         ok_(pq(res.content)('#support-fields .error #trans-support_email'))
 

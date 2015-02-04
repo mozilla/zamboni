@@ -122,7 +122,8 @@ def run_validator(file_path, url=None):
             log.info(u'Running `validate_packaged_app` for path: %s'
                      % (file_path))
             with statsd.timer('mkt.developers.validate_packaged_app'):
-                return validate_packaged_app(file_path,
+                return validate_packaged_app(
+                    file_path,
                     market_urls=settings.VALIDATOR_IAF_URLS,
                     timeout=settings.VALIDATOR_TIMEOUT,
                     spidermonkey=settings.SPIDERMONKEY)
@@ -457,7 +458,7 @@ def _fetch_manifest(url, upload=None):
     if len(ct_split) > 1:
         # Figure out if we've got a charset specified.
         kv_pairs = dict(tuple(p.split('=', 1)) for p in ct_split[1:] if
-                              '=' in p)
+                        '=' in p)
         if 'charset' in kv_pairs and kv_pairs['charset'].lower() != 'utf-8':
             fail(_("The manifest's encoding does not match the charset "
                    'provided in the HTTP Content-Type.'),
@@ -532,7 +533,7 @@ def region_email(ids, regions, **kw):
 
     for id_ in ids:
         log.info('[Webapp:%s] Emailing devs about new region(s): %s.' %
-                (id_, region_names))
+                 (id_, region_names))
 
         product = Webapp.objects.get(id=id_)
         to = set(product.authors.values_list('email', flat=True))

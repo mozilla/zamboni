@@ -154,8 +154,9 @@ class AccountCase(Patcher, TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(premium_type=mkt.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
-        self.account = PaymentAccount.objects.create(user_id=2519,
-            solitude_seller=self.seller, account_id=123, name='mine')
+        self.account = PaymentAccount.objects.create(
+            user_id=2519, solitude_seller=self.seller,
+            account_id=123, name='mine')
         self.app_payment_list = reverse('app-payment-account-list')
         self.payment_list = reverse('payment-account-list')
         self.payment_url = reverse('payment-account-detail',
@@ -169,8 +170,8 @@ class AccountCase(Patcher, TestCase):
             'resource_uri': 'foo', 'bango_id': 'bar'}
 
     def create(self):
-        self.payment = AddonPaymentAccount.objects.create(addon=self.app,
-            payment_account=self.account)
+        self.payment = AddonPaymentAccount.objects.create(
+            addon=self.app, payment_account=self.account)
         self.app_payment_detail = reverse('app-payment-account-detail',
                                           kwargs={'pk': self.payment.pk})
 
@@ -183,11 +184,11 @@ class AccountCase(Patcher, TestCase):
 
     def other(self, shared=False):
         self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
-        self.other_account = PaymentAccount.objects.create(user_id=31337,
-            solitude_seller=self.seller2, account_id=123,
+        self.other_account = PaymentAccount.objects.create(
+            user_id=31337, solitude_seller=self.seller2, account_id=123,
             seller_uri='seller_uri', uri='uri', shared=shared, name='other')
         self.other_url = reverse('payment-account-detail',
-                                   kwargs={'pk': self.other_account.pk})
+                                 kwargs={'pk': self.other_account.pk})
         return self.data(overrides={'payment_account': self.other_url})
 
     def data(self, overrides=None):

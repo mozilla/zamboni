@@ -429,7 +429,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         # Not using urlparams, because that escapes the variables, which
         # is good, but bad for assertRedirects which will fail.
         self.assert3xx(response,
-            '%s?to=%s' % (reverse('users.login'), to), status_code)
+                       '%s?to=%s' % (reverse('users.login'), to), status_code)
 
     def assert3xx(self, response, expected_url, status_code=302,
                   target_status_code=200):
@@ -442,23 +442,23 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         if hasattr(response, 'redirect_chain'):
             # The request was a followed redirect
             self.assertTrue(len(response.redirect_chain) > 0,
-                "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                            "Response didn't redirect as expected: Response"
+                            " code was %d (expected %d)" %
+                            (response.status_code, status_code))
 
             url, status_code = response.redirect_chain[-1]
 
             self.assertEqual(response.status_code, target_status_code,
-                "Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" %
-                    (response.status_code, target_status_code))
+                             "Response didn't redirect as expected: Final"
+                             " Response code was %d (expected %d)" %
+                             (response.status_code, target_status_code))
 
         else:
             # Not a followed redirect
             self.assertEqual(response.status_code, status_code,
-                "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                             "Response didn't redirect as expected: Response"
+                             " code was %d (expected %d)" %
+                             (response.status_code, status_code))
             url = response['Location']
 
         scheme, netloc, path, query, fragment = urlsplit(url)
@@ -468,7 +468,8 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
-        self.assertEqual(url, expected_url,
+        self.assertEqual(
+            url, expected_url,
             "Response redirected to '%s', expected '%s'" % (url, expected_url))
 
     def assertLoginRequired(self, response, status_code=302):
@@ -477,13 +478,13 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         get the matched status code and bounced to the correct login page.
         """
         assert response.status_code == status_code, (
-                'Response returned: %s, expected: %s'
-                % (response.status_code, status_code))
+            'Response returned: %s, expected: %s'
+            % (response.status_code, status_code))
 
         path = urlsplit(response['Location'])[2]
         assert path == reverse('users.login'), (
-                'Redirected to: %s, expected: %s'
-                % (path, reverse('users.login')))
+            'Redirected to: %s, expected: %s'
+            % (path, reverse('users.login')))
 
     def assertSetEqual(self, a, b, message=None):
         """
@@ -973,7 +974,7 @@ def make_game(app, rated):
 def make_rated(app):
     app.set_content_ratings(
         dict((body, body.ratings[0]) for body in
-        mkt.ratingsbodies.ALL_RATINGS_BODIES))
+             mkt.ratingsbodies.ALL_RATINGS_BODIES))
     app.set_iarc_info(123, 'abc')
     app.set_descriptors([])
     app.set_interactives([])

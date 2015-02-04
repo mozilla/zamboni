@@ -52,7 +52,8 @@ class TestWebApps(TestCase, MktPaths):
     def test_parse(self):
         wp = WebAppParser().parse(self.webapp_path)
         eq_(wp['guid'], None)
-        eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
+        eq_(wp['description']['en-US'],
+            u'Exciting Open Web development action!')
         # UTF-8 byte string decoded to unicode.
         eq_(wp['description']['es'],
             u'\xa1Acci\xf3n abierta emocionante del desarrollo del Web!')
@@ -65,7 +66,8 @@ class TestWebApps(TestCase, MktPaths):
         wp = WebAppParser().parse(self.packaged_app_path('mozball.zip'))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
-        eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
+        eq_(wp['description']['en-US'],
+            u'Exciting Open Web development action!')
         eq_(wp['description']['es'],
             u'¡Acción abierta emocionante del desarrollo del Web!')
         eq_(wp['description']['it'],
@@ -92,15 +94,14 @@ class TestWebApps(TestCase, MktPaths):
             'Unexpected: %s' % m)
 
     def test_no_locales(self):
-        wp = WebAppParser().parse(self.webapp(dict(name='foo', version='1.0',
-                                                   description='description',
-                                                   developer=dict(name='bar'))))
+        wp = WebAppParser().parse(self.webapp(
+            dict(name='foo', version='1.0', description='description',
+                 developer=dict(name='bar'))))
         eq_(wp['description']['en-US'], u'description')
 
     def test_no_description(self):
-        wp = WebAppParser().parse(self.webapp(dict(name='foo',
-                                                   version='1.0',
-                                                   developer=dict(name='bar'))))
+        wp = WebAppParser().parse(self.webapp(
+            dict(name='foo', version='1.0', developer=dict(name='bar'))))
         eq_(wp['description'], {})
 
     def test_syntax_error(self):

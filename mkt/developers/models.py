@@ -297,7 +297,7 @@ class ActivityLogManager(ManagerBase):
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)
-                    .values_list('activity_log', flat=True))
+                .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
     def for_developer(self):
@@ -494,7 +494,8 @@ class ActivityLog(ModelBase):
 
         try:
             kw = dict(addon=addon, review=review, version=version, group=group,
-                      collection=collection, tag=tag, user=self.user.display_name)
+                      collection=collection, tag=tag,
+                      user=self.user.display_name)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

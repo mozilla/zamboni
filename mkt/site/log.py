@@ -488,7 +488,7 @@ class ESCALATE_MANUAL(_LOG):
 class VIDEO_ERROR(_LOG):
     id = 74
     format = _(u'Video removed from {addon} because of a problem with '
-                'the video. ')
+               u'the video. ')
     short = _(u'Video removed')
 
 
@@ -701,8 +701,8 @@ LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 # Logs *not* to show to the developer.
 LOG_HIDE_DEVELOPER = [l.id for l in LOGS
-                           if (getattr(l, 'hide_developer', False)
-                               or l.id in LOG_ADMINS)]
+                      if (getattr(l, 'hide_developer', False)
+                          or l.id in LOG_ADMINS)]
 
 
 def log(action, *args, **kw):
