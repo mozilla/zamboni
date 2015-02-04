@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-02-04 19:28+0000\n"
-"Last-Translator: Kohei <kohei.yoshino@gmail.com>\n"
+"PO-Revision-Date: 2015-02-04 18:42+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -2464,7 +2464,7 @@ msgstr "バージョン {0}"
 
 #: mkt/developers/providers.py:285
 msgid "Reference Implementation"
-msgstr "参考情報"
+msgstr "リファレンス実装"
 
 #: mkt/developers/providers.py:371
 msgid "Boku"
@@ -5425,7 +5425,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr "この決済は <b>参考情報</b> を通じて行われました。これは実際のトランザクションではありません。"
+msgstr "この決済は <b>リファレンス実装</b> を通じて行われました。これは実際のトランザクションではありません。"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
