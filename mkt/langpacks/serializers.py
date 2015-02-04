@@ -53,12 +53,18 @@ class LangPackSerializer(serializers.ModelSerializer):
     # want to be stricter and throw 400 errors if we encounter any of the
     # read-only fields.
     write_allowed_fields = ('active',)
-    # manifest_url is a @property so we need to manually choose a field for it.
-    manifest_url = serializers.CharField(source='manifest_url')
+
+    # Special fields (properties/methods).
+    language_display = serializers.CharField(read_only=True,
+                                             source='get_language_display')
+    manifest_url = serializers.CharField(read_only=True)
+    name = serializers.CharField(read_only=True)
+
     class Meta:
         model = LangPack
         fields = ('active', 'created', 'fxos_version', 'hash', 'language',
-                  'manifest_url', 'modified', 'size', 'uuid', 'version')
+                  'language_display', 'manifest_url', 'modified', 'name',
+                  'size', 'uuid', 'version')
 
     def validate(self, attrs):
         errors = {}

@@ -71,6 +71,14 @@ class LangPack(ModelBase):
         return self.active
 
     @property
+    def name(self):
+        with translation.override(self.language):
+            return _('%(lang)s language pack for Firefox OS %(version)s' % {
+                'lang': self.get_language_display(),
+                'version': self.fxos_version
+            })
+
+    @property
     def path_prefix(self):
         return os.path.join(settings.ADDONS_PATH, 'langpacks', str(self.pk))
 
@@ -100,13 +108,9 @@ class LangPack(ModelBase):
         # in the zip file. When we do, we'll need to add caching and refactor
         # to avoid code duplication with mkt.detail.manifest() and
         # mkt.webapps.Webapp.get_cached_manifest().
-        with translation.override(self.language):
-            name = _('%(lang)s language pack for Firefox OS %(version)s' % {
-                'lang': self.get_language_display(),
-                'version': self.fxos_version
-            })
+
         manifest = {
-            'name': name,
+            'name': self.name,
             'developer': {
                 'name': 'Mozilla'
             },
