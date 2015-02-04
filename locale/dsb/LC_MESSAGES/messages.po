@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-01 23:11+0000\n"
+"PO-Revision-Date: 2015-02-03 13:30+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422832276.0\n"
+"X-POOTLE-MTIME: 1422970251.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3100,11 +3100,11 @@ msgstr "Móžo se nastajenja nałoženja woglědaś, ale njamóžo změny pśewj
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Móžo se nastajenja nałoženja woglědaś"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status a wersije"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
@@ -3112,35 +3112,40 @@ msgstr ""
 #: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: mkt/developers/templates/developers/apps/status.html:21
 msgid "Current Status"
-msgstr ""
+msgstr "Aktualny status"
 
 #: mkt/developers/templates/developers/apps/status.html:29
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "Sćo toś to nałoženje <b>z lisćiny wótpórał</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr ""
+msgstr "Toś to nałoženje jo <b>njedopołne</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr ""
+msgstr "Toś to nałoženje jo se <b>wót Mozilla znjemóžniło</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Wašo nałoženje jo se znjemóžniło, dokulaž njama wopśimjeśowe pógódnośenja. "
+"Znjemóžnijo se awtomatiski, za tym až sćo <a href=\"%"
+"(ratings_url)s\">wopśimjeśowe pógódnośenja dostał</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Toś to nałoženje jo <b>za Wikowanišćo zastajone</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Wašo nałoženje jo se wót sedłowego administratora zastajiło. Jolic maśo "
+"pšašanja, pósćelśo mejlku na %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3182,35 +3187,43 @@ msgstr "Toś to nałoženje jo <b>wózjawjone</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "Wašo nałoženje jo se <b>pśizwóliło</b> a jo tuchylu <b>njenalicone</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Jano wósoby ze slědujucym URL mógu se toś to nałoženje woglědaś a jo "
+"instalěrowaś:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"Wašo nałoženje jo se <b>pśizwóliło</b> a jo tuchylu widobne jano za teamowe "
+"cłonki."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Jano <b>teamowe cłonki</b> ze slědujucym URL mógu se tós to nałoženje "
+"woglědaś a jo instalěrowaś:<br><a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Zgóńśo wěcej wó pśeglědowańskich kriterijach za nałoženja"
 
 #: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Widobnosć nałoženja aktualizěrowaś"
 
 #: mkt/developers/templates/developers/apps/status.html:148
 msgid "Reviewed by <b>%(reviewer)s</b>"
-msgstr ""
+msgstr "Wót <b>%(reviewer)s</b> pśeglědany"
 
 #: mkt/developers/templates/developers/apps/status.html:161
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
 msgstr ""
+"Gaž sćo se wó toś te nastupnosći starał, móžośo <a href=\"%"
+"(resubmit_url)s\">swójo nałoženje dołojce znowego zapódaś</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:166
 msgid "Once you have addressed these concerns, you may resubmit your app below."
@@ -3259,11 +3272,11 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:171
 #: mkt/submit/templates/submit/manifest.html:110 mkt/submit/templates/submit/next_steps.html:110
 msgid "Continue"
-msgstr ""
+msgstr "Dalej"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Rědy z mało składowakom"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
