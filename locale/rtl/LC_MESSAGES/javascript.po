@@ -1,16 +1,16 @@
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: AMO-JS 0.1\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2009-02-26 15:08-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: \n"
+"POT-Creation-Date: 2015-02-04 08:34-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.12.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -28,7 +28,8 @@ msgstr "‮Iɯɐƃǝs ɯnsʇ qǝ ǝıʇɥǝɹ ԀN⅁ oɹ ſԀ⅁˙"
 msgid "Videos must be in WebM."
 msgstr "‮Ʌıpǝos ɯnsʇ qǝ ıu ＭǝqW˙"
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ sǝɹʌǝɹ˙"
 
@@ -62,7 +63,8 @@ msgstr "‮∩dʅoɐpıuƃ {0}"
 msgid "Error with {0}"
 msgstr "‮Ǝɹɹoɹ ʍıʇɥ {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ˙"
@@ -74,7 +76,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
 msgstr[1] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325
+#: media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "‮Sǝǝ ɟnʅʅ ʌɐʅıpɐʇıou ɹǝdoɹʇ"
 
@@ -206,16 +210,24 @@ msgid "Disabled"
 msgstr "‮ᗡısɐqʅǝp"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ "
+"Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "‮ᴚǝɯoʌǝ ʇɥıs ʅoɔɐʅızɐʇıou"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ ɐppɹǝss¿"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ "
+"ɐppɹǝss¿"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -320,21 +332,39 @@ msgstr "‮ᗡǝʇǝɔʇǝp: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ ɟoʅʅoʍıuƃ ɐdds˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
-msgstr[1] "‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ ɟoʅʅoʍıuƃ ɐdd˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
+"ɟoʅʅoʍıuƃ ɐdds˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
+"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
+msgstr[1] ""
+"‮ᗡǝʅǝʇıuƃ dɐʎɯǝuʇ ɐɔɔonuʇ „{0}‮„ ʍıʅʅ ɹǝɯoʌǝ ʇɥǝ dɐʎɯǝuʇ ɐɔɔonuʇ ɟɹoɯ ʇɥǝ "
+"ɟoʅʅoʍıuƃ ɐdd˙ ∀ddʅıɔɐʇıous ʍıʇɥonʇ ɐ dɐʎɯǝuʇ ɐɔɔonuʇ ʍıʅʅ uo ʅouƃǝɹ qǝ "
+"ɐʌɐıʅɐqʅǝ ɟoɹ sɐʅǝ˙"
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "‮{ɐddNɐɯǝ} dɐʎɯǝuʇ ɐɔɔonuʇs:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:161
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "‮Ǝɹɹoɹ"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:99
+#: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ dɐʎɯǝuʇ sǝɹʌǝɹ˙"
 
@@ -373,11 +403,13 @@ msgstr[1] "{0}‮ ɔɥɐɹɐɔʇǝɹs ʅǝɟʇ˙"
 msgid "All tests passed successfully."
 msgstr "‮∀ʅʅ ʇǝsʇs dɐssǝp snɔɔǝssɟnʅʅʎ˙"
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "‮⊥ɥǝsǝ ʇǝsʇs ʍǝɹǝ uoʇ ɹnu˙"
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "‮⊥ǝsʇs"
 
@@ -525,11 +557,13 @@ msgstr "‮Ⅎɹǝǝ"
 msgid "Any"
 msgstr "‮∀uʎ"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "‮∀ddɹoʌǝp ɐdd: {ɐdd}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "‮ᴚǝɾǝɔʇǝp ɐdd: {ɐdd}"
 
@@ -550,8 +584,12 @@ msgid "Error failing app: {app}"
 msgstr "‮Ǝɹɹoɹ ɟɐıʅıuƃ ɐdd: {ɐdd}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "‮Soɹɹʎ¡ Ｍǝ ɥɐp ɐu ǝɹɹoɹ ɟǝʇɔɥıuƃ ʇɥǝ ɹǝʌıǝʍ ɥısʇoɹʎ˙ Ԁʅǝɐsǝ ʇɹʎ ʅoƃƃıuƃ ıu ɐƃɐıu˙<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"‮Soɹɹʎ¡ Ｍǝ ɥɐp ɐu ǝɹɹoɹ ɟǝʇɔɥıuƃ ʇɥǝ ɹǝʌıǝʍ ɥısʇoɹʎ˙ Ԁʅǝɐsǝ ʇɹʎ ʅoƃƃıuƃ ıu "
+"ɐƃɐıu˙<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63

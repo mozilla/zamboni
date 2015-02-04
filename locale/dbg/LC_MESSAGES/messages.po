@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-04 08:34-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,13 +50,13 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Ŧħḗ ŀȧƞɠŭȧɠḗ ƈǿḓḗ {ŀȧƞɠ_ƈǿḓḗ} īş īƞṽȧŀīḓ."
 
 #: mkt/api/forms.py:110
-#: mkt/reviewers/forms.py:175
+#: mkt/reviewers/forms.py:191
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 #: mkt/api/forms.py:111
 #: mkt/developers/forms_payments.py:56
-#: mkt/reviewers/forms.py:176
+#: mkt/reviewers/forms.py:192
 #: mkt/submit/forms.py:314
 msgid "Yes"
 msgstr "Ẏḗş"
@@ -64,7 +64,7 @@ msgstr "Ẏḗş"
 #: mkt/api/forms.py:112
 #: mkt/developers/forms_payments.py:56
 #: mkt/lookup/templates/lookup/user_summary.html:57
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:193
 #: mkt/submit/forms.py:315
 msgid "No"
 msgstr "Ƞǿ"
@@ -1215,12 +1215,13 @@ msgid "Banned from Marketplace"
 msgstr "Ɓȧƞƞḗḓ ƒřǿḿ Ḿȧřķḗŧƥŀȧƈḗ"
 
 #: mkt/constants/base.py:30
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
 msgstr "Ḓḗŀḗŧḗḓ"
 
 #: mkt/constants/base.py:31
 #: mkt/constants/comm.py:45
-#: mkt/reviewers/helpers.py:176
+#: mkt/reviewers/helpers.py:177
 #: mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
@@ -1294,63 +1295,67 @@ msgstr "Ƒřḗḗ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 msgid "I'll use my own system for in-app payments"
 msgstr "Ī'ŀŀ ŭşḗ ḿẏ ǿẇƞ şẏşŧḗḿ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:194
+#: mkt/constants/base.py:195
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: mkt/constants/base.py:195
+#: mkt/constants/base.py:196
 msgid "Web App Review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:196
+#: mkt/constants/base.py:197
 msgid "Packaged App Review"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:198
 msgid "Privileged App Review"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:199
 msgid "Web App Re-review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗ-řḗṽīḗẇ"
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:200
 msgid "Updated Packaged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:201
 msgid "Updated Privileged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:202
 msgid "Moderated App Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:203
+msgid "App Review Moderation Reverted"
+msgstr "Ȧƥƥ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
+
+#: mkt/constants/base.py:204
 msgid "Tarako App Review"
 msgstr "Ŧȧřȧķǿ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:234
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:235
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:236
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:237
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:238
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: mkt/constants/base.py:235
+#: mkt/constants/base.py:239
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
@@ -1448,7 +1453,7 @@ msgid "More information requested"
 msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ"
 
 #: mkt/constants/comm.py:48
-#: mkt/reviewers/forms.py:164
+#: mkt/reviewers/forms.py:180
 #: mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
@@ -2800,7 +2805,8 @@ msgstr ""
 
 #: mkt/developers/tasks.py:521
 #: mkt/developers/tasks.py:527
-#: mkt/reviewers/forms.py:36
+#: mkt/reviewers/forms.py:39
+#: mkt/reviewers/forms.py:62
 msgid "and"
 msgstr "ȧƞḓ"
 
@@ -2886,7 +2892,7 @@ msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 #: mkt/developers/views.py:567
 #: mkt/developers/views_payments.py:113
 #: mkt/developers/views_payments.py:434
-#: mkt/reviewers/views.py:666
+#: mkt/reviewers/views.py:667
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
@@ -3293,6 +3299,7 @@ msgstr "Ẏǿŭř ȧƥƥş ƈŭřřḗƞŧŀẏ ħȧṽḗ ƞǿ ŧřȧƞşȧƈŧ
 #: mkt/lookup/templates/lookup/app_summary.html:149
 #: mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16
+#: mkt/reviewers/templates/reviewers/moderatelog.html:16
 msgid "Date"
 msgstr "Ḓȧŧḗ"
 
@@ -3539,7 +3546,7 @@ msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 #: mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152
-#: mkt/reviewers/forms.py:153
+#: mkt/reviewers/forms.py:169
 #: mkt/reviewers/templates/reviewers/review.html:29
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
@@ -6269,6 +6276,11 @@ msgstr "Ƒḗŧƈħīƞɠ ƒīŀḗ."
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "Ƥřǿḓŭƈŧ ŀǿɠǿ ḿŭşŧ ƀḗ ȧ 64ẋ64 īḿȧɠḗ. Ƈħḗƈķ ŧħȧŧ ŧħḗ ŬŘĿ īş ƈǿřřḗƈŧ."
 
+#: mkt/langpacks/models.py:77
+msgctxt "version"
+msgid "%(lang)s language pack for Firefox OS %(version)slang"
+msgstr "%(lang)s ŀȧƞɠŭȧɠḗ ƥȧƈķ ƒǿř Ƒīřḗƒǿẋ ǾŞ %(version)sŀȧƞɠ"
+
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
 msgstr "Ẏǿŭř ŀȧƞɠŭȧɠḗ ƥȧƈķ şħǿŭŀḓ ƈǿƞŧȧīƞ \"řǿŀḗ\": \"ŀȧƞɠƥȧƈķ\"."
@@ -6839,15 +6851,15 @@ msgstr "Ƒǿř şŭƥƥǿřŧ ƥŀḗȧşḗ ṽīşīŧ:"
 msgid "Your purchase history:"
 msgstr "Ẏǿŭř ƥŭřƈħȧşḗ ħīşŧǿřẏ:"
 
-#: mkt/ratings/forms.py:68
+#: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
 msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 
-#: mkt/ratings/forms.py:69
+#: mkt/ratings/forms.py:67
 msgid "Skip for now"
 msgstr "Şķīƥ ƒǿř ƞǿẇ"
 
-#: mkt/ratings/forms.py:70
+#: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 
@@ -6856,19 +6868,19 @@ msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 msgid "Not yet reviewed"
 msgstr "Ƞǿŧ ẏḗŧ řḗṽīḗẇḗḓ"
 
-#: mkt/ratings/models.py:117
+#: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
 msgstr "Şƥȧḿ ǿř ǿŧħḗřẇīşḗ ƞǿƞ-řḗṽīḗẇ ƈǿƞŧḗƞŧ"
 
-#: mkt/ratings/models.py:118
+#: mkt/ratings/models.py:138
 msgid "Inappropriate language/dialog"
 msgstr "Īƞȧƥƥřǿƥřīȧŧḗ ŀȧƞɠŭȧɠḗ/dialog"
 
-#: mkt/ratings/models.py:119
+#: mkt/ratings/models.py:139
 msgid "Misplaced bug report or support request"
 msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭḗşŧ"
 
-#: mkt/ratings/models.py:120
+#: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
@@ -6940,52 +6952,65 @@ msgstr "Ḿȧƞīƒḗşŧ ŀǿƈȧŧīǿƞ"
 msgid "Install"
 msgstr "Īƞşŧȧŀŀ"
 
-#: mkt/reviewers/forms.py:24
+#: mkt/reviewers/forms.py:23
 msgid "Any Status"
 msgstr "Ȧƞẏ Şŧȧŧŭş"
 
-#: mkt/reviewers/forms.py:35
+#: mkt/reviewers/forms.py:28
+msgid "Approved reviews"
+msgstr "Ȧƥƥřǿṽḗḓ řḗṽīḗẇş"
+
+#: mkt/reviewers/forms.py:29
+msgid "Deleted reviews"
+msgstr "Ḓḗŀḗŧḗḓ řḗṽīḗẇş"
+
+#: mkt/reviewers/forms.py:37
+#: mkt/reviewers/forms.py:61
 msgid "View entries between"
 msgstr "Ṽīḗẇ ḗƞŧřīḗş ƀḗŧẇḗḗƞ"
 
-#: mkt/reviewers/forms.py:37
+#: mkt/reviewers/forms.py:41
+msgid "Filter by type/action"
+msgstr "Ƒīŀŧḗř ƀẏ ŧẏƥḗ/action"
+
+#: mkt/reviewers/forms.py:63
 msgid "containing"
 msgstr "ƈǿƞŧȧīƞīƞɠ"
 
 #. L10n: start, as in "start date"
-#: mkt/reviewers/forms.py:43
+#: mkt/reviewers/forms.py:69
 msgid "start"
 msgstr "şŧȧřŧ"
 
 #. L10n: end, as in "end date"
-#: mkt/reviewers/forms.py:47
+#: mkt/reviewers/forms.py:73
 msgid "end"
 msgstr "ḗƞḓ"
 
-#. L10n: Description of what can be searched for
-#: mkt/reviewers/forms.py:50
-msgid "add-on, editor or comment"
-msgstr "ȧḓḓ-ǿƞ, ḗḓīŧǿř ǿř ƈǿḿḿḗƞŧ"
+#. L10n: Descript of what can be searched for.
+#: mkt/reviewers/forms.py:77
+msgid "app, reviewer, or comment"
+msgstr "ȧƥƥ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
 
-#: mkt/reviewers/forms.py:75
+#: mkt/reviewers/forms.py:101
 msgid "Comments:"
 msgstr "Ƈǿḿḿḗƞŧş:"
 
-#: mkt/reviewers/forms.py:79
+#: mkt/reviewers/forms.py:105
 #: mkt/reviewers/templates/reviewers/review.html:138
 msgid "Device Types:"
 msgstr "Ḓḗṽīƈḗ Ŧẏƥḗş:"
 
-#: mkt/reviewers/forms.py:81
+#: mkt/reviewers/forms.py:107
 #: mkt/reviewers/templates/reviewers/review.html:142
 msgid "Browsers:"
 msgstr "Ɓřǿẇşḗřş:"
 
-#: mkt/reviewers/forms.py:84
+#: mkt/reviewers/forms.py:110
 msgid "Device Type Override:"
 msgstr "Ḓḗṽīƈḗ Ŧẏƥḗ Ǿṽḗřřīḓḗ:"
 
-#: mkt/reviewers/forms.py:87
+#: mkt/reviewers/forms.py:113
 msgid ""
 "Notify me the next time the manifest is updated. (Subsequent updates will "
 "not generate an email)"
@@ -6993,28 +7018,23 @@ msgstr ""
 "Ƞǿŧīƒẏ ḿḗ ŧħḗ ƞḗẋŧ ŧīḿḗ ŧħḗ ḿȧƞīƒḗşŧ īş ŭƥḓȧŧḗḓ. (Şŭƀşḗɋŭḗƞŧ ŭƥḓȧŧḗş ẇīŀŀ "
 "ƞǿŧ ɠḗƞḗřȧŧḗ ȧƞ ḗḿȧīŀ)"
 
-#: mkt/reviewers/forms.py:91
+#: mkt/reviewers/forms.py:117
 msgid "This app works on Tarako devices."
 msgstr "Ŧħīş ȧƥƥ ẇǿřķş ǿƞ Ŧȧřȧķǿ ḓḗṽīƈḗş."
 
-#: mkt/reviewers/forms.py:98
+#: mkt/reviewers/forms.py:124
 msgid "Choose a canned response..."
 msgstr "Ƈħǿǿşḗ ȧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
 
-#. L10n: Descript of what can be searched for.
-#: mkt/reviewers/forms.py:147
-msgid "app, reviewer, or comment"
-msgstr "ȧƥƥ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
-
-#: mkt/reviewers/forms.py:156
+#: mkt/reviewers/forms.py:172
 msgid "Has Editor Comment"
 msgstr "Ħȧş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: mkt/reviewers/forms.py:160
+#: mkt/reviewers/forms.py:176
 msgid "More Info Requested"
 msgstr "Ḿǿřḗ Īƞƒǿ Řḗɋŭḗşŧḗḓ"
 
-#: mkt/reviewers/forms.py:168
+#: mkt/reviewers/forms.py:184
 msgid "Tarako-ready"
 msgstr "Ŧȧřȧķǿ-řḗȧḓẏ"
 
@@ -7047,6 +7067,7 @@ msgid "Device"
 msgstr "Ḓḗṽīƈḗ"
 
 #: mkt/reviewers/helpers.py:46
+#: mkt/reviewers/helpers.py:143
 msgid "Moderated Reviews"
 msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
 
@@ -7104,7 +7125,7 @@ msgstr "Ḓḗṽīƈḗ ({0})"
 msgid "Reviews"
 msgstr "Řḗṽīḗẇş"
 
-#: mkt/reviewers/helpers.py:180
+#: mkt/reviewers/helpers.py:181
 msgid "Rejected or Unreviewed"
 msgstr "Řḗĵḗƈŧḗḓ ǿř Ŭƞřḗṽīḗẇḗḓ"
 
@@ -7201,54 +7222,54 @@ msgstr ""
 "Ɓȧƞ ŧħḗ ȧƥƥ ƒřǿḿ Ḿȧřķḗŧƥŀȧƈḗ. Şīḿīŀȧř ŧǿ Řḗĵḗƈŧ ƀŭŧ ŧħḗ ȧŭŧħǿř(ş) ƈȧƞ'ŧ "
 "řḗşŭƀḿīŧ. Ŧǿ ǿƞŀẏ ƀḗ ŭşḗḓ īƞ ḗẋŧřḗḿḗ ƈȧşḗş."
 
-#: mkt/reviewers/views.py:124
+#: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
 msgstr "Ƞḗẇ Ȧƥƥş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:125
+#: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
 msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:126
+#: mkt/reviewers/views.py:127
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:238
+#: mkt/reviewers/views.py:239
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: mkt/reviewers/views.py:244
+#: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Ǿƞŀẏ şḗƞīǿř řḗṽīḗẇḗřş ƈȧƞ řḗṽīḗẇ ƀŀǿƈķŀīşŧḗḓ ȧƥƥş."
 
-#: mkt/reviewers/views.py:294
+#: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:296
-#: mkt/reviewers/views.py:318
+#: mkt/reviewers/views.py:297
+#: mkt/reviewers/views.py:319
 #: mkt/submit/forms.py:31
 #: mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "Ȧḓḓḗḓ {0}"
 
-#: mkt/reviewers/views.py:298
-#: mkt/reviewers/views.py:319
+#: mkt/reviewers/views.py:299
+#: mkt/reviewers/views.py:320
 #: mkt/submit/forms.py:33
 #: mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr "Řḗḿǿṽḗḓ {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:322
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Řḗɋŭīřḗḿḗƞŧş ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:348
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
-#: mkt/reviewers/views.py:350
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
@@ -7418,6 +7439,7 @@ msgid "App Review Log"
 msgstr "Ȧƥƥ Řḗṽīḗẇ Ŀǿɠ"
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
+#: mkt/reviewers/templates/reviewers/moderatelog.html:17
 msgid "Event"
 msgstr "Ḗṽḗƞŧ"
 
@@ -7436,6 +7458,59 @@ msgstr "Ħīḓḗ Ƈǿḿḿḗƞŧş"
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
 msgstr "Ƞǿ řḗṽīḗẇş ƒǿŭƞḓ ƒǿř ŧħīş ƥḗřīǿḓ."
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:4
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
+msgid "Moderated Review Log"
+msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ Ŀǿɠ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:31
+msgid "More details."
+msgstr "Ḿǿřḗ ḓḗŧȧīŀş."
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:40
+msgid "No events found for this period."
+msgstr "Ƞǿ ḗṽḗƞŧş ƒǿŭƞḓ ƒǿř ŧħīş ƥḗřīǿḓ."
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
+msgid "Log Details"
+msgstr "Ŀǿɠ Ḓḗŧȧīŀş"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
+msgid "Log details"
+msgstr "Ŀǿɠ ḓḗŧȧīŀş"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
+msgid "Moderation date"
+msgstr "Ḿǿḓḗřȧŧīǿƞ ḓȧŧḗ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
+msgid "App title"
+msgstr "Ȧƥƥ ŧīŧŀḗ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
+msgid "Review title"
+msgstr "Řḗṽīḗẇ ŧīŧŀḗ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
+msgid "Review text"
+msgstr "Řḗṽīḗẇ ŧḗẋŧ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
+msgid "Review was flagged prior to moderation."
+msgstr "Řḗṽīḗẇ ẇȧş ƒŀȧɠɠḗḓ ƥřīǿř ŧǿ ḿǿḓḗřȧŧīǿƞ."
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
+msgid "Current review status"
+msgstr "Ƈŭřřḗƞŧ řḗṽīḗẇ şŧȧŧŭş"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
+msgid "Alive"
+msgstr "Ȧŀīṽḗ"
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
+msgid "Undelete"
+msgstr "Ŭƞḓḗŀḗŧḗ"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"

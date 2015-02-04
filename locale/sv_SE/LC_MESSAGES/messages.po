@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-04 08:34-0700\n"
 "PO-Revision-Date: 2015-01-31 16:59+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
@@ -40,15 +40,15 @@ msgstr "Fältet måste minst ha en längd av {num}-tecken."
 msgid "The language code {lang_code} is invalid."
 msgstr "Språkkoden {lang_code} är ogiltig."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:191
 msgid "Unknown"
 msgstr "Okänd"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:176 mkt/submit/forms.py:314
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:192 mkt/submit/forms.py:314
 msgid "Yes"
 msgstr "Ja"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:177 mkt/submit/forms.py:315
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:193 mkt/submit/forms.py:315
 msgid "No"
 msgstr "Nej"
 
@@ -1139,11 +1139,11 @@ msgstr "Publicerad"
 msgid "Banned from Marketplace"
 msgstr "Bannlyst från Marketplace"
 
-#: mkt/constants/base.py:30
+#: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
 msgstr "Borttagen"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:176 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:177 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Ej godkänd"
 
@@ -1201,63 +1201,67 @@ msgstr "Gratis med in-app betalningar"
 msgid "I'll use my own system for in-app payments"
 msgstr "Jag använder mitt eget system för in-app betalningar"
 
-#: mkt/constants/base.py:194
+#: mkt/constants/base.py:195
 msgid "Manual Reviewer Points"
 msgstr "Manuell granskarpoäng"
 
-#: mkt/constants/base.py:195
+#: mkt/constants/base.py:196
 msgid "Web App Review"
 msgstr "Granskning webbapp"
 
-#: mkt/constants/base.py:196
+#: mkt/constants/base.py:197
 msgid "Packaged App Review"
 msgstr "Granskning paketerad app"
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:198
 msgid "Privileged App Review"
 msgstr "Granskning privilegierad app"
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:199
 msgid "Web App Re-review"
 msgstr "Ny granskning webbapp"
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:200
 msgid "Updated Packaged App Review"
 msgstr "Granskning uppdaterad paketerad app"
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:201
 msgid "Updated Privileged App Review"
 msgstr "Uppdaterad granskning av privilegierad app"
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:202
 msgid "Moderated App Review"
 msgstr "Modererad app-granskning"
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:203
+msgid "App Review Moderation Reverted"
+msgstr ""
+
+#: mkt/constants/base.py:204
 msgid "Tarako App Review"
 msgstr "Tarako app-granskning"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:234
 msgid "Level 1"
 msgstr "Nivå 1"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:235
 msgid "Level 2"
 msgstr "Nivå 2"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:236
 msgid "Level 3"
 msgstr "Nivå 3"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:237
 msgid "Level 4"
 msgstr "Nivå 4"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:238
 msgid "Level 5"
 msgstr "Nivå 5"
 
-#: mkt/constants/base.py:235
+#: mkt/constants/base.py:239
 msgid "Level 6"
 msgstr "Nivå 6"
 
@@ -1349,7 +1353,7 @@ msgstr "Bannlyst"
 msgid "More information requested"
 msgstr "Mer information begärd"
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:164 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:180 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Upptrappad"
 
@@ -2485,7 +2489,7 @@ msgstr "Din manifest-fil kodades inte enligt giltig UTF-8."
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Manifestets kodning matchar inte teckenuppsättning som tillhandahålls i HTTP Content-Type."
 
-#: mkt/developers/tasks.py:521 mkt/developers/tasks.py:527 mkt/reviewers/forms.py:36
+#: mkt/developers/tasks.py:521 mkt/developers/tasks.py:527 mkt/reviewers/forms.py:39 mkt/reviewers/forms.py:62
 msgid "and"
 msgstr "och"
 
@@ -2567,7 +2571,7 @@ msgstr "Appen omprövas."
 msgid "New version successfully added."
 msgstr "Ny version lades till."
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:666
+#: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:667
 msgid "Changes successfully saved."
 msgstr "Ändringar sparade."
 
@@ -2888,7 +2892,7 @@ msgid "Your apps currently have no transactions."
 msgstr "Dina appar har för närvarande inga transaktioner."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:149 mkt/lookup/templates/lookup/transaction_summary.html:21
-#: mkt/reviewers/templates/reviewers/logs.html:16
+#: mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/moderatelog.html:16
 msgid "Date"
 msgstr "Datum"
 
@@ -3052,7 +3056,7 @@ msgstr "Status & versioner"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:169 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Status"
@@ -4327,9 +4331,7 @@ msgstr "Faktureringsmetod"
 
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr ""
-"Eftersom \"Övriga världen\" har valts kommer appen att kunna köpas i alla "
-"aktiverade \"<a href=\"#regions-other\">andra regioner</a>\"."
+msgstr "Eftersom \"Övriga världen\" har valts kommer appen att kunna köpas i alla aktiverade \"<a href=\"#regions-other\">andra regioner</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4337,9 +4339,7 @@ msgstr "Andra regioner"
 
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr ""
-"För att utesluta din app från att visas i en region, kan du avmarkera den "
-"regionen innan du sparar."
+msgstr "För att utesluta din app från att visas i en region, kan du avmarkera den regionen innan du sparar."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4543,9 +4543,7 @@ msgstr "Din app kommer att visas i de regionala Marketplace som läggs till i fr
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr ""
-"(Med förbehåll för betalningar är tillgängliga i den regionen för den valda "
-"prisnivån eller \"Övriga världen\" har valts som betalningsalternativ)."
+msgstr "(Med förbehåll för betalningar är tillgängliga i den regionen för den valda prisnivån eller \"Övriga världen\" har valts som betalningsalternativ)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5050,9 +5048,7 @@ msgstr "Webbappens manifest är inte giltig JSON."
 
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
-msgstr ""
-"Rollen \"langpack\" är ogiltigt för Webbappar. Skicka in denna app som ett "
-"språkpaket istället."
+msgstr "Rollen \"langpack\" är ogiltigt för Webbappar. Skicka in denna app som ett språkpaket istället."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5174,30 +5170,30 @@ msgstr "Hämtar fil."
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "Produktens logotyp måste vara en 64x64px bild. Kontrollera att URL:en är korrekt."
 
+#: mkt/langpacks/models.py:77
+msgctxt "version"
+msgid "%(lang)s language pack for Firefox OS %(version)slang"
+msgstr ""
+
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
 msgstr "Ditt språkpaket bör innehålla \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
-msgstr ""
-"Ditt språkpaket måste innehålla ett språk i objektet `languages-provided`."
+msgstr "Ditt språkpaket måste innehålla ett språk i objektet `languages-provided`."
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
-msgstr ""
-"Ditt språkpaket innehåller för många språk. Endast ett språk per paket "
-"stöds."
+msgstr "Ditt språkpaket innehåller för många språk. Endast ett språk per paket stöds."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
-msgstr ""
-"Ditt språkpaket måste innehålla ett språk i objektet `languages-target`."
+msgstr "Ditt språkpaket måste innehålla ett språk i objektet `languages-target`."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
-msgstr ""
-"Ditt språkpaket innehåller för många mål. Endast ett mål per paket stöds."
+msgstr "Ditt språkpaket innehåller för många mål. Endast ett mål per paket stöds."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
@@ -5423,16 +5419,11 @@ msgstr "För närvarande kan inte transaktionsstatus hämtas."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
-msgstr ""
-"Denna betalning gjordes genom Bango. För att få mer information kontakta <a "
-"href=\"mailto:%(bango_support)s\">support för Bango</a> med följande "
-"information."
+msgstr "Denna betalning gjordes genom Bango. För att få mer information kontakta <a href=\"mailto:%(bango_support)s\">support för Bango</a> med följande information."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr ""
-"Denna betalning gjordes genom en <b>referensimplementering</ b>. Det var "
-"ingen riktig transaktion."
+msgstr "Denna betalning gjordes genom en <b>referensimplementering</ b>. Det var ingen riktig transaktion."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
@@ -5688,15 +5679,15 @@ msgstr "För support vänligen besök:"
 msgid "Your purchase history:"
 msgstr "Din köphistorik:"
 
-#: mkt/ratings/forms.py:68
+#: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
 msgstr "Behåll granskning; ta bort flaggor"
 
-#: mkt/ratings/forms.py:69
+#: mkt/ratings/forms.py:67
 msgid "Skip for now"
 msgstr "Hoppa över nu"
 
-#: mkt/ratings/forms.py:70
+#: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Ta bort granskning"
 
@@ -5704,19 +5695,19 @@ msgstr "Ta bort granskning"
 msgid "Not yet reviewed"
 msgstr "Ännu inte granskad"
 
-#: mkt/ratings/models.py:117
+#: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
 msgstr "Skräpkommentar eller annat icke granskningsartat innehåll"
 
-#: mkt/ratings/models.py:118
+#: mkt/ratings/models.py:138
 msgid "Inappropriate language/dialog"
 msgstr "Opassande språk/innehåll"
 
-#: mkt/ratings/models.py:119
+#: mkt/ratings/models.py:139
 msgid "Misplaced bug report or support request"
 msgstr "Felrapport eller begäran om hjälp på fel ställe"
 
-#: mkt/ratings/models.py:120
+#: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Annan (var god ange)"
 
@@ -5776,75 +5767,82 @@ msgstr "Plats för manifest"
 msgid "Install"
 msgstr "Installera"
 
-#: mkt/reviewers/forms.py:24
+#: mkt/reviewers/forms.py:23
 msgid "Any Status"
 msgstr "Någon status"
 
-#: mkt/reviewers/forms.py:35
+#: mkt/reviewers/forms.py:28
+msgid "Approved reviews"
+msgstr ""
+
+#: mkt/reviewers/forms.py:29
+msgid "Deleted reviews"
+msgstr ""
+
+#: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
 msgstr "Visa poster emellan"
 
-#: mkt/reviewers/forms.py:37
+#: mkt/reviewers/forms.py:41
+msgid "Filter by type/action"
+msgstr ""
+
+#: mkt/reviewers/forms.py:63
 msgid "containing"
 msgstr "innehåller"
 
 #. L10n: start, as in "start date"
-#: mkt/reviewers/forms.py:43
+#: mkt/reviewers/forms.py:69
 msgid "start"
 msgstr "start"
 
 #. L10n: end, as in "end date"
-#: mkt/reviewers/forms.py:47
+#: mkt/reviewers/forms.py:73
 msgid "end"
 msgstr "slut"
 
-#. L10n: Description of what can be searched for
-#: mkt/reviewers/forms.py:50
-msgid "add-on, editor or comment"
-msgstr "tillägg, editor eller kommentar"
-
-#: mkt/reviewers/forms.py:75
-msgid "Comments:"
-msgstr "Kommentarer:"
-
-#: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:138
-msgid "Device Types:"
-msgstr "Enhetstyper:"
-
-#: mkt/reviewers/forms.py:81 mkt/reviewers/templates/reviewers/review.html:142
-msgid "Browsers:"
-msgstr "Webbläsare:"
-
-#: mkt/reviewers/forms.py:84
-msgid "Device Type Override:"
-msgstr "Åsidosätt enhetstyp:"
-
-#: mkt/reviewers/forms.py:87
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Meddela mig nästa gång manifest uppdateras. (Efterföljande uppdateringar kommer inte att generera ett mejl)"
-
-#: mkt/reviewers/forms.py:91
-msgid "This app works on Tarako devices."
-msgstr "Denna app fungerar på Tarako-enheter."
-
-#: mkt/reviewers/forms.py:98
-msgid "Choose a canned response..."
-msgstr "Välj ett standardsvar..."
-
 #. L10n: Descript of what can be searched for.
-#: mkt/reviewers/forms.py:147
+#: mkt/reviewers/forms.py:77
 msgid "app, reviewer, or comment"
 msgstr "app, granskare eller kommentar"
 
-#: mkt/reviewers/forms.py:156
+#: mkt/reviewers/forms.py:101
+msgid "Comments:"
+msgstr "Kommentarer:"
+
+#: mkt/reviewers/forms.py:105 mkt/reviewers/templates/reviewers/review.html:138
+msgid "Device Types:"
+msgstr "Enhetstyper:"
+
+#: mkt/reviewers/forms.py:107 mkt/reviewers/templates/reviewers/review.html:142
+msgid "Browsers:"
+msgstr "Webbläsare:"
+
+#: mkt/reviewers/forms.py:110
+msgid "Device Type Override:"
+msgstr "Åsidosätt enhetstyp:"
+
+#: mkt/reviewers/forms.py:113
+msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
+msgstr "Meddela mig nästa gång manifest uppdateras. (Efterföljande uppdateringar kommer inte att generera ett mejl)"
+
+#: mkt/reviewers/forms.py:117
+msgid "This app works on Tarako devices."
+msgstr "Denna app fungerar på Tarako-enheter."
+
+#: mkt/reviewers/forms.py:124
+msgid "Choose a canned response..."
+msgstr "Välj ett standardsvar..."
+
+#: mkt/reviewers/forms.py:172
 msgid "Has Editor Comment"
 msgstr "Har kommentar från redigerare"
 
-#: mkt/reviewers/forms.py:160
+#: mkt/reviewers/forms.py:176
 msgid "More Info Requested"
 msgstr "Mer information krävs"
 
-#: mkt/reviewers/forms.py:168
+#: mkt/reviewers/forms.py:184
 msgid "Tarako-ready"
 msgstr "Tarako-redo"
 
@@ -5872,7 +5870,7 @@ msgstr "Upptrappningar"
 msgid "Device"
 msgstr "Enhet"
 
-#: mkt/reviewers/helpers.py:46
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:143
 msgid "Moderated Reviews"
 msgstr "Modererad granskning"
 
@@ -5929,7 +5927,7 @@ msgstr "Enhet ({0})"
 msgid "Reviews"
 msgstr "Recensioner"
 
-#: mkt/reviewers/helpers.py:180
+#: mkt/reviewers/helpers.py:181
 msgid "Rejected or Unreviewed"
 msgstr "Avvisade och ogranskade"
 
@@ -5997,48 +5995,48 @@ msgstr "Bannlys app"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Bannlys appen från Marketplace. Liknar Avvisa men författaren kan inte skicka in igen. Används endast i extrema fall."
 
-#: mkt/reviewers/views.py:124
+#: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
 msgstr "Nya appar (Under 5 dagar)"
 
-#: mkt/reviewers/views.py:125
+#: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
 msgstr "Väntande (5 till 10 dagar)"
 
-#: mkt/reviewers/views.py:126
+#: mkt/reviewers/views.py:127
 msgid "Overdue (Over 10 days)"
 msgstr "Försenad (Över 10 dagar)"
 
-#: mkt/reviewers/views.py:238
+#: mkt/reviewers/views.py:239
 msgid "Self-reviews are not allowed."
 msgstr "Det är inte tillåtet att granska sig själv."
 
-#: mkt/reviewers/views.py:244
+#: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Endast seniora granskarna kan granska blocklistade appar."
 
-#: mkt/reviewers/views.py:294
+#: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Enheten ändrad av granskare: {0}"
 
-#: mkt/reviewers/views.py:296 mkt/reviewers/views.py:318 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: mkt/reviewers/views.py:297 mkt/reviewers/views.py:319 mkt/submit/forms.py:31 mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "Lades till {0}"
 
-#: mkt/reviewers/views.py:298 mkt/reviewers/views.py:319 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:299 mkt/reviewers/views.py:320 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr "Borttagen {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:322
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Krav ändrade av granskare: {0}"
 
-#: mkt/reviewers/views.py:348
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" behandlad (+{1} poäng, {2} totalt)."
 
-#: mkt/reviewers/views.py:350
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Granskning behandlad."
 
@@ -6190,7 +6188,7 @@ msgstr "Poäng"
 msgid "App Review Log"
 msgstr "App-granskningslogg"
 
-#: mkt/reviewers/templates/reviewers/logs.html:17
+#: mkt/reviewers/templates/reviewers/logs.html:17 mkt/reviewers/templates/reviewers/moderatelog.html:17
 msgid "Event"
 msgstr "Händelse"
 
@@ -6209,6 +6207,58 @@ msgstr "Dölj kommentarer"
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
 msgstr "Inga granskningar hittades för denna period."
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
+msgid "Moderated Review Log"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:31
+msgid "More details."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:40
+msgid "No events found for this period."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
+msgid "Log Details"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
+msgid "Log details"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
+msgid "Moderation date"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
+msgid "App title"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
+msgid "Review title"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
+msgid "Review text"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
+msgid "Review was flagged prior to moderation."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
+msgid "Current review status"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
+msgid "Alive"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
+msgid "Undelete"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"

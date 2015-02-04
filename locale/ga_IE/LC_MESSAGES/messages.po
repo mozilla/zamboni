@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-04 08:34-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -43,15 +43,15 @@ msgstr ""
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:191
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:176 mkt/submit/forms.py:314
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:192 mkt/submit/forms.py:314
 msgid "Yes"
 msgstr "Tá"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:177 mkt/submit/forms.py:315
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:193 mkt/submit/forms.py:315
 msgid "No"
 msgstr "Níl"
 
@@ -1142,11 +1142,11 @@ msgstr "Foilsithe"
 msgid "Banned from Marketplace"
 msgstr ""
 
-#: mkt/constants/base.py:30
+#: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
 msgstr "Scriosta"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:176 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:177 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Diúltaithe"
 
@@ -1204,63 +1204,67 @@ msgstr ""
 msgid "I'll use my own system for in-app payments"
 msgstr ""
 
-#: mkt/constants/base.py:194
+#: mkt/constants/base.py:195
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#: mkt/constants/base.py:195
+#: mkt/constants/base.py:196
 msgid "Web App Review"
 msgstr ""
 
-#: mkt/constants/base.py:196
+#: mkt/constants/base.py:197
 msgid "Packaged App Review"
 msgstr ""
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:198
 msgid "Privileged App Review"
 msgstr ""
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:199
 msgid "Web App Re-review"
 msgstr ""
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:200
 msgid "Updated Packaged App Review"
 msgstr ""
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:201
 msgid "Updated Privileged App Review"
 msgstr ""
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:202
 msgid "Moderated App Review"
 msgstr ""
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:203
+msgid "App Review Moderation Reverted"
+msgstr ""
+
+#: mkt/constants/base.py:204
 msgid "Tarako App Review"
 msgstr ""
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:234
 msgid "Level 1"
 msgstr "Leibhéal 1"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:235
 msgid "Level 2"
 msgstr "Leibhéal 2"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:236
 msgid "Level 3"
 msgstr "Leibhéal 3"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:237
 msgid "Level 4"
 msgstr "Leibhéal 4"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:238
 msgid "Level 5"
 msgstr "Leibhéal 5"
 
-#: mkt/constants/base.py:235
+#: mkt/constants/base.py:239
 msgid "Level 6"
 msgstr "Leibhéal 6"
 
@@ -1352,7 +1356,7 @@ msgstr ""
 msgid "More information requested"
 msgstr "Tuilleadh eolais iarrtha"
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:164 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:180 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Géaraithe"
 
@@ -2488,7 +2492,7 @@ msgstr ""
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:521 mkt/developers/tasks.py:527 mkt/reviewers/forms.py:36
+#: mkt/developers/tasks.py:521 mkt/developers/tasks.py:527 mkt/reviewers/forms.py:39 mkt/reviewers/forms.py:62
 msgid "and"
 msgstr "agus"
 
@@ -2570,7 +2574,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:666
+#: mkt/developers/views.py:305 mkt/developers/views.py:567 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:434 mkt/reviewers/views.py:667
 msgid "Changes successfully saved."
 msgstr "Sábháladh na hathruithe."
 
@@ -2891,7 +2895,7 @@ msgid "Your apps currently have no transactions."
 msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:149 mkt/lookup/templates/lookup/transaction_summary.html:21
-#: mkt/reviewers/templates/reviewers/logs.html:16
+#: mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/moderatelog.html:16
 msgid "Date"
 msgstr "Dáta"
 
@@ -3055,7 +3059,7 @@ msgstr "Stádas agus Leaganacha"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:169 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Stádas"
@@ -5158,6 +5162,11 @@ msgstr "Comhad á fháil."
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
 
+#: mkt/langpacks/models.py:77
+msgctxt "version"
+msgid "%(lang)s language pack for Firefox OS %(version)slang"
+msgstr ""
+
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
 msgstr ""
@@ -5663,15 +5672,15 @@ msgstr ""
 msgid "Your purchase history:"
 msgstr ""
 
-#: mkt/ratings/forms.py:68
+#: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
 msgstr ""
 
-#: mkt/ratings/forms.py:69
+#: mkt/ratings/forms.py:67
 msgid "Skip for now"
 msgstr ""
 
-#: mkt/ratings/forms.py:70
+#: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Scrios an léirmheas"
 
@@ -5679,19 +5688,19 @@ msgstr "Scrios an léirmheas"
 msgid "Not yet reviewed"
 msgstr ""
 
-#: mkt/ratings/models.py:117
+#: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
 msgstr "Turscar nó ábhar nach mbaineann le léirmheas"
 
-#: mkt/ratings/models.py:118
+#: mkt/ratings/models.py:138
 msgid "Inappropriate language/dialog"
 msgstr "Plé/focail mhí-oiriúnacha"
 
-#: mkt/ratings/models.py:119
+#: mkt/ratings/models.py:139
 msgid "Misplaced bug report or support request"
 msgstr "Tuairisc ar fhabht nó iarratas ar thacaíocht as áit"
 
-#: mkt/ratings/models.py:120
+#: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Cúis eile (sonraigh, le do thoil)"
 
@@ -5751,75 +5760,82 @@ msgstr ""
 msgid "Install"
 msgstr "Suiteáil"
 
-#: mkt/reviewers/forms.py:24
+#: mkt/reviewers/forms.py:23
 msgid "Any Status"
 msgstr ""
 
-#: mkt/reviewers/forms.py:35
+#: mkt/reviewers/forms.py:28
+msgid "Approved reviews"
+msgstr ""
+
+#: mkt/reviewers/forms.py:29
+msgid "Deleted reviews"
+msgstr ""
+
+#: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
 msgstr "Féach ar iontrálacha idir"
 
-#: mkt/reviewers/forms.py:37
+#: mkt/reviewers/forms.py:41
+msgid "Filter by type/action"
+msgstr ""
+
+#: mkt/reviewers/forms.py:63
 msgid "containing"
 msgstr "ina bhfuil"
 
 #. L10n: start, as in "start date"
-#: mkt/reviewers/forms.py:43
+#: mkt/reviewers/forms.py:69
 msgid "start"
 msgstr "tús"
 
 #. L10n: end, as in "end date"
-#: mkt/reviewers/forms.py:47
+#: mkt/reviewers/forms.py:73
 msgid "end"
 msgstr "deireadh"
 
-#. L10n: Description of what can be searched for
-#: mkt/reviewers/forms.py:50
-msgid "add-on, editor or comment"
-msgstr "breiseán, eagarthóir nó nóta tráchta"
-
-#: mkt/reviewers/forms.py:75
-msgid "Comments:"
-msgstr "Nótaí:"
-
-#: mkt/reviewers/forms.py:79 mkt/reviewers/templates/reviewers/review.html:138
-msgid "Device Types:"
-msgstr ""
-
-#: mkt/reviewers/forms.py:81 mkt/reviewers/templates/reviewers/review.html:142
-msgid "Browsers:"
-msgstr "Brabhsálaithe:"
-
-#: mkt/reviewers/forms.py:84
-msgid "Device Type Override:"
-msgstr ""
-
-#: mkt/reviewers/forms.py:87
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-#: mkt/reviewers/forms.py:91
-msgid "This app works on Tarako devices."
-msgstr ""
-
-#: mkt/reviewers/forms.py:98
-msgid "Choose a canned response..."
-msgstr ""
-
 #. L10n: Descript of what can be searched for.
-#: mkt/reviewers/forms.py:147
+#: mkt/reviewers/forms.py:77
 msgid "app, reviewer, or comment"
 msgstr ""
 
-#: mkt/reviewers/forms.py:156
+#: mkt/reviewers/forms.py:101
+msgid "Comments:"
+msgstr "Nótaí:"
+
+#: mkt/reviewers/forms.py:105 mkt/reviewers/templates/reviewers/review.html:138
+msgid "Device Types:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:107 mkt/reviewers/templates/reviewers/review.html:142
+msgid "Browsers:"
+msgstr "Brabhsálaithe:"
+
+#: mkt/reviewers/forms.py:110
+msgid "Device Type Override:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:113
+msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
+msgstr ""
+
+#: mkt/reviewers/forms.py:117
+msgid "This app works on Tarako devices."
+msgstr ""
+
+#: mkt/reviewers/forms.py:124
+msgid "Choose a canned response..."
+msgstr ""
+
+#: mkt/reviewers/forms.py:172
 msgid "Has Editor Comment"
 msgstr ""
 
-#: mkt/reviewers/forms.py:160
+#: mkt/reviewers/forms.py:176
 msgid "More Info Requested"
 msgstr ""
 
-#: mkt/reviewers/forms.py:168
+#: mkt/reviewers/forms.py:184
 msgid "Tarako-ready"
 msgstr ""
 
@@ -5847,7 +5863,7 @@ msgstr ""
 msgid "Device"
 msgstr "Gléas"
 
-#: mkt/reviewers/helpers.py:46
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:143
 msgid "Moderated Reviews"
 msgstr "Scrúduithe le Ceannasaí"
 
@@ -5904,7 +5920,7 @@ msgstr "Gléas ({0})"
 msgid "Reviews"
 msgstr "Léirmheasanna"
 
-#: mkt/reviewers/helpers.py:180
+#: mkt/reviewers/helpers.py:181
 msgid "Rejected or Unreviewed"
 msgstr ""
 
@@ -5972,48 +5988,48 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:124
+#: mkt/reviewers/views.py:125
 msgid "New Apps (Under 5 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:125
+#: mkt/reviewers/views.py:126
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:126
+#: mkt/reviewers/views.py:127
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:238
+#: mkt/reviewers/views.py:239
 msgid "Self-reviews are not allowed."
 msgstr "Níl cead agat do bhreiseán féin a iniúchadh."
 
-#: mkt/reviewers/views.py:244
+#: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:294
+#: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:296 mkt/reviewers/views.py:318 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: mkt/reviewers/views.py:297 mkt/reviewers/views.py:319 mkt/submit/forms.py:31 mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "Curtha leis ar {0}"
 
-#: mkt/reviewers/views.py:298 mkt/reviewers/views.py:319 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:299 mkt/reviewers/views.py:320 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:322
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:348
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views.py:350
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Próiseáladh an léirmheas."
 
@@ -6180,7 +6196,7 @@ msgstr "Scór"
 msgid "App Review Log"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/logs.html:17
+#: mkt/reviewers/templates/reviewers/logs.html:17 mkt/reviewers/templates/reviewers/moderatelog.html:17
 msgid "Event"
 msgstr "Imeacht"
 
@@ -6199,6 +6215,58 @@ msgstr "Folaigh Nótaí"
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
 msgstr "Níor aimsíodh aon rud sa tréimhse seo."
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
+msgid "Moderated Review Log"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:31
+msgid "More details."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog.html:40
+msgid "No events found for this period."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
+msgid "Log Details"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
+msgid "Log details"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
+msgid "Moderation date"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
+msgid "App title"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
+msgid "Review title"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
+msgid "Review text"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
+msgid "Review was flagged prior to moderation."
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
+msgid "Current review status"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
+msgid "Alive"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
+msgid "Undelete"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
