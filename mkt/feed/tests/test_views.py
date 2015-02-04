@@ -1365,7 +1365,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_region_only(self):
         feed_items = self.feed_factory()
         res, data = self._get(carrier=None)
-        eq_(len(data['objects']), len(feed_items) - 1)  # No shelf.
+        eq_(len(data['objects']), len(feed_items))
 
     def test_carrier_only(self):
         feed_items = self.feed_factory()
@@ -1578,14 +1578,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         for obj in data['objects']:
             eq_(obj['collection']['app_count'], 3)
-
-    def test_no_carrier_no_shelf(self):
-        # Test a shelf only shows if a carrier is passed.
-        self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
-        self.feed_item_factory(item_type=feed.FEED_TYPE_SHELF)
-        res, data = self._get(region=1, carrier=None)
-        eq_(res.status_code, 200)
-        eq_(len(data['objects']), 1)
 
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
@@ -1819,14 +1811,12 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, TestCase):
     def test_region_default(self):
         """Region default to RoW."""
         sq = self.fv.get_es_feed_query(self.sq).to_dict()
-        eq_(sq['query']['function_score']['filter']['bool']['must'][0]['term']
-              ['region'], 1)
+        eq_(sq['query']['function_score']['filter']['term']['region'], 1)
 
     def test_region(self):
         """With region only."""
         sq = self.fv.get_es_feed_query(self.sq, region=2).to_dict()
-        eq_(sq['query']['function_score']['filter']['bool']['must'][0]['term']
-              ['region'], 2)
+        eq_(sq['query']['function_score']['filter']['term']['region'], 2)
 
     def test_carrier_with_region(self):
         sq = self.fv.get_es_feed_query(self.sq, region=2, carrier=1).to_dict()

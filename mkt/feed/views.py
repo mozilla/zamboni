@@ -758,13 +758,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
                                            filter=shelf_filter)
 
         if carrier is None:
-            # If no carrier, just match the region and exclude shelves.
             return sq.query('function_score',
                             functions=[ordering_fn],
-                            filter=es_filter.Bool(
-                                must=[region_filter],
-                                must_not=[shelf_filter]
-                            ))
+                            filter=region_filter)
 
         # Must match region.
         # But also include the original region if we falling back to RoW.
@@ -779,7 +775,6 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             functions=[boost_fn, ordering_fn],
             filter=es_filter.Bool(
                 should=region_filters,
-                # Filter out shelves that don't match the carrier.
                 must_not=[es_filter.Bool(
                     must=[shelf_filter],
                     must_not=[es_filter.Term(carrier=carrier)])])
