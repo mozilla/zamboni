@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-04 22:12+0000\n"
+"PO-Revision-Date: 2015-02-04 22:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423087970.0\n"
+"X-POOTLE-MTIME: 1423089273.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3528,7 +3528,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr ""
+msgstr "Zapódajśo e-mailowe adrese, źělone pśez komy"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
@@ -3556,7 +3556,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
-msgstr ""
+msgstr "Chórgojowa powěsć"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
@@ -3568,11 +3568,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regiony, w kótarychž ma se chórgojowa powěsć pokazaś"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:119
 msgid "Tags"
-msgstr ""
+msgstr "Gronidła"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -3600,12 +3600,12 @@ msgstr[3] ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Zakładne informacije"
 
 #. {0} is the addon name
 #: mkt/developers/templates/developers/apps/edit/basic.html:16
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Zakładne informacije za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
@@ -3613,7 +3613,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
-msgstr ""
+msgstr "Wuwijarske mě"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:67
 msgid "App URL"
@@ -3630,7 +3630,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:66
 msgid "API URL"
-msgstr ""
+msgstr "API-URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
@@ -3638,16 +3638,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
-msgstr ""
+msgstr "API-dokumentaciju se woglědaś"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:105
 msgid "Manifest URL"
-msgstr ""
+msgstr "URL manifesta"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
-msgstr ""
+msgstr "Aktualizěrowaś"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid ""
