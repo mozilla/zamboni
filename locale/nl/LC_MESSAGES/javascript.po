@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-05 12:49+0000\n"
+"PO-Revision-Date: 2015-02-05 13:15+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423140546.0\n"
+"X-POOTLE-MTIME: 1423142150.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -24,11 +24,11 @@ msgstr "U hebt de upload geannuleerd."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
+msgstr "Afbeeldingen moeten van het type PNG of JPG zijn."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Video’s dienen in WebM te zijn."
+msgstr "Video’s moeten van het type WebM zijn."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."

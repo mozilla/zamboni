@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-02-05 12:50+0000\n"
+"PO-Revision-Date: 2015-02-05 13:51+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423140603.0\n"
+"X-POOTLE-MTIME: 1423144314.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -38,7 +38,7 @@ msgstr "Selecteer een geldige optie. %(value)s is niet beschikbaar."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr "Dit veld dient een lengte van ten minste {num} tekens te hebben."
+msgstr "Dit veld moet een lengte van minstens {num} tekens hebben."
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
@@ -2039,15 +2039,16 @@ msgstr "U kunt {region} niet selecteren."
 
 #: mkt/developers/forms.py:124
 msgid "All team members must have read and agreed to the developer agreement."
-msgstr "Alle teamleden dienen de ontwikkelaarsovereenkomst te lezen en ermee in te stemmen."
+msgstr ""
+"Alle teamleden moeten de ontwikkelaarsovereenkomst lezen en ermee instemmen."
 
 #: mkt/developers/forms.py:155
 msgid "Must have at least one owner."
-msgstr "Er dient ten minste één eigenaar te zijn."
+msgstr "Er moet minstens één eigenaar zijn."
 
 #: mkt/developers/forms.py:158
 msgid "At least one team member must be listed."
-msgstr "Er dient ten minste één teamlid in de lijst te staan."
+msgstr "Er moet minstens één teamlid in de lijst staan."
 
 #: mkt/developers/forms.py:162
 msgid "A team member can only be listed once."
@@ -2087,7 +2088,7 @@ msgstr "Ongeldige regio(’s) geselecteerd."
 
 #: mkt/developers/forms.py:421 mkt/webapps/models.py:1382
 msgid "You must upload at least one screenshot or video."
-msgstr "U dient ten minste één schermafdruk of video te uploaden."
+msgstr "U moet minstens één schermafdruk of video uploaden."
 
 #: mkt/developers/forms.py:462
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
@@ -2123,7 +2124,9 @@ msgstr "Geef het privacybeleid van uw app op"
 
 #: mkt/developers/forms.py:674
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
-msgstr "Voordat u uw standaardlocale wijzigt dient u een naam en beschrijving in die locale te hebben. Momenteel ontbreekt %s."
+msgstr ""
+"Voordat u uw standaardlocale wijzigt, moet u een naam en beschrijving in die "
+"locale hebben. Momenteel ontbreekt %s."
 
 #: mkt/developers/forms.py:742 mkt/submit/templates/submit/details.html:107
 msgid "You must provide either a website, an email, or both."
@@ -2155,7 +2158,7 @@ msgstr "Kies de regio’s waarin uw app wordt weergegeven:"
 
 #: mkt/developers/forms.py:865 mkt/developers/forms.py:967
 msgid "You must select at least one region."
-msgstr "U dient ten minste één regio te selecteren."
+msgstr "U moet minstens één regio selecteren."
 
 #: mkt/developers/forms.py:870
 msgid "Enable new regions"
@@ -2199,7 +2202,7 @@ msgstr "Tekst"
 
 #: mkt/developers/forms.py:1094
 msgid "You must agree to the Privacy Policy."
-msgstr "U dient het privacybeleid te accepteren."
+msgstr "U moet akkoord gaan net het privacybeleid."
 
 #: mkt/developers/forms.py:1095 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -2301,7 +2304,7 @@ msgstr "Ondersteunt alle factureringsmethoden"
 
 #: mkt/developers/forms_payments.py:215
 msgid "If app is Free, in-app payments must be enabled"
-msgstr "Als de app gratis is dienen in-app-betalingen ingeschakeld te zijn"
+msgstr "Als de app gratis is, moeten in-app-betalingen zijn ingeschakeld"
 
 #: mkt/developers/forms_payments.py:222
 msgid "Not a valid choice"
@@ -2480,11 +2483,13 @@ msgstr "Er is geen manifest aangetroffen op die URL. Controleer het adres en pro
 
 #: mkt/developers/tasks.py:434
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
-msgstr "Manifests dienen te worden aangemeld met de HTTP-header “Content-Type: application/x-web-app-manifest+json”. Lees %s voor meer informatie."
+msgstr ""
+"Manifests moeten worden aangeleverd met de HTTP-header “Content-Type: "
+"application/x-web-app-manifest+json”. Zie %s voor meer informatie."
 
 #: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
-msgstr "Uw manifest dient kleiner dan %s bytes te zijn."
+msgstr "Uw manifest moet kleiner dan %s bytes zijn."
 
 #: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
@@ -2512,11 +2517,11 @@ msgstr "Video-ondersteuning niet ingeschakeld."
 
 #: mkt/developers/utils.py:74
 msgid "Icons must be either PNG or JPG."
-msgstr "Pictogrammen dienen in PNG- of JPG-opmaak te zijn."
+msgstr "Pictogrammen moeten van het type PNG of JPG zijn."
 
 #: mkt/developers/utils.py:76
 msgid "Images must be either PNG or JPG."
-msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
+msgstr "Afbeeldingen moeten van het type PNG of JPG zijn."
 
 #: mkt/developers/utils.py:81
 msgid "Icons cannot be animated."
@@ -2540,17 +2545,18 @@ msgstr "Voorbeeld kan niet worden geopend."
 
 #: mkt/developers/utils.py:111
 msgid "Icons must be at least 128px by 128px."
-msgstr "De afmeting van pictogrammen dient ten minste 128 x 128 pixels te zijn."
+msgstr "Pictogrammen moeten minstens 128px bij 128px zijn."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be square."
-msgstr "Pictogrammen dienen vierkant te zijn."
+msgstr "Pictogrammen moeten vierkant zijn."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
 #: mkt/developers/utils.py:124
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr "Apps dienen ten minste {0} px bij {1} px of {1} px bij {0} px te zijn."
+msgstr ""
+"App-voorbeelden moeten minstens {0}px bij {1}px of {1}px bij {0}px zijn."
 
 #: mkt/developers/views.py:87
 msgid "Created"
@@ -2747,12 +2753,14 @@ msgstr "<p>Voorbeeld van gebruik van een Python-bibliotheek voor de opdrachtrege
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr "U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen voordat uw app kan worden beoordeeld of gepubliceerd."
+msgstr ""
+"U moet <a href=\"%(next_url)s\">%(next_step_name)s</a> instellen voordat uw "
+"app kan worden beoordeeld of gepubliceerd."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr "U dient <a href=\"%(next_url)s\">%(next_step_name)s</a> in te stellen."
+msgstr "U moet <a href=\"%(next_url)s\">%(next_step_name)s</a> instellen."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
@@ -2766,7 +2774,7 @@ msgstr "Aanmelden"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr "U dient zich aan te melden om verder te gaan."
+msgstr "U moet zich aanmelden om verder te gaan."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:133 templates/base.html:139
 msgid "Sign in / Sign up"
@@ -2932,7 +2940,10 @@ msgstr "<strong>Vergeet het protocol niet!</strong> Probeer <a href=\"#\">%(http
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr "Manifest-URL’s dienen te beginnen met een protocol (bijvoorbeeld <code>http://</code> of <code>https://</code>) en gebruiken veelal de extensie <code>.webapp</code>."
+msgstr ""
+"Manifest-URL’s moeten met een protocol beginnen (bijvoorbeeld "
+"<code>http://</code> of <code>https://</code>) en gebruiken doorgaans de "
+"extensie <code>.webapp</code>."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
@@ -3771,7 +3782,9 @@ msgstr "Aangepast pictogram uploaden…"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
-msgstr "PNG en JPG worden ondersteund. Pictogrammen dienen ten minste 128 x 128 pixels te zijn."
+msgstr ""
+"PNG en JPG worden ondersteund. Pictogrammen moeten minstens 128px bij 128px "
+"zijn."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
@@ -3779,7 +3792,7 @@ msgstr "Schermafdrukken of video’s"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr "Geef ten minste één schermafdruk of video van uw app:"
+msgstr "Geef minstens één schermafdruk of video van uw app:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:151
 msgid "Add a Screenshot or Video..."
@@ -3787,7 +3800,9 @@ msgstr "Schermafdruk of video toevoegen…"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
-msgstr "Schermafdrukken en video’s dienen ten minste 320x480 pixels te zijn. Media in deze verhoudingen zijn optimaal. Video dient te zijn gecodeerd als WebM."
+msgstr ""
+"Schermafdrukken en video’s moeten minstens 320px bij 480px zijn. Media in "
+"deze verhoudingen zijn optimaal. Video moet zijn gecodeerd als WebM."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
@@ -4014,8 +4029,11 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
-"Om uw app op de Marketplace te publiceren dient u een certificaat van de International Age Rating Coalition (IARC) te verkrijgen. Door op de onderstaande knop te klikken wordt een nieuw venster "
-"geopend waarin u een korte ja/nee-vragenlijst over de inhoud van uw app kunt invullen. Na afronding sluit het venster en uw app heeft dan een leeftijdskeuring."
+"Om uw app op de Marketplace te publiceren moet u een certificaat van de "
+"International Age Rating Coalition (IARC) verkrijgen. Door op de "
+"onderstaande knop te klikken wordt een nieuw venster geopend waarin u een "
+"korte ja/nee-vragenlijst over de inhoud van uw app kunt invullen. Na "
+"voltooiing sluit het venster en heeft uw app een leeftijdsclassificatie."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
@@ -4187,8 +4205,11 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
-"Met de volgende sleutel/geheimcombinatie kunt u alleen in-app-betalingen simuleren tijdens de ontwikkeling van uw app. Om een sleutel voor echte in-app-betalingen aan te maken dient u uw app <a "
-"href=\"%(submit)s\">in te dienen</a>, uw betalingsgegevens in te stellen en een nieuwe sleutel die specifiek is voor die app aan te maken."
+"Met de volgende sleutel/geheimcombinatie kunt u alleen in-app-betalingen "
+"simuleren tijdens de ontwikkeling van uw app. Om een sleutel voor echte in-"
+"app-betalingen aan te maken moet u uw app <a href=\"%(submit)s\">indienen</a>, "
+"uw betalingsgegevens instellen en een nieuwe sleutel die specifiek is voor "
+"die app aanmaken."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4477,8 +4498,11 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
-"Om een Boku-betalingsaccount toe te voegen dient u zich in te schrijven voor een nieuwe Mozilla-specifieke account op de website van Boku. Na inschrijving duurt het 24-48 uur voordat Boku uw "
-"account heeft goedgekeurd. U kunt documentatie en toegang tot de Boku-website op het Mozilla Developer Network vinden."
+"Om een Boku-betalingsaccount toe te voegen moet u zich inschrijven voor een "
+"nieuwe Mozilla-specifieke account op de website van Boku. Na inschrijving "
+"duurt het 24-48 uur voordat Boku uw account heeft goedgekeurd. Documentatie "
+"en toegang tot de Boku-website kunt u op het Mozilla Developer Network "
+"vinden."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
@@ -6233,7 +6257,7 @@ msgstr "Logboek van gemodereerde beoordelingen"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr "Meer details"
+msgstr "Meer details."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
@@ -6757,7 +6781,7 @@ msgstr "Beheerhulpmiddelen"
 
 #: mkt/site/fields.py:32
 msgid "Enter at least one value."
-msgstr "Voer ten minste één waarde in."
+msgstr "Voer minstens één waarde in."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
@@ -6765,7 +6789,7 @@ msgstr "Hexadecimale kleur"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr "Dient een geldige hex-kleurcode te zijn, bijv. #FF0035."
+msgstr "Moet een geldige hex-kleurcode zijn, bv. #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
@@ -7459,11 +7483,14 @@ msgstr "Schermafdruk of video van uw app:"
 
 #: mkt/submit/templates/submit/details.html:118
 msgid "You must provide at least one."
-msgstr "U dient er ten minste één te geven."
+msgstr "U moet er minstens één opgeven."
 
 #: mkt/submit/templates/submit/details.html:158
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr "PNG en JPG worden ondersteund. Schermafdrukken dienen ten minste 320 bij 480 pixels groot te zijn. Schermafdrukken in deze verhouding zijn optimaal. WebM wordt ondersteund voor video."
+msgstr ""
+"PNG en JPG worden ondersteund. Schermafdrukken moeten minstens 320px bij "
+"480px zijn. Schermafdrukken in deze verhouding zijn optimaal. WebM wordt "
+"ondersteund voor video."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -7797,13 +7824,15 @@ msgstr[1] "U hebt {0} labels te veel."
 
 #: mkt/webapps/forms.py:71
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Alle labels dienen na verwijdering van ongeldige tekens ten hoogste %s tekens te bevatten."
+msgstr ""
+"Alle labels moeten na verwijdering van ongeldige tekens %s of minder tekens "
+"bevatten."
 
 #: mkt/webapps/forms.py:75
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Alle labels dienen uit ten minste {0} teken te bestaan."
-msgstr[1] "Alle labels dienen uit ten minste {0} tekens te bestaan."
+msgstr[0] "Alle labels moeten uit minstens {0} teken bestaan."
+msgstr[1] "Alle labels moeten uit minstens {0} tekens bestaan."
 
 # Column name in a table.
 #: mkt/webapps/models.py:208
@@ -7816,15 +7845,15 @@ msgstr "U moet een e-mailadres of URL voor ondersteuning opgeven."
 
 #: mkt/webapps/models.py:1375
 msgid "You must provide an app name."
-msgstr "U dient een naam voor de app op te geven."
+msgstr "U moet een naam voor de app opgeven."
 
 #: mkt/webapps/models.py:1377
 msgid "You must provide at least one device type."
-msgstr "U dient ten minste één apparaattype op te geven."
+msgstr "U moet minstens één apparaattype opgeven."
 
 #: mkt/webapps/models.py:1380
 msgid "You must provide at least one category."
-msgstr "U dient ten minste één categorie op te geven."
+msgstr "U moet minstens één categorie opgeven."
 
 #: mkt/webapps/models.py:1447
 msgid "You must set up content ratings."
@@ -7832,7 +7861,7 @@ msgstr "U moet inhoudsbeoordelingen instellen."
 
 #: mkt/webapps/models.py:1449
 msgid "You must set up a payment account."
-msgstr "U dient een betalingsaccount in te stellen."
+msgstr "U moet een betalingsaccount instellen."
 
 #: mkt/webapps/models.py:1474
 msgid "This app's submission process has not been fully completed."
