@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-02-01 14:08+0000\n"
+"PO-Revision-Date: 2015-02-05 12:50+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422799716.0\n"
+"X-POOTLE-MTIME: 1423140603.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1240,7 +1240,7 @@ msgstr "Beoordeling van gemodereerde app"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "App-beoordelingsmoderatie ongedaan gemaakt"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -2115,7 +2115,7 @@ msgstr "De code kan niet “%s” zijn. Kies een andere."
 
 #: mkt/developers/forms.py:631
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr "Manifest-URL gewijzigd van {before_url} in {after_url}"
+msgstr "Manifest-URL gewijzigd van {before_url} naar {after_url}"
 
 #: mkt/developers/forms.py:653
 msgid "Please specify your app's Privacy Policy"
@@ -5189,7 +5189,7 @@ msgstr "Productlogo moet een afbeelding van 64x64 zijn. Controleer de URL."
 #: mkt/langpacks/models.py:77
 msgctxt "version"
 msgid "%(lang)s language pack for Firefox OS %(version)slang"
-msgstr ""
+msgstr "%(lang)s taalpakket voor Firefox OS %(version)slang"
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
@@ -5217,7 +5217,7 @@ msgstr "Uw taalpakket dient een versie te bevatten."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr "De versie van uw taalpakket  moet anders zijn dan degene die u vervangt."
+msgstr "De versie van uw taalpakket moet anders zijn dan degene die u vervangt."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5792,11 +5792,11 @@ msgstr "Elke status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Goedgekeurde beoordelingen"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Verwijderde beoordelingen"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
@@ -5804,7 +5804,7 @@ msgstr "Ingaven bekijken tussen"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filteren op type/actie"
 
 #: mkt/reviewers/forms.py:63
 msgid "containing"
@@ -5839,7 +5839,7 @@ msgstr "Browsers:"
 
 #: mkt/reviewers/forms.py:110
 msgid "Device Type Override:"
-msgstr "Negeren apparaattype:"
+msgstr "Negeren van apparaattype:"
 
 #: mkt/reviewers/forms.py:113
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
@@ -6229,55 +6229,55 @@ msgstr "Geen beoordelingen in deze periode gevonden."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Logboek van gemodereerde beoordelingen"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Meer details"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Geen gebeurtenissen voor deze periode gevonden."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Logdetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Logdetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderatiedatum"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "App-titel"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Beoordelingstitel"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Beoordelingstekst"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Beoordeling is voorafgaande aan moderatie gemarkeerd."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Huidige beoordelingsstatus"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Actief"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Verwijderen ongedaan maken"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -6389,11 +6389,11 @@ msgstr "Een ander bestand toevoegen"
 
 #: mkt/reviewers/templates/reviewers/review.html:177
 msgid "Device Override:"
-msgstr "Negeren apparaat:"
+msgstr "Negeren van apparaat:"
 
 #: mkt/reviewers/templates/reviewers/review.html:190
 msgid "Minimum Requirements Override:"
-msgstr "Overschrijven minimumvereisten:"
+msgstr "Overschrijven van minimumvereisten:"
 
 #: mkt/reviewers/templates/reviewers/review.html:209
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
@@ -6832,7 +6832,7 @@ msgstr "Statistieken voor {addon} ingesteld op privé."
 #. L10n: {0} is the status
 #: mkt/site/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr "Status van {addon} gewijzigd in {0}."
+msgstr "Status van {addon} gewijzigd naar {0}."
 
 #: mkt/site/log.py:99
 msgid "Preview added to {addon}."
@@ -6965,7 +6965,7 @@ msgstr "{0} {1} toegevoegd."
 #. L10n: {0} is a user, {1} is their role
 #: mkt/site/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "rol van {0.name} gewijzigd in {1} voor {addon}."
+msgstr "rol van {0.name} gewijzigd naar {1} voor {addon}."
 
 #: mkt/site/log.py:315
 msgid "{addon} policy changed."
@@ -7228,7 +7228,7 @@ msgstr "Vereisten gewijzigd"
 #. L10n: {0} is the status
 #: mkt/site/log.py:642
 msgid "{version} status changed to {0}."
-msgstr "Status {version} gewijzigd in {0}."
+msgstr "Status van {version} gewijzigd naar {0}."
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:649
