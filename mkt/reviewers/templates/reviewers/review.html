@@ -81,11 +81,7 @@
   </div>
 </section>
 
-{% if waffle.switch('comm-dashboard') %}
-  {% include 'reviewers/includes/review_history_commbadge.html' %}
-{% else %}
-  {% include 'reviewers/includes/review_history.html' %}
-{% endif %}
+{% include 'reviewers/includes/review_history_commbadge.html' %}
 
 <form method="POST" enctype="multipart/form-data">
   {{ csrf() }}

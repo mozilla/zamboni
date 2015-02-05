@@ -34,8 +34,6 @@ attach_email2 = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests', 'emails',
 class TestSendMailComm(TestCase, CommTestMixin):
 
     def setUp(self):
-        self.create_switch('comm-dashboard')
-
         self.developer = user_factory()
         self.mozilla_contact = user_factory()
         self.reviewer = user_factory()
@@ -192,7 +190,6 @@ class TestEmailReplySaving(TestCase):
             _addon=self.app, _version=self.app.current_version,
             read_permission_reviewer=True)
 
-        self.create_switch('comm-dashboard')
         self.token = CommunicationThreadToken.objects.create(
             thread=t, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')

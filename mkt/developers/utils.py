@@ -4,11 +4,9 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.urlresolvers import reverse
 from django.template.defaultfilters import filesizeformat
 
 import commonware.log
-import waffle
 from PIL import Image
 from tower import ugettext as _
 
@@ -17,8 +15,6 @@ from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
-from mkt.reviewers.utils import send_reviewer_mail
-from mkt.site.helpers import absolutify
 from mkt.site.utils import ImageCheck
 from mkt.users.models import UserProfile
 
@@ -128,7 +124,7 @@ def check_upload(file_obj, upload_type, content_type):
     return errors, upload_hash
 
 
-def escalate_app(app, version, user, msg, email_template, log_type):
+def escalate_app(app, version, user, msg, log_type):
     # Add to escalation queue
     EscalationQueue.objects.get_or_create(addon=app)
 
@@ -141,22 +137,10 @@ def escalate_app(app, version, user, msg, email_template, log_type):
             details={'comments': msg})
     log.info(u'[app:%s] escalated - %s' % (app.name, msg))
 
-    # Special senior reviewer email.
-    if not waffle.switch_is_active('comm-dashboard'):
-        context = {'name': app.name,
-                   'review_url': absolutify(reverse('reviewers.apps.review',
-                                                    args=[app.app_slug])),
-                   'SITE_URL': settings.SITE_URL}
-        send_reviewer_mail(
-            u'%s: %s' % (msg, app.name),
-            email_template, context,
-            [settings.REVIEW_ESCALATION_EMAIL])
-
 
 def handle_vip(addon, version, user):
     escalate_app(
         addon, version, user, u'VIP app updated',
-        'developers/emails/vip_escalation.ltxt',
         mkt.LOG.ESCALATION_VIP_APP)
 
 
@@ -169,5 +153,4 @@ def escalate_prerelease_permissions(app, validation, version):
         nobody = UserProfile.objects.get(email=settings.NOBODY_EMAIL_ADDRESS)
         escalate_app(
             app, version, nobody, 'App uses prerelease permissions',
-            'developers/emails/prerelease_escalation.ltxt',
             mkt.LOG.ESCALATION_PRERELEASE_APP)
