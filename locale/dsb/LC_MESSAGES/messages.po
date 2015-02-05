@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-05 17:20+0000\n"
+"PO-Revision-Date: 2015-02-05 19:57+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423156831.0\n"
+"X-POOTLE-MTIME: 1423166258.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3622,7 +3622,7 @@ msgstr "Wuwijarske mě"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:67
 msgid "App URL"
-msgstr ""
+msgstr "URL nałoženja"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47 mkt/submit/templates/submit/details.html:69
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
@@ -3662,7 +3662,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:136
 msgid "Description"
-msgstr ""
+msgstr "Wopisanje"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
@@ -3670,7 +3670,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
@@ -3695,7 +3695,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
-msgstr ""
+msgstr "Startowa bok"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
 msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
@@ -3725,7 +3725,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
-msgstr ""
+msgstr "Rěc"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
