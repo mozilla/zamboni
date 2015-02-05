@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-02-05 07:08+0000\n"
+"PO-Revision-Date: 2015-02-05 07:11+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423120121.0\n"
+"X-POOTLE-MTIME: 1423120270.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1496,7 +1496,7 @@ msgstr "封存"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr "此應用程式需要 'ArchiveReader' API。"
+msgstr "此應用程式需要 `ArchiveReader` API。"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -1544,7 +1544,7 @@ msgstr "閒置"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr "此應用程式需要平台支援 'addIdleObserver' API。"
+msgstr "此應用程式需要平台支援 `addIdleObserver` API。"
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -1600,7 +1600,7 @@ msgstr "震動"
 
 #: mkt/constants/features.py:129
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr "這個應用程式需要一個支援震動功能 ( `navigator.vibrate` API) 的裝置。"
+msgstr "這個應用程式需要支援震動功能（`navigator.vibrate` API）的裝置。"
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
@@ -1806,7 +1806,7 @@ msgstr "Mobile ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr "此應用程式需要能夠存取 'navigator.getMobileIdAssertion' API。"
+msgstr "此應用程式需要能夠存取 `navigator.getMobileIdAssertion` API。"
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
@@ -2887,7 +2887,7 @@ msgstr "過濾交易"
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] "找到{num}個交易"
+msgstr[0] "找到 {num} 筆交易"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -5482,7 +5482,7 @@ msgstr "這個使用者還沒有購買任何應用程式。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
-msgstr "附加元件搜尋結果: "
+msgstr "帳號搜尋結果: "
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
