@@ -7,16 +7,15 @@ from mkt.files.utils import WebAppParser
 
 
 class LanguagePackParser(WebAppParser):
+    langpacks_allowed = True
+
     def __init__(self, instance=None):
         self.instance = instance
 
     def parse(self, upload):
         """Parse the FileUpload passed in argument and return langpack data.
         May raise forms.ValidationError()"""
-        # At the moment, we don't care about most of the manifest for
-        # langpacks so we simply extract the minimum we require ; in the future
-        # we might want to call the parent's parse() method and have a way to
-        # deal with extra stuff in the child.
+        output = super(LanguagePackParser, self).parse(upload)
         data = self.get_json_data(upload)
 
         if data.get('role') != 'langpack':
@@ -54,9 +53,11 @@ class LanguagePackParser(WebAppParser):
                 _(u'Your language pack version must be different to the one '
                   u'you are replacing.'))
 
-        output = {
+        # We don't really care about the base fields from the parent, but it
+        # helps tests.
+        output.update({
             'language': languages_provided[0],
             'fxos_version': languages_target[0],
             'version': version,
-        }
+        })
         return output

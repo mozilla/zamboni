@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
+import json
+
+from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
+
 import commonware.log
 
 import lib.iarc
 import mkt
+from mkt.site.utils import JSONEncoder
 from mkt.translations.utils import find_language
 
 
@@ -79,3 +85,57 @@ def iarc_get_app_info(app):
 
     # Handle response.
     return lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
+
+
+def get_cached_minifest(app_or_langpack, force=False):
+    """
+    Create a "mini" manifest for a packaged app or langpack and cache it (Call
+    with `force=True` to bypass existing cache).
+
+    Note that platform expects name/developer/locales to match the data from
+    the real manifest in the package, so it needs to be read from the zip file.
+    """
+    cache_key = '{0}:{1}:manifest'.format(app_or_langpack._meta.model_name,
+                                          app_or_langpack.pk)
+
+    if not force:
+        data = cache.get(cache_key)
+        if data:
+            return data
+
+    sign_if_packaged = getattr(app_or_langpack, 'sign_if_packaged', None)
+    if sign_if_packaged is None:
+        # Langpacks are already signed when we generate the manifest and have
+        # a file_path attribute.
+        signed_file_path = app_or_langpack.file_path
+    else:
+        # sign_if_packaged() will return the signed path. But to call it, we
+        # need a current version. If we don't have one, return an empty
+        # manifest, bypassing caching so that when a version does become
+        # available it can get picked up correctly.
+        if not app_or_langpack.current_version:
+            return '{}'
+        signed_file_path = sign_if_packaged()
+
+    manifest = app_or_langpack.get_manifest_json()
+    package_path = app_or_langpack.get_package_path()
+
+    data = {
+        'size': storage.size(signed_file_path),
+        'package_path': package_path,
+    }
+    if hasattr(app_or_langpack, 'current_version'):
+        data['version'] = app_or_langpack.current_version.version
+        data['release_notes'] = app_or_langpack.current_version.releasenotes
+    else:
+        # LangPacks have no version model, the version number is an attribute
+        # and they don't have release notes.
+        data['version'] = app_or_langpack.version
+
+    for key in ['developer', 'icons', 'locales', 'name']:
+        if key in manifest:
+            data[key] = manifest[key]
+
+    data = json.dumps(data, cls=JSONEncoder)
+    cache.set(cache_key, data, None)
+    return data
