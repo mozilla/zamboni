@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import re
 import time
 from datetime import datetime, timedelta
 from itertools import cycle
@@ -30,7 +31,6 @@ import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
-from mkt.access.models import Group
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
@@ -99,10 +99,12 @@ class AppReviewerTest(mkt.site.tests.TestCase):
         self.grant_permission(self.reviewer_user, 'Apps:Review')
         self.snr_reviewer_user = user_factory(username='snrreviewer')
         self.grant_permission(self.snr_reviewer_user, 'Apps:Review,Apps:Edit,'
-                              'Apps:ReviewEscalated,Apps:ReviewPrivileged')
+                              'Apps:ReviewEscalated,Apps:ReviewPrivileged',
+                              name='Senior App Reviewers')
         self.admin_user = user_factory(username='admin')
         self.grant_permission(self.admin_user, '*:*')
         self.regular_user = user_factory(username='regular')
+        self.contact_user = user_factory(username='contact')
         self.login_as_editor()
 
     def login_as_admin(self):
@@ -417,7 +419,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         RereviewQueue.objects.create(addon=self.apps[2])
 
-        self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_pending')
 
     def tearDown(self):
@@ -655,7 +656,6 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp, 'webapp')
 
-        self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_rereview')
 
     def tearDown(self):
@@ -812,7 +812,6 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         file_kw={'status': mkt.STATUS_PENDING})
 
         self.apps = list(Webapp.objects.order_by('id'))
-        self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_updates')
 
     def tearDown(self):
@@ -1292,21 +1291,39 @@ class TestReviewTransaction(AttachmentManagementMixin,
 
 
 class TestReviewMixin(object):
+    # E.g commreply+12e0caffc4ca4174a6f62300c0ff180a@marketplace.firefox.com .
+    COMM_REPLY_RE = r'^commreply\+[a-f0-9]+\@marketplace\.firefox\.com$'
 
     def post(self, data, queue='pending'):
         res = self.client.post(self.url, data)
         self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
 
-    def _check_email(self, msg, subject, with_mozilla_contact=True):
-        eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
-        moz_contacts = [u'']
-        if with_mozilla_contact and self.mozilla_contact:
-            moz_contacts = [x.strip()
-                            for x in self.mozilla_contact.split(u',')]
-        eq_(msg.cc, moz_contacts)
-        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
+    def _check_email(self, msg, subject, to=None):
+        if to:
+            eq_(msg.to, to)
+        else:
+            eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
+        assert re.match(self.COMM_REPLY_RE, msg.extra_headers['Reply-To'])
+
+        eq_(msg.cc, [])
         eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
-        eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
+
+        if subject:
+            eq_(msg.subject, '%s: %s' % (subject, self.app.name))
+
+    def _get_mail(self, email):
+        return filter(lambda x: x.to[0].startswith(email), mail.outbox)[0]
+
+    def _check_email_dev_and_contact(self, subject, outbox_len=2):
+        """
+        Helper for checking developer and Mozilla contact get emailed.
+        """
+        eq_(len(mail.outbox), outbox_len)
+        # Developer.
+        self._check_email(self._get_mail('steamcube'), subject)
+        # Mozilla contact.
+        self._check_email(self._get_mail('contact'), subject,
+                          to=[self.mozilla_contact])
 
     def _check_thread(self):
         thread = self.app.threads
@@ -1318,13 +1335,9 @@ class TestReviewMixin(object):
         for key in perms:
             assert getattr(thread, 'read_permission_%s' % key)
 
-    def _check_admin_email(self, msg, subject):
-        eq_(msg.to, [settings.REVIEW_ESCALATION_EMAIL])
-        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
-        eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
-        eq_(msg.extra_headers['Reply-To'], settings.MKT_REVIEWERS_EMAIL)
-
-    def _check_email_body(self, msg):
+    def _check_email_body(self, msg=None):
+        if not msg:
+            msg = mail.outbox[0]
         body = msg.message().as_string()
         url = self.app.get_url_path()
         assert url in body, 'Could not find apps detail URL in %s' % msg
@@ -1347,7 +1360,6 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
-
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
         self.app = mkt.site.tests.make_game(self.app, True)
@@ -1439,10 +1451,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(set([o.id for o in app.device_types]),
             set([mkt.DEVICE_DESKTOP.id, mkt.DEVICE_TABLET.id]))
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_w_requirements_overrides(self, storefront_mock):
@@ -1501,6 +1511,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(self.get_app().status, mkt.STATUS_NULL)
 
     def test_notification_email_translation(self):
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=1127790
+        raise SkipTest
         """Test that the app name is translated with the app's default_locale
         and not the reviewer's when we are sending notification emails."""
         original_name = unicode(self.app.name)
@@ -1518,7 +1530,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.client.post(self.url, data, HTTP_ACCEPT_LANGUAGE='es')
         eq_(translation.get_language(), 'es')
 
-        eq_(len(mail.outbox), 1)
+        eq_(len(mail.outbox), 2)
         msg = mail.outbox[0]
 
         assert original_name not in msg.subject
@@ -1550,9 +1562,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
         eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved', with_mozilla_contact=False)
-        self._check_email_body(msg)
+        self._check_email(mail.outbox[0], ('Approved'))
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         assert storefront_mock.called
@@ -1567,10 +1578,10 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
-        dev_msg = mail.outbox[0]
-        self._check_email(dev_msg, 'Submission Update')
-        adm_msg = mail.outbox[1]
-        self._check_admin_email(adm_msg, 'Escalated Review Requested')
+        self._check_email(self._get_mail('steamcube'), 'Escalated')
+        self._check_email(
+            self._get_mail('snrreviewer'), 'Escalated',
+            to=[self.snr_reviewer_user.email])
 
         eq_(messages.call_args_list[0][0][1], 'Review successfully processed.')
 
@@ -1586,8 +1597,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(app.status, mkt.STATUS_DISABLED)
         eq_(app.latest_version.files.all()[0].status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.APP_DISABLED)
-        eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App banned by reviewer')
+        self._check_email_dev_and_contact('Banned')
 
     def test_pending_to_disable(self):
         # Only senior reviewers can ban apps.
@@ -1615,10 +1625,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(mkt.LOG.APPROVE_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
 
         assert storefront_mock.called
 
@@ -1636,10 +1644,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(mkt.LOG.REJECT_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
     def test_escalation_to_disable_senior_reviewer(self):
@@ -1655,8 +1661,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(app.latest_version.files.all()[0].status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
-        eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App banned by reviewer')
+        self._check_email_dev_and_contact('Banned')
 
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
@@ -1680,8 +1685,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data, queue='escalated')
         eq_(EscalationQueue.objects.count(), 0)
         self._check_log(mkt.LOG.ESCALATION_CLEARED)
-        # Ensure we don't send email on clearing escalations.
-        eq_(len(mail.outbox), 0)
+        # Ensure we don't send email to developer on clearing escalations.
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
 
     def test_rereview_to_reject(self):
         RereviewQueue.objects.create(addon=self.app)
@@ -1695,10 +1701,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(mkt.LOG.REJECT_VERSION)
         eq_(RereviewQueue.objects.count(), 0)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_disable_senior_reviewer(self):
@@ -1714,8 +1718,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(self.get_app().status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.APP_DISABLED)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
-        eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App banned by reviewer')
+        self._check_email_dev_and_contact('Banned')
 
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
@@ -1739,8 +1742,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(mkt.LOG.REREVIEW_CLEARED)
-        # Ensure we don't send email on clearing re-reviews.
-        eq_(len(mail.outbox), 0)
+        # Ensure we don't send emails to the developer on clearing re-reviews.
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
         self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_clear_rereview_unlisted(self):
@@ -1752,8 +1756,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(mkt.LOG.REREVIEW_CLEARED)
-        # Ensure we don't send email on clearing re-reviews.
-        eq_(len(mail.outbox), 0)
+        # Ensure we don't send emails to the developer on clearing re-reviews.
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
         self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_escalation(self):
@@ -1765,10 +1770,10 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(mkt.LOG.ESCALATE_MANUAL)
         # Test 2 emails: 1 to dev, 1 to admin.
         eq_(len(mail.outbox), 2)
-        dev_msg = mail.outbox[0]
-        self._check_email(dev_msg, 'Submission Update')
-        adm_msg = mail.outbox[1]
-        self._check_admin_email(adm_msg, 'Escalated Review Requested')
+        self._check_email(self._get_mail('steamcube'), 'Escalated')
+        self._check_email(
+            self._get_mail('snrreviewer'), 'Escalated',
+            to=[self.snr_reviewer_user.email])
 
     def test_more_information(self):
         # Test the same for all queues.
@@ -1780,28 +1785,32 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         vqs = self.get_app().versions.all()
         eq_(vqs.count(), 1)
         eq_(vqs.filter(has_info_request=True).count(), 1)
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'More information needed to review')
+        self._check_email_dev_and_contact('More information requested')
 
     def test_multi_cc_email(self):
         # Test multiple mozilla_contact emails via more information.
-        contacts = [u'á@b.com', u'ç@d.com']
+        contacts = [user_factory(username=u'á').email,
+                    user_factory(username=u'ç').email]
         self.mozilla_contact = ', '.join(contacts)
         self.app.update(mozilla_contact=self.mozilla_contact)
         data = {'action': 'info', 'comments': 'Knead moor in faux'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'More information needed to review')
+        eq_(len(mail.outbox), 3)
+        subject = 'More information requested'
+        self._check_email(self._get_mail('steamcube'), subject)
+        self._check_email(self._get_mail(contacts[0]), subject,
+                          to=[contacts[0]])
+        self._check_email(self._get_mail(contacts[1]), subject,
+                          to=[contacts[1]])
 
     def test_comment(self):
         # Test the same for all queues.
         data = {'action': 'comment', 'comments': 'mmm, nice app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
-        eq_(len(mail.outbox), 0)
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
         self._check_log(mkt.LOG.COMMENT_VERSION)
 
     def test_receipt_no_node(self):
@@ -1972,61 +1981,6 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(save_mock.call_args_list[0],
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
-    def test_attachment_email(self, save_mock):
-        """
-        Test that a single attachment is included as an attachment in
-        notification emails.
-        """
-        self.post(self._attachment_form_data(num=1, action='escalate'))
-        eq_(len(mail.outbox[0].attachments), 1,
-            'Review attachment not added to email')
-        for attachment in mail.outbox[0].attachments:
-            self.assertNotEqual(len(attachment), 0, '0-length attachment')
-        eq_(save_mock.call_args_list[0],
-            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
-    def test_attachment_email_multiple(self, save_mock):
-        """
-        Test that mutliple attachments are included as attachments in
-        notification emails.
-        """
-        self.post(self._attachment_form_data(num=2, action='reject'))
-        eq_(len(mail.outbox[0].attachments), 2,
-            'Review attachments not added to email')
-        eq_(save_mock.call_args_list[0],
-            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
-    def test_attachment_email_escalate(self, save_mock):
-        """
-        Test that attachments are included as attachments in an `escalate`
-        review, which uses a different mechanism for notification email
-        sending.
-        """
-        self.post(self._attachment_form_data(num=1, action='escalate'))
-        eq_(len(mail.outbox[0].attachments), 1,
-            'Review attachment not added to email')
-        eq_(save_mock.call_args_list[0],
-            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
-    def test_attachment_email_requestinfo(self, save_mock):
-        """
-        Test that attachments are included as attachments in an `info` review,
-        which uses a different mechanism for notification email sending.
-        """
-        self.post(self._attachment_form_data(num=1, action='info'))
-        eq_(len(mail.outbox[0].attachments), 1,
-            'Review attachment not added to email')
-        eq_(save_mock.call_args_list[0],
-            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
-
     def test_idn_app_domain(self):
         response = self.client.get(self.url)
         assert 'IDN domain!' not in response.content
@@ -2164,10 +2118,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         self._check_log(mkt.LOG.APPROVE_VERSION)
         self._check_message(messages)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         eq_(update_name.call_count, 0)  # Not a packaged app.
@@ -2196,10 +2148,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but unlisted')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
         self._check_message(messages)
 
@@ -2231,10 +2181,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
         self._check_message(messages)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         # The app is not private but can still be installed by team members,
@@ -2266,10 +2214,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         self._check_log(mkt.LOG.REJECT_VERSION)
         self._check_message(messages)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
         eq_(update_name.call_count, 0)  # Not a packaged app.
@@ -2333,10 +2279,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
@@ -2366,10 +2310,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but unlisted')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
@@ -2399,10 +2341,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(self.file.reload().status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
@@ -2430,10 +2370,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(app.status, mkt.STATUS_REJECTED)
         eq_(self.file.reload().status, mkt.STATUS_DISABLED)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
@@ -2480,10 +2418,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_PACKAGED)
         self._check_message(messages)
 
@@ -2553,10 +2489,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2589,10 +2523,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2623,10 +2555,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2659,10 +2589,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2693,10 +2621,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
         self._check_log(mkt.LOG.APPROVE_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2729,10 +2655,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_APPROVED)
         self._check_log(mkt.LOG.APPROVE_VERSION_PRIVATE)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'App approved but private')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Approved but private')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2764,10 +2688,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2799,10 +2721,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -2834,10 +2754,8 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
-        eq_(len(mail.outbox), 1)
-        msg = mail.outbox[0]
-        self._check_email(msg, 'Your submission has been rejected')
-        self._check_email_body(msg)
+        self._check_email_dev_and_contact('Rejected')
+        self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_UPDATE)
         self._check_message(messages)
 
@@ -3102,7 +3020,8 @@ class TestMotd(AppReviewerTest, AccessMixin):
         eq_(get_config(self.key), u'new motd')
 
 
-class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
+class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
+                        TestReviewMixin):
     """
     Integration test that notes are created and that emails are
     sent to the right groups of people.
@@ -3110,13 +3029,12 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
     def setUp(self):
         super(TestReviewAppComm, self).setUp()
-        self.create_switch('comm-dashboard', db=True)
         self.app = app_factory(rated=True, status=mkt.STATUS_PENDING,
                                mozilla_contact='contact@mozilla.com')
-        self.app.addonuser_set.create(user=user_factory(username='dev'))
+        self.app.addonuser_set.create(user=user_factory(username='steamcube'))
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
-        self.contact = user_factory(username='contact')
+        self.mozilla_contact = 'contact@mozilla.com'
 
     def _post(self, data, queue='pending'):
         res = self.client.post(self.url, data)
@@ -3127,32 +3045,6 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         thread = self.app.threads.all()[0]
         eq_(thread.notes.count(), 1)
         return thread.notes.all()[0]
-
-    def _check_email(self, msg, subject=None, to=None):
-        if to:
-            eq_(msg.to, to)
-        else:
-            eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
-
-        eq_(msg.cc, [])
-        eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
-
-        if subject:
-            eq_(msg.subject, '%s: %s' % (subject, self.app.name))
-
-    def _get_mail(self, username):
-        return filter(lambda x: x.to[0].startswith(username),
-                      mail.outbox)[0]
-
-    def _check_email_dev_and_contact(self, outbox_len=2):
-        """
-        Helper for checking developer and Mozilla contact get emailed.
-        """
-        eq_(len(mail.outbox), outbox_len)
-        # Developer.
-        self._check_email(self._get_mail('dev'))
-        # Mozilla contact.
-        self._check_email(self._get_mail('contact'), to=[self.contact.email])
 
     def test_email_cc(self):
         """
@@ -3167,7 +3059,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         self._post(data)
 
         # Test emails.
-        self._check_email_dev_and_contact(outbox_len=5)
+        self._check_email_dev_and_contact(None, outbox_len=5)
 
         # Some person who joined the thread.
         self._check_email(
@@ -3187,7 +3079,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(note.body, 'gud jerb')
 
         # Test emails.
-        self._check_email_dev_and_contact()
+        self._check_email_dev_and_contact(None)
 
     def test_reject(self):
         """
@@ -3203,7 +3095,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(note.body, 'rubesh')
 
         # Test emails.
-        self._check_email_dev_and_contact()
+        self._check_email_dev_and_contact(None)
 
     def test_info(self):
         """
@@ -3219,16 +3111,12 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(note.body, 'huh')
 
         # Test emails.
-        self._check_email_dev_and_contact()
+        self._check_email_dev_and_contact(None)
 
     def test_escalate(self):
         """
         On escalation, send an email to senior reviewers and developer.
         """
-        admin = user_factory()
-        group = Group.objects.create(name='Senior App Reviewers')
-        group.groupuser_set.create(user=admin)
-
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
         self._post(data)
@@ -3241,8 +3129,9 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         # Test emails.
         eq_(len(mail.outbox), 2)
         self._check_email(  # Senior reviewer.
-            mail.outbox[0], 'Escalated', to=[admin.email])
-        self._check_email(self._get_mail('dev'))
+            self._get_mail(self.snr_reviewer_user.username), 'Escalated',
+            to=[self.snr_reviewer_user.email])
+        self._check_email(self._get_mail('steamcube'), 'Escalated')
 
     def test_comment(self):
         """
@@ -3260,9 +3149,8 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         # Test emails.
         eq_(len(mail.outbox), 1)
 
-        self._check_email(
-            mail.outbox[0], 'Private reviewer comment',
-            to=[self.contact.email])
+        self._check_email(mail.outbox[0], 'Private reviewer comment',
+                          to=[self.mozilla_contact])
 
     def test_disable(self):
         """
@@ -3279,7 +3167,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(note.body, 'u dun it')
 
         # Test emails.
-        self._check_email_dev_and_contact()
+        self._check_email_dev_and_contact(None)
 
     def test_attachments(self):
         data = {'action': 'comment', 'comments': 'huh'}
@@ -3330,7 +3218,6 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
                                              editorreview=True)
         ReviewFlag.objects.create(review=self.review2, flag=ReviewFlag.SUPPORT,
                                   user=user2)
-
         self.login(self.moderator_user)
 
     def _post(self, action):
@@ -4104,7 +3991,6 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
         self.app = self.addon = app_factory()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.login('editor@mozilla.com')
-        self.create_switch('comm-dashboard')
         self._thread_factory()
 
     def test_comm_url(self):

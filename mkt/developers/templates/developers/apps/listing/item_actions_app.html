@@ -94,12 +94,10 @@
     <a class="action-link" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
   </li>
 
-  {% if waffle.switch('comm-dashboard') %}
-    <li>
-      <a class="action-link" href="{{ addon.get_comm_thread_url() }}">
-        {{ _('Messages') }}</a>
-    </li>
-  {% endif %}
+  <li>
+    <a class="action-link" href="{{ addon.get_comm_thread_url() }}">
+      {{ _('Messages') }}</a>
+  </li>
 
   <li>
     <a class="action-link" href="{{ addon.get_stats_url() }}">{{ _('Statistics') }}</a>

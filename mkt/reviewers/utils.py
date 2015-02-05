@@ -4,13 +4,10 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.utils import translation
 from django.utils.datastructures import SortedDict
 
 import commonware.log
-import waffle
 from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
@@ -22,12 +19,10 @@ from mkt.constants.features import FeatureProfile
 from mkt.files.models import File
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
-from mkt.site.helpers import absolutify, product_as_dict
-from mkt.site.mail import send_mail_jinja
+from mkt.site.helpers import product_as_dict
 from mkt.site.models import manual_order
 from mkt.site.utils import cached_property, JSONEncoder
 from mkt.translations.query import order_by_translation
-from mkt.translations.utils import to_language
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.indexers import WebappIndexer
@@ -35,20 +30,6 @@ from mkt.webapps.tasks import set_storefront_data
 
 
 log = commonware.log.getLogger('z.mailer')
-
-
-def send_reviewer_mail(subject, template, context, emails, perm_setting=None,
-                       cc=None, attachments=None, reply_to=None):
-    if not reply_to:
-        reply_to = settings.MKT_REVIEWERS_EMAIL
-
-    # Link to our newfangled "Account Settings" page.
-    manage_url = absolutify('/settings') + '#notifications'
-    send_mail_jinja(subject, template, context, recipient_list=emails,
-                    from_email=settings.MKT_REVIEWERS_EMAIL,
-                    use_blocked=False, perm_setting=perm_setting,
-                    manage_url=manage_url, headers={'Reply-To': reply_to},
-                    cc=cc, attachments=attachments)
 
 
 class ReviewBase(object):
@@ -146,57 +127,12 @@ class ReviewBase(object):
             return 'Tested with %s' % browsers
         return ''
 
-    def notify_email(self, template, subject, fresh_thread=False):
-        """Notify the authors that their app has been reviewed."""
-        if waffle.switch_is_active('comm-dashboard'):
-            # Communication dashboard uses send_mail_comm.
-            return
-
-        data = self.data.copy()
-        data.update(self.get_context_data())
-        data['tested'] = self.get_tested()
-
-        emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.get_mozilla_contacts()
-
-        log.info(u'Sending email for %s' % self.addon)
-        send_reviewer_mail(
-            subject % data['name'],
-            'reviewers/emails/decisions/%s.txt' % template, data,
-            emails, perm_setting='app_reviewed', cc=cc_email,
-            attachments=self.get_attachments())
-
-    def get_context_data(self):
-        # We need to display the name in some language that is relevant to the
-        # recipient(s) instead of using the reviewer's. addon.default_locale
-        # should work.
-        if self.addon.name.locale != self.addon.default_locale:
-            lang = to_language(self.addon.default_locale)
-            with translation.override(lang):
-                app = Webapp.objects.get(id=self.addon.id)
-        else:
-            app = self.addon
-        return {'name': app.name,
-                'reviewer': self.request.user.name,
-                'detail_url': absolutify(
-                    app.get_url_path()),
-                'review_url': absolutify(reverse('reviewers.apps.review',
-                                                 args=[app.app_slug])),
-                'status_url': absolutify(app.get_dev_url('versions')),
-                'comments': self.data['comments'],
-                'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
-                'SITE_URL': settings.SITE_URL}
-
     def request_information(self):
         """Send a request for information to the authors."""
-        emails = list(self.addon.authors.values_list('email', flat=True))
         self.create_note(mkt.LOG.REQUEST_INFORMATION)
         self.version.update(has_info_request=True)
-        log.info(u'Sending request for information for %s to %s' %
-                 (self.addon, emails))
-
-        # Create thread.
-        self.notify_email('info', u'More information needed to review: %s')
+        log.info(u'Sending request for information for %s to authors' %
+                 (self.addon))
 
 
 class ReviewApp(ReviewBase):
@@ -273,8 +209,6 @@ class ReviewApp(ReviewBase):
         self.set_reviewed()
 
         self.create_note(mkt.LOG.APPROVE_VERSION_PRIVATE)
-        self.notify_email('pending_to_approved',
-                          u'App approved but private: %s')
 
         log.info(u'Making %s approved' % self.addon)
 
@@ -297,11 +231,6 @@ class ReviewApp(ReviewBase):
         set_storefront_data.delay(self.addon.pk)
 
         self.create_note(mkt.LOG.APPROVE_VERSION)
-        if status == mkt.STATUS_PUBLIC:
-            self.notify_email('pending_to_public', u'App approved: %s')
-        elif status == mkt.STATUS_UNLISTED:
-            self.notify_email('pending_to_unlisted',
-                              u'App approved but unlisted: %s')
 
         log.info(u'Making %s public' % self.addon)
 
@@ -309,7 +238,7 @@ class ReviewApp(ReviewBase):
         """
         Reject an app.
         Changes status to Rejected.
-        Creates Rejection note/email.
+        Creates Rejection note.
         """
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -330,8 +259,6 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.create_note(mkt.LOG.REJECT_VERSION)
-        self.notify_email('pending_to_reject',
-                          u'Your submission has been rejected: %s')
 
         log.info(u'Making %s disabled' % self.addon)
 
@@ -343,28 +270,17 @@ class ReviewApp(ReviewBase):
         """
         Ask for escalation for an app (EscalationQueue).
         Doesn't change status.
-        Creates Escalation note/email.
+        Creates Escalation note.
         """
         EscalationQueue.objects.get_or_create(addon=self.addon)
         self.create_note(mkt.LOG.ESCALATE_MANUAL)
         log.info(u'Escalated review requested for %s' % self.addon)
-        self.notify_email('author_super_review', u'Submission Update: %s')
-        log.info(u'Escalated review requested for %s' % self.addon)
-
-        # Special senior reviewer email.
-        if not waffle.switch_is_active('comm-dashboard'):
-            data = self.get_context_data()
-            send_reviewer_mail(
-                u'Escalated Review Requested: %s' % data['name'],
-                'reviewers/emails/super_review.txt', data,
-                [settings.REVIEW_ESCALATION_EMAIL],
-                attachments=self.get_attachments())
 
     def process_comment(self):
         """
         Editor comment (not visible to developer).
         Doesn't change status.
-        Creates Reviewer Comment note/email.
+        Creates Reviewer Comment note.
         """
         self.version.update(has_editor_comment=True)
         self.create_note(mkt.LOG.COMMENT_VERSION)
@@ -373,7 +289,7 @@ class ReviewApp(ReviewBase):
         """
         Clear app from escalation queue.
         Doesn't change status.
-        Doesn't create note/email.
+        Creates Reviewer-only note.
         """
         EscalationQueue.objects.filter(addon=self.addon).delete()
         self.create_note(mkt.LOG.ESCALATION_CLEARED)
@@ -383,7 +299,7 @@ class ReviewApp(ReviewBase):
         """
         Clear app from re-review queue.
         Doesn't change status.
-        Doesn't create note/email.
+        Creates Reviewer-only note.
         """
         RereviewQueue.objects.filter(addon=self.addon).delete()
         self.create_note(mkt.LOG.REREVIEW_CLEARED)
@@ -396,7 +312,7 @@ class ReviewApp(ReviewBase):
         """
         Bans app from Marketplace, clears app from all queues.
         Changes status to Disabled.
-        Creates Banned/Disabled note/email.
+        Creates Banned/Disabled note.
         """
         if not acl.action_allowed(self.request, 'Apps', 'Edit'):
             return
@@ -413,7 +329,6 @@ class ReviewApp(ReviewBase):
 
         set_storefront_data.delay(self.addon.pk, disable=True)
 
-        self.notify_email('disabled', u'App banned by reviewer: %s')
         self.create_note(mkt.LOG.APP_DISABLED)
         log.info(u'App %s has been banned by a reviewer.' % self.addon)
 

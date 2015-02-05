@@ -29,16 +29,10 @@
 {% do urls.append((addon.get_url_path(), _('View Listing'))) %}
 
 
-{% set other_urls = [] %}
-{% if waffle.switch('comm-dashboard') %}
-  {% do other_urls.append(
-    (addon.get_comm_thread_url(), _('Messages'))
-  ) %}
-{% endif %}
-
-{% do other_urls.append(
+{% set other_urls = [
+  (addon.get_comm_thread_url(), _('Messages')),
   (addon.get_stats_url(), _('Statistics'))
-) %}
+] %}
 
 {% if waffle.switch('view-transactions') %}
   {% do other_urls.append(
