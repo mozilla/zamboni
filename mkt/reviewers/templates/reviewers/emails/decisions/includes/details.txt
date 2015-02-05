@@ -1,9 +1,0 @@
-{% if comments %}
-Reviewer comments {% if waffle.switch('comm-dashboard') %} - {{ ('/comm/thread/' + thread_id)|absolutify }} {% endif %}
-
-{{ comments }}
-{% endif %}
-
-{% if tested %}
-{{ tested }}
-{% endif %}

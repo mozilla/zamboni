@@ -257,7 +257,6 @@ class TestThreadList(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestThreadList, self).setUp()
-        self.create_switch('comm-dashboard')
         self.addon = Webapp.objects.get(pk=337141)
         self.list_url = reverse('comm-thread-list')
 
@@ -311,7 +310,6 @@ class TestThreadList(RestOAuth, CommTestMixin):
              {'id': thread1.id, 'version__version': version1.version}])
 
     def test_create(self):
-        self.create_switch('comm-dashboard')
         version_factory(addon=self.addon, version='1.1')
         data = {
             'app': self.addon.app_slug,
@@ -331,8 +329,6 @@ class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
 
     def setUp(self):
         super(NoteSetupMixin, self).setUp()
-        self.create_switch('comm-dashboard')
-
         self.addon = Webapp.objects.get(pk=337141)
         self.version = self.addon.current_version
         self.thread = self._thread_factory(

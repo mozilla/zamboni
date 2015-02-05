@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils import translation
 
-import waffle
 from email_reply_parser import EmailReplyParser
 
 import mkt
@@ -34,8 +33,6 @@ def send_mail_comm(note):
     Given a note (its actions and permissions), recipients are determined and
     emails are sent to appropriate people.
     """
-    if not waffle.switch_is_active('comm-dashboard'):
-        return
     log.info(u'Sending emails for %s' % note.thread.addon)
 
     if note.note_type in comm.EMAIL_SENIOR_REVIEWERS_AND_DEV:
@@ -285,5 +282,8 @@ def get_developers(note):
 
 
 def get_senior_reviewers():
-    return list(Group.objects.get(name='Senior App Reviewers')
-                             .users.values_list('id', 'email'))
+    try:
+        return list(Group.objects.get(name='Senior App Reviewers')
+                                 .users.values_list('id', 'email'))
+    except Group.DoesNotExist:
+        return []

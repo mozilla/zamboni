@@ -169,7 +169,6 @@ class TestAppDashboard(AppHubTest):
             'Pending Version: 1.24')
 
     def test_action_links(self):
-        self.create_switch('comm-dashboard')
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,

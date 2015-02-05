@@ -1508,8 +1508,6 @@ class TestEditVersion(TestEdit):
         return version
 
     def test_approval_notes_comm_thread(self):
-        self.create_switch('comm-dashboard')
-
         # With empty note.
         self.test_post(approvalnotes='')
         eq_(CommunicationNote.objects.count(), 0)

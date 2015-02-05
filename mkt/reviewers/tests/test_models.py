@@ -2,7 +2,6 @@
 import time
 from datetime import datetime
 
-from django.conf import settings
 from django.core import mail
 
 import mock
@@ -15,7 +14,7 @@ from mkt.constants import comm
 from mkt.comm.models import CommunicationNote
 from mkt.reviewers.models import (
     AdditionalReview, QUEUE_TARAKO, RereviewQueue, ReviewerScore,
-    send_tarako_mail, tarako_failed, tarako_passed)
+    tarako_failed, tarako_passed)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import user_factory
 from mkt.tags.models import Tag
@@ -449,8 +448,6 @@ class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
     def setUp(self):
         super(TestTarakoFunctions, self).setUp()
         self.index = self.patch('mkt.reviewers.models.WebappIndexer.index_ids')
-        self.send_tarako_mail = self.patch(
-            'mkt.reviewers.models.send_tarako_mail')
 
     def tag_exists(self):
         return (self.tag.addons.filter(addon_tags__addon_id=self.app.id)
@@ -466,11 +463,6 @@ class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
         tarako_passed(self.review)
         self.index.assert_called_with([self.app.pk])
 
-    def test_tarako_passed_sends_tarako_mail(self):
-        ok_(not self.send_tarako_mail.called)
-        tarako_passed(self.review)
-        self.send_tarako_mail.assert_called_with(self.review)
-
     def test_tarako_failed_removes_tarako_tag(self):
         self.tag.save_tag(self.app)
         ok_(self.tag_exists(), 'expected the tarako tag')
@@ -482,58 +474,15 @@ class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
         tarako_failed(self.review)
         self.index.assert_called_with([self.app.pk])
 
-    def test_tarako_failed_sends_tarako_mail(self):
-        ok_(not self.send_tarako_mail.called)
-        tarako_failed(self.review)
-        self.send_tarako_mail.assert_called_with(self.review)
-
 
 class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
     def setUp(self):
         super(TestSendTarakoMail, self).setUp()
-        self.send_mail = self.patch('mkt.reviewers.models.send_mail_jinja')
         self.award_additional_review_points = self.patch(
             'mkt.reviewers.models.ReviewerScore.'
             'award_additional_review_points')
 
-    def test_send_tarako_mail_review_passed(self):
-        ok_(not self.send_mail.called)
-        self.review.passed = True
-        send_tarako_mail(self.review)
-        self.send_mail.assert_called_with(
-            'Low-memory devices review passed',
-            'reviewers/emails/tarako_review_complete.txt',
-            {'review': self.review},
-            recipient_list=['steamcube@mozilla.com'],
-            from_email=settings.MKT_REVIEWERS_EMAIL)
-
-    def test_send_tarako_mail_review_failed(self):
-        ok_(not self.send_mail.called)
-        self.review.passed = False
-        send_tarako_mail(self.review)
-        self.send_mail.assert_called_with(
-            'Low-memory devices review failed',
-            'reviewers/emails/tarako_review_complete.txt',
-            {'review': self.review},
-            recipient_list=[u'steamcube@mozilla.com'],
-            from_email=settings.MKT_REVIEWERS_EMAIL)
-
-    def test_send_tarako_mail_passed_comm_dashboard(self):
-        self.create_switch('comm-dashboard')
-        ok_(not self.send_mail.called)
-        self.review.passed = True
-        send_tarako_mail(self.review)
-        ok_(not self.send_mail.called)
-
-    def test_send_tarako_mail_failed_comm_dashboard(self):
-        self.create_switch('comm-dashboard')
-        ok_(not self.send_mail.called)
-        self.review.passed = False
-        send_tarako_mail(self.review)
-        ok_(not self.send_mail.called)
-
     def test_comm_mail_pass(self):
-        self.create_switch('comm-dashboard')
         self.review.passed = True
         self.review.execute_post_review_task()
         ok_(CommunicationNote.objects.filter(
@@ -542,7 +491,6 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         ok_('passed' in mail.outbox[0].body)
 
     def test_comm_mail_fail(self):
-        self.create_switch('comm-dashboard')
         self.review.passed = False
         self.review.execute_post_review_task()
         ok_(CommunicationNote.objects.filter(

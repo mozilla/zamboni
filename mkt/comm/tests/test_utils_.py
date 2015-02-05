@@ -13,7 +13,6 @@ from mkt.site.tests import app_factory, TestCase, user_factory
 class TestCreateCommNote(TestCase, AttachmentManagementMixin):
 
     def setUp(self):
-        self.create_switch('comm-dashboard')
         self.contact = user_factory(username='contact')
         self.user = user_factory()
         self.grant_permission(self.user, '*:*')
