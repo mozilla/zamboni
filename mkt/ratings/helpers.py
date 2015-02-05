@@ -29,12 +29,10 @@ def user_can_delete_review(request, review):
 
     People who can delete reviews:
       * The original review author.
-      * Editors, but only if they aren't listed as an author of the add-on.
+      * Reviewers, but only if they aren't listed as an author of the add-on.
       * Users in a group with "Users:Edit" privileges.
-      * Users in a group with "Addons:Edit" privileges.
+      * Users in a group with "Apps:ModerateReview" privileges.
 
-    TODO: Make this more granular when we have multiple reviewer types, e.g.
-    persona reviewers shouldn't be able to delete add-on reviews.
     """
     is_editor = acl.check_reviewer(request)
     is_author = review.addon.has_author(request.user)
@@ -43,4 +41,4 @@ def user_can_delete_review(request, review):
         not is_author and (
             is_editor or
             acl.action_allowed(request, 'Users', 'Edit') or
-            acl.action_allowed(request, 'Apps', 'Edit')))
+            acl.action_allowed(request, 'Apps', 'ModerateReview')))

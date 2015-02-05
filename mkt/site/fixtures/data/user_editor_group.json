@@ -1,13 +1,5 @@
 [
     {
-        "pk": 259,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50002,
-            "user": 5497308
-        }
-    },
-    {
         "pk": 260,
         "model": "access.groupuser",
         "fields": {
