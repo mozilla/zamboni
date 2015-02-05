@@ -85,7 +85,7 @@ QUEUE_PER_PAGE = 100
 log = commonware.log.getLogger('z.reviewers')
 
 
-def reviewer_required(region=None):
+def reviewer_required(region=None, moderator=False):
     """Requires the user to be logged in as a reviewer or admin, or allows
     someone with rule 'ReviewerTools:View' for GET requests.
 
@@ -94,13 +94,23 @@ def reviewer_required(region=None):
 
         Apps:Review
 
+    moderator=True extends this to users in groups who have the permssion:
+
+        Apps:ModerateReview
+
     """
     def decorator(f):
         @login_required
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            if (acl.check_reviewer(request, region=kw.get('region')) or
-                    _view_on_get(request)):
+            reviewer_perm = acl.check_reviewer(request,
+                                               region=kw.get('region'))
+            moderator_perm = (moderator and
+                              acl.action_allowed(request,
+                                                 'Apps', 'ModerateReview'))
+            view_only = (request.method == 'GET' and
+                         acl.action_allowed(request, 'ReviewerTools', 'View'))
+            if (reviewer_perm or moderator_perm or view_only):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -112,7 +122,7 @@ def reviewer_required(region=None):
         return decorator
 
 
-@reviewer_required
+@reviewer_required(moderator=True)
 def route_reviewer(request):
     """
     Redirect to apps home page if app reviewer.
@@ -120,7 +130,7 @@ def route_reviewer(request):
     return http.HttpResponseRedirect(reverse('reviewers.home'))
 
 
-@reviewer_required
+@reviewer_required(moderator=True)
 def home(request):
     durations = (('new', _('New Apps (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
@@ -134,7 +144,8 @@ def home(request):
         reviews_monthly=ActivityLog.objects.monthly_reviews(webapp=True)[:5],
         progress=progress,
         percentage=percentage,
-        durations=durations
+        durations=durations,
+        full_reviewer=acl.check_reviewer(request)
     )
     return render(request, 'reviewers/home.html', data)
 
@@ -597,7 +608,7 @@ def queue_device(request):
     return _queue(request, apps, 'device')
 
 
-@reviewer_required
+@permission_required([('Apps', 'ModerateReview')])
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
     queues_helper = ReviewersQueuesHelper(request)
@@ -840,7 +851,7 @@ def get_signed_packaged(request, addon, version_id):
                                 etag=file.hash.split(':')[-1])
 
 
-@reviewer_required
+@reviewer_required(moderator=True)
 def performance(request, username=None):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
@@ -881,7 +892,7 @@ def performance(request, username=None):
     return render(request, 'reviewers/performance.html', ctx)
 
 
-@reviewer_required
+@reviewer_required(moderator=True)
 def leaderboard(request):
     return render(request, 'reviewers/leaderboard.html',
                   context(request,
@@ -1129,16 +1140,6 @@ class GenerateToken(SlugOrIdMixin, CreateAPIView):
         return Response({'token': token.token})
 
 
-def _view_on_get(request):
-    """Returns whether the user can access this page.
-
-    If the user is in a group with rule 'ReviewerTools:View' and the request is
-    a GET request, they are allowed to view.
-    """
-    return (request.method == 'GET' and
-            acl.action_allowed(request, 'ReviewerTools', 'View'))
-
-
 @never_cache
 @json_view
 @reviewer_required
@@ -1218,7 +1219,7 @@ class ReviewerScoreViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     queryset = ReviewerScore.objects.filter(note_key=mkt.REVIEWED_MANUAL)
 
 
-@reviewer_required
+@permission_required([('Apps', 'ModerateReview')])
 def moderatelog(request):
     form = ModerateLogForm(request.GET)
     modlog = ActivityLog.objects.editor_events()
@@ -1235,7 +1236,7 @@ def moderatelog(request):
     return render(request, 'reviewers/moderatelog.html', data)
 
 
-@reviewer_required
+@permission_required([('Apps', 'ModerateReview')])
 def moderatelog_detail(request, eventlog_id):
     log = get_object_or_404(
         ActivityLog.objects.editor_events(), pk=eventlog_id)

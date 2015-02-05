@@ -101,14 +101,10 @@ def queue_tabnav(context):
             rv.append((reverse('reviewers.apps.queue_escalated'), 'escalated',
                        _('Escalations ({0})', counts['escalated']).format(
                        counts['escalated'])))
-        rv.extend([
-            (reverse('reviewers.apps.queue_moderated'), 'moderated',
-             _('Moderated Reviews ({0})', counts['moderated'])
-             .format(counts['moderated'])),
-
+        rv.append(
             (reverse('reviewers.apps.apps_reviewing'), 'reviewing',
              _('Reviewing ({0})').format(len(apps_reviewing))),
-        ])
+        )
         if acl.action_allowed(request, 'Apps', 'ReviewRegionCN'):
             url_ = reverse('reviewers.apps.queue_region',
                            args=[mkt.regions.CHN.slug])
@@ -121,6 +117,13 @@ def queue_tabnav(context):
                       _('Tarako ({0})').format(counts['additional_tarako'])))
     else:
         rv = []
+
+    if acl.action_allowed(request, 'Apps', 'ModerateReview'):
+        rv.append(
+            (reverse('reviewers.apps.queue_moderated'), 'moderated',
+             _('Moderated Reviews ({0})', counts['moderated'])
+             .format(counts['moderated'])),
+        )
 
     if 'pro' in request.GET:
         device_srch = device_queue_search(request)
@@ -138,10 +141,14 @@ def logs_tabnav(context):
 
     Each tuple contains three elements: (named url, tab_code, tab_text)
     """
-    rv = [
-        ('reviewers.apps.logs', 'logs', _('Reviews')),
-        ('reviewers.apps.moderatelog', 'moderatelog', _('Moderated Reviews')),
-    ]
+    request = context['request']
+    if acl.action_allowed(request, 'Apps', 'Review'):
+        rv = [('reviewers.apps.logs', 'logs', _('Reviews'))]
+    else:
+        rv = []
+    if acl.action_allowed(request, 'Apps', 'ModerateReview'):
+        rv.append(('reviewers.apps.moderatelog',
+                   'moderatelog', _('Moderated Reviews')))
     return rv
 
 

@@ -17,19 +17,21 @@ from mkt.reviewers.models import (
     AdditionalReview, QUEUE_TARAKO, RereviewQueue, ReviewerScore,
     send_tarako_mail, tarako_failed, tarako_passed)
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonDeviceType, Webapp
 
 
 class TestReviewerScore(mkt.site.tests.TestCase):
-    fixtures = fixture('group_admin', 'group_editor', 'user_admin',
-                       'user_admin_group', 'user_editor', 'user_editor_group',
-                       'user_999')
 
     def setUp(self):
         self.app = mkt.site.tests.app_factory(status=mkt.STATUS_PENDING)
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.user = user_factory(username='editor')
+        self.grant_permission(self.user, 'Apps:Review')
+        self.admin_user = user_factory(username='admin')
+        self.grant_permission(self.admin_user, '*:*', name='Admins')
+        user_factory(username='regular')
 
     def _give_points(self, user=None, app=None, status=None):
         user = user or self.user

@@ -1615,6 +1615,17 @@
     },
     {
         "fields": {
+            "created": "2014-04-04T17:17:55",
+            "modified": "2014-04-04T17:17:55",
+            "name": "Review Moderators",
+            "notes": "Users who can moderate flagged user reviews",
+            "rules": "Apps:ModerateReview"
+        },
+        "model": "access.group",
+        "pk": 50079
+    },
+    {
+        "fields": {
             "authenticated": false,
             "created": "2012-10-17T15:51:18",
             "everyone": false,
