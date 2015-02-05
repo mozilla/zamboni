@@ -3,9 +3,9 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Min
+from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
-from elasticsearch_dsl import F, filter as es_filter, query
 
 import mkt
 from mkt.constants import APP_FEATURES
@@ -499,13 +499,10 @@ class WebappIndexer(BaseIndexer):
                 functions=[query.SF('field_value_factor', field='boost')])
 
         # MUST.
-        must = [F('term', is_disabled=False)]
-        if no_filter:
-            # If `no_filter`, search all VALID_STATUSES.
-            must.append(F('terms', status=mkt.VALID_STATUSES))
-        else:
-            # If not `no_filter`, we only include PUBLIC apps.
-            must.append(F('term', status=mkt.STATUS_PUBLIC))
+        must = [
+            F('term', status=mkt.STATUS_PUBLIC),
+            F('term', is_disabled=False),
+        ] if not no_filter else []
 
         for field in term_fields + terms_fields:
             # Term filters.

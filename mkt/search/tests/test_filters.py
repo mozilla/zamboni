@@ -45,7 +45,7 @@ class TestSearchFilters(BaseOAuth):
         if form.is_valid():
             form_data = form.cleaned_data
             sq = WebappIndexer.get_app_filter(
-                self.req, search_form_to_es_fields(form_data), **kwargs)
+                self.req, search_form_to_es_fields(form_data))
             return _sort_search(self.req, sq, form_data).to_dict()
         else:
             return form.errors.copy()
@@ -267,10 +267,3 @@ class TestSearchFilters(BaseOAuth):
             in qs['query']['filtered']['filter']['bool']['must_not'])
         ok_({'term': {'features.has_apps': True}}
             in qs['query']['filtered']['filter']['bool']['must_not'])
-
-    def test_no_filter(self):
-        qs = self._filter(self.req, {}, no_filter=True)
-        ok_({'term': {'is_disabled': False}}
-            in qs['query']['filtered']['filter']['bool']['must'])
-        ok_({'terms': {'status': mkt.VALID_STATUSES}}
-            in qs['query']['filtered']['filter']['bool']['must'])
