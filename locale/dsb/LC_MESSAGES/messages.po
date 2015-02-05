@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-05 19:57+0000\n"
+"PO-Revision-Date: 2015-02-05 21:39+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423166258.0\n"
+"X-POOTLE-MTIME: 1423172381.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3462,19 +3462,19 @@ msgstr "Wersiju &quot;{version}&quot; lašowaś"
 
 #: mkt/developers/templates/developers/apps/status.html:489
 msgid "Deleting the only version will result in the following:"
-msgstr ""
+msgstr "Jolic jadnučku wersiju wulašujośo, se to stanjo:"
 
 #: mkt/developers/templates/developers/apps/status.html:491
 msgid "the app status will be marked as &quot;incomplete&quot;"
-msgstr ""
+msgstr "status nałoženja markěrujo se ako &quot;dopołny&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:492
 msgid "the app will be removed from our review queue"
-msgstr ""
+msgstr "nałoženje wótpórajo se z cakańskego rěda"
 
 #: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app will not be listed in our public pages"
-msgstr ""
+msgstr "nałoženje njenalicyjo se na našych zjawnych bokach"
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
@@ -3491,6 +3491,8 @@ msgstr "Wersiju lašowaś"
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Cośo napšawdu, až wašo nałoženje njepokazujo se wěcej na rědach z mało "
+"składowakom?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:55
@@ -3501,15 +3503,22 @@ msgstr "Pśipiski k wersiji"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
 msgstr ""
+"Informacije wó změnach w toś tej wersiji, nowe funkcije, znate programowe "
+"zmólki a druge wužytne informacije, kótarež su specialne k toś tej wersiji. "
+"Toś te informacije pokazuju se pśi aktualizěrowanju teke w zastojniku "
+"nałoženjow."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:65
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Pokaze za pśepytowarjow"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
 msgstr ""
+"Na žycenje móžośo teke informacije zapódaś, kótarež su wužytne za "
+"pśepytowarja toś togo nałoženja, ako na pśikład informacije k testowym "
+"kontam."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
@@ -3517,7 +3526,7 @@ msgstr "Minimalne pominanja"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:66
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Funkcije rěda, kótarež su trěbne za toś to nałoženje."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
