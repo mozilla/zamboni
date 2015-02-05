@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-01-31 14:46+0000\n"
+"PO-Revision-Date: 2015-02-05 07:08+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422715563.0\n"
+"X-POOTLE-MTIME: 1423120121.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1236,7 +1236,7 @@ msgstr "有問題的應用程式評論"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "已還原應用程式評論管理"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -5172,7 +5172,7 @@ msgstr "產品圖示必須是 64x64 的圖像，請確認網址是否正確。"
 #: mkt/langpacks/models.py:77
 msgctxt "version"
 msgid "%(lang)s language pack for Firefox OS %(version)slang"
-msgstr ""
+msgstr "Firefox OS %(version)slang 的 %(lang)s 語言套件"
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
@@ -5778,11 +5778,11 @@ msgstr "任何狀態"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "通過審核的評論"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "已刪除的評論"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
@@ -5790,7 +5790,7 @@ msgstr "瀏覽內容從"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "依照類型/操作過濾"
 
 #: mkt/reviewers/forms.py:63
 msgid "containing"
@@ -6218,55 +6218,55 @@ msgstr "此時間內，尚無審核。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "審核過的的評論紀錄"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "更多詳情。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "這段時間中沒有活動。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "紀錄詳細資訊"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "紀錄詳細資訊"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "管理日期"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "應用程式標題"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "評論標題"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "評論文字"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "評論在管理前已被標示。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "目前評論狀態"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "使用中"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "反刪除"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
