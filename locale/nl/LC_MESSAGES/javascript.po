@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-05 13:15+0000\n"
+"PO-Revision-Date: 2015-02-05 14:06+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423142150.0\n"
+"X-POOTLE-MTIME: 1423145204.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -125,7 +125,7 @@ msgstr "App-manifest is ongeldig."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "App is reeds geïnstalleerd."
+msgstr "App is al geïnstalleerd."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
