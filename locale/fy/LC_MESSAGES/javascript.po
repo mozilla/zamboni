@@ -1,559 +1,561 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2014-09-07 04:27+0000\n"
+"Last-Translator: Wim <fryskefirefox@gmail.com>\n"
+"Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.12.0\n"
+"X-POOTLE-MTIME: 1410064076.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Het door u geüploade bestandstype wordt niet herkend."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "U hebt de upload geannuleerd."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video’s dienen in WebM te zijn."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Er is een probleem opgetreden bij het verbinden met de server."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Selecteer een bestand…"
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Uw verpakte app dient te eindigen op <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% voltooid"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} van {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleren"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} wordt geüpload"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Fout met {0}"
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uw app kon niet worden gevalideerd met {0} fout."
+msgstr[1] "Uw app kon niet worden gevalideerd met {0} fouten."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "… en nog {0}"
+msgstr[1] "… en nog {0}"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
-msgstr ""
+msgstr "Volledig validatierapport bekijken"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} wordt gevalideerd"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Lege respons van server ontvangen; status: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Onverwachte serverfout tijdens validatie."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Validatie van {0} afgerond"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
+msgstr[1] "Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Uw app heeft de validatie zonder fouten of waarschuwingen doorstaan."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Het manifest kon niet op de opgegeven locatie worden gevonden."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "App-host kan niet worden bereikt."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "App-manifest kan niet worden ontleed."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "App-manifest is ongeldig."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "App is reeds geïnstalleerd."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Interne serverfout."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Interne serverfout bij installatie van app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Installatie mislukt. Probeer het later nog eens."
 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uw app heeft de validatie met {0} fout en {1} bericht(en) niet doorstaan."
+msgstr[1] "Uw app heeft de validatie met {0} fouten en {1} bericht(en) niet doorstaan."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uw app is gevalideerd zonder fouten en met {0} bericht."
+msgstr[1] "Uw app is gevalideerd zonder fouten en met {0} berichten."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Uw app is gevalideerd zonder fouten of berichten."
 
 #: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
-msgstr ""
+msgstr "Wijzigingen opgeslagen"
 
 #: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Voer het e-mailadres van een nieuw teamlid in"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest ververst"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Kan manifest niet verversen. Probeer het later nog eens."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Er is een fout opgetreden tijdens het uploaden van uw bestand."
 
 #: media/js/devreg/devhub.js:947
 msgid "Learn more"
-msgstr ""
+msgstr "Meer info"
 
 #: media/js/devreg/devhub.js:951
 msgid "Example"
-msgstr ""
+msgstr "Voorbeeld"
 
 #: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Afbeeldingswijzigingen worden verwerkt"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Deze video vereist een browser met ondersteuning voor open video "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "of de <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Deze vertaling verwijderen"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status met succes gewijzigd in “{0}”"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Kan status niet wijzigen in “{0}”"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
-msgstr ""
+msgstr "Alle resultaten weergeven"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Aangevraagde permissies:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Gecertificeerd"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Voorkeur"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Niet-voorkeur"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Geen reden opgegeven"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Spaanse bankencode"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Ierse Sort-code"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belgische BIC"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Spaanse/Franse/Italiaanse/Nederlandse BIC"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Nederlandse/Amerikaanse SWIFT-code"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Canadese Transit number/Duitse Bankleitzahl"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Koreaanse bank en vestiging/Indonesische Bank code"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Griekse HEBIC/Indonesische Bank code"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-code"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Oostenrijks/Zwitsers BC-nummer"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Deens/Zwitsers BC-nummer"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Zwitsers/Iraaks BC-nummer"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Iraaks BC-nummer"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Gedetecteerd: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Betalingsaccounts voor {appName}:"
 
 #: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
 
 #: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
-msgstr ""
+msgstr "Authenticatiefout"
 
 #: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "U hebt momenteel geen betalingsaccounts."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Thema’s zoeken op <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Apps doorzoeken op <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Add-ons doorzoeken op <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Er is iets misgegaan. Probeer het opnieuw."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} teken resterend."
+msgstr[1] "{0} tekens resterend."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Alle tests met succes doorstaan."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr ""
+msgstr "Deze tests zijn niet uitgevoerd."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr ""
+msgstr "Waarschuwing"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Compatibiliteitstests"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr ""
+msgstr "Validatie van app mislukt."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr ""
+msgstr "Validatie van app gelukt."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} fout"
+msgstr[1] "{0} fouten"
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} waarschuwing"
+msgstr[1] "{0} waarschuwingen"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "De validatietaak is niet voltooid of voltooid met fouten"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr ""
+msgstr "Interne serverfout"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Kopen"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Aangeschaft"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Starten"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} heeft deze pagina eerst bekeken."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Ontvangst gecontroleerd door app."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Ontvangst niet gecontroleerd door app."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} heeft deze add-on eerst bekeken."
 
 #: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Laden…"
 
 #: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
-msgstr ""
+msgstr "Versieopmerkingen"
 
 #: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Opmerkingen voor beoordelaars"
 
 #: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
-msgstr ""
+msgstr "Geen versieopmerkingen gevonden"
 
 #: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
-msgstr ""
+msgstr "Selecteer eerst een toepassing"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
-msgstr ""
+msgstr "Fout bij laden van vertaling"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "meer…"
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "minder…"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Beoordeling bewaren / Markeringen verwijderen"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Beoordeling verwijderen"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Nu overslaan"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Betaling mislukt. Probeer het later nog eens."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr ""
+msgstr "Verpakte app"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr ""
+msgstr "Voorkeursapp"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
-msgstr ""
+msgstr "Meer informatie gevraagd"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Bevat opmerking door editor"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
-msgstr ""
+msgstr "Premium-app"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr ""
+msgstr "Geëscaleerd"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr ""
+msgstr "Elke"
 
 #: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Goedgekeurde app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Afgewezen app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Fout bij goedkeuren van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Fout bij afwijzen van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Fout bij slagen van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Fout bij mislukken van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
+msgstr "Sorry! Er is een fout opgetreden bij het ophalen van de beoordelingsgeschiedenis. Probeer u opnieuw aan te melden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Door {0} op {1}"
