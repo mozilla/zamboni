@@ -884,7 +884,8 @@ class TestAttachTransDict(TestCase):
 
     def setUp(self):
         super(TestCase, self).setUp()
-        self.FancyModel = apps.get_app_config('testapp').get_model('FancyModel')
+        self.FancyModel = (apps.get_app_config('testapp')
+                               .get_model('FancyModel'))
 
     def test_basic(self):
         obj = self.FancyModel.objects.create(
