@@ -11,7 +11,8 @@ from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
                                       Reference)
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase
+from mkt.site.tests import TestCase
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 
 

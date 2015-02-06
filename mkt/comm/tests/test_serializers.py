@@ -2,8 +2,8 @@ from nose.tools import eq_, ok_
 
 from mkt.comm import serializers
 from mkt.comm.utils import create_comm_note
-from mkt.site.tests import (app_factory, req_factory_factory, TestCase,
-                            user_factory)
+from mkt.site.tests import req_factory_factory, TestCase, user_factory
+from mkt.site.utils import app_factory
 
 
 class TestNoteSerializer(TestCase):

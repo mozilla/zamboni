@@ -18,8 +18,8 @@ from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, version_factory
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -842,7 +842,7 @@ class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
         self.app.set_iarc_info(1, 'a')
         eq_(IARCInfo.objects.count(), 1)
 
-        some_app = mkt.site.tests.app_factory()
+        some_app = app_factory()
         form = self._get_form(app=some_app)
         ok_(not form.is_valid())
 

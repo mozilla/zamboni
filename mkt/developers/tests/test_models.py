@@ -15,6 +15,7 @@ from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    PaymentAccount, PreloadTestPlan,
                                    SolitudeSeller)
 from mkt.developers.providers import get_provider
+from mkt.site.utils import app_factory
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
@@ -296,7 +297,7 @@ class TestActivityLogAttachment(mkt.site.tests.TestCase):
 class TestPreloadTestPlan(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory()
+        self.app = app_factory()
         self.preload = self.app.preloadtestplan_set.create(filename='test.pdf')
 
     def test_delete_cascade(self):

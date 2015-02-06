@@ -26,6 +26,7 @@ from mkt.developers.views_payments import (get_inapp_config,
                                            require_in_app_payments)
 from mkt.prices.models import Price
 from mkt.site.fixtures import fixture
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import (AddonDeviceType, AddonPremium, AddonUpsell,
@@ -1232,7 +1233,7 @@ class TestPaymentPortal(PaymentsBase):
         eq_(output[0]['portal-url'], '')
 
     def test_reference(self):
-        mkt.site.tests.app_factory(app_slug=self.app_slug)
+        app_factory(app_slug=self.app_slug)
         PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
         res = self.client.get(self.bango_url)
         eq_(res.status_code, 403)

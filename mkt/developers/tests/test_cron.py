@@ -8,7 +8,8 @@ import mkt
 from mkt.developers.cron import (_flag_rereview_adult, exclude_new_region,
                                  process_iarc_changes, send_new_region_emails)
 from mkt.developers.models import ActivityLog
-from mkt.site.tests import app_factory, TestCase, user_factory, WebappTestCase
+from mkt.site.tests import TestCase, user_factory, WebappTestCase
+from mkt.site.utils import app_factory
 from mkt.webapps.models import IARCInfo, RatingDescriptors, RatingInteractives
 
 

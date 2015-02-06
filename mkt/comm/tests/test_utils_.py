@@ -7,7 +7,8 @@ from mkt.comm.forms import CommAttachmentFormSet
 from mkt.comm.tests.test_views import AttachmentManagementMixin
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
-from mkt.site.tests import app_factory, TestCase, user_factory
+from mkt.site.tests import TestCase, user_factory
+from mkt.site.utils import app_factory
 
 
 class TestCreateCommNote(TestCase, AttachmentManagementMixin):

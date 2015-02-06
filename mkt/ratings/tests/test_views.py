@@ -16,6 +16,7 @@ from mkt.developers.models import ActivityLog
 from mkt.prices.models import AddonPurchase
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.site.fixtures import fixture
+from mkt.site.utils import app_factory, version_factory
 from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
 from mkt.users.models import UserProfile
 
@@ -71,9 +72,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                                     body=u'I lôve this app',
                                     rating=5)
         pk = rev.pk
-        ver = mkt.site.tests.version_factory(
-            addon=self.app, version='2.0',
-            file_kw=dict(status=mkt.STATUS_PUBLIC))
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=mkt.STATUS_PUBLIC))
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.pk)
 
@@ -143,7 +143,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         self._get_filter(user='mine', client=self.anon, expected_status=403)
 
     def test_filter_by_app_slug(self):
-        self.app2 = mkt.site.tests.app_factory()
+        self.app2 = app_factory()
         Review.objects.create(addon=self.app2, user=self.user, body='no')
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         res, data = self._get_filter(app=self.app.app_slug)
@@ -151,7 +151,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_filter_by_app_pk(self):
-        self.app2 = mkt.site.tests.app_factory()
+        self.app2 = app_factory()
         Review.objects.create(addon=self.app2, user=self.user, body='no')
         Review.objects.create(addon=self.app, user=self.user, body='yes')
         res, data = self._get_filter(app=self.app.pk)
@@ -277,7 +277,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_already_rated_version(self):
         self.app.update(is_packaged=True)
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        mkt.site.tests.version_factory(addon=self.app, version='3.0')
+        version_factory(addon=self.app, version='3.0')
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         data = json.loads(res.content)
@@ -362,7 +362,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_new_rating_for_new_version(self):
         self.app.update(is_packaged=True)
         self._create()
-        version = mkt.site.tests.version_factory(addon=self.app, version='3.0')
+        version = version_factory(addon=self.app, version='3.0')
         self.app.update_version()
         eq_(self.app.reload().current_version, version)
         res, data = self._create()
@@ -478,7 +478,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_update_change_app(self):
         _, previous_data = self._create_default_review()
-        self.app2 = mkt.site.tests.app_factory()
+        self.app2 = app_factory()
         new_data = {
             'body': 'Totally rocking the free web.',
             'rating': 4,

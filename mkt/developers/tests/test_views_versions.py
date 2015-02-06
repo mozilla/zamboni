@@ -17,6 +17,7 @@ from mkt.files.models import File
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.site.tests import req_factory_factory
+from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -88,7 +89,7 @@ class TestVersion(mkt.site.tests.TestCase):
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=mkt.STATUS_REJECTED)
-        mkt.site.tests.make_rated(self.webapp)
+        make_rated(self.webapp)
         (self.webapp.versions.latest()
                              .all_files[0].update(status=mkt.STATUS_DISABLED))
 
@@ -127,7 +128,7 @@ class TestVersion(mkt.site.tests.TestCase):
 
     def test_comm_thread_after_resubmission(self):
         self.webapp.update(status=mkt.STATUS_REJECTED)
-        mkt.site.tests.make_rated(self.webapp)
+        make_rated(self.webapp)
         mkt.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
                              .all_files[0].update(status=mkt.STATUS_DISABLED))
@@ -160,9 +161,9 @@ class TestVersion(mkt.site.tests.TestCase):
 class BaseAddVersionTest(BasePackagedAppTest):
     def setUp(self):
         super(BaseAddVersionTest, self).setUp()
-        self.app = mkt.site.tests.app_factory(
-            complete=True, is_packaged=True, app_domain='app://hy.fr',
-            version_kw=dict(version='1.0'))
+        self.app = app_factory(complete=True, is_packaged=True,
+                               app_domain='app://hy.fr',
+                               version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
         self.user = UserProfile.objects.get(username='regularuser')
         AddonUser.objects.create(user=self.user, addon=self.app)
@@ -328,7 +329,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.app.update(is_packaged=True)
         self.app = self.get_app()
         # Needed for various status checking routines on fully complete apps.
-        mkt.site.tests.make_rated(self.app)
+        make_rated(self.app)
         if not self.app.categories:
             self.app.update(categories=['utilities'])
         self.app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
@@ -348,8 +349,8 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     def test_version_list_packaged(self):
         self.app.update(is_packaged=True)
-        mkt.site.tests.version_factory(addon=self.app, version='2.0',
-                                       file_kw=dict(status=mkt.STATUS_PENDING))
+        version_factory(addon=self.app, version='2.0',
+                        file_kw=dict(status=mkt.STATUS_PENDING))
         self.app = self.get_app()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('#version-status').length, 1)
@@ -404,7 +405,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         eq_(self.app.versions.count(), 1)
         ver1 = self.app.latest_version
         ver1.all_files[0].update(status=mkt.STATUS_APPROVED)
-        ver2 = mkt.site.tests.version_factory(
+        ver2 = version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
 
@@ -422,7 +423,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         """Test deletion of current_version when app is PUBLIC."""
         eq_(self.app.status, mkt.STATUS_PUBLIC)
         ver1 = self.app.latest_version
-        ver2 = mkt.site.tests.version_factory(
+        ver2 = version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
@@ -446,7 +447,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         """Test deletion of current_version when app is UNLISTED."""
         self.app.update(status=mkt.STATUS_UNLISTED)
         ver1 = self.app.latest_version
-        ver2 = mkt.site.tests.version_factory(
+        ver2 = version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
@@ -477,7 +478,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         """Test deletion of current_version when app is APPROVED."""
         self.app.update(status=mkt.STATUS_APPROVED)
         ver1 = self.app.latest_version
-        ver2 = mkt.site.tests.version_factory(
+        ver2 = version_factory(
             addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)

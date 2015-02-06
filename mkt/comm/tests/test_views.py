@@ -18,8 +18,8 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.views import (EmailCreationPermission, post_email,
                             ThreadPermission)
 from mkt.site.fixtures import fixture
-from mkt.site.tests import (app_factory, req_factory_factory, user_factory,
-                            version_factory)
+from mkt.site.tests import req_factory_factory, user_factory
+from mkt.site.utils import app_factory, version_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
