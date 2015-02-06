@@ -235,13 +235,13 @@ class UploadAddon(object):
         if data is None:
             data = {'free_platforms': ['free-desktop']}
         data.update(upload=self.upload.pk)
-        r = self.client.post(self.url, data, follow=True)
-        eq_(r.status_code, 200)
+        response = self.client.post(self.url, data, follow=True)
+        eq_(response.status_code, 200)
         if not expect_errors:
             # Show any unexpected form errors.
-            if r.context and 'form' in r.context:
-                eq_(r.context['form'].errors, {})
-        return r
+            if response.context and 'form' in response.context:
+                eq_(response.context['form'].errors, {})
+        return response
 
 
 class BaseWebAppTest(BaseUploadTest, UploadAddon, TestCase):

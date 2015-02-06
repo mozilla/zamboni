@@ -49,7 +49,7 @@ from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import copy_stored_file
-from mkt.site.utils import (cached_property, JSONEncoder, slugify, smart_path,
+from mkt.site.utils import (cached_property, slugify, smart_path,
                             sorted_groupby, urlparams)
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
@@ -61,7 +61,7 @@ from mkt.versions.models import Version
 from mkt.webapps import query, signals
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
-                               get_supported_locales)
+                               get_cached_minifest, get_supported_locales)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -1795,7 +1795,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def get_cached_manifest(self, force=False):
         """
-        Creates the "mini" manifest for packaged apps and caches it.
+        Build, cache and return the "mini" manifest for this app.
 
         Call this with `force=True` whenever we need to update the cached
         version of this manifest, e.g., when a new version of the packaged app
@@ -1803,57 +1803,20 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         If the addon is not a packaged app, this will not cache anything.
 
+        Ensure that the calling method checks various permissions if needed.
+        E.g. see mkt/detail/views.py. This is also called as a task after
+        reviewer approval so we can't perform some checks here.
         """
         if not self.is_packaged:
             return
 
-        key = 'webapp:{0}:manifest'.format(self.pk)
+        return get_cached_minifest(self, force=force)
 
-        if not force:
-            data = cache.get(key)
-            if data:
-                return data
-
-        version = self.current_version
-        if not version:
-            # There's no valid version so we return an empty mini-manifest.
-            # Note: We want to avoid caching this so when a version does become
-            # available it can get picked up correctly.
-            return '{}'
-        else:
-            # This will sign the package if it isn't already.
-            #
-            # Ensure that the calling method checks various permissions if
-            # needed. E.g. see mkt/detail/views.py. This is also called as a
-            # task after reviewer approval so we can't perform some checks
-            # here.
-            signed_file_path = packaged.sign(version.pk)
-            file_obj = version.all_files[0]
-            manifest = self.get_manifest_json(file_obj)
-            package_path = absolutify(
-                os.path.join(reverse('downloads.file', args=[file_obj.id]),
-                             file_obj.filename))
-
-            data = {
-                'name': manifest['name'],
-                'version': version.version,
-                'size': storage.size(signed_file_path),
-                'release_notes': version.releasenotes,
-                'package_path': package_path,
-            }
-            for key in ['developer', 'icons', 'locales']:
-                if key in manifest:
-                    data[key] = manifest[key]
-
-        data = json.dumps(data, cls=JSONEncoder)
-
-        cache.set(key, data, None)
-
-        return data
-
-    def sign_if_packaged(self, version_pk, reviewer=False):
+    def sign_if_packaged(self, version_pk=None, reviewer=False):
         if not self.is_packaged:
             return
+        if version_pk is None:
+            version_pk = self.current_version.pk
         return packaged.sign(version_pk, reviewer=reviewer)
 
     def is_premium_type_upgrade(self, premium_type):

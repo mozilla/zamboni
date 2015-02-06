@@ -58,13 +58,12 @@ class LangPackSerializer(serializers.ModelSerializer):
     language_display = serializers.CharField(read_only=True,
                                              source='get_language_display')
     manifest_url = serializers.CharField(read_only=True)
-    name = serializers.CharField(read_only=True)
 
     class Meta:
         model = LangPack
-        fields = ('active', 'created', 'fxos_version', 'hash', 'language',
-                  'language_display', 'manifest_url', 'modified', 'name',
-                  'size', 'uuid', 'version')
+        fields = ('active', 'created', 'fxos_version', 'language',
+                  'language_display', 'manifest_url', 'modified', 'uuid',
+                  'version')
 
     def validate(self, attrs):
         errors = {}

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import hashlib
 import json
 import os.path
 from uuid import UUID
@@ -9,11 +8,9 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import lazy
-from django.utils import translation
 
 import commonware.log
 from django_statsd.clients import statsd
-from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
@@ -23,6 +20,7 @@ from mkt.translations.utils import to_language
 from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase
 from mkt.site.utils import smart_path
+from mkt.webapps.models import get_cached_minifest
 
 
 log = commonware.log.getLogger('z.versions')
@@ -48,12 +46,10 @@ class LangPack(ModelBase):
                                 max_length=10)
     fxos_version = models.CharField(max_length=255, default='')
     version = models.CharField(max_length=255, default='')
+    manifest = models.TextField()
 
-    # Automatically generated fields.
-    filename = models.CharField(max_length=255, default='')
+    # Fields automatically set when uploading files.
     file_version = models.PositiveIntegerField(default=0)
-    hash = models.CharField(max_length=255, default='')
-    size = models.PositiveIntegerField(default=0)  # In bytes.
 
     # Fields that can be modified using the API.
     active = models.BooleanField(default=False)
@@ -66,16 +62,9 @@ class LangPack(ModelBase):
         ordering = (('-created'), )
         index_together = (('fxos_version', 'language', 'active', 'created'),)
 
-    def is_public(self):
-        return self.active
-
     @property
-    def name(self):
-        with translation.override(self.language):
-            return _('%(lang)s language pack for Firefox OS %(version)s' % {
-                'lang': self.get_language_display(),
-                'version': self.fxos_version
-            })
+    def filename(self):
+        return '%s-%s.zip' % (self.uuid, self.version)
 
     @property
     def path_prefix(self):
@@ -99,48 +88,36 @@ class LangPack(ModelBase):
                 reverse('langpack.manifest', args=[unicode(UUID(self.pk))]))
         return ''
 
-    def get_minifest_contents(self):
-        """Return generated mini-manifest for the langpack."""
-        # For now, langpacks have no icons, their developer name is fixed
-        # (Mozilla, we refuse third-party langpacks) and we can generate their
-        # name and description, so we don't need to look in the real manifest
-        # in the zip file. When we do, we'll need to add caching and refactor
-        # to avoid code duplication with mkt.detail.manifest() and
-        # mkt.webapps.Webapp.get_cached_manifest().
+    def is_public(self):
+        return self.active
 
-        manifest = {
-            'name': self.name,
-            'developer': {
-                'name': 'Mozilla'
-            },
-            'package_path': self.download_url,
-            'size': self.size,
-            'version': self.version
-        }
-        return manifest
+    def get_package_path(self):
+        return self.download_url
 
-    def generate_filename(self):
-        return '%s-%s.zip' % (self.uuid, self.version)
+    def get_minifest_contents(self, force=False):
+        """Return the "mini" manifest for this langpack, caching it in the
+        process.
 
-    def generate_hash(self, filename=None):
-        """Generate a hash for a file."""
-        hash = hashlib.sha256()
-        with open(filename or self.file_path, 'rb') as obj:
-            for chunk in iter(lambda: obj.read(1024), ''):
-                hash.update(chunk)
-        return 'sha256:%s' % hash.hexdigest()
+        Call this with `force=True` whenever we need to update the cached
+        version of this manifest, e.g., when a new version of the langpack
+        has been pushed."""
+        return get_cached_minifest(self, force=force)
+
+    def get_manifest_json(self):
+        """Return the json representation of the (full) manifest for this
+        langpack, as stored when it was uploaded."""
+        return json.loads(self.manifest)
 
     def reset_uuid(self):
         self.uuid = self._meta.get_field('uuid')._create_uuid()
 
     def handle_file_operations(self, upload):
         """Handle file operations on an instance by using the FileUpload object
-        passed to set filename, size, hash on the LangPack instance, and moving
-        the temporary file to its final destination."""
+        passed to set filename, file_version on the LangPack instance, and
+        moving the temporary file to its final destination."""
         upload.path = smart_path(nfd_str(upload.path))
         if not self.uuid:
             self.reset_uuid()
-        self.filename = self.generate_filename()
         if storage.exists(self.filename):
             # The filename should not exist. If it does, it means we are trying
             # to re-upload the same version. This should have been caught
@@ -148,8 +125,6 @@ class LangPack(ModelBase):
             raise RuntimeError(
                 'Trying to upload a file to a destination that already exists')
 
-        self.size = storage.size(upload.path)  # Size in bytes.
-        self.hash = self.generate_hash(upload.path)
         self.file_version = self.file_version + 1
 
         # Because we are only dealing with langpacks generated by Mozilla atm,
@@ -185,9 +160,11 @@ class LangPack(ModelBase):
         as well as file operations, from a FileUpload instance. Can throw
         a ValidationError or SigningError, so should always be called within a
         try/except."""
-        data = LanguagePackParser(instance=instance).parse(upload)
+        parser = LanguagePackParser(instance=instance)
+        data = parser.parse(upload)
         allowed_fields = ('language', 'fxos_version', 'version')
         data = dict((k, v) for k, v in data.items() if k in allowed_fields)
+        data['manifest'] = json.dumps(parser.get_json_data(upload))
         if instance:
             # If we were passed an instance, override fields on it using the
             # data from the uploaded package.
@@ -201,6 +178,8 @@ class LangPack(ModelBase):
         instance.handle_file_operations(upload)
         # Save!
         instance.save()
+        # Bust caching of manifest by passing force=True.
+        instance.get_minifest_contents(force=True)
         return instance
 
 
