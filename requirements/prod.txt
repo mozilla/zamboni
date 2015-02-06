@@ -56,7 +56,7 @@ heka-py==0.30.3
 heka-py-cef==0.3.1
 heka-py-raven==0.6
 pyjwkest==0.4.0
-marketplace-constants==0.4.0
+marketplace-constants==0.5.0
 monolith.client==0.9
 mozilla-logger==0.2
 mozpay==2.0.0
