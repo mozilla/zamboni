@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-05 21:39+0000\n"
+"PO-Revision-Date: 2015-02-06 21:15+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423172381.0\n"
+"X-POOTLE-MTIME: 1423257316.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3539,6 +3539,8 @@ msgstr "Kontakt Mozilla"
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
 msgstr ""
+"E-mailowa adresa (abo adrese źělone pśez komy) za kontakt z Mozilla toś togo "
+"nałoženja, na kótaruž se za mejlki pogódnośowarjow kopija sćelo."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -3551,10 +3553,12 @@ msgstr "VIP-nałoženje Mozilla"
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"To jo wjelgin wažne nałoženje, kótarež by měło se wót personala Mozilla abo "
+"nazgónjonych pśepytowarjow nałoženjow wobźěłowaś?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Žarjabnje wužywaś"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
@@ -3602,15 +3606,15 @@ msgstr[3] "Pśez komu źělony, nanejmjenjej {0} znamuškow."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Pśikład: śamny, kino, carny. Maksimalnje 20."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:188
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Rezerwěrowane gronidło:"
+msgstr[1] "Rezerwěrowanej gronidle:"
+msgstr[2] "Rezerwěrowane gronidła:"
+msgstr[3] "Rezerwěrowanych gronidłow:"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -3624,6 +3628,7 @@ msgstr "Zakładne informacije za {0}"
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
 msgstr ""
+"Toś to pólo dajo se jano pśez jogo aktualizěrowanje w manifesće wobźěłaś."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
