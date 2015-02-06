@@ -2,7 +2,6 @@ import json
 import os
 import random
 import time
-import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -15,7 +14,6 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
-from django.db.models.signals import post_save
 from django.test.client import Client, RequestFactory
 from django.utils import translation
 from django.utils.translation import trans_real
@@ -39,18 +37,15 @@ from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
-from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.files.helpers import copyfileobj
-from mkt.files.models import File
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
+from mkt.site.utils import app_factory
 from mkt.translations.hold import clean_translations
 from mkt.translations.models import delete_translation, Translation
 from mkt.users.models import UserProfile
-from mkt.versions.models import Version
-from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import unindex_webapps
 
@@ -733,80 +728,6 @@ def _get_created(created):
                         random.randint(0, 59))  # Seconds
 
 
-def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
-    """
-    Create an app.
-
-    complete -- fills out app details + creates content ratings.
-    rated -- creates content ratings
-
-    """
-    # Disconnect signals until the last save.
-    post_save.disconnect(app_update_search_index, sender=Webapp,
-                         dispatch_uid='webapp.search.index')
-
-    complete = kw.pop('complete', False)
-    rated = kw.pop('rated', False)
-    if complete:
-        kw.setdefault('support_email', 'support@example.com')
-    when = _get_created(kw.pop('created', None))
-
-    # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name',
-                  u'Webapp %s' % unicode(uuid.uuid4()).replace('-', ''))
-
-    kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, the real
-        # status will be set a few lines below, after the update_version()
-        # call. This prevents issues when calling app_factory with
-        # STATUS_DELETED.
-        'status': mkt.STATUS_PUBLIC,
-        'name': name,
-        'slug': name.replace(' ', '-').lower()[:30],
-        'bayesian_rating': random.uniform(1, 5),
-        'created': when,
-        'last_updated': when,
-    }
-    kwargs.update(kw)
-
-    # Save 1.
-    app = Webapp.objects.create(**kwargs)
-    version = version_factory(file_kw, addon=app, **version_kw)  # Save 2.
-    app.status = status
-    app.update_version()
-
-    # Put signals back.
-    post_save.connect(app_update_search_index, sender=Webapp,
-                      dispatch_uid='webapp.search.index')
-
-    app.save()  # Save 4.
-
-    if 'nomination' in version_kw:
-        # If a nomination date was set on the version, then it might have been
-        # erased at post_save by addons.models.watch_status() or
-        # mkt.webapps.models.watch_status().
-        version.save()
-
-    if rated or complete:
-        make_rated(app)
-
-    if complete:
-        if not app.categories:
-            app.update(categories=['utilities'])
-        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
-        app.previews.create()
-
-    return app
-
-
-def file_factory(**kw):
-    v = kw['version']
-    status = kw.pop('status', mkt.STATUS_PUBLIC)
-    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            status=status, **kw)
-    return f
-
-
 def req_factory_factory(url='', user=None, post=False, data=None, **kwargs):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory()
@@ -841,15 +762,6 @@ def user_factory(**kw):
     if 'username' not in kw:
         user_factory_counter = user.id + 1
     return user
-
-
-def version_factory(file_kw={}, **kw):
-    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
-    v = Version.objects.create(version=version, **kw)
-    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
-    v.save()
-    file_factory(version=v, **file_kw)
-    return v
 
 
 class ESTestCase(TestCase):

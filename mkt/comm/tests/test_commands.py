@@ -7,7 +7,8 @@ from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.constants import comm
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase, user_factory
+from mkt.site.tests import TestCase, user_factory
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 
 

@@ -19,7 +19,8 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.developers.tests.test_providers import Patcher
 from mkt.prices.models import AddonPremium, Price
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase
+from mkt.site.tests import TestCase
+from mkt.site.utils import app_factory
 from mkt.webapps.models import AddonUpsell, AddonUser, Webapp
 
 

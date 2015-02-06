@@ -18,8 +18,8 @@ from mkt.account.views import MineMixin
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
-from mkt.site.tests import TestCase, app_factory
-from mkt.site.utils import urlparams
+from mkt.site.tests import TestCase
+from mkt.site.utils import app_factory, urlparams
 from mkt.webapps.models import Installed, Webapp
 from mkt.users.models import UserProfile
 

@@ -29,6 +29,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import formset, initial
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.utils import app_factory
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -283,8 +284,8 @@ class TestEditBasic(TestEdit):
     @mock.patch('mkt.developers.forms.update_manifests')
     def test_view_manifest_changed_dupe_app_domain(self, fetch):
         self.create_switch('webapps-unique-by-domain')
-        mkt.site.tests.app_factory(name='Super Duper',
-                                   app_domain='https://ballin.com')
+        app_factory(name='Super Duper',
+                    app_domain='https://ballin.com')
         self.login('admin')
 
         # POST with new manifest URL.

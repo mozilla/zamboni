@@ -9,6 +9,7 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
+from mkt.site.utils import version_factory
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
@@ -113,7 +114,7 @@ class TestWebappIndexer(TestCase):
         created_date = self.days_ago(5).replace(microsecond=0)
         nomination_date = self.days_ago(3).replace(microsecond=0)
 
-        mkt.site.tests.version_factory(
+        version_factory(
             addon=self.app, version='43.0',
             has_editor_comment=True,
             has_info_request=True,

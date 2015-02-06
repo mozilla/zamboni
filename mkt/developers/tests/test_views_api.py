@@ -12,8 +12,8 @@ import mkt
 from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase
-from mkt.site.utils import urlparams
+from mkt.site.tests import TestCase
+from mkt.site.utils import app_factory, urlparams
 from mkt.webapps.models import ContentRating, Geodata
 from mkt.users.models import UserProfile
 

@@ -4,12 +4,14 @@ import errno
 import itertools
 import operator
 import os
+import random
 import re
 import shutil
 import time
 import unicodedata
 import urllib
 import urlparse
+import uuid
 
 from django import http
 from django.conf import settings
@@ -20,6 +22,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.serializers import json
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
+from django.db.models.signals import post_save
 from django.http import HttpRequest
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
@@ -39,7 +42,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 import mkt
 from mkt.api.paginator import ESPaginator
 from mkt.translations.models import Translation
-
+from mkt.constants.applications import DEVICE_TYPES
 
 days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
 
@@ -594,3 +597,127 @@ class CachedProperty(object):
         if not self.writable:
             raise TypeError('read only attribute')
         del obj.__dict__[self.__name__]
+
+
+def _get_created(created):
+    """
+    Returns a datetime.
+
+    If `created` is "now", it returns `datetime.datetime.now()`. If `created`
+    is set use that. Otherwise generate a random datetime in the year 2011.
+    """
+    if created == 'now':
+        return datetime.datetime.now()
+    elif created:
+        return created
+    else:
+        return datetime.datetime(
+            2011,
+            random.randint(1, 12),  # Month
+            random.randint(1, 28),  # Day
+            random.randint(0, 23),  # Hour
+            random.randint(0, 59),  # Minute
+            random.randint(0, 59))  # Seconds
+
+
+def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
+    """
+    Create an app.
+
+    complete -- fills out app details + creates content ratings.
+    rated -- creates content ratings
+
+    """
+    from mkt.webapps.models import update_search_index, Webapp
+    # Disconnect signals until the last save.
+    post_save.disconnect(update_search_index, sender=Webapp,
+                         dispatch_uid='webapp.search.index')
+
+    complete = kw.pop('complete', False)
+    rated = kw.pop('rated', False)
+    if complete:
+        kw.setdefault('support_email', 'support@example.com')
+    when = _get_created(kw.pop('created', None))
+
+    # Keep as much unique data as possible in the uuid: '-' aren't important.
+    name = kw.pop('name',
+                  u'Webapp %s' % unicode(uuid.uuid4()).replace('-', ''))
+
+    kwargs = {
+        # Set artificially the status to STATUS_PUBLIC for now, the real
+        # status will be set a few lines below, after the update_version()
+        # call. This prevents issues when calling app_factory with
+        # STATUS_DELETED.
+        'status': mkt.STATUS_PUBLIC,
+        'name': name,
+        'slug': name.replace(' ', '-').lower()[:30],
+        'bayesian_rating': random.uniform(1, 5),
+        'created': when,
+        'last_updated': when,
+    }
+    kwargs.update(kw)
+
+    # Save 1.
+    app = Webapp.objects.create(**kwargs)
+    version = version_factory(file_kw, addon=app, **version_kw)  # Save 2.
+    app.status = status
+    app.update_version()
+
+    # Put signals back.
+    post_save.connect(update_search_index, sender=Webapp,
+                      dispatch_uid='webapp.search.index')
+
+    app.save()  # Save 4.
+
+    if 'nomination' in version_kw:
+        # If a nomination date was set on the version, then it might have been
+        # erased at post_save by addons.models.watch_status() or
+        # mkt.webapps.models.watch_status().
+        version.save()
+
+    if rated or complete:
+        make_rated(app)
+
+    if complete:
+        if not app.categories:
+            app.update(categories=['utilities'])
+        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+        app.previews.create()
+
+    return app
+
+
+def file_factory(**kw):
+    from mkt.files.models import File
+    v = kw['version']
+    status = kw.pop('status', mkt.STATUS_PUBLIC)
+    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
+                            status=status, **kw)
+    return f
+
+
+def version_factory(file_kw={}, **kw):
+    from mkt.versions.models import Version
+    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    v = Version.objects.create(version=version, **kw)
+    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
+    v.save()
+    file_factory(version=v, **file_kw)
+    return v
+
+
+def make_game(app, rated):
+    app.update(categories=['games'])
+    if rated:
+        make_rated(app)
+    app = app.reload()
+    return app
+
+
+def make_rated(app):
+    app.set_content_ratings(
+        dict((body, body.ratings[0]) for body in
+             mkt.ratingsbodies.ALL_RATINGS_BODIES))
+    app.set_iarc_info(123, 'abc')
+    app.set_descriptors([])
+    app.set_interactives([])

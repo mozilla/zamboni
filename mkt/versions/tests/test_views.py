@@ -11,7 +11,7 @@ import mkt
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, file_factory
+from mkt.site.utils import app_factory, file_factory
 from mkt.versions.models import Version
 
 
