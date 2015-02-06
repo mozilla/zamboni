@@ -198,10 +198,10 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         res = self.client.get(self.url)
         self.assertCORS(res, 'get')
 
-    @mock.patch('mkt.webapps.models.storage')
+    @mock.patch('mkt.webapps.utils.storage')
     @mock.patch('mkt.webapps.models.packaged')
-    def test_calls_sign(self, _sign, _storage):
-        _sign.sign.return_value = '/path/to/signed.zip'
+    def test_calls_sign(self, _packaged, _storage):
+        _packaged.sign.return_value = '/path/to/signed.zip'
         _storage.size.return_value = 1234
         self.client.get(self.url)
-        assert _sign.sign.called
+        assert _packaged.sign.called

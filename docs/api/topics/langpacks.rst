@@ -49,9 +49,6 @@ Detail
     :type created: string
     :param fxos_version: The Firefox OS version this langpack provides translations for.
     :type fxos_version: string
-    :param hash: The
-     SHA256 hash of the package.
-    :type hash: string
     :param language: The language code (i.e. "de", or "pt-BR") this langpack provides translations for.
     :type language: string
     :param language_display: The language this langpack provides translations for, in a human-readable format (i.e. Deutsch).
@@ -60,8 +57,6 @@ Detail
     :type active: string
     :param modified: The date that the langpack was last modified (in ISO 8601 format).
     :type modified: string
-    :param size: The size (in bytes) of the Langpack package.
-    :type size: int
     :param uuid: Unique identifier for this langpack.
     :type uuid: string
     :param version: The version of the Langpack package itself.

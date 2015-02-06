@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import hashlib
-import json
 from uuid import UUID
 
 from django.http import Http404, HttpResponse
@@ -84,10 +83,10 @@ def manifest(request, uuid):
     langpack = get_object_or_404(LangPack, pk=uuid_hex)
 
     if langpack.active or action_allowed(request, 'LangPacks', '%'):
-        manifest_contents = json.dumps(langpack.get_minifest_contents())
+        manifest_contents = langpack.get_minifest_contents()
         langpack_etag = hashlib.sha256()
         langpack_etag.update(manifest_contents)
-        langpack_etag.update(langpack.hash)
+        langpack_etag.update(unicode(langpack.file_version))
 
         @condition(last_modified_func=lambda request: langpack.modified,
                    etag_func=lambda request: langpack_etag.hexdigest())
@@ -103,16 +102,13 @@ def download(request, langpack_id, **kwargs):
     langpack = get_object_or_404(LangPack, pk=langpack_id)
 
     if langpack.active or action_allowed(request, 'LangPacks', '%'):
-        if not langpack.filename:
-            # Should not happen, but let's handle it in a way that we can
-            # easily distinguish from the rest.
-            raise Exception(
-                u'Attempting to download langpack %s, '
-                u'which does not have a filename.' % langpack.pk)
         log.info('Downloading package: %s from %s' % (
                  langpack.pk, langpack.file_path))
+        langpack_etag = hashlib.sha256()
+        langpack_etag.update(langpack.pk)
+        langpack_etag.update(unicode(langpack.file_version))
         return HttpResponseSendFile(request, langpack.file_path,
                                     content_type='application/zip',
-                                    etag=langpack.hash.split(':')[-1])
+                                    etag=langpack_etag.hexdigest())
     else:
         raise Http404

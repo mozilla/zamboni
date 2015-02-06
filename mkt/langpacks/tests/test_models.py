@@ -18,6 +18,12 @@ from mkt.site.tests import TestCase
 
 
 class TestLangPackBasic(TestCase):
+    def reset_uuid(self):
+        langpack = LangPack(uuid='12345678123456781234567812345678')
+        eq_(langpack.pk, '12345678123456781234567812345678')
+        langpack.reset_uuid()
+        ok_(langpack.pk != '12345678123456781234567812345678')
+
     def test_download_url(self):
         langpack = LangPack(pk='12345678123456781234567812345678')
         ok_(langpack.download_url.endswith(
@@ -30,24 +36,36 @@ class TestLangPackBasic(TestCase):
         ok_(langpack.manifest_url.endswith(
             '/12345678-1234-5678-1234-567812345678/manifest.webapp'))
 
-    # FIXME: once translators finish translating the new strings, we should
-    # add a new test with a different language, like pt-BR. The name should
-    # follow the locale the language pack was made for.
-    def test_get_minifest_contents(self):
+    @patch('mkt.webapps.utils.storage')
+    def test_get_minifest_contents(self, storage_mock):
+        fake_manifest = {
+            'name': u'Fake LangPäck',
+            'developer': {
+                'name': 'Mozilla'
+            }
+        }
         langpack = LangPack(
             pk='12345678123456781234567812345678',
             fxos_version='2.2',
             version='0.3',
-            size=666)
-        eq_(langpack.get_minifest_contents(),
-            {'version': '0.3', 'size': 666,
-             'name': u'English (US) language pack for Firefox OS 2.2',
+            manifest=json.dumps(fake_manifest))
+        storage_mock.size.return_value = 666
+        minifest_contents = json.loads(langpack.get_minifest_contents())
+
+        eq_(minifest_contents,
+            {'version': '0.3',
+             'size': 666,
+             'name': u'Fake LangPäck',
              'package_path': langpack.download_url,
              'developer': {'name': 'Mozilla'}})
+        return langpack, minifest_contents
 
-    def test_name(self):
-        langpack = LangPack(fxos_version='2.5.1')
-        eq_(langpack.name, u'English (US) language pack for Firefox OS 2.5.1')
+    def test_get_minifest_contents_caching(self):
+        langpack, minifest_contents = self.test_get_minifest_contents()
+        langpack.update(manifest='{}')
+        # Because of caching, get_minifest_contents should not have changed.
+        new_minifest_contents = json.loads(langpack.get_minifest_contents())
+        eq_(minifest_contents, new_minifest_contents)
 
     def test_language_choices_and_display(self):
         field = LangPack._meta.get_field('language')
@@ -77,12 +95,48 @@ class UploadCreationMixin(object):
 
 
 class TestLangPackUpload(UploadTest, UploadCreationMixin):
+    # Expected manifest, to test zip file parsing.
+    expected_manifest = {
+        'languages-target': {
+            'app://*.gaiamobile.org/manifest.webapp': '2.2'
+        },
+        'description': 'Support for additional language: German',
+        'default_locale': 'de',
+        'icons': {
+            '128': '/icon.png'
+        },
+        'version': '1.0.3',
+        'role': 'langpack',
+        'languages-provided': {
+            'de': {
+                'version': '201411051234',
+                'apps': {
+                    'app://calendar.gaiamobile.org/manifest.webapp':
+                    '/de/calendar',
+                    'app://email.gaiamobile.org/manifest.webapp':
+                    '/de/email'
+                },
+                'name': 'Deutsch'
+            }
+        },
+        'developer': {
+            'name': 'Mozilla'
+        },
+        'type': 'privileged', 'locales': {
+            'de': {
+                'name': u'Sprachpaket für Gaia: Deutsch'
+            },
+            'pl': {
+                'name': u'Paczka językowa dla Gai: niemiecki'
+            }
+        },
+        'name': 'Gaia Langpack for German'
+    }
+
     def create_langpack(self):
         langpack = LangPack.objects.create(
-            hash='fakehash', size=1, language='fr', version='0.9',
-            fxos_version='2.1', active=False, file_version=1)
-        langpack.generate_filename()
-        langpack.save()
+            language='fr', version='0.9', fxos_version='2.1', active=False,
+            file_version=1, manifest='{}')
         return langpack
 
     def test_upload_new(self):
@@ -98,8 +152,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path.startswith(langpack.path_prefix))
         ok_(os.path.exists(langpack.file_path))
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
+        eq_(langpack.get_manifest_json(), self.expected_manifest)
         ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         return langpack
@@ -109,6 +162,13 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         original_uuid = langpack.uuid
         original_file_path = langpack.file_path
         original_file_version = langpack.file_version
+        original_manifest = langpack.manifest
+        with patch('mkt.webapps.utils.storage') as storage_mock:
+            # mock storage size before building minifest since we haven't
+            # created a real file for this langpack yet.
+            storage_mock.size.return_value = 666
+            original_minifest = langpack.get_minifest_contents()
+
         upload = self.upload('langpack')
         langpack = LangPack.from_upload(upload, instance=langpack)
         eq_(langpack.uuid, original_uuid)
@@ -116,20 +176,26 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
         eq_(langpack.filename, '%s-%s.zip' % (langpack.uuid, langpack.version))
+        eq_(langpack.get_manifest_json(), self.expected_manifest)
         ok_(langpack.file_path.startswith(langpack.path_prefix))
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path != original_file_path)
         ok_(langpack.file_version > original_file_version)
         ok_(os.path.exists(langpack.file_path))
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
+        ok_(langpack.manifest != original_manifest)
+        # We're supposed to have busted the old minifest cache.
+        ok_(langpack.get_minifest_contents() != original_minifest)
 
     @patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_upload_language_validation(self, get_json_data_mock):
         upload = self.upload('langpack')
         get_json_data_mock.return_value = {
+            'name': 'Portuguese Langpack',
+            'developer': {
+                'name': 'Mozilla'
+            },
             'role': 'langpack',
             'languages-provided': {
                 'pt-BR': {}
@@ -150,37 +216,10 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
             LangPack.from_upload(upload)
         eq_(e.exception.messages, expected)
 
-    @patch('mkt.files.utils.WebAppParser.get_json_data')
-    def test_upload_version_missing(self, get_json_data_mock):
-        upload = self.upload('langpack')
-        get_json_data_mock.return_value = {
-            'role': 'langpack',
-            'languages-provided': {
-                'es': {}
-            },
-            'languages-target': {
-                'app://*.gaiamobile.org/manifest.webapp': '2.2'
-            },
-        }
-        expected = [u'Your language pack should contain a version.']
-        with self.assertRaises(ValidationError) as e:
-            LangPack.from_upload(upload)
-        eq_(e.exception.messages, expected)
-
-    @patch('mkt.files.utils.WebAppParser.get_json_data')
-    def test_upload_existing_same_version(self, get_json_data_mock):
-        upload = self.upload('langpack')
+    def test_upload_existing_same_version(self):
         langpack = self.create_langpack()
-        get_json_data_mock.return_value = {
-            'role': 'langpack',
-            'languages-provided': {
-                'es': {}
-            },
-            'languages-target': {
-                'app://*.gaiamobile.org/manifest.webapp': '2.2'
-            },
-            'version': '1.0'
-        }
+        upload = self.upload('langpack')
+
         # Works once.
         ok_(LangPack.from_upload(upload, instance=langpack))
 
@@ -191,8 +230,9 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
             LangPack.from_upload(upload, instance=langpack)
         eq_(e.exception.messages, expected)
 
+    @patch('mkt.langpacks.models.get_cached_minifest')
     @patch('mkt.langpacks.models.sign_app')
-    def test_upload_sign(self, sign_app_mock):
+    def test_upload_sign(self, sign_app_mock, cached_minifest_mock):
         eq_(LangPack.objects.count(), 0)
         upload = self.upload('langpack')
         langpack = LangPack.from_upload(upload)
@@ -207,8 +247,9 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         )
         sign_app_mock.assert_called_once_with(*expected_args)
 
+    @patch('mkt.langpacks.models.get_cached_minifest')
     @patch('mkt.langpacks.models.sign_app')
-    def test_upload_sign_existing(self, sign_app_mock):
+    def test_upload_sign_existing(self, sign_app_mock, cached_minifest_mock):
         langpack = self.create_langpack()
         eq_(LangPack.objects.count(), 1)
         upload = self.upload('langpack')
@@ -269,7 +310,7 @@ class TestLangPackDeletion(TestCase):
     def test_delete_with_file(self):
         """Test that when a LangPack instance is deleted, the corresponding
         file on the filesystem is also deleted."""
-        langpack = LangPack.objects.create(filename='temporary-file.zip')
+        langpack = LangPack.objects.create(version='0.1')
         file_path = langpack.file_path
         with storage.open(file_path, 'w') as f:
             f.write('sample data\n')
@@ -284,7 +325,7 @@ class TestLangPackDeletion(TestCase):
     def test_delete_no_file(self):
         """Test that the LangPack instance can be deleted without the file
         being present."""
-        langpack = LangPack.objects.create(filename='should-not-exist.zip')
+        langpack = LangPack.objects.create(version='0.1')
         filename = langpack.file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         langpack.delete()

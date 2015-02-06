@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 
 from django.conf import settings
@@ -31,9 +32,6 @@ class TestLangPackViewSetMixin(RestOAuth):
 
     def create_langpack(self, **kwargs):
         data = {
-            'filename': 'dummy.zip',
-            'hash': 'dummy-hash',
-            'size': 666,
             'active': True,
             'version': '0.1',
             'language': 'fr',
@@ -47,12 +45,9 @@ class TestLangPackViewSetMixin(RestOAuth):
             instance = self.langpack
         eq_(instance.pk, langpack_data['uuid'])
         eq_(instance.manifest_url, langpack_data['manifest_url'])
-        eq_(instance.hash, langpack_data['hash'])
-        eq_(instance.size, langpack_data['size'])
         eq_(instance.active, langpack_data['active'])
         eq_(instance.language, langpack_data['language'])
         eq_(instance.fxos_version, langpack_data['fxos_version'])
-        eq_(instance.name, langpack_data['name'])
         eq_(instance.get_language_display(), langpack_data['language_display'])
 
 
@@ -239,11 +234,8 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin,
         eq_(response.status_code, 201)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(response.data['uuid'], langpack.uuid)
-        eq_(response.data['hash'], langpack.hash)
         eq_(response.data['active'], langpack.active)
 
     def test_create_with_existing_langpack_in_db(self):
@@ -258,13 +250,10 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin,
         ok_(response.json['uuid'] != self.langpack.pk)
         eq_(LangPack.objects.count(), 2)
         langpack = LangPack.objects.get(pk=response.json['uuid'])
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
         eq_(response.data['uuid'], langpack.uuid)
-        eq_(response.data['hash'], langpack.hash)
         eq_(response.data['active'], langpack.active)
 
 
@@ -347,13 +336,10 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         eq_(langpack.active, True)  # Langpack was already active.
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
         eq_(response.data['uuid'], langpack.uuid)
-        eq_(response.data['hash'], langpack.hash)
         eq_(response.data['active'], langpack.active)
 
     def test_update_with_another_existing_langpack_in_db(self):
@@ -367,13 +353,10 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 2)
         langpack = LangPack.objects.get(pk=response.json['uuid'])
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         eq_(langpack.active, True)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
         eq_(response.data['uuid'], langpack.uuid)
-        eq_(response.data['hash'], langpack.hash)
         eq_(response.data['active'], langpack.active)
 
     def test_update_was_inactive(self):
@@ -386,13 +369,10 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
         eq_(response.status_code, 200)
         eq_(LangPack.objects.count(), 1)
         langpack = LangPack.objects.get()
-        eq_(langpack.hash[0:23], 'sha256:48b0b4b30d36ac69')
-        eq_(langpack.size, 1062)
         eq_(langpack.active, False)
         eq_(langpack.language, 'de')
         eq_(langpack.fxos_version, '2.2')
         eq_(response.data['uuid'], langpack.uuid)
-        eq_(response.data['hash'], langpack.hash)
         eq_(response.data['active'], langpack.active)
 
 
@@ -430,20 +410,16 @@ class TestLangPackViewSetPartialUpdate(TestLangPackViewSetMixin):
             'active': False,
             'filename': 'dummy-data',
             'fxos_version': 'dummy-data',
-            'hash': 'dummy-data',
             'language': 'es',
             'modified': 'dummy-data',
-            'size': 666,
             'uuid': 'dummy-data',
             'version': 'dummy-data',
         }))
         eq_(response.status_code, 400)
         eq_(response.data, {
-            'hash': [u'This field is read-only.'],
             'language': [u'This field is read-only.'],
             'fxos_version': [u'This field is read-only.'],
-            'version': [u'This field is read-only.'],
-            'size': [u'This field is read-only.']})
+            'version': [u'This field is read-only.']})
         self.langpack.reload()
         # Verify that nothing has changed.
         eq_(self.langpack.active, True)
@@ -482,34 +458,38 @@ class TestLangPackNonAPIViews(TestCase):
 
     def setUp(self):
         super(TestLangPackNonAPIViews, self).setUp()
-        self.langpack = LangPack.objects.create(filename='temporary-file.zip',
-                                                hash='fake-hash', active=True)
+        self.fake_manifest = {
+            'name': u'Fake LangPäck',
+            'developer': {
+                'name': 'Mozilla'
+            }
+        }
+        self.langpack = LangPack.objects.create(
+            version='0.1', active=True,
+            manifest=json.dumps(self.fake_manifest))
         self.user = UserProfile.objects.get(pk=2519)
         with storage.open(self.langpack.file_path, 'w') as f:
             f.write('sample data\n')
+
+    def _expected_etag(self):
+        expected_etag = hashlib.sha256()
+        expected_etag.update(unicode(self.langpack.pk))
+        expected_etag.update(unicode(self.langpack.file_version))
+        return '"%s"' % expected_etag.hexdigest()
 
     @override_settings(XSENDFILE=True)
     def test_download(self):
         ok_(self.langpack.download_url)
         response = self.client.get(self.langpack.download_url)
+
         eq_(response.status_code, 200)
         eq_(response[settings.XSENDFILE_HEADER], self.langpack.file_path)
         eq_(response['Content-Type'], 'application/zip')
-        eq_(response['etag'], '"fake-hash"')
+        eq_(response['etag'], self._expected_etag())
 
         self.login(self.user)
         response = self.client.get(self.langpack.download_url)
         eq_(response.status_code, 200)
-
-    def test_download_no_filename(self):
-        self.langpack.update(filename='')
-        # This should not happen, so we voluntarily raise an exception in the
-        # view.
-        with self.assertRaises(Exception) as e:
-            self.client.get(self.langpack.download_url)
-        expected_msg = ('Attempting to download langpack %s, '
-                        'which does not have a filename.' % self.langpack.pk)
-        eq_(e.exception.message, expected_msg)
 
     def test_download_inactive(self):
         self.langpack.update(active=False)
@@ -531,14 +511,14 @@ class TestLangPackNonAPIViews(TestCase):
         eq_(response.status_code, 200)
         eq_(response[settings.XSENDFILE_HEADER], self.langpack.file_path)
         eq_(response['Content-Type'], 'application/zip')
-        eq_(response['etag'], '"fake-hash"')
+        eq_(response['etag'], self._expected_etag())
 
     def test_manifest(self):
         ok_(self.langpack.manifest_url)
         response = self.client.get(self.langpack.manifest_url)
         eq_(response.status_code, 200)
         eq_(response['Content-Type'], MANIFEST_CONTENT_TYPE)
-        manifest_contents = self.langpack.get_minifest_contents()
+        manifest_contents = json.loads(self.langpack.get_minifest_contents())
         data = json.loads(response.content)
         eq_(data, manifest_contents)
 
@@ -550,8 +530,8 @@ class TestLangPackNonAPIViews(TestCase):
         self.assertCloseToNow(response['Last-Modified'],
                               now=self.langpack.modified)
 
-        # Test that the etag is different if the langpack hash changes.
-        self.langpack.update(hash='new-fake-hash')
+        # Test that the etag is different if the langpack file_version changes.
+        self.langpack.update(file_version=42)
         response = self.client.get(self.langpack.manifest_url)
         eq_(response.status_code, 200)
         new_etag = response['ETag']
@@ -560,8 +540,9 @@ class TestLangPackNonAPIViews(TestCase):
 
         # Test that the etag is different if just the minifest contents change,
         # but not the langpack instance itself.
-        minifest_contents = self.langpack.get_minifest_contents()
+        minifest_contents = json.loads(self.langpack.get_minifest_contents())
         minifest_contents['name'] = 'Different Name'
+        minifest_contents = json.dumps(minifest_contents)
         patch_method = 'mkt.langpacks.models.LangPack.get_minifest_contents'
         with patch(patch_method) as get_minifest_contents_mock:
             get_minifest_contents_mock.return_value = minifest_contents
@@ -591,6 +572,6 @@ class TestLangPackNonAPIViews(TestCase):
         eq_(self.langpack.manifest_url, '')
         response = self.client.get(manifest_url)
         eq_(response.status_code, 200)
-        manifest_contents = self.langpack.get_minifest_contents()
+        manifest_contents = json.loads(self.langpack.get_minifest_contents())
         data = json.loads(response.content)
         eq_(data, manifest_contents)
