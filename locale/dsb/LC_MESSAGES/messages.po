@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-07 11:04+0000\n"
+"PO-Revision-Date: 2015-02-07 17:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423307055.0\n"
+"X-POOTLE-MTIME: 1423331154.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3682,6 +3682,11 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Pšosym wopytajśo, URL swójogo manifesta nic pśecesto změniś. Jolic URL "
+"swójogo manifesta změnijośo, njebudu se eksistěrujuce wužywarje na nowy "
+"manifestowy URL aktualizěrowaś. Dalšne informacije namakajośo w <a href=\"%"
+"(doc_url)s\" target=\"_blank\">dokumentaciji wó aktualizěrowanju "
+"nałoženjow</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:136
 msgid "Description"
@@ -3777,7 +3782,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "Website"
-msgstr ""
+msgstr "Websedło"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
