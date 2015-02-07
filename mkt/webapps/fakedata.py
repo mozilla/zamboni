@@ -154,7 +154,7 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
         },
         'installs_allowed_launch': ['*'],
         'from_path': 'index.html',
-        'locales':  dict((lang, {
+        'locales': dict((lang, {
             'name': name,
             'description': 'This packaged app has been automatically generated'
         }) for lang, name in generate_localized_names(
