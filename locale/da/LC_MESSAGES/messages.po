@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2014-09-06 16:47+0100\n"
+"PO-Revision-Date: 2015-02-07 23:36+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: mkt/comm/serializers.py:54
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -362,7 +362,7 @@ msgstr "Tjekkiet"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Danmark"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -1138,7 +1138,7 @@ msgstr "Udgivet"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Udelukket fra Marketplace"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1246,31 +1246,31 @@ msgstr ""
 
 #: mkt/constants/base.py:234
 msgid "Level 1"
-msgstr ""
+msgstr "Niveau 1"
 
 #: mkt/constants/base.py:235
 msgid "Level 2"
-msgstr ""
+msgstr "Niveau 2"
 
 #: mkt/constants/base.py:236
 msgid "Level 3"
-msgstr ""
+msgstr "Niveau 3"
 
 #: mkt/constants/base.py:237
 msgid "Level 4"
-msgstr ""
+msgstr "Niveau 4"
 
 #: mkt/constants/base.py:238
 msgid "Level 5"
-msgstr ""
+msgstr "Niveau 5"
 
 #: mkt/constants/base.py:239
 msgid "Level 6"
-msgstr ""
+msgstr "Niveau 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "Bøger"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1350,7 +1350,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Udelukket"
 
 #: mkt/constants/comm.py:47 mkt/site/log.py:217
 msgid "More information requested"
@@ -1482,7 +1482,7 @@ msgstr ""
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Appen kræver Web Activities (API'en `MozActivity` )."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -1498,7 +1498,7 @@ msgstr ""
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Appen kræver API'en ArchiveReader` ."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
@@ -1526,7 +1526,7 @@ msgstr "Enhedens lager"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr ""
+msgstr "Appen kræver, at API'en Device Storage har adgang til filer på filsystemet."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
@@ -1546,7 +1546,7 @@ msgstr ""
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Appen kræver, at platformen understøtter API'en `addIdleObserver` ."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
@@ -1570,7 +1570,7 @@ msgstr ""
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Appen kræver en nærhedssensor (API'en `ondeviceproximity` )."
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
@@ -1672,7 +1672,7 @@ msgstr "Gamepad"
 
 #: mkt/constants/features.py:200
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
+msgstr "Appen kræver, at platformen understøtter gamepad-API'en (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:205
 msgid "Quota Management"
@@ -1808,31 +1808,31 @@ msgstr ""
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Appen kræver adgang til API'en `navigator.getMobileIdAssertion` ."
 
 #: mkt/constants/features.py:321
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js prækompilering"
 
 #: mkt/constants/features.py:322
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Appen kræver, at enheden understøtter prækompilering af asm.js-kode."
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM-enhed"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Appen kræver, at enheden har mindst 512MB RAM."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM-enhed"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Appen kræver, at enheden har mindst 1GB RAM."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1983,7 +1983,7 @@ msgstr "Resten af verden"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rusland"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -1991,11 +1991,11 @@ msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
-msgstr ""
+msgstr "Hosted"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
-msgstr ""
+msgstr "Pakket"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
@@ -4582,11 +4582,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:180
 msgid "Hosted Apps"
-msgstr ""
+msgstr "Hosted apps"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Packaged Apps"
-msgstr ""
+msgstr "Pakkede apps"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
@@ -4839,7 +4839,7 @@ msgstr "Tilgængelig nu!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:100
 msgid "Android Tablets"
-msgstr "Android Tablets"
+msgstr "Android-tablets"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
@@ -4895,11 +4895,11 @@ msgstr "Orange"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Grå"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Sort"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
@@ -4947,7 +4947,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
@@ -5254,11 +5254,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
-msgstr ""
+msgstr "Pakket app"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
 msgid "Hosted app"
-msgstr ""
+msgstr "Hosted app"
 
 #: mkt/lookup/templates/lookup/app_summary.html:57
 msgid "Submitted"
@@ -5266,7 +5266,7 @@ msgstr "Indsendt"
 
 #: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:167
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:76
 msgid "Review Prioritized"
@@ -5439,15 +5439,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
-msgstr ""
+msgstr "Kontoopdateringer"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
-msgstr ""
+msgstr "Købsresultater for"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "Denne bruger har ikke købt nogle apps."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
@@ -5455,7 +5455,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -5471,7 +5471,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Grupper"
 
 #: mkt/lookup/templates/lookup/user_summary.html:37
 msgid "Marketplace Credit"
@@ -5599,7 +5599,7 @@ msgstr ""
 #. {0} and {1} are category names.
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:52
 msgid "No preload candidates found"
@@ -5761,17 +5761,17 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:63
 msgid "containing"
-msgstr ""
+msgstr "indeholder"
 
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:69
 msgid "start"
-msgstr ""
+msgstr "start"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:73
 msgid "end"
-msgstr ""
+msgstr "slut"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:77
@@ -5784,7 +5784,7 @@ msgstr "Kommentarer:"
 
 #: mkt/reviewers/forms.py:105 mkt/reviewers/templates/reviewers/review.html:138
 msgid "Device Types:"
-msgstr ""
+msgstr "Enhedstyper:"
 
 #: mkt/reviewers/forms.py:107 mkt/reviewers/templates/reviewers/review.html:142
 msgid "Browsers:"
@@ -6537,8 +6537,8 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> af <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.              third argument is the number of total results (e.g., 1,000).
-#.                third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
@@ -6735,7 +6735,7 @@ msgstr "Start"
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:318
 msgid "{0} ago"
-msgstr "{0} siden"
+msgstr "for {0} siden"
 
 #: mkt/site/log.py:19
 msgid "{addon} was created."
@@ -6895,20 +6895,20 @@ msgstr ""
 #. L10n: {0} is a category name.
 #: mkt/site/log.py:275
 msgid "{addon} featured in {0}."
-msgstr "{addon} anbefalet i {0}."
+msgstr "{addon} udvalgt i {0}."
 
 #. L10n: {0} is a category name.
 #: mkt/site/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} er ikke længere anbefalet i {0}."
+msgstr "{addon} er ikke længere udvalgt i {0}."
 
 #: mkt/site/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addon} er nu anbefalet."
+msgstr "{addon} er nu udvalgt."
 
 #: mkt/site/log.py:293
 msgid "{addon} is no longer featured."
-msgstr "{addon} er ikke længere anbefalet."
+msgstr "{addon} er ikke længere udvalgt."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: mkt/site/log.py:301
@@ -7321,7 +7321,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:280
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Privatlivspolitik:"
 
 #: mkt/submit/forms.py:282
 msgid ""
