@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-07 10:29+0000\n"
+"PO-Revision-Date: 2015-02-07 11:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423304981.0\n"
+"X-POOTLE-MTIME: 1423307055.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3705,12 +3705,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr ""
+msgstr "Drobnostki nałoženja"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:42 mkt/reviewers/templates/reviewers/includes/mobile_details.html:66
 #: mkt/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardna rěc"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
@@ -3727,7 +3727,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Pšawidła priwatnosći"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:57
 msgid "A privacy policy is required that explains what data is transmitted from a user's computer and how it is used."
@@ -3735,16 +3735,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "Kraj a rěc"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Drobnostki wó kraju a rěcy za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Kraj na boku kompatibelnosći wobźěłaś"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
@@ -3752,24 +3752,24 @@ msgstr "Rěc"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "standard"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Rěc w manifestowej dataji wašogo nałoženja wobźěłaś"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
-msgstr ""
+msgstr "Medije"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
-msgstr ""
+msgstr "Informacije pomocy"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/support.html:16
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informacije pomocy za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
@@ -3785,16 +3785,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
-msgstr ""
+msgstr "Techniske drobnostki"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/technical.html:14
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Techniske drobnostki za {0}"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Uses Flash"
-msgstr ""
+msgstr "Wužywa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
@@ -3802,7 +3802,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Funkcioněrujo offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
@@ -3810,7 +3810,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
-msgstr ""
+msgstr "Zjawne statistiki?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
@@ -3818,7 +3818,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
-msgstr ""
+msgstr "Statistiki toś togo nałoženja su zjawnje widobne."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "No, this app's stats are not publicly viewable."
@@ -3860,16 +3860,16 @@ msgstr ""
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
-msgstr ""
+msgstr "Wužywa se na bokach drobnostkow nałoženja."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
