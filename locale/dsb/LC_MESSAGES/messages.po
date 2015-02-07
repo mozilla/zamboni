@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-07 10:23+0000\n"
+"PO-Revision-Date: 2015-02-07 10:29+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423304616.0\n"
+"X-POOTLE-MTIME: 1423304981.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3599,6 +3599,9 @@ msgstr "Gronidła"
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Gronidła pomagaju wužywarjam, wašo nałoženje namakaś a by měli krotke "
+"wopisanja byś, ako na pśikład rejtarki, symbolowa rědka abo Twitter. Móžośo "
+"maksimalnje {0} gronidłow zapodaś."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
@@ -3645,11 +3648,13 @@ msgstr "URL nałoženja"
 #: mkt/developers/templates/developers/apps/edit/basic.html:47 mkt/submit/templates/submit/details.html:69
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
 msgstr ""
+"Wubjeŕśo jadnorazowy URL za swój bok drobnostkow. Pó standarźe wužywamy mě "
+"wašogo nałoženja, aby my toś ten URL twórili."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:60 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
 msgid "View Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk se woglědaś"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:66
 msgid "API URL"
@@ -3657,7 +3662,7 @@ msgstr "API-URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "URL za pśistup na toś to nałoženje z pomocu API Marketplace"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
