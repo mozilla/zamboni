@@ -47,9 +47,9 @@ from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.tests import (app_factory, DynamicBoolFieldsTestMixin,
-                            ESTestCase, MktPaths, TestCase, WebappTestCase,
-                            version_factory)
+from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase, MktPaths,
+                            TestCase, WebappTestCase)
+from mkt.site.utils import app_factory, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -1453,14 +1453,14 @@ class TestWebappContentRatings(TestCase):
 class DeletedAppTests(TestCase):
 
     def test_soft_deleted_no_current_version(self):
-        webapp = mkt.site.tests.app_factory()
+        webapp = app_factory()
         webapp._current_version = None
         webapp.save()
         webapp.delete()
         eq_(webapp.current_version, None)
 
     def test_soft_deleted_no_latest_version(self):
-        webapp = mkt.site.tests.app_factory()
+        webapp = app_factory()
         webapp._latest_version = None
         webapp.save()
         webapp.delete()
@@ -1538,8 +1538,8 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
     # Note: More extensive tests for `.update_names` are above.
 
     def setUp(self):
-        self.webapp = mkt.site.tests.app_factory(is_packaged=True,
-                                                 default_locale='en-US')
+        self.webapp = app_factory(is_packaged=True,
+                                  default_locale='en-US')
         self.webapp.name = {'en-US': 'Packaged App'}
         self.webapp.save()
 
@@ -2171,58 +2171,55 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
         eq_(app.status, mkt.STATUS_NULL)
 
     def test_only_version_deleted(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED)
+        app = app_factory(status=mkt.STATUS_REJECTED)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, mkt.STATUS_NULL)
 
     def test_other_version_deleted(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_REJECTED)
-        mkt.site.tests.version_factory(addon=app)
+        app = app_factory(status=mkt.STATUS_REJECTED)
+        version_factory(addon=app)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, mkt.STATUS_REJECTED)
 
     def test_one_version_pending(self):
-        app = mkt.site.tests.app_factory(
-            status=mkt.STATUS_REJECTED,
-            file_kw=dict(status=mkt.STATUS_DISABLED))
-        mkt.site.tests.version_factory(addon=app,
-                                       file_kw=dict(status=mkt.STATUS_PENDING))
+        app = app_factory(status=mkt.STATUS_REJECTED,
+                          file_kw=dict(status=mkt.STATUS_DISABLED))
+        version_factory(addon=app,
+                        file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = True
             app.update_status()
         eq_(app.status, mkt.STATUS_PENDING)
 
     def test_one_version_pending_not_fully_complete(self):
-        app = mkt.site.tests.app_factory(
-            status=mkt.STATUS_REJECTED,
-            file_kw=dict(status=mkt.STATUS_DISABLED))
-        mkt.site.tests.version_factory(addon=app,
-                                       file_kw=dict(status=mkt.STATUS_PENDING))
+        app = app_factory(status=mkt.STATUS_REJECTED,
+                          file_kw=dict(status=mkt.STATUS_DISABLED))
+        version_factory(addon=app,
+                        file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = False
             app.update_status()
         eq_(app.status, mkt.STATUS_REJECTED)  # Didn't change.
 
     def test_one_version_public(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_PUBLIC)
-        mkt.site.tests.version_factory(
-            addon=app,
-            file_kw=dict(status=mkt.STATUS_DISABLED))
+        app = app_factory(status=mkt.STATUS_PUBLIC)
+        version_factory(addon=app,
+                        file_kw=dict(status=mkt.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, mkt.STATUS_PUBLIC)
 
     def test_was_approved_then_new_version(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_APPROVED)
+        app = app_factory(status=mkt.STATUS_APPROVED)
         File.objects.filter(version__addon=app).update(status=app.status)
-        mkt.site.tests.version_factory(addon=app,
-                                       file_kw=dict(status=mkt.STATUS_PENDING))
+        version_factory(addon=app,
+                        file_kw=dict(status=mkt.STATUS_PENDING))
         app.update_status()
         eq_(app.status, mkt.STATUS_APPROVED)
 
     def test_blocklisted(self):
-        app = mkt.site.tests.app_factory(status=mkt.STATUS_BLOCKED)
+        app = app_factory(status=mkt.STATUS_BLOCKED)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, mkt.STATUS_BLOCKED)
@@ -2532,12 +2529,12 @@ class TestSearchSignals(ESTestCase):
 
     def test_create(self):
         eq_(WebappIndexer.search().count(), 0)
-        mkt.site.tests.app_factory()
+        app_factory()
         self.refresh()
         eq_(WebappIndexer.search().count(), 1)
 
     def test_update(self):
-        app = mkt.site.tests.app_factory()
+        app = app_factory()
         self.refresh()
         eq_(WebappIndexer.search().count(), 1)
 

@@ -46,10 +46,9 @@ from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify, isotime
-from mkt.site.tests import (app_factory, check_links, days_ago, formset,
-                            initial, req_factory_factory, user_factory,
-                            version_factory)
-from mkt.site.utils import urlparams
+from mkt.site.tests import (check_links, days_ago, formset, initial,
+                            req_factory_factory, user_factory)
+from mkt.site.utils import app_factory, make_game, urlparams, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -1362,7 +1361,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         super(TestReviewApp, self).setUp()
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
-        self.app = mkt.site.tests.make_game(self.app, True)
+        self.app = make_game(self.app, True)
         self.app.update(status=mkt.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
         self.version = self.app.latest_version
@@ -3901,7 +3900,7 @@ class TestReviewTranslate(RestOAuth):
         self.login_user()
         self.create_switch('reviews-translate')
         user = UserProfile.objects.create(username='diego')
-        app = mkt.site.tests.app_factory(slug='myapp')
+        app = app_factory(slug='myapp')
         self.review = app.reviews.create(title=u'yes', body=u'oui',
                                          addon=app, user=user,
                                          editorreview=True, rating=4)

@@ -11,6 +11,7 @@ import mkt.site.tests
 from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
+from mkt.site.utils import version_factory
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -158,7 +159,7 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
 
     def test_version_is_public(self):
         addon = Webapp.objects.get(id=337141)
-        version = mkt.site.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
 
         # Base test. Everything is in order, the version should be public.
         eq_(version.is_public(), True)

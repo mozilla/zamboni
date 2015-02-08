@@ -35,8 +35,8 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.tests import (app_factory, assert_no_validation_errors,
-                            version_factory)
+from mkt.site.tests import assert_no_validation_errors
+from mkt.site.utils import app_factory, version_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import urlparams
 from mkt.submit.models import AppSubmissionChecklist
@@ -211,7 +211,7 @@ class TestAppDashboardSorting(AppHubTest):
 
     def clone(self, num=3):
         for x in xrange(num):
-            app = mkt.site.tests.app_factory()
+            app = app_factory()
             AddonUser.objects.create(addon=app, user=self.user)
 
     def test_pagination(self):
@@ -1058,8 +1058,7 @@ class TestDeleteApp(mkt.site.tests.TestCase):
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = mkt.site.tests.app_factory(
-            name='Boop', status=mkt.STATUS_NULL)
+        webapp = app_factory(name='Boop', status=mkt.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],

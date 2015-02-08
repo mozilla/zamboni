@@ -13,7 +13,8 @@ from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
                             TranslationSerializerField)
 from mkt.carriers import CARRIER_MAP
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase
+from mkt.site.tests import TestCase
+from mkt.site.utils import app_factory
 from mkt.translations.models import Translation
 from mkt.webapps.models import Webapp
 

@@ -1,5 +1,4 @@
 from optparse import make_option
-import pprint
 
 import requests
 
@@ -63,23 +62,27 @@ class Command(BaseCommand):
         data = requests.get(kw['domain'] + endpoint).json()
 
         if kw['delete']:
-            Price.objects.all().delete()
-            PriceCurrency.objects.all().delete()
+            if kw['noop']:
+                print 'Not actually deleting everything :)'
+            else:
+                Price.objects.all().delete()
+                PriceCurrency.objects.all().delete()
 
-        if kw['noop']:
-            pprint.pprint(data['objects'], indent=2)
-        else:
-            for p in data['objects']:
-                params = dict(name=p['name'].split(' ')[-1],
-                              active=p['active'],
-                              method=p['method'],
-                              price=p['price'])
-                print p['price']
-                if Price.objects.filter(**params).count():
-                    pr = Price.objects.filter(**params).get()
-                    print 'Skipping existing price:', pr
-                else:
+        for p in data['objects']:
+            params = dict(name=p['name'].split(' ')[-1],
+                          active=p['active'],
+                          method=p['method'],
+                          price=p['price'])
+            print p['price']
+            pr = None
+            if Price.objects.filter(**params).count():
+                pr = Price.objects.filter(**params).get()
+                print '---- Skipping existing price:', pr
+            else:
+                print '**** This price needs to be added'
+                if not kw['noop']:
                     pr = Price.objects.create(**params)
+            if pr:
                 for pc in p['prices']:
                     cur_params = dict(currency=pc['currency'],
                                       carrier=pc['carrier'],
@@ -91,6 +94,8 @@ class Command(BaseCommand):
                                       method=pc['method'],
                                       region=pc['region'])
                     if pr.pricecurrency_set.filter(**cur_params).count():
-                        print 'Skipping currency', pc['currency']
+                        print '---- Skipping currency', pc['currency']
                     else:
-                        pr.pricecurrency_set.create(**cur_params)
+                        print '**** Currency needs adding', pc['currency']
+                        if not kw['noop']:
+                            pr.pricecurrency_set.create(**cur_params)

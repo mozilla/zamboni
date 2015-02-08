@@ -15,7 +15,8 @@ from mkt.comm.utils import create_comm_note
 from mkt.comm.utils_mail import CommEmailParser, save_from_email_reply
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory, TestCase, user_factory
+from mkt.site.tests import TestCase, user_factory
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 
 

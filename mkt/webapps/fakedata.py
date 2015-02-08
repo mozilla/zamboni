@@ -18,7 +18,7 @@ from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.ratings.models import Review
-from mkt.site.utils import slugify
+from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AppManifest, Preview
 
@@ -106,9 +106,6 @@ def generate_ratings(app, num):
 
 
 def generate_hosted_app(name, category):
-    # Let's not make production code depend on stuff in the test package --
-    # importing it only when called in local dev is fine.
-    from mkt.site.tests import app_factory
     a = app_factory(categories=[category], name=name, complete=False,
                     rated=True)
     a.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
@@ -157,7 +154,7 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
         },
         'installs_allowed_launch': ['*'],
         'from_path': 'index.html',
-        'locales':  dict((lang, {
+        'locales': dict((lang, {
             'name': name,
             'description': 'This packaged app has been automatically generated'
         }) for lang, name in generate_localized_names(
@@ -192,7 +189,6 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
 
 def generate_packaged_app(name, apptype, category, permissions=(),
                           versions=(4,), num_locales=2, **kw):
-    from mkt.site.tests import app_factory, version_factory
     now = datetime.datetime.now()
     app = app_factory(categories=[category], name=name, complete=False,
                       rated=True, is_packaged=True,

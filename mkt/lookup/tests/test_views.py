@@ -32,8 +32,8 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
-from mkt.site.tests import (app_factory, ESTestCase, req_factory_factory,
-                            TestCase)
+from mkt.site.tests import ESTestCase, req_factory_factory, TestCase
+from mkt.site.utils import app_factory, file_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
@@ -758,8 +758,8 @@ class TestAppSummary(AppSummaryTest):
 
     def test_packaged_app_deleted(self):
         self.app.update(is_packaged=True)
-        ver = mkt.site.tests.version_factory(addon=self.app)
-        mkt.site.tests.file_factory(version=ver)
+        ver = version_factory(addon=self.app)
+        file_factory(version=ver)
         self.app.delete()
         self.summary()
 
