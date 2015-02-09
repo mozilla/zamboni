@@ -232,6 +232,10 @@ class TestSearchFilters(BaseOAuth):
     def test_sort_regional(self):
         """Popularity and trending use regional sorting for mature regions."""
         self.req.REGION = regions.BRA
+        # Default empty query searches use popularity.
+        qs = self._filter(self.req, {})
+        ok_({'popularity_%s'
+             % regions.BRA.id: {'order': 'desc'}} in qs['sort'])
         # Popularity.
         qs = self._filter(self.req, {'sort': ['popularity']})
         ok_({'popularity_%s'

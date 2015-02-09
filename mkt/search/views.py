@@ -15,7 +15,8 @@ import mkt
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin, form_errors, MarketplaceView
+from mkt.api.base import (CORSMixin, form_errors, get_region_from_request,
+                          MarketplaceView)
 from mkt.api.paginator import ESPaginator
 from mkt.search.forms import ApiSearchForm
 from mkt.translations.helpers import truncate
@@ -101,26 +102,37 @@ def name_query(q):
     return query.Bool(should=should)
 
 
+def _get_regional_sort(region, field):
+    """
+    A helper method to return the sort field with region for mature regions,
+    otherwise returns the field.
+
+    """
+    if region and not region.adolescent:
+        return ['-%s_%s' % (field, region.id)]
+    return ['-%s' % field]
+
+
 def _sort_search(request, sq, data):
     """
     Sort webapp search based on query + region.
 
     data -- form data.
     """
-    from mkt.api.base import get_region_from_request
+    region = get_region_from_request(request)
 
-    # When querying we want to sort by relevance. If no query is provided,
-    # i.e. we are only applying filters which don't affect the relevance,
-    # we sort by popularity descending.
-    order_by = [] if request.GET.get('q') else ['-popularity']
+    # When querying (with `?q=`) we want to sort by relevance. If no query is
+    # provided and no `?sort` is provided, i.e. we are only applying filters
+    # which don't affect the relevance, we sort by popularity descending.
+    order_by = None
+    if not request.GET.get('q'):
+        order_by = _get_regional_sort(region, 'popularity')
 
     if data.get('sort'):
-        region = get_region_from_request(request)
-        if 'popularity' in data['sort'] and region and not region.adolescent:
-            # Mature regions sort by their popularity field.
-            order_by = ['-popularity_%s' % region.id]
-        elif 'trending' in data['sort'] and region and not region.adolescent:
-            order_by = ['-trending_%s' % region.id]
+        if 'popularity' in data['sort']:
+            order_by = _get_regional_sort(region, 'popularity')
+        elif 'trending' in data['sort']:
+            order_by = _get_regional_sort(region, 'trending')
         else:
             order_by = [DEFAULT_SORTING[name] for name in data['sort']
                         if name in DEFAULT_SORTING]
