@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-09 21:31+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-02-09 21:46+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1423517486.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1423518374.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -7107,7 +7107,7 @@ msgstr "finisce con"
 #. L10n: Description of what can be searched for
 #: mkt/reviewers/forms.py:50
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "Componente aggiuntivo, editore o commento"
 
 #: mkt/reviewers/forms.py:75
 msgid "Comments:"
