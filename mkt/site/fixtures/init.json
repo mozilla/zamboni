@@ -79,10 +79,10 @@
     {
         "fields": {
             "active": false,
-            "created": "2014-06-10T17:18:31",
-            "modified": "2014-06-10T17:18:31",
-            "name": "firefox-accounts",
-            "note": "This switches us to using Firefox Accounts instead of Persona."
+            "created": "2014-11-14T17:18:31",
+            "modified": "2014-11-14T17:18:31",
+            "name": "native-firefox-accounts",
+            "note": "Enables use of native FxA on FxOS 2.x and later"
         },
         "model": "waffle.switch",
         "pk": 62
