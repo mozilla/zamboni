@@ -180,6 +180,9 @@ def payments(request, addon_id, addon, webapp=False):
                    'all_paid_region_ids_by_name': paid_region_ids_by_name,
                    'providers': providers,
                    'provider_regions': provider_regions,
+                   'enabled_provider_ids':
+                       [acct.payment_account.provider
+                           for acct in addon.all_payment_accounts()]
                    })
 
 

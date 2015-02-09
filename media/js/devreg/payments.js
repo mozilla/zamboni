@@ -17,6 +17,12 @@ define('payments', [], function() {
     var $tdNodes = $('<td class="cb"></td><td class="lp"></td><td class="lm"></td>');
     var $paidRegionTableTbody = $('#paid-regions tbody');
     var providerLookup = regionsData.providerLookup;
+    var enabledProviderIds = regionsData.enabledProviderIds;
+
+    var providerIdLookup = {};
+    Object.keys(providerLookup).forEach(function(k) {
+       providerIdLookup[providerLookup[k]] = k;
+    });
 
     function getOverlay(opts) {
         var id = opts;
@@ -133,9 +139,10 @@ define('payments', [], function() {
         return $tr;
     }
 
-    function updatePrices() {
+    function updatePrices(force) {
 
         /*jshint validthis:true */
+
         var $this = $(this);
         var selectedPrice = $this.val();
 
@@ -164,7 +171,7 @@ define('payments', [], function() {
         selectedPrice = parseInt(selectedPrice, 10);
 
         // No-op if nothing else has changed.
-        if (currentPrice === selectedPrice) {
+        if (currentPrice === selectedPrice && !force) {
             return;
         }
 
@@ -186,6 +193,11 @@ define('payments', [], function() {
                     var regionId = price.region;
                     var regionSeen = seenRegions.indexOf(regionId) > -1;
 
+                    if (enabledProviderIds.indexOf(price.provider) === -1) {
+                        console.log('Continuing as provider is not found in enabled provider ids list');
+                        continue;
+                    }
+
                     if (!regionSeen) {
                         seenRegions.push(regionId);
                     }
@@ -193,6 +205,7 @@ define('payments', [], function() {
                     var billingMethodText = paymentMethods[parseInt(price.method, 10)] || '';
                     var localPrice = price.price + ' ' + price.currency;
                     var localMethod = selectedPrice === tierZeroId ? notApplicableMsg : billingMethodText;
+
                     var provider = providerLookup[price.provider];
                     if (provider) {
                         provider = provider.charAt(0).toUpperCase() + provider.substring(1);
@@ -246,7 +259,7 @@ define('payments', [], function() {
                     }
                 });
 
-                $('.paid-regions input[name="regions"][value="1"]:checked').trigger('change', [true])
+                $('.paid-regions input[name="regions"][value="1"]:checked').trigger('change', [true]);
             },
             dataType: "json"
         }).fail(function() {
@@ -354,6 +367,18 @@ define('payments', [], function() {
             updatePrices.call($priceSelect[0]);
         }
     }
+
+    $('body').on('app-payment-account-deletion', function(e, data) {
+        var providerId = providerIdLookup[data.provider];
+        if (providerId) {
+            var idx = enabledProviderIds.indexOf(parseInt(providerId, 10));
+            if (idx > -1) {
+                enabledProviderIds.splice(idx, 1);
+                console.log('Updating prices');
+                updatePrices.call($('#id_price')[0], true);
+            }
+        }
+    });
 
     return {
         getOverlay: getOverlay,

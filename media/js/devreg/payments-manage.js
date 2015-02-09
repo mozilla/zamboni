@@ -56,18 +56,32 @@ define('payments-manage', ['payments'], function(payments) {
             });
             $ul.append($el);
         });
+
         $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
             $.post(data['delete-url']).then(function () {
-                refreshAccountForm(data)
+                refreshAccountForm(data);
             });
+
             $confirm_delete_overlay.remove();
+            z.body.removeClass('overlayed');
+            var accountName = data.name;
             var currentAppName = data['current-app-name'];
             var paymentAccounts = data['app-payment-accounts'][currentAppName];
             // If this app is associated with the account and it only has one
             // account show the warning.
             if (paymentAccounts && paymentAccounts.length === 1) {
                 $('#paid-island-incomplete').removeClass('hidden');
+                $('.no-payment-regions').removeClass('hidden');
             }
+
+            if (paymentAccounts.indexOf(accountName) > -1 && data.provider) {
+                // Fire a custom event for the account deletion so we can update
+                // The regions UI as necessary.
+                console.log('Firing a custom event for the payment account deletion: ' +
+                    JSON.stringify({account: accountName, provider: data.provider}));
+                $('body').trigger('app-payment-account-deletion', {provider: data.provider});
+            }
+
         }));
     }
 

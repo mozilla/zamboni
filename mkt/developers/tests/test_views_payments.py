@@ -582,6 +582,8 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#paid-island-incomplete:not(.hidden)')), 1)
+        eq_(json.loads(pqr('#region-list').attr('data-enabled-provider-ids')),
+            [])
 
     def setup_payment_acct(self, make_owner, user=None, bango_id=123):
         # Set up Solitude return values.
@@ -633,7 +635,10 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
         eq_(self.webapp.payment_account(PROVIDER_BANGO).payment_account.pk,
             acct.pk)
         eq_(AddonPremium.objects.all().count(), 0)
-        eq_(len(pq(res.content)('#paid-island-incomplete.hidden')), 1)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-island-incomplete.hidden')), 1)
+        eq_(json.loads(pqr('#region-list').attr('data-enabled-provider-ids')),
+            [PROVIDER_BANGO])
 
     def test_associate_acct_to_app(self):
         self.make_premium(self.webapp, price=self.price.price)
