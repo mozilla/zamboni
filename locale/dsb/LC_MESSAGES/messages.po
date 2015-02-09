@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-07 17:45+0000\n"
+"PO-Revision-Date: 2015-02-09 20:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423331154.0\n"
+"X-POOTLE-MTIME: 1423514727.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3695,6 +3695,8 @@ msgstr "Wopisanje"
 #: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
 msgstr ""
+"Wujasnjenje funkcijow, funkcionalnosći a drugich relewantnych informacijow. "
+"Toś to pólo zwobraznja se na boku drobnostkow nałoženja."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:125
 msgid "Release Notes"
@@ -3703,6 +3705,8 @@ msgstr "Wersijowe informacije"
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr ""
+"Informacije wó změnach w nejnowšej wersiji, nowych funkcijach, znatych "
+"zmólkach a drugich wužytnych informacijach za toś tu wersiju."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:147
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
