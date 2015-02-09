@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 08:52-0700\n"
-"PO-Revision-Date: 2015-02-09 20:45+0000\n"
+"PO-Revision-Date: 2015-02-09 20:56+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423514727.0\n"
+"X-POOTLE-MTIME: 1423515392.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3711,6 +3711,9 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:147
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
 msgstr ""
+"Kategorije su głowny srědk, kótaryž wužywarje wužywaju, aby nałoženja "
+"pśepytowali. Wubjeŕśo kategoriju, kótaraž dajo se k funkcionalnosći wašogo "
+"nałoženja, aby se tak k wjelilkemu ako móžny publikum pśigroniś."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -3724,6 +3727,8 @@ msgstr "Standardna rěc"
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
 msgstr ""
+"Informacije wó wašom nałoženju zwóbraznjaju se w tós tej rěcy, snaźkuli "
+"wuměnjaśo jo pśez pśełožk, kótaryž jo specifiski za wěstu lokalu."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
