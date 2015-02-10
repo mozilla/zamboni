@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import re
 from contextlib import nested
 
 import django
@@ -258,32 +259,41 @@ class TranslationTestCase(TestCase):
         eq_(sorted([c, a, b]), [a, b, c])
 
     def test_sorting_en(self):
-        q = self.TranslatedModel.objects.all()
+        qs = self.TranslatedModel.objects.all()
         expected = [4, 1, 3]
 
-        eq_(ids(order_by_translation(q, 'name')), expected)
-        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+        eq_(ids(order_by_translation(qs, 'name')), expected)
+        eq_(ids(order_by_translation(qs, '-name')), list(reversed(expected)))
+
+    def test_order_by_translations_query_uses_left_outer_join(self):
+        translation.activate('de')
+        qs = self.TranslatedModel.objects.all()
+        query = unicode(order_by_translation(qs, 'name').query)
+        # There should be 2 LEFT OUTER JOIN to find translations matching
+        # current language and fallback.
+        joins = re.findall('LEFT OUTER JOIN `translations`', query)
+        eq_(len(joins), 2)
 
     def test_sorting_mixed(self):
         translation.activate('de')
-        q = self.TranslatedModel.objects.all()
+        qs = self.TranslatedModel.objects.all()
         expected = [1, 4, 3]
 
-        eq_(ids(order_by_translation(q, 'name')), expected)
-        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
+        eq_(ids(order_by_translation(qs, 'name')), expected)
+        eq_(ids(order_by_translation(qs, '-name')), list(reversed(expected)))
 
     def test_sorting_by_field(self):
         field = self.TranslatedModel._meta.get_field('default_locale')
-        self.TranslatedModel.get_fallback = classmethod(lambda cls: field)
+        fallback = classmethod(lambda cls: field)
+        with patch.object(self.TranslatedModel, 'get_fallback',
+                          fallback, create=True):
+            translation.activate('de')
+            qs = self.TranslatedModel.objects.all()
+            expected = [3, 1, 4]
 
-        translation.activate('de')
-        q = self.TranslatedModel.objects.all()
-        expected = [3, 1, 4]
-
-        eq_(ids(order_by_translation(q, 'name')), expected)
-        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
-
-        del self.TranslatedModel.get_fallback
+            eq_(ids(order_by_translation(qs, 'name')), expected)
+            eq_(ids(order_by_translation(qs, '-name')),
+                list(reversed(expected)))
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_new_purified_field(self):
@@ -416,6 +426,15 @@ class TranslationMultiDbTests(TransactionTestCase):
         self.cleanup_fake_connections()
         super(TranslationMultiDbTests, self).tearDown()
 
+    def reset_queries(self):
+        # Django does a separate SQL query once per connection on MySQL, see
+        # https://code.djangoproject.com/ticket/16809 ; This pollutes the
+        # queries counts, so we initialize a connection cursor early ourselves
+        # before resetting queries to avoid this.
+        for con in django.db.connections:
+            connections[con].cursor()
+        reset_queries()
+
     @property
     def mocked_dbs(self):
         return {
@@ -432,7 +451,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     @override_settings(DEBUG=True)
     def test_translations_queries(self):
         # Make sure we are in a clean environnement.
-        reset_queries()
+        self.reset_queries()
         self.TranslatedModel.objects.get(pk=1)
         eq_(len(connections['default'].queries), 2)
 
@@ -440,7 +459,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     def test_translations_reading_from_multiple_db(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
                 self.TranslatedModel.objects.get(pk=1)
@@ -453,7 +472,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         raise SkipTest('Will need a django-queryset-transform patch to work')
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
                 self.TranslatedModel.objects.using('slave-1').get(pk=1)
@@ -465,7 +484,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     def test_translations_reading_from_multiple_db_pinning(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with nested(patch('multidb.get_slave', lambda: 'slave-2'),
                         multidb.pinning.use_master):
