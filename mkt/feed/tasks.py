@@ -17,8 +17,15 @@ def _migrate_collection_colors(ids, model):
     for obj in cls.objects.filter(id__in=ids):
         if obj.background_color and not obj.color:
             try:
-                color = coll_colors.COLLECTION_COLORS_REVERSE[
-                    obj.background_color]
+                color = {
+                    '#CE001C': 'ruby',
+                    '#F78813': 'amber',
+                    '#00953F': 'emerald',
+                    '#0099D0': 'aquamarine',
+                    '#1E1E9C': 'sapphire',
+                    '#5A197E': 'amethyst',
+                    '#A20D55': 'garnet'
+                }
             except KeyError:
                 continue
             obj.update(color=color)
