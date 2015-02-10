@@ -361,11 +361,9 @@ define('payments', [], function() {
             $('#regions input[name=restricted]:checked').trigger('change', [true]);
         }
 
-        // Only update if we can edit. If the user can't edit all fields will be disabled.
-        if (!z.body.hasClass('no-edit')) {
-            $priceSelect.on('change', updatePrices);
-            updatePrices.call($priceSelect[0]);
-        }
+        // Update prices to reflect the regions available.
+        $priceSelect.on('change', updatePrices);
+        updatePrices.call($priceSelect[0]);
     }
 
     $('body').on('app-payment-account-deletion', function(e, data) {
