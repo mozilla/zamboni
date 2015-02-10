@@ -110,7 +110,7 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
                             instance=inactive_langpack)
 
     def test_list_all_has_perm(self):
-        inactive_langpack = self.create_langpack(active=False)
+        inactive_langpack = self.create_langpack(active=False, language='it')
         inactive_langpack.update(created=self.days_ago(1))
         self.grant_permission(self.user, 'LangPacks:Admin')
         response = self.client.get(self.list_url, {'active': 'null'})

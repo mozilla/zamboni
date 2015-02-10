@@ -59,8 +59,8 @@ class LangPack(ModelBase):
     # (multiple authors) to be compatible with the API permission classes.
 
     class Meta:
-        ordering = (('-created'), )
-        index_together = (('fxos_version', 'language', 'active', 'created'),)
+        ordering = (('language'), )
+        index_together = (('fxos_version', 'active', 'language'),)
 
     @property
     def filename(self):
@@ -87,6 +87,9 @@ class LangPack(ModelBase):
             return absolutify(
                 reverse('langpack.manifest', args=[unicode(UUID(self.pk))]))
         return ''
+
+    def __unicode__(self):
+        return u'%s (%s)' % (self.get_language_display(), self.fxos_version)
 
     def is_public(self):
         return self.active
