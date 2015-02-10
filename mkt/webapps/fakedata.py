@@ -4,13 +4,12 @@ import itertools
 import os
 import json
 import random
-import StringIO
 import tempfile
 from zipfile import ZipFile, ZIP_DEFLATED
 
 from django.conf import settings
 
-from PIL import Image
+import pydenticon
 
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
@@ -57,28 +56,36 @@ def generate_app_data(num):
         cat_slug, cat_name = CATEGORY_CHOICES[i % len(CATEGORY_CHOICES)]
         yield (appname, cat_slug)
 
+foreground = ["rgb(45,79,255)",
+              "rgb(254,180,44)",
+              "rgb(226,121,234)",
+              "rgb(30,179,253)",
+              "rgb(232,77,65)",
+              "rgb(49,203,115)",
+              "rgb(141,69,170)"]
+
 
 def generate_icon(app):
-    im = Image.new(
-        "RGB", (128, 128),
-        "#" + hashlib.md5(unicode(app.name).encode('utf8')).hexdigest()[:6])
-    f = StringIO.StringIO()
-    im.save(f, 'png')
-    save_icon(app, f.getvalue())
+    gen = pydenticon.Generator(8, 8, foreground=foreground)
+    img = gen.generate(unicode(app.name).encode('utf8'), 128, 128,
+                       output_format="png")
+    save_icon(app, img)
 
 
-def generate_preview(app, n=1):
-    im = Image.new(
-        "RGB", (320, 480),
-        "#" + hashlib.md5(
-            unicode(app.name).encode('utf8') + chr(n)).hexdigest()[:6])
-    p = Preview.objects.create(addon=app, filetype="image/png",
-                               thumbtype="image/png",
-                               caption="screenshot " + str(n),
-                               position=n)
-    f = tempfile.NamedTemporaryFile()
-    im.save(f, 'png')
-    resize_preview(f.name, p)
+def generate_previews(app, n=1):
+    gen = pydenticon.Generator(8, 12, foreground=foreground,
+                               digest=hashlib.sha512)
+    for i in range(n):
+        img = gen.generate(unicode(app.name).encode('utf8') + chr(i), 320, 480,
+                           output_format="png")
+        p = Preview.objects.create(addon=app, filetype="image/png",
+                                   thumbtype="image/png",
+                                   caption="screenshot " + str(i),
+                                   position=i)
+        f = tempfile.NamedTemporaryFile(suffix='.png')
+        f.write(img)
+        f.flush()
+        resize_preview(f.name, p)
 
 
 def generate_localized_names(name, n):
@@ -232,7 +239,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
             app = generate_hosted_app(appname, cat_slug)
         app.name = generate_localized_names(app.name, 2)
         generate_icon(app)
-        generate_preview(app)
+        generate_previews(app)
         generate_ratings(app, 5)
 
 
@@ -249,8 +256,7 @@ def generate_app_from_spec(appname, cat_slug, type, status, num_previews=1,
         app = generate_packaged_app(
             appname, type, cat_slug, **spec)
     generate_icon(app)
-    for n in range(num_previews):
-        generate_preview(app, n)
+    generate_previews(app, num_previews)
     generate_ratings(app, num_ratings)
     app.name = generate_localized_names(app.name, num_locales)
     # Status has to be updated at the end because STATUS_DELETED apps can't
