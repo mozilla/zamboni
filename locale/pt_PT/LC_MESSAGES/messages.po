@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:34-0700\n"
-"PO-Revision-Date: 2015-01-12 23:06+0000\n"
+"PO-Revision-Date: 2015-02-10 01:22+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421103977.0\n"
+"X-POOTLE-MTIME: 1423531322.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -359,7 +359,7 @@ msgstr "República Checa"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Dinamarca"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -1236,7 +1236,7 @@ msgstr "Análise de aplicação moderada"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Moderação da análise da aplicação revertida"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -3724,11 +3724,11 @@ msgstr "Esta aplicação não requer quaisquer funcionalidades do dispositivo"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Identificador interno para esta aplicação no Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4361,6 +4361,9 @@ msgstr "Método de cobrança"
 #: mkt/developers/templates/developers/payments/premium.html:243
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"Como o \"Resto do Mundo\" está selecionado, a sua aplicação irá ficar "
+"disponível para compra em todas as \"<a href=\"#regions-other\">outras "
+"regiões</a>\" ativas."
 
 #: mkt/developers/templates/developers/payments/premium.html:251
 msgid "Other regions"
@@ -4369,6 +4372,8 @@ msgstr "Outras regiões"
 #: mkt/developers/templates/developers/payments/premium.html:253
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr ""
+"Para excluir a sua aplicação de ser apresentada numa região, pode desmarcar "
+"essa região antes de guardar."
 
 #: mkt/developers/templates/developers/payments/premium.html:273
 msgid "Regions and Listings"
@@ -4574,6 +4579,9 @@ msgstr "A sua aplicação será apresentada em qualquer Marketplace regional que
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Sujeito aos pagamentos estarem disponíveis nessa região para a faixa de "
+"preços selecionada ou a \"resto do mundo\" estar selecionado como uma opção de "
+"pagamento)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5084,6 +5092,8 @@ msgstr "O JSON do manifesto da aplicação web não é válido."
 #: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"O papel \"langpack\" é inválido para aplicações Web. Em vez disso, por favor "
+"envie esta aplicação como uma pacote de idioma."
 
 #: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
@@ -5208,35 +5218,43 @@ msgstr "O logótipo do produto deve ser uma imagem com 64x64. Confirme se a URL 
 #: mkt/langpacks/models.py:77
 msgctxt "version"
 msgid "%(lang)s language pack for Firefox OS %(version)slang"
-msgstr ""
+msgstr "Pacote de idioma %(lang)s para o Firefox OS %(version)slang"
 
 #: mkt/langpacks/utils.py:24
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "O seu pacote de idioma deve ter \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:29
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"O seu pacote de idioma deve conter um idioma no objeto `languages-provided`"
 
 #: mkt/langpacks/utils.py:34
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"O seu pacote de idioma contem demasiados idiomas. Apenas é suportado um "
+"idioma por pacote."
 
 #: mkt/langpacks/utils.py:40
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"O seu pacote de idioma deve conter um idioma no objeto `languages-target`."
 
 #: mkt/langpacks/utils.py:45
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"O seu pacote de idioma contem demasiados destinos. Apenas é suportado um "
+"destino por pacote."
 
 #: mkt/langpacks/utils.py:51
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "O seu pacote de idioma deve conter uma versão."
 
 #: mkt/langpacks/utils.py:54
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"A versão do pacote de idioma deve ser diferente da versão que está a tentar "
+"substituir."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5431,7 +5449,7 @@ msgstr "Ferramenta de pesquisa do <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Informação do Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5447,35 +5465,40 @@ msgstr "Transação relacionada"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informação do fornecedor de pagamento"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Neste momento não é possível obter o estado da transação."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Este pagamento é feito através do Bango. Para obter mais informações, "
+"contacte o <a href=\"mailto:%(bango_support)s\">apoio do Bango</a> com os "
+"seguintes dados."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Este pagamento foi feito através da <b>implementação de referência</b>. Não "
+"foi uma transação real."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
-msgstr ""
+msgstr "Valor pago"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:70
 msgid "Lookup id"
-msgstr ""
+msgstr "ID da verificação"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:72
 msgid "Timestamp"
-msgstr ""
+msgstr "Marcador temporal"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:82
 msgid "Refund information"
-msgstr ""
+msgstr "Informação de devolução"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:84
 msgid "Currently unable to retrieve refund status."
@@ -5811,11 +5834,11 @@ msgstr "Qualquer estado"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Comentários aprovados"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Comentários eliminados"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:61
 msgid "View entries between"
@@ -5823,7 +5846,7 @@ msgstr "Ver entradas entre"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrar por tipo/ação"
 
 #: mkt/reviewers/forms.py:63
 msgid "containing"
@@ -6253,55 +6276,55 @@ msgstr "Não foram encontradas análises para este período."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Registo de revisão moderada"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Mais detalhes."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Sem eventos encontrados para este período."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Detalhes do registo"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Detalhes do registo"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Data da moderação"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Título da aplicação"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Título da análise"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Texto da análise"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "A análise foi denunciada antes da moderação."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Estado atual da análise"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Viva"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Repor"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -6672,7 +6695,7 @@ msgstr "Revisto"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Tendência"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -7013,11 +7036,11 @@ msgstr "{user} aprovou a {review} para {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Análise {review} para {addon} eliminada."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} eliminou {review} para {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
