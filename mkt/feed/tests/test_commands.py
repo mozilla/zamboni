@@ -10,8 +10,8 @@ from mkt.site.tests import app_factory, TestCase
 class TestMigrateCollectionColor(TestCase):
 
     def setUp(self):
-        self.color_hex = colors.COLLECTION_COLORS_REVERSE.keys()[0]
-        self.color_name = colors.COLLECTION_COLORS_REVERSE[self.color_hex]
+        self.color_hex = '#CE001C'
+        self.color_name = 'ruby'
 
     def test_app(self):
         obj = FeedApp.objects.create(app=app_factory(),
