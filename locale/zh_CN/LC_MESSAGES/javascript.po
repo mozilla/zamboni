@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2014-09-06 04:35+0000\n"
+"PO-Revision-Date: 2015-02-11 21:33+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409978140.0\n"
+"X-POOTLE-MTIME: 1423690394.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -106,11 +106,11 @@ msgstr "你的应用通过了验证，没有错误和警告。"
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr "在指定的位置无法找到清单。"
+msgstr "无法在指定的位置找到清单。"
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "应用的主机无法连接。"
+msgstr "无法连接应用主机。"
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
@@ -164,7 +164,7 @@ msgstr "清单已刷新"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr "无法刷新清单，请稍后重试。"
+msgstr "无法刷新清单。请稍后再试。"
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -472,7 +472,7 @@ msgstr "更少..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr "保留评论 / 移除标志"
+msgstr "保留评论 / 移除标记"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -500,7 +500,7 @@ msgstr "已要求提供更多信息"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr "包含编辑注解"
+msgstr "包含编辑意见"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
@@ -508,7 +508,7 @@ msgstr "收费应用程序"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr "已上报"
+msgstr "已向上呈报"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
@@ -544,7 +544,7 @@ msgstr "失败时出错的应用：{app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "抱歉，获取审查记录时出错。请尝试重新登录。<p>"
+msgstr "抱歉，获取审核记录时出错。请尝试重新登录。<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63

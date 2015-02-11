@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2015-01-31 14:42+0000\n"
+"PO-Revision-Date: 2015-02-11 21:34+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422715332.0\n"
+"X-POOTLE-MTIME: 1423690486.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -50,7 +50,7 @@ msgstr "是"
 
 #: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:195 mkt/submit/forms.py:318
 msgid "No"
-msgstr "取消"
+msgstr "否"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
@@ -78,7 +78,7 @@ msgstr "描述："
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr "附件超过最大体积 %s 。"
+msgstr "附件超过最大限制 %s。"
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
@@ -111,7 +111,7 @@ msgstr "用户"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr "评论者"
+msgstr "审核者"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
@@ -1219,7 +1219,7 @@ msgstr "有特权的应用审核"
 
 #: mkt/constants/base.py:199
 msgid "Web App Re-review"
-msgstr "网络应用重审核"
+msgstr "网络应用重新审核"
 
 #: mkt/constants/base.py:200
 msgid "Updated Packaged App Review"
@@ -1235,7 +1235,7 @@ msgstr "提请仲裁的应用审核"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "已还原提请仲裁的应用审核"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -1355,11 +1355,11 @@ msgstr "要求更多信息"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
-msgstr "已进入升级流程"
+msgstr "已向上呈报"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr "给审核者的私密留言"
+msgstr "给审核者的私人留言"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1367,19 +1367,19 @@ msgstr "重新提交应用"
 
 #: mkt/constants/comm.py:52 mkt/site/log.py:426
 msgid "Escalation cleared"
-msgstr "升级已清除"
+msgstr "向上呈报已清除"
 
 #: mkt/constants/comm.py:53
 msgid "Escalated due to High Abuse Reports"
-msgstr "因收到大量滥用投诉而提交上一级审核"
+msgstr "收到大量滥用投诉，已向上呈报"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Refund Requests"
-msgstr "因大量退款申请而提交上一级审核"
+msgstr "有大量退款申请，已向上呈报"
 
 #: mkt/constants/comm.py:55 mkt/site/log.py:474
 msgid "Re-review cleared"
-msgstr "重复评论已清理"
+msgstr "重新审核已清除"
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
@@ -1423,11 +1423,11 @@ msgstr "因成人内容评级而重新审核"
 
 #: mkt/constants/comm.py:66
 msgid "Escalation due to VIP App"
-msgstr "因 VIP 应用而提升审核"
+msgstr "因为是 VIP 应用而提升审核等级"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to Prelease App"
-msgstr "因是预先发行应用而提升审核"
+msgstr "因为是预发布应用而提升审核等级"
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
@@ -2028,7 +2028,7 @@ msgstr "内容分级已改为成人。"
 
 #: mkt/developers/forms.py:65
 msgid "You cannot select {region}."
-msgstr "您无法选择 {region}。"
+msgstr "您不能选择 {region}。"
 
 #: mkt/developers/forms.py:124
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2522,11 +2522,11 @@ msgstr "请使用小于%s的文件。"
 
 #: mkt/developers/utils.py:99
 msgid "Icon could not be opened."
-msgstr "图标无法打开。"
+msgstr "无法打开图标。"
 
 #: mkt/developers/utils.py:101
 msgid "Preview could not be opened."
-msgstr "预览无法打开。"
+msgstr "无法打开预览。"
 
 #: mkt/developers/utils.py:108
 msgid "Icons must be at least 128px by 128px."
@@ -3373,7 +3373,7 @@ msgstr "应用将不会在公开展示页面中列出"
 
 #: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
-msgstr "这些更改无法撤销。"
+msgstr "这些更改不能被撤销。"
 
 #: mkt/developers/templates/developers/apps/status.html:496
 msgid "Are you sure you wish to delete this version?"
@@ -3422,7 +3422,7 @@ msgstr "联系 Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr "每次审核人发送邮件给开发者时，都回抄送给该应用的 Mozilla 联系人的电子邮件地址。多个地址须以英文逗号分隔。"
+msgstr "每次审核员发送邮件给开发者时，都回抄送给该应用的 Mozilla 联系人的电子邮件地址。多个地址须以英文逗号分隔。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -4310,7 +4310,7 @@ msgstr "付款方式"
 
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
+msgstr "添加支付账户以使您的应用可在更多地区销售"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -4523,8 +4523,9 @@ msgid "Your app will be displayed in any regional Marketplace that is added in t
 msgstr "未来任何新开通应用市场的地区都会显示您的应用。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
+#, fuzzy
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr ""
+msgstr "（查看该区域是否已开放使用指定价位购买应用，或者在支付选项中选择了“其他地区”）。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -4801,7 +4802,7 @@ msgstr "结账吧！"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "与 Mozilla 合作，通过开放的应用市场向4.5亿用户分发您的应用"
+msgstr "与 Mozilla 合作，通过开放的应用市场向超过4.5亿用户分发您的应用"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -4977,7 +4978,7 @@ msgstr "来自 %(url)s 的图像无法被解析"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr "无法判断一个版本与其自身的差别"
+msgstr "不能比较一个版本与其自身的差别"
 
 #: mkt/files/helpers.py:152
 msgid "That file no longer exists."
@@ -4994,7 +4995,7 @@ msgstr "问题编译中{0}。"
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "此文件无法在线查看。请下载文件以查看内容。"
+msgstr "此文件无法在线查看。请下载该文件以查看其内容。"
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
@@ -5650,7 +5651,7 @@ msgstr "您的购买历史："
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
-msgstr "保存评论；移除标志"
+msgstr "保留评论；移除标记"
 
 #: mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -5742,11 +5743,11 @@ msgstr "任何状态"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "已通过审核的评论"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "已删除的评论"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:62
 msgid "View entries between"
@@ -5754,7 +5755,7 @@ msgstr "查看条目从"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "按照类型/操作过滤"
 
 #: mkt/reviewers/forms.py:64
 msgid "containing"
@@ -5825,7 +5826,7 @@ msgstr "应用"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Re-reviews"
-msgstr "重新评论"
+msgstr "重新审核"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
@@ -5833,7 +5834,7 @@ msgstr "更新"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
-msgstr "升级"
+msgstr "向上呈报"
 
 #: mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
 msgid "Device"
@@ -5869,7 +5870,7 @@ msgstr "更新 ({0})"
 #: mkt/reviewers/helpers.py:102
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr "升级（{0}）"
+msgstr "{0} 个向上呈报"
 
 #: mkt/reviewers/helpers.py:106
 msgid "Reviewing ({0})"
@@ -5942,15 +5943,15 @@ msgstr "评论此应用，作者不会看到。"
 
 #: mkt/reviewers/utils.py:403
 msgid "Clear Escalation"
-msgstr "清除升级"
+msgstr "清除向上呈报"
 
 #: mkt/reviewers/utils.py:405
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr "从提升审核队列中移除该应用。不会收到邮件评论或者看到这里的评论。"
+msgstr "从向上呈报队列中清除此应用。作者不会收到邮件通知或看到这里的评论。"
 
 #: mkt/reviewers/utils.py:410
 msgid "Clear Re-review"
-msgstr "清除再审核"
+msgstr "清除重新审核"
 
 #: mkt/reviewers/utils.py:412
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
@@ -6043,7 +6044,7 @@ msgstr "当前类别没有待审核的项目。"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr "您目前没有审核任何应用。"
+msgstr "您目前没有任何正在审核的应用。"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136 mkt/reviewers/templates/reviewers/includes/search_results.html:7
@@ -6099,7 +6100,7 @@ msgstr[0] "{num} 个应用待审核"
 #: mkt/reviewers/templates/reviewers/home.html:25
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] "{num} 个再审核{num} 个再审核"
+msgstr[0] "{num} 个重新审核"
 
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
@@ -6158,7 +6159,7 @@ msgstr "事件"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr "应用已删除。"
+msgstr "应用已被删除。"
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -6174,55 +6175,55 @@ msgstr "在此时间段内没有审核。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "审核评论的记录"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "更多详情。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "这段时间没有事件。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "记录详细信息"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "记录详细信息"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "操作日期"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "应用标题"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "评论标题"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "评论文本"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "评论在管理操作前已被标记。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "当前评论状态"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "存在"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "取消删除"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -6278,11 +6279,11 @@ msgstr "作者："
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "位于再审核队列"
+msgstr "位于重新审核队列"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
-msgstr "位于升级队列"
+msgstr "位于向上呈报队列"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
@@ -6834,7 +6835,7 @@ msgstr "已被保留"
 
 #: mkt/site/log.py:197
 msgid "{addon} {version} escalated."
-msgstr "{addon} {version} 已进入升级流程。"
+msgstr "{addon} {version} 已向上呈报。"
 
 #: mkt/site/log.py:207
 msgid "{addon} {version} review requested."
@@ -6994,7 +6995,7 @@ msgstr "{addon} 的交易收据有效性已核实。"
 
 #: mkt/site/log.py:425
 msgid "Escalation cleared for {addon}."
-msgstr "{addon} 的升级已清除。"
+msgstr "{addon} 的向上呈报已清除。"
 
 #: mkt/site/log.py:433
 msgid "{addon} banned."
@@ -7006,7 +7007,7 @@ msgstr "应用已封禁"
 
 #: mkt/site/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} 已进入升级流程，因为滥用报告量过高。"
+msgstr "{addon} 因滥用报告量过高，已向上呈报。"
 
 #: mkt/site/log.py:442
 msgid "High Abuse Reports"
@@ -7014,7 +7015,7 @@ msgstr "高滥用报告量"
 
 #: mkt/site/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
-msgstr "{addon} 已进入升级流程，因为退款申请量过高。"
+msgstr "{addon} 因退款申请量过高，已向上呈报。"
 
 #: mkt/site/log.py:450
 msgid "High Refund Requests"
@@ -7022,7 +7023,7 @@ msgstr "高退款申请量"
 
 #: mkt/site/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "由于清单出现重大变更 {addon} 要重新审查。"
+msgstr "由于清单出现重大变更 {addon}，要重新审核。"
 
 #: mkt/site/log.py:458
 msgid "Manifest Change"
@@ -7030,7 +7031,7 @@ msgstr "清单变更"
 
 #: mkt/site/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "由于升级为收费作品，{addon} 被重新审核。"
+msgstr "由于升级为收费应用，{addon} 要重新审核。"
 
 #: mkt/site/log.py:466
 msgid "Premium Type Upgrade"
@@ -7038,15 +7039,15 @@ msgstr "升级为收费类"
 
 #: mkt/site/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr "{addon} 的重复评论已清理。"
+msgstr "{addon} 的重新审核已清除。"
 
 #: mkt/site/log.py:481
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} 已经由审核者提升。"
+msgstr "{addon} 已经由审核员向上呈报。"
 
 #: mkt/site/log.py:482
 msgid "Reviewer escalation"
-msgstr "审核者提升"
+msgstr "审核者向上呈报"
 
 #: mkt/site/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
@@ -7082,7 +7083,7 @@ msgstr "重新提交应用"
 
 #: mkt/site/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr "由于是 VIP 应用，{addon} 自动提升了审核等级。"
+msgstr "因为是 VIP 应用，{addon} 被自动提升了审核等级。"
 
 #: mkt/site/log.py:522
 msgid "VIP auto-escalation"
@@ -7098,11 +7099,11 @@ msgstr "清单 URL 变更"
 
 #: mkt/site/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr "由于是预发布应用，{addon} 将被自动提升审核。"
+msgstr "因为是预发布应用，{addon} 被自动提升了审核等级。"
 
 #: mkt/site/log.py:538
 msgid "Prerelease auto-escalation"
-msgstr "预发布应用自动提升审核"
+msgstr "预发布应用自动提升审核等级"
 
 #: mkt/site/log.py:555
 msgid "Created: {0}."
