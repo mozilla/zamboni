@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-11 09:56-0700\n"
 "PO-Revision-Date: 2014-11-19 21:12+0000\n"
 "Last-Translator: SreeMegha21 <s.guha21@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -331,20 +331,20 @@ msgstr[1] "পেমেণ্ট অ্যাকাউন্ট \"{0}\" মু�
 msgid "{appName} payment accounts:"
 msgstr "{appName} পেমেণ্ট অ্যাকাউন্ট:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "ত্রুটি"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "পেমেণ্ট সারভারের সঙ্গে যোগাযোগ করতে গিয়ে সমস্যা দেখা দিয়েছে।"
 
-#: media/js/devreg/payments-manage.js:129
+#: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
 msgstr "বৈধতা ত্রুটি"
 
-#: media/js/devreg/payments-manage.js:185
+#: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
 msgstr "এই মুহূর্তে আপনার কোন পেমেণ্ট অ্যাকাউন্ট নেই।"
 

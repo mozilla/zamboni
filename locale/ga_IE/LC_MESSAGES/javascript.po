@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-11 09:56-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -347,20 +347,20 @@ msgstr[4] ""
 msgid "{appName} payment accounts:"
 msgstr "Cuntais íocaíochta {appName}:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Earráid"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Tharla earráid agus dul i dteagmháil leis an freastalaí íocaíochta."
 
-#: media/js/devreg/payments-manage.js:129
+#: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
 msgstr "Earráid fíordheimhnithe"
 
-#: media/js/devreg/payments-manage.js:185
+#: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
 msgstr "Níl aon chuntais íocaíochta agat faoi láthair."
 

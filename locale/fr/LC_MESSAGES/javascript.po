@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-11 09:56-0700\n"
 "PO-Revision-Date: 2014-09-06 11:46+0200\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -337,20 +337,20 @@ msgstr[1] "Supprimer le compte de paiement « {0} » retirera le moyen de paieme
 msgid "{appName} payment accounts:"
 msgstr "{appName} comptes de paiement :"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Erreur"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Une erreur est survenue pendant le contact avec le serveur de paiement."
 
-#: media/js/devreg/payments-manage.js:129
+#: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
 msgstr "Erreur d'authentification"
 
-#: media/js/devreg/payments-manage.js:185
+#: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
 msgstr "Vous n'avez actuellement pas de compte de paiement."
 

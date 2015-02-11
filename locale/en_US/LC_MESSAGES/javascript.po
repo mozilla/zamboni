@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 08:52-0700\n"
+"POT-Creation-Date: 2015-02-11 09:56-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -329,20 +329,20 @@ msgstr[1] "Deleting payment account \"{0}\" will remove the payment account from
 msgid "{appName} payment accounts:"
 msgstr "{appName} payment accounts:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Error"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "There was a problem contacting the payment server."
 
-#: media/js/devreg/payments-manage.js:129
+#: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
 msgstr "Authentication error"
 
-#: media/js/devreg/payments-manage.js:185
+#: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
 msgstr "You do not currently have any payment accounts."
 
