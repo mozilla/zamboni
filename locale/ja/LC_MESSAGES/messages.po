@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2015-02-04 18:42+0000\n"
+"PO-Revision-Date: 2015-02-11 13:01-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4324,7 +4324,7 @@ msgstr "課金方法"
 
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
+msgstr "他の地域でこのアプリの販売を有効化するには決済用アカウントを追加してください"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
