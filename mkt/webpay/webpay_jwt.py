@@ -11,6 +11,7 @@ import commonware.log
 import mkt
 from lib.crypto.webpay import sign_webpay_jwt
 from mkt.site.helpers import absolutify
+from mkt.translations.models import Translation
 from mkt.webpay.utils import make_external_id, strip_tags
 
 
@@ -18,7 +19,14 @@ log = commonware.log.getLogger('z.purchase')
 
 
 def get_product_jwt(product, contribution):
-    """Prepare a JWT for paid products to pass into navigator.pay()"""
+    """
+    Prepare a JWT describing the item about to be purchased when
+    working with navigator.mozPay().
+
+    See the MDN docs for details on the JWT fields:
+    https://developer.mozilla.org/en-US/Marketplace/Monetization
+        /In-app_payments_section/mozPay_iap
+    """
 
     issued_at = calendar.timegm(time.gmtime())
     product_data = product.product_data(contribution)
@@ -37,6 +45,8 @@ def get_product_jwt(product, contribution):
         'request': {
             'id': product.external_id(),
             'name': unicode(product.name()),
+            'defaultLocale': product.default_locale(),
+            'locales': product.localized_properties(),
             'icons': product.icons(),
             'description': strip_tags(product.description()),
             'pricePoint': product.price().name,
@@ -76,6 +86,20 @@ class WebAppProduct(object):
 
     def name(self):
         return self.webapp.name
+
+    def default_locale(self):
+        return self.webapp.default_locale
+
+    def localized_properties(self):
+        props = {}
+
+        for attr in ('name', 'description'):
+            tr_object = getattr(self.webapp, attr)
+            for tr in Translation.objects.filter(id=tr_object.id):
+                props.setdefault(tr.locale, {})
+                props[tr.locale][attr] = tr.localized_string
+
+        return props
 
     def addon(self):
         return self.webapp
@@ -126,6 +150,14 @@ class InAppProduct(object):
 
     def name(self):
         return self.inapp.name
+
+    def default_locale(self):
+        # TODO: implement localization for in-app products. bug 972886
+        return None
+
+    def localized_properties(self):
+        # TODO: implement localization for in-app products. bug 972886
+        return {}
 
     def addon(self):
         return self.inapp.webapp
