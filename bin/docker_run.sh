@@ -14,6 +14,8 @@ if [ $? -ne 0 ]; then
     python manage.py loaddata init
     echo "Jumping migrations forward to the most recent."
     schematic migrations/ --fake
+    echo "Creating fake apps."
+    python manage.py generate_apps_from_spec data/apps/test_apps.json
     echo "Creating the initial index"
     python manage.py reindex
 fi
