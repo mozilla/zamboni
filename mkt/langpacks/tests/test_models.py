@@ -73,6 +73,13 @@ class TestLangPackBasic(TestCase):
         eq_(LangPack(language='fr').get_language_display(), u'Français')
         eq_(LangPack(language='en-US').get_language_display(), u'English (US)')
 
+    def test_sort(self):
+        langpack_it = LangPack.objects.create(language='it')
+        langpack_de = LangPack.objects.create(language='de')
+        langpack_fr = LangPack.objects.create(language='fr')
+        eq_(list(LangPack.objects.all()),
+            [langpack_de, langpack_fr, langpack_it])
+
 
 class UploadCreationMixin(object):
     def upload(self, name, **kwargs):
