@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2015-02-02 19:48+0000\n"
+"PO-Revision-Date: 2015-02-12 13:10+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -12,8 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1422906536.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1423746650.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -532,7 +532,7 @@ msgstr "Meno dettagli…"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr "Mantieni questa recensione / rimuovi segnalazione "
+msgstr "Mantieni la recensione / rimuovi segnalazione "
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
