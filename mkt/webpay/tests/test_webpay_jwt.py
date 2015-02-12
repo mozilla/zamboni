@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import urlparse
 from urllib import urlencode
@@ -7,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import jwt
+import mock
 from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, ok_, raises
 
@@ -59,6 +61,7 @@ class TestPurchaseJWT(PurchaseTest):
         request = token_data['request']
         eq_(request['id'], self.product.external_id())
         eq_(request['name'], self.product.name())
+        eq_(request['defaultLocale'], self.product.default_locale())
         eq_(request['icons'], self.product.icons())
         eq_(request['description'], self.product.description())
         eq_(request['pricePoint'], self.product.price().name)
@@ -82,6 +85,19 @@ class TestPurchaseJWT(PurchaseTest):
         request = token_data['request']
         product = urlparse.parse_qs(request['productData'])
         ok_('buyer_email' not in product)
+
+    def test_locales(self):
+        with mock.patch.object(self.product, 'localized_properties') as props:
+            loc_data = {
+                'es': {
+                    'name': 'El Mocoso',
+                    'description': u'descripción de la aplicación',
+                }
+            }
+            props.return_value = loc_data
+            token_data = self.decode_token()
+            # Make sure the JWT passes through localized_properties() data.
+            eq_(token_data['request']['locales'], loc_data)
 
 
 class BaseTestWebAppProduct(PurchaseTest):
@@ -111,6 +127,7 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(self.product.id(), self.addon.pk)
         eq_(self.product.name(), unicode(self.addon.name))
         eq_(self.product.addon(), self.addon)
+        eq_(self.product.default_locale(), self.addon.default_locale)
         eq_(self.product.price(), self.addon.premium.price)
         eq_(self.product.icons()['64'],
             absolutify(self.addon.get_icon_url(64)))
@@ -124,6 +141,30 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(product_data['public_id'], self.public_id)
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'], self.product.application_size())
+
+    @override_settings(AMO_LANGUAGES=('en-US', 'es', 'fr'))
+    def test_localized_properties(self):
+        en_name = unicode(self.addon.name)
+        en_desc = unicode(self.addon.description)
+        loc_names = {
+            'fr': 'Le Vaurien',
+            'es': 'El Mocoso',
+        }
+        loc_desc = {
+            'fr': u"ceci est une description d'application",
+            'es': u'se trata de una descripción de la aplicación',
+        }
+        self.addon.name = loc_names
+        self.addon.description = loc_desc
+        self.addon.save()
+
+        names = self.product.localized_properties()
+        eq_(names['es']['name'], loc_names['es'])
+        eq_(names['es']['description'], loc_desc['es'])
+        eq_(names['fr']['name'], loc_names['fr'])
+        eq_(names['fr']['description'], loc_desc['fr'])
+        eq_(names['en-US']['name'], en_name)
+        eq_(names['en-US']['description'], en_desc)
 
 
 @override_settings(PAYMENT_PROVIDERS=['bango', 'boku'])
