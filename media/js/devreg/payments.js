@@ -20,9 +20,11 @@ define('payments', [], function() {
     var enabledProviderIds = regionsData.enabledProviderIds;
 
     var providerIdLookup = {};
-    Object.keys(providerLookup).forEach(function(k) {
-       providerIdLookup[providerLookup[k]] = k;
-    });
+    if (providerLookup) {
+        Object.keys(providerLookup).forEach(function(k) {
+            providerIdLookup[providerLookup[k]] = k;
+        });
+    }
 
     function getOverlay(opts) {
         var id = opts;
@@ -194,7 +196,6 @@ define('payments', [], function() {
                     var regionSeen = seenRegions.indexOf(regionId) > -1;
 
                     if (enabledProviderIds.indexOf(price.provider) === -1) {
-                        console.log('Continuing as provider is not found in enabled provider ids list');
                         continue;
                     }
 
