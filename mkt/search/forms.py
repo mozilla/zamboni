@@ -132,7 +132,6 @@ class ApiSearchForm(forms.Form):
         if self.cleaned_data['cat']:
             return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
                                                  [self.cleaned_data['cat']])
-        return None
 
     def clean_premium_types(self):
         """After cleaned, return a list of ints for the constants."""
@@ -141,7 +140,8 @@ class ApiSearchForm(forms.Form):
             pt_id = mkt.ADDON_PREMIUM_API_LOOKUP.get(pt)
             if pt_id is not None:
                 pt_ids.append(pt_id)
-        return pt_ids
+        if pt_ids:
+            return pt_ids
 
     def clean_app_type(self):
         """After cleaned, return a list of ints for the constants."""
@@ -156,11 +156,13 @@ class ApiSearchForm(forms.Form):
                 mkt.ADDON_WEBAPP_PRIVILEGED not in at_ids):
             at_ids.append(mkt.ADDON_WEBAPP_PRIVILEGED)
 
-        return at_ids
+        if at_ids:
+            return at_ids
 
     def clean_languages(self):
         languages = self.cleaned_data.get('languages')
-        return [l.strip() for l in languages.split(',')] if languages else []
+        if languages:
+            return [l.strip() for l in languages.split(',')]
 
     def clean_device_and_dev(self):
         device = self.cleaned_data.get('dev')
@@ -177,8 +179,17 @@ class ApiSearchForm(forms.Form):
             raise forms.ValidationError('Invalid device or device type.')
 
     def clean_author(self):
-        return self.cleaned_data.get('author', '').lower()
+        author = self.cleaned_data.get('author')
+        if author:
+            return author.lower()
 
     def clean(self):
         self.clean_device_and_dev()
+
+        # Convert empty things to `None`s.
+        for k, v in self.cleaned_data.items():
+            # We want explicit `False` to stay the same.
+            if v is not False and not v:
+                self.cleaned_data[k] = None
+
         return self.cleaned_data

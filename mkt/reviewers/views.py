@@ -26,7 +26,6 @@ import requests
 import waffle
 from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
-from elasticsearch_dsl.filter import F
 from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
@@ -42,7 +41,7 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AnyOf, GroupPermission
-from mkt.api.base import form_errors, CORSMixin, MarketplaceView, SlugOrIdMixin
+from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
@@ -58,12 +57,14 @@ from mkt.reviewers.models import (AdditionalReview, CannedResponse,
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
+                                       ReviewerScoreSerializer,
                                        ReviewersESAppSerializer,
-                                       ReviewingSerializer,
-                                       ReviewerScoreSerializer,)
+                                       ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, device_queue_search,
                                  log_reviewer_action, ReviewersQueuesHelper)
-from mkt.search.views import search_form_to_es_fields, SearchView
+from mkt.search.filters import (ReviewerSearchFormFilter, SearchQueryFilter,
+                                SortingFilter)
+from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
@@ -73,7 +74,6 @@ from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
-from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
@@ -988,47 +988,11 @@ class ReviewingView(ListAPIView):
 
 
 class ReviewersSearchView(SearchView):
-    cors_allowed_methods = ['get']
-    authentication_classes = [RestSharedSecretAuthentication,
-                              RestOAuthAuthentication]
     permission_classes = [GroupPermission('Apps', 'Review')]
+    filter_backends = [SearchQueryFilter, ReviewerSearchFormFilter,
+                       SortingFilter]
     form_class = ApiReviewersSearchForm
     serializer_class = ReviewersESAppSerializer
-
-    def search(self, request):
-        # Parse form.
-        form = self.form_class(request.GET if request else None)
-        if not form.is_valid():
-            raise form_errors(form)
-        form_data = form.cleaned_data
-
-        # Status filter.
-        data = search_form_to_es_fields(form_data)
-        if form_data.get('status') != 'any':
-            data.update(status=form_data.get('status'))
-
-        # Do filter.
-        sq = apply_reviewer_filters(request, WebappIndexer.search(),
-                                    data=form_data)
-        sq = WebappIndexer.get_app_filter(request, data, sq=sq, no_filter=True)
-
-        page = self.paginate_queryset(sq)
-        return self.get_pagination_serializer(page), request.GET.get('q', '')
-
-
-def apply_reviewer_filters(request, qs, data=None):
-    for k in ('has_info_request', 'has_editor_comment'):
-        if data.get(k) is not None:
-            qs = qs.filter('term', **{'latest_version.%s' % k: data[k]})
-    if data.get('is_escalated') is not None:
-        qs = qs.filter('term', is_escalated=data['is_escalated'])
-    is_tarako = data.get('is_tarako')
-    if is_tarako is not None:
-        if is_tarako:
-            qs = qs.filter('term', tags='tarako')
-        else:
-            qs = qs.filter(~F('term', tags='tarako'))
-    return qs
 
 
 class ApproveRegion(SlugOrIdMixin, CreateAPIView):

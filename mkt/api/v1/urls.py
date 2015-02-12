@@ -6,9 +6,9 @@ from rest_framework.routers import SimpleRouter
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
 from mkt.api.base import SubRouter
-from mkt.api.views import (CarrierViewSet, CategoryViewSet,
-                           error_reporter, ErrorViewSet, PriceTierViewSet,
-                           PriceCurrencyViewSet, RefreshManifestViewSet,
+from mkt.api.views import (CarrierViewSet, CategoryViewSet, error_reporter,
+                           ErrorViewSet, PriceCurrencyViewSet,
+                           PriceTierViewSet, RefreshManifestViewSet,
                            RegionViewSet, site_config)
 from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.developers.urls import dev_api_patterns, payments_api_patterns

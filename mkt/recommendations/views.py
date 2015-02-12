@@ -11,7 +11,8 @@ from rest_framework.response import Response
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.constants.applications import get_device_id
+from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
+                                PublicAppsFilter, RegionFilter)
 from mkt.search.views import SearchView
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.serializers import SimpleESAppSerializer
@@ -26,9 +27,14 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
     serializer_class = SimpleESAppSerializer
+    filter_backends = [PublicAppsFilter, DeviceTypeFilter, RegionFilter,
+                       ProfileFilter]
 
     def _popular(self):
         return SearchView.as_view()(self.request)
+
+    def get_queryset(self):
+        return WebappIndexer.search()
 
     def list(self, request, *args, **kwargs):
         if (not settings.RECOMMENDATIONS_ENABLED or
@@ -62,12 +68,10 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                 request.user.installed_set.values_list('addon_id', flat=True))
             app_ids = filter(lambda a: a not in installed, app_ids)
 
-            device = get_device_id(request)
-            filters = {'device': device} if device else None
+            queryset = self.filter_queryset(self.get_queryset())
+            queryset = WebappIndexer.filter_by_apps(app_ids, queryset)
 
-            sq = WebappIndexer.get_app_filter(self.request, filters,
-                                              app_ids=app_ids)
             return Response({
                 'objects': self.serializer_class(
-                    sq.execute().hits, many=True,
+                    queryset.execute().hits, many=True,
                     context={'request': self.request}).data})

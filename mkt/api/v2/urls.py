@@ -9,7 +9,7 @@ from mkt.api.views import endpoint_removed
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
-from mkt.search.views import RocketbarViewV2
+from mkt.search.views import NonPublicSearchView, RocketbarViewV2
 
 
 feed = SimpleRouter()
@@ -50,6 +50,8 @@ urlpatterns = patterns(
         name='apps-recommend'),
     url(r'^apps/search/rocketbar/', RocketbarViewV2.as_view(),
         name='rocketbar-search-api'),
+    url(r'^apps/search/non-public/', NonPublicSearchView.as_view(),
+        name='non-public-search-api'),
     url(r'^feed/builder/$', views.FeedBuilderView.as_view(),
         name='feed.builder'),
     url(r'^feed/elements/search/$', views.FeedElementSearchView.as_view(),

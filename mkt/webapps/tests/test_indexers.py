@@ -259,34 +259,6 @@ class TestAppFilter(ESTestCase):
         Test all apps are returned if app IDs is passed. Natural ES limit is
         10.
         """
-        sq = WebappIndexer.get_app_filter(self.request, app_ids=self.app_ids)
+        sq = WebappIndexer.filter_by_apps(app_ids=self.app_ids)
         results = sq.execute().hits
         eq_(len(results), 11)
-
-    def test_no_filter(self):
-        # Set a couple apps as non-public, the count should decrease.
-        self.apps[0].update(status=mkt.STATUS_REJECTED)
-        self.apps[1].update(status=mkt.STATUS_PENDING)
-        self.refresh('webapp')
-        sq = WebappIndexer.get_app_filter(self.request, app_ids=self.app_ids)
-        results = sq.execute().hits
-        eq_(len(results), 9)
-
-    def test_additional_info(self):
-        """
-        One of the ways `additional_info` is used it to pass the device type of
-        the request and filter apps by device.
-        """
-        # By default app_factory creates apps with device being
-        # DEVICE_TYPES.keys()[0]. Let's change a couple and query by that
-        # device.
-        device = DEVICE_TYPES.keys()[1]
-        self.apps[0].addondevicetype_set.create(device_type=device)
-        self.apps[1].addondevicetype_set.create(device_type=device)
-        # Reindex b/c we changed an off-model attribute.
-        self.reindex(Webapp, 'webapp')
-
-        sq = WebappIndexer.get_app_filter(self.request, {'device': device},
-                                          app_ids=self.app_ids)
-        results = sq.execute().hits
-        eq_(len(results), 2)

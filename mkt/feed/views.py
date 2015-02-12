@@ -27,12 +27,13 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
-from mkt.constants.applications import get_device_id
 from mkt.constants.carriers import CARRIER_MAP
 from mkt.constants.regions import REGIONS_DICT
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.models import OperatorPermission
+from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
+                                PublicAppsFilter, RegionFilter)
 from mkt.site.utils import HttpResponseSendFile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
@@ -560,6 +561,9 @@ class FeedShelfLandingImageViewSet(FeedShelfPermissionMixin,
 
 
 class BaseFeedESView(CORSMixin, APIView):
+    filter_backends = [PublicAppsFilter, DeviceTypeFilter, RegionFilter,
+                       ProfileFilter]
+
     def __init__(self, *args, **kw):
         self.ITEM_TYPES = {
             'apps': feed.FEED_TYPE_APP,
@@ -609,16 +613,12 @@ class BaseFeedESView(CORSMixin, APIView):
         Takes a list of app_ids. Gets the apps, including filters.
         Returns an app_map for serializer context.
         """
-        if request.QUERY_PARAMS.get('filtering', '1') == '0':
-            # Without filtering.
-            sq = WebappIndexer.search().filter(es_filter.Bool(
-                should=[es_filter.Terms(id=app_ids)]
-            ))[0:len(app_ids)]
-        else:
-            # With filtering.
-            sq = WebappIndexer.get_app_filter(request, {
-                'device': get_device_id(request)
-            }, app_ids=app_ids)
+        sq = WebappIndexer.search()
+        if request.QUERY_PARAMS.get('filtering', '1') == '1':
+            # With filtering (default).
+            for backend in self.filter_backends:
+                sq = backend().filter_queryset(request, sq, self)
+        sq = WebappIndexer.filter_by_apps(app_ids, sq)
 
         # Store the apps to attach to feed elements later.
         with statsd.timer('mkt.feed.views.apps_query'):
