@@ -17,9 +17,11 @@ from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.ratings.models import Review
+from mkt.ratings.tasks import addon_review_aggregates
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AppManifest, Preview
+from mkt.users.utils import create_user
+from mkt.webapps.models import AddonUser, AppManifest, Preview
 
 adjectives = ['Exquisite', 'Delicious', 'Elegant', 'Swanky', 'Spicy',
               'Food Truck', 'Artisanal', 'Tasty']
@@ -109,14 +111,14 @@ def generate_ratings(app, num):
         Review.objects.create(
             addon=app, user=user, rating=random.randrange(0, 6),
             title="Test Review " + str(n), body="review text")
-    app.update(total_reviews=num)
 
 
-def generate_hosted_app(name, category):
+def generate_hosted_app(name, category, developer_name):
     a = app_factory(categories=[category], name=name, complete=False,
                     rated=True)
     a.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
-    a.versions.latest().update(reviewed=datetime.datetime.now())
+    a.versions.latest().update(reviewed=datetime.datetime.now(),
+                               _developer_name=developer_name)
     generate_hosted_manifest(a)
     return a
 
@@ -194,8 +196,8 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
         version=version, manifest=json.dumps(manifest))
 
 
-def generate_packaged_app(name, apptype, category, permissions=(),
-                          versions=(4,), num_locales=2, **kw):
+def generate_packaged_app(name, apptype, category, developer_name,
+                          permissions=(), versions=(4,), num_locales=2, **kw):
     now = datetime.datetime.now()
     app = app_factory(categories=[category], name=name, complete=False,
                       rated=True, is_packaged=True,
@@ -218,7 +220,8 @@ def generate_packaged_app(name, apptype, category, permissions=(),
             rtime = now + datetime.timedelta(i)
             v = version_factory(version="1." + str(i), addon=app,
                                 reviewed=rtime, created=rtime,
-                                file_kw={'status': st})
+                                file_kw={'status': st},
+                                _developer_name=developer_name)
             generate_app_package(app, out, apptype, permissions, v,
                                  num_locales=num_locales)
         app.update_version()
@@ -241,6 +244,8 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
         generate_icon(app)
         generate_previews(app)
         generate_ratings(app, 5)
+        addon_review_aggregates(app.pk)
+
 
 
 def generate_apps_from_specs(specs):
@@ -250,11 +255,12 @@ def generate_apps_from_specs(specs):
 
 def generate_app_from_spec(appname, cat_slug, type, status, num_previews=1,
                            num_ratings=1, num_locales=0, **spec):
+    developer_name = spec.get('author', 'fakedeveloper@example.com')
     if type == 'hosted':
-        app = generate_hosted_app(appname, cat_slug)
+        app = generate_hosted_app(appname, cat_slug, developer_name)
     else:
         app = generate_packaged_app(
-            appname, type, cat_slug, **spec)
+            appname, type, cat_slug, developer_name, **spec)
     generate_icon(app)
     generate_previews(app, num_previews)
     generate_ratings(app, num_ratings)
@@ -263,4 +269,7 @@ def generate_app_from_spec(appname, cat_slug, type, status, num_previews=1,
     # be saved.
     app.status = STATUS_CHOICES_API_LOOKUP[status]
     app.save()
+    addon_review_aggregates(app.pk)
+    u = create_user(developer_name)
+    AddonUser.objects.create(user=u, addon=app)
     return app

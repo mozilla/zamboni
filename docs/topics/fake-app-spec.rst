@@ -32,3 +32,5 @@ versions
 permissions
     An array of app permissions, to be placed in the manifest.
 
+author
+    An email address for the app author.
