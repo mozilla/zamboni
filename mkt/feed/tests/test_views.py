@@ -403,13 +403,6 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         self.assertCORS(res, 'get', 'delete', 'patch', 'post', 'put')
         return res, data
 
-    def test_create_with_background_color(self):
-        # Deprecated.
-        color = coll_colors.COLLECTION_COLORS_CHOICES[0][0]
-        self.feedapp_data.update(background_color=color)
-        res, data = self.test_create_with_permission()
-        eq_(data['background_color'], color)
-
     def test_create_with_color(self):
         color = coll_colors.COLLECTION_COLORS.keys()[0]
         self.feedapp_data.update(color=color)
@@ -840,7 +833,6 @@ class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
     obj_data = {
         'slug': 'potato',
         'type': 'promo',
-        'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
         'color': coll_colors.COLLECTION_COLORS.keys()[0],
         'description': {'en-US': 'Potato french fries'},
         'name': {'en-US': 'Deep Fried'}

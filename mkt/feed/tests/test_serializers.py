@@ -22,7 +22,6 @@ class TestFeedAppSerializer(FeedTestMixin, mkt.site.tests.TestCase):
     def test_basic(self):
         data = {
             'app': 337141,
-            'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
             'color': coll_colors.COLLECTION_COLORS.keys()[0],
             'type': 'icon',
             'description': {
@@ -136,7 +135,6 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestFeedCollectionSerializer, self).setUp()
         self.data = {
-            'background_color': coll_colors.COLLECTION_COLORS_CHOICES[0][0],
             'color': coll_colors.COLLECTION_COLORS.keys()[0],
             'name': {'en-US': 'Potato'},
             'description': {'en-US': 'Potato, tomato'},
@@ -145,14 +143,14 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
     def validate(self, **attrs):
         return (serializers.FeedCollectionSerializer()
-                .validate_background_color(attrs=self.data,
-                                           source='background_color'))
+                .validate_color(attrs=self.data,
+                                source='color'))
 
     def test_validate_promo_bg(self):
         self.validate()
 
     def test_validate_promo_nobg(self):
-        del self.data['background_color']
+        del self.data['color']
         with self.assertRaises(ValidationError):
             self.validate()
 
@@ -162,11 +160,11 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
     def test_validate_listing_nobg(self):
         self.data['type'] = COLLECTION_LISTING
-        del self.data['background_color']
+        del self.data['color']
         self.validate()
 
     def test_invalid_bg_color(self):
-        self.data['background_color'] = '#FFFFFF'
+        self.data['color'] = 'orangered'
         with self.assertRaises(ValidationError):
             self.validate()
 
