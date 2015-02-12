@@ -87,7 +87,7 @@ class SuggestionsView(SearchView):
                             content_type='application/x-suggestions+json')
 
 
-class NonPublicSuggestionsView(SuggestionsView):
+class NonPublicSearchView(SearchView):
     """
     A search view that allows searching for apps with non-public statuses
     protected behind a permission class.

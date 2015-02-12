@@ -968,12 +968,12 @@ class TestSuggestionsView(ESTestCase):
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')
-class TestNonPublicSuggestionsView(RestOAuth, ESTestCase):
+class TestNonPublicSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        super(TestNonPublicSuggestionsView, self).setUp()
-        self.url = reverse('api-v2:non-public-suggestions-search-api')
+        super(TestNonPublicSearchView, self).setUp()
+        self.url = reverse('api-v2:non-public-search-api')
         self.refresh('webapp')
         self.app1 = Webapp.objects.get(pk=337141)
         self.app1.save()
@@ -1002,7 +1002,9 @@ class TestNonPublicSuggestionsView(RestOAuth, ESTestCase):
     def test_with_permission(self):
         res = self.client.get(self.url, data={'q': 'second', 'lang': 'en-US'})
         eq_(res.status_code, 200)
-        eq_(json.loads(res.content)[1], [unicode(self.app2.name)])
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['name'], self.app2.name)
 
     def test_finds_valid_statuses(self):
         for status in mkt.VALID_STATUSES:
@@ -1011,7 +1013,9 @@ class TestNonPublicSuggestionsView(RestOAuth, ESTestCase):
             res = self.client.get(self.url, data={'q': 'second',
                                                   'lang': 'en-US'})
             eq_(res.status_code, 200)
-            eq_(json.loads(res.content)[1], [unicode(self.app2.name)])
+            objs = res.json['objects']
+            eq_(len(objs), 1)
+            eq_(objs[0]['name'], self.app2.name)
 
     def test_not_finds_invalid_statuses(self):
         for status in [mkt.STATUS_DISABLED, mkt.STATUS_DELETED,
@@ -1021,7 +1025,7 @@ class TestNonPublicSuggestionsView(RestOAuth, ESTestCase):
             res = self.client.get(self.url, data={'q': 'second',
                                                   'lang': 'en-US'})
             eq_(res.status_code, 200)
-            eq_(json.loads(res.content)[1], [])
+            eq_(len(res.json['objects']), 0)
 
 
 class TestRocketbarView(ESTestCase):
