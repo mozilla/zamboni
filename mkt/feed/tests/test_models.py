@@ -124,7 +124,7 @@ class FeedAppMixin(object):
     def setUp(self):
         self.feedapp_data = {
             'app': 337141,
-            'background_color': '#B90000',
+            'color': 'emerald',
             'type': 'icon',
             'description': {
                 'en-US': u'pan-fried potatoes'

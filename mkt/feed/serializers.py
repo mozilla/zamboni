@@ -226,21 +226,6 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         model = FeedCollection
         url_basename = 'feedcollections'
 
-    def validate_background_color(self, attrs, source):
-        """Background color is deprecated for color."""
-        color = attrs.get(source, None)
-        if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
-            raise serializers.ValidationError(
-                '`background_color` is required for `promo` collections.'
-            )
-        if (color and
-                color not in
-                dict(collection_colors.COLLECTION_COLORS_REVERSE)):
-            raise serializers.ValidationError(
-                '`Not a valid value for `background_color`.'
-            )
-        return attrs
-
     def validate_color(self, attrs, source):
         color = attrs.get(source, None)
         if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
