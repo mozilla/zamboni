@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2015-02-10 11:20+0000\n"
+"PO-Revision-Date: 2015-02-12 10:48+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423567255.0\n"
+"X-POOTLE-MTIME: 1423738132.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1233,7 +1234,7 @@ msgstr "Moderěrowane pśeglědowanje nałoženja"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija pógódnośenja nałoženja jo se anulěrowała"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -3684,6 +3685,8 @@ msgstr "Wužywa Flash"
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
 msgstr ""
+"Jolic wašo nałoženje Flash wužywa, schowajo se na Wikowanišću, jolic se rědy "
+"bźez pódpěry Flash wužywaju."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -3692,6 +3695,8 @@ msgstr "Funkcioněrujo offline"
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
 msgstr ""
+"Jolic wašo nałoženje bźez internetnego zwiska funkcioněrujo, pódajomy, až "
+"wašo nałoženje \"offline funkcioněrujo\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3700,6 +3705,8 @@ msgstr "Zjawne statistiki?"
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
 msgstr ""
+"Lěc instalaciske a wužywańske statistiki wašogo nałoženja daju se w našom "
+"online-zwobraznjenju pokazowaś."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
@@ -3707,40 +3714,44 @@ msgstr "Statistiki toś togo nałoženja su zjawnje widobne."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "No, this app's stats are not publicly viewable."
-msgstr ""
+msgstr "Ně, statistiki toś togo nałoženja njejsu zjawnje widobne."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "This app does not require any device features"
-msgstr ""
+msgstr "Toś to nałoženje njetrjeba funkcije rěda"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Nutśkowny identifikator za toś to nałoženje na Wikowanišću Firefox."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Symbol nałoženja"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
+"Nagrajśo symbol za swójo nałoženje abo wubjeŕśo jaden z našych. Symbol "
+"zwobraznjujo se pśisamem wšuźi, źož wašo nałoženje jo. Nagrate wobraze muse "
+"jaden ze slědujucych wobrazowych typow měś: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "Wubjeŕśo symbol za swójo nałoženje:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
 msgstr ""
+"Wužywa se na pytańskich bokach, pśi pśeglědowanju bokow a na startowem boku."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -3759,152 +3770,161 @@ msgstr "32x32px"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
 msgstr ""
+"Wužywa se w lisćinowych zapiskach nałoženjow, ako na pśikład w pytańskich "
+"wuslědkach a pśedstajonych nałoženjach."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Swójski symbol nagraś..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
 msgstr ""
+"PNG a JPG se pódpěrujotej. Symbole muse nanejmjenjej 128 px raz 128 px "
+"wjelike byś."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
-msgstr ""
+msgstr "Fota wobrazowki abo widea"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
 msgstr ""
+"Pšosym pódajśo nanejmjenjej jadne foto wobrazowki abo wideo swójogo "
+"nałoženja:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:151
 msgid "Add a Screenshot or Video..."
-msgstr ""
+msgstr "Foto wobrazowki abo wideo pśidaś..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
 msgstr ""
+"Fota wobrazowki a wideo muse nanejmjenje 320 px raz 480 px wjelike byś. "
+"Medije, kótarež su wótměram 320 px raz 480 px proporcionalne, su optimalne. "
+"Wideo muse ako WebM skoděrowane byś."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
-msgstr ""
+msgstr "Powšykne testy"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:9 mkt/developers/templates/developers/apps/includes/validation_test_results.html:45
 msgid "Package Tests"
-msgstr ""
+msgstr "Paketowe testy"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:13 mkt/developers/templates/developers/apps/includes/validation_test_results.html:58
 msgid "Content Tests"
-msgstr ""
+msgstr "Wopśimjeśowe testy"
 
 #. abbreviation of 'previous'
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:27 mkt/developers/templates/developers/apps/includes/validation_test_results.html:41
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr ""
+msgstr "Pjerwjejšny bok"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:28 mkt/developers/templates/developers/apps/includes/validation_test_results.html:42
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:55
 msgid "Top"
-msgstr ""
+msgstr "Górjej"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:29 mkt/developers/templates/developers/apps/includes/validation_test_results.html:43
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:56 mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:16
 #: mkt/site/templates/site/impala_paginator.html:26
 msgid "Next"
-msgstr ""
+msgstr "Pśiducy bok"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr ""
+msgstr "Cośo swójo nałoženje napšawdu lašowaś?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
-msgstr ""
+msgstr "Pšosym dajśo nam k wěsći, cogodla wašo nałoženje lašujośo."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1 mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
-msgstr ""
+msgstr "Akcije"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Ze zapódawańskim procesom za toś ten dodank pókšacowaś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8 mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
 msgid "Resume"
-msgstr ""
+msgstr "Pókšacowaś"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Toś ten dodank wulašowaś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Drobnostki wó toś tom lisćinowem zapisku wobźěłaś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Nowu wersiju toś togo nałoženja nagraś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:30
 msgid "New Version"
-msgstr ""
+msgstr "Nowa wersija"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:43 mkt/site/templates/site/paginator.html:3 mkt/webapps/templates/webapps/impala/listing/sorter.html:14
 msgid "More"
-msgstr ""
+msgstr "Wěcej"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
-msgstr ""
+msgstr "Teamowe cłonki a licenca"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:77
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:17 mkt/developers/templates/developers/payments/premium.html:4
 msgid "Compatibility & Payments"
-msgstr ""
+msgstr "Kompatibelnosć a płaśenja"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:55
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk dodanka pokazaś"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Resume the submission process for this app."
-msgstr ""
+msgstr "Ze zapódawańskim procesom za toś to nałoženje pókšacowaś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
 msgid "Get content ratings for the app."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenja za nałoženje se wobstaraś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenja zarědowaś"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
-msgstr ""
+msgstr "Pódajśo płaśeńske informacije za toś to nałoženje."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:47
 msgid "Set Up Payments"
-msgstr ""
+msgstr "Płaśenja zarědowaś"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr ""
+msgstr "Toś to nałoženje wulašowaś."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
-msgstr ""
+msgstr "Wobźěłajśo drobnostki za lisćinowy bok nałoženja."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
-msgstr ""
+msgstr "Pśidajśo nowu wersiju zapakowanego nałoženja."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
-msgstr ""
+msgstr "Nowu wersiju pśidaś"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Status a wersije"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
@@ -3936,23 +3956,23 @@ msgstr ""
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "Created:"
-msgstr ""
+msgstr "Napórany:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
-msgstr ""
+msgstr "Wersija zapakowanego nałoženja:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
 msgid "Pending Version:"
-msgstr ""
+msgstr "Felujuca wersija:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:47
 msgid "Price:"
-msgstr ""
+msgstr "Płaśizna:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
@@ -3960,15 +3980,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Rědy změniś"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Wopśimjeśowe pógódnośenja zarědowaś</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Pśedinstalěrowane"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
@@ -3995,11 +4015,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Wuměnjenja za pśedinstalaciju nałoženjow"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Mójo nałoženje pógódnośiś daś"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
