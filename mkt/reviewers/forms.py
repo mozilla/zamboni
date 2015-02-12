@@ -200,7 +200,7 @@ class ApiReviewersSearchForm(ApiSearchForm):
     def clean_status(self):
         status = self.cleaned_data['status']
         if status == 'any':
-            return 'any'
+            return None
 
         return mkt.STATUS_CHOICES_API_LOOKUP.get(status, mkt.STATUS_PENDING)
 

@@ -39,13 +39,13 @@ class ESPaginator(Paginator):
         number = self.validate_number(number)
         bottom = (number - 1) * self.per_page
         top = bottom + self.per_page
-        page = Page(self.object_list[bottom:top], number, self)
 
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
         # directly fetch the count from hits.
         # Overwrite `object_list` with the list of ES results.
-        page.object_list = page.object_list.execute().hits
+        result = self.object_list[bottom:top].execute()
+        page = Page(result.hits, number, self)
         # Update the `_count`.
         self._count = page.object_list.total
 

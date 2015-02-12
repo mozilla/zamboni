@@ -3,14 +3,14 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Min
-from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
+from elasticsearch_dsl import F
+from elasticsearch_dsl.filter import Bool
 
 import mkt
 from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
-from mkt.features.utils import get_feature_profile
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
@@ -442,105 +442,17 @@ class WebappIndexer(BaseIndexer):
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())
 
     @classmethod
-    def get_app_filter(cls, request, additional_data=None, sq=None,
-                       app_ids=None, no_filter=False):
+    def filter_by_apps(cls, app_ids, queryset=None):
         """
-        THE grand, consolidated ES filter for Webapps. By default:
-        - Excludes non-public apps.
-        - Excludes disabled apps (whether by reviewer or by developer).
-        - Excludes based on region exclusions.
+        Filters the given queryset by the given app IDs.
 
-        additional_data -- an object with more data to allow more filtering.
-        sq -- if you have an existing search object to filter off of.
-        app_ids -- if you want to filter by a list of app IDs.
-        no_filter -- doesn't apply the consumer-side excludes (public/region).
+        This uses a `should` filter, which is equivalent to an "OR".
+
         """
-        from mkt.api.base import get_region_from_request
-        from mkt.search.views import name_query
-
-        sq = sq or cls.search()
-        additional_data = additional_data or {}
-        app_ids = app_ids or []
-
-        data = {
-            'app_type': [],
-            'author.raw': None,
-            'category': None,  # Slug.
-            'device': None,  # ID.
-            'gaia': getattr(request, 'GAIA', False),
-            'installs_allowed_from': None,
-            'is_offline': None,
-            'manifest_url': '',
-            'mobile': getattr(request, 'MOBILE', False),
-            'premium_type': [],
-            'profile': get_feature_profile(request),
-            'q': '',
-            'region': getattr(get_region_from_request(request), 'id', None),
-            'status': None,
-            'supported_locales': [],
-            'tablet': getattr(request, 'TABLET', False),
-            'tags': '',
-        }
-        data.update(additional_data)
-
-        # Fields that will be filtered with a term query.
-        term_fields = ('author.raw', 'device', 'installs_allowed_from',
-                       'manifest_url', 'status', 'tags')
-        # Fields that will be filtered with a terms query.
-        terms_fields = ('category', 'premium_type', 'app_type',
-                        'supported_locales')
-
-        # QUERY.
-        if data['q']:
-            # Function score for popularity boosting (defaults to multiply).
-            sq = sq.query(
-                'function_score',
-                query=name_query(data['q'].lower()),
-                functions=[query.SF('field_value_factor', field='boost')])
-
-        # MUST.
-        must = [
-            F('term', status=mkt.STATUS_PUBLIC),
-            F('term', is_disabled=False),
-        ] if not no_filter else []
-
-        for field in term_fields + terms_fields:
-            # Term filters.
-            if data[field]:
-                filter_type = 'term' if field in term_fields else 'terms'
-                must.append(F(filter_type, **{field: data[field]}))
-
-        if not no_filter:
-            if data['mobile'] or data['gaia']:
-                # Uses flash.
-                must.append(F('term', uses_flash=False))
-            if data['is_offline'] is not None:
-                must.append(F('term', is_offline=data['is_offline']))
-
-        # SHOULD.
-        should = []
-        if app_ids:
-            should = [es_filter.Terms(id=list(set(app_ids)))]
-            sq = sq[0:len(set(app_ids))]
-
-        # MUST NOT.
-        must_not = []
-        if not no_filter:
-            if data['profile']:
-                # Feature filters.
-                profile = data['profile']
-                for k in profile.to_kwargs(prefix='features.has_').keys():
-                    must_not.append(F('term', **{k: True}))
-
-            if data['region']:
-                # Region exclusions.
-                must_not.append(F('term', region_exclusions=data['region']))
-
-        # FILTER.
-        if must or should or must_not:
-            sq = sq.filter(es_filter.Bool(must=must, should=should,
-                                          must_not=must_not))
-        return sq
+        queryset = queryset or cls.search()
+        app_ids = list(set(app_ids))  # De-dupe.
+        queryset = queryset.filter(Bool(should=[F('terms', id=app_ids)]))
+        return queryset[0:len(app_ids)]
 
 
 def reverse_version(version):

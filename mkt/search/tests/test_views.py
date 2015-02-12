@@ -14,12 +14,14 @@ from nose.tools import eq_, ok_
 import mkt
 import mkt.regions
 from mkt.access.middleware import ACLMiddleware
+from mkt.access.models import GroupUser
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
-from mkt.search.views import DEFAULT_SORTING, SearchView
+from mkt.search.filters import SortingFilter
+from mkt.search.views import SearchView
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import app_factory, ESTestCase, TestCase, user_factory
@@ -149,6 +151,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         assert _mock.called
 
     def test_search_published_apps(self):
+        eq_(self.webapp.status, mkt.STATUS_PUBLIC)
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         objs = res.json['objects']
@@ -181,7 +184,7 @@ class TestSearchView(RestOAuth, ESTestCase):
 
     def test_sort(self):
         # Make sure elasticsearch is actually accepting the params.
-        for api_sort, es_sort in DEFAULT_SORTING.items():
+        for api_sort, es_sort in SortingFilter.DEFAULT_SORTING.items():
             res = self.anon.get(self.url, [('sort', api_sort)])
             eq_(res.status_code, 200, res.content)
 
@@ -783,19 +786,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.json['objects'][0]['id'], app2.id)
         eq_(res.json['objects'][1]['id'], app1.id)
 
-    def test_no_filter(self):
-        self.webapp.update(status=mkt.STATUS_PENDING)
-        self.refresh()
-        res = self.anon.get(self.url)
-        eq_(len(res.json['objects']), 0)
-
-        res = self.anon.get(self.url, data={'filtering': 0})
-        eq_(len(res.json['objects']), 0)
-
-        self.grant_permission(self.profile, 'Feed:Curate')
-        res = self.client.get(self.url, data={'filtering': 0})
-        eq_(len(res.json['objects']), 1)
-
 
 class TestSearchViewFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
@@ -963,6 +953,75 @@ class TestSuggestionsView(ESTestCase):
                                                    'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(parsed[1], [unicode(self.app2.name)])
+
+    def test_not_finds_invalid_statuses(self):
+        for status in [mkt.STATUS_PENDING, mkt.STATUS_APPROVED,
+                       mkt.STATUS_UNLISTED, mkt.STATUS_DISABLED,
+                       mkt.STATUS_DELETED, mkt.STATUS_REJECTED,
+                       mkt.STATUS_BLOCKED]:
+            self.app2.update(status=status)
+            self.refresh('webapp')
+            res = self.client.get(self.url, data={'q': 'second',
+                                                  'lang': 'en-US'})
+            eq_(res.status_code, 200)
+            eq_(json.loads(res.content)[1], [])
+
+
+@patch.object(settings, 'SITE_URL', 'http://testserver')
+class TestNonPublicSuggestionsView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestNonPublicSuggestionsView, self).setUp()
+        self.url = reverse('api-v2:non-public-suggestions-search-api')
+        self.refresh('webapp')
+        self.app1 = Webapp.objects.get(pk=337141)
+        self.app1.save()
+        self.app2 = app_factory(name=u'Second âpp',
+                                description=u'Second dèsc' * 25,
+                                icon_type='image/png',
+                                created=self.days_ago(3))
+        self.grant_permission(self.profile, 'Feed:Curate')
+        self.refresh('webapp')
+
+    def tearDown(self):
+        # Cleanup to remove these from the index.
+        self.app1.delete()
+        self.app2.delete()
+        unindex_webapps([self.app1.id, self.app2.id])
+
+    def test_anonymous(self):
+        res = self.anon.get(self.url, data={'q': 'second'})
+        eq_(res.status_code, 403)
+
+    def test_no_permission(self):
+        GroupUser.objects.filter(user=self.profile).delete()
+        res = self.client.get(self.url, data={'q': 'second'})
+        eq_(res.status_code, 403)
+
+    def test_with_permission(self):
+        res = self.client.get(self.url, data={'q': 'second', 'lang': 'en-US'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)[1], [unicode(self.app2.name)])
+
+    def test_finds_valid_statuses(self):
+        for status in mkt.VALID_STATUSES:
+            self.app2.update(status=status)
+            self.refresh('webapp')
+            res = self.client.get(self.url, data={'q': 'second',
+                                                  'lang': 'en-US'})
+            eq_(res.status_code, 200)
+            eq_(json.loads(res.content)[1], [unicode(self.app2.name)])
+
+    def test_not_finds_invalid_statuses(self):
+        for status in [mkt.STATUS_DISABLED, mkt.STATUS_DELETED,
+                       mkt.STATUS_REJECTED, mkt.STATUS_BLOCKED]:
+            self.app2.update(status=status)
+            self.refresh('webapp')
+            res = self.client.get(self.url, data={'q': 'second',
+                                                  'lang': 'en-US'})
+            eq_(res.status_code, 200)
+            eq_(json.loads(res.content)[1], [])
 
 
 class TestRocketbarView(ESTestCase):
