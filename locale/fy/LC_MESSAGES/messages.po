@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2015-02-01 14:08+0000\n"
+"PO-Revision-Date: 2015-02-13 15:37+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422799716.0\n"
+"X-POOTLE-MTIME: 1423841839.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1240,7 +1240,7 @@ msgstr "Beoordeling van gemodereerde app"
 
 #: mkt/constants/base.py:203
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "App-beoardielingsmoderaasje ûngedien makke"
 
 #: mkt/constants/base.py:204
 msgid "Tarako App Review"
@@ -4343,6 +4343,8 @@ msgstr "Factureringsmethode"
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
+"Foegje in betellingsaccount ta om jo app foar ferkeap yn mear regio’s "
+"geskikt te meitsjen"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5789,11 +5791,11 @@ msgstr "Elke status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Goedkarre beoardielingen"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Fuortsmiten beoardielingen"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:62
 msgid "View entries between"
@@ -5801,7 +5803,7 @@ msgstr "Ingaven bekijken tussen"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filteren op type/aksje"
 
 #: mkt/reviewers/forms.py:64
 msgid "containing"
@@ -6226,55 +6228,55 @@ msgstr "Geen beoordelingen in deze periode gevonden."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Lochboek fan moderearre beoardielingen"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Mear details."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Gjin barren foar dizze perioade fûn."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Lochdetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Lochdetails"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderaasjedatum"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "App-titel"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Beoardielingstitel"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Beoardielingstekst"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Beoardieling is foarôfgeande oan moderaasje markearre."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Aktuele beoardielingssteat"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Aktyf"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Fuortsmiten ûngedien meitsje"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
