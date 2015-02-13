@@ -1,0 +1,10 @@
+<span class="rating">
+  {% with num=product.total_reviews %}
+    {% if num %}
+      {{ product.average_rating|float|stars }}
+      <a href="{{ product.get_url_path()|urlparams('reviews') }}">({{ num|numberfmt }})</a>
+    {% else %}
+      <b>{{ _('Not yet reviewed') }}</b>
+    {% endif %}
+  {% endwith %}
+</span>
