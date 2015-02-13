@@ -3230,6 +3230,15 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
     def _get_logs(self, action):
         return ActivityLog.objects.filter(action=action.id)
 
+    def test_anonymous_flagger(self):
+        ReviewFlag.objects.all()[0].update(user=None)
+        ReviewFlag.objects.all()[1].delete()
+        res = self.client.get(self.url)
+        txt = pq(res.content)('.reviews-flagged-reasons li div span').text()
+        teststring = u'Flagged by an anonymous user on'
+        ok_(txt.startswith(teststring),
+            '"%s" doesn\'t start with "%s"' % (txt, teststring))
+
     def test_setup(self):
         eq_(Review.objects.filter(editorreview=True).count(), 2)
         eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)

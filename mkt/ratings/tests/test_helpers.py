@@ -15,15 +15,10 @@ class TestRatingsHelpers(mkt.site.tests.TestCase):
         eq_(s, 'Not yet reviewed')
 
         doc = pq(self.render('{{ num|stars }}', {'num': 1}))
-        msg = 'Rated 1 out of 5 stars'
-        eq_(doc.attr('class'), 'stars stars-1')
-        eq_(doc.attr('title'), msg)
+        msg = 'Reviewed 1 out of 5 stars'
         eq_(doc.text(), msg)
 
-    def test_stars_details_page(self):
-        doc = pq(self.render('{{ num|stars(large=True) }}', {'num': 2}))
-        eq_(doc('.stars').attr('class'), 'stars large stars-2')
-
     def test_stars_max(self):
-        doc = pq(self.render('{{ num|stars }}', {'num': 5.3}))
-        eq_(doc.attr('class'), 'stars stars-5')
+        doc = pq(self.render('{{ num|stars }}', {'num': 5.5}))
+        msg = 'Reviewed 5 out of 5 stars'
+        eq_(doc.text(), msg)

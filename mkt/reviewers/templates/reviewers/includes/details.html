@@ -106,7 +106,7 @@
       {% endif %}
       {% if product.total_reviews %}
         <dt>{{ _('Rating') }}</dt>
-        <dd>{{ impala_reviews_link(product) }}</dd>
+        <dd>{% include 'reviewers/includes/reviews_link.html' %}</dd>
       {% endif %}
       <dt>{{ _('Abuse Reports') }}</dt>
       <dd class="abuse-reports">
