@@ -3,6 +3,7 @@ PYTHON := $(shell which python)
 DJANGO = $(PYTHON) manage.py
 SETTINGS = mkt.settings
 SHELL := /usr/bin/env bash
+JENKINS_URL = https://deploy.mktadm.ops.services.phx1.mozilla.com/view/Stage/job/Deploy%20Marketplace%20Stage/build
 
 .PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db full_update reindex release
 
@@ -69,21 +70,18 @@ tag_release: tagz.py
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
 	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/spartacus,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-operator-dashboard,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/transonic,mozilla/zamboni -c create -t $(RELEASE_DATE)
 
-deploy_release:
+deploy_release: check_deploy_env
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
-	$(PYTHON) scripts/dreadnot-deploy.py			\
-	-c dreadnot-stage.ini -e stage -r $(RELEASE_DATE)	\
-		payments.allizom.org-solitude			\
-		payments-proxy.allizom.org-solitude		\
-                marketplace.allizom.org-spartacus               \
-		marketplace.allizom.org-webpay			\
-		monolith.allizom.org-aggregator			\
-		marketplace.allizom.org-marketplace-operator-dashboard	\
-		marketplace.allizom.org-marketplace-stats	\
-		marketplace.allizom.org-commbadge		\
-                marketplace.allizom.org-transonic               \
-		marketplace.allizom.org-fireplace		\
-		marketplace.allizom.org-zamboni
+	curl -k -X POST $(JENKINS_URL) \
+		--user $(JENKINS_USERNAME):$(JENKINS_API_TOKEN) \
+		--data-urlencode json='{"parameter": [{"name":"DeployRef", "value":"$(RELEASE_DATE)"}]}'
 
+check_deploy_env:
+ifndef JENKINS_USERNAME
+	$(error JENKINS_USERNAME ENV variable not set)
+endif
+ifndef JENKINS_API_TOKEN
+    $(error JENKINS_API_TOKEN ENV variable not set)
+endif
 
 release: tag_release deploy_release
