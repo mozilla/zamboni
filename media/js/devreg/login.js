@@ -160,20 +160,44 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         }
     }
 
-    function init_persona() {
-        $('.browserid').css('cursor', 'pointer');
+    function init_native_fxa() {
         var user = z.body.data('user');
         var email = user ? user.email : '';
         console.log('detected user', email);
-        navigator.id.watch({
-            loggedInUser: email,
-            onlogin: function(assertion) {
-                if (!email) {
-                    gotVerifiedEmail(assertion);
+        var packaged_origin = "app://packaged." + window.location.host;
+        if (window.location.host === "marketplace.firefox.com") {
+            packaged_origin = "app://marketplace.firefox.com";
+        }
+        var isFirefoxOS = (navigator.mozApps && navigator.mozApps.installPackage &&
+            navigator.userAgent.indexOf('Android') === -1 &&
+            (navigator.userAgent.indexOf('Mobile') !== -1 ||
+             navigator.userAgent.indexOf('Tablet') !== -1));
+        var hasFxA = isFirefoxOS && navigator.userAgent.match(/rv:(\d{2})/)[1] >= 34;
+        var isYulelogFxA = window.top !== window.self && hasFxA;
+        if (isYulelogFxA) {
+            window.addEventListener('message', function (msg) {
+                if (!msg.data || !msg.data.type || msg.origin !== packaged_origin) {
+                    return;
                 }
-            },
-            onlogout: function() {}
-        });
+                console.log("fxa message " + JSON.stringify(msg.data));
+                if (msg.data.type === 'fxa-logout') {
+                    clearToken();
+                    window.location = '/';
+                }
+            });
+        } else if (hasFxA) {
+            navigator.mozId.watch({
+                loggedInUser: email,
+                onlogin: function(assertion) {
+                    if (!email) {
+                        gotVerifiedEmail(assertion);
+                    }
+                },
+                onlogout: function() {
+                    clearToken();
+                    window.location = '/';}
+            });
+        }
     }
 
     function setToken(data) {
@@ -194,21 +218,7 @@ define('login', ['notification', 'storage'], function(notification, storage) {
         return storage.getItem('user');
     }
 
-    if (z.body.data('persona-url')) {
-        // Load `include.js` from persona.org, and drop login hotness like it's hot.
-        var s = document.createElement('script');
-        s.onload = init_persona;
-        if (z.capabilities.firefoxOS) {
-            // Load the Firefox OS include that knows how to handle native Persona.
-            // Once this functionality lands in the normal include we can stop
-            // doing this special case. See bug 821351.
-            s.src = z.body.data('native-persona-url');
-        } else {
-            s.src = z.body.data('persona-url');
-        }
-        document.body.appendChild(s);
-        $('.browserid').css('cursor', 'wait');
-    }
+    init_native_fxa();
 
     return {
         userToken: userToken
