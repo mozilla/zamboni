@@ -174,6 +174,11 @@ class TestFormFilter(FilterTestsBase):
         ok_({'term': {'device': DEVICE_CHOICES_IDS['desktop']}}
             in qs['query']['filtered']['filter']['bool']['must'])
 
+    def test_no_device_with_device_type(self):
+        """Test that providing a device type w/o device doesn't filter."""
+        qs = self._filter(data={'dev': '', 'device': 'firefoxos'})
+        ok_('filtered' not in qs['query'].keys())
+
 
 class TestPublicAppsFilter(FilterTestsBase):
 
