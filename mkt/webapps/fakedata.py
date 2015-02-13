@@ -247,7 +247,6 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
         addon_review_aggregates(app.pk)
 
 
-
 def generate_apps_from_specs(specs):
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
         generate_app_from_spec(appname, cat_slug, **spec)
