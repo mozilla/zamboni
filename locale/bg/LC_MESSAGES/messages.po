@@ -7,16 +7,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:56-0700\n"
-"PO-Revision-Date: 2013-05-16 16:54+0200\n"
-"Last-Translator: Bogomil <bogomil@efb.bg>\n"
+"PO-Revision-Date: 2015-02-14 22:06+0000\n"
+"Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-POOTLE-MTIME: 1423951561.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -116,9 +117,8 @@ msgstr "Потребител"
 # 75%
 # 100%
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
-#, fuzzy
 msgid "Reviewer"
-msgstr "Отзив"
+msgstr "Рецензент"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
@@ -1180,7 +1180,7 @@ msgstr "Собственик"
 # <option> text in a <select> for Author role in an add-on.
 #: mkt/constants/base.py:110 mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
-msgstr "Viewer"
+msgstr "Наблюдаващ"
 
 #: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
@@ -2104,7 +2104,6 @@ msgstr ""
 # 93%
 # 100%
 #: mkt/developers/forms.py:560 mkt/submit/forms.py:279
-#, fuzzy
 msgid "This description will appear on the details page."
 msgstr "Описанието ще се показва в страницата с детайлите."
 
@@ -2123,9 +2122,8 @@ msgstr ""
 # 86%
 # 100%
 #: mkt/developers/forms.py:655
-#, fuzzy
 msgid "Please specify your app's Privacy Policy"
-msgstr "Моля посочете Декларацията за поверителност на добавката си:"
+msgstr "Моля посочете Декларация за поверителност на приложението си"
 
 #: mkt/developers/forms.py:676
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
@@ -2314,9 +2312,8 @@ msgstr ""
 # 75%
 # 100%
 #: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:302
-#, fuzzy
 msgid "This is a paid upgrade of"
-msgstr "Това е премиум ъпгрейд към:"
+msgstr "Това е платено обновяване на"
 
 #: mkt/developers/forms_payments.py:329
 msgid "Not an upgrade"
@@ -2345,9 +2342,8 @@ msgstr ""
 # 92%
 # 100%
 #: mkt/developers/forms_payments.py:383
-#, fuzzy
 msgid "Support Email"
-msgstr "Имейл за поддръжка"
+msgstr "Ел. поща за поддръжка"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address"
@@ -2458,9 +2454,8 @@ msgstr ""
 # 90%
 # 100%
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
-#, fuzzy
 msgid "Developers"
-msgstr "Разработчик"
+msgstr "Разработчици"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:65 templates/base.html:65
 msgid "My Submissions"
@@ -2498,9 +2493,8 @@ msgstr ""
 # 82%
 # 100%
 #: mkt/developers/tasks.py:444
-#, fuzzy
 msgid "Your manifest must be less than %s bytes."
-msgstr "Иконката ви трябва да е по-малка от %s байта."
+msgstr "Манифестът трябва да бъде по-малък от %s байта."
 
 #: mkt/developers/tasks.py:452
 msgid "Your manifest file was not encoded as valid UTF-8."
@@ -2545,9 +2539,8 @@ msgstr "Изображенията не могат да са анимирани.
 # 80%
 # 100%
 #: mkt/developers/utils.py:89
-#, fuzzy
 msgid "Please use files smaller than %s."
-msgstr "Моля, използвайте изображения по-малки от %dМБ."
+msgstr "Моля, използвайте файлове по-малки от %s."
 
 #: mkt/developers/utils.py:99
 msgid "Icon could not be opened."
@@ -2586,9 +2579,8 @@ msgstr ""
 # 89%
 # 100%
 #: mkt/developers/views.py:162
-#, fuzzy
 msgid "Password was incorrect. App was not deleted."
-msgstr "Паролата беше грешна. Добавката не бе изтрита."
+msgstr "Паролата беше грешна. Приложението не беше изтрито."
 
 #: mkt/developers/views.py:206
 msgid "App successfully resubmitted."
@@ -2629,9 +2621,8 @@ msgstr ""
 # 77%
 # 100%
 #: mkt/developers/views.py:519
-#, fuzzy
 msgid "Version \"{0}\" deleted."
-msgstr "Версия %s изтрита."
+msgstr "Версия „{0}“ изтрита."
 
 #: mkt/developers/views.py:653
 msgid "There was an error with the submission."
@@ -2845,7 +2836,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:62 templates/base.html:63
 msgid "Submit an app"
-msgstr ""
+msgstr "Изпращане на приложение"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:67
 msgid "Marketplace"
@@ -3009,9 +3000,8 @@ msgstr ""
 # 76%
 # 100%
 #: mkt/developers/templates/developers/apps/dashboard.html:37
-#, fuzzy
 msgid "Submit An App"
-msgstr "Прати приложение"
+msgstr "Изпращане на приложение"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/reviewers/templates/reviewers/review.html:61
@@ -3100,16 +3090,14 @@ msgstr ""
 # 84%
 # 100%
 #: mkt/developers/templates/developers/apps/status.html:33
-#, fuzzy
 msgid "This app is <b>incomplete</b>."
-msgstr "Тази добавка е <b>незавършена</b>."
+msgstr "Това приложение е <b>незавършено</b>."
 
 # 89%
 # 100%
 #: mkt/developers/templates/developers/apps/status.html:43
-#, fuzzy
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr "Тази добавка е <b>спряна от Mozilla</b>."
+msgstr "Това приложение е <b>спряно от Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
@@ -3126,9 +3114,8 @@ msgstr ""
 # 77%
 # 90%
 #: mkt/developers/templates/developers/apps/status.html:58
-#, fuzzy
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr "Тази добавка е <b>спряна от Mozilla</b>."
+msgstr "Вашето приложение беше <b>спряно от Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
@@ -3199,9 +3186,8 @@ msgstr ""
 # 75%
 # 100%
 #: mkt/developers/templates/developers/apps/status.html:177
-#, fuzzy
 msgid "Resubmit App"
-msgstr "Прати приложение"
+msgstr "Изпращане на приложение отново"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
@@ -3230,9 +3216,8 @@ msgstr ""
 # 90%
 # 100%
 #: mkt/developers/templates/developers/apps/status.html:248
-#, fuzzy
 msgid "Upload New Version"
-msgstr "Качи нова версия"
+msgstr "Качване на нова версия"
 
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
@@ -3735,16 +3720,14 @@ msgstr ""
 # 88%
 # 100%
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
-#, fuzzy
 msgid "This app's stats are publicly viewable."
-msgstr "Статистиките на тази добава са публични."
+msgstr "Статистиките на това приложение са публични."
 
 # 90%
 # 100%
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
-#, fuzzy
 msgid "No, this app's stats are not publicly viewable."
-msgstr "Не, статистиките на тази добавка не са публични."
+msgstr "Не, статистиките на това приложение не са публични."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "This app does not require any device features"
@@ -3769,9 +3752,8 @@ msgstr ""
 # 83%
 # 100%
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
-#, fuzzy
 msgid "Select an icon for your app:"
-msgstr "Изберете икона за добавката си:"
+msgstr "Изберете икона за приложението си:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -3790,9 +3772,8 @@ msgstr "64x64px"
 # 82%
 # 100%
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
-#, fuzzy
 msgid "Used in app detail pages."
-msgstr "Използва се в страницата с детайли на добавката."
+msgstr "Използва се в страницата с детайли на приложението."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
@@ -3802,9 +3783,10 @@ msgstr "32x32px"
 # 85%
 # 100%
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
-#, fuzzy
 msgid "Used in listings of apps, like search results and featured apps."
-msgstr "Използва се в списъци на добавки, като резултати от търсене и препоръчани добавки."
+msgstr ""
+"Използва се в списъци на приложения, като резултати от търсене и избрани "
+"приложения."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -3821,9 +3803,8 @@ msgstr ""
 # 75%
 # 100%
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
-#, fuzzy
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr "Моля осигурете поне една снимка на вашата добавка:"
+msgstr "Моля осигурете поне една снимка на вашето приложение:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:151
 msgid "Add a Screenshot or Video..."
@@ -3942,9 +3923,8 @@ msgstr "Изтрий това приложение."
 # 78%
 # 100%
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
-#, fuzzy
 msgid "Edit details for this app's listing page."
-msgstr "Редактирай детайли за показването на това приложение."
+msgstr "Редактиране на детайлите при показване на това приложение."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
@@ -3953,9 +3933,8 @@ msgstr ""
 # 82%
 # 100%
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
-#, fuzzy
 msgid "Add New Version"
-msgstr "Добави нова версия"
+msgstr "Добавяне на нова версия"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
@@ -4157,9 +4136,8 @@ msgstr ""
 # 90%
 # 100%
 #: mkt/developers/templates/developers/includes/macros.html:80
-#, fuzzy
 msgid "Categories:"
-msgstr "Категории"
+msgstr "Категории:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -5133,9 +5111,8 @@ msgstr ""
 # 75%
 # 100%
 #: mkt/files/templates/fileviewer/file.html:2
-#, fuzzy
 msgid "Download {0}"
-msgstr "Свали сега"
+msgstr "Изтегляне {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
@@ -5160,9 +5137,8 @@ msgstr "Давай"
 # 75%
 # 100%
 #: mkt/files/templates/fileviewer/viewer.html:33
-#, fuzzy
 msgid "App being processed, please wait."
-msgstr "Обработват се файловете, моля, изчакайте."
+msgstr "Приложението се обработва, моля изчакайте."
 
 #: mkt/files/templates/fileviewer/viewer.html:37
 msgid "Fetching validation results..."
@@ -5401,16 +5377,14 @@ msgstr ""
 # 88%
 # 100%
 #: mkt/lookup/templates/lookup/app_summary.html:117 mkt/lookup/templates/lookup/helpers/user_header.html:24
-#, fuzzy
 msgid "Purchases"
-msgstr "Покупка"
+msgstr "Поръчки"
 
 # 85%
 # 100%
 #: mkt/lookup/templates/lookup/app_summary.html:127 mkt/lookup/templates/lookup/user_summary.html:42
-#, fuzzy
 msgid "Refunds"
-msgstr "Възстановяване"
+msgstr "Възстановяване на средства"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:130
@@ -5426,9 +5400,8 @@ msgstr ""
 # 100%
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:135
-#, fuzzy
 msgid "{0} approved"
-msgstr "беше одобрем"
+msgstr "{0} одобрени"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:137
@@ -5530,9 +5503,8 @@ msgstr ""
 # 81%
 # 100%
 #: mkt/lookup/templates/lookup/user_activity.html:14
-#, fuzzy
 msgid "Account Updates"
-msgstr "Акаунтът обновен."
+msgstr "Обновявания на профила"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
@@ -5561,9 +5533,8 @@ msgstr "Потребителско име"
 # 80%
 # 100%
 #: mkt/lookup/templates/lookup/user_summary.html:21
-#, fuzzy
 msgid "Registered"
-msgstr "Регистриране"
+msgstr "Регистриран"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
@@ -5782,9 +5753,8 @@ msgstr "Друго (моля, посочете)"
 # 87%
 # 100%
 #: mkt/ratings/templates/ratings/reviews_rating.html:1
-#, fuzzy
 msgid "Rated {0} out of 5 stars"
-msgstr "Оцени с %d от 6 звезди"
+msgstr "Оценено с {0} от 5 звезди"
 
 #: mkt/ratings/templates/ratings/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
@@ -5932,9 +5902,8 @@ msgstr ""
 # 85%
 # 100%
 #: mkt/reviewers/helpers.py:43
-#, fuzzy
 msgid "Updates"
-msgstr "Обнови"
+msgstr "Обновления"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
@@ -5969,10 +5938,9 @@ msgstr ""
 # 76%
 # 100%
 #: mkt/reviewers/helpers.py:98
-#, fuzzy
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr "Обновен {0}"
+msgstr "Обновления ({0})"
 
 #: mkt/reviewers/helpers.py:102
 msgctxt "escalated"
@@ -5996,10 +5964,9 @@ msgstr ""
 # 100%
 # 95%
 #: mkt/reviewers/helpers.py:124
-#, fuzzy
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr "Модерирани рецензии"
+msgstr "Модерирани отзиви ({0})"
 
 #: mkt/reviewers/helpers.py:131
 msgid "Device ({0})"
@@ -6016,9 +5983,8 @@ msgstr ""
 # 87%
 # 100%
 #: mkt/reviewers/utils.py:372 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
-#, fuzzy
 msgid "Approve"
-msgstr "Одобрен"
+msgstr "Одобряване"
 
 #: mkt/reviewers/utils.py:373
 msgid "This will approve the app and allow the author(s) to publish it."
@@ -6043,9 +6009,8 @@ msgstr ""
 # 88%
 # 100%
 #: mkt/reviewers/utils.py:390
-#, fuzzy
 msgid "Escalate"
-msgstr "Ескалиран"
+msgstr "Ескалиране"
 
 #: mkt/reviewers/utils.py:392
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
@@ -6159,9 +6124,8 @@ msgstr ""
 # 88%
 # 100%
 #: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:86 mkt/reviewers/templates/reviewers/queue_region.html:31
-#, fuzzy
 msgid "There are currently no items of this type to review."
-msgstr "В момента няма добавки от този тип за рецензиране."
+msgstr "В момента приложения за рецензиране от този тип няма."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -6192,9 +6156,8 @@ msgstr ""
 # 92%
 # 100%
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43 mkt/reviewers/templates/reviewers/includes/macros.html:105
-#, fuzzy
 msgid "More Information Requested"
-msgstr "Изискана е още информациа"
+msgstr "Поискана повече информация"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:46 mkt/reviewers/templates/reviewers/includes/macros.html:108
 msgid "Contains Editor Comment"
@@ -6289,9 +6252,8 @@ msgstr "Събитие"
 # 79%
 # 100%
 #: mkt/reviewers/templates/reviewers/logs.html:38
-#, fuzzy
 msgid "App has been deleted."
-msgstr "Добавката е спряна."
+msgstr "Приложението е изтрито."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -6376,9 +6338,8 @@ msgstr ""
 # 80%
 # 100%
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
-#, fuzzy
 msgid "Month"
-msgstr "месец"
+msgstr "Месец"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
@@ -6515,9 +6476,8 @@ msgstr ""
 # 85%
 # 100%
 #: mkt/reviewers/templates/reviewers/includes/details.html:85 mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
-#, fuzzy
 msgid "Ratings"
-msgstr "Рейтинг"
+msgstr "Оценки"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:92 mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
@@ -6546,9 +6506,8 @@ msgstr "Изображения"
 # 77%
 # 100%
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
-#, fuzzy
 msgid "More about this app"
-msgstr "Повече за тази добавка"
+msgstr "Повече за това приложение"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:153
 msgid "Nothing to see here! The developer did not include any details."
@@ -6772,7 +6731,7 @@ msgstr ""
 
 #: mkt/search/forms.py:57
 msgid "All Categories"
-msgstr ""
+msgstr "Всички категории"
 
 #: mkt/search/forms.py:72
 msgid "Search for apps"
@@ -6820,7 +6779,7 @@ msgstr ""
 
 #: mkt/site/context_processors.py:56
 msgid "Account Settings"
-msgstr "Настройки на акаунта"
+msgstr "Настройки на профила"
 
 #: mkt/site/context_processors.py:57
 msgid "Change Password"
@@ -7121,9 +7080,8 @@ msgstr "Възстановяването за {addon} отказано за {0}.
 # 83%
 # 100%
 #: mkt/site/log.py:405
-#, fuzzy
 msgid "Refund granted for {addon} for {0}."
-msgstr "Възстановяването за {addon} отказано за {0}."
+msgstr "Възстановяване на средствата за {addon} одобрено за {0}."
 
 #: mkt/site/log.py:410
 msgid "Instant refund granted for {addon}."
@@ -7280,9 +7238,8 @@ msgstr ""
 # 83%
 # 100%
 #: mkt/site/log.py:598
-#, fuzzy
 msgid "{review} for {addon} updated."
-msgstr "{review} за {addon} одобрен."
+msgstr "{review} за {addon} обновена."
 
 #: mkt/site/log.py:604
 msgid "{addon} reviewed."
@@ -7458,9 +7415,8 @@ msgstr ""
 # 93%
 # 100%
 #: mkt/submit/forms.py:282
-#, fuzzy
 msgid "Privacy Policy:"
-msgstr "Декларация за поверителност"
+msgstr "Декларация за поверителност:"
 
 #: mkt/submit/forms.py:284
 msgid ""
@@ -7472,9 +7428,8 @@ msgstr ""
 # 88%
 # 100%
 #: mkt/submit/forms.py:295
-#, fuzzy
 msgid "Homepage:"
-msgstr "Начална страница"
+msgstr "Страница:"
 
 #: mkt/submit/forms.py:297
 msgid "If your app has another homepage, enter its address here."
@@ -7528,9 +7483,8 @@ msgstr "Прати приложение"
 # 76%
 # 100%
 #: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:6 mkt/submit/templates/submit/manifest.html:24 mkt/submit/templates/submit/terms.html:3
-#, fuzzy
 msgid "Submit an App"
-msgstr "Прати приложение"
+msgstr "Изпращане на приложение"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
@@ -7968,7 +7922,7 @@ msgstr ""
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Регистриране"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
