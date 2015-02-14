@@ -165,8 +165,8 @@ class ApiSearchForm(forms.Form):
             return [l.strip() for l in languages.split(',')]
 
     def clean_device_and_dev(self):
-        device = self.cleaned_data.get('dev')
-        device_type = self.cleaned_data.get('device')
+        device = self.cleaned_data.pop('dev', None)
+        device_type = self.cleaned_data.pop('device', None)
         # For android, we need to know the device type to determine the real
         # device we are going to filter with, because we distinguish between
         # mobile and tablets.
@@ -174,7 +174,6 @@ class ApiSearchForm(forms.Form):
             device = '%s-%s' % (device, device_type)
         if device in DEVICE_LOOKUP:
             self.cleaned_data['device'] = DEVICE_LOOKUP.get(device).id
-            self.cleaned_data.pop('dev', None)
         elif device:
             raise forms.ValidationError('Invalid device or device type.')
 

@@ -1,5 +1,4 @@
 import jingo
-import jinja2
 from tower import ugettext as _
 
 from mkt.access import acl
@@ -13,15 +12,7 @@ def stars(num, large=False):
         return _('Not yet reviewed')
     else:
         num = min(5, int(round(num)))
-        t = jingo.env.get_template('ratings/reviews_rating.html')
-        # These are getting renamed for contextual sense in the template.
-        return jinja2.Markup(t.render({'rating': num, 'detailpage': large}))
-
-
-@jingo.register.function
-def impala_reviews_link(addon):
-    t = jingo.env.get_template('ratings/reviews_link.html')
-    return jinja2.Markup(t.render({'addon': addon}))
+        return _('Reviewed %s out of 5 stars' % num)
 
 
 def user_can_delete_review(request, review):

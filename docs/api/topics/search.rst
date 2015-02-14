@@ -20,12 +20,12 @@ Search
     :param optional cat: The category slug or ID to filter by. Use the
         category API to find the ids of the categories.
     :type cat: int|string
-    :param optional device: Filters by supported device. One of 'desktop',
-        'mobile', 'tablet', or 'firefoxos'.
-    :type device: string
-    :param optional dev: Enables filtering by device profile if either
-                         'firefoxos' or 'android'.
+    :param optional dev: Filters by supported device. One of 'desktop',
+        'android', or 'firefoxos'.
     :type dev: string
+    :param optional device: Enables additional filtering by device profile
+    if device is 'android'. One of 'mobile' or 'tablet'.
+    :type device: string
     :param optional pro: A :ref:`feature profile <feature-profile-label>`
                          describing the features to filter by.
     :type pro: string
