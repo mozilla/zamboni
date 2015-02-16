@@ -217,14 +217,14 @@ class Test3LeggedOAuthFlow(TestCase):
 
     def test_get_authorize_page(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         res = self.client.get('/oauth/authorize/', data={'oauth_token': t.key})
         eq_(res.status_code, 200)
         page = pq(res.content)
         eq_(page('input[name=oauth_token]').attr('value'), t.key)
 
     def test_get_authorize_page_bad_token(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         res = self.client.get('/oauth/authorize/',
                               data={'oauth_token': 'bad_token_value'})
         eq_(res.status_code, 401)
@@ -234,7 +234,7 @@ class Test3LeggedOAuthFlow(TestCase):
         full_redirect = (
             self.redirect_uri + '?oauth_token=%s&oauth_verifier=%s'
             % (t.key, t.verifier))
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         url = reverse('mkt.developers.oauth_authorize')
         res = self.client.post(url, data={'oauth_token': t.key, 'grant': ''})
         eq_(res.status_code, 302)
@@ -243,14 +243,14 @@ class Test3LeggedOAuthFlow(TestCase):
 
     def test_deny_authorize_page(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         url = reverse('mkt.developers.oauth_authorize')
         res = self.client.post(url, data={'oauth_token': t.key, 'deny': ''})
         eq_(res.status_code, 200)
         eq_(Token.objects.filter(pk=t.pk).count(), 0)
 
     def test_fail_authorize_page(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         url = reverse('mkt.developers.oauth_authorize')
         res = self.client.post(url, data={'oauth_token': "fake", 'grant': ''})
         eq_(res.status_code, 401)

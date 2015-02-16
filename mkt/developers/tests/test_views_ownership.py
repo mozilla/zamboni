@@ -20,8 +20,7 @@ class TestOwnership(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('owner')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
         # Users are required to have read the dev agreement to become owners.
         UserProfile.objects.filter(id__in=[31337, 999]).update(
             read_dev_agreement=datetime.datetime.now())
@@ -187,7 +186,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
 
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.client.post(self.url, data, follow=True)
 
         # Try deleting the other AddonUser.
@@ -237,7 +236,7 @@ class TestEditWebappAuthors(mkt.site.tests.TestCase):
                        'user_admin_group', 'group_admin')
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
         self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('owner')
 
@@ -264,7 +263,7 @@ class TestDeveloperRoleAccess(mkt.site.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
 

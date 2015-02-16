@@ -481,8 +481,7 @@ class TestFetchIcon(BaseWebAppTest):
         self.upload = self.get_upload(abspath=path,
                                       user=UserProfile.objects.get(pk=999))
         self.url = reverse('submit.app')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         return self.post_addon()
 
     def test_no_version(self):

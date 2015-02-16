@@ -19,8 +19,7 @@ class Test403(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def _test_403(self, url):
         res = self.client.get(url, follow=True)
@@ -31,8 +30,7 @@ class Test403(mkt.site.tests.TestCase):
         self._test_403('/admin')
 
     def test_403_devhub(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         app = Webapp.objects.get(pk=337141)
         self._test_403(app.get_dev_url('edit'))
 

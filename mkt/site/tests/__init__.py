@@ -334,6 +334,12 @@ class MockBrowserIdMixin(object):
 
         self.client.login = fake_login
 
+    def login(self, profile):
+        email = getattr(profile, 'email', profile)
+        if '@' not in email:
+            email += '@mozilla.com'
+        assert self.client.login(username=email, password='password')
+
 
 JINJA_INSTRUMENTED = False
 
@@ -631,12 +637,6 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
     def days_ago(self, days):
         return days_ago(days)
 
-    def login(self, profile):
-        email = getattr(profile, 'email', profile)
-        if '@' not in email:
-            email += '@mozilla.com'
-        assert self.client.login(username=email, password='password')
-
     def trans_eq(self, trans, locale, localized_string):
         eq_(Translation.objects.get(id=trans.id,
                                     locale=locale).localized_string,
@@ -753,13 +753,20 @@ user_factory_counter = 0
 
 
 def user_factory(**kw):
+    """
+    If not provided, email will be 'factoryuser<number>@mozilla.com' and
+    username will be a <random 32 hex string>.
+    If email has no '@' it will be corrected to 'email@mozilla.com'
+    """
     global user_factory_counter
-    username = kw.pop('username', 'factoryuser%d' % user_factory_counter)
+    username = kw.pop('username', '%030x' % random.randrange(16 ** 30))
+    email = kw.pop('email', 'factoryuser%d' % user_factory_counter)
+    if '@' not in email:
+        email = '%s@mozilla.com' % email
 
-    user = UserProfile.objects.create(
-        username=username, email='%s@mozilla.com' % username, **kw)
+    user = UserProfile.objects.create(username=username, email=email, **kw)
 
-    if 'username' not in kw:
+    if 'email' not in kw:
         user_factory_counter = user.id + 1
     return user
 

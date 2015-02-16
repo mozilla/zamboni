@@ -149,8 +149,7 @@ class TestStandaloneValidation(BaseUploadTest):
 
     def setUp(self):
         super(TestStandaloneValidation, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
 
         # Upload URLs
         self.hosted_upload = reverse(

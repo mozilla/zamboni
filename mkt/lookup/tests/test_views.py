@@ -32,7 +32,8 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
-from mkt.site.tests import ESTestCase, req_factory_factory, TestCase
+from mkt.site.tests import (ESTestCase, req_factory_factory, TestCase,
+                            user_factory)
 from mkt.site.utils import app_factory, file_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -85,12 +86,12 @@ class TestAcctSummary(SummaryTest):
 
     def setUp(self):
         super(TestAcctSummary, self).setUp()
-        self.user = UserProfile.objects.get(username='31337')  # steamcube
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.steamcube = Webapp.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
-        self.login(UserProfile.objects.get(username='support_staff'))
+        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
 
     def buy_stuff(self, contrib_type):
         for i in range(3):
@@ -216,13 +217,13 @@ class TestAcctSummary(SummaryTest):
     def test_operator_app_lookup_only(self):
         GroupUser.objects.create(
             group=Group.objects.get(name='Operators'),
-            user=UserProfile.objects.get(username='support_staff'))
+            user=UserProfile.objects.get(email='support-staff@mozilla.com'))
         res = self.client.get(reverse('lookup.home'))
         doc = pq(res.content)
         eq_(doc('#app-search-form select').length, 0)
 
     def test_delete_user(self):
-        staff = UserProfile.objects.get(username='support_staff')
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
         req = req_factory_factory(
             reverse('lookup.user_delete', args=[self.user.id]), user=staff,
             post=True, data={'delete_reason': 'basketball reasons'})
@@ -250,12 +251,12 @@ class TestBangoRedirect(TestCase):
 
     def setUp(self):
         super(TestBangoRedirect, self).setUp()
-        self.user = UserProfile.objects.get(username='31337')  # steamcube
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.steamcube = Webapp.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
-        self.login(UserProfile.objects.get(username='support_staff'))
+        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
         self.steamcube.update(premium_type=mkt.ADDON_PREMIUM)
         self.account = setup_payment_account(self.steamcube, self.user)
         self.portal_url = reverse(
@@ -315,8 +316,8 @@ class TestAcctSearch(TestCase, SearchTestMixin):
     def setUp(self):
         super(TestAcctSearch, self).setUp()
         self.url = reverse('lookup.user_search')
-        self.user = UserProfile.objects.get(username='clouserw')
-        self.login(UserProfile.objects.get(username='support_staff'))
+        self.user = UserProfile.objects.get(email='clouserw@mozilla.com')
+        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.user.username)
@@ -355,8 +356,7 @@ class TestAcctSearch(TestCase, SearchTestMixin):
     def test_all_results(self):
         for x in range(4):
             name = 'chr' + str(x)
-            UserProfile.objects.create(username=name, name=name,
-                                       email=name + '@gmail.com')
+            user_factory(email=name)
 
         # Test not at search limit.
         data = self.search(q='clouserw')
@@ -377,8 +377,7 @@ class TestTransactionSearch(TestCase):
     def setUp(self):
         self.uuid = 45
         self.url = reverse('lookup.transaction_search')
-        self.client.login(username='support-staff@mozilla.com',
-                          password='password')
+        self.login('support-staff@mozilla.com')
 
     def test_redirect(self):
         r = self.client.get(self.url, {'q': self.uuid})
@@ -386,13 +385,11 @@ class TestTransactionSearch(TestCase):
                                   args=[self.uuid]))
 
     def test_no_perm(self):
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.login('regular@mozilla.com')
         r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
-        assert self.client.login(username='operator@mozilla.com',
-                                 password='password')
+        self.login('operator@mozilla.com')
         r = self.client.get(self.url, {'q': self.uuid})
         eq_(r.status_code, 403)
 
@@ -413,8 +410,7 @@ class TestTransactionSummary(TestCase):
             transaction_id=self.transaction_id)
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
-        self.client.login(username='support-staff@mozilla.com',
-                          password='password')
+        self.login('support-staff@mozilla.com')
 
     @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def create_test_refund(self):
@@ -485,13 +481,11 @@ class TestTransactionSummary(TestCase):
         eq_(r.status_code, 200)
 
     def test_no_perm_403(self):
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.login('regular@mozilla.com')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
 
-        assert self.client.login(username='operator@mozilla.com',
-                                 password='password')
+        self.login('operator@mozilla.com')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
 
@@ -511,7 +505,7 @@ class TestTransactionRefund(TestCase):
                                    args=[self.uuid])
         self.url = reverse('lookup.transaction_refund', args=[self.uuid])
         self.app = app_factory()
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonUser.objects.create(addon=self.app, user=self.user)
 
         self.req = self.request({'refund_reason': 'text'})
@@ -533,7 +527,7 @@ class TestTransactionRefund(TestCase):
 
     def request(self, data):
         req = RequestFactory().post(self.url, data)
-        req.user = UserProfile.objects.get(username='support_staff')
+        req.user = UserProfile.objects.get(email='support-staff@mozilla.com')
         req.groups = req.user.groups.all()
         return req
 
@@ -654,8 +648,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         super(TestAppSearch, self).setUp()
         self.url = reverse('lookup.app_search')
         self.app = Webapp.objects.get(pk=337141)
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
+        self.login('support-staff@mozilla.com')
 
     def verify_result(self, data):
         eq_(data['results'][0]['name'], self.app.name.localized_string)
@@ -706,8 +699,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_operator(self):
-        assert self.client.login(username='operator@mozilla.com',
-                                 password='password')
+        self.login('operator@mozilla.com')
         data = self.search(q=self.app.pk)
         self.verify_result(data)
 
@@ -734,9 +726,8 @@ class AppSummaryTest(SummaryTest):
         self.app = Webapp.objects.get(pk=337141)
         self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
-        self.user = UserProfile.objects.get(username='31337')
-        assert self.client.login(username='support-staff@mozilla.com',
-                                 password='password')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        self.login('support-staff@mozilla.com')
 
     def summary(self, expected_status=200):
         res = self.client.get(self.url)
@@ -764,7 +755,7 @@ class TestAppSummary(AppSummaryTest):
         self.summary()
 
     def test_authors(self):
-        user = UserProfile.objects.get(username='31337')
+        user = UserProfile.objects.get(email='steamcube@mozilla.com')
         res = self.summary()
         eq_(res.context['authors'][0].display_name, user.display_name)
 
@@ -807,7 +798,7 @@ class TestAppSummary(AppSummaryTest):
                      mkt.AUTHOR_ROLE_OWNER,
                      mkt.AUTHOR_ROLE_VIEWER,
                      mkt.AUTHOR_ROLE_SUPPORT):
-            user = UserProfile.objects.create(username=role)
+            user = user_factory(username=role)
             role = AddonUser.objects.create(user=user,
                                             addon=self.app,
                                             role=role)
@@ -870,8 +861,7 @@ class TestAppSummary(AppSummaryTest):
         eq_(pq(res.content)('.shortcuts li').eq(3).text(), 'Edit Listing')
 
     def test_operator_200(self):
-        assert self.client.login(username='operator@mozilla.com',
-                                 password='password')
+        self.login('operator@mozilla.com')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
@@ -891,7 +881,7 @@ class TestAppSummary(AppSummaryTest):
             'Review Prioritized')
 
     def test_priority_button_works(self):
-        staff = UserProfile.objects.get(username='support_staff')
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
         req = req_factory_factory(self.url, post=True, user=staff,
                                   data={'prioritize': 'true'})
         app_summary(req, self.app.id)
@@ -978,7 +968,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
     def setUp(self):
         super(TestAppSummaryRefunds, self).setUp()
         self._setUp()
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.contrib1 = self.purchase()
         self.contrib2 = self.purchase()
         self.contrib3 = self.purchase()
@@ -1040,8 +1030,8 @@ class TestPurchases(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.reviewer = UserProfile.objects.get(username='admin')
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.reviewer = UserProfile.objects.get(email='admin@mozilla.com')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.url = reverse('lookup.user_purchases', args=[self.user.pk])
 
     def test_not_allowed(self):
@@ -1084,8 +1074,8 @@ class TestActivity(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.reviewer = UserProfile.objects.get(username='admin')
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.reviewer = UserProfile.objects.get(email='admin@mozilla.com')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.url = reverse('lookup.user_activity', args=[self.user.pk])
 
     def test_not_allowed(self):
@@ -1126,8 +1116,8 @@ class TestAppActivity(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.reviewer = UserProfile.objects.get(username='admin')
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.reviewer = UserProfile.objects.get(email='admin@mozilla.com')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.url = reverse('lookup.app_activity', args=[self.app.pk])
 
     def test_not_allowed(self):

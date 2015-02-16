@@ -39,29 +39,25 @@ class TestDownload(BasePackagedAppTest):
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_public_but_owner(self, sign):
-        self.client.login(username='steamcube@mozilla.com',
-                          password='password')
+        self.login('steamcube@mozilla.com')
         self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 200)
         assert not sign.called
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_public_not_owner(self, sign):
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.login('regular@mozilla.com')
         self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 404)
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_owner(self):
-        self.client.login(username='steamcube@mozilla.com',
-                          password='password')
+        self.login('steamcube@mozilla.com')
         eq_(self.client.get(self.url).status_code, 200)
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_admin(self):
-        self.client.login(username='admin@mozilla.com',
-                          password='password')
+        self.login('admin@mozilla.com')
         eq_(self.client.get(self.url).status_code, 200)
 
     @mock.patch.object(packaged, 'sign', mock_sign)

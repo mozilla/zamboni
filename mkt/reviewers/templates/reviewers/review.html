@@ -17,7 +17,7 @@
     <img src="{{ product.icon_url }}" class="icon">
     <span>{{ product.name }}</span>
   </h1>
-  <p class="author">{{ _('by') }} {{ product.listed_authors|join(', ', attribute='username') }}</p>
+  <p class="author">{{ _('by') }} {{ product.listed_authors|join(', ', attribute='email') }}</p>
 </header>
 
 <div id="scroll_sidebar_parent">

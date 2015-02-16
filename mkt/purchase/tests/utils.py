@@ -18,8 +18,7 @@ class PurchaseTest(TestCase):
 
     def setUp(self):
         self.setup_base()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.brl = PriceCurrency.objects.create(currency='BRL',
                                                 price=Decimal('0.5'),

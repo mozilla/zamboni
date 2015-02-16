@@ -22,7 +22,7 @@ class TestEmailDailyRatings(mkt.site.tests.TestCase):
         self.app = mkt.site.tests.app_factory(name='test')
         self.app2 = mkt.site.tests.app_factory(name='test2')
 
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonUser.objects.create(addon=self.app, user=self.user)
         AddonUser.objects.create(addon=self.app2, user=self.user)
 

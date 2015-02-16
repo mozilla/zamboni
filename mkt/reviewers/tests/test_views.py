@@ -94,16 +94,16 @@ class AppReviewerTest(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(AppReviewerTest, self).setUp()
-        self.reviewer_user = user_factory(username='editor')
+        self.reviewer_user = user_factory(email='editor')
         self.grant_permission(self.reviewer_user, 'Apps:Review')
-        self.snr_reviewer_user = user_factory(username='snrreviewer')
+        self.snr_reviewer_user = user_factory(email='snrreviewer')
         self.grant_permission(self.snr_reviewer_user, 'Apps:Review,Apps:Edit,'
                               'Apps:ReviewEscalated,Apps:ReviewPrivileged',
                               name='Senior App Reviewers')
-        self.admin_user = user_factory(username='admin')
+        self.admin_user = user_factory(email='admin')
         self.grant_permission(self.admin_user, '*:*')
-        self.regular_user = user_factory(username='regular')
-        self.contact_user = user_factory(username='contact')
+        self.regular_user = user_factory(email='regular')
+        self.contact_user = user_factory(email='contact')
         self.login_as_editor()
 
     def login_as_admin(self):
@@ -136,8 +136,7 @@ class AppReviewerTest(mkt.site.tests.TestCase):
 class AccessMixin(object):
 
     def test_403_for_non_editor(self, *args, **kwargs):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.head(self.url).status_code, 403)
 
     def test_302_for_anonymous(self, *args, **kwargs):
@@ -201,7 +200,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # App reviewers go to apps home.
         req = mkt.site.tests.req_factory_factory(
             reverse('reviewers'),
-            user=UserProfile.objects.get(username='editor'))
+            user=UserProfile.objects.get(email='editor@mozilla.com'))
         r = route_reviewer(req)
         self.assert3xx(r, reverse('reviewers.home'))
 
@@ -310,16 +309,16 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
 
         # Top Reviews.
         table = doc('#editors-stats .editor-stats-table').eq(0)
-        eq_(table.find('td').eq(0).text(), reviewers[0].name)
+        eq_(table.find('td').eq(0).text(), reviewers[0].email)
         eq_(table.find('td').eq(1).text(), u'2')
-        eq_(table.find('td').eq(2).text(), reviewers[1].name)
+        eq_(table.find('td').eq(2).text(), reviewers[1].email)
         eq_(table.find('td').eq(3).text(), u'1')
 
         # Top Reviews this month.
         table = doc('#editors-stats .editor-stats-table').eq(1)
-        eq_(table.find('td').eq(0).text(), reviewers[0].name)
+        eq_(table.find('td').eq(0).text(), reviewers[0].email)
         eq_(table.find('td').eq(1).text(), u'2')
-        eq_(table.find('td').eq(2).text(), reviewers[1].name)
+        eq_(table.find('td').eq(2).text(), reviewers[1].email)
         eq_(table.find('td').eq(3).text(), u'1')
 
 
@@ -574,7 +573,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             self.reindex(Webapp, 'webapp')
         req = req_factory_factory(
             self.url,
-            user=UserProfile.objects.get(username='editor'))
+            user=UserProfile.objects.get(email='editor@mozilla.com'))
         doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
 
@@ -1247,8 +1246,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         sign_mock.return_value = None  # Didn't fail.
         json_mock.return_value = {'name': 'Something'}
 
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
@@ -1277,8 +1275,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         sign_mock.side_effect = packaged.SigningError
         json_mock.return_value = {'name': 'Something'}
 
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
@@ -1392,7 +1389,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     def test_cannot_review_my_app(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
             self.app.addonuser_set.create(
-                user=UserProfile.objects.get(username='editor'))
+                user=UserProfile.objects.get(email='editor@mozilla.com'))
             res = self.client.head(self.url)
             self.assert3xx(res, reverse('reviewers.home'))
             res = self.client.post(self.url)
@@ -1788,8 +1785,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
     def test_multi_cc_email(self):
         # Test multiple mozilla_contact emails via more information.
-        contacts = [user_factory(username=u'á').email,
-                    user_factory(username=u'ç').email]
+        contacts = [user_factory(email=u'á').email,
+                    user_factory(email=u'ç').email]
         self.mozilla_contact = ', '.join(contacts)
         self.app.update(mozilla_contact=self.mozilla_contact)
         data = {'action': 'info', 'comments': 'Knead moor in faux'}
@@ -2799,11 +2796,8 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
                     created=days_ago)
             d += 1
 
-    def make_an_approval(self, action, comment='youwin', username=None,
-                         app=None):
-        if username:
-            user = UserProfile.objects.get(username=username)
-        else:
+    def make_an_approval(self, action, comment='youwin', user=None, app=None):
+        if not user:
             user = self.get_user()
         if not app:
             app = self.apps[0]
@@ -2897,8 +2891,8 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_exists(self):
         """Search by author."""
         self.make_approvals()
-        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='regular',
-                              comment='hi')
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, user=user, comment='hi')
 
         r = self.client.get(self.url, dict(search='regular'))
         eq_(r.status_code, 200)
@@ -2910,7 +2904,8 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def test_search_author_doesnt_exist(self):
         """Search by author, with no results."""
         self.make_approvals()
-        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, username='editor')
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.make_an_approval(mkt.LOG.ESCALATE_MANUAL, user=user)
 
         r = self.client.get(self.url, dict(search='wrong'))
         eq_(r.status_code, 200)
@@ -3030,7 +3025,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         super(TestReviewAppComm, self).setUp()
         self.app = app_factory(rated=True, status=mkt.STATUS_PENDING,
                                mozilla_contact='contact@mozilla.com')
-        self.app.addonuser_set.create(user=user_factory(username='steamcube'))
+        self.app.addonuser_set.create(user=user_factory(email='steamcube'))
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
         self.mozilla_contact = 'contact@mozilla.com'
@@ -3062,7 +3057,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
 
         # Some person who joined the thread.
         self._check_email(
-            self._get_mail(poster.username), 'Approved', to=[poster.email])
+            self._get_mail(poster.email), 'Approved', to=[poster.email])
 
     def test_approve(self):
         """
@@ -3128,7 +3123,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         # Test emails.
         eq_(len(mail.outbox), 2)
         self._check_email(  # Senior reviewer.
-            self._get_mail(self.snr_reviewer_user.username), 'Escalated',
+            self._get_mail(self.snr_reviewer_user.email), 'Escalated',
             to=[self.snr_reviewer_user.email])
         self._check_email(self._get_mail('steamcube'), 'Escalated')
 
@@ -3198,9 +3193,9 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
 
         self.app = app_factory()
 
-        self.moderator_user = user_factory(username='moderator')
+        self.moderator_user = user_factory(email='moderator')
         self.grant_permission(self.moderator_user, 'Apps:ModerateReview')
-        user_factory(username='regular')
+        user_factory(email='regular')
 
         user1 = user_factory()
         user2 = user_factory()
@@ -3404,7 +3399,7 @@ class TestMiniManifestView(BasePackagedAppTest):
 
     def test_not_reviewer(self):
         self.client.logout()
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_not_packaged(self):
@@ -3488,18 +3483,18 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
     def setUp(self):
         super(TestReviewersScores, self).setUp()
         self.user = self.reviewer_user
-        self.url = reverse('reviewers.performance', args=[self.user.username])
+        self.url = reverse('reviewers.performance', args=[self.user.email])
 
     def test_404(self):
         res = self.client.get(reverse('reviewers.performance', args=['poop']))
         eq_(res.status_code, 404)
 
-    def test_with_username(self):
+    def test_with_email(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['profile'].id, self.user.id)
 
-    def test_without_username(self):
+    def test_without_email(self):
         res = self.client.get(reverse('reviewers.performance'))
         eq_(res.status_code, 200)
         eq_(res.context['profile'].id, self.user.id)
@@ -3533,11 +3528,8 @@ class TestQueueSort(AppReviewerTest):
         # Set up app attributes.
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(5))
-        self.apps[0].addonuser_set.create(
-            user=UserProfile.objects.create(username='XXX', email='XXX'))
-        self.apps[1].addonuser_set.create(
-            user=UserProfile.objects.create(username='illmatic',
-                                            email='brandon@roy.com'))
+        self.apps[0].addonuser_set.create(user=user_factory(email='XXX'))
+        self.apps[1].addonuser_set.create(user=user_factory(email='illmatic'))
         self.apps[0].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
         self.apps[1].addondevicetype_set.create(
@@ -3574,7 +3566,7 @@ class TestQueueSort(AppReviewerTest):
     def test_do_sort_version_nom(self):
         """Tests version nomination sort order."""
         url = reverse('reviewers.apps.queue_pending')
-        user = UserProfile.objects.get(username='editor')
+        user = UserProfile.objects.get(email='editor@mozilla.com')
 
         version_0 = self.apps[0].versions.get()
         version_0.update(nomination=days_ago(1))
@@ -3649,8 +3641,7 @@ class TestQueueSort(AppReviewerTest):
         # Set up app attributes.
         self.apps[2].update(created=self.days_ago(1))
         self.apps[2].addonuser_set.create(
-            user=UserProfile.objects.create(username='redpanda',
-                                            email='redpanda@mozilla.com'))
+            user=user_factory(email='redpanda@mozilla.com'))
         self.apps[2].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
 
@@ -3742,7 +3733,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         eq_(len(res.context['apps']), 2)
 
         # Now view an app as another user and verify app.
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
         self._view_app(self.apps[2].id)
         res = self.client.get(self.url)
         eq_(len(res.context['apps']), 1)
@@ -3776,18 +3767,18 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_permissions_editor(self):
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.login('editor@mozilla.com')
         response = self._response()
         eq_(response.status_code, 200, 'Editor cannot access attachment')
 
     def test_permissions_regular(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         response = self._response()
         eq_(response.status_code, 403, 'Regular user can access attachment')
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     def test_headers(self):
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.login('editor@mozilla.com')
         response = self._response()
         eq_(response._headers['content-type'][1], 'application/force-download',
             'Attachment not served as application/force-download')
@@ -3815,7 +3806,7 @@ class TestLeaderboard(AppReviewerTest):
     def test_leaderboard_ranks(self):
         users = (self.user,
                  UserProfile.objects.get(email='regular@mozilla.com'),
-                 UserProfile.objects.get(email='clouserw@gmail.com'))
+                 UserProfile.objects.get(email='clouserw@mozilla.com'))
 
         self._award_points(users[0], mkt.REVIEWED_LEVELS[0]['points'] - 1)
         self._award_points(users[1], mkt.REVIEWED_LEVELS[0]['points'] + 1)
@@ -3860,7 +3851,7 @@ class TestReviewPage(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = app_factory(status=mkt.STATUS_PENDING)
-        self.reviewer = UserProfile.objects.get(username='editor')
+        self.reviewer = UserProfile.objects.get(email='editor@mozilla.com')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_iarc_ratingless_disable_approve_btn(self):
@@ -3908,7 +3899,7 @@ class TestReviewTranslate(RestOAuth):
         self.user = self.profile
         self.login_user()
         self.create_switch('reviews-translate')
-        user = UserProfile.objects.create(username='diego')
+        user = user_factory(email='diego')
         app = app_factory(slug='myapp')
         self.review = app.reviews.create(title=u'yes', body=u'oui',
                                          addon=app, user=user,
@@ -4032,14 +4023,14 @@ class ModerateLogTest(mkt.site.tests.TestCase):
         self.review = Review.objects.create(addon=app_factory(), body='body',
                                             user=user_factory(), rating=4,
                                             editorreview=True)
-        self.moderator_user = user_factory(username='moderator')
+        self.moderator_user = user_factory(email='moderator')
         self.grant_permission(self.moderator_user, 'Apps:ModerateReview')
         mkt.set_user(self.moderator_user)
         self.login(self.moderator_user)
 
-        self.admin_user = user_factory(username='admin')
+        self.admin_user = user_factory(email='admin')
         self.grant_permission(self.admin_user, '*:*')
-        user_factory(username='regular')
+        user_factory(email='regular')
 
 
 class TestModerateLog(ModerateLogTest, AccessMixin):

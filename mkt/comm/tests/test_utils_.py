@@ -14,7 +14,7 @@ from mkt.site.utils import app_factory
 class TestCreateCommNote(TestCase, AttachmentManagementMixin):
 
     def setUp(self):
-        self.contact = user_factory(username='contact')
+        self.contact = user_factory(email='contact')
         self.user = user_factory()
         self.grant_permission(self.user, '*:*')
         self.app = app_factory(mozilla_contact=self.contact.email)

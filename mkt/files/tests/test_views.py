@@ -31,8 +31,7 @@ binary = 'icons/256.png'
 class FilesBase(object):
 
     def login_as_editor(self):
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -81,14 +80,13 @@ class FilesBase(object):
 
     def test_view_access_developer(self):
         self.client.logout()
-        assert self.client.login(username=self.dev.email, password='password')
+        self.login(self.dev.email)
         self.file_viewer.extract()
         self.check_urls(200)
 
     def test_view_access_another_developer(self):
         self.client.logout()
-        assert self.client.login(username=self.regular.email,
-                                 password='password')
+        self.login(self.regular.email)
         self.file_viewer.extract()
         self.check_urls(403)
 

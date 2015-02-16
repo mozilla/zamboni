@@ -33,12 +33,11 @@ class TestInstall(TestCase):
         self.addon = app_factory(manifest_url='http://cbc.ca/man')
         self.url = self.addon.get_detail_url('record')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        assert self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
 
     def test_pending_free_for_reviewer(self):
         self.addon.update(status=mkt.STATUS_PENDING)
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
         eq_(self.client.post(self.url).status_code, 200)
 
     def test_pending_free_for_developer(self):
@@ -53,8 +52,7 @@ class TestInstall(TestCase):
     def test_pending_paid_for_reviewer(self):
         self.addon.update(status=mkt.STATUS_PENDING,
                           premium_type=mkt.ADDON_PREMIUM)
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
         eq_(self.client.post(self.url).status_code, 200)
         # Because they aren't using reviewer tools, they'll get a normal
         # install record and receipt.
@@ -259,7 +257,7 @@ class TestReceiptIssue(TestCase):
     @mock.patch('mkt.receipts.views.create_receipt')
     def test_issued(self, create_receipt):
         create_receipt.return_value = 'foo'
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer.email)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'reviewer')
@@ -267,7 +265,7 @@ class TestReceiptIssue(TestCase):
             apps.INSTALL_TYPE_REVIEWER)
 
     def test_get(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer.email)
         res = self.client.get(self.url)
         eq_(res.status_code, 405)
 
@@ -276,7 +274,7 @@ class TestReceiptIssue(TestCase):
         eq_(res.status_code, 403)
 
     def test_issued_not_reviewer(self):
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
         res = self.client.post(self.url)
         eq_(res.status_code, 403)
 
@@ -284,7 +282,7 @@ class TestReceiptIssue(TestCase):
     def test_issued_developer(self, create_receipt):
         create_receipt.return_value = 'foo'
         AddonUser.objects.create(user=self.user, addon=self.app)
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(create_receipt.call_args[1]['flavour'], 'developer')
@@ -302,7 +300,7 @@ class TestReceiptIssue(TestCase):
         self.app.name = u'\u0627\u0644\u062a\u0637\u0628-news'
         self.app.save()
 
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer.email)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
 
@@ -324,17 +322,17 @@ class TestReceiptCheck(TestCase):
         eq_(self.client.get(self.url).status_code, 302)
 
     def test_not_reviewer(self):
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_not_there(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer.email)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(json.loads(res.content)['status'], False)
 
     def test_there(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer.email)
         mkt.log(mkt.LOG.RECEIPT_CHECKED, self.app, user=self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

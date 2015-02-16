@@ -60,13 +60,12 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     def login_as_reviewer(self):
         self.client.logout()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        self.login('editor@mozilla.com')
 
     def login_as_author(self):
         self.client.logout()
         user = self.app.authors.all()[0]
-        assert self.client.login(username=user.email, password='password')
+        self.login(user.email)
 
     def test_non_packaged(self):
         self.app.update(is_packaged=False)

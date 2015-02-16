@@ -29,11 +29,11 @@ class PermissionTestMixin(object):
     def setUp(self):
         self.addon = Webapp.objects.get()
         self.version = self.addon.current_version
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
         self.thread = CommunicationThread.objects.create(
             _addon=self.addon, _version=self.version)
-        self.author = UserProfile.objects.create(email='lol', username='lol')
+        self.author = user_factory(email='lol')
         self.note = CommunicationNote.objects.create(
             thread=self.thread, author=self.author, note_type=0, body='xyz')
         self.obj = None
@@ -194,7 +194,7 @@ class TestCommAttachment(TestCase, CommTestMixin):
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
 
     def setUp(self):
-        self.user = user_factory(username='porkbelly')
+        self.user = user_factory(email='porkbelly')
         mkt.set_user(self.user)
         self.profile = self.user
         self.addon = Webapp.objects.get()

@@ -58,7 +58,7 @@ url_patterns = patterns(
     url(r'^signed/%s/(?P<version_id>\d+)$' % mkt.APP_SLUG,
         views.get_signed_packaged, name='reviewers.signed'),
 
-    url(r'''^performance/(?P<username>[^/<>"']+)?$''', views.performance,
+    url(r'''^performance/(?P<email>[^/<>"']+)?$''', views.performance,
         name='reviewers.performance'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
 )

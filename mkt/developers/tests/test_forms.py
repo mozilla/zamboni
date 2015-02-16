@@ -79,7 +79,7 @@ class TestCategoryForm(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestCategoryForm, self).setUp()
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.app = Webapp.objects.get(pk=337141)
         self.request = RequestFactory()
         self.request.user = self.user
@@ -705,7 +705,7 @@ class TestAdminSettingsForm(TestAdmin):
     def setUp(self):
         super(TestAdminSettingsForm, self).setUp()
         self.data = {'position': 1}
-        self.user = UserProfile.objects.get(username='admin')
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
         self.request = RequestFactory()
         self.request.user = self.user
         self.request.groups = ()

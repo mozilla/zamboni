@@ -4,15 +4,13 @@ from datetime import datetime
 from nose.tools import eq_
 
 import mkt
-import mkt.site.tests
+from mkt.site.tests import TestCase, user_factory
 from mkt.webapps.models import Webapp
-from mkt.users.models import UserProfile
 
 
-class LogTest(mkt.site.tests.TestCase):
+class LogTest(TestCase):
     def setUp(self):
-        u = UserProfile.objects.create(username='foo')
-        mkt.set_user(u)
+        mkt.set_user(user_factory())
 
     def test_details(self):
         """

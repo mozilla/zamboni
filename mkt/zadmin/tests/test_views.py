@@ -26,8 +26,7 @@ class TestEmailPreview(mkt.site.tests.TestCase):
                        'webapp_337141')
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         addon = Webapp.objects.get(pk=337141)
         self.topic = EmailPreviewTopic(addon)
 
@@ -50,7 +49,7 @@ class TestMemcache(mkt.site.tests.TestCase):
     def setUp(self):
         self.url = reverse('zadmin.memcache')
         cache.set('foo', 'bar')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
 
     def test_login(self):
         self.client.logout()
@@ -70,7 +69,7 @@ class TestElastic(mkt.site.tests.ESTestCase):
 
     def setUp(self):
         self.url = reverse('zadmin.elastic')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
 
     def test_login(self):
         self.client.logout()
@@ -216,8 +215,7 @@ class TestPerms(mkt.site.tests.TestCase):
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
 
@@ -226,8 +224,7 @@ class TestPerms(mkt.site.tests.TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         group = Group.objects.create(name='Staff', rules='AdminTools:View')
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
 
@@ -237,15 +234,13 @@ class TestPerms(mkt.site.tests.TestCase):
         group = Group.objects.create(name='Sr Reviewer',
                                      rules='ReviewerAdminTools:View')
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(reverse('zadmin.index')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         # Anonymous users should also get a 403.
@@ -259,7 +254,7 @@ class TestHome(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
 
     def test_home(self):
         # Test that the admin home page (which is AMO) can still be loaded
@@ -272,7 +267,7 @@ class TestGenerateError(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
         heka = settings.HEKA
         HEKA_CONF = {
             'logger': 'zamboni',
@@ -363,19 +358,16 @@ class TestManifestRevalidation(mkt.site.tests.TestCase):
         # Sr Reviewers users should be able to use the feature.
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'ReviewerAdminTools:View')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
 
         self._test_revalidation()
 
     def test_revalidation_by_admin(self):
         # Admin users should be able to use the feature.
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         self._test_revalidation()
 
     def test_unpriviliged_user(self):
         # Unprivileged user should not be able to reach the feature.
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.post(self.url).status_code, 403)
