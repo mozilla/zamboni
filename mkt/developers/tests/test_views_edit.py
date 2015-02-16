@@ -71,8 +71,8 @@ class TestEdit(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url()
-        self.user = UserProfile.objects.get(username='31337')
-        assert self.client.login(username=self.user.email, password='password')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        self.login(self.user.email)
 
     def get_webapp(self):
         return Webapp.objects.no_cache().get(id=337141)
@@ -389,7 +389,7 @@ class TestEditBasic(TestEdit):
         assert doc('form').attr('action') != old_edit
 
     def test_edit_as_developer(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         data = self.get_dict()
         r = self.client.post(self.edit_url, data)
         # Make sure we get errors when they are just regular users.
@@ -447,8 +447,7 @@ class TestEditBasic(TestEdit):
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh(self, fetch):
-        self.client.login(username='steamcube@mozilla.com',
-                          password='password')
+        self.login('steamcube@mozilla.com')
         url = reverse('mkt.developers.apps.refresh_manifest',
                       args=[self.webapp.app_slug])
         r = self.client.post(url)
@@ -457,8 +456,7 @@ class TestEditBasic(TestEdit):
 
     @mock.patch('mkt.developers.views._update_manifest')
     def test_refresh_dev_only(self, fetch):
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.login('regular@mozilla.com')
         url = reverse('mkt.developers.apps.refresh_manifest',
                       args=[self.webapp.app_slug])
         r = self.client.post(url)
@@ -1271,17 +1269,16 @@ class TestAdmin(TestEdit):
         self.url = self.get_url('admin')
         self.edit_url = self.get_url('admin', edit=True)
         self.webapp = self.get_webapp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
 
     def log_in_user(self):
-        assert self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
 
     def log_in_with(self, rules):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         group = Group.objects.create(name='Whatever', rules=rules)
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username=user.email, password='password')
+        self.login(user.email)
 
 
 class TestAdminSettings(TestAdmin):
@@ -1491,7 +1488,7 @@ class TestEditVersion(TestEdit):
             'version_id': self.version_pk,
             'app_slug': self.webapp.app_slug
         })
-        self.user = UserProfile.objects.get(username='31337')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.login(self.user)
 
     def test_post(self, **kwargs):

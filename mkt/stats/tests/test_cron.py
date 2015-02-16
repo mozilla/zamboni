@@ -7,6 +7,7 @@ import mkt
 import mkt.site.tests
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.ratings.models import Review
+from mkt.site.tests import user_factory
 from mkt.stats import tasks
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -123,15 +124,13 @@ class TestMonolithStats(mkt.site.tests.TestCase):
 
     def test_app_reviews(self):
         addon = Webapp.objects.create()
-        user = UserProfile.objects.create(username='foo')
-        Review.objects.create(addon=addon, user=user)
+        Review.objects.create(addon=addon, user=user_factory())
         eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
             1)
 
     def test_user_total(self):
         day = datetime.date(2009, 1, 1)
-        p = UserProfile.objects.create(username='foo',
-                                       source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
+        p = user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         p.update(created=day)
         jobs = tasks._get_monolith_jobs
         eq_(jobs(day)['mmo_user_count_total'][0]['count'](), 1)
@@ -139,15 +138,12 @@ class TestMonolithStats(mkt.site.tests.TestCase):
         eq_(jobs()['mmo_user_count_new'][0]['count'](), 0)
 
     def test_user_new(self):
-        UserProfile.objects.create(username='foo',
-                                   source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
+        user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         eq_(tasks._get_monolith_jobs()['mmo_user_count_new'][0]['count'](), 1)
 
     def test_dev_total(self):
-        p1 = UserProfile.objects.create(username='foo',
-                                        source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
-        p2 = UserProfile.objects.create(username='bar',
-                                        source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
+        p1 = user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
+        p2 = user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         a1 = mkt.site.tests.app_factory()
         AddonUser.objects.create(addon=a1, user=p1)
         AddonUser.objects.create(addon=a1, user=p2)

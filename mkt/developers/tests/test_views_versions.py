@@ -16,7 +16,7 @@ from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.tests import req_factory_factory
+from mkt.site.tests import req_factory_factory, user_factory
 from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.users.models import UserProfile
@@ -29,7 +29,7 @@ class TestVersion(mkt.site.tests.TestCase):
                        'user_admin_group', 'webapp_337141')
 
     def setUp(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
         self.webapp = self.get_webapp()
         self.url = self.webapp.get_dev_url('versions')
 
@@ -84,7 +84,7 @@ class TestVersion(mkt.site.tests.TestCase):
 
     def test_rejected(self):
         comments = "oh no you di'nt!!"
-        mkt.set_user(UserProfile.objects.get(username='admin'))
+        mkt.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         mkt.log(mkt.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
@@ -129,7 +129,7 @@ class TestVersion(mkt.site.tests.TestCase):
     def test_comm_thread_after_resubmission(self):
         self.webapp.update(status=mkt.STATUS_REJECTED)
         make_rated(self.webapp)
-        mkt.set_user(UserProfile.objects.get(username='admin'))
+        mkt.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         (self.webapp.versions.latest()
                              .all_files[0].update(status=mkt.STATUS_DISABLED))
         my_reply = 'no give up'
@@ -142,7 +142,7 @@ class TestVersion(mkt.site.tests.TestCase):
     def test_rejected_packaged(self):
         self.webapp.update(is_packaged=True)
         comments = "oh no you di'nt!!"
-        mkt.set_user(UserProfile.objects.get(username='admin'))
+        mkt.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         mkt.log(mkt.LOG.REJECT_VERSION, self.webapp,
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
@@ -165,7 +165,7 @@ class BaseAddVersionTest(BasePackagedAppTest):
                                app_domain='app://hy.fr',
                                version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
-        self.user = UserProfile.objects.get(username='regularuser')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
         AddonUser.objects.create(user=self.user, addon=self.app)
 
     def _post(self, expected_status=200):
@@ -194,7 +194,7 @@ class TestAddVersion(BaseAddVersionTest):
     def test_post_subscribers(self):
         # Same test as above, but add a suscriber. We only want to make sure
         # we are not causing a traceback because of that.
-        reviewer = UserProfile.objects.create(email='foo@example.com')
+        reviewer = user_factory(email='foo@example.com')
         self.grant_permission(reviewer, 'Apps:Review')
         EditorSubscription.objects.create(addon=self.app, user=reviewer)
         self._post(302)
@@ -283,7 +283,7 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
 
     def test_escalate_on_prerelease_permissions(self):
         """Test that apps that use prerelease permissions are escalated."""
-        UserProfile.objects.create(email=settings.NOBODY_EMAIL_ADDRESS)
+        user_factory(email=settings.NOBODY_EMAIL_ADDRESS)
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
         ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
@@ -324,8 +324,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestVersionPackaged, self).setUp()
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
         self.app.update(is_packaged=True)
         self.app = self.get_app()
         # Needed for various status checking routines on fully complete apps.
@@ -520,8 +519,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     def test_non_author_no_delete_for_you(self):
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         version = self.app.versions.latest()
         res = self.client.post(self.delete_url, dict(version_id=version.pk))
         eq_(res.status_code, 403)
@@ -535,8 +533,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
             self.client.logout()
             addon_user.role = role
             addon_user.save()
-            assert self.client.login(username='regular@mozilla.com',
-                                     password='password')
+            self.login('regular@mozilla.com')
             version = self.app.versions.latest()
             res = self.client.post(self.delete_url,
                                    dict(version_id=version.pk))
@@ -562,10 +559,10 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
     def test_admin_can_blocklist(self):
-        self.grant_permission(UserProfile.objects.get(username='regularuser'),
-                              'Apps:Configure')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'Apps:Configure')
+        self.login('regular@mozilla.com')
         v_count = self.app.versions.count()
         url = self.app.get_dev_url('blocklist')
         res = self.client.post(url)
@@ -582,7 +579,7 @@ class TestPreloadSubmit(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.create_switch('preload-apps')
-        self.user = UserProfile.objects.get(username='admin')
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
         self.login(self.user)
 
         self.webapp = Webapp.objects.get(id=337141)

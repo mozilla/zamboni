@@ -267,7 +267,7 @@ class TestInappSecret(InappTest):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_non_team_member_cannot_get_secret(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_other_developers_can_access_secret(self):
@@ -1106,8 +1106,7 @@ class TestRegions(mkt.site.tests.TestCase):
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=mkt.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
-        self.username = 'admin@mozilla.com'
-        assert self.client.login(username=self.username, password='password')
+        self.login('admin@mozilla.com')
         self.patch = mock.patch('mkt.developers.models.client')
         self.sol = self.patch.start()
 

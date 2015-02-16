@@ -14,7 +14,6 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
-from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Installed, Webapp
 
 
@@ -135,7 +134,6 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         super(TestConsumerInfoView, self).setUp()
         self.request = RequestFactory().get('/')
         self.url = reverse('fireplace-consumer-info')
-        self.user = UserProfile.objects.get(pk=2519)
 
     @patch('mkt.regions.middleware.GeoIP.lookup')
     def test_geoip_called_api_v1(self, mock_lookup):
@@ -180,7 +178,6 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         region_from_request.return_value = mkt.regions.BRA
         developed_app = app_factory()
         AddonUser.objects.create(user=self.user, addon=developed_app)
-        self.client.login(username=self.user.email, password='password')
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
@@ -193,7 +190,6 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         region_from_request.return_value = mkt.regions.BRA
         installed_app = app_factory()
         Installed.objects.create(user=self.user, addon=installed_app)
-        self.client.login(username=self.user.email, password='password')
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
@@ -207,7 +203,6 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         region_from_request.return_value = mkt.regions.BRA
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
-        self.client.login(username=self.user.email, password='password')
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')

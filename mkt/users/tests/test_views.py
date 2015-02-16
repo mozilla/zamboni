@@ -20,7 +20,7 @@ class TestAjax(TestCase):
     def setUp(self):
         super(TestAjax, self).setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        ok_(self.client.login(username=self.user.email, password='password'))
+        self.login(self.user.email)
 
     def test_ajax_404(self):
         r = self.client.get(reverse('users.ajax'), follow=True)
@@ -74,7 +74,7 @@ class TestLogout(TestCase):
     def setUp(self):
         super(TestLogout, self).setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        ok_(self.client.login(username=self.user.email, password='password'))
+        self.login(self.user.email)
 
     def test_success(self):
         res = self.client.get('/developers/', follow=True)

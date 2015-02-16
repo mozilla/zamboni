@@ -661,7 +661,7 @@ def logs(request):
                 Q(applog__addon__name__localized_string__icontains=term) |
                 Q(applog__addon__app_slug__icontains=term) |
                 Q(user__display_name__icontains=term) |
-                Q(user__username__icontains=term)).distinct()
+                Q(user__email__icontains=term)).distinct()
 
     pager = paginate(request, approvals, 50)
     data = context(request, form=form, pager=pager, ACTION_DICT=mkt.LOG_BY_ID,
@@ -852,14 +852,14 @@ def get_signed_packaged(request, addon, version_id):
 
 
 @reviewer_required(moderator=True)
-def performance(request, username=None):
+def performance(request, email=None):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
-    if username:
-        if username == request.user.username:
+    if email:
+        if email == request.user.email:
             user = request.user
         elif is_admin:
-            user = get_object_or_404(UserProfile, username=username)
+            user = get_object_or_404(UserProfile, email=email)
         else:
             raise http.Http404
     else:

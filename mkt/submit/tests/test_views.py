@@ -17,7 +17,7 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.tests import formset, initial, TestCase
+from mkt.site.tests import formset, initial, TestCase, user_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -35,13 +35,13 @@ class TestSubmit(TestCase):
         self.fi_mock = mock.patch(
             'mkt.developers.tasks.fetch_icon').__enter__()
         self.user = self.get_user()
-        assert self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
 
     def tearDown(self):
         self.fi_mock.__exit__()
 
     def get_user(self):
-        return UserProfile.objects.get(username='regularuser')
+        return UserProfile.objects.get(email='regular@mozilla.com')
 
     def get_url(self, url):
         return reverse('submit.app.%s' % url, args=[self.webapp.app_slug])
@@ -255,8 +255,7 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, TestCase):
                                       user=UserProfile.objects.get(pk=999))
         self.upload.update(name=self.manifest_url)
         self.url = reverse('submit.app')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
 
     def post_addon(self, data=None):
         eq_(Webapp.objects.count(), 0)
@@ -316,8 +315,7 @@ class TestCreateWebApp(BaseWebAppTest):
         self.post_addon()
 
         # Submit same manifest as different user.
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        self.login('clouserw@mozilla.com')
         self.upload = self.get_upload(abspath=self.manifest)
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
                              dict(manifest=self.manifest_url))
@@ -474,8 +472,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
                                       user=UserProfile.objects.get(pk=999))
         self.upload.update(name='mozball.zip')
         self.url = reverse('submit.app')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
 
     @property
     def package(self):
@@ -511,7 +508,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
 class TestEscalatePrereleaseWebApp(BasePackagedAppTest):
     def setUp(self):
         super(TestEscalatePrereleaseWebApp, self).setUp()
-        UserProfile.objects.create(email=settings.NOBODY_EMAIL_ADDRESS)
+        user_factory(email=settings.NOBODY_EMAIL_ADDRESS)
 
     def post(self):
         super(TestEscalatePrereleaseWebApp, self).post(data={
@@ -642,8 +639,7 @@ class TestDetails(TestSubmit):
 
     def test_not_owner(self):
         self._step()
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        self.login('clouserw@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_page(self):
@@ -1017,8 +1013,8 @@ class TestNextSteps(TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.user = UserProfile.objects.get(username='regularuser')
-        assert self.client.login(username=self.user.email, password='password')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.login(self.user.email)
         self.webapp = Webapp.objects.get(id=337141)
         self.webapp.update(status=mkt.STATUS_PENDING)
         self.url = reverse('submit.app.done', args=[self.webapp.app_slug])

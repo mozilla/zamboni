@@ -26,11 +26,11 @@ class TestReviewerScore(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.app = mkt.site.tests.app_factory(status=mkt.STATUS_PENDING)
-        self.user = user_factory(username='editor')
+        self.user = user_factory(email='editor')
         self.grant_permission(self.user, 'Apps:Review')
-        self.admin_user = user_factory(username='admin')
+        self.admin_user = user_factory(email='admin')
         self.grant_permission(self.admin_user, '*:*', name='Admins')
-        user_factory(username='regular')
+        user_factory(email='regular')
 
     def _give_points(self, user=None, app=None, status=None):
         user = user or self.user
@@ -189,7 +189,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
     def test_get_leaderboards_last(self):
         users = []
         for i in range(6):
-            users.append(UserProfile.objects.create(username='user-%s' % i))
+            users.append(user_factory())
         last_user = users.pop(len(users) - 1)
         for u in users:
             self._give_points(user=u)

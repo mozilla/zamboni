@@ -11,8 +11,8 @@ from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
 from mkt.tags.models import Tag
-from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import (AppFeaturesSerializer, AppSerializer,
                                      SimpleAppSerializer)
@@ -62,7 +62,7 @@ class TestSimpleAppSerializer(mkt.site.tests.TestCase):
                                    context={'request': self.request})
 
     def add_pay_account(self, provider=PROVIDER_BANGO):
-        user = UserProfile.objects.create(email='a', username='b')
+        user = user_factory()
         acct = PaymentAccount.objects.create(
             solitude_seller=SolitudeSeller.objects.create(user=user),
             provider=provider, user=user)

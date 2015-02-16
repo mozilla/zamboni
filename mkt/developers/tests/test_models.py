@@ -15,8 +15,9 @@ from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    PaymentAccount, PreloadTestPlan,
                                    SolitudeSeller)
 from mkt.developers.providers import get_provider
-from mkt.site.utils import app_factory
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from .test_providers import Patcher
@@ -229,7 +230,7 @@ class TestActivityLogAttachment(mkt.site.tests.TestCase):
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
 
     def setUp(self):
-        self.user = self._user()
+        self.user = user_factory(email='porkbelly')
         addon = Webapp.objects.get(pk=337141)
         version = addon.latest_version
         al = mkt.log(mkt.LOG.COMMENT_VERSION, addon, version, user=self.user)
@@ -237,12 +238,6 @@ class TestActivityLogAttachment(mkt.site.tests.TestCase):
 
     def tearDown(self):
         mkt.set_user(None)
-
-    def _user(self):
-        """Create and return a user"""
-        u = UserProfile.objects.create(username='porkbelly')
-        mkt.set_user(u)
-        return u
 
     def _attachments(self, activity_log):
         """

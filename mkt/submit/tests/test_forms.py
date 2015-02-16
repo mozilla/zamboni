@@ -14,6 +14,7 @@ from mkt.developers.models import AppLog
 from mkt.files.models import FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
 from mkt.submit import forms
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AppFeatures, Webapp
@@ -23,7 +24,7 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.request = RequestFactory().get('/')
-        self.request.user = UserProfile.objects.create(pk=1)
+        self.request.user = user_factory()
         self.file = FileUpload.objects.create(valid=True)
         self.file.user = self.request.user
         self.file.save()
@@ -45,7 +46,7 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
 
     def test_incorrect_user(self):
-        self.file.user = UserProfile.objects.create(pk=2, username='another')
+        self.file.user = user_factory()
         self.file.save()
         form = forms.NewWebappForm({'upload': self.file.uuid},
                                    request=self.request)

@@ -1,10 +1,7 @@
-import functools
-
 from django import http
 from django.conf import settings
 from django.contrib import auth
 from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.utils.http import is_safe_url
 from django.views.decorators.csrf import csrf_exempt
@@ -26,23 +23,6 @@ from .utils import autocreate_username
 
 
 log = commonware.log.getLogger('z.users')
-
-
-def user_view(f):
-    @functools.wraps(f)
-    def wrapper(request, user_id, *args, **kw):
-        """Provides a user object given a user ID or username."""
-        if user_id.isdigit():
-            key = 'id'
-        else:
-            key = 'username'
-            # If the username is `me` then show the current user's profile.
-            if (user_id == 'me' and request.user.is_authenticated() and
-                    request.user.username):
-                user_id = request.user.username
-        user = get_object_or_404(UserProfile, **{key: user_id})
-        return f(request, user, *args, **kw)
-    return wrapper
 
 
 @login_required(redirect=False)

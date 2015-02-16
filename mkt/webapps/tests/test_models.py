@@ -48,7 +48,7 @@ from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase, MktPaths,
-                            TestCase, WebappTestCase)
+                            TestCase, WebappTestCase, user_factory)
 from mkt.site.utils import app_factory, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.translations.models import Translation
@@ -68,7 +68,7 @@ class TestWebapp(WebappTestCase):
 
     def add_payment_account(self, app, provider_id, user=None):
         if not user:
-            user = UserProfile.objects.create(email='a', username='b')
+            user = user_factory()
         payment = PaymentAccount.objects.create(
             solitude_seller=SolitudeSeller.objects.create(user=user,
                                                           uuid=uuid.uuid4()),

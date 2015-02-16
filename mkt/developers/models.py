@@ -317,7 +317,7 @@ class ActivityLogManager(ManagerBase):
     def total_reviews(self, webapp=False):
         qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
-        return (qs.values('user', 'user__display_name', 'user__username')
+        return (qs.values('user', 'user__display_name', 'user__email')
                   .filter(action__in=mkt.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
@@ -328,7 +328,7 @@ class ActivityLogManager(ManagerBase):
         qs = self._by_type(webapp)
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
-        return (qs.values('user', 'user__display_name', 'user__username')
+        return (qs.values('user', 'user__display_name', 'user__email')
                   .filter(created__gte=created_date,
                           action__in=mkt.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)

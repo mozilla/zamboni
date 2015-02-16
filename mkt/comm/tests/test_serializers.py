@@ -10,13 +10,13 @@ class TestNoteSerializer(TestCase):
 
     def test_author(self):
         app = app_factory()
-        user = user_factory()
+        user = user_factory(display_name='Bob')
         thread, note = create_comm_note(app, app.current_version, user, 'hue')
 
         data = serializers.NoteSerializer(note, context={
             'request': req_factory_factory()
         }).data
-        eq_(data['author_meta']['name'], user.username)
+        eq_(data['author_meta']['name'], 'Bob')
         ok_(data['author_meta']['gravatar_hash'])
 
     def test_no_author(self):

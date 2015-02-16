@@ -79,7 +79,7 @@ class TestTaskUser(mkt.site.tests.TestCase):
         def some_func():
             return get_user()
 
-        set_user(UserProfile.objects.get(username='regularuser'))
+        set_user(UserProfile.objects.get(email='regular@mozilla.com'))
         eq_(get_user().pk, 999)
         eq_(some_func().pk, int(settings.TASK_USER_ID))
         eq_(get_user().pk, 999)

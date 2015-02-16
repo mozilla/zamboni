@@ -71,8 +71,7 @@ class TestWebAppPurchase(PurchaseTest):
                                     type=mkt.CONTRIB_PURCHASE,
                                     user=self.user)
         self.client.logout()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         data = self.get(reverse('webpay.pay_status',
                                 args=[self.addon.app_slug, uuid]))
         eq_(data['status'], 'incomplete')

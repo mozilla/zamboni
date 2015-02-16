@@ -170,7 +170,7 @@ class TestLocaleMiddlewarePersistence(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def test_save_lang(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='de')
         eq_(UserProfile.objects.get(pk=999).lang, 'de')
 
@@ -212,7 +212,7 @@ class TestVaryMiddleware(mkt.site.tests.TestCase):
     def test_no_user_agent(self):
         # We've toggled the middleware to not rewrite the application and also
         # not vary headers based on User-Agent.
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
 
         r = self.client.get('/robots.txt', follow=True)
         eq_(r.status_code, 200)

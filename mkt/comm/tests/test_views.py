@@ -138,7 +138,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(res.json['version_is_obsolete'], True)
 
     def test_recent_notes_perm(self):
-        staff = UserProfile.objects.get(username='support_staff')
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
         self.addon.addonuser_set.create(user=self.profile)
         thread = self._thread_factory(read_permission_developer=True)
         self._note_factory(
@@ -364,7 +364,7 @@ class TestNote(NoteSetupMixin):
         ok_(not res.json['attachments'][0]['is_image'])
 
     def test_read_perms(self):
-        staff = UserProfile.objects.get(username='support_staff')
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
         self._note_factory(
             self.thread, perms=['developer'], author=staff, body='oncetoldme')
         no_dev_note = self._note_factory(

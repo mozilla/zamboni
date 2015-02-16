@@ -52,8 +52,8 @@ class AppHubTest(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
-        self.user = UserProfile.objects.get(username='31337')
-        assert self.client.login(username=self.user.email, password='password')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        self.login(self.user.email)
 
     def clone_addon(self, num, addon_id=337141):
         ids = []
@@ -85,8 +85,7 @@ class TestHome(mkt.site.tests.TestCase):
         self.assertTemplateUsed(r, 'developers/login.html')
 
     def test_home_authenticated(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'developers/apps/dashboard.html')
@@ -265,8 +264,8 @@ class TestDevRequired(AppHubTest):
         self.webapp = Webapp.objects.get(id=337141)
         self.get_url = self.webapp.get_dev_url('payments')
         self.post_url = self.webapp.get_dev_url('payments.disable')
-        self.user = UserProfile.objects.get(username='31337')
-        assert self.client.login(username=self.user.email, password='password')
+        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
+        self.login(self.user.email)
         self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
         eq_(self.au.role, mkt.AUTHOR_ROLE_OWNER)
         self.make_price()
@@ -299,8 +298,7 @@ class TestDevRequired(AppHubTest):
 
     def test_disabled_post_admin(self):
         self.webapp.update(status=mkt.STATUS_DISABLED)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
@@ -315,8 +313,7 @@ class TestMarketplace(mkt.site.tests.TestCase):
                           highest_status=mkt.STATUS_PUBLIC)
 
         self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def get_price_regions(self, price):
         return sorted(set([p['region'] for p in price.prices() if p['paid']]))
@@ -411,8 +408,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         self.app.update(is_packaged=True)
         self.url = self.app.get_dev_url('versions.publicise')
         self.status_url = self.app.get_dev_url('versions')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def get_webapp(self):
         return Webapp.objects.no_cache().get(pk=337141)
@@ -621,8 +617,7 @@ class TestStatus(mkt.site.tests.TestCase):
         self.file = self.webapp.versions.latest().all_files[0]
         self.file.update(status=mkt.STATUS_DISABLED)
         self.status_url = self.webapp.get_dev_url('versions')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def test_status_when_packaged_public_dev(self):
         self.webapp.update(is_packaged=True)
@@ -634,8 +629,7 @@ class TestStatus(mkt.site.tests.TestCase):
         eq_(doc('#blocklist-app').length, 0)
 
     def test_status_when_packaged_public_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
@@ -654,8 +648,7 @@ class TestStatus(mkt.site.tests.TestCase):
         eq_(doc('#blocklist-app').length, 0)
 
     def test_status_when_packaged_rejected_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        self.login('admin@mozilla.com')
         self.webapp.update(is_packaged=True, status=mkt.STATUS_REJECTED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
@@ -683,8 +676,7 @@ class TestResumeStep(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = self.get_addon()
         self.url = reverse('submit.app.resume', args=[self.webapp.app_slug])
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def get_addon(self):
         return Webapp.objects.no_cache().get(pk=337141)
@@ -718,8 +710,7 @@ class TestUpload(BaseUploadTest):
 
     def setUp(self):
         super(TestUpload, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
         self.package = self.packaged_app_path('mozball.zip')
         self.url = reverse('mkt.developers.upload')
 
@@ -742,7 +733,7 @@ class TestUpload(BaseUploadTest):
         eq_(storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.post()
         user = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(FileUpload.objects.get().user, user)
@@ -833,7 +824,7 @@ class TestStandaloneUpload(BaseUploadTest):
         eq_(storage.open(upload.path).read(), data)
 
     def test_create_packaged_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         self.post_packaged()
         upload = FileUpload.objects.get(name='mozball.zip')
         eq_(upload.name, 'mozball.zip')
@@ -848,7 +839,7 @@ class TestStandaloneUpload(BaseUploadTest):
         eq_(upload.user, None)
 
     def test_create_hosted_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
         response = self.post_hosted()
         pk = response['location'].split('/')[-1]
         upload = FileUpload.objects.get(pk=pk)
@@ -860,8 +851,7 @@ class TestUploadDetail(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        self.login('regular@mozilla.com')
 
     def post(self):
         # Has to be a binary, non xpi file.
@@ -1041,7 +1031,7 @@ class TestDeleteApp(mkt.site.tests.TestCase):
         self.url = self.webapp.get_dev_url('delete')
         self.versions_url = self.webapp.get_dev_url('versions')
         self.dev_url = reverse('mkt.developers.apps')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.login('admin@mozilla.com')
 
     def test_delete_get(self):
         eq_(self.client.get(self.url).status_code, 405)
@@ -1084,8 +1074,7 @@ class TestDeleteApp(mkt.site.tests.TestCase):
         self.check_delete_redirect('', self.dev_url)
 
     def test_owner_deletes(self):
-        self.client.login(username='steamcube@mozilla.com',
-                          password='password')
+        self.login('steamcube@mozilla.com')
         r = self.client.post(self.url, follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
         with self.assertRaises(Webapp.DoesNotExist):
@@ -1099,8 +1088,7 @@ class TestEnableDisable(mkt.site.tests.TestCase):
         self.webapp = Webapp.objects.get(id=337141)
         self.enable_url = self.webapp.get_dev_url('enable')
         self.disable_url = self.webapp.get_dev_url('disable')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def test_get(self):
         eq_(self.client.get(self.enable_url).status_code, 405)
@@ -1138,8 +1126,7 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.no_cache().get(id=337141)
         self.url = self.webapp.get_dev_url('remove-locale')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
+        self.login('steamcube@mozilla.com')
 
     def test_bad_request(self):
         r = self.client.post(self.url)
@@ -1166,7 +1153,7 @@ class TestTerms(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.user = self.get_user()
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user.email)
         self.url = reverse('mkt.developers.apps.terms')
 
     def get_user(self):
@@ -1253,7 +1240,7 @@ class TestTransactionList(mkt.site.tests.TestCase):
         """Create and set up apps for some filtering fun."""
         self.create_switch(name='view-transactions')
         self.url = reverse('mkt.developers.transactions')
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.login('regular@mozilla.com')
 
         self.apps = [app_factory(), app_factory()]
         self.user = UserProfile.objects.get(id=999)
@@ -1470,7 +1457,7 @@ class TestMessageOfTheDay(mkt.site.tests.TestCase):
 
     def test_perms_not_editor(self):
         self.client.logout()
-        self.login('regular')
+        self.login('regular@mozilla.com')
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_perms_not_motd(self):
