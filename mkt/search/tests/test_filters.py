@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 
 from nose.tools import eq_, ok_
@@ -5,6 +6,7 @@ from rest_framework.exceptions import ParseError
 
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
@@ -53,6 +55,11 @@ class TestQueryFilter(FilterTestsBase):
         ok_({'match': {'name_english': {'query': 'search terms',
                                         'boost': 2.5}}}
             in should)
+        ok_({'match': {'description_english': {'query': 'search terms',
+                                               'boost': 0.6,
+                                               'analyzer': 'english_analyzer',
+                                               'type': 'phrase'}}}
+            in should)
 
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'term'})
@@ -64,6 +71,24 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         qs_str = json.dumps(qs)
         ok_('fuzzy' not in qs_str)
+
+    @override_settings(ES_USE_PLUGINS=True)
+    def test_polish_analyzer(self):
+        """
+        Test that the polish analyzer is included correctly since it is an
+        exception to the rest b/c it is a plugin.
+        """
+        with self.activate(locale='pl'):
+            qs = self._filter(data={'q': u'próba'})
+            should = (qs['query']['function_score']['query']['bool']['should'])
+            ok_({'match': {'name_polish': {'query': u'pr\xf3ba',
+                                           'boost': 2.5}}}
+                in should)
+            ok_({'match': {'description_polish': {'query': u'pr\xf3ba',
+                                                  'boost': 0.6,
+                                                  'analyzer': 'polish',
+                                                  'type': 'phrase'}}}
+                in should)
 
 
 class TestFormFilter(FilterTestsBase):

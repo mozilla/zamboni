@@ -19,8 +19,8 @@ class SearchQueryFilter(BaseFilterBackend):
     """
     def _get_locale_analyzer(self, lang):
         analyzer = mkt.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
-        if (not settings.ES_USE_PLUGINS and
-                analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
+        if (analyzer in mkt.SEARCH_ANALYZER_PLUGINS and
+                not settings.ES_USE_PLUGINS):
             analyzer = None
         return analyzer
 
@@ -67,7 +67,8 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if analyzer:
             desc_field = 'description_%s' % analyzer
-            desc_analyzer = '%s_analyzer' % analyzer
+            desc_analyzer = ('%s_analyzer' % analyzer
+                             if analyzer in mkt.STEMMER_MAP else analyzer)
             should.append(
                 query.Match(
                     **{desc_field: {'query': q, 'boost': 0.6, 'type': 'phrase',
