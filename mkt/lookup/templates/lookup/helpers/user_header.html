@@ -1,7 +1,7 @@
 <h1>
   {{ title }}
   <a href="{{ url('lookup.user_summary', account.id) }}"
-     title="{{ _('Account Summary') }}">{{ account.display_name }}</a>
+     title="{{ _('Account Summary') }}">{{ account.name }}</a>
   ({{ account.pk }})
   {% if account.deleted %}
     <small class="error">({{ _('Account Deleted') }})</small>

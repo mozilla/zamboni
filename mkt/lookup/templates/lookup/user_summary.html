@@ -13,9 +13,9 @@
       <h2>{{ _('General') }}</h2>
       <dl>
         <dt>{{ _('Display Name') }}</dt>
-        <dd>{{ account.display_name }}</dd>
-        <dt>{{ _('Username') }}</dt>
-        <dd>{{ account.username }}</dd>
+        <dd>{{ account.name }}</dd>
+        <dt>{{ _('Firefox Accounts Identifier') }}</dt>
+        <dd>{{ account.fxa_uid }}</dd>
         <dt>{{ _('Email') }}</dt>
         <dd>{{ emaillink(account.email) }}</dd>
         <dt>{{ _('Registered') }}</dt>
@@ -121,7 +121,7 @@
         <p class="error">{{ _('This user has already been deleted.') }}</p>
         <dl>
           <dt>{{ _('Deleted by') }}</dt>
-          <dd>{{ emaillink(delete_log.user.email, delete_log.user.username) }}</dd>
+          <dd>{{ emaillink(delete_log.user.email, delete_log.user.name) }}</dd>
           {% if delete_log.details.reason %}
             <dt>{{ _('Reason') }}</dt>
             <dd>{{ delete_log.details.reason }}</dd>

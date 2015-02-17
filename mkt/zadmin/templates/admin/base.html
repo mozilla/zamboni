@@ -73,15 +73,6 @@
                       </li>
                     </ul>
                   </li>
-                {% else %}
-                  <li class="account anonymous nomenu login">
-                  <a href="{{ url('users.login') }}" class="browserid-login browserid"
-                     data-url="{{ url('users.browserid_login') }}">
-                     {{ _('Log in / Register') }}</a>
-                  </li>
-                {% endif %}
-
-                {% if user.is_authenticated() %}
                   {% if tools_links|count > 1 %}
                     <li class="tools">
                       <a href="#">{{ tools_title }}</a>

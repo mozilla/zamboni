@@ -11,7 +11,7 @@ celery==3.0.25
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==2.1.1
-commonware==0.4.2
+commonware==0.4.3
 cssutils==0.9.7b3
 curling==0.3.10
 defusedxml==0.4.1

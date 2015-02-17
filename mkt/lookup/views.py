@@ -397,7 +397,7 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    search_fields = ('username', 'display_name', 'email')
+    search_fields = ('fxa_uid', 'display_name', 'email')
     fields = ('id',) + search_fields
 
     if q.isnumeric():
@@ -413,7 +413,6 @@ def user_search(request):
         qs = _slice_results(request, qs)
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
-        user['name'] = user['username']
         results.append(user)
     return {'results': results}
 

@@ -106,7 +106,7 @@ def generate_ratings(app, num):
     for n in range(num):
         email = 'testuser%s@example.com' % (n,)
         user, _ = UserProfile.objects.get_or_create(
-            username=email, email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
+            email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
             display_name=email)
         Review.objects.create(
             addon=app, user=user, rating=random.randrange(0, 6),

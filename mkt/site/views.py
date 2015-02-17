@@ -230,7 +230,7 @@ def cspreport(request):
         meta = request.META.copy()
         meta['PATH_INFO'] = v.get('document-uri', meta['PATH_INFO'])
         v = [(k, v[k]) for k in report if k in v]
-        log_cef('CSPViolation', 5, meta, username=request.user,
+        log_cef('CSPViolation', 5, meta,
                 signature='CSPREPORT',
                 msg='A client reported a CSP violation',
                 cs6=v, cs6Label='ContentPolicy')

@@ -18,11 +18,15 @@ class TestUserProfile(TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def test_anonymize(self):
-        u = UserProfile.objects.get(pk=999)
-        eq_(u.email, 'regular@mozilla.com')
-        u.anonymize()
-        x = UserProfile.objects.get(pk=999)
-        eq_(x.email, None)
+        user = UserProfile.objects.get(pk=999)
+        eq_(user.name, u'regularuser التطب')
+        eq_(user.email, 'regular@mozilla.com')
+        user.anonymize()
+        eq_(user.email, None)
+        eq_(user.name, 'user-999')
+        user.reload()
+        eq_(user.email, None)
+        eq_(user.name, 'user-999')
 
     def test_add_admin_powers(self):
         Group.objects.create(name='Admins', rules='*:*')
@@ -90,11 +94,13 @@ class TestUserProfile(TestCase):
     @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
     def test_activate_locale(self):
         eq_(translation.get_language(), 'en-us')
-        with UserProfile(username='yolo').activate_lang():
+        with UserProfile().activate_lang():
             eq_(translation.get_language(), 'en-us')
 
-        with UserProfile(username='yolo', lang='fr').activate_lang():
+        with UserProfile(lang='fr').activate_lang():
             eq_(translation.get_language(), 'fr')
+
+        eq_(translation.get_language(), 'en-us')
 
 
 class TestUserEmailField(TestCase):

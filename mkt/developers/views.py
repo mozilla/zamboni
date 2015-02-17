@@ -60,7 +60,7 @@ from mkt.site.decorators import (
 from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.users.models import UserProfile
-from mkt.users.views import _login
+from mkt.users.views import _clean_next_url
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
@@ -95,7 +95,17 @@ def addon_listing(request, default='name'):
 
 @anonymous_csrf
 def login(request, template=None):
-    return _login(request, template='developers/login.html')
+    if 'to' in request.GET:
+        request = _clean_next_url(request)
+    data = {
+        'to': request.GET.get('to')
+    }
+
+    if request.user.is_authenticated():
+        return http.HttpResponseRedirect(
+            request.GET.get('to', settings.LOGIN_REDIRECT_URL))
+
+    return render(request, 'developers/login.html', data)
 
 
 def home(request):
