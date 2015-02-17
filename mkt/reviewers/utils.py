@@ -126,13 +126,6 @@ class ReviewBase(object):
             return 'Tested with %s' % browsers
         return ''
 
-    def request_information(self):
-        """Send a request for information to the authors."""
-        self.create_note(mkt.LOG.REQUEST_INFORMATION)
-        self.version.update(has_info_request=True)
-        log.info(u'Sending request for information for %s to authors' %
-                 (self.addon))
-
 
 class ReviewApp(ReviewBase):
 
@@ -265,6 +258,12 @@ class ReviewApp(ReviewBase):
         return ReviewerScore.award_points(self.request.user, self.addon,
                                           status, in_rereview=self.in_rereview)
 
+    def process_request_information(self):
+        """Send a message to the authors."""
+        self.create_note(mkt.LOG.REQUEST_INFORMATION)
+        self.version.update(has_info_request=True)
+        log.info(u'Sending reviewer message for %s to authors' % self.addon)
+
     def process_escalate(self):
         """
         Ask for escalation for an app (EscalationQueue).
@@ -379,11 +378,12 @@ class ReviewHelper(object):
                              u'the review queue and un-publish it if already '
                              u'published.')}
         info = {
-            'method': self.handler.request_information,
-            'label': _lazy(u'Request more information'),
+            'method': self.handler.process_request_information,
+            'label': _lazy(u'Message developer'),
             'minimal': True,
-            'details': _lazy(u'This will send the author(s) an email '
-                             u'requesting more information.')}
+            'details': _lazy(u'This will send the author(s) - and other '
+                             u'thread subscribers - a message. This will not '
+                             u'change the app\'s status.')}
         escalate = {
             'method': self.handler.process_escalate,
             'label': _lazy(u'Escalate'),
@@ -393,10 +393,12 @@ class ReviewHelper(object):
                              u'not the author(s).')}
         comment = {
             'method': self.handler.process_comment,
-            'label': _lazy(u'Comment'),
+            'label': _lazy(u'Private comment'),
             'minimal': True,
-            'details': _lazy(u'Make a comment on this app.  The author(s) '
-                             u'won\'t be able to see these comments.')}
+            'details': _lazy(u'Make a private reviewer comment on this app. '
+                             u'The message won\'t be visible to the '
+                             u'author(s), and no notification will be sent '
+                             u'them.')}
         clear_escalation = {
             'method': self.handler.process_clear_escalation,
             'label': _lazy(u'Clear Escalation'),
