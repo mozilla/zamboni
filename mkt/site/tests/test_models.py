@@ -2,7 +2,6 @@ from django.conf import settings
 
 import multidb.pinning
 from mock import Mock
-from nose import SkipTest
 from nose.tools import eq_, ok_
 
 from mkt.site import models
@@ -71,9 +70,6 @@ class TestModelBase(TestCase):
         eq_(len(models._on_change_callbacks[Webapp]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
-        # Broken by the extra update() in Webapp.save when creating.
-        # When bug 1036900 is implemented remove SkipTest.
-        raise SkipTest
         for create_addon in (Webapp, Webapp.objects.create):
             addon = create_addon(public_stats=False)
             addon.public_stats = True

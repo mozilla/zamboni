@@ -650,7 +650,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         # STATUS_DELETED.
         'status': mkt.STATUS_PUBLIC,
         'name': name,
-        'slug': name.replace(' ', '-').lower()[:30],
+        'app_slug': name.replace(' ', '-').lower()[:30],
         'bayesian_rating': random.uniform(1, 5),
         'created': when,
         'last_updated': when,

@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 save = True
                 geodata.region_de_iarc_exclude = True
                 log.info('[App %s - %s] Excluded in region de'
-                         % (app.pk, app.slug))
+                         % (app.pk, app.app_slug))
 
             # Brazil.
             if (not app.content_ratings.filter(
@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 save = True
                 geodata.region_br_iarc_exclude = True
                 log.info('[App %s - %s] Excluded in region br'
-                         % (app.pk, app.slug))
+                         % (app.pk, app.app_slug))
 
             if save:
                 ids_to_reindex.append(app.id)

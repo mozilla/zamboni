@@ -14,7 +14,7 @@ from mkt.webapps.models import Webapp
 class TestWebappDecorators(TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(slug='x')
+        self.app = Webapp.objects.create(app_slug='x')
         self.func = mock.Mock()
         self.func.return_value = mock.sentinel.OK
         self.func.__name__ = 'mock_function'
@@ -51,7 +51,7 @@ class TestWebappDecorators(TestCase):
 
     def test_404_by_slug(self):
         with self.assertRaises(http.Http404):
-            self.view(self.request, self.app.slug + 'xx')
+            self.view(self.request, self.app.app_slug + 'xx')
 
     def test_alternate_qs_301_by_id(self):
         qs = lambda: Webapp.objects.all()
@@ -75,7 +75,7 @@ class TestWebappDecorators(TestCase):
         qs = lambda: Webapp.objects.filter(status=mkt.STATUS_DELETED)
         view = dec.app_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
-            view(self.request, self.app.slug)
+            view(self.request, self.app.app_slug)
 
     def test_app_no_slug(self):
         app = Webapp.objects.create(name='xxxx')
@@ -92,7 +92,7 @@ class TestWebappDecorators(TestCase):
 
     def test_app(self):
         app = app_factory(name='xxxx')
-        app.update(slug=str(app.id) + 'foo', app_slug=str(app.id))
+        app.update(app_slug=str(app.id))
         res = self.view(self.request, app_slug=str(app.id))
         eq_(res, mock.sentinel.OK)
 

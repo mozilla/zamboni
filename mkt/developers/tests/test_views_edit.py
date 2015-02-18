@@ -205,8 +205,6 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
         eq_(webapp.app_slug, data['slug'].lower())
-        # Make sure only the app_slug changed.
-        eq_(webapp.slug, self.webapp.slug)
 
     def test_edit_slug_max_length(self):
         r = self.client.post(self.edit_url, self.get_dict(slug='x' * 31))
@@ -222,7 +220,6 @@ class TestEditBasic(TestEdit):
             'This slug is already in use. Please choose another.')
         webapp = self.get_webapp()
         # Nothing changed.
-        eq_(webapp.slug, self.webapp.slug)
         eq_(webapp.app_slug, self.webapp.app_slug)
 
     def test_edit_xss_description(self):
