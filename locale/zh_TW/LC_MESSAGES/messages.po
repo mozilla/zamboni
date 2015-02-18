@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-18 21:54+0000\n"
+"PO-Revision-Date: 2015-02-18 21:55+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424296466.0\n"
+"X-POOTLE-MTIME: 1424296505.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -112,7 +112,7 @@ msgstr "使用者"
 # 88%
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr "評論者"
+msgstr "審查者"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
@@ -6135,7 +6135,7 @@ msgstr[0] "{num} 個應用程式等待審核"
 #: mkt/reviewers/templates/reviewers/home.html:25
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] "{num} 篇評論"
+msgstr[0] "{num} 個重新審核"
 
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
