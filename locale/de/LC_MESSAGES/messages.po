@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-11 18:08+0000\n"
+"PO-Revision-Date: 2015-02-18 18:53+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423678131.0\n"
+"X-POOTLE-MTIME: 1424285636.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -5716,11 +5716,11 @@ msgstr "Bewertung löschen"
 
 #: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
-msgstr "Noch nicht überprüft"
+msgstr "Noch nicht bewertet"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Bewertet mit %s von 5 Sternen"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
