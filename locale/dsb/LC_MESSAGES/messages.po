@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-12 10:48+0000\n"
+"PO-Revision-Date: 2015-02-18 23:06+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423738132.0\n"
+"X-POOTLE-MTIME: 1424300790.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3913,27 +3914,27 @@ msgstr "Status a wersije"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1480
 msgid "Content Ratings"
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenja"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
 #: mkt/developers/templates/developers/payments/in-app-config.html:14 mkt/developers/templates/developers/payments/in-app-payments.html:4
 #: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
-msgstr ""
+msgstr "Płaśenja w nałoženju"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:99 mkt/developers/templates/developers/includes/addons_edit_nav.html:33
 msgid "Messages"
-msgstr ""
+msgstr "Powěsći"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:103 mkt/developers/templates/developers/includes/addons_edit_nav.html:34
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiki"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:109 mkt/developers/templates/developers/includes/addons_edit_nav.html:39
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcije"
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
@@ -3958,7 +3959,7 @@ msgstr "Płaśizna:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Płaśeńske konto zarědowaś"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
@@ -3974,19 +3975,19 @@ msgstr "Pśedinstalěrowane"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Pśedinstalěrowane nałoženje"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr ""
+msgstr "Ześěgniśo testowy plan"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Testowanje dokóńcone?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Zapódajśo swójo nałoženje za pśedinstalaciju"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -4023,11 +4024,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "Pógódnośeński certifikat IARC napóraś"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "Sćo swójo nałoženje južo póhódnośiś dał?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
@@ -4035,7 +4036,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "Zapódawański ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
@@ -4043,7 +4044,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "Wěstotny kod"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
@@ -4051,36 +4052,36 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
-msgstr ""
+msgstr "Zespominanje"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Pógódnośeński system"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:231
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "Pógódnośeńska kategorija"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
-msgstr ""
+msgstr "Gronidła"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Interaktiwne elementy"
 
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Wuwijarske dojadnanje"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć"
 
 #. {0} is a list of HTML tags.
 #: mkt/developers/templates/developers/includes/macros.html:6
@@ -4093,15 +4094,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
-msgstr ""
+msgstr "Toś to nałoženje wótpóraś"
 
 #: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "Wubjeŕśo jadnu kategoriju abo dwě kategoriji:"
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr ""
+msgstr "Kategorije:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
