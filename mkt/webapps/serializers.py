@@ -83,6 +83,7 @@ class AppSerializer(serializers.ModelSerializer):
     is_disabled = serializers.BooleanField(read_only=True)
     is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
+    last_updated = serializers.DateField(read_only=True)
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     modified = serializers.DateField(read_only=True)
@@ -128,12 +129,13 @@ class AppSerializer(serializers.ModelSerializer):
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'file_size',
             'homepage', 'icons', 'id', 'is_disabled', 'is_offline',
-            'is_packaged', 'manifest_url', 'name', 'package_path',
-            'payment_account', 'payment_required', 'premium_type', 'previews',
-            'price', 'price_locale', 'privacy_policy', 'public_stats',
-            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
-            'status', 'support_email', 'support_url', 'supported_locales',
-            'tags', 'upsell', 'upsold', 'user', 'versions'
+            'is_packaged', 'last_updated', 'manifest_url', 'name',
+            'package_path', 'payment_account', 'payment_required',
+            'premium_type', 'previews', 'price', 'price_locale',
+            'privacy_policy', 'public_stats', 'release_notes', 'ratings',
+            'regions', 'resource_uri', 'slug', 'status', 'support_email',
+            'support_url', 'supported_locales', 'tags', 'upsell', 'upsold',
+            'user', 'versions'
         ]
 
     def _get_region_id(self):
@@ -386,7 +388,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
     group = ESTranslationSerializerField(required=False)
 
     # The fields we want converted to Python date/datetimes.
-    datetime_fields = ('created', 'modified', 'reviewed')
+    datetime_fields = ('created', 'last_updated', 'modified', 'reviewed')
 
     class Meta(AppSerializer.Meta):
         fields = AppSerializer.Meta.fields + ['absolute_url', 'group',
@@ -430,10 +432,10 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
         # Set base attributes on the "fake" app using the data from ES.
         self._attach_fields(
-            obj, data, ('created', 'modified', 'default_locale',
-                        'icon_hash', 'is_escalated', 'is_offline',
-                        'manifest_url', 'premium_type', 'regions', 'reviewed',
-                        'status'))
+            obj, data, ('created', 'default_locale', 'icon_hash',
+                        'is_escalated', 'is_offline', 'last_updated',
+                        'manifest_url', 'modified', 'premium_type', 'regions',
+                        'reviewed', 'status'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(
@@ -525,7 +527,7 @@ class BaseESAppFeedSerializer(ESAppSerializer):
 
     def get_icons(self, obj):
         """
-        Only need the 64px icon for Fireplace.
+        Only need the 64px icon for Feed.
         """
         return {
             '64': obj.get_icon_url(64)

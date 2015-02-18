@@ -31,7 +31,9 @@ class TestAppSerializer(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory(version_kw={'version': '1.8'})
+        self.creation_date = self.days_ago(1)
+        self.app = mkt.site.tests.app_factory(
+            version_kw={'version': '1.8'}, created=self.creation_date)
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
 
@@ -39,6 +41,10 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.request.user = profile if profile else AnonymousUser()
         a = AppSerializer(instance=app, context={'request': self.request})
         return a.data
+
+    def test_base(self):
+        res = self.serialize(self.app)
+        self.assertCloseToNow(res['last_updated'], now=self.app.last_updated)
 
     def test_packaged(self):
         res = self.serialize(self.app)
@@ -376,6 +382,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'is_disabled': False,
             'is_offline': False,
             'is_packaged': False,
+            'last_updated': self.app.last_updated,
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
             'name': {u'en-US': u'Something Something Steamcube!',
                      u'es': u'Algo Algo Steamcube!'},
