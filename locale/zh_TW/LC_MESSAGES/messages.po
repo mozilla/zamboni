@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-11 18:15+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -5693,9 +5693,13 @@ msgstr "馬上跳過"
 msgid "Delete review"
 msgstr "刪除評論"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "尚未審核"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5712,14 +5716,6 @@ msgstr "誤置的臭蟲回報或是技術支援要求"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "其他（請詳述）"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "評分: {0} / 5 顆星"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "評分: %(rating)s / 5 顆星"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6487,11 +6483,11 @@ msgstr "包含應用程式內購買的免費應用程式"
 msgid "more..."
 msgstr "更多..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "審核處理"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "管理行為"
 
@@ -6507,7 +6503,7 @@ msgstr "翻譯"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">在 %(date)s 由 %(user)s 所標記。</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "已處理所有審核。做得真棒！"
 
@@ -7573,7 +7569,7 @@ msgstr "首先，請閱讀並同意我們的<strong>開發者合約</strong>:"
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla 得以寄送相關的應用程式開發者新聞與意見調查至我的電子郵件信箱"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Héllo"
 
@@ -7726,23 +7722,23 @@ msgstr "Moizlla 想要傳給我關於 Marketplace 的新分類"
 msgid "User Notifications"
 msgstr "使用者通知"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "需要輸入電子郵件地址。"
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "使用該電子郵件地址的使用者不存在。"
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "使用該電子郵件地址的使用者不存在，或是使用者尚未接受開發者條款。"
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "原生 FxA 驗證失敗。"
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "請使用已確認的電子郵件信箱。"
 

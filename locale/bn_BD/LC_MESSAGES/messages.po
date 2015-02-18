@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2014-09-05 18:47+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5660,9 +5660,13 @@ msgstr ""
 msgid "Delete review"
 msgstr "পর্যালোচনা মুছে ফেলুন"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "এখনো পর্যালোচনা হয়নি"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5679,14 +5683,6 @@ msgstr "মিসপ্লেস বাগ রিপোর্ট অথবা �
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "অনান্য (উল্লেখ করুন)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "৫ তারকার মধ্যে {0} মূল্যায়িত"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6451,11 +6447,11 @@ msgstr ""
 msgid "more..."
 msgstr "আরও..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr " প্রক্রিয়া পর্যালোচনা"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr ""
 
@@ -6471,7 +6467,7 @@ msgstr "অনুবাদ"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
@@ -7530,7 +7526,7 @@ msgstr "শুরু করার জন্য , অনুগ্রহ করে
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "অ্যাপ ডেভেলপার এর খবর এবং সার্ভে সম্পর্কে মজিলা আমাকে ই-মেইল করতে পারে"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "হ্যালো"
 
@@ -7683,23 +7679,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr "ব্যবহারকারীর নোটিফিকেশন"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "একটি ইমেইল ঠিকানা প্রয়োজন"
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "অনুগ্রহ করে, এই অ্যাকাউন্টের জন্য এই যাচাইকৃত ইমেইলটি ব্যবহার করুন"
 

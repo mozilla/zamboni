@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2014-10-08 05:49+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -5812,10 +5812,14 @@ msgstr "Пока пропустить"
 msgid "Delete review"
 msgstr "Удалить отзыв"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 #, fuzzy
 msgid "Not yet reviewed"
 msgstr "Ещё не проверено"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5832,14 +5836,6 @@ msgstr "Отправленное не по назначению сообщени
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Другая (пожалуйста укажите)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Рейтинг {0} из 5 звёзд"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оценено на %(rating)s из 5 звёзд"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6646,11 +6642,11 @@ msgstr "Если у вас есть бесплатное приложение, �
 msgid "more..."
 msgstr "ещё..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Обработать рецензии"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Действия для модерации:"
 
@@ -6666,7 +6662,7 @@ msgstr "перевести"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(user)s  в %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Все отзывы были отмодерированы. Хорошая работа!"
 
@@ -7759,7 +7755,7 @@ msgstr "Когда вы будете готовы начать, пожалуйс
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla хочет связаться со мной по поводу новостей и опросов для Разработчиков Приложений"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Привет"
 
@@ -7915,23 +7911,23 @@ msgstr "Mozilla хочет связаться со мной по поводу н
 msgid "User Notifications"
 msgstr "Уведомления пользователя"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Требуется адрес эл. почты."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Пользователь с этим адресом эл. почты не существует."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Пользователь с данным email адресом не существует, либо пользователь ещё не принял соглашение разработчика."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 #, fuzzy
 msgid "Please use the verified email for this account."
 msgstr "Пожалуйста, используйте проверенный адрес эл. почты для этой учетной записи."

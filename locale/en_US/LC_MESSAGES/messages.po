@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5691,9 +5691,13 @@ msgstr "Skip for now"
 msgid "Delete review"
 msgstr "Delete review"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Not yet reviewed"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr "Reviewed %s out of 5 stars"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5710,14 +5714,6 @@ msgstr "Misplaced bug report or support request"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Other (please specify)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Rated {0} out of 5 stars"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Rated %(rating)s out of 5 stars"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6482,11 +6478,11 @@ msgstr "Free with In-App"
 msgid "more..."
 msgstr "more..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Process Reviews"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Moderation actions:"
 
@@ -6502,7 +6498,7 @@ msgstr "translate"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "All reviews have been moderated. Good work!"
 
@@ -7571,7 +7567,7 @@ msgstr "To begin, please read and accept our <strong>Developer Agreement</strong
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla may email me with relevant App Developer news and surveys"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Héllo"
 
@@ -7726,23 +7722,23 @@ msgstr "Mozilla wants to contact me about new regions added to the Marketplace"
 msgid "User Notifications"
 msgstr "User Notifications"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "An email address is required."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "A user with that email address does not exist."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Native FxA authentication failure."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Please use the verified email for this account."
 

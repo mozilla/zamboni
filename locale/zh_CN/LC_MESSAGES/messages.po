@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-13 02:44+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -5661,9 +5661,13 @@ msgstr "暂时跳过"
 msgid "Delete review"
 msgstr "删除评论"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "尚未审核"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5680,14 +5684,6 @@ msgstr "错置的bug报告或支持请求"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "其他 (请说明)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "评分 {0}，满分5星"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "给 %(rating)s 以5星评价"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6447,11 +6443,11 @@ msgstr "应用内免费"
 msgid "more..."
 msgstr "更多..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "处理评论"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "仲裁操作："
 
@@ -6467,7 +6463,7 @@ msgstr "翻译"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">由 %(user)s 于 %(date)s 标记</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "所有评论已仲裁完成。做得真棒！"
 
@@ -7531,7 +7527,7 @@ msgstr "要想开始，请阅读并接受我们的<strong>开发者协议</stron
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla 可以向我发送有关应用开发者的新闻与调查的邮件"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "您好"
 
@@ -7684,23 +7680,23 @@ msgstr "Mozilla 希望就市场中添加新的区域的问题联系我"
 msgid "User Notifications"
 msgstr "用户通知"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "电子邮件地址是必须的。"
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "该电子邮件地址的用户不存在。"
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "不存在登记了那个邮件地址的用户，或者这名用户尚未接受开发者协议。"
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "原生 FxA 验证失败。"
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "请使用这个账户经过验证的电子邮件地址。"
 

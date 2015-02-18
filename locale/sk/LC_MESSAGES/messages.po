@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-04 23:41+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -5789,8 +5789,12 @@ msgstr "Teraz preskočiť"
 msgid "Delete review"
 msgstr "Odstrániť recenziu"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
+msgstr ""
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
 msgstr ""
 
 #: mkt/ratings/models.py:137
@@ -5808,17 +5812,6 @@ msgstr "Nevhodne umiestnená správa o chybe alebo žiadosť o podporu"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Iný (popíšte)"
-
-# 87%
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-#, fuzzy
-msgid "Rated {0} out of 5 stars"
-msgstr "Ohodnoceno {0} z 5 hvězdiček"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-#, fuzzy
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6633,11 +6626,11 @@ msgstr ""
 msgid "more..."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Spracovať recenzie"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 #, fuzzy
 msgid "Moderation actions:"
 msgstr "Akce moderátora:"
@@ -6655,7 +6648,7 @@ msgstr "preložiť"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 #, fuzzy
 msgid "All reviews have been moderated. Good work!"
 msgstr "Všechny recenze byly zkontrolovány. Skvělá práce!"
@@ -7757,7 +7750,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla mě může e-mailem kontaktovat v souvislosti s novinkami a průzkumy týkajících se vývojářů aplikací"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr ""
 
@@ -7921,26 +7914,26 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Notifikácie pre používateľa"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 #, fuzzy
 msgid "An email address is required."
 msgstr "E-mailová adresa je požadovaná."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 #, fuzzy
 msgid "A user with that email address does not exist."
 msgstr "Uživatel s touto e-mailovou adresou neexistuje."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 #, fuzzy
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Uživatel se zvolenou e-mailovou adresou neexistuje nebo dosud neodsouhlasil ujednání pro vývojáře."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr ""
 

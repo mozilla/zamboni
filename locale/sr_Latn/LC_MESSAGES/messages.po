@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-08 18:01+0000\n"
 "Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5706,9 +5706,13 @@ msgstr "Preskoči za sad"
 msgid "Delete review"
 msgstr "Obrisana kritika"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Nije još pregledano"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5725,14 +5729,6 @@ msgstr "Pogrešno postavljen izveštaj o grešci ili zahtev za podršku"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Drugo (navedite)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Ocenjeno sa {0} od 5 zvezdica"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6503,11 +6499,11 @@ msgstr "Besplatno u okviru aplikacije"
 msgid "more..."
 msgstr "više..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Revizije procesa"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Akcije moderacije:"
 
@@ -6523,7 +6519,7 @@ msgstr "prevedi"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označen od %(user)s datuma %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Sve recenzije su uređene. Odličan posao!"
 
@@ -7595,7 +7591,7 @@ msgstr "Da biste započeli, molimo Vas da pročitate i prihvatite naš <strong>u
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla može da mi šalje e-poštu sa relevantnim novostima o programiranju aplikacija i anketama"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Pozdrav"
 
@@ -7750,23 +7746,23 @@ msgstr "Mozilla želi da me kontaktira u vezi novih regija koje su dodate na Mar
 msgid "User Notifications"
 msgstr "Notifikacije korisnika"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Potrebna je dresa e-pošte."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Korisnik sa ovom adresom e-pošte ne postoji."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Korisnik sa ovom adresom e-pošte ne postoji, ili nije još prihvatio Saglasnost o programerima."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Autentifikacija nativnog FxA je neuspešna."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Molimo Vas koristite verifikovanu adresu e-pošte za ovaj nalog."
 

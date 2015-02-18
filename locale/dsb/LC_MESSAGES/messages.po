@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-12 10:48+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1423738132.0\n"
 
@@ -3684,9 +3683,7 @@ msgstr "Wužywa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr ""
-"Jolic wašo nałoženje Flash wužywa, schowajo se na Wikowanišću, jolic se rědy "
-"bźez pódpěry Flash wužywaju."
+msgstr "Jolic wašo nałoženje Flash wužywa, schowajo se na Wikowanišću, jolic se rědy bźez pódpěry Flash wužywaju."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -3694,9 +3691,7 @@ msgstr "Funkcioněrujo offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr ""
-"Jolic wašo nałoženje bźez internetnego zwiska funkcioněrujo, pódajomy, až "
-"wašo nałoženje \"offline funkcioněrujo\"."
+msgstr "Jolic wašo nałoženje bźez internetnego zwiska funkcioněrujo, pódajomy, až wašo nałoženje \"offline funkcioněrujo\"."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3704,9 +3699,7 @@ msgstr "Zjawne statistiki?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
-msgstr ""
-"Lěc instalaciske a wužywańske statistiki wašogo nałoženja daju se w našom "
-"online-zwobraznjenju pokazowaś."
+msgstr "Lěc instalaciske a wužywańske statistiki wašogo nałoženja daju se w našom online-zwobraznjenju pokazowaś."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
@@ -3735,9 +3728,8 @@ msgstr "Symbol nałoženja"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
-"Nagrajśo symbol za swójo nałoženje abo wubjeŕśo jaden z našych. Symbol "
-"zwobraznjujo se pśisamem wšuźi, źož wašo nałoženje jo. Nagrate wobraze muse "
-"jaden ze slědujucych wobrazowych typow měś: .png, .jpg"
+"Nagrajśo symbol za swójo nałoženje abo wubjeŕśo jaden z našych. Symbol zwobraznjujo se pśisamem wšuźi, źož wašo nałoženje jo. Nagrate wobraze muse jaden ze slědujucych wobrazowych typow měś: .png, ."
+"jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
@@ -3750,8 +3742,7 @@ msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
-msgstr ""
-"Wužywa se na pytańskich bokach, pśi pśeglědowanju bokow a na startowem boku."
+msgstr "Wužywa se na pytańskich bokach, pśi pśeglědowanju bokow a na startowem boku."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -3769,9 +3760,7 @@ msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
-msgstr ""
-"Wužywa se w lisćinowych zapiskach nałoženjow, ako na pśikład w pytańskich "
-"wuslědkach a pśedstajonych nałoženjach."
+msgstr "Wužywa se w lisćinowych zapiskach nałoženjow, ako na pśikład w pytańskich wuslědkach a pśedstajonych nałoženjach."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -3779,9 +3768,7 @@ msgstr "Swójski symbol nagraś..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
-msgstr ""
-"PNG a JPG se pódpěrujotej. Symbole muse nanejmjenjej 128 px raz 128 px "
-"wjelike byś."
+msgstr "PNG a JPG se pódpěrujotej. Symbole muse nanejmjenjej 128 px raz 128 px wjelike byś."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
@@ -3789,9 +3776,7 @@ msgstr "Fota wobrazowki abo widea"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr ""
-"Pšosym pódajśo nanejmjenjej jadne foto wobrazowki abo wideo swójogo "
-"nałoženja:"
+msgstr "Pšosym pódajśo nanejmjenjej jadne foto wobrazowki abo wideo swójogo nałoženja:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:151
 msgid "Add a Screenshot or Video..."
@@ -3799,10 +3784,7 @@ msgstr "Foto wobrazowki abo wideo pśidaś..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
-msgstr ""
-"Fota wobrazowki a wideo muse nanejmjenje 320 px raz 480 px wjelike byś. "
-"Medije, kótarež su wótměram 320 px raz 480 px proporcionalne, su optimalne. "
-"Wideo muse ako WebM skoděrowane byś."
+msgstr "Fota wobrazowki a wideo muse nanejmjenje 320 px raz 480 px wjelike byś. Medije, kótarež su wótměram 320 px raz 480 px proporcionalne, su optimalne. Wideo muse ako WebM skoděrowane byś."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
@@ -5700,8 +5682,12 @@ msgstr ""
 msgid "Delete review"
 msgstr ""
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
+msgstr ""
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
 msgstr ""
 
 #: mkt/ratings/models.py:137
@@ -5718,14 +5704,6 @@ msgstr ""
 
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
-msgstr ""
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr ""
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 #: mkt/receipts/forms.py:18
@@ -6501,11 +6479,11 @@ msgstr ""
 msgid "more..."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr ""
 
@@ -6521,7 +6499,7 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
@@ -7580,7 +7558,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr ""
 
@@ -7733,23 +7711,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr ""
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr ""
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-11 13:01-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -5685,9 +5685,13 @@ msgstr "今はスキップ"
 msgid "Delete review"
 msgstr "レビューを削除"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "まだ評価を受けていません"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5704,14 +5708,6 @@ msgstr "場違いなバグ報告またはサポートリクエスト"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "その他 (具体的に書いてください)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "5 つ星中 {0} つ星の評価"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "5 つ星中 %(rating)s つ星の評価"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6471,11 +6467,11 @@ msgstr "アプリ内課金付き無料アプリ"
 msgid "more..."
 msgstr "その他..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "審査を処理"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "管理アクション:"
 
@@ -6491,7 +6487,7 @@ msgstr "翻訳"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s によるフラグ指定 / %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "すべてのレビューがモデレートされました。頑張りましたね！"
 
@@ -7562,7 +7558,7 @@ msgstr "始めるには、次の <strong>開発者規約</strong> を読んで�
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla がアプリ開発者向けのニュースやアンケートをメールで送ることに同意します"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "こんにちは"
 
@@ -7717,23 +7713,23 @@ msgstr "Mozilla が Marketplace へ追加された新しい地域について連
 msgid "User Notifications"
 msgstr "ユーザ通知"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "メールアドレスが必要です。"
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "このメールアドレスを持つユーザは存在しません。"
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "このメールアドレスを持つユーザは存在しないか、開発者規約にまだ同意していません。"
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "ネイティブ FxA 認証に失敗しました。"
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "このアカウント認証済みメールアドレスを使用してください。"
 

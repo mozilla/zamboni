@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-30 20:00+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -5715,9 +5715,13 @@ msgstr "Hëpërhë anashkaloje"
 msgid "Delete review"
 msgstr "Fshije shqyrtimin"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Ende i pashqyrtuar"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5734,14 +5738,6 @@ msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6507,11 +6503,11 @@ msgstr "Falas, me In-App"
 msgid "more..."
 msgstr "më tepër..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Përpunoni Shqyrtime"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Veprime moderimi:"
 
@@ -6527,7 +6523,7 @@ msgstr "përktheni"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">I është vënë shenjë nga %(user)s më %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "U moderuan krejt shqyrtimet. Punë e paqme!"
 
@@ -7602,7 +7598,7 @@ msgstr "Për t’ia filluar, ju lutemi, lexoni dhe pranoni <strong>Marrëveshjen
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla mund të më dërgojë me email lajme dhe anketime që janë të fushës së Zhvilluesve të Aplikacioneve"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Tungjatjeta"
 
@@ -7757,23 +7753,23 @@ msgstr "Mozilla dëshiron të më kontaktojë lidhur me rajone të reja të shtu
 msgid "User Notifications"
 msgstr "Njoftime Përdoruesish"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Lypset një adresë email."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Nuk ka përdorues me atë adresë email."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Nuk ka përdorues me atë adresë email, ose përdoruesi nuk ka pranuar ende marrëveshjen e zhvilluesit."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Dështim mirëfilltësimin sipas FxA-së."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Ju lutemi, përdorni për këtë llogari email-in e verifikuar."
 

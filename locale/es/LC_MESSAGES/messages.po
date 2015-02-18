@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2014-10-17 12:14+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -5739,9 +5739,13 @@ msgstr "Saltar de momento"
 msgid "Delete review"
 msgstr "Borrar valoración"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Sin revisar aún"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5758,14 +5762,6 @@ msgstr "Informe de problema o petición de asistencia en una ubicación incorrec
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Otro (por favor, especifica)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Puntuada con {0} de 5 estrellas"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Puntuada con %(rating)s de 5 estrellas"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6534,11 +6530,11 @@ msgstr "Gratis con pagos en app"
 msgid "more..."
 msgstr "más..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Procesar revisiones"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Acciones de moderación:"
 
@@ -6554,7 +6550,7 @@ msgstr "traducir"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcada por %(user)s el %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Todas las revisiones han sido moderadas. ¡Buen trabajo!"
 
@@ -7627,7 +7623,7 @@ msgstr "Lo primero que debes hacer es leer y aceptar nuestro <strong>Acuerdo par
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla podrá enviarme correos electrónicos con encuestas y noticias relevantes respecto al desarrollo de apps"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "¡Hola!"
 
@@ -7782,23 +7778,23 @@ msgstr "Mozilla desea ponerse en contacto conmigo para agregar nuevas regiones a
 msgid "User Notifications"
 msgstr "Notificaciones de usuario"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Se requiere una dirección de correo electrónico."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "No existe un usuario con esa dirección de correo electrónico."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "No existe un usuario con esa dirección de correo electrónico o el usuario aún no ha aceptado el acuerdo de desarrolladores."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Por favor, utiliza el correo electrónico asociado a esta cuenta."
 

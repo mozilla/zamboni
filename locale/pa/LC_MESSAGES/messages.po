@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2014-08-27 07:50+0000\n"
 "Last-Translator: Jasvinder <jv.raavi@gmail.com>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -5761,8 +5761,12 @@ msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 msgid "Delete review"
 msgstr "ਪੜਤਾਲ ਹਟਾਓ"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
+msgstr ""
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
 msgstr ""
 
 #: mkt/ratings/models.py:137
@@ -5780,14 +5784,6 @@ msgstr ""
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "ਹੋਰ (ਜਾਣਕਾਰੀ ਦਿਉ)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ {0} ਦਰਜਾ"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਦਰਜਾ"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6583,11 +6579,11 @@ msgstr ""
 msgid "more..."
 msgstr "ਹੋਰ..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr ""
 
@@ -6603,7 +6599,7 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
@@ -7676,7 +7672,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "ਹੈਲੋ"
 
@@ -7829,23 +7825,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr "ਯੂਜ਼ਰ ਸੂਚਨਾਵਾਂ"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "ਈਮੇਲ ਸਿਰਨਾਵੇਂ ਦੀ ਲੋੜ ਹੈ।"
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr ""
 

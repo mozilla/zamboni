@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2014-03-17 21:11+0000\n"
 "Last-Translator: Woosung <befehlen@gmail.com>\n"
 "Language-Team: none\n"
@@ -5685,8 +5685,12 @@ msgstr "지금은 접어두기"
 msgid "Delete review"
 msgstr "심사 삭제"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
+msgstr ""
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
 msgstr ""
 
 #: mkt/ratings/models.py:137
@@ -5704,14 +5708,6 @@ msgstr "없는 버그를 신고했거나 기술 지원을 요청합니다"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "기타 (이유를 적어주세요)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "5점중 {0}점 받음"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "5점중 %(rating)s점 받음"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6475,11 +6471,11 @@ msgstr ""
 msgid "more..."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "심사 처리하기"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "조정 행동:"
 
@@ -6495,7 +6491,7 @@ msgstr "번역"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">표시자: %(user)s 날짜: %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "모든 심사가 처리되었습니다. 수고하셨습니다!"
 
@@ -7560,7 +7556,7 @@ msgstr "시작하려면 <strong>개발자 약관</strong>을 읽고 동의해 �
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla에서 앱 개발자 소식과 설문 조사 관련해서 이메일을 보낼 수도 있습니다."
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr ""
 
@@ -7715,23 +7711,23 @@ msgstr "Mozilla에서 마켓플레이스에 새 지역을 추가하기 위해 �
 msgid "User Notifications"
 msgstr "사용자 알림 메시지"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "이메일 주소를 입력해야 합니다."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "이메일 주소가 없는 사용자입니다."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "이메일 주소가 없거나 개발자 동의서에 동의하지 않은 사용자입니다."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr ""
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr ""
 

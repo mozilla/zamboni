@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-10 01:22+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -5725,9 +5725,13 @@ msgstr "Ignorar por agora"
 msgid "Delete review"
 msgstr "Eliminar análise"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Ainda não analisado"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5744,15 +5748,6 @@ msgstr "Relatório de erro ou pedido de ajuda mal colocado"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Outro (por favor, especifique)"
-
-# 87%
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Avaliado em {0} de 5 estrelas"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Avaliado em %(rating)s de 5 estrelas"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6525,11 +6520,11 @@ msgstr "Grátis com compras na aplicação"
 msgid "more..."
 msgstr "mais…"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Processar análises"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Ações de moderação:"
 
@@ -6545,7 +6540,7 @@ msgstr "traduzir"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Denunciado por %(user)s em %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Todas as análises foram moderadas. Bom trabalho!"
 
@@ -7623,7 +7618,7 @@ msgstr "Para começar, por favor leia e aceite o nosso <strong>Acordo de Program
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "A Mozilla pode enviar-me mensagens com notícias e inquéritos relevantes sobre o desenvolvimento de aplicações"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Olá"
 
@@ -7781,23 +7776,23 @@ msgstr "A Mozilla quer contactar-me para novas regiões adicionadas ao Marketpla
 msgid "User Notifications"
 msgstr "Notificações do utilizador"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "É necessário um endereço de email."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Não existe nenhum utilizador com esse endereço de email."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Não existe um utilizador com esse endereço de email ou o utilizador ainda não aceitou o acordo de programador."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Falha na autenticação nativa FxA."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Por favor, utilize o endereço email confirmado para esta conta."
 

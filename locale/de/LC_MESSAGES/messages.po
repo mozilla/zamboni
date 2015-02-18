@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-11 18:08+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4344,9 +4344,7 @@ msgstr "Zahlungsmethode"
 
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
-"Fügen Sie ein Zahlungskonto hinzu, damit Ihre App in weiteren Regionen "
-"verkauft werden kann"
+msgstr "Fügen Sie ein Zahlungskonto hinzu, damit Ihre App in weiteren Regionen verkauft werden kann"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5716,9 +5714,13 @@ msgstr "Vorerst überspringen"
 msgid "Delete review"
 msgstr "Bewertung löschen"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Noch nicht überprüft"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5735,14 +5737,6 @@ msgstr "Unpassender Fehlerbericht, oder Unterstützungs-Anfrage"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Anderes (bitte eine Begründung angeben)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Bewertet mit {0} von 5 Sternen"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Bewertet mit %(rating)s von 5 Sternen"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6507,11 +6501,11 @@ msgstr "Kostenlos mit App-interner Zahlung"
 msgid "more..."
 msgstr "mehr…"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Überprüfungen verarbeiten"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Moderator-Aktionen:"
 
@@ -6527,7 +6521,7 @@ msgstr "Übersetzen"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markiert von %(user)s am %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Alle Überprüfungen wurden moderiert. Gute Arbeit!"
 
@@ -7601,7 +7595,7 @@ msgstr "Lesen und akzeptieren Sie bitte zunächst unsere <strong>Entwicklerverei
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla darf mir E-Mails mit relevanten Neuigkeiten und Umfragen für App-Entwickler schicken"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Hallo"
 
@@ -7756,23 +7750,23 @@ msgstr "Mozilla möchte mich wegen neuer Regionen, die dem Marketplace hinzugef�
 msgid "User Notifications"
 msgstr "Benutzerbenachrichtigungen"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Eine E-Mail-Adresse wird benötigt."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert nicht."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert nicht, oder der Benutzer hat die Entwicklervereinbarung noch nicht akzeptiert."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Authentifizierungsfehler von Native FxA."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Bitte verwenden Sie die für dieses Konto verifizierte E-Mail-Adresse."
 

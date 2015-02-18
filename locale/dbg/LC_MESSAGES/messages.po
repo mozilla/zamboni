@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6860,10 +6860,14 @@ msgstr "Şķīƥ ƒǿř ƞǿẇ"
 msgid "Delete review"
 msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 
-#: mkt/ratings/helpers.py:13
-#: mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12
+#: mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Ƞǿŧ ẏḗŧ řḗṽīḗẇḗḓ"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr "Řḗṽīḗẇḗḓ %s ǿŭŧ ǿƒ 5 şŧȧřş"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -6880,14 +6884,6 @@ msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭ
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Řȧŧḗḓ {0} ǿŭŧ ǿƒ 5 şŧȧřş"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Řȧŧḗḓ %(rating)s ǿŭŧ ǿƒ 5 şŧȧřş"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -7754,12 +7750,12 @@ msgid "more..."
 msgstr "ḿǿřḗ..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Ƥřǿƈḗşş Řḗṽīḗẇş"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Ḿǿḓḗřȧŧīǿƞ ȧƈŧīǿƞş:"
 
@@ -7779,7 +7775,7 @@ msgstr ""
 "<strong>%(reason)s</strong> <span class=\"light\">Ƒŀȧɠɠḗḓ ƀẏ %(user)s ǿƞ "
 "%(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Ȧŀŀ řḗṽīḗẇş ħȧṽḗ ƀḗḗƞ ḿǿḓḗřȧŧḗḓ. Ɠǿǿḓ ẇǿřķ!"
 
@@ -8959,7 +8955,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Ḿǿzīŀŀȧ ḿȧẏ ḗḿȧīŀ ḿḗ ẇīŧħ řḗŀḗṽȧƞŧ Ȧƥƥ Ḓḗṽḗŀǿƥḗř ƞḗẇş ȧƞḓ şŭřṽḗẏş"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Ħéŀŀǿ"
 
@@ -9127,15 +9123,15 @@ msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ƞḗ�
 msgid "User Notifications"
 msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid ""
 "A user with that email address does not exist, or the user has not yet "
 "accepted the developer agreement."
@@ -9143,11 +9139,11 @@ msgstr ""
 "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ, ǿř ŧħḗ ŭşḗř ħȧş ƞǿŧ ẏḗŧ "
 "ȧƈƈḗƥŧḗḓ ŧħḗ ḓḗṽḗŀǿƥḗř ȧɠřḗḗḿḗƞŧ."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Ƞȧŧīṽḗ ƑẋȦ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 

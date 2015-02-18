@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-13 15:37+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
@@ -4342,9 +4342,7 @@ msgstr "Factureringsmethode"
 
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
-"Foegje in betellingsaccount ta om jo app foar ferkeap yn mear regio’s "
-"geskikt te meitsjen"
+msgstr "Foegje in betellingsaccount ta om jo app foar ferkeap yn mear regio’s geskikt te meitsjen"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5709,9 +5707,13 @@ msgstr "Voorlopig overslaan"
 msgid "Delete review"
 msgstr "Beoordeling verwijderen"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Nog niet beoordeeld"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5728,14 +5730,6 @@ msgstr "Misplaatst bugrapport of ondersteuningsverzoek"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Overig (specificeer deze)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Waardering {0} van 5 sterren"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Waardering %(rating)s van 5 sterren"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6500,11 +6494,11 @@ msgstr "Gratis met in-app"
 msgid "more..."
 msgstr "meer…"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Beoordelingen verwerken"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Moderatie-acties:"
 
@@ -6520,7 +6514,7 @@ msgstr "vertalen"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Gemarkeerd door %(user)s op %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Alle beoordelingen zijn verwerkt. Goed werk!"
 
@@ -7595,7 +7589,7 @@ msgstr "Lees en accepteer om te beginnen onze <strong>Ontwikkelaarsovereenkomst<
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla mag me relevant app-ontwikkelaarsnieuws en enquêtes sturen"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Hállo"
 
@@ -7750,23 +7744,23 @@ msgstr "Mozilla wil contact met me opnemen over nieuwe aan de Marketplace toegev
 msgid "User Notifications"
 msgstr "Gebruikersnotificaties"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "Een e-mailadres is verplicht."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Er bestaat geen gebruiker met dat e-mailadres."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Er bestaat geen gebruiker met dat e-mailadres, of de gebruiker heeft de ontwikkelaarsovereenkomst nog niet geaccepteerd."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Systeemeigen FxA-authenticatie mislukt."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Gebruik het geverifieerde e-mailadres voor deze account."
 

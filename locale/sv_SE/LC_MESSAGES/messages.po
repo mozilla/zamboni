@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-15 18:29+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
@@ -4329,9 +4329,7 @@ msgstr "Faktureringsmetod"
 
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
-"Lägg till ett betalkonto för att aktivera din app för försäljning i flera "
-"regioner"
+msgstr "Lägg till ett betalkonto för att aktivera din app för försäljning i flera regioner"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5422,9 +5420,7 @@ msgstr "Denna betalning gjordes genom Bango. För att få mer information kontak
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr ""
-"Denna betalning gjordes genom en <b>referensimplementering</b>. Det var "
-"ingen riktig transaktion."
+msgstr "Denna betalning gjordes genom en <b>referensimplementering</b>. Det var ingen riktig transaktion."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:68
 msgid "Amount paid"
@@ -5692,9 +5688,13 @@ msgstr "Hoppa över nu"
 msgid "Delete review"
 msgstr "Ta bort granskning"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Ännu inte granskad"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5711,14 +5711,6 @@ msgstr "Felrapport eller begäran om hjälp på fel ställe"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Annan (var god ange)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "Betygsatt {0} av 5 stjärnor"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Betygsatt %(rating)s av 5 stjärnor"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6483,11 +6475,11 @@ msgstr "Gratis med in-app"
 msgid "more..."
 msgstr "mer..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Behandla granskningar"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Modereringsåtgärder:"
 
@@ -6503,7 +6495,7 @@ msgstr "översätt"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flaggad av %(user)s den %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Alla granskningar är modererade. Bra jobbat!"
 
@@ -7574,7 +7566,7 @@ msgstr "Till att börja med, läs och acceptera vårt <strong>utvecklaravtal</st
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla kan mejla mig med relevanta app-utvecklarnyheter och undersökningar"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Hallå"
 
@@ -7729,23 +7721,23 @@ msgstr "Mozilla vill kontakta mig om nya regioner som läggs till i Marketplace"
 msgid "User Notifications"
 msgstr "Användaraviseringar"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "En e-postadress krävs."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "En användare med den e-postadressen finns inte."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "En användare med den e-postadressen finns inte eller så har användaren ännu inte accepterat utvecklaravtalet."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Native FxA autentiseringsfel."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Vänligen använd de verifierade e-postadressen för det här kontot."
 

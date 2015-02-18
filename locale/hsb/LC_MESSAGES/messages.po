@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-02-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-05 17:21+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5705,9 +5705,13 @@ msgstr "Tuchwilu přeskočić"
 msgid "Delete review"
 msgstr "Pohódnocénje zhašeć"
 
-#: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
+#: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
 msgstr "Hišće njepřepruwowany"
+
+#: mkt/ratings/helpers.py:15
+msgid "Reviewed %s out of 5 stars"
+msgstr ""
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5724,14 +5728,6 @@ msgstr "Deplacěrowana zmylkowa rozprawa abo podpěrowanske naprašowanje"
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
 msgstr "Druhe (prošu podać)"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:1
-msgid "Rated {0} out of 5 stars"
-msgstr "z {0} z 5 hwěžkow pohódnoćeny"
-
-#: mkt/ratings/templates/ratings/reviews_rating.html:4
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
@@ -6506,11 +6502,11 @@ msgstr "Darmo z płaćenjom w nałoženju"
 msgid "more..."
 msgstr "wjace..."
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Přepruwowanja předźěłać"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
 msgstr "Akcije moderatora:"
 
@@ -6526,7 +6522,7 @@ msgstr "přełožować"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markěrowany wot wužiwarja %(user)s %(date)s</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
 msgstr "Wšě přepruwowanja su moderěrowane. Dobre dźěło!"
 
@@ -7598,7 +7594,7 @@ msgstr "Prošu čitajće a akceptujće najpredy naše <strong>wuwiwarske dojedna
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla smě mi e-mejlku z relewantnymi nowinkami a naprašowanjemi za wuwiwarjow nałoženja pósłać"
 
-#: mkt/submit/tests/test_forms.py:307
+#: mkt/submit/tests/test_forms.py:308
 msgid "Héllo"
 msgstr "Halo"
 
@@ -7753,23 +7749,23 @@ msgstr "Mozilla chce so ze mnu nowych regionow dla do zwiska stajić, kotrež su
 msgid "User Notifications"
 msgstr "Wužiwarske zdźělenja"
 
-#: mkt/users/views.py:66
+#: mkt/users/views.py:46
 msgid "An email address is required."
 msgstr "E-mejlowa adresa je trěbna."
 
-#: mkt/users/views.py:73
+#: mkt/users/views.py:53
 msgid "A user with that email address does not exist."
 msgstr "Wužiwar z tutej e-mejlowej adresu njeeksistuje."
 
-#: mkt/users/views.py:74
+#: mkt/users/views.py:54
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Wužiwar z tutej e-mejlowej adresu njeeksistuje, abo wužiwar hišće njeje do wuwiwarskeho dojednanja zwolił."
 
-#: mkt/users/views.py:113
+#: mkt/users/views.py:93
 msgid "Native FxA authentication failure."
 msgstr "Awtentifikaciski zmylk Native FxA."
 
-#: mkt/users/views.py:137
+#: mkt/users/views.py:117
 msgid "Please use the verified email for this account."
 msgstr "Prošu wužiwajće přepruwowanu e-mejlowu adresu za tute konto."
 
