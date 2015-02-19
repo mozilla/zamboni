@@ -133,8 +133,23 @@ class WebappIndexer(BaseIndexer):
                     'manifest_url': cls.string_not_analyzed(),
                     'modified': {'format': 'dateOptionalTime',
                                  'type': 'date'},
-                    # Name for searching.
-                    'name': {'type': 'string', 'analyzer': 'default_icu'},
+                    # Name for searching. This is a list of all the localized
+                    # names for the app. We add "position_offset_gap" to work
+                    # around the fact that ES stores the same list of tokens as
+                    # if this were a single string. The offset gap adds 100
+                    # positions between each name and ensures one string from
+                    # one name and one string from another name won't both
+                    # match with a phrase match query.
+                    'name': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'position_offset_gap': 100,
+                        # For exact matches. Referenced as `name.raw`.
+                        'fields': {
+                            'raw': cls.string_not_analyzed(
+                                position_offset_gap=100)
+                        },
+                    },
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
                     # Name for suggestions.

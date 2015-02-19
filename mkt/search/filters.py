@@ -50,10 +50,10 @@ class SearchQueryFilter(BaseFilterBackend):
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's
-        # do a term query on `name_sort` for an exact match against the app
+        # do a term query on `name.raw` for an exact match against the app
         # name and give it a good boost since this is likely what the user
         # wants.
-        should.append(query.Term(name_sort={'value': q, 'boost': 10}))
+        should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
 
         if analyzer:
             should.append(

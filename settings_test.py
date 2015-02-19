@@ -53,7 +53,9 @@ DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = False
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 ES_DEFAULT_NUM_REPLICAS = 0
-ES_DEFAULT_NUM_SHARDS = 3
+# See the following URL on why we set num_shards to 1 for tests:
+# http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/relevance-is-broken.html
+ES_DEFAULT_NUM_SHARDS = 1
 IARC_MOCK = True
 IN_TEST_SUITE = True
 INSTALLED_APPS += ('mkt.translations.tests.testapp',)

@@ -536,6 +536,28 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
 
+    def test_name_localized_exact_match(self):
+        other_apps = [app_factory(), app_factory()]
+        other_apps[0].name = {'en-US': 'Spanish Tests',
+                              'es': 'Pruebas de Español'}
+        other_apps[1].name = {'en-US': 'Tests in Spanish',
+                              'es': 'Pruebas en Español'}
+        for app in other_apps:
+            app.save()
+        self.refresh('webapp')
+
+        res = self.anon.get(self.url, data={'q': 'Pruebas en Español',
+                                            'lang': 'es'})
+        eq_(res.status_code, 200)
+
+        # Ensure the exact matched name is first.
+        obj = res.json['objects'][0]
+        eq_(obj['id'], other_apps[1].id)
+
+        for app in other_apps:
+            app.delete()
+        unindex_webapps([app.pk for app in other_apps])
+
     def test_author(self):
         res = self.anon.get(self.url,
                             data={'author': self.webapp.developer_name})
