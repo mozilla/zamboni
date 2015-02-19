@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-13 00:00+0000\n"
+"PO-Revision-Date: 2015-02-19 08:38+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423785620.0\n"
+"X-POOTLE-MTIME: 1424335123.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -5712,7 +5712,7 @@ msgstr "Nog niet beoordeeld"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Beoordeeld: %s van 5 sterren"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
