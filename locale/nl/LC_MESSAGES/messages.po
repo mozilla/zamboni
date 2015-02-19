@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-19 08:38+0000\n"
+"PO-Revision-Date: 2015-02-19 08:48+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424335123.0\n"
+"X-POOTLE-MTIME: 1424335684.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -824,7 +824,7 @@ msgstr "Peru"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:94
 msgid "Philippines"
-msgstr "Filipijnen"
+msgstr "Filippijnen"
 
 #: mkt/constants/bango.py:195
 msgid "Pitcairn"
