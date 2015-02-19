@@ -86,27 +86,27 @@ Open a new shell to test it out. You should have the ``workon`` and
 
 Now we're ready to go, so create an environment for zamboni::
 
-    mkvirtualenv --python=python2.6 zamboni
+    mkvirtualenv zamboni
 
-That creates a clean environment named zamboni using Python 2.6. You can get
+That creates a clean environment named zamboni using Python 2.7. You can get
 out of the environment by restarting your shell or calling ``deactivate``.
 
 To get back into the zamboni environment later, type::
 
     workon zamboni  # requires virtualenvwrapper
 
-.. note:: Zamboni requires at least Python 2.6.1, production is using
-          Python 2.6.6. Python 2.7 is not supported.
+.. note:: Zamboni requires at least Python 2.7.0, production is using
+          Python 2.7.5.
 
 .. note:: If you want to use a different Python binary, pass the name (if it is
           on your path) or the full path to mkvirtualenv with ``--python``::
 
-            mkvirtualenv --python=/usr/local/bin/python2.6 zamboni
+            mkvirtualenv --python=/usr/local/bin/python2.7 zamboni
 
 .. note:: If you are using an older version of virtualenv that defaults to
           using system packages you might need to pass ``--no-site-packages``::
 
-            mkvirtualenv --python=python2.6 --no-site-packages zamboni
+            mkvirtualenv --no-site-packages zamboni
 
 First make sure you have a recent `pip`_ for security reasons.
 From inside your activated virtualenv, install the required python packages::
