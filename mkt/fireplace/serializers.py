@@ -1,3 +1,5 @@
+from django.template.defaultfilters import filesizeformat
+
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
 
@@ -9,16 +11,23 @@ class BaseFireplaceAppSerializer(object):
             128: app.get_icon_url(128)
         }
 
+    # We don't care about the integer value of the file size in fireplace, we
+    # just want to display it to the user in a human-readable way.
+    def transform_file_size(self, obj, value):
+        if value:
+            return filesizeformat(value)
+        return None
+
 
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
 
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'banner_message', 'banner_regions', 'categories',
                   'content_ratings', 'current_version', 'description',
-                  'device_types', 'homepage', 'icons', 'id', 'is_offline',
-                  'is_packaged', 'last_updated', 'manifest_url', 'name',
-                  'payment_required', 'premium_type', 'previews', 'price',
-                  'price_locale', 'privacy_policy', 'public_stats',
+                  'device_types', 'file_size', 'homepage', 'icons', 'id',
+                  'is_offline', 'is_packaged', 'last_updated', 'manifest_url',
+                  'name', 'payment_required', 'premium_type', 'previews',
+                  'price', 'price_locale', 'privacy_policy', 'public_stats',
                   'release_notes', 'ratings', 'slug', 'status',
                   'support_email', 'support_url', 'upsell', 'user']
         exclude = []
