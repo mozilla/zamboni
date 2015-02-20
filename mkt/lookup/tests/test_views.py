@@ -440,6 +440,16 @@ class TestTransactionSummary(TestCase):
         eq_(data['refund_status'], SOLITUDE_REFUND_STATUSES[PENDING])
 
     @mock.patch('mkt.lookup.views.client')
+    def test_bango_transaction_status(self, solitude):
+        solitude.api.generic.transaction.get_object_or_404.return_value = (
+            {'uid_support': 'foo', 'provider': 1,
+             'seller': '/generic/seller/1/'})
+
+        self.create_test_refund()
+        data = _transaction_summary(self.uuid)
+        ok_(data['package_id'])
+
+    @mock.patch('mkt.lookup.views.client')
     def test_transaction_status(self, solitude):
         solitude.api.generic.transaction.get_object_or_404.return_value = (
             {'uid_support': 'foo', 'provider': 2})
