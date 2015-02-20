@@ -56,6 +56,24 @@ class TestAppDetail(BaseAPI):
         self._allowed_verbs(self.url, ['get'])
         self._allowed_verbs(url, [])
 
+    def test_file_size(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['file_size'], u'379.0\xa0KB')
+
+        file_ = self.app.current_version.all_files[0]
+        file_.update(size=1024 * 1024 * 1.1)
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['file_size'], u'1.1\xa0MB')
+
+        file_.update(size=0)
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['file_size'], None)
+
 
 class TestFeaturedSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
