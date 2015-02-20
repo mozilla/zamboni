@@ -26,7 +26,7 @@ from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
-                                    PROVIDER_LOOKUP,
+                                    PROVIDER_BANGO, PROVIDER_LOOKUP,
                                     SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
@@ -139,6 +139,15 @@ def _transaction_summary(tx_uuid):
         log.warning('Transaction not found in solitude: {0}'.format(tx_uuid))
         lookup['transaction'] = False
 
+    if pay.get('provider') == PROVIDER_BANGO:
+        # If we are processing a Bango refund, then support would also like to
+        # know the package id.
+        try:
+            pay['package_id'] = (client.api.by_url(pay['seller'])
+                                 .get_object_or_404()['bango']['package_id'])
+        except (KeyError, ObjectDoesNotExist):
+            log.warning('Failed to find Bango package_id: {0}'.format(tx_uuid))
+
     # Get refund status.
     refund_status = None
     if refund_contrib and refund_contrib.refund.status == mkt.REFUND_PENDING:
@@ -155,6 +164,7 @@ def _transaction_summary(tx_uuid):
         'lookup': lookup,
         'amount': pay.get('amount'),
         'currency': pay.get('currency'),
+        'package_id': pay.get('package_id'),
         'provider': PROVIDER_LOOKUP.get(pay.get('provider')),
         'refund_status': refund_status,
         'support': pay.get('uid_support'),

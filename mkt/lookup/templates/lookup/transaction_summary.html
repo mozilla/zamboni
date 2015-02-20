@@ -64,12 +64,17 @@
         {% endif %}
 
         {% if lookup['transaction'] %}
+          {# Note: deliberately not translating these strings, they
+             are intended to be sent to the payment provider in an email
+             all of whom support English #}
           <dl>
-            <dt>{{ _('Amount paid') }}</dt>
+            <dt>Amount paid</dt>
             <dd>{{ amount }} {{ currency }}</dd>
-            <dt>{{ _('Lookup id') }}</dt>
+            <dt>Lookup id</dt>
             <dd>{{ support }}</dd>
-            <dt>{{ _('Timestamp') }}</dt>
+            <dt>Package id</dt>
+            <dd>{{ package_id }}</dd>
+            <dt>Timestamp</dt>
             <dd>{{ timestamp }} PST</dd>
           </dl>
         {% endif %}
