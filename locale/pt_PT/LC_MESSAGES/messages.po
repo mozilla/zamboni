@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-10 01:22+0000\n"
+"PO-Revision-Date: 2015-02-20 03:19+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423531322.0\n"
+"X-POOTLE-MTIME: 1424402390.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -4359,6 +4359,8 @@ msgstr "Método de cobrança"
 #: mkt/developers/templates/developers/payments/premium.html:245
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
+"Adicionar uma conta de pagamentos para ativar a venda da sua aplicação em "
+"mais regiões"
 
 #: mkt/developers/templates/developers/payments/premium.html:249
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5731,7 +5733,7 @@ msgstr "Ainda não analisado"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Classificada com %s de 5 estrelas"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
