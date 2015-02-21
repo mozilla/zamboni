@@ -11,6 +11,7 @@ import zipfile
 from contextlib import nested
 from datetime import datetime, timedelta
 from decimal import Decimal
+from math import log10
 
 from django import forms
 from django.conf import settings
@@ -383,6 +384,17 @@ class TestWebapp(WebappTestCase):
         f = app.latest_version.all_files[0]
         f.update(size=54321)
         eq_(app.file_size, 54321)
+
+    def test_get_boost(self):
+        app = self.get_app()
+        app.installs.create(region=0, value=1000.0)
+        eq_(app.get_boost(), log10(1 + 1000) * 4)
+
+    def test_get_boost_not_approved_status(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_REJECTED)
+        app.installs.create(region=0, value=1000.0)
+        eq_(app.get_boost(), log10(1 + 1000))
 
 
 class TestCleanSlug(TestCase):

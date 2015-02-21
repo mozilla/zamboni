@@ -9,6 +9,7 @@ import re
 import time
 import urlparse
 import uuid
+from math import log10
 
 from django.conf import settings
 from django.core.cache import cache
@@ -1978,6 +1979,22 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                     return self.latest_version.all_files[0].size
         except IndexError:
             return
+
+    def get_boost(self):
+        """
+        Returns the boost used in Elasticsearch for this app.
+
+        The boost is based on a few factors, the most important is number of
+        installs. We use log10 so the boost doesn't completely overshadow any
+        other boosting we do at query time.
+        """
+        boost = max(log10(1 + self.get_installs()), 1.0)
+
+        # We give a little extra boost to approved apps.
+        if self.status in mkt.VALID_STATUSES:
+            boost *= 4
+
+        return boost
 
     def get_installs(self, region=None):
         """
