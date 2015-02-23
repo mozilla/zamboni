@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-01 19:08+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-02-20 19:11+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422817719.0\n"
+"X-POOTLE-MTIME: 1424459508.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -5782,11 +5782,11 @@ msgstr "Libovolný stav"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Schválené recenze"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Smazané recenze"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:62
 msgid "View entries between"
@@ -5794,7 +5794,7 @@ msgstr "Zobrazit položky mezi"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrovat podle typu/akce"
 
 #: mkt/reviewers/forms.py:64
 msgid "containing"
@@ -6232,11 +6232,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Více informací."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Pro toto období nebyly nalezeny žádné události."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
@@ -6248,19 +6248,19 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Datum úpravy"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Nadpis aplikace"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Nadpis recenze"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Text recenze"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
@@ -6268,7 +6268,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Současný stav recenze"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
