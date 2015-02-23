@@ -44,7 +44,10 @@ from mkt.api.paginator import ESPaginator
 from mkt.translations.models import Translation
 from mkt.constants.applications import DEVICE_TYPES
 
-days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
+
+def days_ago(n):
+    return datetime.datetime.now() - datetime.timedelta(days=n)
+
 
 log = commonware.log.getLogger('z.mkt')
 

@@ -44,8 +44,8 @@ def account_check(f):
     """
     def wrapper(self, *args, **kwargs):
         for arg in args:
-            if (isinstance(arg, PaymentAccount)
-                    and arg.provider != self.provider):
+            if (isinstance(arg, PaymentAccount) and
+                    arg.provider != self.provider):
                 raise ValueError('Wrong account {0} != {1}'
                                  .format(arg.provider, self.provider))
         return f(self, *args, **kwargs)

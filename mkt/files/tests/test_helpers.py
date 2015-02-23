@@ -17,7 +17,10 @@ from mkt.site.tests import MktPaths, TestCase
 
 
 root = os.path.join(settings.ROOT, 'mkt/files/fixtures/files')
-get_file = lambda x: '%s/%s' % (root, x)
+
+
+def get_file(x):
+    return '%s/%s' % (root, x)
 
 
 def make_file(pk, file_path, **kwargs):

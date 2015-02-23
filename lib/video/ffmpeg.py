@@ -57,9 +57,9 @@ class Video(VideoBase):
 
         duration = duration_re.search(result)
         if duration:
-            data['duration'] = ((3600 * int(duration.group(1)))
-                                + (60 * int(duration.group(2)))
-                                + float(duration.group(3)))
+            data['duration'] = ((3600 * int(duration.group(1))) +
+                                (60 * int(duration.group(2))) +
+                                float(duration.group(3)))
         dimensions = dimensions_re.search(result)
         if dimensions:
             data['dimensions'] = (int(dimensions.group(1)),

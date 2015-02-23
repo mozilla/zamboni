@@ -96,9 +96,9 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         except Webapp.DoesNotExist:
             raise Http404
         current_region = get_region()
-        if ((not app.is_public()
-             or not app.listed_in(region=current_region))
-                and not check_addon_ownership(self.request, app)):
+        if ((not app.is_public() or
+             not app.listed_in(region=current_region)) and
+                not check_addon_ownership(self.request, app)):
             # App owners and admin can see the app even if it's not public
             # or not available in the current region. Regular users or
             # anonymous users can't.

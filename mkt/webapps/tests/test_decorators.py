@@ -54,25 +54,32 @@ class TestWebappDecorators(TestCase):
             self.view(self.request, self.app.slug + 'xx')
 
     def test_alternate_qs_301_by_id(self):
-        qs = lambda: Webapp.objects.all()
+        def qs():
+            return Webapp.objects.all()
+
         view = dec.app_view_factory(qs=qs)(self.func)
         res = view(self.request, str(self.app.id))
         self.assert3xx(res, self.slug_path, 301)
 
     def test_alternate_qs_200_by_slug(self):
-        qs = lambda: Webapp.objects.all()
+        def qs():
+            return Webapp.objects.all()
         view = dec.app_view_factory(qs=qs)(self.func)
         res = view(self.request, self.app.app_slug)
         eq_(res, mock.sentinel.OK)
 
     def test_alternate_qs_404_by_id(self):
-        qs = lambda: Webapp.objects.filter(status=mkt.STATUS_DELETED)
+        def qs():
+            return Webapp.objects.filter(status=mkt.STATUS_DELETED)
+
         view = dec.app_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, str(self.app.id))
 
     def test_alternate_qs_404_by_slug(self):
-        qs = lambda: Webapp.objects.filter(status=mkt.STATUS_DELETED)
+        def qs():
+            return Webapp.objects.filter(status=mkt.STATUS_DELETED)
+
         view = dec.app_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, self.app.slug)

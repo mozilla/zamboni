@@ -57,10 +57,13 @@ class WebappIndexer(BaseIndexer):
         doc_type = cls.get_mapping_type_name()
 
         def _locale_field_mapping(field, analyzer):
-            get_analyzer = lambda a: (
-                '%s_analyzer' % a if a in mkt.STEMMER_MAP else a)
-            return {'%s_%s' % (field, analyzer): {
-                'type': 'string', 'analyzer': get_analyzer(analyzer)}}
+            return {
+                '%s_%s' % (field, analyzer): {
+                    'type': 'string',
+                    'analyzer': '%s_analyzer' % (
+                        analyzer if analyzer in mkt.STEMMER_MAP else analyzer)
+                }
+            }
 
         mapping = {
             doc_type: {

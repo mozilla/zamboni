@@ -3,7 +3,7 @@ import os
 import shutil
 import stat
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.db.models import Q
@@ -94,8 +94,8 @@ def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
     log = logging.getLogger('z.files.disabled')
-    q = (Q(version__addon__status=mkt.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
+    q = (Q(version__addon__status=mkt.STATUS_DISABLED) |
+         Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=mkt.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
@@ -545,8 +545,6 @@ def _remove_stale_files(path, age, msg):
 @cronjobs.register
 def mkt_gc(**kw):
     """Site-wide garbage collections."""
-    days_ago = lambda days: datetime.today() - timedelta(days=days)
-
     log.debug('Collecting data to delete')
     logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
             .exclude(action__in=mkt.LOG_KEEP).values_list('id', flat=True))

@@ -22,8 +22,9 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
             from mkt.submit.views import _resume
-            fun = lambda: f(request, addon_id=addon.id, addon=addon,
-                            *args, **kw)
+
+            def fun():
+                return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
             if allow_editors and acl.check_reviewer(request):
                 return fun()

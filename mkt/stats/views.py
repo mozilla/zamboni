@@ -52,7 +52,10 @@ class PublicStats(BasePermission):
 # monolith to other types. Provide the name of the key in the data you want to
 # coerce with a callback for how you want the data coerced. E.g.:
 #   {'count': str}
-lines = lambda name, vals: dict((val, {name: val}) for val in vals)
+def lines(name, vals):
+    return dict((val, {name: val}) for val in vals)
+
+
 STATS = {
     'apps_added_by_package': {
         'metric': 'apps_added_package_count',

@@ -179,7 +179,8 @@ class TestVaryMiddleware(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def test_vary_headers(self):
-        vary = lambda res: [x.strip() for x in res.get('Vary', '').split(',')]
+        def vary(res):
+            return [x.strip() for x in res.get('Vary', '').split(',')]
 
         # What is expected to `Vary`.
         res = self.client.get('/developers')
@@ -331,7 +332,9 @@ class TestCacheHeadersMiddleware(mkt.site.tests.TestCase):
             res = getattr(self.client, method)('/robots.txt?cache=21600')
             self._test_headers_set(res, max_age=21600)
 
-accept_check = lambda x, y: eq_(lang_from_accept_header(x), y)
+
+def accept_check(x, y):
+    return eq_(lang_from_accept_header(x), y)
 
 
 def test_parse_accept_language():

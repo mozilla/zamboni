@@ -68,8 +68,8 @@ def static_url(url):
     value = getattr(settings, url)
     if value.startswith(('https://', 'http://')):
         return value
-    if (settings.DEBUG and settings.SERVE_TMP_PATH
-            and url not in ['WEBAPPS_RECEIPT_URL']):
+    if (settings.DEBUG and settings.SERVE_TMP_PATH and
+            url not in ['WEBAPPS_RECEIPT_URL']):
         value = '/' + value if not value.startswith('/') else value
         return urljoin(prefix[url], '/tmp' + value)
     return urljoin(prefix[url], value)

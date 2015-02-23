@@ -153,7 +153,10 @@ class SchemeURLValidator(URLValidator):
 
     def __call__(self, value):
         super(URLValidator, self).__call__(value)
-        supports_scheme = lambda scheme: value.startswith(scheme + '://')
+
+        def supports_scheme(scheme):
+            return value.startswith('{0}://'.format(scheme))
+
         if not any(supports_scheme(scheme) for scheme in self.schemes):
             raise ValidationError('Scheme should be one of {0}.'.format(
                                   ', '.join(self.schemes)))

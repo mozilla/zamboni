@@ -812,10 +812,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
     # Permissions checks.
     # Only app owners can edit any of the details of their apps.
     # Users with 'Apps:Configure' can edit the admin settings.
-    if ((section != 'admin' and not is_dev)
-            or (section == 'admin' and
-                not acl.action_allowed(request, 'Apps', 'Configure') and
-                not acl.action_allowed(request, 'Apps', 'ViewConfiguration'))):
+    if ((section != 'admin' and not is_dev) or
+            (section == 'admin' and
+             not acl.action_allowed(request, 'Apps', 'Configure') and
+             not acl.action_allowed(request, 'Apps', 'ViewConfiguration'))):
         raise PermissionDenied
 
     if section == 'basic':

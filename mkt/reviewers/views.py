@@ -219,8 +219,9 @@ def _progress():
             tmp[k] = base_query.filter(**filter_).count()
         progress[t] = tmp
 
-    # Return the percent of (p)rogress out of (t)otal.
-    pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
+    def pct(p, t):
+        # Return the percent of (p)rogress out of (t)otal.
+        return (p / float(t)) * 100 if p > 0 else 0
 
     percentage = {}
     for t in types:

@@ -167,8 +167,8 @@ def _transaction_summary(tx_uuid):
         'type': mkt.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
 
         # Filter what is refundable.
-        'is_refundable': ((contrib.type == mkt.CONTRIB_PURCHASE)
-                          and not refund_contrib),
+        'is_refundable': ((contrib.type == mkt.CONTRIB_PURCHASE) and
+                          not refund_contrib),
     }
 
 

@@ -164,8 +164,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         return self.addon._premium
 
     def is_paid(self):
-        is_paid = (self.addon.premium_type in mkt.ADDON_PREMIUMS
-                   or self.is_free_inapp())
+        is_paid = (self.addon.premium_type in mkt.ADDON_PREMIUMS or
+                   self.is_free_inapp())
         return is_paid
 
     def is_free_inapp(self):
@@ -201,9 +201,9 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def clean_price(self):
         price_value = self.cleaned_data.get('price')
         premium_type = self.cleaned_data.get('premium_type')
-        if ((premium_type in mkt.ADDON_PREMIUMS
-                or premium_type == mkt.ADDON_FREE_INAPP)
-                and not price_value and not self.is_toggling()):
+        if ((premium_type in mkt.ADDON_PREMIUMS or
+                premium_type == mkt.ADDON_FREE_INAPP) and
+                not price_value and not self.is_toggling()):
             raise ValidationError(Field.default_error_messages['required'])
 
         if not price_value and self.fields['price'].required is False:
