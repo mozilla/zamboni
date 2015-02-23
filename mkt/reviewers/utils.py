@@ -15,7 +15,6 @@ import mkt
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
-from mkt.constants.features import FeatureProfile
 from mkt.files.models import File
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore

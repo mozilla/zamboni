@@ -35,7 +35,6 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm, MANIFEST_CONTENT_TYPE
-from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
