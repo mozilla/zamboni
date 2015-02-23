@@ -599,25 +599,6 @@ class AppsReviewing(object):
                   mkt.EDITOR_VIEWING_INTERVAL * 2)
 
 
-def device_queue_search(request):
-    """
-    Returns a queryset that can be used as a base for searching the device
-    specific queue.
-    """
-    filters = {
-        'status': mkt.STATUS_PENDING,
-        'disabled_by_user': False,
-    }
-    sig = request.GET.get('pro')
-    if sig:
-        profile = FeatureProfile.from_signature(sig)
-        filters.update(dict(
-            **profile.to_kwargs(prefix='_latest_version__features__has_')
-        ))
-    return Webapp.version_and_file_transformer(
-        Webapp.objects.filter(**filters))
-
-
 def log_reviewer_action(addon, user, msg, action, **kwargs):
     create_comm_note(addon, addon.latest_version, user, msg,
                      note_type=comm.ACTION_MAP(action.id))

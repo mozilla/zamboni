@@ -16,7 +16,7 @@ import mkt
 from mkt.access import acl
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
-                                 create_sort_link, device_queue_search)
+                                 create_sort_link)
 from mkt.search.serializers import es_to_datetime
 from mkt.site.helpers import mkt_breadcrumbs, page_title
 from mkt.versions.models import Version
@@ -124,11 +124,6 @@ def queue_tabnav(context):
              _('Moderated Reviews ({0})', counts['moderated'])
              .format(counts['moderated'])),
         )
-
-    if 'pro' in request.GET:
-        device_srch = device_queue_search(request)
-        rv.append((reverse('reviewers.apps.queue_device'), 'device',
-                  _('Device ({0})').format(device_srch.count()),))
 
     return rv
 
