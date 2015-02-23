@@ -155,7 +155,7 @@ class TestWebapp(WebappTestCase):
         # When an app is deleted its slugs and domain should get relinquished.
         post_mortem = Webapp.with_deleted.filter(id=app.id)
         eq_(post_mortem.count(), 1)
-        for attr in ('slug', 'app_slug', 'app_domain'):
+        for attr in ('app_slug', 'app_domain'):
             eq_(getattr(post_mortem[0], attr), None)
 
     def test_soft_deleted_valid(self):
@@ -790,13 +790,6 @@ class TestWebappLight(mkt.site.tests.TestCase):
         app.disabled_by_user = True
         assert not app.is_public(), (
             'STATUS_PUBLIC, disabled app should not be is_public()')
-
-    def test_app_slugs_separate_from_addon_slugs(self):
-        Webapp.objects.create(slug='slug')
-        webapp = Webapp(app_slug='slug')
-        webapp.save()
-        eq_(webapp.slug, 'app-%s' % webapp.id)
-        eq_(webapp.app_slug, 'slug')
 
     def test_app_slug_collision(self):
         Webapp(app_slug='slug').save()

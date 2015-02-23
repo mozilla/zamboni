@@ -422,9 +422,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     STATUS_CHOICES = mkt.STATUS_CHOICES.items()
 
     guid = models.CharField(max_length=255, unique=True, null=True)
-    slug = models.CharField(max_length=30, unique=True, null=True)
-    # This column is only used for webapps, so they can have a slug namespace
-    # separate from addons and personas.
     app_slug = models.CharField(max_length=30, unique=True, null=True,
                                 blank=True)
     name = TranslatedField(default=None)
@@ -499,14 +496,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return u'%s: %s' % (self.id, self.name)
 
     def save(self, **kw):
-        self.clean_slug(slug_field='app_slug')
+        self.clean_slug()
         creating = not self.id
         super(Webapp, self).save(**kw)
         if creating:
-            # Set the slug once we have an id to keep things in order.
-            # This breaks test_change_called_on_new_instance_save
-            self.update(slug='app-%s' % self.id)
-
             # Create Geodata object (a 1-to-1 relationship).
             if not hasattr(self, '_geodata'):
                 Geodata.objects.create(addon=self)
@@ -543,7 +536,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             'msg': msg,
             'reason': reason,
             'name': self.name,
-            'slug': self.app_slug,
+            'app_slug': self.app_slug,
             'url': absolutify(self.get_url_path()),
             'user_str': ("%s, %s (%s)" % (user.display_name or
                                           user.username, user.email,
@@ -562,11 +555,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         REASON GIVEN BY USER FOR DELETION: %(reason)s
         """ % context
         log.debug('Sending delete email for %(atype)s %(id)s' % context)
-        subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
+        subject = 'Deleting %(atype)s %(app_slug)s (%(id)d)' % context
 
         # Update or NULL out various fields.
         models.signals.pre_delete.send(sender=Webapp, instance=self)
-        self.update(status=mkt.STATUS_DELETED, slug=None, app_slug=None,
+        self.update(status=mkt.STATUS_DELETED, app_slug=None,
                     app_domain=None, _current_version=None)
         models.signals.post_delete.send(sender=Webapp, instance=self)
 
@@ -578,10 +571,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return True
 
     @use_master
-    def clean_slug(self, slug_field='app_slug'):
+    def clean_slug(self):
         if self.status == mkt.STATUS_DELETED:
             return
-        clean_slug(self, slug_field)
+        clean_slug(self, slug_field='app_slug')
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):

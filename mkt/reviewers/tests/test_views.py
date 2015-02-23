@@ -3900,14 +3900,14 @@ class TestReviewTranslate(RestOAuth):
         self.login_user()
         self.create_switch('reviews-translate')
         user = user_factory(email='diego')
-        app = app_factory(slug='myapp')
+        app = app_factory(app_slug='myapp')
         self.review = app.reviews.create(title=u'yes', body=u'oui',
                                          addon=app, user=user,
                                          editorreview=True, rating=4)
 
     def test_regular_call(self):
         res = self.client.get(reverse('reviewers.review_translate',
-                                      args=[self.review.addon.slug,
+                                      args=[self.review.addon.app_slug,
                                             self.review.id, 'fr']))
         self.assert3xx(res, 'https://translate.google.com/#auto/fr/oui', 302)
 
@@ -3928,7 +3928,7 @@ class TestReviewTranslate(RestOAuth):
         # Call translation.
         review = self.review
         url = reverse('reviewers.review_translate',
-                      args=[review.addon.slug, review.id, 'fr'])
+                      args=[review.addon.app_slug, review.id, 'fr'])
         res = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 200)
         eq_(res.content, '{"body": "oui", "title": "oui"}')
@@ -3953,8 +3953,8 @@ class TestReviewTranslate(RestOAuth):
         # Call translation.
         review = self.review
         res = self.client.get_ajax(reverse('reviewers.review_translate',
-                                           args=[review.addon.slug, review.id,
-                                                 'fr']),)
+                                           args=[review.addon.app_slug,
+                                                 review.id, 'fr']),)
         eq_(res.status_code, 400)
 
 

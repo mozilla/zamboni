@@ -331,7 +331,6 @@ class TestCreateWebApp(BaseWebAppTest):
         assert addon.guid is not None, (
             'Expected app to have a UUID assigned to guid')
         eq_(unicode(addon.name), u'MozillaBall ょ')
-        eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'mozillaball-ょ')
         eq_(addon.description, u'Exciting Open Web development action!')
         eq_(addon.manifest_url, u'http://allizom.org/mozball.webapp')
@@ -552,7 +551,6 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         assert addon.guid is not None, (
             'Expected app to have a UUID assigned to guid')
         eq_(unicode(addon.name), u'Packaged MozillaBall ょ')
-        eq_(addon.slug, 'app-%s' % addon.id)
         eq_(addon.app_slug, u'packaged-mozillaball-ょ')
         eq_(addon.description, u'Exciting Open Web development action!')
         eq_(addon.manifest_url, None)

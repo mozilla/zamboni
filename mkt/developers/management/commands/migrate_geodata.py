@@ -44,7 +44,7 @@ class Command(BaseCommand):
                     region__in=SPECIAL_REGION_IDS)
                 for exclusion in exclusions:
                     log.info('[App %s - %s] Removed exclusion: %s'
-                             % (app.pk, app.slug, exclusion))
+                             % (app.pk, app.app_slug, exclusion))
 
                     # Remove all other existing exclusions, since all apps
                     # are public in every region by default. If developers
