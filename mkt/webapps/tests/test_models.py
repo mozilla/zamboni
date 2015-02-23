@@ -11,6 +11,7 @@ import zipfile
 from contextlib import nested
 from datetime import datetime, timedelta
 from decimal import Decimal
+from math import log10
 
 from django import forms
 from django.conf import settings
@@ -155,7 +156,7 @@ class TestWebapp(WebappTestCase):
         # When an app is deleted its slugs and domain should get relinquished.
         post_mortem = Webapp.with_deleted.filter(id=app.id)
         eq_(post_mortem.count(), 1)
-        for attr in ('slug', 'app_slug', 'app_domain'):
+        for attr in ('app_slug', 'app_domain'):
             eq_(getattr(post_mortem[0], attr), None)
 
     def test_soft_deleted_valid(self):
@@ -383,6 +384,17 @@ class TestWebapp(WebappTestCase):
         f = app.latest_version.all_files[0]
         f.update(size=54321)
         eq_(app.file_size, 54321)
+
+    def test_get_boost(self):
+        app = self.get_app()
+        app.installs.create(region=0, value=1000.0)
+        eq_(app.get_boost(), log10(1 + 1000) * 4)
+
+    def test_get_boost_not_approved_status(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_REJECTED)
+        app.installs.create(region=0, value=1000.0)
+        eq_(app.get_boost(), log10(1 + 1000))
 
 
 class TestCleanSlug(TestCase):
@@ -790,13 +802,6 @@ class TestWebappLight(mkt.site.tests.TestCase):
         app.disabled_by_user = True
         assert not app.is_public(), (
             'STATUS_PUBLIC, disabled app should not be is_public()')
-
-    def test_app_slugs_separate_from_addon_slugs(self):
-        Webapp.objects.create(slug='slug')
-        webapp = Webapp(app_slug='slug')
-        webapp.save()
-        eq_(webapp.slug, 'app-%s' % webapp.id)
-        eq_(webapp.app_slug, 'slug')
 
     def test_app_slug_collision(self):
         Webapp(app_slug='slug').save()

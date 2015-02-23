@@ -26,4 +26,4 @@ class Command(BaseCommand):
                 region=region.id)
             if created:
                 log.info('[App %s - %s] Excluded in region %r'
-                         % (app.pk, app.slug, region.slug))
+                         % (app.pk, app.app_slug, region.slug))

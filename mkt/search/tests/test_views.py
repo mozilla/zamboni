@@ -1070,7 +1070,7 @@ class TestRocketbarView(ESTestCase):
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Add some installs so this app is boosted higher than app1.
-        self.app2.installs.create(region=0, value=10.0)
+        self.app2.installs.create(region=0, value=1000.0)
         self.app2.save()
         self.refresh('webapp')
 

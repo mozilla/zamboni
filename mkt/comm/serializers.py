@@ -68,7 +68,7 @@ class AddonSerializer(ModelSerializer):
 
     class Meta:
         model = Webapp
-        fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug', 'slug',
+        fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug',
                   'review_url')
 
     def get_icon(self, app):

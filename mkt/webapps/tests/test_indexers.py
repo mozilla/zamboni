@@ -38,7 +38,7 @@ class TestWebappIndexer(TestCase):
         eq_(mapping.keys(), ['webapp'])
         eq_(mapping['webapp']['_all'], {'enabled': False})
         eq_(mapping['webapp']['properties']['boost'],
-            {'type': 'long', 'doc_values': True})
+            {'type': 'float', 'doc_values': True})
 
     def test_mapping_properties(self):
         # Spot check a few of the key properties.
@@ -215,7 +215,7 @@ class TestWebappIndexer(TestCase):
         self.app.installs.create(region=7, value=10.0)
 
         obj, doc = self._get_doc()
-        eq_(doc['boost'], 50 * 4)
+        eq_(doc['boost'], self.app.get_boost())
         eq_(doc['popularity'], 50)
         # An adolescent region uses the global trending value.
         eq_(doc['popularity_2'], 50)

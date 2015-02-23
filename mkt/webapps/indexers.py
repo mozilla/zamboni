@@ -69,7 +69,7 @@ class WebappIndexer(BaseIndexer):
                 'properties': {
                     # Add a boost field to enhance relevancy of a document.
                     # This is used during queries in a function scoring query.
-                    'boost': {'type': 'long', 'doc_values': True},
+                    'boost': {'type': 'float', 'doc_values': True},
                     # App fields.
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
@@ -266,7 +266,8 @@ class WebappIndexer(BaseIndexer):
                  'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['boost'] = obj.get_installs() or 1
+        d['boost'] = obj.get_boost()
+
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -389,10 +390,6 @@ class WebappIndexer(BaseIndexer):
             {'lang': to_language(lang), 'string': string}
             for lang, string
             in geodata.translations[geodata.banner_message_id]]
-
-        # Bump the boost if the add-on is public.
-        if obj.status == mkt.STATUS_PUBLIC:
-            d['boost'] = max(d['boost'], 1) * 4
 
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to
