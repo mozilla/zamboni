@@ -141,7 +141,6 @@ def pre_update(ref=settings.UPDATE_REF):
 @task
 def build():
     execute(create_virtualenv, getattr(settings, 'DEV', False))
-    execute(update_info, ref)
     execute(update_locales)
     execute(compress_assets, arg='--settings=settings_local_mkt')
     managecmd('statsd_ping --key=build')
