@@ -7,11 +7,11 @@
 # Flake8 requirements
 flake8==2.3.0
 pyflakes==0.8.1
-pep8==1.5.7
+pep8==1.6.2
 mccabe==0.3
 
 fudge==1.0.3
 mock==1.0.1
-psutil==0.2.0
+psutil==2.2.1
 nose-blockage==0.1.2
 nosenicedots==0.5
