@@ -139,7 +139,7 @@ def pre_update(ref=settings.UPDATE_REF):
 
 
 @task
-def build():
+def build(ref=settings.UPDATE_REF):
     execute(create_virtualenv, getattr(settings, 'DEV', False))
     execute(update_info, ref)
     execute(update_locales)
