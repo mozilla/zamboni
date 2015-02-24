@@ -1,10 +1,10 @@
 # These should all be in our wheelhouse to avoid compiling on production and
 # automated testing machines
 
-Jinja2==2.7.2
-MarkupSafe==0.18
-lxml==2.2.6
-Pillow==2.3.0
+Jinja2==2.7.3
+MarkupSafe==0.23
+lxml==3.4.2
+Pillow==2.7.0
 
 # For JWT to sign App receipts:
 # Temporary.
@@ -14,7 +14,7 @@ M2Crypto==0.22.3
 pycrypto==2.6.1
 
 # To get SNI support in requests (needed by the app validator).
-pyOpenSSL==0.13.1
+pyOpenSSL==0.14
 
 # For the addon validator, including C speedups.
-simplejson==2.3.2
+simplejson==3.6.5
