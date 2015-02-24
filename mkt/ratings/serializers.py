@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
-from mkt.account.serializers import AccountSerializer
+from mkt.account.serializers import UserSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
 from mkt.ratings.models import Review, ReviewFlag
@@ -20,7 +20,7 @@ class RatingSerializer(serializers.ModelSerializer):
         serializers.HyperlinkedRelatedField(view_name='app-detail',
                                             read_only=True, source='addon'))
     body = serializers.CharField()
-    user = AccountSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
     report_spam = serializers.SerializerMethodField('get_report_spam_link')
     resource_uri = serializers.HyperlinkedIdentityField(
         view_name='ratings-detail')
@@ -41,6 +41,9 @@ class RatingSerializer(serializers.ModelSerializer):
         else:
             self.request = None
 
+        if 'view' in self.context and hasattr(self.context['view'], 'app'):
+            self.app = self.context['view'].app
+
         if not self.request or not self.request.user.is_authenticated():
             self.fields.pop('is_author')
             self.fields.pop('has_flagged')
@@ -48,6 +51,15 @@ class RatingSerializer(serializers.ModelSerializer):
         if self.request and self.request.method in ('PUT', 'PATCH'):
             # Don't let users modify 'app' field at edit time
             self.fields['app'].read_only = True
+
+    def to_native(self, obj):
+        # When we have an `app` set on the serializer, we know it's because the
+        # view was filtering on this app, so we can safely overwrite the
+        # `addon` property on the instance with it, saving some costly queries.
+        app = getattr(self, 'app', None)
+        if app is not None:
+            obj.addon = app
+        return super(RatingSerializer, self).to_native(obj)
 
     def get_report_spam_link(self, obj):
         return reverse('ratings-flag', kwargs={'pk': obj.pk})

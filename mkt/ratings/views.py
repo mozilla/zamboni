@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from django.http import Http404
 
 import commonware.log
@@ -27,25 +26,18 @@ from mkt.ratings.models import Review, ReviewFlag
 log = commonware.log.getLogger('z.api')
 
 
-class RatingPaginator(Paginator):
-    # FIXME: This is only right when ?app= filtering is applied, if no
-    # filtering or if ?user= filtering is done, it's completely wrong.
-    @property
-    def count(self):
-        try:
-            r = self.object_list[0]
-        except IndexError:
-            return 0
-        return r.addon.total_reviews
-
-
 class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     # Unfortunately, the model class name for ratings is "Review".
-    queryset = Review.objects.valid().all()
+    # We prefetch 'version' because it's often going to be similar, and select
+    # related 'user' to avoid extra queries.
+    queryset = (Review.objects.valid()
+                .prefetch_related('version')
+                .select_related('user'))
     cors_allowed_methods = ('get', 'post', 'put', 'delete')
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
         'get': AllowAny,
+        'head': AllowAny,
         'post': IsAuthenticated,
         'put': AnyOf(AllowOwner,
                      GroupPermission('Apps', 'Edit')),
@@ -58,7 +50,14 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     serializer_class = RatingSerializer
-    paginator_class = RatingPaginator
+
+    def paginator_class(self, *args, **kwargs):
+        paginator = super(RatingViewSet, self).paginator_class(*args, **kwargs)
+        if hasattr(self, 'app'):
+            # If an app is passed, we want the paginator count to match the
+            # number of reviews on the app, without doing an extra query.
+            paginator._count = self.app.total_reviews
+        return paginator
 
     # FIXME: Add throttling ? Original tastypie version didn't have it...
 
