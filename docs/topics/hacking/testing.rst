@@ -27,7 +27,7 @@ for the full set, but some common ones are:
 
 Our continuous integration server adds some additional flags for other features
 (for example, coverage statistics).  To see what those commands are check out
-the build script at :src:`scripts/run_mkt_tests.sh`.
+the :src:`.travis.yml` file.
 
 There are a few useful makefile targets that you can use:
 
