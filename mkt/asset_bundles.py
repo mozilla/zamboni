@@ -221,7 +221,6 @@ JS = {
     ),
     'mkt/reviewers': (
         'js/lib/moment-with-langs.min.js',  # JS date lib.
-        'js/common/buckets.js',
         'js/devreg/reviewers/editors.js',
         'js/devreg/apps.js',  # Used by install.js
         'js/devreg/reviewers/payments.js',
