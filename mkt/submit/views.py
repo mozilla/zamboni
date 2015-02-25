@@ -99,8 +99,8 @@ def manifest(request):
     features_form = forms.AppFeaturesForm(request.POST or None)
     features_form_valid = features_form.is_valid()
 
-    if (request.method == 'POST' and form.is_valid()
-            and features_form_valid):
+    if (request.method == 'POST' and form.is_valid() and
+            features_form_valid):
 
         with transaction.commit_on_success():
             upload = form.cleaned_data['upload']

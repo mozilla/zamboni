@@ -30,8 +30,8 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
     permission_classes = (AllowAny,)
 
     def retrieve(self, request, *args, **kwargs):
-        if (getattr(request, 'API_VERSION', None) > 1
-                and request.REGION == mkt.regions.RESTOFWORLD):
+        if (getattr(request, 'API_VERSION', None) > 1 and
+                request.REGION == mkt.regions.RESTOFWORLD):
             # In API v2 and onwards, geoip is not done automatically, so we
             # need to do it ourselves.
             region_middleware = mkt.regions.middleware.RegionMiddleware()

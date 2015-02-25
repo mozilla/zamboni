@@ -15,7 +15,6 @@ import mkt
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
-from mkt.constants.features import FeatureProfile
 from mkt.files.models import File
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
@@ -435,15 +434,15 @@ class ReviewHelper(object):
                                              status__in=mkt.REVIEWED_STATUSES)
                                          .exists())
 
-        show_privileged = (not self.version.is_privileged
-                           or acl.action_allowed(self.handler.request, 'Apps',
-                                                 'ReviewPrivileged'))
+        show_privileged = (not self.version.is_privileged or
+                           acl.action_allowed(self.handler.request, 'Apps',
+                                              'ReviewPrivileged'))
 
         # Public.
-        if ((self.addon.is_packaged and mkt.STATUS_PUBLIC not in file_status
-             and show_privileged)
-            or (not self.addon.is_packaged and
-                self.addon.status != mkt.STATUS_PUBLIC)):
+        if ((self.addon.is_packaged and
+             mkt.STATUS_PUBLIC not in file_status and show_privileged) or
+            (not self.addon.is_packaged and
+             self.addon.status != mkt.STATUS_PUBLIC)):
             actions['public'] = public
 
         # Reject.
@@ -597,25 +596,6 @@ class AppsReviewing(object):
         apps.append(addon_id)
         cache.set(self.key, ','.join(map(str, set(apps))),
                   mkt.EDITOR_VIEWING_INTERVAL * 2)
-
-
-def device_queue_search(request):
-    """
-    Returns a queryset that can be used as a base for searching the device
-    specific queue.
-    """
-    filters = {
-        'status': mkt.STATUS_PENDING,
-        'disabled_by_user': False,
-    }
-    sig = request.GET.get('pro')
-    if sig:
-        profile = FeatureProfile.from_signature(sig)
-        filters.update(dict(
-            **profile.to_kwargs(prefix='_latest_version__features__has_')
-        ))
-    return Webapp.version_and_file_transformer(
-        Webapp.objects.filter(**filters))
 
 
 def log_reviewer_action(addon, user, msg, action, **kwargs):

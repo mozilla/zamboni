@@ -90,8 +90,8 @@ def payments(request, addon_id, addon, webapp=False):
                 raise  # We want to see these exceptions!
 
             is_free_inapp = addon.premium_type == mkt.ADDON_FREE_INAPP
-            is_now_paid = (addon.premium_type in mkt.ADDON_PREMIUMS
-                           or is_free_inapp)
+            is_now_paid = (addon.premium_type in mkt.ADDON_PREMIUMS or
+                           is_free_inapp)
 
             # If we haven't changed to a free app, check the upsell.
             if is_now_paid and success:
@@ -161,8 +161,8 @@ def payments(request, addon_id, addon, webapp=False):
                    'form': premium_form, 'upsell_form': upsell_form,
                    'tier_zero_id': tier_zero_id, 'region_form': region_form,
                    'PLATFORMS_NAMES': PLATFORMS_NAMES,
-                   'is_paid': (addon.premium_type in mkt.ADDON_PREMIUMS
-                               or addon.premium_type == mkt.ADDON_FREE_INAPP),
+                   'is_paid': (addon.premium_type in mkt.ADDON_PREMIUMS or
+                               addon.premium_type == mkt.ADDON_FREE_INAPP),
                    'cannot_be_paid': cannot_be_paid,
                    'paid_platform_names': paid_platform_names,
                    'is_packaged': addon.is_packaged,

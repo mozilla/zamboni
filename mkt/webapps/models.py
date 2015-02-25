@@ -993,8 +993,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over.
-        if (size not in mkt.APP_ICON_SIZES
-                and size >= mkt.APP_ICON_SIZES[0]):
+        if (size not in mkt.APP_ICON_SIZES and size >= mkt.APP_ICON_SIZES[0]):
             size = [s for s in mkt.APP_ICON_SIZES if s < size][-1]
         elif size < mkt.APP_ICON_SIZES[0]:
             size = mkt.APP_ICON_SIZES[0]

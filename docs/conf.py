@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'zamboni'
-copyright = u'2014, The Marketplace Crew'
+copyright = u'2015, The Marketplace Crew'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -222,3 +222,10 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+# Patch sphinxcontrib-httpdomain to include our custom http error codes. The
+# import needs to stay "sphinxcontrib.httpdomain", it has to match what sphinx
+# will import.
+import sphinxcontrib.httpdomain as httpdomain
+httpdomain.HTTP_STATUS_CODES[429] = 'Rate Limit Exceeded'
+httpdomain.HTTP_STATUS_CODES[451] = 'Unavailable For Legal Reasons'

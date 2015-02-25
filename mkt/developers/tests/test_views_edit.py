@@ -1048,6 +1048,10 @@ class TestEditDetails(TestEdit):
 
     def test_edit_default_locale_required_trans(self):
         # name and description are required in the new locale.
+
+        def missing(f):
+            return error % ', '.join(map(repr, f))
+
         data = self.get_dict()
         data.update(description='bullocks',
                     homepage='http://omg.org/yes',
@@ -1055,7 +1059,6 @@ class TestEditDetails(TestEdit):
         fields = ['name', 'description']
         error = ('Before changing your default locale you must have a name '
                  'and description in that locale. You are missing %s.')
-        missing = lambda f: error % ', '.join(map(repr, f))
 
         data.update(default_locale='pt-BR')
         r = self.client.post(self.edit_url, data)

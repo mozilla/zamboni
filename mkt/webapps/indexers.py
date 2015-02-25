@@ -57,10 +57,13 @@ class WebappIndexer(BaseIndexer):
         doc_type = cls.get_mapping_type_name()
 
         def _locale_field_mapping(field, analyzer):
-            get_analyzer = lambda a: (
-                '%s_analyzer' % a if a in mkt.STEMMER_MAP else a)
-            return {'%s_%s' % (field, analyzer): {
-                'type': 'string', 'analyzer': get_analyzer(analyzer)}}
+            return {
+                '%s_%s' % (field, analyzer): {
+                    'type': 'string',
+                    'analyzer': '%s_analyzer' % (
+                        analyzer if analyzer in mkt.STEMMER_MAP else analyzer)
+                }
+            }
 
         mapping = {
             doc_type: {
@@ -343,11 +346,15 @@ class WebappIndexer(BaseIndexer):
         d['region_exclusions'] = obj.get_excluded_region_ids()
         d['reviewed'] = obj.versions.filter(
             deleted=False).aggregate(Min('reviewed')).get('reviewed__min')
-        if version:
-            d['supported_locales'] = filter(
-                None, version.supported_locales.split(','))
-        else:
-            d['supported_locales'] = []
+
+        # The default locale of the app is considered "supported" by default.
+        supported_locales = [obj.default_locale]
+        other_locales = (filter(None, version.supported_locales.split(','))
+                         if version else [])
+        if other_locales:
+            supported_locales.extend(other_locales)
+        d['supported_locales'] = list(set(supported_locales))
+
         d['tags'] = getattr(obj, 'tag_list', [])
 
         d['trending'] = obj.get_trending()

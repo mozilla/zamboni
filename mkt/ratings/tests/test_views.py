@@ -4,7 +4,10 @@ import json
 from urlparse import urlparse
 
 from django.core.urlresolvers import reverse
+from django.db import reset_queries
 from django.http import QueryDict
+from django.test.utils import override_settings
+
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -45,6 +48,26 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
             eq_(len(data['objects']), 1)
         return res, data
 
+    def _compare_review_data(self, client, data, review):
+        self.assertApiUrlEqual(data['app'], '/apps/app/337141/')
+        eq_(data['body'], review.body)
+        self.assertCloseToNow(data['created'], now=review.created)
+        self.assertCloseToNow(data['modified'], now=review.modified)
+        eq_(data['rating'], review.rating)
+        eq_(data['report_spam'],
+            reverse('ratings-flag', kwargs={'pk': review.pk}))
+        eq_(data['resource_uri'],
+            reverse('ratings-detail', kwargs={'pk': review.pk}))
+        eq_(data['user']['display_name'], review.user.display_name)
+        eq_(data['version']['version'], review.version.version)
+        eq_(data['version']['resource_uri'],
+            reverse('version-detail', kwargs={'pk': review.version.pk}))
+
+        if client != self.anon:
+            eq_(data['is_author'], review.user == self.user)
+        else:
+            ok_('is_author' not in data)
+
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.list_url),
                         'get', 'post', 'put', 'delete')
@@ -65,38 +88,81 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         assert not data['user']['can_rate']
         assert not data['user']['has_rated']
 
-    def test_get(self):
+    def test_get(self, client=None):
         first_version = self.app.current_version
         rev = Review.objects.create(addon=self.app, user=self.user,
                                     version=first_version,
                                     body=u'I lôve this app',
                                     rating=5)
-        pk = rev.pk
+        rev.update(created=self.days_ago(2))
+        rev2 = Review.objects.create(addon=self.app, user=self.user2,
+                                     version=first_version,
+                                     body=u'I also lôve this app',
+                                     rating=4)
+        # Extra review for another app, should be ignored.
+        extra_app = app_factory()
+        Review.objects.create(addon=extra_app, user=self.user,
+                              version=extra_app.current_version,
+                              body=u'I häte this extra app',
+                              rating=1)
+
+        self.app.total_reviews = 2
         ver = version_factory(addon=self.app, version='2.0',
                               file_kw=dict(status=mkt.STATUS_PUBLIC))
         self.app.update_version()
-        res, data = self._get_url(self.list_url, app=self.app.pk)
 
+        reset_queries()
+        res, data = self._get_url(self.list_url, app=self.app.pk,
+                                  client=client)
+        eq_(len(data['objects']), 2)
+        self._compare_review_data(client, data['objects'][0], rev2)
+        self._compare_review_data(client, data['objects'][1], rev)
         eq_(data['info']['average'], self.app.average_rating)
         eq_(data['info']['slug'], self.app.app_slug)
         eq_(data['info']['current_version'], ver.version)
-        eq_(data['user']['can_rate'], True)
-        eq_(data['user']['has_rated'], True)
-        eq_(len(data['objects']), 1)
-        self.assertApiUrlEqual(data['objects'][0]['app'], '/apps/app/337141/')
-        eq_(data['objects'][0]['body'], rev.body)
-        self.assertCloseToNow(data['objects'][0]['created'], now=rev.created)
-        eq_(data['objects'][0]['is_author'], True)
-        self.assertCloseToNow(data['objects'][0]['modified'], now=rev.modified)
-        eq_(data['objects'][0]['rating'], rev.rating)
-        eq_(data['objects'][0]['report_spam'],
-            reverse('ratings-flag', kwargs={'pk': pk}))
-        eq_(data['objects'][0]['resource_uri'],
-            reverse('ratings-detail', kwargs={'pk': pk}))
-        eq_(data['objects'][0]['user']['display_name'], self.user.display_name)
-        eq_(data['objects'][0]['version']['version'], first_version.version)
-        eq_(data['objects'][0]['version']['resource_uri'],
-            reverse('version-detail', kwargs={'pk': first_version.pk}))
+        if client != self.anon:
+            eq_(data['user']['can_rate'], True)
+            eq_(data['user']['has_rated'], True)
+        return res
+
+    def test_get_304(self):
+        etag = self.test_get(client=self.anon)['ETag']
+        res = self.anon.get(self.list_url, {'app': self.app.pk},
+                            HTTP_IF_NONE_MATCH='%s' % etag)
+        eq_(res.status_code, 304)
+
+    @override_settings(DEBUG=True)
+    def test_get_anonymous_queries(self):
+        first_version = self.app.current_version
+        Review.objects.create(addon=self.app, user=self.user,
+                              version=first_version,
+                              body=u'I lôve this app',
+                              rating=5)
+        Review.objects.create(addon=self.app, user=self.user2,
+                              version=first_version,
+                              body=u'I also lôve this app',
+                              rating=4)
+        self.app.total_reviews = 2
+        version_factory(addon=self.app, version='2.0',
+                        file_kw=dict(status=mkt.STATUS_PUBLIC))
+        self.app.update_version()
+
+        reset_queries()
+        with self.assertNumQueries(5):
+            # 5 queries:
+            # - 2 for the Reviews queryset and the translations
+            # - 2 for the Version associated to the reviews (qs + translations)
+            # - 1 for the File attached to the Version
+            #
+            # Note: We patch get_app() to avoid the app queries to pollute the
+            # queries count.
+            # Once we are on django 1.7, we'll be able to play with Prefetch
+            # to reduce the number of queries further by customizing the
+            # queryset used for the versions.
+            with patch('mkt.ratings.views.RatingViewSet.get_app') as get_app:
+                get_app.return_value = self.app
+                res, data = self._get_url(self.list_url, client=self.anon,
+                                          app=self.app.pk)
 
     def test_is_flagged_false(self):
         Review.objects.create(addon=self.app, user=self.user2, body='yes')
@@ -587,7 +653,8 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
                                      rating=3)
         rev1.update(created=self.days_ago(3))
         rev2.update(created=self.days_ago(2))
-        res = self.client.get(self.url, {'limit': 2})
+        self.app.update(total_reviews=3)
+        res = self.client.get(self.url, {'app': self.app.pk, 'limit': 2})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
 
@@ -600,9 +667,11 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['meta']['offset'], 0)
         next = urlparse(data['meta']['next'])
         eq_(next.path, self.url)
-        eq_(QueryDict(next.query).dict(), {u'limit': u'2', u'offset': u'2'})
+        eq_(QueryDict(next.query).dict(),
+            {'app': str(self.app.pk), 'limit': '2', 'offset': '2'})
 
-        res = self.client.get(self.url, {'limit': 2, 'offset': 2})
+        res = self.client.get(self.url,
+                              {'app': self.app.pk, 'limit': 2, 'offset': 2})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
 
@@ -612,26 +681,27 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['meta']['limit'], 2)
         prev = urlparse(data['meta']['previous'])
         eq_(next.path, self.url)
-        eq_(QueryDict(prev.query).dict(), {u'limit': u'2', u'offset': u'0'})
+        eq_(QueryDict(prev.query).dict(),
+            {'app': str(self.app.pk), 'limit': '2', 'offset': '0'})
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 
     def test_total_count(self):
-        self.app.update(total_reviews=10)
-        res = self.client.get(self.url)
-        data = json.loads(res.content)
-
-        # We know we have no results, total_reviews isn't used.
-        eq_(data['meta']['total_count'], 0)
-
         Review.objects.create(addon=self.app, user=self.user,
                               version=self.app.current_version,
                               body=u'I häte this app',
                               rating=0)
-        self.app.update(total_reviews=10)
+        self.app.update(total_reviews=42)
         res = self.client.get(self.url)
         data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 10)
+
+        # We are not passing an app, so the app's total_reviews isn't used.
+        eq_(data['meta']['total_count'], 1)
+
+        # With an app however, it should be used as the total count.
+        res = self.client.get(self.url, data={'app': self.app.pk})
+        data = json.loads(res.content)
+        eq_(data['meta']['total_count'], 42)
 
     def test_pagination_invalid(self):
         res = self.client.get(self.url, data={'offset': '%E2%98%83'})

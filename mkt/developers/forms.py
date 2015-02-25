@@ -61,11 +61,10 @@ from . import tasks
 log = commonware.log.getLogger('mkt.developers')
 
 
-region_error = lambda region: forms.ValidationError(
-    _('You cannot select {region}.').format(
+def region_error(region):
+    return forms.ValidationError(_('You cannot select {region}.').format(
         region=unicode(parse_region(region).name)
-    )
-)
+    ))
 
 
 def toggle_app_for_special_regions(request, app, enabled_regions=None):
@@ -957,8 +956,8 @@ class RegionForm(forms.Form):
         return value if value in ('free', 'paid') else False
 
     def _product_is_paid(self):
-        return (self.product.premium_type in mkt.ADDON_PREMIUMS
-                or self.product.premium_type == mkt.ADDON_FREE_INAPP)
+        return (self.product.premium_type in mkt.ADDON_PREMIUMS or
+                self.product.premium_type == mkt.ADDON_FREE_INAPP)
 
     def clean_regions(self):
         regions = self.cleaned_data['regions']

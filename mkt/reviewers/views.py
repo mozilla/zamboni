@@ -60,8 +60,8 @@ from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        ReviewerScoreSerializer,
                                        ReviewersESAppSerializer,
                                        ReviewingSerializer)
-from mkt.reviewers.utils import (AppsReviewing, device_queue_search,
-                                 log_reviewer_action, ReviewersQueuesHelper)
+from mkt.reviewers.utils import (AppsReviewing, log_reviewer_action,
+                                 ReviewersQueuesHelper)
 from mkt.search.filters import (ReviewerSearchFormFilter, SearchQueryFilter,
                                 SortingFilter)
 from mkt.search.views import SearchView
@@ -167,9 +167,6 @@ def queue_counts(request):
                             .count()),
     }
 
-    if 'pro' in request.GET:
-        counts.update({'device': device_queue_search(request).count()})
-
     rv = {}
     if isinstance(type, basestring):
         return counts[type]
@@ -219,8 +216,9 @@ def _progress():
             tmp[k] = base_query.filter(**filter_).count()
         progress[t] = tmp
 
-    # Return the percent of (p)rogress out of (t)otal.
-    pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
+    def pct(p, t):
+        # Return the percent of (p)rogress out of (t)otal.
+        return (p / float(t)) * 100 if p > 0 else 0
 
     percentage = {}
     for t in types:
@@ -591,21 +589,6 @@ def queue_updates(request):
 
     return _queue(request, apps, 'updates', date_sort='nomination',
                   use_es=use_es)
-
-
-@reviewer_required
-def queue_device(request):
-    """
-    A device specific queue matching apps which require features that our
-    device support based on the `profile` query string.
-    """
-    if 'pro' in request.GET:
-        apps = [QueuedApp(app, app.all_versions[0].nomination)
-                for app in device_queue_search(request)]
-    else:
-        apps = []
-
-    return _queue(request, apps, 'device')
 
 
 @permission_required([('Apps', 'ModerateReview')])

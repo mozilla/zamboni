@@ -49,8 +49,8 @@ def memcache():
                 s.close()
 
             memcache_results.append((ip, port, result))
-        if (not using_twemproxy and len(hosts) > 1
-                and len(memcache_results) < 2):
+        if (not using_twemproxy and len(hosts) > 1 and
+                len(memcache_results) < 2):
             # If the number of requested hosts is greater than 1, but less
             # than 2 replied, raise an error.
             status = ('2+ memcache servers are required.'

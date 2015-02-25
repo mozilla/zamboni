@@ -276,7 +276,8 @@ class TestSearchView(RestOAuth, ESTestCase):
             self.assertApiUrlEqual(obj['resource_uri'],
                                    '/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
-            eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
+            self.assertSetEqual(obj['supported_locales'],
+                                ['en-US', 'es', 'pt-BR'])
             eq_(obj['tags'], [])
             ok_('1.0' in obj['versions'])
             self.assertApiUrlEqual(obj['versions']['1.0'],

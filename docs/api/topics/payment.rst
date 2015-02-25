@@ -71,7 +71,7 @@ Payment accounts can be added and listed.
 
     **Response**
 
-    :status code: 201 successfully created.
+    :status: 201 successfully created.
 
 .. http:put:: /api/v2/payments/account/(int:id)/
 
@@ -564,10 +564,10 @@ Free apps
 
     **Response**:
 
-    :statuscode 201: successfully completed.
-    :statuscode 202: an install was already recorded for this user and app, so
+    :status 201: successfully completed.
+    :status 202: an install was already recorded for this user and app, so
         we didn't bother creating another one.
-    :statuscode 403: app is not public, install not allowed.
+    :status 403: app is not public, install not allowed.
 
 
 Premium apps
@@ -590,10 +590,10 @@ Premium apps
 
         {"receipt": "eyJhbGciOiAiUlM1MT...[truncated]"}
 
-    :statuscode 201: successfully completed.
-    :statuscode 401: not authenticated.
-    :statuscode 402: payment required.
-    :statuscode 403: app is not public, install not allowed.
+    :status 201: successfully completed.
+    :status 401: not authenticated.
+    :status 402: payment required.
+    :status 403: app is not public, install not allowed.
 
 Developers
 ~~~~~~~~~~
@@ -706,7 +706,7 @@ Price Tiers
     :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`pay tiers <pay-tier-response-label>`.
     :type objects: array
-    :statuscode 200: successfully completed.
+    :status 200: successfully completed.
 
 .. _pay-tier-response-label:
 
@@ -767,7 +767,7 @@ Price Tiers
     :type dev: boolean
     :param paid: if ``true`` this tier can be used for payments by users.
     :type paid: boolean
-    :statuscode 200: successfully completed.
+    :status 200: successfully completed.
 
 .. _payment-methods-label:
 
@@ -874,7 +874,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     :type meta: object
     :param objects: A :ref:`listing <objects-response-label>` of :ref:`product icons <product-icon-response-label>`.
     :type objects: array
-    :statuscode 200: successfully completed.
+    :status 200: successfully completed.
 
 .. _product-icon-response-label:
 
@@ -894,7 +894,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
 
     :param url: Absolute URL of the cached product icon.
     :type url: string
-    :statuscode 200: successfully completed.
+    :status 200: successfully completed.
 
 .. http:post:: /api/v2/webpay/product/icon/
 
@@ -912,9 +912,9 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
 
     **Response**
 
-    :statuscode 202: New icon accepted. Deferred processing will begin.
-    :statuscode 400: Some required fields were missing or invalid.
-    :statuscode 401: The API user is unauthorized to cache product icons.
+    :status 202: New icon accepted. Deferred processing will begin.
+    :status 400: Some required fields were missing or invalid.
+    :status 401: The API user is unauthorized to cache product icons.
 
 
 Transaction failure
@@ -932,7 +932,7 @@ Transaction failure
     **Response**
 
     :status 202: Notification will be sent.
-    :statuscode 403: The API user is not authorized to report failures.
+    :status 403: The API user is not authorized to report failures.
 
 .. _CORS: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 .. _WebPay: https://github.com/mozilla/webpay

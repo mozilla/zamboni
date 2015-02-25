@@ -403,7 +403,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'slug': 'something-something',
             'status': 4,
             'support_url': None,
-            'supported_locales': [u'en-US', u'es', u'pt-BR'],
+            'supported_locales': set([u'en-US', u'es', u'pt-BR']),
             'upsell': False,
             # 'version's handled below to support API URL assertions.
         }
@@ -420,7 +420,9 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
                                '/apps/versions/1268829/')
 
         for k, v in expected.items():
-            eq_(res[k], v,
+            assertion = self.assertSetEqual if isinstance(v, set) else eq_
+            assertion(
+                res[k], v,
                 u'Expected value "%s" for field "%s", got "%s"' %
                 (v, k, res[k]))
 

@@ -35,7 +35,6 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm, MANIFEST_CONTENT_TYPE
-from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
@@ -1048,46 +1047,6 @@ class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
         super(TestUpdateQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
         self.reindex(Webapp, 'webapp')
-
-
-class TestDeviceQueue(AppReviewerTest, AccessMixin):
-
-    def setUp(self):
-        super(TestDeviceQueue, self).setUp()
-        self.app1 = app_factory(name='XXX',
-                                version_kw={'version': '1.0',
-                                            'created': self.days_ago(2),
-                                            'nomination': self.days_ago(2)})
-        self.app1.versions.latest().features.update(has_sms=True)
-
-        self.app2 = app_factory(name='YYY',
-                                version_kw={'version': '1.0',
-                                            'created': self.days_ago(2),
-                                            'nomination': self.days_ago(2)})
-        self.app2.versions.latest().features.update(has_mp3=True)
-
-        self.app1.update(status=mkt.STATUS_PENDING)
-        self.app2.update(status=mkt.STATUS_PENDING)
-
-        self.apps = list(Webapp.objects.order_by('id'))
-        self.login_as_editor()
-        self.url = reverse('reviewers.apps.queue_device')
-
-    def test_no_queue_if_no_pro(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        ok_('queue_device' not in res.context['queue_counts'])
-        eq_(res.context['addons'], [])
-
-    def test_queue_filters(self):
-        "Test queue filters out apps we don't support."
-        pro = FeatureProfile(sms=True).to_signature()
-        res = self.client.get(self.url, {'pro': pro})
-        eq_(res.status_code, 200)
-        eq_(res.context['queue_counts']['device'], 1)
-        apps = [a.app for a in res.context['addons']]
-        ok_(self.app1 in apps)
-        ok_(self.app2 not in apps)
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)

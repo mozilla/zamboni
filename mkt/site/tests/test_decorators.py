@@ -6,22 +6,20 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import mkt.site.tests
 from mkt import get_user, set_user
 from mkt.site.decorators import (login_required, json_response, json_view,
                                  permission_required, set_modified_on,
-                                 set_task_user, write)
+                                 set_task_user)
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
 
 def test_json_view():
     """Turns a Python object into a response."""
-    f = lambda r: {'x': 1}
-    response = json_view(f)(mock.Mock())
+    response = json_view(lambda r: {'x': 1})(mock.Mock())
     assert isinstance(response, http.HttpResponse)
     eq_(response.content, '{"x": 1}')
     eq_(response['Content-Type'], 'application/json')
@@ -31,8 +29,7 @@ def test_json_view():
 def test_json_view_normal_response():
     """Normal responses get passed through."""
     expected = http.HttpResponseForbidden()
-    f = lambda r: expected
-    response = json_view(f)(mock.Mock())
+    response = json_view(lambda r: expected)(mock.Mock())
     assert expected is response
     eq_(response['Content-Type'], 'text/html; charset=utf-8')
 
@@ -46,8 +43,7 @@ def test_json_view_error():
 
 
 def test_json_view_status():
-    f = lambda r: {'x': 1}
-    response = json_view(f, status_code=202)(mock.Mock())
+    response = json_view(lambda r: {'x': 1}, status_code=202)(mock.Mock())
     eq_(response.status_code, 202)
 
 
@@ -56,19 +52,6 @@ def test_json_view_response_status():
     eq_(response.content, '{"msg": "error"}')
     eq_(response['Content-Type'], 'application/json')
     eq_(response.status_code, 202)
-
-
-@mock.patch('django.db.transaction.commit_on_success')
-def test_write(commit_on_success):
-    # Until we can figure out celery.delay issues.
-    raise SkipTest
-
-    @write
-    def some_func():
-        pass
-    assert not commit_on_success.called
-    some_func()
-    assert commit_on_success.called
 
 
 class TestTaskUser(mkt.site.tests.TestCase):
