@@ -181,7 +181,9 @@ class TestFormFilter(FilterTestsBase):
             "Unexpected 'installs_allowed_from' in query")
 
     def test_premium_types(self):
-        ptype = lambda p: mkt.ADDON_PREMIUM_API_LOOKUP.get(p)
+        def ptype(p):
+            return mkt.ADDON_PREMIUM_API_LOOKUP.get(p)
+
         # Test a single premium type.
         qs = self._filter(data={'premium_types': ['free']})
         ok_({'terms': {'premium_type': [ptype('free')]}}

@@ -43,7 +43,10 @@ def app_view(f, qs=Webapp.objects.all):
                 **kw):
         """Provides an addon given either an addon_id or app_slug."""
         assert addon_id or app_slug, 'Must provide addon_id or app_slug'
-        get = lambda **kw: get_object_or_404(qs(), **kw)
+
+        def get(**kw):
+            return get_object_or_404(qs(), **kw)
+
         if addon_id and addon_id.isdigit():
             addon = get(id=addon_id)
             # Don't get in an infinite loop if addon.app_slug.isdigit().

@@ -161,7 +161,7 @@ Creating an App
     **Response**
 
     :param: An :ref:`apps <app-response-label>`.
-    :status code: 201 successfully created.
+    :status: 201 successfully created.
 
 .. _app-put-label:
 

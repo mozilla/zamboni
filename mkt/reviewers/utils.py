@@ -434,15 +434,15 @@ class ReviewHelper(object):
                                              status__in=mkt.REVIEWED_STATUSES)
                                          .exists())
 
-        show_privileged = (not self.version.is_privileged
-                           or acl.action_allowed(self.handler.request, 'Apps',
-                                                 'ReviewPrivileged'))
+        show_privileged = (not self.version.is_privileged or
+                           acl.action_allowed(self.handler.request, 'Apps',
+                                              'ReviewPrivileged'))
 
         # Public.
-        if ((self.addon.is_packaged and mkt.STATUS_PUBLIC not in file_status
-             and show_privileged)
-            or (not self.addon.is_packaged and
-                self.addon.status != mkt.STATUS_PUBLIC)):
+        if ((self.addon.is_packaged and
+             mkt.STATUS_PUBLIC not in file_status and show_privileged) or
+            (not self.addon.is_packaged and
+             self.addon.status != mkt.STATUS_PUBLIC)):
             actions['public'] = public
 
         # Reject.

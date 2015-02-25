@@ -144,8 +144,8 @@ def verify(request, uuid):
         except UserProfile.DoesNotExist:
             user = None
 
-        if user and (acl.action_allowed_user(user, 'Apps', 'Review')
-                     or addon.has_author(user)):
+        if user and (acl.action_allowed_user(user, 'Apps', 'Review') or
+                     addon.has_author(user)):
             mkt.log(mkt.LOG.RECEIPT_CHECKED, addon, user=user)
             return response(output)
 

@@ -50,8 +50,8 @@ class TestReceipt(mkt.site.tests.TestCase):
                 .startswith('eyJhbGciOiAiUlM1MTIiLCA'))
 
     def test_receipt_different(self):
-        assert (create_receipt(self.app, self.user, 'some-uuid')
-                != create_receipt(self.app, self.other_user, 'other-uuid'))
+        assert (create_receipt(self.app, self.user, 'some-uuid') !=
+                create_receipt(self.app, self.other_user, 'other-uuid'))
 
     def test_addon_premium(self):
         for type_ in mkt.ADDON_PREMIUMS:

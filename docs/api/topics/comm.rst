@@ -151,9 +151,9 @@ Thread
 
     **Response**
 
-    :status code: 204 Thread is marked as read.
-    :status code: 400 Thread object not found.
-    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
+    :status: 204 Thread is marked as read.
+    :status: 400 Thread object not found.
+    :status: 403 There is an attempt to modify other fields or not allowed to access the object.
 
 
 Note
@@ -287,9 +287,9 @@ Note
 
     **Response**
 
-    :status code: 204 Note marked as read.
-    :status code: 400 Note object not found.
-    :status code: 403 There is an attempt to modify other fields or not allowed to access the object.
+    :status: 204 Note marked as read.
+    :status: 400 Note object not found.
+    :status: 403 There is an attempt to modify other fields or not allowed to access the object.
 
 .. _note-post-label:
 
@@ -313,9 +313,9 @@ Note
     **Response**
 
     :param: A :ref:`note <note-response-label>`.
-    :status code: 201 successfully created.
-    :status code: 400 bad request.
-    :status code: 404 thread not found.
+    :status: 201 successfully created.
+    :status: 400 bad request.
+    :status: 404 thread not found.
 
 
 .. _list-ordering-params-label:
@@ -361,6 +361,6 @@ Attachment
     **Response**
 
     :param: The :ref:`note <note-response-label>` the attachment was attached to.
-    :status code: 201 successfully created.
-    :status code: 400 bad request (e.g. no attachments, more than 10 attachments).
-    :status code: 403 permission denied if user isn't the author of the note.
+    :status: 201 successfully created.
+    :status: 400 bad request (e.g. no attachments, more than 10 attachments).
+    :status: 403 permission denied if user isn't the author of the note.

@@ -34,6 +34,9 @@ loop:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
+cleanapi:
+	cd api; rm -rf $(BUILDDIR)/*
+
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo

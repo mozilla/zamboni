@@ -463,8 +463,8 @@ class TestUpdateAdditionalReview(RestOAuth):
                 execute_post_review_task:
             response = self.patch({'passed': False})
             eq_(response.status_code, 200)
-            ok_(self.review.reload().review_completed - datetime.now()
-                < timedelta(seconds=1))
+            ok_(self.review.reload().review_completed - datetime.now() <
+                timedelta(seconds=1))
             ok_(execute_post_review_task.called)
 
     def test_review_can_only_happen_once(self):
