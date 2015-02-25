@@ -105,10 +105,12 @@ class TestWebappIndexer(TestCase):
                             set([mkt.regions.BRA.id, mkt.regions.GBR.id]))
 
     def test_extract_supported_locales(self):
+        self.app.update(default_locale='de')
         locales = 'en-US,es,pt-BR'
         self.app.current_version.update(supported_locales=locales)
         obj, doc = self._get_doc()
-        self.assertSetEqual(doc['supported_locales'], set(locales.split(',')))
+        self.assertSetEqual(doc['supported_locales'],
+                            set(['de'] + locales.split(',')))
 
     def test_extract_latest_version(self):
         created_date = self.days_ago(5).replace(microsecond=0)

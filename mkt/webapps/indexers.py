@@ -346,11 +346,15 @@ class WebappIndexer(BaseIndexer):
         d['region_exclusions'] = obj.get_excluded_region_ids()
         d['reviewed'] = obj.versions.filter(
             deleted=False).aggregate(Min('reviewed')).get('reviewed__min')
-        if version:
-            d['supported_locales'] = filter(
-                None, version.supported_locales.split(','))
-        else:
-            d['supported_locales'] = []
+
+        # The default locale of the app is considered "supported" by default.
+        supported_locales = [obj.default_locale]
+        other_locales = (filter(None, version.supported_locales.split(','))
+                         if version else [])
+        if other_locales:
+            supported_locales.extend(other_locales)
+        d['supported_locales'] = list(set(supported_locales))
+
         d['tags'] = getattr(obj, 'tag_list', [])
 
         d['trending'] = obj.get_trending()
