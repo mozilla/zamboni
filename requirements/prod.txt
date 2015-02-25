@@ -44,8 +44,8 @@ django-storages==1.1.8
 django-waffle==0.10
 drf-compound-fields==0.2.2
 easy-thumbnails==2.2
-elasticsearch==1.1.1
-elasticsearch-dsl==0.0.2
+elasticsearch==1.4.0
+elasticsearch-dsl==0.0.3
 email-reply-parser==0.2.0
 # fastchardet is required by app-validator
 fastchardet==0.2.0
