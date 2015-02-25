@@ -1,17 +1,18 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-18 09:01-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-02-18 17:50+0000\n"
+"Last-Translator: Umesh <umesh.agarwal1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1424281823.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -49,35 +50,35 @@ msgstr ""
 
 #: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:195 mkt/submit/forms.py:318
 msgid "No"
-msgstr ""
+msgstr "नहीं"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "फार्म जमा नहीं किया जा सका."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "नोट बॉडी खाली है."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "अवैध नोट प्रकार."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "%s संस्करण उपलब्ध नहीं हैं"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "संलग्नक:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:278
 msgid "Description:"
-msgstr ""
+msgstr "विवरण:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "संलग्नक %s के अधिकतम आकार से अधिक है."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
@@ -118,11 +119,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:19
 msgid "Afghanistan"
-msgstr ""
+msgstr "अफ़ग़ानिस्तान"
 
 #: mkt/constants/bango.py:20
 msgid "Åland Islands"
-msgstr ""
+msgstr "एलैंड द्वीप समूह"
 
 #: mkt/constants/bango.py:21
 msgid "Albania"
@@ -130,27 +131,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:22
 msgid "Algeria"
-msgstr ""
+msgstr "एलजीरिया"
 
 #: mkt/constants/bango.py:23
 msgid "American Samoa"
-msgstr ""
+msgstr "अमेरिकी समोआ"
 
 #: mkt/constants/bango.py:24
 msgid "Andorra"
-msgstr ""
+msgstr "अंडोरा"
 
 #: mkt/constants/bango.py:25
 msgid "Angola"
-msgstr ""
+msgstr "अंगोला"
 
 #: mkt/constants/bango.py:26
 msgid "Anguilla"
-msgstr ""
+msgstr "एंगुइला"
 
 #: mkt/constants/bango.py:27
 msgid "Antarctica"
-msgstr ""
+msgstr "अंटार्कटिका"
 
 #: mkt/constants/bango.py:28
 msgid "Antigua and Barbuda"
@@ -182,39 +183,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
-msgstr ""
+msgstr "बहमास"
 
 #: mkt/constants/bango.py:36
 msgid "Bahrain"
-msgstr ""
+msgstr "बहरीन"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:71
 msgid "Bangladesh"
-msgstr ""
+msgstr "बांग्लादेश"
 
 #: mkt/constants/bango.py:38
 msgid "Barbados"
-msgstr ""
+msgstr "बारबाडोस"
 
 #: mkt/constants/bango.py:39
 msgid "Belarus"
-msgstr ""
+msgstr "बेलारूस"
 
 #: mkt/constants/bango.py:40
 msgid "Belgium"
-msgstr ""
+msgstr "बेल्जियम"
 
 #: mkt/constants/bango.py:41
 msgid "Belize"
-msgstr ""
+msgstr "बेलीज"
 
 #: mkt/constants/bango.py:42
 msgid "Benin"
-msgstr ""
+msgstr "बेनिन"
 
 #: mkt/constants/bango.py:43
 msgid "Bermuda"
-msgstr ""
+msgstr "बरमूडा"
 
 #: mkt/constants/bango.py:44
 msgid "Bhutan"
@@ -250,39 +251,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "ब्रूनेइ्र दारएस्सलाम"
 
 #: mkt/constants/bango.py:53
 msgid "Bulgaria"
-msgstr ""
+msgstr "बुल्गारिया"
 
 #: mkt/constants/bango.py:54
 msgid "Burkina Faso"
-msgstr ""
+msgstr "बुर्किना फासो"
 
 #: mkt/constants/bango.py:55
 msgid "Burundi"
-msgstr ""
+msgstr "बुरुंडी"
 
 #: mkt/constants/bango.py:56
 msgid "Cambodia"
-msgstr ""
+msgstr "कंबोडिया"
 
 #: mkt/constants/bango.py:57
 msgid "Cameroon"
-msgstr ""
+msgstr "कैमरून"
 
 #: mkt/constants/bango.py:58
 msgid "Canada"
-msgstr ""
+msgstr "कनाडा"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr ""
+msgstr "केप वर्दे"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
-msgstr ""
+msgstr "केमैन द्वीप"
 
 #: mkt/constants/bango.py:61
 msgid "Central African Republic"
@@ -326,39 +327,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
-msgstr ""
+msgstr "कुक आइलैंड्स"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:76
 msgid "Costa Rica"
-msgstr ""
+msgstr "कोस्टा रिका"
 
 #: mkt/constants/bango.py:73
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "आईवरी कोस्ट"
 
 #: mkt/constants/bango.py:74
 msgid "Croatia"
-msgstr ""
+msgstr "क्रोएशिया"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr ""
+msgstr "क्यूबा"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
-msgstr ""
+msgstr "कुराकाओ"
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
-msgstr ""
+msgstr "साइप्रस"
 
 #: mkt/constants/bango.py:78 mkt/constants/regions.py:77
 msgid "Czech Republic"
-msgstr ""
+msgstr "चेक रिपब्लिक"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "डेनमार्क"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -398,39 +399,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr ""
+msgstr "इथियोपिया"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "फ़ॉकलैंड द्वीप (माल्विनास)"
 
 #: mkt/constants/bango.py:91
 msgid "Faroe Islands"
-msgstr ""
+msgstr "फ़ैरो आइलैंड्स"
 
 #: mkt/constants/bango.py:92
 msgid "Fiji"
-msgstr ""
+msgstr "फिजी"
 
 #: mkt/constants/bango.py:93
 msgid "Finland"
-msgstr ""
+msgstr "फ़िनलैंड"
 
 #: mkt/constants/bango.py:94 mkt/constants/regions.py:81
 msgid "France"
-msgstr ""
+msgstr "फ्रांस"
 
 #: mkt/constants/bango.py:95
 msgid "French Guiana"
-msgstr ""
+msgstr "फ्रेंच गयाना"
 
 #: mkt/constants/bango.py:96
 msgid "French Polynesia"
-msgstr ""
+msgstr "फ़्रेंच पोलिनेशिया"
 
 #: mkt/constants/bango.py:97
 msgid "French Southern Territories"
-msgstr ""
+msgstr "फ़्रांसीसी दक्षिणी क्षेत्र"
 
 #: mkt/constants/bango.py:98
 msgid "Gabon"
@@ -470,39 +471,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:107
 msgid "Guadeloupe"
-msgstr ""
+msgstr "ग्वाडेलोप"
 
 #: mkt/constants/bango.py:108
 msgid "Guam"
-msgstr ""
+msgstr "गुआम"
 
 #: mkt/constants/bango.py:109 mkt/constants/regions.py:84
 msgid "Guatemala"
-msgstr ""
+msgstr "ग्वाटेमाला"
 
 #: mkt/constants/bango.py:110
 msgid "Guernsey"
-msgstr ""
+msgstr "ग्वेर्नसे"
 
 #: mkt/constants/bango.py:111
 msgid "Guinea"
-msgstr ""
+msgstr "गिनी"
 
 #: mkt/constants/bango.py:112
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "गिनी-बिसाऊ"
 
 #: mkt/constants/bango.py:113
 msgid "Guyana"
-msgstr ""
+msgstr "गुयाना"
 
 #: mkt/constants/bango.py:114
 msgid "Haiti"
-msgstr ""
+msgstr "हैती"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "हर्ड और मैकडोनाल्ड आइलैंड्स"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
@@ -542,39 +543,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:125
 msgid "Ireland"
-msgstr ""
+msgstr "आयरलैंड"
 
 #: mkt/constants/bango.py:126
 msgid "Isle of Man"
-msgstr ""
+msgstr "मैन द्वीप"
 
 #: mkt/constants/bango.py:127
 msgid "Israel"
-msgstr ""
+msgstr "इसराइल"
 
 #: mkt/constants/bango.py:128 mkt/constants/regions.py:87
 msgid "Italy"
-msgstr ""
+msgstr "इटली"
 
 #: mkt/constants/bango.py:129
 msgid "Jamaica"
-msgstr ""
+msgstr "जमैका"
 
 #: mkt/constants/bango.py:130 mkt/constants/regions.py:88
 msgid "Japan"
-msgstr ""
+msgstr "जापान"
 
 #: mkt/constants/bango.py:131
 msgid "Jersey"
-msgstr ""
+msgstr "जर्सी"
 
 #: mkt/constants/bango.py:132
 msgid "Jordan"
-msgstr ""
+msgstr "जॉर्डन"
 
 #: mkt/constants/bango.py:133
 msgid "Kazakhstan"
-msgstr ""
+msgstr "कजाखस्तान"
 
 #: mkt/constants/bango.py:134
 msgid "Kenya"
@@ -614,39 +615,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:143
 msgid "Lebanon"
-msgstr ""
+msgstr "लेबनान"
 
 #: mkt/constants/bango.py:144
 msgid "Lesotho"
-msgstr ""
+msgstr "लेसोथो"
 
 #: mkt/constants/bango.py:145
 msgid "Liberia"
-msgstr ""
+msgstr "लाइबेरिया"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "लीबिया अरब जमहिरिया"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
-msgstr ""
+msgstr "लिकटेंस्टीन"
 
 #: mkt/constants/bango.py:148
 msgid "Lithuania"
-msgstr ""
+msgstr "लिथुआनिया"
 
 #: mkt/constants/bango.py:149
 msgid "Luxembourg"
-msgstr ""
+msgstr "लक्समबर्ग"
 
 #: mkt/constants/bango.py:150
 msgid "Macao"
-msgstr ""
+msgstr "मकाऊ"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "मैसेडोनिया, पूर्व यूगोस्लाव प्रतिनिधि"
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
@@ -686,39 +687,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:161
 msgid "Mauritius"
-msgstr ""
+msgstr "मॉरीशस"
 
 #: mkt/constants/bango.py:162
 msgid "Mayotte"
-msgstr ""
+msgstr "मायोटी"
 
 #: mkt/constants/bango.py:163 mkt/constants/regions.py:89
 msgid "Mexico"
-msgstr ""
+msgstr "मेक्सिको"
 
 #: mkt/constants/bango.py:164
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "माइक्रोनेशिया, संघीय राज्य"
 
 #: mkt/constants/bango.py:165
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "मोल्दोवा, गणराज्य"
 
 #: mkt/constants/bango.py:166
 msgid "Monaco"
-msgstr ""
+msgstr "मोनाको"
 
 #: mkt/constants/bango.py:167
 msgid "Mongolia"
-msgstr ""
+msgstr "मंगोलिया"
 
 #: mkt/constants/bango.py:168 mkt/constants/regions.py:90
 msgid "Montenegro"
-msgstr ""
+msgstr "मोंटेनेग्रो"
 
 #: mkt/constants/bango.py:169
 msgid "Montserrat"
-msgstr ""
+msgstr "मोंटेसेराट"
 
 #: mkt/constants/bango.py:170
 msgid "Morocco"
@@ -758,39 +759,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:179 mkt/constants/regions.py:91
 msgid "Nicaragua"
-msgstr ""
+msgstr "निकारागुआ"
 
 #: mkt/constants/bango.py:180
 msgid "Niger"
-msgstr ""
+msgstr "नाइजर"
 
 #: mkt/constants/bango.py:181
 msgid "Nigeria"
-msgstr ""
+msgstr "नाइजीरिया"
 
 #: mkt/constants/bango.py:182
 msgid "Niue"
-msgstr ""
+msgstr "नियू"
 
 #: mkt/constants/bango.py:183
 msgid "Norfolk Island"
-msgstr ""
+msgstr "नॉरफ़ॉक आइलैंड"
 
 #: mkt/constants/bango.py:184
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "उत्तरी मारियाना द्वीप"
 
 #: mkt/constants/bango.py:185
 msgid "Norway"
-msgstr ""
+msgstr "नॉर्वे"
 
 #: mkt/constants/bango.py:186
 msgid "Oman"
-msgstr ""
+msgstr "ओमान"
 
 #: mkt/constants/bango.py:187
 msgid "Pakistan"
-msgstr ""
+msgstr "पाकिस्तान"
 
 #: mkt/constants/bango.py:188
 msgid "Palau"
@@ -830,39 +831,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:197
 msgid "Portugal"
-msgstr ""
+msgstr "पुर्तगाल"
 
 #: mkt/constants/bango.py:198
 msgid "Puerto Rico"
-msgstr ""
+msgstr "प्यूर्टो रिको"
 
 #: mkt/constants/bango.py:199
 msgid "Qatar"
-msgstr ""
+msgstr "कतर"
 
 #: mkt/constants/bango.py:200
 msgid "Réunion"
-msgstr ""
+msgstr "रियूनियन"
 
 #: mkt/constants/bango.py:201
 msgid "Romania"
-msgstr ""
+msgstr "रोमानिया"
 
 #: mkt/constants/bango.py:202
 msgid "Russian Federation"
-msgstr ""
+msgstr "रूसी संघ"
 
 #: mkt/constants/bango.py:203
 msgid "Rwanda"
-msgstr ""
+msgstr "रवांडा"
 
 #: mkt/constants/bango.py:204
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "सेंट बार्थेलेमी"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
-msgstr ""
+msgstr "सेंट हेलेना"
 
 #: mkt/constants/bango.py:206
 msgid "Saint Kitts and Nevis"
@@ -902,39 +903,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "सेनेगा"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:98
 msgid "Serbia"
-msgstr ""
+msgstr "सर्बिया"
 
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "सर्बिया और मोंटेनेग्रो"
 
 #: mkt/constants/bango.py:218
 msgid "Seychelles"
-msgstr ""
+msgstr "सेशेल्स"
 
 #: mkt/constants/bango.py:219
 msgid "Sierra Leone"
-msgstr ""
+msgstr "सेरा लिओन"
 
 #: mkt/constants/bango.py:220
 msgid "Singapore"
-msgstr ""
+msgstr "सिंगापुर"
 
 #: mkt/constants/bango.py:221
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "सिंट मार्टेन (डच भाग)"
 
 #: mkt/constants/bango.py:222
 msgid "Slovakia"
-msgstr ""
+msgstr "स्लोवाकिया"
 
 #: mkt/constants/bango.py:223
 msgid "Slovenia"
-msgstr ""
+msgstr "स्लोवेनिया"
 
 #: mkt/constants/bango.py:224
 msgid "Solomon Islands"
@@ -974,39 +975,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:233
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "स्वालबार्ड और जैन मायेन"
 
 #: mkt/constants/bango.py:234
 msgid "Swaziland"
-msgstr ""
+msgstr "स्वाजीलैंड"
 
 #: mkt/constants/bango.py:235
 msgid "Sweden"
-msgstr ""
+msgstr "स्वीडन"
 
 #: mkt/constants/bango.py:236
 msgid "Switzerland"
-msgstr ""
+msgstr "स्विट्जरलैंड"
 
 #: mkt/constants/bango.py:237
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "सीरियाई अरब गणराज्य"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "ताइवान, चीन का प्रान्त"
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
-msgstr ""
+msgstr "ताजिकिस्तान"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "तंजानिया, संयुक्त गणराज्य"
 
 #: mkt/constants/bango.py:241
 msgid "Thailand"
-msgstr ""
+msgstr "थाईलैंड"
 
 #: mkt/constants/bango.py:242
 msgid "Timor-Leste"
@@ -1046,39 +1047,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:251
 msgid "Tuvalu"
-msgstr ""
+msgstr "तुवालु"
 
 #: mkt/constants/bango.py:252
 msgid "Uganda"
-msgstr ""
+msgstr "यूगांडा"
 
 #: mkt/constants/bango.py:253
 msgid "Ukraine"
-msgstr ""
+msgstr "यूक्रेन"
 
 #: mkt/constants/bango.py:254
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "संयुक्त अरब अमीरात"
 
 #: mkt/constants/bango.py:255 mkt/constants/regions.py:82
 msgid "United Kingdom"
-msgstr ""
+msgstr "यूनाइटेड किंगडम"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:100
 msgid "United States"
-msgstr ""
+msgstr "संयुक्त राज्य अमेरिका"
 
 #: mkt/constants/bango.py:257
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "संयुक्त राज्य अमेरिका के छोटे दूरस्थ द्वीपसमूह"
 
 #: mkt/constants/bango.py:258 mkt/constants/regions.py:99
 msgid "Uruguay"
-msgstr ""
+msgstr "उरुग्वे"
 
 #: mkt/constants/bango.py:259
 msgid "Uzbekistan"
-msgstr ""
+msgstr "उजबेकिस्तान"
 
 #: mkt/constants/bango.py:260
 msgid "Vanuatu"
@@ -1118,7 +1119,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:269
 msgid "Zimbabwe"
-msgstr ""
+msgstr "ज़िम्बाब्वे"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:167
 msgid "Incomplete"
