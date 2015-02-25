@@ -99,8 +99,8 @@ class TestSubRouterWithFormat(TestCase):
         router = SubRouterWithFormat()
         router.register('foo', ModelViewSet, base_name='bar')
         expected = [
-            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/]+)/foo/$'},
-            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/]+)/foo/$'},
+            {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo/$'},
+            {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo/$'},
             {'name': 'bar-list',
              'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
             {'name': 'bar-detail',

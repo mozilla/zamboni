@@ -466,7 +466,10 @@ class FeedShelfPublishView(FeedShelfPermissionMixin, CORSMixin, APIView):
                                             **feed_item_kwargs)
 
         # Return.
-        return response.Response(FeedItemSerializer(feed_item).data,
+        serializer = FeedItemSerializer(feed_item, context={
+            'request': self.request,
+        })
+        return response.Response(serializer.data,
                                  status=status.HTTP_201_CREATED)
 
     def delete(self, request, *args, **kwargs):

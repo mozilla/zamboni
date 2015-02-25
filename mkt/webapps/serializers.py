@@ -103,7 +103,7 @@ class AppSerializer(serializers.ModelSerializer):
                                     required=False)
     public_stats = serializers.BooleanField(read_only=True)
     ratings = serializers.SerializerMethodField('get_ratings_aggregates')
-    regions = RegionSerializer(read_only=True, source='get_regions')
+    regions = RegionSerializer(read_only=True, source='get_regions', many=True)
     release_notes = TranslationSerializerField(
         read_only=True,
         source='current_version.releasenotes')

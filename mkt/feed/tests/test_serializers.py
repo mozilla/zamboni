@@ -29,7 +29,10 @@ class TestFeedAppSerializer(FeedTestMixin, mkt.site.tests.TestCase):
             },
             'slug': 'aaa'
         }
-        serializer = serializers.FeedAppSerializer(data=data)
+        context = {
+            'request': mkt.site.tests.req_factory_factory('')
+        }
+        serializer = serializers.FeedAppSerializer(data=data, context=context)
         assert serializer.is_valid()
 
 
@@ -48,12 +51,14 @@ class TestFeedAppESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
             self.feedapp.app_id: WebappIndexer.extract_document(
                 self.feedapp.app_id)
         }
-
-    def test_deserialize(self):
-        data = serializers.FeedAppESSerializer(self.data_es, context={
+        self.context = {
             'app_map': self.app_map,
             'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        }
+
+    def test_deserialize(self):
+        data = serializers.FeedAppESSerializer(
+            self.data_es, context=self.context).data
         eq_(data['app']['id'], self.feedapp.app_id)
         eq_(data['description']['en-US'], 'test')
         eq_(data['preview'], {
@@ -63,9 +68,7 @@ class TestFeedAppESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
     def test_deserialize_many(self):
         data = serializers.FeedAppESSerializer(
-            [self.data_es, self.data_es], context={
-                'app_map': self.app_map,
-                'request': mkt.site.tests.req_factory_factory('')},
+            [self.data_es, self.data_es], context=self.context,
             many=True).data
         eq_(data[0]['app']['id'], self.feedapp.app_id)
         eq_(data[1]['description']['en-US'], 'test')
@@ -78,10 +81,8 @@ class TestFeedAppESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
             self.feedapp.app_id: WebappIndexer.extract_document(
                 self.feedapp.app_id)
         }
-        data = serializers.FeedAppESSerializer(self.data_es, context={
-            'app_map': self.app_map,
-            'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        data = serializers.FeedAppESSerializer(
+            self.data_es, context=self.context).data
         assert data['background_image'].endswith('image.png?LOL')
 
 
@@ -91,9 +92,13 @@ class TestFeedBrandSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.app_ids = [mkt.site.tests.app_factory().id for i in range(3)]
         self.brand = self.feed_brand_factory(app_ids=self.app_ids)
         super(TestFeedBrandSerializer, self).setUp()
+        self.context = {
+            'request': mkt.site.tests.req_factory_factory('')
+        }
 
     def test_deserialize(self):
-        data = serializers.FeedBrandSerializer(self.brand).data
+        data = serializers.FeedBrandSerializer(
+            self.brand, context=self.context).data
         eq_(data['slug'], self.brand.slug)
         eq_(data['layout'], self.brand.layout)
         eq_(data['type'], self.brand.type)
@@ -112,12 +117,14 @@ class TestFeedBrandESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
         self.app_map = dict((app.id, WebappIndexer.extract_document(app.id))
                             for app in self.apps)
-
-    def test_deserialize(self):
-        data = serializers.FeedBrandESSerializer(self.data_es, context={
+        self.context = {
             'app_map': self.app_map,
             'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        }
+
+    def test_deserialize(self):
+        data = serializers.FeedBrandESSerializer(
+            self.data_es, context=self.context).data
         self.assertSetEqual([app['id'] for app in data['apps']],
                             [app.id for app in self.apps])
         eq_(data['type'], self.brand.type)
@@ -139,6 +146,10 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
             'name': {'en-US': 'Potato'},
             'description': {'en-US': 'Potato, tomato'},
             'type': COLLECTION_PROMO
+        }
+        self.context = {
+            'request': mkt.site.tests.req_factory_factory(
+                '', REGION=mkt.regions.USA)
         }
 
     def validate(self, **attrs):
@@ -171,12 +182,9 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
     def test_with_price(self):
         app = mkt.site.tests.app_factory()
         self.make_premium(app)
-        coll = self.feed_collection_factory(app_ids=[app.id])
+        collection = self.feed_collection_factory(app_ids=[app.id])
         data = serializers.FeedCollectionSerializer(
-            coll, context={
-                'request':
-                mkt.site.tests.req_factory_factory('', REGION=mkt.regions.USA)
-            }).data
+            collection, context=self.context).data
         eq_(data['apps'][0]['price'], 1)
 
 
@@ -194,12 +202,14 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
         self.app_map = dict((app.id, WebappIndexer.extract_document(app.id))
                             for app in self.apps)
-
-    def test_deserialize(self):
-        data = serializers.FeedCollectionESSerializer(self.data_es, context={
+        self.context = {
             'app_map': self.app_map,
             'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        }
+
+    def test_deserialize(self):
+        data = serializers.FeedCollectionESSerializer(
+            self.data_es, context=self.context).data
         self.assertSetEqual([app['id'] for app in data['apps']],
                             [app.id for app in self.apps])
         eq_(data['description']['de'], 'test')
@@ -225,10 +235,8 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.collection.update(type=feed.COLLECTION_PROMO, image_hash='LOL')
         self.data_es = self.collection.get_indexer().extract_document(
             None, obj=self.collection)
-        data = serializers.FeedCollectionESSerializer(self.data_es, context={
-            'app_map': self.app_map,
-            'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        data = serializers.FeedCollectionESSerializer(
+            self.data_es, context=self.context).data
         assert data['background_image'].endswith('image.png?LOL')
 
     def test_home_serializer_listing_coll(self):
@@ -237,10 +245,7 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.data_es = self.collection.get_indexer().extract_document(
             None, obj=self.collection)
         data = serializers.FeedCollectionESHomeSerializer(
-            self.data_es,
-            context={'app_map': self.app_map,
-                     'request': mkt.site.tests.req_factory_factory('')}
-        ).data
+            self.data_es, context=self.context).data
         ok_('author' in data['apps'][0])
         ok_(data['apps'][0]['name'])
         ok_(data['apps'][0]['ratings'])
@@ -256,10 +261,7 @@ class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.data_es = self.collection.get_indexer().extract_document(
             None, obj=self.collection)
         data = serializers.FeedCollectionESHomeSerializer(
-            self.data_es,
-            context={'app_map': self.app_map,
-                     'request': mkt.site.tests.req_factory_factory('')}
-        ).data
+            self.data_es, context=self.context).data
         assert 'author' not in data['apps'][0]
         assert 'name' not in data['apps'][0]
         assert 'ratings' not in data['apps'][0]
@@ -272,17 +274,23 @@ class TestFeedShelfSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.app_ids = [mkt.site.tests.app_factory().id for i in range(3)]
         self.shelf = self.feed_shelf_factory(app_ids=self.app_ids)
         super(TestFeedShelfSerializer, self).setUp()
+        self.context = {
+            'request': mkt.site.tests.req_factory_factory('')
+        }
 
     def test_deserialize(self):
-        data = serializers.FeedShelfSerializer(self.shelf).data
+        data = serializers.FeedShelfSerializer(
+            self.shelf, context=self.context).data
         eq_(data['slug'], self.shelf.slug)
         self.assertSetEqual([app['id'] for app in data['apps']], self.app_ids)
 
     def test_is_published(self):
-        data = serializers.FeedShelfSerializer(self.shelf).data
+        data = serializers.FeedShelfSerializer(
+            self.shelf, context=self.context).data
         assert not data['is_published']
         self.shelf.feeditem_set.create()
-        data = serializers.FeedShelfSerializer(self.shelf).data
+        data = serializers.FeedShelfSerializer(
+            self.shelf, context=self.context).data
         assert data['is_published']
 
     def test_shelf_get_apps_deleted_app(self):
@@ -295,7 +303,8 @@ class TestFeedShelfSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         Webapp.objects.get(pk=app_id).delete()
         eq_(FeedShelfMembership.objects.filter(app__id=app_id).count(), 0)
         try:
-            serializers.FeedShelfSerializer(self.shelf).data
+            serializers.FeedShelfSerializer(
+                self.shelf, context=self.context).data
         except Webapp.DoesNotExist:
             self.fail('Deleted app does not delete shelf membership object.')
 
@@ -314,12 +323,14 @@ class TestFeedShelfESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
 
         self.app_map = dict((app.id, WebappIndexer.extract_document(app.id))
                             for app in self.apps)
-
-    def test_deserialize(self):
-        data = serializers.FeedShelfESSerializer(self.data_es, context={
+        self.context = {
             'app_map': self.app_map,
             'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        }
+
+    def test_deserialize(self):
+        data = serializers.FeedShelfESSerializer(
+            self.data_es, context=self.context).data
         self.assertSetEqual([app['id'] for app in data['apps']],
                             [app.id for app in self.apps])
         eq_(data['carrier'], 'telefonica')
@@ -347,10 +358,8 @@ class TestFeedShelfESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.shelf.update(image_hash='LOL', image_landing_hash='ROFL')
         self.data_es = self.shelf.get_indexer().extract_document(
             None, obj=self.shelf)
-        data = serializers.FeedShelfESSerializer(self.data_es, context={
-            'app_map': self.app_map,
-            'request': mkt.site.tests.req_factory_factory('')
-        }).data
+        data = serializers.FeedShelfESSerializer(
+            self.data_es, context=self.context).data
         assert data['background_image'].endswith('image.png?LOL')
         assert data['background_image_landing'].endswith(
             'image_landing.png?ROFL')
@@ -361,11 +370,14 @@ class TestFeedItemSerializer(FeedAppMixin, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestFeedItemSerializer, self).setUp()
         self.create_feedapps()
+        self.context = {
+            'request': mkt.site.tests.req_factory_factory('')
+        }
 
-    def serializer(self, item=None, **context):
+    def serializer(self, item=None):
         if not item:
-            return serializers.FeedItemSerializer(context=context)
-        return serializers.FeedItemSerializer(item, context=context)
+            return serializers.FeedItemSerializer(context=self.context)
+        return serializers.FeedItemSerializer(item, context=self.context)
 
     def validate(self, **attrs):
         return self.serializer().validate(attrs=attrs)
@@ -434,13 +446,15 @@ class TestFeedItemESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
             else:
                 self.app_map[feed_element.app_id] = (
                     WebappIndexer.extract_document(feed_element.app_id))
-
-    def test_deserialize_many(self):
-        data = serializers.FeedItemESSerializer(self.data_es, context={
+        self.context = {
             'app_map': self.app_map,
             'feed_element_map': self.feed_element_map,
             'request': mkt.site.tests.req_factory_factory('')
-        }, many=True).data
+        }
+
+    def test_deserialize_many(self):
+        data = serializers.FeedItemESSerializer(
+            self.data_es, context=self.context, many=True).data
 
         eq_(data[0]['app']['app']['id'], self.feed[0].app.app.id)
 

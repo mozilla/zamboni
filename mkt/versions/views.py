@@ -29,7 +29,7 @@ class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
         # client is passing, we need to make sure to override the pk in
         # self.kwargs, DRF uses it as a precautionary measure in in pre_save().
         obj = self.kwargs['version'].all_files[0]
-        self.kwargs[self.pk_url_kwarg] = obj.pk
+        self.kwargs[self.lookup_field] = obj.pk
         return obj
 
     def update(self, request, *args, **kwargs):

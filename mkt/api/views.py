@@ -227,7 +227,8 @@ class PriceCurrencySerializer(ModelSerializer):
     resource_uri = HyperlinkedIdentityField(view_name='price-currency-detail')
     tier = HyperlinkedRelatedField(view_name='price-tier-detail')
     currency = ChoiceField(choices=ALL_CURRENCIES.items())
-    carrier = CharField(required=False)
+    carrier = SlugChoiceField(choices_dict=CARRIER_MAP,
+                              required=False, empty=None)
     price = DecimalField()
     provider = EnumeratedField(PROVIDER_CHOICES)
     method = EnumeratedField(PAYMENT_METHOD_CHOICES)

@@ -249,7 +249,11 @@ class SlugOrIdMixin(object):
         pk = self.kwargs.get('pk')
         if pk and not pk.isdigit():
             # If the `pk` contains anything other than a digit, it's a `slug`.
-            self.kwargs.update(pk=None, slug=self.kwargs['pk'])
+            self.lookup_field = getattr(self, 'slug_field', 'slug')
+            self.kwargs.update({
+                'pk': None,
+                self.lookup_field: self.kwargs['pk']
+            })
         return super(SlugOrIdMixin, self).get_object(queryset=queryset)
 
 
