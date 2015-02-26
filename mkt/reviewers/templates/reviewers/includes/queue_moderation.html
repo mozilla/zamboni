@@ -29,7 +29,7 @@
           {% endtrans %}
           {% if waffle.switch('reviews-translate') %}
           - <a class="translate reviewers-desktop" rel="nofollow" target="_blank"
-               href="{{ url('reviewers.review_translate', review.instance.addon.slug, review.instance.id, LANG) }}">
+               href="{{ url('reviewers.review_translate', review.instance.addon.app_slug, review.instance.id, LANG) }}">
                {{ _('translate') }}
             </a>
           {% endif %}
