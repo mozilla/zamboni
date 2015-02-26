@@ -63,8 +63,7 @@ class Command(BaseCommand):
 
         for x in xrange(number):
             name = 'generate-receipt-%s-%s' % (stamp, x)
-            user = UserProfile.objects.create(email='%s@mozilla.com' % name,
-                                              username=name)
+            user = UserProfile.objects.create(email='%s@mozilla.com' % name)
             created['users'].append(user.pk)
 
         for x in xrange(number):

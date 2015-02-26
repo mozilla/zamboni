@@ -327,9 +327,9 @@ class MockBrowserIdMixin(object):
 
         real_login = self.client.login
 
-        def fake_login(username, password=None):
-            with mock_browserid(email=username):
-                return real_login(username=username, assertion='test',
+        def fake_login(email, password=None):
+            with mock_browserid(email=email):
+                return real_login(email=email, assertion='test',
                                   audience='test')
 
         self.client.login = fake_login
@@ -338,7 +338,7 @@ class MockBrowserIdMixin(object):
         email = getattr(profile, 'email', profile)
         if '@' not in email:
             email += '@mozilla.com'
-        assert self.client.login(username=email, password='password')
+        assert self.client.login(email=email, password='password')
 
 
 JINJA_INSTRUMENTED = False
@@ -754,17 +754,15 @@ user_factory_counter = 0
 
 def user_factory(**kw):
     """
-    If not provided, email will be 'factoryuser<number>@mozilla.com' and
-    username will be a <random 32 hex string>.
+    If not provided, email will be 'factoryuser<number>@mozilla.com'.
     If email has no '@' it will be corrected to 'email@mozilla.com'
     """
     global user_factory_counter
-    username = kw.pop('username', '%030x' % random.randrange(16 ** 30))
     email = kw.pop('email', 'factoryuser%d' % user_factory_counter)
     if '@' not in email:
         email = '%s@mozilla.com' % email
 
-    user = UserProfile.objects.create(username=username, email=email, **kw)
+    user = UserProfile.objects.create(email=email, **kw)
 
     if 'email' not in kw:
         user_factory_counter = user.id + 1

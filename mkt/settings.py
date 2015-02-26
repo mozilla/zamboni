@@ -559,6 +559,9 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 BROWSERID_AUDIENCES = [SITE_URL]
 
+# Don't let django-browserid create users, we do this ourselves. 
+BROWSERID_CREATE_USER = False 
+
 # Native-FxA uses a browserid verifier with slightly different behavior.
 NATIVE_FXA_VERIFICATION_URL = 'https://verifier.accounts.firefox.com/v2'
 NATIVE_FXA_ISSUER = 'api.accounts.firefox.com'
@@ -893,14 +896,6 @@ LEGAL_XFRAME_ALLOW_FROM = [
 
 # Handlers and log levels are set up automatically based on LOG_LEVEL.
 LOG_LEVEL = logging.DEBUG if DEBUG else logging.ERROR
-
-LOGIN_RATELIMIT_USER = 5
-LOGIN_RATELIMIT_ALL_USERS = '15/m'
-
-# When logging in with browser ID, a username is created automatically.
-# In the case of duplicates, the process is recursive up to this number
-# of times.
-MAX_GEN_USERNAME_TRIES = 50
 
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024

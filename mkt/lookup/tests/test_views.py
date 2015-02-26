@@ -320,21 +320,16 @@ class TestAcctSearch(TestCase, SearchTestMixin):
         self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
 
     def verify_result(self, data):
-        eq_(data['results'][0]['name'], self.user.username)
+        eq_(data['results'][0]['fxa_uid'], self.user.fxa_uid)
         eq_(data['results'][0]['display_name'], self.user.display_name)
         eq_(data['results'][0]['email'], self.user.email)
         eq_(data['results'][0]['id'], self.user.pk)
         eq_(data['results'][0]['url'], reverse('lookup.user_summary',
                                                args=[self.user.pk]))
 
-    def test_by_username(self):
-        self.user.update(username='newusername')
-        data = self.search(q='newus')
-        self.verify_result(data)
-
-    def test_by_username_with_dashes(self):
-        self.user.update(username='kr-raj')
-        data = self.search(q='kr-raj')
+    def test_by_fxa_uid(self):
+        self.user.update(fxa_uid='fake-fxa-uid')
+        data = self.search(q='fake-fxa-uid')
         self.verify_result(data)
 
     def test_by_display_name(self):
@@ -808,15 +803,17 @@ class TestAppSummary(AppSummaryTest):
                      mkt.AUTHOR_ROLE_OWNER,
                      mkt.AUTHOR_ROLE_VIEWER,
                      mkt.AUTHOR_ROLE_SUPPORT):
-            user = user_factory(username=role)
+            role_name = unicode(mkt.AUTHOR_CHOICES_NAMES[role])
+            user = user_factory(display_name=role_name)
             role = AddonUser.objects.create(user=user,
                                             addon=self.app,
                                             role=role)
             self.app.addonuser_set.add(role)
         res = self.summary()
 
-        eq_(sorted([u.username for u in res.context['authors']]),
-            [str(mkt.AUTHOR_ROLE_DEV), str(mkt.AUTHOR_ROLE_OWNER)])
+        eq_(sorted([u.display_name for u in res.context['authors']]),
+            [unicode(mkt.AUTHOR_CHOICES_NAMES[mkt.AUTHOR_ROLE_DEV]),
+             unicode(mkt.AUTHOR_CHOICES_NAMES[mkt.AUTHOR_ROLE_OWNER])])
 
     def test_details(self):
         res = self.summary()

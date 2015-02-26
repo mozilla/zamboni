@@ -1691,19 +1691,15 @@
             "display_name": "",
             "email": "amckay+docker-api@mozilla.com",
             "enable_recommendations": true,
-            "failed_login_attempts": 0,
             "is_verified": true,
             "lang": null,
             "last_login": "2014-11-28T14:06:18",
-            "last_login_attempt": null,
-            "last_login_attempt_ip": "",
             "last_login_ip": "",
             "modified": "2014-11-28T14:06:18",
             "password": "",
             "read_dev_agreement": null,
             "region": null,
-            "source": 0,
-            "username": ""
+            "source": 0
         },
         "model": "users.userprofile",
         "pk": 1
