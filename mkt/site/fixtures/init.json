@@ -1699,7 +1699,7 @@
             "password": "",
             "read_dev_agreement": null,
             "region": null,
-            "source": 0,
+            "source": 0
         },
         "model": "users.userprofile",
         "pk": 1
