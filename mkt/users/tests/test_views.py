@@ -29,7 +29,7 @@ class TestAjax(TestCase):
     def test_ajax_success(self):
         u = UserProfile.objects.create(
             email='ajax@mozilla.com',
-            username=u'àjæx', read_dev_agreement=datetime.now())
+            display_name=u'àjæx', read_dev_agreement=datetime.now())
         r = self.client.get(reverse('users.ajax'), {'q': 'ajax@mozilla.com'},
                             follow=True)
         data = json.loads(r.content)

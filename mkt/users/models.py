@@ -1,6 +1,5 @@
 import hashlib
 from contextlib import contextmanager
-from datetime import datetime
 
 from django import forms
 from django.conf import settings
@@ -63,24 +62,17 @@ class UserEmailField(forms.EmailField):
                 'data-src': lazy_reverse('users.ajax')}
 
 
-AbstractBaseUser._meta.get_field('password').max_length = 255
-
-
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
-    USERNAME_FIELD = 'username'
-    username = models.CharField(max_length=255, default='', unique=True)
+    USERNAME_FIELD = 'email'
+    fxa_uid = models.CharField(max_length=255, unique=True, blank=True,
+                               null=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
     email = models.EmailField(unique=True, null=True)
     deleted = models.BooleanField(default=False)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
-    last_login_attempt = models.DateTimeField(null=True, editable=False)
-    last_login_attempt_ip = models.CharField(default='', max_length=45,
-                                             editable=False)
-    failed_login_attempts = models.PositiveIntegerField(default=0,
-                                                        editable=False)
     source = models.PositiveIntegerField(default=mkt.LOGIN_SOURCE_UNKNOWN,
                                          editable=False, db_index=True)
 
@@ -96,11 +88,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def __init__(self, *args, **kw):
         super(UserProfile, self).__init__(*args, **kw)
-        if self.username:
-            self.username = smart_unicode(self.username)
 
     def __unicode__(self):
-        return u'%s: %s' % (self.id, self.display_name or self.username)
+        return u'%s: %s' % (self.id, self.name)
 
     @property
     def is_superuser(self):
@@ -147,7 +137,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def name(self):
-        return smart_unicode(self.display_name or self.username)
+        return smart_unicode(self.display_name or 'user-%s' % self.id)
 
     @cached_property
     def reviews(self):
@@ -161,7 +151,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.password = "sha512$Anonymous$Password"
-        self.username = "Anonymous-%s" % self.id  # Can't be null
+        self.fxa_uid = None
         self.display_name = None
         self.homepage = ""
         self.deleted = True
@@ -171,22 +161,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def check_password(self, raw_password):
         # BrowserID does not store a password.
         return True
-
-    def log_login_attempt(self, successful):
-        """Log a user's login attempt"""
-        self.last_login_attempt = datetime.now()
-        self.last_login_attempt_ip = commonware.log.get_remote_addr()
-
-        if successful:
-            log.debug(u"User (%s) logged in successfully" % self)
-            self.failed_login_attempts = 0
-            self.last_login_ip = commonware.log.get_remote_addr()
-        else:
-            log.debug(u"User (%s) failed to log in" % self)
-            if self.failed_login_attempts < 16777216:
-                self.failed_login_attempts += 1
-
-        self.save()
 
     def purchase_ids(self):
         """

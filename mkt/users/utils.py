@@ -1,6 +1,4 @@
 import datetime
-import uuid
-from functools import partial
 
 from django.conf import settings
 from django.db import transaction
@@ -25,24 +23,6 @@ def get_task_user():
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
 
 
-def autocreate_username(candidate, tries=1):
-    """Returns a unique valid username."""
-    max_tries = settings.MAX_GEN_USERNAME_TRIES
-    from mkt.site.utils import slugify, SLUG_OK
-    make_u = partial(slugify, ok=SLUG_OK, lower=True, spaces=False,
-                     delimiter='-')
-    adjusted_u = make_u(candidate)
-    if tries > 1:
-        adjusted_u = '%s%s' % (adjusted_u, tries)
-    if (adjusted_u == '' or tries > max_tries or len(adjusted_u) > 255):
-        log.info('username empty, max tries reached, or too long;'
-                 ' username=%s; max=%s' % (adjusted_u, max_tries))
-        return autocreate_username(uuid.uuid4().hex[0:15])
-    if UserProfile.objects.filter(username=adjusted_u).count():
-        return autocreate_username(candidate, tries=tries + 1)
-    return adjusted_u
-
-
 @transaction.commit_on_success
 def create_user(email, group_name=None, overwrite=False,
                 oauth_key=None, oauth_secret=None):
@@ -58,7 +38,7 @@ def create_user(email, group_name=None, overwrite=False,
     """
     # Create the user.
     profile, created = UserProfile.objects.get_or_create(
-        username=email, email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
+        email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
         display_name=email)
 
     if not profile.read_dev_agreement:

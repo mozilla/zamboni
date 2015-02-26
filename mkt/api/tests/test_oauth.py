@@ -51,9 +51,9 @@ class OAuthClient(JSONClient):
         self.get_absolute_url = partial(get_absolute_url,
                                         api_name=api_name)
 
-    def login(self, username, password):
-        with mock_browserid(email=username):
-            return super(OAuthClient, self).login(username=username,
+    def login(self, email, password):
+        with mock_browserid(email=email):
+            return super(OAuthClient, self).login(email=email,
                                                   password=password)
 
     def sign(self, method, url):

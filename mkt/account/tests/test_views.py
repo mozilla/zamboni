@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
 import json
 import uuid
 from urlparse import urlparse
@@ -191,22 +190,24 @@ class TestAccount(RestOAuth):
         data = json.loads(res.content)
         eq_(data['display_name'], self.user.display_name)
 
-    def test_own_empty(self):
+    def test_own_empty_name(self):
         self.user.update(display_name='')
         url = reverse('account-settings', kwargs={'pk': 'mine'})
         res = self.client.get(url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(data['display_name'], self.user.username)
+        eq_(data['display_name'], 'user-2519')
 
     def test_patch(self):
         res = self.client.patch(
             self.url, data=json.dumps({'display_name': 'foo',
-                                       'enable_recommendations': '0'}))
+                                       'enable_recommendations': '0',
+                                       'fxa_uid': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
         eq_(user.enable_recommendations, False)
+        eq_(user.fxa_uid, None)
 
     def test_patch_empty(self):
         res = self.client.patch(self.url,
@@ -224,21 +225,22 @@ class TestAccount(RestOAuth):
     def test_put(self):
         res = self.client.put(
             self.url, data=json.dumps({'display_name': 'foo',
-                                       'enable_recommendations': '0'}))
+                                       'enable_recommendations': '0',
+                                       'fxa_uid': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
-        eq_(user.username, self.user.username)  # Did not change.
         eq_(user.enable_recommendations, False)
+        eq_(user.fxa_uid, None)
 
     def test_patch_extra_fields(self):
         res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': 'foo',
-                                                 'username': 'bob'}))
+                                                 'fxa_uid': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')  # Got changed successfully.
-        eq_(user.username, self.user.username)  # Did not change.
+        eq_(user.fxa_uid, None)
 
     def test_patch_other(self):
         url = reverse('account-settings', kwargs={'pk': 10482})
@@ -384,105 +386,6 @@ class FakeUUID(object):
 
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
-class TestLoginHandler(TestCase):
-
-    def setUp(self):
-        super(TestLoginHandler, self).setUp()
-        self.url = reverse('account-login')
-        self.logout_url = reverse('account-logout')
-
-    def post(self, data):
-        return self.client.post(self.url, json.dumps(data),
-                                content_type='application/json')
-
-    @patch.object(uuid, 'uuid4', FakeUUID)
-    @patch('requests.post')
-    def _test_login(self, http_request):
-        FakeResponse = collections.namedtuple('FakeResponse',
-                                              'status_code json')
-        http_request.return_value = FakeResponse(
-            200, lambda: {'status': 'okay', 'email': 'cvan@mozilla.com'})
-        res = self.post({'assertion': 'fake-assertion',
-                         'audience': 'fakemkt.org'})
-        eq_(res.status_code, 201)
-        data = json.loads(res.content)
-        eq_(data['token'],
-            'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
-            '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f6589d1'
-            'c43e9bbb876eef0,000000')
-
-        return data
-
-    def test_login_new_user_success(self):
-        data = self._test_login()
-        ok_(not any(data['permissions'].values()))
-
-    def test_login_existing_user_success(self):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com',
-                                             display_name='seavan')
-        self.grant_permission(profile, 'Apps:Review')
-
-        data = self._test_login()
-        eq_(data['settings']['display_name'], 'seavan')
-        eq_(data['settings']['email'], 'cvan@mozilla.com')
-        eq_(data['settings']['enable_recommendations'], True)
-        eq_(data['permissions'],
-            {'admin': False,
-             'developer': False,
-             'localizer': False,
-             'lookup': False,
-             'curator': False,
-             'reviewer': True,
-             'webpay': False,
-             'stats': False,
-             'revenue_stats': False})
-        eq_(data['apps']['installed'], [])
-        eq_(data['apps']['purchased'], [])
-        eq_(data['apps']['developed'], [])
-
-    @patch('mkt.users.models.UserProfile.purchase_ids')
-    def test_relevant_apps(self, purchase_ids):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
-        purchased_app = app_factory()
-        purchase_ids.return_value = [purchased_app.pk]
-        developed_app = app_factory()
-        developed_app.addonuser_set.create(user=profile)
-        installed_app = app_factory()
-        installed_app.installed.create(user=profile)
-
-        data = self._test_login()
-        eq_(data['apps']['installed'], [installed_app.pk])
-        eq_(data['apps']['purchased'], [purchased_app.pk])
-        eq_(data['apps']['developed'], [developed_app.pk])
-
-    @patch('requests.post')
-    def test_login_failure(self, http_request):
-        FakeResponse = collections.namedtuple('FakeResponse',
-                                              'status_code json')
-        http_request.return_value = FakeResponse(
-            200, lambda: {'status': 'busted'})
-        res = self.post({'assertion': 'fake-assertion',
-                         'audience': 'fakemkt.org'})
-        eq_(res.status_code, 403)
-
-    def test_login_empty(self):
-        res = self.post({})
-        data = json.loads(res.content)
-        eq_(res.status_code, 400)
-        assert 'assertion' in data
-        assert 'apps' not in data
-
-    def test_logout(self):
-        UserProfile.objects.create(email='cvan@mozilla.com')
-        data = self._test_login()
-
-        r = self.client.delete(
-            urlparams(self.logout_url, _user=data['token']),
-            content_type='application/json')
-        eq_(r.status_code, 204)
-
-
-@patch.object(settings, 'SECRET_KEY', 'gubbish')
 class TestFxaLoginHandler(TestCase):
 
     def setUp(self):
@@ -517,16 +420,22 @@ class TestFxaLoginHandler(TestCase):
             return data
 
     def test_login_new_user_success(self):
+        eq_(UserProfile.objects.count(), 0)
         data = self._test_login()
         ok_(not any(data['permissions'].values()))
+        profile = UserProfile.objects.get()
+        eq_(profile.email, 'cvan@mozilla.com')
+        eq_(profile.fxa_uid, 'fake-uid')
 
     def test_login_existing_user_uid_success(self):
-        profile = UserProfile.objects.create(username='fake-uid',
+        profile = UserProfile.objects.create(fxa_uid='fake-uid',
+                                             email='old@mozilla.com',
                                              display_name='seavan')
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
-        eq_(profile.reload().source, mkt.LOGIN_SOURCE_FXA)
+        profile.reload()
+        eq_(profile.source, mkt.LOGIN_SOURCE_FXA)
         eq_(data['settings']['display_name'], 'seavan')
         eq_(data['settings']['email'], 'cvan@mozilla.com')
         eq_(data['settings']['enable_recommendations'], True)
@@ -545,12 +454,15 @@ class TestFxaLoginHandler(TestCase):
         eq_(data['apps']['developed'], [])
 
         # Ensure user profile got updated with email.
-        eq_(profile.reload().email, 'cvan@mozilla.com')
+        eq_(profile.email, 'cvan@mozilla.com')
+
+        # Ensure fxa_uid stayed the same.
+        eq_(profile.fxa_uid, 'fake-uid')
 
     @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
         profile = UserProfile.objects.create(email='cvan@mozilla.com',
-                                             username='fake-uid')
+                                             fxa_uid='fake-uid')
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()
@@ -662,7 +574,6 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         email = mail.outbox[0]
         eq_(email.from_email, settings.DEFAULT_FROM_EMAIL)
         eq_(email.extra_headers['Reply-To'], self.user.email)
-        assert self.user.username in email.body
         assert self.user.name in email.body
         assert unicode(self.user.pk) in email.body
         assert self.user.email in email.body

@@ -1,8 +1,8 @@
 from django.conf.urls import include, patterns, url
 
 from mkt.account.views import (AccountView, FeedbackView, FxALoginView,
-                               InstalledViewSet, LoginView, LogoutView,
-                               NewsletterView, PermissionsView)
+                               InstalledViewSet, LogoutView, NewsletterView,
+                               PermissionsView)
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
@@ -14,7 +14,6 @@ drf_patterns = patterns(
     url('^installed/mine/remove_app/$',
         InstalledViewSet.as_view({'post': 'remove_app'}),
         name='installed-apps-remove'),
-    url('^login/$', LoginView.as_view(), name='account-login'),
     url('^fxa-login/$', FxALoginView.as_view(), name='fxa-account-login'),
     url('^logout/$', LogoutView.as_view(), name='account-logout'),
     url('^newsletter/$', NewsletterView.as_view(), name='account-newsletter'),
@@ -34,6 +33,4 @@ api_patterns = patterns(
 user_patterns = patterns(
     '',
     url('^ajax$', views.ajax, name='users.ajax'),
-    url('^browserid-login', views.browserid_login,
-        name='users.browserid_login'),
 )

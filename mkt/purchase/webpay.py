@@ -21,7 +21,6 @@ from mkt.purchase.models import Contribution
 from mkt.site.decorators import json_view, login_required, write
 from mkt.site.utils import log_cef
 from mkt.users.models import UserProfile
-from mkt.users.utils import autocreate_username
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
@@ -165,16 +164,13 @@ def postback(request):
     if user_profile.exists():
         user_profile = user_profile.get()
     else:
-        buyer_username = autocreate_username(buyer_email.partition('@')[0])
         source = mkt.LOGIN_SOURCE_WEBPAY
         user_profile = UserProfile.objects.create(
-            display_name=buyer_username,
             email=buyer_email,
             is_verified=True,
-            source=source,
-            username=buyer_username)
+            source=source)
 
-        log_cef('New Account', 5, request, username=buyer_username,
+        log_cef('New Account', 5, request, username=buyer_email,
                 signature='AUTHNOTICE',
                 msg='A new account was created from Webpay (using FxA)')
         record_action('new-user', request)

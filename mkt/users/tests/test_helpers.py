@@ -34,5 +34,5 @@ def test_emaillink():
 
 
 def test_user_data():
-    u = user_data(UserProfile(username='foo', pk=1))
+    u = user_data(UserProfile(pk=1))
     eq_(u['anonymous'], False)

@@ -539,9 +539,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             'name': self.name,
             'app_slug': self.app_slug,
             'url': absolutify(self.get_url_path()),
-            'user_str': ("%s, %s (%s)" % (user.display_name or
-                                          user.username, user.email,
-                                          user.id) if user else "Unknown"),
+            'user_str': ("%s, %s (%s)" % (user.name, user.email, user.id)
+                         if user else "Unknown"),
         }
 
         email_msg = u"""

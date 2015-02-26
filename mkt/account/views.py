@@ -7,12 +7,10 @@ import urlparse
 from django import http
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.signals import user_logged_in
 from django.utils.datastructures import MultiValueDictKeyError
 
 import basket
 import commonware.log
-from django_browserid import get_audience
 from django_statsd.clients import statsd
 
 from requests_oauthlib import OAuth2Session
@@ -29,10 +27,9 @@ from rest_framework.viewsets import GenericViewSet
 import mkt
 from lib.metrics import record_action
 from mkt.users.models import UserProfile
-from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
-                                     FxALoginSerializer, LoginSerializer,
+                                     FxALoginSerializer,
                                      NewsletterSerializer,
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -198,14 +195,14 @@ def find_or_create_user(email, fxa_uid):
         except UserProfile.DoesNotExist:
             return None
 
-    profile = find_user(username=fxa_uid) or find_user(email=email)
+    profile = find_user(fxa_uid=fxa_uid) or find_user(email=email)
     if profile:
         created = False
-        profile.update(username=fxa_uid, email=email)
+        profile.update(fxa_uid=fxa_uid, email=email)
     else:
         created = True
         profile = UserProfile.objects.create(
-            username=fxa_uid,
+            fxa_uid=fxa_uid,
             email=email,
             source=mkt.LOGIN_SOURCE_FXA,
             display_name=email.partition('@')[0],
@@ -256,7 +253,7 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
                         msg='User created a new account (from FxA)')
                 record_action('new-user', request)
             auth.login(request, profile)
-            profile.log_login_attempt(True)
+            profile.update(last_login_ip=request.META.get('REMOTE_ADDR', ''))
 
             auth.signals.user_logged_in.send(sender=profile.__class__,
                                              request=request,
@@ -279,54 +276,6 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
                 'email': request.user.email,
                 'enable_recommendations': request.user.enable_recommendations,
                 'source': 'firefox-accounts',
-            }
-        }
-        # Serializers give up if they aren't passed an instance, so we
-        # do that here despite PermissionsSerializer not needing one
-        # really.
-        permissions = PermissionsSerializer(context={'request': request},
-                                            instance=True)
-        data.update(permissions.data)
-
-        # Add ids of installed/purchased/developed apps.
-        data['apps'] = user_relevant_apps(profile)
-
-        return data
-
-
-class LoginView(CORSMixin, CreateAPIViewWithoutModel):
-    authentication_classes = []
-    serializer_class = LoginSerializer
-
-    def create_action(self, request, serializer):
-        with statsd.timer('auth.browserid.verify'):
-            profile, msg = browserid_authenticate(
-                request, serializer.data['assertion'],
-                browserid_audience=(serializer.data['audience'] or
-                                    get_audience(request)),
-                is_mobile=serializer.data['is_mobile'],
-            )
-        if profile is None:
-            # Authentication failure.
-            log.info('No profile: %s' % (msg or ''))
-            raise AuthenticationFailed('No profile.')
-
-        request.user = profile
-        request.groups = profile.groups.all()
-
-        auth.login(request, profile)
-        profile.log_login_attempt(True)  # TODO: move this to the signal.
-        user_logged_in.send(sender=profile.__class__, request=request,
-                            user=profile)
-
-        # We want to return completely custom data, not the serializer's.
-        data = {
-            'error': None,
-            'token': commonplace_token(request.user.email),
-            'settings': {
-                'display_name': request.user.display_name,
-                'email': request.user.email,
-                'enable_recommendations': request.user.enable_recommendations,
             }
         }
         # Serializers give up if they aren't passed an instance, so we
