@@ -161,7 +161,11 @@ More info on schematic: https://github.com/mozilla/schematic
 Loading Test Apps
 ~~~~~~~~~~~~~~~~~~
 
-Example applications for testing purposes can be loaded by running::
+Fake apps and feed collections can be created by running::
+
+    ./manage.py generate_feed
+
+Specific example applications can be loaded by running::
 
     ./manage.py generate_apps_from_spec data/apps/test_apps.json
 

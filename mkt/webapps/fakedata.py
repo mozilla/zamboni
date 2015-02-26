@@ -229,8 +229,9 @@ def generate_packaged_app(name, apptype, category, developer_name,
 
 
 def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
-    apps = generate_app_data(hosted + packaged + privileged)
-    for i, (appname, cat_slug) in enumerate(apps):
+    apps_data = generate_app_data(hosted + packaged + privileged)
+    apps = []
+    for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
             app = generate_packaged_app(appname, 'privileged', cat_slug,
                                         versions=versions,
@@ -239,12 +240,15 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
             app = generate_packaged_app(appname, 'packaged', cat_slug,
                                         versions=versions)
         else:
-            app = generate_hosted_app(appname, cat_slug)
+            app = generate_hosted_app(appname, cat_slug,
+                                      'fakedeveloper@example.com')
         app.name = generate_localized_names(app.name, 2)
         generate_icon(app)
         generate_previews(app)
         generate_ratings(app, 5)
         addon_review_aggregates(app.pk)
+        apps.append(app)
+    return apps
 
 
 def generate_apps_from_specs(specs):
