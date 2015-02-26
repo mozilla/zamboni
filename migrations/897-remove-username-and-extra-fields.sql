@@ -2,7 +2,9 @@
 -- no FK relies on any of the modified fields :(
 SET FOREIGN_KEY_CHECKS=0;
 
--- username does not exist anymore.
+-- username does not exist anymore. blank everything that doesn't look like a
+-- fxa uid first.
+UPDATE users SET username = NULL WHERE LENGTH(username) != 32;
 ALTER TABLE `users` CHANGE `username` `fxa_uid`  varchar(255);
 -- We no longer log login attempts, since they fail at FxA level, before our code.
 ALTER TABLE `users` DROP COLUMN `last_login_attempt`;
