@@ -11,7 +11,7 @@ The [Firefox Marketplace](https://marketplace.firefox.com) backend.
 ## Installation
 
 We currently recommend the use of
-[Docker to set up the Marketplace backend](http://marketplace.readthedocs.org/en/latest/topics/backend.html). You can also look at our old [manually installation documentation](http://zamboni.readthedocs.org).
+[Docker to set up the Marketplace backend](http://marketplace.readthedocs.org/en/latest/topics/backend.html). You can also look at our [old documentation](http://zamboni.readthedocs.org) for manual installation, but it is not recommended.
 
 We'd love your help! You can come talk to us on
 [irc://irc.mozilla.org/marketplace](irc://irc.mozilla.org/marketplace) if you
