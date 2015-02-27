@@ -15,6 +15,3 @@ pycrypto==2.6.1
 
 # To get SNI support in requests (needed by the app validator).
 pyOpenSSL==0.13.1
-
-# For the addon validator, including C speedups.
-simplejson==2.3.2
