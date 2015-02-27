@@ -113,9 +113,9 @@ require(['prefetchManifest']);
                             url: escape_(item.url) || '#',
                             id: item.id,
                             email: item.email || '',
-                            name: item.name
+                            name: item.name || item.display_name
                         };
-                        if (d.name) {
+                        if (d.url && d.id) {
                             d.name = escape_(d.name);
                             // Append the item only if it has a name.
                             if (i === 0) {
