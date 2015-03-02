@@ -228,6 +228,7 @@ class SplitField(fields.Field):
         self.output = output
         self.source = input.source
         self._read_only = False
+        self.required = True
 
     def initialize(self, parent, field_name):
         """
