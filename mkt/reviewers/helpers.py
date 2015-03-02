@@ -62,12 +62,9 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
 
 @register.function
 @jinja2.contextfunction
-def reviewers_page_title(context, title=None, addon=None):
-    if addon:
-        title = u'%s | %s' % (title, addon.name)
-    else:
-        section = _lazy('Reviewer Tools')
-        title = u'%s | %s' % (title, section) if title else section
+def reviewers_page_title(context, title=None):
+    section = _lazy('Reviewer Tools')
+    title = u'%s | %s' % (title, section) if title else section
     return page_title(context, title)
 
 

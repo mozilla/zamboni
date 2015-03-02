@@ -467,8 +467,9 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
 
-        self.upload = self.get_upload(abspath=self.package,
-                                      user=UserProfile.objects.get(pk=999))
+        self.upload = self.get_upload(
+            abspath=self.package,
+            user=UserProfile.objects.get(email='regular@mozilla.com'))
         self.upload.update(name='mozball.zip')
         self.url = reverse('submit.app')
         self.login('regular@mozilla.com')

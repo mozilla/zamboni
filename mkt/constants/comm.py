@@ -44,7 +44,7 @@ NOTE_TYPES = {
     APPROVAL: _('Approved'),
     REJECTION: _('Rejected'),
     DISABLED: _('Banned'),
-    MORE_INFO_REQUIRED: _('More information requested'),
+    MORE_INFO_REQUIRED: _('Reviewer comment'),
     ESCALATION: _('Escalated'),
     REVIEWER_COMMENT: _('Private reviewer comment'),
     RESUBMISSION: _('App resubmission'),

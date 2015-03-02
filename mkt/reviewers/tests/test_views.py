@@ -450,8 +450,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Approve', 'public'),
             (u'Reject', 'reject'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -465,8 +465,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Approve', 'public'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -479,8 +479,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -497,8 +497,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -697,8 +697,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Ban app', 'disable'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -710,8 +710,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Reject', 'reject'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -725,8 +725,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Approve', 'public'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -844,8 +844,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -858,8 +858,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Reject', 'reject'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -872,8 +872,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Approve', 'public'),
             (u'Escalate', 'escalate'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -1128,8 +1128,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -1143,8 +1143,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
             (u'Approve', 'public'),
             (u'Ban app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
-            (u'Request more information', 'info'),
-            (u'Comment', 'comment'),
+            (u'Message developer', 'info'),
+            (u'Private comment', 'comment'),
         ]
         self.check_actions(expected, actions)
 
@@ -1180,11 +1180,12 @@ class TestReviewTransaction(AttachmentManagementMixin,
                             mkt.site.tests.MockEsMixin,
                             mkt.site.tests.MockBrowserIdMixin,
                             test.TransactionTestCase):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
-                       'webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         super(TestReviewTransaction, self).setUp()
+        mkt.site.tests.TestCase.grant_permission(
+            user_factory(email='editor'), 'Apps:Review')
         self.mock_browser_id()
 
     def get_app(self):
@@ -1740,7 +1741,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         vqs = self.get_app().versions.all()
         eq_(vqs.count(), 1)
         eq_(vqs.filter(has_info_request=True).count(), 1)
-        self._check_email_dev_and_contact('More information requested')
+        self._check_email_dev_and_contact('Reviewer comment')
 
     def test_multi_cc_email(self):
         # Test multiple mozilla_contact emails via more information.
@@ -1752,7 +1753,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         eq_(len(mail.outbox), 3)
-        subject = 'More information requested'
+        subject = 'Reviewer comment'
         self._check_email(self._get_mail('steamcube'), subject)
         self._check_email(self._get_mail(contacts[0]), subject,
                           to=[contacts[0]])
@@ -3261,13 +3262,12 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
 
 
 class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141', 'user_999', 'user_editor',
-                       'user_editor_group', 'group_editor')
 
     def setUp(self):
         super(TestGetSigned, self).setUp()
         self.url = reverse('reviewers.signed', args=[self.app.app_slug,
                                                      self.version.pk])
+        self.grant_permission(user_factory(email='editor'), 'Apps:Review')
         self.login('editor@mozilla.com')
 
     def test_not_logged_in(self):
@@ -3276,7 +3276,7 @@ class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
 
     def test_not_reviewer(self):
         self.client.logout()
-        self.login('regular@mozilla.com')
+        self.login(user_factory())
         eq_(self.client.get(self.url).status_code, 403)
 
     @mock.patch('lib.crypto.packaged.sign')
@@ -3338,8 +3338,6 @@ class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
 
 
 class TestMiniManifestView(BasePackagedAppTest):
-    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
-                       'user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestMiniManifestView, self).setUp()
@@ -3350,6 +3348,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         self.file.update(filename='mozball.zip')
         self.url = reverse('reviewers.mini_manifest', args=[self.app.app_slug,
                                                             self.version.pk])
+        self.grant_permission(user_factory(email='editor'), 'Apps:Review')
         self.login('editor@mozilla.com')
 
     def test_not_logged_in(self):
@@ -3358,7 +3357,7 @@ class TestMiniManifestView(BasePackagedAppTest):
 
     def test_not_reviewer(self):
         self.client.logout()
-        self.login('regular@mozilla.com')
+        self.login(user_factory())
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_not_packaged(self):
@@ -3704,8 +3703,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
 
 
 class TestAttachmentDownload(mkt.site.tests.TestCase):
-    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
-                       'user_999', 'webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def _attachment(self, log):
         return ActivityLogAttachment.objects.create(activity_log=log,
@@ -3717,7 +3715,8 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
         return self.client.get(url, params, **kwargs)
 
     def setUp(self):
-        editor = UserProfile.objects.get(pk=5497308)
+        editor = user_factory(email='editor')
+        self.grant_permission(editor, 'Apps:Review')
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.latest_version
         self.al = mkt.log(mkt.LOG.COMMENT_VERSION, self.app,
@@ -3731,7 +3730,7 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
         eq_(response.status_code, 200, 'Editor cannot access attachment')
 
     def test_permissions_regular(self):
-        self.login('regular@mozilla.com')
+        self.login(user_factory())
         response = self._response()
         eq_(response.status_code, 403, 'Regular user can access attachment')
 
@@ -3749,23 +3748,20 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
 
 
 class TestLeaderboard(AppReviewerTest):
-    fixtures = fixture('user_10482')
 
     def setUp(self):
         super(TestLeaderboard, self).setUp()
         self.url = reverse('reviewers.leaderboard')
-
-        self.user = self.reviewer_user
-        mkt.set_user(self.user)
+        mkt.set_user(self.reviewer_user)
 
     def _award_points(self, user, score):
         ReviewerScore.objects.create(user=user, note_key=mkt.REVIEWED_MANUAL,
                                      score=score, note='Thing.')
 
     def test_leaderboard_ranks(self):
-        users = (self.user,
-                 UserProfile.objects.get(email='regular@mozilla.com'),
-                 UserProfile.objects.get(email='clouserw@mozilla.com'))
+        users = (self.reviewer_user,
+                 self.regular_user,
+                 user_factory(email='clouserw'))
 
         self._award_points(users[0], mkt.REVIEWED_LEVELS[0]['points'] - 1)
         self._award_points(users[1], mkt.REVIEWED_LEVELS[0]['points'] + 1)
@@ -3806,11 +3802,11 @@ class TestLeaderboard(AppReviewerTest):
 
 
 class TestReviewPage(mkt.site.tests.TestCase):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
         self.app = app_factory(status=mkt.STATUS_PENDING)
-        self.reviewer = UserProfile.objects.get(email='editor@mozilla.com')
+        self.reviewer = user_factory(email='editor')
+        self.grant_permission(self.reviewer, 'Apps:Review')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_iarc_ratingless_disable_approve_btn(self):
@@ -3851,10 +3847,10 @@ class TestAbusePage(AppReviewerTest):
 
 
 class TestReviewTranslate(RestOAuth):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.profile = UserProfile.objects.get(email='editor@mozilla.com')
+        self.profile = user_factory(email='editor')
+        self.grant_permission(self.profile, 'Apps:Review')
         self.user = self.profile
         self.login_user()
         self.create_switch('reviews-translate')
@@ -3918,11 +3914,10 @@ class TestReviewTranslate(RestOAuth):
 
 
 class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
-    fixtures = fixture('user_999')
 
     def setUp(self):
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.login(self.user.email)
+        self.user = user_factory()
+        self.login(self.user)
 
     def url(self):
         return reverse('reviewers.apps.additional_review', args=[QUEUE_TARAKO])
@@ -3943,11 +3938,11 @@ class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
 
 
 class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
         self.app = self.addon = app_factory()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+        self.grant_permission(user_factory(email='editor'), 'Apps:Review')
         self.login('editor@mozilla.com')
         self._thread_factory()
 
