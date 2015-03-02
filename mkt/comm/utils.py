@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 from django.core.files.storage import get_storage_class
 
-from mkt.comm.utils_mail import send_mail_comm
+from mkt.comm import utils_mail
 from mkt.constants import comm
 from mkt.users.models import UserProfile
 
@@ -60,12 +60,16 @@ def post_create_comm_note(note):
         thread.join_thread(developer)
 
     # Add Mozilla contact to thread.
+    nonuser_mozilla_contacts = []
     for email in app.get_mozilla_contacts():
         try:
             moz_contact = UserProfile.objects.get(email=email)
             thread.join_thread(moz_contact)
         except UserProfile.DoesNotExist:
-            pass
+            nonuser_mozilla_contacts.append((None, email))
+    utils_mail.email_recipients(nonuser_mozilla_contacts, note, {
+        'nonuser_mozilla_contact': True
+    })
 
     # Add note author to thread.
     author = note.author
@@ -73,7 +77,7 @@ def post_create_comm_note(note):
         cc, created_cc = thread.join_thread(author)
 
     # Send out emails.
-    send_mail_comm(note)
+    utils_mail.send_mail_comm(note)
 
 
 def create_attachments(note, formset):
