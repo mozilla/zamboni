@@ -4,7 +4,7 @@
 Jinja2==2.7.2
 MarkupSafe==0.18
 lxml==2.2.6
-Pillow==2.3.0
+Pillow==2.7.0
 
 # For JWT to sign App receipts:
 # Temporary.
