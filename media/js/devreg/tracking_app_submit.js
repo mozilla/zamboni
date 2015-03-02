@@ -146,16 +146,24 @@ define('tracking_app_submit', [], function() {
     });
 
     // Step 2: App form submitted. Track which app types were selected.
-    $('#upload-webapp').on('submit', function() {
-        _gaq.push([
-            '_setCustomVar',
-            14,
-            'Selected App Types',
-            $('#id_free_platforms').val().join(', '),
-            1
-        ]);
-
-        log('App types selection tracked...');
+    $('#upload-webapp').on('submit', function(e) {
+        var selectSel = '#id_free_platforms';
+        if ($('#paid-tab-header.active')[0]) {
+            selectSel = '#id_paid_platforms';
+        }
+        var selectedAppTypes = $(selectSel).val();
+        if (selectedAppTypes && selectedAppTypes.length) {
+            _gaq.push([
+                '_setCustomVar',
+                14,
+                'Selected App Types',
+                selectedAppTypes.join(', '),
+                1
+            ]);
+            log('App types selection tracked...');
+        } else {
+            log('No app types selected');
+        }
     });
 
     // MDN link was clicked. Opens in a new tab so flow is uninterrupted.
