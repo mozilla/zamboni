@@ -3,6 +3,10 @@
 MAILTO=marketplace-devs@mozilla.org
 DJANGO_SETTINGS_MODULE='settings_local_mkt'
 
+# Enable python27
+LD_LIBRARY_PATH=/opt/rh/python27/root/usr/lib64
+PATH=/opt/rh/python27/root/usr/bin
+
 HOME=/tmp
 
 # Once per hour.
