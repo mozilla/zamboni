@@ -175,6 +175,7 @@ class TestAppDetailsBasicForm(mkt.site.tests.TestCase):
     def setUp(self):
         self.request = mock.Mock()
         self.request.user = UserProfile.objects.get(id=999)
+        self.request.groups = ()
 
     def get_app(self):
         return Webapp.objects.get(pk=337141)
@@ -271,6 +272,18 @@ class TestAppDetailsBasicForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
         eq_(app.is_offline, False)
+
+    def test_tags(self):
+        app = self.get_app()
+        form = forms.AppDetailsBasicForm(
+            self.get_data(tags='card games, poker'), request=self.request,
+            instance=app)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(app.tags.count(), 2)
+        self.assertSetEqual(
+            app.tags.values_list('tag_text', flat=True),
+            ['card games', 'poker'])
 
 
 class TestAppFeaturesForm(mkt.site.tests.TestCase):

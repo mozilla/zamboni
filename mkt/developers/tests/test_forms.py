@@ -509,11 +509,12 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
         }
         self.request = mock.Mock()
         self.request.groups = ()
+        self.app = app_factory(name='YOLO',
+                               manifest_url='https://omg.org/yes.webapp')
 
-    def post(self):
-        self.form = forms.AppFormBasic(
-            self.data, instance=Webapp.objects.create(app_slug='yolo'),
-            request=self.request)
+    def post(self, app=None):
+        self.form = forms.AppFormBasic(self.data, instance=app or self.app,
+                                       request=self.request)
 
     def test_success(self):
         self.post()
@@ -521,11 +522,57 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
         eq_(self.form.errors, {})
 
     def test_slug_invalid(self):
-        Webapp.objects.create(app_slug='yolo')
-        self.post()
+        app = Webapp.objects.create(app_slug='yolo')
+        self.post(app=app)
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors,
             {'slug': ['This slug is already in use. Please choose another.']})
+
+    def test_adding_tags(self):
+        self.data.update({'tags': 'tag one, tag two'})
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+
+        eq_(self.app.tags.count(), 2)
+        self.assertSetEqual(
+            self.app.tags.values_list('tag_text', flat=True),
+            ['tag one', 'tag two'])
+
+    def test_removing_tags(self):
+        Tag(tag_text='tag one').save_tag(self.app)
+        eq_(self.app.tags.count(), 1)
+
+        self.data.update({'tags': 'tag two, tag three'})
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+
+        eq_(self.app.tags.count(), 2)
+        self.assertSetEqual(
+            self.app.tags.values_list('tag_text', flat=True),
+            ['tag two', 'tag three'])
+
+    def test_removing_all_tags(self):
+        Tag(tag_text='tag one').save_tag(self.app)
+        eq_(self.app.tags.count(), 1)
+
+        self.data.update({'tags': ''})
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+
+        eq_(self.app.tags.count(), 0)
+        self.assertSetEqual(
+            self.app.tags.values_list('tag_text', flat=True), [])
+
+    @mock.patch('mkt.developers.forms.update_manifests')
+    def test_manifest_url_change(self, mock):
+        self.data.update({'manifest_url': 'https://omg.org/no.webapp'})
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+        assert mock.delay.called
 
 
 class TestAppVersionForm(mkt.site.tests.TestCase):
@@ -717,44 +764,6 @@ class TestAdminSettingsForm(TestAdmin):
         assert form.is_valid(), form.errors
         form.save(self.webapp)
         index_webapps_mock.assert_called_with([self.webapp.id])
-
-    def test_adding_tags(self):
-        self.data.update({'tags': 'tag one, tag two'})
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        eq_(self.webapp.tags.count(), 2)
-        self.assertSetEqual(
-            self.webapp.tags.values_list('tag_text', flat=True),
-            ['tag one', 'tag two'])
-
-    def test_removing_tags(self):
-        Tag(tag_text='tag one').save_tag(self.webapp)
-        eq_(self.webapp.tags.count(), 1)
-
-        self.data.update({'tags': 'tag two, tag three'})
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        eq_(self.webapp.tags.count(), 2)
-        self.assertSetEqual(
-            self.webapp.tags.values_list('tag_text', flat=True),
-            ['tag two', 'tag three'])
-
-    def test_removing_all_tags(self):
-        Tag(tag_text='tag one').save_tag(self.webapp)
-        eq_(self.webapp.tags.count(), 1)
-
-        self.data.update({'tags': ''})
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        eq_(self.webapp.tags.count(), 0)
-        self.assertSetEqual(
-            self.webapp.tags.values_list('tag_text', flat=True), [])
 
     def test_banner_message(self):
         self.data.update({

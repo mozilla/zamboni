@@ -56,6 +56,11 @@
                   <label>
                     {{ _('Name') }}
                   </label>
+                  {{ tip(None,
+                         _('The app name is one of the fields used to return search results in the Firefox Marketplace.
+                            The app name also appears on the app’s detail page. Be sure you’ve included a descriptive
+                            name in your app manifest. If you want to change the app name, you’ll need to do that in
+                            your app manifest.')) }}
                 </th>
                 <td>
                   {{ addon.name }}
@@ -92,6 +97,15 @@
       </header>
 
       {{ form_field(form_basic.description, hint=True, some_html=True) }}
+
+      <div class="brform simple-field c {{ ' error' if form_basic.tags.errors }}">
+        <label for="{{ form_basic.tags.auto_id }}">
+          {{ form_basic.tags.label }}
+        </label>
+        <span class="hint-inline">{{ _('Enter as comma-separated words and/or phrases. {0} keywords maximum.'|f(mkt.MAX_TAGS)) }}</span>
+        {{ form_basic.tags.as_widget() }}
+        {{ form_basic.tags.errors }}
+      </div>
 
       <div id="addon-categories-edit"
            data-max-categories="{{ form_cats.max_categories() }}">

@@ -17,7 +17,8 @@ from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
 from mkt.reviewers.models import RereviewQueue
-from mkt.site.utils import slug_validator
+from mkt.site.utils import clean_tags, slug_validator
+from mkt.tags.models import Tag
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea
@@ -276,8 +277,19 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
                                widget=forms.TextInput(attrs={'class': 'm'}))
     description = TransField(
         label=_lazy(u'Description:'),
-        help_text=_lazy(u'This description will appear on the details page.'),
+        help_text=_lazy(u'The app description is one of the fields used to '
+                        u'return search results in the Firefox Marketplace. '
+                        u'The app description also appears on the app\'s '
+                        u'detail page. Be sure to include a description that '
+                        u'accurately represents your app.'),
         widget=TransTextarea(attrs={'rows': 4}))
+    tags = forms.CharField(
+        label=_lazy(u'Search Keywords:'), required=False,
+        widget=forms.Textarea(attrs={'rows': 3}),
+        help_text=_lazy(
+            u'The search keywords are used to return search results in the '
+            u'Firefox Marketplace. Be sure to include a keywords that '
+            u'accurately reflect your app.'))
     privacy_policy = TransField(
         label=_lazy(u'Privacy Policy:'),
         widget=TransTextarea(attrs={'rows': 6}),
@@ -317,7 +329,7 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         choices=((1, _lazy(u'Yes')),
                  (0, _lazy(u'No'))))
     notes = forms.CharField(
-        label=_lazy(u'Your comments for reviewers'), required=False,
+        label=_lazy(u'Your comments for reviewers:'), required=False,
         widget=forms.Textarea(attrs={'rows': 2}),
         help_text=_lazy(
             u'Your app will be reviewed by Mozilla before it becomes publicly '
@@ -367,6 +379,9 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
 
         return slug.lower()
 
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
     def save(self, *args, **kw):
         if self.data['notes']:
             create_comm_note(self.instance, self.instance.versions.latest(),
@@ -377,6 +392,9 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         af = self.instance.get_latest_file()
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
+
+        for tag_text in self.cleaned_data['tags']:
+            Tag(tag_text=tag_text).save_tag(self.instance)
 
         return self.instance
 

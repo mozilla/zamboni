@@ -815,7 +815,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     version = addon.current_version or addon.latest_version
 
-    tags, previews, restricted_tags = [], [], []
+    tags, previews = [], []
     cat_form = appfeatures = appfeatures_form = version_form = None
     formdata = request.POST if request.method == 'POST' else None
 
@@ -834,6 +834,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         # can do that from the version edit page.
         if not addon.is_packaged:
             version_form = AppVersionForm(formdata, instance=version)
+        tags = addon.tags.not_blocked().values_list('tag_text', flat=True)
 
     elif section == 'media':
         previews = PreviewFormSet(
@@ -846,10 +847,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
         if not addon.is_packaged:
             appfeatures = version.features
             appfeatures_form = AppFeaturesForm(formdata, instance=appfeatures)
-
-    elif section == 'admin':
-        tags = addon.tags.not_blocked().values_list('tag_text', flat=True)
-        restricted_tags = addon.tags.filter(restricted=True)
 
     # Get the slug before the form alters it to the form data.
     valid_slug = addon.app_slug
@@ -907,16 +904,17 @@ def addons_section(request, addon_id, addon, section, editable=False):
     else:
         form = False
 
-    data = {'addon': addon,
-            'version': version,
-            'form': form,
-            'editable': editable,
-            'tags': tags,
-            'restricted_tags': restricted_tags,
-            'cat_form': cat_form,
-            'version_form': version_form,
-            'preview_form': previews,
-            'valid_slug': valid_slug, }
+    data = {
+        'addon': addon,
+        'version': version,
+        'form': form,
+        'editable': editable,
+        'tags': tags,
+        'cat_form': cat_form,
+        'version_form': version_form,
+        'preview_form': previews,
+        'valid_slug': valid_slug,
+    }
 
     if appfeatures_form and appfeatures:
         data.update({

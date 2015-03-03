@@ -41,14 +41,14 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fields import SeparatedValuesField
 from mkt.site.forms import AddonChoiceField
-from mkt.site.utils import remove_icons, slug_validator, slugify
+from mkt.site.utils import clean_tags, remove_icons, slug_validator, slugify
 from mkt.tags.models import Tag
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.forms import clean_slug, clean_tags, icons
+from mkt.webapps.forms import clean_slug, icons
 from mkt.webapps.models import (AddonUser, BlockedSlug, IARCInfo, Preview,
                                 Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
@@ -289,7 +289,6 @@ class AdminSettingsForm(PreviewForm):
                                            required=False)
     vip_app = forms.BooleanField(required=False)
     priority_review = forms.BooleanField(required=False)
-    tags = forms.CharField(required=False)
     banner_regions = JSONMultipleChoiceField(
         required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
     banner_message = TransField(required=False)
@@ -321,7 +320,6 @@ class AdminSettingsForm(PreviewForm):
 
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
-            self.initial['tags'] = ', '.join(self.get_tags(addon))
 
         self.initial['banner_regions'] = addon.geodata.banner_regions or []
         self.initial['banner_message'] = addon.geodata.banner_message_id
@@ -341,16 +339,6 @@ class AdminSettingsForm(PreviewForm):
             raise forms.ValidationError(_('Invalid region(s) selected.'))
 
         return list(regions)
-
-    def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Apps', 'Edit'):
-            return list(addon.tags.values_list('tag_text', flat=True))
-        else:
-            return list(addon.tags.filter(restricted=False)
-                        .values_list('tag_text', flat=True))
-
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
 
     def clean_mozilla_contact(self):
         contact = self.cleaned_data.get('mozilla_contact')
@@ -375,20 +363,6 @@ class AdminSettingsForm(PreviewForm):
         if contact is not None:
             updates['mozilla_contact'] = contact
         addon.update(**updates)
-
-        tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
-
-        add_tags = set(tags_new) - set(tags_old)
-        del_tags = set(tags_old) - set(tags_new)
-
-        # Add new tags.
-        for t in add_tags:
-            Tag(tag_text=t).save_tag(addon)
-
-        # Remove old tags.
-        for t in del_tags:
-            Tag(tag_text=t).remove_tag(addon)
 
         geodata = addon.geodata
         geodata.banner_regions = self.cleaned_data.get('banner_regions')
@@ -533,20 +507,10 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
 
     class Meta:
         models = Webapp
-        fields = ('name', 'slug', 'tags')
+        fields = ('name', 'slug')
 
     def clean_slug(self):
         return clean_slug(self.cleaned_data['slug'], self.instance)
-
-    def clean_tags(self):
-        return clean_tags(self.request, self.cleaned_data['tags'])
-
-    def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Apps', 'Edit'):
-            return list(addon.tags.values_list('tag_text', flat=True))
-        else:
-            return list(addon.tags.filter(restricted=False)
-                        .values_list('tag_text', flat=True))
 
 
 class AppFormBasic(AddonFormBase):
@@ -558,10 +522,17 @@ class AppFormBasic(AddonFormBase):
         label=_lazy(u'Provide a detailed description of your app'),
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea)
+    tags = forms.CharField(
+        label=_lazy(u'Search Keywords:'), required=False,
+        widget=forms.Textarea(attrs={'rows': 3}),
+        help_text=_lazy(
+            u'The search keywords are used to return search results in the '
+            u'Firefox Marketplace. Be sure to include a keywords that '
+            u'accurately reflect your app.'))
 
     class Meta:
         model = Webapp
-        fields = ('slug', 'manifest_url', 'description')
+        fields = ('slug', 'manifest_url', 'description', 'tags')
 
     def __init__(self, *args, **kw):
         # Force the form to use app_slug. We want to keep
@@ -575,6 +546,18 @@ class AppFormBasic(AddonFormBase):
         if self.instance.is_packaged:
             # Manifest URL cannot be changed for packaged apps.
             del self.fields['manifest_url']
+
+        self.initial['tags'] = ', '.join(self.get_tags(self.instance))
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
+    def get_tags(self, addon):
+        if acl.action_allowed(self.request, 'Apps', 'Edit'):
+            return list(addon.tags.values_list('tag_text', flat=True))
+        else:
+            return list(addon.tags.filter(restricted=False)
+                        .values_list('tag_text', flat=True))
 
     def _post_clean(self):
         # Switch slug to app_slug in cleaned_data and self._meta.fields so
@@ -639,6 +622,20 @@ class AppFormBasic(AddonFormBase):
             log.info('Manifest %s refreshed for %s'
                      % (addon.manifest_url, addon))
             update_manifests.delay([self.instance.id])
+
+        tags_new = self.cleaned_data['tags']
+        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+
+        add_tags = set(tags_new) - set(tags_old)
+        del_tags = set(tags_old) - set(tags_new)
+
+        # Add new tags.
+        for t in add_tags:
+            Tag(tag_text=t).save_tag(addon)
+
+        # Remove old tags.
+        for t in del_tags:
+            Tag(tag_text=t).remove_tag(addon)
 
         return addonform
 

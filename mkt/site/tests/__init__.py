@@ -629,6 +629,7 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
         """Creates group with rule, and adds user to group."""
         group = Group.objects.create(name=name, rules=rules)
         GroupUser.objects.create(group=group, user=user_obj)
+        return group
 
     def remove_permission(self, user_obj, rules):
         """Remove a permission from a user."""

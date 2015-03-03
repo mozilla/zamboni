@@ -20,8 +20,10 @@
             <label data-for="name">
               {{ _('Name') }}
               {{ tip(None,
-                     _('This field can only be edited by updating it in the '
-                       'manifest.')) }}
+                    _('The app name is one of the fields used to return search results in the Firefox Marketplace.
+                       The app name also appears on the app’s detail page. Be sure you’ve included a descriptive
+                       name in your app manifest. If you want to change the app name, you’ll need to do that in
+                       your app manifest.')) }}
             </label>
           </th>
           <td>
@@ -64,8 +66,7 @@
         <tr>
           <th class="label">
             {{ tip(_('API URL'),
-                   _('The URL for accessing this app using the '
-                     'Marketplace API')) }}
+                   _('The URL for accessing this app using the Marketplace API')) }}
           </th>
           <td>
             <span>{{ settings.SITE_URL }}{{ addon.get_api_url() }}</span>
@@ -100,9 +101,8 @@
             <label data-for="description">
               {{ _('Description') }}
               {{ tip(None,
-                     _("An explanation of features, functionality, and
-                        other relevant information. This field is displayed
-                        on the app's details page.")) }}
+                    _("The app description is one of the fields used to return search results in the Firefox Marketplace. The app description
+                       also appears on the app’s detail page. Be sure to include a description that accurately represents your app.")) }}
             </label>
             {{ req_if_edit }}
           </th>
@@ -114,6 +114,32 @@
             {% else %}
               <div id="addon-description" class="prose">
                 {{ addon|all_locales('description', nl2br=True, prettify_empty=True) }}
+              </div>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label data-form="keywords">
+              {{ _('Search Keywords') }}
+              {{ tip(None,
+                     _("The search keywords are used to return search results in the "
+                       "Firefox Marketplace. Be sure to include a keywords that "
+                       "accurately reflect your app.")) }}
+            </label>
+          </th>
+          <td>
+            {% if editable %}
+              {{ form.tags }}
+              {{ form.tags.errors }}
+              <p class="note">
+                {{ _('Enter as comma-separated words. {0} keywords maximum.'|f(mkt.MAX_TAGS)) }}
+              </p>
+            {% else %}
+              <div id="addon-keywords" class="prose">
+                {% call empty_unless(tags) %}
+                  {{ tags|join(', ') }}
+                {% endcall %}
               </div>
             {% endif %}
           </td>
