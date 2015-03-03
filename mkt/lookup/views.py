@@ -397,7 +397,7 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    search_fields = ('fxa_uid', 'display_name', 'email')
+    search_fields = ('username', 'display_name', 'email')
     fields = ('id',) + search_fields
 
     if q.isnumeric():

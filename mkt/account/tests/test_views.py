@@ -202,12 +202,12 @@ class TestAccount(RestOAuth):
         res = self.client.patch(
             self.url, data=json.dumps({'display_name': 'foo',
                                        'enable_recommendations': '0',
-                                       'fxa_uid': 'f' * 32}))
+                                       'username': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
         eq_(user.enable_recommendations, False)
-        eq_(user.fxa_uid, None)
+        eq_(user.username, None)
 
     def test_patch_empty(self):
         res = self.client.patch(self.url,
@@ -226,21 +226,21 @@ class TestAccount(RestOAuth):
         res = self.client.put(
             self.url, data=json.dumps({'display_name': 'foo',
                                        'enable_recommendations': '0',
-                                       'fxa_uid': 'f' * 32}))
+                                       'username': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')
         eq_(user.enable_recommendations, False)
-        eq_(user.fxa_uid, None)
+        eq_(user.username, None)
 
     def test_patch_extra_fields(self):
         res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': 'foo',
-                                                 'fxa_uid': 'f' * 32}))
+                                                 'username': 'f' * 32}))
         eq_(res.status_code, 200)
         user = UserProfile.objects.get(pk=self.user.pk)
         eq_(user.display_name, 'foo')  # Got changed successfully.
-        eq_(user.fxa_uid, None)
+        eq_(user.username, None)
 
     def test_patch_other(self):
         url = reverse('account-settings', kwargs={'pk': 10482})
@@ -425,10 +425,10 @@ class TestFxaLoginHandler(TestCase):
         ok_(not any(data['permissions'].values()))
         profile = UserProfile.objects.get()
         eq_(profile.email, 'cvan@mozilla.com')
-        eq_(profile.fxa_uid, 'fake-uid')
+        eq_(profile.username, 'fake-uid')
 
     def test_login_existing_user_uid_success(self):
-        profile = UserProfile.objects.create(fxa_uid='fake-uid',
+        profile = UserProfile.objects.create(username='fake-uid',
                                              email='old@mozilla.com',
                                              display_name='seavan')
         self.grant_permission(profile, 'Apps:Review')
@@ -456,13 +456,13 @@ class TestFxaLoginHandler(TestCase):
         # Ensure user profile got updated with email.
         eq_(profile.email, 'cvan@mozilla.com')
 
-        # Ensure fxa_uid stayed the same.
-        eq_(profile.fxa_uid, 'fake-uid')
+        # Ensure username stayed the same.
+        eq_(profile.username, 'fake-uid')
 
     @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
         profile = UserProfile.objects.create(email='cvan@mozilla.com',
-                                             fxa_uid='fake-uid')
+                                             username='fake-uid')
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()

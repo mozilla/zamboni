@@ -187,7 +187,7 @@ def fxa_oauth_api(name):
     return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
 
 
-def find_or_create_user(email, fxa_uid):
+def find_or_create_user(email, username):
 
     def find_user(**kwargs):
         try:
@@ -195,14 +195,14 @@ def find_or_create_user(email, fxa_uid):
         except UserProfile.DoesNotExist:
             return None
 
-    profile = find_user(fxa_uid=fxa_uid) or find_user(email=email)
+    profile = find_user(username=username) or find_user(email=email)
     if profile:
         created = False
-        profile.update(fxa_uid=fxa_uid, email=email)
+        profile.update(username=username, email=email)
     else:
         created = True
         profile = UserProfile.objects.create(
-            fxa_uid=fxa_uid,
+            username=username,
             email=email,
             source=mkt.LOGIN_SOURCE_FXA,
             display_name=email.partition('@')[0],
@@ -245,10 +245,10 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
 
         if 'user' in fxa_authorization:
             email = fxa_authorization['email']
-            fxa_uid = fxa_authorization['user']
-            profile, created = find_or_create_user(email, fxa_uid)
+            username = fxa_authorization['user']
+            profile, created = find_or_create_user(email, username)
             if created:
-                log_cef('New Account', 5, request, username=fxa_uid,
+                log_cef('New Account', 5, request, username=username,
                         signature='AUTHNOTICE',
                         msg='User created a new account (from FxA)')
                 record_action('new-user', request)

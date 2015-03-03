@@ -65,8 +65,8 @@ class UserEmailField(forms.EmailField):
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
-    fxa_uid = models.CharField(max_length=255, unique=True, blank=True,
-                               null=True)
+    username = models.CharField(max_length=255, unique=True, blank=True,
+                                null=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
     email = models.EmailField(unique=True, null=True)
@@ -151,7 +151,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.password = "sha512$Anonymous$Password"
-        self.fxa_uid = None
+        self.username = None
         self.display_name = None
         self.homepage = ""
         self.deleted = True
