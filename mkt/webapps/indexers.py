@@ -60,8 +60,8 @@ class WebappIndexer(BaseIndexer):
             return {
                 '%s_%s' % (field, analyzer): {
                     'type': 'string',
-                    'analyzer': '%s_analyzer' % (
-                        analyzer if analyzer in mkt.STEMMER_MAP else analyzer)
+                    'analyzer': (('%s_analyzer' % analyzer)
+                                 if analyzer in mkt.STEMMER_MAP else analyzer)
                 }
             }
 
