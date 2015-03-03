@@ -23,6 +23,7 @@ define('reviewersCommbadge', ['login'], function(login) {
         var versionIds = _.map(threads, function(thread) {
             return thread.version;
         });
+
         $('table.activity').each(function(i, table) {
             var $table = $(table);
             if (versionIds.indexOf($table.data('version')) === -1) {

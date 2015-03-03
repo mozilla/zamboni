@@ -75,7 +75,7 @@ def check_acls_comm_obj(obj, profile):
 def user_has_perm_app(user, app):
     """
     Check if user has any app-level ACLs.
-    (Mozilla contact, admin, review, senior reivewer, developer).
+    (Mozilla contact, admin, review, senior reviewer, developer).
     """
     return (
         check_acls(user, None, 'reviewer') or

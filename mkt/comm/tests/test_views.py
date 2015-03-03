@@ -605,3 +605,98 @@ class TestCommCC(RestOAuth, CommTestMixin):
             reverse('comm-thread-cc-detail', args=[thread.id]))
         eq_(res.status_code, 204)
         eq_(CommunicationThreadCC.objects.count(), 0)
+
+
+class TestCommAppListView(RestOAuth, CommTestMixin):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestCommAppListView, self).setUp()
+        self.addon = Webapp.objects.get(pk=337141)
+        self.profile = UserProfile.objects.get(id=2519)
+        self.profile.addonuser_set.create(addon=self.addon)
+
+    def test_list(self):
+        [self._thread_factory() for x in range(2)]
+
+        res = self.client.get(reverse('api-v2:comm-app-list',
+                                      args=[self.addon.app_slug]))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 2)
+
+    def test_single(self):
+        thread = self._thread_factory(_version=self.addon.current_version)
+
+        res = self.client.get(reverse('api-v2:comm-app-list',
+                                      args=[self.addon.app_slug])).json
+
+        res_thread = res['objects'][0]
+        eq_(res_thread['id'], thread.id)
+        eq_(res_thread['app']['id'], self.addon.id)
+        eq_(res_thread['notes_count'], 0)
+        eq_(res_thread['version']['version'],
+            self.addon.current_version.version)
+
+    def test_simple(self):
+        thread = self._thread_factory(_version=self.addon.current_version)
+
+        res = self.client.get(reverse('api-v2:comm-app-list',
+                                      args=[self.addon.app_slug]),
+                              data={'serializer': 'simple'})
+
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0], {
+            'id': thread.id,
+            'version': {
+                'id': thread.version.id,
+                'version': thread.version.version
+            }
+        })
+
+    def test_403(self):
+        self.profile.addonuser_set.all().delete()
+        res = self.client.get(reverse('api-v2:comm-app-list',
+                              args=[self.addon.app_slug]))
+        eq_(res.status_code, 403)
+
+    def test_404(self):
+        res = self.client.get(reverse('api-v2:comm-app-list',
+                              args=['THISAPPISINANUTHACASTLE']))
+        eq_(res.status_code, 404)
+
+
+class TestThreadViewSetV2(RestOAuth, CommTestMixin):
+    fixtures = fixture('webapp_337141', 'user_2519')
+
+    def setUp(self):
+        super(TestThreadViewSetV2, self).setUp()
+        self.addon = Webapp.objects.get(pk=337141)
+        self.profile = UserProfile.objects.get(id=2519)
+
+    def test_list(self):
+        thread1 = self._thread_factory()
+        thread2 = self._thread_factory(_version=self.addon.current_version)
+        thread1.thread_cc.create(user=self.profile)
+        thread2.thread_cc.create(user=self.profile)
+
+        res = self.client.get(reverse('api-v2:comm-thread-list'))
+        eq_(len(res.json['objects']), 2)
+
+    def test_single(self):
+        thread = self._thread_factory(_version=self.addon.current_version)
+        thread.thread_cc.create(user=self.profile)
+        res = self.client.get(reverse('api-v2:comm-thread-list'))
+
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+        res_thread = res.json['objects'][0]
+        eq_(res_thread['id'], thread.id)
+        eq_(res_thread['app']['id'], self.addon.id)
+        eq_(res_thread['notes_count'], 0)
+        eq_(res_thread['version']['version'],
+            self.addon.current_version.version)
+
+    def test_empty(self):
+        res = self.client.get(reverse('api-v2:comm-thread-list'))
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
