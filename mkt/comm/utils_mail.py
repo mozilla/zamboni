@@ -48,6 +48,17 @@ def send_mail_comm(note):
     else:
         email_recipients(get_recipients(note), note)
 
+        # Also send mail to the fallback emailing list.
+        if note.note_type == comm.DEVELOPER_COMMENT:
+            subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
+                                  note.thread.addon.name)
+            mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
+            send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
+                            get_mail_context(note),
+                            recipient_list=[settings.MKT_REVIEWS_EMAIL],
+                            from_email=settings.MKT_REVIEWERS_EMAIL,
+                            perm_setting='app_reviewed')
+
 
 def get_recipients(note):
     """
@@ -75,12 +86,15 @@ def tokenize_recipients(recipients, thread):
     """[(user_id, user_email)] -> [(user_email, token)]."""
     tokenized_recipients = []
     for user_id, user_email in recipients:
-        tok = get_reply_token(thread, user_id)
-        tokenized_recipients.append((user_email, tok.uuid))
+        if not user_id:
+            tokenized_recipients.append((user_email, None))
+        else:
+            tok = get_reply_token(thread, user_id)
+            tokenized_recipients.append((user_email, tok.uuid))
     return tokenized_recipients
 
 
-def email_recipients(recipients, note, template=None):
+def email_recipients(recipients, note, template=None, extra_context=None):
     """
     Given a list of tuple of user_id/user_email, email bunch of people.
     note -- commbadge note, the note type determines which email to use.
@@ -90,28 +104,22 @@ def email_recipients(recipients, note, template=None):
                           note.thread.addon.name)
 
     for email, tok in tokenize_recipients(recipients, note.thread):
-        reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
-                                       settings.POSTFIX_DOMAIN)
+        headers = {}
+        if tok:
+            headers['Reply-To'] = '{0}{1}@{2}'.format(
+                comm.REPLY_TO_PREFIX, tok, settings.POSTFIX_DOMAIN)
 
         # Get the appropriate mail template.
         mail_template = template or comm.COMM_MAIL_MAP.get(note.note_type,
                                                            'generic')
 
         # Send mail.
+        context = get_mail_context(note)
+        context.update(extra_context or {})
         send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
-                        get_mail_context(note), recipient_list=[email],
+                        context, recipient_list=[email],
                         from_email=settings.MKT_REVIEWERS_EMAIL,
-                        perm_setting='app_reviewed',
-                        headers={'Reply-To': reply_to})
-
-    # Also send mail to the fallback emailing list.
-    if note.note_type == comm.DEVELOPER_COMMENT:
-        mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
-        send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
-                        get_mail_context(note),
-                        recipient_list=[settings.MKT_REVIEWS_EMAIL],
-                        from_email=settings.MKT_REVIEWERS_EMAIL,
-                        perm_setting='app_reviewed')
+                        perm_setting='app_reviewed', headers=headers)
 
 
 def get_mail_context(note):

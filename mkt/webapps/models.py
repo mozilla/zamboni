@@ -781,7 +781,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             Translation.objects.remove_for(o, locale)
 
     def get_mozilla_contacts(self):
-        return [x.strip() for x in self.mozilla_contact.split(',')]
+        return filter(None,
+                      [x.strip() for x in self.mozilla_contact.split(',')])
 
     @cached_property
     def upsell(self):

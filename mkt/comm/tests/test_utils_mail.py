@@ -264,3 +264,37 @@ class TestEmailParser(TestCase):
             body = parser.get_body()
             ok_('Body inspection' in body)
             eq_(parser.get_uuid(), 'abc123')
+
+
+class TestEmailNonUsers(TestCase, CommTestMixin):
+
+    def setUp(self):
+        self.app = app_factory(
+            mozilla_contact='tobias@funke.blue, mae@be.com,')
+        self.author = user_factory()
+
+    def _create(self):
+        return create_comm_note(self.app, self.app.current_version,
+                                self.author, '@ngokevin_')
+
+    def _recipients(self, email_mock):
+        recipients = []
+        for call in email_mock.call_args_list:
+            recipients += call[1]['recipient_list']
+        return recipients
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_basic(self, email):
+        thread, note = self._create()
+
+        # One for Tobias, one for Maebe.
+        eq_(email.call_count, 2)
+        eq_(thread.thread_cc.count(), 1)
+
+        recipients = self._recipients(email)
+        assert self.author.email not in recipients
+        assert 'tobias@funke.blue' in recipients
+        assert 'mae@be.com' in recipients
+
+        for call in email.call_args_list:
+            ok_('Reply-To' not in call[1]['headers'])
