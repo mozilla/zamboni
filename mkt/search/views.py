@@ -90,7 +90,8 @@ class SuggestionsView(SearchView):
 class NonPublicSearchView(SearchView):
     """
     A search view that allows searching for apps with non-public statuses
-    protected behind a permission class.
+    protected behind a permission class. Region exclusions still affects
+    results.
 
     """
     authentication_classes = [RestSharedSecretAuthentication,
@@ -98,6 +99,25 @@ class NonPublicSearchView(SearchView):
     permission_classes = [GroupPermission('Feed', 'Curate')]
     filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
                        ValidAppsFilter, DeviceTypeFilter, RegionFilter,
+                       ProfileFilter, SortingFilter]
+
+
+class NoRegionSearchView(SearchView):
+    """
+    A search view that allows searching for public apps regardless of region
+    exclusions, protected behind a permission class.
+
+    A special class is needed because when RegionFilter is included, as it is
+    in the default SearchView, it will always use whatever region was set on
+    the request, and we default to setting restofworld when no region is
+    passed.
+
+    """
+    authentication_classes = [RestSharedSecretAuthentication,
+                              RestOAuthAuthentication]
+    permission_classes = [GroupPermission('Feed', 'Curate')]
+    filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
+                       PublicAppsFilter, DeviceTypeFilter,
                        ProfileFilter, SortingFilter]
 
 
