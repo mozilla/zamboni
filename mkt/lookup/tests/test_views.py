@@ -320,15 +320,15 @@ class TestAcctSearch(TestCase, SearchTestMixin):
         self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
 
     def verify_result(self, data):
-        eq_(data['results'][0]['fxa_uid'], self.user.fxa_uid)
+        eq_(data['results'][0]['username'], self.user.username)
         eq_(data['results'][0]['display_name'], self.user.display_name)
         eq_(data['results'][0]['email'], self.user.email)
         eq_(data['results'][0]['id'], self.user.pk)
         eq_(data['results'][0]['url'], reverse('lookup.user_summary',
                                                args=[self.user.pk]))
 
-    def test_by_fxa_uid(self):
-        self.user.update(fxa_uid='fake-fxa-uid')
+    def test_by_username(self):
+        self.user.update(username='fake-fxa-uid')
         data = self.search(q='fake-fxa-uid')
         self.verify_result(data)
 
