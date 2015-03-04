@@ -559,8 +559,8 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 BROWSERID_AUDIENCES = [SITE_URL]
 
-# Don't let django-browserid create users, we do this ourselves. 
-BROWSERID_CREATE_USER = False 
+# Don't let django-browserid create users, we do this ourselves.
+BROWSERID_CREATE_USER = False
 
 # Native-FxA uses a browserid verifier with slightly different behavior.
 NATIVE_FXA_VERIFICATION_URL = 'https://verifier.accounts.firefox.com/v2'
@@ -723,6 +723,12 @@ FXA_SECRETS = {
     # http://localhost:2600 - zamboni default
     '6b00a7db54f9efee':
         '8caf59671cf97387d4804f64f5b8bbaed3877ef25faf423bbad4794295571e0c',
+    # https://localhost - zamboni ssl
+    '26591db14903ac8e':
+        '6c500995423891a3ccefa070c0918c9d3b5022569d197b06c9e95f7ec993338c',
+    # http://localhost - zamboni
+    '956c54b1f0c354b4':
+        'a401cf90eaaa7eb608f9af2b3b6193015bc659c960935dc91c2e7317c1cd6abe',
     # http://localhost:8000 - zamboni bonus
     '82c894ff06812072':
         'd5c9d80eda1f86b3c92d404a921395f2eeaebb85ac037f9807aea7e41beb1844',
