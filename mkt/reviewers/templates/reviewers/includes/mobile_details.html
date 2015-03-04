@@ -123,6 +123,8 @@
                 {{ _('View Privacy Policy') }}</a>
             </dd>
           {% endif %}
+          <dt>{{ _('Search Keywords') }}</dt>
+          <dd>{{ product.tags.all()|join(', ') }}</dd>
           <dt>{{ _('Team Members') }}</dd>
           <dd>
             {% for author in product.authors.all() %}
@@ -136,6 +138,8 @@
             <dt>{{ _('Flags') }}</dt>
             <dd>{{ flags|join(', ') }}</dd>
           {% endif %}
+          <dt>{{ _('Region Availability') }}</dt>
+          <dd>{{ product.get_regions(sort_by='name')|map(attribute='name')|join(', ') }}</dd>
         </dl>
       </div>
       <a href="#" class="showmore">{{ _('more...') }}</a>

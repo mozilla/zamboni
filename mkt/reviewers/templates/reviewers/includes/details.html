@@ -60,6 +60,8 @@
     {% endif %}
     <dt>{{ _('Requirements') }}</dt>
     <dd>{{ feature_list|join(', ') }}</dd>
+    <dt>{{ _('Search Keywords') }}</dt>
+    <dd>{{ product.tags.all()|join(', ') }}</dd>
   </dl>
 
   <div class="more-app-info-show"><a href="#more">{{ _('Show more') }}</a></div>
