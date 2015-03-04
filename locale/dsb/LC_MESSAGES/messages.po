@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-18 23:06+0000\n"
+"PO-Revision-Date: 2015-03-04 22:43+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424300790.0\n"
+"X-POOTLE-MTIME: 1425509015.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1349,7 +1350,7 @@ msgstr "Zastajony"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Komentar pśespytarja"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -4085,11 +4086,11 @@ msgstr "Kompatibelnosć"
 #. {0} is a list of HTML tags.
 #: mkt/developers/templates/developers/includes/macros.html:6
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Dowólony HTML: {0}"
 
 #: mkt/developers/templates/developers/includes/macros.html:9
 msgid "Some HTML supported."
-msgstr ""
+msgstr "HTML se źělnje pódpěra."
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
@@ -4105,15 +4106,15 @@ msgstr "Kategorije:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Pozicija w cakańskem rěźe:</b> %(pos)s z %(total)s"
 
 #: mkt/developers/templates/developers/includes/macros.html:103
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>Licony cakański cas:</b> %(num)s źěłowy źeń"
+msgstr[1] "<b>Licony cakański cas:</b> %(num)s źěłowej dnja"
+msgstr[2] "<b>Licony cakański cas:</b> %(num)s źěłowe dny"
+msgstr[3] "<b>Licony cakański cas:</b> %(num)s źěłowych dnjow"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
@@ -4125,15 +4126,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
-msgstr ""
+msgstr "Wšykne schowaś"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Instalaciju nałoženja testowaś"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
@@ -4149,28 +4150,28 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
-msgstr ""
+msgstr "Nałožeński kluc"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:35 mkt/developers/templates/developers/payments/in-app-config.html:47
 #: mkt/developers/templates/developers/payments/in-app-keys.html:33 mkt/developers/templates/developers/payments/in-app-keys.html:46
 msgid "Not yet generated."
-msgstr ""
+msgstr "Hyšći njetwórjony."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:39 mkt/developers/templates/developers/payments/in-app-keys.html:37
 msgid "Application Secret"
-msgstr ""
+msgstr "Pótajmne słowo nałoženja"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:43 mkt/developers/templates/developers/payments/in-app-keys.html:42
 msgid "Show secret"
-msgstr ""
+msgstr "Pótajmne słowo pokazaś"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:53 mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Reset secret"
-msgstr ""
+msgstr "Pótajmne słowo slědk stajiś"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
+msgstr "Zgóńśe wěcej wó <b>płaśenjach w nałoženju</b> na MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
@@ -4180,7 +4181,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
-msgstr ""
+msgstr "Kluce twóriś"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
@@ -4208,7 +4209,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Zmóžniś"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
@@ -4224,7 +4225,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:56
 msgid "Icon"
-msgstr ""
+msgstr "Symbol"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:58
 msgid "Price Point"
@@ -4232,15 +4233,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Product ID"
-msgstr ""
+msgstr "Produktowy ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:71
 msgid "Add a product"
-msgstr ""
+msgstr "Produkt pśidaś"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć nałoženja"
 
 #: mkt/developers/templates/developers/payments/premium.html:71
 msgid "Change to Free"
@@ -4276,7 +4277,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
-msgstr ""
+msgstr "Kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
@@ -4284,7 +4285,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Płaśizny a kraje"
 
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -4296,15 +4297,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Not applicable"
-msgstr ""
+msgstr "Njenałožujobny"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
-msgstr ""
+msgstr "Regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Available Regions"
-msgstr ""
+msgstr "K dispoziciji stojece regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
@@ -4344,7 +4345,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:278
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Regiony a lisćinowe zapiski"
 
 #: mkt/developers/templates/developers/payments/premium.html:293
 msgid "Promote as upgrade to free version"
@@ -4360,11 +4361,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
-msgstr ""
+msgstr "Žedne dermotne nałoženja"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "Wužywańske wuměnjenja"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
@@ -4389,15 +4390,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
-msgstr ""
+msgstr "Wužywańske wuměnjenja akceptěrowaś"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Wobkšuśćo wulašowanje płaśeńskego konta"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Płaśeńske konto wulašowaś"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
