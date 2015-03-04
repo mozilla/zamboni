@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-18 21:55+0000\n"
+"PO-Revision-Date: 2015-03-04 22:37+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424296505.0\n"
+"X-POOTLE-MTIME: 1425508667.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1352,7 +1352,7 @@ msgstr "已封鎖"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "審查者留言"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5475,7 +5475,7 @@ msgstr "顯示名稱"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Firefox Accounts 指示符"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5930,11 +5930,11 @@ msgstr "將會退回應用程式、自審核佇列中移除、若已發布也將
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "訊息開發者"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
-msgstr ""
+msgstr "將會傳送訊息給作者與其他討論串訂閱者。將不會變更應用程式狀態。"
 
 # 88%
 #: mkt/reviewers/utils.py:389
@@ -5947,11 +5947,11 @@ msgstr "標示此應用程式交由管理員審查。留言將傳送給管理員
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "私人留言"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
-msgstr ""
+msgstr "為此應用程式留下審查者的私人留言，作者將無法看到此訊息，也不會發送通知給他們。"
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
