@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-18 18:53+0000\n"
+"PO-Revision-Date: 2015-03-04 18:18+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424285636.0\n"
+"X-POOTLE-MTIME: 1425493110.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1351,7 +1351,7 @@ msgstr "Gesperrt"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Kommentar des Überprüfers"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5498,7 +5498,7 @@ msgstr "Name anzeigen"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Firefox-Accounts-Identifikator"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5948,11 +5948,13 @@ msgstr "Dadurch wird die App abgelehnt, aus der Warteschlange für Überprüfung
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Nachricht an Entwickler senden"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Dies sendet dem/den Autor(en) – und anderen Abonnenten des Themas – eine "
+"Nachricht. Dies ändert nicht den Status der App."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -5964,11 +5966,14 @@ msgstr "Diese App zur Überprüfung durch einen Administrator melden. Die Kommen
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Privater Kommentar"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Geben Sie einen privaten Überprüferkommentar zu dieser App ab. Diese "
+"Nachricht ist für den/die Autor(en) nicht sichtbar und es wird auch keine "
+"Benachrichtigung an ihn/sie gesendet."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
