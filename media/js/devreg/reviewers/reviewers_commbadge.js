@@ -1,6 +1,9 @@
+/*
+    Load notes from the Commbadge API for the app review page's review history.
+*/
 define('reviewersCommbadge', ['login'], function(login) {
     var $itemHistory = $('#review-files');
-    var commThreadUrl = $itemHistory.data('comm-thread-url');
+    var commAppUrl = $itemHistory.data('comm-app-url');
     var threadIdPlaceholder = $itemHistory.data('thread-id-placeholder');
     var noteTypes = $itemHistory.data('note-types');
 
@@ -13,17 +16,17 @@ define('reviewersCommbadge', ['login'], function(login) {
                                'ordering': 'created'});
     }
 
-    // Fetch all of the app's threads.
-    $.get(_userArg(commThreadUrl), function(threads) {
+    // Fetch metadata for all of the app's threads.
+    $.get(_userArg(commAppUrl), function(threads) {
+        // Each thread is {threadID, {version}} object.
         threads = threads.objects;
 
         // Show "this version has not been reviewed" for table w/ no results.
         // Gets all version IDs, then adds "No Results" to tables whose
         // data-version is not in the version IDs list.
         var versionIds = _.map(threads, function(thread) {
-            return thread.version;
+            return thread.version.id;
         });
-
         $('table.activity').each(function(i, table) {
             var $table = $(table);
             if (versionIds.indexOf($table.data('version')) === -1) {
@@ -32,17 +35,23 @@ define('reviewersCommbadge', ['login'], function(login) {
             }
         });
 
-        // Fetch all of the notes for each thread.
+        // Load the threads by latest version first since those most visible.
+        threads = _.sortBy(threads, function(thread) {
+            return thread.version.id;
+        }).reverse();
+
+        // Now, fetch all of the notes for each thread.
         for (var i = 0; i < threads.length; i++) {
             var thread = threads[i];
-            var $table = $('table.activity[data-version=' + thread.version + ']');
-            var commNoteUrl = $itemHistory.data('comm-note-url').replace(threadIdPlaceholder, thread.id);
+            var $table = $('table.activity[data-version=' + thread.version.id + ']');
+            var commNoteUrl = $itemHistory.data('comm-note-url')
+                                          .replace(threadIdPlaceholder, thread.id);
 
             $.get(_userArg(commNoteUrl), getNoteHandler($table));
         }
     }).fail(function(e) {
-        $('table.activity').html('<p class="error">' + gettext('Sorry! We had an error fetching the review history. Please try logging in again.' + '<p>')).removeClass('comm-loading');
-        console.log('Login failed. Token: ' + require('login').userToken());
+        $('table.activity').html('<p class="error">' +gettext('Sorry! We had an error fetching the review history. Please try logging in again.' + '<p>')).removeClass('comm-loading');
+        console.log('Login token missing: ' + require('login').userToken());
     });
 
     function appendNotesToTable(notes, $table) {
