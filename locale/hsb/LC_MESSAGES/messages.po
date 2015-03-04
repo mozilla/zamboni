@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-05 17:21+0000\n"
+"PO-Revision-Date: 2015-03-04 22:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423156894.0\n"
+"X-POOTLE-MTIME: 1425509112.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1233,7 +1234,7 @@ msgstr "Moderěrowane přepruwowanje nałoženja"
 
 #: mkt/constants/base.py:205
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija pohódnoćenja nałoženja je so anulowała"
 
 #: mkt/constants/base.py:206
 msgid "Tarako App Review"
@@ -1349,7 +1350,7 @@ msgstr "Zawrjeny"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Komentar přepruwowarja"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -4139,7 +4140,7 @@ msgstr "Wšě schować"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr "Instalacisku nałoženja testować"
+msgstr "Instalaciju nałoženja testować"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
@@ -4341,6 +4342,8 @@ msgstr "Płaćenska metoda"
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
+"Přidajće płaćenske konto, zo byšće swoje nałoženje za předań w dalšich "
+"regionach zmóžnił"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -4405,7 +4408,7 @@ msgstr "Wužiwanske wuměnjenja akceptować"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr "Wobkrućće zhašenja płaćenskeho konta"
+msgstr "Wobkrućće zhašenje płaćenskeho konta"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
@@ -5489,7 +5492,7 @@ msgstr "Mjeno zwobraznić"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identifikator Firefox Accounts"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5695,7 +5698,7 @@ msgstr "Hišće njepřepruwowany"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Pohódnoćeny z %s z 5 hwěžkow"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5767,11 +5770,11 @@ msgstr "Někajki status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Schwalene pohódnoćenja"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Zhašane pohódnoćenja"
 
 #: mkt/reviewers/forms.py:37 mkt/reviewers/forms.py:62
 msgid "View entries between"
@@ -5779,7 +5782,7 @@ msgstr "Zapiski sej wobhladać mjez"
 
 #: mkt/reviewers/forms.py:41
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Po typje/akciji filtrować"
 
 #: mkt/reviewers/forms.py:64
 msgid "containing"
@@ -5939,11 +5942,13 @@ msgstr "Přez to so nałoženje wotpokaza, so z čakanskeho rynka wotstroni a so
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Powěsć na wuwiwarja pósłać"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"To budźe awtoram - a druhim abonentam temy - powěsć słać. To status "
+"nałoženja njezměni."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -5955,11 +5960,13 @@ msgstr "Zdźělće administratorej tute nałoženje za přepruwowanje. Komentary
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Priwatny komentar"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Pósćelće priwatny přepruwowarski komentar k tutomu nałoženju. Tuta powěsć "
+"njebudźe widźomna za awtorow, a tež zdźělenka so wam njepósćele."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
@@ -6210,55 +6217,55 @@ msgstr "Žane přepruwowanja za tutu dobu namakane."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Protokol moderěrowanych pohódnoćenjow"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Dalše podrobnosće."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Za tutu dobu so žane podawki namakali njejsu."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Protokolowe podrobnosće"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Protokolowe podrobnosće"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderaciski datum"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Titul nałoženja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Titul pohódnoćenja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Tekst pohódnoćenja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Pohódnoćenje je so před moderaciju zdźěliło."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Aktualny pohódnoćenski status"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Aktiwny"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Wobnowić"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
