@@ -324,12 +324,8 @@ msgstr "Открита: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Изтриването на платежна сметка \"{0}\" ще я премахне от следното приложение. "
-"Приложения без платежна сметка няма да бъдат предлагани за продан."
-msgstr[1] ""
-"Изтриването на платежна сметка \"{0}\" ще я премахне от следните приложения. "
-"Приложения без платежна сметка няма да бъдат предлагани за продан."
+msgstr[0] "Изтриването на платежна сметка \"{0}\" ще я премахне от следното приложение. Приложения без платежна сметка няма да бъдат предлагани за продан."
+msgstr[1] "Изтриването на платежна сметка \"{0}\" ще я премахне от следните приложения. Приложения без платежна сметка няма да бъдат предлагани за продан."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -557,9 +553,7 @@ msgstr "Грешка при отхвърляне: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Съжаляваме! Имаше грешка при получаване на историята. Опитайте да се впишете "
-"отново.<p>"
+msgstr "Съжаляваме! Имаше грешка при получаване на историята. Опитайте да се впишете отново.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
