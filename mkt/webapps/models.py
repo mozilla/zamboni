@@ -1249,7 +1249,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     @property
     def punycode_app_domain(self):
-        return self.app_domain.encode('idna')
+        if self.app_domain:
+            return self.app_domain.encode('idna')
 
     @property
     def parsed_app_domain(self):
