@@ -187,14 +187,6 @@ define('tracking_app_submit', [], function() {
             cats.push($(this).closest('label').text());
         });
 
-        _gaq.push([
-            '_setCustomVar',
-            15,
-            'Dev: App Category Submitted',
-            cats.join(', '),
-            1
-        ]);
-
         if ($('#id_publish:checked').length === 0) {
             _gaq.push([
                 '_trackEvent',
