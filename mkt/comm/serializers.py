@@ -60,16 +60,16 @@ class NoteSerializer(ModelSerializer):
                   'body', 'note_type', 'thread')
 
 
-class AddonSerializer(ModelSerializer):
+class CommAppSerializer(ModelSerializer):
     name = CharField()
+    review_url = SerializerMethodField('get_review_url')
     thumbnail_url = SerializerMethodField('get_icon')
     url = CharField(source='get_absolute_url')
-    review_url = SerializerMethodField('get_review_url')
 
     class Meta:
         model = Webapp
-        fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug',
-                  'review_url')
+        fields = ('app_slug', 'id', 'name', 'review_url', 'thumbnail_url',
+                  'url')
 
     def get_icon(self, app):
         return app.get_icon_url(64)
@@ -80,19 +80,18 @@ class AddonSerializer(ModelSerializer):
 
 class ThreadSerializer(ModelSerializer):
     addon = SerializerMethodField('get_addon')
-    addon_meta = AddonSerializer(source='addon', read_only=True)
-    recent_notes = SerializerMethodField('get_recent_notes')
+    addon_meta = CommAppSerializer(source='addon', read_only=True)
     notes_count = SerializerMethodField('get_notes_count')
+    recent_notes = SerializerMethodField('get_recent_notes')
     version = SerializerMethodField('get_version')
     version_number = SerializerMethodField('get_version_number')
     version_is_obsolete = SerializerMethodField('get_version_is_obsolete')
 
     class Meta:
         model = CommunicationThread
-        fields = ('id', 'addon', 'addon_meta', 'version', 'notes_count',
-                  'recent_notes', 'created', 'modified', 'version_number',
-                  'version_is_obsolete')
-        view_name = 'comm-thread-detail'
+        fields = ('id', 'addon', 'addon_meta', 'created', 'modified',
+                  'notes_count', 'modified', 'recent_notes', 'version',
+                  'version_number', 'version_is_obsolete')
 
     def get_addon(self, obj):
         return obj.addon.id
@@ -102,15 +101,15 @@ class ThreadSerializer(ModelSerializer):
         if version is not None:
             return version.id
 
+    def get_notes_count(self, obj):
+        return (obj.notes.with_perms(self.get_request().user, obj)
+                         .count())
+
     def get_recent_notes(self, obj):
         notes = (obj.notes.with_perms(self.get_request().user, obj)
                           .order_by('-created')[:5])
         return NoteSerializer(
             notes, many=True, context={'request': self.get_request()}).data
-
-    def get_notes_count(self, obj):
-        return (obj.notes.with_perms(self.get_request().user, obj)
-                         .count())
 
     def get_version_number(self, obj):
         try:
@@ -123,3 +122,32 @@ class ThreadSerializer(ModelSerializer):
             return Version.with_deleted.get(id=obj._version_id).deleted
         except Version.DoesNotExist:
             return True
+
+
+class CommVersionSerializer(ModelSerializer):
+
+    class Meta:
+        model = Version
+        fields = ('id', 'deleted', 'version')
+
+
+class ThreadSerializerV2(ThreadSerializer):
+    app = CommAppSerializer(source='addon', read_only=True)
+    version = CommVersionSerializer(source='version', read_only=True)
+
+    class Meta(ThreadSerializer.Meta):
+        fields = ('id', 'app', 'created', 'modified', 'notes_count',
+                  'version')
+
+
+class CommVersionSimpleSerializer(ModelSerializer):
+
+    class Meta(CommVersionSerializer.Meta):
+        fields = ('id', 'version')
+
+
+class ThreadSimpleSerializer(ThreadSerializerV2):
+    version = CommVersionSimpleSerializer(source='version', read_only=True)
+
+    class Meta(ThreadSerializerV2.Meta):
+        fields = ('id', 'version')

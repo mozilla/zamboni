@@ -28,7 +28,8 @@ from mkt.comm.authorization import (AttachmentPermission,
                                     ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
-from mkt.comm.serializers import NoteSerializer, ThreadSerializer
+from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
+                                  ThreadSerializerV2, ThreadSimpleSerializer)
 from mkt.comm.models import user_has_perm_app
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
@@ -71,6 +72,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 
     @skip_cache
     def list(self, request):
+        """Deprecated by CommAppViewSet and ThreadViewSetV2."""
         self.serializer_class = ThreadSerializer
         profile = request.user
         # We list all the threads where the user has been CC'd.
@@ -109,6 +111,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         return res
 
     def retrieve(self, *args, **kwargs):
+        """Deprecated by AppThreadViewSetV2."""
         res = super(ThreadViewSet, self).retrieve(*args, **kwargs)
 
         # Thread IDs and version numbers from same app.
@@ -277,3 +280,46 @@ def post_email(request):
 
     consume_email.apply_async((email_body,))
     return Response(status=status.HTTP_201_CREATED)
+
+
+class CommAppListView(SilentListModelMixin, CommViewSet):
+    model = CommunicationThread
+    serializer_class = ThreadSerializerV2
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = (ThreadPermission,)  # On self.queryset.
+    cors_allowed_methods = ['get']
+
+    @skip_cache
+    def list(self, request, app_slug):
+        """Return list of threads for the app."""
+        form = forms.AppSlugForm({'app': app_slug})
+        if not form.is_valid():
+            # 404 if app with given slug/id not found.
+            return Response('App does not exist or no app slug given',
+                            status=status.HTTP_404_NOT_FOUND)
+        elif not user_has_perm_app(request.user, form.cleaned_data['app']):
+            # 403 if user does not have auth to access app's comm.
+            return Response('You do not have permissions for this app',
+                            status=status.HTTP_403_FORBIDDEN)
+
+        # Use simple serializer, which rets only ID + Version #s, if specified.
+        if request.GET.get('serializer') == 'simple':
+            self.serializer_class = ThreadSimpleSerializer
+
+        self.queryset = CommunicationThread.objects.filter(
+            _addon=form.cleaned_data['app']).order_by('_version__version')
+
+        return SilentListModelMixin.list(self, request)
+
+
+class ThreadViewSetV2(ThreadViewSet):
+    serializer_class = ThreadSerializerV2
+
+    @skip_cache
+    def list(self, request):
+        """List all the threads where the user has been CC'd."""
+        cc = list(request.user.comm_thread_cc.values_list('thread', flat=True))
+        self.queryset = CommunicationThread.objects.filter(pk__in=cc)
+
+        return SilentListModelMixin.list(self, request)
