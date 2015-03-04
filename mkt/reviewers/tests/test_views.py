@@ -3949,15 +3949,17 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
     def test_comm_url(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
-            reverse('comm-thread-list') + '?limit=1&app=' + self.app.app_slug)
+        eq_(doc('#history .item-history').attr('data-comm-app-url'),
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
+            '?limit=1&serializer=simple')
 
     def test_comm_url_multiple_thread(self):
         self._thread_factory()
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
-            reverse('comm-thread-list') + '?limit=2&app=' + self.app.app_slug)
+        eq_(doc('#history .item-history').attr('data-comm-app-url'),
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
+            '?limit=2&serializer=simple')
 
     def test_comm_url_no_encode(self):
         self.addon = app_factory(app_slug='&#21488;&#21271;')
@@ -3965,9 +3967,9 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
         url = reverse('reviewers.apps.review', args=[self.addon.app_slug])
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('#history .item-history').attr('data-comm-thread-url'),
-            reverse('comm-thread-list') + '?limit=1&app=' +
-            self.addon.app_slug)
+        eq_(doc('#history .item-history').attr('data-comm-app-url'),
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
+            '?limit=1&serializer=simple')
 
 
 class ModerateLogTest(mkt.site.tests.TestCase):
