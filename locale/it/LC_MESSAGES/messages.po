@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-21 13:02+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-03-05 16:24+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424523739.0\n"
+"X-POOTLE-MTIME: 1425572662.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1356,7 +1356,7 @@ msgstr "Espulsa"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Commento del revisore"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5504,7 +5504,7 @@ msgstr "Nome visualizzato"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identificatore Firefox Account"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5954,11 +5954,13 @@ msgstr "Questa opzione rifiuta l’app, la elimina dalla coda di revisione e, ne
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Invia messaggio allo sviluppatore"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Questa opzione permette di inviare un messaggio all’autore (o agli autori) e "
+"agli iscritti alla discussione senza modificare lo stato dell’app."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -5970,11 +5972,14 @@ msgstr "Segnala questa app perché venga revisionata da un amministratore. I com
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Commento privato"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Questa opzione permette al revisore di inserire un commento privato "
+"sull’app. L’autore non riceverà alcuna notifica né potrà leggere il "
+"commento."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
