@@ -1,8 +1,8 @@
 from django.conf.urls import include, patterns, url
 
 from mkt.account.views import (AccountView, FeedbackView, FxALoginView,
-                               InstalledViewSet, LogoutView, NewsletterView,
-                               PermissionsView)
+                               InstalledViewSet, LoginView, LogoutView,
+                               NewsletterView, PermissionsView)
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
@@ -14,6 +14,9 @@ drf_patterns = patterns(
     url('^installed/mine/remove_app/$',
         InstalledViewSet.as_view({'post': 'remove_app'}),
         name='installed-apps-remove'),
+    # Native FxA login view.
+    url('^login/$', LoginView.as_view(), name='account-login'),
+    # Oauth FxA login view.
     url('^fxa-login/$', FxALoginView.as_view(), name='fxa-account-login'),
     url('^logout/$', LogoutView.as_view(), name='account-logout'),
     url('^newsletter/$', NewsletterView.as_view(), name='account-newsletter'),

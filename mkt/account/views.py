@@ -7,10 +7,12 @@ import urlparse
 from django import http
 from django.conf import settings
 from django.contrib import auth
+from django.contrib.auth.signals import user_logged_in
 from django.utils.datastructures import MultiValueDictKeyError
 
 import basket
 import commonware.log
+from django_browserid import get_audience
 from django_statsd.clients import statsd
 
 from requests_oauthlib import OAuth2Session
@@ -27,9 +29,10 @@ from rest_framework.viewsets import GenericViewSet
 import mkt
 from lib.metrics import record_action
 from mkt.users.models import UserProfile
+from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
-                                     FxALoginSerializer,
+                                     FxALoginSerializer, LoginSerializer,
                                      NewsletterSerializer,
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -276,6 +279,53 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
                 'email': request.user.email,
                 'enable_recommendations': request.user.enable_recommendations,
                 'source': 'firefox-accounts',
+            }
+        }
+        # Serializers give up if they aren't passed an instance, so we
+        # do that here despite PermissionsSerializer not needing one
+        # really.
+        permissions = PermissionsSerializer(context={'request': request},
+                                            instance=True)
+        data.update(permissions.data)
+
+        # Add ids of installed/purchased/developed apps.
+        data['apps'] = user_relevant_apps(profile)
+
+        return data
+
+
+class LoginView(CORSMixin, CreateAPIViewWithoutModel):
+    authentication_classes = []
+    serializer_class = LoginSerializer
+
+    def create_action(self, request, serializer):
+        with statsd.timer('auth.browserid.verify'):
+            profile, msg = browserid_authenticate(
+                request, serializer.data['assertion'],
+                browserid_audience=(serializer.data['audience'] or
+                                    get_audience(request)),
+                is_mobile=serializer.data['is_mobile'],
+            )
+        if profile is None:
+            # Authentication failure.
+            log.info('No profile: %s' % (msg or ''))
+            raise AuthenticationFailed('No profile.')
+
+        request.user = profile
+        request.groups = profile.groups.all()
+
+        auth.login(request, profile)
+        user_logged_in.send(sender=profile.__class__, request=request,
+                            user=profile)
+
+        # We want to return completely custom data, not the serializer's.
+        data = {
+            'error': None,
+            'token': commonplace_token(request.user.email),
+            'settings': {
+                'display_name': request.user.display_name,
+                'email': request.user.email,
+                'enable_recommendations': request.user.enable_recommendations,
             }
         }
         # Serializers give up if they aren't passed an instance, so we

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import json
 import uuid
 from urlparse import urlparse
@@ -383,6 +384,105 @@ class TestInstalled(RestOAuth):
 
 class FakeUUID(object):
     hex = '000000'
+
+
+@patch.object(settings, 'SECRET_KEY', 'gubbish')
+class TestLoginHandler(TestCase):
+
+    def setUp(self):
+        super(TestLoginHandler, self).setUp()
+        self.url = reverse('account-login')
+        self.logout_url = reverse('account-logout')
+
+    def post(self, data):
+        return self.client.post(self.url, json.dumps(data),
+                                content_type='application/json')
+
+    @patch.object(uuid, 'uuid4', FakeUUID)
+    @patch('requests.post')
+    def _test_login(self, http_request):
+        FakeResponse = collections.namedtuple('FakeResponse',
+                                              'status_code json')
+        http_request.return_value = FakeResponse(
+            200, lambda: {'status': 'okay', 'email': 'cvan@mozilla.com'})
+        res = self.post({'assertion': 'fake-assertion',
+                         'audience': 'fakemkt.org'})
+        eq_(res.status_code, 201)
+        data = json.loads(res.content)
+        eq_(data['token'],
+            'cvan@mozilla.com,95c9063d9f249aacfe5697fc83192ed6480c01463e2a80b3'
+            '5af5ecaef11754700f4be33818d0e83a0cfc2cab365d60ba53b3c2b9f8f6589d1'
+            'c43e9bbb876eef0,000000')
+
+        return data
+
+    def test_login_new_user_success(self):
+        data = self._test_login()
+        ok_(not any(data['permissions'].values()))
+
+    def test_login_existing_user_success(self):
+        profile = UserProfile.objects.create(email='cvan@mozilla.com',
+                                             display_name='seavan')
+        self.grant_permission(profile, 'Apps:Review')
+
+        data = self._test_login()
+        eq_(data['settings']['display_name'], 'seavan')
+        eq_(data['settings']['email'], 'cvan@mozilla.com')
+        eq_(data['settings']['enable_recommendations'], True)
+        eq_(data['permissions'],
+            {'admin': False,
+             'developer': False,
+             'localizer': False,
+             'lookup': False,
+             'curator': False,
+             'reviewer': True,
+             'webpay': False,
+             'stats': False,
+             'revenue_stats': False})
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['purchased'], [])
+        eq_(data['apps']['developed'], [])
+
+    @patch('mkt.users.models.UserProfile.purchase_ids')
+    def test_relevant_apps(self, purchase_ids):
+        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        purchased_app = app_factory()
+        purchase_ids.return_value = [purchased_app.pk]
+        developed_app = app_factory()
+        developed_app.addonuser_set.create(user=profile)
+        installed_app = app_factory()
+        installed_app.installed.create(user=profile)
+
+        data = self._test_login()
+        eq_(data['apps']['installed'], [installed_app.pk])
+        eq_(data['apps']['purchased'], [purchased_app.pk])
+        eq_(data['apps']['developed'], [developed_app.pk])
+
+    @patch('requests.post')
+    def test_login_failure(self, http_request):
+        FakeResponse = collections.namedtuple('FakeResponse',
+                                              'status_code json')
+        http_request.return_value = FakeResponse(
+            200, lambda: {'status': 'busted'})
+        res = self.post({'assertion': 'fake-assertion',
+                         'audience': 'fakemkt.org'})
+        eq_(res.status_code, 403)
+
+    def test_login_empty(self):
+        res = self.post({})
+        data = json.loads(res.content)
+        eq_(res.status_code, 400)
+        assert 'assertion' in data
+        assert 'apps' not in data
+
+    def test_logout(self):
+        UserProfile.objects.create(email='cvan@mozilla.com')
+        data = self._test_login()
+
+        r = self.client.delete(
+            urlparams(self.logout_url, _user=data['token']),
+            content_type='application/json')
+        eq_(r.status_code, 204)
 
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
