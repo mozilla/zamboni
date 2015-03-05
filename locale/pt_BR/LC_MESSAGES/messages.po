@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-21 09:08+0000\n"
-"Last-Translator: Daniel <danielneis@gmail.com>\n"
+"PO-Revision-Date: 2015-03-05 00:03+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1424509721.0\n"
+"X-POOTLE-MTIME: 1425513826.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1359,7 +1359,7 @@ msgstr "Banido"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Comentário do revisor"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5234,7 +5234,9 @@ msgstr "O seu pacote de idioma deve conter uma versão."
 
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr "A versão do seu pacote de idioma deve ser diferente daquela que está sendo substituinda."
+msgstr ""
+"A versão do seu pacote de idioma deve ser diferente daquela que está sendo "
+"substituída."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5467,7 +5469,7 @@ msgstr "Este pagamento foi feito através da <b>implementação de referência</
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
-msgstr "Informação para reembolso"
+msgstr "Informação de reembolso"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:89
 msgid "Currently unable to retrieve refund status."
@@ -5982,7 +5984,7 @@ msgstr "Isto irá rejeitar o aplicativoção, removendo-o da fila de revisão, d
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Mensagem do desenvolvedor"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
@@ -5998,7 +6000,7 @@ msgstr "Marcar este aplicativo para ser revisado por um administrador. Os coment
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Comentário privativo"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
@@ -6351,7 +6353,7 @@ msgstr "por"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Fila de revisão {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
