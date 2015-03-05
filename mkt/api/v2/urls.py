@@ -11,7 +11,8 @@ from mkt.comm.views import CommAppListView, ThreadViewSetV2
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
-from mkt.search.views import NonPublicSearchView, RocketbarViewV2
+from mkt.search.views import (NonPublicSearchView, NoRegionSearchView,
+                              RocketbarViewV2)
 
 
 feed = SimpleRouter()
@@ -55,10 +56,13 @@ urlpatterns = patterns(
 
     url(r'^apps/recommend/$', RecommendationView.as_view(),
         name='apps-recommend'),
-    url(r'^apps/search/rocketbar/', RocketbarViewV2.as_view(),
+    url(r'^apps/search/rocketbar/$', RocketbarViewV2.as_view(),
         name='rocketbar-search-api'),
-    url(r'^apps/search/non-public/', NonPublicSearchView.as_view(),
+    url(r'^apps/search/non-public/$', NonPublicSearchView.as_view(),
         name='non-public-search-api'),
+    url(r'^apps/search/no-region/$',
+        NoRegionSearchView.as_view(),
+        name='no-region-search-api'),
 
     url(r'^comm/app/%s' % mkt.APP_SLUG,
         CommAppListView.as_view({'get': 'list'}), name='comm-app-list'),

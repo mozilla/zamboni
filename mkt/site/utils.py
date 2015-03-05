@@ -37,7 +37,7 @@ from caching.base import CachingQuerySet
 from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
-from PIL import Image, ImageFile, PngImagePlugin
+from PIL import Image
 from tower import ugettext as _, ungettext as ngettext
 
 import mkt
@@ -199,43 +199,6 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
         raise ValidationError(message, code=code)
 
 
-# From: http://bit.ly/eTqloE
-# Without this, you'll notice a slight grey line on the edges of
-# the adblock plus icon.
-def patched_chunk_tRNS(self, pos, len):
-    i16 = PngImagePlugin.i16
-    s = ImageFile._safe_read(self.fp, len)
-    if self.im_mode == "P":
-        self.im_info["transparency"] = map(ord, s)
-    elif self.im_mode == "L":
-        self.im_info["transparency"] = i16(s)
-    elif self.im_mode == "RGB":
-        self.im_info["transparency"] = i16(s), i16(s[2:]), i16(s[4:])
-    return s
-PngImagePlugin.PngStream.chunk_tRNS = patched_chunk_tRNS
-
-
-def patched_load(self):
-    if self.im and self.palette and self.palette.dirty:
-        apply(self.im.putpalette, self.palette.getdata())
-        self.palette.dirty = 0
-        self.palette.rawmode = None
-        try:
-            trans = self.info["transparency"]
-        except KeyError:
-            self.palette.mode = "RGB"
-        else:
-            try:
-                for i, a in enumerate(trans):
-                    self.im.putpalettealpha(i, a)
-            except TypeError:
-                self.im.putpalettealpha(trans, 0)
-            self.palette.mode = "RGBA"
-    if self.im:
-        return self.im.pixel_access(self.readonly)
-Image.Image.load = patched_load
-
-
 def resize_image(src, dst, size=None, remove_src=True, locally=False):
     """Resizes and image from src, to dst. Returns width and height.
 
@@ -306,13 +269,8 @@ class ImageCheck(object):
                     return True
             return False
         elif img.format == 'GIF':
-            # See the PIL docs for how this works:
-            # http://www.pythonware.com/library/pil/handbook/introduction.htm
-            try:
-                img.seek(1)
-            except EOFError:
-                return False
-            return True
+            # Animated gifs will have either a duration or loop information.
+            return 'duration' in img.info or 'loop' in img.info
 
 
 class HttpResponseSendFile(http.HttpResponse):
@@ -468,7 +426,8 @@ class LocalFileStorage(FileSystemStorage):
             return super(LocalFileStorage, self).delete(name)
 
     def _open(self, name, mode='rb'):
-        if mode.startswith('w'):
+        # Create directories if the file is opened for writing.
+        if any([flag in mode for flag in ['+', 'a', 'w', 'x']]):
             parent = os.path.dirname(self.path(name))
             try:
                 # Try/except to prevent race condition raising "File exists".

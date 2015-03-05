@@ -1050,6 +1050,72 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 0)
 
+    def test_not_finds_excluded_region(self):
+        self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.reindex(Webapp, 'webapp')
+        res = self.client.get(self.url, data={
+            'q': 'second', 'lang': 'en-US', 'region': 'us'
+        })
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
+
+
+@patch.object(settings, 'SITE_URL', 'http://testserver')
+class TestNoRegionSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestNoRegionSearchView, self).setUp()
+        self.url = reverse('api-v2:no-region-search-api')
+        self.refresh('webapp')
+        self.app1 = Webapp.objects.get(pk=337141)
+        self.app2 = app_factory(name=u'Second âpp',
+                                description=u'Second dèsc' * 25,
+                                icon_type='image/png',
+                                created=self.days_ago(3))
+        # Exclude the app in the region we are going to send. It should not
+        # matter.
+        self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.grant_permission(self.profile, 'Feed:Curate')
+        self.reindex(Webapp, 'webapp')
+
+    def tearDown(self):
+        # Cleanup to remove these from the index.
+        self.app1.delete()
+        self.app2.delete()
+        unindex_webapps([self.app1.id, self.app2.id])
+
+    def test_anonymous(self):
+        res = self.anon.get(self.url, data={'q': 'second'})
+        eq_(res.status_code, 403)
+
+    def test_no_permission(self):
+        GroupUser.objects.filter(user=self.profile).delete()
+        res = self.client.get(self.url, data={'q': 'second', 'region': 'us'})
+        eq_(res.status_code, 403)
+
+    def test_with_permission(self):
+        res = self.client.get(self.url, data={
+            'q': 'second', 'lang': 'en-US', 'region': 'us'
+        })
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['name'], self.app2.name)
+
+    def test_not_finds_invalid_statuses(self):
+        for status in [mkt.STATUS_PENDING, mkt.STATUS_APPROVED,
+                       mkt.STATUS_UNLISTED, mkt.STATUS_DISABLED,
+                       mkt.STATUS_DELETED, mkt.STATUS_REJECTED,
+                       mkt.STATUS_BLOCKED]:
+            self.app2.update(status=status)
+            self.refresh('webapp')
+            res = self.client.get(self.url, data={
+                'q': 'second', 'lang': 'en-US', 'region': 'us'
+            })
+            eq_(res.status_code, 200)
+            eq_(len(res.json['objects']), 0)
+
 
 class TestRocketbarView(ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
