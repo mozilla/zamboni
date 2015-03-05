@@ -505,7 +505,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             if not hasattr(self, '_geodata'):
                 Geodata.objects.create(addon=self)
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks

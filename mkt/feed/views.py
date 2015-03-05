@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.utils.datastructures import MultiValueDictKeyError
 from django.http import Http404
 from django.views.decorators.cache import cache_control
@@ -665,6 +666,14 @@ class BaseFeedESView(CORSMixin, APIView):
             return None
 
         return feed_element
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        # Make all search views non_atomic: they should not need the db, or
+        # at least they should not need to make db writes, so they don't need
+        # to be wrapped in transactions.
+        view = super(BaseFeedESView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)
 
 
 class FeedElementSearchView(BaseFeedESView):

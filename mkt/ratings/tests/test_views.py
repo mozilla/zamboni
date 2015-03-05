@@ -148,17 +148,29 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         self.app.update_version()
 
         reset_queries()
-        with self.assertNumQueries(5):
-            # 5 queries:
+        with self.assertNumQueries(7):
+            # 7 queries:
+            # - 1 SAVEPOINT
             # - 2 for the Reviews queryset and the translations
             # - 2 for the Version associated to the reviews (qs + translations)
             # - 1 for the File attached to the Version
+            # - 1 RELEASE SAVEPOINT
             #
-            # Note: We patch get_app() to avoid the app queries to pollute the
-            # queries count.
+            # Notes:
+            # - In prod, we actually do COMMIT/ROLLBACK and not
+            # SAVEPOINT/RELEASE SAVEPOINT. It would be nice to avoid those for
+            # all GET requests in the API, but it's not trivial to do for
+            # ViewSets which implement multiple actions through the same view
+            # function (non_atomic_requests() really want to be applied to the
+            # view function).
+            #
+            # - The query count is slightly higher in prod. In tests, we patch
+            # get_app() to avoid the app queries to pollute the queries count.
+            #
             # Once we are on django 1.7, we'll be able to play with Prefetch
             # to reduce the number of queries further by customizing the
-            # queryset used for the versions.
+            # queryset used for the complex related objects like versions and
+            # webapp.
             with patch('mkt.ratings.views.RatingViewSet.get_app') as get_app:
                 get_app.return_value = self.app
                 res, data = self._get_url(self.list_url, client=self.anon,

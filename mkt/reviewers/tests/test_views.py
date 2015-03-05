@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import re
 import time
 from datetime import datetime, timedelta
@@ -1220,10 +1219,6 @@ class TestReviewTransaction(AttachmentManagementMixin,
     @mock.patch('lib.crypto.packaged.sign')
     def test_public_sign_failure(self, sign_mock, json_mock,
                                  update_cached_manifests):
-        # Test fails on Jenkins, skipping for now.
-        if os.environ.get('JENKINS_HOME'):
-            raise SkipTest()
-
         self.app = self.get_app()
         self.version = self.app.latest_version
         self.version.files.all().update(status=mkt.STATUS_PENDING)

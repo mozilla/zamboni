@@ -28,11 +28,13 @@ DATABASES = {}
 DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
 DATABASES['default']['ENGINE'] = 'mysql_pool'
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['slave']['sa_pool_key'] = 'slave'
+DATABASES['slave']['ATOMIC_REQUESTS'] = True
 
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,

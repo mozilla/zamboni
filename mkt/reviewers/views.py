@@ -417,49 +417,36 @@ def _review(request, addon, version):
     return render(request, 'reviewers/review.html', ctx)
 
 
-@transaction.commit_manually
 @reviewer_required
 @app_view
 def app_review(request, addon):
     version = addon.latest_version
     resp = None
     try:
-        resp = _review(request, addon, version)
+        with transaction.atomic():
+            resp = _review(request, addon, version)
     except SigningError, exc:
-        transaction.rollback()
         messages.error(request, 'Signing Error: %s' % exc)
-        transaction.commit()
         return redirect(
             reverse('reviewers.apps.review', args=[addon.app_slug]))
-    except Exception:
-        transaction.rollback()
-        raise
-    else:
-        transaction.commit()
-        # We (hopefully) have been avoiding sending send post_save and
-        # version_changed signals in the review process till now (_review()
-        # uses ReviewHelper which should have done all of its update() calls
-        # with _signal=False).
-        #
-        # Now is a good time to send them: the transaction we were in has been
-        # committed, so we know everything is ok. This is important: we need
-        # them to index the app or call update_version() if that wasn't done
-        # before already.
-        if request.method == 'POST':
-            try:
-                post_save.send(sender=Webapp, instance=addon, created=False)
-                post_save.send(sender=Version, instance=version, created=False)
-                if getattr(addon, 'resend_version_changed_signal', False):
-                    version_changed.send(sender=addon)
-                    del addon.resend_version_changed_signal
-            except Exception:
-                transaction.rollback()
-                raise
-            else:
-                transaction.commit()
-        if resp:
-            return resp
-        raise
+    # We (hopefully) have been avoiding sending send post_save and
+    # version_changed signals in the review process till now (_review()
+    # uses ReviewHelper which should have done all of its update() calls
+    # with _signal=False).
+    #
+    # Now is a good time to send them: the transaction we were in has been
+    # committed, so we know everything is ok. This is important: we need
+    # them to index the app or call update_version() if that wasn't done
+    # before already.
+    if request.method == 'POST':
+        post_save.send(sender=Webapp, instance=addon, created=False)
+        post_save.send(sender=Version, instance=version, created=False)
+        if getattr(addon, 'resend_version_changed_signal', False):
+            version_changed.send(sender=addon)
+            del addon.resend_version_changed_signal
+    if resp:
+        return resp
+    raise
 
 
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
