@@ -1,0 +1,26 @@
+[{"type": "hosted",
+  "status": "pending",
+  "manifest_url": "http://reviewer-app1.testmanifest.com/manifest.webapp",
+  "categories": ["books", "business"],
+  "device_types": ["firefoxos", "desktop"],
+  "privacy_policy": "good privacy policy",
+  "preview_files": ["images/screenshot1.png"],
+  "manifest_file": "manifests/app1.json"
+ },
+ {"type": "hosted",
+  "status": "pending",
+  "manifest_url": "http://reviewer-app2.testmanifest.com/manifest.webapp",
+  "categories": ["books", "music"],
+  "device_types": ["firefoxos", "desktop"],
+  "privacy_policy": "do not track",
+  "preview_files": ["images/screenshot1.png"],
+  "manifest_file": "manifests/app2.json"
+ },
+ {"type": "packaged",
+  "status": "pending",
+  "categories": ["books", "music"],
+  "device_types": ["firefoxos", "desktop"],
+  "privacy_policy": "do not track",
+  "preview_files": ["images/screenshot1.png"],
+  "package_file": "manifests/app3.zip"
+ }]
