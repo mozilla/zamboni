@@ -104,6 +104,10 @@
         </label>
         <span class="hint-inline">{{ _('Enter as comma-separated words and/or phrases. {0} keywords maximum.'|f(mkt.MAX_TAGS)) }}</span>
         {{ form_basic.tags.as_widget() }}
+        <span class="hint">
+          {{ form_basic.tags.help_text }}
+        </span>
+
         {{ form_basic.tags.errors }}
       </div>
 
