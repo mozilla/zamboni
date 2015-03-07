@@ -2,7 +2,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 
-from mkt.webapps.tasks import generate_apps
+from mkt.webapps.fakedata import generate_apps
 
 
 class Command(BaseCommand):
