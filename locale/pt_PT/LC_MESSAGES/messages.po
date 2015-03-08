@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-20 03:19+0000\n"
+"PO-Revision-Date: 2015-03-08 04:54+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424402390.0\n"
+"X-POOTLE-MTIME: 1425790488.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1352,7 +1352,7 @@ msgstr "Banido"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Comentário do revisor"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5509,7 +5509,7 @@ msgstr "Nome a apresentar"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identificador das contas Firefox"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5961,11 +5961,13 @@ msgstr "Isto irá rejeitar a aplicação, removendo-a da fila de revisão, deixa
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Enviar mensagem ao programador"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Isto irá enviar uma mensagem ao(s) autor(es) - e não a outros subscritores "
+"da discussão. Isto não altera o estado da aplicação."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -5977,11 +5979,13 @@ msgstr "Marcar esta aplicação para ser revista por um administrador. Os coment
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Comentário privado"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Fazer um comentário privado nesta aplicação. A mensagem não será visível "
+"ao(s) autor(es) e nenhuma notificação será enviada para eles."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
