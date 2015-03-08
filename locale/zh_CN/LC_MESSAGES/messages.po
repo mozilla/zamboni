@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-02-19 02:30+0000\n"
+"PO-Revision-Date: 2015-03-08 21:18+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424313010.0\n"
+"X-POOTLE-MTIME: 1425849490.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1351,7 +1351,7 @@ msgstr "已封禁"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "审核者留言"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:182 mkt/site/log.py:198
 msgid "Escalated"
@@ -5445,7 +5445,7 @@ msgstr "显示名"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Firefox 账户标识符"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5895,11 +5895,11 @@ msgstr "将会拒绝应用，从审核队列中移除，如果已经发布则会
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "开发者消息"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
-msgstr ""
+msgstr "这将发送给作者及主题订阅者一条消息。这不会更改应用的状态。"
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -5911,11 +5911,11 @@ msgstr "将应用标记为管理员审核。将会给管理员而不是作者发
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "私人留言"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
-msgstr ""
+msgstr "在此应用上留下一条审核者的私人留言。作者不能看到此消息，并且不会收到相关通知。"
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
