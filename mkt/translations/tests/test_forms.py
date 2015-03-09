@@ -13,6 +13,7 @@ class TestForm(forms.TranslationFormMixin, ModelForm):
 
     class Meta:
         model = TranslatedModel
+        exclude = []
 
 
 class TestTranslationFormMixin(TestCase):

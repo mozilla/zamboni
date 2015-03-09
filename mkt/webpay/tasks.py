@@ -18,7 +18,7 @@ log = logging.getLogger('z.webpay.tasks')
 
 
 @task
-@transaction.commit_on_success
+@transaction.atomic
 def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
     """
     Fetch and store a webpay product icon.

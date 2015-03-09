@@ -94,6 +94,7 @@ DATABASES['default'] = dj_database_url.config(
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -194,7 +195,6 @@ MIDDLEWARE_CLASSES = (
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
     'mkt.api.middleware.APIFilterMiddleware',
     # Middleware that redirects needs to go after all the stuff, because if
     # a middleware causes a redirect, then other middleware stops processing.

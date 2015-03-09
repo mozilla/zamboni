@@ -5,7 +5,7 @@ from django.db import transaction
 from market.models import Price
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def run():
     print 'Adding in new tiers'
     for tier in ['0.10', '0.25', '0.50', '12.49']:

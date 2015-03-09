@@ -23,7 +23,7 @@ def get_task_user():
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def create_user(email, group_name=None, overwrite=False,
                 oauth_key=None, oauth_secret=None):
     """Create an user if he doesn't exist already, assign him to a group and
