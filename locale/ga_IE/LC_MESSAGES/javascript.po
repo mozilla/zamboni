@@ -149,11 +149,11 @@ msgstr "Theip ar shuiteáil. Bain triail eile as ar ball."
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
+msgstr[1] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
+msgstr[2] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
+msgstr[3] "Theip ar d'aip sa bhailíochtú le {0} n-earráid agus {1} teachtaireacht."
+msgstr[4] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
@@ -178,11 +178,11 @@ msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Nuashonraíodh an lastliosta"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Níorbh fhéidir an lastliosta a nuashonrú. Bain triail eile as ar ball."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -214,11 +214,11 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Cumasaithe"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Díchumasaithe"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -238,11 +238,11 @@ msgstr "Níorbh fhéidir logáil isteach i bPersona. Tharla fadhb leis an bhfrea
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "D'athraigh an stádas: \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Níorbh fhéidir an stádas a athrú go \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -337,11 +337,11 @@ msgstr "Braite: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Má scriosann tú cuntas íocaíochta \"{0}\", bainfear ó na haipeanna seo a leanas freisin é. Ní féidir aip a chur ar díol mura bhfuil cuntas íocaíochta aici."
+msgstr[1] "Má scriosann tú cuntas íocaíochta \"{0}\", bainfear ó na haipeanna seo a leanas freisin é. Ní féidir aip a chur ar díol mura bhfuil cuntas íocaíochta aici."
+msgstr[2] "Má scriosann tú cuntas íocaíochta \"{0}\", bainfear ó na haipeanna seo a leanas freisin é. Ní féidir aip a chur ar díol mura bhfuil cuntas íocaíochta aici."
+msgstr[3] "Má scriosann tú cuntas íocaíochta \"{0}\", bainfear ó na haipeanna seo a leanas freisin é. Ní féidir aip a chur ar díol mura bhfuil cuntas íocaíochta aici."
+msgstr[4] "Má scriosann tú cuntas íocaíochta \"{0}\", bainfear ó na haipeanna seo a leanas freisin é. Ní féidir aip a chur ar díol mura bhfuil cuntas íocaíochta aici."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -378,7 +378,7 @@ msgstr "Déan cuardach ar <b>{0}</b> sna breiseáin"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Tharla earráid. Déan iarracht eile."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -506,7 +506,7 @@ msgstr "níos lú..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Coinnigh an léirmheas / Bain na bratacha"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -570,15 +570,15 @@ msgstr "Earráid agus an aip á diúltú: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Earráid agus an aip á glacadh: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Earráid agus an aip á bhriseadh: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:43
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
+msgstr "Ár leithscéal! Tharla earráid agus stair na léirmheasanna á fáil. Logáil isteach arís agud déan iarracht eile.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
