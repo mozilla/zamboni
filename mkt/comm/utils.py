@@ -67,7 +67,7 @@ def post_create_comm_note(note):
             thread.join_thread(moz_contact)
         except UserProfile.DoesNotExist:
             nonuser_mozilla_contacts.append((None, email))
-    utils_mail.email_recipients(nonuser_mozilla_contacts, note, {
+    utils_mail.email_recipients(nonuser_mozilla_contacts, note, extra_context={
         'nonuser_mozilla_contact': True
     })
 
