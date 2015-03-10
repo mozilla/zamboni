@@ -13,7 +13,6 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -518,7 +517,6 @@ def version_publicise(request, addon_id, addon):
 
 @dev_required
 @require_POST
-@transaction.commit_on_success
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)

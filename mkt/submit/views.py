@@ -102,7 +102,7 @@ def manifest(request):
     if (request.method == 'POST' and form.is_valid() and
             features_form_valid):
 
-        with transaction.commit_on_success():
+        with transaction.atomic():
             upload = form.cleaned_data['upload']
             addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
 
@@ -136,7 +136,7 @@ def manifest(request):
             # Create feature profile.
             addon.latest_version.features.update(**features_form.cleaned_data)
 
-        # Call task outside of `commit_on_success` to avoid it running before
+        # Call task outside of `atomic` to avoid it running before
         # the transaction is committed and not finding the app.
         tasks.fetch_icon.delay(addon, addon.latest_version.all_files[0])
 
