@@ -87,6 +87,26 @@ def pay_status(request, addon, contrib_uuid):
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
 
+def _get_user_profile(request, buyer_email):
+    user_profile = UserProfile.objects.filter(email=buyer_email)
+
+    if user_profile.exists():
+        user_profile = user_profile.get()
+    else:
+        source = mkt.LOGIN_SOURCE_WEBPAY
+        user_profile = UserProfile.objects.create(
+            email=buyer_email,
+            is_verified=True,
+            source=source)
+
+        log_cef('New Account', 5, request, username=buyer_email,
+                signature='AUTHNOTICE',
+                msg='A new account was created from Webpay (using FxA)')
+        record_action('new-user', request)
+
+    return user_profile
+
+
 @csrf_exempt
 @write
 @require_POST
@@ -139,6 +159,20 @@ def postback(request):
                         contrib_uuid=contrib_uuid,
                         contrib_trans=contrib.transaction_id))
 
+    # Special-case free in-app products.
+    if data.get('request', {}).get('pricePoint') == '0':
+        solitude_buyer_uuid = data['response']['solitude_buyer_uuid']
+
+        try:
+            buyer = (solitude.api.generic
+                                 .buyer
+                                 .get_object_or_404)(uuid=solitude_buyer_uuid)
+        except ObjectDoesNotExist:
+            raise LookupError(
+                'Unable to look up buyer: {uuid} in Solitude'
+                .format(uuid=solitude_buyer_uuid))
+        user_profile = _get_user_profile(request, buyer.get('email'))
+        return free_postback(request, contrib, trans_id, user_profile)
     try:
         transaction_data = (solitude.api.generic
                                         .transaction
@@ -159,21 +193,7 @@ def postback(request):
 
     buyer_email = buyer_data['email']
 
-    user_profile = UserProfile.objects.filter(email=buyer_email)
-
-    if user_profile.exists():
-        user_profile = user_profile.get()
-    else:
-        source = mkt.LOGIN_SOURCE_WEBPAY
-        user_profile = UserProfile.objects.create(
-            email=buyer_email,
-            is_verified=True,
-            source=source)
-
-        log_cef('New Account', 5, request, username=buyer_email,
-                signature='AUTHNOTICE',
-                msg='A new account was created from Webpay (using FxA)')
-        record_action('new-user', request)
+    user_profile = _get_user_profile(request, buyer_email)
 
     log.info(u'webpay postback: fulfilling purchase for contrib {c} with '
              u'transaction {t}'.format(c=contrib, t=trans_id))
@@ -194,15 +214,29 @@ def postback(request):
 
 def simulated_postback(contrib, trans_id):
     simulate = contrib.inapp_product.simulate_data()
-    log.info('Got simulated payment postback; contrib={c}; '
-             'trans={t}; simulate={s}'.format(c=contrib, t=trans_id,
-                                              s=simulate))
+    log.info(u'Got simulated payment postback; contrib={c}; '
+             u'trans={t}; simulate={s}'.format(c=contrib, t=trans_id,
+                                               s=simulate))
     if simulate['result'] != 'postback':
         raise NotImplementedError(
             'Not sure how exactly to update contibutions for '
             'non-successful simulations')
 
     contrib.update(transaction_id=trans_id, type=mkt.CONTRIB_PURCHASE)
+    return http.HttpResponse(trans_id)
+
+
+def free_postback(request, contrib, trans_id, user_profile):
+    log.info(u'Got free product postback: fulfilling purchase for '
+             u'contrib={c}; trans={t}; user={u}'.format(
+                 c=contrib, t=trans_id, u=user_profile))
+    app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
+                    'Purchase complete for: %s' % (contrib.addon.pk),
+                    severity=3)
+    contrib.update(transaction_id=trans_id,
+                   type=mkt.CONTRIB_PURCHASE,
+                   user=user_profile)
+    tasks.send_purchase_receipt.delay(contrib.pk)
     return http.HttpResponse(trans_id)
 
 
