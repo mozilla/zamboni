@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:12-0700\n"
-"PO-Revision-Date: 2015-03-05 00:03+0000\n"
+"PO-Revision-Date: 2015-03-10 00:36+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1425513826.0\n"
+"X-POOTLE-MTIME: 1425947814.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -5525,7 +5525,7 @@ msgstr "Nome"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identificador de conta Firefox"
 
 # 80%
 #: mkt/lookup/templates/lookup/user_summary.html:21
@@ -5989,6 +5989,8 @@ msgstr "Mensagem do desenvolvedor"
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Isto irá enviar uma mensagem ao(s) autor(es) - e não a outros assinantes da "
+"discussão. Isto não altera o estado da aplicativo."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -6005,6 +6007,8 @@ msgstr "Comentário privativo"
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Faça uma avaliação privativa neste aplicativo. A mensagem não será visível "
+"ao(s) autor(es) e nenhuma notificação será enviada para eles."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
