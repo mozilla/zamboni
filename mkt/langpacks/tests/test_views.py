@@ -528,7 +528,8 @@ class TestLangPackNonAPIViews(TestCase):
         eq_(response.status_code, 200)
         original_etag = response['ETag']
         ok_(original_etag)
-        self.assertCloseToNow(response['Last-Modified'],
+        self.assertCloseToNow(
+            response['Last-Modified'],
             now=self.langpack.modified.replace(tzinfo=tzutc()))
 
         # Test that the etag is different if the langpack file_version changes.
