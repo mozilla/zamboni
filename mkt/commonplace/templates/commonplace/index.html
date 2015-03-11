@@ -23,9 +23,10 @@
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('opensearch') }}">
     <meta name="fragment" content="!">
-    {% if media_origin -%}
-      <link rel="dns-prefetch" href="{{ media_origin }}">
-    {% endif -%}
+
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//stats.g.doubleclick.net">
+
     {{ newrelic_header()|safe if repo == 'fireplace' }}
   </head>
   <body class="home{{ ' overlayed' if repo == 'fireplace' }}" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}" data-waffle-switches="{{ waffle_switches|json }}"{% if geoip_region %} data-region="{{ geoip_region.slug }}"{% endif %}>
