@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-04 12:29-0500\n"
+"PO-Revision-Date: 2015-03-11 14:26-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2106,11 +2106,11 @@ msgstr "この説明は詳細ページに表示されます。"
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "検索キーワード:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
-msgstr ""
+msgstr "検索キーワードは Firefox Marketplace 内で検索結果を返すために使用されます。アプリの機能を正確に反映したキーワードを含めるようにしてください。"
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3499,6 +3499,8 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"アプリ名は Firefox Marketplace 内で検索結果を返すために使用される項目のひとつです。アプリ名はアプリの詳細ページにも表示されます。記述的な名前をアプリマニフェストに含めるようにしてください。アプリ名を変更したい場合、"
+"アプリマニフェスト内の名前も併せて変更する必要があります。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3559,10 +3561,11 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"アプリの説明は Firefox Marketplace 内で検索結果を返すために使用される項目のひとつです。アプリの説明はアプリの詳細ページにも表示されます。アプリの機能を正確に表した説明文を含めるようにしてください。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "検索キーワード"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -7349,6 +7352,7 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"アプリの説明は Firefox Marketplace 内で検索結果を返すために使用される項目のひとつです。アプリの説明はアプリの詳細ページにも表示されます。アプリの機能を正確に表した説明文を含めるようにしてください。"
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
@@ -7394,7 +7398,7 @@ msgstr "アプリは Flash 対応を必要としますか？"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "審査担当者へのコメント:"
 
 #: mkt/submit/forms.py:334
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7749,11 +7753,11 @@ msgstr "このメールアドレスを持つユーザは存在しないか、開
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "ネイティブ FxA 認証に失敗しました。"
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "このアカウントの認証済みメールアドレスを使用してください。"
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
