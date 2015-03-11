@@ -126,9 +126,9 @@ class TranslationTestCase(TestCase):
 
     def test_create_translation(self):
         def get_model():
-            return TranslatedModel.objects.get(id=o.id)
+            return self.TranslatedModel.objects.get(id=o.id)
 
-        o = TranslatedModel.objects.create(name='english name')
+        o = self.TranslatedModel.objects.create(name='english name')
         trans_eq(o.name, 'english name', 'en-US')
         eq_(o.description, None)
 
@@ -206,7 +206,7 @@ class TranslationTestCase(TestCase):
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(id=1)
+            return self.TranslatedModel.objects.get(id=1)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui', 'sr-Latn': 'yes I speak serbian'}
