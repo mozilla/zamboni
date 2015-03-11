@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2014-09-30 21:13+0000\n"
+"PO-Revision-Date: 2015-03-11 22:04+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1412111637.0\n"
+"X-POOTLE-MTIME: 1426111478.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -45,7 +45,7 @@ msgstr "Eremuak gutxienez {num} karaktereko luzera izan behar du."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "{lang_code} hizkuntza-kodea baliogabea da."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
 msgid "Unknown"
@@ -366,7 +366,7 @@ msgstr "Txekia"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Danimarka"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -1358,7 +1358,7 @@ msgstr "Debekatuta"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Berrikuslearen iruzkina"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
 msgid "Escalated"
@@ -2096,7 +2096,9 @@ msgstr "Gutxienez pantaila-argazki edo bideo bat igo behar duzu."
 
 #: mkt/developers/forms.py:435
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr "Paketatutako aplikazioa bidaltzeko handiegia da. Paketeak %s baino txikiagoak izan behar dira."
+msgstr ""
+"Paketatutako aplikazioa handiegia da eta ezin da bidali. Paketeek %s baino "
+"txikiagoak izan behar dute."
 
 #: mkt/developers/forms.py:450
 msgid "Error extracting manifest from zip file."
@@ -2330,7 +2332,7 @@ msgstr "Ez da eguneraketa"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Banku-kontuaren jabearen izena"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Company Name"
@@ -2469,7 +2471,7 @@ msgstr "Nire bidalketak"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Eman {0}(e)ri"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2603,7 +2605,7 @@ msgstr "Edukiaren sailkapenak ondo gorde dira."
 
 #: mkt/developers/views.py:445
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "Aurrekarga-eskaria ongi bidali da."
 
 #: mkt/developers/views.py:448
 msgid "There was an error with the form."
@@ -2647,11 +2649,11 @@ msgstr "API gako berria sortuta."
 
 #: mkt/developers/views.py:1052
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Blokeatutako zerrenden bertsioa sortuta."
 
 #: mkt/developers/views.py:1054
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Aplikazioa badago blokeatutakoen zerrenda."
 
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
@@ -2707,9 +2709,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p> Marketplace-aren APIak bi erabilera nagusi ditu. Beste webgune batetik OAuth fluxu tradizional bat erabiliz, edo komando-lerro tresna batetik. Desberdintasuna <a href=\"https://firefox-"
-"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace-aren dokumentazioan</a> azaltzen da. Edozein proba <a href=\"https://marketplace-dev.allizom.org\">garapen-"
-"zerbitzarian</a> egingo da beti, eta ez produkzioko zerbitzarian. </p>"
+"<p> Marketplace-aren APIak bi erabilera nagusi ditu. Beste webgune batetik "
+"OAuth fluxu tradizionala erabiliz, edo komando-lerro tresna batetik. "
+"Desberdintasuna <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace-"
+"aren dokumentazioan</a> kontsulta dezakezu. Proba guztiak <a href=\"https"
+"://marketplace-dev.allizom.org\">garapen-zerbitzarian</a> egingo dira beti, "
+"eta ez ekoizpen-zerbitzarian. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -2852,11 +2858,15 @@ msgstr "Ezarpenak"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92 mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Zenbait eginbide aldi baterako desgaituta daude, webgunearen mantentze-lanak burutu arte. Oso laster izango gara berriz bueltan."
+msgstr ""
+"Zenbait eginbide aldi baterako desgaitu dira, webgunearen mantentze-lanak "
+"burutu arte. Oso laster izango gara berriz bueltan."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
-msgstr "Zerbitzuaren baldintzak azkenekoz onartu zenituenetik aldatu egin dira. Irakurri eta onartu <a href=\"%(url)s\">baldintza berriak</a>."
+msgstr ""
+"Zerbitzuaren baldintzak aldatu egin dira azkenekoz onartu zenituenetik. "
+"Irakurri eta onartu <a href=\"%(url)s\">baldintza berriak</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
@@ -2865,6 +2875,8 @@ msgstr "Hasi saioa, mesedez"
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Hasi saioa edo erregistratu <a href=\"%(url)s\">Firefox kontu batekin</a> "
+"behean."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -2946,10 +2958,13 @@ msgstr "<strong>Ez ahaztu protokolo bat ere!</strong> Probatu <a href=\"#\">%(ht
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr ""
+"Manifestuen URLek protokolo batekin hasi behar dute adibidez, "
+"<code>http://</code> edo <code>https://</code>) eta normalean "
+"<code>.webapp</code> luzapena erabiltzen dute."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Ikasi nola bidali aplikazio bat."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
@@ -2960,7 +2975,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Balidazioaren emaitzak {0} aplikaziorako"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
@@ -3052,18 +3067,22 @@ msgstr "Aplikazioek nahi beste taldekide eduki ditzakete, 4 rol hauetariko batek
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
 msgstr ""
+"Aplikazioaren zerrendaren alderdi guztiak kudea ditzake, baita taldekideak "
+"kentzea eta gehitzea ere."
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
 msgstr ""
+"Aplikazioaren zerrendaren alderdi guztiak kudea ditzake, taldekideak kentzea "
+"eta gehitzea eta ordainketak kudeatzea salbu."
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
-msgstr ""
+msgstr "Aplikazioaren ezarpenak ikus ditzake, baina ezin du aldaketarik egin"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Ezin ditu aplikazioaren ezarpenak ikusi"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3096,14 +3115,19 @@ msgstr "Aplikazio hau <b>Mozillak desgaitu</b> du."
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Zure aplikazioa desgaitu da ez duelako edukien sailkapenik. It will "
+"automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining "
+"content ratings</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Apliazio hau <b>debekatua izan da Marketplacen</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Gunearen administratzaile batek zure aplikazioa debekatu du. Galderarik "
+"baduzu, bidali posta bat %(email)s-i."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3112,6 +3136,8 @@ msgstr "Zure aplikazioa <b>Mozillak blokeatu</b> du."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Gunearen administratzaile batek zure aplikazioa blokeatu du. Galderarik "
+"baduzu, bidali posta bat %(email)s-i."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3121,11 +3147,12 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
 msgstr ""
+"Zure aplikazioaren <b>{0}</b> bertsioa <b>{1}</b> eta <b>Aktibo</b> dago."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "Zure aplikazioaren <b>{0}</b> bertsioa <b>{1}</b> dago"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3201,7 +3228,7 @@ msgstr "Deskargatu"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
-msgstr ""
+msgstr "Aktibatu"
 
 #: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
@@ -3210,6 +3237,8 @@ msgstr "Igo bertsio berria"
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
+"Igo paketatutako aplikazio honen bertsio berri bat. Bertsio berriak "
+"berrikusi egin behar dira instalatzeko erabilgarri egon baino lehen."
 
 #: mkt/developers/templates/developers/apps/status.html:259
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3222,31 +3251,35 @@ msgstr "Jarraitu"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Memoria gutxiko gailuak"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "Zure aplikazioa memoria gutxiko gailuetan erakusten da."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "Zure aplikazioa ez da erakusten memoria gutxiko gailuetan."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Ez duzu eskatu memoria gutxiko gailuetarako berrikuspenik."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "Zure aplikazioa berrikuspenaren zain dago."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"{review_date} egunean egindako berrikuspenak aurkitu du zure aplikazioak "
+"memoria gutxiko gailuak onartzen dituela."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
+"{review_date} egunean egindako berrikuspenak aurkitu du zure aplikazioak ez "
+"dituela onartzen memoria gutxiko gailuak."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3266,15 +3299,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Ikasi memoria gutxiko gailuen inguruan."
 
 #: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Ez erakutsi nire aplikazioa memoria gutxiko gailuetan"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Eskatu memoria gutxiko gailuetarako berrikuspen bat"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
@@ -3302,7 +3335,7 @@ msgstr "Ikasi nola lortu aplikazioa Firefox OS gailuetan aurrez instalatuta bana
 
 #: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
-msgstr ""
+msgstr "Eguneratu zure proben plana"
 
 #: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
@@ -3339,8 +3372,11 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
-"Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
-"submitted and approved. Aldaketa hauek ezin dira desegin. Please proceed with caution."
+"Aplikazio bat blokeatzeko zerrendara gehitzean, bertsio berezi batera "
+"eguneratuko da eta erabiltzaileek ezingo dute erabili haien Firefox OS "
+"gailuetan. Honez gain, aplikazioa orri publikoetatik kenduko da bertsio "
+"berri bat bidali eta onartu arte. Aldaketa hauek ezin dira desegin. Mesedez, "
+"ibili kontuz."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
@@ -3423,7 +3459,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:67
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Oharrak berrikusleentzat"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
@@ -3455,7 +3491,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Mozilla VIP aplikazioa"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
@@ -3539,7 +3575,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:73
 msgid "View API documentation"
-msgstr ""
+msgstr "Ikusi APIaren dokumentazioa"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:105
@@ -3555,6 +3591,11 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Saiatu zure manifestuaren URLa maiz ez aldatzen. Zure manifestuaren URLa "
+"aldatzen baduzu, lehendik dituzun erabiltzaileak ez dira eguneratuko "
+"manifestuaren URL berria erabiltzeko. Informazio gehiagorako, irakurri <a "
+"href=\"%(doc_url)s\" target=\"_blank\">aplikazioak eguneratzeko "
+"dokumentazioa</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Description"
@@ -3577,10 +3618,15 @@ msgstr "Bertsioaren oharrak"
 #: mkt/developers/templates/developers/apps/edit/basic.html:152
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr ""
+"Azken bertsioaren aldaketei, eginbide berriei, akats ezagunei eta bertsio "
+"honen informazio erabilgarri gehiagori buruzko informazioa."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:173
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
 msgstr ""
+"Kategoriak aplikazioen artean arakatzeko modu nagusia da. Hautatu zure "
+"aplikazioaren funtzionaltasunekin ondoen bat datorrena, ahalik eta "
+"ikusgarriena izan dadin."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -3635,7 +3681,7 @@ msgstr "lehenetsia"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Editatu hizkuntza zure aplikazioaren manifestu-fitxategian"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -3643,7 +3689,7 @@ msgstr "Multimedia"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
-msgstr ""
+msgstr "Laguntza-informazioa"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/support.html:16
@@ -3661,6 +3707,9 @@ msgstr "Webgunea"
 #: mkt/developers/templates/developers/apps/edit/support.html:43
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"Zure aplikazioak laguntza-webgune edo -foro bat badu, sartu haren helbidea "
+"hemen. Zure webgunea beste hizkuntza batzuetan ere badago, eremu honetan "
+"hainbat itzulpen gehi daitezke."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -3697,15 +3746,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
-msgstr ""
+msgstr "Aplikazio honen estatistikak publikoki erakutsiko dira."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
 msgid "No, this app's stats are not publicly viewable."
-msgstr ""
+msgstr "Ez, aplikazio honen estatistikak ez dira publikoki erakutsiko."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "This app does not require any device features"
-msgstr ""
+msgstr "Aplikazio honek ez du behar gailuen inolako eginbiderik"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
@@ -4063,7 +4112,7 @@ msgstr "Deskribatzaileak"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Elementu interaktiboak"
 
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
@@ -4290,7 +4339,7 @@ msgstr "Zerbitzari-errore bat gertatu da. Saiatu berriro geroago."
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Not applicable"
-msgstr ""
+msgstr "Ez aplikagarria"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
@@ -4379,7 +4428,7 @@ msgstr "Ikusi transakzioak"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Gehitu {provider} kontu bat"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -4407,7 +4456,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
-msgstr ""
+msgstr "Gehitu Bango kontua"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
@@ -4415,11 +4464,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Normalean 9, 10 edo 11 digitu. Adibidea: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "Sartu 8 edo 11 karaktere. Adibidea: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
@@ -4442,17 +4491,17 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
-msgstr ""
+msgstr "Eskaera prozesatzen..."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
-msgstr ""
+msgstr "Itxaron ordainketa-zerbitzariarekin kontaktua egin arte."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Gehitu Boku kontua"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
 msgid ""
@@ -4592,7 +4641,7 @@ msgstr "Argitaratu"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Zure aplikazioa zabaltzea"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:180
 msgid "Hosted Apps"
@@ -4604,7 +4653,7 @@ msgstr "Paketatutako aplikazioak"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Txartelak, bannerrak eta ikonoak"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -4700,11 +4749,11 @@ msgstr "Garatzaile-gailuak"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code &amp; Tools"
-msgstr ""
+msgstr "Kodea &amp; Tresnak"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events &amp; Meetups"
-msgstr ""
+msgstr "Gertaerak &amp; topaketak"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
@@ -4849,19 +4898,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
-msgstr ""
+msgstr "Eskuragarri orain!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:100
 msgid "Android Tablets"
-msgstr ""
+msgstr "Android tabletak"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
-msgstr ""
+msgstr "Zu + Mozilla = Ikaragarria"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "Jarraitu konektatuta."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
@@ -4881,7 +4930,7 @@ msgstr "Firefox Marketplace-en YouTube kanala"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Txartelak, bannerrak eta ikonoak"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
@@ -4981,15 +5030,15 @@ msgstr ""
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Errorea irudia %(url)s helbidetik deskargatzean"
 
 #: mkt/feed/fields.py:199
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "%(url)s helbideko irudia ezin izan da analizatu"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Ezin da bertsio bat bere buruarekin konparatu"
 
 #: mkt/files/helpers.py:152
 msgid "That file no longer exists."
@@ -4998,7 +5047,7 @@ msgstr "Fitxategia dagoeneko ez da existitzen."
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Fitxategi-tamaina {0} baino handiagoa da."
 
 #: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
@@ -5006,7 +5055,7 @@ msgstr "Arazoak {0} deskodetzean."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Fitxategia ezin da linean ikusi. Deskarga ezazu haren edukiak ikusteko."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
@@ -5023,14 +5072,18 @@ msgstr "Errore bat gertatu da %s fitxategia atzitzean."
 #: mkt/files/utils.py:75
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr ""
+"Ez da \"manifest.webapp\" fitxategia aurkitu paketatutako aplikazioaren "
+"fitxategiaren erroan."
 
 #: mkt/files/utils.py:97
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Ezin da webapp-aren manifest fitxategia deskodetu. Begiratu zure manifest "
+"fitxategian UTF8 ez den karaktererik duzun."
 
 #: mkt/files/utils.py:105
 msgid "The webapp manifest is not valid JSON."
-msgstr ""
+msgstr "Webapp-aren manifest fitxategia ez da baliozko JSON formatukoa."
 
 #: mkt/files/utils.py:112
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
@@ -5038,11 +5091,13 @@ msgstr ""
 
 #: mkt/files/utils.py:120
 msgid "Your specified app locales are not in the correct format."
-msgstr ""
+msgstr "Zure aplikazioaren hizkuntzak ez daude formatu zuzenean."
 
 #: mkt/files/utils.py:137
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
+"Garatzailearen izena derrigorrezkoa da manifest fitxategian, hura "
+"aplikazioen zerrendan erakutsi ahal izateko."
 
 #: mkt/files/utils.py:187
 msgid "Invalid file name in archive: {0}"
@@ -5120,7 +5175,7 @@ msgstr "Beheratu fitxategia"
 
 #: mkt/files/templates/fileviewer/viewer.html:83 mkt/files/templates/fileviewer/viewer.html:84
 msgid "Previous diff"
-msgstr ""
+msgstr "Aurreko desberdintasuna"
 
 #: mkt/files/templates/fileviewer/viewer.html:86 mkt/files/templates/fileviewer/viewer.html:87
 msgid "Previous note"
@@ -5128,7 +5183,7 @@ msgstr "Aurreko oharra"
 
 #: mkt/files/templates/fileviewer/viewer.html:93 mkt/files/templates/fileviewer/viewer.html:94
 msgid "Next diff"
-msgstr ""
+msgstr "Hurrengo desberdintasuna"
 
 #: mkt/files/templates/fileviewer/viewer.html:96 mkt/files/templates/fileviewer/viewer.html:97
 msgid "Next note"
@@ -5157,6 +5212,8 @@ msgstr "Fitxategia eskuratzen."
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
+"Produktuaren logoak 64x64 irudi bat izan behar du. Egiaztatu URLa zuzena "
+"dela."
 
 #: mkt/langpacks/utils.py:23
 msgid "Your language pack should contain \"role\": \"langpack\"."
@@ -5261,7 +5318,7 @@ msgstr "Ikusi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:45 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
-msgstr ""
+msgstr "Paketatutako aplikazio pribilegioduna"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
@@ -5322,11 +5379,11 @@ msgstr "Baimenak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Ez da arrazoirik eman"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Ez da baimenik eskatu"
 
 #: mkt/lookup/templates/lookup/app_summary.html:117 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
@@ -5749,7 +5806,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
 msgid "Any Device"
-msgstr ""
+msgstr "Edozein gailu"
 
 # {0} and {1} are full <input> tags for dates
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
@@ -6450,7 +6507,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20 mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145
 msgid "more..."
-msgstr ""
+msgstr "gehiago..."
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -6616,7 +6673,7 @@ msgstr "Aplikazio barneko ordainketetarako beste sistema bat"
 
 #: mkt/search/forms.py:44
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:51
 msgid "Any Device Type"
@@ -6668,7 +6725,7 @@ msgstr "Onartutako hizkuntzak"
 
 #: mkt/search/forms.py:114
 msgid "Author name"
-msgstr ""
+msgstr "Egile-izena"
 
 #: mkt/search/forms.py:119
 msgid "Tags"
@@ -7352,6 +7409,8 @@ msgstr ""
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Ez argitaratu nire aplikazioa. Notify me and I will adjust app visibility "
+"after it is approved."
 
 #: mkt/submit/forms.py:280
 msgid ""
@@ -7369,6 +7428,13 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"A privacy policy explains how you handle data received through your app. "
+"Adibidez: zein datu jasotzen duzu? Nola erabiltzen duzu? Nor partekatzen "
+"duzu harekin? Informazio pertsonalik jasotzen duzu? Do you take steps to "
+"make it anonymous? What choices do users have to control what data you and "
+"others receive? Enter your privacy policy link or text above. If you don't "
+"have a privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to "
+"write one.</a>"
 
 #: mkt/submit/forms.py:307
 msgid "Homepage:"
@@ -7385,6 +7451,8 @@ msgstr ""
 #: mkt/submit/forms.py:314
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
+"Zure aplikazioak laguntza-webgune edo -foro bat badu, sartu haren helbidea "
+"hemen."
 
 #: mkt/submit/forms.py:318
 msgid "Email:"
