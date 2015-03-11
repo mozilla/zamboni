@@ -70,11 +70,11 @@ class TestReviewing(RestOAuth):
             reverse('app-detail', kwargs={'pk': 337141}))
 
 
-class TestApiReviewer(RestOAuth, ESTestCase):
+class TestApiReviewerSearch(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
-        super(TestApiReviewer, self).setUp()
+        super(TestApiReviewerSearch, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
         self.profile = self.user
         self.profile.update(read_dev_agreement=datetime.now())
@@ -85,7 +85,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         self.url = reverse('reviewers-search-api')
 
         self.webapp = Webapp.objects.get(pk=337141)
-
+        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.update(status=mkt.STATUS_PENDING)
         self.refresh('webapp')
 
@@ -243,7 +243,6 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         qs = {'q': 'something', 'pro': feature_profile, 'dev': 'firefoxos'}
 
         # Enable an app feature that doesn't match one in our profile.
-        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.latest_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -254,8 +253,36 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_dev_and_device_filtering(self):
+        res = self.client.get(self.url, {'dev': 'firefoxos'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
+        res = self.client.get(self.url, {'dev_and_device': 'firefoxos'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
+        res = self.client.get(self.url, {'dev_and_device': 'android-mobile'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
+
+        self.webapp.addondevicetype_set.create(
+            device_type=mkt.DEVICE_TABLET.id)
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, {'dev_and_device': 'android-mobile'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
+
+        self.webapp.addondevicetype_set.create(
+            device_type=mkt.DEVICE_MOBILE.id)
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, {'dev_and_device': 'android-mobile'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
     def test_no_flash_filtering(self):
-        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.latest_version.all_files[0].update(uses_flash=True)
         self.webapp.save()
         self.refresh('webapp')

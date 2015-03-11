@@ -31,6 +31,9 @@ MODERATE_ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),
 MODERATE_ACTION_DICT = {'approved': mkt.LOG.APPROVE_REVIEW,
                         'deleted': mkt.LOG.DELETE_REVIEW}
 
+COMBINED_DEVICE_CHOICES = [('', _lazy(u'Any Device'))] + [
+    (dev.api_name, dev.name) for dev in mkt.DEVICE_TYPE_LIST]
+
 
 class ModerateLogForm(happyforms.Form):
     start = forms.DateField(required=False,
@@ -185,6 +188,9 @@ class ApiReviewersSearchForm(ApiSearchForm):
         required=False,
         label=_lazy(u'Tarako-ready'),
         widget=CustomNullBooleanSelect)
+    dev_and_device = forms.ChoiceField(
+        required=False, choices=COMBINED_DEVICE_CHOICES,
+        label=_lazy(u'Device'))
 
     def __init__(self, *args, **kwargs):
         super(ApiReviewersSearchForm, self).__init__(*args, **kwargs)
@@ -203,6 +209,17 @@ class ApiReviewersSearchForm(ApiSearchForm):
             return None
 
         return mkt.STATUS_CHOICES_API_LOOKUP.get(status, mkt.STATUS_PENDING)
+
+    def clean(self):
+        # Transform dev_and_device into the separate dev/device parameters.
+        # We then call super() so that it gets transformed into ids that ES
+        # will accept.
+        dev_and_device = self.cleaned_data.pop('dev_and_device', '').split('+')
+        self.cleaned_data['dev'] = dev_and_device[0]
+        if len(dev_and_device) > 1:
+            self.cleaned_data['device'] = dev_and_device[1]
+
+        return super(ApiReviewersSearchForm, self).clean()
 
 
 class ApproveRegionForm(happyforms.Form):
