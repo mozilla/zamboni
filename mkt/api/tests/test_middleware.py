@@ -12,9 +12,10 @@ from nose.tools import eq_, ok_
 
 import mkt.site.tests
 import mkt.regions
-from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
-                                APIPinningMiddleware, AuthenticationMiddleware,
-                                CORSMiddleware, GZipMiddleware)
+from mkt.api.middleware import (
+    APIBaseMiddleware, APIFilterMiddleware, APIPinningMiddleware,
+    AuthenticationMiddleware, CORSMiddleware, GZipMiddleware,
+    RestOAuthMiddleware)
 
 
 fireplace_url = 'http://firepla.ce:1234'
@@ -333,3 +334,11 @@ class TestAuthenticationMiddleware(mkt.site.tests.TestCase):
         index = settings.MIDDLEWARE_CLASSES.index
 
         ok_(index(auth_middleware) > index(api_middleware))
+
+    @mock.patch('mkt.api.middleware.log')
+    def test_shared_secret_no_break_restoauth(self, mock_log):
+        shared_secret = 'mkt-shared-secret me@email.com,hash'
+        request = RequestFactory(HTTP_AUTHORIZATION=shared_secret).get('/')
+        request.API = True
+        RestOAuthMiddleware().process_request(request)
+        ok_(not mock_log.warning.called)

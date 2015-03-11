@@ -51,6 +51,13 @@ class RestOAuthMiddleware(object):
             request.authed_from = []
 
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
+
+        # If there is a mkt-shared-secret in the auth header, ignore it.
+        if (auth_header_value and
+                auth_header_value.split(None, 1)[0] == 'mkt-shared-secret'):
+            log.info('mkt-shared-secret found, ignoring.')
+            return
+
         if (not auth_header_value and
                 'oauth_token' not in request.META['QUERY_STRING']):
             self.user = AnonymousUser()
@@ -71,11 +78,11 @@ class RestOAuthMiddleware(object):
                     body=request.body,
                     headers=auth_header)
             except ValueError:
-                log.error('ValueError on verifying_request', exc_info=True)
+                log.warning('ValueError on verifying_request', exc_info=True)
                 return
             if not valid:
-                log.error(u'Cannot find APIAccess token with that key: %s'
-                          % oauth_req.attempted_key)
+                log.warning(u'Cannot find APIAccess token with that key: %s'
+                            % oauth_req.attempted_key)
                 return
             uid = Token.objects.filter(
                 token_type=ACCESS_TOKEN,
@@ -92,10 +99,10 @@ class RestOAuthMiddleware(object):
                     request.build_absolute_uri(),
                     method, auth_header)
             except TwoLeggedOAuthError, e:
-                log.error(str(e))
+                log.warning(str(e))
                 return
             except ValueError:
-                log.error('ValueError on verifying_request', exc_info=True)
+                log.warning('ValueError on verifying_request', exc_info=True)
                 return
             uid = Access.objects.filter(
                 key=client_key).values_list(
