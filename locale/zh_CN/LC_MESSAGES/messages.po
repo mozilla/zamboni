@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-08 21:18+0000\n"
+"PO-Revision-Date: 2015-03-11 18:19+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425849490.0\n"
+"X-POOTLE-MTIME: 1426097992.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2100,11 +2100,11 @@ msgstr "该描述将在详细页面显示。"
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "搜索关键词："
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
-msgstr ""
+msgstr "搜索关键词用来 Firefox 应用市场返回的搜索结果中。请确保包含准确反映了您的应用的关键词。"
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3490,6 +3490,8 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"应用名称会出现在返回的 Firefox 应用市场搜索结果中。应用名称也出现在应用的详细信息页面。请确保您已经在您的应用清单中中包含了一个有意义的名称。如"
+"果您想更改应用名称，您需要在您的应用清单中进行修改。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3548,10 +3550,11 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"应用描述会出现在返回的 Firefox 应用市场搜索结果中。应用描述也出现在应用的详细信息页面。请确保您已经在您的应用清单中中包含了一个有意义的描述。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "搜索关键词"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -7325,6 +7328,7 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"应用描述会出现在返回的 Firefox 应用市场搜索结果中。应用描述也出现在应用的详细信息页面。请确保您已经在您的应用清单中中包含了一个有意义的描述。"
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
@@ -7369,7 +7373,7 @@ msgstr "您的应用是否需要 Flash 支持？"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "您对审核者的留言："
 
 #: mkt/submit/forms.py:334
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7716,11 +7720,11 @@ msgstr "不存在登记了那个邮件地址的用户，或者这名用户尚未
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "原生的 Firefox 账号身份验证失败。"
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "请为此账号使用已验证的邮箱。"
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
