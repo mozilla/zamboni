@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-04 22:43+0000\n"
+"PO-Revision-Date: 2015-03-11 22:11+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425509015.0\n"
+"X-POOTLE-MTIME: 1426111909.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2100,11 +2101,14 @@ msgstr "Wopisanje pokažo se na boku drobnostkow."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Pytańske klucowe słowa:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"Pytańske klucowe słowa se wužywaju, aby pytańske wuslědki we Wikowanišću "
+"Firefox pódawali. Pódajśo na kuždy pad klucowe słowa, kótarež wašo nałoženje "
+"dokradnje wopisuju."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3501,6 +3505,11 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Mě nałoženja jo jadno z pólow, kótarež se wužywaju, abychu pytańske wuslědki "
+"we Wikowanišću Firefox pódawali. Mě nałoženja pokazujo se teke na boku "
+"drobnostkow nałoženja. Pódajśo na kuždy pad wugroniwe mě w manifeśce swójogo "
+"nałoženja. Jolic cośo mě nałoženja změniś, musyśo to w manifesće swójogo "
+"nałoženja cyniś."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3561,10 +3570,14 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Wopisanje nałoženja jo jadno z pólow, kótarež se wužywaju, aby pytańske "
+"wuslědki we Wikowanišću Firefox pódawali. Wopisanje nałoženja pokazujo se "
+"teke na boku drobnostkow nałoženja. Pódajśo wopisanje, kótarež wopisujo wašo "
+"nałoženje dokradnje."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Pytańske klucowe słowa"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
