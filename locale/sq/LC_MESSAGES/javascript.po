@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-03-11 11:06-0700\n"
 "PO-Revision-Date: 2014-12-16 20:25+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -555,11 +555,11 @@ msgstr "Gabim në kalimin e aplikacionit: {app}"
 msgid "Error failing app: {app}"
 msgstr "Gabim në ngeljen e aplikacionit: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:43
+#: media/js/devreg/reviewers/reviewers_commbadge.js:53
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Na ndjeni! Patëm një gabim në prurjen e historikut të shqyrtimeve. Ju lutemi, riprovoni hyrjen.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:73
 msgid "By {0} on {1}"
 msgstr "Nga {0} më {1}"

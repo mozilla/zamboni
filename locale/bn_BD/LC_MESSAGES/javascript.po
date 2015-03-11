@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-03-11 11:06-0700\n"
 "PO-Revision-Date: 2014-09-05 18:44+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,11 +551,11 @@ msgstr "অ্যাপ উত্তীর্ণ হিসেবে চিহ্
 msgid "Error failing app: {app}"
 msgstr "অ্যাপকে অনুত্তীর্ণ হিসেবে চিহ্নিত করতে সমস্যা হচ্ছেঃ {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:43
+#: media/js/devreg/reviewers/reviewers_commbadge.js:53
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "দুঃখিত! পর্যালোচনা ইতিহাস আনয়নে আমরা একটি ত্রুটির সম্মুখীন হয়েছি। আবার লগ ইন করার চেষ্টা করুন।<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:73
 msgid "By {0} on {1}"
 msgstr "{1} তে {0}"

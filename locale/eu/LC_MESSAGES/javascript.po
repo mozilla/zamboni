@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-03-11 11:06-0700\n"
 "PO-Revision-Date: 2014-09-30 20:11+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -553,11 +553,11 @@ msgstr "Errorea aplikazioa onartzean: {app}"
 msgid "Error failing app: {app}"
 msgstr "Errorea aplikazioa baztertzean: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:43
+#: media/js/devreg/reviewers/reviewers_commbadge.js:53
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Sentitzen dugu! Errore bat gertatu da berrikuspenen historia eskuratzean. Probatu berriro saioa hasiz.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:73
 msgid "By {0} on {1}"
 msgstr "{0}(e)k, {1}(e)an"

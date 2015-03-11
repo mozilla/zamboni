@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:56-0700\n"
+"POT-Creation-Date: 2015-03-11 11:06-0700\n"
 "PO-Revision-Date: 2013-03-09 16:37+0000\n"
 "Last-Translator: Vedran <vedran.kovacevic@mozilla-hr.org>\n"
 "Language-Team: Croatian\n"
@@ -564,11 +564,11 @@ msgstr ""
 msgid "Error failing app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:43
+#: media/js/devreg/reviewers/reviewers_commbadge.js:53
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:73
 msgid "By {0} on {1}"
 msgstr ""
