@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-04 18:18+0000\n"
+"PO-Revision-Date: 2015-03-11 18:38+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425493110.0\n"
+"X-POOTLE-MTIME: 1426099119.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2102,11 +2102,14 @@ msgstr "Diese Beschreibung wird auf der Detailseite angezeigt."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Schlüsselwörter für die Suche:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"Die Schlüsselwörter für die Suche dienen dazu, Suchergebnisse im Firefox "
+"Marketplace zu liefern. Gegen Sie unbedingt Schlüsselwörter an, die Ihre App "
+"korrekt beschreiben."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3501,6 +3504,11 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Der App-Name ist eines der Felder, die verwendet werden, um Suchergebnisse "
+"im Firefox Marketplace zu liefern. Der App-Name taucht auch auf der "
+"Detailseite der App auf. Geben Sie unbedingt einen aussagekräftigen Namen in "
+"Ihrem App-Manifeset an. Wenn Sie den Namen Ihrer App ändern möchten, müssen "
+"Sie Ihr App-Manifest ändern."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3561,10 +3569,14 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Die App-Beschreibung ist eines der Felder, die verwendet werden, um "
+"Suchergebnisse im Firefox Marketplace zu liefern. Die App-Beschreibung "
+"taucht auch auf der Detailseite der App auf. Geben Sie unbedingt eine "
+"Beschreibung an, die Ihre App korrekt beschreibt."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Schlüsselwörter für die Suche"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -7385,6 +7397,10 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Die App-Beschreibung ist eines der Felder, die verwendet werden, um "
+"Suchergebnisse im Firefox Marketplace zu liefern. Die App-Beschreibung "
+"taucht auch auf der Detailseite der App auf. Geben Sie unbedingt eine "
+"Beschreibung an, die Ihre App korrekt beschreibt."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
@@ -7432,7 +7448,7 @@ msgstr "Benötigt Ihre App Flash-Unterstützung?"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Ihre Kommentare für Überprüfer:"
 
 #: mkt/submit/forms.py:334
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7788,11 +7804,11 @@ msgstr "Ein Benutzer mit dieser E-Mail-Adresse existiert nicht, oder der Benutze
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Authentifizierungsfehler von Native FxA."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Bitte verwenden Sie die für dieses Konto verifizierte E-Mail-Adresse."
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
