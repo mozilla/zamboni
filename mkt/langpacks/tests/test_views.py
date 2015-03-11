@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
+from dateutil.tz import tzutc
 from mock import patch
 from nose.tools import eq_, ok_
 
@@ -527,8 +528,9 @@ class TestLangPackNonAPIViews(TestCase):
         eq_(response.status_code, 200)
         original_etag = response['ETag']
         ok_(original_etag)
-        self.assertCloseToNow(response['Last-Modified'],
-                              now=self.langpack.modified)
+        self.assertCloseToNow(
+            response['Last-Modified'],
+            now=self.langpack.modified.replace(tzinfo=tzutc()))
 
         # Test that the etag is different if the langpack file_version changes.
         self.langpack.update(file_version=42)
