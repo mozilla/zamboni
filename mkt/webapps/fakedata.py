@@ -12,7 +12,7 @@ from django.conf import settings
 import pydenticon
 
 import mkt
-from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.developers.tasks import resize_preview, save_icon
@@ -113,13 +113,29 @@ def generate_ratings(app, num):
             title="Test Review " + str(n), body="review text")
 
 
-def generate_hosted_app(name, category, developer_name):
-    a = app_factory(categories=[category], name=name, complete=False,
-                    rated=True)
-    a.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+def generate_hosted_app(name, categories, developer_name,
+                        privacy_policy=None, device_types=(), status=4,
+                        **spec):
+    generated_url = 'http://%s.testmanifest.com/manifest.webapp' % (
+        slugify(name),)
+    a = app_factory(categories=categories, name=name, complete=False,
+                    privacy_policy=spec.get('privacy_policy'),
+                    version_kw={'status': status},
+                    rated=True, manifest_url=spec.get('manifest_url',
+                                                      generated_url))
+    if device_types:
+        for dt in device_types:
+            a.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
+    else:
+        a.addondevicetype_set.create(device_type=1)
     a.versions.latest().update(reviewed=datetime.datetime.now(),
                                _developer_name=developer_name)
-    generate_hosted_manifest(a)
+    if 'manifest_file' in spec:
+        AppManifest.objects.create(
+            version=a._latest_version,
+            manifest=open(spec['manifest_file']).read())
+    else:
+        generate_hosted_manifest(a)
     return a
 
 
@@ -141,8 +157,6 @@ def generate_hosted_manifest(app):
     }
     AppManifest.objects.create(
         version=app._latest_version, manifest=json.dumps(data))
-    app.update(manifest_url='http://%s.testmanifest.com/manifest.webapp' %
-               (slugify(unicode(app.name)),))
 
 
 def generate_app_package(app, out, apptype, permissions, version='1.0',
@@ -196,14 +210,23 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
         version=version, manifest=json.dumps(manifest))
 
 
-def generate_packaged_app(name, apptype, category, developer_name,
-                          permissions=(), versions=(4,), num_locales=2, **kw):
+def generate_packaged_app(name, apptype, categories, developer_name,
+                          privacy_policy=None, device_types=(),
+                          permissions=(), versions=None, num_locales=2,
+                          package_file=None, status=4, **kw):
+    if versions is None:
+        versions = [status]
     now = datetime.datetime.now()
-    app = app_factory(categories=[category], name=name, complete=False,
+    app = app_factory(categories=categories, name=name, complete=False,
                       rated=True, is_packaged=True,
+                      privacy_policy=privacy_policy,
                       version_kw={'version': '1.0', 'status': versions[0],
                                   'reviewed': now})
-    app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+    if device_types:
+        for dt in device_types:
+            app.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
+    else:
+        app.addondevicetype_set.create(device_type=1)
     f = app.latest_version.all_files[0]
     f.update(filename=f.generate_filename())
     fp = os.path.join(app.latest_version.path_prefix, f.filename)
@@ -211,6 +234,8 @@ def generate_packaged_app(name, apptype, category, developer_name,
         os.makedirs(os.path.dirname(fp))
     except OSError:
         pass
+    if package_file:
+        return app
     with open(fp, 'w') as out:
         generate_app_package(app, out, apptype, permissions=permissions,
                              version=app.latest_version,
@@ -233,11 +258,11 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
     apps = []
     for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
-            app = generate_packaged_app(appname, 'privileged', cat_slug,
+            app = generate_packaged_app(appname, 'privileged', [cat_slug],
                                         versions=versions,
                                         permissions=['camera', 'storage'])
         elif i < (privileged + packaged):
-            app = generate_packaged_app(appname, 'packaged', cat_slug,
+            app = generate_packaged_app(appname, 'packaged', [cat_slug],
                                         versions=versions)
         else:
             app = generate_hosted_app(appname, cat_slug,
@@ -251,26 +276,48 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
     return apps
 
 
-def generate_apps_from_specs(specs):
+def generate_apps_from_specs(specs, specdir):
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
-        generate_app_from_spec(appname, cat_slug, **spec)
+        if spec.get('preview_files'):
+            spec['preview_files'] = [os.path.join(specdir, p)
+                                     for p in spec['preview_files']]
+        if spec.get('package_file'):
+            spec['package_file'] = os.path.join(specdir, spec['package_file'])
+        if spec.get('manifest_file'):
+            spec['manifest_file'] = os.path.join(specdir,
+                                                 spec['manifest_file'])
+        spec['name'] = spec.get('name', appname)
+        spec['categories'] = spec.get('categories', [cat_slug])
+        generate_app_from_spec(**spec)
 
 
-def generate_app_from_spec(appname, cat_slug, type, status, num_previews=1,
-                           num_ratings=1, num_locales=0, **spec):
+def generate_app_from_spec(name, categories, type, status, num_previews=1,
+                           num_ratings=1, num_locales=0, preview_files=(),
+                           **spec):
     developer_name = spec.get('author', 'fakedeveloper@example.com')
+    status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
-        app = generate_hosted_app(appname, cat_slug, developer_name)
+        app = generate_hosted_app(name, categories, developer_name,
+                                  status=status, **spec)
     else:
         app = generate_packaged_app(
-            appname, type, cat_slug, developer_name, **spec)
+            name, type, categories, developer_name,
+            status=status, **spec)
     generate_icon(app)
-    generate_previews(app, num_previews)
+    if not preview_files:
+        generate_previews(app, num_previews)
+    if preview_files:
+        for i, f in enumerate(preview_files):
+            p = Preview.objects.create(addon=app, filetype="image/png",
+                                       thumbtype="image/png",
+                                       caption="screenshot " + str(i),
+                                       position=i)
+        resize_preview(f, p)
     generate_ratings(app, num_ratings)
     app.name = generate_localized_names(app.name, num_locales)
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
-    app.status = STATUS_CHOICES_API_LOOKUP[status]
+    app.status = status
     app.save()
     addon_review_aggregates(app.pk)
     u = create_user(developer_name)

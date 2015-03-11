@@ -1,3 +1,4 @@
+import os.path
 import json
 
 from django.core.management.base import BaseCommand, CommandError
@@ -21,4 +22,5 @@ class Command(BaseCommand):
             raise CommandError('Provide a spec filename.')
 
         specs = json.load(open(args[0]))
-        generate_apps_from_specs(specs)
+        generate_apps_from_specs(specs,
+                                 os.path.abspath(os.path.dirname(args[0])))

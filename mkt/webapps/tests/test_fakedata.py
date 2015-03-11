@@ -53,12 +53,12 @@ class TestAppGeneration(mkt.site.tests.TestCase):
 
     def test_generate_hosted_app(self):
         appname = 'a test app'
-        category = 'books'
+        categories = ['books', 'music']
         app = generate_app_from_spec(
-            appname, category, 'hosted', num_previews=3,
+            appname, categories, 'hosted', num_previews=3,
             num_ratings=4, num_locales=1, status='public')
         eq_(app.name, appname)
-        eq_(app.categories, [category])
+        eq_(app.categories, categories)
         eq_(app.status, 4)
         eq_(app.reload().total_reviews, 4)
         eq_(app.reviews.count(), 4)
@@ -66,13 +66,13 @@ class TestAppGeneration(mkt.site.tests.TestCase):
 
     def test_generate_packaged_app(self):
         appname = 'a test app'
-        category = 'books'
+        categories = ['books', 'music']
         app = generate_app_from_spec(
-            appname, category, 'packaged', num_previews=3,
+            appname, categories, 'packaged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
             versions=['public', 'disabled', 'public'])
         eq_(app.name, appname)
-        eq_(app.categories, [category])
+        eq_(app.categories, categories)
         eq_(app.status, 4)
         eq_(app.reload().total_reviews, 4)
         eq_(app.reviews.count(), 4)
@@ -82,13 +82,13 @@ class TestAppGeneration(mkt.site.tests.TestCase):
 
     def test_generate_privileged_app(self):
         appname = 'a test app'
-        category = 'books'
+        categories = ['books', 'music']
         app = generate_app_from_spec(
-            appname, category, 'privileged', num_previews=3,
+            appname, categories, 'privileged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
             permissions=['storage'], versions=['public', 'disabled', 'public'])
         eq_(app.name, appname)
-        eq_(app.categories, [category])
+        eq_(app.categories, categories)
         eq_(app.status, 4)
         eq_(app.reload().total_reviews, 4)
         eq_(app.reviews.count(), 4)
