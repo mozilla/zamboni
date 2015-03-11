@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-11 22:11+0000\n"
+"PO-Revision-Date: 2015-03-11 22:24+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426111909.0\n"
+"X-POOTLE-MTIME: 1426112662.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -4233,7 +4233,7 @@ msgstr "Symbol"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:58
 msgid "Price Point"
-msgstr ""
+msgstr "Płaśiznowy dypk"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Product ID"
@@ -4273,7 +4273,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:119 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr ""
+msgstr "Płaśeńske konta"
 
 #: mkt/developers/templates/developers/payments/premium.html:123
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
@@ -4325,11 +4325,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:232
 msgid "local currency"
-msgstr ""
+msgstr "lokalne pjenjeze"
 
 #: mkt/developers/templates/developers/payments/premium.html:233
 msgid "Billing method"
-msgstr ""
+msgstr "Płaśeńska metoda"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
@@ -4341,7 +4341,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:256
 msgid "Other regions"
-msgstr ""
+msgstr "Druge regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:258
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
@@ -4377,20 +4377,20 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Póbitowaŕ"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Změniś"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Transakcije se woglědaś"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Konto {provider} pśidaś"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -4447,13 +4447,13 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
-msgstr ""
+msgstr "Płaśeńske konto registrěrowaś"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
-msgstr ""
+msgstr "Napšašowanje se pśeźěłujo..."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
@@ -4473,7 +4473,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "K Boku-dokumentaciji na MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
@@ -4481,7 +4481,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "Napórajśo mě za toś to konto."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
@@ -4489,11 +4489,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
-msgstr ""
+msgstr "Zacyniś"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "Referencne konto pśidaś"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -4505,12 +4505,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr ""
+msgstr "Konto aktualizěrowaś"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Boku-konto změniś"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
@@ -4519,7 +4519,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "Referencne konto změniś"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
@@ -4559,7 +4559,7 @@ msgstr ""
 
 #: mkt/ecosystem/views.py:53
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Wjeliki źěk za waš abonement!"
 
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
@@ -4567,11 +4567,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Wugótowaś"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Koncept: Wjelicne nałoženje"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
@@ -4591,7 +4591,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox-OS-Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
@@ -4611,7 +4611,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Packaged Apps"
-msgstr ""
+msgstr "Zapakowane nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
