@@ -13,7 +13,7 @@ boto==2.20.0
 cef==0.5
 celery==3.0.25
 celery-tasktree==0.3.2
-certifi==0.0.8
+certifi==2014.05.14
 chardet==2.3.0
 commonware==0.4.3
 # cssutils is required by app-validator
