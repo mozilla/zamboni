@@ -41,7 +41,7 @@ msgstr ""
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Tá an cód teanga {lang_code} neamhbhailí."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:193
 msgid "Unknown"
@@ -57,19 +57,19 @@ msgstr "Níl"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Níorbh fhéidir an fhoirm a sheoladh."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "Tá corp an nóta folamh."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Cineál neamhbhailí nóta."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Níl leagan %s ann"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
@@ -85,7 +85,7 @@ msgstr ""
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -362,7 +362,7 @@ msgstr "Poblacht na Seice"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "An Danmhairg"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -1096,7 +1096,7 @@ msgstr "Poblacht Bholavarach Veiniséala"
 
 #: mkt/constants/bango.py:262
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vítneam"
 
 #: mkt/constants/bango.py:263
 msgid "Virgin Islands, British"
@@ -1140,7 +1140,7 @@ msgstr "Foilsithe"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Coiscthe ón Margadh"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1152,7 +1152,7 @@ msgstr "Diúltaithe"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Ceadaithe ach príobháideach"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1160,11 +1160,11 @@ msgstr "Coiscthe"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Neamhliostaithe"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "As feidhm"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
@@ -1190,19 +1190,19 @@ msgstr "Saor in aisce"
 
 #: mkt/constants/base.py:137 mkt/search/forms.py:35
 msgid "Premium"
-msgstr ""
+msgstr "Costasach"
 
 #: mkt/constants/base.py:138
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Costasach le híocaíochtaí san aip"
 
 #: mkt/constants/base.py:139
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Saor in aisce, le híocaíochtaí san aip"
 
 #: mkt/constants/base.py:140
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Bainfidh mé úsáid as mo chóras féin d'íocaíochtaí san aip"
 
 #: mkt/constants/base.py:197
 msgid "Manual Reviewer Points"
@@ -1346,11 +1346,11 @@ msgstr "Uirlisí"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Gan gníomh"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Coiscthe"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
@@ -1366,7 +1366,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "Athsheoladh den aip"
 
 #: mkt/constants/comm.py:52 mkt/site/log.py:426
 msgid "Escalation cleared"
@@ -1983,7 +1983,7 @@ msgstr "An chuid eile den domhan"
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "An Rúis"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
@@ -2011,7 +2011,7 @@ msgstr "Mionsonraí"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Na Chéad Chéimeanna Eile"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
@@ -2139,7 +2139,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:816
 msgid "App Visibility:"
-msgstr ""
+msgstr "Infheictheacht na hAipe:"
 
 #: mkt/developers/forms.py:818
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -2151,7 +2151,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:866 mkt/developers/forms.py:967
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Caithfidh tú réigiún amháin a roghnú ar a laghad."
 
 #: mkt/developers/forms.py:871
 msgid "Enable new regions"
@@ -2159,11 +2159,11 @@ msgstr "Cumasaigh réigiúin nua"
 
 #: mkt/developers/forms.py:874
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Cuir m'aip ar fáil sa chuid is mó de na réigiúin"
 
 #: mkt/developers/forms.py:875
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Roghnaigh cén áit a mbeidh m'aip ar fáil"
 
 #: mkt/developers/forms.py:1028 mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:123
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:133 mkt/search/forms.py:92
@@ -2228,11 +2228,11 @@ msgstr "Go"
 
 #: mkt/developers/forms.py:1154
 msgid "Web site"
-msgstr ""
+msgstr "Suíomh Gréasáin"
 
 #: mkt/developers/forms.py:1155
 msgid "Command line"
-msgstr ""
+msgstr "Líne na n-orduithe"
 
 #: mkt/developers/forms.py:1176
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
@@ -2362,7 +2362,7 @@ msgstr "Fón"
 
 #: mkt/developers/forms_payments.py:402
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "B'fhearr liom íocaíochtaí i"
 
 #: mkt/developers/forms_payments.py:405
 msgid "VAT Number"
@@ -2370,7 +2370,7 @@ msgstr "Uimhir VAT"
 
 #: mkt/developers/forms_payments.py:408
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Uimhir an Chuntais Bainc"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:411
@@ -2412,7 +2412,7 @@ msgstr "Ainm an Chuntais"
 
 #: mkt/developers/forms_payments.py:457
 msgid "Payment Account"
-msgstr ""
+msgstr "Cuntas Íocaíochtaí"
 
 #: mkt/developers/forms_payments.py:528
 msgid "You cannot remove a payment account from an app."
@@ -2733,7 +2733,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Sampla OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
@@ -2747,7 +2747,7 @@ msgstr ""
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Ní mór duit <a href=\"%(next_url)s\">%(next_step_name)s</a> a shocrú."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
@@ -2773,7 +2773,7 @@ msgstr "Teachtaireacht an Lae"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Nuashonraigh Teachtaireacht an Lae"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
@@ -2786,7 +2786,7 @@ msgstr "Doiciméadú"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Aipeanna a Thástáil"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
@@ -2822,7 +2822,7 @@ msgstr "Seol aip chugainn"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:67
 msgid "Marketplace"
-msgstr "Áit Mhargaidh"
+msgstr "Margadh"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68 mkt/templates/mkt/header.html:28 templates/base.html:74
 msgid "Sign In"
@@ -2910,7 +2910,7 @@ msgstr "Airgeadra"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Méid"
 
 #: mkt/developers/templates/developers/validate_app.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
