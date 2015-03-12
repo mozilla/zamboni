@@ -3845,7 +3845,7 @@ class TestReviewTranslate(RestOAuth):
 
     def setUp(self):
         self.profile = user_factory(email='editor')
-        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'Apps:ModerateReview')
         self.user = self.profile
         self.login_user()
         self.create_switch('reviews-translate')
