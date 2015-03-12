@@ -918,7 +918,7 @@ def _retrieve_translation(text, language):
 
 
 @waffle_switch('reviews-translate')
-@reviewer_required
+@permission_required([('Apps', 'ModerateReview')])
 def review_translate(request, app_slug, review_pk, language):
     review = get_object_or_404(Review, addon__app_slug=app_slug, pk=review_pk)
 
