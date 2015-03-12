@@ -44,7 +44,7 @@ Thank you,
 Kevin Ngo
 Developer - Kevin Ngo
 
-On Sun, Oct 19, 2014 at 12:04 PM, <app-reviewers@mozilla.org> wrote:
+On Sun, Oct 19, 2014 at 12:04 PM, <appreview@lists.mozilla.org> wrote:
 
 >
 > Some quoted email
@@ -65,12 +65,12 @@ fest and uploaded a new version for review. I took a couple of screenshots =
 when testing with the Firefox OS 1.1. simulator.<br><br></div>Thank you,<br=
 ></div>Kevin Ngo<br></div>Developer - Kevin Ngo<br></div><div class=3D=
 "gmail_extra"><br><div class=3D"gmail_quote">On Sun, Oct 19, 2014 at 12:04 =
-PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:app-reviewers@mozilla.org" tar=
-get=3D"_blank">app-reviewers@mozilla.org</a>&gt;</span> wrote:<br><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex">After reviewing your submission for PartyPoppers, we =
-have determined that it does not currently meet our requirements for approv=
-al.<br>
+PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:appreview@lists.mozilla.org" t=
+arget=3D"_blank">appreview@lists.mozilla.org</a>&gt;</span> wrote:<br><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex">After reviewing your submission for PartyPoppers,=
+we have determined that it does not currently meet our requirements for app=
+roval.<br>
 <br>
 VP7 wrote:<br>
 <br>

@@ -133,7 +133,7 @@ def notify_developers_of_failure(app, error_message, has_link=False):
         context = {
             'error_message': error_message,
             'SITE_URL': settings.SITE_URL,
-            'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
+            'SUPPORT_GROUP': settings.SUPPORT_GROUP,
             'has_link': has_link
         }
         to = [author.email]
