@@ -40,7 +40,7 @@ Body inspector
 
 Thanks
 
-On Mon, Nov 3, 2014 at 4:12 PM, <app-reviewers@mozilla.org> wrote:
+On Mon, Nov 3, 2014 at 4:12 PM, <appreview@lists.mozilla.org> wrote:
 
 > some quoted text
 >
@@ -59,11 +59,11 @@ Content-Transfer-Encoding: quoted-printable
 ou can test the app in a Flame device, is changing the compatibility.json w=
 ith this one I am enclosing.=C2=A0</div><div><br></div><div>Thanks</div></d=
 iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Nov 3,=
- 2014 at 4:12 PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:app-reviewers@mo=
-zilla.org" target=3D"_blank">app-reviewers@mozilla.org</a>&gt;</span> wrote=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">We need additional information to compl=
-ete review of Firefox ByeBye.<br>
+ 2014 at 4:12 PM,  <span dir=3D"ltr">&lt;<a href=3D"mailto:appreview@lists.=
+mozilla.org" target=3D"_blank">appreview@lists.mozilla.org</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">We need additional information to c=
+omplete review of Firefox ByeBye.<br>
 <br>
 Kevin Ngo wrote:<br>
 <br>

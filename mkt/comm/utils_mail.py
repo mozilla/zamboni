@@ -194,8 +194,8 @@ class CommEmailParser(object):
     def extra_email_reply_parse(self, email):
         """
         Adds an extra case to the email reply parser where the reply is
-        followed by headers like "From: app-reviewers@mozilla.org" and strips
-        that part out.
+        followed by headers like "From: appreviews@lists.mozilla.org" and
+        strips that part out.
         """
         email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
         split_email = email_header_re.split(email)

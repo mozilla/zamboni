@@ -291,10 +291,10 @@ USE_I18N = True
 # Team Emails
 ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'  # flake8: noqa
 APP_DELETION_EMAIL = 'marketplace-staff+deletions@mozilla.org'
+SUPPORT_GROUP = 'https://groups.google.com/forum/#!forum/mozilla.appreview'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 MKT_FEEDBACK_EMAIL = 'apps-feedback@mozilla.com'
-MKT_REVIEWERS_EMAIL = 'app-reviewers@mozilla.org'
-MKT_SUPPORT_EMAIL = 'app-reviewers@mozilla.org'
+MKT_REVIEWERS_EMAIL = 'appreview@lists.mozilla.org'
 MKT_REVIEWS_EMAIL = 'app-reviews@mozilla.org'
 NOBODY_EMAIL_ADDRESS = 'nobody@mozilla.org'
 NOBODY_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
@@ -985,7 +985,6 @@ PRE_GENERATE_APK_URL = (
     'https://apk-controller.dev.mozaws.net/application.apk')
 
 
-PREINSTALL_CONTACT_EMAIL = 'app-reviewers@mozilla.org'
 PREINSTALL_TEST_PLAN_URL = 'docs/app-test-template/v2'
 PREINSTALL_TEST_PLAN_PATH = os.path.join(
     MEDIA_ROOT, PREINSTALL_TEST_PLAN_URL + '/en-US.xlsx')

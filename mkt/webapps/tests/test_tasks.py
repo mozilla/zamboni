@@ -285,7 +285,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         ok_(msg.subject.startswith('Issue with your app'))
         expected = u'Failed to get manifest from %s' % self.addon.manifest_url
         ok_(expected in msg.body)
-        ok_(settings.MKT_SUPPORT_EMAIL in msg.body)
+        ok_(settings.SUPPORT_GROUP in msg.body)
 
         # We should have scheduled a retry.
         assert retry.called

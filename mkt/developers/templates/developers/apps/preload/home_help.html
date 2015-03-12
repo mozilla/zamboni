@@ -1,5 +1,5 @@
 {% trans submit_url=addon.get_dev_url('preload_submit'),
-         email=emaillink(settings.PREINSTALL_CONTACT_EMAIL) %}
+         support_url=settings.SUPPORT_GROUP %}
 
 You can submit your app to be considered for being <strong>preloaded and
 shipped with FirefoxOS devices</strong> by phone operators. To opt-in for
@@ -7,6 +7,7 @@ preloading, you may download a test template from us below, test your app,
 fill out the template, and upload your results back to us from the <a href="{{
 submit_url }}">app preload submission form</a>. We will store your test
 results on our servers where they will be reviewed by interested phone
-operators. If you have further questions, you can email {{ email }}.
+operators. If you have further questions, you can <a href="{{ support_url }}">
+contact us</a>.
 
 {% endtrans %}

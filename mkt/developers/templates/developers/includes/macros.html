@@ -106,8 +106,8 @@
           <b>Estimated waiting time:</b> {{ num }} working days
         {% endtrans %}
       {% elif tag == 'p' %}
-        {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
-          Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to {{ email }} to check the status.
+        {% trans support_url=settings.SUPPORT_GROUP %}
+          Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href="{{ support_url }}">contact us</a> to check the status.
         {% endtrans %}
       {% endif %}
     </{{ tag }}>

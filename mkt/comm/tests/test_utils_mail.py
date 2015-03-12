@@ -253,7 +253,7 @@ class TestEmailParser(TestCase):
         body = parser.get_body()
         ok_('Yo,\n\nas it is open source' in body)
         ok_('=20' not in body)
-        ok_('app-reviewers@mozilla.org' not in body)
+        ok_('appreview@lists.mozilla.org' not in body)
 
     def test_with_attachments(self):
         for email in (attach_email, attach_email2):
