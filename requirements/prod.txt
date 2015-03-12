@@ -14,9 +14,11 @@ cef==0.5
 celery==3.0.25
 celery-tasktree==0.3.2
 certifi==14.05.14
+# cffi is required by cryptography
 cffi==0.9.1
 chardet==2.3.0
 commonware==0.4.3
+# cryptography is required by pyOpenSSL
 cryptography==0.8
 # cssutils is required by app-validator
 cssutils==0.9.7b3
@@ -49,6 +51,7 @@ easy-thumbnails==2.2
 elasticsearch==1.4.0
 elasticsearch-dsl==0.0.3
 email-reply-parser==0.2.0
+# enum34 is required by cryptography
 enum34==1.0.4
 # fastchardet is required by app-validator
 fastchardet==0.2.0
@@ -87,9 +90,11 @@ ordereddict==1.1
 polib==1.0.3
 # protobuf is required by heka-py
 protobuf==2.5.0
-# pyasn1 is required by app-validator
+# pyasn1 is required by app-validator, cryptography
 pyasn1==0.1.7
 PyBrowserID==0.6
+# pycparser is required by cffi
+pycparser==2.10
 pydenticon==0.2
 PyJWT-mozilla==0.1.4.2
 PyMySQL==0.5
@@ -106,7 +111,7 @@ requests==2.5.3
 requests_oauthlib==0.4.1
 schematic==0.3
 signing_clients==0.1.7
-# six is required by django-extensions, easy-thumbnails, pip-tools, sphinxcontrib-httpdomain, translate-toolkit, html5lib, elasticsearch-dsl, bleach
+# six is required by cryptography, django-extensions, easy-thumbnails, pip-tools, sphinxcontrib-httpdomain, translate-toolkit, html5lib, elasticsearch-dsl, bleach, pyOpenSSL
 six==1.9.0
 # slumber is required by curling
 slumber==0.6.2
