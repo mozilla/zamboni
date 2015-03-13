@@ -103,30 +103,3 @@ class TestHekaStdLibLogging(mkt.site.tests.TestCase):
         # Note that the face that this is a timer is lost entirely
         eq_(logrecord.levelno, logging.INFO)
         eq_(logrecord.msg, "timer: %s" % str(elapsed))
-
-
-class TestRaven(mkt.site.tests.TestCase):
-    def setUp(self):
-        """
-        We need to set the settings.HEKA instance to use a
-        DebugCaptureStream so that we can inspect the sent messages.
-        """
-
-        heka = settings.HEKA
-        HEKA_CONF = {
-            'logger': 'zamboni',
-            'stream': {'class': 'heka.streams.DebugCaptureStream'},
-            'encoder': 'heka.encoders.NullEncoder'
-        }
-        from heka.config import client_from_dict_config
-        self.heka = client_from_dict_config(HEKA_CONF, heka)
-
-    def test_send_raven(self):
-        try:
-            1 / 0
-        except:
-            self.heka.raven('blah')
-
-        eq_(len(self.heka.stream.msgs), 1)
-        msg = self.heka.stream.msgs[0]
-        eq_(msg.type, 'sentry')
