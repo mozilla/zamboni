@@ -48,17 +48,17 @@
               {% endtrans %}
             {% else %}
               {{ status(_('This app has been <b>banned on Marketplace</b>.')) }}
-              {% trans email=emaillink(settings.MARKETPLACE_EMAIL) %}
+              {% trans support_url=settings.SUPPORT_GROUP %}
                 Your app was banned by a site administrator. If you have any
-                questions, please email {{ email }}.
+                questions, please <a href="{{ support_url }}"> contact us</a>.
               {% endtrans %}
             {% endif %}
 
           {% elif addon.status == mkt.STATUS_BLOCKED %}
             {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
-            {% trans email=emaillink(settings.MARKETPLACE_EMAIL) %}
+            {% trans support_url=settings.SUPPORT_GROUP %}
               Your app was blocked by a site administrator. If you have any
-              questions, please email {{ email }}.
+              questions, please <a href="{{ support_url }}"> contact us</a>.
             {% endtrans %}
 
           {% elif addon.status == mkt.STATUS_REJECTED %}
