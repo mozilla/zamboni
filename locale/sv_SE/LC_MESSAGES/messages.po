@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-05 17:21+0000\n"
+"PO-Revision-Date: 2015-03-14 08:08+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425576064.0\n"
+"X-POOTLE-MTIME: 1426320487.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2102,11 +2102,13 @@ msgstr "Denna beskrivning kommer att visas på detaljsidan."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Sökord:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"De sökord som används för att returnera sökresultat i Firefox Marketplace. "
+"Var noga med att inkludera ett sökord som korrekt återspeglar din app."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3500,6 +3502,10 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Appens namn är ett av de områden som används för att returnera sökresultat i "
+"Firefox Marketplace. Appens namn visas också på appens detaljsida. Se till "
+"att du har inkluderat ett beskrivande namn i din apps manifest. Om du vill "
+"ändra namnet på appen, måste du göra det i din apps manifest."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3560,10 +3566,14 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Appens beskrivningen är ett av de områden som används för att returnera "
+"sökresultat i Firefox Marketplace. Appens beskrivningen visas också på "
+"appens detaljsida. Var noga med att inkludera en beskrivning som exakt "
+"motsvarar din app."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Sökord"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -7358,6 +7368,10 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Appens beskrivningen är ett av de områden som används för att returnera "
+"sökresultat i Firefox Marketplace. Appens beskrivningen visas också på "
+"appens detaljsida. Var noga med att inkludera en beskrivning som exakt "
+"motsvarar din app."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
@@ -7405,7 +7419,7 @@ msgstr "Kräver din app Flash-support?"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Dina kommentarer för granskare:"
 
 #: mkt/submit/forms.py:334
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7759,11 +7773,11 @@ msgstr "En användare med den e-postadressen finns inte eller så har användare
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Native FxA autentiseringsfel."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Använd den verifierade e-postadressen för detta konto."
 
 #: mkt/webapps/models.py:209
 msgid "Listed"
