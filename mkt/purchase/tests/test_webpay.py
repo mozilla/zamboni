@@ -274,6 +274,33 @@ class TestPostback(PostbackTest):
 
         assert not self.tasks.send_purchase_receipt.delay.called
 
+    def test_free_inapp(self):
+        response_trans_id = '<free-uuid>'
+        (self.solitude.api.generic.buyer.get_object_or_404
+                                        .return_value) = {
+            'email': self.buyer_email,
+        }
+        inapp = InAppProduct.objects.create(
+            logo_url='logo.png', name=u'Free Inapp Product',
+            price=Price.objects.get(price=0),
+            webapp=self.addon)
+        self.contrib.update(inapp_product=inapp, addon=inapp.webapp)
+        jwt_dict = self.jwt_dict()
+        jwt_dict['response']['transactionID'] = response_trans_id
+        jwt_dict['response']['solitude_buyer_uuid'] = '<buyer:uuid>'
+        jwt_dict['request']['pricePoint'] = '0'
+        jwt_encoded = self.jwt(req=jwt_dict)
+        self.decode.return_value = jwt_dict
+        resp = self.post(req=jwt_encoded)
+        (self.solitude.api.generic.buyer
+             .get_object_or_404.assert_called_with)(uuid='<buyer:uuid>')
+        eq_(resp.status_code, 200)
+        eq_(resp.content, response_trans_id)
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        eq_(cn.type, mkt.CONTRIB_PURCHASE)
+        eq_(cn.user.email, self.buyer_email)
+        self.tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
+
     def test_user_created_after_purchase(self):
         self.contrib.user = None
         self.contrib.save()

@@ -22,7 +22,8 @@ urlpatterns = patterns(
         name='webpay-prepare'),
     url(r'^webpay/inapp/prepare/', PreparePayInAppView.as_view(),
         name='webpay-prepare-inapp'),
-    url(r'^webpay/failure/(?P<pk>\d+)/', FailureNotificationView.as_view(),
+    url(r'^webpay/failure/(?P<pk>[^/]+)/',
+        FailureNotificationView.as_view(),
         name='webpay-failurenotification'),
     url(r'^webpay/sig_check/$', sig_check, name='webpay-sig_check')
 )

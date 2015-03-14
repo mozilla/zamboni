@@ -14,4 +14,4 @@ M2Crypto==0.22.3
 pycrypto==2.6.1
 
 # To get SNI support in requests (needed by the app validator).
-pyOpenSSL==0.13.1
+pyOpenSSL==0.14
