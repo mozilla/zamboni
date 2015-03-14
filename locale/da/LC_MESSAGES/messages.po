@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-02-07 23:36+0100\n"
+"PO-Revision-Date: 2015-03-14 16:22+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -97,7 +97,7 @@ msgstr "Computer"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox-mobil"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
@@ -1002,7 +1002,7 @@ msgstr "Taiwan"
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
-msgstr "Turkmenistan"
+msgstr "Tadsjikistan"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
@@ -1150,7 +1150,7 @@ msgstr "Afvist"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Godkendt men privat"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1454,7 +1454,7 @@ msgstr ""
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API til app-håndtering"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
@@ -1466,7 +1466,7 @@ msgstr ""
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "App'en kræver API'en `navigator.mozApps.installPackage`  for at installere andre pakkede apps."
+msgstr "App'en kræver API'en `navigator.mozApps.installPackage` for at installere andre pakkede apps."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -1478,7 +1478,7 @@ msgstr "App'en kræver API'en `navigator.mozApps` . "
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Webaktiviteter"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
@@ -1494,7 +1494,7 @@ msgstr "App'en kræver en sensor for omgivende lys (API'en `ondevicelight`)."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Arkiv"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
@@ -1542,7 +1542,7 @@ msgstr "App'en kræver, at platformen understøtter API'en `navigator.geolocatio
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Inaktiv"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
@@ -1566,7 +1566,7 @@ msgstr "App'en kræver API'en `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
-msgstr ""
+msgstr "Nærhed"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -1614,21 +1614,22 @@ msgstr "App'en kræver API'en `navigator.mozSms` . "
 
 #: mkt/constants/features.py:145
 msgid "Touch"
-msgstr ""
+msgstr "Berøring"
 
 #: mkt/constants/features.py:146
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr ""
+msgstr "App'en kræver, at platformen understøtter berøringshændelser. Denne indstilling angiver, at appen ikke vil virke når den bruges med en mus."
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Skærm i smartphone-størrelse (qHD)"
 
 #: mkt/constants/features.py:153
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"App'en kræver, at platformen har en skærm i smartphone-størrelse (qHD-opløsning). Denne indstilling angiver, at appen er ubruglig på større skærme (fx tablets, computer eller telefoner med høj DPI)."
 
 #: mkt/constants/features.py:163
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -1644,7 +1645,7 @@ msgstr "App'en kræver, at platformen understøtter API'en HTML5 audio."
 
 #: mkt/constants/features.py:174
 msgid "Web Audio"
-msgstr ""
+msgstr "Weblyd"
 
 #: mkt/constants/features.py:175
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
@@ -1748,7 +1749,7 @@ msgstr "App'en kræver, at platformen tillader brugen af tale-til-tekst."
 
 #: mkt/constants/features.py:267
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Markørlås"
 
 #: mkt/constants/features.py:268
 msgid "The app requires the platform to provide additional information and control about the pointer."
@@ -1804,7 +1805,7 @@ msgstr "App'en kræver mulighed for, at hente information om flere netværksforb
 
 #: mkt/constants/features.py:315
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobil-ID"
 
 #: mkt/constants/features.py:316
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
@@ -2115,7 +2116,7 @@ msgstr "Denne slug bruges allerede. Vælg en anden."
 
 #: mkt/developers/forms.py:586 mkt/submit/forms.py:377 mkt/webapps/forms.py:26
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Denne slug kan ikke være  \"%s\". Vælg en anden."
+msgstr "Denne slug kan ikke være \"%s\". Vælg en anden."
 
 #: mkt/developers/forms.py:614
 msgid "Manifest URL changed from {before_url} to {after_url}"
@@ -2474,7 +2475,7 @@ msgstr ""
 
 #: mkt/developers/providers.py:371
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:429
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -2802,15 +2803,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s ønsker adgang til din Marketplace-konto."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Tillad"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Afvis"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
@@ -2850,7 +2851,7 @@ msgstr "Log venligst ind"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr ""
+msgstr "Bare log ind eller registrer dig med <a href=\"%(url)s\">Firefox -konti</a> nedenunder."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -3573,7 +3574,7 @@ msgstr "App-detaljer"
 #: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:42 mkt/reviewers/templates/reviewers/includes/mobile_details.html:66
 #: mkt/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr "Default Locale"
+msgstr "Standardsprog"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
@@ -3896,7 +3897,7 @@ msgstr "Indholdsklassificeringer"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:184
 msgid "In-App Payments"
-msgstr ""
+msgstr "In-app-betalinger"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:99 mkt/developers/templates/developers/includes/addons_edit_nav.html:33
 msgid "Messages"
@@ -4528,7 +4529,7 @@ msgstr ""
 
 #: mkt/ecosystem/views.py:53
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Tak for din tilmelding!"
 
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
@@ -4957,15 +4958,15 @@ msgstr ""
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "Ugyldig URL %(url)s"
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Fejl under hentning af billede fra %(url)s"
 
 #: mkt/feed/fields.py:199
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Billedet fra %(url)s kunne ikke tolkes"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -4978,19 +4979,19 @@ msgstr "Filen findes ikke længere"
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Filstørrelsen overstiger grænsen på {0}. "
 
 #: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemer med afkodning af {0}."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Denne fil kan ikke ses online. Hent filen for at se indholdet."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
-msgstr ""
+msgstr "Denne fil er en mappe."
 
 #: mkt/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
@@ -5348,11 +5349,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Opslagsfunktion"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr ""
+msgstr "<small>Marketplace</small> opslagsfunktion"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5543,7 +5544,7 @@ msgstr "Søg"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "App: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
@@ -6506,8 +6507,8 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> af <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.              third argument is the number of total results (e.g., 1,000).
-#.                third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
@@ -6567,7 +6568,7 @@ msgstr "Godkendte"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Trendsættende"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
@@ -6591,7 +6592,7 @@ msgstr "Andre systemer til in-app"
 
 #: mkt/search/forms.py:44
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:51
 msgid "Any Device Type"
@@ -7572,7 +7573,7 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
-"Hvis intet andet er <a href=\"%(legal_url)s\">angivet</a>, hører indholdet på dette websted under <a href=\"%(cc_url)s\">licensen  Creative Commons Navngivelse-Del på samme vilkår 3.0</a> eller "
+"Hvis intet andet er <a href=\"%(legal_url)s\">angivet</a>, hører indholdet på dette websted under <a href=\"%(cc_url)s\">licensen Creative Commons Navngivelse-Del på samme vilkår 3.0</a> eller "
 "enhver nyere version."
 
 #: mkt/templates/mkt/footer.html:17
@@ -7724,7 +7725,7 @@ msgstr ""
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Brug en bekræftet mailadresse til denne konto."
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
@@ -7804,7 +7805,7 @@ msgstr "Log ud"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Registrer dig"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
