@@ -328,17 +328,6 @@ class TestGenerateError(mkt.site.tests.TestCase):
         eq_(msg.type, 'cef')
         eq_(msg.logger, 'zamboni')
 
-    def test_heka_sentry(self):
-        self.url = reverse('zadmin.generate-error')
-        self.client.post(self.url,
-                         {'error': 'heka_sentry'})
-
-        msgs = self.heka.stream.msgs
-        eq_(len(msgs), 1)
-        msg = msgs[0]
-
-        eq_(msg.type, 'sentry')
-
 
 class TestManifestRevalidation(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',

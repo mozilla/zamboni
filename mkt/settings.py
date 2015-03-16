@@ -119,7 +119,6 @@ INSTALLED_APPS = (
     'djcelery',
     'django_extensions',
     'django_nose',
-    'gunicorn',
     'raven.contrib.django',
     'waffle',
 
@@ -791,13 +790,6 @@ HEKA_CONF = {
             'syslog_facility': 'LOCAL4',
             'syslog_ident': 'http_app_addons_marketplace',
             'syslog_priority': 'ALERT',
-        }),
-
-        # Sentry accepts messages over UDP, you'll need to
-        # configure this URL so that logstash can relay the message
-        # properly
-        'raven': ('heka_raven.raven_plugin:config_plugin', {
-            'dsn': 'udp://username:password@127.0.0.1:9000/2'
         }),
     },
     'stream': {
