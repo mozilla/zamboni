@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-01-04 23:41+0000\n"
+"PO-Revision-Date: 2015-03-17 15:26+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420414861.0\n"
+"X-POOTLE-MTIME: 1426606011.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1496,55 +1496,58 @@ msgstr ""
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Archív"
 
 #: mkt/constants/features.py:48
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Aplikácia požaduje `ArchiveReader` API."
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "Batéria"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Aplikácia požaduje API `navigator.battery`."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Aplikácia požaduje API `navigator.mozBluetooth`."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakty"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Aplikácia požaduje API `navigator.mozContacts`."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Úložisko zariadenia"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Aplikácia požaduje Device Storage API, aby mohla pristupovať k súborom na "
+"súborovom systéme."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Aplikácia požaduje platformu, ktorá podporuje IndexedDB."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolokácia"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Aplikácia požaduje platformu, ktorá podporuje API  `navigator.geolocation`."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Nečinnosť"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
@@ -1552,27 +1555,29 @@ msgstr ""
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
-msgstr ""
+msgstr "Informácie o sieti"
 
 #: mkt/constants/features.py:94
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Aplikácia požaduje možnosť čítať informácie o sieťovom pripojení "
+"(`navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
-msgstr ""
+msgstr "Stav siete"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Aplikácia požaduje API `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
-msgstr ""
+msgstr "Priblíženie"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Aplikácia požaduje senzor priblíženia (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
