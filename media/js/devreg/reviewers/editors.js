@@ -182,7 +182,7 @@ function initReviewActions() {
 
     function check_receipt() {
         var $node = $('#receipt-check-result');
-        if ($node) {
+        if ($node.length) {
             $.getJSON($node.data('url'), function(data) {
                 if (data.status) {
                     $node.text(gettext('Receipt checked by app.'));
@@ -227,9 +227,10 @@ function initQueue() {
 
     var url = $q.attr('data-url');
     var addon_ids = $.map($('.addon-row'), function(el) {
-            return $(el).attr('data-addon');
-        });
-    if(!(('localStorage' in window) && window.localStorage['dont_poll'])) {
+        return $(el).attr('data-addon');
+    });
+
+    if(!(('localStorage' in window) && window.localStorage.dont_poll)) {
         (function checkCurrentlyViewing() {
             $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
                 $('#addon-queue .locked').removeClass('locked')
