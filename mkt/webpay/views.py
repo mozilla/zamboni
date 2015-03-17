@@ -22,6 +22,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.constants.regions import RESTOFWORLD
 from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_inapp_receipt
 from mkt.site.mail import send_mail_jinja
@@ -57,11 +58,18 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
         app = form.cleaned_data['app']
 
         region = getattr(request, 'REGION', None)
-        if region and region.id not in app.get_price_region_ids():
-            log.info('Region {0} is not in {1}'
-                     .format(region.id, app.get_price_region_ids()))
-            return Response('Payments are limited and flag not enabled',
-                            status=status.HTTP_403_FORBIDDEN)
+        if region:
+            enabled_regions = app.get_price_region_ids()
+            region_can_purchase = region.id in enabled_regions
+            restofworld_can_purchase = RESTOFWORLD.id in enabled_regions
+
+            if not region_can_purchase and not restofworld_can_purchase:
+                log.info('Region {0} is not in {1}; '
+                         'restofworld purchases are inactive'
+                         .format(region.id, enabled_regions))
+                return Response(
+                    {'reason': 'Payments are restricted for this region'},
+                    status=status.HTTP_403_FORBIDDEN)
 
         if app.is_premium() and app.has_purchased(request._request.user):
             log.info('Already purchased: {0}'.format(app.pk))
