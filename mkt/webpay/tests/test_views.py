@@ -64,6 +64,21 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         eq_(res.json,
             {'detail': 'Authentication credentials were not provided.'})
 
+    def test_unsupported_region(self):
+        with patch('mkt.webapps.models.Webapp.get_price_region_ids') as r:
+            # Make this app support the wrong region and disable worldwide.
+            r.return_value = [mkt.regions.CHN.id]
+            res = self._post()
+        eq_(res.status_code, 403)
+        eq_(res.json, {'reason': 'Payments are restricted for this region'})
+
+    def test_unsupported_region_but_worldwide_allowed(self):
+        with patch('mkt.webapps.models.Webapp.get_price_region_ids') as r:
+            # Make this app support the wrong region but enable worldwide.
+            r.return_value = [mkt.regions.CHN.id, mkt.regions.RESTOFWORLD.id]
+            res = self._post()
+        eq_(res.status_code, 201)
+
     def test_get_jwt(self, client=None, extra_headers=None):
         res = self._post(client=client, extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
