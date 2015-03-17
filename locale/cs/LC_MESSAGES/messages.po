@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-02-20 19:11+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-03-17 15:31+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424459508.0\n"
+"X-POOTLE-MTIME: 1426606306.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1549,7 +1549,7 @@ msgstr "Nečinnost"
 
 #: mkt/constants/features.py:88
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr "Mobilní ID"
+msgstr "Aplikace vyžaduje platformu s podporou `addIdleObserver` API."
 
 #: mkt/constants/features.py:93
 msgid "Network Information"
