@@ -1,17 +1,16 @@
 # These should all be in our wheelhouse to avoid compiling on production and
 # automated testing machines
-
+# cffi is required by cryptography
+cffi==0.9.1
+# cryptography is required by pyOpenSSL
+cryptography==0.8
 Jinja2==2.7.2
-MarkupSafe==0.18
 lxml==2.2.6
-Pillow==2.7.0
-
-# For JWT to sign App receipts:
-# Temporary.
+MarkupSafe==0.18
+# M2Crypto is required by m2secret, mozpay, PyBrowserID, PyJWT-mozilla, django-aesfield
 M2Crypto==0.22.3
-
-# For pyjwkest, for JWT signing.
+Pillow==2.7.0
+# pycrypto is required by pyjwkest
 pycrypto==2.6.1
-
-# To get SNI support in requests (needed by the app validator).
+# pyOpenSSL is required by app-validator (To get SNI support in requests)
 pyOpenSSL==0.14
