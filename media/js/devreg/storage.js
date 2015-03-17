@@ -1,8 +1,8 @@
 define('storage', [], function() {
     function Storage() {
         function _prefix(storageKey) {
-            var version = localStorage.getItem('latestStorageVersion') || '0';
-            return version + '::' + storageKey;
+            // We used to have storage versioning here (bug 1144437).
+            return '0::' + storageKey;
         }
 
         this.setItem = function (key, value) {
