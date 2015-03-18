@@ -37,8 +37,7 @@
            class="button prominent">{{ _('Submit An App') }}</a>
       </p>
     {% else %}
-      {{ impala_addon_listing_header(request.get_full_path(),
-                                     search_filter=filter) }}
+      {% include "webapps/impala/listing/sorter.html" %}
       <div class="items">
         {{ hub_addon_listing_items(addons.object_list) }}
       </div>
