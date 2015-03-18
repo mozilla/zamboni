@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-11 11:06-0700\n"
-"PO-Revision-Date: 2015-03-17 15:26+0000\n"
+"PO-Revision-Date: 2015-03-18 09:11+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1426606011.0\n"
+"X-POOTLE-MTIME: 1426669872.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1827,19 +1827,19 @@ msgstr ""
 
 #: mkt/constants/features.py:327
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Zariadenie s 512 MB RAM"
 
 #: mkt/constants/features.py:328
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Aplikácia vyžaduje, aby zariadenie malo RAM s kapacitou aspoň 512 MB."
 
 #: mkt/constants/features.py:333
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Zariadenie s 1 GB RAM"
 
 #: mkt/constants/features.py:334
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Aplikácia vyžaduje, aby zariadenie malo RAM s kapacitou aspoň 1 GB."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1895,48 +1895,48 @@ msgstr "Platba bola obdržaná, ale nebola dokončená a momentálne čaká na s
 
 #: mkt/constants/payments.py:122
 msgid "Completed"
-msgstr ""
+msgstr "Dokončené"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox pre počítač"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Plne otvorený mobilný ekosystém"
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:46
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac a Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Telefóny s Androidom"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
-msgstr ""
+msgstr "Tablety"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Pre všetky vekové skupiny"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "Pre vek %d+"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Hodnotenie zamietnuté"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Čaká na hodnotenie"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Ministerstvo spravodlivosti, hodnotení, titulov a kvalifikácie"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
@@ -1948,29 +1948,29 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Všetci"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Všetci starší viac ako 10 rokov"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Dospievajúci"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Vek 17+"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Len pre osoby staršie ako 18 rokov"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Všetky štáty Ameriky s výnimkou Brazílie"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
@@ -1978,7 +1978,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Európa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -1990,7 +1990,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:96
 msgid "Russia"
-msgstr ""
+msgstr "Rusko"
 
 #: mkt/constants/regions.py:101
 msgid "Venezuela"
