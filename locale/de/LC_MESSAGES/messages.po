@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-12 09:01+0000\n"
+"PO-Revision-Date: 2015-03-18 17:13+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426150908.0\n"
+"X-POOTLE-MTIME: 1426698816.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3096,6 +3096,8 @@ msgstr "Diese App wurde <b>im Marketplace gesperrt</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Ihre App wurde von einem Administrator der Website gesperrt. Wenn Sie Fragen "
+"haben, <a href=\"%(support_url)s\">kontaktieren Sie uns bitte</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3104,6 +3106,8 @@ msgstr "Ihre App wurde <b>von Mozilla gesperrt</b>."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"hre App wurde von einem Administrator der Website gesperrt. Wenn Sie Fragen "
+"haben, <a href=\"%(support_url)s\">kontaktieren Sie uns bitte</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3992,6 +3996,15 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Sie können Ihre App einreichen, damit Sie möglicherweise von "
+"Mobilfunkanbietern <strong>vorinstalliert und auf Firefox-OS-Geräten "
+"ausgeliefert wird</strong>. Um sich dafür anzumelden, können Sie im "
+"Folgenden eine Vorlage herunterladen, Ihre App testen, die Vorlage ausfüllen "
+"und das Ergebnis für uns im <a href=\"%(submit_url)s\">Formular zur "
+"Einreichung von Apps zur Vorinstallation</a> hochladen. Wir speichern Ihre "
+"Testergebnisse auf unseren Servern, wo sie von interessierten "
+"Mobilfunkanbietern eingesehen werden. Wenn Sie weitere Fragen haben, können "
+"Sie <a href=\"%(support_url)s\">uns kontaktieren</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4117,6 +4130,9 @@ msgstr[1] "<b>Geschätzte Wartezeit:</b> %(num)s Arbeitstage"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Die meisten Apps werden in etwa einer Woche überprüft. Wenn Ihre Überprüfung "
+"länger dauert, können Sie <a href=\"%(support_url)s\">uns kontaktieren</a>, "
+"um den Status zu klären."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
