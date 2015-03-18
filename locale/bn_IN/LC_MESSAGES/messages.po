@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-03-18 09:00-0700\n"
 "PO-Revision-Date: 2014-11-23 19:53+0000\n"
 "Last-Translator: Ayan <ayay700@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -3091,16 +3091,16 @@ msgid "This app has been <b>banned on Marketplace</b>."
 msgstr "এই অ্যাপটি <b>মার্কেটপ্লেসে নিষিদ্ধ</b> করা হয়েছে।"
 
 #: mkt/developers/templates/developers/apps/status.html:51
-msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr "আপনার অ্যাপটি সাইট অ্যাডমিনের দ্বারা নিষিদ্ধ করা হয়েছে। যদি আপনার কোনো প্রশ্ন থাকে তাহলে মেইল করুন %(email)s এখানে।"
+msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "এই অ্যাপটি <b>Mozilla কতৃক ব্লক রয়েছে</b>।"
 
 #: mkt/developers/templates/developers/apps/status.html:59
-msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
-msgstr "আপনার অ্যাপটি সাইট অ্যাডমিনিস্ট্রেটর কর্তৃক ব্লক ছিল।যদি আপনার কোন প্রশ্ন থাকে, দয়া করে ইমেইল %(email)s করুন।"
+msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3549,9 +3549,9 @@ msgstr ""
 msgid "Description"
 msgstr "বর্ণনা"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
 
@@ -3973,11 +3973,8 @@ msgstr "পুনরায় লোড জন্য আপনার অ্য�
 msgid ""
 "You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"আপনি ধরে নিতে পারেন ফোনের অপারেটরের কারণে <strong>আপনার সাবমিট করা অ্যাপ প্রিলোড অবস্থায় Firefox OS ডিভাইসের </strong>সাথে পাওয়া যাচ্ছে। প্রিলোডিং এর জন্য আপনার অ্যাপকে মনোনীত করতে, আপনি আমাদের থেকে নিম্নে "
-"উল্লেখিত একটি নমুনা টেম্পলেট ডাউনলোড করে নিতে পারেন, টেম্পলেটটি সম্পূর্ণ করুন, এবং আপনার ফলাফলটি আমাদের কাছে আপলোড করুন <a href=\"%(submit_url)s\"> অ্যাপ প্রিলোড সাবমিশন ফর্ম</a>। আমরা আপনার টেস্ট ফলাফল আমাদের "
-"সার্ভারে সংরক্ষণ করবও যেখানে সেগুলো আগ্রহী ফোন অপারেটররা পর্যালোচনা করে দেখবেন। আরও বিস্তারিত জানতে আপনি %(email)s মেইল করতে পারেন।"
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4100,8 +4097,8 @@ msgstr[0] "<b>আনুমানিক অপেক্ষা সময়:</b> %
 msgstr[1] "<b>আনুমানিক অপেক্ষা সময়:</b> %(num)সমূহ কাজের দিনসমূহ"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
-msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr "বেশিরভাগ অ্যাপ এক সপ্তাহ নাগাদ রিভিউ হয়। যদি আপনার রিভিউ এর থেকে বেশি সময় নেয় তাহলে আপনি মেইল করতে পারেন %(email)s এখানে স্থিতি দেখবার জন্য।"
+msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
+msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -7345,12 +7342,6 @@ msgstr "আমার অ্যাপ্লিকেশন মার্কেট�
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "আমার অ্যাপ প্রকাশ করবেন না। আমাকে অবহিত করা হোক এবং এটি অনুমোদিত হবার পর আমি অ্যাপ্লিকেশনের দৃশ্যমানতা নির্ণয় করবো।"
-
-#: mkt/submit/forms.py:280
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr ""
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"

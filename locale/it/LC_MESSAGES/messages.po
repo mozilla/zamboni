@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-03-18 09:00-0700\n"
 "PO-Revision-Date: 2015-03-12 22:06+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2111,10 +2111,7 @@ msgstr "Parole chiave per la ricerca:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
-msgstr ""
-"Le parole chiave vengono utilizzate per mostrare l’app nei risultati delle "
-"ricerche di Firefox Marketplace. Assicurati di inserire parole chiave che "
-"rappresentino fedelmente l’app."
+msgstr "Le parole chiave vengono utilizzate per mostrare l’app nei risultati delle ricerche di Firefox Marketplace. Assicurati di inserire parole chiave che rappresentino fedelmente l’app."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3102,16 +3099,16 @@ msgid "This app has been <b>banned on Marketplace</b>."
 msgstr "Questa app è stata <b>espulsa dal Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
-msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr "L’app è stata espulsa da un amministratore del sito. Per qualsiasi domanda, scrivi un’email a %(email)s."
+msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "L’app è stata <b>bloccata da Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
-msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
-msgstr "L’app è stata bloccata da un amministratore del sito. Se hai domande a riguardo scrivi a %(email)s."
+msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3509,11 +3506,8 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
-"Il nome dell’app è importante per mostrare l’app nei risultati delle "
-"ricerche di Firefox Marketplace e viene inoltre mostrato nella pagina "
-"dell’app stessa. Assicurati di inserire nel manifesto un nome che suggerisca "
-"la funzione dell’app. Per cambiare il nome modifica direttamente l’apposito "
-"campo nel manifesto."
+"Il nome dell’app è importante per mostrare l’app nei risultati delle ricerche di Firefox Marketplace e viene inoltre mostrato nella pagina dell’app stessa. Assicurati di inserire nel manifesto un "
+"nome che suggerisca la funzione dell’app. Per cambiare il nome modifica direttamente l’apposito campo nel manifesto."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3569,15 +3563,13 @@ msgstr ""
 msgid "Description"
 msgstr "Descrizione"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
-"La descrizione dell’app è importante per mostrare l’app nei risultati delle "
-"ricerche di Firefox Marketplace e viene inoltre mostrata nella pagina "
-"dell’app stessa. Assicurati di inserire una descrizione che rappresenti "
-"fedelmente l’app."
+"La descrizione dell’app è importante per mostrare l’app nei risultati delle ricerche di Firefox Marketplace e viene inoltre mostrata nella pagina dell’app stessa. Assicurati di inserire una "
+"descrizione che rappresenti fedelmente l’app."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -4000,11 +3992,8 @@ msgstr "Invia l’app per la preinstallazione"
 msgid ""
 "You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"Puoi fare richiesta perché la tua app venga <strong>preinstallata e distribuita su un dispositivo Firefox OS dagli operatori telefonici</strong>. Per candidare la tua app alla preinstallazione puoi "
-"scaricare il modello per i test qui sotto, eseguire i test necessari sull’app, compilare il modello e inviare i risultati tramite il <a href=\"%(submit_url)s\">modulo di invio per le app "
-"preinstallate</a>. I risultati dei test verranno caricati sui nostri server, dove saranno revisionati dagli operatori telefonici interessati. Puoi inoltrare eventuali domande a %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4132,8 +4121,8 @@ msgstr[0] "<b>Tempo di attesa stimato:</b> %(num)s giorno lavorativo"
 msgstr[1] "<b>Tempo di attesa stimato:</b> %(num)s giorni lavorativi"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
-msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr "Normalmente la revisione di un’app richiede circa una settimana. Se la tua app è in revisione da più tempo puoi chiedere informazioni all’indirizzo %(email)s."
+msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
+msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -7399,16 +7388,6 @@ msgstr "Pubblica l’app rendendola visibile a tutti gli utenti del Marketplace,
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "Non rendere pubblica l’app. Inviami una notifica quando verrà approvata e modificherò io stesso la sua visibilità."
-
-#: mkt/submit/forms.py:280
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr ""
-"La descrizione dell’app è importante per mostrare l’app nei risultati delle "
-"ricerche di Firefox Marketplace e viene inoltre mostrata nella pagina "
-"dell’app stessa. Assicurati di inserire una descrizione che rappresenti "
-"fedelmente l’app."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-03-18 09:00-0700\n"
 "PO-Revision-Date: 2015-03-17 15:31+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -3102,16 +3102,16 @@ msgid "This app has been <b>banned on Marketplace</b>."
 msgstr "Tato aplikace byla <b>zablokována na Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
-msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr "Vaše aplikace byla zablokována systémovým administrátorem. Pokud máte jakékoliv otázky, pošlete e-mail na %(email)s."
+msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "Vaše aplikace <b>byla Mozillou zablokována</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
-msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
-msgstr "Vaše aplikace byla zablokována administrátorem webu. Pokud máte jakékoliv otázky, pošlete e-mail na %(email)s."
+msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3563,9 +3563,9 @@ msgstr ""
 msgid "Description"
 msgstr "Popis"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
 
@@ -3990,11 +3990,8 @@ msgstr "Přidejte svou integrovanou aplikaci"
 msgid ""
 "You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"Můžete přidat svou aplikaci a nabídnout ji mobilním operátorům k <strong>předinstalaci na prodávaná zařízení s Firefox OS</strong>.  Pro nabídnutí musíte stáhnout zkušební šablonu níže, otestovat "
-"svou aplikaci  a vyplněnou šablonu s výsledky nahrát zpět pomocí <a href=\"%(submit_url)s\">odesílacího formuláře</a>. My uchováme výsledky vašeho testování na našich serverech, kde budou "
-"prohlédnuty zájemci ze stran mobilních operátorů. Pokud máte otázky, můžete napsat na e-mail %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4118,8 +4115,8 @@ msgstr[1] "<b>Odhadovaná doba čekání:</b> %(num)s pracovní dny"
 msgstr[2] "<b>Odhadovaná doba čekání:</b> %(num)s pracovních dní"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
-msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr "Většina aplikací je zkontrolována během týdne. Pokud by kontrola trvala déle než je tato doba, můžete nám poslat e-mail na %(email)s a informovat se."
+msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
+msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -7380,12 +7377,6 @@ msgstr "Publikovat mou aplikaci a učinit ji viditelnou pro každého na Marketp
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "Nepublikovat mou aplikaci a upozornit mě na možnost upravit viditelnost po schválení."
-
-#: mkt/submit/forms.py:280
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr ""
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-03-18 09:00-0700\n"
 "PO-Revision-Date: 2015-03-12 03:56+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -3096,8 +3096,8 @@ msgid "This app has been <b>banned on Marketplace</b>."
 msgstr "此應用程式 <b>已被 Marketplace 封鎖</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:51
-msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr "您的程式被網站管理員封鎖。若您有任何問題，請 email 聯絡 %(email)s。"
+msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 # 77%
 #: mkt/developers/templates/developers/apps/status.html:58
@@ -3105,8 +3105,8 @@ msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "此應用程式已被 <b>Mozilla 封鎖</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:59
-msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
-msgstr "您的應用程式已被網站管理員封鎖。如有任何問題，請 email %(email)s 。"
+msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3501,8 +3501,8 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
-"應用程式名稱是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式名稱也會顯示在應用程式的詳細資訊頁面上。請確定您在應用"
-"程式的安裝資訊檔當中加上了有意義的名稱，若您想要改變該名稱，您必須在安裝資訊檔中修改。"
+"應用程式名稱是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式名稱也會顯示在應用程式的詳細資訊頁面上。請確定您在應用程式的安裝資訊檔當中加上了有意義的名稱，若您想要改變該名稱，您必須"
+"在安裝資訊檔中修改。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3556,13 +3556,11 @@ msgstr "請不要太常修改您的安裝資訊網址。若您變更了安裝資
 msgid "Description"
 msgstr "敘述"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app’s detail page. Be sure to include a description that "
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
-msgstr ""
-"應用程式描述是在 Firefox Marketplace "
-"當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
+msgstr "應用程式描述是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -3991,10 +3989,8 @@ msgstr "提交並預載您的應用程式"
 msgid ""
 "You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
+"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"您可以送出您的應用程式給電信業者考慮是否要 <strong>預載至 Firefox OS 裝置中</strong>。若想要加入預載城市清單，您必須下載下方的測試範本、測試您的應用程式、填寫範本內容，並將您的測試結果透過 <a href="
-"\"%(submit_url)s\">預載應用程式申請表單</a> 回傳給我們。我們將會儲存您的測試結果在伺服器上，提供有興趣的電信業者審核。若您有更多問題，歡迎寄信到 %(email)s 給我們。"
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4115,8 +4111,8 @@ msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
 msgstr[0] "<b>預計等待時間:</b> %(num)s 個工作天"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
-msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
-msgstr "大部分應用程式可在一星期內審查完成，若您的審查花了超過一週，您可以寄信給 %(email)s 詢問進度。"
+msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
+msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -7367,14 +7363,6 @@ msgstr "發佈我的程式，讓所有人都能在 Marketplace 看到，並顯�
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "不要自動發佈我的程式，通過審查後通知我，我會自行調整此程式的可見度。"
-
-#: mkt/submit/forms.py:280
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr ""
-"應用程式描述是在 Firefox Marketplace "
-"當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
