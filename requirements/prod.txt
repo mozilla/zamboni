@@ -14,12 +14,8 @@ cef==0.5
 celery==3.0.25
 celery-tasktree==0.3.2
 certifi==14.05.14
-# cffi is required by cryptography
-cffi==0.9.1
 chardet==2.3.0
 commonware==0.4.3
-# cryptography is required by pyOpenSSL
-cryptography==0.8
 # cssutils is required by app-validator
 cssutils==0.9.7b3
 curling==0.3.12
