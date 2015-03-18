@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-12 08:29+0000\n"
+"PO-Revision-Date: 2015-03-18 20:11+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1426148946.0\n"
+"X-POOTLE-MTIME: 1426709474.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3108,6 +3108,8 @@ msgstr "Este aplicativo foi <b>banido do Marketplace</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Seu aplicativo foi banido por um administrador do site. Se tiver alguma "
+"dúvida, entre em <a href=\"%(support_url)s\"> contato conosco</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3116,6 +3118,8 @@ msgstr "Seu aplicativo foi <b>bloqueado pela Mozilla</b>."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Seu aplicativo foi banido por um administrador do site. Se tiver alguma "
+"dúvida, entre em <a href=\"%(support_url)s\"> contato conosco</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -4128,6 +4132,9 @@ msgstr[1] "<b>Estimado o tempo de espera:</b> %(num)s dias de trabalho"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"A maioria dos aplicativos são revisados em cerca de uma semana. Se a sua "
+"revisão tem levado mais tempo do que isso, entre em <a href=\"%"
+"(support_url)s\"> contato conosco </a> para verificar o status."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
