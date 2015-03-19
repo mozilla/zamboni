@@ -25,6 +25,10 @@ you want to view typical responses, check out these endpoints:
  * Details on an app: https://marketplace.firefox.com/api/v1/apps/app/twitter/?format=JSON
  * Search for all hosted apps about Twitter: https://marketplace.firefox.com/api/v1/apps/search/?q=twitter&app_type=hosted&format=JSON
 
+License
+=======
+
+Except where otherwise `noted <https://www.mozilla.org/en-US/about/legal/#site>`_, content from this API is licensed under the `Creative Commons Attribution Share-Alike License v3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ or any later version.
 
 Questions
 =========
