@@ -34,3 +34,15 @@ class OperatorPermission(ModelBase):
         """
         return cls.objects.get(
             user=user, carrier=carrier, region=region).exists()
+
+    @classmethod
+    def user_is_operator(cls, user):
+        """
+        Returns a boolean indicating whether the passed user has operator
+        permissions for any carrier/region pair.
+
+        Example:
+        is_operator = OperatorPermission.user_is_operator(request.user)
+        """
+        return (user.is_authenticated() and
+                cls.objects.filter(user=user).exists())

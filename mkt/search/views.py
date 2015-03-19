@@ -11,9 +11,10 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import GroupPermission
+from mkt.api.authorization import AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
+from mkt.operators.authorization import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
                                 PublicAppsFilter, PublicSearchFormFilter,
@@ -124,7 +125,8 @@ class NoRegionSearchView(SearchView):
     """
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
-    permission_classes = [GroupPermission('Feed', 'Curate')]
+    permission_classes = [AnyOf(GroupPermission('Feed', 'Curate'),
+                                IsOperatorPermission)]
     filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
                        PublicAppsFilter, DeviceTypeFilter,
                        ProfileFilter, SortingFilter]
