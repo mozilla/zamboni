@@ -1,0 +1,8 @@
+{% if num_pages > 1 %}
+  <a {% if not pager.has_next() %}class="button disabled"{% else %}class="button" rel="next" href="{{ pager.url|urlparams(page=pager.next_page_number()) }}#history"{% endif %}>
+    {{ _('Older versions') }}
+  </a>
+  <a {% if not pager.has_previous() %}class="button disabled"{% else %}class="button" rel="prev" href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}#history"{% endif %}>
+    {{ _('Newer versions') }}
+  </a>
+{% endif %}

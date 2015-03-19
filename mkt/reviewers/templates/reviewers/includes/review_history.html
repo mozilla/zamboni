@@ -62,36 +62,33 @@
                   </td>
                 </tr>
               {% endif %}
-              {% if version.approvalnotes %}
-                <tr>
-                  <th>{{ _('Notes for Reviewers') }}</th>
-                  <td class="activity_approval">
-                    <div class="history-notes">
-                      {{ version.approvalnotes|urlize(100)|nl2br }}
-                    </div>
-                  </td>
-                </tr>
-              {% endif %}
+              {# No need to show approvalnotes, that'll be handled by commbadge, see below. #}
             </thead>
             <tbody>
               {# Results populated here by reviewers_commbadge.js (Commbadge API) #}
-              <tr class="comm-notes-paginator">
-                <th>&nbsp;</th>
-                <td>
-                  <a class="button next" href="#">{{ _('Next Page') }}</a>
-                  <a class="button prev" href="#">{{ _('Previous Page') }}</a>
-                </td>
-              </tr>
               <tr class="loading-msg">
                 <td>{{ _('Loading App History &hellip;')|safe }}</td>
               </tr>
             </tbody>
+            <tfoot>
+              {# Paginator will be displayed if necessary. #}
+              <tr class="comm-notes-paginator">
+                <th>&nbsp;</th>
+                <td>
+                  <a class="button next" href="#">{{ _('Next Comments') }}</a>
+                  <a class="button prev" href="#">{{ _('Previous Comments') }}</a>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </td>
 
       </tr>
     {% endfor %}
   </table>
+  <div id="review-files-paginate">
+    {% include "reviewers/includes/paginator_history.html"  %}
+  </div>
 </div>
 
 {% include "reviewers/includes/commbadge_note_template.html" %}
