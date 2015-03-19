@@ -19,6 +19,7 @@ from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
+from mkt.operators.models import OperatorPermission
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.filters import SortingFilter
 from mkt.search.views import SearchView
@@ -1095,6 +1096,18 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 403)
 
     def test_with_permission(self):
+        res = self.client.get(self.url, data={
+            'q': 'second', 'lang': 'en-US', 'region': 'us'
+        })
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['name'], self.app2.name)
+
+    def test_with_operator_permission(self):
+        GroupUser.objects.filter(user=self.profile).delete()
+        OperatorPermission.objects.create(user=self.profile, carrier=1,
+                                          region=8)
         res = self.client.get(self.url, data={
             'q': 'second', 'lang': 'en-US', 'region': 'us'
         })
