@@ -285,7 +285,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         webapp.set_iarc_storefront_data()
 
 
-@task
+@post_request_task
 def update_cached_manifests(id, **kw):
     try:
         webapp = Webapp.objects.get(pk=id)
