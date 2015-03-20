@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-11 22:13+0000\n"
+"PO-Revision-Date: 2015-03-18 21:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426112039.0\n"
+"X-POOTLE-MTIME: 1426715570.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3098,6 +3099,8 @@ msgstr "Tute nałoženje je <b>za Torhošćo zawrjene</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Waše nałoženje je so wot sydłoweho administratora zawrěło. Jeli maće "
+"prašenja, <a href=\"%(support_url)s\">stajće so z nami do zwiska</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3106,6 +3109,8 @@ msgstr "Waše nałoženje je so <b>wot Mozilla zablokowało</b>."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Waše nałoženje je so wot sydłoweho administratora zablokowało. Jeli maće "
+"prašenja, <a href=\"%(support_url)s\">stajće so z nami prošu do zwiska</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3990,6 +3995,15 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Móžeće swoje nałoženje zapodać, zo by wot telefonowych poskićowarjow "
+"<strong>z gratami Firefox OS předinstalowało a dodało</strong>. Zo byšće so "
+"za předinstalaciju přizjewiło, móžeće deleka testowu předłohu wot nas "
+"sćahnyć, swoje nałoženje testować, předłohu wupjelnić a swoje wuslědki w <a "
+"href=\"%(submit_url)s\">formularje k zapodawanju nałoženja za "
+"předinstalaciju</a> wróćo k nam nahrać. Budźemy waše testowe wuslědki na "
+"swojich serwerach składować, hdźež hodźa so wot zajimowanych telefonowych "
+"poskićowarjow wobhladać. Jeli maće dalše prašenja, móžeće <a href=\"%"
+"(support_url)s\">so z nami do zwiska stajić</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4117,6 +4131,9 @@ msgstr[3] "<b>Trochowany čakanski čas:</b> %(num)s dźěłowych dnjow"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Najwjace nałoženjow so w běhu tydźenja přepruwuje. Jeli waše přepruwowanje "
+"dlěje traje, móžeće so <a href=\"%(support_url)s\">z nami do zwiska "
+"stajić</a>, zo byšće status zhonił."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
