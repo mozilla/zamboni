@@ -175,7 +175,7 @@ class BaseAddVersionTest(BasePackagedAppTest):
         return res
 
 
-@mock.patch('mkt.webapps.tasks.update_cached_manifests.delay', new=mock.Mock)
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestAddVersion(BaseAddVersionTest):
 
     def setUp(self):
@@ -276,6 +276,7 @@ class TestAddVersion(BaseAddVersionTest):
             'VIP App not in escalation queue')
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
     @property
     def package(self):
@@ -298,6 +299,7 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
             'App not in escalation queue')
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestAddVersionNoPermissions(BaseAddVersionTest):
     @property
     def package(self):

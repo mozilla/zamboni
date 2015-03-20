@@ -150,6 +150,7 @@ class SearchMixin(object):
         eq_(res.status_code, 200)
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestReviewersHome(AppReviewerTest, AccessMixin):
 
     def setUp(self):
