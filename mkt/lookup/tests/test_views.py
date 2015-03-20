@@ -740,6 +740,7 @@ class AppSummaryTest(SummaryTest):
         return res
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestAppSummary(AppSummaryTest):
     fixtures = fixture('prices', 'user_admin', 'user_support_staff',
                        'webapp_337141', 'user_operator')

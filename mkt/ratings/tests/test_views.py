@@ -9,6 +9,7 @@ from django.http import QueryDict
 from django.test.utils import override_settings
 
 
+import mock
 from mock import patch
 from nose.tools import eq_, ok_
 
@@ -24,6 +25,7 @@ from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
 from mkt.users.models import UserProfile
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     fixtures = fixture('user_2519', 'webapp_337141')
 

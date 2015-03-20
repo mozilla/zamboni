@@ -286,6 +286,7 @@ def _update_manifest(id, check_hash, failed_fetches):
 
 
 @post_request_task
+@write
 def update_cached_manifests(id, **kw):
     try:
         webapp = Webapp.objects.get(pk=id)
