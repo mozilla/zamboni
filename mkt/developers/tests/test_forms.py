@@ -678,6 +678,7 @@ class TestPublishForm(mkt.site.tests.TestCase):
         assert not form.is_valid()
 
 
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestPublishFormPackaged(mkt.site.tests.TestCase):
     """
     Test that changing the app visibility doesn't affect the version statuses

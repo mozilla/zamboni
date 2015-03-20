@@ -136,6 +136,7 @@ class TestCleanup(mkt.site.tests.TestCase):
 
 
 @mock.patch('lib.crypto.packaged.sign_app')
+@mock.patch('mkt.webapps.models.Webapp.get_cached_manifest', mock.Mock)
 class TestSignApps(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
