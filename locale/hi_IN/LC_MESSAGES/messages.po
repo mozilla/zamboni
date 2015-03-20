@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-02-18 17:50+0000\n"
-"Last-Translator: Umesh <umesh.agarwal1@gmail.com>\n"
+"PO-Revision-Date: 2015-03-20 19:28+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,41 +12,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424281823.0\n"
+"X-POOTLE-MTIME: 1426879708.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
-msgstr ""
+msgstr "खरीद की तारीख"
 
 #: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
-msgstr ""
+msgstr "मूल्य"
 
 #: mkt/account/utils.py:18 mkt/developers/forms_payments.py:622 mkt/developers/views.py:83 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
-msgstr ""
+msgstr "नाम"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "एक मान्य विकल्प का चयन करें. %(value)s मान्य विकल्प में से एक नहीं है"
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "क्षेत्र में कम से कम एक {NUM} पात्रों की लंबाई होना चाहिए."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "{lang_code} भाषा कोड अमान्य है."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
 msgid "Unknown"
-msgstr ""
+msgstr "अनजान"
 
 #: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
 msgid "Yes"
-msgstr ""
+msgstr "हाँ"
 
 #: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:201 mkt/submit/forms.py:330
 msgid "No"
@@ -82,19 +82,19 @@ msgstr "संलग्नक %s के अधिकतम आकार से �
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "वेब प्लेटफार्म के लिए Firefox Marketplace एप्स की आधिकारिक स्रोत है."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
 msgid "Desktop"
-msgstr ""
+msgstr "डेस्कटॉप"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
-msgstr ""
+msgstr "डेवलपर"
 
 #: mkt/constants/bango.py:19
 msgid "Afghanistan"
@@ -127,7 +127,7 @@ msgstr "एलैंड द्वीप समूह"
 
 #: mkt/constants/bango.py:21
 msgid "Albania"
-msgstr ""
+msgstr "अल्बानिया"
 
 #: mkt/constants/bango.py:22
 msgid "Algeria"
@@ -155,31 +155,31 @@ msgstr "अंटार्कटिका"
 
 #: mkt/constants/bango.py:28
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "अण्टीगुआ और बारबूडा"
 
 #: mkt/constants/bango.py:29 mkt/constants/regions.py:70
 msgid "Argentina"
-msgstr ""
+msgstr "अर्जेंटीना"
 
 #: mkt/constants/bango.py:30
 msgid "Armenia"
-msgstr ""
+msgstr "आर्मेनिया"
 
 #: mkt/constants/bango.py:31
 msgid "Aruba"
-msgstr ""
+msgstr "अरूबा"
 
 #: mkt/constants/bango.py:32
 msgid "Australia"
-msgstr ""
+msgstr "ऑस्ट्रेलिया"
 
 #: mkt/constants/bango.py:33
 msgid "Austria"
-msgstr ""
+msgstr "ऑस्ट्रिया"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
-msgstr ""
+msgstr "अज़रबैजान"
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
@@ -295,35 +295,36 @@ msgstr ""
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:73
 msgid "Chile"
-msgstr ""
+msgstr "चीले "
 
 #: mkt/constants/bango.py:64 mkt/constants/regions.py:74
 msgid "China"
-msgstr ""
+msgstr "चीन"
 
 #: mkt/constants/bango.py:65
 msgid "Christmas Island"
-msgstr ""
+msgstr "क्रिसमस द्वीप"
 
 #: mkt/constants/bango.py:66
+#, fuzzy
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "कोकोस (कीलिंग) द्वीप"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:75
 msgid "Colombia"
-msgstr ""
+msgstr "कोलम्बिया"
 
 #: mkt/constants/bango.py:68
 msgid "Comoros"
-msgstr ""
+msgstr "कोमोरोस"
 
 #: mkt/constants/bango.py:69
 msgid "Congo"
-msgstr ""
+msgstr "कांगो"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "कांगो, लोकतांत्रिक गणराज्य"
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
@@ -395,7 +396,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
-msgstr ""
+msgstr "एस्तोनिया"
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
@@ -435,35 +436,35 @@ msgstr "फ़्रांसीसी दक्षिणी क्षेत्�
 
 #: mkt/constants/bango.py:98
 msgid "Gabon"
-msgstr ""
+msgstr "गैबॉन"
 
 #: mkt/constants/bango.py:99
 msgid "Gambia"
-msgstr ""
+msgstr "गाम्बिया"
 
 #: mkt/constants/bango.py:100
 msgid "Georgia"
-msgstr ""
+msgstr "जॉर्जिया"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
 msgid "Germany"
-msgstr ""
+msgstr "जर्मनी"
 
 #: mkt/constants/bango.py:102
 msgid "Ghana"
-msgstr ""
+msgstr "घाना"
 
 #: mkt/constants/bango.py:103
 msgid "Gibraltar"
-msgstr ""
+msgstr "जिब्राल्टर"
 
 #: mkt/constants/bango.py:104 mkt/constants/regions.py:83
 msgid "Greece"
-msgstr ""
+msgstr "ग्रीस"
 
 #: mkt/constants/bango.py:105
 msgid "Greenland"
-msgstr ""
+msgstr "ग्रीनलैंड"
 
 #: mkt/constants/bango.py:106
 msgid "Grenada"
@@ -527,11 +528,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:86
 msgid "India"
-msgstr ""
+msgstr "भारत"
 
 #: mkt/constants/bango.py:122
 msgid "Indonesia"
-msgstr ""
+msgstr "इंडोनेशिया"
 
 #: mkt/constants/bango.py:123
 msgid "Iran, Islamic Republic of"
@@ -539,7 +540,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:124
 msgid "Iraq"
-msgstr ""
+msgstr "इराक"
 
 #: mkt/constants/bango.py:125
 msgid "Ireland"
@@ -583,35 +584,35 @@ msgstr ""
 
 #: mkt/constants/bango.py:135
 msgid "Kiribati"
-msgstr ""
+msgstr "किरिबाती"
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "कोरिया, डेमोक्रेटिक पीपुल्स प्रतिनिधि"
 
 #: mkt/constants/bango.py:137
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "कोरिया गणराज्य"
 
 #: mkt/constants/bango.py:138
 msgid "Kosovo"
-msgstr ""
+msgstr "कोसोवो"
 
 #: mkt/constants/bango.py:139
 msgid "Kuwait"
-msgstr ""
+msgstr "कुवैत"
 
 #: mkt/constants/bango.py:140
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "क़िर्गीस्तान"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "लाओ पीपुल्स डेमोक्रेटिक"
 
 #: mkt/constants/bango.py:142
 msgid "Latvia"
-msgstr ""
+msgstr "लातविया"
 
 #: mkt/constants/bango.py:143
 msgid "Lebanon"
@@ -651,7 +652,7 @@ msgstr "मैसेडोनिया, पूर्व यूगोस्ला
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
-msgstr ""
+msgstr "मडागास्कर"
 
 #: mkt/constants/bango.py:153
 msgid "Malawi"
@@ -727,35 +728,35 @@ msgstr ""
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
-msgstr ""
+msgstr "मोज़ाम्बीक"
 
 #: mkt/constants/bango.py:172
 msgid "Myanmar"
-msgstr ""
+msgstr "म्यांमार"
 
 #: mkt/constants/bango.py:173
 msgid "Namibia"
-msgstr ""
+msgstr "नामीबीया"
 
 #: mkt/constants/bango.py:174
 msgid "Nauru"
-msgstr ""
+msgstr "नाउरू"
 
 #: mkt/constants/bango.py:175
 msgid "Nepal"
-msgstr ""
+msgstr "नेपाल"
 
 #: mkt/constants/bango.py:176
 msgid "Netherlands"
-msgstr ""
+msgstr "नीदरलैंड"
 
 #: mkt/constants/bango.py:177
 msgid "New Caledonia"
-msgstr ""
+msgstr "न्यू कैलेडोनिया"
 
 #: mkt/constants/bango.py:178
 msgid "New Zealand"
-msgstr ""
+msgstr "न्यूज़ीलैंड"
 
 #: mkt/constants/bango.py:179 mkt/constants/regions.py:91
 msgid "Nicaragua"
@@ -795,7 +796,7 @@ msgstr "पाकिस्तान"
 
 #: mkt/constants/bango.py:188
 msgid "Palau"
-msgstr ""
+msgstr "पलाऊ"
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
@@ -871,35 +872,35 @@ msgstr ""
 
 #: mkt/constants/bango.py:207
 msgid "Saint Lucia"
-msgstr ""
+msgstr "सेंट लूसिया"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr ""
+msgstr "संत मार्टिन"
 
 #: mkt/constants/bango.py:209
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "सेंट पियरे और मिकेलॉन"
 
 #: mkt/constants/bango.py:210
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "सन्त विन्सेण्ट और ग्रेनाडाइन्स"
 
 #: mkt/constants/bango.py:211
 msgid "Samoa"
-msgstr ""
+msgstr "समोआ"
 
 #: mkt/constants/bango.py:212
 msgid "San Marino"
-msgstr ""
+msgstr "सैन मारिनो"
 
 #: mkt/constants/bango.py:213
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "साओ टोमे और प्रिंसिपे"
 
 #: mkt/constants/bango.py:214
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "सऊदी अरब"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
@@ -939,7 +940,7 @@ msgstr "स्लोवेनिया"
 
 #: mkt/constants/bango.py:224
 msgid "Solomon Islands"
-msgstr ""
+msgstr "सोलोमन द्वीप"
 
 #: mkt/constants/bango.py:225
 msgid "Somalia"
@@ -1015,35 +1016,35 @@ msgstr ""
 
 #: mkt/constants/bango.py:243
 msgid "Togo"
-msgstr ""
+msgstr "टोगो"
 
 #: mkt/constants/bango.py:244
 msgid "Tokelau"
-msgstr ""
+msgstr "टोकेलौ"
 
 #: mkt/constants/bango.py:245
 msgid "Tonga"
-msgstr ""
+msgstr "टोंगा"
 
 #: mkt/constants/bango.py:246
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "त्रिनिदाद और टोबैगो"
 
 #: mkt/constants/bango.py:247
 msgid "Tunisia"
-msgstr ""
+msgstr "ट्यूनीशिया"
 
 #: mkt/constants/bango.py:248
 msgid "Turkey"
-msgstr ""
+msgstr "तुर्की"
 
 #: mkt/constants/bango.py:249
 msgid "Turkmenistan"
-msgstr ""
+msgstr "तुर्कमेनिस्तान"
 
 #: mkt/constants/bango.py:250
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "तुर्क्स और कैकोज़ द्वीपसमूह"
 
 #: mkt/constants/bango.py:251
 msgid "Tuvalu"
@@ -1083,7 +1084,7 @@ msgstr "उजबेकिस्तान"
 
 #: mkt/constants/bango.py:260
 msgid "Vanuatu"
-msgstr ""
+msgstr "वानुअतु"
 
 #: mkt/constants/bango.py:261
 msgid "Venezuela, Bolivarian Republic of"
@@ -1127,39 +1128,40 @@ msgstr ""
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
-msgstr ""
+msgstr "लंबित अनुमोदन"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "प्रकाशित"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "बाज़ार से प्रतिबंधित"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
-msgstr ""
+msgstr "हटाए गए"
 
 #: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:176 mkt/site/log.py:178
 msgid "Rejected"
-msgstr ""
+msgstr "अस्वीकृत"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "स्वीकृत लेकिन निजी"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
-msgstr ""
+msgstr "अवरोधित"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "असूचीबद्ध"
 
 #: mkt/constants/base.py:42
+#, fuzzy
 msgid "Obsolete"
-msgstr ""
+msgstr "अप्रचलित"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
@@ -1265,47 +1267,48 @@ msgstr ""
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "किताबें"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "व्यापार"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "शिक्षा"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "मनोरंजन"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "खेलों"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "स्वास्थ्य और फिटनेस"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "लाइफस्टाइल"
 
 #: mkt/constants/categories.py:12
+#, fuzzy
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "मैप्स और नेविगेशन"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "म्यूज़िक"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "समाचार और मौसम"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "फोटो और वीडियो"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
@@ -1321,15 +1324,15 @@ msgstr ""
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "सामाजिक"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "स्पोर्ट्स"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "यात्रा"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
