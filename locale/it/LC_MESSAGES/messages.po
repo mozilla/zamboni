@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-12 22:06+0000\n"
+"PO-Revision-Date: 2015-03-21 12:26+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426197969.0\n"
+"X-POOTLE-MTIME: 1426940806.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3101,6 +3101,8 @@ msgstr "Questa app è stata <b>espulsa dal Marketplace</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"L’app è stata espulsa da un amministratore. Per qualunque domanda puoi <a "
+"href=\"%(support_url)s\">contattarci tramite email</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3109,6 +3111,8 @@ msgstr "L’app è stata <b>bloccata da Mozilla</b>."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"L’app è stata bloccata da un amministratore. Per qualunque domanda puoi <a "
+"href=\"%(support_url)s\">contattarci tramite email</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3994,6 +3998,15 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Puoi fare richiesta affinché un’app che hai sviluppato venga "
+"<strong>preinstallata e distribuita su un dispositivo Firefox OS dagli "
+"operatori telefonici</strong>. Per candidare un’app alla preinstallazione "
+"scarica il modello per i test riportato qui sotto, esegui i test necessari "
+"sull’app, compila il modello e invia i risultati tramite l’<a href=\"%"
+"(submit_url)s\">apposito modulo</a>. I risultati dei test verranno caricati "
+"sui nostri server, dove potranno essere visionati dagli operatori telefonici "
+"interessati. Per qualsiasi domanda puoi <a href=\"%"
+"(support_url)s\">contattarci via mail</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4123,6 +4136,10 @@ msgstr[1] "<b>Tempo di attesa stimato:</b> %(num)s giorni lavorativi"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Normalmente il processo di revisione di un’app richiede circa una settimana. "
+"Se l’app che hai sviluppato è in revisione da più tempo puoi <a href=\"%"
+"(support_url)s\">contattarci</a> per richiedere informazioni sullo stato di "
+"avanzamento della revisione."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
