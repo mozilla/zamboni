@@ -126,6 +126,7 @@ class NoRegionSearchView(SearchView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AnyOf(GroupPermission('Feed', 'Curate'),
+                                GroupPermission('OperatorDashboard', '*'),
                                 IsOperatorPermission)]
     filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
                        PublicAppsFilter, DeviceTypeFilter,
