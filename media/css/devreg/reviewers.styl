@@ -757,18 +757,17 @@ button.search, .log-filter-outside button {
         color: #333;
         font-weight: bold;
     }
-    #review-files-paginate {
-        float: right;
-        margin-top: 2em;
-    }
 }
-#review-files-paginate ol {
-    float: right;
-    margin: 0;
-    padding-left: 10px;
-    text-align: right;
-    top: -20px;
-    width: auto;
+#review-files-paginate {
+    text-align: center;
+    padding: 10px;
+}
+#review-files-paginate .button,
+#review-files .activity .comm-notes-paginator .button {
+    height: 30px;
+    line-height: 30px;
+    min-width: 85px;
+    padding: 0 5px;
 }
 #review-files .activity .comm-notes-paginator {
     border-bottom: none;
@@ -1456,12 +1455,6 @@ span.currently_viewing_warning {
 #review-files table.activity .comm-notes-paginator {
     td {
         padding: 0;
-    }
-    a.button {
-        height: 30px;
-        line-height: 30px;
-        min-width: 85px;
-        padding: 0 5px;
     }
 }
 #review-files table.activity .loading-msg {
