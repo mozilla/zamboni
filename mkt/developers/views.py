@@ -52,7 +52,6 @@ from mkt.developers.utils import (
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
-from mkt.purchase.webpay import _prepare_pay
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (
     json_view, login_required, permission_required, skip_cache, write)
@@ -65,7 +64,6 @@ from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.views import BaseFilter
-from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
@@ -1096,36 +1094,6 @@ def _filter_transactions(qs, data):
 
 def testing(request):
     return render(request, 'developers/testing.html')
-
-
-@app_view
-def debug(request, addon):
-    if not settings.DEBUG:
-        raise http.Http404
-
-    context = {
-        'app': addon,
-        'inapps': [],
-        'urls': {'es': '%s/apps/webapp/%s' % (settings.ES_URLS[0], addon.pk)},
-    }
-
-    if addon.is_premium():
-        context['app_jwt'] = _prepare_pay(request, addon)['webpayJWT']
-
-        for inapp in addon.inappproduct_set.all():
-            contribution = Contribution.objects.create(
-                addon=addon,
-                inapp_product=inapp,
-            )
-            context['inapps'].append({
-                'inapp': inapp,
-                'jwt': get_product_jwt(
-                    InAppProduct(inapp),
-                    contribution,
-                )['webpayJWT'],
-            })
-
-    return render(request, 'developers/debug.html', context)
 
 
 class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
