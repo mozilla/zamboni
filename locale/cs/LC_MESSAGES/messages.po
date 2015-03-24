@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-17 15:31+0000\n"
+"PO-Revision-Date: 2015-03-24 16:25+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426606306.0\n"
+"X-POOTLE-MTIME: 1427214358.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1357,7 +1357,7 @@ msgstr "Zablokováno"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Komentář redaktora"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
 msgid "Escalated"
@@ -2108,7 +2108,7 @@ msgstr "Popis se zobrazí na stránce s vaší aplikací."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Hledání klíčových slov:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
@@ -3104,6 +3104,8 @@ msgstr "Tato aplikace byla <b>zablokována na Marketplace</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, "
+"<a href=\"%(support_url)s\">kontaktujte nás prosím</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3112,6 +3114,8 @@ msgstr "Vaše aplikace <b>byla Mozillou zablokována</b>."
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, "
+"<a href=\"%(support_url)s\">kontaktujte nás prosím</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -4117,6 +4121,9 @@ msgstr[2] "<b>Odhadovaná doba čekání:</b> %(num)s pracovních dní"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Většina aplikací je zkontrolována během týdne. Pokud kontrola trvá déle než "
+"týden, můžete nás <a href=\"%(support_url)s\">kontaktovat</a> a zjistit "
+"aktuální stav."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -4331,7 +4338,7 @@ msgstr "Platební metoda"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
+msgstr "Přidat účet plateb pro povolení prodeje aplikace ve více regionech"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -5479,7 +5486,7 @@ msgstr "Zobrazené jméno"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identifikátor Účtu Firefox"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5685,7 +5692,7 @@ msgstr "Dosud nezkontrolováno"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Ohodnoceno %s z 5 hvězdiček"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
@@ -5933,7 +5940,7 @@ msgstr "Zamítne aplikaci, odebere ji z fronty pro schválení a zruší její p
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Zpráva vývojáři"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
@@ -5951,7 +5958,7 @@ msgstr "Označí aplikaci pro kontrolu administrátorem. Komentáře budou odesl
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Soukromá zpráva"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
@@ -6215,11 +6222,11 @@ msgstr "Pro toto období nebyly nalezeny žádné události."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Log s detaily"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Log s detaily"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
@@ -7424,7 +7431,7 @@ msgstr "Vyžaduje vaše aplikace podporu Flashe?"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Vaše komentáře pro redaktory:"
 
 #: mkt/submit/forms.py:334
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -7779,11 +7786,11 @@ msgstr "Uživatel se zvolenou e-mailovou adresou neexistuje nebo dosud neodsouhl
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Native FxA authentication failure."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Pro tento účet prosím použijte ověřený e-mail."
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
