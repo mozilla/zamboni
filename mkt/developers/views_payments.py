@@ -12,7 +12,7 @@ from django.views.decorators.http import require_POST
 import commonware
 import jinja2
 import waffle
-from curling.lib import HttpClientError
+from slumber.exceptions import HttpClientError
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 

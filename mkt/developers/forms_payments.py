@@ -9,7 +9,7 @@ from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
 import happyforms
-from curling.lib import HttpClientError
+from slumber.exceptions import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import mkt

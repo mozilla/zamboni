@@ -1,9 +1,9 @@
 from django.test.client import RequestFactory
 
 import mock
-from curling.lib import HttpClientError
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+from slumber.exceptions import HttpClientError
 
 import mkt
 import mkt.site.tests
