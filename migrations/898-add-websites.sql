@@ -1,20 +1,22 @@
+DROP TABLE IF EXISTS `websites_website_keywords`;
 CREATE TABLE `websites_website_keywords` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `website_id` integer NOT NULL,
-    `tag_id` integer NOT NULL,
+    `tag_id` integer unsigned NOT NULL,
     UNIQUE (`website_id`, `tag_id`)
 )
 ;
 ALTER TABLE `websites_website_keywords` ADD CONSTRAINT `tag_id_refs_id_46aff236` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
+DROP TABLE IF EXISTS `websites_website`;
 CREATE TABLE `websites_website` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `default_locale` varchar(10) NOT NULL,
-    `url` integer UNIQUE,
-    `title` integer UNIQUE,
-    `short_title` integer UNIQUE,
-    `description` integer UNIQUE,
+    `url` integer unsigned UNIQUE,
+    `title` integer unsigned UNIQUE,
+    `short_title` integer unsigned UNIQUE,
+    `description` integer unsigned UNIQUE,
     `categories` longtext NOT NULL,
     `icon_type` varchar(25) NOT NULL,
     `icon_hash` varchar(8) NOT NULL,
