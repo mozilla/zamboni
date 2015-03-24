@@ -30,6 +30,9 @@ class Website(ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
+    def __unicode__(self):
+        return unicode(self.url or '(no url set)')
+
 
 models.signals.pre_save.connect(save_signal, sender=Website,
                                 dispatch_uid='website_translations')
