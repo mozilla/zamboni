@@ -19,6 +19,7 @@ import mkt.feed.indexers as f_indexers
 from lib.es.models import Reindexing
 from mkt.site.utils import chunked, timestamp_index
 from mkt.webapps.indexers import WebappIndexer
+from mkt.websites.indexers import WebsiteIndexer
 
 
 logger = logging.getLogger('z.elasticsearch')
@@ -29,8 +30,6 @@ logger = logging.getLogger('z.elasticsearch')
 # logging.getLogger('elasticsearch.trace').setLevel(logging.DEBUG)
 
 # The subset of settings.ES_INDEXES we are concerned with.
-# Referenced from mkt.site.tests.ESTestCase so update that if you are
-# modifying the structure of INDEXES.
 ES_INDEXES = settings.ES_INDEXES
 INDEXES = (
     # Index, Indexer, chunk size.
@@ -45,6 +44,9 @@ INDEXES = (
     (ES_INDEXES['mkt_feed_shelf'], f_indexers.FeedShelfIndexer, 500),
     # Currently using 1000 since FeedItem documents are pretty small.
     (ES_INDEXES['mkt_feed_item'], f_indexers.FeedItemIndexer, 1000),
+
+    # Currently using 500 because we don't really know what size they'll be.
+    (ES_INDEXES['mkt_website'], WebsiteIndexer, 500),
 )
 
 INDEX_DICT = {
