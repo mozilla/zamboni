@@ -164,6 +164,7 @@ INSTALLED_APPS = (
     'mkt.versions',
     'mkt.webapps',
     'mkt.webpay',
+    'mkt.websites',
     'mkt.zadmin',
 )
 

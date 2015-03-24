@@ -46,7 +46,8 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify, isotime
 from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
-from mkt.site.utils import app_factory, make_game, urlparams, version_factory
+from mkt.site.utils import (app_factory, make_game, paginate, urlparams,
+                            version_factory)
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -1989,6 +1990,32 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.post(data)
         tags = self.get_app().tags.values_list('tag_text', flat=True)
         assert 'tarako' not in tags
+
+    def test_versions_history_pagination(self):
+        self.app.update(is_packaged=True)
+        version_factory(addon=self.app, version='2.0')
+        version_factory(addon=self.app, version='3.0')
+
+        # Mock paginate to paginate with only 2 versions to limit the
+        # number of versions this test has to create.
+        with mock.patch('mkt.reviewers.views.paginate',
+                        lambda req, objs, limit: paginate(req, objs, 2)):
+            content = pq(self.client.get(self.url).content)
+        eq_(len(content('#review-files tr.listing-body')), 2)
+        eq_(len(content('#review-files-paginate a[rel=next]')), 1)
+        eq_(len(content('#review-files-paginate a[rel=prev]')), 0)
+        link = content('#review-files-paginate a[rel=next]')[0].attrib['href']
+        eq_(link, '%s?page=2#history' % self.url)
+
+        # Look at page 2.
+        with mock.patch('mkt.reviewers.views.paginate',
+                        lambda req, objs, limit: paginate(req, objs, 2)):
+            content = pq(self.client.get(link).content)
+        eq_(len(content('#review-files tr.listing-body')), 1)
+        eq_(len(content('#review-files-paginate a[rel=next]')), 0)
+        eq_(len(content('#review-files-paginate a[rel=prev]')), 1)
+        eq_(content('#review-files-paginate a[rel=prev]')[0].attrib['href'],
+            '%s?page=1#history' % self.url)
 
 
 class TestCannedResponses(AppReviewerTest):

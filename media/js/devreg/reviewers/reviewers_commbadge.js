@@ -27,18 +27,31 @@ define('reviewersCommbadge', ['login'], function(login) {
         var versionIds = _.map(threads, function(thread) {
             return thread.version.id;
         });
+
+        // Version ids that are actually being displayed. Useful to filter out
+        // threads that we don't need to make a XHR for.
+        var displayedVersions = [];
+
         $('table.activity').each(function(i, table) {
             var $table = $(table);
-            if (versionIds.indexOf($table.data('version')) === -1) {
+            var versionId = $table.data('version');
+            if (versionIds.indexOf(versionId) === -1) {
                 // No data for this table. Remove loading and add no results.
                 $table.removeClass('comm-loading').find('tbody').append(noResults);
             }
+            displayedVersions.push(versionId);
         });
 
-        // Load the threads by latest version first since those most visible.
+        // Filter out useless threads...
+        threads = threads.filter(function(thread) {
+            return displayedVersions.indexOf(thread.version.id) !== -1;
+        });
+
+        // ... then sort them by negative version id to get the latest first,
+        // since those most visible.
         threads = _.sortBy(threads, function(thread) {
-            return thread.version.id;
-        }).reverse();
+            return 0 - thread.version.id;
+        });
 
         // Now, fetch all of the notes for each thread.
         for (var i = 0; i < threads.length; i++) {
