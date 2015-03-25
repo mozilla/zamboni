@@ -25,7 +25,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import mkt
@@ -57,13 +57,13 @@ from mkt.site.decorators import (
     json_view, login_required, permission_required, skip_cache, write)
 from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
+from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.users.views import _clean_next_url
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
-from mkt.webapps.views import BaseFilter
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
@@ -76,18 +76,16 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
-class AppFilter(BaseFilter):
-    # order_by_translation(self.model.objects.all(), 'name')
-    opts = (('name', _lazy(u'Name')),
-            ('created', _lazy(u'Created')))
-
-
-def addon_listing(request, default='name'):
+def addon_listing(request):
     """Set up the queryset and filtering for addon listing for Dashboard."""
-    Filter = AppFilter
-    qs = UserProfile.objects.get(pk=request.user.id).addons.all()
-    filter = Filter(request, qs, 'sort', default, model=Webapp)
-    return filter.qs, filter
+    qs = request.user.addons.all()
+    sorting = 'name'
+    if request.GET.get('sort') == 'created':
+        sorting = 'created'
+        qs = qs.order_by('-created')
+    else:
+        qs = order_by_translation(qs, 'name')
+    return qs, sorting
 
 
 @anonymous_csrf
@@ -117,12 +115,13 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    addons, filter = addon_listing(request)
+    addons, sorting = addon_listing(request)
     addons = paginate(request, addons, per_page=10)
-    data = dict(addons=addons, sorting=filter.field, filter=filter,
-                sort_opts=filter.opts,
-                motd=unmemoized_get_config('mkt_developers_motd')
-                )
+    data = {
+        'addons': addons,
+        'sorting': sorting,
+        'motd': unmemoized_get_config('mkt_developers_motd')
+    }
     return render(request, 'developers/apps/dashboard.html', data)
 
 
@@ -132,8 +131,7 @@ def edit(request, addon_id, addon):
         'page': 'edit',
         'addon': addon,
         'valid_slug': addon.app_slug,
-        'tags': addon.tags.not_blocked().values_list('tag_text',
-                                                     flat=True),
+        'tags': addon.tags.not_blocked().values_list('tag_text', flat=True),
         'previews': addon.get_previews(),
         'version': addon.current_version or addon.latest_version
     }

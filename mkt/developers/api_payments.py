@@ -2,7 +2,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 
 import commonware
-from curling.lib import HttpClientError, HttpServerError
 from rest_framework import status
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin,
@@ -14,6 +13,7 @@ from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         Serializer,
                                         ValidationError)
 from rest_framework.viewsets import GenericViewSet
+from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
 import mkt

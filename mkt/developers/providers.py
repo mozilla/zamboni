@@ -3,7 +3,8 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import (
+    ImproperlyConfigured, MultipleObjectsReturned, ObjectDoesNotExist)
 from django.core.urlresolvers import reverse
 
 import bleach
@@ -404,31 +405,39 @@ class Boku(Provider):
 
     @account_check
     def product_create(self, account, app):
+        """
+        Check solitude to see if there is a generic product existing in for for
+        this app. If not create it.
+
+        Then check solitude to see if there any Boku products connected to that
+        generic product. If not create it.
+
+        If there is one patch it to point to this seller.
+        """
         generic_product = self.get_or_create_generic_product(app)
 
-        existing_boku_products = self.client.product.get(
-            seller_product=generic_product['resource_pk'])
+        try:
+            boku_product = self.client.product.get_object_or_404(
+                seller_product=generic_product['resource_pk'])
 
-        existing_count = existing_boku_products['meta']['total_count']
-        if existing_count == 0:
+        except ObjectDoesNotExist:
+            log.info('boku.product does not exist in solitude, creating: {0}'
+                     .format(generic_product))
+
             boku_product = self.client.product.post(data={
                 'seller_boku': account.uri,
                 'seller_product': generic_product['resource_uri']})
-        elif existing_count == 1:
-            existing_boku_product = existing_boku_products['objects'][0]
-            boku_product = self.client.by_url(
-                existing_boku_product['resource_uri'],
-            ).patch(
-                data={
-                    'seller_boku': account.uri,
-                    'seller_product': generic_product['resource_uri']})
+            return boku_product['resource_uri']
 
-        else:
-            raise ValueError((
-                'More than one existing Boku Product found when '
-                'creating a new Boku Product in Solitude: {products}'
-            ).format(products=existing_boku_products['objects']))
+        except MultipleObjectsReturned:
+            log.error('multiple boku.products exist in solitude: {0}'
+                      .format(generic_product))
+            raise
 
+        api = self.client.by_url(boku_product['resource_uri'])
+        boku_product = api.patch(data={
+            'seller_boku': account.uri,
+            'seller_product': generic_product['resource_uri']})
         return boku_product['resource_uri']
 
     def get_portal_url(self, app_slug=None):

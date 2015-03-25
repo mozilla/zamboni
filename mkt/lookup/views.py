@@ -350,10 +350,9 @@ def user_purchases(request, user_id):
     """Shows the purchase page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
-    products, contributions, listing = purchase_list(request, user, None)
+    products = purchase_list(request, user)
     return render(request, 'lookup/user_purchases.html',
                   {'pager': products, 'account': user, 'is_admin': is_admin,
-                   'listing_filter': listing, 'contributions': contributions,
                    'single': bool(None), 'show_link': False})
 
 
@@ -362,7 +361,7 @@ def user_purchases(request, user_id):
 def user_activity(request, user_id):
     """Shows the user activity page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
-    products, contributions, listing = purchase_list(request, user, None)
+    products = purchase_list(request, user)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
 
     user_items = ActivityLog.objects.for_user(user).exclude(
@@ -372,8 +371,7 @@ def user_activity(request, user_id):
     mkt.log(mkt.LOG.ADMIN_VIEWED_LOG, request.user, user=user)
     return render(request, 'lookup/user_activity.html',
                   {'pager': products, 'account': user, 'is_admin': is_admin,
-                   'listing_filter': listing,
-                   'contributions': contributions, 'single': bool(None),
+                   'single': bool(None),
                    'user_items': user_items, 'admin_items': admin_items,
                    'show_link': False})
 

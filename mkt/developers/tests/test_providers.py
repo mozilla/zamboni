@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_
@@ -311,10 +311,9 @@ class TestBoku(Patcher, TestCase):
             'resource_uri': generic_product_uri,
         }
 
-        self.boku_patcher.product.get.return_value = {
-            'meta': {'total_count': 0},
-            'objects': [],
-        }
+        self.boku_patcher.product.get_object_or_404.side_effect = (
+            ObjectDoesNotExist)
+
         self.boku_patcher.product.post.return_value = {
             'resource_uri': boku_product_uri,
             'seller_product': generic_product_uri,
@@ -339,11 +338,8 @@ class TestBoku(Patcher, TestCase):
         }
 
         existing_boku_product_uri = '/boku/product/1/'
-        self.boku_patcher.product.get.return_value = {
-            'meta': {'total_count': 1},
-            'objects': [{
-                'resource_uri': existing_boku_product_uri,
-            }],
+        self.boku_patcher.product.get_object_or_404.return_value = {
+            'resource_uri': existing_boku_product_uri
         }
         patch_mock = Mock()
         patch_mock.patch.return_value = {
@@ -371,9 +367,7 @@ class TestBoku(Patcher, TestCase):
             'resource_uri': generic_product_uri,
         }
 
-        self.boku_patcher.product.get.return_value = {
-            'meta': {'total_count': 2},
-            'objects': [],
-        }
-        with self.assertRaises(ValueError):
+        self.boku_patcher.product.get_object_or_404.side_effect = (
+            MultipleObjectsReturned)
+        with self.assertRaises(MultipleObjectsReturned):
             self.boku.product_create(account, app)

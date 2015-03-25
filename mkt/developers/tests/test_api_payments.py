@@ -5,10 +5,10 @@ from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from rest_framework.request import Request
+from slumber.exceptions import HttpClientError, HttpServerError
 
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
