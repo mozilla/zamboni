@@ -6,10 +6,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 
 import mock
-from curling.lib import HttpClientError
 from mock import ANY
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
+from slumber.exceptions import HttpClientError
 from waffle.models import Switch
 
 import mkt

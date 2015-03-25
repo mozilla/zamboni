@@ -10,7 +10,6 @@ from django.test.client import RequestFactory
 
 import mock
 from babel import numbers
-from curling.lib import HttpClientError
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from slumber import exceptions
@@ -283,7 +282,8 @@ class TestBangoRedirect(TestCase):
     def test_bango_portal_redirect_api_error(self, api):
         message = 'Something went wrong.'
         error = {'__all__': [message]}
-        api.bango.login.post.side_effect = HttpClientError(content=error)
+        api.bango.login.post.side_effect = exceptions.HttpClientError(
+            content=error)
         res = self.client.get(self.portal_url, follow=True)
         eq_(res.redirect_chain, [('http://testserver/lookup/', 302)])
         ok_(message in [msg.message for msg in res.context['messages']][0])
