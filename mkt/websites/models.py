@@ -18,11 +18,11 @@ class Website(ModelBase):
     short_title = TranslatedField()
     description = TranslatedField()
     keywords = models.ManyToManyField(Tag)
-    # FIXME regions
+    region_exclusions = json_field.JSONField(default=None)
+    devices = json_field.JSONField(default=None)
     categories = json_field.JSONField(default=None)
     icon_type = models.CharField(max_length=25, blank=True)
     icon_hash = models.CharField(max_length=8, blank=True)
-    # FIXME devices
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
     # FIXME status
 
