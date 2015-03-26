@@ -14,29 +14,29 @@ if 'DJANGO_SETTINGS_MODULE' not in os.environ:
 # waffle and mkt form an import cycle because mkt patches waffle and
 # waffle loads the user model, so we have to make sure mkt gets
 # imported before anything else imports waffle.
-import mkt  # flake8: noqa
+import mkt  # noqa
 
-import session_csrf
+import session_csrf  # noqa
 session_csrf.monkeypatch()
 
 # Fix jinja's Markup class to not crash when localizers give us bad format
 # strings.
-from jinja2 import Markup
+from jinja2 import Markup  # noqa
 mod = Markup.__mod__
 trans_log = logging.getLogger('z.trans')
 
 # Load this early so that anything else you import will use these log settings.
 # Mostly to shut Raven the hell up.
-from lib.log_settings_base import log_configure
+from lib.log_settings_base import log_configure  # noqa
 log_configure()
 
 # We need to import waffle here to avoid a circular import with jingo which
 # loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
 # import jingo.
-import waffle  # flake8: noqa
+import waffle  # noqa
 
 # Hardcore monkeypatching action.
-import jingo.monkey
+import jingo.monkey  # noqa
 jingo.monkey.patch()
 
 
@@ -49,26 +49,26 @@ def new(self, arg):
 
 Markup.__mod__ = new
 
-import djcelery
+import djcelery  # noqa
 djcelery.setup_loader()
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
-from lib.utils import update_csp, validate_modules, validate_settings
+from lib.utils import update_csp, validate_modules, validate_settings  # noqa
 update_csp()
 validate_modules()
 validate_settings()
 
-import django.conf
+import django.conf  # noqa
 newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
 load_newrelic = False
 
 # Monkey patches DRF to not use fqdn urls.
-from mkt.api.patch import patch
+from mkt.api.patch import patch  # noqa
 patch()
 
 if newrelic_ini:
-    import newrelic.agent
+    import newrelic.agent  # noqa
     try:
         newrelic.agent.initialize(newrelic_ini)
         load_newrelic = True
@@ -78,7 +78,7 @@ if newrelic_ini:
 
 # Alter zamboni to run on a particular port as per the
 # marketplace docs, unless overridden.
-from django.core.management.commands import runserver
+from django.core.management.commands import runserver  # noqa
 runserver.DEFAULT_PORT = 2600
 
 if __name__ == '__main__':

@@ -18,7 +18,10 @@ from mkt import asset_bundles
 #
 # Make filepaths relative to the root of zamboni.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-path = lambda *a: os.path.join(ROOT, *a)
+
+
+def path(*args):
+    return os.path.join(ROOT, *args)
 
 # We need to track this because jenkins can't just call its checkout "zamboni".
 # It puts it in a dir called "workspace".  Way to be, jenkins.
@@ -289,7 +292,7 @@ USE_I18N = True
 
 ###########################################
 # Team Emails
-ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'  # flake8: noqa
+ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'  # noqa
 APP_DELETION_EMAIL = 'marketplace-staff+deletions@mozilla.org'
 SUPPORT_GROUP = 'https://groups.google.com/forum/#!forum/mozilla.appreview'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'

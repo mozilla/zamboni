@@ -12,19 +12,19 @@ if settingmodule.startswith(('zamboni',  # typical git clone destination
     settingmodule = settingmodule.split('.', 1)[1]
 
 
-import sys
+import sys  # noqa
 
-import MySQLdb as mysql
-import sqlalchemy.pool as pool
+import MySQLdb as mysql  # noqa
+import sqlalchemy.pool as pool  # noqa
 
-from django.utils import importlib
+from django.utils import importlib  # noqa
 settings = importlib.import_module(settingmodule)
 
-from mkt.constants.payments import (
+from mkt.constants.payments import (  # noqa
     CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
-    CONTRIB_PURCHASE, CONTRIB_REFUND)  # flake8: noqa
+    CONTRIB_PURCHASE, CONTRIB_REFUND)
 
-from lib.log_settings_base import formatters, handlers
+from lib.log_settings_base import formatters, handlers  # noqa
 
 
 def getconn():

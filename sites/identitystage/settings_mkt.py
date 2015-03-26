@@ -1,7 +1,7 @@
 """private_mkt will be populated from puppet and placed in this directory"""
 
-from mkt.settings import *  # flake8: noqa
-from settings_base import *  # flake8: noqa
+from mkt.settings import *  # noqa
+from settings_base import *  # noqa
 
 import private_mkt
 
@@ -86,8 +86,7 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 if getattr(private_mkt, 'LOAD_TESTING', False):
     # mock the authentication and use django_fakeauth for this
     AUTHENTICATION_BACKENDS = (
-        ('django_fakeauth.FakeAuthBackend',)
-        + AUTHENTICATION_BACKENDS
+        ('django_fakeauth.FakeAuthBackend',) + AUTHENTICATION_BACKENDS
     )
     MIDDLEWARE_CLASSES.insert(
         MIDDLEWARE_CLASSES.index('mkt.access.middleware.ACLMiddleware'),

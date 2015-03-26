@@ -25,7 +25,7 @@ from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE, CONTRIB_PURCHASE,
 log_configure()
 
 # This has to be imported after the settings (utils).
-import receipts  # flake8: noqa
+import receipts  # noqa
 
 status_codes = {
     200: '200 OK',

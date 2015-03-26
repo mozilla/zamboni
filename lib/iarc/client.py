@@ -111,7 +111,7 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
         <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Digital Purchases, Users Interact, " />
     </ROW>
 </WEBSERVICE>
-'''  # flake8: noqa
+'''  # noqa
 
 
 MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
@@ -127,7 +127,7 @@ MOCK_SET_STOREFRONT_DATA = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Digital Purchases, Users Interact, " />
   </ROW>
 </WEBSERVICE>
-'''  # flake8: noqa
+'''  # noqa
 
 
 MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
@@ -159,4 +159,4 @@ MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="change_reason" TYPE="string" VALUE="Discrimination found to be within German law." />
   </ROW>
 </WEBSERVICE>
-'''  # flake8: noqa
+'''  # noqa
