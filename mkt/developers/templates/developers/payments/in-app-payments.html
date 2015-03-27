@@ -17,25 +17,9 @@
 
   <section class="primary manage" role="main">
     <h2>{{ _('In-App Payments') }}</h2>
-    <div id="in-app-keys" class="island">
-      <h3>{{ _('In-App Keys') }}</h3>
-      <p>
-        <a target="_blank" href="https://developer.mozilla.org/Marketplace/Monetization/In-app_payments_section/mozPay_iap">
-          {{ _('Documentation') }}
-        </a>
-      </p>
-      <p>
-        {% trans %}
-          In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products.
-        {% endtrans %}
-      </p>
-      <p class="listing-footer">
-        <a href="{{ addon.get_dev_url('in_app_config') }}"><button>{{ _('Configure In-App Keys') }}</button></a>
-      </p>
-    </div>
     {% if waffle.switch('in-app-products') %}
       <div id="in-app-products" class="island">
-        <h3>{{ _('In-App Products') }}</h3>
+        <h3>{{ _('In-App Products') }} <em>({{ _('Recommended') }})</em></h3>
         <p>
           <a target="_blank" href="https://developer.mozilla.org/Marketplace/Monetization/In-app_payments_section/fxPay_iap">
             {{ _('Documentation') }}
@@ -51,6 +35,31 @@
         </p>
       </div>
     {% endif %}
+
+    <div id="in-app-keys" class="island">
+      <h3>{{ _('In-App Keys') }}</h3>
+      <p>
+        <a target="_blank" href="https://developer.mozilla.org/Marketplace/Monetization/In-app_payments_section/mozPay_iap">
+          {{ _('Documentation') }}
+        </a>
+      </p>
+      <p>
+        {% trans %}
+          In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products.
+        {% endtrans %}
+      </p>
+      <p>
+        <em>
+        {% trans %}
+        Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products.
+        {% endtrans %}
+        </em>
+      </p>
+
+      <p class="listing-footer">
+        <a href="{{ addon.get_dev_url('in_app_config') }}"><button>{{ _('Configure In-App Keys') }}</button></a>
+      </p>
+    </div>
   </section>
 
   {% include "developers/includes/addons_edit_nav.html" %}
