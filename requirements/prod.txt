@@ -85,7 +85,7 @@ PyBrowserID==0.6
 # pycparser is required by cffi
 pycparser==2.10
 pydenticon==0.2
-PyJWT-mozilla==0.1.4.2
+PyJWT-mozilla==0.1.5
 PyMySQL==0.5
 pyquery==0.4
 python-dateutil==1.5
