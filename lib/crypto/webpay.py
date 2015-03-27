@@ -1,4 +1,5 @@
 import hashlib
+import sys
 import uuid
 
 from django.conf import settings
@@ -20,16 +21,6 @@ def get_uuid():
     return 'webpay:%s' % hashlib.md5(str(uuid.uuid4())).hexdigest()
 
 
-def verify_webpay_jwt(signed_jwt):
-    # This can probably be deleted depending upon solitude.
-    try:
-        jwt.decode(signed_jwt.encode('ascii'), settings.APP_PURCHASE_SECRET)
-    except Exception, e:
-        log.error('Error decoding webpay jwt: %s' % e, exc_info=True)
-        return {'valid': False}
-    return {'valid': True}
-
-
 def sign_webpay_jwt(data):
     return jwt.encode(data, settings.APP_PURCHASE_SECRET)
 
@@ -37,11 +28,13 @@ def sign_webpay_jwt(data):
 def parse_from_webpay(signed_jwt, ip):
     try:
         data = jwt.decode(signed_jwt.encode('ascii'),
-                          settings.APP_PURCHASE_SECRET)
+                          settings.APP_PURCHASE_SECRET,
+                          algorithms=settings.SUPPORTED_JWT_ALGORITHMS)
     except Exception, e:
+        exc_type, exc_value, tb = sys.exc_info()
         log.info('Received invalid webpay postback from IP %s: %s' %
                  (ip or '(unknown)', e), exc_info=True)
-        raise InvalidSender()
+        raise InvalidSender(e), None, tb
 
     verify_claims(data)
     iss, aud, product_data, trans_id = verify_keys(

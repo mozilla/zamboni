@@ -1,9 +1,11 @@
 import calendar
+import json
 import time
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
+import jwt
 import mock
 from nose.tools import eq_
 
@@ -46,8 +48,9 @@ class TestReceipt(mkt.site.tests.TestCase):
         assert self.app.has_installed(self.user)
 
     def test_receipt(self):
-        assert (create_receipt(self.app, self.user, 'some-uuid')
-                .startswith('eyJhbGciOiAiUlM1MTIiLCA'))
+        receipt = create_receipt(self.app, self.user, 'some-uuid')
+        header = json.loads(jwt.base64url_decode(receipt.split('.')[0]))
+        eq_(header['alg'], 'RS512')
 
     def test_receipt_different(self):
         assert (create_receipt(self.app, self.user, 'some-uuid') !=
