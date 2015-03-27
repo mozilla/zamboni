@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-27 08:24+0000\n"
+"PO-Revision-Date: 2015-03-27 08:57+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1427444660.0\n"
+"X-POOTLE-MTIME: 1427446653.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Кодът на езика {lang_code} е невалиден."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
 msgid "Unknown"
@@ -75,7 +75,7 @@ msgstr "Версия %s не съществува"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "Прикачен файл:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:279
 msgid "Description:"
@@ -922,7 +922,7 @@ msgstr "Сърбия и Черна гора"
 
 #: mkt/constants/bango.py:218
 msgid "Seychelles"
-msgstr ""
+msgstr "Сейшелски острови"
 
 #: mkt/constants/bango.py:219
 msgid "Sierra Leone"
@@ -1138,11 +1138,11 @@ msgstr "Очакваща одобрение"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Публикувано"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Забранено от Marketplace"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1154,19 +1154,19 @@ msgstr "Отказан"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Одобрено, но лично"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
-msgstr ""
+msgstr "Блокирано"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Скрито"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Остаряло"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
@@ -1198,7 +1198,7 @@ msgstr "Премиум"
 
 #: mkt/constants/base.py:138
 msgid "Premium with in-app payments"
-msgstr "Premium с плащания в приложението"
+msgstr "Премиум с плащания в приложението"
 
 #: mkt/constants/base.py:139
 msgid "Free with in-app payments"
@@ -1206,7 +1206,7 @@ msgstr "Безплатно с плащания в приложението"
 
 #: mkt/constants/base.py:140
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Ще използвам собствена система за плащанията в приложението"
 
 #: mkt/constants/base.py:197
 msgid "Manual Reviewer Points"
@@ -2015,7 +2015,7 @@ msgstr "Детайли"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Следващи стъпки"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
@@ -2733,19 +2733,19 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr "Създай"
+msgstr "Създаване"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Ключове за OAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Ключ"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Тайна фраза"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
@@ -2755,11 +2755,11 @@ msgstr "Изтриване"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "В момента нямате ключ за API."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Пример за OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
@@ -2779,7 +2779,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Marketplace"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
@@ -2804,7 +2804,7 @@ msgstr ""
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
 msgid "Save"
-msgstr "Запази"
+msgstr "Запазване"
 
 #: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:24 mkt/developers/templates/developers/payments/in-app-payments.html:41
 msgid "Documentation"
@@ -2812,7 +2812,7 @@ msgstr "Документация"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Изпитване на приложения"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
@@ -2828,11 +2828,11 @@ msgstr "%(app_name)s иска достъп до вашия Marketplace проф�
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr "Грант"
+msgstr "Разрешаване"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Отказване"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
@@ -2868,15 +2868,17 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
-msgstr ""
+msgstr "Моля, впишете се"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Впишете се или се регистрирайте във <a href=\"%(url)s\">Firefox Accounts</a> "
+"по-долу."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Общи условия"
 
 #: mkt/developers/templates/developers/terms.html:18 mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
@@ -2884,20 +2886,22 @@ msgstr "Версия подходяща за печат"
 
 #: mkt/developers/templates/developers/terms.html:22 mkt/submit/templates/submit/terms.html:41
 msgid "Additional Marketplace Policies"
-msgstr ""
+msgstr "Допълнителни условия на Marketplace"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr ""
+msgstr "Вече сте се съгласи с това споразумение за разработчик."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Изпитване"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Използвайте тези инструменти, за да изпитате приложенията си, преди да ги "
+"изпратите към Firefox Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -2968,7 +2972,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Резултати от валидацията на {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
@@ -4486,7 +4490,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Добавяне на регистрация в Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
 msgid ""
@@ -4512,7 +4516,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
-msgstr "Затвори"
+msgstr "Затваряне"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -6367,7 +6371,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:66
 msgid "More Information"
-msgstr "Още информация"
+msgstr "Повече информация"
 
 #: mkt/reviewers/templates/reviewers/review.html:67 mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
@@ -6427,23 +6431,23 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr ""
+msgstr "Видове устройства"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
-msgstr "Виж Декларацията за поверителност"
+msgstr "Преглед на Политика за личните данни"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:61
 msgid "Requirements"
-msgstr ""
+msgstr "Изисквания"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:67
 msgid "Show more"
-msgstr ""
+msgstr "Показване на повече"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:74 mkt/reviewers/templates/reviewers/includes/mobile_details.html:61
 msgid "Signed Zip"
-msgstr ""
+msgstr "Подписан Zip"
 
 # 85%
 # 100%
@@ -6453,7 +6457,7 @@ msgstr "Оценки"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94 mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Това приложение все още не е оценено"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Updated"
@@ -6465,11 +6469,11 @@ msgstr "Оценка"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:129 mkt/reviewers/templates/reviewers/includes/mobile_details.html:141
 msgid "Region Availability"
-msgstr ""
+msgstr "Наличност по региони"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:132
 msgid "Show less"
-msgstr ""
+msgstr "Показване на по-малко"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:142
 msgid "Images"
@@ -6574,15 +6578,15 @@ msgstr "Сравни"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:81
 msgid "Next Page"
-msgstr ""
+msgstr "Следваща страница"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:82
 msgid "Previous Page"
-msgstr ""
+msgstr "Предишна страница"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:86
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Зареждане на историята&hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -6655,15 +6659,15 @@ msgstr "Най-нови"
 
 #: mkt/search/forms.py:18
 msgid "Reviewed"
-msgstr ""
+msgstr "Прегледани"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Тенденции"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
-msgstr ""
+msgstr "Всички видове приложения"
 
 #: mkt/search/forms.py:29
 msgid "Privileged packaged app"
@@ -6703,35 +6707,35 @@ msgstr "Всички категории"
 
 #: mkt/search/forms.py:72
 msgid "Search for apps"
-msgstr ""
+msgstr "Търсене на приложения"
 
 #: mkt/search/forms.py:97
 msgid "Device type"
-msgstr ""
+msgstr "Видове устройства"
 
 #: mkt/search/forms.py:100
 msgid "Premium types"
-msgstr ""
+msgstr "Видове премиум"
 
 #: mkt/search/forms.py:104
 msgid "App type"
-msgstr ""
+msgstr "Видове приложения"
 
 #: mkt/search/forms.py:108
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Позволено инсталиране от"
 
 #: mkt/search/forms.py:109
 msgid "Everywhere"
-msgstr "Навсякъде"
+msgstr "Всякъде"
 
 #: mkt/search/forms.py:111
 msgid "Works offline"
-msgstr ""
+msgstr "Работи извън мрежа"
 
 #: mkt/search/forms.py:113
 msgid "Supported languages"
-msgstr ""
+msgstr "Поддържани езици"
 
 #: mkt/search/forms.py:114
 msgid "Author name"
@@ -6743,11 +6747,11 @@ msgstr "Етикети"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Търсенето не е налично"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Търсенето временно не е налично. Моля, опитайте след няколко минути."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -7683,7 +7687,7 @@ msgstr "Назад"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Изчистване"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
@@ -7700,11 +7704,11 @@ msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: mkt/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Текущи локализации"
 
 #: mkt/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Нови локализации"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
@@ -7719,6 +7723,8 @@ msgstr "Откажи промените"
 #: mkt/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
+"Сигурни ли сте, че искате да премахнете всички <b>{0}</b> превода? Това е "
+"необратимо."
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
