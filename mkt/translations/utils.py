@@ -103,21 +103,6 @@ def transfield_changed(field, initial, data):
     return set(initial) != set(data)
 
 
-def format_translation_es(obj, field):
-    """
-    Returns a denormalized format of a localized field for ES to be
-    deserialized by ESTranslationSerializerField.
-    """
-    extend_with_me = {}
-    extend_with_me['%s_translations' % field] = [
-        {'lang': to_language(lang), 'string': string}
-        for lang, string
-        in obj.translations[getattr(obj, '%s_id' % field)]
-        if string
-    ]
-    return extend_with_me
-
-
 def to_language(locale):
     """Like django's to_language, but en_us or en-us comes out as en-US."""
     if '_' in locale:

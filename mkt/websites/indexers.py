@@ -2,11 +2,11 @@ from operator import attrgetter
 
 from mkt.search.indexers import BaseIndexer
 from mkt.translations.models import attach_trans_dict
-from mkt.translations.utils import format_translation_es
 
 
 class WebsiteIndexer(BaseIndexer):
     translated_fields = ('description', 'short_title', 'title', 'url')
+    fields_with_language_analyzers = ('description', 'title')
 
     @classmethod
     def get_mapping_type_name(cls):
@@ -25,36 +25,43 @@ class WebsiteIndexer(BaseIndexer):
 
         mapping = {
             doc_type: {
+                '_all': {'enabled': False},
                 'properties': {
                     'id': {'type': 'long'},
                     'category': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'description': {'type': 'string',
-                                    'analyzer': 'default_icu'},
+                                    'analyzer': 'default_icu',
+                                    'position_offset_gap': 100},
                     'default_locale': cls.string_not_indexed(),
+                    'device': {'type': 'byte'},
                     'icon_hash': cls.string_not_indexed(),
                     'icon_type': cls.string_not_indexed(),
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
+                    'region_exclusions': {'type': 'short'},
                     'short_title': {'type': 'string',
                                     'analyzer': 'default_icu'},
-                    'title': {'type': 'string', 'analyzer': 'default_icu'},
+                    'title': {'type': 'string',
+                              'analyzer': 'default_icu',
+                              'position_offset_gap': 100},
                     # FIXME: Add custom analyzer for url, that strips http,
                     # https, maybe also www. and any .tld ?
                     'url': {'type': 'string', 'analyzer': 'simple'},
-
-                    # FIXME: categories, regions, devices, status. Might need
-                    # to refactor with webapps/indexers.py
+                    # FIXME: status.
                 }
             }
         }
 
-        # Add fields that we expect to return all translations.
+        # Add extra mapping for translated fields, containing the "raw"
+        # translations.
         cls.attach_translation_mappings(mapping, cls.translated_fields)
 
-        # FIXME: add indexed/analyzed translated fields mapping. Refactor with
-        # webapps/indexers.py.
+        # Add language-specific analyzers.
+        cls.attach_language_specific_analyzers(
+            mapping, cls.fields_with_language_analyzers)
+
         return mapping
 
     @classmethod
@@ -71,19 +78,18 @@ class WebsiteIndexer(BaseIndexer):
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['id'] = obj.pk
-        doc['category'] = obj.categories if obj.categories else []
+        doc['category'] = obj.categories or []
+        doc['device'] = obj.devices or []
+        doc['region_exclusions'] = obj.region_exclusions or []
 
-        doc['description'] = list(
-            set(string for _, string in obj.translations[obj.description_id]))
-        doc['short_title'] = list(
-            set(string for _, string in obj.translations[obj.short_title_id]))
-        doc['title'] = list(
-            set(string for _, string in obj.translations[obj.title_id]))
-        doc['url'] = list(
-            set(string for _, string in obj.translations[obj.url_id]))
-
-        # Handle localized fields.
+        # Handle localized fields. This adds both the field used for search and
+        # the one with all translations for the API.
         for field in cls.translated_fields:
-            doc.update(format_translation_es(obj, field))
+            doc.update(cls.extract_field_translations(
+                obj, field, include_field_for_search=True))
+
+        # Handle language-specific analyzers.
+        for field in cls.fields_with_language_analyzers:
+            doc.update(cls.extract_field_analyzed_translations(obj, field))
 
         return doc

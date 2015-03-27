@@ -374,16 +374,6 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
     manifest_url = serializers.CharField(source='manifest_url')
     package_path = serializers.SerializerMethodField('get_package_path')
 
-    # Override translations, because we want a different field.
-    banner_message = ESTranslationSerializerField(
-        source='geodata.banner_message')
-    description = ESTranslationSerializerField()
-    homepage = ESTranslationSerializerField()
-    name = ESTranslationSerializerField()
-    release_notes = ESTranslationSerializerField(source='release_notes')
-    support_email = ESTranslationSerializerField()
-    support_url = ESTranslationSerializerField()
-
     # Feed collection.
     group = ESTranslationSerializerField(required=False)
 
@@ -439,13 +429,20 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
         # Attach translations for all translated attributes.
         self._attach_translations(
-            obj, data, ('name', 'description', 'homepage', 'release_notes',
+            obj, data, ('name', 'description', 'homepage',
                         'support_email', 'support_url'))
         if data.get('group_translations'):
             self._attach_translations(obj, data, ('group',))  # Feed group.
         else:
             obj.group_translations = None
         self._attach_translations(obj._geodata, data, ('banner_message',))
+
+        # Release notes target and source name differ (ES stores it as
+        # release_notes but the db field we are emulating is called
+        # releasenotes without the "_").
+        ESTranslationSerializerField.attach_translations(
+            obj._current_version, data, 'release_notes',
+            target_name='releasenotes')
 
         # Set attributes that have a different name in ES.
         obj.public_stats = data['has_public_stats']
