@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
 
 import json_field
 
 from mkt.site.models import ModelBase
-from mkt.translations.fields import TranslatedField
 from mkt.tags.models import Tag
-from mkt.translations.fields import save_signal
+from mkt.translations.fields import save_signal, TranslatedField
+from mkt.websites.indexers import WebsiteIndexer
 
 
 class Website(ModelBase):
@@ -30,9 +31,28 @@ class Website(ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
+    @classmethod
+    def get_indexer(self):
+        return WebsiteIndexer
+
     def __unicode__(self):
         return unicode(self.url or '(no url set)')
 
 
+# Maintain ElasticSearch index.
+@receiver(models.signals.post_save, sender=Website,
+          dispatch_uid='website_index')
+def update_search_index(sender, instance, **kw):
+    instance.get_indexer().index_ids([instance.id])
+
+
+# Delete from ElasticSearch index on delete.
+@receiver(models.signals.post_delete, sender=Website,
+          dispatch_uid='website_unindex')
+def delete_search_index(sender, instance, **kw):
+    instance.get_indexer().unindex(instance.id)
+
+
+# Save translations before saving Website instance with translated fields.
 models.signals.pre_save.connect(save_signal, sender=Website,
                                 dispatch_uid='website_translations')
