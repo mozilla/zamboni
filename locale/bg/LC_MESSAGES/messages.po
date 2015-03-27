@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-14 22:59+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-03-27 08:24+0000\n"
+"Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1426373973.0\n"
+"X-POOTLE-MTIME: 1427444660.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -99,11 +99,11 @@ msgstr "Десктоп"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:45 mkt/search/forms.py:52
