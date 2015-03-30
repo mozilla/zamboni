@@ -120,7 +120,7 @@ def generate_hosted_app(name, categories, developer_name,
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
-                    version_kw={'status': status},
+                    file_kw={'status': status},
                     rated=True, manifest_url=spec.get('manifest_url',
                                                       generated_url))
     if device_types:
@@ -220,8 +220,10 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     app = app_factory(categories=categories, name=name, complete=False,
                       rated=True, is_packaged=True,
                       privacy_policy=privacy_policy,
-                      version_kw={'version': '1.0', 'status': versions[0],
-                                  'reviewed': now})
+                      version_kw={
+                          'version': '1.0',
+                          'reviewed': now if status >= 4 else None},
+                      file_kw={'status': status})
     if device_types:
         for dt in device_types:
             app.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
@@ -242,7 +244,7 @@ def generate_packaged_app(name, apptype, categories, developer_name,
                              num_locales=num_locales)
         for i, f_status in enumerate(versions[1:], 1):
             st = STATUS_CHOICES_API_LOOKUP[f_status]
-            rtime = now + datetime.timedelta(i)
+            rtime = (now + datetime.timedelta(i)) if st >= 4 else None
             v = version_factory(version="1." + str(i), addon=app,
                                 reviewed=rtime, created=rtime,
                                 file_kw={'status': st},
