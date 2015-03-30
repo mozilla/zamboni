@@ -88,7 +88,8 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 # Override the limited marketplace ones with these ones from AMO. Because
 # the base gets overridden in the mkt.settings file, we'll set them back again.
 # Note the addition of the testing locales dbg and rtl here.
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl')
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ee', 'ff', 'ha', 'ig',
+                                 'ln', 'sw', 'tl', 'wo', 'yo')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 HIDDEN_LANGUAGES = (
