@@ -119,6 +119,10 @@ class PostbackTest(PurchaseTest):
         self.buyer_email = 'buyer@example.com'
         self.webpay_dev_id = '<stored in solitude>'
         self.webpay_dev_secret = '<stored in solitude>'
+        p = mock.patch.object(settings, 'APP_PURCHASE_SECRET',
+                              self.webpay_dev_secret)
+        p.start()
+        self.addCleanup(p.stop)
 
         solitude_patcher = mock.patch('mkt.purchase.webpay.solitude')
         self.solitude = solitude_patcher.start()
@@ -174,22 +178,38 @@ class PostbackTest(PurchaseTest):
             },
         }
 
-    def jwt(self, req=None, **kw):
-        if not req:
-            req = self.jwt_dict(**kw)
-        return jwt.encode(req, self.webpay_dev_secret)
+    def jwt(self, req=None, encoding_secret=None, encode_kw=None, **kw):
+        req = req or self.jwt_dict(**kw)
+        encode_kw = encode_kw or {}
+        encoding_secret = encoding_secret or self.webpay_dev_secret
+        return jwt.encode(req, encoding_secret, **encode_kw)
 
 
 class TestPostbackWithDecoding(PostbackTest):
 
-    def test_invalid(self):
+    def test_valid_notice(self):
         resp = self.post()
+        eq_(resp.status_code, 200)
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        eq_(cn.type, mkt.CONTRIB_PURCHASE)
+
+    def test_invalid_signature(self):
+        jwt_encoded = self.jwt(req=self.jwt_dict(), encoding_secret='nope')
+        resp = self.post(req=jwt_encoded)
         eq_(resp.status_code, 400)
         cn = Contribution.objects.get(pk=self.contrib.pk)
         eq_(cn.type, mkt.CONTRIB_PENDING)
 
     def test_empty_notice(self):
         resp = self.client.post(reverse('webpay.postback'), data={})
+        eq_(resp.status_code, 400)
+
+    def test_unsupported_algorithm(self):
+        # Create a JWT with an algorithm that is not explicitly allowed.
+        jwt_encoded = self.jwt(req=self.jwt_dict(),
+                               encode_kw={'algorithm': 'HS256'})
+        with self.settings(SUPPORTED_JWT_ALGORITHMS=['RS512']):
+            resp = self.post(req=jwt_encoded)
         eq_(resp.status_code, 400)
 
 
@@ -217,7 +237,8 @@ class TestPostback(PostbackTest):
         jwt_encoded = self.jwt(req=jwt_dict)
         self.decode.return_value = jwt_dict
         resp = self.post(req=jwt_encoded)
-        self.decode.assert_called_with(jwt_encoded, ANY)
+        self.decode.assert_called_with(
+            jwt_encoded, ANY, algorithms=settings.SUPPORTED_JWT_ALGORITHMS)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<webpay-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)

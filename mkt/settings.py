@@ -1190,6 +1190,7 @@ WEBAPPS_RECEIPT_EXPIRED_SEND = False
 WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 
 # The key we'll use to sign webapp receipts.
+# The file contains a PEM-encoded RSA private key.
 WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
 
 WEBAPPS_UNIQUE_BY_DOMAIN = False
@@ -1211,3 +1212,7 @@ YOGAFIRE_GUID = '3a8bbc18-3a91-4170-a25a-3ba2a8ae2c81'
 DEV_PAY_PROVIDERS = {
     APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
 }
+
+# JWT algorithms that we support for decoding.
+# Any JWT we receive with another algorithm will be rejected.
+SUPPORTED_JWT_ALGORITHMS = ['HS256', 'RS512']

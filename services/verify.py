@@ -1,6 +1,7 @@
 import calendar
 import json
 from datetime import datetime
+import sys
 from time import gmtime, time
 from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
@@ -118,10 +119,11 @@ class Verify:
         try:
             receipt = decode_receipt(self.receipt)
         except:
+            exc_type, exc_value, tb = sys.exc_info()
             log_exception({'receipt': '%s...' % self.receipt[:10],
                            'app': self.get_app_id(raise_exception=False)})
             log_info('Error decoding receipt')
-            raise InvalidReceipt('ERROR_DECODING')
+            raise InvalidReceipt('ERROR_DECODING'), None, tb
 
         try:
             assert receipt['user']['type'] == 'directed-identifier'
@@ -383,7 +385,8 @@ def decode_receipt(receipt):
             return jwt.decode(receipt.split('~')[1], verify=False)
         else:
             key = jwt.rsa_load(settings.WEBAPPS_RECEIPT_KEY)
-            raw = jwt.decode(receipt, key)
+            raw = jwt.decode(receipt, key,
+                             algorithms=settings.SUPPORTED_JWT_ALGORITHMS)
     return raw
 
 
