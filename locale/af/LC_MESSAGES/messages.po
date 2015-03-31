@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2012-09-05 14:29+0200\n"
+"PO-Revision-Date: 2015-03-31 17:08+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
 "Language: af\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1427821723.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -1271,75 +1272,75 @@ msgstr ""
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "Boeke"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Besigheid"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Opvoeding"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Vermaak"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "Speletjies"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Gesondheid en fiksheid"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "Leefstyl"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Kaarte en navigering"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "Musiek"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "Nuus en weer"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "Foto en video"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "Produktiwiteit"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "Naslaan"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "Inkopies"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "Sosiaal"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "Reis"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
-msgstr ""
+msgstr "Nutsgoed"
 
 #: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
