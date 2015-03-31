@@ -2,7 +2,8 @@ from datetime import date, datetime
 
 from rest_framework import serializers
 
-from mkt.api.fields import ESTranslationSerializerField
+from mkt.api.fields import (ESTranslationSerializerField,
+                            TranslationSerializerField)
 
 
 def es_to_datetime(value):
@@ -54,6 +55,18 @@ class BaseESSerializer(serializers.ModelSerializer):
         if getattr(self, 'context'):
             for field_name in self.fields:
                 self.fields[field_name].context = self.context
+
+    def get_fields(self):
+        """
+        Return all fields as normal, with one exception: replace every instance
+        of TranslationSerializerField with ESTranslationSerializerField.
+        """
+        fields = super(BaseESSerializer, self).get_fields()
+        for key, field in fields.items():
+            if isinstance(field, TranslationSerializerField):
+                fields[key] = ESTranslationSerializerField(source=field.source)
+                fields[key].initialize(parent=self, field_name=key)
+        return fields
 
     @property
     def data(self):

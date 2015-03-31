@@ -2,13 +2,23 @@ from django.db.transaction import non_atomic_requests
 
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.serializers import Serializer
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.websites.indexers import WebsiteIndexer
+from mkt.websites.models import Website
+from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
+
+
+class WebsiteView(CORSMixin, MarketplaceView, ListAPIView):
+    cors_allowed_methods = ['get']
+    authentication_classes = [RestSharedSecretAuthentication,
+                              RestOAuthAuthentication]
+    permission_classes = [AllowAny]
+    serializer_class = WebsiteSerializer
+    model = Website
 
 
 class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
@@ -20,7 +30,7 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
     filter_backends = []  # FIXME: SearchQueryFilter and friends.
-    serializer_class = Serializer  # FIXME use a real serializer.
+    serializer_class = ESWebsiteSerializer
     paginator_class = ESPaginator
 
     def get_queryset(self):

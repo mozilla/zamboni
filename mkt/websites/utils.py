@@ -20,6 +20,7 @@ def website_factory(**kwargs):
     text = rand_text()
     data = {
         'url': 'http://%s.example.com' % text,
+        'short_title': text[:10],
         'title': 'Title %s' % text,
         'description': 'Description for %s' % text,
     }

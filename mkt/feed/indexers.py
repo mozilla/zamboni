@@ -7,7 +7,6 @@ import mkt.feed.constants as feed
 import mkt.regions
 from mkt.search.indexers import BaseIndexer
 from mkt.translations.models import attach_trans_dict
-from mkt.translations.utils import format_translation_es
 from mkt.webapps.models import Webapp
 
 
@@ -92,7 +91,7 @@ class FeedAppIndexer(BaseIndexer):
 
         # Handle localized fields.
         for field in ('description', 'pullquote_text'):
-            doc.update(format_translation_es(obj, field))
+            doc.update(cls.extract_field_translations(obj, field))
 
         return doc
 
@@ -201,16 +200,17 @@ class FeedCollectionIndexer(BaseIndexer):
         attach_trans_dict(FeedCollectionMembership, memberships)
         for member in memberships:
             if member.group:
-                grp_translation = format_translation_es(member, 'group')
-                if grp_translation not in doc['group_names']:
-                    doc['group_names'].append(grp_translation)
+                group_translation = cls.extract_field_translations(member,
+                                                                   'group')
+                if group_translation not in doc['group_names']:
+                    doc['group_names'].append(group_translation)
 
                 doc['group_apps'][member.app_id] = (
-                    doc['group_names'].index(grp_translation))
+                    doc['group_names'].index(group_translation))
 
         # Handle localized fields.
         for field in ('description', 'name'):
-            doc.update(format_translation_es(obj, field))
+            doc.update(cls.extract_field_translations(obj, field))
 
         return doc
 
@@ -278,16 +278,17 @@ class FeedShelfIndexer(BaseIndexer):
         attach_trans_dict(FeedShelfMembership, memberships)
         for member in memberships:
             if member.group:
-                grp_translation = format_translation_es(member, 'group')
-                if grp_translation not in doc['group_names']:
-                    doc['group_names'].append(grp_translation)
+                group_translation = cls.extract_field_translations(member,
+                                                                   'group')
+                if group_translation not in doc['group_names']:
+                    doc['group_names'].append(group_translation)
 
                 doc['group_apps'][member.app_id] = (
-                    doc['group_names'].index(grp_translation))
+                    doc['group_names'].index(group_translation))
 
         # Handle localized fields.
         for field in ('description', 'name'):
-            doc.update(format_translation_es(obj, field))
+            doc.update(cls.extract_field_translations(obj, field))
 
         return doc
 

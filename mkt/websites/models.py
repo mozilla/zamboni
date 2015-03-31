@@ -5,9 +5,11 @@ from django.dispatch import receiver
 
 import json_field
 
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.site.models import ModelBase
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
+from mkt.translations.utils import no_translation
 from mkt.websites.indexers import WebsiteIndexer
 
 
@@ -27,6 +29,9 @@ class Website(ModelBase):
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
     # FIXME status
 
+    class Meta:
+        ordering = (('-last_updated'), )
+
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
@@ -37,6 +42,12 @@ class Website(ModelBase):
 
     def __unicode__(self):
         return unicode(self.url or '(no url set)')
+
+    @property
+    def device_names(self):
+        device_ids = self.devices or []
+        with no_translation():
+            return [DEVICE_TYPES[d].api_name for d in device_ids]
 
 
 # Maintain ElasticSearch index.

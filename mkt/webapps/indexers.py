@@ -1,6 +1,5 @@
 from operator import attrgetter
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Min
 
@@ -15,8 +14,6 @@ from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
 from mkt.translations.models import attach_trans_dict
-from mkt.translations.utils import to_language
-from mkt.versions.models import Version
 
 
 log = commonware.log.getLogger('z.addons')
@@ -56,15 +53,6 @@ class WebappIndexer(BaseIndexer):
     def get_mapping(cls):
         doc_type = cls.get_mapping_type_name()
 
-        def _locale_field_mapping(field, analyzer):
-            return {
-                '%s_%s' % (field, analyzer): {
-                    'type': 'string',
-                    'analyzer': (('%s_analyzer' % analyzer)
-                                 if analyzer in mkt.STEMMER_MAP else analyzer)
-                }
-            }
-
         mapping = {
             doc_type: {
                 # Disable _all field to reduce index size.
@@ -100,7 +88,8 @@ class WebappIndexer(BaseIndexer):
                     'current_version': cls.string_not_indexed(),
                     'default_locale': cls.string_not_indexed(),
                     'description': {'type': 'string',
-                                    'analyzer': 'default_icu'},
+                                    'analyzer': 'default_icu',
+                                    'position_offset_gap': 100},
                     'device': {'type': 'byte'},
                     'features': {
                         'type': 'object',
@@ -222,18 +211,9 @@ class WebappIndexer(BaseIndexer):
                       'name', 'release_notes', 'support_email',
                       'support_url'))
 
-        # Add room for language-specific indexes.
-        for analyzer in mkt.SEARCH_ANALYZER_MAP:
-            if (not settings.ES_USE_PLUGINS and
-                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
-                log.info('While creating mapping, skipping the %s analyzer'
-                         % analyzer)
-                continue
-
-            mapping[doc_type]['properties'].update(
-                _locale_field_mapping('name', analyzer))
-            mapping[doc_type]['properties'].update(
-                _locale_field_mapping('description', analyzer))
+        # Add language-specific analyzers.
+        cls.attach_language_specific_analyzers(
+            mapping, ('name', 'description'))
 
         return mapping
 
@@ -242,8 +222,8 @@ class WebappIndexer(BaseIndexer):
         """Extracts the ElasticSearch index document for this instance."""
         from mkt.webapps.models import (AppFeatures, attach_devices,
                                         attach_prices, attach_tags,
-                                        attach_translations, Geodata,
-                                        RatingDescriptors, RatingInteractives)
+                                        attach_translations, RatingDescriptors,
+                                        RatingInteractives)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
@@ -283,8 +263,6 @@ class WebappIndexer(BaseIndexer):
             d['content_descriptors'] = []
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
-        d['description'] = list(
-            set(string for _, string in obj.translations[obj.description_id]))
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
         d['file_size'] = obj.file_size
@@ -321,8 +299,6 @@ class WebappIndexer(BaseIndexer):
             }
         d['manifest_url'] = obj.get_manifest_url()
         d['package_path'] = obj.get_package_path()
-        d['name'] = list(
-            set(string for _, string in obj.translations[obj.name_id]))
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
@@ -376,27 +352,25 @@ class WebappIndexer(BaseIndexer):
                               resource_uri=reverse_version(v))
                          for v in obj.versions.all()]
 
-        # Handle our localized fields.
-        for field in ('description', 'homepage', 'name', 'support_email',
-                      'support_url'):
-            d['%s_translations' % field] = [
-                {'lang': to_language(lang), 'string': string}
-                for lang, string
-                in obj.translations[getattr(obj, '%s_id' % field)]
-                if string]
+        # Handle localized fields.
+        # This adds both the field used for search and the one with
+        # all translations for the API.
+        for field in ('description', 'name'):
+            d.update(cls.extract_field_translations(
+                obj, field, include_field_for_search=True))
+        # This adds only the field with all the translations for the API, we
+        # don't need to search on those.
+        for field in ('homepage', 'support_email', 'support_url'):
+            d.update(cls.extract_field_translations(obj, field))
+
         if version:
-            attach_trans_dict(Version, [version])
-            d['release_notes_translations'] = [
-                {'lang': to_language(lang), 'string': string}
-                for lang, string
-                in version.translations[version.releasenotes_id]]
+            attach_trans_dict(version._meta.model, [version])
+            d.update(cls.extract_field_translations(
+                version, 'release_notes', db_field='releasenotes_id'))
         else:
             d['release_notes_translations'] = None
-        attach_trans_dict(Geodata, [geodata])
-        d['banner_message_translations'] = [
-            {'lang': to_language(lang), 'string': string}
-            for lang, string
-            in geodata.translations[geodata.banner_message_id]]
+        attach_trans_dict(geodata._meta.model, [geodata])
+        d.update(cls.extract_field_translations(geodata, 'banner_message'))
 
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to
@@ -417,20 +391,8 @@ class WebappIndexer(BaseIndexer):
                 }
             }
 
-        # Indices for each language. languages is a list of locales we want to
-        # index with analyzer if the string's locale matches.
-        for analyzer, languages in mkt.SEARCH_ANALYZER_MAP.iteritems():
-            if (not settings.ES_USE_PLUGINS and
-                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
-                continue
-
-            d['name_' + analyzer] = list(
-                set(string for locale, string in obj.translations[obj.name_id]
-                    if locale.lower() in languages))
-            d['description_' + analyzer] = list(
-                set(string for locale, string
-                    in obj.translations[obj.description_id]
-                    if locale.lower() in languages))
+        for field in ('name', 'description'):
+            d.update(cls.extract_field_analyzed_translations(obj, field))
 
         return d
 

@@ -12,9 +12,10 @@ import mkt
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
 from mkt.site.decorators import write
+from mkt.translations.utils import to_language
 
 
-task_log = logging.getLogger('z.task')
+log = logging.getLogger('z.task')
 
 
 class BaseIndexer(object):
@@ -261,9 +262,9 @@ class BaseIndexer(object):
         if not ids:
             return
 
-        task_log.info('Unindexing %s %s-%s. [%s]' %
-                      (cls.get_model()._meta.model_name, ids[0], ids[-1],
-                       len(ids)))
+        log.info('Unindexing %s %s-%s. [%s]' %
+                 (cls.get_model()._meta.model_name, ids[0], ids[-1],
+                  len(ids)))
 
         index = index or cls.get_index()
         # Note: If reindexing is currently occurring, `get_indices` will return
@@ -277,8 +278,8 @@ class BaseIndexer(object):
                     cls.unindex(id_=id_, es=es, index=idx)
                 except elasticsearch.exceptions.NotFoundError:
                     # Ignore if it's not there.
-                    task_log.info(u'[%s:%s] object not found in index' %
-                                  (cls.get_model()._meta.model_name, id_))
+                    log.info(u'[%s:%s] object not found in index' %
+                             (cls.get_model()._meta.model_name, id_))
 
     @classmethod
     def run_indexing(cls, ids, ES, index=None, **kw):
@@ -305,9 +306,14 @@ class BaseIndexer(object):
     @classmethod
     def attach_translation_mappings(cls, mapping, field_names):
         """
-        For each field in field name, attach a mapping property to the ES
-        mapping that appends "_translations" to the key, and has type string
-        that is not indexed.
+        For each field in field_names, attach a dict to the ES mapping
+        properties making "<field_name>_translations" an object containing
+        "string" and "lang" as non-indexed strings.
+
+        Used to store non-indexed, non-analyzed translations in ES that will be
+        sent back by the API for each item. It does not take care of the
+        indexed content for search, it's there only to store and return
+        raw translations.
         """
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
@@ -322,6 +328,93 @@ class BaseIndexer(object):
             })
         return mapping
 
+    @classmethod
+    def attach_language_specific_analyzers(cls, mapping, field_names):
+        """
+        For each field in field_names, attach language-specific mappings that
+        will use specific analyzers for these fields in every language that we
+        support.
+
+        These mappings are used by the search filtering code if they exist.
+        """
+        def _locale_field_mapping(field, analyzer):
+            return {
+                '%s_%s' % (field, analyzer): {
+                    'type': 'string',
+                    'analyzer': (('%s_analyzer' % analyzer)
+                                 if analyzer in mkt.STEMMER_MAP else analyzer)
+                }
+            }
+
+        doc_type = cls.get_mapping_type_name()
+
+        for analyzer in mkt.SEARCH_ANALYZER_MAP:
+            if (not settings.ES_USE_PLUGINS and
+                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
+                # Skip analyzers that need special plugins if the use of
+                # plugins is disabled in settings.
+                log.info('While creating mapping, skipping the %s analyzer'
+                         % analyzer)
+                continue
+
+            for field in field_names:
+                mapping[doc_type]['properties'].update(
+                    _locale_field_mapping(field, analyzer))
+
+            return mapping
+
+    @classmethod
+    def extract_field_translations(cls, obj, field, db_field=None,
+                                   include_field_for_search=False):
+        """
+        Returns a dict with:
+        - A special list (with _translations key suffix) mapping languages to
+          translations, to be deserialized by ESTranslationSerializerField.
+        - A list with all translations, intended to be analyzed and used for
+          searching (only included if include_field_for_search is True,
+          defaults to False).
+        """
+        if db_field is None:
+            db_field = '%s_id' % field
+
+        extend_with_me = {
+            '%s_translations' % field: [
+                {'lang': to_language(lang), 'string': string}
+                for lang, string in obj.translations[getattr(obj, db_field)]
+                if string
+            ]
+        }
+        if include_field_for_search:
+            extend_with_me[field] = list(
+                set(s for _, s in obj.translations[getattr(obj, db_field)])
+            )
+        return extend_with_me
+
+    @classmethod
+    def extract_field_analyzed_translations(cls, obj, field, db_field=None):
+        """
+        Returns a dict containing translations for each language-specific
+        analyzer for the given field.
+        """
+        if db_field is None:
+            db_field = '%s_id' % field
+
+        extend_with_me = {}
+
+        # Indices for each language. languages is a list of locales we want to
+        # index with analyzer if the string's locale matches.
+        for analyzer, languages in mkt.SEARCH_ANALYZER_MAP.iteritems():
+            if (not settings.ES_USE_PLUGINS and
+                    analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
+                continue
+
+            extend_with_me['%s_%s' % (field, analyzer)] = list(
+                set(string for locale, string
+                    in obj.translations[getattr(obj, db_field)]
+                    if locale.lower() in languages))
+
+        return extend_with_me
+
 
 @post_request_task(acks_late=True)
 @write
@@ -330,7 +423,7 @@ def index(ids, indexer, **kw):
     Given a list of IDs and an indexer, index into ES.
     If an reindexation is currently occurring, index on both the old and new.
     """
-    task_log.info('Indexing {0} {1}-{2}. [{3}]'.format(
+    log.info('Indexing {0} {1}-{2}. [{3}]'.format(
         indexer.get_model()._meta.model_name, ids[0], ids[-1], len(ids)))
 
     # If reindexing is currently occurring, index on both old and new indexes.
