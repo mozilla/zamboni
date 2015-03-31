@@ -42,14 +42,17 @@ class LangPackViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
         to do differently."""
         if self.request.method == 'GET':
             active_parameter = self.request.GET.get('active')
-            has_permission = action_allowed(self.request, 'LangPacks', '%')
+            fxos_version_parameter = self.request.GET.get('fxos_version')
 
-            if 'pk' in self.kwargs and has_permission:
-                # No filtering at all if we're trying to see a detail page and
-                # we have the permission to show everything.
+            if 'pk' in self.kwargs:
+                # No filtering at all if we're trying to see a detail page: the
+                # permission_classes mechanism will handle the rest for us. It
+                # reveals the existence of the langpack but that's OK.
                 return qs
-            elif active_parameter in ('null', 'false'):
-                if has_permission:
+
+            # Handle 'active' filtering.
+            if active_parameter in ('null', 'false'):
+                if action_allowed(self.request, 'LangPacks', '%'):
                     # If active=null, we don't need to filter at all (we show
                     # all langpacks regardless of their 'active' flag value).
                     # If it's false, we only show inactive langpacks.
@@ -62,6 +65,10 @@ class LangPackViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
                     self.permission_denied(self.request)
             else:
                 qs = qs.filter(active=True)
+
+            # Handle 'fxos_version' filtering if necessary.
+            if fxos_version_parameter:
+                qs = qs.filter(fxos_version=fxos_version_parameter)
         return qs
 
     def get_serializer_class(self):

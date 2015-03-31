@@ -82,13 +82,13 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
     def test_list_active_anonymous(self):
         response = self.anon.get(self.list_url)
         eq_(response.status_code, 200)
-        ok_(len(response.json['objects']), 1)
+        eq_(len(response.json['objects']), 1)
         self.check_langpack(response.json['objects'][0])
 
     def test_list_active_no_perm_needed(self):
         response = self.client.get(self.list_url)
         eq_(response.status_code, 200)
-        ok_(len(response.json['objects']), 1)
+        eq_(len(response.json['objects']), 1)
         self.check_langpack(response.json['objects'][0])
 
     def test_list_inactive_anon(self):
@@ -96,9 +96,17 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
         response = self.anon.get(self.list_url, {'active': 'false'})
         eq_(response.status_code, 403)
 
+        response = self.anon.get(
+            self.list_url, {'active': 'false', 'fxos_version': '2.2'})
+        eq_(response.status_code, 403)
+
     def test_list_inactive_no_perm(self):
         self.create_langpack(active=False)
         response = self.client.get(self.list_url, {'active': 'false'})
+        eq_(response.status_code, 403)
+
+        response = self.client.get(
+            self.list_url, {'active': 'false', 'fxos_version': '2.2'})
         eq_(response.status_code, 403)
 
     def test_list_inactive_has_perm(self):
@@ -106,21 +114,49 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
         self.grant_permission(self.user, 'LangPacks:Admin')
         response = self.client.get(self.list_url, {'active': 'false'})
         eq_(response.status_code, 200)
-        ok_(len(response.json['objects']), 1)
+        eq_(len(response.json['objects']), 1)
+        self.check_langpack(response.json['objects'][0],
+                            instance=inactive_langpack)
+
+    def test_list_inactive_has_perm_with_fxos_version(self):
+        inactive_langpack = self.create_langpack(
+            active=False, language='it', fxos_version='3.0')
+        self.create_langpack(
+            active=False, language='de', fxos_version='2.2')
+        self.grant_permission(self.user, 'LangPacks:Admin')
+        response = self.client.get(
+            self.list_url, {'active': 'false', 'fxos_version': '3.0'})
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
         self.check_langpack(response.json['objects'][0],
                             instance=inactive_langpack)
 
     def test_list_all_has_perm(self):
-        inactive_langpack = self.create_langpack(active=False, language='it')
+        inactive_langpack = self.create_langpack(
+            active=False, language='it', fxos_version='3.0')
         inactive_langpack.update(created=self.days_ago(1))
         self.grant_permission(self.user, 'LangPacks:Admin')
         response = self.client.get(self.list_url, {'active': 'null'})
         eq_(response.status_code, 200)
-        ok_(len(response.json['objects']), 2)
+        eq_(len(response.json['objects']), 2)
         self.check_langpack(response.json['objects'][0],
                             instance=self.langpack)
         self.check_langpack(response.json['objects'][1],
                             instance=inactive_langpack)
+
+    def test_list_fxos_version(self):
+        self.create_langpack(active=True, language='it', fxos_version='3.0')
+        response = self.client.get(self.list_url, {'fxos_version': '2.2'})
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+        self.check_langpack(response.json['objects'][0],
+                            instance=self.langpack)
+
+        response = self.anon.get(self.list_url, {'fxos_version': '2.2'})
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+        self.check_langpack(response.json['objects'][0],
+                            instance=self.langpack)
 
     def test_active_detail(self):
         response = self.anon.get(self.detail_url)
@@ -134,12 +170,12 @@ class TestLangPackViewSetGet(TestLangPackViewSetMixin):
     def test_inactive_detail_anon(self):
         self.langpack.update(active=False)
         response = self.anon.get(self.detail_url)
-        eq_(response.status_code, 404)
+        eq_(response.status_code, 403)
 
     def test_inactive_detail_no_perm(self):
         self.langpack.update(active=False)
         response = self.client.get(self.detail_url)
-        eq_(response.status_code, 404)
+        eq_(response.status_code, 403)
 
     def test_inactive_has_perm(self):
         self.langpack.update(active=False)
