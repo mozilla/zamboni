@@ -49,6 +49,12 @@ class Website(ModelBase):
         with no_translation():
             return [DEVICE_TYPES[d].api_name for d in device_ids]
 
+    def get_boost(self):
+        """
+        Returns the boost used in Elasticsearch for this website.
+        """
+        return 1.0
+
 
 # Maintain ElasticSearch index.
 @receiver(models.signals.post_save, sender=Website,

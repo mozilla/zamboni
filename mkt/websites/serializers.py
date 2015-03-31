@@ -10,6 +10,7 @@ class WebsiteSerializer(serializers.ModelSerializer):
     categories = ListField(serializers.CharField())
     description = TranslationSerializerField()
     device_types = ListField(serializers.CharField(), source='device_names')
+    id = serializers.IntegerField(source='pk')
     short_title = TranslationSerializerField()
     title = TranslationSerializerField()
     url = TranslationSerializerField()  # FIXME: add extra URL validation.
@@ -19,8 +20,8 @@ class WebsiteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Website
-        fields = ['categories', 'description', 'device_types', 'short_title',
-                  'title', 'url']
+        fields = ['categories', 'description', 'device_types', 'id',
+                  'short_title', 'title', 'url']
 
 
 class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):

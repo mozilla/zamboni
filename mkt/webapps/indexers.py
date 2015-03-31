@@ -58,9 +58,6 @@ class WebappIndexer(BaseIndexer):
                 # Disable _all field to reduce index size.
                 '_all': {'enabled': False},
                 'properties': {
-                    # Add a boost field to enhance relevancy of a document.
-                    # This is used during queries in a function scoring query.
-                    'boost': {'type': 'float', 'doc_values': True},
                     # App fields.
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
@@ -192,6 +189,9 @@ class WebappIndexer(BaseIndexer):
                 }
             }
         }
+
+        # Attach boost field, because we are going to need search by relevancy.
+        cls.attach_boost_mapping(mapping)
 
         # Add popularity by region.
         for region in mkt.regions.ALL_REGION_IDS:

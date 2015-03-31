@@ -304,6 +304,17 @@ class BaseIndexer(object):
             cls.bulk_index(docs, es=ES, index=index or cls.get_index())
 
     @classmethod
+    def attach_boost_mapping(cls, mapping):
+        """
+        Add a boost field to the mapping to enhance relevancy of a document.
+        This is used by SearchQueryFilter in a function scoring query.
+        """
+        mapping[cls.get_mapping_type_name()]['properties']['boost'] = {
+            'type': 'float', 'doc_values': True
+        }
+        return mapping
+
+    @classmethod
     def attach_translation_mappings(cls, mapping, field_names):
         """
         For each field in field_names, attach a dict to the ES mapping
