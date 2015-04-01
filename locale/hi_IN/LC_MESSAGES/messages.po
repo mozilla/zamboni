@@ -20,7 +20,7 @@ msgstr "एक मान्य विकल्प का चयन करें.
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr "क्षेत्र में कम से कम एक {NUM} पात्रों की लंबाई होना चाहिए."
+msgstr "क्षेत्र में कम से कम एक {num} पात्रों की लंबाई होना चाहिए."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
