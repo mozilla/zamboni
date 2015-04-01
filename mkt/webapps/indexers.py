@@ -145,8 +145,6 @@ class WebappIndexer(BaseIndexer):
                     'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
                     'package_path': cls.string_not_indexed(),
-                    # See also popularity by region below.
-                    'popularity': {'type': 'long', 'doc_values': True},
                     'premium_type': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
@@ -166,8 +164,6 @@ class WebappIndexer(BaseIndexer):
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
-                    # See also trending by region below.
-                    'trending': {'type': 'float', 'doc_values': True},
                     'upsell': {
                         'type': 'object',
                         'properties': {
@@ -193,17 +189,8 @@ class WebappIndexer(BaseIndexer):
         # Attach boost field, because we are going to need search by relevancy.
         cls.attach_boost_mapping(mapping)
 
-        # Add popularity by region.
-        for region in mkt.regions.ALL_REGION_IDS:
-            mapping[doc_type]['properties'].update(
-                {'popularity_%s' % region: {'type': 'long',
-                                            'doc_values': True}})
-
-        # Add trending by region.
-        for region in mkt.regions.ALL_REGION_IDS:
-            mapping[doc_type]['properties'].update(
-                {'trending_%s' % region: {'type': 'float',
-                                          'doc_values': True}})
+        # Attach popularity and trending.
+        cls.attach_trending_and_popularity_mappings(mapping)
 
         # Add fields that we expect to return all translations.
         cls.attach_translation_mappings(
@@ -244,16 +231,16 @@ class WebappIndexer(BaseIndexer):
         except IndexError:
             status = None
 
-        attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
+        attrs = ('app_slug', 'bayesian_rating', 'created', 'default_locale',
+                 'icon_hash', 'id', 'is_disabled', 'is_offline', 'file_size',
                  'last_updated', 'modified', 'premium_type', 'status',
                  'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['boost'] = obj.get_boost()
-
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
+        d['boost'] = obj.get_boost()
         d['category'] = obj.categories if obj.categories else []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
@@ -262,12 +249,9 @@ class WebappIndexer(BaseIndexer):
         except RatingDescriptors.DoesNotExist:
             d['content_descriptors'] = []
         d['current_version'] = version.version if version else None
-        d['default_locale'] = obj.default_locale
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
-        d['file_size'] = obj.file_size
         d['has_public_stats'] = obj.public_stats
-        d['icon_hash'] = obj.icon_hash
         try:
             d['interactive_elements'] = obj.rating_interactives.to_keys()
         except RatingInteractives.DoesNotExist:
@@ -276,7 +260,6 @@ class WebappIndexer(BaseIndexer):
             version.manifest.get('installs_allowed_from', ['*'])
             if version else ['*'])
         d['is_escalated'] = obj.escalationqueue_set.exists()
-        d['is_offline'] = getattr(obj, 'is_offline', False)
         d['is_priority'] = obj.priority_review
         d['is_rereviewed'] = obj.rereviewqueue_set.exists()
         if latest_version:

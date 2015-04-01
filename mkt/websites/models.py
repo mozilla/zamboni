@@ -6,6 +6,7 @@ from django.dispatch import receiver
 import json_field
 
 from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.base import STATUS_PUBLIC
 from mkt.site.models import ModelBase
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
@@ -27,7 +28,6 @@ class Website(ModelBase):
     icon_type = models.CharField(max_length=25, blank=True)
     icon_hash = models.CharField(max_length=8, blank=True)
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
-    # FIXME status
 
     class Meta:
         ordering = (('-last_updated'), )
@@ -48,6 +48,18 @@ class Website(ModelBase):
         device_ids = self.devices or []
         with no_translation():
             return [DEVICE_TYPES[d].api_name for d in device_ids]
+
+    @property
+    def status(self):
+        # For now, all websites are public.
+        # FIXME: add real field and migration.
+        return STATUS_PUBLIC
+
+    @property
+    def is_disabled(self):
+        # For now, all websites are enabled.
+        # FIXME: add real field and migration.
+        return False
 
     def get_boost(self):
         """

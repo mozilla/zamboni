@@ -375,6 +375,30 @@ class BaseIndexer(object):
             return mapping
 
     @classmethod
+    def attach_trending_and_popularity_mappings(cls, mapping):
+        doc_type = cls.get_mapping_type_name()
+        new_properties = {}
+
+        # Add global popularity and trending fields.
+        new_properties['popularity'] = {
+            'type': 'long', 'doc_values': True
+        }
+        new_properties['trending'] = {
+            'type': 'long', 'doc_values': True
+        }
+        # Add region-specific popularity and trending fields.
+        for region in mkt.regions.ALL_REGION_IDS:
+            new_properties['popularity_%s' % region] = {
+                'type': 'long', 'doc_values': True
+            }
+            new_properties['trending_%s' % region] = {
+                'type': 'long', 'doc_values': True
+            }
+        # Add everything to the mapping.
+        mapping[doc_type]['properties'].update(new_properties)
+        return mapping
+
+    @classmethod
     def extract_field_translations(cls, obj, field, db_field=None,
                                    include_field_for_search=False):
         """
