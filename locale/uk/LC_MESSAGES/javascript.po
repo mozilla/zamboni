@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2014-09-06 12:16+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -452,31 +452,31 @@ msgstr "Чек перевірено програмою."
 msgid "Receipt was not checked by app."
 msgstr "Чек не було перевірено програмою."
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "{name} переглядав цей додаток першим."
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "Завантаження&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "Примітки до версії"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "Примітки для рецензентів"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "Не знайдено приміток до версії"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "Виберіть програму спочатку"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "Помилка завантаження перекладу"
 
@@ -560,11 +560,11 @@ msgstr "Помилка проходження перевірки програм�
 msgid "Error failing app: {app}"
 msgstr "Помилка не проходження перевірки програми: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте увійти знову.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "По {0} на {1}"

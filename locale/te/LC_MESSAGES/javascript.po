@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2012-03-02 17:35-0700\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -441,31 +441,31 @@ msgstr ""
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr ""
 
@@ -549,11 +549,11 @@ msgstr ""
 msgid "Error failing app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr ""

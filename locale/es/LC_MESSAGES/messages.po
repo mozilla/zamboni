@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:00-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2014-10-17 12:14+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -21,20 +21,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1413548093.0\n"
-
-#: mkt/account/utils.py:16
-msgid "Purchase Date"
-msgstr "Fecha de compra"
-
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
-msgid "Price"
-msgstr "Precio"
-
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:622 mkt/developers/views.py:83 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
-msgid "Name"
-msgstr "Nombre"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2441,6 +2427,11 @@ msgstr "No tienes permisos para cambiar las cuentas de pago."
 msgid "Account name"
 msgstr "Nombre de la cuenta"
 
+#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+msgid "Name"
+msgstr "Nombre"
+
 #: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
@@ -2479,11 +2470,11 @@ msgstr "Revisión"
 msgid "Version {0}"
 msgstr "Versión {0}"
 
-#: mkt/developers/providers.py:285
+#: mkt/developers/providers.py:286
 msgid "Reference Implementation"
 msgstr "Implementación de referencia"
 
-#: mkt/developers/providers.py:371
+#: mkt/developers/providers.py:372
 msgid "Boku"
 msgstr "Boku"
 
@@ -2565,91 +2556,87 @@ msgstr "Los íconos deben ser cuadrados."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Las vistas previas de las apps deben ser {0} px por {1} px o {1} px por {0} px, como mínimo."
 
-#: mkt/developers/views.py:84
-msgid "Created"
-msgstr "Creada"
-
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Las apps de pago no pueden ser eliminadas. Desactiva esta app."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "App eliminada."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "Contraseña incorrecta. La app no fue eliminada."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:211
 msgid "App successfully resubmitted."
 msgstr "App enviada correctamente."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:244
 msgid "New version successfully added."
 msgstr "Nueva versión agregada correctamente."
 
-#: mkt/developers/views.py:312 mkt/developers/views.py:573 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "Cambios guardados correctamente."
 
-#: mkt/developers/views.py:319
+#: mkt/developers/views.py:315
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "¡Enhorabuena! El envío de tu app se ha completado y pronto será revisado."
 
-#: mkt/developers/views.py:321
+#: mkt/developers/views.py:317
 msgid "Content ratings successfully saved."
 msgstr "La clasificación del contenido se ha guardado correctamente."
 
-#: mkt/developers/views.py:445
+#: mkt/developers/views.py:441
 msgid "Application for preload successfully submitted."
 msgstr "La solicitud de precarga se ha enviado correctamente."
 
-#: mkt/developers/views.py:448
+#: mkt/developers/views.py:444
 msgid "There was an error with the form."
 msgstr "Ha habido un error en el formulario."
 
-#: mkt/developers/views.py:478
+#: mkt/developers/views.py:474
 msgid "Version successfully edited."
 msgstr "La versión se ha editado correctamente."
 
-#: mkt/developers/views.py:513
+#: mkt/developers/views.py:509
 msgid "Version successfully made active."
 msgstr "Se ha activado correctamente la versión."
 
-#: mkt/developers/views.py:527
+#: mkt/developers/views.py:523
 msgid "Version \"{0}\" deleted."
 msgstr "Versión \"{0}\" borrada."
 
-#: mkt/developers/views.py:661
+#: mkt/developers/views.py:657
 msgid "There was an error with the submission."
 msgstr "Ha habido un error en el envío."
 
-#: mkt/developers/views.py:957
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "Ha habido un error al subir la vista previa."
 
-#: mkt/developers/views.py:1008
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "Términos del servicio aceptados."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "Los usuarios con derechos de administrador no pueden utilizar la API."
 
-#: mkt/developers/views.py:1028
+#: mkt/developers/views.py:1024
 msgid "No such API key."
 msgstr "No se encuentra la clave de API."
 
-#: mkt/developers/views.py:1034
+#: mkt/developers/views.py:1030
 msgid "New API key generated."
 msgstr "Se generó una nueva clave API."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1048
 msgid "Created blocklisted version."
 msgstr "Versión no listada creada."
 
-#: mkt/developers/views.py:1054
+#: mkt/developers/views.py:1050
 msgid "App already blocklisted."
 msgstr "La app ya no se lista."
 
@@ -2798,7 +2785,7 @@ msgstr "Actualizar mensaje del día"
 msgid "Save"
 msgstr "Guardar"
 
-#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:24 mkt/developers/templates/developers/payments/in-app-payments.html:41
+#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:25 mkt/developers/templates/developers/payments/in-app-payments.html:43
 msgid "Documentation"
 msgstr "Documentación"
 
@@ -3425,7 +3412,7 @@ msgstr ""
 "La información sobre cambios de esta versión, nuevas características, problemas conocidos y otra información útil especifica de esta versión/publicación. Esta información también se muestra en el "
 "administrador de apps al actualizar."
 
-#: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:67
+#: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Notes for Reviewers"
 msgstr "Notas para revisores"
 
@@ -3855,7 +3842,7 @@ msgstr "Subir una nueva versión de este complemento."
 msgid "New Version"
 msgstr "Nueva versión"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions.html:43 mkt/site/templates/site/paginator.html:3 mkt/webapps/templates/webapps/impala/listing/sorter.html:14
+#: mkt/developers/templates/developers/apps/listing/item_actions.html:43 mkt/site/templates/site/paginator.html:3
 msgid "More"
 msgstr "More"
 
@@ -4199,29 +4186,37 @@ msgstr ""
 msgid "Generate Keys"
 msgstr "Generar claves"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:21
-msgid "In-App Keys"
-msgstr "Claves en apps"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:28
-msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr "Las claves para pagos en apps te permiten integrar los pagos en tu app para cualquier rango de precio. Eres el responsable de la definición y gestión de productos."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:33
-msgid "Configure In-App Keys"
-msgstr "Configurar claves en apps"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
 msgstr "Productos en app"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:45
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22
+msgid "Recommended"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr "Los productos en apps te permiten integrar los pagos en tu app y simplifican el proceso permitiéndote crear y gestionar los productos en el Centro de Desarrolladores de Firefox Marketplace."
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:50
+#: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
 msgstr "Configurar productos en apps"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:40
+msgid "In-App Keys"
+msgstr "Claves en apps"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:47
+msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
+msgstr "Las claves para pagos en apps te permiten integrar los pagos en tu app para cualquier rango de precio. Eres el responsable de la definición y gestión de productos."
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:53
+msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:60
+msgid "Configure In-App Keys"
+msgstr "Configurar claves en apps"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -4304,6 +4299,11 @@ msgstr "Agrega, administra o consulta las transacciones en tus cuentas de pago"
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
 msgstr "Precios y países"
+
+#: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
+msgid "Price"
+msgstr "Precio"
 
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -6507,6 +6507,14 @@ msgstr "Gratis con pagos en app"
 msgid "more..."
 msgstr "más..."
 
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
+msgid "Older versions"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
+msgid "Newer versions"
+msgstr ""
+
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Procesar revisiones"
@@ -6560,17 +6568,17 @@ msgstr "Contenidos"
 msgid "Compare"
 msgstr "Comparar"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:81
-msgid "Next Page"
-msgstr "Página siguiente"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:82
-msgid "Previous Page"
-msgstr "Página anterior"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:86
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
 msgstr "Cargando historial de app &hellip;"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:78
+msgid "Next Comments"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:79
+msgid "Previous Comments"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -7886,6 +7894,10 @@ msgstr "Incidencia con tu app \"{app}\" en Firefox Marketplace"
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
 msgstr "Ordenar por:"
+
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
+msgid "Created"
+msgstr "Creada"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

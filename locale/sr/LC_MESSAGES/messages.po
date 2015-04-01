@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:00-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2015-02-20 12:58+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -16,20 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1424437102.0\n"
-
-#: mkt/account/utils.py:16
-msgid "Purchase Date"
-msgstr "Дан куповине"
-
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
-msgid "Price"
-msgstr "Цена"
-
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:622 mkt/developers/views.py:83 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:57 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
-msgid "Name"
-msgstr "Име"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2435,6 +2421,11 @@ msgstr "Није дозвољено да промените рачуне за п
 msgid "Account name"
 msgstr "Име налога"
 
+#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+msgid "Name"
+msgstr "Име"
+
 #: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
@@ -2473,11 +2464,11 @@ msgstr "Коментар"
 msgid "Version {0}"
 msgstr "Верзија {0}"
 
-#: mkt/developers/providers.py:285
+#: mkt/developers/providers.py:286
 msgid "Reference Implementation"
 msgstr "Референтна имплементација"
 
-#: mkt/developers/providers.py:371
+#: mkt/developers/providers.py:372
 msgid "Boku"
 msgstr "Boku"
 
@@ -2559,91 +2550,87 @@ msgstr "Иконице морају бити коцкасте."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Приказ апликације мора бити барем {0}px пута {1}px или {1}px пута {0}px."
 
-#: mkt/developers/views.py:84
-msgid "Created"
-msgstr "Креирано"
-
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Плаћене апликације не могу бити обрисане. Онемогућите их."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "Апликација је избрисана."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "Лозинка је нетачна. Апликација није обрисана."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:211
 msgid "App successfully resubmitted."
 msgstr "Апликација је успешно поново послата."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:244
 msgid "New version successfully added."
 msgstr "Нова верзија је успешно додата."
 
-#: mkt/developers/views.py:312 mkt/developers/views.py:573 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "Измене су успешно сачуване."
 
-#: mkt/developers/views.py:319
+#: mkt/developers/views.py:315
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "Честитамо, Ваше подношење апликације је завршено и убрзо ће бити прегледана!"
 
-#: mkt/developers/views.py:321
+#: mkt/developers/views.py:317
 msgid "Content ratings successfully saved."
 msgstr "Оцене садржаја су успешно снимљене."
 
-#: mkt/developers/views.py:445
+#: mkt/developers/views.py:441
 msgid "Application for preload successfully submitted."
 msgstr "Апликација је успешно послата за напредно учитавање."
 
-#: mkt/developers/views.py:448
+#: mkt/developers/views.py:444
 msgid "There was an error with the form."
 msgstr "Дошло је до грешке са формом."
 
-#: mkt/developers/views.py:478
+#: mkt/developers/views.py:474
 msgid "Version successfully edited."
 msgstr "Верзија је успешно измењена."
 
-#: mkt/developers/views.py:513
+#: mkt/developers/views.py:509
 msgid "Version successfully made active."
 msgstr "Активна верзија је успешно направљена."
 
-#: mkt/developers/views.py:527
+#: mkt/developers/views.py:523
 msgid "Version \"{0}\" deleted."
 msgstr "Верзија \"{0}\" је избрисана."
 
-#: mkt/developers/views.py:661
+#: mkt/developers/views.py:657
 msgid "There was an error with the submission."
 msgstr "Дошло је до грешке са доставом."
 
-#: mkt/developers/views.py:957
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "Дошло је до грешке приликом отпремања Вашег прегледа."
 
-#: mkt/developers/views.py:1008
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "Услови коришћења су прихваћени."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "Корисници са улогом админа не могу да користе API-је."
 
-#: mkt/developers/views.py:1028
+#: mkt/developers/views.py:1024
 msgid "No such API key."
 msgstr "Не постоји такав API кључ."
 
-#: mkt/developers/views.py:1034
+#: mkt/developers/views.py:1030
 msgid "New API key generated."
 msgstr "Нови API кључ је генерисан."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1048
 msgid "Created blocklisted version."
 msgstr "Направљена је блокирана верзија."
 
-#: mkt/developers/views.py:1054
+#: mkt/developers/views.py:1050
 msgid "App already blocklisted."
 msgstr "Апликација је већ блокирана."
 
@@ -2792,7 +2779,7 @@ msgstr "Ажурирај поруку дана"
 msgid "Save"
 msgstr "Сачувај"
 
-#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:24 mkt/developers/templates/developers/payments/in-app-payments.html:41
+#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:25 mkt/developers/templates/developers/payments/in-app-payments.html:43
 msgid "Documentation"
 msgstr "Документација"
 
@@ -3420,7 +3407,7 @@ msgstr ""
 "Информације о променама у овом издању, новим могућностима, познатим грешкама и друге корисне информације које су специфичне за ово издање/верзију. Ова информација је такође приказана у Apps Manager-"
 "у приликом ажурирања."
 
-#: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:67
+#: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Notes for Reviewers"
 msgstr "Напомене за рецензенте"
 
@@ -3845,7 +3832,7 @@ msgstr "Постави нову верзију овог додатка."
 msgid "New Version"
 msgstr "Нова верзија"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions.html:43 mkt/site/templates/site/paginator.html:3 mkt/webapps/templates/webapps/impala/listing/sorter.html:14
+#: mkt/developers/templates/developers/apps/listing/item_actions.html:43 mkt/site/templates/site/paginator.html:3
 msgid "More"
 msgstr "Још"
 
@@ -4181,31 +4168,39 @@ msgstr ""
 msgid "Generate Keys"
 msgstr "Генериши кључеве"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:21
-msgid "In-App Keys"
-msgstr "Кључеви унутар апликације"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:28
-msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr "Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и управљање производима."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:33
-msgid "Configure In-App Keys"
-msgstr "Конфигуриши кључеве унутар апликације"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
 msgstr "Производи у оквиру апликације"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:45
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22
+msgid "Recommended"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
 "Производи унутар апликације Вам омогућавају да примате уплате у Вашој апликацији и поједностављује процес тако што Вам омогућава да направите и управљате производима на Firefox Marketplace "
 "Developer Hub-у."
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:50
+#: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
 msgstr "Конфигуриши производе унутар апликације"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:40
+msgid "In-App Keys"
+msgstr "Кључеви унутар апликације"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:47
+msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
+msgstr "Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и управљање производима."
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:53
+msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:60
+msgid "Configure In-App Keys"
+msgstr "Конфигуриши кључеве унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -4286,6 +4281,11 @@ msgstr "Додајте, управљајте или погледајте тра�
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
 msgstr "Цене и државе"
+
+#: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
+msgid "Price"
+msgstr "Цена"
 
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -6474,6 +6474,14 @@ msgstr "Бесплатно у оквиру апликације"
 msgid "more..."
 msgstr "више..."
 
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
+msgid "Older versions"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
+msgid "Newer versions"
+msgstr ""
+
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "Ревизије процеса"
@@ -6526,17 +6534,17 @@ msgstr "Садржаји"
 msgid "Compare"
 msgstr "Упореди"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:81
-msgid "Next Page"
-msgstr "Следећа страница"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:82
-msgid "Previous Page"
-msgstr "Предходна страница"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:86
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
 msgstr "Учитавам историјат апликације &hellip;"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:78
+msgid "Next Comments"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:79
+msgid "Previous Comments"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -7854,6 +7862,10 @@ msgstr "Грешка са Вашом апликацијом \"{app}\" на Firef
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
 msgstr "Поређај по:"
+
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
+msgid "Created"
+msgstr "Креирано"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:00-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,31 +11,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.12.0\n"
-
-#: mkt/account/utils.py:16
-msgid "Purchase Date"
-msgstr "Ƥŭřƈħȧşḗ Ḓȧŧḗ"
-
-#: mkt/account/utils.py:17
-#: mkt/developers/templates/developers/payments/premium.html:176
-#: mkt/purchase/templates/purchase/receipt.html:39
-#: mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:9
-#: mkt/search/forms.py:16
-msgid "Price"
-msgstr "Ƥřīƈḗ"
-
-#: mkt/account/utils.py:18
-#: mkt/developers/forms_payments.py:622
-#: mkt/developers/views.py:83
-#: mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:57
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24
-#: mkt/search/forms.py:19
-#: mkt/submit/templates/submit/details.html:57
-msgid "Name"
-msgstr "Ƞȧḿḗ"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2735,6 +2710,16 @@ msgstr "Ẏǿŭ ȧřḗ ƞǿŧ ƥḗřḿīŧŧḗḓ ŧǿ ƈħȧƞɠḗ ƥȧẏ
 msgid "Account name"
 msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 
+#: mkt/developers/forms_payments.py:622
+#: mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24
+#: mkt/search/forms.py:19
+#: mkt/submit/templates/submit/details.html:57
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+msgid "Name"
+msgstr "Ƞȧḿḗ"
+
 #: mkt/developers/forms_payments.py:623
 #: mkt/developers/templates/developers/apps/edit/support.html:21
 #: mkt/ecosystem/templates/ecosystem/partners.html:126
@@ -2780,11 +2765,11 @@ msgstr "Řḗṽīḗẇ"
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
-#: mkt/developers/providers.py:285
+#: mkt/developers/providers.py:286
 msgid "Reference Implementation"
 msgstr "Řḗƒḗřḗƞƈḗ Īḿƥŀḗḿḗƞŧȧŧīǿƞ"
 
-#: mkt/developers/providers.py:371
+#: mkt/developers/providers.py:372
 msgid "Boku"
 msgstr "Ɓǿķŭ"
 
@@ -2877,39 +2862,35 @@ msgstr "Īƈǿƞş ḿŭşŧ ƀḗ şɋŭȧřḗ."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Ȧƥƥ ƥřḗṽīḗẇş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0}ƥẋ ƀẏ {1}ƥẋ ǿř {1}ƥẋ ƀẏ {0}ƥẋ."
 
-#: mkt/developers/views.py:84
-msgid "Created"
-msgstr "Ƈřḗȧŧḗḓ"
-
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Ƥȧīḓ ȧƥƥş ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧƥƥ īƞşŧḗȧḓ."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "Ȧƥƥ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧƥƥ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:211
 msgid "App successfully resubmitted."
 msgstr "Ȧƥƥ şŭƈƈḗşşƒŭŀŀẏ řḗşŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:244
 msgid "New version successfully added."
 msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 
-#: mkt/developers/views.py:312
-#: mkt/developers/views.py:573
+#: mkt/developers/views.py:308
+#: mkt/developers/views.py:569
 #: mkt/developers/views_payments.py:113
 #: mkt/developers/views_payments.py:437
 #: mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:319
+#: mkt/developers/views.py:315
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
@@ -2917,59 +2898,59 @@ msgstr ""
 "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş, ẏǿŭř ȧƥƥ şŭƀḿīşşīǿƞ īş ƞǿẇ ƈǿḿƥŀḗŧḗ ȧƞḓ ẇīŀŀ ƀḗ řḗṽīḗẇḗḓ "
 "şħǿřŧŀẏ!"
 
-#: mkt/developers/views.py:321
+#: mkt/developers/views.py:317
 msgid "Content ratings successfully saved."
 msgstr "Ƈǿƞŧḗƞŧ řȧŧīƞɠş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:445
+#: mkt/developers/views.py:441
 msgid "Application for preload successfully submitted."
 msgstr "Ȧƥƥŀīƈȧŧīǿƞ ƒǿř ƥřḗŀǿȧḓ şŭƈƈḗşşƒŭŀŀẏ şŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:448
+#: mkt/developers/views.py:444
 msgid "There was an error with the form."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ ƒǿřḿ."
 
-#: mkt/developers/views.py:478
+#: mkt/developers/views.py:474
 msgid "Version successfully edited."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḗḓīŧḗḓ."
 
-#: mkt/developers/views.py:513
+#: mkt/developers/views.py:509
 msgid "Version successfully made active."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḿȧḓḗ ȧƈŧīṽḗ."
 
-#: mkt/developers/views.py:527
+#: mkt/developers/views.py:523
 msgid "Version \"{0}\" deleted."
 msgstr "Ṽḗřşīǿƞ \"{0}\" ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:661
+#: mkt/developers/views.py:657
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: mkt/developers/views.py:957
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: mkt/developers/views.py:1008
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:1028
+#: mkt/developers/views.py:1024
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1034
+#: mkt/developers/views.py:1030
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1048
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1054
+#: mkt/developers/views.py:1050
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
@@ -3161,8 +3142,8 @@ msgid "Save"
 msgstr "Şȧṽḗ"
 
 #: mkt/developers/templates/developers/nav.html:6
-#: mkt/developers/templates/developers/payments/in-app-payments.html:24
-#: mkt/developers/templates/developers/payments/in-app-payments.html:41
+#: mkt/developers/templates/developers/payments/in-app-payments.html:25
+#: mkt/developers/templates/developers/payments/in-app-payments.html:43
 msgid "Documentation"
 msgstr "Ḓǿƈŭḿḗƞŧȧŧīǿƞ"
 
@@ -4033,7 +4014,6 @@ msgstr ""
 "īş ȧŀşǿ şħǿẇƞ īƞ ŧħḗ Ȧƥƥş Ḿȧƞȧɠḗř ẇħḗƞ ŭƥḓȧŧīƞɠ."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:67
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
@@ -4583,7 +4563,6 @@ msgstr "Ƞḗẇ Ṽḗřşīǿƞ"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:43
 #: mkt/site/templates/site/paginator.html:3
-#: mkt/webapps/templates/webapps/impala/listing/sorter.html:14
 msgid "More"
 msgstr "Ḿǿřḗ"
 
@@ -5008,30 +4987,16 @@ msgstr ""
 msgid "Generate Keys"
 msgstr "Ɠḗƞḗřȧŧḗ Ķḗẏş"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:21
-msgid "In-App Keys"
-msgstr "Īƞ-Ȧƥƥ Ķḗẏş"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:28
-msgid ""
-"In-App Payments Keys allow you to take payments in your application for any "
-"arbitrary price point. You are responsible for the definition and management "
-"of products."
-msgstr ""
-"Īƞ-Ȧƥƥ Ƥȧẏḿḗƞŧş Ķḗẏş ȧŀŀǿẇ ẏǿŭ ŧǿ ŧȧķḗ ƥȧẏḿḗƞŧş īƞ ẏǿŭř ȧƥƥŀīƈȧŧīǿƞ ƒǿř ȧƞẏ "
-"ȧřƀīŧřȧřẏ ƥřīƈḗ ƥǿīƞŧ. Ẏǿŭ ȧřḗ řḗşƥǿƞşīƀŀḗ ƒǿř ŧħḗ ḓḗƒīƞīŧīǿƞ ȧƞḓ ḿȧƞȧɠḗḿḗƞŧ "
-"ǿƒ ƥřǿḓŭƈŧş."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:33
-msgid "Configure In-App Keys"
-msgstr "Ƈǿƞƒīɠŭřḗ Īƞ-Ȧƥƥ Ķḗẏş"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:38
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22
 #: mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
 msgstr "Īƞ-Ȧƥƥ Ƥřǿḓŭƈŧş"
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:45
+#: mkt/developers/templates/developers/payments/in-app-payments.html:22
+msgid "Recommended"
+msgstr "Řḗƈǿḿḿḗƞḓḗḓ"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid ""
 "In-App Products allow you to take payments in your application and "
 "simplifies the process by allowing you to create and manage your products in "
@@ -5041,9 +5006,35 @@ msgstr ""
 "şīḿƥŀīƒīḗş ŧħḗ ƥřǿƈḗşş ƀẏ ȧŀŀǿẇīƞɠ ẏǿŭ ŧǿ ƈřḗȧŧḗ ȧƞḓ ḿȧƞȧɠḗ ẏǿŭř ƥřǿḓŭƈŧş īƞ "
 "ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ Ḓḗṽḗŀǿƥḗř Ħŭƀ."
 
-#: mkt/developers/templates/developers/payments/in-app-payments.html:50
+#: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
 msgstr "Ƈǿƞƒīɠŭřḗ Īƞ-Ȧƥƥ Ƥřǿḓŭƈŧş"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:40
+msgid "In-App Keys"
+msgstr "Īƞ-Ȧƥƥ Ķḗẏş"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:47
+msgid ""
+"In-App Payments Keys allow you to take payments in your application for any "
+"arbitrary price point. You are responsible for the definition and management "
+"of products."
+msgstr ""
+"Īƞ-Ȧƥƥ Ƥȧẏḿḗƞŧş Ķḗẏş ȧŀŀǿẇ ẏǿŭ ŧǿ ŧȧķḗ ƥȧẏḿḗƞŧş īƞ ẏǿŭř ȧƥƥŀīƈȧŧīǿƞ ƒǿř ȧƞẏ "
+"ȧřƀīŧřȧřẏ ƥřīƈḗ ƥǿīƞŧ. Ẏǿŭ ȧřḗ řḗşƥǿƞşīƀŀḗ ƒǿř ŧħḗ ḓḗƒīƞīŧīǿƞ ȧƞḓ ḿȧƞȧɠḗḿḗƞŧ "
+"ǿƒ ƥřǿḓŭƈŧş."
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:53
+msgid ""
+"Note: If you're wanting to provide in-app products to Firefox for Desktop "
+"users then please use in-app products."
+msgstr ""
+"Ƞǿŧḗ: Īƒ ẏǿŭ'řḗ ẇȧƞŧīƞɠ ŧǿ ƥřǿṽīḓḗ īƞ-ȧƥƥ ƥřǿḓŭƈŧş ŧǿ Ƒīřḗƒǿẋ ƒǿř Ḓḗşķŧǿƥ "
+"ŭşḗřş ŧħḗƞ ƥŀḗȧşḗ ŭşḗ īƞ-ȧƥƥ ƥřǿḓŭƈŧş."
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:60
+msgid "Configure In-App Keys"
+msgstr "Ƈǿƞƒīɠŭřḗ Īƞ-Ȧƥƥ Ķḗẏş"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5151,6 +5142,15 @@ msgstr "Ȧḓḓ, ḿȧƞȧɠḗ ǿř ṽīḗẇ ŧřȧƞşȧƈŧīǿƞş ƒǿ�
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
 msgstr "Ƥřīƈḗş ȧƞḓ Ƈǿŭƞŧřīḗş"
+
+#: mkt/developers/templates/developers/payments/premium.html:176
+#: mkt/purchase/templates/purchase/receipt.html:39
+#: mkt/reviewers/templates/reviewers/includes/details.html:79
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:9
+#: mkt/search/forms.py:16
+msgid "Price"
+msgstr "Ƥřīƈḗ"
 
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -7748,6 +7748,14 @@ msgstr "Ƒřḗḗ ẇīŧħ Īƞ-Ȧƥƥ"
 msgid "more..."
 msgstr "ḿǿřḗ..."
 
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
+msgid "Older versions"
+msgstr "Ǿŀḓḗř ṽḗřşīǿƞş"
+
+#: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
+msgid "Newer versions"
+msgstr "Ƞḗẇḗř ṽḗřşīǿƞş"
+
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -7812,17 +7820,17 @@ msgstr "Ƈǿƞŧḗƞŧş"
 msgid "Compare"
 msgstr "Ƈǿḿƥȧřḗ"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:81
-msgid "Next Page"
-msgstr "Ƞḗẋŧ Ƥȧɠḗ"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:82
-msgid "Previous Page"
-msgstr "Ƥřḗṽīǿŭş Ƥȧɠḗ"
-
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:86
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
 msgstr "Ŀǿȧḓīƞɠ Ȧƥƥ Ħīşŧǿřẏ &hellip;"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:78
+msgid "Next Comments"
+msgstr "Ƞḗẋŧ Ƈǿḿḿḗƞŧş"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:79
+msgid "Previous Comments"
+msgstr "Ƥřḗṽīǿŭş Ƈǿḿḿḗƞŧş"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 #: mkt/site/templates/site/impala_paginator.html:16
@@ -9256,6 +9264,10 @@ msgstr "Īşşŭḗ ẇīŧħ ẏǿŭř ȧƥƥ \"{ȧƥƥ}\" ǿƞ ŧħḗ Ƒīř�
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
 msgstr "Şǿřŧ ƀẏ:"
+
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
+msgid "Created"
+msgstr "Ƈřḗȧŧḗḓ"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -468,31 +468,31 @@ msgstr "Sheiceáil an aip an admháil."
 msgid "Receipt was not checked by app."
 msgstr "Níor sheiceáil an aip an admháil."
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "Bhí {name} ag féachaint ar an mbreiseán seo romhat."
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "Á luchtú&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "Nótaí d'Eagarthóirí"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "Níor aimsíodh aon nótaí eisiúna"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "Earráid agus aistriúchán á luchtú"
 
@@ -576,11 +576,11 @@ msgstr "Earráid agus an aip á glacadh: {app}"
 msgid "Error failing app: {app}"
 msgstr "Earráid agus an aip á bhriseadh: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Ár leithscéal! Tharla earráid agus stair na léirmheasanna á fáil. Logáil isteach arís agud déan iarracht eile.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Le {0} ar {1}"

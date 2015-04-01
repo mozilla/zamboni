@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2015-03-04 22:38+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -434,31 +434,31 @@ msgstr "應用程式已檢查收據。"
 msgid "Receipt was not checked by app."
 msgstr "應用程式未檢查收據。"
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "版本資訊"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "給審查者的筆記"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "讀取翻譯錯誤"
 
@@ -542,11 +542,11 @@ msgstr "通過時發生錯誤的應用程式: {app}"
 msgid "Error failing app: {app}"
 msgstr "失敗時發生錯誤的應用程式: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "抱歉，取得審查紀錄時發生錯誤，請試著再次登入！<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "由 {0} 於 {1}"

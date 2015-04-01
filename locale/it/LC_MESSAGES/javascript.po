@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2015-03-05 16:34+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -444,31 +444,31 @@ msgstr "Ricevuta verificata dalla App."
 msgid "Receipt was not checked by app."
 msgstr "La ricevuta non è stata verificata dalla App."
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "{name} stava visualizzando questo componente aggiuntivo per primo."
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "Caricamento in corso&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "Note di versione"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "Note per i revisori"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "Note di versione non disponibili"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "Selezionare un’applicazione"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "Si è verificato un errore durante il caricamento della traduzione"
 
@@ -552,11 +552,11 @@ msgstr "Errore durante l’approvazione dell’app: {app}"
 msgid "Error failing app: {app}"
 msgstr "Errore durante il rifiuto dell’app: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Spiacenti, si è verificato un errore tentando di recuperare lo storico delle revisioni. Riprova effettuando nuovamente l’accesso.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "di {0} il {1}"

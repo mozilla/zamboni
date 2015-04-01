@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2015-03-23 08:45+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -12,8 +12,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.4\n"
 
 #: media/js/common/upload-base.js:61
@@ -147,22 +146,16 @@ msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
-msgstr[1] ""
-"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
-msgstr[2] ""
-"Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
+msgstr[0] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
+msgstr[1] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
+msgstr[2] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
-msgstr[1] ""
-"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
-msgstr[2] ""
-"Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[0] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
+msgstr[1] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
+msgstr[2] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
@@ -221,24 +214,16 @@ msgid "Disabled"
 msgstr "Włączono"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. "
-"Sprawdź ponownie nieco później."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Usuń tę lokalizację"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Logowanie Persona nie powiodło się. Być może nie masz konta pod tym adresem "
-"e-mail."
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Logowanie Persona nie powiodło się. Być może nie masz konta pod tym adresem e-mail."
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -318,9 +303,7 @@ msgstr "Grecki HEBIC/Indonezyjski kod banku (bank code)"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Brytyjski/Irlandzki numer rozliczeniowy (sort code) lub Nowozelandzki prefiks "
-"konta lub Australijski BSB Code."
+msgstr "Brytyjski/Irlandzki numer rozliczeniowy (sort code) lub Nowozelandzki prefiks konta lub Australijski BSB Code."
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -345,26 +328,11 @@ msgstr "Wykryto: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[0] ""
-"Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższych "
-"aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do "
-"sprzedaży."
-msgstr[1] ""
-"Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższej "
-"aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do "
-"sprzedaży."
-msgstr[2] ""
-"Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższej "
-"aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do "
-"sprzedaży."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] "Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższych aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do sprzedaży."
+msgstr[1] "Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższej aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do sprzedaży."
+msgstr[2] "Skasowanie rachunku płatniczego „{0}” usunie rachunek płatniczy z poniższej aplikacji. Aplikacje bez rachunku płatniczego nie będą dłużej dostępne do sprzedaży."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -455,8 +423,7 @@ msgstr[2] "{0} ostrzeżeń"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
-"Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"
+msgstr "Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
@@ -486,31 +453,31 @@ msgstr "Potwierdzenie zostało sprawdzone przez aplikację."
 msgid "Receipt was not checked by app."
 msgstr "Potwierdzenie nie zostało sprawdzone przez aplikację."
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "Użytkownik {name} oglądał ten dodatek pierwszy."
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "Wczytywanie &hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "Informacje o wersji"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "Informacje dla recenzentów"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "Brak informacji o wersji"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "Wybierz najpierw program"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "Błąd wczytywania tłumaczenia"
 
@@ -594,16 +561,11 @@ msgstr ""
 msgid "Error failing app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
-msgstr ""
-"Przepraszamy! Wystąpił błąd pobierania historie ocen. Spróbuj zalogować się "
-"ponownie.<p>"
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr "Przepraszamy! Wystąpił błąd pobierania historie ocen. Spróbuj zalogować się ponownie.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Przez {0} {1}"
-

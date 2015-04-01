@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:06-0700\n"
+"POT-Creation-Date: 2015-04-01 09:00-0700\n"
 "PO-Revision-Date: 2014-11-19 21:12+0000\n"
 "Last-Translator: SreeMegha21 <s.guha21@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -443,31 +443,31 @@ msgstr "অ্যাপ দ্বারা রিসিপ্ট চেক ক�
 msgid "Receipt was not checked by app."
 msgstr "রিসিপ্ট অ্যাপ দ্বারা চেক করা হয়েনি।"
 
-#: media/js/devreg/reviewers/editors.js:240
+#: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
 msgstr "{name} এই প্রথম add-on দেখার জন্য।"
 
-#: media/js/devreg/reviewers/editors.js:251
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "লোড হচ্ছে&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:256
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "সংস্করণ নোট"
 
-#: media/js/devreg/reviewers/editors.js:261
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "রিভিউয়ারদের জন্য নোট"
 
-#: media/js/devreg/reviewers/editors.js:266
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "কোন সংস্করণ নোট পাওয়া যায়েনি"
 
-#: media/js/devreg/reviewers/editors.js:291
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "প্রথেমে একটি আপ্পলিকেশন বেছে নিন"
 
-#: media/js/devreg/reviewers/editors.js:355
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "অনুবাদ লোড করতে ত্রুটি"
 
@@ -551,11 +551,11 @@ msgstr "ত্রুটি পাস করার অ্যাপ: {app}"
 msgid "Error failing app: {app}"
 msgstr "ত্রুটি ব্যর্থ অ্যাপ: {app}"
 
-#: media/js/devreg/reviewers/reviewers_commbadge.js:53
+#: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "দুঃখিত! রিভিউ ইতিহাস আনয়নে একটি সমস্যা দেখা দিয়েছে। অনুগ্রহ করে পরে আবার লগ ইন করুন।<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:73
+#: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "{0} দ্বারা {1} উপর"
