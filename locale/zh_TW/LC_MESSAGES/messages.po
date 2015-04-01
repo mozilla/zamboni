@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-03-19 01:10+0000\n"
+"PO-Revision-Date: 2015-04-01 17:37+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426727413.0\n"
+"X-POOTLE-MTIME: 1427909835.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4172,7 +4172,7 @@ msgstr "應用程式內付款產品讓您可在程式內接受付款，並透過
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
-msgstr ""
+msgstr "推薦"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
@@ -4192,7 +4192,7 @@ msgstr "應用程式內付款金鑰讓您可以在您的程式中接受任何價
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
+msgstr "註: 若您想為 Firefox 桌面版使用者提供應用程式內付款產品，則請使用應用程式內付款產品。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -6469,11 +6469,11 @@ msgstr "更多..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "先前版本"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "較新版本"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -6534,11 +6534,11 @@ msgstr "正在載入應用程式歷史 &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "下筆評論"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "上筆評論"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
