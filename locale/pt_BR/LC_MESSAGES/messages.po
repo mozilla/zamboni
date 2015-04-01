@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:00-0700\n"
-"PO-Revision-Date: 2015-03-20 07:34+0000\n"
+"PO-Revision-Date: 2015-04-01 15:21+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1426836846.0\n"
+"X-POOTLE-MTIME: 1427901707.0\n"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2030,7 +2030,7 @@ msgstr "Não foi possível conectar-se ao servidor de pagamentos."
 
 #: mkt/developers/api_payments.py:128
 msgid "Cannot delete shared account"
-msgstr "Não é possível apagar conta compartilhada"
+msgstr "Não é possível excluir uma conta compartilhada"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
@@ -2741,7 +2741,7 @@ msgstr "Segredo"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
 #: mkt/developers/templates/developers/payments/includes/account_list.html:51
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Excluir"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
@@ -3332,11 +3332,13 @@ msgstr "Remover seu aplicativo da listagem pública impedirá que ele apareça e
 #: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr "Apagar aplicativo"
+msgstr "Excluir aplicativo"
 
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
-msgstr "Apagando seu aplicativo, ele será apagado permanentemente do site. <strong>Essa ação não pode ser desfeita.</strong>"
+msgstr ""
+"Ao excluir o seu aplicativo, ele será excluído permanentemente do site. "
+"<strong>Esta ação não pode ser desfeita.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
@@ -3386,7 +3388,7 @@ msgstr "Cancelar"
 
 #: mkt/developers/templates/developers/apps/status.html:488
 msgid "Delete Version &quot;{version}&quot;"
-msgstr "Apagar versão &quot;{version}&quot;"
+msgstr "Excluir versão &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:489
 msgid "Deleting the only version will result in the following:"
@@ -3410,11 +3412,11 @@ msgstr "Essas alterações não podem ser desfeitas."
 
 #: mkt/developers/templates/developers/apps/status.html:496
 msgid "Are you sure you wish to delete this version?"
-msgstr "Tem certeza de que quer apagar essa versão?"
+msgstr "Tem certeza de que deseja excluir esta versão?"
 
 #: mkt/developers/templates/developers/apps/status.html:499
 msgid "Delete Version"
-msgstr "Apagar versão"
+msgstr "Excluir versão"
 
 #: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
@@ -3826,7 +3828,7 @@ msgstr "Próxima"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr "Tem certeza de que deseja apagar seu aplicativo?"
+msgstr "Tem certeza de que deseja excluir o seu aplicativo?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
@@ -3847,7 +3849,7 @@ msgstr "Continuar"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr "Apagar esse complemento."
+msgstr "Excluir este complemento."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -3903,7 +3905,7 @@ msgstr "Configurar pagamentos"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr "Apagar esse aplicativo."
+msgstr "Excluir este aplicativo."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -4431,7 +4433,7 @@ msgstr "Confirmar exclusão da conta para pagamentos"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr "Apagar conta de pagamento"
+msgstr "Excluir conta de pagamento"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -5586,23 +5588,25 @@ msgstr "Sem nome"
 #: mkt/lookup/templates/lookup/user_summary.html:98 mkt/lookup/templates/lookup/user_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:110
 #: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Delete User"
-msgstr "Apagar usuário"
+msgstr "Excluir usuário"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr "Apagar este usuário removerá <strong>permanentemente</strong> está conta de usuário."
+msgstr ""
+"Ao excluir este usuário, esta conta de usuário será excluída "
+"<strong>permanentemente</strong>."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr "Tem certeza que deseja apagar este usuário?"
+msgstr "Tem certeza que deseja excluir este usuário?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
-msgstr "Este usuário já foi apagado."
+msgstr "Este usuário já foi excluído."
 
 #: mkt/lookup/templates/lookup/user_summary.html:123
 msgid "Deleted by"
-msgstr "Apagado por"
+msgstr "Excluído por"
 
 #: mkt/lookup/templates/lookup/user_summary.html:126
 msgid "Reason"
@@ -5627,7 +5631,7 @@ msgstr "Resumo da conta"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr "Conta apagada"
+msgstr "Conta excluída"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5736,7 +5740,7 @@ msgstr "Ignorar por enquanto"
 
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
-msgstr "Apagar análise"
+msgstr "Excluir análise"
 
 #: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
@@ -5820,7 +5824,7 @@ msgstr "Revisões aprovadas"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr "Revisões apagadas"
+msgstr "Análise excluídas"
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
 msgid "Any Device"
@@ -7040,11 +7044,11 @@ msgstr "{user} aprovou {review} para {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr "Revisão {review} para {addon} apagada."
+msgstr "Revisão {review} para {addon} excluída."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr "{user} apagou {review} para {addon}."
+msgstr "{user} excluiu {review} para {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
@@ -7286,7 +7290,7 @@ msgstr "{version} alterado para {0}."
 #. L10n: {0} is the status
 #: mkt/site/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "O usuário {0.name} - {0.id} foi removido pela ferramenta."
+msgstr "O usuário {0.name} - {0.id} foi excluído pela ferramenta."
 
 #: mkt/site/log.py:655
 msgid "{addon} content rating changed to Adult."
@@ -7758,7 +7762,7 @@ msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não p
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr "Apagar idioma"
+msgstr "Excluir idioma"
 
 #: mkt/users/models.py:57
 msgid "No user with that email."
