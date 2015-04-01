@@ -1,5 +1,7 @@
 import json
+from urlparse import urljoin
 
+from django.conf import settings
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 
@@ -16,6 +18,7 @@ from mkt.api.filters import MktFilterBackend
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductSerializer
 from mkt.prices.models import Price
+from mkt.site.helpers import absolutify
 from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.inapp')
@@ -81,13 +84,16 @@ class StubInAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         return qs
 
     def _create_stub_products(self):
-        for name, amount in (('Kiwi', '0.99'),
-                             ('Unicorn', '1.99')):
+        for name, amount, img in (
+                ('Kiwi', '0.99', 'img/developers/simulated-kiwi.png'),
+                ('Rocket', '1.99', 'img/mkt/icons/rocket-64.png')):
             log.info('Creating stub in-app product {n} {p}'
                      .format(n=name, p=amount))
             # TODO: make this adjustable.
             simulate = json.dumps({'result': 'postback'})
-            InAppProduct.objects.create(stub=True,
-                                        simulate=simulate,
-                                        name=name,
-                                        price=Price.objects.get(price=amount))
+            InAppProduct.objects.create(
+                logo_url=absolutify(urljoin(settings.MEDIA_URL, img)),
+                name=name,
+                price=Price.objects.get(price=amount),
+                simulate=simulate,
+                stub=True)

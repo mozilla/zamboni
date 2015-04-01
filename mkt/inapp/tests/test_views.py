@@ -303,8 +303,12 @@ class TestStubInAppProductViewSet(BaseInAppProductViewSetTests):
         objects = self.objects(res)
         eq_(objects[0]['name'], 'Kiwi')
         eq_(objects[0]['price_id'], 1)
-        eq_(objects[1]['name'], 'Unicorn')
+        eq_(objects[0]['logo_url'],
+            'http://testserver/media/img/developers/simulated-kiwi.png')
+        eq_(objects[1]['name'], 'Rocket')
         eq_(objects[1]['price_id'], 2)
+        eq_(objects[1]['logo_url'],
+            'http://testserver/media/img/mkt/icons/rocket-64.png')
 
     def test_get_existing_stubs(self):
         stub = InAppProduct.objects.create(stub=True,
