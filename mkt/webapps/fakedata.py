@@ -16,7 +16,10 @@ import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.developers.tasks import resize_preview, save_icon
+from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
 from mkt.site.utils import app_factory, slugify, version_factory
@@ -256,6 +259,26 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     return app
 
 
+def get_or_create_payment_account():
+    email = 'fakedeveloper@example.com'
+    user, _ = UserProfile.objects.get_or_create(
+        email=email,
+        source=mkt.LOGIN_SOURCE_UNKNOWN,
+        display_name=email)
+    seller, _ = SolitudeSeller.objects.get_or_create(user=user)
+    acct, _ = PaymentAccount.objects.get_or_create(
+        user=user,
+        solitude_seller=seller,
+        uri='/bango/package/123',
+        name='fake data payment account',
+        agreed_tos=True)
+    return acct
+
+
+def get_or_create_price(tier):
+    return Price.objects.get_or_create(price=tier, active=True)[0]
+
+
 def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
     apps_data = generate_app_data(hosted + packaged + privileged)
     specs = []
@@ -301,10 +324,11 @@ def generate_apps_from_specs(specs, specdir):
     return apps
 
 
-def generate_app_from_spec(name, categories, type, status='public',
-                           num_previews=1, num_ratings=1, num_locales=0,
-                           preview_files=(), description=None,
-                           author='fakedeveloper@example.com', **spec):
+
+def generate_app_from_spec(name, categories, type, status, num_previews=1,
+                           num_ratings=1, num_locales=0, preview_files=(),
+                           author='fakedeveloper@example.com',
+                           premium_type='free', description=None, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
         app = generate_hosted_app(name, categories, author,
@@ -330,6 +354,16 @@ def generate_app_from_spec(name, categories, type, status='public',
                                    '?type=meat-and-filler&paras=2'
                                    '&start-with-lorem=1').json()[0]
     app.description = description
+    premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
+    app.premium_type = premium_type
+    if premium_type != mkt.ADDON_FREE:
+        acct = get_or_create_payment_account()
+        AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
+                                           account_uri=acct.uri,
+                                           product_uri=app.app_slug)
+        price = get_or_create_price(spec.get('price', '0.99'))
+        AddonPremium.objects.create(addon=app, price=price)
+        app.solitude_public_id = 'fake'
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
