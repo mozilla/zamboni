@@ -1080,11 +1080,11 @@ SIGNED_APPS_SERVER_TIMEOUT = 10
 SIGNED_APPS_OMIT_PER_FILE_SIGS = True
 
 # This is the signing REST server for signing receipts.
-SIGNING_SERVER = ''
+SIGNING_SERVER = os.environ.get('SIGNING_SERVER', '')
 
 # Turn on/off the use of the signing server and all the related things. This
 # is a temporary flag that we will remove.
-SIGNING_SERVER_ACTIVE = False
+SIGNING_SERVER_ACTIVE = bool(SIGNING_SERVER)
 
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
