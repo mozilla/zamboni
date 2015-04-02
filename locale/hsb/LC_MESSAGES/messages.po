@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-02 19:06+0000\n"
+"PO-Revision-Date: 2015-04-02 19:37+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428001574.0\n"
+"X-POOTLE-MTIME: 1428003426.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4224,7 +4224,10 @@ msgstr "Zmóžnić"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr "Produkty w nałoženju so jenož za hospodowane abo zapakowane nałoženja  podpěruja, kotrež <a href=\"%(origin)s\">pochad</a> w manifesće podawaja. Waše nałoženje pochad njepodawa."
+msgstr ""
+"Produkty w nałoženju so jenož za hospodowane abo zapakowane nałoženja "
+"podpěruja, kotrež <a href=\"%(origin)s\">pochad</a> w manifesće podawaja. Waše "
+"nałoženje pochad njepodawa."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
