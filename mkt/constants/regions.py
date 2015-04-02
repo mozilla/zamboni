@@ -148,7 +148,7 @@ REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 # Note: GBR is inserted into globals() above
 REGION_LOOKUP = dict(
     REGIONS_DICT.items() +
-    [('worldwide', RESTOFWORLD), ('gb', GBR)])  # flake8: noqa
+    [('worldwide', RESTOFWORLD), ('gb', GBR)])  # noqa
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 

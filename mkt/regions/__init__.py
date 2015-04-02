@@ -1,6 +1,6 @@
 from threading import local
 
-from mkt.constants.regions import *  # flake8: noqa
+from mkt.constants.regions import *  # noqa
 from mkt.regions.utils import parse_region
 
 

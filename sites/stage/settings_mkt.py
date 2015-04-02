@@ -1,7 +1,7 @@
 """private_mkt will be populated from puppet and placed in this directory"""
 
-from mkt.settings import *
-from settings_base import *
+from mkt.settings import *  # noqa
+from settings_base import *  # noqa
 
 import private_mkt
 
@@ -33,14 +33,14 @@ CACHE_MACHINE_ENABLED = False
 
 LOG_LEVEL = logging.DEBUG
 # The django statsd client to use, see django-statsd for more.
-#STATSD_CLIENT = 'django_statsd.clients.moz_heka'
+# STATSD_CLIENT = 'django_statsd.clients.moz_heka'
 
 SYSLOG_TAG = "http_app_mkt_stage"
 SYSLOG_TAG2 = "http_app_mkt_stage_timer"
 SYSLOG_CSP = "http_app_mkt_stage_csp"
 STATSD_PREFIX = 'marketplace-stage'
 
-## Celery
+# Celery
 BROKER_URL = private_mkt.BROKER_URL
 
 CELERY_ALWAYS_EAGER = False
@@ -135,10 +135,10 @@ IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # flake8: noqa
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # noqa
 
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # flake8: noqa
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # noqa
 
 IARC_ALLOW_CERT_REUSE = True
 
@@ -146,7 +146,7 @@ PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
 
-BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'  # flake8: noqa
+BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'  # noqa
 
 FXA_AUTH_DOMAIN = 'api.accounts.firefox.com'
 FXA_OAUTH_URL = 'https://oauth.accounts.firefox.com'

@@ -1,2 +1,2 @@
-from .carriers import *  # flake8: noqa
-from mkt.constants.carriers import *  # flake8: noqa
+from .carriers import *  # noqa
+from mkt.constants.carriers import *  # noqa
