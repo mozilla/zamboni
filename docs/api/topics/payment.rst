@@ -376,14 +376,31 @@ packaged app. For example: ``app://foo-app.com``.
 
     .. code-block:: json
 
-        {"meta": {"next": null, "previous": null, "total_count": 2,
-                  "offset": 0, "limit": 25},
-         "objects": [{"guid": "d3182953-feed-44dd-a3be-e17ae7fe6a2c",
-                      "app": null, "price_id": 237, "name": "Kiwi",
-                      "logo_url": null},
-                     {"guid": "8b3fa156-354a-47a9-b862-0f02b56d0e3d",
-                      "app": null, "price_id": 238, "name": "Unicorn",
-                      "logo_url": null}]}
+        {
+            "meta": {
+                "limit": 25,
+                "next": null,
+                "offset": 0,
+                "previous": null,
+                "total_count": 2
+            },
+            "objects": [
+                {
+                    "app": null,
+                    "guid": "d3182953-feed-44dd-a3be-e17ae7fe6a2c",
+                    "logo_url": "https://marketplace.cdn.mozilla.net/media/img/developers/simulated-kiwi.png",
+                    "name": "Kiwi",
+                    "price_id": 237
+                },
+                {
+                    "app": null,
+                    "guid": "8b3fa156-354a-47a9-b862-0f02b56d0e3d",
+                    "logo_url": "https://marketplace.cdn.mozilla.net/media/img/mkt/icons/rocket-64.png",
+                    "name": "Rocket",
+                    "price_id": 238
+                }
+            ]
+        }
 
     :status 200: successfully completed.
     :objects: list of stub products.

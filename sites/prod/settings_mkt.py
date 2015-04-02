@@ -1,5 +1,5 @@
-from mkt.settings import *
-from settings_base import *
+from mkt.settings import *  # noqa
+from settings_base import *  # noqa
 
 from .. import splitstrip
 import private_mkt
@@ -141,13 +141,13 @@ IARC_ENV = 'prod'
 IARC_MOCK = False
 IARC_PASSWORD = private_mkt.IARC_PASSWORD
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'  # flake8: noqa
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'  # noqa
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'  # flake8: noqa
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'  # noqa
 
 IARC_ALLOW_CERT_REUSE = False
 
-BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku'  # flake8: noqa
+BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku'  # noqa
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'

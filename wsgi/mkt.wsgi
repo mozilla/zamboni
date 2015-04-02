@@ -16,12 +16,12 @@ wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
 # manage adds /apps, /lib, and /vendor to the Python path.
-import manage  # flake8: noqa
+import manage  # noqa
 
-import django.conf
-import django.core.handlers.wsgi
-import django.core.management
-import django.utils
+import django.conf  # noqa
+import django.core.handlers.wsgi  # noqa
+import django.core.management  # noqa
+import django.utils  # noqa
 
 # Do validate and activate translations like using `./manage.py runserver`.
 # http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html

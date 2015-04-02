@@ -30,7 +30,7 @@ def emaillink(email, title=None, klass=None):
 
 @register.function
 def user_data(user):
-    anonymous, currency, preauth, email = True, 'USD', False, '' # flake8: noqa
+    anonymous, currency, preauth, email = True, 'USD', False, ''  # noqa
     if hasattr(user, 'is_anonymous'):
         anonymous = user.is_anonymous()
     if not anonymous:
