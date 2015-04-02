@@ -174,6 +174,8 @@ def deploy_jenkins():
 
     managecmd('cron cleanup_validation_results')
 
+    rpm.clean()
+
 
 @task
 def update():
