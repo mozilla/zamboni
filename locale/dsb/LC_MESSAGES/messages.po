@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-02 14:51+0000\n"
+"PO-Revision-Date: 2015-04-02 18:10+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427986309.0\n"
+"X-POOTLE-MTIME: 1427998244.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4025,6 +4025,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Bóžko jo zmólka pśi pśeźěłowanju wopśimjeśowych pógódnośenjow z našogo boka "
+"nastała. Móžośo ned dalej wópytowaś abo wopytajśo pózdźej hyšći raz."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -4037,6 +4039,8 @@ msgstr "Sćo swójo nałoženje južo póhódnośiś dał?"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Jolic wašo nałoženje jo se južo pśez IARC-rěd za globalne pógódnośenja "
+"pógódnośiło a južo maśo wěstotny kod IARC, móžośo jen how manuelnje zapódaś."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -4045,6 +4049,8 @@ msgstr "Zapódawański ID"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"Zapódawański ID dajo se na certifikaśe namakaś, kótaryž jo so wam pśipósłał. "
+"Jo numeriska gódnota ako &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -4053,6 +4059,8 @@ msgstr "Wěstotny kod"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Wěstotny kod dajo se na certifikaśe namakaś, kótaryž jo se wam pśipósłał. Jo "
+"měšańca pismikow a licbow ako &quot;AB12CD2&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
@@ -4123,10 +4131,16 @@ msgstr[3] "<b>Licony cakański cas:</b> %(num)s źěłowych dnjow"
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Nejwěcej nałoženjow pśeglědujo se w běgu tyźenja. Jolic wašo pśeglědanje "
+"dlej trajo, móžośo se <a href=\"%(support_url)s\">z nami do zwiska stajiś</a>, "
+"aby status zgónił."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Wubjeŕśo kontrolne kašćiki funkcijow, kótarež wašo nałoženje trjeba, aby "
+"pórědnje funkcioněrowało. Wašo nałoženje schowajo se pśed wužywarjami, "
+"kótarychž rědy jo njepódpěraju."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4151,6 +4165,10 @@ msgstr "Kluce za płaśenja w nałoženju"
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"Wikowanišćo Firefox dowólujo wašomu nałoženjeju, płaśenja w nałoženju "
+"akceptěrowaś. <a href=\"{guide}\">Wjednik za płaśenja w nałoženju</a> "
+"wujasnjujo, kak móžośo swójo nałoženje za płaśenja ze slědujucymi "
+"parametrami konfigurěrowaś."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
