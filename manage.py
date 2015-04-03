@@ -30,6 +30,7 @@ trans_log = logging.getLogger('z.trans')
 from lib.log_settings_base import log_configure  # noqa
 log_configure()
 
+
 def new(self, arg):
     try:
         return mod(self, arg)
