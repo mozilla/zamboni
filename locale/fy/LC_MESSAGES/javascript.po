@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2014-09-07 04:27+0000\n"
+"PO-Revision-Date: 2015-04-03 15:09+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -11,185 +11,189 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1410064076.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1428073776.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Het door u geüploade bestandstype wordt niet herkend."
+msgstr "It troch jo opladen bestânstype wurdt net werkend."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr "U hebt de upload geannuleerd."
+msgstr "Jo hawwe de oplaad annulearre."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
+msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Video’s dienen in WebM te zijn."
+msgstr "Fideo’s moatte fan it type WebM wêze."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr "Er is een probleem opgetreden bij het verbinden met de server."
+msgstr "Der is in probleem bard by it ferbinen mei de server."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Selecteer een bestand…"
+msgstr "Selektearje in bestân…"
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Uw verpakte app dient te eindigen op <code>.zip</code>."
+msgstr "Jo ynpakte app moat einigje op <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr "{0}% voltooid"
+msgstr "{0}% foltôge"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr "{0} van {1}"
+msgstr "{0} fan {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr "Annulearje"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr "{0} wordt geüpload"
+msgstr "{0} wurdt oplaad"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr "Fout met {0}"
+msgstr "Flater mei {0}"
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "Uw app kon niet worden gevalideerd met {0} fout."
-msgstr[1] "Uw app kon niet worden gevalideerd met {0} fouten."
+msgstr[0] "Jo app koe net falidearre wurde mei {0} flater."
+msgstr[1] "Jo app koe net falidearre wurde mei {0} flaters."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "… en nog {0}"
-msgstr[1] "… en nog {0}"
+msgstr[0] "… en noch {0}"
+msgstr[1] "… en noch {0}"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
-msgstr "Volledig validatierapport bekijken"
+msgstr "Folslein falidaasjerapport besjen"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr "{0} wordt gevalideerd"
+msgstr "{0} wurdt falidearre"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Lege respons van server ontvangen; status: {0}"
+msgstr "Lege respons fan server ûntfongen; steat: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr "Onverwachte serverfout tijdens validatie."
+msgstr "Unferwachte serverflater wylst falidaasje."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr "Validatie van {0} afgerond"
+msgstr "Falidaasje fan {0} ôfmakke"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
-msgstr[1] "Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
+msgstr[0] ""
+"Jo app hat de falidaasje sûnder flaters en mei {0} warskôging trochstien."
+msgstr[1] ""
+"Jo app hat de falidaasje sûnder flaters en mei {0} warskôgingen trochstien."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Uw app heeft de validatie zonder fouten of waarschuwingen doorstaan."
+msgstr "Jo app hat de falidaasje sûnder flatere of warskôgingen trochstien."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr "Het manifest kon niet op de opgegeven locatie worden gevonden."
+msgstr "It manifest koe net op de opjûne lokaasje fûn wurde."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "App-host kan niet worden bereikt."
+msgstr "App-host kin net berikt wurde."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr "App-manifest kan niet worden ontleed."
+msgstr "App-manifest kin net út inoar helle wurde."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr "App-manifest is ongeldig."
+msgstr "App-manifest is ûnjildich."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "App is reeds geïnstalleerd."
+msgstr "App is al ynstallearre."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr "Interne serverfout."
+msgstr "Ynterne serverflater."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Interne serverfout bij installatie van app."
+msgstr "Ynterne serverflater by ynstallaasje fan app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr "Installatie mislukt. Probeer het later nog eens."
+msgstr "Ynstallaasje mislearre. Probearje it letter nochris."
 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Uw app heeft de validatie met {0} fout en {1} bericht(en) niet doorstaan."
-msgstr[1] "Uw app heeft de validatie met {0} fouten en {1} bericht(en) niet doorstaan."
+msgstr[0] ""
+"Jo app hat de falidaasje mei {0} flater en {1} berjocht(en) net trochstien."
+msgstr[1] ""
+"Jo app hat de falidaasje mei {0} flaters en {1} berjocht(en) net trochstien."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Uw app is gevalideerd zonder fouten en met {0} bericht."
-msgstr[1] "Uw app is gevalideerd zonder fouten en met {0} berichten."
+msgstr[0] "Jo app is falidearre sûnder flaters en mei {0} berjocht."
+msgstr[1] "Jo app is falidearre sûnder flaters en mei {0} berjochten."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
-msgstr "Uw app is gevalideerd zonder fouten of berichten."
+msgstr "Jo app is falidearre sûnder flaters of berjochten."
 
 #: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
-msgstr "Wijzigingen opgeslagen"
+msgstr "Wizigingen bewarre"
 
 #: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
-msgstr "Voer het e-mailadres van een nieuw teamlid in"
+msgstr "Fier it e-mailadres fan in nij teamlid yn"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr "Manifest ververst"
+msgstr "Manifest ferfarske"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr "Kan manifest niet verversen. Probeer het later nog eens."
+msgstr "Kin manifest net ferfarskje. Probearje it letter nochris."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
-msgstr "Er is een fout opgetreden tijdens het uploaden van uw bestand."
+msgstr "Der is in flater bard wylst it opladen fan jo bestân."
 
 #: media/js/devreg/devhub.js:947
 msgid "Learn more"
-msgstr "Meer info"
+msgstr "Mear ynfo"
 
 #: media/js/devreg/devhub.js:951
 msgid "Example"
-msgstr "Voorbeeld"
+msgstr "Foarbyld"
 
 #: media/js/devreg/devhub.js:1220
 msgid "Image changes being processed"
-msgstr "Afbeeldingswijzigingen worden verwerkt"
+msgstr "Ofbyldingswizigingen wurde ferwurke"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Deze video vereist een browser met ondersteuning voor open video "
+msgstr "Dizze fideo fereasket in browser mei stipe foar iepen fideo "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -201,63 +205,67 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr "Ingeschakeld"
+msgstr "Ynskeakele"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr "Uitgeschakeld"
+msgstr "Utskeakele"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
+msgstr ""
+"Dizze funksje is tydlik útskeakele fanwege ûnderhâld oan de website. "
+"Probearje it letter nochris."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr "Deze vertaling verwijderen"
+msgstr "Dizze oersetting fuortsmite"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
+msgstr ""
+"Persona-oanmelding mislearre. Miskien hawwe jo gjin account mei dat "
+"e-mailadres?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
+msgstr "Persona-oanmelding mislearre. Der is in serverflater bard."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr "Status met succes gewijzigd in “{0}”"
+msgstr "Steat mei sukses wizige yn “{0}”"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr "Kan status niet wijzigen in “{0}”"
+msgstr "Kin steat net wizigje yn “{0}”"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
-msgstr "Alle resultaten weergeven"
+msgstr "Alle resultaten werjaan"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
+msgstr "Mear as {0} resultaten fûn, oerwaagje jo sykopdracht te ferfynjen."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr "Aangevraagde permissies:"
+msgstr "Oanfrege permisjes:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr "Gecertificeerd"
+msgstr "Sertifisearre"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr "Voorkeur"
+msgstr "Foarkar"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr "Niet-voorkeur"
+msgstr "Net-foarkar"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr "Geen reden opgegeven"
+msgstr "Gjin reden opjûn"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
