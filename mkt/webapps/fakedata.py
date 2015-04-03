@@ -324,7 +324,6 @@ def generate_apps_from_specs(specs, specdir):
     return apps
 
 
-
 def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            num_ratings=1, num_locales=0, preview_files=(),
                            author='fakedeveloper@example.com',
