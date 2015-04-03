@@ -5,7 +5,7 @@ Export
 ======
 
 There is an export of nightly data that is available as a tarball. The download
-can be found at the following URLs:
+can be found at the following URLs (replace YYYY-MM-DD with today's date):
 
 * Development server: https://marketplace-dev-cdn.allizom.org/dumped-apps/tarballs/YYYY-MM-DD.tgz
 
