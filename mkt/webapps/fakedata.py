@@ -110,7 +110,7 @@ def generate_ratings(app, num):
             email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
             display_name=email)
         Review.objects.create(
-            addon=app, user=user, rating=random.randrange(0, 6),
+            addon=app, user=user, rating=random.randrange(1, 6),
             title="Test Review " + str(n), body="review text")
 
 
