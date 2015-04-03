@@ -286,6 +286,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
         if i < privileged:
             specs.append({'name': appname,
                           'type': 'privileged',
+                          'status': versions[0],
                           'permissions': ['camera', 'storage'],
                           'categories': [cat_slug],
                           'versions': versions,
@@ -294,6 +295,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
         elif i < (privileged + packaged):
             specs.append({'name': appname,
                           'type': 'packaged',
+                          'status': versions[0],
                           'categories': [cat_slug],
                           'versions': versions,
                           'num_ratings': 5,
@@ -301,6 +303,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
         else:
             specs.append({'name': appname,
                           'type': 'hosted',
+                          'status': versions[0],
                           'categories': [cat_slug],
                           'num_ratings': 5,
                           'num_previews': 2})
