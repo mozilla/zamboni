@@ -10,6 +10,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from django.conf import settings
 
 import pydenticon
+import requests
 
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
@@ -255,30 +256,36 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     return app
 
 
-def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
     apps_data = generate_app_data(hosted + packaged + privileged)
-    apps = []
+    specs = []
     for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
-            app = generate_packaged_app(appname, 'privileged', [cat_slug],
-                                        versions=versions,
-                                        permissions=['camera', 'storage'])
+            specs.append({'name': appname,
+                          'type': 'privileged',
+                          'permissions': ['camera', 'storage'],
+                          'categories': [cat_slug],
+                          'versions': versions,
+                          'num_ratings': 5,
+                          'num_previews': 2})
         elif i < (privileged + packaged):
-            app = generate_packaged_app(appname, 'packaged', [cat_slug],
-                                        versions=versions)
+            specs.append({'name': appname,
+                          'type': 'packaged',
+                          'categories': [cat_slug],
+                          'versions': versions,
+                          'num_ratings': 5,
+                          'num_previews': 2})
         else:
-            app = generate_hosted_app(appname, cat_slug,
-                                      'fakedeveloper@example.com')
-        app.name = generate_localized_names(app.name, 2)
-        generate_icon(app)
-        generate_previews(app)
-        generate_ratings(app, 5)
-        addon_review_aggregates(app.pk)
-        apps.append(app)
-    return apps
+            specs.append({'name': appname,
+                          'type': 'hosted',
+                          'categories': [cat_slug],
+                          'num_ratings': 5,
+                          'num_previews': 2})
+    return generate_apps_from_specs(specs, None)
 
 
 def generate_apps_from_specs(specs, specdir):
+    apps = []
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
         if spec.get('preview_files'):
             spec['preview_files'] = [os.path.join(specdir, p)
@@ -290,20 +297,21 @@ def generate_apps_from_specs(specs, specdir):
                                                  spec['manifest_file'])
         spec['name'] = spec.get('name', appname)
         spec['categories'] = spec.get('categories', [cat_slug])
-        generate_app_from_spec(**spec)
+        apps.append(generate_app_from_spec(**spec))
+    return apps
 
 
-def generate_app_from_spec(name, categories, type, status, num_previews=1,
-                           num_ratings=1, num_locales=0, preview_files=(),
-                           **spec):
-    developer_name = spec.get('author', 'fakedeveloper@example.com')
+def generate_app_from_spec(name, categories, type, status='public',
+                           num_previews=1, num_ratings=1, num_locales=0,
+                           preview_files=(), description=None,
+                           author='fakedeveloper@example.com', **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
-        app = generate_hosted_app(name, categories, developer_name,
+        app = generate_hosted_app(name, categories, author,
                                   status=status, **spec)
     else:
         app = generate_packaged_app(
-            name, type, categories, developer_name,
+            name, type, categories, author,
             status=status, **spec)
     generate_icon(app)
     if not preview_files:
@@ -317,11 +325,16 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         resize_preview(f, p)
     generate_ratings(app, num_ratings)
     app.name = generate_localized_names(app.name, num_locales)
+    if not description:
+        description = requests.get('http://baconipsum.com/api/'
+                                   '?type=meat-and-filler&paras=2'
+                                   '&start-with-lorem=1').json()[0]
+    app.description = description
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
     app.save()
     addon_review_aggregates(app.pk)
-    u = create_user(developer_name)
+    u = create_user(author)
     AddonUser.objects.create(user=u, addon=app)
     return app
