@@ -7,6 +7,9 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
+from mkt.search.filters import (PublicSearchFormFilter, RegionFilter,
+                                SearchQueryFilter)
+from mkt.search.forms import SimpleSearchForm
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
 from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
@@ -29,9 +32,10 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = []  # FIXME: SearchQueryFilter and friends.
+    filter_backends = [PublicSearchFormFilter, RegionFilter, SearchQueryFilter]
     serializer_class = ESWebsiteSerializer
     paginator_class = ESPaginator
+    form_class = SimpleSearchForm
 
     def get_queryset(self):
         return WebsiteIndexer.search()

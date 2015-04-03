@@ -47,15 +47,22 @@ class SearchQueryFilter(BaseFilterBackend):
             rules.append(
                 (query.Fuzzy, {'value': q, 'boost': 2, 'prefix_length': 1}))
 
+        # Apply rules to search on few base fields. Some might not be present
+        # in every document type / indexes.
         for k, v in rules:
-            for field in ('name', 'app_slug', 'author'):
+            for field in ('name', 'title', 'short_title',
+                          'app_slug', 'author', 'url'):
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's
-        # do a term query on `name.raw` for an exact match against the app
+        # do a term query on `name.raw` for an exact match against the item
         # name and give it a good boost since this is likely what the user
         # wants.
+        # For websites, we do the same on title.raw. It won't work perfectly
+        # on some websites that use a description of the site in the title but
+        # it's better than nothing.
         should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
+        should.append(query.Term(**{'title.raw': {'value': q, 'boost': 10}}))
 
         if analyzer:
             should.append(
@@ -106,7 +113,6 @@ class SearchFormFilter(BaseFilterBackend):
     }
 
     def filter_queryset(self, request, queryset, view):
-
         form = view.form_class(request.GET)
         if not form.is_valid():
             raise form_errors(form)

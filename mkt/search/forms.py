@@ -73,18 +73,7 @@ SEARCH_PLACEHOLDERS = {'apps': _lazy(u'Search for apps')}
 
 
 class SimpleSearchForm(forms.Form):
-    """Powers the search box on every page."""
-    q = forms.CharField(required=False)
-    cat = forms.CharField(required=False, widget=forms.HiddenInput)
-
-    def clean_cat(self):
-        return self.data.get('cat', 'all')
-
-    def placeholder(self, txt=None):
-        return txt or SEARCH_PLACEHOLDERS['apps']
-
-
-class ApiSearchForm(forms.Form):
+    """Basic search form with fields shared by Websites and Webapps"""
     q = forms.CharField(
         required=False, label=_lazy(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
@@ -95,6 +84,43 @@ class ApiSearchForm(forms.Form):
         required=False, choices=DEV_CHOICES, label=_lazy(u'Device'))
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
+    sort = forms.MultipleChoiceField(required=False,
+                                     choices=LISTING_SORT_CHOICES)
+    limit = forms.IntegerField(required=False, widget=forms.HiddenInput())
+
+    def clean_cat(self):
+        # If request category is a tarako one, get the corresponding list of
+        # slugs, otherwise just build a list with the slug requested.
+        if self.cleaned_data['cat']:
+            return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
+                                                 [self.cleaned_data['cat']])
+
+    def clean_device_and_dev(self):
+        device = self.cleaned_data.pop('dev', None)
+        device_type = self.cleaned_data.pop('device', None)
+        # For android, we need to know the device type to determine the real
+        # device we are going to filter with, because we distinguish between
+        # mobile and tablets.
+        if device == 'android' and device_type:
+            device = '%s-%s' % (device, device_type)
+        if device in DEVICE_LOOKUP:
+            self.cleaned_data['device'] = DEVICE_LOOKUP.get(device).id
+        elif device:
+            raise forms.ValidationError('Invalid device or device type.')
+
+    def clean(self):
+        self.clean_device_and_dev()
+
+        # Convert empty things to `None`s.
+        for k, v in self.cleaned_data.items():
+            # We want explicit `False` to stay the same.
+            if v is not False and not v:
+                self.cleaned_data[k] = None
+
+        return self.cleaned_data
+
+
+class ApiSearchForm(SimpleSearchForm):
     premium_types = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(), required=False,
         label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)
@@ -112,10 +138,6 @@ class ApiSearchForm(forms.Form):
     languages = forms.CharField(required=False,
                                 label=_lazy('Supported languages'))
     author = forms.CharField(required=False, label=_lazy('Author name'))
-
-    sort = forms.MultipleChoiceField(required=False,
-                                     choices=LISTING_SORT_CHOICES)
-    limit = forms.IntegerField(required=False, widget=forms.HiddenInput())
     tag = forms.ChoiceField(required=False, label=_lazy(u'Tags'),
                             choices=TAG_CHOICES)
 
@@ -125,13 +147,6 @@ class ApiSearchForm(forms.Form):
             'type': 'app',
             'status': 'pending',
         })
-
-    def clean_cat(self):
-        # If request category is a tarako one, get the corresponding list of
-        # slugs, otherwise just build a list with the slug requested.
-        if self.cleaned_data['cat']:
-            return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
-                                                 [self.cleaned_data['cat']])
 
     def clean_premium_types(self):
         """After cleaned, return a list of ints for the constants."""
@@ -164,31 +179,7 @@ class ApiSearchForm(forms.Form):
         if languages:
             return [l.strip() for l in languages.split(',')]
 
-    def clean_device_and_dev(self):
-        device = self.cleaned_data.pop('dev', None)
-        device_type = self.cleaned_data.pop('device', None)
-        # For android, we need to know the device type to determine the real
-        # device we are going to filter with, because we distinguish between
-        # mobile and tablets.
-        if device == 'android' and device_type:
-            device = '%s-%s' % (device, device_type)
-        if device in DEVICE_LOOKUP:
-            self.cleaned_data['device'] = DEVICE_LOOKUP.get(device).id
-        elif device:
-            raise forms.ValidationError('Invalid device or device type.')
-
     def clean_author(self):
         author = self.cleaned_data.get('author')
         if author:
             return author.lower()
-
-    def clean(self):
-        self.clean_device_and_dev()
-
-        # Convert empty things to `None`s.
-        for k, v in self.cleaned_data.items():
-            # We want explicit `False` to stay the same.
-            if v is not False and not v:
-                self.cleaned_data[k] = None
-
-        return self.cleaned_data

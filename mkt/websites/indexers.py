@@ -43,9 +43,18 @@ class WebsiteIndexer(BaseIndexer):
                     'region_exclusions': {'type': 'short'},
                     'short_title': {'type': 'string',
                                     'analyzer': 'default_icu'},
-                    'title': {'type': 'string',
-                              'analyzer': 'default_icu',
-                              'position_offset_gap': 100},
+                    'title': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'position_offset_gap': 100,
+                        # For exact matches. Referenced as `title.raw`.
+                        'fields': {
+                            'raw': cls.string_not_analyzed(
+                                position_offset_gap=100)
+                        },
+                    },
+                    # Title for sorting.
+                    'title_sort': cls.string_not_analyzed(doc_values=True),
                     # FIXME: Add custom analyzer for url, that strips http,
                     # https, maybe also www. and any .tld ?
                     'url': {'type': 'string', 'analyzer': 'simple'},
@@ -53,6 +62,9 @@ class WebsiteIndexer(BaseIndexer):
                 }
             }
         }
+
+        # Attach boost field, because we are going to need search by relevancy.
+        cls.attach_boost_mapping(mapping)
 
         # Add extra mapping for translated fields, containing the "raw"
         # translations.
@@ -77,9 +89,10 @@ class WebsiteIndexer(BaseIndexer):
                  'last_updated', 'modified')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        doc['id'] = obj.pk
+        doc['boost'] = obj.get_boost()
         doc['category'] = obj.categories or []
         doc['device'] = obj.devices or []
+        doc['title_sort'] = unicode(obj.title).lower()
         doc['region_exclusions'] = obj.region_exclusions or []
 
         # Handle localized fields. This adds both the field used for search and
