@@ -56,7 +56,8 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         categories = ['books', 'music']
         app = generate_app_from_spec(
             appname, categories, 'hosted', num_previews=3,
-            num_ratings=4, num_locales=1, status='public')
+            num_ratings=4, num_locales=1, status='public',
+            description='test app')
         eq_(app.name, appname)
         eq_(app.categories, categories)
         eq_(app.status, 4)
@@ -70,7 +71,8 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         app = generate_app_from_spec(
             appname, categories, 'packaged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
-            versions=['public', 'disabled', 'public'])
+            versions=['public', 'disabled', 'public'],
+            description='test app')
         eq_(app.name, appname)
         eq_(app.categories, categories)
         eq_(app.status, 4)
@@ -86,7 +88,8 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         app = generate_app_from_spec(
             appname, categories, 'privileged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
-            permissions=['storage'], versions=['public', 'disabled', 'public'])
+            permissions=['storage'], versions=['public', 'disabled', 'public'],
+            description='test app')
         eq_(app.name, appname)
         eq_(app.categories, categories)
         eq_(app.status, 4)
