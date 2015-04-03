@@ -77,11 +77,11 @@ deploy_release: check_deploy_env
 		--data-urlencode json='{"parameter": [{"name":"DeployRef", "value":"$(RELEASE_DATE)"}]}'
 
 check_deploy_env:
-	ifndef JENKINS_USERNAME
-		$(error JENKINS_USERNAME ENV variable not set)
-	endif
-	ifndef JENKINS_API_TOKEN
-		$(error JENKINS_API_TOKEN ENV variable not set)
-	endif
+ifndef JENKINS_USERNAME
+	$(error JENKINS_USERNAME ENV variable not set)
+endif
+ifndef JENKINS_API_TOKEN
+	$(error JENKINS_API_TOKEN ENV variable not set)
+endif
 
 release: tag_release deploy_release
