@@ -10,12 +10,16 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from django.conf import settings
 
 import pydenticon
+import requests
 
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.developers.tasks import resize_preview, save_icon
+from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
 from mkt.site.utils import app_factory, slugify, version_factory
@@ -109,7 +113,7 @@ def generate_ratings(app, num):
             email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
             display_name=email)
         Review.objects.create(
-            addon=app, user=user, rating=random.randrange(0, 6),
+            addon=app, user=user, rating=random.randrange(1, 6),
             title="Test Review " + str(n), body="review text")
 
 
@@ -255,30 +259,56 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     return app
 
 
-def generate_apps(hosted=0, packaged=0, privileged=0, versions=(4,)):
+def get_or_create_payment_account():
+    email = 'fakedeveloper@example.com'
+    user, _ = UserProfile.objects.get_or_create(
+        email=email,
+        source=mkt.LOGIN_SOURCE_UNKNOWN,
+        display_name=email)
+    seller, _ = SolitudeSeller.objects.get_or_create(user=user)
+    acct, _ = PaymentAccount.objects.get_or_create(
+        user=user,
+        solitude_seller=seller,
+        uri='/bango/package/123',
+        name='fake data payment account',
+        agreed_tos=True)
+    return acct
+
+
+def get_or_create_price(tier):
+    return Price.objects.get_or_create(price=tier, active=True)[0]
+
+
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
     apps_data = generate_app_data(hosted + packaged + privileged)
-    apps = []
+    specs = []
     for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
-            app = generate_packaged_app(appname, 'privileged', [cat_slug],
-                                        versions=versions,
-                                        permissions=['camera', 'storage'])
+            specs.append({'name': appname,
+                          'type': 'privileged',
+                          'permissions': ['camera', 'storage'],
+                          'categories': [cat_slug],
+                          'versions': versions,
+                          'num_ratings': 5,
+                          'num_previews': 2})
         elif i < (privileged + packaged):
-            app = generate_packaged_app(appname, 'packaged', [cat_slug],
-                                        versions=versions)
+            specs.append({'name': appname,
+                          'type': 'packaged',
+                          'categories': [cat_slug],
+                          'versions': versions,
+                          'num_ratings': 5,
+                          'num_previews': 2})
         else:
-            app = generate_hosted_app(appname, cat_slug,
-                                      'fakedeveloper@example.com')
-        app.name = generate_localized_names(app.name, 2)
-        generate_icon(app)
-        generate_previews(app)
-        generate_ratings(app, 5)
-        addon_review_aggregates(app.pk)
-        apps.append(app)
-    return apps
+            specs.append({'name': appname,
+                          'type': 'hosted',
+                          'categories': [cat_slug],
+                          'num_ratings': 5,
+                          'num_previews': 2})
+    return generate_apps_from_specs(specs, None)
 
 
 def generate_apps_from_specs(specs, specdir):
+    apps = []
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
         if spec.get('preview_files'):
             spec['preview_files'] = [os.path.join(specdir, p)
@@ -290,20 +320,22 @@ def generate_apps_from_specs(specs, specdir):
                                                  spec['manifest_file'])
         spec['name'] = spec.get('name', appname)
         spec['categories'] = spec.get('categories', [cat_slug])
-        generate_app_from_spec(**spec)
+        apps.append(generate_app_from_spec(**spec))
+    return apps
+
 
 
 def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            num_ratings=1, num_locales=0, preview_files=(),
-                           **spec):
-    developer_name = spec.get('author', 'fakedeveloper@example.com')
+                           author='fakedeveloper@example.com',
+                           premium_type='free', description=None, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
-        app = generate_hosted_app(name, categories, developer_name,
+        app = generate_hosted_app(name, categories, author,
                                   status=status, **spec)
     else:
         app = generate_packaged_app(
-            name, type, categories, developer_name,
+            name, type, categories, author,
             status=status, **spec)
     generate_icon(app)
     if not preview_files:
@@ -317,11 +349,26 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         resize_preview(f, p)
     generate_ratings(app, num_ratings)
     app.name = generate_localized_names(app.name, num_locales)
+    if not description:
+        description = requests.get('http://baconipsum.com/api/'
+                                   '?type=meat-and-filler&paras=2'
+                                   '&start-with-lorem=1').json()[0]
+    app.description = description
+    premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
+    app.premium_type = premium_type
+    if premium_type != mkt.ADDON_FREE:
+        acct = get_or_create_payment_account()
+        AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
+                                           account_uri=acct.uri,
+                                           product_uri=app.app_slug)
+        price = get_or_create_price(spec.get('price', '0.99'))
+        AddonPremium.objects.create(addon=app, price=price)
+        app.solitude_public_id = 'fake'
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
     app.save()
     addon_review_aggregates(app.pk)
-    u = create_user(developer_name)
+    u = create_user(author)
     AddonUser.objects.create(user=u, addon=app)
     return app
