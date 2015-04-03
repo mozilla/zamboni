@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-03 11:22+0000\n"
+"PO-Revision-Date: 2015-04-03 11:24+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428060136.0\n"
+"X-POOTLE-MTIME: 1428060294.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -119,7 +119,7 @@ msgstr "Het manifest kon niet op de opgegeven locatie worden gevonden."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "App-host kan niet worden bereikt."
+msgstr "App-host kon niet worden bereikt."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
@@ -245,7 +245,7 @@ msgstr "Status met succes gewijzigd naar ‘{0}’"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr "Kan status niet wijzigen naar ‘{0}’"
+msgstr "Kon status niet wijzigen naar ‘{0}’"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -452,7 +452,7 @@ msgstr[1] "{0} waarschuwingen"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr "De validatietaak is niet voltooid of voltooid met fouten"
+msgstr "Validatietaak kon niet worden voltooid of is voltooid met fouten"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
