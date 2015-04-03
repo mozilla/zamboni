@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-02-05 14:06+0000\n"
+"PO-Revision-Date: 2015-04-03 09:51+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1423145204.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1428054681.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -241,11 +241,11 @@ msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr "Status met succes gewijzigd naar “{0}”"
+msgstr "Status met succes gewijzigd naar ‘{0}’"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr "Kan status niet wijzigen in “{0}”"
+msgstr "Kan status niet wijzigen naar ‘{0}’"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -350,11 +350,11 @@ msgid_plural ""
 "following app. Applications without a payment account will no longer be "
 "available for sale."
 msgstr[0] ""
-"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
+"Door de betalingsaccount ‘{0}’ te verwijderen wordt de betalingsaccount uit "
 "de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet "
 "meer beschikbaar voor verkoop."
 msgstr[1] ""
-"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
+"Door de betalingsaccount ‘{0}’ te verwijderen wordt de betalingsaccount uit "
 "de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet "
 "meer beschikbaar voor verkoop."
 

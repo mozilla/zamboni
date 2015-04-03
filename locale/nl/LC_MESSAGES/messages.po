@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-03 08:55+0000\n"
+"PO-Revision-Date: 2015-04-03 10:21+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1428051303.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1428056515.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2248,7 +2248,8 @@ msgstr "U kunt {region} niet selecteren."
 #: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
-"Alle teamleden moeten de ontwikkelaarsovereenkomst lezen en ermee instemmen."
+"Alle teamleden moeten de ontwikkelaarsovereenkomst hebben gelezen en ermee "
+"akkoord zijn gegaan."
 
 #: mkt/developers/forms.py:154
 msgid "Must have at least one owner."
@@ -2365,13 +2366,13 @@ msgstr ""
 #: mkt/submit/forms.py:373
 #: mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
-msgstr "Deze code wordt al gebruikt. Kies een andere."
+msgstr "Deze slug wordt al gebruikt. Kies een andere."
 
 #: mkt/developers/forms.py:586
 #: mkt/submit/forms.py:377
 #: mkt/webapps/forms.py:26
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "De code kan niet “%s” zijn. Kies een andere."
+msgstr "De slug kan niet ‘%s’ zijn. Kies een andere."
 
 #: mkt/developers/forms.py:614
 msgid "Manifest URL changed from {before_url} to {after_url}"
@@ -2461,7 +2462,7 @@ msgstr[1] "U kunt slechts {0} categorieën gebruiken."
 
 #: mkt/developers/forms.py:1064
 msgid "Agree"
-msgstr "Instemmen"
+msgstr "Akkoord"
 
 #: mkt/developers/forms.py:1081
 msgid "Please enter a valid email address."
@@ -2538,8 +2539,8 @@ msgid ""
 "that this document is not a commitment to pre-load my app."
 msgstr ""
 "Ik verzoek u mijn app als kandidaat voor vooraf laden op een Firefox OS-"
-"apparaat te overwegen. Ik stem in met de hierboven gestelde voorwaarden. Ik "
-"begrijp dat dit document geen verplichting om mijn app vooraf te laden "
+"apparaat te overwegen. Ik ga akkoord met de hierboven gestelde voorwaarden. "
+"Ik begrijp dat dit document geen verplichting tot vooraf laden van mijn app "
 "inhoudt."
 
 #: mkt/developers/forms.py:1207
@@ -2562,7 +2563,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1260
 msgid "Please enter a valid submission ID."
-msgstr "Voer een geldig indieningskenmerk in."
+msgstr "Voer een geldige indienings-ID in."
 
 #: mkt/developers/forms.py:1276
 msgid ""
@@ -2575,7 +2576,7 @@ msgstr ""
 #: mkt/developers/forms.py:1311
 #: mkt/developers/forms.py:1323
 msgid "Invalid submission ID or security code."
-msgstr "Ongeldig indieningskenmerk of beveiligingscode."
+msgstr "Ongeldige indienings-ID of beveiligingscode."
 
 #: mkt/developers/forms_payments.py:59
 msgid "App Price"
@@ -2753,11 +2754,11 @@ msgstr "E-mailadres"
 
 #: mkt/developers/forms_payments.py:640
 msgid "Service ID"
-msgstr "Dienstkenmerk"
+msgstr "Service-ID"
 
 #: mkt/developers/forms_payments.py:647
 msgid "Service ID is not valid"
-msgstr "Dienstkenmerk niet geldig"
+msgstr "Service-ID is niet geldig"
 
 #: mkt/developers/forms_payments.py:661
 msgid "No payment account set up for that app"
@@ -2807,8 +2808,8 @@ msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x"
 "-web-app-manifest+json\". See %s for more information."
 msgstr ""
-"Manifests moeten worden aangeleverd met de HTTP-header “Content-Type: "
-"application/x-web-app-manifest+json”. Zie %s voor meer informatie."
+"Manifests moeten worden aangeleverd met de HTTP-header ‘Content-Type: "
+"application/x-web-app-manifest+json’. Zie %s voor meer informatie."
 
 #: mkt/developers/tasks.py:444
 msgid "Your manifest must be less than %s bytes."
@@ -2855,7 +2856,7 @@ msgstr "Afbeeldingen moeten van het type PNG of JPG zijn."
 
 #: mkt/developers/utils.py:77
 msgid "Icons cannot be animated."
-msgstr "Pictogrammen mogen niet bewegend zijn."
+msgstr "Pictogrammen kunnen niet bewegend zijn."
 
 #: mkt/developers/utils.py:79
 msgid "Images cannot be animated."
@@ -2946,7 +2947,7 @@ msgstr "Versie met succes actief gemaakt."
 
 #: mkt/developers/views.py:523
 msgid "Version \"{0}\" deleted."
-msgstr "Versie “{0}” verwijderd."
+msgstr "Versie ‘{0}’ verwijderd."
 
 #: mkt/developers/views.py:657
 msgid "There was an error with the submission."
@@ -3252,7 +3253,8 @@ msgid ""
 "and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
 "De servicevoorwaarden zijn gewijzigd sinds de laatste keer dat u ermee "
-"instemde. Lees en accepteer de <a href=\"%(url)s\">nieuwe voorwaarden</a>."
+"akkoord bent gegaan. Lees en accepteer de <a href=\"%(url)s\">nieuwe "
+"voorwaarden</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125
 #: templates/base.html:131
@@ -3284,7 +3286,7 @@ msgstr "Aanvullend Marketplace-beleid"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr "U hebt al ingestemd met deze ontwikkelaarsovereenkomst."
+msgstr "U bent al akkoord gegaan met deze ontwikkelaarsovereenkomst."
 
 #: mkt/developers/templates/developers/testing.html:8
 #: mkt/developers/templates/developers/validate_app.html:9
@@ -4428,7 +4430,7 @@ msgid ""
 "If your app works without an Internet connection then we will list that your "
 "app \"Works Offline.\""
 msgstr ""
-"Als uw app zonder internetverbinding werkt, vermelden we “Werkt offline” bij "
+"Als uw app zonder internetverbinding werkt, vermelden we ’Werkt offline’ bij "
 "uw app."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
@@ -4818,7 +4820,7 @@ msgid ""
 "Terms of Service agreement</a>."
 msgstr ""
 "Door gebruik te maken van het certificeringhulpmiddel voor IARC-"
-"beoordelingen geeft u aan dat u instemt met hun <a href=\"%"
+"beoordelingen geeft u aan dat u akkoord gaat met hun <a href=\"%"
 "(privacy_url)s\">privacybeleid</a> en <a href=\"%"
 "(tos_url)s\">servicevoorwaarden</a>."
 
@@ -4858,15 +4860,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr "Indieningskenmerk"
+msgstr "Indienings-ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid ""
 "The submission ID can be found on the certificate sent to you. It is a "
 "numeric value like &quot;14&quot;."
 msgstr ""
-"Het indieningskenmerk kan op het naar u verzonden certificaat worden "
-"teruggevonden. Het is een numerieke waarde zoals “14”."
+"De indienings-ID kan op het naar u verzonden certificaat worden "
+"teruggevonden. Het is een numerieke waarde, zoals ‘14’."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -4878,7 +4880,7 @@ msgid ""
 "of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 "De beveiligingscode kan op het naar u verzonden certificaat worden "
-"teruggevonden. Het is een mengeling van letters en cijfers zoals “AB12CD3”."
+"teruggevonden. Het is een mengeling van letters en cijfers, zoals ‘AB12CD3’."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
@@ -5135,7 +5137,7 @@ msgstr "Prijspunt"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Product ID"
-msgstr "Productkenmerk"
+msgstr "Product-ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:71
 msgid "Add a product"
@@ -5266,8 +5268,8 @@ msgid ""
 "As \"Rest of World\" is selected your app will be available for purchase in "
 "all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
-"Aangezien “Rest van de wereld” is geselecteerd, zal uw app in alle "
-"ingeschakelde \"<a href=\"#regions-other\">Overige regio’s</a>\" voor aankoop "
+"Aangezien ‘Rest van de wereld’ is geselecteerd, zal uw app in alle "
+"ingeschakelde ‘<a href=\"#regions-other\">Overige regio’s</a>’ voor aankoop "
 "beschikbaar zijn."
 
 #: mkt/developers/templates/developers/payments/premium.html:256
@@ -5451,7 +5453,7 @@ msgid ""
 "create an account name and your Boku service id below."
 msgstr ""
 "Hebt u zich aangemeld voor een Boku-account en is uw account goedgekeurd? "
-"Maak dan hieronder een accountnaam en uw Boku-servicekenmerk aan."
+"Maak dan hieronder een accountnaam en uw Boku-service-ID aan."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
@@ -5462,9 +5464,8 @@ msgid ""
 "Alpha-numeric id listed under Service Name on Boku website. Learn more on "
 "the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
-"Alfanumeriek kenmerk weergegeven onder Servicenaam op de Boku-website. Lees "
-"meer op de <a href=\"%(boku_docs_url)s\" target=\"_blank\">Boku-pagina op "
-"MDN</a>."
+"Alfanumerieke ID vermeld onder Servicenaam op de Boku-website. Lees meer op "
+"de <a href=\"%(boku_docs_url)s\" target=\"_blank\">Boku-pagina op MDN</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
@@ -5546,7 +5547,7 @@ msgid ""
 "point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
 "(Afhankelijk van beschikbare betalingen in die regio voor het geselecteerde "
-"prijspunt of geselecteerd zijn van “Rest van de wereld” als betalingsoptie)."
+"prijspunt of geselecteerd zijn van ‘Rest van de wereld’ als betalingsoptie)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -6020,9 +6021,9 @@ msgid ""
 "web site and promotional materials to point to your products on the Firefox "
 "Marketplace."
 msgstr ""
-"“Verkrijgbaar in de Firefox Marketplace” zijn badges die u kunt gebruiken op "
-"uw website en in promotiematerialen die verwijzen naar uw producten op de "
-"Firefox Marketplace."
+"‘Verkrijgbaar in de Firefox Marketplace’ zijn badges die u kunt gebruiken op "
+"uw website en in promotiematerialen die naar uw producten op de Firefox "
+"Marketplace verwijzen."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -6039,7 +6040,7 @@ msgid ""
 "equal or greater size"
 msgstr ""
 "Als deze naast logo’s voor andere marktplaatsen wordt gebruikt "
-"(“Verkrijgbaar op Google Play”, “Downloaden in de App Store”), dient de "
+"(‘Verkrijgbaar op Google Play’, ‘Downloaden in de App Store’), dient de "
 "Firefox Marketplace-badge even groot of groter te zijn"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
@@ -6191,7 +6192,7 @@ msgid ""
 "The file \"manifest.webapp\" was not found at the root of the packaged app "
 "archive."
 msgstr ""
-"Het bestand “manifest.webapp” is niet aangetroffen in de root van het "
+"Het bestand ‘manifest.webapp’ is niet gevonden in de hoofdmap van het "
 "verpakte app-archiefbestand."
 
 #: mkt/files/utils.py:97
@@ -6211,7 +6212,7 @@ msgid ""
 "The \"langpack\" role is invalid for Web Apps. Please submit this app as a "
 "language pack instead."
 msgstr ""
-"De “langpack”-rol is niet geldig voor webapps. Dien deze app in als "
+"De ‘langpack’-rol is niet geldig voor webapps. Dien deze app in als "
 "taalpakket."
 
 #: mkt/files/utils.py:120
@@ -6353,7 +6354,7 @@ msgstr "Productlogo moet een afbeelding van 64x64 zijn. Controleer de URL."
 
 #: mkt/langpacks/utils.py:23
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr "Uw taalpakket dient “role”: “langpack” te bevatten."
+msgstr "Uw taalpakket dient ‘role’: ‘langpack’ te bevatten."
 
 #: mkt/langpacks/utils.py:28
 msgid ""
@@ -7328,7 +7329,7 @@ msgstr "Door beoordelaar gewijzigde vereisten: {0}"
 
 #: mkt/reviewers/views.py:360
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr "“{0}” met succes verwerkt (+{1} punten, totaal {2})."
+msgstr "‘{0}’ met succes verwerkt (+{1} punten, totaal {2})."
 
 #: mkt/reviewers/views.py:362
 msgid "Review successfully processed."
@@ -8625,8 +8626,8 @@ msgstr[1] "Ongeldige labels: {0}"
 #: mkt/site/utils.py:715
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "“{0}” is een gereserveerd label en mag niet worden gebruikt."
-msgstr[1] "“{0}” zijn gereserveerde labels en mogen niet worden gebruikt."
+msgstr[0] "‘{0}’ is een gereserveerd label en kan niet worden gebruikt."
+msgstr[1] "‘{0}’ zijn gereserveerde labels en kunnen niet worden gebruikt."
 
 #: mkt/site/utils.py:723
 msgid "You have {0} too many tags."
@@ -8754,7 +8755,7 @@ msgstr "Versie %s bestaat al."
 
 #: mkt/submit/forms.py:201
 msgid "Changes to \"origin\" are not allowed."
-msgstr "Wijzigingen aan “bron” zijn niet toegestaan."
+msgstr "Wijzigingen aan ‘bron’ zijn niet toegestaan."
 
 #: mkt/submit/forms.py:224
 msgid "User submitting validation does not match."
@@ -8910,11 +8911,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr "Klaar!"
+msgstr "Voltooid!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
-msgstr "Succes! Wat gebeurt er nu?"
+msgstr "Geslaagd! Wat gebeurt er nu?"
 
 #: mkt/submit/templates/submit/done.html:18
 msgid ""
@@ -9033,9 +9034,9 @@ msgid ""
 "a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages "
 "and in search for others to enjoy."
 msgstr ""
-"Als uw app is beoordeeld, dient u handmatig uw app vanaf <a href=\"%"
-"(url)s\">Status beheren</a> te publiceren. De app verschijnt dan in lijsten "
-"en zoekresultaten, zodat anderen er plezier aan kunnen beleven."
+"Als uw app is beoordeeld, zult u handmatig uw app vanaf <a href=\"%"
+"(url)s\">Status beheren</a> moeten publiceren. De app verschijnt dan in "
+"lijsten en zoekresultaten, zodat anderen er plezier aan kunnen beleven."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid ""
@@ -9350,7 +9351,7 @@ msgstr "nominatiedatum {region}"
 
 #: mkt/webapps/tasks.py:144
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr "Probleem met uw app “{app}” op de Firefox Marketplace"
+msgstr "Probleem met uw app ‘{app}’ op de Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
