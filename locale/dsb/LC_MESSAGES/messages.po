@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-03 14:45+0000\n"
+"PO-Revision-Date: 2015-04-05 11:12+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428072319.0\n"
+"X-POOTLE-MTIME: 1428232336.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4961,38 +4961,55 @@ msgstr "Woglědajśo se je!"
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
 msgstr ""
+"Wótzamkniśoo partnarstwo z Mozilla, aby swóje nałoženja pśez wótwórjone "
+"wikowanišćo do wušej 450 milionow wužywarjow rozdźělił"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\" class=\"button\">Něnto zapódaś</a> <span>abo</span> "
+"<a href=\"%(api_url)s\" class=\"button api\">Pśez API zapódaś</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
 msgstr ""
+"Z mócneju weblatformu, wótwórjonym wikowanišćom a partnarjami ako wy, smy "
+"pśigótowane, pśiducej 2 miliarźe wužywarjow online pówitaś"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
 msgstr ""
+"<strong>Web jo ta platforma</strong> &ndash; pišćo swójo HTML5-nałoženje "
+"jaden raz a rozdźělśo jo pśez ceły web."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
 msgstr ""
+"<strong>Bźezpósrědne płaśenja</strong> &ndash; z někotarymi płaśeńskimi "
+"modelami a wótlicenim pśez póbitowarja dodawamy wašomu nałoženjeju płaśenja "
+"bźez problemow."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
 msgstr ""
+"<strong>Wjelicki publikum</strong> &ndash; pśez 450 milionow wužywarjow su "
+"pla Firefox doma, połožćo źinsa swójo nałoženje do jich rukow."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
-msgstr ""
+msgstr "Cyńśo sobu pśi nejwětšem a lěpšem"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
 msgstr ""
+"Nejwěcej woblubowane marki swěta a wšykne waše nejlubše nałoženja póstajaju "
+"jich dožywjenje na Wikowanišću Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
 msgstr ""
+"Napšawdna platformy a rědy pśesegujuca, njeproprietarna domownja za nejlěpše "
+"globalne a lokalne HTML5-nałoženja swěta."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5033,38 +5050,46 @@ msgstr "Znamuška, chórgoje a symbole"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"\"K odstaśeju na Wikowanišću Firefox\" su znamuška, kótarež móžośo na swójom "
+"websedle a wabjeńskich materialijach wužywaś, aby na swóje produkty na "
+"Wikowanišću Firefox dopomnjeł."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Směrnice"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "Njesmějośo znamuško změniś"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Gaž wužywa pódla logow za druge wikowanišća (\"Get it on Google Play\", "
+"\"Download on the App Store\"), znamuško Wikowanišća Firefox by měło jadnak "
+"wjelike abo wětše bys."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"Znamuško by měło na bok drobnostkow nałoženja na Wikowanišću Firefox "
+"pokazowaś<br> Na pśikład: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Oranžowy"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Šery"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Carny"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
@@ -5078,35 +5103,38 @@ msgstr "Ceste pšašanja"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr ""
+msgstr "Co by ja měł wěźeś, nježli až napórajom nałoženje?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr ""
+msgstr "Kak mógu swójo nałoženje do Wikowanišća Firefox nagraś?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr ""
+msgstr "Trjebam pomoc za manifest nałoženja."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr ""
+msgstr "Kak wuwijam instalěrujobne nałoženje?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "Kak funkcioněruju nałoženja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Kak zastojm danki swójich pśedankow?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "Maśo hyšći dalšne pšašanja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
+"Mjaztym až na tom źěłamy, ceły rěd kanalow napóraś, kótarež pomagaju wam pśi "
+"rozwězowanju problemow, možośo se k StackOverflow woglědaś, aby wšykne "
+"swóje pšašanja k wuwiśeju webnałoženjow wujasnił."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
