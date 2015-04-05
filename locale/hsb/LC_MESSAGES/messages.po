@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-05 11:13+0000\n"
+"PO-Revision-Date: 2015-04-05 22:54+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428232383.0\n"
+"X-POOTLE-MTIME: 1428274461.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5451,7 +5451,7 @@ msgstr "Informacije płaćenskeho poskićowarja"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr "Transakciski status njeda so tuchwilu wowtwołać."
+msgstr "Transakciski status njeda so tuchwilu wotwołać."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
@@ -5499,7 +5499,7 @@ msgstr "Kontowe aktualizacije"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
-msgstr "Kupne wuslědki za "
+msgstr "Kupne wuslědki za"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
