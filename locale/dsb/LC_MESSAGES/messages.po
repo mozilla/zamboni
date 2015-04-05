@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-05 11:12+0000\n"
+"PO-Revision-Date: 2015-04-05 11:36+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428232336.0\n"
+"X-POOTLE-MTIME: 1428233768.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5138,76 +5138,84 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
 msgstr ""
+"Jolic cośo se z wuwijarjami do zwiska stupiś, pśizamkniśo se našym žywym "
+"zgromaźeństwam w tych rozpósłańskich lisćinach:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
-msgstr ""
+msgstr "Webnałoženja Mozilla (engelski)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr ""
+msgstr "Webnałoženja Mozilla (brazilska portugišćina)"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "Njepłaśiwy URL %(url)s"
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Zmólka pśi ześěgowanju wobraza wót %(url)s"
 
 #: mkt/feed/fields.py:199
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Wobraz wót %(url)s njedajo se parsowaś"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Wersija njedajo se ze sobu pśirownaś"
 
 #: mkt/files/helpers.py:152
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Toś ta dastaja wěcej njeeksistěrujo."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Datajowa wjelikosć pśekšacujo limit {0}."
 
 #: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemy pśi dekoděrowanju {0}."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
+"Toś ta dataja njedajo se online woglědaś. Pšosym ześěgniśo dataju, aby se "
+"wopśimjeśe woglědał."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
-msgstr ""
+msgstr "Toś ta dataja jo zarědnik."
 
 #: mkt/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Pśi psístup na dataju %s jo zmólka nastała. %s."
 
 #: mkt/files/tasks.py:31
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Pśi pśistupje na dataju %s jo zmólka nastała."
 
 #: mkt/files/utils.py:75
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr ""
+"Dataja \"manifest.webapp\" njedajo se w kórjenjowem zarědniku archiwa "
+"zapakowanych nałoženjow namakaś."
 
 #: mkt/files/utils.py:97
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Manifestowa dataja webnałoženja njedajo se dekoděrowaś. Pśekontrolěrujśo, "
+"lěc waša manifestowa dataja wopśimujo  nic-UTF-8-znamuška."
 
 #: mkt/files/utils.py:105
 msgid "The webapp manifest is not valid JSON."
-msgstr ""
+msgstr "Manifest webnałoženja njejo płaśiwy JSON."
 
 #: mkt/files/utils.py:112
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
@@ -5251,39 +5259,39 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Datajowe pśirownanje :: Rědy za pśeglědowarje"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Datajowy wobglědowak :: Rědy za pśeglědowarje"
 
 #: mkt/files/templates/fileviewer/viewer.html:15
 msgid "Validation failed:"
-msgstr ""
+msgstr "Pśeglědanje njejo se raźiło:"
 
 #: mkt/files/templates/fileviewer/viewer.html:21
 msgid "Go"
-msgstr ""
+msgstr "Start"
 
 #: mkt/files/templates/fileviewer/viewer.html:33
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "Nałoženje se přeźěłujo, pšosym cakajśo."
 
 #: mkt/files/templates/fileviewer/viewer.html:37
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Pśeglědowańske wuslědki se wótwołuju…"
 
 #: mkt/files/templates/fileviewer/viewer.html:45
 msgid "Files:"
-msgstr ""
+msgstr "Dataje:"
 
 #: mkt/files/templates/fileviewer/viewer.html:48
 msgid "Deleted files:"
-msgstr ""
+msgstr "Wulašowane dataje:"
 
 #: mkt/files/templates/fileviewer/viewer.html:66
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tabulatorowy wótstawk:"
 
 #: mkt/files/templates/fileviewer/viewer.html:72 mkt/files/templates/fileviewer/viewer.html:73
 msgid "Up file"
@@ -5323,39 +5331,47 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:121
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Žedne dataje w nagratej dataji"
 
 #: mkt/files/templates/fileviewer/viewer.html:127
 msgid "Fetching file."
-msgstr ""
+msgstr "Dataja se wótwołujo."
 
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
+"Produktowe logo musy wobraz z wjelikosću 64x64 byś. Pśekontrolěrujśo, lěc "
+"URL trjefi."
 
 #: mkt/langpacks/utils.py:23
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Waš rěcny pakśik by měł \"role\": \"langpack\" wopśimowaś."
 
 #: mkt/langpacks/utils.py:28
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Waš rěcny pakśik musy w objekśe \"languages-provided\" jadnu rěc wopśimowaś."
 
 #: mkt/langpacks/utils.py:33
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Waš rěcny pakśik wopśimujo pśewjele rěcow. Jano jadna rěc pódpěra se na "
+"pakśik."
 
 #: mkt/langpacks/utils.py:39
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Waš rěcny pakśik musy w objekśe \"languages-target\" jadnu rěc wopśimowaś."
 
 #: mkt/langpacks/utils.py:44
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Waš rěcny pakśik wopśimujo pśewjele celow. Jano jaden cel pódpěra se na "
+"pakśik."
 
 #: mkt/langpacks/utils.py:50
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Waš rěcny pakśik by měł wersiju wopśimowaś."
 
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
