@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-02 19:58+0000\n"
+"PO-Revision-Date: 2015-04-05 11:13+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428004733.0\n"
+"X-POOTLE-MTIME: 1428232383.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4461,7 +4461,7 @@ msgstr "Mjeno zregistrowaneho předewzaća abo wosoby."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr "Mjeno konto na Torhošću (njesćele so na Bango)."
+msgstr "Mjeno konta na Torhošću (njesćele so na Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4564,7 +4564,9 @@ msgstr "Waše nałoženje so we wěstych regionach hižo njenalistuje, dokelž t
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr "Waše nałoženje zwobraznja so na kóždym regionalnym Torhošću, kotrež so pozdźišo přidawa. "
+msgstr ""
+"Waše nałoženje zwobraznja so na kóždym regionalnym Torhošću, kotrež so "
+"pozdźišo přidawa."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
@@ -4682,15 +4684,20 @@ msgstr "Platforma za nałoženja Mozilla"
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
-msgstr "Wuwiwanje nałoženjow dawa wuwiwarjam połnu kontrolu nad wobsahom, funkcionalnosću a rozdźělenjom nałoženjow, inkluziwnje přistup k stam milionow wužiwarjow Firefox přez Torhošćo Firefox."
+msgstr ""
+"Wuwiwanje nałoženjow dawa wuwiwarjam połnu kontrolu nad wobsahom, "
+"funkcionalnosću a rozdźělenjom nałoženjow, inkluziwnje přistup na sta "
+"milionow wužiwarjow Firefox přez Torhošćo Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
-"Hdyž so wotewrjene webstandardy a API wuhotowane wot Mozilla wuužiwaja, hodźa so wulkotne nałoženske dožiwjenja přez rozdźělne platformy, graty a dźěłowe systemy dodawać &mdash; to wupjelnja prěni "
-"raz dźěru mjez webowymi a systemowymi nałoženjemi."
+"Z pomocu wotewrjenych webstandardow a API wuhotowaneho wot Mozilla, hodźa so "
+"wulkotne nałoženske dožiwjenja přez rozdźělne platformy, graty a dźěłowe "
+"systemy dodawać &mdash; to wupjelnja prěni raz dźěru mjez webowymi a "
+"systemowymi nałoženjemi."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -4859,7 +4866,9 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">Nětko zapodać</a> <span>ab
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr "Z mócnej weblatformu, wotewrjenym torhošćom a partnerami kaž wami, smy přihotowani, přichodnych 2 miliardow wužiwarjow online powitać"
+msgstr ""
+"Z mócnej weblatformu, wotewrjenym torhošćom a partnerami kaž wami, smy "
+"přihotowani, přichodnej 2 miliardźe wužiwarjow online powitać"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
@@ -4935,11 +4944,16 @@ msgstr "Njesměće přitykowak změnić"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr "Wužiwajo pódla logow za druhe torhošća (\"Get it on Google Play\", \"Donwload on the App Store\"), měł přitykowak Torhošća Firefox jenak wulki abo wjetši być."
+msgstr ""
+"Wužiwajo pódla logow za druhe torhošća (\"Get it on Google Play\", \"Download "
+"on the App Store\"), měł přitykowak Torhošća Firefox jenak wulki abo wjetši "
+"być."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr "Přitykowak měł na stornu podrobnosćow nałoženja na torhošću Firefox pokazować<br> Na přikład: https://marketplace.firefox.com/app/twitter"
+msgstr ""
+"Přitykowak měł na stronu podrobnosćow nałoženja na Torhošću Firefox "
+"pokazować<br> Na přikład: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -4996,7 +5010,9 @@ msgstr "Maće hišće dalše prašenja?"
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
-"Mjeztym zo na tym dźěłamy, cyły rjad kanalow wutworić, kotrež wam při rozrisowanju problemow pomhaja, možeće StackOverflow wopytać, zo byšće wšě swoje prašenja k wuwiwću webnałoženjow wujasnił."
+"Mjeztym zo na tym dźěłamy, cyły rjad kanalow wutworić, kotrež wam při "
+"rozrisowanju problemow pomhaja, možeće StackOverflow wopytać, zo byšće wšě "
+"swoje prašenja k wuwiću webnałoženjow wujasnił."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
