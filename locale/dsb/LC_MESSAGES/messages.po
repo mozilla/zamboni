@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-05 11:36+0000\n"
+"PO-Revision-Date: 2015-04-05 22:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428233768.0\n"
+"X-POOTLE-MTIME: 1428274362.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5220,42 +5220,48 @@ msgstr "Manifest webnałoženja njejo płaśiwy JSON."
 #: mkt/files/utils.py:112
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
+"Rola \"langpack\" jo njepłaśiwa za webnałoženja. Pšosym zapódajśo město togo "
+"toś to nałoženje ako rěcny pakśik."
 
 #: mkt/files/utils.py:120
 msgid "Your specified app locales are not in the correct format."
-msgstr ""
+msgstr "Waše pódane rěcy za nałoženja njejsu w korektnem formaśe."
 
 #: mkt/files/utils.py:137
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
+"Wuwijarske mě jo trěbne w manifesće, aby se w lisćinowem zapisku nałoženja "
+"zwobrazniło."
 
 #: mkt/files/utils.py:187
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Njepłaśiwe datajowe mě w archiwje: {0}"
 
 #: mkt/files/utils.py:195
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Dataja pśekšaca wjelikostny limit w archiwje: {0}"
 
 #: mkt/files/utils.py:245
 msgid "Invalid archive."
-msgstr ""
+msgstr "Njepłaśiwy archiw."
 
 #: mkt/files/views.py:43
 msgid "Back to review"
-msgstr ""
+msgstr "Slědk k pśeglědowanjeju"
 
 #: mkt/files/views.py:48
 msgid "Back to app"
-msgstr ""
+msgstr "Slědk k nałoženjeju"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} ześěgnuś"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
+"Wersija: %(version)s • wjelikosć: %(size)s • MD5 kontrolna suma: %(md5)s • "
+"MIME-typ: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -5295,35 +5301,35 @@ msgstr "Tabulatorowy wótstawk:"
 
 #: mkt/files/templates/fileviewer/viewer.html:72 mkt/files/templates/fileviewer/viewer.html:73
 msgid "Up file"
-msgstr ""
+msgstr "Pjerwjejšna dataja"
 
 #: mkt/files/templates/fileviewer/viewer.html:77 mkt/files/templates/fileviewer/viewer.html:78
 msgid "Down file"
-msgstr ""
+msgstr "Pśiduca dataja"
 
 #: mkt/files/templates/fileviewer/viewer.html:83 mkt/files/templates/fileviewer/viewer.html:84
 msgid "Previous diff"
-msgstr ""
+msgstr "Pjerwjejšny rozdźěl"
 
 #: mkt/files/templates/fileviewer/viewer.html:86 mkt/files/templates/fileviewer/viewer.html:87
 msgid "Previous note"
-msgstr ""
+msgstr "Pjerwjejšne pśispomnjeśe"
 
 #: mkt/files/templates/fileviewer/viewer.html:93 mkt/files/templates/fileviewer/viewer.html:94
 msgid "Next diff"
-msgstr ""
+msgstr "Pśiducy rozdźěl"
 
 #: mkt/files/templates/fileviewer/viewer.html:96 mkt/files/templates/fileviewer/viewer.html:97
 msgid "Next note"
-msgstr ""
+msgstr "Pśiduce pśispomnjeśe"
 
 #: mkt/files/templates/fileviewer/viewer.html:102 mkt/files/templates/fileviewer/viewer.html:103
 msgid "Expand all"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: mkt/files/templates/fileviewer/viewer.html:107 mkt/files/templates/fileviewer/viewer.html:108
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Bom schowaś abo pokazaś"
 
 #: mkt/files/templates/fileviewer/viewer.html:112 mkt/files/templates/fileviewer/viewer.html:113
 msgid "Wrap or unwrap text"
@@ -5415,36 +5421,36 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
-msgstr ""
+msgstr "Aktiwita"
 
 #: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
 #: mkt/lookup/templates/lookup/user_activity.html:43
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> wót %(user)s"
 
 #: mkt/lookup/templates/lookup/app_activity.html:30 mkt/lookup/templates/lookup/user_activity.html:34
 msgid "Administrative Actions"
-msgstr ""
+msgstr "Administratiwne akcije"
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
-msgstr ""
+msgstr "slědne 24 góźin"
 
 #: mkt/lookup/templates/lookup/app_summary.html:9
 msgid "last 7 days"
-msgstr ""
+msgstr "slědne 7 dnjow"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "all time"
-msgstr ""
+msgstr "cely cas"
 
 #: mkt/lookup/templates/lookup/app_summary.html:17
 msgid "Authors"
-msgstr ""
+msgstr "Awtory"
 
 #: mkt/lookup/templates/lookup/app_summary.html:33
 msgid "Manifest"
-msgstr ""
+msgstr "Manifest"
 
 #: mkt/lookup/templates/lookup/app_summary.html:39 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
@@ -5480,40 +5486,40 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
-msgstr ""
+msgstr "Tarako-status"
 
 #: mkt/lookup/templates/lookup/app_summary.html:85
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako zmóžnjone"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako njezmóžnjone"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "Pśeglědowanje njepominane"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
-msgstr ""
+msgstr "Pśeglědowanje felujo"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review failed"
-msgstr ""
+msgstr "Pśeglědowanje njejo se raźiło"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Znjewužywańske powěźeńki"
 
 #: mkt/lookup/templates/lookup/app_summary.html:101
 msgid "Permissions"
-msgstr ""
+msgstr "Pśizwólenja"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Žedna pśicyna pódana"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
@@ -5557,7 +5563,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:151
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Datajowe mě (ID, wjelikosć)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
@@ -5569,27 +5575,27 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Informacije Wikowanišća"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
-msgstr ""
+msgstr "Kupc"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:31
 msgid "Price Tier"
-msgstr ""
+msgstr "Płaśiznowy schójźeńk"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:33
 msgid "Related Transaction"
-msgstr ""
+msgstr "Pódobna transakcija"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informacije płaśeńskego póbitowarja"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Transakciski status njedajo se tuchylu wótwołaś."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
@@ -5629,7 +5635,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
-msgstr ""
+msgstr "Kontowe aktualizacije"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
