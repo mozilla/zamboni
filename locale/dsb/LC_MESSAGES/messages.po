@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-06 13:52+0000\n"
+"PO-Revision-Date: 2015-04-06 19:50+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428328326.0\n"
+"X-POOTLE-MTIME: 1428349855.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5673,7 +5673,7 @@ msgstr "Identifikator Firefox Accounts"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
-msgstr ""
+msgstr "Zregistrěrowany"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
@@ -5713,40 +5713,42 @@ msgstr "Zapódaśa"
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Unnamed"
-msgstr ""
+msgstr "Bźez mjenja"
 
 #: mkt/lookup/templates/lookup/user_summary.html:98 mkt/lookup/templates/lookup/user_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:110
 #: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Delete User"
-msgstr ""
+msgstr "Wužywarja wulašowaś"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Gaž toś ten wužywaŕ se wulašujo, se konto toś togo wužywarja <strong>na "
+"pśecej</strong> wulašujo."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Cośo napšawdu toś togo wužywarja lašowaś?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Toś ten wužywaŕ jo se južo wulašował."
 
 #: mkt/lookup/templates/lookup/user_summary.html:123
 msgid "Deleted by"
-msgstr ""
+msgstr "Wulašowany wót"
 
 #: mkt/lookup/templates/lookup/user_summary.html:126
 msgid "Reason"
-msgstr ""
+msgstr "Pśicyna"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
-msgstr ""
+msgstr "Wuslědki nałožeńskego pytanja za"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
 msgid "App Detail"
-msgstr ""
+msgstr "Drobnostki nałoženja"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
@@ -5780,366 +5782,380 @@ msgstr "Kontowe pytanje"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Pśeglěd póbitowarjow mobilneje telefonije"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Pśeglěd <small>póbitowarjow</small> mobilneje telefonije"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "Kandidaty za pśedinstalaciju"
 
 #: mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Za pśedinstalaciju pśizjawiś"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Testowy plan"
 
 #. {0} and {1} are category names.
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:52
 msgid "No preload candidates found"
-msgstr ""
+msgstr "Žedne kandidaty za pśedinstalaciju namakane"
 
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:87
 msgid "Tier %s"
-msgstr ""
+msgstr "Płaśiznowy schójźeńk %s"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "Kwitowanka za {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Kwitowanka"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Zliceńka do:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Skazański numer:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Skazański datum:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Element"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Pśedawaŕ"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Wužywańske wuměnjenja za Wikowanišćo Firefox namakajośo pód:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "Za pomoc woglědajśo se pšosym k:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Historija wašych kupjow:"
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Pśeglědanja wobchowaś, markěrowanja wótpóraś"
 
 #: mkt/ratings/forms.py:67
 msgid "Skip for now"
-msgstr ""
+msgstr "Tuchylu pśeskócyś"
 
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
-msgstr ""
+msgstr "Pógódnośenje wulašowaś"
 
 #: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Hyšći njepógódnośony"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Pógódnośony z %s z 5 gwězdkow"
 
 #: mkt/ratings/models.py:137
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam abo hynakše wopśimjeśe, kótarež njejo pógódnośenje"
 
 #: mkt/ratings/models.py:138
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Njepśisłušne słowa"
 
 #: mkt/ratings/models.py:139
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Deplacěrowana zmólkowa rozpšawa abo pódpěrańske napšašowanje"
 
 #: mkt/ratings/models.py:140
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Druge (pšosym pódaś)"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
-msgstr ""
+msgstr "Žedna kwitowanka"
 
 #: mkt/receipts/forms.py:19
 msgid "Test receipt"
-msgstr ""
+msgstr "Testowa kwitowanka"
 
 #: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Pśepadnjona testowa kwitowanka"
 
 #: mkt/receipts/forms.py:21
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Njepłaśiwa testowa kwitowanka"
 
 #: mkt/receipts/forms.py:22
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Zarownana testowa kwitowanka"
 
 #: mkt/receipts/views.py:86 mkt/receipts/views.py:177
 msgid "There was a problem installing the app."
-msgstr ""
+msgstr "Pśi instalěrowanju nałoženja jo problem nastał."
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Drobnostki testoweje kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
 msgstr ""
+"To jo bok zastupujucych symbolow za drobnostki kwitowanki. Gaby napšawdne "
+"nałoženje z Wikowanišća instalěrował, by se dalšne drobnostki na toś tom "
+"boku pokazali."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Testujśo instalaciju swójogo nałoženja, nježli až nagraśo jo k "
+"wikowanišćoju. Móžośo wšake družyny kwitowankow wubraś, aby wobchadanje ze "
+"swójimi kwitowankami testował."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Typ kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Městno manifesta"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
 msgid "Install"
-msgstr ""
+msgstr "Instalěrowaś"
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
-msgstr ""
+msgstr "Někaki status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Pśizwólone pógódnośenja"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Wulašowane pógódnośenja"
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
 msgid "Any Device"
-msgstr ""
+msgstr "Někaki rěd"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
-msgstr ""
+msgstr "Zapiski se woglědaś mjazy"
 
 #: mkt/reviewers/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Pó typje/akciji filtrowaś"
 
 #: mkt/reviewers/forms.py:67
 msgid "containing"
-msgstr ""
+msgstr "z"
 
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:73
 msgid "start"
-msgstr ""
+msgstr "zachopjeńk"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:77
 msgid "end"
-msgstr ""
+msgstr "kóńc"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:81
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "Nałoženje, pśeglědowaŕ abo komentar"
 
 #: mkt/reviewers/forms.py:106
 msgid "Comments:"
-msgstr ""
+msgstr "Komentary:"
 
 #: mkt/reviewers/forms.py:110 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Device Types:"
-msgstr ""
+msgstr "Rědowe typy:"
 
 #: mkt/reviewers/forms.py:112 mkt/reviewers/templates/reviewers/review.html:138
 msgid "Browsers:"
-msgstr ""
+msgstr "Wobglědowaki:"
 
 #: mkt/reviewers/forms.py:115
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Pśepisowanje rědowego typa:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
 msgstr ""
+"Informěrujśo mě pśiducy raz, gaž se manifest aktualizěrujo. (naslědne "
+"aktualizacije njenapóraju mejlku)"
 
 #: mkt/reviewers/forms.py:122
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Toś to nałoženje funkcioněrujo na Tarako-rědach."
 
 #: mkt/reviewers/forms.py:129
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Wubjeŕśo pśigótowane wótegrono..."
 
 #: mkt/reviewers/forms.py:177
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Ma komentar redaktora"
 
 #: mkt/reviewers/forms.py:181
 msgid "More Info Requested"
-msgstr ""
+msgstr "Dalšne informacije pominane"
 
 #: mkt/reviewers/forms.py:189
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Gótowy za Tarako"
 
 #: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
 msgid "Device"
-msgstr ""
+msgstr "Rěd"
 
 #: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Rědy za pśeglědowarje"
 
 #: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:173
 msgid "Apps"
-msgstr ""
+msgstr "Nałoženja"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Re-reviews"
-msgstr ""
+msgstr "Nowopógódnośenja"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
-msgstr ""
+msgstr "Aktualizacije"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
-msgstr ""
+msgstr "Dalejdaśa pśiducemu wušemu městnoju"
 
 #: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:143
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Moderěrowane pśeglědanja"
 
 #: mkt/reviewers/helpers.py:47
 msgid "Reviewing"
-msgstr ""
+msgstr "Pśeglědowaś"
 
 #: mkt/reviewers/helpers.py:49 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
-msgstr ""
+msgstr "Regionalne cakańske rědy"
 
 #: mkt/reviewers/helpers.py:88
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Nałoženja ({0})"
 
 #: mkt/reviewers/helpers.py:91
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Nowopógódnośenja ({0})"
 
 #: mkt/reviewers/helpers.py:95
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Aktualizacije ({0})"
 
 #: mkt/reviewers/helpers.py:99
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Dalejdaśa pśiducemu wušemu městnoju ({0})"
 
 #: mkt/reviewers/helpers.py:103
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Pśeglědowaś ({0})"
 
 #: mkt/reviewers/helpers.py:109
 msgid "China ({0})"
-msgstr ""
+msgstr "Chinska ({0})"
 
 #: mkt/reviewers/helpers.py:114
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:121
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Moderěrowane pógódnosénja ({0})"
 
 #: mkt/reviewers/helpers.py:138
 msgid "Reviews"
-msgstr ""
+msgstr "Pógódnosénja"
 
 #: mkt/reviewers/helpers.py:180
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Wótpokazany abo njepśeglědany"
 
 #: mkt/reviewers/utils.py:370 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Pśizwóliś"
 
 #: mkt/reviewers/utils.py:371
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "To pśizwólijo nałoženje a dówolijo awtoram jo wózjawiś."
 
 #: mkt/reviewers/utils.py:375 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
-msgstr ""
+msgstr "Wótpokazaś"
 
 #: mkt/reviewers/utils.py:377
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Pśez to nałoženje se wótpokažo, wótpórajo se z cakańskego rěda a "
+"njewózjawijo se, jolic jo se južo wózjawiło."
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Powěsć na wuwijarja pósłaś"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"To buźo awtoram - a drugim abonentam temy - powěsć słaś. To njezměnijo "
+"status nałoženja."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
-msgstr ""
+msgstr "Pśiducemu wušemu městnoju dalej daś"
 
 #: mkt/reviewers/utils.py:391
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Dajśo administratoroju toś to nałoženje k wěsći za pśeglědowanje. Komentary "
+"sćelu se na administratory, nic na awtory."
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Priwatny komentar"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
