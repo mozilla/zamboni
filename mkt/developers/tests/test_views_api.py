@@ -49,6 +49,16 @@ class TestAPI(TestCase):
         eq_(res.status_code, 200)
         eq_(Access.objects.filter(user=self.user).count(), 0)
 
+    def test_delete_other_user(self):
+        Access.objects.create(user=self.user, key='foo', secret='bar')
+        other_user = UserProfile.objects.create(email='a@a.com')
+        other_token = Access.objects.create(user=other_user, key='boo',
+                                            secret='far')
+        res = self.client.post(self.url, {'delete': 'yep',
+                                          'consumer': other_token.pk})
+        eq_(res.status_code, 200)
+        eq_(Access.objects.count(), 2)
+
     def test_admin(self):
         self.grant_permission(self.profile, 'What:ever', name='Admins')
         res = self.client.post(self.url)
