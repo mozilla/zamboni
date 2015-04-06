@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-05 22:52+0000\n"
+"PO-Revision-Date: 2015-04-06 13:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428274362.0\n"
+"X-POOTLE-MTIME: 1428328326.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5333,7 +5333,7 @@ msgstr "Bom schowaś abo pokazaś"
 
 #: mkt/files/templates/fileviewer/viewer.html:112 mkt/files/templates/fileviewer/viewer.html:113
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Tekst łamaś abo łamanja wótpóraś"
 
 #: mkt/files/templates/fileviewer/viewer.html:121
 msgid "No files in the uploaded file."
@@ -5382,42 +5382,44 @@ msgstr "Waš rěcny pakśik by měł wersiju wopśimowaś."
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"Wersija wašogo rěcnego pakśika musy se wót toś teje rozeznawaś, kótaruž "
+"wuměnjaśo."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Transakciske pytanje"
 
 #: mkt/lookup/forms.py:37
 msgid "Process a manual refund"
-msgstr ""
+msgstr "Manuelne zarownanje pśeźěłaś"
 
 #: mkt/lookup/forms.py:40
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Zapódajśo drobnostki wó zarownanju, aby transakciju zarownał"
 
 #: mkt/lookup/forms.py:53
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Pśicyna za wulašowanje"
 
 #: mkt/lookup/views.py:195
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Zarownanje jo se južo pśeźěłało."
 
 #: mkt/lookup/views.py:218
 msgid "You cannot make a refund request for this transaction."
-msgstr ""
+msgstr "Njemóžośo za toś tu transakciju žedno zarownanje pominaś."
 
 #: mkt/lookup/views.py:242
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "Zarownanje za toś tu transakciju jo něnto w cakańskem rěźe."
 
 #: mkt/lookup/views.py:250
 msgid "Refund for this transaction successfully approved."
-msgstr ""
+msgstr "Zarownanje za toś tu transakciju jo se wuspěšnje pśizwóliło."
 
 #: mkt/lookup/views.py:255
 msgid "Refund request for this transaction failed."
-msgstr ""
+msgstr "Zarownańske napšašowanje za toś tu transakciju njejo se raźiło."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5454,35 +5456,35 @@ msgstr "Manifest"
 
 #: mkt/lookup/templates/lookup/app_summary.html:39 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
-msgstr ""
+msgstr "Pokazaś"
 
 #: mkt/lookup/templates/lookup/app_summary.html:45 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
-msgstr ""
+msgstr "Priwilegěrowane zapakowane nałoženje"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
-msgstr ""
+msgstr "Zapakowane nałoženje"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
 msgid "Hosted app"
-msgstr ""
+msgstr "Góspodowane nałoženje"
 
 #: mkt/lookup/templates/lookup/app_summary.html:57
 msgid "Submitted"
-msgstr ""
+msgstr "Wótpósłany"
 
 #: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:167
 msgid "OK"
-msgstr ""
+msgstr "W pórěźe"
 
 #: mkt/lookup/templates/lookup/app_summary.html:76
 msgid "Review Prioritized"
-msgstr ""
+msgstr "Pśeglědanje priorizěrowane"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "Pśeglědanje prioritizěrowaś?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
@@ -5523,43 +5525,43 @@ msgstr "Žedna pśicyna pódana"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Žedne pšawa pominane"
 
 #: mkt/lookup/templates/lookup/app_summary.html:117 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
-msgstr ""
+msgstr "Kupi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:127 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
-msgstr ""
+msgstr "Zarownanja"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:130
 msgid "{0} requested ({1} of purchases)"
-msgstr ""
+msgstr "{0} pominany ({1} kupjow)"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:133
 msgid "{0} auto-approved"
-msgstr ""
+msgstr "{0} awtomatiski pśizwólony"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:135
 msgid "{0} approved"
-msgstr ""
+msgstr "{0} pśizwólony"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:137
 msgid "{0} rejected"
-msgstr ""
+msgstr "{0} wótpokazany"
 
 #: mkt/lookup/templates/lookup/app_summary.html:145
 msgid "Version History"
-msgstr ""
+msgstr "Wersijowa historija"
 
 #: mkt/lookup/templates/lookup/app_summary.html:150
 msgid "Version (ID)"
-msgstr ""
+msgstr "Wersija (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:151
 msgid "Filename (ID, Size)"
@@ -5567,11 +5569,11 @@ msgstr "Datajowe mě (ID, wjelikosć)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Rěd póglědanja"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr ""
+msgstr "Rěd póglědanja <small>Wikowanišća</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5600,38 +5602,46 @@ msgstr "Transakciski status njedajo se tuchylu wótwołaś."
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
 msgstr ""
+"Toś to płaśenje jo se pśez Bango pśewjadło. Aby dalšne informacije dostał, "
+"stajśo se z <a href=\"mailto:%(bango_support)s\">pomocu Bango</a> ze "
+"slědujucymi informacijami do zwiska."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
 msgstr ""
+"Toś to płaśenje jo se pśez <b>referencne implementěrowanje</b> pśewjadło. "
+"Njejo napšawdna transakcija było."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
-msgstr ""
+msgstr "Zarownańske informacije"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:89
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Zarownański status njedajo se tuchylu wótwołaś."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:92
 msgid "Refund Status"
-msgstr ""
+msgstr "Status zarownanja"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:93
 msgid "Unrequested"
-msgstr ""
+msgstr "Njepominany"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:105
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
+"Jolic jo se manuelne zarownanje wót płaśeńskego póbitowarja pśeźěłało, "
+"zaktiwěrujśo toś ten kontrolny kašćik. Pśez to zarownanje na serwerach "
+"Mozilla se pśewjeźo, bźez kontakta z płaśeńskim póbitowarjom."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:111
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Toś tu transakciju zarownaś"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
-msgstr ""
+msgstr "Wuslědki kontoweje aktiwity za"
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
@@ -5639,27 +5649,27 @@ msgstr "Kontowe aktualizacije"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:10
 msgid "Purchase results for"
-msgstr ""
+msgstr "Kupne wuslědki za"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "Toś ten wužywaŕ njejo nałoženja kupił."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
-msgstr ""
+msgstr "Wuslědki kontowego pytanja za"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Powšykny"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
-msgstr ""
+msgstr "Mě zwobrazniś"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Identifikator Firefox Accounts"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5667,39 +5677,39 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Kupki"
 
 #: mkt/lookup/templates/lookup/user_summary.html:37
 msgid "Marketplace Credit"
-msgstr ""
+msgstr "Kredit Wikowanišća"
 
 #: mkt/lookup/templates/lookup/user_summary.html:40
 msgid "apps purchased"
-msgstr ""
+msgstr "kupjone nałoženja"
 
 #: mkt/lookup/templates/lookup/user_summary.html:43
 msgid "requested"
-msgstr ""
+msgstr "pominany"
 
 #: mkt/lookup/templates/lookup/user_summary.html:44
 msgid "auto-approved"
-msgstr ""
+msgstr "awtomatiski pśizwólony"
 
 #: mkt/lookup/templates/lookup/user_summary.html:50
 msgid "Developer Program"
-msgstr ""
+msgstr "Wuwijarski program"
 
 #: mkt/lookup/templates/lookup/user_summary.html:52
 msgid "Read agreement"
-msgstr ""
+msgstr "Dojadnanje cytaś"
 
 #: mkt/lookup/templates/lookup/user_summary.html:60
 msgid "Addresses"
-msgstr ""
+msgstr "Adrese"
 
 #: mkt/lookup/templates/lookup/user_summary.html:79
 msgid "Submissions"
-msgstr ""
+msgstr "Zapódaśa"
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Unnamed"
@@ -5740,33 +5750,33 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
-msgstr ""
+msgstr "Historija pógódnośenjow"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
-msgstr ""
+msgstr "Kontowe zespominanje"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Konto wulašowane"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
-msgstr ""
+msgstr "Nałožeńske pytanje"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
-msgstr ""
+msgstr "Pytaś"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Nałoženje: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
-msgstr ""
+msgstr "Kontowe pytanje"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
