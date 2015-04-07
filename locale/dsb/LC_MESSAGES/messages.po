@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-06 23:18+0000\n"
+"PO-Revision-Date: 2015-04-07 10:20+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428362316.0\n"
+"X-POOTLE-MTIME: 1428402038.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -6160,10 +6160,12 @@ msgstr "Priwatny komentar"
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Pósćelśo priwatny pśeglědowański komentar k toś tomu nałoženjeju. Toś ta "
+"powěsć njebuźo widobna za awtory, a teke powěźeńka se wam njepósćelo."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju wótpóraś"
 
 #: mkt/reviewers/utils.py:406
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
