@@ -173,7 +173,7 @@ class ReviewerSearchFormFilter(SearchFormFilter):
 
 class PublicAppsFilter(BaseFilterBackend):
     """
-    A django-rest-framework filter backend that filters only public apps --
+    A django-rest-framework filter backend that filters only public items --
     those with PUBLIC status and not disabled.
 
     """
@@ -185,7 +185,7 @@ class PublicAppsFilter(BaseFilterBackend):
 
 class ValidAppsFilter(BaseFilterBackend):
     """
-    A django-rest-framework filter backend that filters only valid apps --
+    A django-rest-framework filter backend that filters only valid items --
     those with any valid status and not disabled or deleted.
 
     """

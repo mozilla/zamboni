@@ -19,17 +19,17 @@ class TestWebsiteIndexer(TestCase):
         ok_(isinstance(self.indexer, WebsiteIndexer))
 
     def test_get_mapping_ok(self):
-        eq_(WebsiteIndexer.get_mapping_type_name(), 'mkt_website')
+        eq_(WebsiteIndexer.get_mapping_type_name(), 'website')
         ok_(isinstance(self.indexer.get_mapping(), dict))
 
     def test_index(self):
-        with self.settings(ES_INDEXES={'mkt_website': 'websites'}):
+        with self.settings(ES_INDEXES={'website': 'websites'}):
             eq_(WebsiteIndexer.get_index(), 'websites')
 
     def test_mapping(self):
         mapping = WebsiteIndexer.get_mapping()
-        eq_(mapping.keys(), ['mkt_website'])
-        eq_(mapping['mkt_website']['_all'], {'enabled': False})
+        eq_(mapping.keys(), ['website'])
+        eq_(mapping['website']['_all'], {'enabled': False})
 
     def _get_doc(self):
         return self.indexer.extract_document(self.obj.pk, self.obj)

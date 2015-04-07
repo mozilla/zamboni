@@ -46,7 +46,7 @@ INDEXES = (
     (ES_INDEXES['mkt_feed_item'], f_indexers.FeedItemIndexer, 1000),
 
     # Currently using 500 because we don't really know what size they'll be.
-    (ES_INDEXES['mkt_website'], WebsiteIndexer, 500),
+    (ES_INDEXES['website'], WebsiteIndexer, 500),
 )
 
 INDEX_DICT = {

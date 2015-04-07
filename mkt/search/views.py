@@ -16,15 +16,20 @@ from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.operators.authorization import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm
+from mkt.search.indexers import BaseIndexer
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
                                 PublicAppsFilter, PublicSearchFormFilter,
                                 RegionFilter, SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
+from mkt.search.serializers import DynamicSearchSerializer
+from mkt.search.utils import Search
 from mkt.translations.helpers import truncate
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                      RocketbarESAppSerializerV2,
                                      SuggestionsESAppSerializer)
+from mkt.websites.indexers import WebsiteIndexer
+from mkt.websites.serializers import ESWebsiteSerializer
 
 
 class SearchView(CORSMixin, MarketplaceView, ListAPIView):
@@ -52,6 +57,25 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
         # to be wrapped in transactions.
         view = super(SearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class MultiSearchView(SearchView):
+    serializer_class = DynamicSearchSerializer
+
+    def get_serializer_context(self):
+        context = super(MultiSearchView, self).get_serializer_context()
+        context['serializer_classes'] = {
+            'webapp': ESAppSerializer,
+            'website': ESWebsiteSerializer
+        }
+        return context
+
+    def get_queryset(self):
+        return Search(
+            using=BaseIndexer.get_es(),
+            index=[WebappIndexer.get_index(), WebsiteIndexer.get_index()],
+            doc_type=[WebappIndexer.get_mapping_type_name(),
+                      WebsiteIndexer.get_mapping_type_name()])
 
 
 class FeaturedSearchView(SearchView):
