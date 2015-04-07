@@ -356,6 +356,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                    '?type=meat-and-filler&paras=2'
                                    '&start-with-lorem=1').json()[0]
     app.description = description
+    app.support_email = author
     premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
     if premium_type != mkt.ADDON_FREE:
