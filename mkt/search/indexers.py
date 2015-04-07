@@ -11,6 +11,7 @@ from elasticsearch_dsl import Search
 import mkt
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
+from mkt.search.utils import get_boost, get_popularity, get_trending
 from mkt.site.decorators import write
 from mkt.translations.utils import to_language
 
@@ -398,6 +399,18 @@ class BaseIndexer(object):
         # Add everything to the mapping.
         mapping[doc_type]['properties'].update(new_properties)
         return mapping
+
+    @classmethod
+    def extract_popularity_trending_boost(cls, obj):
+        extend = {
+            'boost': get_boost(obj),
+            'popularity': get_popularity(obj),
+            'trending': get_trending(obj)
+        }
+        for region in mkt.regions.ALL_REGIONS:
+            extend['trending_%s' % region.id] = get_trending(obj, region)
+            extend['popularity_%s' % region.id] = get_popularity(obj, region)
+        return extend
 
     @classmethod
     def extract_field_translations(cls, obj, field, db_field=None,

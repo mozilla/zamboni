@@ -40,9 +40,10 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
-                       PublicAppsFilter, DeviceTypeFilter, RegionFilter,
-                       ProfileFilter, SortingFilter]
+    filter_backends = [DeviceTypeFilter, ProfileFilter, PublicAppsFilter,
+                       PublicSearchFormFilter, RegionFilter, SearchQueryFilter,
+                       SortingFilter]
+
     serializer_class = ESAppSerializer
     form_class = ApiSearchForm
     paginator_class = ESPaginator

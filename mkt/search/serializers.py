@@ -136,4 +136,5 @@ class DynamicSearchSerializer(serializers.Serializer):
         serializer = self.serializers.get(obj._meta['doc_type'])
         if serializer is None:
             return super(DynamicSearchSerializer, self).to_native(obj)
-        return serializer.to_native(obj)
+        data = serializer.to_native(obj)
+        return data

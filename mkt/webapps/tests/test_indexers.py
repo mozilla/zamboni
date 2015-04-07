@@ -7,6 +7,7 @@ from nose.tools import eq_, ok_
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
+from mkt.search.utils import get_boost
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.site.utils import version_factory
@@ -210,14 +211,14 @@ class TestWebappIndexer(TestCase):
         eq_(doc['popularity'], 0)
 
         # Many installs.
-        self.app.installs.create(region=0, value=50.0)
+        self.app.popularity.create(region=0, value=50.0)
         # Test an adolescent region.
-        self.app.installs.create(region=2, value=10.0)
+        self.app.popularity.create(region=2, value=10.0)
         # Test a mature region.
-        self.app.installs.create(region=7, value=10.0)
+        self.app.popularity.create(region=7, value=10.0)
 
         obj, doc = self._get_doc()
-        eq_(doc['boost'], self.app.get_boost())
+        eq_(doc['boost'], get_boost(self.app))
         eq_(doc['popularity'], 50)
         # An adolescent region uses the global trending value.
         eq_(doc['popularity_2'], 50)
@@ -225,7 +226,7 @@ class TestWebappIndexer(TestCase):
 
     @override_settings(QA_APP_ID=337141)
     def test_popularity_qa_app(self):
-        self.app.installs.create(region=0, value=50.0)
+        self.app.popularity.create(region=0, value=50.0)
         obj, doc = self._get_doc()
         eq_(doc['boost'], 1 * 4)
         eq_(doc['popularity'], 0)

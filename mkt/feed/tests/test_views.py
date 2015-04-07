@@ -1187,7 +1187,6 @@ class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def setUp(self):
         super(TestFeedElementSearchView, self).setUp()
-        self.setUpIndex()
 
         self.app = self.feed_app_factory()
         self.brand = self.feed_brand_factory()

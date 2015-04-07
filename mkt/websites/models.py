@@ -6,7 +6,7 @@ from django.dispatch import receiver
 import json_field
 
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.constants.base import STATUS_PUBLIC
+from mkt.constants.base import STATUS_CHOICES, STATUS_NULL
 from mkt.site.models import ModelBase
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
@@ -28,6 +28,9 @@ class Website(ModelBase):
     icon_type = models.CharField(max_length=25, blank=True)
     icon_hash = models.CharField(max_length=8, blank=True)
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
+    status = models.PositiveIntegerField(
+        choices=STATUS_CHOICES.items(), default=STATUS_NULL)
+    is_disabled = models.BooleanField(default=False)
 
     class Meta:
         ordering = (('-last_updated'), )
@@ -49,23 +52,35 @@ class Website(ModelBase):
         with no_translation():
             return [DEVICE_TYPES[d].api_name for d in device_ids]
 
-    @property
-    def status(self):
-        # For now, all websites are public.
-        # FIXME: add real field and migration.
-        return STATUS_PUBLIC
-
-    @property
-    def is_disabled(self):
-        # For now, all websites are enabled.
-        # FIXME: add real field and migration.
+    def is_dummy_content_for_qa(self):
+        """
+        Returns whether this app is a dummy app used for testing only or not.
+        """
+        # Change this when we start having dummy websites for QA purposes, see
+        # Webapp implementation.
         return False
 
-    def get_boost(self):
-        """
-        Returns the boost used in Elasticsearch for this website.
-        """
-        return 1.0
+
+class WebsitePopularity(ModelBase):
+    website = models.ForeignKey(Website, related_name='popularity')
+    value = models.FloatField(default=0.0)
+    # When region=0, we count across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        db_table = 'websites_popularity'
+        unique_together = ('website', 'region')
+
+
+class WebsiteTrending(ModelBase):
+    website = models.ForeignKey(Website, related_name='trending')
+    value = models.FloatField(default=0.0)
+    # When region=0, it's trending using install counts across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        db_table = 'websites_trending'
+        unique_together = ('website', 'region')
 
 
 # Maintain ElasticSearch index.

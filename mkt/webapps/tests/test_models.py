@@ -11,7 +11,6 @@ import zipfile
 from contextlib import nested
 from datetime import datetime, timedelta
 from decimal import Decimal
-from math import log10
 
 from django import forms
 from django.conf import settings
@@ -244,22 +243,6 @@ class TestWebapp(WebappTestCase):
             (u'English (US)',
              [u'English (US)', u'Espa\xf1ol', u'Portugu\xeas (do\xa0Brasil)']))
 
-    def test_get_trending(self):
-        # Test no trending record returns zero.
-        app = self.get_app()
-        eq_(app.get_trending(), 0)
-
-        # Add a region specific trending and test the global one is returned
-        # because the region is not mature.
-        region = mkt.regions.REGIONS_DICT['me']
-        app.trending.create(value=20.0, region=0)
-        app.trending.create(value=10.0, region=region.id)
-        eq_(app.get_trending(region=region), 20.0)
-
-        # Now test the regional trending is returned when adolescent=False.
-        region.adolescent = False
-        eq_(app.get_trending(region=region), 10.0)
-
     def test_guess_is_offline_when_appcache_path(self):
         app = self.get_app()
 
@@ -384,17 +367,6 @@ class TestWebapp(WebappTestCase):
         f = app.latest_version.all_files[0]
         f.update(size=54321)
         eq_(app.file_size, 54321)
-
-    def test_get_boost(self):
-        app = self.get_app()
-        app.installs.create(region=0, value=1000.0)
-        eq_(app.get_boost(), log10(1 + 1000) * 4)
-
-    def test_get_boost_not_approved_status(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_REJECTED)
-        app.installs.create(region=0, value=1000.0)
-        eq_(app.get_boost(), log10(1 + 1000))
 
 
 class TestCleanSlug(TestCase):
@@ -2535,18 +2507,18 @@ class TestSearchSignals(ESTestCase):
     def test_create(self):
         eq_(WebappIndexer.search().count(), 0)
         app_factory()
-        self.refresh()
+        self.refresh('webapp')
         eq_(WebappIndexer.search().count(), 1)
 
     def test_update(self):
         app = app_factory()
-        self.refresh()
+        self.refresh('webapp')
         eq_(WebappIndexer.search().count(), 1)
 
         prev_name = unicode(app.name)
         app.name = 'yolo'
         app.save()
-        self.refresh()
+        self.refresh('webapp')
 
         eq_(WebappIndexer.search().count(), 1)
         eq_(WebappIndexer.search().query('term', name=prev_name).count(), 0)

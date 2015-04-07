@@ -1,5 +1,6 @@
 import random
 
+from mkt.constants.base import STATUS_PUBLIC
 from mkt.websites.models import Website
 
 
@@ -23,6 +24,7 @@ def website_factory(**kwargs):
         'short_title': text[:10],
         'title': 'Title %s' % text,
         'description': 'Description for %s' % text,
+        'status': STATUS_PUBLIC,
     }
     data.update(kwargs)
     return Website.objects.create(**data)

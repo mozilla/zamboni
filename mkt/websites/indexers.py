@@ -93,11 +93,13 @@ class WebsiteIndexer(BaseIndexer):
                  'is_disabled', 'last_updated', 'modified', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        doc['boost'] = obj.get_boost()
         doc['category'] = obj.categories or []
         doc['device'] = obj.devices or []
         doc['title_sort'] = unicode(obj.title).lower()
         doc['region_exclusions'] = obj.region_exclusions or []
+
+        # Add boost, popularity, trending values.
+        doc.update(cls.extract_popularity_trending_boost(obj))
 
         # Handle localized fields. This adds both the field used for search and
         # the one with all translations for the API.

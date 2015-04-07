@@ -50,8 +50,14 @@ class SearchQueryFilter(BaseFilterBackend):
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for k, v in rules:
-            for field in ('name', 'title', 'short_title',
-                          'app_slug', 'author', 'url'):
+            for field in ('name', 'short_title', 'app_slug', 'author'):
+                should.append(k(**{field: v}))
+        # We also add those rules with a bigger boost for website titles and
+        # urls, to compensate for them having less fields than apps.
+        for k, v in rules:
+            for field in ('title', 'url'):
+                v = v.copy()
+                v['boost'] *= 4
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's
@@ -68,6 +74,9 @@ class SearchQueryFilter(BaseFilterBackend):
             should.append(
                 query.Match(**{'name_%s' % analyzer: {'query': q,
                                                       'boost': 2.5}}))
+            should.append(
+                query.Match(**{'title_%s' % analyzer: {'query': q,
+                                                       'boost': 2.5}}))
 
         # Add searches on the description field.
         should.append(

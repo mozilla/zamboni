@@ -683,7 +683,7 @@ class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):
         self.request = RequestFactory().get('/')
         self.request.user = AnonymousUser()
         RegionMiddleware().process_request(self.request)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         self.indexer = WebappIndexer.search().filter(
             'term', id=self.webapp.id).execute().hits[0]
         self.serializer = SimpleESAppSerializer(
