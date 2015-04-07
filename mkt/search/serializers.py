@@ -119,3 +119,21 @@ class BaseESSerializer(serializers.ModelSerializer):
 
     def to_datetime(self, value):
         return es_to_datetime(value)
+
+
+class DynamicSearchSerializer(serializers.Serializer):
+    def __init__(self, **kwargs):
+        super(DynamicSearchSerializer, self).__init__(**kwargs)
+        serializer_classes = self.context.get('serializer_classes', {})
+        self.serializers = {k: v(context=self.context)
+                            for k, v in serializer_classes.items()}
+
+    def to_native(self, obj):
+        """
+        Dynamically serialize obj using serializers passed through the context,
+        depending on the doc_type of the obj.
+        """
+        serializer = self.serializers.get(obj._meta['doc_type'])
+        if serializer is None:
+            return super(DynamicSearchSerializer, self).to_native(obj)
+        return serializer.to_native(obj)

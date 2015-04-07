@@ -32,6 +32,8 @@ from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, AddonUpsell, Webapp
 from mkt.webapps.tasks import unindex_webapps
+from mkt.websites.models import Website
+from mkt.websites.utils import website_factory
 
 
 class TestGetRegion(TestCase):
@@ -1252,3 +1254,74 @@ class TestRocketbarView(ESTestCase):
 
         for size in (128, 64, 48, 32):
             eq_(parsed[0]['icons'][str(size)], self.app2.get_icon_url(size))
+
+
+@patch('mkt.versions.models.Version.is_privileged', False)
+class TestMultiSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestMultiSearchView, self).setUp()
+        self.url = reverse('api-v2:multi-search-api')
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.shared_category = 'books'
+        self.webapp.update(categories=['books', 'business'])
+        self.website = website_factory(
+            description='something',
+            categories=json.dumps(['books', 'sports'])
+        )
+        self._reindex()
+
+    def tearDown(self):
+        for w in Webapp.objects.all():
+            w.delete()
+        unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
+        for w in Website.objects.all():
+            w.delete()
+        Website.get_indexer().unindexer(_all=True)
+        super(TestMultiSearchView, self).tearDown()
+
+    def _reindex(self):
+        self.reindex(Website, 'website')
+        self.reindex(Webapp, 'webapp')
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
+
+    def test_meta(self):
+        res = self.anon.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(set(res.json.keys()), set(['objects', 'meta']))
+        eq_(res.json['meta']['total_count'], 2)
+
+    @patch('mkt.search.utils.statsd.timer')
+    def test_statsd(self, _mock):
+        self.anon.get(self.url)
+        assert _mock.called
+
+    def test_search(self):
+        res = self.anon.get(self.url, data={'lang': 'en-US'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.webapp.pk)
+        eq_(objs[0]['slug'], self.webapp.app_slug)
+        eq_(objs[0]['name'], self.webapp.name)
+        eq_(objs[1]['id'], self.website.pk)
+        eq_(objs[1]['title'], self.website.title)
+        eq_(objs[1]['url'], self.website.url)
+
+    def test_search_q(self):
+        res = self.anon.get(self.url, data={'q': 'something', 'lang': 'en-US'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.webapp.pk)
+        eq_(objs[0]['slug'], self.webapp.app_slug)
+        eq_(objs[0]['name'], self.webapp.name)
+        eq_(objs[1]['id'], self.website.pk)
+        eq_(objs[1]['title'], self.website.title)
+        eq_(objs[1]['url'], self.website.url)

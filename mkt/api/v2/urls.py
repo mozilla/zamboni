@@ -11,8 +11,8 @@ from mkt.comm.views import CommAppListView, ThreadViewSetV2
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
-from mkt.search.views import (NonPublicSearchView, NoRegionSearchView,
-                              RocketbarViewV2)
+from mkt.search.views import (MultiSearchView, NonPublicSearchView,
+                              NoRegionSearchView, RocketbarViewV2)
 from mkt.websites.views import WebsiteSearchView
 
 
@@ -92,4 +92,6 @@ urlpatterns = patterns(
     url(r'^langpacks', include(langpacks.urls)),
     url(r'^websites/search/', WebsiteSearchView.as_view(),
         name='website-search-api'),
+    url(r'^multi-search/', MultiSearchView.as_view(),
+        name='multi-search-api'),
 ) + v1_urls

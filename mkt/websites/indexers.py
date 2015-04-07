@@ -10,7 +10,7 @@ class WebsiteIndexer(BaseIndexer):
 
     @classmethod
     def get_mapping_type_name(cls):
-        return 'mkt_website'
+        return 'website'
 
     @classmethod
     def get_model(cls):
@@ -37,12 +37,14 @@ class WebsiteIndexer(BaseIndexer):
                     'device': {'type': 'byte'},
                     'icon_hash': cls.string_not_indexed(),
                     'icon_type': cls.string_not_indexed(),
+                    'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
                     'region_exclusions': {'type': 'short'},
                     'short_title': {'type': 'string',
                                     'analyzer': 'default_icu'},
+                    'status': {'type': 'byte'},
                     'title': {
                         'type': 'string',
                         'analyzer': 'default_icu',
@@ -58,13 +60,15 @@ class WebsiteIndexer(BaseIndexer):
                     # FIXME: Add custom analyzer for url, that strips http,
                     # https, maybe also www. and any .tld ?
                     'url': {'type': 'string', 'analyzer': 'simple'},
-                    # FIXME: status.
                 }
             }
         }
 
         # Attach boost field, because we are going to need search by relevancy.
         cls.attach_boost_mapping(mapping)
+
+        # Attach popularity and trending.
+        cls.attach_trending_and_popularity_mappings(mapping)
 
         # Add extra mapping for translated fields, containing the "raw"
         # translations.
@@ -86,7 +90,7 @@ class WebsiteIndexer(BaseIndexer):
         attach_trans_dict(cls.get_model(), [obj])
 
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
-                 'last_updated', 'modified')
+                 'is_disabled', 'last_updated', 'modified', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['boost'] = obj.get_boost()

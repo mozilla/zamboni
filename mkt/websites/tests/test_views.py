@@ -9,6 +9,7 @@ from nose.tools import eq_
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
+from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -16,6 +17,8 @@ from mkt.websites.views import WebsiteView
 
 
 class TestWebsiteESView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519')
+
     def setUp(self):
         self.website = website_factory(**{
             'title': 'something',
@@ -35,7 +38,13 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         super(TestWebsiteESView, self).tearDown()
 
     def _reindex(self):
-        self.reindex(Website, 'mkt_website')
+        self.reindex(Website, 'website')
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_basic(self):
         with self.assertNumQueries(0):

@@ -694,7 +694,7 @@ ES_INDEXES = {
     'mkt_feed_collection': 'feed_collections',
     'mkt_feed_shelf': 'feed_shelves',
     'mkt_feed_item': 'feed_items',
-    'mkt_website': 'websites'
+    'website': 'websites'
     # Adding an index? Also add the index to reindex.py.
 }
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
