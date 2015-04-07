@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-07 20:54+0000\n"
+"PO-Revision-Date: 2015-04-07 23:05+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428440074.0\n"
+"X-POOTLE-MTIME: 1428447939.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -6391,43 +6391,43 @@ msgstr "Pozicija"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Staw pó dypkach"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
-msgstr ""
+msgstr "Protokol nałožeńskich pśeglědanjow"
 
 #: mkt/reviewers/templates/reviewers/logs.html:17 mkt/reviewers/templates/reviewers/moderatelog.html:17
 msgid "Event"
-msgstr ""
+msgstr "Tšojenje"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "Nałoženje jo se wulašowało."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
-msgstr ""
+msgstr "KOmentary pokazaś"
 
 #: mkt/reviewers/templates/reviewers/logs.html:45
 msgid "Hide Comments"
-msgstr ""
+msgstr "Komentary schowaś"
 
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Žedne pśeglědanja za toś ten cas namakane."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Protokol moderěrowanych pógódnośenjow"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Dalšne drobnostki."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Za toś ten cas njejsu se žedne tšojenja namakali."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
@@ -6455,35 +6455,35 @@ msgstr "Tekst pógódnośenja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Pógódnośenje jo se pśed moderaciju markěrował."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Aktualny pógódnośeński status"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Aktiwny"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Wótnowiś"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Powěsć dnja aktualizěrowaś"
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
-msgstr ""
+msgstr "Pógódnośeńske dypki za {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Rozklucenje w dypkach za ceły cas"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Dypki"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6527,39 +6527,41 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
-msgstr ""
+msgstr "w cakańskem rěźe za dalejdaśe pśiducemu wušemu městnoju"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "W cakańskem rěźe Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "W cakańskem rěźe Chinska"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
-msgstr ""
+msgstr "Toś to nałoženje pógódnośiś"
 
 #: mkt/reviewers/templates/reviewers/review.html:66
 msgid "More Information"
-msgstr ""
+msgstr "Dalšne informacije"
 
 #: mkt/reviewers/templates/reviewers/review.html:67 mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
-msgstr ""
+msgstr "Historija nałoženja"
 
 #: mkt/reviewers/templates/reviewers/review.html:68
 msgid "Resolution"
-msgstr ""
+msgstr "Rozsud"
 
 #: mkt/reviewers/templates/reviewers/review.html:99
 msgid "App submission incomplete"
-msgstr ""
+msgstr "Zapódaśe nałoženja njedopołne"
 
 #: mkt/reviewers/templates/reviewers/review.html:119
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
+"Móžośo toś ten formular wótpósłaś, ale cyńśo  to jano, jolic móžośo se "
+"konflikta wobinuś."
 
 #: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Insert canned response..."
@@ -6599,39 +6601,39 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr ""
+msgstr "Rědowe typy"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Pšawidła priwatnosći cytaś"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:61
 msgid "Requirements"
-msgstr ""
+msgstr "Pominanja"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:67
 msgid "Show more"
-msgstr ""
+msgstr "Wěcej pokazaś"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:74 mkt/reviewers/templates/reviewers/includes/mobile_details.html:61
 msgid "Signed Zip"
-msgstr ""
+msgstr "Signěrowany zip"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:87 mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Ratings"
-msgstr ""
+msgstr "Pógódnośenja"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94 mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Toś to nałoženje hyšći njejo se pógódnośiło"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Updated"
-msgstr ""
+msgstr "Zaktualizěrowany"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:110 mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
 msgid "Rating"
@@ -6672,40 +6674,40 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Pśeglědowanje priority trěbne"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:89
 msgid "Privileged App"
-msgstr ""
+msgstr "Priwilegěrowane nałoženje"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:97
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium z płaśenim w nałoženju"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:99
 msgid "Free with In-App"
-msgstr ""
+msgstr "Dermo z płaśenim w nałoženju"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20 mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145
 msgid "more..."
-msgstr ""
+msgstr "wěcej..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Starše wersije"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Nowše wersije"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
-msgstr ""
+msgstr "Pśeglědanja pśeźěłaś"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Akcije moderatora:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -6745,43 +6747,45 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:37
 msgid "Contents"
-msgstr ""
+msgstr "Wopśimjeśe"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:40
 msgid "Compare"
-msgstr ""
+msgstr "Pśirownaś"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Historija nałoženja se zacytujo &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Pśiduce komentary"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Pjerwjejšne komentary"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
-msgstr ""
+msgstr "K prědnemu bokoju skócyś"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:12 mkt/site/templates/site/impala_paginator.html:22
 msgid "Previous"
-msgstr ""
+msgstr "Pjerwjejšne"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26 mkt/site/templates/site/impala_paginator.html:5
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Bok <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
 #.                third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b> se pokazuju"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -6822,39 +6826,39 @@ msgstr ""
 
 #: mkt/search/forms.py:14
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Tyźeńske ześěgnjenja"
 
 #: mkt/search/forms.py:15
 msgid "Top Rated"
-msgstr ""
+msgstr "Nejlěpjej pógódnośony"
 
 #: mkt/search/forms.py:17
 msgid "Newest"
-msgstr ""
+msgstr "Nejnowše"
 
 #: mkt/search/forms.py:18
 msgid "Reviewed"
-msgstr ""
+msgstr "Pśeglědany"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Běžny"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
-msgstr ""
+msgstr "Někaki nałožeński typ"
 
 #: mkt/search/forms.py:29
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Priwilegěrowane zapakowane nałoženje"
 
 #: mkt/search/forms.py:34
 msgid "Free with In-app"
-msgstr ""
+msgstr "Dermo z płaśenim w nałoženju"
 
 #: mkt/search/forms.py:36
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium z płaśenim w nałoženju"
 
 #: mkt/search/forms.py:37
 msgid "Other System for In-App"
@@ -6894,27 +6898,27 @@ msgstr ""
 
 #: mkt/search/forms.py:104
 msgid "App type"
-msgstr ""
+msgstr "Nałožeński typ"
 
 #: mkt/search/forms.py:108
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Instalacije dowólone z"
 
 #: mkt/search/forms.py:109
 msgid "Everywhere"
-msgstr ""
+msgstr "Wšuźi"
 
 #: mkt/search/forms.py:111
 msgid "Works offline"
-msgstr ""
+msgstr "Funkcioněrujo offline"
 
 #: mkt/search/forms.py:113
 msgid "Supported languages"
-msgstr ""
+msgstr "Pódpěrane rěcy"
 
 #: mkt/search/forms.py:114
 msgid "Author name"
-msgstr ""
+msgstr "Mě awtora"
 
 #: mkt/search/forms.py:119
 msgid "Tags"
@@ -6922,7 +6926,7 @@ msgstr "Gronidła"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pytanje nic k dispoziciji"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
