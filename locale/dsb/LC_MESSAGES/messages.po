@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-07 20:38+0000\n"
+"PO-Revision-Date: 2015-04-07 20:54+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428439124.0\n"
+"X-POOTLE-MTIME: 1428440074.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -6295,55 +6295,55 @@ msgstr "Blokěrowane nałoženje"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40 mkt/reviewers/templates/reviewers/includes/macros.html:101
 msgid "Premium App"
-msgstr ""
+msgstr "Premiumowe nałoženje"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43 mkt/reviewers/templates/reviewers/includes/macros.html:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "Dalšne informacije pominane"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:46 mkt/reviewers/templates/reviewers/includes/macros.html:108
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Wopśimujo komentar wót redaktora"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
-msgstr ""
+msgstr "<small>Wikowanišćo</small> - Rědy za pśepytowarje"
 
 #: mkt/reviewers/templates/reviewers/base.html:29 mkt/reviewers/templates/reviewers/base.html:69
 msgid "Queues"
-msgstr ""
+msgstr "Cakańske rědy"
 
 #: mkt/reviewers/templates/reviewers/base.html:34 mkt/reviewers/templates/reviewers/base.html:73
 msgid "Logs"
-msgstr ""
+msgstr "Protokole"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Slědk k rědam pśepytowarjow"
 
 #: mkt/reviewers/templates/reviewers/home.html:18
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} felujuce nałožeńske pógódnośenje"
+msgstr[1] "{num} felujucej nałožeńskej pógódnośeni"
+msgstr[2] "{num} felujuce nałožeńske pógódnośenja"
+msgstr[3] "{num} felujucych nałožeńskich pógódnośenjow"
 
 #: mkt/reviewers/templates/reviewers/home.html:25
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} nowopśeglědanje"
+msgstr[1] "{num} nowopśeglědani"
+msgstr[2] "{num} nowopśeglědanja"
+msgstr[3] "{num} nowopśeglědanjow"
 
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} aktualizaciske pśeglědanje"
+msgstr[1] "{num} aktualizaciskej pśeglědani"
+msgstr[2] "{num} aktualizaciske pśeglědanja"
+msgstr[3] "{num} aktualizaciskich pśeglědanjow"
 
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
@@ -6355,39 +6355,39 @@ msgstr[3] "{c} njepśeglědanych nałožeńskich zapódaśow w toś tom tyźenju
 
 #: mkt/reviewers/templates/reviewers/home.html:46
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Aktualne cakańske case:"
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} nałoženje"
+msgstr[1] "{0} nałoženi"
+msgstr[2] "{0} nałoženja"
+msgstr[3] "{0} nałoženjow"
 
 #: mkt/reviewers/templates/reviewers/home.html:55
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: mkt/reviewers/templates/reviewers/home.html:70
 msgid "Total Reviews"
-msgstr ""
+msgstr "Pógódnośenja dogromady"
 
 #: mkt/reviewers/templates/reviewers/home.html:71
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Pśeglědanja w toś tom mjasecu"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:3 mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Poziciska lisćina pógódnośarjow"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Hyšći žedne pógódnośeńske dypki rozdźělone."
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
-msgstr ""
+msgstr "Pozicija"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
@@ -6431,27 +6431,27 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Protokolowe drobnostki"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Protokolowe drobnostki"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderaciski datum"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Titel nałoženja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Titel pógódnośenja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Tekst pógódnośenja"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
