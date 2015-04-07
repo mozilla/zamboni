@@ -1641,18 +1641,6 @@ class TestManifest(BaseWebAppTest):
             eq_(webapp.get_manifest_json(webapp.latest_version.all_files[0]),
                 manifest_json)
 
-    def test_installs_allowed_from_override(self):
-        webapp = self.post_addon()
-        with override_settings(IAF_OVERRIDE_APPS=[webapp.pk]):
-            json = webapp.get_manifest_json(webapp.latest_version.all_files[0])
-            eq_(json['installs_allowed_from'], settings.IAF_OVERRIDE_VALUE)
-
-    def test_installs_allowed_from_override_no_match(self):
-        webapp = self.post_addon()
-        with override_settings(IAF_OVERRIDE_APPS=[]):
-            json = webapp.get_manifest_json(webapp.latest_version.all_files[0])
-            ok_(json['installs_allowed_from'] != settings.IAF_OVERRIDE_VALUE)
-
 
 class PackagedFilesMixin(MktPaths):
 

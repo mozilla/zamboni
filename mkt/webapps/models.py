@@ -1308,10 +1308,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return {}
 
         try:
-            manifest = file_.version.manifest
-            if file_.version.addon_id in settings.IAF_OVERRIDE_APPS:
-                manifest['installs_allowed_from'] = settings.IAF_OVERRIDE_VALUE
-            return manifest
+            return file_.version.manifest
         except AppManifest.DoesNotExist:
             # TODO: Remove this when we're satisified the above is working.
             log.info('Falling back to loading manifest from file system. '

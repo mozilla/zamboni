@@ -1219,9 +1219,3 @@ DEV_PAY_PROVIDERS = {
 # JWT algorithms that we support for decoding.
 # Any JWT we receive with another algorithm will be rejected.
 SUPPORTED_JWT_ALGORITHMS = ['HS256', 'RS512']
-
-# We want to override the installs_allowed_from value in API responses for some
-# apps. These settings define the app IDs for which we do that and the value
-# with which we override (bug 1145338).
-IAF_OVERRIDE_APPS = []
-IAF_OVERRIDE_VALUE = ['https://marketplace.firefox.com']
