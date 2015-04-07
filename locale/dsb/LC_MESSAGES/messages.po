@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-07 10:20+0000\n"
+"PO-Revision-Date: 2015-04-07 20:38+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428402038.0\n"
+"X-POOTLE-MTIME: 1428439124.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -6170,14 +6170,18 @@ msgstr "Dalejdaśe pśiducemu wušemu městnoju wótpóraś"
 #: mkt/reviewers/utils.py:406
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Toś to nałoženje z cakańskego rěda za dalejdaśe pśiducemu wušemu městnoju "
+"wótpóraś. Awtory daniž njedostanu mejlku daniž njewiźe how komentary."
 
 #: mkt/reviewers/utils.py:411
 msgid "Clear Re-review"
-msgstr ""
+msgstr "Nowopśeglědanje wótpóraś"
 
 #: mkt/reviewers/utils.py:413
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Toś to nałoženje z cakańskego rěda nowopśeglědanjow wótpóraś. Awtory daniž "
+"njedostanu mejlku daniž njewiźe how komentary."
 
 #: mkt/reviewers/utils.py:418
 msgid "Ban app"
@@ -6186,105 +6190,108 @@ msgstr "Nałoženje zastajiś"
 #: mkt/reviewers/utils.py:420
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Nałoženje na Wikowanišću blokěrowaś. To jo pódobne ako Wótpokazaś, ale "
+"awtory njamógu jo znowego zapódaś. To se jano w ekstremnych padach stawa."
 
 #: mkt/reviewers/views.py:135
 msgid "New Apps (Under 5 days)"
-msgstr ""
+msgstr "Nowe nałoženja (pód 5 dnjami)"
 
 #: mkt/reviewers/views.py:136
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Akceptabelny (5 až do 10 dnjow)"
 
 #: mkt/reviewers/views.py:137
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Južo dawno na rěźe (wušej 10 dnjow)"
 
 #: mkt/reviewers/views.py:248
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Samopśeglědanja njejsu dowólone."
 
 #: mkt/reviewers/views.py:254
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
+msgstr "Jano seniorske pśepytowarje mógu nałoženja pśeglědowaś."
 
 #: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
-msgstr ""
+msgstr "{0} pśidany"
 
 #: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
-msgstr ""
+msgstr "{0} wótpórany"
 
 #: mkt/reviewers/views.py:311
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Rědy změnjone wót pśepytowarja: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:333
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "Pominanja změnjone wót pśepytowarja: {0}"
 
 #: mkt/reviewers/views.py:360
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" wuspěšnje přeźěłany (+{1} dypkow, {2} dogromady)."
 
 #: mkt/reviewers/views.py:362
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Pśeglědanje jo wuspěšnje pśeźěłane."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Znjewužywańske powěźeńki za {addon} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:15
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:19
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>anonymny</i> %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Dalšne cakańske rědy"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} cakański rěd za pśeglědanja"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
-msgstr ""
+msgstr "Wobstaś"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Pśepadnuś"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:86 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr ""
+"Tuchylu njejsu žedne elementy toś togo typa, kótarež muse se pśeglědowaś. "
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Tuchylu njepśeglědujośo nałoženja."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:127 mkt/reviewers/templates/reviewers/includes/mobile_details.html:138 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
-msgstr ""
+msgstr "Markěrowanja"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Rědy"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:87
 msgid "Packaged App"
-msgstr ""
+msgstr "Zapakowane nałoženje"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37 mkt/reviewers/templates/reviewers/includes/macros.html:93
 msgid "Blocklisted App"
-msgstr ""
+msgstr "Blokěrowane nałoženje"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40 mkt/reviewers/templates/reviewers/includes/macros.html:101
 msgid "Premium App"
@@ -6341,10 +6348,10 @@ msgstr[3] ""
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{c} njepśeglědane nałožeńske zapódaśe w toś tom tyźenju."
+msgstr[1] "{c} njepśeglědanej nałožeńskej zapódaśi w toś tom tyźenju."
+msgstr[2] "{c} njepśeglědane nałožeńske zapódaśa w toś tom tyźenju."
+msgstr[3] "{c} njepśeglědanych nałožeńskich zapódaśow w toś tom tyźenju."
 
 #: mkt/reviewers/templates/reviewers/home.html:46
 msgid "Current waiting times:"
