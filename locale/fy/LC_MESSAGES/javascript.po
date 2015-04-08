@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-03 15:09+0000\n"
+"PO-Revision-Date: 2015-04-08 08:56+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428073776.0\n"
+"X-POOTLE-MTIME: 1428483402.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -273,119 +273,127 @@ msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr "Spaanse bankencode"
+msgstr "Spaanske bankenkoade"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "Ierse Sort-code"
+msgstr "Ierske Sort-koade"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr "Belgische BIC"
+msgstr "Belgyske BIC"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "Spaanse/Franse/Italiaanse/Nederlandse BIC"
+msgstr "Spaanske/Frânske/Italiaanske/Nederlânske BIC"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr "Nederlandse/Amerikaanse SWIFT-code"
+msgstr "Nederlânske/Amerikaanske SWIFT-koade"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr "Canadese Transit number/Duitse Bankleitzahl"
+msgstr "Kanadeeske Transit number/Dútske Bankleitzahl"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Koreaanse bank en vestiging/Indonesische Bank code"
+msgstr "Koreaanske bank en fêstiging/Yndonezyske Bank-koade"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "Griekse HEBIC/Indonesische Bank code"
+msgstr "Grykske HEBIC/Yndonezyske Bank-koade"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-code"
+msgstr ""
+"UK/Ierske Sort koade of Nij-Seelânske Account-prefix of Australyske BSB-"
+"koade"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr "Oostenrijks/Zwitsers BC-nummer"
+msgstr "Eastenryks/Switsers BC-nûmer"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr "Deens/Zwitsers BC-nummer"
+msgstr "Deensk/Switsers BC-nûmer"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr "Zwitsers/Iraaks BC-nummer"
+msgstr "Switsersk/Iraaksk BC-nûmer"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr "Iraaks BC-nummer"
+msgstr "Iraaksk BC-nûmer"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr "Gedetecteerd: {0}"
+msgstr "Detektearre: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
-msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgstr[0] ""
+"Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount "
+"út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne "
+"net mear beskikber foar ferkeap."
+msgstr[1] ""
+"Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount "
+"út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne "
+"net mear beskikber foar ferkeap."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr "Betalingsaccounts voor {appName}:"
+msgstr "Betellingsaccounts foar {appName}:"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr "Fout"
+msgstr "Flater"
 
 #: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
+msgstr "Der is in probleem bard by it ferbinen mei de betellingsserver."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
-msgstr "Authenticatiefout"
+msgstr "Autentikaasjeflater"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
-msgstr "U hebt momenteel geen betalingsaccounts."
+msgstr "Jo hawwe op dit stuit gjin betellingsaccounts."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr "Thema’s zoeken op <b>{0}</b>"
+msgstr "Tema’s sykje op <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "Apps doorzoeken op <b>{0}</b>"
+msgstr "Apps trochsykje op <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Add-ons doorzoeken op <b>{0}</b>"
+msgstr "Add-ons trochsykje op <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr "Er is iets misgegaan. Probeer het opnieuw."
+msgstr "Der is wat misgien. Probearje it opnij."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] "{0} teken resterend."
-msgstr[1] "{0} tekens resterend."
+msgstr[0] "{0} teken restearjend."
+msgstr[1] "{0} tekens restearjend."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr "Alle tests met succes doorstaan."
+msgstr "Alle tests mei sukses trochstien."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr "Deze tests zijn niet uitgevoerd."
+msgstr "Dizze tests binne net útfierd."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
@@ -393,95 +401,95 @@ msgstr "Tests"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr "Waarschuwing"
+msgstr "Warskôging"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr "Compatibiliteitstests"
+msgstr "Kompatibiliteitstests"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "Validatie van app mislukt."
+msgstr "Falidaasje fan app mislearre."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr "Validatie van app gelukt."
+msgstr "Falidaasje fan app slagge."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} fout"
-msgstr[1] "{0} fouten"
+msgstr[0] "{0} flater"
+msgstr[1] "{0} flaters"
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} waarschuwing"
-msgstr[1] "{0} waarschuwingen"
+msgstr[0] "{0} warskôging"
+msgstr[1] "{0} warskôgingen"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr "De validatietaak is niet voltooid of voltooid met fouten"
+msgstr "De falidaasjetaak is net foltôge of foltôge mei flaters"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr "Interne serverfout"
+msgstr "Ynterne serverflater"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr "Kopen"
+msgstr "Keapje"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr "Aangeschaft"
+msgstr "Oanskaft"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr "Starten"
+msgstr "Starte"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr "{name} heeft deze pagina eerst bekeken."
+msgstr "{name} hat dizze side earst besjoen."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr "Ontvangst gecontroleerd door app."
+msgstr "Untfangst kontrolearre troch app."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr "Ontvangst niet gecontroleerd door app."
+msgstr "Untfangst net kontrolearre troch app."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
-msgstr "{name} heeft deze add-on eerst bekeken."
+msgstr "{name} hat dizze add-on earst besjoen."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
-msgstr "Laden…"
+msgstr "Lade…"
 
 #: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
-msgstr "Versieopmerkingen"
+msgstr "Ferzjeopmerkingen"
 
 #: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
-msgstr "Opmerkingen voor beoordelaars"
+msgstr "Opmerkingen foar beoardielers"
 
 #: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
-msgstr "Geen versieopmerkingen gevonden"
+msgstr "Gjin ferzjeopmerkingen fûn"
 
 #: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
-msgstr "Selecteer eerst een toepassing"
+msgstr "Selektearje earst in tapassing"
 
 #: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
-msgstr "Fout bij laden van vertaling"
+msgstr "Flater by laden fan oersetting"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr "meer…"
+msgstr "mear…"
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
@@ -489,35 +497,35 @@ msgstr "minder…"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr "Beoordeling bewaren / Markeringen verwijderen"
+msgstr "Beoardieling bewarje / Markearringen fuortsmite"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr "Beoordeling verwijderen"
+msgstr "Beoardieling fuortsmite"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr "Nu overslaan"
+msgstr "No oerslaan"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr "Betaling mislukt. Probeer het later nog eens."
+msgstr "Betelling mislearre. Probearje it letter nochris."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr "Verpakte app"
+msgstr "Ferpakte app"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr "Voorkeursapp"
+msgstr "Foarkarsapp"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
-msgstr "Meer informatie gevraagd"
+msgstr "Mear ynformaasje frege"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr "Bevat opmerking door editor"
+msgstr "Befettet opmerking troch bewurker"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
@@ -525,45 +533,47 @@ msgstr "Premium-app"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr "Geëscaleerd"
+msgstr "Eskalearre"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr "Gratis"
+msgstr "Fergees"
 
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr "Elke"
+msgstr "Eltse"
 
 #: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr "Goedgekeurde app: {app}"
+msgstr "Goedkarde app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr "Afgewezen app: {app}"
+msgstr "Ofwêzen app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr "Fout bij goedkeuren van app: {app}"
+msgstr "Flater by goedkarren fan app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr "Fout bij afwijzen van app: {app}"
+msgstr "Flater by ôfwizen fan app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr "Fout bij slagen van app: {app}"
+msgstr "Flater by slagjen fan app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr "Fout bij mislukken van app: {app}"
+msgstr "Flater by mislearjen fan app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Sorry! Er is een fout opgetreden bij het ophalen van de beoordelingsgeschiedenis. Probeer u opnieuw aan te melden.<p>"
+msgstr ""
+"Sorry! Der is in flater bard by it opheljen fan de beoardielingsskiednis. "
+"Probearje jo opnij oan te melden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
-msgstr "Door {0} op {1}"
+msgstr "Troch {0} op {1}"
