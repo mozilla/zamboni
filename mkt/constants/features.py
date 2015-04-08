@@ -1,3 +1,4 @@
+import itertools
 from ordereddict import OrderedDict
 
 from django.conf import settings
@@ -335,6 +336,12 @@ APP_FEATURES = OrderedDict([
                              u'1GB RAM.'),
         'apis': (),
     }),
+    ('NFC', {
+        'name': _lazy(u'NFC'),
+        'description': _lazy(u'The app requires access to the Near Field '
+                             u'Communication (NFC) API.'),
+        'apis': ('navigator.mozNfc',),
+    })
 ])
 
 PRERELEASE_PERMISSIONS = [
@@ -351,7 +358,7 @@ class FeatureProfile(OrderedDict):
     representations.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, _default=False, **kwargs):
         """
         Creates a FeatureProfile object.
 
@@ -367,18 +374,22 @@ class FeatureProfile(OrderedDict):
         super(FeatureProfile, self).__init__()
         for af in APP_FEATURES:
             key = af.lower()
-            self[key] = kwargs.get(key, False)
+            self[key] = kwargs.get(key, _default)
 
     @classmethod
-    def from_int(cls, features):
+    def from_int(cls, features, limit=None):
         """
         Construct a FeatureProfile object from a integer bitfield.
 
         >>> FeatureProfile.from_int(0x42)
         FeatureProfile([('apps', False), ('packaged_apps', True), ...)
         """
-        instance = cls()
-        for i, k in enumerate(reversed(APP_FEATURES)):
+        instance = cls()  # Defaults to everything set to False.
+        if limit is None:
+            limit = len(APP_FEATURES)
+        app_features_to_consider = OrderedDict(
+            itertools.islice(APP_FEATURES.iteritems(), limit))
+        for i, k in enumerate(reversed(app_features_to_consider)):
             instance[k.lower()] = bool(features & 1 << i)
         return instance
 
@@ -390,8 +401,10 @@ class FeatureProfile(OrderedDict):
         >>> FeatureProfile.from_signature('40000000.32.1')
         FeatureProfile([('apps', False), ('packaged_apps', True), ...)
         """
-        dehexed = int(signature.split('.')[0], 16)
-        return cls.from_int(dehexed)
+        # If the signature is invalid, let the ValueError be raised, it's up to
+        # the caller to decide what to do with it.
+        number, limit, version = signature.split('.')
+        return cls.from_int(int(number, 16), limit=int(limit))
 
     def to_int(self):
         """
