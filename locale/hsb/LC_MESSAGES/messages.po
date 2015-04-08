@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:06-0700\n"
-"PO-Revision-Date: 2015-04-06 13:53+0000\n"
-"Last-Translator: milupo <milupo@sorbzilla.de>\n"
+"PO-Revision-Date: 2015-04-08 16:45+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428328401.0\n"
+"X-POOTLE-MTIME: 1428511519.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5538,7 +5539,9 @@ msgstr "Wužiwarja zhašeć"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr "Hdyž so tutón wužiwar zhaša, so <strong>na přeco</strong> konto tutoho zhaša."
+msgstr ""
+"Hdyž so tutón wužiwar zhaša, so konto tutoho wužiwarja <strong>na "
+"přeco</strong> zhaša."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
@@ -5687,7 +5690,7 @@ msgstr "Pohódnocénje zhašeć"
 
 #: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
-msgstr "Hišće njepřepruwowany"
+msgstr "Hišće njepohódnoćeny"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
@@ -5719,11 +5722,11 @@ msgstr "Testowa kwitowanka"
 
 #: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
-msgstr "Spadnjena tesotwa kwitowanka"
+msgstr "Spadnjena testowa kwitowanka"
 
 #: mkt/receipts/forms.py:21
 msgid "Invalid test receipt"
-msgstr "Njepłaćiwa testow kwitowanka"
+msgstr "Njepłaćiwa testowa kwitowanka"
 
 #: mkt/receipts/forms.py:22
 msgid "Refunded test receipt"
@@ -5739,7 +5742,10 @@ msgstr "Podrobnosće testoweje kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr "To je strona zastupowacych symbolow  za podrobnosće kwitowanki. Hdy byšće woprawdźite nałoženje z Torhošća instalował, bychu so dalše podrobnosće na tutej stronje pokazali."
+msgstr ""
+"To je strona zastupowacych symbolow za podrobnosće kwitowanki. Hdy byšće "
+"woprawdźite nałoženje z Torhošća instalował, bychu so dalše podrobnosće na "
+"tutej stronje pokazali."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
@@ -5854,7 +5860,7 @@ msgstr "Nałoženja"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Re-reviews"
-msgstr "Nowopřepruwowanja"
+msgstr "Nowopohodnoćenja"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
@@ -5927,7 +5933,7 @@ msgstr "Schwalić"
 
 #: mkt/reviewers/utils.py:371
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr "To schwali nałoženje a dowola awtoram ju wozjewić."
+msgstr "To schwali nałoženje a dowola awtoram jo wozjewić."
 
 #: mkt/reviewers/utils.py:375 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
@@ -5983,7 +5989,9 @@ msgstr "Nałoženje zawrěć"
 
 #: mkt/reviewers/utils.py:420
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr "Nałoženje na Torhošću zawrěć. to je podobne kaž Wotpokazać, ale awtorojo njemóža jo znowa zapodać. To so jenož w ekstremnych padach stawa."
+msgstr ""
+"Nałoženje na Torhošću zawrěć. To je podobne kaž Wotpokazać, ale awtorojo "
+"njemóža jo znowa zapodać. To so jenož w ekstremnych padach stawa."
 
 #: mkt/reviewers/views.py:135
 msgid "New Apps (Under 5 days)"
@@ -6003,11 +6011,13 @@ msgstr "Samopřepruwowanja dowolene njejsu."
 
 #: mkt/reviewers/views.py:254
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr "Jenož wyšerjadni přepruwowarjo móža nałoženja na lisćinje blokowanjow přepruwować."
+msgstr ""
+"Jenož senioriscy přepruwowarjo móža nałoženja na lisćinje blokowanjow "
+"přepruwować."
 
 #: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
-msgstr "{0} přidaty "
+msgstr "{0} přidaty"
 
 #: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
@@ -6314,7 +6324,7 @@ msgstr "wot"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "W čakanskim rynku za nowopřepruwowanja"
+msgstr "W čakanskim rynku za nowopřepruwowanje"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -6548,7 +6558,7 @@ msgstr "Historija nałoženja so začituje &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr "Přichodne komentry"
+msgstr "Přichodne komentary"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
@@ -7555,11 +7565,12 @@ msgstr "Podrobnosće nałoženja zapodać"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr "<span>Připrawće <a href=\"%(rating_url)s\">wobsahowe pohódnoćenja</a> ein</span>"
+msgstr ""
+"<span>Připrawće <a href=\"%(rating_url)s\">wobsahowe pohódnoćenja</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr "<span>Připrawće <a href=\"%(pay_url)s\">płaćenja</a> ein</span>"
+msgstr "<span>Připrawće <a href=\"%(pay_url)s\">płaćenja</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
