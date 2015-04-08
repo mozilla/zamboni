@@ -494,6 +494,16 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_phrase_lower(self):
+        """
+        Phrase queries don't apply analyzers so we want to ensure our code
+        lowercases the search query.
+        """
+        res = self.anon.get(self.url, data={'q': 'Somethin'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_name_localized(self):
         # First test no ?lang parameter returns all localizations.
         res = self.anon.get(self.url, data={'q': 'something'})
