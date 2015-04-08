@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-07 23:05+0000\n"
+"PO-Revision-Date: 2015-04-08 12:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428447939.0\n"
+"X-POOTLE-MTIME: 1428494693.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -6487,43 +6487,43 @@ msgstr "Dypki"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Mjasec"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "Lěto"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
-msgstr ""
+msgstr "Ceły cas"
 
 #: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
 msgid "Waiting Time"
-msgstr ""
+msgstr "Cakański cas"
 
 #: mkt/reviewers/templates/reviewers/queue.html:50 mkt/reviewers/templates/reviewers/queue.html:71
 msgid "Payment Category:"
-msgstr ""
+msgstr "Płaśeńska kategorija:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:101
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Pomocne wótkaze:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:102
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Wjednik za pśepytowarje"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:11
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "Pógódnośeński cakański rěd za {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
-msgstr ""
+msgstr "wót"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "W cakańskem rěźe za nowopśeglědowanje"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -6565,39 +6565,41 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Pśigótowane wótegrono zasajźiś…"
 
 #: mkt/reviewers/templates/reviewers/review.html:132
 msgid "Tested with:"
-msgstr ""
+msgstr "Testowany z:"
 
 #: mkt/reviewers/templates/reviewers/review.html:158
 msgid "Browse"
-msgstr ""
+msgstr "Pśepytaś"
 
 #: mkt/reviewers/templates/reviewers/review.html:170
 msgid "Attach another file"
-msgstr ""
+msgstr "Dalšnu dataju pśipowjesyś"
 
 #: mkt/reviewers/templates/reviewers/review.html:173
 msgid "Device Override:"
-msgstr ""
+msgstr "Pśepisowanje rěda:"
 
 #: mkt/reviewers/templates/reviewers/review.html:186
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Pśepisowanje minimalnych pominanjow:"
 
 #: mkt/reviewers/templates/reviewers/review.html:205
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami "
+"woglědał."
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Pśidanki"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Toś ta wersija njejo se pśeglědała"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
@@ -6637,40 +6639,40 @@ msgstr "Zaktualizěrowany"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:110 mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
 msgid "Rating"
-msgstr ""
+msgstr "Pógódnośenje"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:129 mkt/reviewers/templates/reviewers/includes/mobile_details.html:141
 msgid "Region Availability"
-msgstr ""
+msgstr "K-dispoziciji-byśe pó regionach"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:132
 msgid "Show less"
-msgstr ""
+msgstr "Mjenjej pokazaś"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:142
 msgid "Images"
-msgstr ""
+msgstr "Wobraze"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:152
 msgid "More about this app"
-msgstr ""
+msgstr "Wěcej wó toś tom nałoženju"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:155
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "How njejo nic wiźeś! Wuwijaŕ njejo drobnostki integrěrował."
 
 #. "Filter" is a button label (verb)
 #: mkt/reviewers/templates/reviewers/includes/macros.html:61 mkt/templates/mkt/header.html:18
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Póchad nałoženja"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
-msgstr ""
+msgstr "<strong>IDN-domena!</strong> Wersija Punycode: %(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Priority Review Needed"
@@ -6711,23 +6713,25 @@ msgstr "Akcije moderatora:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "wót %(user)s %(date)s %(stars)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
-msgstr ""
+msgstr "pśełožowaś"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Markěrowany wót wužywarja %"
+"(user)s %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Wšykne pśeglědanja su moderěrowane. Dobre źěło!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
-msgstr ""
+msgstr "Rozšyrjone pytanje"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
@@ -6814,15 +6818,15 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Žedne wuslědki namakane"
 
 #: mkt/search/forms.py:12
 msgid "Relevance"
-msgstr ""
+msgstr "Relewanca"
 
 #: mkt/search/forms.py:13
 msgid "Popularity"
-msgstr ""
+msgstr "Woblubowanosć"
 
 #: mkt/search/forms.py:14
 msgid "Weekly Downloads"
@@ -6862,27 +6866,27 @@ msgstr "Premium z płaśenim w nałoženju"
 
 #: mkt/search/forms.py:37
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Drugi system za płaśenje w nałoženju"
 
 #: mkt/search/forms.py:44
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:51
 msgid "Any Device Type"
-msgstr ""
+msgstr "Někaki rědowy typ"
 
 #: mkt/search/forms.py:53
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 #: mkt/search/forms.py:54
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: mkt/search/forms.py:57
 msgid "All Categories"
-msgstr ""
+msgstr "Wšykne kategorije"
 
 #: mkt/search/forms.py:72
 msgid "Search for apps"
@@ -6954,32 +6958,32 @@ msgstr ""
 
 #: mkt/site/fields.py:32
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Zapódajśo nanejmjenjej jadnu gódnotu."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Heksadecimalny barwny kod"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "To musy płaśiwy heksadecimalny barwny kod byś, na pś. #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Gaž jo se pśizwóliło."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Nic, až jo manuelnje njewózjawjam."
 
 #: mkt/site/helpers.py:163
 msgid "Home"
-msgstr ""
+msgstr "Startowy bok"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:318
 msgid "{0} ago"
-msgstr ""
+msgstr "pśed {0}"
 
 #: mkt/site/log.py:19
 msgid "{addon} was created."
@@ -7190,11 +7194,11 @@ msgstr "Wužywaŕ {user} jo pógódnośenje {review} za dodank {addon} pśizwól
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Pógódnośenje {review} za {addon} wulašowane."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} jo {review} za {addon} wulašował."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
@@ -7518,39 +7522,43 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "Bok njejo se namakał."
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
+msgstr "Bóžko njamóžomy namakaś, což pytaśo."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr ""
+"Bok abo dataja, kótaruž sćo pominał, njejo se na našom sedle namakała. Snaź "
+"sćo na wótkaz kliknuł, kótaryž jo zestarjony abo adresu wopak zapódał."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+msgstr "Gaž sćo adresu zapódał, pśeglědajśo pšawopis hyšći raz."
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr ""
+"Woglědajśo se k <a class=\"sync\" href=\"%(home)s\">startowemu bokoju "
+"Wikowanišća Firefox</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Serwerowa zmólka"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Hopla! Pla nas jo zmólka nastała."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
-msgstr ""
+msgstr "Dajomy se skóro do jogo wótpóranja."
 
 #: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
-msgstr ""
+msgstr "Móžośo toś ten bok znowego zacytaś, abo pózdźej hyšć raz wopytaś."
 
 #: mkt/stats/forms.py:9
 msgid "Day"
@@ -7591,27 +7599,31 @@ msgstr ""
 
 #: mkt/submit/forms.py:190
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Wersija %s južo eksistěrujo."
 
 #: mkt/submit/forms.py:201
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "Změny na \"póchaźe\" njejsu dowóline."
 
 #: mkt/submit/forms.py:224
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Wužywaŕ, kótaryž pósrědnja pśeglědanje, njejo jadnak. "
 
 #: mkt/submit/forms.py:269
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Wózjawśo mójo nałoženje a cyńśo jo za kuždego na Wikowanišću widobne a "
+"zapśimjejśo jo do pytańskich wuslědkow."
 
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Njewózjawśo mójo nałoženje. Informěrujśo mě a pśiměrijom widobnosć "
+"nałoženja, za tym až jo se pśizwóliło."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Pšawidła priwatnosći"
 
 #: mkt/submit/forms.py:296
 msgid ""
