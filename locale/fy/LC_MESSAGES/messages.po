@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-02 10:09+0000\n"
+"PO-Revision-Date: 2015-04-08 09:26+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,23 +16,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427969381.0\n"
+"X-POOTLE-MTIME: 1428485206.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "Selecteer een geldige optie. %(value)s is niet beschikbaar."
+msgstr "Selektearje in jildige opsje. %(value)s is net beskikber."
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr "Dit veld dient een lengte van ten minste {num} tekens te hebben."
+msgstr "Dit fjild moat in lingte fan op syn minst {num} tekens hawwe."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr "De taalcode {lang_code} is ongeldig."
+msgstr "De taalkoade {lang_code} is ûnjildich."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
 msgid "Unknown"
-msgstr "Onbekend"
+msgstr "Unbekend"
 
 #: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
 msgid "Yes"
@@ -44,31 +44,31 @@ msgstr "Nee"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr "Formulier kan niet worden ingediend."
+msgstr "Formulier kin net yntsjinne wurde."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr "Opmerking is leeg."
+msgstr "Opmerking is leech."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr "Ongeldig opmerkingstype."
+msgstr "Unjildich opmerkingstype."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr "Versie %s bestaat niet"
+msgstr "Ferzje %s bestiet net"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr "Bijlage:"
+msgstr "Bylage:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:279
 msgid "Description:"
-msgstr "Beschrijving:"
+msgstr "Beskriuwing:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr "Bijlage is groter dan de maximale %s."
+msgstr "Bylage is grutter as de maksimale %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
@@ -76,7 +76,8 @@ msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr "De Firefox Marketplace is de officiële bron voor apps voor het Webplatform."
+msgstr ""
+"De Firefox Marketplace is de offisjele boarne foar apps foar it Webplatform."
 
 # Letterlijk of Firefoxversie?
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
@@ -85,7 +86,7 @@ msgstr "Desktop"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr "Firefox Mobiel"
+msgstr "Firefox Mobyl"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
@@ -98,15 +99,15 @@ msgstr "Firefox OS"
 
 #: mkt/constants/apps.py:9
 msgid "User"
-msgstr "Gebruiker"
+msgstr "Brûker"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr "Beoordelaar"
+msgstr "Beoardieler"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
-msgstr "Ontwikkelaar"
+msgstr "Untwikkeler"
 
 #: mkt/constants/bango.py:19
 msgid "Afghanistan"
@@ -114,7 +115,7 @@ msgstr "Afghanistan"
 
 #: mkt/constants/bango.py:20
 msgid "Åland Islands"
-msgstr "Åland-eilanden"
+msgstr "Åland-eilannen"
 
 #: mkt/constants/bango.py:21
 msgid "Albania"
@@ -142,7 +143,7 @@ msgstr "Anguilla"
 
 #: mkt/constants/bango.py:27
 msgid "Antarctica"
-msgstr "Antarctica"
+msgstr "Antarktika"
 
 #: mkt/constants/bango.py:28
 msgid "Antigua and Barbuda"
@@ -154,7 +155,7 @@ msgstr "Argentinië"
 
 #: mkt/constants/bango.py:30
 msgid "Armenia"
-msgstr "Armenië"
+msgstr "Armeenje"
 
 #: mkt/constants/bango.py:31
 msgid "Aruba"
@@ -162,11 +163,11 @@ msgstr "Aruba"
 
 #: mkt/constants/bango.py:32
 msgid "Australia"
-msgstr "Australië"
+msgstr "Austraalje"
 
 #: mkt/constants/bango.py:33
 msgid "Austria"
-msgstr "Oostenrijk"
+msgstr "Eastenryk"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
@@ -190,7 +191,7 @@ msgstr "Barbados"
 
 #: mkt/constants/bango.py:39
 msgid "Belarus"
-msgstr "Wit-Rusland"
+msgstr "Wyt-Ruslân"
 
 #: mkt/constants/bango.py:40
 msgid "Belgium"
@@ -214,7 +215,7 @@ msgstr "Bhutan"
 
 #: mkt/constants/bango.py:45
 msgid "Bolivia"
-msgstr "Bolivië"
+msgstr "Bolivje"
 
 #: mkt/constants/bango.py:46
 msgid "Bonaire, Saint Eustatius and Saba"
@@ -222,7 +223,7 @@ msgstr "Bonaire, Sint Eustatius en Saba"
 
 #: mkt/constants/bango.py:47
 msgid "Bosnia and Herzegovina"
-msgstr "Bosnië-Herzegovina"
+msgstr "Bosnje-Herzegovina"
 
 #: mkt/constants/bango.py:48
 msgid "Botswana"
@@ -230,15 +231,15 @@ msgstr "Botswana"
 
 #: mkt/constants/bango.py:49
 msgid "Bouvet Island"
-msgstr "Bouvet-eiland"
+msgstr "Bouvet-eilân"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
 msgid "Brazil"
-msgstr "Brazilië"
+msgstr "Brazilje"
 
 #: mkt/constants/bango.py:51
 msgid "British Indian Ocean Territory"
-msgstr "Brits-Indisch Oceaanterritorium"
+msgstr "Brits-Yndysk Oseaanterritorium"
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
@@ -258,7 +259,7 @@ msgstr "Burundi"
 
 #: mkt/constants/bango.py:56
 msgid "Cambodia"
-msgstr "Cambodja"
+msgstr "Kambodja"
 
 #: mkt/constants/bango.py:57
 msgid "Cameroon"
@@ -266,7 +267,7 @@ msgstr "Kameroen"
 
 #: mkt/constants/bango.py:58
 msgid "Canada"
-msgstr "Canada"
+msgstr "Kanada"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
@@ -274,11 +275,11 @@ msgstr "Kaapverdië"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
-msgstr "Kaaimaneilanden"
+msgstr "Kaaimaneilannen"
 
 #: mkt/constants/bango.py:61
 msgid "Central African Republic"
-msgstr "Centraal-Afrikaanse republiek"
+msgstr "Sintraal-Afrikaanse republyk"
 
 #: mkt/constants/bango.py:62
 msgid "Chad"
@@ -286,43 +287,43 @@ msgstr "Tsjaad"
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:73
 msgid "Chile"
-msgstr "Chili"
+msgstr "Sili"
 
 #: mkt/constants/bango.py:64 mkt/constants/regions.py:74
 msgid "China"
-msgstr "China"
+msgstr "Sina"
 
 #: mkt/constants/bango.py:65
 msgid "Christmas Island"
-msgstr "Kersteiland"
+msgstr "Kersteilân"
 
 #: mkt/constants/bango.py:66
 msgid "Cocos (Keeling) Islands"
-msgstr "Cocos- (Keeling-)eiland"
+msgstr "Kokos- (Keeling-)eilân"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:75
 msgid "Colombia"
-msgstr "Colombia"
+msgstr "Kolombia"
 
 #: mkt/constants/bango.py:68
 msgid "Comoros"
-msgstr "Comoren"
+msgstr "Komoren"
 
 #: mkt/constants/bango.py:69
 msgid "Congo"
-msgstr "Congo"
+msgstr "Kongo"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr "Congo, Democratische republiek"
+msgstr "Kongo, Demokratyske republyk"
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
-msgstr "Cook-eilanden"
+msgstr "Kook-eilannen"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:76
 msgid "Costa Rica"
-msgstr "Costa Rica"
+msgstr "Kosta Rika"
 
 #: mkt/constants/bango.py:73
 msgid "Côte d'Ivoire"
@@ -330,19 +331,19 @@ msgstr "Ivoorkust"
 
 #: mkt/constants/bango.py:74
 msgid "Croatia"
-msgstr "Kroatië"
+msgstr "Kroaasjë"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr "Cuba"
+msgstr "Kuba"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
-msgstr "Curaçao"
+msgstr "Kuraçao"
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
-msgstr "Cyprus"
+msgstr "Syprus"
 
 #: mkt/constants/bango.py:78 mkt/constants/regions.py:77
 msgid "Czech Republic"
@@ -358,15 +359,15 @@ msgstr "Djibouti"
 
 #: mkt/constants/bango.py:81
 msgid "Dominica"
-msgstr "Dominica"
+msgstr "Dominika"
 
 #: mkt/constants/bango.py:82
 msgid "Dominican Republic"
-msgstr "Dominicaanse republiek"
+msgstr "Dominikaanske republyk"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:79
 msgid "Ecuador"
-msgstr "Ecuador"
+msgstr "Ekwador"
 
 #: mkt/constants/bango.py:84
 msgid "Egypt"
@@ -378,7 +379,7 @@ msgstr "El Salvador"
 
 #: mkt/constants/bango.py:86
 msgid "Equatorial Guinea"
-msgstr "Equatoriaal Guinea"
+msgstr "Ekwatoriaal Guinea"
 
 #: mkt/constants/bango.py:87
 msgid "Eritrea"
@@ -386,15 +387,15 @@ msgstr "Eritrea"
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
-msgstr "Estland"
+msgstr "Estlân"
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr "Ethiopië"
+msgstr "Ethioopje"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
-msgstr "Falklandeilanden (Malvina’s)"
+msgstr "Falklandeilannen (Malvina’s)"
 
 #: mkt/constants/bango.py:91
 msgid "Faroe Islands"
@@ -406,23 +407,23 @@ msgstr "Fiji"
 
 #: mkt/constants/bango.py:93
 msgid "Finland"
-msgstr "Finland"
+msgstr "Finlân"
 
 #: mkt/constants/bango.py:94 mkt/constants/regions.py:81
 msgid "France"
-msgstr "Frankrijk"
+msgstr "Frankryk"
 
 #: mkt/constants/bango.py:95
 msgid "French Guiana"
-msgstr "Frans Guyana"
+msgstr "Frâns Guyana"
 
 #: mkt/constants/bango.py:96
 msgid "French Polynesia"
-msgstr "Frans Polynesië"
+msgstr "Frâns Polyneesje"
 
 #: mkt/constants/bango.py:97
 msgid "French Southern Territories"
-msgstr "Franse Zuidelijke en Antarctische Gebieden"
+msgstr "Frânse Súdlike en Antarktyske Gebieden"
 
 #: mkt/constants/bango.py:98
 msgid "Gabon"
@@ -438,7 +439,7 @@ msgstr "Georgië"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
 msgid "Germany"
-msgstr "Duitsland"
+msgstr "Dútslân"
 
 #: mkt/constants/bango.py:102
 msgid "Ghana"
@@ -450,11 +451,11 @@ msgstr "Gibraltar"
 
 #: mkt/constants/bango.py:104 mkt/constants/regions.py:83
 msgid "Greece"
-msgstr "Griekenland"
+msgstr "Grikelân"
 
 #: mkt/constants/bango.py:105
 msgid "Greenland"
-msgstr "Groenland"
+msgstr "Grienlân"
 
 #: mkt/constants/bango.py:106
 msgid "Grenada"
@@ -494,11 +495,11 @@ msgstr "Haïti"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
-msgstr "Heard en McDonald-eilanden"
+msgstr "Heard en McDonald-eilannen"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr "Vaticaanstad"
+msgstr "Fatikaanstêd"
 
 #: mkt/constants/bango.py:117
 msgid "Honduras"
@@ -514,19 +515,19 @@ msgstr "Hongarije"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
-msgstr "IJsland"
+msgstr "Iislân"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:86
 msgid "India"
-msgstr "India"
+msgstr "Yndia"
 
 #: mkt/constants/bango.py:122
 msgid "Indonesia"
-msgstr "Indonesië"
+msgstr "Yndoneesje"
 
 #: mkt/constants/bango.py:123
 msgid "Iran, Islamic Republic of"
-msgstr "Iran, Islamitische republiek"
+msgstr "Iran, Islamityske republyk"
 
 #: mkt/constants/bango.py:124
 msgid "Iraq"
@@ -534,7 +535,7 @@ msgstr "Irak"
 
 #: mkt/constants/bango.py:125
 msgid "Ireland"
-msgstr "Ierland"
+msgstr "Ierlân"
 
 #: mkt/constants/bango.py:126
 msgid "Isle of Man"
@@ -546,11 +547,11 @@ msgstr "Israël"
 
 #: mkt/constants/bango.py:128 mkt/constants/regions.py:87
 msgid "Italy"
-msgstr "Italië"
+msgstr "Itaalje"
 
 #: mkt/constants/bango.py:129
 msgid "Jamaica"
-msgstr "Jamaica"
+msgstr "Jamaika"
 
 #: mkt/constants/bango.py:130 mkt/constants/regions.py:88
 msgid "Japan"
@@ -562,7 +563,7 @@ msgstr "Jersey"
 
 #: mkt/constants/bango.py:132
 msgid "Jordan"
-msgstr "Jordanië"
+msgstr "Jordaanje"
 
 #: mkt/constants/bango.py:133
 msgid "Kazakhstan"
@@ -578,11 +579,11 @@ msgstr "Kiribati"
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr "Noord-Korea"
+msgstr "Noard-Korea"
 
 #: mkt/constants/bango.py:137
 msgid "Korea, Republic of"
-msgstr "Zuid-Korea"
+msgstr "Súd-Korea"
 
 #: mkt/constants/bango.py:138
 msgid "Kosovo"
@@ -602,7 +603,7 @@ msgstr "Laos"
 
 #: mkt/constants/bango.py:142
 msgid "Latvia"
-msgstr "Letland"
+msgstr "Letlân"
 
 #: mkt/constants/bango.py:143
 msgid "Lebanon"
@@ -618,7 +619,7 @@ msgstr "Liberia"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr "Libië"
+msgstr "Lybje"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
@@ -630,19 +631,19 @@ msgstr "Litouwen"
 
 #: mkt/constants/bango.py:149
 msgid "Luxembourg"
-msgstr "Luxemburg"
+msgstr "Luksemburch"
 
 #: mkt/constants/bango.py:150
 msgid "Macao"
-msgstr "Macao"
+msgstr "Makao"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr "Macedonië"
+msgstr "Masedoonje"
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
-msgstr "Madagascar"
+msgstr "Madagaskar"
 
 #: mkt/constants/bango.py:153
 msgid "Malawi"
@@ -650,7 +651,7 @@ msgstr "Malawi"
 
 #: mkt/constants/bango.py:154
 msgid "Malaysia"
-msgstr "Maleisië"
+msgstr "Maleisje"
 
 #: mkt/constants/bango.py:155
 msgid "Maldives"
@@ -666,7 +667,7 @@ msgstr "Malta"
 
 #: mkt/constants/bango.py:158
 msgid "Marshall Islands"
-msgstr "Marshalleilanden"
+msgstr "Marshalleilannen"
 
 #: mkt/constants/bango.py:159
 msgid "Martinique"
@@ -7867,23 +7868,23 @@ msgstr "Probleem met uw app “{app}” op de Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
-msgstr "Sorteren op:"
+msgstr "Sortearje op:"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
-msgstr "Aangemaakt"
+msgstr "Oanmakke"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
-msgstr "Afmelden"
+msgstr "Ofmelde"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr "Registreren"
+msgstr "Registrearje"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
-msgstr "vereist"
+msgstr "fereaske"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
