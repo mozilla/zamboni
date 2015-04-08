@@ -379,16 +379,16 @@ class RereviewQueue(ModelBase):
     @classmethod
     def flag(cls, addon, event, message=None):
         cls.objects.get_or_create(addon=addon)
+        version = addon.current_version or addon.latest_version
         if message:
-            mkt.log(event, addon, addon.current_version,
-                    details={'comments': message})
+            mkt.log(event, addon, version, details={'comments': message})
         else:
-            mkt.log(event, addon, addon.current_version)
+            mkt.log(event, addon, version)
 
         # TODO: if we ever get rid of ActivityLog for reviewer notes, replace
         # all flag calls to use the comm constant and not have to use
         # ACTION_MAP.
-        create_comm_note(addon, addon.current_version, None, message,
+        create_comm_note(addon, version, None, message,
                          note_type=comm.ACTION_MAP(event))
 
 
