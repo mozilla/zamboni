@@ -45,7 +45,7 @@ def generate_app_data(num):
         for a in fake_app_names[:tailsize]:
             apps.append(a + (str(i + 2),))
     else:
-        apps = random.sample(fake_app_names, tailsize)
+        apps = fake_app_names[:tailsize]
     # Let's have at least 3 apps in each category, if we can.
     if num < (len(CATEGORY_CHOICES) * 3):
         num_cats = max(num // 3, 1)
@@ -259,12 +259,12 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     return app
 
 
-def get_or_create_payment_account():
-    email = 'fakedeveloper@example.com'
+def get_or_create_payment_account(email='fakedeveloper@example.com',
+                                  name='Fake App Developer'):
     user, _ = UserProfile.objects.get_or_create(
         email=email,
         source=mkt.LOGIN_SOURCE_UNKNOWN,
-        display_name=email)
+        display_name=name)
     seller, _ = SolitudeSeller.objects.get_or_create(user=user)
     acct, _ = PaymentAccount.objects.get_or_create(
         user=user,
@@ -329,15 +329,17 @@ def generate_apps_from_specs(specs, specdir):
 
 def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            num_ratings=1, num_locales=0, preview_files=(),
-                           author='fakedeveloper@example.com',
+                           developer_name='Fake App Developer',
+                           developer_email='fakedeveloper@example.com',
+                           privacy_policy='Fake privacy policy',
                            premium_type='free', description=None, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
-        app = generate_hosted_app(name, categories, author,
+        app = generate_hosted_app(name, categories, developer_name,
                                   status=status, **spec)
     else:
         app = generate_packaged_app(
-            name, type, categories, author,
+            name, type, categories, developer_name,
             status=status, **spec)
     generate_icon(app)
     if not preview_files:
@@ -356,11 +358,12 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                    '?type=meat-and-filler&paras=2'
                                    '&start-with-lorem=1').json()[0]
     app.description = description
-    app.support_email = author
+    app.privacy_policy = privacy_policy
+    app.support_email = developer_email
     premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
     if premium_type != mkt.ADDON_FREE:
-        acct = get_or_create_payment_account()
+        acct = get_or_create_payment_account(developer_email, developer_name)
         AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
                                            account_uri=acct.uri,
                                            product_uri=app.app_slug)
@@ -372,6 +375,11 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.status = status
     app.save()
     addon_review_aggregates(app.pk)
-    u = create_user(author)
+    try:
+        u = UserProfile.objects.get(email=developer_email)
+    except UserProfile.DoesNotExist:
+        u = create_user(developer_email)
+        u.display_name = developer_name
+        u.save()
     AddonUser.objects.create(user=u, addon=app)
     return app
