@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-01-03 22:37+0000\n"
+"PO-Revision-Date: 2015-04-08 21:00+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420324641.0\n"
+"X-POOTLE-MTIME: 1428526808.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -330,8 +330,14 @@ msgstr "Rozpoznané: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"Odstránenie účtu platieb \"{0}\" odoberie účet od následujúcej aplikácie. "
+"Aplikácia bez účtu platieb nebude k dispozícií na predaj."
 msgstr[1] ""
+"Odstránenie účtu platieb \"{0}\" odoberie účet od následujúcich aplikácií. "
+"Aplikácie bez účtu platieb nebudú k dispozícií na predaj."
 msgstr[2] ""
+"Odstránenie účtu platieb \"{0}\" odoberie účet od následujúcich aplikácií. "
+"Aplikácie bez účtu platieb nebudú k dispozícií na predaj."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -554,11 +560,11 @@ msgstr "Chyba pri zamietnutí aplikácie: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Chyba pri prechode aplikácie: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Iná chyba aplikácie: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
