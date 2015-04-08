@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2015-04-07 12:14+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2098,10 +2098,7 @@ msgstr "Hledání klíčových slov:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
-msgstr ""
-"Klíčová slova pro vyhledávání pomáhají při zobrazení výsledků vyhledávání na "
-"Firefox Marketplace. Vyberte proto taková slova, která nejlépe vystihnou "
-"vaši aplikaci."
+msgstr "Klíčová slova pro vyhledávání pomáhají při zobrazení výsledků vyhledávání na Firefox Marketplace. Vyberte proto taková slova, která nejlépe vystihnou vaši aplikaci."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -2168,7 +2165,7 @@ msgid "Choose where my app is made available"
 msgstr "Volba, kde bude má aplikace dostupná"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Kategorie"
 
@@ -2624,19 +2621,19 @@ msgstr "Podmínky služby byly odsouhlaseny."
 msgid "Users with the admin role cannot use the API."
 msgstr "Uživatelé s administrátorskou rolí nemohou toto API použít."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Tento klíč k API neexistuje."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Nový klíč k API byl vygenerován."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Vytvořena blokovaná verze."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "Aplikace je již blokována."
 
@@ -3498,11 +3495,8 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
-"Název aplikace je jedním z polí, které pomáhá při zobrazení výsledků "
-"vyhledávání na Firefox Marketplace. Název se také zobrazuje na stránce s "
-"podrobnostmi o aplikaci. Ujistěte se, že jste v manifestu aplikace zadali "
-"vhodný název. Pokud byste chtěli název vaší aplikace změnit, je třeba tak "
-"udělat právě v jejím manifestu."
+"Název aplikace je jedním z polí, které pomáhá při zobrazení výsledků vyhledávání na Firefox Marketplace. Název se také zobrazuje na stránce s podrobnostmi o aplikaci. Ujistěte se, že jste v "
+"manifestu aplikace zadali vhodný název. Pokud byste chtěli název vaší aplikace změnit, je třeba tak udělat právě v jejím manifestu."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3538,7 +3532,7 @@ msgid "View API documentation"
 msgstr "Zobrazit dokumentaci k API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "URl manifestu"
 
@@ -3563,10 +3557,8 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
-"Popis aplikace je jedním z polí, které pomáhá při zobrazení výsledků "
-"vyhledávání na Firefox Marketplace. Popis aplikace se také zobrazuje na "
-"stránce s podrobnostmi o aplikace. Ujistěte se, že jste napsali vhodný "
-"popis, který vaši aplikaci vystihuje co nejlépe."
+"Popis aplikace je jedním z polí, které pomáhá při zobrazení výsledků vyhledávání na Firefox Marketplace. Popis aplikace se také zobrazuje na stránce s podrobnostmi o aplikace. Ujistěte se, že jste "
+"napsali vhodný popis, který vaši aplikaci vystihuje co nejlépe."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -3991,13 +3983,9 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"Svou aplikaci můžete přihlásit, aby byla <strong>přítomna na zařízeních s "
-"FirefoxOS rovnou při nákupu</strong> u mobilních operátorů. Pro přihlášení "
-"stáhněte šablonu níže, otestujte svou aplikaci, vyplňte šablonu a nahrajte "
-"vaše výsledky zpět pomocí <a href=\"%(submit_url)s\">tohoto formuláře</a>. "
-"Vaše výsledky uložíme na našich serverech, kde je uvidí jednotliví operátoři "
-"a budou je moci zhodnotit. Pokud máte otázky k přihlášení vaší aplikace, "
-"můžete nás <a href=\"%(support_url)s\">kontaktovat</a>."
+"Svou aplikaci můžete přihlásit, aby byla <strong>přítomna na zařízeních s FirefoxOS rovnou při nákupu</strong> u mobilních operátorů. Pro přihlášení stáhněte šablonu níže, otestujte svou aplikaci, "
+"vyplňte šablonu a nahrajte vaše výsledky zpět pomocí <a href=\"%(submit_url)s\">tohoto formuláře</a>. Vaše výsledky uložíme na našich serverech, kde je uvidí jednotliví operátoři a budou je moci "
+"zhodnotit. Pokud máte otázky k přihlášení vaší aplikace, můžete nás <a href=\"%(support_url)s\">kontaktovat</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -5594,7 +5582,7 @@ msgid "App Lookup"
 msgstr "Hledání aplikací"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Hledat"
@@ -5853,7 +5841,7 @@ msgstr "Vyžadováno více informací"
 msgid "Tarako-ready"
 msgstr "Tarako-ready"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Zařízení"
 
@@ -6688,39 +6676,39 @@ msgstr "Všechny kategorie"
 msgid "Search for apps"
 msgstr "Vyhledat aplikace"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr "Typ zařízení"
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr "Premium typy"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "Typ aplikace"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr "Instalace povoleny z"
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr "Všude"
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Funguje offline"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Podporované jazyky"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Jméno autora"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Štítky"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2015-04-02 23:29+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -2163,7 +2163,7 @@ msgid "Choose where my app is made available"
 msgstr "Escolher onde a minha aplicação estará disponível"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Categorias"
 
@@ -2623,19 +2623,19 @@ msgstr "Os termos de serviço foram aceitos."
 msgid "Users with the admin role cannot use the API."
 msgstr "Utilizadores com o papel de administradores não podem utilizar a API."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Essa chave de API não existe."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Nova chave de API gerada."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Versão de lista de bloqueios criada."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "A aplicação já está na lista de bloqueios."
 
@@ -3536,7 +3536,7 @@ msgid "View API documentation"
 msgstr "Ver documentação da API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "URL do manifesto"
 
@@ -4219,9 +4219,7 @@ msgstr "Chaves de pagamentos na aplicação permitem obter pagamentos na sua apl
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
-"Nota: Se quiser fornecer produtos na aplicação para utilizadores do Firefox "
-"para computador então utilize produtos na aplicação."
+msgstr "Nota: Se quiser fornecer produtos na aplicação para utilizadores do Firefox para computador então utilize produtos na aplicação."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -5607,7 +5605,7 @@ msgid "App Lookup"
 msgstr "Pesquisa de aplicações"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Pesquisar"
@@ -5866,7 +5864,7 @@ msgstr "Solicitadas mais informações"
 msgid "Tarako-ready"
 msgstr "Pronto para Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -6701,39 +6699,39 @@ msgstr "Todas as categorias"
 msgid "Search for apps"
 msgstr "Pesquisar por aplicações"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr "Tipo de dispositivo"
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr "Tipos premium"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "Tipo de aplicação"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr "Permitidas instalações de"
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr "Todo o lado"
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Funciona sem ligação à Internet"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Idiomas suportados"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Nome do autor"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Etiquetas"
 

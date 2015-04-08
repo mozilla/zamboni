@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2014-10-17 12:14+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -2169,7 +2169,7 @@ msgid "Choose where my app is made available"
 msgstr "Elegir dónde estará disponible mi app"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Categorías"
 
@@ -2624,19 +2624,19 @@ msgstr "Términos del servicio aceptados."
 msgid "Users with the admin role cannot use the API."
 msgstr "Los usuarios con derechos de administrador no pueden utilizar la API."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "No se encuentra la clave de API."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Se generó una nueva clave API."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Versión no listada creada."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "La app ya no se lista."
 
@@ -3533,7 +3533,7 @@ msgid "View API documentation"
 msgstr "Ver la documentación de la API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "URL del archivo manifest"
 
@@ -5612,7 +5612,7 @@ msgid "App Lookup"
 msgstr "Búsqueda de apps"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Buscar"
@@ -5871,7 +5871,7 @@ msgstr "Se necesita más información"
 msgid "Tarako-ready"
 msgstr "Aprobada para Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -6701,39 +6701,39 @@ msgstr "Todas las categorías"
 msgid "Search for apps"
 msgstr "Buscar apps"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr "Tipo de dispositivo"
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr "Tipos premium"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "Tipo de app"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr ""
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr ""
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Funciona sin conexión"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Idiomas ofrecidos"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Nombre del autor"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Etiquetas"
 

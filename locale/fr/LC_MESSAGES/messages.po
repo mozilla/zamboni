@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2014-10-19 17:46+0000\n"
 "Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -2169,7 +2169,7 @@ msgid "Choose where my app is made available"
 msgstr "Choisir où mon application est disponible"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Catégories"
 
@@ -2624,19 +2624,19 @@ msgstr "Conditions d'utilisation acceptées."
 msgid "Users with the admin role cannot use the API."
 msgstr "Les utilisateurs avec droits d'administration ne peuvent pas utiliser l'API."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Aucune clé d'API correspondante."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Nouvelle clé d'API générée."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Version bloquée créée."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "L'application est déjà bloquée."
 
@@ -3534,7 +3534,7 @@ msgid "View API documentation"
 msgstr "Voir la documentation de l'API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "Adresse du manifeste"
 
@@ -5590,7 +5590,7 @@ msgid "App Lookup"
 msgstr "Recherche d'app"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Recherche"
@@ -5849,7 +5849,7 @@ msgstr "Plus d'informations demandées"
 msgid "Tarako-ready"
 msgstr "Prêt pour Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Appareil"
 
@@ -6675,39 +6675,39 @@ msgstr "Toutes les catégories"
 msgid "Search for apps"
 msgstr "Rechercher des applications"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr "Type d'appareil"
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr "Types premium"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "Type d'app"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr ""
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr ""
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Fonctionne hors-ligne"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Langues prises en charge"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Nom de l'auteur"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Étiquettes"
 

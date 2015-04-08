@@ -100,10 +100,8 @@ msgstr "Falidaasje fan {0} ôfmakke"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-"Jo app hat de falidaasje sûnder flaters en mei {0} warskôging trochstien."
-msgstr[1] ""
-"Jo app hat de falidaasje sûnder flaters en mei {0} warskôgingen trochstien."
+msgstr[0] "Jo app hat de falidaasje sûnder flaters en mei {0} warskôging trochstien."
+msgstr[1] "Jo app hat de falidaasje sûnder flaters en mei {0} warskôgingen trochstien."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -144,10 +142,8 @@ msgstr "Ynstallaasje mislearre. Probearje it letter nochris."
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"Jo app hat de falidaasje mei {0} flater en {1} berjocht(en) net trochstien."
-msgstr[1] ""
-"Jo app hat de falidaasje mei {0} flaters en {1} berjocht(en) net trochstien."
+msgstr[0] "Jo app hat de falidaasje mei {0} flater en {1} berjocht(en) net trochstien."
+msgstr[1] "Jo app hat de falidaasje mei {0} flaters en {1} berjocht(en) net trochstien."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
@@ -213,9 +209,7 @@ msgstr "Utskeakele"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Dizze funksje is tydlik útskeakele fanwege ûnderhâld oan de website. "
-"Probearje it letter nochris."
+msgstr "Dizze funksje is tydlik útskeakele fanwege ûnderhâld oan de website. Probearje it letter nochris."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -223,9 +217,7 @@ msgstr "Dizze oersetting fuortsmite"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Persona-oanmelding mislearre. Miskien hawwe jo gjin account mei dat "
-"e-mailadres?"
+msgstr "Persona-oanmelding mislearre. Miskien hawwe jo gjin account mei dat e-mailadres?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -305,9 +297,7 @@ msgstr "Grykske HEBIC/Yndonezyske Bank-koade"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"UK/Ierske Sort koade of Nij-Seelânske Account-prefix of Australyske BSB-"
-"koade"
+msgstr "UK/Ierske Sort koade of Nij-Seelânske Account-prefix of Australyske BSB-koade"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -334,14 +324,8 @@ msgstr "Detektearre: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount "
-"út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne "
-"net mear beskikber foar ferkeap."
-msgstr[1] ""
-"Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount "
-"út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne "
-"net mear beskikber foar ferkeap."
+msgstr[0] "Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne net mear beskikber foar ferkeap."
+msgstr[1] "Troch de betellingsaccount “{0}” fuort te smiten wurdt de betellingsaccount út de folgjende apps fuortsmiten. Tapassingen sûnder betellingsaccount binne net mear beskikber foar ferkeap."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -569,9 +553,7 @@ msgstr "Flater by mislearjen fan app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Sorry! Der is in flater bard by it opheljen fan de beoardielingsskiednis. "
-"Probearje jo opnij oan te melden.<p>"
+msgstr "Sorry! Der is in flater bard by it opheljen fan de beoardielingsskiednis. Probearje jo opnij oan te melden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86

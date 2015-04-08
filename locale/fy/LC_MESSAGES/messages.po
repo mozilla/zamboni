@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2015-04-08 09:26+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
@@ -76,8 +76,7 @@ msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
-"De Firefox Marketplace is de offisjele boarne foar apps foar it Webplatform."
+msgstr "De Firefox Marketplace is de offisjele boarne foar apps foar it Webplatform."
 
 # Letterlijk of Firefoxversie?
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
@@ -2165,7 +2164,7 @@ msgid "Choose where my app is made available"
 msgstr "Kiezen waar mijn app beschikbaar wordt gesteld"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -2620,19 +2619,19 @@ msgstr "Servicevoorwaarden geaccepteerd."
 msgid "Users with the admin role cannot use the API."
 msgstr "Gebruikers met de beheerdersrol kunnen de API niet gebruiken."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "API-sleutel niet gevonden."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Nieuwe API-sleutel aangemaakt."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Versie met blokkeringslijst maken."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "App wordt al geblokkeerd."
 
@@ -3533,7 +3532,7 @@ msgid "View API documentation"
 msgstr "API-documentatie lezen"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "Manifest-URL"
 
@@ -4207,9 +4206,7 @@ msgstr "Met in-app-betalingssleutels kunt u betalingen voor willekeurige prijspu
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
-"Noat: as jo yn-app-produkten oanbied wolle foar Firefox foar búro-PC-"
-"brûkers, brûk dan yn-app-produkten."
+msgstr "Noat: as jo yn-app-produkten oanbied wolle foar Firefox foar búro-PC-brûkers, brûk dan yn-app-produkten."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -5591,7 +5588,7 @@ msgid "App Lookup"
 msgstr "App opzoeken"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Zoeken"
@@ -5850,7 +5847,7 @@ msgstr "Meer informatie gevraagd"
 msgid "Tarako-ready"
 msgstr "Klaar voor Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Apparaat"
 
@@ -6676,39 +6673,39 @@ msgstr "Alle categorieën"
 msgid "Search for apps"
 msgstr "Zoeken naar apps"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr "Apparaattype"
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr "Premium-typen"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "App-type"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr "Installaties toegestaan vanaf"
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr "Overal"
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Werkt offline"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Ondersteunde talen"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Naam van schrijver"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Labels"
 

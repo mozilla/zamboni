@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-04-08 09:06-0700\n"
 "PO-Revision-Date: 2015-04-08 12:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1428494693.0\n"
 
@@ -2039,9 +2038,7 @@ msgstr "Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótar
 
 #: mkt/developers/forms.py:192
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr ""
-"Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež "
-"tuchylu hyšći felujo. <a href=\"%s\">Nałoženje wobźěłaś</a>"
+msgstr "Hopla, zda se, ako by wy toś ten manifest južo za %s zapódał, kótarež tuchylu hyšći felujo. <a href=\"%s\">Nałoženje wobźěłaś</a>"
 
 #: mkt/developers/forms.py:196
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
@@ -2160,7 +2157,7 @@ msgid "Choose where my app is made available"
 msgstr "Wubjeŕśo, źož mójo nałoženje buźo k dispoziciji"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:92
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "Kategorije"
 
@@ -2617,19 +2614,19 @@ msgstr "Wužywańske wuměnjenja su se akceptěrowali."
 msgid "Users with the admin role cannot use the API."
 msgstr "Wužywarje z rolu administratora njamógu API wužywaś."
 
-#: mkt/developers/views.py:1024
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Taki API-kluc njeeksistěrujo."
 
-#: mkt/developers/views.py:1030
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Nowy API-kluc napórany."
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Zastajona wersija jo se napórała."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "Nałoženje jo južo zastajone."
 
@@ -3323,11 +3320,8 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
-"Gaž nałoženje se zastaja, dostanu wužywarje aktualizaciju na wósebitu "
-"wersiju, kótaraž cyni nałoženje na jich rědach Firefox OS njewužywajobne. To "
-"wótpórajo teke toś to nałoženje ze zjawnych bokow, až nowa wersija njejo "
-"zapódana a pśizwólona. Toś te změny njedaju se anulěrowaś. Pšosym buźćo "
-"wobglědniwy."
+"Gaž nałoženje se zastaja, dostanu wužywarje aktualizaciju na wósebitu wersiju, kótaraž cyni nałoženje na jich rědach Firefox OS njewužywajobne. To wótpórajo teke toś to nałoženje ze zjawnych bokow, "
+"až nowa wersija njejo zapódana a pśizwólona. Toś te změny njedaju se anulěrowaś. Pšosym buźćo wobglědniwy."
 
 #: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
@@ -3531,7 +3525,7 @@ msgid "View API documentation"
 msgstr "API-dokumentaciju se woglědaś"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:105
+#: mkt/search/forms.py:131
 msgid "Manifest URL"
 msgstr "URL manifesta"
 
@@ -3556,10 +3550,8 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
-"Wopisanje nałoženja jo jadno z pólow, kótarež se wužywaju, aby pytańske "
-"wuslědki we Wikowanišću Firefox dodawali. Wopisanje nałoženja pokazujo se "
-"teke na boku drobnostkow nałoženja. Pódajśo wopisanje, kótarež wopisujo wašo "
-"nałoženje dokradnje."
+"Wopisanje nałoženja jo jadno z pólow, kótarež se wužywaju, aby pytańske wuslědki we Wikowanišću Firefox dodawali. Wopisanje nałoženja pokazujo se teke na boku drobnostkow nałoženja. Pódajśo "
+"wopisanje, kótarež wopisujo wašo nałoženje dokradnje."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -3985,15 +3977,10 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"Móžośo swójo nałoženje zapódaś, aby wót telefonowych póbitowarjow <strong>z "
-"rědami Firefox OS pśedinstalěrowało a librowało</strong>. Aby se za "
-"pśedinstalaciju pśizjawił, móžośo dokojce testowu pśedłogu wót nas ześěgnuś, "
-"swójo nałoženje testowaś, pśedłogu wupołniś a swóje wuslědki w <a href=\"%"
-"(submit_url)s\">formularje k zapódawanjeju nałoženja za pśedinstalaciju</a> "
-"slědk k nam nagraś. Buźomy waše testowe wuslědki na swójich serwerach "
-"składowaś, źož daju se wót zajmowanych telefonowych póbitowarjow woglědaś. "
-"Jolic maśo dalšne pšašanja, móžośo <a href=\"%(support_url)s\">se z nami do "
-"zwiska stajiś</a>."
+"Móžośo swójo nałoženje zapódaś, aby wót telefonowych póbitowarjow <strong>z rědami Firefox OS pśedinstalěrowało a librowało</strong>. Aby se za pśedinstalaciju pśizjawił, móžośo dokojce testowu "
+"pśedłogu wót nas ześěgnuś, swójo nałoženje testowaś, pśedłogu wupołniś a swóje wuslědki w <a href=\"%(submit_url)s\">formularje k zapódawanjeju nałoženja za pśedinstalaciju</a> slědk k nam nagraś. "
+"Buźomy waše testowe wuslědki na swójich serwerach składowaś, źož daju se wót zajmowanych telefonowych póbitowarjow woglědaś. Jolic maśo dalšne pšašanja, móžośo <a href=\"%(support_url)s\">se z nami "
+"do zwiska stajiś</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4008,30 +3995,20 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
-"Aby swójo nałoženje na Wikowanišću měł, trjebaśo certifikat wót "
-"International Age Rating Coalition (IARC). Gaž kliknjośo na slědujucy "
-"tłocašk, buźo se nowe wokno wócynjaś, źož móžośo krotki jo-ně-napšašnik wó "
-"wopśimjeśu swójogo nałoženja wupołniś. Pó wupołnjenju se wokno zacynijo, a "
-"wašo nałoženje změjo pón starstwowe pógódnośenje."
+"Aby swójo nałoženje na Wikowanišću měł, trjebaśo certifikat wót International Age Rating Coalition (IARC). Gaž kliknjośo na slědujucy tłocašk, buźo se nowe wokno wócynjaś, źož móžośo krotki jo-ně-"
+"napšašnik wó wopśimjeśu swójogo nałoženja wupołniś. Pó wupołnjenju se wokno zacynijo, a wašo nałoženje změjo pón starstwowe pógódnośenje."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr ""
-"Z pomocu rěda za pógódnośeńske certifikaty IARC zwólijośo do togo, jich <a "
-"href=\"%(privacy_url)s\">pšawidła priwatnosći</a> a <a href=\"%"
-"(tos_url)s\">wužywańske wuměnjenja</a> doźaržaś."
+msgstr "Z pomocu rěda za pógódnośeńske certifikaty IARC zwólijośo do togo, jich <a href=\"%(privacy_url)s\">pšawidła priwatnosći</a> a <a href=\"%(tos_url)s\">wužywańske wuměnjenja</a> doźaržaś."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
-"Proces wobpśimjeśowego pgódnośenja IARC jo skóńcony, budu was na <a href=\"%"
-"(ratings_url)s\">bok wopśimjeśowych pógódnośenjow</a> dalej pósrědnjaś."
+msgstr "Proces wobpśimjeśowego pgódnośenja IARC jo skóńcony, budu was na <a href=\"%(ratings_url)s\">bok wopśimjeśowych pógódnośenjow</a> dalej pósrědnjaś."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr ""
-"Bóžko jo zmólka pśi pśeźěłowanju wopśimjeśowych pógódnośenjow z našogo boka "
-"nastała. Móžośo ned dalej wópytowaś abo wopytajśo pózdźej hyšći raz."
+msgstr "Bóžko jo zmólka pśi pśeźěłowanju wopśimjeśowych pógódnośenjow z našogo boka nastała. Móžośo ned dalej wópytowaś abo wopytajśo pózdźej hyšći raz."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -4043,9 +4020,7 @@ msgstr "Sćo swójo nałoženje južo póhódnośiś dał?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
-"Jolic wašo nałoženje jo se južo pśez IARC-rěd za globalne pógódnośenja "
-"pógódnośiło a južo maśo wěstotny kod IARC, móžośo jen how manuelnje zapódaś."
+msgstr "Jolic wašo nałoženje jo se južo pśez IARC-rěd za globalne pógódnośenja pógódnośiło a južo maśo wěstotny kod IARC, móžośo jen how manuelnje zapódaś."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -4053,9 +4028,7 @@ msgstr "Zapódawański ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr ""
-"Zapódawański ID dajo se na certifikaśe namakaś, kótaryž jo so wam pśipósłał. "
-"Jo numeriska gódnota ako &quot;14&quot;."
+msgstr "Zapódawański ID dajo se na certifikaśe namakaś, kótaryž jo so wam pśipósłał. Jo numeriska gódnota ako &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -4063,9 +4036,7 @@ msgstr "Wěstotny kod"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
-"Wěstotny kod dajo se na certifikaśe namakaś, kótaryž jo se wam pśipósłał. Jo "
-"měšańca pismikow a licbow ako &quot;AB12CD2&quot;."
+msgstr "Wěstotny kod dajo se na certifikaśe namakaś, kótaryž jo se wam pśipósłał. Jo měšańca pismikow a licbow ako &quot;AB12CD2&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
@@ -4135,17 +4106,11 @@ msgstr[3] "<b>Licony cakański cas:</b> %(num)s źěłowych dnjow"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
-msgstr ""
-"Nejwěcej nałoženjow pśeglědujo se w běgu tyźenja. Jolic wašo pśeglědanje "
-"dlej trajo, móžośo se <a href=\"%(support_url)s\">z nami do zwiska stajiś</a>, "
-"aby status zgónił."
+msgstr "Nejwěcej nałoženjow pśeglědujo se w běgu tyźenja. Jolic wašo pśeglědanje dlej trajo, móžośo se <a href=\"%(support_url)s\">z nami do zwiska stajiś</a>, aby status zgónił."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
-msgstr ""
-"Wubjeŕśo kontrolne kašćiki funkcijow, kótarež wašo nałoženje trjeba, aby "
-"pórědnje funkcioněrowało. Wašo nałoženje schowajo se pśed wužywarjami, "
-"kótarychž rědy jo njepódpěraju."
+msgstr "Wubjeŕśo kontrolne kašćiki funkcijow, kótarež wašo nałoženje trjeba, aby pórědnje funkcioněrowało. Wašo nałoženje schowajo se pśed wužywarjami, kótarychž rědy jo njepódpěraju."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4170,10 +4135,8 @@ msgstr "Kluce za płaśenja w nałoženju"
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
-"Wikowanišćo Firefox dowólujo wašomu nałoženjeju, płaśenja w nałoženju "
-"akceptěrowaś. <a href=\"{guide}\">Wjednik za płaśenja w nałoženju</a> "
-"wujasnjujo, kak móžośo swójo nałoženje za płaśenja ze slědujucymi "
-"parametrami konfigurěrowaś."
+"Wikowanišćo Firefox dowólujo wašomu nałoženjeju, płaśenja w nałoženju akceptěrowaś. <a href=\"{guide}\">Wjednik za płaśenja w nałoženju</a> wujasnjujo, kak móžośo swójo nałoženje za płaśenja ze "
+"slědujucymi parametrami konfigurěrowaś."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4205,11 +4168,8 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
-"Slědujucy kluc/slědujuce pótajne słowo dowólujo wam jano simulaciju "
-"płaśenjow w nałoženju, mjaztym až wuwijaśo swójo nałoženje. Aby kluc za "
-"napšawdne płaśenja w nałoženju twórił, musyśo swójo nałoženje <a href=\"%"
-"(submit)s\">zapódaś</a>, waše płaśeńske daty zarědowaś a nowy kluc specielnje "
-"za toś to nałoženje twóriś."
+"Slědujucy kluc/slědujuce pótajne słowo dowólujo wam jano simulaciju płaśenjow w nałoženju, mjaztym až wuwijaśo swójo nałoženje. Aby kluc za napšawdne płaśenja w nałoženju twórił, musyśo swójo "
+"nałoženje <a href=\"%(submit)s\">zapódaś</a>, waše płaśeńske daty zarědowaś a nowy kluc specielnje za toś to nałoženje twóriś."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4225,10 +4185,7 @@ msgstr "Dopórucony"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
-"Produkty w nałoženju zmóžnjaju wam, płaśenja we wašom nałoženju pśiwześ a "
-"proces zjadnorja so z tym, až móžośo waše produkty we wuwijarseim rožku "
-"Wikowanišća Firefox napóraś a zastojaś."
+msgstr "Produkty w nałoženju zmóžnjaju wam, płaśenja we wašom nałoženju pśiwześ a proces zjadnorja so z tym, až móžośo waše produkty we wuwijarseim rožku Wikowanišća Firefox napóraś a zastojaś."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
@@ -4240,16 +4197,11 @@ msgstr "Kluce w nałoženju"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:47
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
-"Kluce za płaśenja w nałoženju mógu płaśenja we wašom nałoženju za "
-"někakižkuli płaśiznowy dypk pśiwześ. Sćo zagronity za definěrowanje a "
-"zastojanje produktow."
+msgstr "Kluce za płaśenja w nałoženju mógu płaśenja we wašom nałoženju za někakižkuli płaśiznowy dypk pśiwześ. Sćo zagronity za definěrowanje a zastojanje produktow."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
-"Pokaz Jolic cośo produkty w nałoženju za wužywarjow Fiefox za desktop "
-"póbitowaś, wužywajśo pšosym produkty w nałoženju."
+msgstr "Pokaz Jolic cośo produkty w nałoženju za wužywarjow Fiefox za desktop póbitowaś, wužywajśo pšosym produkty w nałoženju."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -4261,22 +4213,15 @@ msgstr "Zmóžniś"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr ""
-"Produkty w nałoženju pódpěraju se jano za góspodowane abo zapakowane "
-"nałoženja, kótarež pódawaju <a href=\"%(origin)s\">póchad</a> w manifesće. "
-"Wašo nałoženje njepódawa póchad."
+msgstr "Produkty w nałoženju pódpěraju se jano za góspodowane abo zapakowane nałoženja, kótarež pódawaju <a href=\"%(origin)s\">póchad</a> w manifesće. Wašo nałoženje njepódawa póchad."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr ""
-"Toś ta funkcija se tuchylu wuwija. Pšosym glejśo <a target=\"_blank\" href=\"%"
-"(doc_link)s\">dokumentaciju</a> za dalšne informacije."
+msgstr "Toś ta funkcija se tuchylu wuwija. Pšosym glejśo <a target=\"_blank\" href=\"%(doc_link)s\">dokumentaciju</a> za dalšne informacije."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr ""
-"Jolic namakajośo problem, pšosym <a target=\"_blank\" href=\"%"
-"(bug_link)s\">pišćo zmólkowu rozpšawu</a>."
+msgstr "Jolic namakajośo problem, pšosym <a target=\"_blank\" href=\"%(bug_link)s\">pišćo zmólkowu rozpšawu</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:56
 msgid "Icon"
@@ -4316,16 +4261,13 @@ msgstr "Na Płaśobny změniś"
 
 #: mkt/developers/templates/developers/payments/premium.html:100
 msgid "Changing to Paid will put your app back into review."
-msgstr ""
-"Gaž stajijośo status na Płaśobny, pósćelo se wašo nałoženje slědk do "
-"pśeglědanja."
+msgstr "Gaž stajijośo status na Płaśobny, pósćelo se wašo nałoženje slědk do pśeglědanja."
 
 #: mkt/developers/templates/developers/payments/premium.html:108
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
-"Zgóńśo wěcej wó <a href=\"%(payments_url)s\" target=\"_blank\">rozdźělnych "
-"płaśeńskich typach</a>.<br /> Zgóńśo wěcej wó <a href=\"%(receipts_url)s\" "
-"target=\"_blank\">pśeglědowanju kupnych dokładow</a>."
+"Zgóńśo wěcej wó <a href=\"%(payments_url)s\" target=\"_blank\">rozdźělnych płaśeńskich typach</a>.<br /> Zgóńśo wěcej wó <a href=\"%(receipts_url)s\" target=\"_blank\">pśeglědowanju kupnych "
+"dokładow</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:119 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -4333,9 +4275,7 @@ msgstr "Płaśeńske konta"
 
 #: mkt/developers/templates/developers/payments/premium.html:123
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr ""
-"Wašo nałoženje jo tuchylu njedopołne. Wubjeŕśo płaśeńske konto a płaśiznowy "
-"dypk, aby jo wótnowił."
+msgstr "Wašo nałoženje jo tuchylu njedopołne. Wubjeŕśo płaśeńske konto a płaśiznowy dypk, aby jo wótnowił."
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
@@ -4376,9 +4316,7 @@ msgstr "K dispoziciji stojece regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
-"Woglědajśo se <a href=\"%(status_url)s\" target=\"_blank\">statusowy bok</a>, "
-"aby wiźeł, kóatre kraje su tuchylu k dispoziciji za pśedań."
+msgstr "Woglědajśo se <a href=\"%(status_url)s\" target=\"_blank\">statusowy bok</a>, aby wiźeł, kóatre kraje su tuchylu k dispoziciji za pśedań."
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Your app will be available in the following selected regions:"
@@ -4402,9 +4340,7 @@ msgstr "Pśidajśo płaśeńske konto, aby swójo nałoženje za pśedank w dal�
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr ""
-"Dokulaž jo \"Zbytk swěta\" wubrana, buźo wašo nałoženje we wšych zmóžnjonych "
-"\"<a href=\"#regions-other\">drugich regionach</a>\" na pśedań."
+msgstr "Dokulaž jo \"Zbytk swěta\" wubrana, buźo wašo nałoženje we wšych zmóžnjonych \"<a href=\"#regions-other\">drugich regionach</a>\" na pśedań."
 
 #: mkt/developers/templates/developers/payments/premium.html:256
 msgid "Other regions"
@@ -4412,9 +4348,7 @@ msgstr "Druge regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:258
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr ""
-"Aby wašo nałoženje njepokazujo se we wěstem regionje, wótpórajśo kokulku "
-"pśed regionom, nježli až składujośo."
+msgstr "Aby wašo nałoženje njepokazujo se we wěstem regionje, wótpórajśo kokulku pśed regionom, nježli až składujośo."
 
 #: mkt/developers/templates/developers/payments/premium.html:278
 msgid "Regions and Listings"
@@ -4426,15 +4360,11 @@ msgstr "Za to ako aktualizaciju za dermotnu wersiju wabiś"
 
 #: mkt/developers/templates/developers/payments/premium.html:302
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr ""
-"Jolic maśo dermotne nałoženje, móžośo jo ze swójim premiumowym nałoženim "
-"zwězaś a za njo pódla dermotneje wersije wabiś."
+msgstr "Jolic maśo dermotne nałoženje, móžośo jo ze swójim premiumowym nałoženim zwězaś a za njo pódla dermotneje wersije wabiś."
 
 #: mkt/developers/templates/developers/payments/premium.html:310
 msgid "Linking this app will promote your premium app next to the free version."
-msgstr ""
-"Gaž zwězujośo toś to nałoženje, buźo se za wašo premiumowe nałoženje pódla "
-"dermotneje wersije wabiś."
+msgstr "Gaž zwězujośo toś to nałoženje, buźo se za wašo premiumowe nałoženje pódla dermotneje wersije wabiś."
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
@@ -4479,14 +4409,11 @@ msgstr "Płaśeńske konto wulašowaś"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
-msgstr ""
-"Aktualne płaśeńske konto jo se wót wobsejźarja nałoženja z nałoženim "
-"zwězało."
+msgstr "Aktualne płaśeńske konto jo se wót wobsejźarja nałoženja z nałoženim zwězało."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
-msgstr ""
-"Maśo njedopołne płaśeńske konto. Wudopołniśo jo abo załožćo dołojce nowe."
+msgstr "Maśo njedopołne płaśeńske konto. Wudopołniśo jo abo załožćo dołojce nowe."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -4498,9 +4425,7 @@ msgstr "Bango-konto pśidaś"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
-msgstr ""
-"Pšosym cytajśo <a target=\"_blank\" href=\"%(url)s\">dokumentaciju wó "
-"płaśeńskich kontach</a>."
+msgstr "Pšosym cytajśo <a target=\"_blank\" href=\"%(url)s\">dokumentaciju wó płaśeńskich kontach</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4548,10 +4473,8 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
-"Aby płaśeńske konto Boku pśidał, musyśo se na websedle Boku za nowe "
-"specifiske konto Mozilla registrěrowaś. Pó registrěrowanju buźo 24 - 48 "
-"góźin traś, až Boku njepśizwólijo konto. Dokumentaciju a pśistup na Boku-"
-"websedło namakajaśo na Mozilla Developer Network."
+"Aby płaśeńske konto Boku pśidał, musyśo se na websedle Boku za nowe specifiske konto Mozilla registrěrowaś. Pó registrěrowanju buźo 24 - 48 góźin traś, až Boku njepśizwólijo konto. Dokumentaciju a "
+"pśistup na Boku-websedło namakajaśo na Mozilla Developer Network."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
@@ -4559,9 +4482,7 @@ msgstr "K Boku-dokumentaciji na MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr ""
-"Sćo za Boku-konto registrěrował a jo se wašo konto pśizwóliło? Pšosym "
-"napórajśo kontowe mě a swój ID Boku-słužby."
+msgstr "Sćo za Boku-konto registrěrował a jo se wašo konto pśizwóliło? Pšosym napórajśo kontowe mě a swój ID Boku-słužby."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
@@ -4569,10 +4490,7 @@ msgstr "Napórajśo mě za toś to konto."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
-"Alfanumeriski ID, kótaryž jo na Boku-websedle pód \"Service Name\" pódany. "
-"Zgóńśo wěcej na <a href=\"%(boku_docs_url)s\" target=\"_blank\">boku Boku "
-"MDN</a>."
+msgstr "Alfanumeriski ID, kótaryž jo na Boku-websedle pód \"Service Name\" pódany. Zgóńśo wěcej na <a href=\"%(boku_docs_url)s\" target=\"_blank\">boku Boku MDN</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -4588,9 +4506,7 @@ msgstr "Bango-konto změniś"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
-"Mě, z kótarymž pomjenjujo se konto na Wikowanišću, kótarež njesćelo se na "
-"Bango."
+msgstr "Mě, z kótarymž pomjenjujo se konto na Wikowanišću, kótarež njesćelo se na Bango."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -4616,9 +4532,7 @@ msgstr "Regiony, kótarež pominaju se wósebne źiwanje:"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr ""
-"Musyśo <a href=\"{status_page}\">pśeglědanje pominaś</a>, aby wašo nałoženje "
-"dało se pokazaś na rědach z mało składowakom."
+msgstr "Musyśo <a href=\"{status_page}\">pśeglědanje pominaś</a>, aby wašo nałoženje dało se pokazaś na rědach z mało składowakom."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -4630,22 +4544,15 @@ msgstr "Zgóńśo, cogodla někotare regiony su wobgranicowane."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr ""
-"Wašo nałoženje wěcej njenalicyjo se we wěstych regionach, dokulaž toś te "
-"regiony njepódpěraju płaśenja. Smy waš wuběrk regionow pśenjasli. Pšosym "
-"pśeglědujśo změny, nježli až składujośo."
+msgstr "Wašo nałoženje wěcej njenalicyjo se we wěstych regionach, dokulaž toś te regiony njepódpěraju płaśenja. Smy waš wuběrk regionow pśenjasli. Pšosym pśeglědujśo změny, nježli až składujośo."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
-"Wašo nałoženje zwobraznjujo se na kuždem regionalnem Wikowanišću, kótarež se "
-"pózdźej pśidawa. "
+msgstr "Wašo nałoženje zwobraznjujo se na kuždem regionalnem Wikowanišću, kótarež se pózdźej pśidawa. "
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr ""
-"(Pód wuměnjenim, až płaśenja su k dispoziciji w tós tom regionje za wubrany "
-"płaśiznowy dypk abo \"zbytk swěta\" jo ako płaśeńska opcija wubrany.)"
+msgstr "(Pód wuměnjenim, až płaśenja su k dispoziciji w tós tom regionje za wubrany płaśiznowy dypk abo \"zbytk swěta\" jo ako płaśeńska opcija wubrany.)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -4661,9 +4568,7 @@ msgstr "Wjeliki źěk za waš abonement!"
 
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
-msgstr ""
-"Jo nam luto, ale zmólka jo w našom systemje nastała. Pšosym wopytajśo "
-"pózdźej hyšći raz."
+msgstr "Jo nam luto, ale zmólka jo w našom systemje nastała. Pšosym wopytajśo pózdźej hyšći raz."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
@@ -4723,21 +4628,15 @@ msgstr "Wuwijajśo webnałoženja z HTML5 za wótwórjone wikowanišćotorhošć
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
-"Zgóńśo, kak wugótujośo nałoženja, kótarež póbituju wužywarske dožywjenje, "
-"kótarež jo za Firefox OS a Mobile optiměrowane."
+msgstr "Zgóńśo, kak wugótujośo nałoženja, kótarež póbituju wužywarske dožywjenje, kótarež jo za Firefox OS a Mobile optiměrowane."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
-"Wšykne rědy, dokumenty a žrědła, kótarež trjebaśo za wuwijanje a testowanje "
-"swójogo nałoženja"
+msgstr "Wšykne rědy, dokumenty a žrědła, kótarež trjebaśo za wuwijanje a testowanje swójogo nałoženja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
-"Zgóńśo, kak móžośo swóje nałoženja na wótwórjonem wikowanišću rozdźěliś, "
-"kótarež staja wužywarje a wuwijarje na prědne městno"
+msgstr "Zgóńśo, kak móžośo swóje nałoženja na wótwórjonem wikowanišću rozdźěliś, kótarež staja wužywarje a wuwijarje na prědne městno"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -4757,10 +4656,7 @@ msgstr "Glědajśo, chtož jo južo how"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr ""
-"Sćo webpśedewześe, tśeśi póbitowaŕ abo OEM ze zajmom na partnarstwje z "
-"Mozilla? <a href=\"%(partner_url)s\">Dalšne informacije na partnarskem "
-"boku</a>"
+msgstr "Sćo webpśedewześe, tśeśi póbitowaŕ abo OEM ze zajmom na partnarstwje z Mozilla? <a href=\"%(partner_url)s\">Dalšne informacije na partnarskem boku</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -4770,53 +4666,39 @@ msgstr "Platforma za nałoženja Mozilla"
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
-msgstr ""
-"Wuwijanje nałoženjow dawa wuwijarjam połnu kontrolu nad wopśimjeśim, "
-"funkcionalnosću a rozdźělenim nałoženjow, inkluziwnje pśistup na sta "
-"milionow wužywarjow Firefox pśez Wikowanišćo Firefox."
+msgstr "Wuwijanje nałoženjow dawa wuwijarjam połnu kontrolu nad wopśimjeśim, funkcionalnosću a rozdźělenim nałoženjow, inkluziwnje pśistup na sta milionow wužywarjow Firefox pśez Wikowanišćo Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
-"Z pomocu wótwórjonych webstandardow a API wugótowanego wót Mozill, daju se "
-"wjelicne nałožeńske dožywjenja pśez rozdźělne platformy, rědy a źěłowe "
-"systemy dodawaś &mdash; to połni prědny raz źěru mjazy webowymi a "
-"systemowymi nałoženjami."
+"Z pomocu wótwórjonych webstandardow a API wugótowanego wót Mozill, daju se wjelicne nałožeńske dožywjenja pśez rozdźělne platformy, rědy a źěłowe systemy dodawaś &mdash; to połni prědny raz źěru "
+"mjazy webowymi a systemowymi nałoženjami."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
-"Wikowanišćo Firefox dawa wužywarjam móžnosć, nałoženja a za nich wažne "
-"wopśimjeśe namakaś, wopytowaś a kupiś. To wóznamjenijo, gnujuce, wužytne a "
-"kwalitatiwnje wusokogódnotne nałoženja, kótarež su relewantne za lokalne "
-"wiki we wšych kategorijach a kótarež wužywarje mógu wužywaś, aby nejwěcej ze "
-"swójogo žywjenja wuwónoźeli."
+"Wikowanišćo Firefox dawa wužywarjam móžnosć, nałoženja a za nich wažne wopśimjeśe namakaś, wopytowaś a kupiś. To wóznamjenijo, gnujuce, wužytne a kwalitatiwnje wusokogódnotne nałoženja, kótarež su "
+"relewantne za lokalne wiki we wšych kategorijach a kótarež wužywarje mógu wužywaś, aby nejwěcej ze swójogo žywjenja wuwónoźeli."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
-"Gobalna wliwowa sfera Mozilla wopśimujo sta milionow wužywarjow Firefox "
-"swětodaloko. Pśez inteligentne wótwardowanje Wikowanišća a efektiwne "
-"wužywanje marketingowych kanalow Mozilla, móžo Mozilla wuwijarjam pomagaś, "
-"jich nałoženje do rukow wužywarjow jich celoweje kupki na cełem swěśe "
-"połožyś."
+"Gobalna wliwowa sfera Mozilla wopśimujo sta milionow wužywarjow Firefox swětodaloko. Pśez inteligentne wótwardowanje Wikowanišća a efektiwne wužywanje marketingowych kanalow Mozilla, móžo Mozilla "
+"wuwijarjam pomagaś, jich nałoženje do rukow wužywarjow jich celoweje kupki na cełem swěśe połožyś."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr ""
-"Wikowanišćo Firefox jo něnto wócynjone a akceptěrujo nałoženja. Zapódajśo "
-"swójo nałoženje pla:"
+msgstr "Wikowanišćo Firefox jo něnto wócynjone a akceptěrujo nałoženja. Zapódajśo swójo nałoženje pla:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
-"Testujśo swójo nałoženje z angažěrowaneju kupku pjerwjejšnych nałožowarjow."
+msgstr "Testujśo swójo nałoženje z angažěrowaneju kupku pjerwjejšnych nałožowarjow."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
@@ -4824,9 +4706,7 @@ msgstr "Natwarśo ranu fanowu kupku a nabydniśo woblubowanosć."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr ""
-"Wzejśo se techniski wersěrowane nałožowarje ako celowu kupku swójogo "
-"nałoženja."
+msgstr "Wzejśo se techniski wersěrowane nałožowarje ako celowu kupku swójogo nałoženja."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -4834,10 +4714,7 @@ msgstr "Nałoženja a programěrowańske rozwězanja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr ""
-"Zregistrěrujśo se za naš měsacny powěsćowy list wó Firefox OS, Wikowanišću a "
-"ekosystemje nałoženjow. <a href=\"%(dev_phone_url)s\">Woglědajśo se "
-"wuwijarski pśeglěd telefona</a>"
+msgstr "Zregistrěrujśo se za naš měsacny powěsćowy list wó Firefox OS, Wikowanišću a ekosystemje nałoženjow. <a href=\"%(dev_phone_url)s\">Woglědajśo se wuwijarski pśeglěd telefona</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -4853,9 +4730,7 @@ msgstr "Tšojenja a zmakanja"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr ""
-"Som wobjadny, až Mozilla wobchada z toś tymi informacijami pó <a href=\"%"
-"(privacy_link)s\">pšawidłach priwatnosći</a>."
+msgstr "Som wobjadny, až Mozilla wobchada z toś tymi informacijami pó <a href=\"%(privacy_link)s\">pšawidłach priwatnosći</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
@@ -4960,40 +4835,27 @@ msgstr "Woglědajśo se je!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr ""
-"Wótzamkniśoo partnarstwo z Mozilla, aby swóje nałoženja pśez wótwórjone "
-"wikowanišćo do wušej 450 milionow wužywarjow rozdźělił"
+msgstr "Wótzamkniśoo partnarstwo z Mozilla, aby swóje nałoženja pśez wótwórjone wikowanišćo do wušej 450 milionow wužywarjow rozdźělił"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
-msgstr ""
-"<a href=\"%(submit_url)s\" class=\"button\">Něnto zapódaś</a> <span>abo</span> "
-"<a href=\"%(api_url)s\" class=\"button api\">Pśez API zapódaś</a>"
+msgstr "<a href=\"%(submit_url)s\" class=\"button\">Něnto zapódaś</a> <span>abo</span> <a href=\"%(api_url)s\" class=\"button api\">Pśez API zapódaś</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr ""
-"Z mócneju weblatformu, wótwórjonym wikowanišćom a partnarjami ako wy, smy "
-"pśigótowane, pśiducej 2 miliarźe wužywarjow online pówitaś"
+msgstr "Z mócneju weblatformu, wótwórjonym wikowanišćom a partnarjami ako wy, smy pśigótowane, pśiducej 2 miliarźe wužywarjow online pówitaś"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr ""
-"<strong>Web jo ta platforma</strong> &ndash; pišćo swójo HTML5-nałoženje "
-"jaden raz a rozdźělśo jo pśez ceły web."
+msgstr "<strong>Web jo ta platforma</strong> &ndash; pišćo swójo HTML5-nałoženje jaden raz a rozdźělśo jo pśez ceły web."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr ""
-"<strong>Bźezpósrědne płaśenja</strong> &ndash; z někotarymi płaśeńskimi "
-"modelami a wótlicenim pśez póbitowarja dodawamy wašomu nałoženjeju płaśenja "
-"bźez problemow."
+msgstr "<strong>Bźezpósrědne płaśenja</strong> &ndash; z někotarymi płaśeńskimi modelami a wótlicenim pśez póbitowarja dodawamy wašomu nałoženjeju płaśenja bźez problemow."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr ""
-"<strong>Wjelicki publikum</strong> &ndash; pśez 450 milionow wužywarjow su "
-"pla Firefox doma, połožćo źinsa swójo nałoženje do jich rukow."
+msgstr "<strong>Wjelicki publikum</strong> &ndash; pśez 450 milionow wužywarjow su pla Firefox doma, połožćo źinsa swójo nałoženje do jich rukow."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -5001,15 +4863,11 @@ msgstr "Cyńśo sobu pśi nejwětšem a lěpšem"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr ""
-"Nejwěcej woblubowane marki swěta a wšykne waše nejlubše nałoženja póstajaju "
-"jich dožywjenje na Wikowanišću Firefox."
+msgstr "Nejwěcej woblubowane marki swěta a wšykne waše nejlubše nałoženja póstajaju jich dožywjenje na Wikowanišću Firefox."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr ""
-"Napšawdna platformy a rědy pśesegujuca, njeproprietarna domownja za nejlěpše "
-"globalne a lokalne HTML5-nałoženja swěta."
+msgstr "Napšawdna platformy a rědy pśesegujuca, njeproprietarna domownja za nejlěpše globalne a lokalne HTML5-nałoženja swěta."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5049,10 +4907,7 @@ msgstr "Znamuška, chórgoje a symbole"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
-msgstr ""
-"\"K odstaśeju na Wikowanišću Firefox\" su znamuška, kótarež móžośo na swójom "
-"websedle a wabjeńskich materialijach wužywaś, aby na swóje produkty na "
-"Wikowanišću Firefox dopomnjeł."
+msgstr "\"K odstaśeju na Wikowanišću Firefox\" su znamuška, kótarež móžośo na swójom websedle a wabjeńskich materialijach wužywaś, aby na swóje produkty na Wikowanišću Firefox dopomnjeł."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -5064,16 +4919,11 @@ msgstr "Njesmějośo znamuško změniś"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr ""
-"Gaž wužywa pódla logow za druge wikowanišća (\"Get it on Google Play\", "
-"\"Download on the App Store\"), znamuško Wikowanišća Firefox by měło jadnak "
-"wjelike abo wětše bys."
+msgstr "Gaž wužywa pódla logow za druge wikowanišća (\"Get it on Google Play\", \"Download on the App Store\"), znamuško Wikowanišća Firefox by měło jadnak wjelike abo wětše bys."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr ""
-"Znamuško by měło na bok drobnostkow nałoženja na Wikowanišću Firefox "
-"pokazowaś<br> Na pśikład: https://marketplace.firefox.com/app/twitter"
+msgstr "Znamuško by měło na bok drobnostkow nałoženja na Wikowanišću Firefox pokazowaś<br> Na pśikład: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -5093,9 +4943,7 @@ msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
-msgstr ""
-"Aby se logo Wikowanišćo Firefox woglědał a ześěgnuł, woglědajśo se pšosym <a "
-"href=\"%(style_guide_url)s\">Stilowy wjednik Mozilla</a>."
+msgstr "Aby se logo Wikowanišćo Firefox woglědał a ześěgnuł, woglědajśo se pšosym <a href=\"%(style_guide_url)s\">Stilowy wjednik Mozilla</a>."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -5132,9 +4980,7 @@ msgstr "Maśo hyšći dalšne pšašanja?"
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
-"Mjaztym až na tom źěłamy, ceły rěd kanalow napóraś, kótarež pomagaju wam pśi "
-"rozwězowanju problemow, možośo se k StackOverflow woglědaś, aby wšykne "
-"swóje pšašanja k wuwiśeju webnałoženjow wujasnił."
+"Mjaztym až na tom źěłamy, ceły rěd kanalow napóraś, kótarež pomagaju wam pśi rozwězowanju problemow, možośo se k StackOverflow woglědaś, aby wšykne swóje pšašanja k wuwiśeju webnałoženjow wujasnił."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
@@ -5142,9 +4988,7 @@ msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
-msgstr ""
-"Jolic cośo se z wuwijarjami do zwiska stupiś, pśizamkniśo se našym žywym "
-"zgromaźeństwam w tych rozpósłańskich lisćinach:"
+msgstr "Jolic cośo se z wuwijarjami do zwiska stupiś, pśizamkniśo se našym žywym zgromaźeństwam w tych rozpósłańskich lisćinach:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
@@ -5185,9 +5029,7 @@ msgstr "Problemy pśi dekoděrowanju {0}."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-"Toś ta dataja njedajo se online woglědaś. Pšosym ześěgniśo dataju, aby se "
-"wopśimjeśe woglědał."
+msgstr "Toś ta dataja njedajo se online woglědaś. Pšosym ześěgniśo dataju, aby se wopśimjeśe woglědał."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
@@ -5203,15 +5045,11 @@ msgstr "Pśi pśistupje na dataju %s jo zmólka nastała."
 
 #: mkt/files/utils.py:75
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr ""
-"Dataja \"manifest.webapp\" njedajo se w kórjenjowem zarědniku archiwa "
-"zapakowanych nałoženjow namakaś."
+msgstr "Dataja \"manifest.webapp\" njedajo se w kórjenjowem zarědniku archiwa zapakowanych nałoženjow namakaś."
 
 #: mkt/files/utils.py:97
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
-"Manifestowa dataja webnałoženja njedajo se dekoděrowaś. Pśekontrolěrujśo, "
-"lěc waša manifestowa dataja wopśimujo  nic-UTF-8-znamuška."
+msgstr "Manifestowa dataja webnałoženja njedajo se dekoděrowaś. Pśekontrolěrujśo, lěc waša manifestowa dataja wopśimujo  nic-UTF-8-znamuška."
 
 #: mkt/files/utils.py:105
 msgid "The webapp manifest is not valid JSON."
@@ -5219,9 +5057,7 @@ msgstr "Manifest webnałoženja njejo płaśiwy JSON."
 
 #: mkt/files/utils.py:112
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
-msgstr ""
-"Rola \"langpack\" jo njepłaśiwa za webnałoženja. Pšosym zapódajśo město togo "
-"toś to nałoženje ako rěcny pakśik."
+msgstr "Rola \"langpack\" jo njepłaśiwa za webnałoženja. Pšosym zapódajśo město togo toś to nałoženje ako rěcny pakśik."
 
 #: mkt/files/utils.py:120
 msgid "Your specified app locales are not in the correct format."
@@ -5229,9 +5065,7 @@ msgstr "Waše pódane rěcy za nałoženja njejsu w korektnem formaśe."
 
 #: mkt/files/utils.py:137
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr ""
-"Wuwijarske mě jo trěbne w manifesće, aby se w lisćinowem zapisku nałoženja "
-"zwobrazniło."
+msgstr "Wuwijarske mě jo trěbne w manifesće, aby se w lisćinowem zapisku nałoženja zwobrazniło."
 
 #: mkt/files/utils.py:187
 msgid "Invalid file name in archive: {0}"
@@ -5259,9 +5093,7 @@ msgstr "{0} ześěgnuś"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-"Wersija: %(version)s • wjelikosć: %(size)s • MD5 kontrolna suma: %(md5)s • "
-"MIME-typ: %(mimetype)s"
+msgstr "Wersija: %(version)s • wjelikosć: %(size)s • MD5 kontrolna suma: %(md5)s • MIME-typ: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -5345,9 +5177,7 @@ msgstr "Dataja se wótwołujo."
 
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr ""
-"Produktowe logo musy wobraz z wjelikosću 64x64 byś. Pśekontrolěrujśo, lěc "
-"URL trjefi."
+msgstr "Produktowe logo musy wobraz z wjelikosću 64x64 byś. Pśekontrolěrujśo, lěc URL trjefi."
 
 #: mkt/langpacks/utils.py:23
 msgid "Your language pack should contain \"role\": \"langpack\"."
@@ -5355,25 +5185,19 @@ msgstr "Waš rěcny pakśik by měł \"role\": \"langpack\" wopśimowaś."
 
 #: mkt/langpacks/utils.py:28
 msgid "Your language pack must contain one language in `languages-provided` object."
-msgstr ""
-"Waš rěcny pakśik musy w objekśe \"languages-provided\" jadnu rěc wopśimowaś."
+msgstr "Waš rěcny pakśik musy w objekśe \"languages-provided\" jadnu rěc wopśimowaś."
 
 #: mkt/langpacks/utils.py:33
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
-msgstr ""
-"Waš rěcny pakśik wopśimujo pśewjele rěcow. Jano jadna rěc pódpěra se na "
-"pakśik."
+msgstr "Waš rěcny pakśik wopśimujo pśewjele rěcow. Jano jadna rěc pódpěra se na pakśik."
 
 #: mkt/langpacks/utils.py:39
 msgid "Your language pack must contain one language in `languages-target` object."
-msgstr ""
-"Waš rěcny pakśik musy w objekśe \"languages-target\" jadnu rěc wopśimowaś."
+msgstr "Waš rěcny pakśik musy w objekśe \"languages-target\" jadnu rěc wopśimowaś."
 
 #: mkt/langpacks/utils.py:44
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
-msgstr ""
-"Waš rěcny pakśik wopśimujo pśewjele celow. Jano jaden cel pódpěra se na "
-"pakśik."
+msgstr "Waš rěcny pakśik wopśimujo pśewjele celow. Jano jaden cel pódpěra se na pakśik."
 
 #: mkt/langpacks/utils.py:50
 msgid "Your language pack should contain a version."
@@ -5381,9 +5205,7 @@ msgstr "Waš rěcny pakśik by měł wersiju wopśimowaś."
 
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr ""
-"Wersija wašogo rěcnego pakśika musy se wót toś teje rozeznawaś, kótaruž "
-"wuměnjaśo."
+msgstr "Wersija wašogo rěcnego pakśika musy se wót toś teje rozeznawaś, kótaruž wuměnjaśo."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5601,16 +5423,11 @@ msgstr "Transakciski status njedajo se tuchylu wótwołaś."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
-msgstr ""
-"Toś to płaśenje jo se pśez Bango pśewjadło. Aby dalšne informacije dostał, "
-"stajśo se z <a href=\"mailto:%(bango_support)s\">pomocu Bango</a> ze "
-"slědujucymi informacijami do zwiska."
+msgstr "Toś to płaśenje jo se pśez Bango pśewjadło. Aby dalšne informacije dostał, stajśo se z <a href=\"mailto:%(bango_support)s\">pomocu Bango</a> ze slědujucymi informacijami do zwiska."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr ""
-"Toś to płaśenje jo se pśez <b>referencne implementěrowanje</b> pśewjadło. "
-"Njejo napšawdna transakcija było."
+msgstr "Toś to płaśenje jo se pśez <b>referencne implementěrowanje</b> pśewjadło. Njejo napšawdna transakcija było."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
@@ -5631,9 +5448,8 @@ msgstr "Njepominany"
 #: mkt/lookup/templates/lookup/transaction_summary.html:105
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
-"Jolic jo se manuelne zarownanje wót płaśeńskego póbitowarja pśeźěłało, "
-"zaktiwěrujśo toś ten kontrolny kašćik. Pśez to zarownanje na serwerach "
-"Mozilla se pśewjeźo, bźez kontakta z płaśeńskim póbitowarjom."
+"Jolic jo se manuelne zarownanje wót płaśeńskego póbitowarja pśeźěłało, zaktiwěrujśo toś ten kontrolny kašćik. Pśez to zarownanje na serwerach Mozilla se pśewjeźo, bźez kontakta z płaśeńskim "
+"póbitowarjom."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:111
 msgid "Refund this transaction"
@@ -5722,9 +5538,7 @@ msgstr "Wužywarja wulašowaś"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr ""
-"Gaž toś ten wužywaŕ se wulašujo, se konto toś togo wužywarja <strong>na "
-"pśecej</strong> wulašujo."
+msgstr "Gaž toś ten wužywaŕ se wulašujo, se konto toś togo wužywarja <strong>na pśecej</strong> wulašujo."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
@@ -5767,7 +5581,7 @@ msgid "App Lookup"
 msgstr "Nałožeńske pytanje"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:89 mkt/search/forms.py:91
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Pytaś"
@@ -5925,17 +5739,11 @@ msgstr "Drobnostki testoweje kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
-"To jo bok zastupujucych symbolow za drobnostki kwitowanki. Gaby napšawdne "
-"nałoženje z Wikowanišća instalěrował, by se dalšne drobnostki na toś tom "
-"boku pokazali."
+msgstr "To jo bok zastupujucych symbolow za drobnostki kwitowanki. Gaby napšawdne nałoženje z Wikowanišća instalěrował, by se dalšne drobnostki na toś tom boku pokazali."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr ""
-"Testujśo instalaciju swójogo nałoženja, nježli až nagraśo jo k "
-"wikowanišćoju. Móžośo wšake družyny kwitowankow wubraś, aby wobchadanje ze "
-"swójimi kwitowankami testował."
+msgstr "Testujśo instalaciju swójogo nałoženja, nježli až nagraśo jo k wikowanišćoju. Móžośo wšake družyny kwitowankow wubraś, aby wobchadanje ze swójimi kwitowankami testował."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -6010,9 +5818,7 @@ msgstr "Pśepisowanje rědowego typa:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-"Informěrujśo mě pśiducy raz, gaž se manifest aktualizěrujo. (naslědne "
-"aktualizacije njenapóraju mejlku)"
+msgstr "Informěrujśo mě pśiducy raz, gaž se manifest aktualizěrujo. (naslědne aktualizacije njenapóraju mejlku)"
 
 #: mkt/reviewers/forms.py:122
 msgid "This app works on Tarako devices."
@@ -6034,7 +5840,7 @@ msgstr "Dalšne informacije pominane"
 msgid "Tarako-ready"
 msgstr "Gótowy za Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:95
+#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Rěd"
 
@@ -6129,9 +5935,7 @@ msgstr "Wótpokazaś"
 
 #: mkt/reviewers/utils.py:377
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
-msgstr ""
-"Pśez to nałoženje se wótpokažo, wótpórajo se z cakańskego rěda a "
-"njewózjawijo se, jolic jo se južo wózjawiło."
+msgstr "Pśez to nałoženje se wótpokažo, wótpórajo se z cakańskego rěda a njewózjawijo se, jolic jo se južo wózjawiło."
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
@@ -6139,9 +5943,7 @@ msgstr "Powěsć na wuwijarja pósłaś"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
-msgstr ""
-"To buźo awtoram - a drugim abonentam temy - powěsć słaś. To njezměnijo "
-"status nałoženja."
+msgstr "To buźo awtoram - a drugim abonentam temy - powěsć słaś. To njezměnijo status nałoženja."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -6149,9 +5951,7 @@ msgstr "Pśiducemu wušemu městnoju dalej daś"
 
 #: mkt/reviewers/utils.py:391
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr ""
-"Dajśo administratoroju toś to nałoženje k wěsći za pśeglědowanje. Komentary "
-"sćelu se na administratory, nic na awtory."
+msgstr "Dajśo administratoroju toś to nałoženje k wěsći za pśeglědowanje. Komentary sćelu se na administratory, nic na awtory."
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
@@ -6159,9 +5959,7 @@ msgstr "Priwatny komentar"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
-msgstr ""
-"Pósćelśo priwatny pśeglědowański komentar k toś tomu nałoženjeju. Toś ta "
-"powěsć njebuźo widobna za awtory, a teke powěźeńka se wam njepósćelo."
+msgstr "Pósćelśo priwatny pśeglědowański komentar k toś tomu nałoženjeju. Toś ta powěsć njebuźo widobna za awtory, a teke powěźeńka se wam njepósćelo."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
@@ -6169,9 +5967,7 @@ msgstr "Dalejdaśe pśiducemu wušemu městnoju wótpóraś"
 
 #: mkt/reviewers/utils.py:406
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr ""
-"Toś to nałoženje z cakańskego rěda za dalejdaśe pśiducemu wušemu městnoju "
-"wótpóraś. Awtory daniž njedostanu mejlku daniž njewiźe how komentary."
+msgstr "Toś to nałoženje z cakańskego rěda za dalejdaśe pśiducemu wušemu městnoju wótpóraś. Awtory daniž njedostanu mejlku daniž njewiźe how komentary."
 
 #: mkt/reviewers/utils.py:411
 msgid "Clear Re-review"
@@ -6179,9 +5975,7 @@ msgstr "Nowopśeglědanje wótpóraś"
 
 #: mkt/reviewers/utils.py:413
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr ""
-"Toś to nałoženje z cakańskego rěda nowopśeglědanjow wótpóraś. Awtory daniž "
-"njedostanu mejlku daniž njewiźe how komentary."
+msgstr "Toś to nałoženje z cakańskego rěda nowopśeglědanjow wótpóraś. Awtory daniž njedostanu mejlku daniž njewiźe how komentary."
 
 #: mkt/reviewers/utils.py:418
 msgid "Ban app"
@@ -6189,9 +5983,7 @@ msgstr "Nałoženje zastajiś"
 
 #: mkt/reviewers/utils.py:420
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
-"Nałoženje na Wikowanišću blokěrowaś. To jo pódobne ako Wótpokazaś, ale "
-"awtory njamógu jo znowego zapódaś. To se jano w ekstremnych padach stawa."
+msgstr "Nałoženje na Wikowanišću blokěrowaś. To jo pódobne ako Wótpokazaś, ale awtory njamógu jo znowego zapódaś. To se jano w ekstremnych padach stawa."
 
 #: mkt/reviewers/views.py:135
 msgid "New Apps (Under 5 days)"
@@ -6268,8 +6060,7 @@ msgstr "Pśepadnuś"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:86 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
-msgstr ""
-"Tuchylu njejsu žedne elementy toś togo typa, kótarež muse se pśeglědowaś. "
+msgstr "Tuchylu njejsu žedne elementy toś togo typa, kótarež muse se pśeglědowaś. "
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -6559,9 +6350,7 @@ msgstr "Zapódaśe nałoženja njedopołne"
 
 #: mkt/reviewers/templates/reviewers/review.html:119
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-"Móžośo toś ten formular wótpósłaś, ale cyńśo  to jano, jolic móžośo se "
-"konflikta wobinuś."
+msgstr "Móžośo toś ten formular wótpósłaś, ale cyńśo  to jano, jolic móžośo se konflikta wobinuś."
 
 #: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Insert canned response..."
@@ -6589,9 +6378,7 @@ msgstr "Pśepisowanje minimalnych pominanjow:"
 
 #: mkt/reviewers/templates/reviewers/review.html:205
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-"<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami "
-"woglědał."
+msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami woglědał."
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
@@ -6721,9 +6508,7 @@ msgstr "pśełožowaś"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
-"<strong>%(reason)s</strong> <span class=\"light\">Markěrowany wót wužywarja %"
-"(user)s %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markěrowany wót wužywarja %(user)s %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
@@ -6780,9 +6565,7 @@ msgstr "Pjerwjejšne"
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26 mkt/site/templates/site/impala_paginator.html:5
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
-"Bok <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%"
-"(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "Bok <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
@@ -6892,39 +6675,39 @@ msgstr "Wšykne kategorije"
 msgid "Search for apps"
 msgstr ""
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:86
 msgid "Device type"
 msgstr ""
 
-#: mkt/search/forms.py:100
+#: mkt/search/forms.py:126
 msgid "Premium types"
 msgstr ""
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:130
 msgid "App type"
 msgstr "Nałožeński typ"
 
-#: mkt/search/forms.py:108
+#: mkt/search/forms.py:134
 msgid "Installs allowed from"
 msgstr "Instalacije dowólone z"
 
-#: mkt/search/forms.py:109
+#: mkt/search/forms.py:135
 msgid "Everywhere"
 msgstr "Wšuźi"
 
-#: mkt/search/forms.py:111
+#: mkt/search/forms.py:137
 msgid "Works offline"
 msgstr "Funkcioněrujo offline"
 
-#: mkt/search/forms.py:113
+#: mkt/search/forms.py:139
 msgid "Supported languages"
 msgstr "Pódpěrane rěcy"
 
-#: mkt/search/forms.py:114
+#: mkt/search/forms.py:140
 msgid "Author name"
 msgstr "Mě awtora"
 
-#: mkt/search/forms.py:119
+#: mkt/search/forms.py:141
 msgid "Tags"
 msgstr "Gronidła"
 
@@ -7530,9 +7313,7 @@ msgstr "Bóžko njamóžomy namakaś, což pytaśo."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr ""
-"Bok abo dataja, kótaruž sćo pominał, njejo se na našom sedle namakała. Snaź "
-"sćo na wótkaz kliknuł, kótaryž jo zestarjony abo adresu wopak zapódał."
+msgstr "Bok abo dataja, kótaruž sćo pominał, njejo se na našom sedle namakała. Snaź sćo na wótkaz kliknuł, kótaryž jo zestarjony abo adresu wopak zapódał."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
@@ -7540,9 +7321,7 @@ msgstr "Gaž sćo adresu zapódał, pśeglědajśo pšawopis hyšći raz."
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr ""
-"Woglědajśo se k <a class=\"sync\" href=\"%(home)s\">startowemu bokoju "
-"Wikowanišća Firefox</a>."
+msgstr "Woglědajśo se k <a class=\"sync\" href=\"%(home)s\">startowemu bokoju Wikowanišća Firefox</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
@@ -7611,15 +7390,11 @@ msgstr "Wužywaŕ, kótaryž pósrědnja pśeglědanje, njejo jadnak. "
 
 #: mkt/submit/forms.py:269
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr ""
-"Wózjawśo mójo nałoženje a cyńśo jo za kuždego na Wikowanišću widobne a "
-"zapśimjejśo jo do pytańskich wuslědkow."
+msgstr "Wózjawśo mójo nałoženje a cyńśo jo za kuždego na Wikowanišću widobne a zapśimjejśo jo do pytańskich wuslědkow."
 
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr ""
-"Njewózjawśo mójo nałoženje. Informěrujśo mě a pśiměrijom widobnosć "
-"nałoženja, za tym až jo se pśizwóliło."
+msgstr "Njewózjawśo mójo nałoženje. Informěrujśo mě a pśiměrijom widobnosć nałoženja, za tym až jo se pśizwóliło."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
