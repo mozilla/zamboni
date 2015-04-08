@@ -1018,7 +1018,8 @@ def api(request):
     elif request.method == 'POST':
         if 'delete' in request.POST:
             try:
-                consumer = Access.objects.get(pk=request.POST.get('consumer'))
+                consumer = Access.objects.get(pk=request.POST.get('consumer'),
+                                              user=request.user)
                 consumer.delete()
             except Access.DoesNotExist:
                 messages.error(request, _('No such API key.'))
