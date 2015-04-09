@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-09 11:44+0000\n"
+"PO-Revision-Date: 2015-04-09 13:06+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428579841.0\n"
+"X-POOTLE-MTIME: 1428584796.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -7752,20 +7752,32 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
+"Wašo nałoženje jo se składło a jo gótowe za start! Wašo nałoženje caka "
+"tuchylu na pśeglědowanje a gaž jo pśeglědane, musyśo swójo nałoženje pśez <a "
+"href=\"%(url)s\">bok Status zastojaś</a> manuelnje zmóžniś, aby se na bokach "
+"lisćinowych zapiskow a w pytańskich wuslědkach pokazało. Až do togo móžośo "
+"drobnostki a nastajenja swójogo nałoženja optiměrowaś."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
 msgstr ""
+"Nježli až wašo nałoženje se pśizwólijo, musyśo płaśeńske informacije pódaś. "
+"Gaž sćo płaśeńske konto a płaśiznu pśidał, se wašo nałoženje za "
+"pśeglědowanje zapódajo."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
+"Wašo nałoženje jo se składło a gótowe za start! Wašo nałoženje caka tuchylu "
+"na pśeglědowanje a pokažo se na bokach lisćinowych zapiskow a w pytańskich "
+"wuslědkach, gaž jo pśeglědane. Až do togo móžośo drobnostki a nastajenja "
+"wašogo nałoženja optiměrowaś."
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
-msgstr ""
+msgstr "Mójo nałoženje zastojaś"
 
 #: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
@@ -7808,310 +7820,347 @@ msgstr "<span>Zarědujśo <a href=\"%(pay_url)s\">płaśenja</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
-msgstr ""
+msgstr "Na pśeglědowanje cakaś"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
-msgstr ""
+msgstr "Móžośo kuždy cas"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr ""
+"Drobnostki swójogo nałoženja pód <a href=\"%(url)s\">Lisćinowy zapisk "
+"wobźěłaś</a> pśiměriś"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr ""
+"se lisćinu wšych ze swójich zapódaśow pód <a href=\"%(url)s\">Móje "
+"zapódaśa</a> woglědaś"
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Pominajśo, až wašo nałoženje pokazujo se na rědach z mało składowakom pód <a "
+"href=\"%(status_url)s\">Status a wersije</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Pominajśo, až wašo nałoženje pokazujo se na rědach z mało składowakom pód <a "
+"href=\"%(status_url)s\">Status</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Gaž wašo nałoženje jo pśeglědane, musyśo swójo nałoženje pśez <a href=\"%"
+"(url)s\">Status zastojaś</a> manuelnje wózjawiś. JPokazujo se pótom na bokach "
+"lisćinowych zapiskow a w pytańskich wuslědkach, aby se druge na tom "
+"wjaselili."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr ""
+"Wašo nałoženje jo se pśizwóliło! Pokazujo se něnto na bokach lisćinowych "
+"zapiskow a w pytańskich wuslědkach, aby se druge na tom wjaselili."
 
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Gaž wašo nałoženje jo se pśeglědało, buźo se na lisćinwoych bokach a w "
+"pytanju pokazowaś, aby se druge na nim wjaselili."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Což ako pśiduce pśiźo:</strong> Zarědujśo %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Což ako pśiduce pśiźo:</strong> Wózjawśo swójo nałoženje"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "wuwijarski program Wikowanišća"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
+"Wjaselimy se, až sćo nałoženje z pomocu webtechnologijami wuwił, a "
+"zapódowanje do Wikowanišća Firefox jo za wužywarjow nejlěpša móžnosć, jo na "
+"wšych rědach namakaś a wužywaś. Nejpjerwjej musyśo se dokojce wuwijarskemu "
+"programoju Wikowanišća pśizamknuś."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
+"Pšosym cytajśo a akceptěrujśo nejpjerwjej naše <strong>wuwijarske "
+"dojadnanje</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
+"Mozilla smějo mě mejlku z relewantnymi nowosćami a napšašowanjami za "
+"wuwijarje nałoženja pósłaś"
 
 #: mkt/submit/tests/test_forms.py:321
 msgid "Héllo"
-msgstr ""
+msgstr "Halo"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Kontowe nastajenja wobźěłaś"
 
 #: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Slědk k Wikowanišćoju"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
-msgstr ""
+msgstr "Wótzjawiś"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
+"Jolic njejo hynac <a href=\"%(legal_url)s\">zapisane</a>, jo wopśimjeśe toś "
+"togo sedła pód licencu <a href=\"%(cc_url)s\">Creative Commons Attribution "
+"Share-Alike License v3.0</a> abo pód póznjejšeju wersiju."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Wužywańske wuměnjenja"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Znjewužywanje wikoweje marki k wěsći daś"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Slědk"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Lašowaś"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Pokazaś"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Pśełožowaś za : <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: mkt/translations/templates/translations/trans-menu.html:16 mkt/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: mkt/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksistěrujuce rěcy"
 
 #: mkt/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Nowe rěcy"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr ""
+"Maśo njeskładowane změny w rěcy <b>{0}</b>. Cośo swóje změny składowaś, "
+"nježli až změnijośo rěc?"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Změny zachyśiś"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
+"Cośo napšawdu wšykne pśełožk w rěcy <b>{0}</b> wótpóraś? To njedajo se "
+"anulěrowaś."
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Rěc wulašowaś"
 
 #: mkt/users/models.py:57
 msgid "No user with that email."
-msgstr ""
+msgstr "Žeden wužywaŕ z toś teju e-mailoweju adresu."
 
 #: mkt/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "wuwijaŕ dodanka źěkujo se mě za pśinosk"
 
 #: mkt/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "wuwijaŕ dodanka wótegranja na mójo pógódnośenje"
 
 #: mkt/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "wuwijaŕ nałoženja wótegranja na mójo pógódnośenje"
 
 #: mkt/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nowe dodanki abo funkcije Firefox su k dispoziciji"
 
 #: mkt/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "Kompatibelnosć mójogo dodanka jo se wuspěšnje pówušiła"
 
 #: mkt/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mój dodank na zakłaźe SDK jo se wuspěšnje zaktualizěrował"
 
 #: mkt/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "něchten pišo pógódnośenje mójogo dodanka"
 
 #: mkt/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "něchten pišé pógódnośenje za mójo nałoženje"
 
 #: mkt/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "Dodankowe wuběźowanja abo tšojenja se pśipowěźuju"
 
 #: mkt/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kompatibelnosć mójogo dodanka njedajo se pówušyś"
 
 #: mkt/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mój dodank na zakłaźe SDK njedajo se aktualizěrowaś"
 
 #: mkt/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "mój dodank jo se wót redaktora pśeglědał"
 
 #: mkt/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla musy se ze mnu mójogo dodanka dla do zwiska stajiś"
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "mójo nałoženje jo se wót redaktora pśeglědało"
 
 #: mkt/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla musy se ze mnu mójogo nałoženja dla do zwiska stajis"
 
 #: mkt/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla co se ze mnu dla relewantnych nowosćow a napšašowanjow za wuwijarje "
+"nałoženja do zwiska stajiś"
 
 #: mkt/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla co se ze mnu nowych regionow dla do zwiska stajiś, kótarež su se "
+"Wikowanišćoju psidali"
 
 #: mkt/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Wužywarske zdźělenja"
 
 #: mkt/users/views.py:40
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mailowa adresa jo trěbna."
 
 #: mkt/users/views.py:47
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Wužywaŕ z toś teju e-mailoweju adresu njeeksistěrujo."
 
 #: mkt/users/views.py:48
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
+"Wužywaŕ z toś teju e-mailoweju adresu njeeksistěrujo, abo wužywaŕ hyšći "
+"njejo do wuwijarskego dojadnanja zwólił."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Autentifikaciska zmólka Native FxA."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Pšosym wužywajśo wobkšuśonu e-mailowu adresu za toś to konto."
 
 #: mkt/webapps/models.py:209
 msgid "Listed"
-msgstr ""
+msgstr "Pokazany"
 
 #: mkt/webapps/models.py:1367
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Muyśo e-mailowu adresu abo URL za pomoc pódaś."
 
 #: mkt/webapps/models.py:1369
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Musyśo mě nałoženja pódaś."
 
 #: mkt/webapps/models.py:1371
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Musyśo nanejmjenjej jaden rědowy typ pódaś."
 
 #: mkt/webapps/models.py:1374
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Musyśo nanejmjenjej jadnu kategoriju pódaś."
 
 #: mkt/webapps/models.py:1441
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Musyśo wopśimjeśowe pógódnośenja zarědowaś."
 
 #: mkt/webapps/models.py:1443
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Musyśo płaśeśke konto zarědowaś."
 
 #: mkt/webapps/models.py:1468
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Zapódawański proces nałoženja njejo se dopołnje dokóńcył."
 
 #: mkt/webapps/models.py:1475
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Toś to nałoženje trjeba wopśimjeśowe pógódnośenje."
 
 #: mkt/webapps/models.py:1481
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Toś to nałoženje trjeba zarědowane płaśeńske konto."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2796
 msgid "awaiting approval"
-msgstr ""
+msgstr "caka na pśizwólenje"
 
 #. L10n: An app is rejected for a particular region.
 #: mkt/webapps/models.py:2798
 msgid "rejected"
-msgstr ""
+msgstr "wótpokazane"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2800
 msgid "requires additional review"
-msgstr ""
+msgstr "pomina se pśidatne pśeglědanje"
 
 #: mkt/webapps/models.py:2851
 msgid "{region} approval status"
-msgstr ""
+msgstr "pśizwóleński status za {region}"
 
 #: mkt/webapps/models.py:2859
 msgid "{region} nomination date"
-msgstr ""
+msgstr "Nominěrowański datum za {region}"
 
 #: mkt/webapps/tasks.py:144
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Problem z wašym nałoženim \"{app}\" na Wikowanišću Firefox"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
-msgstr ""
+msgstr "Sortěrowaś pó:"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
@@ -8119,20 +8168,20 @@ msgstr "Napórany"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
-msgstr ""
+msgstr "Wótzjawiś"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Registrěrowaś"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
-msgstr ""
+msgstr "trěbny"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Trěbne póla"
 
 #: templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(na žycenje)"
