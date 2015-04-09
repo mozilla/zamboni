@@ -18,6 +18,7 @@ from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
@@ -265,13 +266,11 @@ def get_or_create_payment_account(email='fakedeveloper@example.com',
         email=email,
         source=mkt.LOGIN_SOURCE_UNKNOWN,
         display_name=name)
-    seller, _ = SolitudeSeller.objects.get_or_create(user=user)
-    acct, _ = PaymentAccount.objects.get_or_create(
-        user=user,
-        solitude_seller=seller,
-        uri='/bango/package/123',
-        name='fake data payment account',
-        agreed_tos=True)
+    try:
+        acct = PaymentAccount.objects.get(user=user)
+    except PaymentAccount.DoesNotExist:
+        acct = Reference().account_create(
+            user, {'account_name': name, 'name': name, 'email': email})
     return acct
 
 
