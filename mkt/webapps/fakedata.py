@@ -16,8 +16,7 @@ import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
