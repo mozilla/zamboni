@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-01-01 12:34+0000\n"
+"PO-Revision-Date: 2015-04-09 13:16+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420115655.0\n"
+"X-POOTLE-MTIME: 1428585367.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -148,10 +149,17 @@ msgstr "Instalacija njejo se raźiła. Pšosym wopytajśo pózdźej hyšći raz.
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólk a {1} powěźeńku pśepadnuło."
-msgstr[1] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkoma a {1} powěźeńkoma pśepadnuło."
-msgstr[2] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami pśepadnuło."
-msgstr[3] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami pśepadnuło."
+msgstr[0] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólku a {1} powěźeńku pśepadnuło."
+msgstr[1] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkoma a {1} powěźeńkoma "
+"pśepadnuło."
+msgstr[2] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami "
+"pśepadnuło."
+msgstr[3] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami "
+"pśepadnuło."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
@@ -183,7 +191,7 @@ msgstr "Manifest njedajo se aktualizěrowaś. Wopytajśo pózdźej hyšći raz."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
-msgstr "Pśi nagrawanju wašeje dataje jo zmólka nastała"
+msgstr "Pśi nagrawanju wašeje dataje jo zmólka nastała."
 
 #: media/js/devreg/devhub.js:947
 msgid "Learn more"
@@ -231,7 +239,7 @@ msgstr "Pśizjawjenje z Persona njejo se raźiło. Snaź njamaśo konto pód to�
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Pśizjawjenje z Persona njejo se raźiło. Serwerowa zmólka jo nastała"
+msgstr "Pśizjawjenje z Persona njejo se raźiło. Serwerowa zmólka jo nastała."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""

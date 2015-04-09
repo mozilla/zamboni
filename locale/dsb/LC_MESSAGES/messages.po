@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2015-04-09 13:06+0000\n"
+"PO-Revision-Date: 2015-04-09 13:24+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428584796.0\n"
+"X-POOTLE-MTIME: 1428585894.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -386,7 +386,7 @@ msgstr "Estniska"
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr " Etiopiska"
+msgstr "Etiopiska"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
@@ -1464,7 +1464,7 @@ msgstr "Webaktiwity"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr "Nałoženje pomina se webaktiwity (API \"MozActivity\")"
+msgstr "Nałoženje pomina se webaktiwity (API \"MozActivity\")."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -1472,7 +1472,7 @@ msgstr "Wokolinowy swětłosensor"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr "Nałoženje pomina se wokolinowy swětłosensor (API \"ondevicelight\")"
+msgstr "Nałoženje pomina se wokolinowy swětłosensor (API \"ondevicelight\")."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -2105,7 +2105,7 @@ msgstr "Adresowe mě njamóžo \"%s\" byś. Pšosym wubjeŕśo druge."
 
 #: mkt/developers/forms.py:614
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr "URL manifesta jo se z {before_url} do {after_url} změnił."
+msgstr "URL manifesta jo se z {before_url} do {after_url} změnił"
 
 #: mkt/developers/forms.py:651
 msgid "Please specify your app's Privacy Policy"
@@ -2133,11 +2133,11 @@ msgstr "<b>Njenalicony</b>: Widobny jano za wósoby z URL a njepokazujo se w pyt
 
 #: mkt/developers/forms.py:813
 msgid "App Visibility:"
-msgstr "Widobnosć nałoženja"
+msgstr "Widobnosć nałoženja:"
 
 #: mkt/developers/forms.py:815
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr "<b>Na mój team wobgranicowaś</b>. Widobny jano za teamowe cłonki."
+msgstr "<b>Na mój team wobgranicowaś</b>: Widobny jano za teamowe cłonki."
 
 #: mkt/developers/forms.py:861
 msgid "Choose the regions your app will be listed in:"
@@ -2191,7 +2191,7 @@ msgstr "Tekst"
 
 #: mkt/developers/forms.py:1091
 msgid "You must agree to the Privacy Policy."
-msgstr "Musyśo do pšawidłow priwatnosći zwóliś"
+msgstr "Musyśo do pšawidłow priwatnosći zwóliś."
 
 #: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -2477,7 +2477,9 @@ msgstr "Pód toś tym URL njejo se žeden manifest namakał. Wubjeŕśo adresu a
 
 #: mkt/developers/tasks.py:435
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
-msgstr "Manifesty muse se z HTTP-głowu \"Content-Type: application/x-web-app-manifest)json\" wudaś. Pód %s dostanjośo dalšne informacije."
+msgstr ""
+"Manifesty muse se z HTTP-głowu \"Content-Type: application/x-web-app-"
+"manifest+json\" wudaś. Pód %s dostanjośo dalšne informacije."
 
 #: mkt/developers/tasks.py:444
 msgid "Your manifest must be less than %s bytes."
@@ -2687,9 +2689,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p>Stej dwa głownej nałožowańskej zaměra za API Marketplace. Z drugego websedła z pomocu tradicionelnego OAuth-woóběga abo z rěda pśikazoweje smužki Rozdźěl se w <a href=\"https://firefox-"
-"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> diskutěrujo. Testowanje by měło se na <a href=\"https://marketplace-dev.allizom.org"
-"\">wuwijańskem serwerje</a> wótměwaś a nic na produkciskem serwerje.</p>"
+"<p>Stej dwa głownej nałožowańskej zaměra za API Marketplace. Z drugego "
+"websedła z pomocu tradicionelnego OAuth-woóběga abo z rěda pśikazoweje "
+"smužki. Rozdźěl se w <a href=\"https://firefox-marketplace-api.readthedocs.or"
+"g/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> "
+"diskutěrujo. Testowanje by měło se na <a href=\"https://marketplace-"
+"dev.allizom.org\">wuwijańskem serwerje</a> wótměwaś a nic na produkciskem "
+"serwerje.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -2836,7 +2842,9 @@ msgstr "Někotare funkcije su nachylu znjemóžnjone, mjaztym až websedło wót
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
-msgstr "Wužywańske wuměnjenja su se změnili, wót togo, až sćo do nich zwólił Pšosym cytajśo a akceptěrujśo <a href=\"%(url)s\">nowe wuměnjenja</a>."
+msgstr ""
+"Wužywańske wuměnjenja su se změnili, wót togo, až sćo do nich zwólił. Pšosym "
+"cytajśo a akceptěrujśo <a href=\"%(url)s\">nowe wuměnjenja</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
@@ -3478,7 +3486,7 @@ msgstr "Regiony, w kótarychž me se chórgoj pokazaś"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr "Regiony, w kótarychž ma se chórgojowa powěsć pokazaś"
+msgstr "Regiony, w kótarychž ma se chórgojowa powěsć pokazaś."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -3812,7 +3820,7 @@ msgstr "Cośo swójo nałoženje napšawdu lašowaś?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
-msgstr "Pšosym dajśo nam k wěsći, cogodla wašo nałoženje lašujośo."
+msgstr "Pšosym dajśo nam k wěsći, cogodla wašo nałoženje lašujośo"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1 mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
@@ -4115,7 +4123,7 @@ msgstr "Toś to nałoženje wótpóraś"
 
 #: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81
 msgid "Pick one or two categories."
-msgstr "Wubjeŕśo jadnu kategoriju abo dwě kategoriji:"
+msgstr "Wubjeŕśo jadnu kategoriju abo dwě kategoriji."
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
@@ -4639,7 +4647,7 @@ msgstr ""
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
 msgstr ""
 "Wašo nałoženje zwobraznjujo se na kuždem regionalnem Wikowanišću, kótarež se "
-"pózdźej pśidawa. "
+"pózdźej pśidawa."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
@@ -4725,7 +4733,7 @@ msgstr "Wuwijajśo webnałoženja z HTML5 za wótwórjone wikowanišćotorhošć
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
 "Zgóńśo, kak wugótujośo nałoženja, kótarež póbituju wužywarske dožywjenje, "
-"kótarež jo za Firefox OS a Mobile optiměrowane."
+"kótarež jo za Firefox OS a Mobile optiměrowane"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
@@ -5067,7 +5075,7 @@ msgid "When used alongside logos for other marketplaces (\"Get it on Google Play
 msgstr ""
 "Gaž wužywa pódla logow za druge wikowanišća (\"Get it on Google Play\", "
 "\"Download on the App Store\"), znamuško Wikowanišća Firefox by měło jadnak "
-"wjelike abo wětše bys."
+"wjelike abo wětše bys"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -5211,7 +5219,7 @@ msgstr ""
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
 "Manifestowa dataja webnałoženja njedajo se dekoděrowaś. Pśekontrolěrujśo, "
-"lěc waša manifestowa dataja wopśimujo  nic-UTF-8-znamuška."
+"lěc waša manifestowa dataja wopśimujo nic-UTF-8-znamuška."
 
 #: mkt/files/utils.py:105
 msgid "The webapp manifest is not valid JSON."
@@ -5337,7 +5345,7 @@ msgstr "Tekst łamaś abo łamanja wótpóraś"
 
 #: mkt/files/templates/fileviewer/viewer.html:121
 msgid "No files in the uploaded file."
-msgstr "Žedne dataje w nagratej dataji"
+msgstr "Žedne dataje w nagratej dataji."
 
 #: mkt/files/templates/fileviewer/viewer.html:127
 msgid "Fetching file."
@@ -6269,7 +6277,7 @@ msgstr "Pśepadnuś"
 #: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:86 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr ""
-"Tuchylu njejsu žedne elementy toś togo typa, kótarež muse se pśeglědowaś. "
+"Tuchylu njejsu žedne elementy toś togo typa, kótarež muse se pśeglědowaś."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -6560,7 +6568,7 @@ msgstr "Zapódaśe nałoženja njedopołne"
 #: mkt/reviewers/templates/reviewers/review.html:119
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
-"Móžośo toś ten formular wótpósłaś, ale cyńśo  to jano, jolic móžośo se "
+"Móžośo toś ten formular wótpósłaś, ale cyńśo to jano, jolic móžośo se "
 "konflikta wobinuś."
 
 #: mkt/reviewers/templates/reviewers/review.html:126
@@ -7110,7 +7118,7 @@ msgstr "Pśeglědowanje jo se pominało"
 
 #: mkt/site/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali"
+msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali."
 
 #: mkt/site/log.py:217
 msgid "More information requested"
@@ -7378,7 +7386,7 @@ msgstr "Awtomatiske dalejdaśe pśiducemu wušemu městnoju za pśedwózjewjenje
 
 #: mkt/site/log.py:555
 msgid "Created: {0}."
-msgstr "Napórany: {0}"
+msgstr "Napórany: {0}."
 
 #: mkt/site/log.py:561
 msgid "Edited field: {2} set to: {0}."
@@ -7386,7 +7394,7 @@ msgstr "Wobźěłane pólo: {2} změnjony do: {0}."
 
 #: mkt/site/log.py:567
 msgid "Deleted: {1}."
-msgstr "Wulašowany: {1}"
+msgstr "Wulašowany: {1}."
 
 #: mkt/site/log.py:573
 msgid "User {user} edited, reason: {1}"
@@ -7530,7 +7538,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr "Bok njejo se namakał."
+msgstr "Bok njejo se namakał"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
@@ -7615,7 +7623,7 @@ msgstr "Změny na \"póchaźe\" njejsu dowóline."
 
 #: mkt/submit/forms.py:224
 msgid "User submitting validation does not match."
-msgstr "Wužywaŕ, kótaryž pósrědnja pśeglědanje, njejo jadnak. "
+msgstr "Wužywaŕ, kótaryž pósrědnja pśeglědanje, njejo jadnak."
 
 #: mkt/submit/forms.py:269
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7631,7 +7639,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
-msgstr "Pšawidła priwatnosći"
+msgstr "Pšawidła priwatnosći:"
 
 #: mkt/submit/forms.py:296
 msgid ""
