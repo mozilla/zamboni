@@ -26,7 +26,7 @@ class SearchQueryFilter(BaseFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
 
-        q = request.GET.get('q')
+        q = request.GET.get('q', '').lower()
         lang = translation.get_language()
         analyzer = self._get_locale_analyzer(lang)
 

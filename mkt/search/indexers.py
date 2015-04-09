@@ -180,7 +180,7 @@ class BaseIndexer(object):
             'type': 'custom',
             'tokenizer': 'icu_tokenizer',
             'filter': ['custom_word_delimiter', 'icu_folding',
-                       'icu_normalizer'],
+                       'icu_normalizer', 'lowercase'],
         }
 
         # An analyzer that can do case-insensitive exact matching.
@@ -205,7 +205,8 @@ class BaseIndexer(object):
                 'tokenizer': 'icu_tokenizer',
                 'filter': [
                     'custom_word_delimiter', 'icu_folding', 'icu_normalizer',
-                    '%s_stop_filter' % lang, '%s_stem_filter' % lang
+                    '%s_stop_filter' % lang, '%s_stem_filter' % lang,
+                    'lowercase',
                 ],
             }
 
