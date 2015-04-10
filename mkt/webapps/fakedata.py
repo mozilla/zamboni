@@ -16,8 +16,8 @@ import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
+from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
@@ -265,13 +265,11 @@ def get_or_create_payment_account(email='fakedeveloper@example.com',
         email=email,
         source=mkt.LOGIN_SOURCE_UNKNOWN,
         display_name=name)
-    seller, _ = SolitudeSeller.objects.get_or_create(user=user)
-    acct, _ = PaymentAccount.objects.get_or_create(
-        user=user,
-        solitude_seller=seller,
-        uri='/bango/package/123',
-        name='fake data payment account',
-        agreed_tos=True)
+    try:
+        acct = PaymentAccount.objects.get(user=user)
+    except PaymentAccount.DoesNotExist:
+        acct = Reference().account_create(
+            user, {'account_name': name, 'name': name, 'email': email})
     return acct
 
 
@@ -364,12 +362,13 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.premium_type = premium_type
     if premium_type != mkt.ADDON_FREE:
         acct = get_or_create_payment_account(developer_email, developer_name)
+        product_uri = Reference().product_create(acct, app)
         AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
                                            account_uri=acct.uri,
-                                           product_uri=app.app_slug)
+                                           product_uri=product_uri)
         price = get_or_create_price(spec.get('price', '0.99'))
         AddonPremium.objects.create(addon=app, price=price)
-        app.solitude_public_id = 'fake'
+
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
