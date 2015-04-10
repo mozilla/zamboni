@@ -205,6 +205,15 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
+    def test_pending_updates(self):
+        """
+        PENDING apps don't have a current version. This test makes sure
+        everything still works in this case.
+        """
+        self.addon.update(status=mkt.STATUS_PENDING)
+        self._run()
+        eq_(self.addon.latest_version.reload().version, '1.0')
+
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_approved(self, mock_):
         self.addon.update(status=mkt.STATUS_APPROVED)
@@ -469,15 +478,21 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_manifest_support_locales_change(self, _manifest, _iarc):
-        # Mock original manifest file lookup.
-        _manifest.return_value = original
-        # Mock new manifest with name change.
-        self.new['locales'].update({'es': {'name': u'Mozilla Balón'}})
+        """
+        Test both PUBLIC and PENDING to catch apps w/o `current_version`.
+        """
+        for status in (mkt.STATUS_PUBLIC, mkt.STATUS_PENDING):
+            self.addon.update(status=status)
 
-        self._run()
-        ver = self.version.reload()
-        eq_(ver.supported_locales, 'de,es,fr')
-        ok_(not _iarc.called)
+            # Mock original manifest file lookup.
+            _manifest.return_value = original
+            # Mock new manifest with name change.
+            self.new['locales'].update({'es': {'name': u'Mozilla Balón'}})
+
+            self._run()
+            ver = self.version.reload()
+            eq_(ver.supported_locales, 'de,es,fr')
+            ok_(not _iarc.called)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
