@@ -56,7 +56,7 @@
       </li>
       <li><a href="{{ product.get_detail_url() }}" class="button">
         {{ _('View Listing') }}</a></li>
-      {% if is_admin %}
+      {% if is_admin and not product.is_deleted %}
         <li><a href="{{ product.get_dev_url() }}" class="button manage">
           {{ _('Edit Listing') }}</a></li>
       {% endif %}

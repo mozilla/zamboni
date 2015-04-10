@@ -24,42 +24,13 @@ class TestWebappDecorators(TestCase):
         self.request.path = self.id_path = '/app/%s/reviews' % self.app.id
         self.request.GET = {}
 
-    def test_301_by_id(self):
-        res = self.view(self.request, str(self.app.id))
-        self.assert3xx(res, self.slug_path, 301)
-
-    def test_slug_replace_no_conflict(self):
-        self.request.path = '/app/{id}/reviews/{id}345/path'.format(
-            id=self.app.id)
-        res = self.view(self.request, str(self.app.id))
-        self.assert3xx(res, '/app/{slug}/reviews/{id}345/path'.format(
-            id=self.app.id, slug=self.app.app_slug), 301)
-
-    def test_301_with_querystring(self):
-        self.request.GET = mock.Mock()
-        self.request.GET.urlencode.return_value = 'q=1'
-        res = self.view(self.request, str(self.app.id))
-        self.assert3xx(res, self.slug_path + '?q=1', 301)
-
     def test_200_by_slug(self):
         res = self.view(self.request, self.app.app_slug)
         eq_(res, mock.sentinel.OK)
 
-    def test_404_by_id(self):
-        with self.assertRaises(http.Http404):
-            self.view(self.request, str(self.app.id * 2))
-
     def test_404_by_slug(self):
         with self.assertRaises(http.Http404):
             self.view(self.request, self.app.app_slug + 'xx')
-
-    def test_alternate_qs_301_by_id(self):
-        def qs():
-            return Webapp.objects.all()
-
-        view = dec.app_view_factory(qs=qs)(self.func)
-        res = view(self.request, str(self.app.id))
-        self.assert3xx(res, self.slug_path, 301)
 
     def test_alternate_qs_200_by_slug(self):
         def qs():
@@ -67,14 +38,6 @@ class TestWebappDecorators(TestCase):
         view = dec.app_view_factory(qs=qs)(self.func)
         res = view(self.request, self.app.app_slug)
         eq_(res, mock.sentinel.OK)
-
-    def test_alternate_qs_404_by_id(self):
-        def qs():
-            return Webapp.objects.filter(status=mkt.STATUS_DELETED)
-
-        view = dec.app_view_factory(qs=qs)(self.func)
-        with self.assertRaises(http.Http404):
-            view(self.request, str(self.app.id))
 
     def test_alternate_qs_404_by_slug(self):
         def qs():

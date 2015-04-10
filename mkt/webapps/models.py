@@ -558,7 +558,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         # Update or NULL out various fields.
         models.signals.pre_delete.send(sender=Webapp, instance=self)
-        self.update(status=mkt.STATUS_DELETED, app_slug=None,
+        self.update(status=mkt.STATUS_DELETED, app_slug=str(self.id),
                     app_domain=None, _current_version=None)
         models.signals.post_delete.send(sender=Webapp, instance=self)
 
