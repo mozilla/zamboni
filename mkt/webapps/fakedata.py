@@ -362,12 +362,13 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.premium_type = premium_type
     if premium_type != mkt.ADDON_FREE:
         acct = get_or_create_payment_account(developer_email, developer_name)
+        product_uri = Reference().product_create(acct, app)
         AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
                                            account_uri=acct.uri,
-                                           product_uri=app.app_slug)
+                                           product_uri=product_uri)
         price = get_or_create_price(spec.get('price', '0.99'))
         AddonPremium.objects.create(addon=app, price=price)
-        app.solitude_public_id = 'fake'
+
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
