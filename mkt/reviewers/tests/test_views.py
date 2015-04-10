@@ -1367,8 +1367,8 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert doc('input[name=action][value=info]').length
-        assert doc('input[name=action][value=comment]').length
+        assert not doc('input[name=action][value=info]').length
+        assert not doc('input[name=action][value=comment]').length
         assert not doc('input[name=action][value=public]').length
         assert not doc('input[name=action][value=reject]').length
 

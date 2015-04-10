@@ -425,8 +425,6 @@ class ReviewHelper(object):
 
         if not self.version:
             # Return early if there is no version, this app is incomplete.
-            actions['info'] = info
-            actions['comment'] = comment
             return actions
 
         file_status = self.version.files.values_list('status', flat=True)

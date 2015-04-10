@@ -73,7 +73,7 @@ from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.decorators import app_view
+from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
@@ -83,6 +83,7 @@ from . import forms
 
 QUEUE_PER_PAGE = 100
 log = commonware.log.getLogger('z.reviewers')
+app_view_with_deleted = app_view_factory(Webapp.with_deleted.all)
 
 
 def reviewer_required(region=None, moderator=False):
@@ -278,15 +279,14 @@ def _review(request, addon, version):
     is_admin = acl.action_allowed(request, 'Apps', 'Edit')
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
-
-        old_types = set(o.id for o in addon.device_types)
-        new_types = set(form.cleaned_data.get('device_override'))
-
-        old_features = set(features_list)
-        new_features = set(unicode(f) for f
-                           in appfeatures_form.instance.to_list())
-
         if form.cleaned_data.get('action') == 'public':
+            old_types = set(o.id for o in addon.device_types)
+            new_types = set(form.cleaned_data.get('device_override'))
+
+            old_features = set(features_list)
+            new_features = set(unicode(f) for f
+                               in appfeatures_form.instance.to_list())
+
             if old_types != new_types:
                 # The reviewer overrode the device types. We need to not
                 # publish this app immediately.
@@ -418,7 +418,7 @@ def _review(request, addon, version):
 
 
 @reviewer_required
-@app_view
+@app_view_with_deleted
 def app_review(request, addon):
     version = addon.latest_version
     resp = None
@@ -673,7 +673,7 @@ def _get_manifest_json(addon):
 
 
 @permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
-@app_view
+@app_view_with_deleted
 @json_view
 def app_view_manifest(request, addon):
     headers = {}

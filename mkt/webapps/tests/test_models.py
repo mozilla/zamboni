@@ -155,8 +155,8 @@ class TestWebapp(WebappTestCase):
         # When an app is deleted its slugs and domain should get relinquished.
         post_mortem = Webapp.with_deleted.filter(id=app.id)
         eq_(post_mortem.count(), 1)
-        for attr in ('app_slug', 'app_domain'):
-            eq_(getattr(post_mortem[0], attr), None)
+        eq_(getattr(post_mortem[0], 'app_domain'), None)
+        eq_(getattr(post_mortem[0], 'app_slug'), '337141')
 
     def test_soft_deleted_valid(self):
         app = self.get_app()

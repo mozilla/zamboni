@@ -434,7 +434,7 @@ class ActivityLog(ModelBase):
                 # Instead of passing an addon instance you can pass a tuple:
                 # (Webapp, 3) for Webapp with pk=3
                 serialize_me.append(dict(((unicode(arg[0]._meta), arg[1]),)))
-            else:
+            elif arg is not None:
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
