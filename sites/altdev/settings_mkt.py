@@ -171,3 +171,7 @@ FXA_SECRETS = {
 
 # Bug 1145338
 IAF_OVERRIDE_APPS = private_mkt.IAF_OVERRIDE_APPS
+
+DEV_PAY_PROVIDERS = {
+    APP_PURCHASE_TYP: SITE_URL + '/mozpay/?req={jwt}',
+}
