@@ -681,7 +681,7 @@ class TestSearchView(RestOAuth, ESTestCase):
     def test_installs_allowed_from_strict(self):
         self.webapp.current_version.manifest_json.update(
             manifest=json.dumps({'installs_allowed_from': 'http://a.com'}))
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         res = self.anon.get(self.url, data={'installs_allowed_from': '*'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
@@ -707,7 +707,7 @@ class TestSearchView(RestOAuth, ESTestCase):
                      'descriptions and here is what we want to find: WhatsApp'
         }
         self.webapp.save()
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
         res = self.anon.get(self.url, data={'q': 'whatsapp'})
         eq_(res.status_code, 200)
@@ -773,7 +773,7 @@ class TestSearchView(RestOAuth, ESTestCase):
     def test_usk_refused_exclude(self):
         geodata = self.webapp._geodata
         geodata.update(region_de_usk_exclude=True)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
         res = self.anon.get(self.url, {'region': 'de'})
         ok_(not res.json['objects'])
@@ -793,7 +793,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         Tag.objects.create(tag_text='dummy')
         AddonTag.objects.create(addon=self.webapp, tag=tag1)
         AddonTag.objects.create(addon=self.webapp, tag=tag2)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         res = self.anon.get(self.url, {'tag': 'tarako'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
@@ -805,7 +805,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         user = user_factory()
         app1._reviews.create(user=user, rating=1)
         app2._reviews.create(user=user, rating=5)
-        self.refresh()
+        self.refresh('webapp')
         res = self.anon.get(self.url, {'sort': 'rating'})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['id'], app2.id)
@@ -816,7 +816,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         app2 = app_factory()
         app1.trending.get_or_create(value='2.0')
         app2.trending.get_or_create(value='12.0')
-        self.refresh()
+        self.refresh('webapp')
         res = self.anon.get(self.url, {'sort': 'trending'})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['id'], app2.id)
@@ -919,7 +919,7 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
         self.url = reverse('featured-search-api')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
     def make_request(self):
         res = self.client.get(self.url)
@@ -1065,7 +1065,7 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
 
     def test_not_finds_excluded_region(self):
         self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         res = self.client.get(self.url, data={
             'q': 'second', 'lang': 'en-US', 'region': 'us'
         })
@@ -1090,7 +1090,7 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
         # matter.
         self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
         self.grant_permission(self.profile, 'Feed:Curate')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
     def tearDown(self):
         # Cleanup to remove these from the index.
@@ -1162,7 +1162,7 @@ class TestRocketbarView(ESTestCase):
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Add some installs so this app is boosted higher than app1.
-        self.app2.installs.create(region=0, value=1000.0)
+        self.app2.popularity.create(region=0, value=1000.0)
         self.app2.save()
         self.refresh('webapp')
 
@@ -1200,7 +1200,7 @@ class TestRocketbarView(ESTestCase):
         self.app2.name.save()
         self.app2.default_locale = 'es'
         self.app2.save()
-        self.refresh()
+        self.refresh('webapp')
         with self.assertNumQueries(0):
             response = self.client.get(self.url, data={'q': 'Something Second',
                                                        'lang': 'en-US'})
@@ -1275,25 +1275,31 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.url = reverse('api-v2:multi-search-api')
         self.webapp = Webapp.objects.get(pk=337141)
         self.shared_category = 'books'
-        self.webapp.update(categories=['books', 'business'])
+        self.webapp.update(categories=[self.shared_category, 'business'])
+        self.webapp.popularity.create(region=0, value=11.0)
         self.website = website_factory(
-            description='something',
-            categories=json.dumps(['books', 'sports'])
+            title='something something webcube',
+            description={'en-US': 'something something webcube desc',
+                         'fr': 'something something webcube desc fr'},
+            categories=json.dumps([self.shared_category, 'sports'])
         )
-        self._reindex()
+        self.refresh(('webapp', 'website'))
 
     def tearDown(self):
         for w in Webapp.objects.all():
             w.delete()
-        unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
         for w in Website.objects.all():
             w.delete()
-        Website.get_indexer().unindexer(_all=True)
         super(TestMultiSearchView, self).tearDown()
 
-    def _reindex(self):
-        self.reindex(Website, 'website')
-        self.reindex(Webapp, 'webapp')
+        # Make sure to delete and unindex *all* apps. Normally we wouldn't care
+        # about stray deleted apps staying in the index, but they can have an
+        # impact on relevancy scoring so we need to make sure. This needs to
+        # happen after super() has been called since it'll process the indexing
+        # tasks that should happen post_request, and we need to wait for ES to
+        # have done everything before continuing.
+        Webapp.get_indexer().unindexer(_all=True)
+        self.refresh(('webapp', 'website'))
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])
@@ -1318,20 +1324,38 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 2)
         eq_(objs[0]['id'], self.webapp.pk)
-        eq_(objs[0]['slug'], self.webapp.app_slug)
         eq_(objs[0]['name'], self.webapp.name)
+        eq_(objs[0]['slug'], self.webapp.app_slug)
         eq_(objs[1]['id'], self.website.pk)
         eq_(objs[1]['title'], self.website.title)
         eq_(objs[1]['url'], self.website.url)
+
+    def test_search_popularity(self):
+        self.website.popularity.create(region=0, value=12.0)
+        # Force reindex to get the new popularity, it's not done automatically.
+        self.reindex(Website)
+        res = self.anon.get(self.url, data={'lang': 'en-US'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.website.pk)
+        eq_(objs[0]['title'], self.website.title)
+        eq_(objs[0]['url'], self.website.url)
+        eq_(objs[1]['id'], self.webapp.pk)
+        eq_(objs[1]['name'], self.webapp.name)
+        eq_(objs[1]['slug'], self.webapp.app_slug)
 
     def test_search_q(self):
         res = self.anon.get(self.url, data={'q': 'something', 'lang': 'en-US'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 2)
         eq_(len(objs), 2)
-        eq_(objs[0]['id'], self.webapp.pk)
-        eq_(objs[0]['slug'], self.webapp.app_slug)
-        eq_(objs[0]['name'], self.webapp.name)
-        eq_(objs[1]['id'], self.website.pk)
-        eq_(objs[1]['title'], self.website.title)
-        eq_(objs[1]['url'], self.website.url)
+        # Website should be first because it's more relevant (exact match) than
+        # the Webapp.
+        eq_(objs[0]['id'], self.website.pk)
+        eq_(objs[0]['title'], self.website.title)
+        eq_(objs[0]['url'], self.website.url)
+        eq_(objs[1]['id'], self.webapp.pk)
+        eq_(objs[1]['name'], self.webapp.name)
+        eq_(objs[1]['slug'], self.webapp.app_slug)

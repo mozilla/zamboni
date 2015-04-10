@@ -243,25 +243,25 @@ def update_app_installs():
             value = scores.get('all')
             if value > 0:
                 reindex = True
-                installs, created = app.installs.get_or_create(
+                installs, created = app.popularity.get_or_create(
                     region=0, defaults={'value': value})
                 if not created:
                     installs.update(value=value, modified=now)
             else:
                 # The value is <= 0 so we can just ignore it.
-                app.installs.filter(region=0).delete()
+                app.popularity.filter(region=0).delete()
 
             for region in mkt.regions.REGIONS_DICT.values():
                 value = scores.get(region.slug)
                 if value > 0:
                     reindex = True
-                    installs, created = app.installs.get_or_create(
+                    installs, created = app.popularity.get_or_create(
                         region=region.id, defaults={'value': value})
                     if not created:
                         installs.update(value=value, modified=now)
                 else:
                     # The value is <= 0 so we can just ignore it.
-                    app.installs.filter(region=region.id).delete()
+                    app.popularity.filter(region=region.id).delete()
 
             if reindex:
                 reindex_ids.append(app.id)

@@ -81,7 +81,7 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
         self.webapp = Webapp.objects.get(pk=337141)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         self.url = reverse('fireplace-featured-search-api')
 
     def test_get(self):
@@ -107,7 +107,7 @@ class TestSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         super(TestSearchView, self).setUp()
         self.webapp = Webapp.objects.get(pk=337141)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
         self.url = reverse('fireplace-search-api')
 
     def test_get(self):

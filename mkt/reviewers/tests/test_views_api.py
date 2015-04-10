@@ -179,7 +179,7 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
     def test_is_tarako(self):
         Tag(tag_text='tarako').save_tag(self.webapp)
         self.webapp.save()
-        self.refresh()
+        self.refresh('webapp')
 
         res = self.client.get(self.url, {'is_tarako': True})
         eq_(res.status_code, 200)

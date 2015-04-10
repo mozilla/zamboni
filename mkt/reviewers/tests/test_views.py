@@ -327,7 +327,7 @@ class FlagsMixin(object):
     def test_flag_packaged_app(self):
         self.apps[0].update(is_packaged=True)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         eq_(self.apps[0].is_packaged, True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -338,7 +338,7 @@ class FlagsMixin(object):
     def test_flag_premium_app(self):
         self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         eq_(self.apps[0].is_premium(), True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -349,7 +349,7 @@ class FlagsMixin(object):
     def test_flag_free_inapp_app(self):
         self.apps[0].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
@@ -357,7 +357,7 @@ class FlagsMixin(object):
     def test_flag_premium_inapp_app(self):
         self.apps[0].update(premium_type=mkt.ADDON_PREMIUM_INAPP)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp').length, 1)
@@ -365,7 +365,7 @@ class FlagsMixin(object):
     def test_flag_info(self):
         self.apps[0].latest_version.update(has_info_request=True)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -375,7 +375,7 @@ class FlagsMixin(object):
     def test_flag_comment(self):
         self.apps[0].latest_version.update(has_editor_comment=True)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -390,7 +390,7 @@ class XSSMixin(object):
         a.name = '<script>alert("xss")</script>'
         a.save()
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tbody = pq(res.content)('#addon-queue tbody').html()
@@ -507,7 +507,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         AddonDeviceType.objects.create(addon=self.apps[0], device_type=1)
         AddonDeviceType.objects.create(addon=self.apps[0], device_type=2)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(5)')
@@ -517,7 +517,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
         self.apps[1].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
@@ -553,7 +553,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
         if self.uses_es():
@@ -570,7 +570,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_incomplete_no_in_queue(self):
         [app.update(status=mkt.STATUS_NULL) for app in self.apps]
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         req = req_factory_factory(
             self.url,
             user=UserProfile.objects.get(email='editor@mozilla.com'))
@@ -583,7 +583,7 @@ class TestAppQueueES(mkt.site.tests.ESTestCase, TestAppQueue):
     def setUp(self):
         super(TestAppQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
 
 class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
@@ -652,7 +652,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[2].update(created=self.days_ago(1))
 
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
 
         self.url = reverse('reviewers.apps.queue_rereview')
 
@@ -758,7 +758,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
             self.assertSetEqual([a.id for a in res.context['addons']],
@@ -784,7 +784,7 @@ class TestRereviewQueueES(mkt.site.tests.ESTestCase, TestRereviewQueue):
     def setUp(self):
         super(TestRereviewQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
@@ -824,7 +824,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[0].versions.latest().update(nomination=self.days_ago(2))
         self.apps[1].versions.latest().update(nomination=self.days_ago(1))
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
@@ -905,7 +905,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
             eq_([a.id for a in res.context['addons']],
@@ -925,7 +925,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[0].versions.latest().update(nomination=self.days_ago(1))
         self.apps[1].versions.latest().update(nomination=self.days_ago(4))
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
             apps = [a.id for a in res.context['addons']]
@@ -944,7 +944,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                           file_kw={'status': mkt.STATUS_PENDING})
         self.apps.append(app)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
             apps = [a.id for a in res.context['addons']]
@@ -970,7 +970,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         file_kw={'status': mkt.STATUS_PENDING})
 
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
             assert app.id in [a.id for a in res.context['addons']]
@@ -998,7 +998,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(app.latest_version.reload().nomination, None)
 
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
 
         res = self.client.get(self.url)
         if self.uses_es():
@@ -1021,7 +1021,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         app.versions.latest().files.latest().update(status=mkt.STATUS_PUBLIC)
         eq_(app.reload().status, mkt.STATUS_PUBLIC)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -1047,7 +1047,7 @@ class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
     def setUp(self):
         super(TestUpdateQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
@@ -1086,7 +1086,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         # check is here rather than in FlagsMixin.
         self.apps[0].update(status=mkt.STATUS_BLOCKED)
         if self.uses_es():
-            self.reindex(Webapp, 'webapp')
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -1174,7 +1174,7 @@ class TestEscalationQueueES(mkt.site.tests.ESTestCase, TestEscalationQueue):
     def setUp(self):
         super(TestEscalationQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
 
 class TestReviewTransaction(AttachmentManagementMixin,

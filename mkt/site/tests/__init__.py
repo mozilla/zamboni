@@ -850,23 +850,35 @@ class ESTestCase(TestCase):
         super(ESTestCase, self).tearDown()
 
     @classmethod
-    def setUpIndex(cls):
-        cls.refresh()
+    def refresh(cls, doctypes=None):
+        """
+        Force an immediate refresh for the index(es) holding the given
+        doctype(s) in ES. Both a string corresponding to a single doctypes or a
+        list of multiple doctypes are accepted.
 
-    @classmethod
-    def refresh(cls, doctype='webapp', timesleep=0):
+        If there are tasks in the post_request_task queue, they are processed
+        first.
+        """
         post_request_task._send_tasks()
-        index = settings.ES_INDEXES[doctype]
-        try:
-            cls.es.indices.refresh(index=index)
-        except elasticsearch.NotFoundError as e:
-            print "Could not refresh index '%s': %s" % (index, e)
+
+        if doctypes:
+            if not isinstance(doctypes, (list, tuple)):
+                doctypes = [doctypes]
+            indexes = [settings.ES_INDEXES[doctype] for doctype in doctypes]
+            try:
+                cls.es.indices.refresh(index=indexes)
+            except elasticsearch.NotFoundError as e:
+                print "Could not refresh indexes '%s': %s" % (indexes, e)
 
     @classmethod
-    def reindex(cls, model, index='default'):
+    def reindex(cls, model):
+        """
+        Convenience method that re-save all instances of the specified model
+        and then refreshes the corresponding ES index.
+        """
         # Emit post-save signal so all of the objects get reindexed.
         [o.save() for o in model.objects.all()]
-        cls.refresh(index)
+        cls.refresh(doctypes=model.get_indexer().get_mapping_type_name())
 
 
 class WebappTestCase(TestCase):

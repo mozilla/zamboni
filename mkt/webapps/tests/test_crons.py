@@ -15,6 +15,7 @@ import mkt.site.tests
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
+from mkt.search.utils import get_popularity, get_trending
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -248,22 +249,22 @@ class TestUpdateInstalls(mkt.site.tests.TestCase):
         _mock.return_value = {'all': 12.0}
         update_app_installs()
 
-        eq_(self.app.get_installs(), 12.0)
+        eq_(get_popularity(self.app), 12.0)
         for region in mkt.regions.REGIONS_DICT.values():
             if region.adolescent:
-                eq_(self.app.get_installs(region=region), 12.0)
+                eq_(get_popularity(self.app, region=region), 12.0)
             else:
-                eq_(self.app.get_installs(region=region), 0.0)
+                eq_(get_popularity(self.app, region=region), 0.0)
 
         # Test running again updates the values as we'd expect.
         _mock.return_value = {'all': 2.0}
         update_app_installs()
-        eq_(self.app.get_installs(), 2.0)
+        eq_(get_popularity(self.app), 2.0)
         for region in mkt.regions.REGIONS_DICT.values():
             if region.adolescent:
-                eq_(self.app.get_installs(region=region), 2.0)
+                eq_(get_popularity(self.app, region=region), 2.0)
             else:
-                eq_(self.app.get_installs(region=region), 0.0)
+                eq_(get_popularity(self.app, region=region), 0.0)
 
     @mock.patch('mkt.webapps.cron._get_installs')
     def test_installs_deleted(self, _mock):
@@ -273,7 +274,7 @@ class TestUpdateInstalls(mkt.site.tests.TestCase):
         update_app_installs()
 
         with self.assertRaises(Installs.DoesNotExist):
-            self.app.installs.get(region=0)
+            self.app.popularity.get(region=0)
 
     @mock.patch('mkt.webapps.cron.get_monolith_client')
     def test_get_trending(self, _mock):
@@ -315,22 +316,22 @@ class TestUpdateTrending(mkt.site.tests.TestCase):
         _mock.return_value = {'all': 12.0}
         update_app_trending()
 
-        eq_(self.app.get_trending(), 12.0)
+        eq_(get_trending(self.app), 12.0)
         for region in mkt.regions.REGIONS_DICT.values():
             if region.adolescent:
-                eq_(self.app.get_trending(region=region), 12.0)
+                eq_(get_trending(self.app, region=region), 12.0)
             else:
-                eq_(self.app.get_trending(region=region), 0.0)
+                eq_(get_trending(self.app, region=region), 0.0)
 
         # Test running again updates the values as we'd expect.
         _mock.return_value = {'all': 2.0}
         update_app_trending()
-        eq_(self.app.get_trending(), 2.0)
+        eq_(get_trending(self.app), 2.0)
         for region in mkt.regions.REGIONS_DICT.values():
             if region.adolescent:
-                eq_(self.app.get_trending(region=region), 2.0)
+                eq_(get_trending(self.app, region=region), 2.0)
             else:
-                eq_(self.app.get_trending(region=region), 0.0)
+                eq_(get_trending(self.app, region=region), 0.0)
 
     @mock.patch('mkt.webapps.cron._get_trending')
     def test_trending_deleted(self, _mock):

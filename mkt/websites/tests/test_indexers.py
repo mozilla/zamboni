@@ -3,6 +3,7 @@ from nose.tools import eq_, ok_
 
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
+from mkt.search.utils import get_boost
 from mkt.site.tests import TestCase
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
@@ -86,3 +87,39 @@ class TestWebsiteIndexer(TestCase):
              {'lang': 'fr', 'string': title['fr']}])
         eq_(doc['title_english'], [title['en-US']])
         eq_(doc['title_french'], [title['fr']])
+
+    def test_installs_to_popularity(self):
+        self.obj = website_factory()
+        # No installs.
+        doc = self._get_doc()
+        # Boost is multiplied by 4 if it's public.
+        eq_(doc['boost'], 1.0 * 4)
+        eq_(doc['popularity'], 0)
+
+        # Add some popularity.
+        self.obj.popularity.create(region=0, value=50.0)
+        # Test an adolescent region.
+        self.obj.popularity.create(region=2, value=10.0)
+        # Test a mature region.
+        self.obj.popularity.create(region=7, value=10.0)
+
+        doc = self._get_doc()
+        eq_(doc['boost'], get_boost(self.obj))
+        eq_(doc['popularity'], 50)
+        # An adolescent region uses the global trending value.
+        eq_(doc['popularity_2'], 50)
+        eq_(doc['popularity_7'], 10)
+
+    def test_trending(self):
+        self.obj = website_factory()
+        self.obj.trending.create(region=0, value=10.0)
+        # Test an adolescent region.
+        self.obj.trending.create(region=2, value=50.0)
+        # Test a mature region.
+        self.obj.trending.create(region=7, value=50.0)
+
+        doc = self._get_doc()
+        eq_(doc['trending'], 10.0)
+        # An adolescent region uses the global trending value.
+        eq_(doc['trending_2'], 10.0)
+        eq_(doc['trending_7'], 50.0)

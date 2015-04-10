@@ -9,7 +9,6 @@ import re
 import time
 import urlparse
 import uuid
-from math import log10
 
 from django.conf import settings
 from django.core.cache import cache
@@ -1980,67 +1979,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         except IndexError:
             return
 
-    def get_boost(self):
+    def is_dummy_content_for_qa(self):
         """
-        Returns the boost used in Elasticsearch for this app.
-
-        The boost is based on a few factors, the most important is number of
-        installs. We use log10 so the boost doesn't completely overshadow any
-        other boosting we do at query time.
+        Returns whether this app is a dummy app used for testing only or not.
         """
-        boost = max(log10(1 + self.get_installs()), 1.0)
-
-        # We give a little extra boost to approved apps.
-        if self.status in mkt.VALID_STATUSES:
-            boost *= 4
-
-        return boost
-
-    def get_installs(self, region=None):
-        """
-        Returns popularity value.
-
-        If no region, uses global value.
-        If region and region is not mature, uses global value.
-        Otherwise uses regional popularity value.
-
-        """
-        # We ignore this app as it is used for testing app installs.
-        if self.pk == settings.QA_APP_ID:
-            return 0
-
-        if region and not region.adolescent:
-            by_region = region.id
-        else:
-            by_region = 0
-
-        try:
-            return self.installs.get(region=by_region).value
-        except ObjectDoesNotExist:
-            return 0
-
-    def get_trending(self, region=None):
-        """
-        Returns trending value.
-
-        If no region, uses global value.
-        If region and region is not mature, uses global value.
-        Otherwise uses regional trending value.
-
-        """
-        # We ignore this app as it is used for testing app installs.
-        if self.pk == settings.QA_APP_ID:
-            return 0
-
-        if region and not region.adolescent:
-            by_region = region.id
-        else:
-            by_region = 0
-
-        try:
-            return self.trending.get(region=by_region).value
-        except ObjectDoesNotExist:
-            return 0
+        return self.pk == settings.QA_APP_ID
 
     def iarc_token(self):
         """
@@ -2267,7 +2210,7 @@ dbsignals.post_delete.connect(cleanup_upsell, sender=Webapp,
 
 
 class Installs(ModelBase):
-    addon = models.ForeignKey(Webapp, related_name='installs')
+    addon = models.ForeignKey(Webapp, related_name='popularity')
     value = models.FloatField(default=0.0)
     # When region=0, we count across all regions.
     region = models.PositiveIntegerField(null=False, default=0, db_index=True)

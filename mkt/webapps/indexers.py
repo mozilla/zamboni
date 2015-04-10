@@ -240,7 +240,6 @@ class WebappIndexer(BaseIndexer):
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
-        d['boost'] = obj.get_boost()
         d['category'] = obj.categories if obj.categories else []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
@@ -285,9 +284,6 @@ class WebappIndexer(BaseIndexer):
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
-        d['popularity'] = obj.get_installs()
-        for region in mkt.regions.ALL_REGIONS:
-            d['popularity_%s' % region.id] = obj.get_installs(region)
 
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
@@ -315,10 +311,6 @@ class WebappIndexer(BaseIndexer):
         d['supported_locales'] = list(set(supported_locales))
 
         d['tags'] = getattr(obj, 'tag_list', [])
-
-        d['trending'] = obj.get_trending()
-        for region in mkt.regions.ALL_REGIONS:
-            d['trending_%s' % region.id] = obj.get_trending(region)
 
         if obj.upsell and obj.upsell.premium.is_published():
             upsell_obj = obj.upsell.premium
@@ -354,6 +346,9 @@ class WebappIndexer(BaseIndexer):
             d['release_notes_translations'] = None
         attach_trans_dict(geodata._meta.model, [geodata])
         d.update(cls.extract_field_translations(geodata, 'banner_message'))
+
+        # Add boost, popularity, trending values.
+        d.update(cls.extract_popularity_trending_boost(obj))
 
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to

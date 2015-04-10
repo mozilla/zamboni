@@ -124,7 +124,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
 
     def test_filter_by_device(self):
         self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
         res = self.client.get(self.url, {'dev': mkt.DEVICE_GAIA.api_name})
         eq_(res.status_code, 200)
@@ -135,7 +135,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
     def test_filter_by_desktop(self):
         self.apps[0].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
         res = self.client.get(self.url, {'dev': mkt.DEVICE_DESKTOP.api_name})
         eq_(res.status_code, 200)
@@ -145,7 +145,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
 
     def test_no_filter_if_no_dev(self):
         self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
-        self.reindex(Webapp, 'webapp')
+        self.reindex(Webapp)
 
         res = self.client.get(self.url, {'dev': ''})
         eq_(res.status_code, 200)

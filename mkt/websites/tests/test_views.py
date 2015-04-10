@@ -31,14 +31,11 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         self.category = 'books'
         self.url = reverse('api-v2:website-search-api')
         super(TestWebsiteESView, self).setUp()
-        self._reindex()
+        self.refresh('website')
 
     def tearDown(self):
         Website.get_indexer().unindexer(_all=True)
         super(TestWebsiteESView, self).tearDown()
-
-    def _reindex(self):
-        self.reindex(Website, 'website')
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])
@@ -61,7 +58,7 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
 
     def test_list(self):
         self.website2 = website_factory(url='http://www.lol.com/')
-        self._reindex()
+        self.refresh('website')
         with self.assertNumQueries(0):
             response = self.anon.get(self.url)
         eq_(response.status_code, 200)
@@ -108,7 +105,7 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         website_factory(title='something')
         boosted_website = website_factory(title='something',
                                           description='something')
-        self._reindex()
+        self.refresh('website')
 
         res = self.anon.get(self.url, data={'q': 'something'})
         eq_(res.status_code, 200)

@@ -7,8 +7,8 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
-from mkt.search.filters import (PublicSearchFormFilter, RegionFilter,
-                                SearchQueryFilter)
+from mkt.search.filters import (PublicAppsFilter, PublicSearchFormFilter,
+                                RegionFilter, SearchQueryFilter, SortingFilter)
 from mkt.search.forms import SimpleSearchForm
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
@@ -32,7 +32,8 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicSearchFormFilter, RegionFilter, SearchQueryFilter]
+    filter_backends = [PublicAppsFilter, PublicSearchFormFilter, RegionFilter,
+                       SearchQueryFilter, SortingFilter]
     serializer_class = ESWebsiteSerializer
     paginator_class = ESPaginator
     form_class = SimpleSearchForm
