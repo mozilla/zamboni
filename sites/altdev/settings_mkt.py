@@ -116,7 +116,7 @@ GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
-APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
+APP_PURCHASE_TYP = 'mozilla-alt/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
