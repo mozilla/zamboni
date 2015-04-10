@@ -1543,7 +1543,19 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
                                           'locales': {'es': {'name': 'es'},
                                                       'de': {'name': 'de'}}}
         self.webapp.update_supported_locales()
+        self.webapp.reload()
         eq_(self.webapp.current_version.supported_locales, 'de,es')
+
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
+    def test_package_manifest_locales_change_pending(self, get_manifest_json):
+        """Ensure we still work for pending apps."""
+        get_manifest_json.return_value = {'name': 'Yo',
+                                          'locales': {'es': {'name': 'es'},
+                                                      'de': {'name': 'de'}}}
+        self.webapp.update(status=mkt.STATUS_PENDING)
+        self.webapp.update_supported_locales(latest=True)
+        self.webapp.reload()
+        eq_(self.webapp.latest_version.supported_locales, 'de,es')
 
     def test_update_name_from_package_manifest_version(self):
         evil_manifest = {

@@ -273,7 +273,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         msg.append(u'Locales updated: %s' % crud.get('updated'))
 
     # Check if supported_locales changed and update if so.
-    webapp.update_supported_locales(manifest=new)
+    webapp.update_supported_locales(manifest=new, latest=True)
 
     if rereview:
         msg = ' '.join(msg)
