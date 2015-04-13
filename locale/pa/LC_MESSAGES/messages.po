@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:06-0700\n"
-"PO-Revision-Date: 2014-08-27 07:50+0000\n"
+"PO-Revision-Date: 2015-03-24 07:32+0000\n"
 "Last-Translator: Jasvinder <jv.raavi@gmail.com>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
@@ -12,20 +12,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1409125826.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1427182357.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "ਯੋਗ ਪਸੰਦ ਚੁਣੋ। %(ਮੁੱਲ)sਉਪਲੱਬਧ ਪਸੰਦਾਂ ਵਿੱਚੋਂ ਇਕ ਨਹੀਂ ਹੈ।"
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "ਖੇਤਰ ਵਿੱਚ {num} ਅੱਖਰਾਂ ਦੀ ਲੰਬਾਈ ਘੱਟ ਤੋਂ ਘੱਟ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "{lang_code} ਭਾਸ਼ਾ ਕੋਡ ਅਯੋਗ ਹੈ।"
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
 msgid "Unknown"
@@ -41,7 +41,7 @@ msgstr "ਨਹੀਂ"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "ਫਾਰਮ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
@@ -69,7 +69,7 @@ msgstr "ਅਟੈਚਮੈਂਟ ਦਾ ਆਕਾਰ ਵੱਧ ਤੋਂ ਵੱ�
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "ਮੋਜ਼ੀਲਾ"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -310,7 +310,7 @@ msgstr "ਕਾਂਗੋ"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "ਕੌਂਗੋ, -ਡੈਮੋਕਰੈਟਿਕ ਰੀਪਬਲਿਕ"
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
@@ -334,7 +334,7 @@ msgstr "ਕਿਊਬਾ"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
-msgstr ""
+msgstr "ਕੁਰਾਸਾਉ"
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
@@ -574,7 +574,7 @@ msgstr "ਕਿਰੀਬਾਟੀ"
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "ਕੋਰੀਆ,ਡੈਮੋਕਰੈਟਿਕ ਲੋਕਾਂ ਦਾ ਰਿਪ"
 
 #: mkt/constants/bango.py:137
 msgid "Korea, Republic of"
@@ -594,7 +594,7 @@ msgstr "ਕਿਰਗਜ਼ਸਤਾਨ"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "ਲੋ ਲੋਕਾਂ ਦਾ ਡੈਮੋਕਰੈਟਿਕ ਰਿਪ"
 
 #: mkt/constants/bango.py:142
 msgid "Latvia"
@@ -614,7 +614,7 @@ msgstr "ਲੀਬੀਰੀਆ"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "ਲਿਬੀਆਨ ਅਰਬ ਜਮਹੀਰਿਆ"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
@@ -634,7 +634,7 @@ msgstr "ਮੈਕੋ"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "ਮੈਕਡੋਨਿਆ, ਫਾਰਮਰ ਯੂਗੋਸਲਾਵ ਰਿਪ"
 
 #: mkt/constants/bango.py:152
 msgid "Madagascar"
@@ -890,7 +890,7 @@ msgstr "ਸਾਊਦੀ ਅਰਬ"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "ਸੇਨੇਗਾ"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:98
 msgid "Serbia"
@@ -914,7 +914,7 @@ msgstr "ਸਿੰਘਾਂਪੁਰ"
 
 #: mkt/constants/bango.py:221
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "ਸੰਤ ਮਾਰਟਿਨ (ਡੱਚ ਭਾਗ)"
 
 #: mkt/constants/bango.py:222
 msgid "Slovakia"
@@ -1122,7 +1122,7 @@ msgstr "ਪ੍ਰਕਾਸ਼ਿਤ"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "ਮੰਡੀ ਤੋਂ ਪਾਬੰਦੀ ਹੈ"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1134,7 +1134,7 @@ msgstr "ਰੱਦ ਕੀਤੀ"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "ਮਾਨਤਾ ਪ੍ਰਾਪਤ ਹੈ ਪਰ ਪ੍ਰਾਇਵੇਟ"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1142,7 +1142,7 @@ msgstr "ਪਾਬੰਦੀਸ਼ੁਦਾ"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "ਅਣਸੂਚੀਬੱਧ"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -1188,15 +1188,15 @@ msgstr "ਐਪ ਵਿੱਚ ਭੁਗਤਾਨ ਲਈ ਮੈਂ ਆਪਣਾਂ 
 
 #: mkt/constants/base.py:197
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "ਵੈਬ ਐਪ ਸਮੀਖਿਆ"
 
 #: mkt/constants/base.py:198
 msgid "Web App Review"
-msgstr ""
+msgstr "ਵੈਬ ਐਪ ਸਮੀਖਿਆ"
 
 #: mkt/constants/base.py:199
 msgid "Packaged App Review"
-msgstr ""
+msgstr "ਐਪ ਸਮੀਖਿਆ ਪੈਕ ਹੋਇਆ"
 
 #: mkt/constants/base.py:200
 msgid "Privileged App Review"
@@ -1204,11 +1204,11 @@ msgstr ""
 
 #: mkt/constants/base.py:201
 msgid "Web App Re-review"
-msgstr ""
+msgstr "ਵੈਬ ਐਪ ਮੁੜ ਸਮੀਖਿਆ"
 
 #: mkt/constants/base.py:202
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "ਪੈਕਿਜ਼ ਐਪ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ"
 
 #: mkt/constants/base.py:203
 msgid "Updated Privileged App Review"
@@ -1216,7 +1216,7 @@ msgstr ""
 
 #: mkt/constants/base.py:204
 msgid "Moderated App Review"
-msgstr ""
+msgstr "ਸਧਾਰਨ ਐਪ ਸਮੀਖਿਆ"
 
 #: mkt/constants/base.py:205
 msgid "App Review Moderation Reverted"
@@ -1266,65 +1266,58 @@ msgid "Education"
 msgstr "ਸਿੱਖਿਆ"
 
 #: mkt/constants/categories.py:8
-#, fuzzy
 msgid "Entertainment"
 msgstr "ਮਨੋਰੰਜਨ"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
-#, fuzzy
 msgid "Games"
 msgstr "ਖੇਡਾਂ"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "ਸਿਹਤ ਅਤੇ ਤੰਦਰੁਸਤੀ"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "ਰਹਿਣ - ਸਹਿਣ"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "ਨਕਸ਼ੇ ਅਤੇ ਨੈਵੀਗੇਸ਼ਨ"
 
 #: mkt/constants/categories.py:13
-#, fuzzy
 msgid "Music"
 msgstr "ਸੰਗੀਤ"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "ਖਬਰ ਅਤੇ ਮੌਸਮ"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "ਫ਼ੋਟੋ ਅਤੇ ਵੀਡੀਓ"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "ਉਤਪਾਦਨ"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "ਸਮਾਨਤਾ"
 
 #: mkt/constants/categories.py:18
-#, fuzzy
 msgid "Shopping"
 msgstr "ਖਰੀਦਦਾਰੀ"
 
 #: mkt/constants/categories.py:19
-#, fuzzy
 msgid "Social"
 msgstr "ਸਮਾਜਿਕ"
 
 #: mkt/constants/categories.py:20
-#, fuzzy
 msgid "Sports"
 msgstr "ਖੇਡਾਂ"
 
 #: mkt/constants/categories.py:21
-#, fuzzy
 msgid "Travel"
 msgstr "ਯਾਤਰਾ"
 
@@ -1343,7 +1336,7 @@ msgstr "ਕੋਈ ਕਾਰਵਾਈ ਨਹੀਂ"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "ਪਾਬੰਦੀ"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
@@ -1359,7 +1352,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "ਐਪ ਦੁਬਾਰਾ ਅਧੀਨਗੀ"
 
 #: mkt/constants/comm.py:52 mkt/site/log.py:426
 msgid "Escalation cleared"
@@ -1379,27 +1372,27 @@ msgstr "ਮੁੜ ਸਮੀਖਿਆ ਸਾਫ਼ ਕੀਤੀ।"
 
 #: mkt/constants/comm.py:56
 msgid "App submission notes"
-msgstr ""
+msgstr "ਐਪ ਅਧੀਨਗੀ ਨੋਟਿਸ"
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "ਡਿਵੈਲਪਰ ਟਿੱਪਣੀ"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "ਸਮੀਖਿਆਕ ਦੁਆਰਾ ਯੰਤਰ(s)ਬਦਲਿਆ"
 
 #: mkt/constants/comm.py:59
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "ਸਮੀਖਿਆਕ ਦੁਆਰਾ ਲੋੜਾਂ ਬਦਲੀਆਂ।"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "ਮੁੜ ਸਮੀਖਿਆ ਦੇ ਕਾਰਨ ਮੈਨੀਫ਼ਿਸਟ ਬਦਲਿਆ"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "ਮੁੜ ਸਮੀਖਿਆ ਦੇ ਕਾਰਨ ਮੈਨੀਫ਼ਿਸਟ URL ਬਦਲਿਆ"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Premium Type Upgrade"
@@ -1407,15 +1400,15 @@ msgstr ""
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "ਮੁੜ ਸਮੀਖਿਆ ਦੇ ਕਾਰਨ ਯੰਤਰ ਜੋੜਿਆ ਗਿਆ"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "ਮੁੜ ਸਮੀਖਿਆ ਦੇ ਕਾਰਨ ਲੋੜਾਂ ਬਦਲੀਆਂ"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "ਮੁੜ ਸਮੀਖਿਆ ਦੇ ਕਾਰਨ ਬਾਲਗ ਸਮਗਰੀ ਰੇਟਿੰਗ"
 
 #: mkt/constants/comm.py:66
 msgid "Escalation due to VIP App"
@@ -1427,15 +1420,15 @@ msgstr ""
 
 #: mkt/constants/comm.py:68
 msgid "Priority review requested"
-msgstr ""
+msgstr "ਪਹਿਲ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ"
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
-msgstr ""
+msgstr "ਵਾਧੂ ਸਮੀਖਿਆ ਪਾਸ ਕੀਤੀ"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr ""
+msgstr "ਵਾਧੂ ਸਮੀਖਿਆ ਫੇਲ੍ਹ ਹੋਈ"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
@@ -1447,7 +1440,7 @@ msgstr ""
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API ਐਪ ਪ੍ਰਬੰਧ"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
@@ -1455,7 +1448,7 @@ msgstr ""
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API ਐਪਸ ਇੰਸਟਾਲ ਪੈਕਿਜ਼ ਕੀਤਾ ਗਿਆ"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
@@ -1467,7 +1460,7 @@ msgstr "ਵੈੱਬ ਭੁਗਤਾਨ"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "ਐਪ `navigator.mozApps` API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
@@ -1475,15 +1468,15 @@ msgstr "ਵੈੱਬ ਸਰਗਰਮੀਆਂ"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "ਐਪ ਨੂੂੰ ਵੈੱਬ ਸਰਗਰਮੀਆਂ(the `MozActivity` API) ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "ਐਬਿਂਟ ਲਾਈਟ ਸੈਂਸਰ"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "ਐਪ ਨੂੰ ਇਕ ਐਬਿਂਟ ਲਾਈਟ ਸੈਂਸਰ (the 'ondevicelight' API)ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -1499,7 +1492,7 @@ msgstr "ਬੈਟਰੀ"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "ਐਪ ਨੂੰ the 'navigator. battery' API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
@@ -1511,7 +1504,7 @@ msgstr "ਸੰਪਰਕ"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "ਐਪ ਨੂੰ the 'navigator.mozContacts' API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
@@ -1523,7 +1516,7 @@ msgstr ""
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "ਐਪ ਪਲੇਟਫਾਰਮ IndexedDB ਨੂੰ ਸਹਿਯੋਗ ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
@@ -1531,7 +1524,7 @@ msgstr "ਭੂਗੋਲਿਕ ਟਿਕਾਣਾ"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr ""
+msgstr "ਐਪ ਪਲੇਟਫਾਰਮ `navigator.geolocation` API ਨੂੰ ਸਹਿਯੋਗ ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:87
 msgid "Idle"
@@ -1548,6 +1541,8 @@ msgstr "ਨੈੱਟਵਰਕ ਜਾਣਕਾਰੀ"
 #: mkt/constants/features.py:94
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"ਐਪ ਨੂੰ ਨੈੱਟਵਰਕ ਕਨੈੱਕਸ਼ਨ ਦੇ ਬਾਰੇ ਜਾਣਕਾਰੀ (the `navigator.mozConnection` API) "
+"ਪ੍ਰਾਪਤ ਕਰਨ ਦੀ ਯੋਗਤਾ ਦਾ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:100
 msgid "Network Stats"
@@ -1555,23 +1550,23 @@ msgstr "ਨੈੱਟਵਰਕ ਅੰਕੜੇ"
 
 #: mkt/constants/features.py:101
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "ਐਪ `navigator.mozNetworkStats` API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:106
 msgid "Proximity"
-msgstr ""
+msgstr "ਨੇੜਤਾ"
 
 #: mkt/constants/features.py:107
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "ਐਪ ਨੂੰ ਇਕ ਨੇੜਤਾ ਸੈਂਸਰ (the `ondeviceproximity` API) ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:112
 msgid "Simple Push"
-msgstr ""
+msgstr "ਸਧਾਰਨ ਧੱਕਾ"
 
 #: mkt/constants/features.py:113
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "ਐਪ `navigator.mozPush` API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:117
 msgid "Screen Orientation"
@@ -1579,7 +1574,7 @@ msgstr "ਸਕਰੀਨ ਸਥਿਤੀ"
 
 #: mkt/constants/features.py:118
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "ਐਪ ਪਲੇਟਫਾਰਮ `ondeviceorientation` API ਨੂੰ ਸਹਿਯੋਗ ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:123
 msgid "Time/Clock"
@@ -1596,14 +1591,15 @@ msgstr "ਥੱਰਾਹਟ"
 #: mkt/constants/features.py:129
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"ਐਪ ਥਰਥਰਾਹਟ (the `navigator.vibrate` API) ਨੂੰ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਯੰਤਰ ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:135
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "ਐਪ `navigator.mozFM` ਜਾਂ `navigator.mozFMRadio` APIs ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:141
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "ਐਪ `navigator.mozSms` API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:145
 msgid "Touch"
@@ -1615,7 +1611,7 @@ msgstr ""
 
 #: mkt/constants/features.py:152
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "ਸਮਾਰਟਫ਼ੋਨ-ਆਕਾਰ ਵਿਖਾਓ (qHD)"
 
 #: mkt/constants/features.py:153
 msgid ""
@@ -1641,7 +1637,7 @@ msgstr "ਵੈੱਬ ਆਡੀਓ"
 
 #: mkt/constants/features.py:175
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr ""
+msgstr "ਐਪ ਪਲੇਟਫਾਰਮ ਵੈੱਬ ਆਡੀਓ API (`window.AudioContext`) ਨੂੰ ਸਹਿਯੋਗ ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:181
 msgid "The app requires that the platform can decode and play H.264 video files."
@@ -1658,6 +1654,7 @@ msgstr "ਪੂਰੀ ਸਕਰੀਨ"
 #: mkt/constants/features.py:193
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"ਐਪ ਪੂਰੀ ਸਕਰੀਨ API (`requestFullScreen` or `mozRequestFullScreen`) ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:199
 msgid "Gamepad"
@@ -1765,7 +1762,7 @@ msgstr ""
 
 #: mkt/constants/features.py:289
 msgid "SystemXHR"
-msgstr ""
+msgstr "ਸਿਸਟਮXHR"
 
 #: mkt/constants/features.py:290
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -1773,7 +1770,7 @@ msgstr ""
 
 #: mkt/constants/features.py:296
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP ਸਾਕਟ"
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -6836,7 +6833,7 @@ msgstr "ਹੈਕਸਾਡੈਸੀਮਲ ਰੰਗ"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "e.g.# FF0035, ਹੈਕਸ ਰੰਗ ਕੋਡ ਯੋਗ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
@@ -7097,7 +7094,7 @@ msgstr "{addon} ਮੈਨੀਫ਼ਿਸਟ ਅੱਪਡੇਟਿਡ।"
 
 #: mkt/site/log.py:376
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} ਮਾਨਤਾ ਪ੍ਰਾਪਤ ਹੈ ਪਰ ਪ੍ਰਾਇਵੇਟ।"
 
 #: mkt/site/log.py:385
 msgid "{addon} purchased."
@@ -7137,11 +7134,11 @@ msgstr "{addon} ਲਈ ਵਾਧਾ ਮਨਜ਼ੂਰ ।"
 
 #: mkt/site/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} ਤੇ ਪਾਬੰਦੀ ।"
 
 #: mkt/site/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "ਐਪ ਤੇ ਪਾਬੰਦੀ"
 
 #: mkt/site/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
@@ -7331,11 +7328,11 @@ msgstr "ਪੂਰਵ ਸਮੀਖਿਆ"
 
 #: mkt/site/log.py:675
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} ਪਾਸ ਹੋਇਆ {queue} ਸਮੀਖਿਆ।"
 
 #: mkt/site/log.py:682
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} ਫੇਲ ਹੋਇਆ {queue} ਸਮੀਖਿਆ।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/site/utils.py:705
