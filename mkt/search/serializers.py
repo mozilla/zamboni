@@ -133,8 +133,10 @@ class DynamicSearchSerializer(serializers.Serializer):
         Dynamically serialize obj using serializers passed through the context,
         depending on the doc_type of the obj.
         """
-        serializer = self.serializers.get(obj._meta['doc_type'])
+        doc_type = obj._meta['doc_type']
+        serializer = self.serializers.get(doc_type)
         if serializer is None:
             return super(DynamicSearchSerializer, self).to_native(obj)
         data = serializer.to_native(obj)
+        data['doc_type'] = doc_type
         return data
