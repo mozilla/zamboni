@@ -40,7 +40,7 @@
             "aesfield", "amqp", "anyjson", "apiclient", "appvalidator",
             "argparse", "babel", "baked", "basket", "billiard", "bleach",
             "boto", "browserid", "cache_nuggets", "caching", "caching",
-            "captcha", "cef", "celery", "celery_tasktree", "celeryutils",
+            "captcha", "cef", "celery", "celeryutils",
             "certifi", "chardet", "commonware", "commonware", "coverage",
             "cronjobs", "csp", "cssselect", "cssutils", "curling", "dateutil",
             "debug", "debug_toolbar", "defusedxml", "dennis",

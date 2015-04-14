@@ -20,7 +20,6 @@ from django.utils.http import urlencode
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
-from celery_tasktree import task_with_callbacks
 from celeryutils import task
 from django_statsd.clients import statsd
 from PIL import Image
@@ -328,7 +327,7 @@ def save_icon(webapp, content):
     webapp.save()
 
 
-@task_with_callbacks
+@task
 @write
 def fetch_icon(webapp, file_obj=None, **kw):
     """
