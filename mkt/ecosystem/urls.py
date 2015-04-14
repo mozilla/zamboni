@@ -73,7 +73,8 @@ redirect_patterns = patterns(
         redirect_doc('/Tools/Firefox_OS_Simulator'),
         name='ecosystem.firefox_os_simulator'),
     url('^docs/payments$',
-        redirect_doc('/Web/Apps/Quickstart/Build/Payments'),
+        redirect_doc('/Mozilla/Marketplace/Monetization'
+                     '/Introduction_Monetization'),
         name='ecosystem.build_payments'),
     url('^docs/concept$',
         redirect_doc('/Web/Apps/Quickstart/Design/Concept_A_great_app'),
