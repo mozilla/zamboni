@@ -41,6 +41,7 @@ ENV MARKETPLACE_URL http://mp.dev
 ENV MEMCACHE_URL memcached:11211
 ENV MONOLITH_URL http://elasticsearch:9200
 ENV REDIS_URL redis://redis:6379?socket_timeout=0.5
+ENV SIGNING_SERVER http://signing:2606
 ENV SOLITUDE_URL http://solitude:2602
 ENV STYLUS_BIN /srv/zamboni-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_BIN /srv/zamboni-node/node_modules/uglify-js/bin/uglifyjs
