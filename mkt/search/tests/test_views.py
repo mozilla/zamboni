@@ -1278,9 +1278,9 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.webapp.update(categories=[self.shared_category, 'business'])
         self.webapp.popularity.create(region=0, value=11.0)
         self.website = website_factory(
-            title='something something webcube',
-            description={'en-US': 'something something webcube desc',
-                         'fr': 'something something webcube desc fr'},
+            title='title something something webcube',
+            description={'en-US': 'desc something something webcube',
+                         'fr': 'desc something something webcube fr'},
             categories=json.dumps([self.shared_category, 'sports'])
         )
         self.refresh(('webapp', 'website'))
@@ -1323,9 +1323,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 2)
+        eq_(objs[0]['doc_type'], 'webapp')
         eq_(objs[0]['id'], self.webapp.pk)
         eq_(objs[0]['name'], self.webapp.name)
         eq_(objs[0]['slug'], self.webapp.app_slug)
+        eq_(objs[1]['doc_type'], 'website')
         eq_(objs[1]['id'], self.website.pk)
         eq_(objs[1]['title'], self.website.title)
         eq_(objs[1]['url'], self.website.url)
@@ -1338,9 +1340,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 2)
+        eq_(objs[0]['doc_type'], 'website')
         eq_(objs[0]['id'], self.website.pk)
         eq_(objs[0]['title'], self.website.title)
         eq_(objs[0]['url'], self.website.url)
+        eq_(objs[1]['doc_type'], 'webapp')
         eq_(objs[1]['id'], self.webapp.pk)
         eq_(objs[1]['name'], self.webapp.name)
         eq_(objs[1]['slug'], self.webapp.app_slug)
@@ -1353,9 +1357,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(len(objs), 2)
         # Website should be first because it's more relevant (exact match) than
         # the Webapp.
+        eq_(objs[0]['doc_type'], 'website')
         eq_(objs[0]['id'], self.website.pk)
         eq_(objs[0]['title'], self.website.title)
         eq_(objs[0]['url'], self.website.url)
+        eq_(objs[1]['doc_type'], 'webapp')
         eq_(objs[1]['id'], self.webapp.pk)
         eq_(objs[1]['name'], self.webapp.name)
         eq_(objs[1]['slug'], self.webapp.app_slug)
