@@ -226,7 +226,8 @@ def generate_packaged_app(name, apptype, categories, developer_name,
                       privacy_policy=privacy_policy,
                       version_kw={
                           'version': '1.0',
-                          'reviewed': now if status >= 4 else None},
+                          'reviewed': now if status >= 4 else None,
+                          '_developer_name': developer_name},
                       file_kw={'status': status})
     if device_types:
         for dt in device_types:
