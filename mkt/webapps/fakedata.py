@@ -308,8 +308,9 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
     return generate_apps_from_specs(specs, None)
 
 
-def generate_apps_from_specs(specs, specdir):
+def generate_apps_from_specs(specs, specdir, repeats):
     apps = []
+    specs = specs * repeats
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
         if spec.get('preview_files'):
             spec['preview_files'] = [os.path.join(specdir, p)
