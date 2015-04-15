@@ -126,7 +126,6 @@ Regions
             "resource_uri": "/api/v2/services/region/ap/",
             "slug": "ap",
             "default_currency": "USD",
-            "default_language": "en-AP",
         }
 
 Configuration
