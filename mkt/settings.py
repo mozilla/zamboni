@@ -573,9 +573,6 @@ NATIVE_FXA_ISSUER = 'api.accounts.firefox.com'
 # it's not possible to invalidate these queries.
 CACHE_COUNT_TIMEOUT = 60
 
-# Cache timeout on the /search/featured API.
-CACHE_SEARCH_FEATURED_API_TIMEOUT = 60 * 60  # 1 hour.
-
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
