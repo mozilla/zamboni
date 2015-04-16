@@ -3738,6 +3738,7 @@ class TestAttachmentDownload(mkt.site.tests.TestCase):
         return self.client.get(url, params, **kwargs)
 
     def setUp(self):
+        super(TestAttachmentDownload, self).setUp()
         editor = user_factory(email='editor')
         self.grant_permission(editor, 'Apps:Review')
         self.app = Webapp.objects.get(pk=337141)
@@ -3827,6 +3828,7 @@ class TestLeaderboard(AppReviewerTest):
 class TestReviewPage(mkt.site.tests.TestCase):
 
     def setUp(self):
+        super(TestReviewPage, self).setUp()
         self.app = app_factory(status=mkt.STATUS_PENDING)
         self.reviewer = user_factory(email='editor')
         self.grant_permission(self.reviewer, 'Apps:Review')
@@ -3872,10 +3874,8 @@ class TestAbusePage(AppReviewerTest):
 class TestReviewTranslate(RestOAuth):
 
     def setUp(self):
-        self.profile = user_factory(email='editor')
+        super(TestReviewTranslate, self).setUp()
         self.grant_permission(self.profile, 'Apps:ModerateReview')
-        self.user = self.profile
-        self.login_user()
         self.create_switch('reviews-translate')
         user = user_factory(email='diego')
         app = app_factory(app_slug='myapp')
@@ -3939,6 +3939,7 @@ class TestReviewTranslate(RestOAuth):
 class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
 
     def setUp(self):
+        super(TestAdditionalReviewListingAccess, self).setUp()
         self.user = user_factory()
         self.login(self.user)
 
@@ -3963,6 +3964,7 @@ class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
 class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
 
     def setUp(self):
+        super(TestReviewHistory, self).setUp()
         self.app = self.addon = app_factory()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.grant_permission(user_factory(email='editor'), 'Apps:Review')
