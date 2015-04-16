@@ -309,7 +309,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
     return generate_apps_from_specs(specs, None)
 
 
-def generate_apps_from_specs(specs, specdir, repeats):
+def generate_apps_from_specs(specs, specdir, repeats=1):
     apps = []
     specs = specs * repeats
     for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
