@@ -9,10 +9,12 @@ from functools import partial
 from urlparse import SplitResult, urlsplit, urlunsplit
 
 from django import forms, test
+from django.db import connections, transaction, DEFAULT_DB_ALIAS
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
 from django.utils import translation
@@ -44,10 +46,9 @@ from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
 from mkt.site.utils import app_factory
 from mkt.translations.hold import clean_translations
-from mkt.translations.models import delete_translation, Translation
+from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import unindex_webapps
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -344,7 +345,106 @@ class MockBrowserIdMixin(object):
 JINJA_INSTRUMENTED = False
 
 
-class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin, test.TestCase):
+class ClassFixtureTestCase(test.TestCase):
+    """ Based on the changes to TestCase (& TransactionTestCase) in Django1.8.
+    Fixtures are loaded once per class, and a class setUpTestData method is
+    added to be overridden by sublasses.  `transaction.atomic()` is used to
+    achieve test isolation.
+    See orginal code:
+    https://github.com/django/django/blob/1.8b2/django/test/testcases.py
+    #L747-990.
+    A noteable difference is that this class assumes the database supports
+    transactions.  This class will be obsolete on upgrade to 1.8.
+    """
+    fixtures = None
+
+    @classmethod
+    def _databases_names(cls, include_mirrors=True):
+        # If the test case has a multi_db=True flag, act on all databases,
+        # including mirrors or not. Otherwise, just on the default DB.
+        if getattr(cls, 'multi_db', False):
+            return [alias for alias in connections
+                    if (include_mirrors or
+                        connections[alias].settings_dict['TEST']['MIRROR'])]
+        else:
+            return [DEFAULT_DB_ALIAS]
+
+    @classmethod
+    def _enter_atomics(cls):
+        """Helper method to open atomic blocks for multiple databases"""
+        atomics = {}
+        for db_name in cls._databases_names():
+            atomics[db_name] = transaction.atomic(using=db_name)
+            atomics[db_name].__enter__()
+        return atomics
+
+    @classmethod
+    def _rollback_atomics(cls, atomics):
+        """Rollback atomic blocks opened through the previous method"""
+        for db_name in reversed(cls._databases_names()):
+            transaction.set_rollback(True, using=db_name)
+            atomics[db_name].__exit__(None, None, None)
+
+    @classmethod
+    def setUpClass(cls):
+        super(ClassFixtureTestCase, cls).setUpClass()
+        cls.cls_atomics = cls._enter_atomics()
+
+        try:
+            if cls.fixtures:
+                for db_name in cls._databases_names(include_mirrors=False):
+                    call_command('loaddata', *cls.fixtures, **{
+                        'verbosity': 0,
+                        'commit': False,
+                        'database': db_name,
+                    })
+
+            cls.setUpTestData()
+        except Exception:
+            cls._rollback_atomics(cls.cls_atomics)
+            raise
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._rollback_atomics(cls.cls_atomics)
+        for conn in connections.all():
+            conn.close()
+        super(ClassFixtureTestCase, cls).tearDownClass()
+
+    @classmethod
+    def setUpTestData(cls):
+        """Load initial data for the TestCase"""
+        pass
+
+    def _should_reload_connections(self):
+        return False
+
+    def _fixture_setup(self):
+        assert not self.reset_sequences, (
+            'reset_sequences cannot be used on TestCase instances')
+        self.atomics = self._enter_atomics()
+
+    def _fixture_teardown(self):
+        self._rollback_atomics(self.atomics)
+
+    def _post_teardown(self):
+        """Patch _post_teardown so connections don't get closed.
+        In django 1.6's _post_teardown connections are closed and we don't want
+        that to happen after each test anymore.  This method isn't copied from
+        Django 1.8 code.
+        https://github.com/django/django/blob/1.6.10/django/test/testcases.py
+        #L788
+        """
+        if not self._should_reload_connections():
+            real_connections_all = connections.all
+            connections.all = lambda: []
+        super(ClassFixtureTestCase, self)._post_teardown()
+        if not self._should_reload_connections():
+            connections.all = real_connections_all
+
+
+class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
+               ClassFixtureTestCase):
     """Base class for all mkt tests."""
     client_class = TestClient
 
@@ -791,7 +891,16 @@ class ESTestCase(TestCase):
             if not index.startswith('test_'):
                 settings.ES_INDEXES[key] = 'test_%s' % index
 
+        cls._SEARCH_ANALYZER_MAP = mkt.SEARCH_ANALYZER_MAP
+        mkt.SEARCH_ANALYZER_MAP = {
+            'english': ['en-us'],
+            'spanish': ['es'],
+        }
+
         super(ESTestCase, cls).setUpClass()
+
+    @classmethod
+    def setUpTestData(cls):
         try:
             cls.es.cluster.health()
         except Exception, e:
@@ -799,12 +908,6 @@ class ESTestCase(TestCase):
                             'try starting it or set RUN_ES_TESTS=False)'
                             % e.args[0]] + list(e.args[1:]))
             raise
-
-        cls._SEARCH_ANALYZER_MAP = mkt.SEARCH_ANALYZER_MAP
-        mkt.SEARCH_ANALYZER_MAP = {
-            'english': ['en-us'],
-            'spanish': ['es'],
-        }
 
         for index in set(settings.ES_INDEXES.values()):
             # Get the index that's pointed to by the alias.
@@ -828,22 +931,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        try:
-            if hasattr(cls, '_addons'):
-                addons = Webapp.objects.filter(
-                    pk__in=[a.id for a in cls._addons])
-                # First delete all the translations.
-                for addon in addons:
-                    for field in addon._meta.translated_fields:
-                        delete_translation(addon, field.name)
-                addons.delete()
-                unindex_webapps([a.id for a in cls._addons])
-            mkt.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
-        finally:
-            # Make sure we're calling super's tearDownClass even if something
-            # went wrong in the code above, as otherwise we'd run into bug
-            # 960598.
-            super(ESTestCase, cls).tearDownClass()
+        mkt.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        super(ESTestCase, cls).tearDownClass()
 
     def tearDown(self):
         post_request_task._send_tasks()
