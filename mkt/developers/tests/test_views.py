@@ -130,7 +130,7 @@ class TestAppDashboard(AppHubTest):
     def test_public_app(self):
         app = self.get_app()
         doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % app.id)
+        item = doc('.item[data-addonid="%s"]' % app.id)
         assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
@@ -142,7 +142,7 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         app.update(status=mkt.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
-        assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
+        assert doc('.item[data-addonid="%s"] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
         eq_(doc('.more-actions-popup').length, 0)
 
@@ -151,7 +151,7 @@ class TestAppDashboard(AppHubTest):
         version = Version.objects.create(addon=app, version='1.23')
         app.update(_current_version=version, is_packaged=True)
         doc = pq(self.client.get(self.url).content)
-        eq_(doc('.item[data-addonid=%s] .item-current-version' % app.id
+        eq_(doc('.item[data-addonid="%s"] .item-current-version' % app.id
                 ).text(),
             'Packaged App Version: 1.23')
 
@@ -163,7 +163,7 @@ class TestAppDashboard(AppHubTest):
         app.update(is_packaged=True)
         Version.objects.create(addon=app, version='1.24')
         doc = pq(self.client.get(self.url).content)
-        eq_(doc('.item[data-addonid=%s] .item-latest-version' % app.id
+        eq_(doc('.item[data-addonid="%s"] .item-latest-version' % app.id
                 ).text(),
             'Pending Version: 1.24')
 
