@@ -15,7 +15,7 @@ before_script:
   - flake8 . --exclude='node_modules,commonplace_projects,docs,.git'
   - ./manage.py compress_assets
 script:
-  - ./manage.py test lib mkt --noinput --logging-clear-handlers --with-blockage --with-nicedots
+  - REUSE_DB=1 ./manage.py test lib mkt --noinput --logging-clear-handlers --with-blockage --with-nicedots
 notifications:
   irc:
     channels:
