@@ -85,8 +85,7 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # secrets used for them
     API_PASSWORD = getattr(private_mkt, 'API_PASSWORD', FAKEAUTH_TOKEN)
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ee', 'ff', 'ha', 'ig',
-                                 'ln', 'sw', 'tl', 'wo', 'yo')
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ha', 'ln', 'sw', 'tl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
