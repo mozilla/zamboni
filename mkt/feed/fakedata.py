@@ -8,6 +8,7 @@ import pydenticon
 from mkt.constants.regions import REGIONS_DICT
 from mkt.constants.carriers import CARRIER_CHOICE_DICT
 from mkt.webapps.fakedata import foreground, generate_apps
+from mkt.webapps.models import Webapp
 from mkt.feed.models import (FeedApp, FeedBrand,
                              FeedBrandMembership,
                              FeedCollection, FeedCollectionMembership,
@@ -115,7 +116,8 @@ def app_item(a, type, **kw):
 
 
 def generate_feed_data():
-    apps = generate_apps(24)
+    apps = generate_apps(
+        24, device_types=['desktop', 'mobile', 'tablet', 'firefoxos'])
     apps1, apps2, apps3, apps4 = apps[:6], apps[6:12], apps[12:18], apps[18:]
     shelf(apps1, slug='shelf', name='Shelf', description='')
     shelf(apps2, slug='shelf-desc', name='Shelf Description',

@@ -278,34 +278,38 @@ def get_or_create_price(tier):
     return Price.objects.get_or_create(price=tier, active=True)[0]
 
 
-def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
+                  **spec_data):
     apps_data = generate_app_data(hosted + packaged + privileged)
     specs = []
     for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
-            specs.append({'name': appname,
-                          'type': 'privileged',
-                          'status': versions[0],
-                          'permissions': ['camera', 'storage'],
-                          'categories': [cat_slug],
-                          'versions': versions,
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'privileged',
+                    'status': versions[0],
+                    'permissions': ['camera', 'storage'],
+                    'categories': [cat_slug],
+                    'versions': versions,
+                    'num_ratings': 5,
+                    'num_previews': 2}
         elif i < (privileged + packaged):
-            specs.append({'name': appname,
-                          'type': 'packaged',
-                          'status': versions[0],
-                          'categories': [cat_slug],
-                          'versions': versions,
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'packaged',
+                    'status': versions[0],
+                    'categories': [cat_slug],
+                    'versions': versions,
+                    'num_ratings': 5,
+                    'num_previews': 2}
         else:
-            specs.append({'name': appname,
-                          'type': 'hosted',
-                          'status': versions[0],
-                          'categories': [cat_slug],
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'hosted',
+                    'status': versions[0],
+                    'categories': [cat_slug],
+                    'num_ratings': 5,
+                    'num_previews': 2}
+        spec.update(spec_data)
+        specs.append(spec)
+
     return generate_apps_from_specs(specs, None)
 
 
