@@ -535,19 +535,21 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (2)')
+        eq_(links[1].text, u'Re-reviews (1)')
+        eq_(links[2].text, u'Updates (0)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (2)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (2)')
+        eq_(links[1].text, u'Re-reviews (1)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Escalations (0)')
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
@@ -562,10 +564,11 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
         doc = pq(res.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (1)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (1)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (1)')
+        eq_(links[1].text, u'Re-reviews (1)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Escalations (1)')
 
     def test_incomplete_no_in_queue(self):
         [app.update(status=mkt.STATUS_NULL) for app in self.apps]
@@ -740,19 +743,21 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (3)')
+        eq_(links[2].text, u'Updates (0)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (3)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (3)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Escalations (0)')
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
@@ -768,10 +773,11 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                 self.apps[1:])
 
         doc = pq(res.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (2)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (2)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Escalations (1)')
 
     def test_addon_deleted(self):
         app = self.apps[0]
@@ -887,19 +893,21 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (2)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (2)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (2)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (2)')
+        eq_(links[3].text, u'Escalations (0)')
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
@@ -914,10 +922,11 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             eq_([a.app for a in res.context['addons']], self.apps[1:])
 
         doc = pq(res.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (1)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (1)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (1)')
+        eq_(links[3].text, u'Escalations (1)')
 
     def test_order(self):
         self.apps[0].update(created=self.days_ago(10))
@@ -954,7 +963,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             apps = [a.app for a in res.context['addons']]
             assert app not in apps, (
                 'Unexpected: Found a new packaged app in the updates queue.')
-        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
+        eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (2)')
 
     def test_approved_update_in_queue(self):
         app = app_factory(is_packaged=True, name='YYY',
@@ -976,7 +985,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             assert app.id in [a.id for a in res.context['addons']]
         else:
             assert app in [a.app for a in res.context['addons']]
-        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
+        eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_update_queue_with_empty_nomination(self):
         app = app_factory(is_packaged=True, name='YYY',
@@ -1005,7 +1014,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             assert app.id in [a.id for a in res.context['addons']]
         else:
             assert app in [a.app for a in res.context['addons']]
-        eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
+        eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_deleted_version_not_in_queue(self):
         """
@@ -1031,7 +1040,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         # Verify the apps in the context are what we expect.
         doc = pq(res.content)
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (1)')
+        eq_(doc('.tabnav li a')[2].text, u'Updates (1)')
         if self.uses_es():
             apps = [a.id for a in res.context['addons']]
             ok_(app.id not in apps)
@@ -1158,10 +1167,11 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (3)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Escalations (3)')
 
     def test_addon_deleted(self):
         app = self.apps[0]
@@ -3257,18 +3267,19 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Moderated Reviews (2)')
+        eq_(doc('.tabnav li a')[0].text, u'Moderated Reviews (2)')
 
     def test_queue_count_reviewer_and_moderator(self):
         self.grant_permission(self.moderator_user, 'Apps:Review')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
-        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
-        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
-        eq_(doc('.tabnav li a:eq(3)').text(), u'Reviewing (0)')
-        eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (2)')
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Reviewing (0)')
+        eq_(links[4].text, u'Moderated Reviews (2)')
 
     def test_deleted_app(self):
         "Test that a deleted app doesn't break the queue."
@@ -3281,7 +3292,7 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('.tabnav li a:eq(0)').text(), u'Moderated Reviews (0)')
+        eq_(doc('.tabnav li a')[0].text, u'Moderated Reviews (0)')
 
 
 class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):

@@ -170,7 +170,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(doc('#commands td:last').text(), 'Back to review')
+        eq_(doc('#commands td')[-1].text_content(), 'Back to review')
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id
