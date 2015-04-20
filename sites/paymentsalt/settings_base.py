@@ -27,22 +27,18 @@ ADMINS = ()
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.parse(private.DATABASES_DEFAULT_URL)
-DATABASES['default']['ENGINE'] = 'mysql_pool'
+DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES['default']['CONN_MAX_AGE'] = 5 * 60  # 5m for persistent connections.
 
 DATABASES['slave'] = dj_database_url.parse(private.DATABASES_SLAVE_URL)
-DATABASES['slave']['ENGINE'] = 'mysql_pool'
+DATABASES['slave']['ENGINE'] = 'django.db.backends.mysql'
 DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['slave']['ATOMIC_REQUESTS'] = True
+DATABASES['slave']['CONN_MAX_AGE'] = 5 * 60  # 5m for persistent connections.
 
 SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
-
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 5,
-    'recycle': 30
-}
 
 SLAVE_DATABASES = ['slave']
 
