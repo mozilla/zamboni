@@ -59,7 +59,7 @@
             "memcachepool", "metlog", "metlog_cef", "metlog_raven",
             "mimeparse", "mock", "monolith", "mozilla_logger", "mozpay",
             "mpconstants",
-            "multidb", "mysql_pool", "mysql_pool", "mysqlmysql", "ndg", "nose",
+            "multidb", "mysqlmysql", "ndg", "nose",
             "nose", "oauth2", "oauth2client", "oauthlib", "ordereddict",
             "path", "packager", "paramiko", "pep8", "picklefield", "piston",
             "polib", "py", "pyasn1", "pyflakes", "pygments",

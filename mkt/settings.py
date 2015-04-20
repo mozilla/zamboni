@@ -94,10 +94,12 @@ DATABASES = {}
 DATABASES['default'] = dj_database_url.config(
     default='mysql://root:@localhost:3306/zamboni',
     env='ZAMBONI_DATABASE')
+DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES['default']['CONN_MAX_AGE'] = 5 * 60  # 5m for persistent connections.
 
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -609,13 +611,6 @@ CSP_OBJECT_SRC = ("'none'",)
 CSS_MEDIA_DEFAULT = 'all'
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
-
-# For use django-mysql-pool backend.
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 5,
-    'recycle': 300
-}
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'mkt.site.utils.LocalFileStorage'
