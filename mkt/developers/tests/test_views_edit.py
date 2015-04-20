@@ -15,7 +15,6 @@ from nose import SkipTest
 from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 
 import mkt
 import mkt.site.tests
@@ -552,31 +551,31 @@ class TestEditBasic(TestEdit):
 
 
 class TestEditCountryLanguage(TestEdit):
+    # Note: those tests used to use pyquery, but it was unreliable because of
+    # unicode-related issues - travis expected a wrong result. To make sure
+    # they are not wrong, the assertion is done manually without pyquery.
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
 
-    def test_data_visible(self):
-        clean_countries = []
+    def test_languages(self):
+        self.get_webapp().current_version.update(supported_locales='de,es')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        ok_(u'English (US) (default), Deutsch, Español'
+            in smart_unicode(res.content))
+
+    def test_countries(self):
         self.get_webapp().current_version.update(supported_locales='de,es')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
-        countries = (pq(pq(res.content)('#edit-app-language tr').eq(0))
-                     .find('td').remove('small').text())
-        langs = (pq(pq(res.content)('#edit-app-language tr').eq(1)).find('td')
-                 .remove('small').text())
-
-        for c in countries.split(', '):
-            clean_countries.append(strip_whitespace(c))
-
-        # eq_(langs, u'English (US) (default), Deutsch, Espa\xf1ol')
-        # XXX The above line is correct. But if Jenkins is wrong, I
-        # don't wanna be right.
-        eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')
-        self.assertSetEqual(
-            sorted(clean_countries),
-            sorted([r.name.decode() for r in regions.ALL_REGIONS]))
+        # Reproduce the (weird) ordering we expect.
+        listed_countries = self.get_webapp().get_region_ids(restofworld=True)
+        countries = [unicode(regions.REGIONS_CHOICES_ID_DICT.get(region).name)
+                     for region in listed_countries]
+        # Escape like it should be.
+        ok_(escape(u', '.join(countries)) in smart_unicode(res.content))
 
 
 class TestEditMedia(TestEdit):
