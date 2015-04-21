@@ -1,4 +1,4 @@
-# test.txt also includes prod.txt and compiled.txt
+# test.txt also includes prod.txt
 -r test.txt
 
 translate-toolkit==1.12.0

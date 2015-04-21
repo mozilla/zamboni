@@ -22,6 +22,7 @@ from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
+from mkt.reviewers.models import RereviewQueue
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
@@ -278,34 +279,38 @@ def get_or_create_price(tier):
     return Price.objects.get_or_create(price=tier, active=True)[0]
 
 
-def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',)):
+def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
+                  **spec_data):
     apps_data = generate_app_data(hosted + packaged + privileged)
     specs = []
     for i, (appname, cat_slug) in enumerate(apps_data):
         if i < privileged:
-            specs.append({'name': appname,
-                          'type': 'privileged',
-                          'status': versions[0],
-                          'permissions': ['camera', 'storage'],
-                          'categories': [cat_slug],
-                          'versions': versions,
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'privileged',
+                    'status': versions[0],
+                    'permissions': ['camera', 'storage'],
+                    'categories': [cat_slug],
+                    'versions': versions,
+                    'num_ratings': 5,
+                    'num_previews': 2}
         elif i < (privileged + packaged):
-            specs.append({'name': appname,
-                          'type': 'packaged',
-                          'status': versions[0],
-                          'categories': [cat_slug],
-                          'versions': versions,
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'packaged',
+                    'status': versions[0],
+                    'categories': [cat_slug],
+                    'versions': versions,
+                    'num_ratings': 5,
+                    'num_previews': 2}
         else:
-            specs.append({'name': appname,
-                          'type': 'hosted',
-                          'status': versions[0],
-                          'categories': [cat_slug],
-                          'num_ratings': 5,
-                          'num_previews': 2})
+            spec = {'name': appname,
+                    'type': 'hosted',
+                    'status': versions[0],
+                    'categories': [cat_slug],
+                    'num_ratings': 5,
+                    'num_previews': 2}
+        spec.update(spec_data)
+        specs.append(spec)
+
     return generate_apps_from_specs(specs, None)
 
 
@@ -332,7 +337,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            developer_name='Fake App Developer',
                            developer_email='fakedeveloper@example.com',
                            privacy_policy='Fake privacy policy',
-                           premium_type='free', description=None, **spec):
+                           premium_type='free', description=None,
+                           rereview=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
         app = generate_hosted_app(name, categories, developer_name,
@@ -376,6 +382,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.status = status
     app.save()
     addon_review_aggregates(app.pk)
+    if rereview:
+        RereviewQueue.objects.get_or_create(addon=app)
     try:
         u = UserProfile.objects.get(email=developer_email)
     except UserProfile.DoesNotExist:
