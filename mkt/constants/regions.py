@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import inspect
 import sys
 
@@ -70,14 +71,19 @@ lookup = {
     'ARG': _lazy(u'Argentina'),
     'BGD': _lazy(u'Bangladesh'),
     'BRA': _lazy(u'Brazil'),
+    'BWA': _lazy(u'Botswana'),
     'CHL': _lazy(u'Chile'),
     'CHN': _lazy(u'China'),
+    'CIV': _lazy(u"Côte d'Ivoire"),
+    'CMR': _lazy(u'Cameroon'),
     'COL': _lazy(u'Colombia'),
     'CRI': _lazy(u'Costa Rica'),
     'CZE': _lazy(u'Czech Republic'),
     'DEU': _lazy(u'Germany'),
     'ECU': _lazy(u'Ecuador'),
+    'EGY': _lazy(u'Egypt'),
     'ESP': _lazy(u'Spain'),
+    'GNB': _lazy(u'Guinea-Bissau'),
     'FRA': _lazy(u'France'),
     'GBR': _lazy(u'United Kingdom'),
     'GRC': _lazy(u'Greece'),
@@ -85,20 +91,31 @@ lookup = {
     'HUN': _lazy(u'Hungary'),
     'IND': _lazy(u'India'),
     'ITA': _lazy(u'Italy'),
+    'JOR': _lazy(u'Jordan'),
     'JPN': _lazy(u'Japan'),
+    'LTU': _lazy(u'Lithuania'),
+    'MDG': _lazy(u'Madagascar'),
     'MEX': _lazy(u'Mexico'),
+    'MLI': _lazy(u'Mali'),
+    'MMR': _lazy(u'Myanmar'),
     'MNE': _lazy(u'Montenegro'),
+    'MUS': _lazy(u'Mauritius'),
+    'NER': _lazy(u'Niger'),
     'NIC': _lazy(u'Nicaragua'),
     'PAN': _lazy(u'Panama'),
     'PER': _lazy(u'Peru'),
     'PHL': _lazy(u'Philippines'),
     'POL': _lazy(u'Poland'),
     'RUS': _lazy(u'Russia'),
+    'SEN': _lazy(u'Senegal'),
     'SLV': _lazy(u'El Salvador'),
     'SRB': _lazy(u'Serbia'),
+    'TUN': _lazy(u'Tunisia'),
+    'TZA': _lazy(u'Tanzania'),
     'URY': _lazy(u'Uruguay'),
     'USA': _lazy(u'United States'),
     'VEN': _lazy(u'Venezuela'),
+    'VUT': _lazy(u'Vanuatu'),
     'ZAF': _lazy(u'South Africa'),
 }
 
@@ -108,7 +125,7 @@ for k, translation in lookup.items():
     if country.get('ratingsbody'):
         country['ratingsbody'] = getattr(ratingsbodies, country['ratingsbody'])
 
-    globals()[k] = type(k, (REGION,), country)
+    locals()[k] = type(k, (REGION,), country)
 
 # Please adhere to the new region checklist when adding a new region:
 # https://mana.mozilla.org/wiki/display/MARKET/How+to+add+a+new+region

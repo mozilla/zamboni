@@ -1,9 +1,33 @@
 from contextlib import contextmanager
+from mpconstants.countries import COUNTRY_DETAILS
 from nose.tools import eq_, ok_
 from tower import activate
 
 import mkt.constants.regions as regions
 from mkt.site.tests import TestCase
+
+
+class TestRegions(TestCase):
+    def test_no_missing_region(self):
+        """Test that we haven't forgotten to add some regions to the lookup
+        dictionary."""
+        defined_regions = regions.REGION_LOOKUP.keys()
+        available_regions = {c['slug'] for c in COUNTRY_DETAILS.values()}
+        eq_(list(available_regions.difference(defined_regions)), [])
+
+    def test_regions_dict(self):
+        eq_(regions.REGIONS_DICT['restofworld'], regions.RESTOFWORLD)
+        eq_(regions.REGIONS_DICT['us'], regions.USA)
+        for region in regions.REGIONS_DICT.values():
+            # Make sure the regions dict contains region objects.
+            ok_(issubclass(region, regions.REGION))
+
+            # Make sure we can find each region in the regions module locals.
+            eq_(getattr(regions, region.__name__), region)
+
+            # Make sure the name is a lazy unicode object - encoding it to
+            # utf-8 it should work.
+            ok_(region.name.encode('utf-8'))
 
 
 class TestRegionContentRatings(TestCase):
