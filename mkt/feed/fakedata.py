@@ -8,7 +8,6 @@ import pydenticon
 from mkt.constants.regions import REGIONS_DICT
 from mkt.constants.carriers import CARRIER_CHOICE_DICT
 from mkt.webapps.fakedata import foreground, generate_apps
-from mkt.webapps.models import Webapp
 from mkt.feed.models import (FeedApp, FeedBrand,
                              FeedBrandMembership,
                              FeedCollection, FeedCollectionMembership,
