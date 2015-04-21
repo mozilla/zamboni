@@ -1030,6 +1030,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.DjangoFilterBackend',
     ),
     'EXCEPTION_HANDLER': 'mkt.api.exceptions.custom_exception_handler',
+    'MAX_PAGINATE_BY': 50,
     'PAGINATE_BY': 25,
     'PAGINATE_BY_PARAM': 'limit'
 }
