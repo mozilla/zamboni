@@ -1,3 +1,5 @@
+# include compiled.txt
+-r compiled.txt
 # amgp is required by kombu
 amqp==1.0.13
 # anyjson is required by kombu

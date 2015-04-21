@@ -2,8 +2,6 @@
 # it is not needed for local testing.
 -r prod.txt
 
--r compiled.txt
-
 # Flake8 requirements
 flake8==2.3.0
 pyflakes==0.8.1
