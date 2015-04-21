@@ -152,7 +152,7 @@ def _transaction_summary(tx_uuid):
     refund_status = None
     if refund_contrib and refund_contrib.refund.status == mkt.REFUND_PENDING:
         try:
-            status = client.api.bango.refund.status.get_object_or_404(
+            status = client.api.bango.refund.get_object_or_404(
                 data={'uuid': refund_contrib.transaction_id})
             refund_status = SOLITUDE_REFUND_STATUSES[status['status']]
         except (KeyError, HttpServerError):

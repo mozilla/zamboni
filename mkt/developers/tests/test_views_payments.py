@@ -1290,7 +1290,7 @@ class TestPaymentAgreement(Patcher, PaymentsBase):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_get_bango_only_provider(self):
-        self.bango_patcher.sbi.agreement.get_object.return_value = {
+        self.bango_patcher.sbi.get_object.return_value = {
             'text': 'blah', 'valid': '2010-08-31T00:00:00'}
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

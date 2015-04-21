@@ -261,7 +261,7 @@ class Bango(Provider):
     @account_check
     def terms_retrieve(self, account):
         package = self.client.package(account.uri).get_object_or_404()
-        res = self.client.sbi.agreement.get_object(data={
+        res = self.client.sbi.get_object(data={
             'seller_bango': package['resource_uri']})
         if 'text' in res:
             res['text'] = bleach.clean(res['text'], tags=['h3', 'h4', 'br',
