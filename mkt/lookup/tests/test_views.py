@@ -423,7 +423,7 @@ class TestTransactionSummary(TestCase):
 
     @mock.patch('mkt.lookup.views.client')
     def test_refund_status(self, solitude):
-        solitude.api.bango.refund.status.get_object_or_404.return_value = (
+        solitude.api.bango.refund.get_object_or_404.return_value = (
             {'status': PENDING})
         solitude.api.generic.transaction.get_object_or_404.return_value = (
             {'uid_support': 'foo', 'provider': 2})
@@ -468,7 +468,7 @@ class TestTransactionSummary(TestCase):
 
     @mock.patch('mkt.lookup.views.client')
     def test_is_refundable(self, solitude):
-        solitude.api.bango.refund.status.get_object_or_404.return_value = (
+        solitude.api.bango.refund.get_object_or_404.return_value = (
             {'status': PENDING})
 
         self.contrib.update(type=mkt.CONTRIB_PURCHASE)
