@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:06-0700\n"
-"PO-Revision-Date: 2015-03-18 09:11+0000\n"
+"PO-Revision-Date: 2015-04-21 21:34+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1426669872.0\n"
+"X-POOTLE-MTIME: 1429652079.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1772,15 +1772,15 @@ msgstr ""
 
 #: mkt/constants/features.py:297
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Aplikácia požaduje od platformy prístup na otvorenie TCP soketov."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Podpora pre klávesnicu tretej strany"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "Aplikácia požaduje od platformy podporu pre klávesnice tretích strán"
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
@@ -1999,7 +1999,7 @@ msgstr "Podrobnosti"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Ďalšie kroky"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
@@ -2007,15 +2007,15 @@ msgstr "(nepodporované)"
 
 #: mkt/developers/api_payments.py:104
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Nepodarilo sa pripojiť k platobnému serveru."
 
 #: mkt/developers/api_payments.py:128
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Nemožno odstrániť zdieľaný účet"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Hodnotenie obsahu zmenené na Adult."
 
 #: mkt/developers/forms.py:65
 msgid "You cannot select {region}."
@@ -2111,55 +2111,61 @@ msgstr ""
 
 #: mkt/developers/forms.py:651
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "Zadajte prosím zásady ochrany súkromia svojej aplikácie"
 
 #: mkt/developers/forms.py:672
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Pred zmenou vášho východzieho jazyka musíte mať názov a popis v tomto "
+"jazyku. Chýba vám %s."
 
 #: mkt/developers/forms.py:741 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Musíte zadať webovú stránku, e-mail alebo oboje."
 
 #: mkt/developers/forms.py:766
 msgid "Your comments"
-msgstr ""
+msgstr "Vaše komentáre"
 
 #: mkt/developers/forms.py:793
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Publikované</b>: Viditeľné pre každého na Marketplace vrátane výsledkov "
+"vyhľadávania a stránok zo zoznamami."
 
 #: mkt/developers/forms.py:797
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Nie je v zozname</b>: Viditeľné len pre ľudí, ktorí poznajú URL adresu. "
+"Nie je viditeľné vo výsledkoch vyhľadávania a stránok zo zoznamami."
 
 #: mkt/developers/forms.py:813
 msgid "App Visibility:"
-msgstr ""
+msgstr "Viditeľnosť aplikácie:"
 
 #: mkt/developers/forms.py:815
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Obmedzenie pre môj tím</b>:  Viditeľné len pre členov tímu."
 
 #: mkt/developers/forms.py:861
 msgid "Choose the regions your app will be listed in:"
-msgstr ""
+msgstr "Vyberte regióny, pre ktoré bude vaša aplikácia dostupná:"
 
 #: mkt/developers/forms.py:863 mkt/developers/forms.py:964
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Musíte vybrať aspoň jeden región."
 
 #: mkt/developers/forms.py:868
 msgid "Enable new regions"
-msgstr ""
+msgstr "Povolenie nových regiónov"
 
 #: mkt/developers/forms.py:871
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Zviditeľniť moju aplikáciu vo väčšine regiónov"
 
 #: mkt/developers/forms.py:872
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Voľba, kde bude moja aplikácia dostupná"
 
 #: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
@@ -2176,23 +2182,23 @@ msgstr[2] "Môžete zvoliť len {0} kategórií."
 
 #: mkt/developers/forms.py:1064
 msgid "Agree"
-msgstr ""
+msgstr "Súhlasím"
 
 #: mkt/developers/forms.py:1081
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Zadajte prosím platnú e-mailovú adresu."
 
 #: mkt/developers/forms.py:1084
 msgid "Your email address"
-msgstr ""
+msgstr "Vaša e-mailová adresa"
 
 #: mkt/developers/forms.py:1087
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: mkt/developers/forms.py:1091
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Musíte súhlasiť zo zásadami ochrany súkromia."
 
 #: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -2206,7 +2212,7 @@ msgstr "Aplikácia"
 
 #: mkt/developers/forms.py:1128
 msgid "Transaction Type"
-msgstr ""
+msgstr "Typ transakcie"
 
 #: mkt/developers/forms.py:1131 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
@@ -2222,15 +2228,17 @@ msgstr "Do"
 
 #: mkt/developers/forms.py:1151
 msgid "Web site"
-msgstr ""
+msgstr "Webová stránka"
 
 #: mkt/developers/forms.py:1152
 msgid "Command line"
-msgstr ""
+msgstr "Príkazový riadok"
 
 #: mkt/developers/forms.py:1173
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Nastaviť ako aktívnu verziu mojej aplikácie ihneď, ako bude skontrolovaná a "
+"schválená."
 
 #: mkt/developers/forms.py:1200
 msgid ""
@@ -2252,172 +2260,174 @@ msgstr ""
 
 #: mkt/developers/forms.py:1236
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Neplatný typ súboru ({0}). Dovolené sú len súbory {1}."
 
 #: mkt/developers/forms.py:1260
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Zadajte prosím platné ID odoslania."
 
 #: mkt/developers/forms.py:1276
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"IARC certifikát je už použitý pre inú aplikáciu. Vytvorte prosím nový "
+"certifikát hodnotenia IARC."
 
 #: mkt/developers/forms.py:1311 mkt/developers/forms.py:1323
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Neplatné ID odoslania alebo neplatný bezpečnostný kód."
 
 #: mkt/developers/forms_payments.py:59
 msgid "App Price"
-msgstr ""
+msgstr "Cena aplikácie"
 
 #: mkt/developers/forms_payments.py:112
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Zadarmo (s platbami v aplikácii)"
 
 #: mkt/developers/forms_payments.py:124
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Propagačná cena"
 
 #: mkt/developers/forms_payments.py:137
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Podporuje len platby cez operátora"
 
 #: mkt/developers/forms_payments.py:140
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Podporuje len platby kartou"
 
 #: mkt/developers/forms_payments.py:144
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Podporuje všetky možnosti platby"
 
 #: mkt/developers/forms_payments.py:216
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Ak je aplikácia zadarmo, musia byť povolené platby v aplikácii"
 
 #: mkt/developers/forms_payments.py:223
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Neplatný výber"
 
 #: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "Toto je platená aktualizácia"
 
 #: mkt/developers/forms_payments.py:329
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Nejedná sa o aktualizáciu"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Meno vlastníka bankového účtu"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Company Name"
-msgstr ""
+msgstr "Názov spoločnosti"
 
 #: mkt/developers/forms_payments.py:375
 msgid "Vendor Name"
-msgstr ""
+msgstr "Názov predajcu"
 
 #: mkt/developers/forms_payments.py:377
 msgid "Financial Email"
-msgstr ""
+msgstr "E-mail pre financie"
 
 #: mkt/developers/forms_payments.py:380
 msgid "Administrative Email"
-msgstr ""
+msgstr "E-mail pre administratívu"
 
 #: mkt/developers/forms_payments.py:383
 msgid "Support Email"
-msgstr ""
+msgstr "E-mail pre podporu"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: mkt/developers/forms_payments.py:389
 msgid "Address 2"
-msgstr ""
+msgstr "Adresa 2"
 
 #: mkt/developers/forms_payments.py:391
 msgid "City/Municipality"
-msgstr ""
+msgstr "Mesto/Obec"
 
 #: mkt/developers/forms_payments.py:393
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Štát/Provincia/Región"
 
 #: mkt/developers/forms_payments.py:395
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "PSČ"
 
 #: mkt/developers/forms_payments.py:397
 msgid "Phone"
-msgstr ""
+msgstr "Telefón"
 
 #: mkt/developers/forms_payments.py:402
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Preferovaný spôsob platby"
 
 #: mkt/developers/forms_payments.py:405
 msgid "VAT Number"
-msgstr ""
+msgstr "Daňové identifikačné číslo"
 
 #: mkt/developers/forms_payments.py:408
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Číslo bankového účtu"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:411
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT kód"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Name"
-msgstr ""
+msgstr "Názov banky"
 
 #: mkt/developers/forms_payments.py:415
 msgid "Bank Address"
-msgstr ""
+msgstr "Adresa banky"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Adresa banky 2"
 
 #: mkt/developers/forms_payments.py:419
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Mesto/Obec banky"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Štát/Provincia/Región banky"
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "PSČ banky"
 
 #: mkt/developers/forms_payments.py:426
 msgid "Bank Country"
-msgstr ""
+msgstr "Krajina banky"
 
 #: mkt/developers/forms_payments.py:428 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Názov účtu"
 
 #: mkt/developers/forms_payments.py:457
 msgid "Payment Account"
-msgstr ""
+msgstr "Účet pre platby"
 
 #: mkt/developers/forms_payments.py:528
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "Z tejto aplikácie nemôžete odstrániť účet pre platby."
 
 #: mkt/developers/forms_payments.py:532
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Nemáte oprávnenie k zmene účtu pre platby."
 
 #: mkt/developers/forms_payments.py:621 mkt/developers/forms_payments.py:637
 msgid "Account name"
-msgstr ""
+msgstr "Názov účtu"
 
 #: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
@@ -2431,15 +2441,15 @@ msgstr "E-mailová adresa"
 
 #: mkt/developers/forms_payments.py:640
 msgid "Service ID"
-msgstr ""
+msgstr "ID služby"
 
 #: mkt/developers/forms_payments.py:647
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "ID služby je neplatné"
 
 #: mkt/developers/forms_payments.py:661
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Pre túto aplikáciu nebol nastavený žiadny účet pre platby"
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
@@ -2452,7 +2462,7 @@ msgstr "Moje aplikácie"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Prispieť na {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2464,7 +2474,7 @@ msgstr "Verzia {0}"
 
 #: mkt/developers/providers.py:286
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Referenčná implementácia"
 
 #: mkt/developers/providers.py:372
 msgid "Boku"
@@ -2473,6 +2483,8 @@ msgstr ""
 #: mkt/developers/tasks.py:429
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
+"Na zadanej URL adrese nebol nájdený žiadny manifest. Skontrolujte adresu a "
+"skúste to znova."
 
 #: mkt/developers/tasks.py:435
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
@@ -2631,25 +2643,23 @@ msgstr ""
 
 #: mkt/developers/views.py:1025
 msgid "No such API key."
-msgstr ""
+msgstr "Tento kľúč k API neexistuje."
 
 #: mkt/developers/views.py:1031
-#, fuzzy
 msgid "New API key generated."
-msgstr "Nový klíč k API byl vygenerován."
+msgstr "Nový kľúč k API bol vygenerovaný."
 
 #: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Vytvorená blokovaná verzia."
 
 #: mkt/developers/views.py:1051
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Aplikácia je už blokovaná."
 
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
-#, fuzzy
 msgid "We encountered a problem connecting to the payment server."
-msgstr "Vyskytl se problém při připojování k platebnímu serveru."
+msgstr "Nastal problém pri pripájaní k platobnému serveru."
 
 #: mkt/developers/views_payments.py:175 mkt/files/forms.py:28
 msgid "All"
@@ -2657,43 +2667,48 @@ msgstr "Všetko"
 
 #: mkt/developers/views_payments.py:176
 msgid "Credit card"
-msgstr ""
+msgstr "Kreditná karta"
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
-msgstr ""
+msgstr "Operátor"
 
 #: mkt/developers/views_payments.py:329
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Pri získavaní kľúča aplikácie nastala chyba servera."
 
 #: mkt/developers/views_payments.py:336
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "Tajný kľúč bol úspešne obnovený."
 
 #: mkt/developers/views_payments.py:340
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "Kľúč a tajný kľúč boli úspešne vytvorené."
 
 #: mkt/developers/views_payments.py:366
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Vaša aplikácia nemá nastavené platby v aplikácii."
 
 #: mkt/developers/views_payments.py:369
 msgid "No payment account for this app."
-msgstr ""
+msgstr "Pre túto aplikáciu nie je k dispozícii žiadny účet pre platby."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Pre prístup k Marketplace API si vytvorte pomocou formulára nižšie pár "
+"kľúčov pre QAuth."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"Pre prístup k Marketplace API odsúhlaste <a href=\"%(terms)s\">podmienky "
+"používania služby</a> a vytvorte si pomocou formulára nižšie pár kľúčov pre "
+"QAuth."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -2704,11 +2719,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Typ klienta"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Názov aplikácie"
 
 #: mkt/developers/templates/developers/api.html:43 mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
@@ -2720,7 +2735,7 @@ msgstr "Vytvoriť"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Kľúče pre QAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -2728,7 +2743,7 @@ msgstr "Kľúč"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Tajný kľúč"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
@@ -2738,11 +2753,11 @@ msgstr "Odstrániť"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "Aktuálne nemáte kľúč pre API."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Príklad QAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
@@ -2766,15 +2781,15 @@ msgstr "Firefox Marketplace"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Prihlásiť sa"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Pre pokračovanie sa musíte prihlásiť."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:133 templates/base.html:139
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Prihlásenie / Registrácia"
 
 #: mkt/developers/templates/developers/motd.html:3 mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
@@ -2782,7 +2797,7 @@ msgstr "Správa dňa"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Aktualizácia správ dňa"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
@@ -2795,7 +2810,7 @@ msgstr "Dokumentácia"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testovanie aplikácií"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
@@ -2803,7 +2818,7 @@ msgstr "Pridať novú aplikáciu"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Autorizácia prístupu"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
