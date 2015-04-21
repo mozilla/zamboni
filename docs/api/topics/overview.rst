@@ -206,19 +206,26 @@ through the listing with. For example:
             }
         }
 
-To support the listing, the following query params can be passed through to any
-listing page.
+The properties in that meta object are:
+
+* *limit*: the number of records requested. The maximum value allowed is 50.
+* *offset*: where in the result set the listing started.
+* *next*: the URL for the next page in the pagination.
+* *previous*: the URL for the previous page in the pagination.
+* *total_count*: the total number of records.
 
 .. _list-query-params-label:
 
 Listing query params
 ~~~~~~~~~~~~~~~~~~~~
 
-* *limit*: the number of records requested.
-* *next*: the URL for the next page in the pagination.
-* *offset*: where in the result set the listing started.
-* *previous*: the URL for the previous page in the pagination.
-* *total_count*: the total number of records.
+The following query params can be passed through to any listing page to access
+a different page.
+
+* *limit*: the number of records to return. The default is 25, and the maximum
+  allowed value is 50.
+* *offset*: where in the result set the listing should start (so if your limit
+  is 25, to get the second page of result, you'd need to use offset=25).
 
 .. _objects-response-label:
 
