@@ -64,3 +64,6 @@ price
 
 privacy_policy
     Privacy policy text.
+
+rereview
+    Boolean indicating whether to place app in rereview queue.
