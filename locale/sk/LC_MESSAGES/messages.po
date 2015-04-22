@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:06-0700\n"
-"PO-Revision-Date: 2015-04-21 21:34+0000\n"
+"PO-Revision-Date: 2015-04-22 21:02+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1429652079.0\n"
+"X-POOTLE-MTIME: 1429736572.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -3291,74 +3291,82 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Dozvedieť sa viac o zariadeniach s malou pamäťou."
 
 #: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Nezobrazovať moju aplikáciu pre zariadenia s malou pamäťou"
 
 #: mkt/developers/templates/developers/apps/status.html:345
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Požiadať o kontrolu pre zariadenia s malou pamäťou"
 
 #: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Stav predinštalovanej aplikácie"
 
 #: mkt/developers/templates/developers/apps/status.html:360
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
 msgstr ""
+"<strong class=\"submitted\">Aplikácia pridaná</strong> dňa %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
-msgstr ""
+msgstr "Nepridaná"
 
 #: mkt/developers/templates/developers/apps/status.html:368
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "K dispozícii nová verzia testovacieho plánu"
 
 #: mkt/developers/templates/developers/apps/status.html:373
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Zobraziť posledný odoslaný testovací plán"
 
 #: mkt/developers/templates/developers/apps/status.html:376
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
+"Prečítajte si, ako mať svoju aplikáciu predinštalovanú na zariadeniach s "
+"Firefox OS"
 
 #: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
-msgstr ""
+msgstr "Aktualizácia vášho testovacieho plánu"
 
 #: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
-msgstr ""
+msgstr "Zoznam aplikácií"
 
 #: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
 #: mkt/developers/templates/developers/apps/status.html:477
 msgid "Delist App"
-msgstr ""
+msgstr "Odstránenie aplikácie zo zoznamu"
 
 #: mkt/developers/templates/developers/apps/status.html:395
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
+"Vaša stránka aplikácie bude zakázaná a nebude sa na Firefox Marketplace "
+"zobrazovať. Kedykoľvek ju však môžete obnoviť."
 
 #: mkt/developers/templates/developers/apps/status.html:400
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
+"Odstránením vašej aplikácie zo zoznamu zabránite jej zobrazeniu kdekoľvek na "
+"Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
-#, fuzzy
 msgid "Delete App"
-msgstr "Smazat aplikaci"
+msgstr "Odstrániť aplikáciu"
 
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
+"Odstránením vašej aplikácie ju navždy odstránite z tohoto webu. "
+"<strong>Potom už neexistuje cesta späť.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
-msgstr ""
+msgstr "Blokovanie aplikácie"
 
 #: mkt/developers/templates/developers/apps/status.html:444
 msgid ""
@@ -3461,20 +3469,19 @@ msgstr "Voliteľné, môžete zadať informácie, ktoré by mohli byť užitočn
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
-msgstr ""
+msgstr "Minimálne požiadavky"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:66
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Funkcie zariadenia, ktoré sú aplikáciou požadované."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
-msgstr ""
+msgstr "Pridať propagáciu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25
-#, fuzzy
 msgid "Mozilla Contact"
-msgstr "Kontaktování Mozilly"
+msgstr "Kontakt na Mozillu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
@@ -3494,35 +3501,38 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Použiť samostatne"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Je požadovaná prioritná kontrola"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Aplikácii bude zvýšená priorita a bude presunutá ma začiatok fronty pre "
+"kontrolu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Zostane zachované do prvého schválenia"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
-msgstr ""
+msgstr "Správa bannera"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Exkluzívna správa, ktorá sa zobrazuje na stránke len pre vybrané regióny."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "Regióny pre zobrazenie bannera v"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regióny, v ktorých bude zobrazený banner so správou."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -3541,21 +3551,21 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
-msgstr ""
+msgstr "Meno vývojára"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:38
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Toto pole môže byť upravované len v manifeste."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:48 mkt/submit/templates/submit/details.html:72
-#, fuzzy
 msgid "App URL"
-msgstr "URL aplikace"
+msgstr "URL adresa aplikácie"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:49 mkt/submit/templates/submit/details.html:74
-#, fuzzy
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
-msgstr "Zvolte unikátní URL stránky s detailem. Jako výchozí bylo pro vytvoření URL použito jméno vaší aplikace."
+msgstr ""
+"Zvoľte unikátnu URL adresu stránky s detailom. Ako východzie bol pre "
+"vytvorenie URL adresy použitý jej názov."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:62 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
@@ -3564,15 +3574,15 @@ msgstr "Zobraziť doplnok"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:68
 msgid "API URL"
-msgstr ""
+msgstr "URL adresa API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:69
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "URL adresa pre prístup k tejto aplikácii využíva Marketplace API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:73
 msgid "View API documentation"
-msgstr ""
+msgstr "Zobraziť dokumentáciu k API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:131
@@ -3580,9 +3590,8 @@ msgid "Manifest URL"
 msgstr "URL manifestu"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:85
-#, fuzzy
 msgid "Refresh"
-msgstr "Obnovit"
+msgstr "Obnoviť"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:87
 msgid ""
@@ -6685,15 +6694,15 @@ msgstr "Porovnanie"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Načítanie histórie aplikácie &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Ďalšie komentáre"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Predchádzajúce komentáre"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -6716,27 +6725,24 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Zobrazujú sa výsledky <b>%(begin)s</b>&ndash;<b>%(end)s</b> z celkového počtu <b>%(count)s</b>"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
-#, fuzzy
 msgid "Recent Points"
-msgstr "Nedávno přidělené body"
+msgstr "Nedávno pridelené body"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Doteraz ste nezískali žiadny bod."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
-#, fuzzy
 msgid "Top Reviewers (past 7 days)"
-msgstr "Aktivní redaktoři (posledních 7 dní)"
+msgstr "Aktívni redaktori (posledných 7 dní)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Doteraz nie je žiadny hlavný redaktor."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
-#, fuzzy
 msgid "All Time"
-msgstr "Celý čas"
+msgstr "Po celý čas"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
@@ -6745,7 +6751,7 @@ msgstr "Obdržali ste <span>{0}</span> bodov."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Neboli nájdené žiadne výsledky."
 
 #: mkt/search/forms.py:12
 msgid "Relevance"
@@ -6769,39 +6775,39 @@ msgstr "Najnovšie"
 
 #: mkt/search/forms.py:18
 msgid "Reviewed"
-msgstr ""
+msgstr "Skontrolované"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
-msgstr ""
+msgstr "Trendy"
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
-msgstr ""
+msgstr "Ľubovolný typ aplikácie"
 
 #: mkt/search/forms.py:29
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Privilegovaná zabalená aplikácia"
 
 #: mkt/search/forms.py:34
 msgid "Free with In-app"
-msgstr ""
+msgstr "Zadarmo a s platbami v aplikácii"
 
 #: mkt/search/forms.py:36
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium s platbami v aplikácii"
 
 #: mkt/search/forms.py:37
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Iný systém pre platby v aplikácii"
 
 #: mkt/search/forms.py:44
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:51
 msgid "Any Device Type"
-msgstr ""
+msgstr "Ľubovolné zariadenie"
 
 #: mkt/search/forms.py:53
 msgid "Mobile"
@@ -6813,45 +6819,44 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:57
 msgid "All Categories"
-msgstr ""
+msgstr "Všetky kategórie"
 
 # 93%
 #: mkt/search/forms.py:72
-#, fuzzy
 msgid "Search for apps"
-msgstr "Vyhledat aplikace"
+msgstr "Vyhľadať aplikácie"
 
 #: mkt/search/forms.py:86
 msgid "Device type"
-msgstr ""
+msgstr "Typ zariadenia"
 
 #: mkt/search/forms.py:126
 msgid "Premium types"
-msgstr ""
+msgstr "Prémiové typy"
 
 #: mkt/search/forms.py:130
 msgid "App type"
-msgstr ""
+msgstr "Typ aplikácie"
 
 #: mkt/search/forms.py:134
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Inštalácie povolené z"
 
 #: mkt/search/forms.py:135
 msgid "Everywhere"
-msgstr ""
+msgstr "Všade"
 
 #: mkt/search/forms.py:137
 msgid "Works offline"
-msgstr ""
+msgstr "Funguje offline"
 
 #: mkt/search/forms.py:139
 msgid "Supported languages"
-msgstr ""
+msgstr "Podporované jazyky"
 
 #: mkt/search/forms.py:140
 msgid "Author name"
-msgstr ""
+msgstr "Meno autora"
 
 #: mkt/search/forms.py:141
 msgid "Tags"
@@ -6862,9 +6867,8 @@ msgid "Search Unavailable"
 msgstr "Vyhľadávanie nie je dostupné"
 
 #: mkt/search/templates/search/down.html:10
-#, fuzzy
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Vyhledávání je dočasně nedostupné. Zkuste to prosím znovu za několik minut."
+msgstr "Vyhľadávanie je dočasne nedostupné. Skúste to prosím znovu neskôr."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -6876,7 +6880,7 @@ msgstr "Zmeniť heslo"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Odhlásenie"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
@@ -6892,21 +6896,19 @@ msgstr "Zadajte minimálne jednu hodnotu."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Farba v hexadecimálnom formáte"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Musí sa jednať o farbu v hexa kóde. Napr. #FF0035."
 
 #: mkt/site/forms.py:9
-#, fuzzy
 msgid "As soon as it is approved."
-msgstr "Jakmile bude schválena."
+msgstr "Okamžite ako bude schválená."
 
 #: mkt/site/forms.py:10
-#, fuzzy
 msgid "Not until I manually make it public."
-msgstr "Až ji ručně nastavím jako veřejnou."
+msgstr "Keď ju ručne nastavím ako verejnú."
 
 #: mkt/site/helpers.py:163
 msgid "Home"
@@ -7126,11 +7128,11 @@ msgstr "Používateľ {user} schválil recenziu {review} doplnku {addon}."
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Recenzia {review} pre {addon} bola odstránená."
 
 #: mkt/site/log.py:338
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} odstránil {review} pre {addon}."
 
 #: mkt/site/log.py:345
 msgid "Application max version for {version} updated."
@@ -7215,20 +7217,20 @@ msgstr "Frekventované hlásenia o zneužití"
 #: mkt/site/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr ""
+"Doplnok {addon} bol odovzdaný na kontrolu administrátorom, pretože bolo pri "
+"ňom zaregistrovaných viacero hlásení o zneužití."
 
 #: mkt/site/log.py:450
-#, fuzzy
 msgid "High Refund Requests"
-msgstr "Časté požadavky na vrácení peněz"
+msgstr "Časté požiadavky na vrátenie peňazí"
 
 #: mkt/site/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
 msgstr "Doplnok {addon} bol znova skontrolovaný, pretože sa zmenil manifest."
 
 #: mkt/site/log.py:458
-#, fuzzy
 msgid "Manifest Change"
-msgstr "Změna manifestu"
+msgstr "Zmena manifestu"
 
 #: mkt/site/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
@@ -7705,31 +7707,31 @@ msgstr "<b>Co dále:</b> vyplňte zbývající informace o své aplikaci"
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
-msgstr ""
+msgstr "Publikované!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
-msgstr ""
+msgstr "Takmer hotovo!"
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "Pridať manifest aplikácie"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
-msgstr ""
+msgstr "Zadajte detaily o aplikácii"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>Nastavenie <a href=\"%(rating_url)s\">Hodnotenie obsahu</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr ""
+msgstr "<span>Nastavenie <a href=\"%(pay_url)s\">Platby</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
-msgstr ""
+msgstr "Čaká na kontrolu"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
@@ -7977,7 +7979,7 @@ msgstr ""
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Pre tento účet použite overenú e-mailovú adresu."
 
 # Column name in a table.
 #: mkt/webapps/models.py:209
@@ -7986,7 +7988,7 @@ msgstr "V zozname"
 
 #: mkt/webapps/models.py:1367
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Musíte zadať e-mailovú adresu podpory alebo URL."
 
 #: mkt/webapps/models.py:1369
 msgid "You must provide an app name."
@@ -7994,7 +7996,7 @@ msgstr "Musíte zadať názov aplikácie."
 
 #: mkt/webapps/models.py:1371
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Musíte vybrať aspoň jeden typ zariadenia."
 
 #: mkt/webapps/models.py:1374
 msgid "You must provide at least one category."
@@ -8002,52 +8004,51 @@ msgstr "Musíte zvoliť aspoň jednu kategóriu."
 
 #: mkt/webapps/models.py:1441
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Musíte nastaviť hodnotenie obsahu."
 
 #: mkt/webapps/models.py:1443
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Musíte nastaviť účet pre platby."
 
 #: mkt/webapps/models.py:1468
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Proces pridania aplikácie nebol úplne dokončený."
 
 #: mkt/webapps/models.py:1475
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Táto aplikácia potrebuje hodnotenie obsahu."
 
 #: mkt/webapps/models.py:1481
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Táto aplikácia potrebuje nastavenie účtu pre platby."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2796
 msgid "awaiting approval"
-msgstr ""
+msgstr "čaká na schválenie"
 
 # 87%
 #. L10n: An app is rejected for a particular region.
 #: mkt/webapps/models.py:2798
-#, fuzzy
 msgid "rejected"
-msgstr "zamítnuto"
+msgstr "zamietnuté"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2800
 msgid "requires additional review"
-msgstr ""
+msgstr "vyžaduje ďalšiu kontrolu"
 
 #: mkt/webapps/models.py:2851
 msgid "{region} approval status"
-msgstr ""
+msgstr "Stav schválenia regiónu {region} "
 
 #: mkt/webapps/models.py:2859
 msgid "{region} nomination date"
-msgstr ""
+msgstr "Dátum nominácie regiónu {region}"
 
 #: mkt/webapps/tasks.py:144
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Problém s vašou aplikáciou \"{app}\" na Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
@@ -8063,7 +8064,7 @@ msgstr "Odhlásiť sa"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Registrácia"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
