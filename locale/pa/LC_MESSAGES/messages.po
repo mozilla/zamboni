@@ -17,7 +17,7 @@ msgstr ""
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "ਯੋਗ ਪਸੰਦ ਚੁਣੋ। %(ਮੁੱਲ)sਉਪਲੱਬਧ ਪਸੰਦਾਂ ਵਿੱਚੋਂ ਇਕ ਨਹੀਂ ਹੈ।"
+msgstr "ਯੋਗ ਪਸੰਦ ਚੁਣੋ। %(value)s ਉਪਲੱਬਧ ਪਸੰਦਾਂ ਵਿੱਚੋਂ ਇਕ ਨਹੀਂ ਹੈ।"
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
