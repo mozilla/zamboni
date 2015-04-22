@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:23-0700\n"
-"PO-Revision-Date: 2015-04-01 13:27-0500\n"
+"PO-Revision-Date: 2015-04-22 17:34-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1825,11 +1825,11 @@ msgstr "このアプリを使うには少なくとも 1GB の RAM を搭載し�
 
 #: mkt/constants/features.py:340
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "このアプリは近距離無線通信 (NFC) API へのアクセスを必要とします。"
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1984,11 +1984,11 @@ msgstr "ロシア"
 
 #: mkt/constants/regions.py:110
 msgid "Senegal"
-msgstr ""
+msgstr "セネガル"
 
 #: mkt/constants/regions.py:114
 msgid "Tanzania"
-msgstr ""
+msgstr "タンザニア"
 
 #: mkt/constants/regions.py:117
 msgid "Venezuela"
@@ -3293,11 +3293,11 @@ msgstr "提出された最新のテストプランを見る"
 
 #: mkt/developers/templates/developers/apps/status.html:377
 msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
-msgstr ""
+msgstr "<a href=\"%(lnk_url)s\">テストプランを更新</a>"
 
 #: mkt/developers/templates/developers/apps/status.html:381
 msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
-msgstr ""
+msgstr "Firefox OS 端末にあなたのアプリをプリインストールする方法の <a href=\"%(lnk_url)s\">詳細はこちら</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
@@ -3685,7 +3685,7 @@ msgstr "オフライン対応"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
-msgstr ""
+msgstr "このアプリがインターネット接続なしでも動作する場合は「オフライン対応」というラベルを付けて掲載します。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -5571,7 +5571,7 @@ msgstr "審査履歴"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:45
 msgid "Communication Dashboard"
-msgstr ""
+msgstr "コミュニケーションダッシュボード"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
