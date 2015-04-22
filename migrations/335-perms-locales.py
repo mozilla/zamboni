@@ -4,7 +4,7 @@ from mkt.access.models import Group, GroupUser
 
 
 LANGS = sorted(list(
-    set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
+    set(settings.AMO_LANGUAGES) -
     set(['en-US'])))
 
 
