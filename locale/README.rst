@@ -15,7 +15,7 @@ The two files in your locale directories that are important are::
 Generally, legal documents are localized by lawyers and aren't in our gettext
 process.  However, if you need to work with them, visit::
 
-    https://github.com/mozilla/zamboni/tree/master/media/docs
+    https://github.com/mozilla/legal-docs
 
 Also please make sure you're reading dev-l10n-web@lists.mozilla.org.  Thanks!
 
