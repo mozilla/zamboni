@@ -2,7 +2,6 @@ import json
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils.translation.trans_real import to_language
 
@@ -102,39 +101,38 @@ def manifest(request):
     if (request.method == 'POST' and form.is_valid() and
             features_form_valid):
 
-        with transaction.atomic():
-            upload = form.cleaned_data['upload']
-            addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
+        upload = form.cleaned_data['upload']
+        addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
 
-            if form.is_packaged():
-                validation = json.loads(upload.validation)
-                escalate_prerelease_permissions(
-                    addon, validation, addon.latest_version)
+        if form.is_packaged():
+            validation = json.loads(upload.validation)
+            escalate_prerelease_permissions(
+                addon, validation, addon.latest_version)
 
-            # Set the device type.
-            for device in form.get_devices():
-                addon.addondevicetype_set.get_or_create(
-                    device_type=device.id)
+        # Set the device type.
+        for device in form.get_devices():
+            addon.addondevicetype_set.get_or_create(
+                device_type=device.id)
 
-            # Set the premium type, only bother if it's not free.
-            premium = form.get_paid()
-            if premium:
-                addon.update(premium_type=premium)
+        # Set the premium type, only bother if it's not free.
+        premium = form.get_paid()
+        if premium:
+            addon.update(premium_type=premium)
 
-            if addon.has_icon_in_manifest():
-                # Fetch the icon, do polling.
-                addon.update(icon_type='image/png')
-            else:
-                # In this case there is no need to do any polling.
-                addon.update(icon_type='')
+        if addon.has_icon_in_manifest():
+            # Fetch the icon, do polling.
+            addon.update(icon_type='image/png')
+        else:
+            # In this case there is no need to do any polling.
+            addon.update(icon_type='')
 
-            AddonUser(addon=addon, user=request.user).save()
-            # Checking it once. Checking it twice.
-            AppSubmissionChecklist.objects.create(addon=addon, terms=True,
-                                                  manifest=True, details=False)
+        AddonUser(addon=addon, user=request.user).save()
+        # Checking it once. Checking it twice.
+        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
+                                              manifest=True, details=False)
 
-            # Create feature profile.
-            addon.latest_version.features.update(**features_form.cleaned_data)
+        # Create feature profile.
+        addon.latest_version.features.update(**features_form.cleaned_data)
 
         # Call task outside of `atomic` to avoid it running before
         # the transaction is committed and not finding the app.
