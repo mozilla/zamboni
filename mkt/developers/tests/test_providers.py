@@ -132,7 +132,7 @@ class TestBango(Patcher, TestCase):
             self.bango_p_patcher.product.post.call_args[1]['data'])
 
     def test_terms_bleached(self):
-        self.bango_patcher.sbi.agreement.get_object.return_value = {
+        self.bango_patcher.sbi.get_object.return_value = {
             'text': '<script>foo</script><h3></h3>'}
         eq_(self.bango.terms_retrieve(Mock())['text'],
             u'&lt;script&gt;foo&lt;/script&gt;<h3></h3>')
