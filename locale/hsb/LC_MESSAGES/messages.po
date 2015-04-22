@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:06-0700\n"
+"POT-Creation-Date: 2015-04-22 14:23-0700\n"
 "PO-Revision-Date: 2015-04-10 10:47+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1428662848.0\n"
 
@@ -144,7 +143,7 @@ msgstr "Antarktis"
 msgid "Antigua and Barbuda"
 msgstr "Antigua a Barbuda"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
 msgid "Argentina"
 msgstr "Argentinska"
 
@@ -176,7 +175,7 @@ msgstr "Bahamy"
 msgid "Bahrain"
 msgstr "Bahrain"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
 msgid "Bangladesh"
 msgstr "Bangladeš"
 
@@ -220,7 +219,7 @@ msgstr "Bonaire, Sint Eustatius a Saba"
 msgid "Bosnia and Herzegovina"
 msgstr "Bosniska a Hercegowina"
 
-#: mkt/constants/bango.py:48
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
 msgid "Botswana"
 msgstr "Botswana"
 
@@ -228,7 +227,7 @@ msgstr "Botswana"
 msgid "Bouvet Island"
 msgstr "Bouvet-kupa"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
 msgid "Brazil"
 msgstr "Brazilska"
 
@@ -256,7 +255,7 @@ msgstr "Burundi"
 msgid "Cambodia"
 msgstr "Kambodźa"
 
-#: mkt/constants/bango.py:57
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
 msgid "Cameroon"
 msgstr "Kamerun"
 
@@ -280,11 +279,11 @@ msgstr "Centralnoafriska republika"
 msgid "Chad"
 msgstr "Čad"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
 msgid "Chile"
 msgstr "Chile"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
 msgid "China"
 msgstr "China"
 
@@ -296,7 +295,7 @@ msgstr "Hodowna kupa"
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokoske (Keelingske) kupy"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
 msgid "Colombia"
 msgstr "Kolumbiska"
 
@@ -316,11 +315,11 @@ msgstr "Kongo, Demokratiska republika"
 msgid "Cook Islands"
 msgstr "Cookske kupy"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
 msgid "Costa Rica"
 msgstr "Kosta Rika"
 
-#: mkt/constants/bango.py:73
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
 msgid "Côte d'Ivoire"
 msgstr "Słonowinowy pobrjóh"
 
@@ -340,7 +339,7 @@ msgstr "Curaçao"
 msgid "Cyprus"
 msgstr "Cypernska"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
 msgid "Czech Republic"
 msgstr "Čěska republika"
 
@@ -360,15 +359,15 @@ msgstr "Dominika"
 msgid "Dominican Republic"
 msgstr "Dominikanska republika"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
 msgid "Ecuador"
 msgstr "Ekuador"
 
-#: mkt/constants/bango.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
 msgid "Egypt"
 msgstr "Egyptowska"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
 msgid "El Salvador"
 msgstr "El Salvador"
 
@@ -404,7 +403,7 @@ msgstr "Fidźiske kupy"
 msgid "Finland"
 msgstr "Finska"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
 msgid "France"
 msgstr "Francoska"
 
@@ -432,7 +431,7 @@ msgstr "Gambija"
 msgid "Georgia"
 msgstr "Georgiska"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
 msgid "Germany"
 msgstr "Němska"
 
@@ -444,7 +443,7 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "Grjekska"
 
@@ -464,7 +463,7 @@ msgstr "Guadeloupe"
 msgid "Guam"
 msgstr "Guam"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "Guatemala"
 
@@ -476,7 +475,7 @@ msgstr "Guernsey"
 msgid "Guinea"
 msgstr "Gineja"
 
-#: mkt/constants/bango.py:112
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
 msgid "Guinea-Bissau"
 msgstr "Gineja-Bissau"
 
@@ -504,7 +503,7 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hongkong"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "Madźarska"
 
@@ -512,7 +511,7 @@ msgstr "Madźarska"
 msgid "Iceland"
 msgstr "Islandska"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "Indiska"
 
@@ -540,7 +539,7 @@ msgstr "Isle of Man"
 msgid "Israel"
 msgstr "Israel"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "Italska"
 
@@ -548,7 +547,7 @@ msgstr "Italska"
 msgid "Jamaica"
 msgstr "Jamaika"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "Japanska"
 
@@ -556,7 +555,7 @@ msgstr "Japanska"
 msgid "Jersey"
 msgstr "Jersey"
 
-#: mkt/constants/bango.py:132
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "Jordaniska"
 
@@ -620,7 +619,7 @@ msgstr "Libyska"
 msgid "Liechtenstei"
 msgstr "Liechtenstein"
 
-#: mkt/constants/bango.py:148
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
 msgid "Lithuania"
 msgstr "Litawska"
 
@@ -636,7 +635,7 @@ msgstr "Makao"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Makedonska, Bywša juhosłowjanska republika"
 
-#: mkt/constants/bango.py:152
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
 msgid "Madagascar"
 msgstr "Madagaskar"
 
@@ -652,7 +651,7 @@ msgstr "Malajzija"
 msgid "Maldives"
 msgstr "Malediwy"
 
-#: mkt/constants/bango.py:156
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
 msgid "Mali"
 msgstr "Mali"
 
@@ -672,7 +671,7 @@ msgstr "Martinique"
 msgid "Mauritania"
 msgstr "Mawretanska"
 
-#: mkt/constants/bango.py:161
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
 msgid "Mauritius"
 msgstr "Mauritius"
 
@@ -680,7 +679,7 @@ msgstr "Mauritius"
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
 msgid "Mexico"
 msgstr "Mexiko"
 
@@ -700,7 +699,7 @@ msgstr "Monaco"
 msgid "Mongolia"
 msgstr "Mongolska"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
 msgid "Montenegro"
 msgstr "Čorna Hora"
 
@@ -716,7 +715,7 @@ msgstr "Marokko"
 msgid "Mozambique"
 msgstr "Mosambik"
 
-#: mkt/constants/bango.py:172
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
 msgid "Myanmar"
 msgstr "Myanmar"
 
@@ -744,11 +743,11 @@ msgstr "Nowa Kaledonija"
 msgid "New Zealand"
 msgstr "Nowoseelandska"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
 msgid "Nicaragua"
 msgstr "Nikaragua"
 
-#: mkt/constants/bango.py:180
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
 msgid "Niger"
 msgstr "Niger"
 
@@ -788,7 +787,7 @@ msgstr "Palauske kupy"
 msgid "Palestinian Territory, Occupied"
 msgstr "Palestinske awtonomijowe teritorije"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
 msgid "Panama"
 msgstr "Panama"
 
@@ -800,11 +799,11 @@ msgstr "Papuwa-Nowa Gineja"
 msgid "Paraguay"
 msgstr "Paraguay"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
 msgid "Peru"
 msgstr "Peru"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
 msgid "Philippines"
 msgstr "Filipiny"
 
@@ -812,7 +811,7 @@ msgstr "Filipiny"
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
 msgid "Poland"
 msgstr "Pólska"
 
@@ -892,7 +891,7 @@ msgstr "Sawdi-Arabska"
 msgid "Senega"
 msgstr "Senegal"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
 msgid "Serbia"
 msgstr "Serbiska"
 
@@ -932,7 +931,7 @@ msgstr "Salomony"
 msgid "Somalia"
 msgstr "Somalija"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
 msgid "South Africa"
 msgstr "Južna Afrika"
 
@@ -944,7 +943,7 @@ msgstr "Južna Georgiska a južne Sandwich-kupy"
 msgid "South Sudan"
 msgstr "Južny Sudan"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
 msgid "Spain"
 msgstr "Španiska"
 
@@ -1016,7 +1015,7 @@ msgstr "Tonga"
 msgid "Trinidad and Tobago"
 msgstr "Trinidad a Tobago"
 
-#: mkt/constants/bango.py:247
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
 msgid "Tunisia"
 msgstr "Tuneziska"
 
@@ -1048,11 +1047,11 @@ msgstr "Ukraina"
 msgid "United Arab Emirates"
 msgstr "Zjednoćene arabske emiraty"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
 msgid "United Kingdom"
 msgstr "Zjednoćene kralestwo"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
 msgid "United States"
 msgstr "Zjednoćene staty"
 
@@ -1060,7 +1059,7 @@ msgstr "Zjednoćene staty"
 msgid "United States Minor Outlying Islands"
 msgstr "United States Minor Outlying Islands"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
 msgid "Uruguay"
 msgstr "Uruguay"
 
@@ -1068,7 +1067,7 @@ msgstr "Uruguay"
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-#: mkt/constants/bango.py:260
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
@@ -1434,179 +1433,179 @@ msgstr "Wersijowe pokazy za přepruwowarja"
 msgid "Public reviewer comment"
 msgstr "Zjawny přepruwowarski komentar"
 
-#: mkt/constants/features.py:17
+#: mkt/constants/features.py:18
 msgid "App Management API"
 msgstr "API za zrjadowanje nałoženjow"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozApps\" za instalowanje a rjadowanje druhich nałoženjow."
 
-#: mkt/constants/features.py:23
+#: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
 msgstr "API za instalowanje zapakowanych nałoženjow"
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozApps.installPackage\" za instalowanje druhich zapakowanych nałoženjow."
 
-#: mkt/constants/features.py:30
+#: mkt/constants/features.py:31
 msgid "Web Payment"
 msgstr "Webpłaćenje"
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:32
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozApps\"."
 
-#: mkt/constants/features.py:35
+#: mkt/constants/features.py:36
 msgid "Web Activities"
 msgstr "Webaktiwity"
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "Nałoženje wužaduje sej webaktiwity (API \"MozActivity\")."
 
-#: mkt/constants/features.py:41
+#: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
 msgstr "Wokolinowy swětłosensor"
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "Nałoženje wužaduje sej wokolinowy swětłosensor (API \"ondevicelight\")."
 
-#: mkt/constants/features.py:47
+#: mkt/constants/features.py:48
 msgid "Archive"
 msgstr "Archiw"
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
 msgstr "Nałoženje wužaduje sej API \"ArchiveReader\"."
 
-#: mkt/constants/features.py:52
+#: mkt/constants/features.py:53
 msgid "Battery"
 msgstr "Baterija"
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
 msgstr "Nałoženje wužaduje sej API \"naqvigator.battery\"."
 
-#: mkt/constants/features.py:58
+#: mkt/constants/features.py:59
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozBluetooth\"."
 
-#: mkt/constants/features.py:63
+#: mkt/constants/features.py:64
 msgid "Contacts"
 msgstr "Kontakty"
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "Tute nałoženje wužaduje sej API \"navigator.mozContacts\"."
 
-#: mkt/constants/features.py:69
+#: mkt/constants/features.py:70
 msgid "Device Storage"
 msgstr "Gratowy składowak"
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:71
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr "Nałoženje wužaduje sej API \"Gratowy składowak\", zo by přistup na datajowy system měło."
 
-#: mkt/constants/features.py:76
+#: mkt/constants/features.py:77
 msgid "The app requires the platform to support IndexedDB."
 msgstr "Nałoženje wužaduje sej podpěru IndexedDB na platformje."
 
-#: mkt/constants/features.py:81
+#: mkt/constants/features.py:82
 msgid "Geolocation"
 msgstr "Postajenje stejnišćow"
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr "Nałoženje wužaduje sej podpěru API \"navigator.geolocation\" na platformje."
 
-#: mkt/constants/features.py:87
+#: mkt/constants/features.py:88
 msgid "Idle"
 msgstr "Prózdnoběh"
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr "Nałoženje wužaduje sej podpěru API \"addIdleObserver\" na platformje."
 
-#: mkt/constants/features.py:93
+#: mkt/constants/features.py:94
 msgid "Network Information"
 msgstr "Syćowe informacije"
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr "Tute nałoženje wužaduje sej móžnosć, informacije wo syćowym zwisku dóstać (API \"navigator.mozConnection)."
 
-#: mkt/constants/features.py:100
+#: mkt/constants/features.py:101
 msgid "Network Stats"
 msgstr "Syćowa statistika"
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:102
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozNetworkStats\"."
 
-#: mkt/constants/features.py:106
+#: mkt/constants/features.py:107
 msgid "Proximity"
 msgstr "Bliskosć"
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:108
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "Nałoženje wužaduje sej bliskostny sensor (API \"ondeviceproximity\")."
 
-#: mkt/constants/features.py:112
+#: mkt/constants/features.py:113
 msgid "Simple Push"
 msgstr "Jednory push"
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:114
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozPush\"."
 
-#: mkt/constants/features.py:117
+#: mkt/constants/features.py:118
 msgid "Screen Orientation"
 msgstr "Wusměrjenje wobrazowki"
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:119
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "Nałoženje wužaduje sej podpěru API \"ondeviceorientation\" na platformje."
 
-#: mkt/constants/features.py:123
+#: mkt/constants/features.py:124
 msgid "Time/Clock"
 msgstr "Čas/Časnik"
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:125
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozTime\"."
 
-#: mkt/constants/features.py:128
+#: mkt/constants/features.py:129
 msgid "Vibration"
 msgstr "Wibracija"
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr "Nałoženje wužaduje sej podpěru wibracije (API navigator.vibrate) na graće."
 
-#: mkt/constants/features.py:135
+#: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozFM\" abo \"navigator.mozFMRadio\"."
 
-#: mkt/constants/features.py:141
+#: mkt/constants/features.py:142
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "Nałoženje wužaduje sej API \"navigator.mozSms\"."
 
-#: mkt/constants/features.py:145
+#: mkt/constants/features.py:146
 msgid "Touch"
 msgstr "Dótknjenje"
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr "Nałoženje wužaduje sej podpěru dótknjenskich podawkow na platformje. Tuta opcija pokazuje, zo nałoženje njefunguje, hdyž so z myšku wužiwa."
 
-#: mkt/constants/features.py:152
+#: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "Wobrazowki we wulkosći smartfona (qHD)"
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:154
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
@@ -1614,209 +1613,217 @@ msgstr ""
 "Nałoženje sej wužaduje, zo platforma ma wobrazowku we wulkosći smartfona (t. r. ma qHD-rozeznaće). Tuta opcija pokazuje, zo nałoženje njeda so na wjetšich wobrazowkach wužiwać (na př. na tabletach, "
 "desktopowych PC abo mobilnych telefonach z wjele DPI)."
 
-#: mkt/constants/features.py:163
+#: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "Nałoženje sej wužaduje, zo platforma móže MP3-dataje dekodować a wothrać."
 
-#: mkt/constants/features.py:168
+#: mkt/constants/features.py:169
 msgid "Audio"
 msgstr "Awdio"
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "Nałoženje sej wužaduje, zo platforma API \"HTML5 audio\" podpěruje."
 
-#: mkt/constants/features.py:174
+#: mkt/constants/features.py:175
 msgid "Web Audio"
 msgstr "Webawdio"
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr "Nałoženje sej wužaduje, zo platforma API Web Audio (\"window.AudioContext\") podpěruje."
 
-#: mkt/constants/features.py:181
+#: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr "Nałoženje sej wužaduje, zo platforma móže dataje H.264-widejow dekodować a wothrać."
 
-#: mkt/constants/features.py:187
+#: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr "Nałoženje sej wužaduje, zo platforma móže widejowe dataje WebM (VP8) dekodować a wothrać."
 
-#: mkt/constants/features.py:192
+#: mkt/constants/features.py:193
 msgid "Full Screen"
 msgstr "Połna wobrazowka"
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr "Nałoženje wužaduje sej API Full Screen (\"requestFullScreen\" abo \"mozRequestFullScreen\")."
 
-#: mkt/constants/features.py:199
+#: mkt/constants/features.py:200
 msgid "Gamepad"
 msgstr "Gamepad"
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr "Nałoženje wužaduje sej podpěru API gamepada (\"navigator.getGamepads\") na platformje."
 
-#: mkt/constants/features.py:205
+#: mkt/constants/features.py:206
 msgid "Quota Management"
 msgstr "Kwotowe zrjadowanje"
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:207
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr "Nałoženje se wužaduje, zo platforma dowola, zo so trajny składowanski limit nad normalnje dowolene limity za nałoženje powyšuje (\"window.StorageInfo\" abo \"window.persistentStorage\")."
 
-#: mkt/constants/features.py:214
+#: mkt/constants/features.py:215
 msgid "Camera"
 msgstr "Kamera"
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr "Nałoženje sej wužaduje, zo platforma přistup na wideja z kamery grata přez objekt LocalMediaStream dowola."
 
-#: mkt/constants/features.py:221
+#: mkt/constants/features.py:222
 msgid "Microphone"
 msgstr "Mikrofon"
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr "Nałoženje sej wužaduje, zo platforma přistup na zynk gratoweho mikrofona dowola."
 
-#: mkt/constants/features.py:227
+#: mkt/constants/features.py:228
 msgid "Screen Capture"
 msgstr "Fota wobrazowki"
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr "Nałoženje sej wužaduje, zo platforma přistup na wobrazowku grata za fota dowola."
 
-#: mkt/constants/features.py:234
+#: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
 msgstr "WebRTC MediaStream"
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:236
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr "Nałoženje sej wužaduje, zo platforma komunikaciju woprawdźiteho časa mjez wobhladowakami přez dochadźace medijowe prudy dowola."
 
-#: mkt/constants/features.py:241
+#: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr "Nałoženje sej wužaduje, zo platforma direktnu wuměnu hinašich datow hač awdio a widejo dowola."
 
-#: mkt/constants/features.py:248
+#: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr "Nałoženje sej wužadije, zo platforma komunikaciju prudźacych datow mjez ličakami w kompjuterowej syći dowola."
 
-#: mkt/constants/features.py:255
+#: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
 msgstr "Web Speech Synthesis"
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "Nałoženje sej wužaduje, zo platforma wužiwanje tekst-do-rěčenja dowola."
 
-#: mkt/constants/features.py:261
+#: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
 msgstr "Web Speech Recognition"
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "Nałoženje sej wužaduje, zo platforma wužiwanje rěčenje-do-teksta dowola."
 
-#: mkt/constants/features.py:267
+#: mkt/constants/features.py:268
 msgid "Pointer Lock"
 msgstr "Zawrjenje pokazowarja"
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:269
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr "Nałoženje sej wužaduje, zo platforma přidatne informacije a kontrolu wo pokazowarju k dispoziciji staja."
 
-#: mkt/constants/features.py:274
+#: mkt/constants/features.py:275
 msgid "Notifications"
 msgstr "Zdźělenki"
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr "Nałoženje sej wužaduje, zo platforma zwobraznjenje telefonowych a desktopowych zdźělenkow do wužiwarja dowola."
 
-#: mkt/constants/features.py:281
+#: mkt/constants/features.py:282
 msgid "Alarms"
 msgstr "Alarmy"
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr "Nałoženje sej wužaduje, zo platforma přistup na alarmowe nastajenja grata dowola, zo by zdźělenki a podawki za wěsty čas planowało."
 
-#: mkt/constants/features.py:289
+#: mkt/constants/features.py:290
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr "Nałoženje sej wužaduje, zo platforma słanje asynchronych HTTP-naprašowanjow bjez wobmjezowanjow samsneho pochada dowola."
 
-#: mkt/constants/features.py:296
+#: mkt/constants/features.py:297
 msgid "TCP Sockets"
 msgstr "TCP Sockets"
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "Nałoženje sej wužaduje, zo platforma wočinjenje Raw TCP Sockets dowola."
 
-#: mkt/constants/features.py:302
+#: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
 msgstr "Podpěra za tastatury třećich poskićowarjow"
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "Nałoženje sej wužaduje, zo platforma tastatury třećich poskićowarjow podpěruje."
 
-#: mkt/constants/features.py:308
+#: mkt/constants/features.py:309
 msgid "Multiple Network Information"
 msgstr "Informacije wo wjacorych syćach"
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:310
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "Nałoženje wužaduje sej móžnosć, sej informacije wo wjacorych syćowych zwiskach wobstarać."
 
-#: mkt/constants/features.py:315
+#: mkt/constants/features.py:316
 msgid "Mobile ID"
 msgstr "ID mobilneho telefona"
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr "Nakoženje wužaduje sej přistup na API \"navigator.getMobileIdAssertion\"."
 
-#: mkt/constants/features.py:321
+#: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
 msgstr "Předkompilowanje Asm.js"
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr "Nałoženje sej wužaduje, zo grat předkompilowanje koda asm.js podpěruje."
 
-#: mkt/constants/features.py:327
+#: mkt/constants/features.py:328
 msgid "512MB RAM Device"
 msgstr "Grat z 512 MB RAM"
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "Nałoženje sej wužaduje, zo grat ma znajmjeńša 512 MB RAM."
 
-#: mkt/constants/features.py:333
+#: mkt/constants/features.py:334
 msgid "1GB RAM Device"
 msgstr "Grat z 1 GB RAM"
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:335
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr "Nałoženje sej wužaduje, zo grat ma znajmjeńša 1 GB RAM."
+
+#: mkt/constants/features.py:340
+msgid "NFC"
+msgstr ""
+
+#: mkt/constants/features.py:341
+msgid "The app requires access to the Near Field Communication (NFC) API."
+msgstr ""
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1961,15 +1968,23 @@ msgstr "Europa"
 msgid "Pan European Game Information"
 msgstr "Paneuropska hrajna informacija"
 
-#: mkt/constants/regions.py:62
+#: mkt/constants/regions.py:63
 msgid "Rest of World"
 msgstr "Zbytk swěta"
 
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:109
 msgid "Russia"
 msgstr "Ruska"
 
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:110
+msgid "Senegal"
+msgstr ""
+
+#: mkt/constants/regions.py:114
+msgid "Tanzania"
+msgstr ""
+
+#: mkt/constants/regions.py:117
 msgid "Venezuela"
 msgstr "Venezuela"
 
@@ -1989,7 +2004,7 @@ msgstr "Dojednanje"
 msgid "Submit"
 msgstr "Wotpósłać"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1467
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
 msgid "Details"
 msgstr "Podrobnosće"
 
@@ -2065,7 +2080,7 @@ msgstr "Nałoženje z tutej domenu hižo eksistuje; jenož jedne nałoženje je 
 msgid "Invalid region(s) selected."
 msgstr "Njepłaćiwy region wubrany."
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1376
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
 msgid "You must upload at least one screenshot or video."
 msgstr "Dyrbiće znajmjeńša jedne foto wobrazowki abo widejo nahrać."
 
@@ -2449,15 +2464,15 @@ msgid "My Submissions"
 msgstr "Moje zapodaća"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:136
+#: mkt/developers/models.py:137
 msgid "Donate to {0}"
 msgstr "{0} darić"
 
-#: mkt/developers/models.py:479
+#: mkt/developers/models.py:480
 msgid "Review"
 msgstr "Přepruwowanje"
 
-#: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:483 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Wersija {0}"
 
@@ -2469,35 +2484,35 @@ msgstr "Přikładna implementacija"
 msgid "Boku"
 msgstr "Boku"
 
-#: mkt/developers/tasks.py:429
+#: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Pod tutym URL njeje so žadyn manifest namakał. Wubjerće adresu a spytajće hišće raz."
 
-#: mkt/developers/tasks.py:435
+#: mkt/developers/tasks.py:409
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifesty dyrbja so z HTTP-hłowu \"Content-Type: application/x-web-app-manifest)json\" wudać. Pod %s dóstanjeće dalše informacije."
 
-#: mkt/developers/tasks.py:444
+#: mkt/developers/tasks.py:418
 msgid "Your manifest must be less than %s bytes."
 msgstr "Waš manifest dyrbi mjeńši hač %s bajtow być."
 
-#: mkt/developers/tasks.py:452
+#: mkt/developers/tasks.py:426
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Waš manifest njeje so jako płaćiwy UTF-8 skodował."
 
-#: mkt/developers/tasks.py:463
+#: mkt/developers/tasks.py:437
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Kodowanje manifesta njehodźi so k znamješkowej sadźbje podatej w HTTP Content-Type."
 
-#: mkt/developers/tasks.py:522 mkt/developers/tasks.py:528 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "a"
 
-#: mkt/developers/tasks.py:542
+#: mkt/developers/tasks.py:487
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Region {region} je so Torhošću Firefox přidał"
 
-#: mkt/developers/tasks.py:546
+#: mkt/developers/tasks.py:491
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Nowe regiony su so Torhošću Firefox přidali"
 
@@ -2567,7 +2582,7 @@ msgstr "Nałoženje je so wuspěšnje zasozapodało."
 msgid "New version successfully added."
 msgstr "Nowa wersija je so wuspěšnje přidała."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "Změny su so wuspěšnje składowali."
 
@@ -2599,35 +2614,35 @@ msgstr "Wersija je so wuspěšnje zaktiwizowała."
 msgid "Version \"{0}\" deleted."
 msgstr "Wersija \"{0}\" je so zhašała."
 
-#: mkt/developers/views.py:657
+#: mkt/developers/views.py:658
 msgid "There was an error with the submission."
 msgstr "Při přenošowanju je zmylk wustupił."
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:954
 msgid "There was an error uploading your preview."
 msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1005
 msgid "Terms of service accepted."
 msgstr "Wužiwanske wuměnjenja su so akceptowali."
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1017
 msgid "Users with the admin role cannot use the API."
 msgstr "Wužiwarjo z rólu administratora njemóža API wužiwać."
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1026
 msgid "No such API key."
 msgstr "Tajki API-kluč njeeksistuje."
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1032
 msgid "New API key generated."
 msgstr "Nowy API-kluč wutworjeny."
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1050
 msgid "Created blocklisted version."
 msgstr "Zawrjena wersija je so wutworiła."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1052
 msgid "App already blocklisted."
 msgstr "Nałoženje je hižo zawrjene."
 
@@ -3202,7 +3217,7 @@ msgstr "Spominajće na to, zo <a href=\"%(ratings_url)s\">wobsahowe pohódnoćen
 msgid "Continue"
 msgstr "Dale"
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
+#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:510
 msgid "Low-Memory Devices"
 msgstr "Graty z mało składowakom"
 
@@ -3250,7 +3265,7 @@ msgstr "Jeli waše nałoženje na gratach z mało składowakom funguje, móžeć
 msgid "Learn about low-memory devices."
 msgstr "Zhońće wjace wo gratach z mało składowakom."
 
-#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
+#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
 msgid "Do not show my app on low-memory devices"
 msgstr "Moje nałoženje na gratach z mało składowakom njepokazać"
 
@@ -3278,45 +3293,45 @@ msgstr "Nowa wersija testoweho plana k dispoziciji"
 msgid "View your most recently submitted test plan"
 msgstr "Wobhladajće sej swój najnowši přenjeseny testowy plan"
 
-#: mkt/developers/templates/developers/apps/status.html:376
-msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "Zhońće, kak móžeće swoje nałoženje na gratach Firefox OS předinstalować"
+#: mkt/developers/templates/developers/apps/status.html:377
+msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:378
-msgid "Update your test plan"
-msgstr "Zaktualizujće swój testowy plan"
+#: mkt/developers/templates/developers/apps/status.html:381
+msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
 msgstr "Nałoženje nalistować"
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
-#: mkt/developers/templates/developers/apps/status.html:477
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:414 mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:479
 msgid "Delist App"
 msgstr "Nałoženje z lisćiny wotstronić"
 
-#: mkt/developers/templates/developers/apps/status.html:395
+#: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr "Lisćinowy zapisk wašeho nałoženja je so znjemóžnił a njebudźe so na Torhošću Firefox jewić. Móžeće jón kóždy čas zaso zmóžnić."
 
-#: mkt/developers/templates/developers/apps/status.html:400
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr "Jeli lisćinowy zapisk swojeho nałoženja wotstronjeće, njebudźe so nałoženje nihdźe na Torhošću jewić."
 
-#: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "Nałoženje zhašeć"
 
-#: mkt/developers/templates/developers/apps/status.html:425
+#: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr "Jeli swoje nałoženje wotstronjeće, budźe so wono na přeco ze sydła wostronjeć. <strong>To njeda so cofnyć.</strong>"
 
-#: mkt/developers/templates/developers/apps/status.html:438
+#: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
 msgstr "Nałoženje zawrěć"
 
-#: mkt/developers/templates/developers/apps/status.html:444
+#: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
@@ -3324,16 +3339,16 @@ msgstr ""
 "Hdyž so nałoženje zawěra, dóstanu wužiwarjo aktualizaciju na wosebitu wersiju, kotraž čini nałoženje na jich gratach Firefox OS njewužiwajomne. To wotstroni tež tute nałoženje ze zjawnych stronow, "
 "doniž nowa wersija njeje zapodata a schwalena. Tute změny njedadźa so cofnyć. Prošu budźće kedźbliwy."
 
-#: mkt/developers/templates/developers/apps/status.html:453
+#: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
 msgstr "Lisćina zawrjenjow"
 
-#: mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
 msgstr "Chceće lisćinowy zapisk swojeho nałoženja woprawdźe wotstronić?"
 
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
 #: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:194
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3344,7 +3359,7 @@ msgstr "Chceće lisćinowy zapisk swojeho nałoženja woprawdźe wotstronić?"
 msgid "or"
 msgstr "abo"
 
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:518
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
 #: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:196
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3356,39 +3371,39 @@ msgstr "abo"
 msgid "Cancel"
 msgstr "Přetorhnyć"
 
-#: mkt/developers/templates/developers/apps/status.html:488
+#: mkt/developers/templates/developers/apps/status.html:490
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "Wersiju &quot;{version}&quot; zhašeć"
 
-#: mkt/developers/templates/developers/apps/status.html:489
+#: mkt/developers/templates/developers/apps/status.html:491
 msgid "Deleting the only version will result in the following:"
 msgstr "Jeli jeničku wersiju zhašeće, so tole stanje:"
 
-#: mkt/developers/templates/developers/apps/status.html:491
+#: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr "status nałoženja markěruje so jako &quot;dospołny&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:492
+#: mkt/developers/templates/developers/apps/status.html:494
 msgid "the app will be removed from our review queue"
 msgstr "nałoženje wotstroni so z čakanskeho rynka"
 
-#: mkt/developers/templates/developers/apps/status.html:493
+#: mkt/developers/templates/developers/apps/status.html:495
 msgid "the app will not be listed in our public pages"
 msgstr "nałoženje njenalistuje so na našich zjawnych stronach"
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:497
 msgid "These changes cannot be undone."
 msgstr "Tute změny njedadźa so cofnyć."
 
-#: mkt/developers/templates/developers/apps/status.html:496
+#: mkt/developers/templates/developers/apps/status.html:498
 msgid "Are you sure you wish to delete this version?"
 msgstr "Chceće tutu wersiju woprawdźe zhašeć?"
 
-#: mkt/developers/templates/developers/apps/status.html:499
+#: mkt/developers/templates/developers/apps/status.html:501
 msgid "Delete Version"
 msgstr "Wersiju zhašeć"
 
-#: mkt/developers/templates/developers/apps/status.html:510
+#: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr "Chceće woprawdźe, zo so hižo waše nałoženje na gratach z mało składowakom njepokazuje?"
 
@@ -3674,8 +3689,8 @@ msgid "Works Offline"
 msgstr "Funguje offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
-msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr "Jeli waše nałoženje bjez internetneho zwiska funguje, podamy, zo waše nałoženje \"offline funguje\"."
+msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3895,7 +3910,7 @@ msgstr "Status a wersije"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1474
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
 msgid "Content Ratings"
 msgstr "Wobsahowe pohódnoćenja"
 
@@ -4790,7 +4805,7 @@ msgid "Developing Game Apps"
 msgstr "Wuwiwanje hrajnych nałoženjow"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1480
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
 msgid "Payments"
 msgstr "Płaćenja"
 
@@ -5539,9 +5554,7 @@ msgstr "Wužiwarja zhašeć"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr ""
-"Hdyž so tutón wužiwar zhaša, so konto tutoho wužiwarja <strong>na "
-"přeco</strong> zhaša."
+msgstr "Hdyž so tutón wužiwar zhaša, so konto tutoho wužiwarja <strong>na přeco</strong> zhaša."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
@@ -5570,6 +5583,10 @@ msgstr "Podrobnosće nałoženja"
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
 msgstr "Historija pohódnoćenjow"
+
+#: mkt/lookup/templates/lookup/helpers/app_header.html:45
+msgid "Communication Dashboard"
+msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
@@ -5742,10 +5759,7 @@ msgstr "Podrobnosće testoweje kwitowanki"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr ""
-"To je strona zastupowacych symbolow za podrobnosće kwitowanki. Hdy byšće "
-"woprawdźite nałoženje z Torhošća instalował, bychu so dalše podrobnosće na "
-"tutej stronje pokazali."
+msgstr "To je strona zastupowacych symbolow za podrobnosće kwitowanki. Hdy byšće woprawdźite nałoženje z Torhošća instalował, bychu so dalše podrobnosće na tutej stronje pokazali."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
@@ -5989,31 +6003,27 @@ msgstr "Nałoženje zawrěć"
 
 #: mkt/reviewers/utils.py:420
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
-"Nałoženje na Torhošću zawrěć. To je podobne kaž Wotpokazać, ale awtorojo "
-"njemóža jo znowa zapodać. To so jenož w ekstremnych padach stawa."
+msgstr "Nałoženje na Torhošću zawrěć. To je podobne kaž Wotpokazać, ale awtorojo njemóža jo znowa zapodać. To so jenož w ekstremnych padach stawa."
 
-#: mkt/reviewers/views.py:135
+#: mkt/reviewers/views.py:136
 msgid "New Apps (Under 5 days)"
 msgstr "Nowe nałoženja (pod 5 dnjemi)"
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "Passable (5 to 10 days)"
 msgstr "Akceptabelny (5 hač do 10 dnjow)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Overdue (Over 10 days)"
 msgstr "Hižo dawno na rjedźe (přez 10 dnjow)"
 
-#: mkt/reviewers/views.py:248
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "Samopřepruwowanja dowolene njejsu."
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
-"Jenož senioriscy přepruwowarjo móža nałoženja na lisćinje blokowanjow "
-"přepruwować."
+msgstr "Jenož senioriscy přepruwowarjo móža nałoženja na lisćinje blokowanjow přepruwować."
 
 #: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
@@ -7516,12 +7526,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Waše nałoženje je so składowało a je hotowe za start! Waše nałoženje čaka "
-"tuchwilu na přepruwowanje a tak ruče hač je přepruwowane, dyrbiće swoje "
-"nałoženje přez <a href=\"%(url)s\">stronu Status zrjadować</a> manuelnje "
-"zmóžnić, zo by so na stronach lisćinowych zapiskow a w pytanskich wuslědkach "
-"jewiło. Hač do toho móžeće podrobnosće a nastajenja swojeho nałoženja "
-"optimizować."
+"Waše nałoženje je so składowało a je hotowe za start! Waše nałoženje čaka tuchwilu na přepruwowanje a tak ruče hač je přepruwowane, dyrbiće swoje nałoženje přez <a href=\"%(url)s\">stronu Status "
+"zrjadować</a> manuelnje zmóžnić, zo by so na stronach lisćinowych zapiskow a w pytanskich wuslědkach jewiło. Hač do toho móžeće podrobnosće a nastajenja swojeho nałoženja optimizować."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -7532,10 +7538,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Waše nałoženje je so składowało a hotowe za start! Waše nałoženje čaka "
-"tuchwilu na přepruwowanje a zjewi so na stronach lisćinowych zapiskow a w "
-"pytanskich wuslědkach, tak ruče hač je přepruwowane. Hač do toho móžeće "
-"podrobnosće a nastajenja wašeho nałoženja optimizować."
+"Waše nałoženje je so składowało a hotowe za start! Waše nałoženje čaka tuchwilu na přepruwowanje a zjewi so na stronach lisćinowych zapiskow a w pytanskich wuslědkach, tak ruče hač je přepruwowane. "
+"Hač do toho móžeće podrobnosće a nastajenja wašeho nałoženja optimizować."
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
@@ -7571,8 +7575,7 @@ msgstr "Podrobnosće nałoženja zapodać"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
-"<span>Připrawće <a href=\"%(rating_url)s\">wobsahowe pohódnoćenja</a></span>"
+msgstr "<span>Připrawće <a href=\"%(rating_url)s\">wobsahowe pohódnoćenja</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
@@ -7614,9 +7617,7 @@ msgstr "Waše nałoženje je so schwaliło! Jewi so nětko na stronach lisćinow
 
 #: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr ""
-"Tak ruče hač waše nałoženje je so přepruwowało, budźe so na lisćinwoych "
-"stronach a w pytanju jewić, zo bychu druzy na nim wjeselili."
+msgstr "Tak ruče hač waše nałoženje je so přepruwowało, budźe so na lisćinwoych stronach a w pytanju jewić, zo bychu druzy na nim wjeselili."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
@@ -7720,8 +7721,7 @@ msgstr "Změny zaćisnyć"
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
-"Chceće woprawdźe přełožki w rěči <b>{0}</b> wotstronić? To njeda so cofnyć."
+msgstr "Chceće woprawdźe přełožki w rěči <b>{0}</b> wotstronić? To njeda so cofnyć."
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -7823,66 +7823,66 @@ msgstr "Autentifikaciski zmylk Native FxA."
 msgid "Please use the verified email for this account."
 msgstr "Prošu wužiwajće wobkrućenu e-mejlowu adresu za tute konto."
 
-#: mkt/webapps/models.py:209
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "Pokazany"
 
-#: mkt/webapps/models.py:1367
+#: mkt/webapps/models.py:1366
 msgid "You must provide a support email or URL."
 msgstr "Dyrbiće e-mejlowu adresu abo URL za pomoc podać."
 
-#: mkt/webapps/models.py:1369
+#: mkt/webapps/models.py:1368
 msgid "You must provide an app name."
 msgstr "Dyrbiće mjeno nałoženja podać."
 
-#: mkt/webapps/models.py:1371
+#: mkt/webapps/models.py:1370
 msgid "You must provide at least one device type."
 msgstr "Dyrbiće znajmjeńša jedyn gratowy typ podać."
 
-#: mkt/webapps/models.py:1374
+#: mkt/webapps/models.py:1373
 msgid "You must provide at least one category."
 msgstr "Dyrbiće znajmjeńša jednu kategoriju podać."
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1440
 msgid "You must set up content ratings."
 msgstr "Dyrbiće wobsahowe pohódnoćenja připrawić."
 
-#: mkt/webapps/models.py:1443
+#: mkt/webapps/models.py:1442
 msgid "You must set up a payment account."
 msgstr "Dyrbiće płaćenske konto připrawić."
 
-#: mkt/webapps/models.py:1468
+#: mkt/webapps/models.py:1467
 msgid "This app's submission process has not been fully completed."
 msgstr "Zapodawanski proces nałoženja njeje so dospołnje zakónčił."
 
-#: mkt/webapps/models.py:1475
+#: mkt/webapps/models.py:1474
 msgid "This app needs to get a content rating."
 msgstr "Tute nałoženje trjeba wobsahowe pohódnoćenje."
 
-#: mkt/webapps/models.py:1481
+#: mkt/webapps/models.py:1480
 msgid "This app needs a payment account set up."
 msgstr "Tute nałoženje trjeba připrawjene płaćenske konto."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2796
+#: mkt/webapps/models.py:2739
 msgid "awaiting approval"
 msgstr "čaka na schwalenje"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2798
+#: mkt/webapps/models.py:2741
 msgid "rejected"
 msgstr "wotpokazany"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2800
+#: mkt/webapps/models.py:2743
 msgid "requires additional review"
 msgstr "wužaduje sej přidatne přepruwowanje"
 
-#: mkt/webapps/models.py:2851
+#: mkt/webapps/models.py:2794
 msgid "{region} approval status"
 msgstr "schwalenski status za {region}"
 
-#: mkt/webapps/models.py:2859
+#: mkt/webapps/models.py:2802
 msgid "{region} nomination date"
 msgstr "Nominowanski datum za {region}"
 

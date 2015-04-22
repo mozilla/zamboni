@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:06-0700\n"
+"POT-Creation-Date: 2015-04-22 14:23-0700\n"
 "PO-Revision-Date: 2015-03-27 08:57+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -150,7 +150,7 @@ msgstr "Антарктида"
 msgid "Antigua and Barbuda"
 msgstr "Антигуа и Барбуда"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
 msgid "Argentina"
 msgstr "Аржентина"
 
@@ -182,7 +182,7 @@ msgstr "Бахамски острови"
 msgid "Bahrain"
 msgstr "Бахрейн"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
 msgid "Bangladesh"
 msgstr "Бангладеш"
 
@@ -226,7 +226,7 @@ msgstr "Бонер, Свети Евстатиус и Саба"
 msgid "Bosnia and Herzegovina"
 msgstr "Босна и Херцеговина"
 
-#: mkt/constants/bango.py:48
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
 msgid "Botswana"
 msgstr "Ботсуана"
 
@@ -234,7 +234,7 @@ msgstr "Ботсуана"
 msgid "Bouvet Island"
 msgstr "Остров Буве"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
 msgid "Brazil"
 msgstr "Бразилия"
 
@@ -262,7 +262,7 @@ msgstr "Бурунди"
 msgid "Cambodia"
 msgstr "Камбоджа"
 
-#: mkt/constants/bango.py:57
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
 msgid "Cameroon"
 msgstr "Камерун"
 
@@ -286,11 +286,11 @@ msgstr "Централна Африканска Република"
 msgid "Chad"
 msgstr "Чад"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
 msgid "Chile"
 msgstr "Чили"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
 msgid "China"
 msgstr "Китай"
 
@@ -302,7 +302,7 @@ msgstr "Остров Рождество"
 msgid "Cocos (Keeling) Islands"
 msgstr "Кокосови острови"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
 msgid "Colombia"
 msgstr "Колумбия"
 
@@ -322,11 +322,11 @@ msgstr "Конго, Демократична Република"
 msgid "Cook Islands"
 msgstr "Острови Кук"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
 msgid "Costa Rica"
 msgstr "Коста Рика"
 
-#: mkt/constants/bango.py:73
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
 msgid "Côte d'Ivoire"
 msgstr "Бряг на слоновата кост"
 
@@ -346,7 +346,7 @@ msgstr "Кюрасао"
 msgid "Cyprus"
 msgstr "Кипър"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
 msgid "Czech Republic"
 msgstr "Чешка република"
 
@@ -366,15 +366,15 @@ msgstr "Доминиканска общност"
 msgid "Dominican Republic"
 msgstr "Доминиканска Република"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
 msgid "Ecuador"
 msgstr "Еквадор"
 
-#: mkt/constants/bango.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
 msgid "Egypt"
 msgstr "Египет"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
 msgid "El Salvador"
 msgstr "Ел Салвадор"
 
@@ -410,7 +410,7 @@ msgstr "Фиджи"
 msgid "Finland"
 msgstr "Финландия"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
 msgid "France"
 msgstr "Франция"
 
@@ -438,7 +438,7 @@ msgstr "Гамбия"
 msgid "Georgia"
 msgstr "Грузия"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
 msgid "Germany"
 msgstr "Германия"
 
@@ -450,7 +450,7 @@ msgstr "Гана"
 msgid "Gibraltar"
 msgstr "Гибралтар"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "Гърция"
 
@@ -470,7 +470,7 @@ msgstr "Гваделупа"
 msgid "Guam"
 msgstr "Гуам"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "Гватемала"
 
@@ -482,7 +482,7 @@ msgstr "Гърнзи"
 msgid "Guinea"
 msgstr "Гвинея"
 
-#: mkt/constants/bango.py:112
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
 msgid "Guinea-Bissau"
 msgstr "Гвинея-Бисау"
 
@@ -510,7 +510,7 @@ msgstr "Хондурас"
 msgid "Hong Kong"
 msgstr "Хонконг"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "Унгария"
 
@@ -518,7 +518,7 @@ msgstr "Унгария"
 msgid "Iceland"
 msgstr "Исландия"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "Индия"
 
@@ -546,7 +546,7 @@ msgstr "Остров Ман"
 msgid "Israel"
 msgstr "Израел"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "Италия"
 
@@ -554,7 +554,7 @@ msgstr "Италия"
 msgid "Jamaica"
 msgstr "Ямайка"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "Япония"
 
@@ -562,7 +562,7 @@ msgstr "Япония"
 msgid "Jersey"
 msgstr "Джърси"
 
-#: mkt/constants/bango.py:132
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "Йордания"
 
@@ -626,7 +626,7 @@ msgstr "Либийска Арабска Джамахирия"
 msgid "Liechtenstei"
 msgstr "Лихтенщаин"
 
-#: mkt/constants/bango.py:148
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
 msgid "Lithuania"
 msgstr "Литва"
 
@@ -642,7 +642,7 @@ msgstr "Макао"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Македония, бивша Югославска Република"
 
-#: mkt/constants/bango.py:152
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
 msgid "Madagascar"
 msgstr "Мадагаскар"
 
@@ -658,7 +658,7 @@ msgstr "Малайзия"
 msgid "Maldives"
 msgstr "Малдиви"
 
-#: mkt/constants/bango.py:156
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
 msgid "Mali"
 msgstr "Мали"
 
@@ -678,7 +678,7 @@ msgstr "Мартиника"
 msgid "Mauritania"
 msgstr "Мавритания"
 
-#: mkt/constants/bango.py:161
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
 msgid "Mauritius"
 msgstr "Мавриций"
 
@@ -686,7 +686,7 @@ msgstr "Мавриций"
 msgid "Mayotte"
 msgstr "Майот"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
 msgid "Mexico"
 msgstr "Мексико"
 
@@ -706,7 +706,7 @@ msgstr "Монако"
 msgid "Mongolia"
 msgstr "Монголия"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
 msgid "Montenegro"
 msgstr "Черна гора"
 
@@ -722,7 +722,7 @@ msgstr "Мароко"
 msgid "Mozambique"
 msgstr "Мозамбик"
 
-#: mkt/constants/bango.py:172
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
 msgid "Myanmar"
 msgstr "Мианмар"
 
@@ -750,11 +750,11 @@ msgstr "Нова Каледония"
 msgid "New Zealand"
 msgstr "Нова Зеландия"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
 msgid "Nicaragua"
 msgstr "Никарагуа"
 
-#: mkt/constants/bango.py:180
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
 msgid "Niger"
 msgstr "Нигер"
 
@@ -794,7 +794,7 @@ msgstr "Палау"
 msgid "Palestinian Territory, Occupied"
 msgstr "Палестинска територия, окупирана"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
 msgid "Panama"
 msgstr "Панама"
 
@@ -806,11 +806,11 @@ msgstr "Папуа-Нова Гвинея"
 msgid "Paraguay"
 msgstr "Парагвай"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
 msgid "Peru"
 msgstr "Перу"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
 msgid "Philippines"
 msgstr "Филипини"
 
@@ -818,7 +818,7 @@ msgstr "Филипини"
 msgid "Pitcairn"
 msgstr "Питкерн"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
 msgid "Poland"
 msgstr "Полша"
 
@@ -898,7 +898,7 @@ msgstr "Саудитска Арабия"
 msgid "Senega"
 msgstr "Сенега"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
 msgid "Serbia"
 msgstr "Сърбия"
 
@@ -938,7 +938,7 @@ msgstr "Соломонови острови"
 msgid "Somalia"
 msgstr "Сомалия"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
 msgid "South Africa"
 msgstr "Република Южна Африка"
 
@@ -950,7 +950,7 @@ msgstr "Южна Джорджия и Южни Сандвичеви остров�
 msgid "South Sudan"
 msgstr "Южен Судан"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
 msgid "Spain"
 msgstr "Испания"
 
@@ -1022,7 +1022,7 @@ msgstr "Тонга"
 msgid "Trinidad and Tobago"
 msgstr "Тринидад и Тобаго"
 
-#: mkt/constants/bango.py:247
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
 msgid "Tunisia"
 msgstr "Тунис"
 
@@ -1054,11 +1054,11 @@ msgstr "Украйна"
 msgid "United Arab Emirates"
 msgstr "Обединени арабски емирства"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
 msgid "United Kingdom"
 msgstr "Обединеното кралство"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
 msgid "United States"
 msgstr "САЩ"
 
@@ -1066,7 +1066,7 @@ msgstr "САЩ"
 msgid "United States Minor Outlying Islands"
 msgstr "Малки отдалечени острови на Съединените щати"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
 msgid "Uruguay"
 msgstr "Уругвай"
 
@@ -1074,7 +1074,7 @@ msgstr "Уругвай"
 msgid "Uzbekistan"
 msgstr "Узбекистан"
 
-#: mkt/constants/bango.py:260
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
 msgid "Vanuatu"
 msgstr "Вануату"
 
@@ -1442,386 +1442,394 @@ msgstr ""
 msgid "Public reviewer comment"
 msgstr ""
 
-#: mkt/constants/features.py:17
+#: mkt/constants/features.py:18
 msgid "App Management API"
 msgstr ""
 
-#: mkt/constants/features.py:18
+#: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
 
-#: mkt/constants/features.py:23
+#: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
 msgstr ""
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
 
-#: mkt/constants/features.py:30
+#: mkt/constants/features.py:31
 msgid "Web Payment"
 msgstr ""
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:32
 msgid "The app requires the `navigator.mozApps` API."
 msgstr ""
 
-#: mkt/constants/features.py:35
+#: mkt/constants/features.py:36
 msgid "Web Activities"
 msgstr ""
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr ""
 
-#: mkt/constants/features.py:41
+#: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
 msgstr ""
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr ""
 
-#: mkt/constants/features.py:47
+#: mkt/constants/features.py:48
 msgid "Archive"
 msgstr ""
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
 msgstr ""
 
-#: mkt/constants/features.py:52
+#: mkt/constants/features.py:53
 msgid "Battery"
 msgstr "Батерия"
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
 msgstr ""
 
-#: mkt/constants/features.py:58
+#: mkt/constants/features.py:59
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr ""
 
-#: mkt/constants/features.py:63
+#: mkt/constants/features.py:64
 msgid "Contacts"
 msgstr "Контакти"
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr ""
 
-#: mkt/constants/features.py:69
+#: mkt/constants/features.py:70
 msgid "Device Storage"
 msgstr ""
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:71
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
 
-#: mkt/constants/features.py:76
+#: mkt/constants/features.py:77
 msgid "The app requires the platform to support IndexedDB."
 msgstr ""
 
-#: mkt/constants/features.py:81
+#: mkt/constants/features.py:82
 msgid "Geolocation"
 msgstr "Местоположение"
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
 
-#: mkt/constants/features.py:87
+#: mkt/constants/features.py:88
 msgid "Idle"
 msgstr ""
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr ""
 
-#: mkt/constants/features.py:93
+#: mkt/constants/features.py:94
 msgid "Network Information"
 msgstr ""
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
 
-#: mkt/constants/features.py:100
+#: mkt/constants/features.py:101
 msgid "Network Stats"
 msgstr ""
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:102
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr ""
 
-#: mkt/constants/features.py:106
+#: mkt/constants/features.py:107
 msgid "Proximity"
 msgstr ""
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:108
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr ""
 
-#: mkt/constants/features.py:112
+#: mkt/constants/features.py:113
 msgid "Simple Push"
 msgstr ""
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:114
 msgid "The app requires the `navigator.mozPush` API."
 msgstr ""
 
-#: mkt/constants/features.py:117
+#: mkt/constants/features.py:118
 msgid "Screen Orientation"
 msgstr ""
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:119
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr ""
 
-#: mkt/constants/features.py:123
+#: mkt/constants/features.py:124
 msgid "Time/Clock"
 msgstr ""
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:125
 msgid "The app requires the `navigator.mozTime` API."
 msgstr ""
 
-#: mkt/constants/features.py:128
+#: mkt/constants/features.py:129
 msgid "Vibration"
 msgstr ""
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
 
-#: mkt/constants/features.py:135
+#: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr ""
 
-#: mkt/constants/features.py:141
+#: mkt/constants/features.py:142
 msgid "The app requires the `navigator.mozSms` API."
 msgstr ""
 
-#: mkt/constants/features.py:145
+#: mkt/constants/features.py:146
 msgid "Touch"
 msgstr ""
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
 
-#: mkt/constants/features.py:152
+#: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr ""
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:154
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
 
-#: mkt/constants/features.py:163
+#: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
 
-#: mkt/constants/features.py:168
+#: mkt/constants/features.py:169
 msgid "Audio"
 msgstr ""
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr ""
 
-#: mkt/constants/features.py:174
+#: mkt/constants/features.py:175
 msgid "Web Audio"
 msgstr ""
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
 
-#: mkt/constants/features.py:181
+#: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
 
-#: mkt/constants/features.py:187
+#: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
 
-#: mkt/constants/features.py:192
+#: mkt/constants/features.py:193
 msgid "Full Screen"
 msgstr ""
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
 
-#: mkt/constants/features.py:199
+#: mkt/constants/features.py:200
 msgid "Gamepad"
 msgstr ""
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
 
-#: mkt/constants/features.py:205
+#: mkt/constants/features.py:206
 msgid "Quota Management"
 msgstr ""
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:207
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
 
-#: mkt/constants/features.py:214
+#: mkt/constants/features.py:215
 msgid "Camera"
 msgstr "Камера"
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
 
-#: mkt/constants/features.py:221
+#: mkt/constants/features.py:222
 msgid "Microphone"
 msgstr ""
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
 
-#: mkt/constants/features.py:227
+#: mkt/constants/features.py:228
 msgid "Screen Capture"
 msgstr ""
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
 
-#: mkt/constants/features.py:234
+#: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
 msgstr ""
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:236
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
 
-#: mkt/constants/features.py:241
+#: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
 msgstr ""
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
 
-#: mkt/constants/features.py:248
+#: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
 msgstr ""
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
 
-#: mkt/constants/features.py:255
+#: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
 msgstr ""
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr ""
 
-#: mkt/constants/features.py:261
+#: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
 msgstr ""
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
 
-#: mkt/constants/features.py:267
+#: mkt/constants/features.py:268
 msgid "Pointer Lock"
 msgstr ""
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:269
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
 
-#: mkt/constants/features.py:274
+#: mkt/constants/features.py:275
 msgid "Notifications"
 msgstr "Известия"
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
 
-#: mkt/constants/features.py:281
+#: mkt/constants/features.py:282
 msgid "Alarms"
 msgstr ""
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
 
-#: mkt/constants/features.py:289
+#: mkt/constants/features.py:290
 msgid "SystemXHR"
 msgstr ""
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
 
-#: mkt/constants/features.py:296
+#: mkt/constants/features.py:297
 msgid "TCP Sockets"
 msgstr ""
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr ""
 
-#: mkt/constants/features.py:302
+#: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
 msgstr ""
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
 msgstr ""
 
-#: mkt/constants/features.py:308
+#: mkt/constants/features.py:309
 msgid "Multiple Network Information"
 msgstr ""
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:310
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
 
-#: mkt/constants/features.py:315
+#: mkt/constants/features.py:316
 msgid "Mobile ID"
 msgstr ""
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr ""
 
-#: mkt/constants/features.py:321
+#: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
 msgstr ""
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
 
-#: mkt/constants/features.py:327
+#: mkt/constants/features.py:328
 msgid "512MB RAM Device"
 msgstr "Устройство с 512MB RAM"
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr ""
 
-#: mkt/constants/features.py:333
+#: mkt/constants/features.py:334
 msgid "1GB RAM Device"
 msgstr "Устройство с 1GB RAM"
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:335
 msgid "The app requires the device to have at least 1GB RAM."
+msgstr ""
+
+#: mkt/constants/features.py:340
+msgid "NFC"
+msgstr ""
+
+#: mkt/constants/features.py:341
+msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr ""
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
@@ -1967,15 +1975,23 @@ msgstr "Европа"
 msgid "Pan European Game Information"
 msgstr "Паневропейска информация за игрите"
 
-#: mkt/constants/regions.py:62
+#: mkt/constants/regions.py:63
 msgid "Rest of World"
 msgstr "Останалата част от света"
 
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:109
 msgid "Russia"
 msgstr "Русия"
 
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:110
+msgid "Senegal"
+msgstr ""
+
+#: mkt/constants/regions.py:114
+msgid "Tanzania"
+msgstr ""
+
+#: mkt/constants/regions.py:117
 msgid "Venezuela"
 msgstr "Венецуела"
 
@@ -1995,7 +2011,7 @@ msgstr "Споразумение"
 msgid "Submit"
 msgstr "Прати"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1467
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
 msgid "Details"
 msgstr "Детайли"
 
@@ -2071,7 +2087,7 @@ msgstr ""
 msgid "Invalid region(s) selected."
 msgstr ""
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1376
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
@@ -2461,15 +2477,15 @@ msgid "My Submissions"
 msgstr ""
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:136
+#: mkt/developers/models.py:137
 msgid "Donate to {0}"
 msgstr "Дарете на {0}"
 
-#: mkt/developers/models.py:479
+#: mkt/developers/models.py:480
 msgid "Review"
 msgstr "Отзив"
 
-#: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:483 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Версия {0}"
 
@@ -2481,37 +2497,37 @@ msgstr ""
 msgid "Boku"
 msgstr "Boku"
 
-#: mkt/developers/tasks.py:429
+#: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
 
-#: mkt/developers/tasks.py:435
+#: mkt/developers/tasks.py:409
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
 
 # 82%
 # 100%
-#: mkt/developers/tasks.py:444
+#: mkt/developers/tasks.py:418
 msgid "Your manifest must be less than %s bytes."
 msgstr "Манифестът трябва да бъде по-малък от %s байта."
 
-#: mkt/developers/tasks.py:452
+#: mkt/developers/tasks.py:426
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr ""
 
-#: mkt/developers/tasks.py:463
+#: mkt/developers/tasks.py:437
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:522 mkt/developers/tasks.py:528 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "и"
 
-#: mkt/developers/tasks.py:542
+#: mkt/developers/tasks.py:487
 msgid "{region} region added to the Firefox Marketplace"
 msgstr ""
 
-#: mkt/developers/tasks.py:546
+#: mkt/developers/tasks.py:491
 msgid "New regions added to the Firefox Marketplace"
 msgstr ""
 
@@ -2585,7 +2601,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "Промените запазени успешно."
 
@@ -2619,35 +2635,35 @@ msgstr ""
 msgid "Version \"{0}\" deleted."
 msgstr "Версия „{0}“ изтрита."
 
-#: mkt/developers/views.py:657
+#: mkt/developers/views.py:658
 msgid "There was an error with the submission."
 msgstr "Стана грешка при пращането на добавката."
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:954
 msgid "There was an error uploading your preview."
 msgstr "Стана грешка при качването на рецензията ви."
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1005
 msgid "Terms of service accepted."
 msgstr ""
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1017
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1026
 msgid "No such API key."
 msgstr ""
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1032
 msgid "New API key generated."
 msgstr ""
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1050
 msgid "Created blocklisted version."
 msgstr ""
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1052
 msgid "App already blocklisted."
 msgstr ""
 
@@ -3227,7 +3243,7 @@ msgstr ""
 msgid "Continue"
 msgstr "Напред"
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
+#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:510
 msgid "Low-Memory Devices"
 msgstr "Устройства с малко памет"
 
@@ -3275,7 +3291,7 @@ msgstr ""
 msgid "Learn about low-memory devices."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
+#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
 msgid "Do not show my app on low-memory devices"
 msgstr ""
 
@@ -3303,62 +3319,62 @@ msgstr ""
 msgid "View your most recently submitted test plan"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:376
-msgid "Learn how to get your app pre-installed on Firefox OS devices"
+#: mkt/developers/templates/developers/apps/status.html:377
+msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:378
-msgid "Update your test plan"
+#: mkt/developers/templates/developers/apps/status.html:381
+msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
-#: mkt/developers/templates/developers/apps/status.html:477
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:414 mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:479
 msgid "Delist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:395
+#: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:400
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:425
+#: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:438
+#: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:444
+#: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:453
+#: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
 msgstr "Списък с блокирани"
 
-#: mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
 msgstr ""
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
 #: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:194
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3369,7 +3385,7 @@ msgstr ""
 msgid "or"
 msgstr "или"
 
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:518
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
 #: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:196
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3381,39 +3397,39 @@ msgstr "или"
 msgid "Cancel"
 msgstr "Откажи"
 
-#: mkt/developers/templates/developers/apps/status.html:488
+#: mkt/developers/templates/developers/apps/status.html:490
 msgid "Delete Version &quot;{version}&quot;"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:489
+#: mkt/developers/templates/developers/apps/status.html:491
 msgid "Deleting the only version will result in the following:"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:491
+#: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:492
+#: mkt/developers/templates/developers/apps/status.html:494
 msgid "the app will be removed from our review queue"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:493
+#: mkt/developers/templates/developers/apps/status.html:495
 msgid "the app will not be listed in our public pages"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:497
 msgid "These changes cannot be undone."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:496
+#: mkt/developers/templates/developers/apps/status.html:498
 msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:499
+#: mkt/developers/templates/developers/apps/status.html:501
 msgid "Delete Version"
 msgstr "Изтрий версия"
 
-#: mkt/developers/templates/developers/apps/status.html:510
+#: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
 
@@ -3689,7 +3705,7 @@ msgid "Works Offline"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
-msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
+msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
@@ -3924,7 +3940,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1474
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
 msgid "Content Ratings"
 msgstr ""
 
@@ -4801,7 +4817,7 @@ msgid "Developing Game Apps"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1480
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
 msgid "Payments"
 msgstr "Плащания"
 
@@ -5591,6 +5607,10 @@ msgstr ""
 msgid "Review History"
 msgstr ""
 
+#: mkt/lookup/templates/lookup/helpers/app_header.html:45
+msgid "Communication Dashboard"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
 msgstr ""
@@ -6020,23 +6040,23 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:135
+#: mkt/reviewers/views.py:136
 msgid "New Apps (Under 5 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:248
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "Собствени рецензии не са позволени."
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
@@ -7829,66 +7849,66 @@ msgid "Please use the verified email for this account."
 msgstr ""
 
 # Column name in a table.
-#: mkt/webapps/models.py:209
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "Изброен"
 
-#: mkt/webapps/models.py:1367
+#: mkt/webapps/models.py:1366
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1369
+#: mkt/webapps/models.py:1368
 msgid "You must provide an app name."
 msgstr ""
 
-#: mkt/webapps/models.py:1371
+#: mkt/webapps/models.py:1370
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:1374
+#: mkt/webapps/models.py:1373
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1440
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:1443
+#: mkt/webapps/models.py:1442
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:1468
+#: mkt/webapps/models.py:1467
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1475
+#: mkt/webapps/models.py:1474
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1481
+#: mkt/webapps/models.py:1480
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2796
+#: mkt/webapps/models.py:2739
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2798
+#: mkt/webapps/models.py:2741
 msgid "rejected"
 msgstr "отказан"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2800
+#: mkt/webapps/models.py:2743
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2851
+#: mkt/webapps/models.py:2794
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2859
+#: mkt/webapps/models.py:2802
 msgid "{region} nomination date"
 msgstr ""
 

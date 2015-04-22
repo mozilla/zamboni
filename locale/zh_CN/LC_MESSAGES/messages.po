@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:06-0700\n"
+"POT-Creation-Date: 2015-04-22 14:23-0700\n"
 "PO-Revision-Date: 2015-04-01 18:53+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr "南极洲"
 msgid "Antigua and Barbuda"
 msgstr "安提瓜和巴布达"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
 msgid "Argentina"
 msgstr "阿根廷"
 
@@ -175,7 +175,7 @@ msgstr "巴哈马"
 msgid "Bahrain"
 msgstr "巴林"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
 msgid "Bangladesh"
 msgstr "孟加拉国"
 
@@ -219,7 +219,7 @@ msgstr "博内尔岛，圣圣尤斯特歇斯和萨巴岛"
 msgid "Bosnia and Herzegovina"
 msgstr "波黑"
 
-#: mkt/constants/bango.py:48
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
 msgid "Botswana"
 msgstr "博茨瓦纳"
 
@@ -227,7 +227,7 @@ msgstr "博茨瓦纳"
 msgid "Bouvet Island"
 msgstr "布维岛"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
 msgid "Brazil"
 msgstr "巴西"
 
@@ -255,7 +255,7 @@ msgstr "布隆迪"
 msgid "Cambodia"
 msgstr "柬埔寨"
 
-#: mkt/constants/bango.py:57
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
 msgid "Cameroon"
 msgstr "喀麦隆"
 
@@ -279,11 +279,11 @@ msgstr "中非共和国"
 msgid "Chad"
 msgstr "乍得"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
 msgid "Chile"
 msgstr "智利"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
 msgid "China"
 msgstr "中国"
 
@@ -295,7 +295,7 @@ msgstr "圣诞岛"
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯群岛"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
 msgid "Colombia"
 msgstr "哥伦比亚"
 
@@ -315,11 +315,11 @@ msgstr "刚果民主共和国"
 msgid "Cook Islands"
 msgstr "库克群岛"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
 msgid "Costa Rica"
 msgstr "哥斯达黎加"
 
-#: mkt/constants/bango.py:73
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
 msgid "Côte d'Ivoire"
 msgstr "科特迪瓦"
 
@@ -339,7 +339,7 @@ msgstr "库拉索岛"
 msgid "Cyprus"
 msgstr "塞浦路斯"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
 msgid "Czech Republic"
 msgstr "捷克共和国"
 
@@ -359,15 +359,15 @@ msgstr "多美尼加"
 msgid "Dominican Republic"
 msgstr "多美尼加共和国"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
 msgid "Ecuador"
 msgstr "厄瓜多尔"
 
-#: mkt/constants/bango.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
 msgid "Egypt"
 msgstr "埃及"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
 msgid "El Salvador"
 msgstr "萨尔瓦多"
 
@@ -403,7 +403,7 @@ msgstr "斐济"
 msgid "Finland"
 msgstr "芬兰"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
 msgid "France"
 msgstr "法国"
 
@@ -431,7 +431,7 @@ msgstr "冈比亚"
 msgid "Georgia"
 msgstr "格鲁吉亚"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
 msgid "Germany"
 msgstr "德国"
 
@@ -443,7 +443,7 @@ msgstr "加纳"
 msgid "Gibraltar"
 msgstr "直布罗陀"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "希腊"
 
@@ -463,7 +463,7 @@ msgstr "瓜德罗普岛"
 msgid "Guam"
 msgstr "关岛"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "危地马拉"
 
@@ -475,7 +475,7 @@ msgstr "根西岛"
 msgid "Guinea"
 msgstr "几内亚"
 
-#: mkt/constants/bango.py:112
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
 msgid "Guinea-Bissau"
 msgstr "几内亚比绍共和国"
 
@@ -503,7 +503,7 @@ msgstr "洪都拉斯"
 msgid "Hong Kong"
 msgstr "中国香港"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "匈牙利"
 
@@ -511,7 +511,7 @@ msgstr "匈牙利"
 msgid "Iceland"
 msgstr "冰岛"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "印度"
 
@@ -539,7 +539,7 @@ msgstr "马恩岛"
 msgid "Israel"
 msgstr "以色列"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "意大利"
 
@@ -547,7 +547,7 @@ msgstr "意大利"
 msgid "Jamaica"
 msgstr "牙买加"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "日本"
 
@@ -555,7 +555,7 @@ msgstr "日本"
 msgid "Jersey"
 msgstr "泽西岛"
 
-#: mkt/constants/bango.py:132
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "约旦"
 
@@ -619,7 +619,7 @@ msgstr "阿拉伯利比亚民众国"
 msgid "Liechtenstei"
 msgstr "列支敦士登"
 
-#: mkt/constants/bango.py:148
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
 msgid "Lithuania"
 msgstr "立陶宛"
 
@@ -635,7 +635,7 @@ msgstr "中国澳门"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "前南斯拉夫的马其顿共和国"
 
-#: mkt/constants/bango.py:152
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
 msgid "Madagascar"
 msgstr "马达加斯加"
 
@@ -651,7 +651,7 @@ msgstr "马来西亚"
 msgid "Maldives"
 msgstr "马尔代夫"
 
-#: mkt/constants/bango.py:156
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
 msgid "Mali"
 msgstr "马里"
 
@@ -671,7 +671,7 @@ msgstr "马提尼克"
 msgid "Mauritania"
 msgstr "毛里塔尼亚"
 
-#: mkt/constants/bango.py:161
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
 msgid "Mauritius"
 msgstr "毛里求斯"
 
@@ -679,7 +679,7 @@ msgstr "毛里求斯"
 msgid "Mayotte"
 msgstr "马约特岛"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
 msgid "Mexico"
 msgstr "墨西哥"
 
@@ -699,7 +699,7 @@ msgstr "摩纳哥"
 msgid "Mongolia"
 msgstr "蒙古"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
 msgid "Montenegro"
 msgstr "黑山"
 
@@ -715,7 +715,7 @@ msgstr "摩洛哥"
 msgid "Mozambique"
 msgstr "莫桑比克"
 
-#: mkt/constants/bango.py:172
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
 msgid "Myanmar"
 msgstr "缅甸"
 
@@ -743,11 +743,11 @@ msgstr "新喀里多尼亚"
 msgid "New Zealand"
 msgstr "新西兰"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
 
-#: mkt/constants/bango.py:180
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
 msgid "Niger"
 msgstr "尼日尔"
 
@@ -787,7 +787,7 @@ msgstr "帕劳"
 msgid "Palestinian Territory, Occupied"
 msgstr "巴勒斯坦被占领土"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
 msgid "Panama"
 msgstr "巴拿马"
 
@@ -799,11 +799,11 @@ msgstr "巴布亚新几内亚"
 msgid "Paraguay"
 msgstr "巴拉圭"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
 msgid "Peru"
 msgstr "秘鲁"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
 msgid "Philippines"
 msgstr "菲律宾"
 
@@ -811,7 +811,7 @@ msgstr "菲律宾"
 msgid "Pitcairn"
 msgstr "皮特凯恩"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
 msgid "Poland"
 msgstr "波兰"
 
@@ -891,7 +891,7 @@ msgstr "沙特阿拉伯"
 msgid "Senega"
 msgstr "塞内加尔"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
 msgid "Serbia"
 msgstr "塞尔维亚"
 
@@ -931,7 +931,7 @@ msgstr "所罗门群岛"
 msgid "Somalia"
 msgstr "索马里"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
 msgid "South Africa"
 msgstr "南非"
 
@@ -943,7 +943,7 @@ msgstr "南乔治亚岛和南桑维奇群岛"
 msgid "South Sudan"
 msgstr "南苏丹"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
 msgid "Spain"
 msgstr "西班牙"
 
@@ -1015,7 +1015,7 @@ msgstr "汤加"
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
 
-#: mkt/constants/bango.py:247
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
 msgid "Tunisia"
 msgstr "突尼斯"
 
@@ -1047,11 +1047,11 @@ msgstr "乌克兰"
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
 msgid "United Kingdom"
 msgstr "英国"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
 msgid "United States"
 msgstr "美国"
 
@@ -1059,7 +1059,7 @@ msgstr "美国"
 msgid "United States Minor Outlying Islands"
 msgstr "美国本土外小岛屿"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
 msgid "Uruguay"
 msgstr "乌拉圭"
 
@@ -1067,7 +1067,7 @@ msgstr "乌拉圭"
 msgid "Uzbekistan"
 msgstr "乌兹别克斯坦"
 
-#: mkt/constants/bango.py:260
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
 msgid "Vanuatu"
 msgstr "瓦努阿图"
 
@@ -1435,387 +1435,395 @@ msgstr "给审核者的版本说明"
 msgid "Public reviewer comment"
 msgstr "给审核者的公开留言"
 
-#: mkt/constants/features.py:17
+#: mkt/constants/features.py:18
 msgid "App Management API"
 msgstr "应用程序管理 API"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr "这个应用程序需要 `navigator.mozApps` API 以安装并管理其他应用程序。"
 
-#: mkt/constants/features.py:23
+#: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
 msgstr "封装应用程序安装 API"
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr "这个应用程序需要 `navigator.mozApps.installPackage` API 以安装其他封装应用。"
 
-#: mkt/constants/features.py:30
+#: mkt/constants/features.py:31
 msgid "Web Payment"
 msgstr "网络支付"
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:32
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "该应用请求使用 `navigator.mozApps` API。"
 
-#: mkt/constants/features.py:35
+#: mkt/constants/features.py:36
 msgid "Web Activities"
 msgstr "网络活动"
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "该应用请求进行网络活动（使用 `MozActivity` API）。"
 
-#: mkt/constants/features.py:41
+#: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
 msgstr "光度感应器"
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "该应用请求使用环境光传感器（使用 `navigator.mozApps.installPackage` API）。"
 
-#: mkt/constants/features.py:47
+#: mkt/constants/features.py:48
 msgid "Archive"
 msgstr "存档"
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
 msgstr "此应用需要 `ArchiveReader` API。"
 
-#: mkt/constants/features.py:52
+#: mkt/constants/features.py:53
 msgid "Battery"
 msgstr "电池"
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
 msgstr "该应用请求使用 `navigator.battery` API。"
 
-#: mkt/constants/features.py:58
+#: mkt/constants/features.py:59
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "该应用请求使用 `navigator.mozBluetooth` API。"
 
-#: mkt/constants/features.py:63
+#: mkt/constants/features.py:64
 msgid "Contacts"
 msgstr "联系人"
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "该应用请求使用 `navigator.mozContacts` API。"
 
-#: mkt/constants/features.py:69
+#: mkt/constants/features.py:70
 msgid "Device Storage"
 msgstr "存储设备"
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:71
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr "这个应用程序需要设备存储 API 来存取文件系统中的文件。"
 
-#: mkt/constants/features.py:76
+#: mkt/constants/features.py:77
 msgid "The app requires the platform to support IndexedDB."
 msgstr "该应用需要支持 IndexedDB 的平台。"
 
-#: mkt/constants/features.py:81
+#: mkt/constants/features.py:82
 msgid "Geolocation"
 msgstr "位置"
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr "该应用需要支持 `navigator.geolocation` API 的平台。"
 
-#: mkt/constants/features.py:87
+#: mkt/constants/features.py:88
 msgid "Idle"
 msgstr "空闲"
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr "此应用需要平台支持 `addIdleObserver` API。"
 
-#: mkt/constants/features.py:93
+#: mkt/constants/features.py:94
 msgid "Network Information"
 msgstr "网络信息"
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr "该应用请求获取有关网络连接信息的权限（使用  `navigator.mozConnection` API）。"
 
-#: mkt/constants/features.py:100
+#: mkt/constants/features.py:101
 msgid "Network Stats"
 msgstr "网络状况"
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:102
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "该应用请求使用 `navigator.mozNetworkStats` API。"
 
-#: mkt/constants/features.py:106
+#: mkt/constants/features.py:107
 msgid "Proximity"
 msgstr "距离"
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:108
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "该应用请求使用近距离传感器（使用 `ondeviceproximity` API）。"
 
-#: mkt/constants/features.py:112
+#: mkt/constants/features.py:113
 msgid "Simple Push"
 msgstr "简单推送"
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:114
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "该应用请求使用近距离传感器（使用 `ondeviceproximity` API）。"
 
-#: mkt/constants/features.py:117
+#: mkt/constants/features.py:118
 msgid "Screen Orientation"
 msgstr "屏幕方位"
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:119
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "该应用需要支持 `ondeviceorientation` API 的平台。"
 
-#: mkt/constants/features.py:123
+#: mkt/constants/features.py:124
 msgid "Time/Clock"
 msgstr "时间/时钟"
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:125
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "该应用请求使用 `navigator.mozTime` API。"
 
-#: mkt/constants/features.py:128
+#: mkt/constants/features.py:129
 msgid "Vibration"
 msgstr "震动"
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr "该应用需要支持振动功能（ `navigator.vibrate` API）的设备。"
 
-#: mkt/constants/features.py:135
+#: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "该应用请求使用 `navigator.mozFM` 或 `navigator.mozFMRadio` API。"
 
-#: mkt/constants/features.py:141
+#: mkt/constants/features.py:142
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "该应用请求使用 `navigator.mozSms` API。"
 
-#: mkt/constants/features.py:145
+#: mkt/constants/features.py:146
 msgid "Touch"
 msgstr "触摸"
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr "该应用需要支持触控事件的平台。此选项表示该应用在使用鼠标时将无法正常运行。"
 
-#: mkt/constants/features.py:152
+#: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "此应用程序要求平台必须包含智能手机尺寸的屏幕（有 qHD 分辨率）。此选项表示该应用程序将无法在大尺寸屏幕（例如平板电脑，台式机或者高分辨率屏幕的手机）中使用。"
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:154
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr "此应用程序要求平台必须使用智能手机尺寸的屏幕（有 qHD 分辨率）。此选项表示该应用程序将无法在大尺寸屏幕（例如平板电脑，台式机或者高分辨率屏幕的手机）上使用。"
 
-#: mkt/constants/features.py:163
+#: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "此应用程序需要可以解码并播放 MP3 文件的平台。"
 
-#: mkt/constants/features.py:168
+#: mkt/constants/features.py:169
 msgid "Audio"
 msgstr "音频"
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "该应用需要支持 HTML5 音频 API 的平台。"
 
-#: mkt/constants/features.py:174
+#: mkt/constants/features.py:175
 msgid "Web Audio"
 msgstr "网络音频"
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr "该应用需要支持  Web Audio API（`window.AudioContext`）的平台。"
 
-#: mkt/constants/features.py:181
+#: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr "该应用需要能解码并播放 H.264 视频文件的平台。"
 
-#: mkt/constants/features.py:187
+#: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr "该应用需要能解码并播放 WebM 视频文件（VP8）的平台."
 
-#: mkt/constants/features.py:192
+#: mkt/constants/features.py:193
 msgid "Full Screen"
 msgstr "全屏"
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr "该应用请求使用全屏 API（`requestFullScreen` 或 `mozRequestFullScreen`）。"
 
-#: mkt/constants/features.py:199
+#: mkt/constants/features.py:200
 msgid "Gamepad"
 msgstr "游戏手柄"
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr "此应用程序需要支持 gmaepad API （`navigator.getGamepads`） 的平台。"
 
-#: mkt/constants/features.py:205
+#: mkt/constants/features.py:206
 msgid "Quota Management"
 msgstr "配额管理"
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:207
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr "该应用需要允许应用持续存储限制超过正常允许水平（`window.StorageInfo` 或 `window.persistentStorage`）的平台"
 
-#: mkt/constants/features.py:214
+#: mkt/constants/features.py:215
 msgid "Camera"
 msgstr "摄像头"
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr "该应用程序需要平台允许通过 LocalMediaStream 对象从摄像头访问视频。"
 
-#: mkt/constants/features.py:221
+#: mkt/constants/features.py:222
 msgid "Microphone"
 msgstr "麦克风"
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr "该应用程序需要平台允许从麦克风访问音频。"
 
-#: mkt/constants/features.py:227
+#: mkt/constants/features.py:228
 msgid "Screen Capture"
 msgstr "屏幕截图"
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr "该应用程序需要平台允许从屏幕截屏。"
 
-#: mkt/constants/features.py:234
+#: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
 msgstr "WebRTC 媒体流"
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:236
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr "此应用程序要求平台允许进行网络实时沟通，浏览器至浏览器的媒体流。"
 
-#: mkt/constants/features.py:241
+#: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr "此应用程序要求平台允许音视频之外的 P2P 数据交换。"
 
-#: mkt/constants/features.py:248
+#: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr "应用需要借助平台完成节点间地流数据通讯。"
 
-#: mkt/constants/features.py:255
+#: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
 msgstr "Web 语音合成"
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "应用需要借助平台进行文本—语音转换。"
 
-#: mkt/constants/features.py:261
+#: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
 msgstr "Web 语音识别"
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "应用需要借助平台进行语音—文本数据转换。"
 
-#: mkt/constants/features.py:267
+#: mkt/constants/features.py:268
 msgid "Pointer Lock"
 msgstr "指针锁"
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:269
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr "此应用程序需要平台提供指针额外的信息以及控制功能。"
 
-#: mkt/constants/features.py:274
+#: mkt/constants/features.py:275
 msgid "Notifications"
 msgstr "通知"
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr "饮用需要借助平台显示手机和桌面通知。"
 
-#: mkt/constants/features.py:281
+#: mkt/constants/features.py:282
 msgid "Alarms"
 msgstr "告警"
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr "应用需要借助平台访问设备的警告设置以便在指定时间进行通知和时间提醒。"
 
-#: mkt/constants/features.py:289
+#: mkt/constants/features.py:290
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr "应用需要借助平台发送异步 HTTP 请求从而不受到同源策略的限制。"
 
-#: mkt/constants/features.py:296
+#: mkt/constants/features.py:297
 msgid "TCP Sockets"
 msgstr "TCP 套接字"
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "应用需要借助平台打开原始 TCP 套接字。"
 
-#: mkt/constants/features.py:302
+#: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
 msgstr "第三方键盘支持"
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "此应用程序需要平台支持第三方键盘。"
 
-#: mkt/constants/features.py:308
+#: mkt/constants/features.py:309
 msgid "Multiple Network Information"
 msgstr "多个网络信息"
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:310
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "此应用需要获取有关多个网络连接的信息。"
 
-#: mkt/constants/features.py:315
+#: mkt/constants/features.py:316
 msgid "Mobile ID"
 msgstr "Mobile ID"
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr "此应用需要访问 \"navigator.getMobileIdAssertion\" API。"
 
-#: mkt/constants/features.py:321
+#: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
 msgstr "Asm.js 预先编译"
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr "此应用需要设备支持 asm.js 代码的预先编译。"
 
-#: mkt/constants/features.py:327
+#: mkt/constants/features.py:328
 msgid "512MB RAM Device"
 msgstr "512MB RAM 设备"
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "此应用需要设备有至少 512MB RAM。"
 
-#: mkt/constants/features.py:333
+#: mkt/constants/features.py:334
 msgid "1GB RAM Device"
 msgstr "1GB RAM 设备"
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:335
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr "此应用需要设备有至少 1GB RAM。"
+
+#: mkt/constants/features.py:340
+msgid "NFC"
+msgstr ""
+
+#: mkt/constants/features.py:341
+msgid "The app requires access to the Near Field Communication (NFC) API."
+msgstr ""
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1960,15 +1968,23 @@ msgstr "欧洲"
 msgid "Pan European Game Information"
 msgstr "泛欧洲游戏信息组织"
 
-#: mkt/constants/regions.py:62
+#: mkt/constants/regions.py:63
 msgid "Rest of World"
 msgstr "其他地区"
 
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:109
 msgid "Russia"
 msgstr "俄罗斯"
 
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:110
+msgid "Senegal"
+msgstr ""
+
+#: mkt/constants/regions.py:114
+msgid "Tanzania"
+msgstr ""
+
+#: mkt/constants/regions.py:117
 msgid "Venezuela"
 msgstr "委内瑞拉"
 
@@ -1988,7 +2004,7 @@ msgstr "同意"
 msgid "Submit"
 msgstr "提交"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1467
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
 msgid "Details"
 msgstr "详情"
 
@@ -2064,7 +2080,7 @@ msgstr "该域名下已经存在一个应用了；每个域名下只允许一个
 msgid "Invalid region(s) selected."
 msgstr "选择了无效的区域。"
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1376
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
 msgid "You must upload at least one screenshot or video."
 msgstr "您至少应该上传一个截屏或视频。"
 
@@ -2443,15 +2459,15 @@ msgid "My Submissions"
 msgstr "我的提交"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:136
+#: mkt/developers/models.py:137
 msgid "Donate to {0}"
 msgstr "捐赠给 {0}"
 
-#: mkt/developers/models.py:479
+#: mkt/developers/models.py:480
 msgid "Review"
 msgstr "评论"
 
-#: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:483 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "版本 {0}"
 
@@ -2463,35 +2479,35 @@ msgstr "引用工具"
 msgid "Boku"
 msgstr "Boku"
 
-#: mkt/developers/tasks.py:429
+#: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "域名错误，请检查拼写再次尝试。"
 
-#: mkt/developers/tasks.py:435
+#: mkt/developers/tasks.py:409
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "清单必须带有 HTTP 头\"Content-Type: application/x-web-app-manifest+json\"。查看 %s 获取更多信息。"
 
-#: mkt/developers/tasks.py:444
+#: mkt/developers/tasks.py:418
 msgid "Your manifest must be less than %s bytes."
 msgstr "您的清单必须小于 %s 字节。"
 
-#: mkt/developers/tasks.py:452
+#: mkt/developers/tasks.py:426
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "您的清单文件没有使用有效的 UTF-8 编码。"
 
-#: mkt/developers/tasks.py:463
+#: mkt/developers/tasks.py:437
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "清单的编码与 HTTP Content-Type 中提供的字符集不匹配。"
 
-#: mkt/developers/tasks.py:522 mkt/developers/tasks.py:528 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "至"
 
-#: mkt/developers/tasks.py:542
+#: mkt/developers/tasks.py:487
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} 区域已添加到火狐应用市场"
 
-#: mkt/developers/tasks.py:546
+#: mkt/developers/tasks.py:491
 msgid "New regions added to the Firefox Marketplace"
 msgstr "火狐市场添加了新地区。"
 
@@ -2561,7 +2577,7 @@ msgstr "应用已成功地重新提交。"
 msgid "New version successfully added."
 msgstr "新版本添加成功。"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
@@ -2593,35 +2609,35 @@ msgstr "版本公开成功。"
 msgid "Version \"{0}\" deleted."
 msgstr "版本 \"{0}\" 已删除。"
 
-#: mkt/developers/views.py:657
+#: mkt/developers/views.py:658
 msgid "There was an error with the submission."
 msgstr "提交时发生错误。"
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:954
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1005
 msgid "Terms of service accepted."
 msgstr "已接受服务条款。"
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1017
 msgid "Users with the admin role cannot use the API."
 msgstr "管理员角色的用户不能使用这个 API。"
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1026
 msgid "No such API key."
 msgstr "没有这个 API 密钥。"
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1032
 msgid "New API key generated."
 msgstr "新 API 密钥已生成。"
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1050
 msgid "Created blocklisted version."
 msgstr "创建封锁版本。"
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1052
 msgid "App already blocklisted."
 msgstr "应用已封锁。"
 
@@ -3192,7 +3208,7 @@ msgstr "如果应用程序内容发生大规模变动，记得要更新应用的
 msgid "Continue"
 msgstr "继续"
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
+#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:510
 msgid "Low-Memory Devices"
 msgstr "低内存设备"
 
@@ -3240,7 +3256,7 @@ msgstr "如果您的应用可以正常工作在低内存设备上，您可以请
 msgid "Learn about low-memory devices."
 msgstr "了解低内存设备。"
 
-#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
+#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
 msgid "Do not show my app on low-memory devices"
 msgstr "不要在低内存设备上显示我的应用"
 
@@ -3268,62 +3284,62 @@ msgstr "新版本的测试计划已经可用"
 msgid "View your most recently submitted test plan"
 msgstr "查看您最近提交的测试计划"
 
-#: mkt/developers/templates/developers/apps/status.html:376
-msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "了解如何让你的应用程序预装在 Firefox OS 设备上"
+#: mkt/developers/templates/developers/apps/status.html:377
+msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:378
-msgid "Update your test plan"
-msgstr "更新您的测试计划"
+#: mkt/developers/templates/developers/apps/status.html:381
+msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
 msgstr "列出应用"
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
-#: mkt/developers/templates/developers/apps/status.html:477
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:414 mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:479
 msgid "Delist App"
 msgstr "不列出应用"
 
-#: mkt/developers/templates/developers/apps/status.html:395
+#: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr "您的应用禁止列出，因而不再显示在火狐应用市场中。您可以随时重新列出应用。"
 
-#: mkt/developers/templates/developers/apps/status.html:400
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr "不列出应用将会阻止应用在市场的任意地方显示出来。"
 
-#: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "删除应用"
 
-#: mkt/developers/templates/developers/apps/status.html:425
+#: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr "删除应用将会从网站永久删除。<strong>无法找回。</strong>"
 
-#: mkt/developers/templates/developers/apps/status.html:438
+#: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
 msgstr "封锁应用"
 
-#: mkt/developers/templates/developers/apps/status.html:444
+#: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr "封锁应用会将用户升级到一个特殊的版本，应用将无法在他们的 Firefox OS 设备上使用。同时会在所有公开页面上移除这个应用，知道提交并审核通过新的版本。这个更改不能撤销，请小心操作。"
 
-#: mkt/developers/templates/developers/apps/status.html:453
+#: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
 msgstr "阻止列表"
 
-#: mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
 msgstr "您确认希望将应用移出列表？"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
 #: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:194
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3334,7 +3350,7 @@ msgstr "您确认希望将应用移出列表？"
 msgid "or"
 msgstr "或"
 
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:518
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
 #: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:196
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3346,39 +3362,39 @@ msgstr "或"
 msgid "Cancel"
 msgstr "取消"
 
-#: mkt/developers/templates/developers/apps/status.html:488
+#: mkt/developers/templates/developers/apps/status.html:490
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "删除版本 &quot;{version}&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:489
+#: mkt/developers/templates/developers/apps/status.html:491
 msgid "Deleting the only version will result in the following:"
 msgstr "删除唯一版本将会导致以下结果："
 
-#: mkt/developers/templates/developers/apps/status.html:491
+#: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr "应用状态将会标记为 &quot;未完成&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:492
+#: mkt/developers/templates/developers/apps/status.html:494
 msgid "the app will be removed from our review queue"
 msgstr "应用将从我们的审核队列中移除"
 
-#: mkt/developers/templates/developers/apps/status.html:493
+#: mkt/developers/templates/developers/apps/status.html:495
 msgid "the app will not be listed in our public pages"
 msgstr "应用将不会在公开展示页面中列出"
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:497
 msgid "These changes cannot be undone."
 msgstr "这些更改不能被撤销。"
 
-#: mkt/developers/templates/developers/apps/status.html:496
+#: mkt/developers/templates/developers/apps/status.html:498
 msgid "Are you sure you wish to delete this version?"
 msgstr "您确定要删除此版本吗？"
 
-#: mkt/developers/templates/developers/apps/status.html:499
+#: mkt/developers/templates/developers/apps/status.html:501
 msgid "Delete Version"
 msgstr "删除版本"
 
-#: mkt/developers/templates/developers/apps/status.html:510
+#: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr "您确定要停止在低内存设备上显示您的应用吗？"
 
@@ -3655,8 +3671,8 @@ msgid "Works Offline"
 msgstr "可在离线时使用"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
-msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
-msgstr "如果您的应用可以在没有互联网连接时使用，我们会将您的应用标记为“可在离线时使用”。"
+msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3874,7 +3890,7 @@ msgstr "状态和版本"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1474
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
 msgid "Content Ratings"
 msgstr "内容评级"
 
@@ -4752,7 +4768,7 @@ msgid "Developing Game Apps"
 msgstr "开发游戏应用"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1480
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
 msgid "Payments"
 msgstr "支付"
 
@@ -5528,6 +5544,10 @@ msgstr "应用详情"
 msgid "Review History"
 msgstr "历史评论。"
 
+#: mkt/lookup/templates/lookup/helpers/app_header.html:45
+msgid "Communication Dashboard"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
 msgstr "账户概览"
@@ -5945,23 +5965,23 @@ msgstr "封禁应用"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "从应用市场中封禁该应用。类似拒绝，但作者不能重新提交。仅在极端情况下使用。"
 
-#: mkt/reviewers/views.py:135
+#: mkt/reviewers/views.py:136
 msgid "New Apps (Under 5 days)"
 msgstr "新购买的应用（5天之内）"
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "Passable (5 to 10 days)"
 msgstr "可通过（五至十天）"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Overdue (Over 10 days)"
 msgstr "逾期（超过十天）"
 
-#: mkt/reviewers/views.py:248
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "不允许自我审核。"
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "只有资深审核者可以审核封锁的应用。"
 
@@ -7727,66 +7747,66 @@ msgid "Please use the verified email for this account."
 msgstr "请为此账号使用已验证的邮箱。"
 
 # Column name in a table.
-#: mkt/webapps/models.py:209
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "已列出"
 
-#: mkt/webapps/models.py:1367
+#: mkt/webapps/models.py:1366
 msgid "You must provide a support email or URL."
 msgstr "您必须提供一个技术支持邮箱或网址。"
 
-#: mkt/webapps/models.py:1369
+#: mkt/webapps/models.py:1368
 msgid "You must provide an app name."
 msgstr "您至少应该填写一个应用名称。"
 
-#: mkt/webapps/models.py:1371
+#: mkt/webapps/models.py:1370
 msgid "You must provide at least one device type."
 msgstr "至少提供一种设备类型。"
 
-#: mkt/webapps/models.py:1374
+#: mkt/webapps/models.py:1373
 msgid "You must provide at least one category."
 msgstr "您必须提供至少一个种类。"
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1440
 msgid "You must set up content ratings."
 msgstr "必须设置内容评级。"
 
-#: mkt/webapps/models.py:1443
+#: mkt/webapps/models.py:1442
 msgid "You must set up a payment account."
 msgstr "必须设置支付账号。"
 
-#: mkt/webapps/models.py:1468
+#: mkt/webapps/models.py:1467
 msgid "This app's submission process has not been fully completed."
 msgstr "程序提交步骤尚未完全完成。"
 
-#: mkt/webapps/models.py:1475
+#: mkt/webapps/models.py:1474
 msgid "This app needs to get a content rating."
 msgstr "该程序需要获取内容分级。"
 
-#: mkt/webapps/models.py:1481
+#: mkt/webapps/models.py:1480
 msgid "This app needs a payment account set up."
 msgstr "该程序需要设置一个支付账户。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2796
+#: mkt/webapps/models.py:2739
 msgid "awaiting approval"
 msgstr "等待审核"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2798
+#: mkt/webapps/models.py:2741
 msgid "rejected"
 msgstr "已拒绝"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2800
+#: mkt/webapps/models.py:2743
 msgid "requires additional review"
 msgstr "需要额外审核"
 
-#: mkt/webapps/models.py:2851
+#: mkt/webapps/models.py:2794
 msgid "{region} approval status"
 msgstr "{region} 审核状态"
 
-#: mkt/webapps/models.py:2859
+#: mkt/webapps/models.py:2802
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 

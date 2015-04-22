@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:06-0700\n"
+"POT-Creation-Date: 2015-04-22 14:23-0700\n"
 "PO-Revision-Date: 2014-09-05 18:47+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,7 +143,7 @@ msgstr "এন্টার্কটিকা"
 msgid "Antigua and Barbuda"
 msgstr "অ্যান্টিগুয়া এবং বার্বাডুয়া"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
 msgid "Argentina"
 msgstr "আর্জেন্টিনা"
 
@@ -175,7 +175,7 @@ msgstr "বাহামা দ্বীপপুঞ্জ"
 msgid "Bahrain"
 msgstr "বাহরাইন"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
 msgid "Bangladesh"
 msgstr "বাংলাদেশ"
 
@@ -219,7 +219,7 @@ msgstr "বোনাইর, সেইন্ট ইউস্টাটিয়াস
 msgid "Bosnia and Herzegovina"
 msgstr "বসনিয়া এবং হার্জেগোভিনা"
 
-#: mkt/constants/bango.py:48
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
 msgid "Botswana"
 msgstr "বতসোয়ানা"
 
@@ -227,7 +227,7 @@ msgstr "বতসোয়ানা"
 msgid "Bouvet Island"
 msgstr "বোভেট দ্বীপ"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
 msgid "Brazil"
 msgstr "ব্রাজিল"
 
@@ -255,7 +255,7 @@ msgstr "বুরুন্ডি"
 msgid "Cambodia"
 msgstr "কম্বোডিয়া"
 
-#: mkt/constants/bango.py:57
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
 msgid "Cameroon"
 msgstr "ক্যামেরুন"
 
@@ -279,11 +279,11 @@ msgstr "মধ্য আফ্রিকান প্রজাতন্ত্র"
 msgid "Chad"
 msgstr "চাদ"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
 msgid "Chile"
 msgstr "চিলি"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
 msgid "China"
 msgstr "চীন"
 
@@ -295,7 +295,7 @@ msgstr "ক্রিসমাস দ্বীপ"
 msgid "Cocos (Keeling) Islands"
 msgstr "কোকোস (কিলিং) দ্বীপপুঞ্জ"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
 msgid "Colombia"
 msgstr "কলম্বিয়া"
 
@@ -315,11 +315,11 @@ msgstr "কঙ্গো, গণতান্ত্রিক প্রজাতন
 msgid "Cook Islands"
 msgstr "কুক দ্বীপপুঞ্জ"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
 msgid "Costa Rica"
 msgstr "কোস্টা রিকা"
 
-#: mkt/constants/bango.py:73
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
 msgid "Côte d'Ivoire"
 msgstr "আইভরি কোস্ট"
 
@@ -339,7 +339,7 @@ msgstr "কিউরাকাউ"
 msgid "Cyprus"
 msgstr "সাইপ্রাস"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
 msgid "Czech Republic"
 msgstr "চেক রিপাবলিক"
 
@@ -359,15 +359,15 @@ msgstr "ডোমিনিকা"
 msgid "Dominican Republic"
 msgstr "ডোমিনিকান রিপাবলিক"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
 msgid "Ecuador"
 msgstr "ইকুয়েডর"
 
-#: mkt/constants/bango.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
 msgid "Egypt"
 msgstr "মিশর"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
 msgid "El Salvador"
 msgstr "এল সালভাদর"
 
@@ -403,7 +403,7 @@ msgstr "ফিজি"
 msgid "Finland"
 msgstr "ফিনল্যান্ড"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
 msgid "France"
 msgstr "ফ্রান্স"
 
@@ -431,7 +431,7 @@ msgstr "গাম্বিয়া"
 msgid "Georgia"
 msgstr "জর্জিয়া"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
 msgid "Germany"
 msgstr "জার্মানি"
 
@@ -443,7 +443,7 @@ msgstr "ঘানা"
 msgid "Gibraltar"
 msgstr "জিব্রাল্টার"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "গ্রীস"
 
@@ -463,7 +463,7 @@ msgstr "গুয়াডেলোপ"
 msgid "Guam"
 msgstr "গুয়াম"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "গুয়াতেমালা"
 
@@ -475,7 +475,7 @@ msgstr "গ্রাঞ্জি"
 msgid "Guinea"
 msgstr "গিনি"
 
-#: mkt/constants/bango.py:112
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
 msgid "Guinea-Bissau"
 msgstr "গিনি বিসাউ"
 
@@ -503,7 +503,7 @@ msgstr "হন্ডুরাস"
 msgid "Hong Kong"
 msgstr "হংকং"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "হাঙ্গেরি"
 
@@ -511,7 +511,7 @@ msgstr "হাঙ্গেরি"
 msgid "Iceland"
 msgstr "আইসল্যান্ড"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "ভারত"
 
@@ -539,7 +539,7 @@ msgstr "আইল অব ম্যান"
 msgid "Israel"
 msgstr "ইসরাইল"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "ইতালি"
 
@@ -547,7 +547,7 @@ msgstr "ইতালি"
 msgid "Jamaica"
 msgstr "জামাইকা"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "জাপান"
 
@@ -555,7 +555,7 @@ msgstr "জাপান"
 msgid "Jersey"
 msgstr "জার্সি"
 
-#: mkt/constants/bango.py:132
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "জর্ডান"
 
@@ -619,7 +619,7 @@ msgstr "লিবিয় আরব জামাহিরিয়া"
 msgid "Liechtenstei"
 msgstr "লিচটেন্সটেইন"
 
-#: mkt/constants/bango.py:148
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
 msgid "Lithuania"
 msgstr "লিথুয়ানিয়া"
 
@@ -635,7 +635,7 @@ msgstr "ম্যাকাও"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "ম্যাসেডোনিয়া, সাবেক যুগোস্লাভ রিপাবলিক"
 
-#: mkt/constants/bango.py:152
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
 msgid "Madagascar"
 msgstr "মাদাগাস্কার"
 
@@ -651,7 +651,7 @@ msgstr "মালয়েশিয়া"
 msgid "Maldives"
 msgstr "মালদ্বীপ"
 
-#: mkt/constants/bango.py:156
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
 msgid "Mali"
 msgstr "মালি"
 
@@ -671,7 +671,7 @@ msgstr "মার্টিনিক"
 msgid "Mauritania"
 msgstr "মরিতানিয়া"
 
-#: mkt/constants/bango.py:161
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
 msgid "Mauritius"
 msgstr "মরিশাস"
 
@@ -679,7 +679,7 @@ msgstr "মরিশাস"
 msgid "Mayotte"
 msgstr "মায়োত্তে"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
 msgid "Mexico"
 msgstr "মেক্সিকো"
 
@@ -699,7 +699,7 @@ msgstr "মোনাকো"
 msgid "Mongolia"
 msgstr "মঙ্গোলিয়া"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
 msgid "Montenegro"
 msgstr "মন্টিনিগ্রো"
 
@@ -715,7 +715,7 @@ msgstr "মরোক্কো"
 msgid "Mozambique"
 msgstr "মোজাম্বিক"
 
-#: mkt/constants/bango.py:172
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
 msgid "Myanmar"
 msgstr "মায়ানমার"
 
@@ -743,11 +743,11 @@ msgstr "নিউ ক্যালেডোনিয়া"
 msgid "New Zealand"
 msgstr "নিউজিল্যান্ড"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
 msgid "Nicaragua"
 msgstr "নিকারাগুয়া"
 
-#: mkt/constants/bango.py:180
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
 msgid "Niger"
 msgstr "নাইজার"
 
@@ -787,7 +787,7 @@ msgstr "পালাউ"
 msgid "Palestinian Territory, Occupied"
 msgstr "দখলকৃত ফিলিস্তিনি অঞ্চল।"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
 msgid "Panama"
 msgstr "পানামা"
 
@@ -799,11 +799,11 @@ msgstr "পাপুয়া নিউ গিনি"
 msgid "Paraguay"
 msgstr "প্যারাগুয়ে"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
 msgid "Peru"
 msgstr "পেরু"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
 msgid "Philippines"
 msgstr "ফিলিপাইন"
 
@@ -811,7 +811,7 @@ msgstr "ফিলিপাইন"
 msgid "Pitcairn"
 msgstr "পিটকেয়ার্ন"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
 msgid "Poland"
 msgstr "পোল্যান্ড"
 
@@ -891,7 +891,7 @@ msgstr "সৌদি আরব"
 msgid "Senega"
 msgstr "সেনেগা"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
 msgid "Serbia"
 msgstr "সার্বিয়া"
 
@@ -931,7 +931,7 @@ msgstr "সলোমন দ্বীপপুঞ্জ"
 msgid "Somalia"
 msgstr "সোমালিয়া"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
 msgid "South Africa"
 msgstr "দক্ষিণ আফ্রিকা"
 
@@ -943,7 +943,7 @@ msgstr "দক্ষিণ জর্জিয়া ও দক্ষিণ স�
 msgid "South Sudan"
 msgstr "দক্ষিণ সুদান"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
 msgid "Spain"
 msgstr "স্পেন"
 
@@ -1015,7 +1015,7 @@ msgstr "টোঙ্গা"
 msgid "Trinidad and Tobago"
 msgstr "ত্রিনিদাদ ও টোবাগো"
 
-#: mkt/constants/bango.py:247
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
 msgid "Tunisia"
 msgstr "তিউনিশিয়া"
 
@@ -1047,11 +1047,11 @@ msgstr "ইউক্রেন"
 msgid "United Arab Emirates"
 msgstr "সংযুক্ত আরব আমিরাত"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
 msgid "United Kingdom"
 msgstr "যুক্তরাজ্য"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
 msgid "United States"
 msgstr "মার্কিন যুক্তরাষ্ট্র"
 
@@ -1059,7 +1059,7 @@ msgstr "মার্কিন যুক্তরাষ্ট্র"
 msgid "United States Minor Outlying Islands"
 msgstr "মার্কিন যুক্তরাষ্ট্র ক্ষুদ্র ও পার্শ্ববর্তী দ্বীপপুঞ্জ"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
 msgid "Uruguay"
 msgstr "উরুগুয়ে"
 
@@ -1067,7 +1067,7 @@ msgstr "উরুগুয়ে"
 msgid "Uzbekistan"
 msgstr "উজবেকিস্তান"
 
-#: mkt/constants/bango.py:260
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
 msgid "Vanuatu"
 msgstr "ভানুয়াতু"
 
@@ -1433,386 +1433,394 @@ msgstr ""
 msgid "Public reviewer comment"
 msgstr ""
 
-#: mkt/constants/features.py:17
+#: mkt/constants/features.py:18
 msgid "App Management API"
 msgstr "অ্যাপ ম্যানেজমেন্ট এপিআই"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr "অ্যাপটি ইনস্টলের জন্য এবং অন্যান্য অ্যাপগুলো পরিচালনার জন্য `navigator.mozApps` API প্রয়োজন।"
 
-#: mkt/constants/features.py:23
+#: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
 msgstr "প্যাকেজড অ্যাপ ইনস্টল API"
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr "অন্যান্য প্যাকেজ অ্যাপগুলো ইনস্টল করার জন্য অ্যাপটির `navigator.mozApps.install Package`API প্রয়োজন।"
 
-#: mkt/constants/features.py:30
+#: mkt/constants/features.py:31
 msgid "Web Payment"
 msgstr "ওয়েব পেমেন্ট"
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:32
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "অ্যাপটির জন্য `navigator.mozApps` API প্রয়োজন।"
 
-#: mkt/constants/features.py:35
+#: mkt/constants/features.py:36
 msgid "Web Activities"
 msgstr "ওয়েব কার্যক্রম"
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "এই অ্যাপটির জন্য ওয়েব কার্যক্রম (`MozActivity` API) প্রয়োজন।"
 
-#: mkt/constants/features.py:41
+#: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
 msgstr "এম্বিয়েন্ট লাইট সেন্সর"
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "এই অ্যাপটির জন্য একটি এম্বিয়েন্ট লাইট সেন্সর (`ondevicelight` API) প্রয়োজন।"
 
-#: mkt/constants/features.py:47
+#: mkt/constants/features.py:48
 msgid "Archive"
 msgstr "আর্কাইভ"
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
 msgstr ""
 
-#: mkt/constants/features.py:52
+#: mkt/constants/features.py:53
 msgid "Battery"
 msgstr "ব্যাটারি"
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
 msgstr "এই অ্যাপটির জন্য `navigator.battery` API প্রয়োজন।"
 
-#: mkt/constants/features.py:58
+#: mkt/constants/features.py:59
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "এই অ্যাপটির জন্য `navigator.mozBluetooth` API প্রয়োজন।"
 
-#: mkt/constants/features.py:63
+#: mkt/constants/features.py:64
 msgid "Contacts"
 msgstr "যোগাযোগ"
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "এই অ্যাপটির জন্য `navigator.mozContacts` API প্রয়োজন।"
 
-#: mkt/constants/features.py:69
+#: mkt/constants/features.py:70
 msgid "Device Storage"
 msgstr "স্টোরেজ ডিভাইস"
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:71
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr "অ্যাপ্লিকেশনে ফাইল সিস্টেম থেকে ফাইল অ্যাক্সেস করতে স্টোরেজ ডিভাইস এপিআই প্রয়োজন।"
 
-#: mkt/constants/features.py:76
+#: mkt/constants/features.py:77
 msgid "The app requires the platform to support IndexedDB."
 msgstr "এই অ্যাপটির IndexedDB সমর্থন করার জন্য প্ল্যাটফর্ম এর প্রয়োজন।"
 
-#: mkt/constants/features.py:81
+#: mkt/constants/features.py:82
 msgid "Geolocation"
 msgstr "ভৌগলিক অবস্থান"
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr "এই অ্যাপটির জন্য `navigator.geolocation` API সমর্থনের প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:87
+#: mkt/constants/features.py:88
 msgid "Idle"
 msgstr "নিষ্ক্রিয়"
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr ""
 
-#: mkt/constants/features.py:93
+#: mkt/constants/features.py:94
 msgid "Network Information"
 msgstr "নেটওয়ার্ক তথ্য"
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr "এই অ্যাপের নেটওয়ার্ক সংযোগ সম্পর্কে তথ্য সংগ্রহের অনুমতি প্রয়োজন (the `navigator.mozConnection` API)।"
 
-#: mkt/constants/features.py:100
+#: mkt/constants/features.py:101
 msgid "Network Stats"
 msgstr "নেটওয়ার্ক পরিসংখ্যান"
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:102
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "এই অ্যাপটির `navigator.mozNetworkStats` এপিআই প্রয়োজন।"
 
-#: mkt/constants/features.py:106
+#: mkt/constants/features.py:107
 msgid "Proximity"
 msgstr "প্রক্সিমিটি"
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:108
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "এই অ্যাপের প্রক্সিমিটি সেন্সর প্রয়োজন (`ondeviceproximity` API)।"
 
-#: mkt/constants/features.py:112
+#: mkt/constants/features.py:113
 msgid "Simple Push"
 msgstr "সহজ পুশ"
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:114
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "এই অ্যাপের `navigator.mozPush` API প্রয়োজন রয়েছে।"
 
-#: mkt/constants/features.py:117
+#: mkt/constants/features.py:118
 msgid "Screen Orientation"
 msgstr "স্ক্রিন ওরিয়েন্টেশন"
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:119
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "এই আপটিতে `ondeviceorientation` API সমর্থনের জন্য প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:123
+#: mkt/constants/features.py:124
 msgid "Time/Clock"
 msgstr "সময়/ঘড়ি"
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:125
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "এই অ্যাপটিতে `navigator.mozTime` API এর প্রয়োজন রয়েছে।"
 
-#: mkt/constants/features.py:128
+#: mkt/constants/features.py:129
 msgid "Vibration"
 msgstr "কম্পন"
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr "এই অ্যাপের জন্য ভাইব্রেশন সমর্থন করে এমন ডিভাইস প্রয়োজন ( `navigator.vibrate` API)।"
 
-#: mkt/constants/features.py:135
+#: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "এই অ্যাপের জন্য `navigator.mozFM` অথবা `navigator.mozFMRadio` API এর প্রয়োজন হবে।"
 
-#: mkt/constants/features.py:141
+#: mkt/constants/features.py:142
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "এই অ্যাপের জন্য `navigator.mozSms` API প্রয়োজন।"
 
-#: mkt/constants/features.py:145
+#: mkt/constants/features.py:146
 msgid "Touch"
 msgstr "স্পর্শ"
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr "এই অ্যাপ চালাতে টাচ ইভেন্ট সমর্থিত প্লাটফর্ম প্রয়োজন। এটা নির্দেশ করে যে অ্যাপটি মাউসে সঠিকভাবে কাজ করবে না।"
 
-#: mkt/constants/features.py:152
+#: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "স্মার্টফোন আকারের ডিসপ্লে (qHD)"
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:154
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr "অ্যাপটি চালাতে (qHD রেজুলেশন) সমর্থন করে এমন প্লাটফর্ম প্রয়োজন। এটার মানে এটাই নির্দেশ করে যে এটা বড় ডিসপ্লের কাজে ব্যবহার হবে (যেমন: ট্যাব, ডেক্সটপ, বড় বা বেশি ডিপিআইএর জন্য)"
 
-#: mkt/constants/features.py:163
+#: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "এই অ্যাপের MP3 ফাইল চালাতে এবং ডিকোড করতে পারে এমন প্লাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:168
+#: mkt/constants/features.py:169
 msgid "Audio"
 msgstr "অডিও"
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "এই অ্যাপের HTML5 audio API সমর্থন করে এমন প্লাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:174
+#: mkt/constants/features.py:175
 msgid "Web Audio"
 msgstr "ওয়েব অডিও"
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr "অ্যাপের ওয়েব অডিও API (`window.AudioContext`) সমর্থন করে এমন প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:181
+#: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr "অ্যাপের জন্য ডিকোড করতে পারে এবং H.264 ভিডিও ফাইল চালাতে পারে এমন প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:187
+#: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr "এই অ্যাপটির WebM ভিডিও ফাইল (VP8) চালাতে পারে এবং ডিকোড করতে পারে এমন প্লাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:192
+#: mkt/constants/features.py:193
 msgid "Full Screen"
 msgstr "পূর্ণপর্দা"
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr "অ্যাপ্লিকেশনে পূর্ণ স্ক্রিন API (`requestFullScreen` বা ` mozRequestFullScreen`) এর প্রয়োজন রয়েছে।"
 
-#: mkt/constants/features.py:199
+#: mkt/constants/features.py:200
 msgid "Gamepad"
 msgstr "গেমপ্যাড"
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr "অ্যাপ্লিকেশন গেমপ্যাড এপিআই (`navigator.getGamepads`) সমর্থনের জন্য প্ল্যাটফর্ম এর প্রয়োজন রয়েছে।"
 
-#: mkt/constants/features.py:205
+#: mkt/constants/features.py:206
 msgid "Quota Management"
 msgstr "কোটা ব্যবস্থাপনা"
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:207
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
 
-#: mkt/constants/features.py:214
+#: mkt/constants/features.py:215
 msgid "Camera"
 msgstr "ক্যামেরা"
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr "LocalMediaStream object ব্যাবহার করে ডিভাইসের ক্যামেরা থেকে ভিডিও পাওয়ার জন্য অ্যাপটির উপযোগী প্ল্যাটফর্ম লাগবে।"
 
-#: mkt/constants/features.py:221
+#: mkt/constants/features.py:222
 msgid "Microphone"
 msgstr "মাইক্রোফোন"
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr "এই অ্যাপের ডিভাইস মাইক্রফোন থেকে অডিও ব্যবহার করার অনুমোদন রয়েছে এমন প্লাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:227
+#: mkt/constants/features.py:228
 msgid "Screen Capture"
 msgstr "স্ক্রিন ক্যাপচার"
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr "অ্যাপ্লিকেশনটির দৃশ্যধারনের জন্য ডিভাইসের স্ক্রিনকে ব্যাবহারের প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:234
+#: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
 msgstr "WebRTC মিডিয়া স্ট্রিম"
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:236
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr "অ্যাপটি চালাতে ওয়েবের রিয়েলটাইম কমিউনিকেশন ব্রাউজার টু ব্রাউজার মিডিয়া আদান প্রদান করে এমন প্লাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:241
+#: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr "এই অ্যাপটি চালানোর জন্য এমন একটি প্ল্যাটফর্ম প্রয়োজন যা পিয়ার টু পিয়ার এর মাধ্যমে অডিও এবং ভিডিও বিনিময় করার অনুমতি দেয়।"
 
-#: mkt/constants/features.py:248
+#: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr "এই অ্যাপটি চালানোর জন্য এমন একটি প্ল্যাটফর্ম প্রয়োজন যা পিয়ার টু পিয়ার এর মাধ্যমে ডাটা স্ট্রিমিং বিনিময় করার অনুমতি দেয়।"
 
-#: mkt/constants/features.py:255
+#: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
 msgstr "Web Speech Synthesis"
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "এই অ্যাপটি চালানোর জন্য এমন একটি প্ল্যাটফর্ম প্রয়োজন যা টেক্সট থেকে স্পিচ করার অনুমতি দেয়।"
 
-#: mkt/constants/features.py:261
+#: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
 msgstr "ওয়েব স্পিচ রিকগনিশন"
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "এই অ্যাপের speech-to-text ব্যবহার করার অনুমোদন রয়েছে এমন একটি প্ল্যাটফর্মের প্রয়োজন।"
 
-#: mkt/constants/features.py:267
+#: mkt/constants/features.py:268
 msgid "Pointer Lock"
 msgstr "পয়েন্টার লক"
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:269
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr "এই অ্যাপটি চালানোর জন্য এমন একটি প্ল্যাটফর্ম প্রয়োজন যা বাড়তি কিছু তথ্য এবং পয়েন্টার নিয়ন্ত্রের অনুমতি দেয়।"
 
-#: mkt/constants/features.py:274
+#: mkt/constants/features.py:275
 msgid "Notifications"
 msgstr "নোটিফিকেশন"
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr "এই অ্যাপটি চলতে ইউজারের ডেক্সটপ নোটিফিকেশন এবং ফোন প্রদর্শন করে এমন প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:281
+#: mkt/constants/features.py:282
 msgid "Alarms"
 msgstr "এলার্ম"
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
 
-#: mkt/constants/features.py:289
+#: mkt/constants/features.py:290
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
 
-#: mkt/constants/features.py:296
+#: mkt/constants/features.py:297
 msgid "TCP Sockets"
 msgstr "TCP সকেট"
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "অ্যাপ্লিকেশন  TCP সকেট খোলার অনুমতি প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:302
+#: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
 msgstr "থার্ড পার্টি কীবোর্ড সমর্থন"
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "অ্যাপ্লিকেশন তৃতীয় পক্ষের কীবোর্ডের সমর্থন প্ল্যাটফর্ম প্রয়োজন।"
 
-#: mkt/constants/features.py:308
+#: mkt/constants/features.py:309
 msgid "Multiple Network Information"
 msgstr "একাধিক নেটওয়ার্ক তথ্য"
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:310
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "অ্যাপটি একাধিক নেটওয়ার্ক কানেকশনের তথ্য সংগ্রহের জন্য সম্মতি চায়।"
 
-#: mkt/constants/features.py:315
+#: mkt/constants/features.py:316
 msgid "Mobile ID"
 msgstr ""
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr ""
 
-#: mkt/constants/features.py:321
+#: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
 msgstr ""
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
 
-#: mkt/constants/features.py:327
+#: mkt/constants/features.py:328
 msgid "512MB RAM Device"
 msgstr ""
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr ""
 
-#: mkt/constants/features.py:333
+#: mkt/constants/features.py:334
 msgid "1GB RAM Device"
 msgstr ""
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:335
 msgid "The app requires the device to have at least 1GB RAM."
+msgstr ""
+
+#: mkt/constants/features.py:340
+msgid "NFC"
+msgstr ""
+
+#: mkt/constants/features.py:341
+msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr ""
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
@@ -1958,15 +1966,23 @@ msgstr "ইউরোপ"
 msgid "Pan European Game Information"
 msgstr "ইউরোপীয় খেলা তথ্য ফলক"
 
-#: mkt/constants/regions.py:62
+#: mkt/constants/regions.py:63
 msgid "Rest of World"
 msgstr "বাকি বিশ্ব"
 
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:109
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:110
+msgid "Senegal"
+msgstr ""
+
+#: mkt/constants/regions.py:114
+msgid "Tanzania"
+msgstr ""
+
+#: mkt/constants/regions.py:117
 msgid "Venezuela"
 msgstr "ভেনেজুয়েলা"
 
@@ -1986,7 +2002,7 @@ msgstr "এগ্রিমেন্ট"
 msgid "Submit"
 msgstr "জমা দিন"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1467
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
 msgid "Details"
 msgstr "বিস্তারিত"
 
@@ -2062,7 +2078,7 @@ msgstr "ইতিমধ্যে একটি অ্যাপ্লিকেশ�
 msgid "Invalid region(s) selected."
 msgstr "ভুল অঞ্চল বাছাই করা হয়েছে।"
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1376
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
 msgid "You must upload at least one screenshot or video."
 msgstr "আপনাকে কমপক্ষে একটি স্ক্রিনশট অথবা ভিডিও আপলোড করতে হবে।"
 
@@ -2444,15 +2460,15 @@ msgid "My Submissions"
 msgstr "আমার সাবমিশন সমূহ"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:136
+#: mkt/developers/models.py:137
 msgid "Donate to {0}"
 msgstr ""
 
-#: mkt/developers/models.py:479
+#: mkt/developers/models.py:480
 msgid "Review"
 msgstr "রিভিউ"
 
-#: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:483 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "সংস্করণ {0}"
 
@@ -2464,35 +2480,35 @@ msgstr "রেফারেন্স বাস্তবায়ন"
 msgid "Boku"
 msgstr "বকু"
 
-#: mkt/developers/tasks.py:429
+#: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "এই ঠিকানায় কোন ম্যানিফেস্ট খুঁজে পাওয়া যায় নি। ঠিকানা পুনরায় পরীক্ষা করুন এবং আবার চেষ্টা করুন।"
 
-#: mkt/developers/tasks.py:435
+#: mkt/developers/tasks.py:409
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "ম্যানিফেস্ট অবশ্যই HTTP হেডারের সাথে সার্ভ করতে হবে \"Content-Type: application/x-web-app-manifest+json\"। আরও তথ্যের জন্য %s দেখুন।"
 
-#: mkt/developers/tasks.py:444
+#: mkt/developers/tasks.py:418
 msgid "Your manifest must be less than %s bytes."
 msgstr "আপনার ম্যানিফেস্ট অবশ্যই %s বাইটের কম হতে হবে।"
 
-#: mkt/developers/tasks.py:452
+#: mkt/developers/tasks.py:426
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "আপনার ম্যানিফেস্ট ফাইল কার্যকর UTF-8 এ এনকোডেড নয়।"
 
-#: mkt/developers/tasks.py:463
+#: mkt/developers/tasks.py:437
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "HTTP Content-Type এ প্রদান করা অক্ষরসেট ম্যানিফেস্ট এনকোডিং এর সাথে মেলে না।"
 
-#: mkt/developers/tasks.py:522 mkt/developers/tasks.py:528 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "এবং"
 
-#: mkt/developers/tasks.py:542
+#: mkt/developers/tasks.py:487
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} অঞ্চল ফায়ারফক্স মার্কেটপ্লেসে যোগ করা হয়েছে"
 
-#: mkt/developers/tasks.py:546
+#: mkt/developers/tasks.py:491
 msgid "New regions added to the Firefox Marketplace"
 msgstr "নতুন অঞ্চল ফায়ারফক্স মার্কেটপ্লেসে যোগ করা হয়েছে"
 
@@ -2562,7 +2578,7 @@ msgstr "অ্যাপ সফলভাবে পুনরায় জমা হ�
 msgid "New version successfully added."
 msgstr "নতুন সংস্করণ সফলভাবে যোগ করা হয়েছে।"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:569 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
 msgid "Changes successfully saved."
 msgstr "পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।"
 
@@ -2594,35 +2610,35 @@ msgstr "সংস্করণ সফলভাবে সক্রিয় কর
 msgid "Version \"{0}\" deleted."
 msgstr "\"{0}\" সংস্করণটি মুছে ফেলা হয়েছে।"
 
-#: mkt/developers/views.py:657
+#: mkt/developers/views.py:658
 msgid "There was an error with the submission."
 msgstr "সাবমিশনে কোন ত্রুটি ছিলো।"
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:954
 msgid "There was an error uploading your preview."
 msgstr "আপনার প্রিভিউ আপলোডে কোন ত্রুটি ছিলো।"
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1005
 msgid "Terms of service accepted."
 msgstr "সেবাগ্রহণের শর্তাবলী গৃহীত হয়েছে।"
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1017
 msgid "Users with the admin role cannot use the API."
 msgstr "অ্যাডমিন অধিকার প্রাপ্ত ব্যবহারকারীরা এই API ব্যবহার করতে পারবে না।"
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1026
 msgid "No such API key."
 msgstr "এমন API key নেই।"
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1032
 msgid "New API key generated."
 msgstr "নতুন API key উৎপন্ন হয়েছে।"
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1050
 msgid "Created blocklisted version."
 msgstr "ব্লকলিস্টেড সংস্করণ তৈরি হয়েছে।"
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1052
 msgid "App already blocklisted."
 msgstr "অ্যাপটি ইতিমধ্যে ব্লকলিস্টে রয়েছে।"
 
@@ -3193,7 +3209,7 @@ msgstr "অ্যাপটির একটি বড় অংশ পরিবর�
 msgid "Continue"
 msgstr "চালিয়ে যান"
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
+#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:510
 msgid "Low-Memory Devices"
 msgstr "লো-মেমোরি ডিভাইস"
 
@@ -3241,7 +3257,7 @@ msgstr ""
 msgid "Learn about low-memory devices."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
+#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
 msgid "Do not show my app on low-memory devices"
 msgstr ""
 
@@ -3269,60 +3285,60 @@ msgstr "নতুন সংস্করণ এর পরীক্ষা পর�
 msgid "View your most recently submitted test plan"
 msgstr "আপনার অতি সম্প্রতি জমা পরীক্ষা পরিকল্পনা দেখুন"
 
-#: mkt/developers/templates/developers/apps/status.html:376
-msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "কিভাবে Firefox OS ডিভাইসে প্রি ইনস্টল করা অ্যাপ পাওয়া যাবে"
+#: mkt/developers/templates/developers/apps/status.html:377
+msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:378
-msgid "Update your test plan"
-msgstr "আপনার পরীক্ষার পরিকল্পনা হালনাগাদ করুন"
+#: mkt/developers/templates/developers/apps/status.html:381
+msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
 msgstr "অ্যাপ তালিকা"
 
-#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
-#: mkt/developers/templates/developers/apps/status.html:477
+#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:414 mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:479
 msgid "Delist App"
 msgstr "তালিকা হতে অ্যাপ অপসারণ করুন"
 
-#: mkt/developers/templates/developers/apps/status.html:395
+#: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:400
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "অ্যাপ মুছুন"
 
-#: mkt/developers/templates/developers/apps/status.html:425
+#: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr "অ্যাপ টি মুছে ফেললে তা স্থায়ীভাবে সাইট থেকে মুছে যাবে। <strong>আপনি তা এর ফিরে পাবেন না।</strong>"
 
-#: mkt/developers/templates/developers/apps/status.html:438
+#: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
 msgstr "অ্যাপ্লিকেশন ব্লকলিস্ট"
 
-#: mkt/developers/templates/developers/apps/status.html:444
+#: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:453
+#: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
 msgstr "ব্লকলিস্ট"
 
-#: mkt/developers/templates/developers/apps/status.html:474
+#: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
 msgstr "আপনি আপনার অ্যাপ্লিকেশন তালিকা বহির্ভূত করতে চান, আপনি কি নিশ্চিত?"
 
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
 #: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:194
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3333,7 +3349,7 @@ msgstr "আপনি আপনার অ্যাপ্লিকেশন তা
 msgid "or"
 msgstr "অথবা"
 
-#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:518
+#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
 #: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:196
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
@@ -3345,39 +3361,39 @@ msgstr "অথবা"
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: mkt/developers/templates/developers/apps/status.html:488
+#: mkt/developers/templates/developers/apps/status.html:490
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "মুছে ফেলা &quot;{version}&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:489
+#: mkt/developers/templates/developers/apps/status.html:491
 msgid "Deleting the only version will result in the following:"
 msgstr "শুধুমাত্র নিম্নলিখিত ফলাফল থেকে সংস্করণ মুছে ফেলতে হবে:"
 
-#: mkt/developers/templates/developers/apps/status.html:491
+#: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr "অ্যাপ্লিকেশন &quot;incomplete&quot; অবস্থা হিসাবে চিহ্নিত করা হবে"
 
-#: mkt/developers/templates/developers/apps/status.html:492
+#: mkt/developers/templates/developers/apps/status.html:494
 msgid "the app will be removed from our review queue"
 msgstr "অ্যাপ্লিকেশন আমাদের পর্যালোচনা সারি থেকে সরিয়ে ফেলা হবে"
 
-#: mkt/developers/templates/developers/apps/status.html:493
+#: mkt/developers/templates/developers/apps/status.html:495
 msgid "the app will not be listed in our public pages"
 msgstr "অ্যাপ্লিকেশন আমাদের পাবলিক পাতায় তালিকাভুক্ত হবে না"
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:497
 msgid "These changes cannot be undone."
 msgstr "এই পরিবর্তনটি অপরিবর্তনীয়!"
 
-#: mkt/developers/templates/developers/apps/status.html:496
+#: mkt/developers/templates/developers/apps/status.html:498
 msgid "Are you sure you wish to delete this version?"
 msgstr "আপনি এই সংস্করণ মুছে ফেলতে ইচ্ছুক আপনি কি নিশ্চিত?"
 
-#: mkt/developers/templates/developers/apps/status.html:499
+#: mkt/developers/templates/developers/apps/status.html:501
 msgid "Delete Version"
 msgstr "সংস্করণ মুছে ফেলুন"
 
-#: mkt/developers/templates/developers/apps/status.html:510
+#: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
 
@@ -3655,7 +3671,7 @@ msgid "Works Offline"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
-msgid "If your app works without an Internet connection then we will list that your app \"Works Offline.\""
+msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
@@ -3874,7 +3890,7 @@ msgstr "অবস্থা এবং আম্প ;সংস্করণ"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1474
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
 msgid "Content Ratings"
 msgstr "বিষয়বস্তুর রেটিং"
 
@@ -4747,7 +4763,7 @@ msgid "Developing Game Apps"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1480
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
 msgid "Payments"
 msgstr ""
 
@@ -5523,6 +5539,10 @@ msgstr "অ্যাপ বিস্তারিত"
 msgid "Review History"
 msgstr ""
 
+#: mkt/lookup/templates/lookup/helpers/app_header.html:45
+msgid "Communication Dashboard"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
 msgstr ""
@@ -5940,23 +5960,23 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:135
+#: mkt/reviewers/views.py:136
 msgid "New Apps (Under 5 days)"
 msgstr "নতুন অ্যাপ (৫ দিনের নিচে)"
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "Passable (5 to 10 days)"
 msgstr "প্রচলিত(৫ থেকে ১০ দিন)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Overdue (Over 10 days)"
 msgstr "বিলম্বিত (১০ দিনের অধিক)"
 
-#: mkt/reviewers/views.py:248
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "স্ব-মন্তব্য অনুমোদিত নয়।"
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "শুধুমাত্র প্রবীণ পর্যালোচনাকারীরা  ব্লগ লিস্টে থাকা অ্যাপ পর্যালোচনা করতে পারবেন।"
 
@@ -7725,66 +7745,66 @@ msgstr ""
 msgid "Please use the verified email for this account."
 msgstr ""
 
-#: mkt/webapps/models.py:209
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "তালিকায়"
 
-#: mkt/webapps/models.py:1367
+#: mkt/webapps/models.py:1366
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1369
+#: mkt/webapps/models.py:1368
 msgid "You must provide an app name."
 msgstr "আপনাকে অ্যাপের জন্য অবশ্যই একটি নাম প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1371
+#: mkt/webapps/models.py:1370
 msgid "You must provide at least one device type."
 msgstr "আপনাকে অবশ্যই অন্তত একটি ডিভাইসের ধরণ নির্বাচন করতে হবে।"
 
-#: mkt/webapps/models.py:1374
+#: mkt/webapps/models.py:1373
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1440
 msgid "You must set up content ratings."
 msgstr "আপনার বিষয়বস্তু রেটিং সেট আপ করা আবশ্যক।"
 
-#: mkt/webapps/models.py:1443
+#: mkt/webapps/models.py:1442
 msgid "You must set up a payment account."
 msgstr "আপনার একটি পেমেন্ট একাউন্ট সেট আপ করা আবশ্যক।"
 
-#: mkt/webapps/models.py:1468
+#: mkt/webapps/models.py:1467
 msgid "This app's submission process has not been fully completed."
 msgstr "এই অ্যাপ্লিকেশন এর জমা প্রক্রিয়া সম্পূর্ণরূপে সম্পন্ন করা হয়নি।"
 
-#: mkt/webapps/models.py:1475
+#: mkt/webapps/models.py:1474
 msgid "This app needs to get a content rating."
 msgstr "এই অ্যাপের একটি কন্টেন্ট রেটিং পেতে হবে।"
 
-#: mkt/webapps/models.py:1481
+#: mkt/webapps/models.py:1480
 msgid "This app needs a payment account set up."
 msgstr "এই অ্যাপের জন্য একটি পেমেন্ট অ্যাকাউন্ট সেটাপ করা প্রয়োজন।"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2796
+#: mkt/webapps/models.py:2739
 msgid "awaiting approval"
 msgstr "অনুমোদনের অপেক্ষায় আছে"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2798
+#: mkt/webapps/models.py:2741
 msgid "rejected"
 msgstr "বাতিল করা হয়েছে"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2800
+#: mkt/webapps/models.py:2743
 msgid "requires additional review"
 msgstr "অতিরিক্ত পর্যালোচনার প্রয়োজন"
 
-#: mkt/webapps/models.py:2851
+#: mkt/webapps/models.py:2794
 msgid "{region} approval status"
 msgstr "{region} অনুমোদন অবস্থা"
 
-#: mkt/webapps/models.py:2859
+#: mkt/webapps/models.py:2802
 msgid "{region} nomination date"
 msgstr ""
 
