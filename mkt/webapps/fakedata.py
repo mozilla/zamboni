@@ -43,8 +43,8 @@ def generate_app_data(num):
         for i in range(repeats - 1):
             for a in fake_app_names:
                 apps.append(a + (str(i + 1),))
-        for a in fake_app_names[:tailsize]:
-            apps.append(a + (str(i + 2),))
+            for a in fake_app_names[:tailsize]:
+                apps.append(a + (str(i + 2),))
     else:
         apps = fake_app_names[:tailsize]
     # Let's have at least 3 apps in each category, if we can.
