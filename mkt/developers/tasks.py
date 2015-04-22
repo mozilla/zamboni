@@ -11,12 +11,10 @@ import traceback
 import urlparse
 import uuid
 import zipfile
-from datetime import date
 
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.http import urlencode
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
@@ -138,7 +136,7 @@ def _hash_file(fd):
     return hashlib.md5(fd.read()).hexdigest()[:8]
 
 
-@task
+@post_request_task
 @set_modified_on
 def resize_icon(src, dst, sizes, locally=False, **kw):
     """Resizes addon icons."""
@@ -207,7 +205,7 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
         log.error('Error optimizing image: %s; %s' % (src, e))
 
 
-@task
+@post_request_task
 @set_modified_on
 def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
@@ -248,29 +246,6 @@ def resize_preview(src, instance, **kw):
 
     except Exception, e:
         log.error("Error saving preview: %s; %s" % (e, thumb_dst))
-
-
-@task
-@write
-def get_preview_sizes(ids, **kw):
-    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
-             % (len(ids), get_preview_sizes.rate_limit, ids[0]))
-    addons = Webapp.objects.filter(pk__in=ids).no_transforms()
-
-    for addon in addons:
-        previews = addon.previews.all()
-        log.info('Found %s previews for: %s' % (previews.count(), addon.pk))
-        for preview in previews:
-            try:
-                log.info('Getting size for preview: %s' % preview.pk)
-                sizes = {
-                    'thumbnail': Image.open(preview.thumbnail_path).size,
-                    'image': Image.open(preview.image_path).size,
-                }
-                preview.update(sizes=sizes)
-            except Exception, err:
-                log.error('Failed to find size of preview: %s, error: %s'
-                          % (addon.pk, err))
 
 
 def _fetch_content(url):
@@ -327,7 +302,7 @@ def save_icon(webapp, content):
     webapp.save()
 
 
-@task
+@post_request_task
 @write
 def fetch_icon(webapp, file_obj=None, **kw):
     """
@@ -480,35 +455,6 @@ def fetch_manifest(url, upload_pk=None, **kw):
     upload.add_file([content], url, len(content))
     # Send the upload to the validator.
     validator(upload.pk, url=url)
-
-
-@task
-def subscribe_to_responsys(campaign, address, format='html', source_url='',
-                           lang='', country='', **kw):
-    """
-    Subscribe a user to a list in responsys. There should be two
-    fields within the Responsys system named by the "campaign"
-    parameter: <campaign>_FLG and <campaign>_DATE.
-    """
-
-    data = {
-        'LANG_LOCALE': lang,
-        'COUNTRY_': country,
-        'SOURCE_URL': source_url,
-        'EMAIL_ADDRESS_': address,
-        'EMAIL_FORMAT_': 'H' if format == 'html' else 'T',
-    }
-
-    data['%s_FLG' % campaign] = 'Y'
-    data['%s_DATE' % campaign] = date.today().strftime('%Y-%m-%d')
-    data['_ri_'] = settings.RESPONSYS_ID
-
-    try:
-        res = requests.get('http://awesomeness.mozilla.org/pub/rf',
-                           data=urlencode(data))
-        return res.status_code == 200
-    except requests.RequestException:
-        return False
 
 
 @task
