@@ -21,7 +21,6 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         size = 60
         data = list(generate_app_data(size))
         eq_(len(data), size)
-        ctr = collections.defaultdict(int)
         eq_(len(set(appname for appname, cat in data)), size)
         ok_(not any(appname[-1].isdigit() for appname, cat in data))
 
