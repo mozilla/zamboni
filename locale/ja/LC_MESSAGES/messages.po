@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:23-0700\n"
-"PO-Revision-Date: 2015-04-22 17:34-0400\n"
+"PO-Revision-Date: 2015-04-23 19:25-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -433,7 +433,7 @@ msgstr "ガンビア"
 
 #: mkt/constants/bango.py:100
 msgid "Georgia"
-msgstr "グルジア"
+msgstr "ジョージア"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
 msgid "Germany"
