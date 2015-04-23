@@ -703,7 +703,7 @@ FETCH_BY_ID = True
 FILE_VIEWER_SIZE_LIMIT = 1048576
 
 # The maximum file size that you can have inside a zip file.
-FILE_UNZIP_SIZE_LIMIT = 104857600
+FILE_UNZIP_SIZE_LIMIT = 1024 * 1024 * 1024  # 1GB
 
 # Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'
