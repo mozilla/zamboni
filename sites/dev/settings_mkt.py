@@ -91,9 +91,6 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ha', 'ln', 'sw', 'tl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-HIDDEN_LANGUAGES = (
-    'cy',
-)
 
 # Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER

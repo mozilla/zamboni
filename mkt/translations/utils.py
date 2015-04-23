@@ -159,7 +159,7 @@ def find_language(locale):
     if not locale:
         return None
 
-    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
+    LANGS = settings.AMO_LANGUAGES
 
     if locale in LANGS:
         return locale

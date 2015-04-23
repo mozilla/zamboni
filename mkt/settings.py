@@ -797,17 +797,6 @@ HEKA_CONF = {
 
 HEKA = client_from_dict_config(HEKA_CONF)
 
-# Not shown on the site, but .po files exist and these are available on the
-# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
-# This list also enables translation edits.
-HIDDEN_LANGUAGES = (
-    # List of languages from AMO's settings (excluding mkt's active locales).
-    'af', 'ar', 'fa', 'fi', 'he', 'id', 'mn', 'pt-PT', 'sl', 'sv-SE',
-    'uk', 'vi',
-    # The hidden list from AMO's settings:
-    'cy',
-)
-
 # IARC content ratings.
 IARC_ALLOW_CERT_REUSE = True
 
