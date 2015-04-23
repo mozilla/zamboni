@@ -37,31 +37,18 @@ fake_app_names = list(itertools.product(adjectives, nouns))[:-1]
 
 
 def generate_app_data(num):
-    repeats, tailsize = divmod(num, len(fake_app_names))
-    if repeats:
-        apps = fake_app_names[:]
-        for i in range(repeats - 1):
-            for a in fake_app_names:
-                apps.append(a + (str(i + 1),))
-            for a in fake_app_names[:tailsize]:
-                apps.append(a + (str(i + 2),))
-    else:
-        apps = fake_app_names[:tailsize]
-    # Let's have at least 3 apps in each category, if we can.
-    if num < (len(CATEGORY_CHOICES) * 3):
-        num_cats = max(num // 3, 1)
-    else:
-        num_cats = len(CATEGORY_CHOICES)
-    catsize = num // num_cats
-    ia = iter(apps)
-    for cat_slug, cat_name in CATEGORY_CHOICES[:num_cats]:
-        for n in range(catsize):
-            appname = ' '.join(next(ia))
-            yield (appname, cat_slug)
-    for i, app in enumerate(ia):
-        appname = ' '.join(app)
-        cat_slug, cat_name = CATEGORY_CHOICES[i % len(CATEGORY_CHOICES)]
-        yield (appname, cat_slug)
+    def _names():
+        for name in fake_app_names:
+            yield ' '.join(name)
+        repeat = 1
+        while True:
+            for name in fake_app_names:
+                yield ' '.join(name + (str(repeat),))
+            repeat += 1
+
+    cats = itertools.cycle([c[0] for c in CATEGORY_CHOICES])
+    pairs = itertools.izip(_names(), cats)
+    return itertools.islice(pairs, num)
 
 foreground = ["rgb(45,79,255)",
               "rgb(254,180,44)",

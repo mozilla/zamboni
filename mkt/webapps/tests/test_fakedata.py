@@ -12,11 +12,6 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         size = 4
         data = list(generate_app_data(size))
         eq_(len(data), size)
-        ctr = collections.defaultdict(int)
-        for appname, cat in data:
-            ctr[cat] += 1
-        # Apps are binned into categories, at least 3 in each.
-        eq_(ctr.values(), [4])
         # Names are unique.
         eq_(len(set(appname for appname, cat in data)), size)
         # Size is smaller than name list, so no names end in numbers.
@@ -27,9 +22,6 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         data = list(generate_app_data(size))
         eq_(len(data), size)
         ctr = collections.defaultdict(int)
-        for appname, cat in data:
-            ctr[cat] += 1
-        eq_(set(ctr.values()), set([3, 4]))
         eq_(len(set(appname for appname, cat in data)), size)
         ok_(not any(appname[-1].isdigit() for appname, cat in data))
 
@@ -40,10 +32,6 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         ctr = collections.defaultdict(int)
         for appname, cat in data:
             ctr[cat] += 1
-        # Apps are spread between categories evenly - the difference between
-        # the largest and smallest category is less than 2.
-        ok_(max(ctr.values()) - min(ctr.values()) < 2)
-        eq_(len(set(appname for appname, cat in data)), size)
         # Every name is used without a suffix.
         eq_(sum(1 for appname, cat in data if not appname[-1].isdigit()),
             len(fake_app_names))
