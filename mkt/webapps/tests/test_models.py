@@ -539,13 +539,13 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
     def test_remove(self):
         app = Webapp.objects.create()
         app.name = {'en-US': 'woo', 'el': 'yeah'}
-        app.description = {'en-US': 'woo', 'el': 'yeah', 'he': 'ola'}
+        app.description = {'en-US': 'woo', 'el': 'yeah', 'ja': 'ola'}
         app.save()
         app.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
         eq_(sorted(qs.filter(id=app.name_id)), ['en-US'])
-        eq_(sorted(qs.filter(id=app.description_id)), ['en-US', 'he'])
+        eq_(sorted(qs.filter(id=app.description_id)), ['en-US', 'ja'])
 
     def test_remove_version_locale(self):
         app = app_factory()

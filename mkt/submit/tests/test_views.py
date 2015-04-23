@@ -381,13 +381,13 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(addon.versions.latest().supported_locales, 'es,it')
 
     def test_short_locale(self):
-        # This manifest has a locale code of "pt" which is in the
-        # SHORTER_LANGUAGES setting and should get converted to "pt-PT".
+        # This manifest has a locale code of "zh" which is in the
+        # SHORTER_LANGUAGES setting and should get converted to "zh-CN".
         self.manifest = self.manifest_path('short-locale.webapp')
         self.upload = self.get_upload(abspath=self.manifest,
                                       user=UserProfile.objects.get(pk=999))
         addon = self.post_addon()
-        eq_(addon.default_locale, 'pt-PT')
+        eq_(addon.default_locale, 'zh-CN')
         eq_(addon.versions.latest().supported_locales, 'es')
 
     def test_unsupported_detail_locale(self):
