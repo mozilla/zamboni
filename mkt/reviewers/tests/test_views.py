@@ -3933,9 +3933,10 @@ class TestReviewTranslate(RestOAuth):
 
         # Call translation.
         review = self.review
-        res = self.client.get_ajax(reverse('reviewers.review_translate',
-                                           args=[review.addon.app_slug,
-                                                 review.id, 'fr']),)
+        res = self.client.get(
+            reverse('reviewers.review_translate',
+                    args=[review.addon.app_slug, review.id, 'fr']),
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 400)
 
 
