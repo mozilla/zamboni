@@ -2,8 +2,12 @@
 Gaia Marketplace helper. Takes packaged manifest as only argument.
 Copy this into the Marketplace app folder (dev/stage/prod whatever), and run.
 Fetches Marketplace package and Etags (e.g., m.f.c/packaged.webapp).
-Downloads application.zip.
+Downloads application.zip for you.
 If metadata.json is in path, replaces the appropriate fields.
+
+>> python gaia_package.py https://marketplace.firefox.com/packaged.webapp
+
+And you're done!
 """
 import json
 import os
