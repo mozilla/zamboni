@@ -25,7 +25,7 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         ok_(not any(appname[-1].isdigit() for appname, cat in data))
 
     def test_bigset(self):
-        size = 300
+        size = 1500
         data = list(generate_app_data(size))
         eq_(len(data), size)
         ctr = collections.defaultdict(int)

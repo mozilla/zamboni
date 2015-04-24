@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import hashlib
 import itertools
@@ -29,11 +30,11 @@ from mkt.users.utils import create_user
 from mkt.webapps.models import AddonUser, AppManifest, Preview
 
 adjectives = ['Exquisite', 'Delicious', 'Elegant', 'Swanky', 'Spicy',
-              'Food Truck', 'Artisanal', 'Tasty']
+              'Food Truck', 'Artisanal', 'Tasty', 'Questionable', u'Drôle']
 nouns = ['Sandwich', 'Pizza', 'Curry', 'Pierogi', 'Sushi', 'Salad', 'Stew',
          'Pasta', 'Barbeque', 'Bacon', 'Pancake', 'Waffle', 'Chocolate',
-         'Gyro', 'Cookie', 'Burrito', 'Pie']
-fake_app_names = list(itertools.product(adjectives, nouns))[:-1]
+         'Gyro', 'Cookie', 'Burrito', 'Pie', u'Crème brûlée', u'пельмень']
+fake_app_names = list(itertools.product(adjectives, nouns))
 
 
 def generate_app_data(num):
