@@ -12,7 +12,7 @@ import mock
 from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, ok_, raises
 
-from mkt.constants.payments import PROVIDER_BOKU
+from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
@@ -167,14 +167,14 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(names['en-US']['description'], en_desc)
 
 
-@override_settings(PAYMENT_PROVIDERS=['bango', 'boku'])
+@override_settings(PAYMENT_PROVIDERS=['bango', 'reference'])
 class TestWebAppProductMultipleProviders(BaseTestWebAppProduct):
     def setUp(self):
         super(TestWebAppProductMultipleProviders, self).setUp()
         account = PaymentAccount.objects.create(
             user=self.user, uri='foo', name='test', inactive=False,
             solitude_seller=self.seller, account_id=321, seller_uri='abc',
-            provider=PROVIDER_BOKU)
+            provider=PROVIDER_REFERENCE)
         AddonPaymentAccount.objects.create(
             addon=self.addon, account_uri='foo',
             payment_account=account, product_uri='newuri')

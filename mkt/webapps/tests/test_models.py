@@ -35,7 +35,7 @@ from mkt.constants import apps, MANIFEST_CONTENT_TYPE
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
                                          REVERSE_INTERACTIVES)
-from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -118,7 +118,7 @@ class TestWebapp(WebappTestCase):
         account = self.add_payment_account(app, PROVIDER_BANGO)
         assert not app.has_multiple_payment_accounts(), 'one account'
 
-        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
+        self.add_payment_account(app, PROVIDER_REFERENCE, user=account.user)
         ok_(app.has_multiple_payment_accounts(), 'two accounts')
 
     def test_no_payment_account(self):

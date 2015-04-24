@@ -3,7 +3,6 @@ from django.test.client import RequestFactory
 import mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-from slumber.exceptions import HttpClientError
 
 import mkt
 import mkt.site.tests
@@ -613,31 +612,3 @@ class TestBangoAccountForm(Patcher, mkt.site.tests.TestCase):
         payment = payment.reload()
         eq_(payment.name, 'foo')
         self.bango_patcher.api.by_url.assert_called_with('uid')
-
-
-class TestBokuAccountForm(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        super(TestBokuAccountForm, self).setUp()
-        self.app = Webapp.objects.get(pk=337141)
-        self.user = self.app.addonuser_set.get().user
-
-    @mock.patch('mkt.developers.forms_payments.client')
-    def test_valid_when_verified(self, client):
-        verify_service = client.api.boku.verify_service.post
-        verify_service.return_value = ''
-        form = forms_payments.BokuAccountForm({'account_name': 'Boku Acct',
-                                               'service_id': 'clearly-valid'})
-        ok_(form.is_valid())
-        verify_service.assert_called_with({'service_id': 'clearly-valid'})
-
-    @mock.patch('mkt.developers.forms_payments.client')
-    def test_invalid_when_not_verified(self, client):
-        verify_service = client.api.boku.verify_service.post
-        verify_service.side_effect = HttpClientError
-        form = forms_payments.BokuAccountForm({'account_name': 'Boku Acct',
-                                               'service_id': 'not-valid'})
-        ok_(not form.is_valid())
-        eq_(len(form.errors['service_id']), 1)
-        verify_service.assert_called_with({'service_id': 'not-valid'})

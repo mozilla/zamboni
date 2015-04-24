@@ -547,15 +547,6 @@ BANGO_FAKE_REFUNDS = False
 # Basket subscription url for newsletter signups
 BASKET_URL = 'https://basket.mozilla.com'
 
-# URL to Boku signup flow, this will change per server.
-# See https://mana.mozilla.org/wiki/display/MARKET/Boku for more.
-#
-# This a good test one that developers can use.
-BOKU_SIGNUP_URL = ('https://merchants.boku.com/signup/signup_business?'
-                   'params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy'
-                   '5JYGMWnUYDvxyEk8lxalYW56b6hrqfw%3D')
-BOKU_PORTAL = 'https://merchants.boku.com/merchant_product_statistics'
-
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN = 'login.persona.org'
 

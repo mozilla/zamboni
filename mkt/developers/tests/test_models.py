@@ -9,7 +9,7 @@ from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
-from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    AddonPaymentAccount, CantCancel,
                                    PaymentAccount, PreloadTestPlan,
@@ -172,7 +172,7 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
             solitude_seller=self.seller, provider=PROVIDER_BANGO)
         acct2 = PaymentAccount.objects.create(
             name='fdsa', user=self.user, uri='bar', seller_uri='uri2',
-            solitude_seller=self.seller, provider=PROVIDER_BOKU)
+            solitude_seller=self.seller, provider=PROVIDER_REFERENCE)
 
         addon = Webapp.objects.get(pk=337141)
         AddonPaymentAccount.objects.create(

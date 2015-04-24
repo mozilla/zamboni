@@ -9,12 +9,10 @@ from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
 import happyforms
-from slumber.exceptions import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import mkt
 
-from lib.pay_server import client
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
@@ -630,23 +628,6 @@ class ReferenceAccountForm(happyforms.Form):
         # Save the account name, if it was updated.
         provider = self.account.get_provider()
         provider.account_update(self.account, self.cleaned_data)
-
-
-class BokuAccountForm(happyforms.Form):
-    signup_url = settings.BOKU_SIGNUP_URL
-    account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
-    # The lengths of these are not specified in the Boku documentation, so
-    # making a guess here about max lengths.
-    service_id = forms.CharField(max_length=50, label=_lazy(u'Service ID'))
-
-    def clean_service_id(self):
-        service_id = self.cleaned_data['service_id']
-        try:
-            client.api.boku.verify_service.post({'service_id': service_id})
-        except HttpClientError:
-            raise ValidationError(_('Service ID is not valid'))
-        else:
-            return service_id
 
 
 class PaymentCheckForm(happyforms.Form):

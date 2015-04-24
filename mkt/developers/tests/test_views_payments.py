@@ -17,7 +17,7 @@ import mkt.site.tests
 from mkt.constants.payments import (ACCESS_PURCHASE, ACCESS_SIMULATE,
                                     PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
-                                    PROVIDER_BOKU, PROVIDER_REFERENCE)
+                                    PROVIDER_REFERENCE)
 from mkt.constants.regions import ALL_REGION_IDS, ESP, GBR, USA
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
@@ -898,7 +898,7 @@ class TestPayments(Patcher, mkt.site.tests.TestCase):
 
     def test_template_switches(self):
         payments_url = self.webapp.get_dev_url('payments')
-        providers = ['reference', 'boku', 'bango']
+        providers = ['reference', 'bango']
         for provider in providers:
             with self.settings(PAYMENT_PROVIDERS=[provider],
                                DEFAULT_PAYMENT_PROVIDER=provider):
@@ -1241,14 +1241,6 @@ class TestPaymentPortal(PaymentsBase):
         PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
         res = self.client.get(self.bango_url)
         eq_(res.status_code, 403)
-
-    def test_boku(self):
-        PaymentAccount.objects.update(provider=PROVIDER_BOKU)
-        with self.settings(PAYMENT_PROVIDERS=['boku']):
-            res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        output = json.loads(res.content)
-        eq_(output[0]['portal-url'], settings.BOKU_PORTAL)
 
 
 class TestPaymentAccount(Patcher, PaymentsBase):

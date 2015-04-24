@@ -141,7 +141,7 @@ PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
 
 # Bug 1002569.
-PAYMENT_PROVIDERS = ['bango', 'boku', 'reference']
+PAYMENT_PROVIDERS = ['bango', 'reference']
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 
 FXA_AUTH_DOMAIN = getattr(private_mkt, 'FXA_AUTH_DOMAIN', '')

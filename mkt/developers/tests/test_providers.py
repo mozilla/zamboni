@@ -1,14 +1,13 @@
 from datetime import datetime
 
-from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_
 
-from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
-                                    PROVIDER_REFERENCE)
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import PaymentAccount, SolitudeSeller
-from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
+from mkt.developers.providers import (account_check, Bango, get_provider,
                                       Reference)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
@@ -49,12 +48,6 @@ class Patcher(object):
         self.bango_p_patcher.patcher = bango_p_patcher
         self.addCleanup(bango_p_patcher.stop)
 
-        boku_patcher = patch('mkt.developers.providers.Boku.client',
-                             name='test_providers.Patcher.boku_patcher')
-        self.boku_patcher = boku_patcher.start()
-        self.boku_patcher.patcher = boku_patcher
-        self.addCleanup(boku_patcher.stop)
-
         ref_patcher = patch('mkt.developers.providers.Reference.client',
                             name='test_providers.Patcher.ref_patcher')
         self.ref_patcher = ref_patcher.start()
@@ -88,7 +81,7 @@ class TestBase(TestCase):
         provider.test = test
         provider.test(provider, PaymentAccount(provider=PROVIDER_REFERENCE))
         with self.assertRaises(ValueError):
-            provider.test(provider, PaymentAccount(provider=PROVIDER_BOKU))
+            provider.test(provider, PaymentAccount(provider=PROVIDER_BANGO))
 
 
 class TestBango(Patcher, TestCase):
@@ -262,112 +255,3 @@ class TestReference(Patcher, TestCase):
             'name': unicode(app.name),
             'uuid': ANY,
         })
-
-
-class TestBoku(Patcher, TestCase):
-    fixtures = fixture('user_999')
-
-    def setUp(self, *args, **kw):
-        super(TestBoku, self).setUp(*args, **kw)
-        self.user = UserProfile.objects.get(pk=999)
-        self.boku = Boku()
-
-    def make_account(self):
-        seller = SolitudeSeller.objects.create(user=self.user)
-        return PaymentAccount.objects.create(user=self.user,
-                                             solitude_seller=seller,
-                                             uri='/f/b/1',
-                                             name='account name',
-                                             provider=PROVIDER_BOKU)
-
-    def test_account_create(self):
-        data = {'account_name': 'account',
-                'service_id': 'b'}
-        res = self.boku.account_create(self.user, data)
-        acct = PaymentAccount.objects.get(user=self.user)
-        eq_(acct.provider, PROVIDER_BOKU)
-        eq_(acct.agreed_tos, True)
-        eq_(res.pk, acct.pk)
-        self.boku_patcher.seller.post.assert_called_with(data={
-            'seller': ANY,
-            'service_id': 'b',
-        })
-
-    def test_terms_update(self):
-        account = self.make_account()
-        assert not account.agreed_tos
-        response = self.boku.terms_update(account)
-        assert account.agreed_tos
-        assert response['accepted']
-
-    def test_create_new_product(self):
-        account = self.make_account()
-        app = app_factory()
-
-        generic_product_uri = '/generic/product/1/'
-        boku_product_uri = '/boku/product/1/'
-        self.generic_patcher.product.get_object_or_404.return_value = {
-            'resource_pk': 1,
-            'resource_uri': generic_product_uri,
-        }
-
-        self.boku_patcher.product.get_object_or_404.side_effect = (
-            ObjectDoesNotExist)
-
-        self.boku_patcher.product.post.return_value = {
-            'resource_uri': boku_product_uri,
-            'seller_product': generic_product_uri,
-            'seller_boku': account.uri,
-        }
-
-        product = self.boku.product_create(account, app)
-        eq_(product, boku_product_uri)
-        self.boku_patcher.product.post.assert_called_with(data={
-            'seller_boku': account.uri,
-            'seller_product': generic_product_uri,
-        })
-
-    def test_update_existing_product(self):
-        account = self.make_account()
-        app = app_factory()
-
-        generic_product_uri = '/generic/product/1/'
-        self.generic_patcher.product.get_object_or_404.return_value = {
-            'resource_pk': 1,
-            'resource_uri': generic_product_uri,
-        }
-
-        existing_boku_product_uri = '/boku/product/1/'
-        self.boku_patcher.product.get_object_or_404.return_value = {
-            'resource_uri': existing_boku_product_uri
-        }
-        patch_mock = Mock()
-        patch_mock.patch.return_value = {
-            'resource_uri': existing_boku_product_uri,
-            'seller_product': generic_product_uri,
-            'seller_boku': account.uri,
-        }
-        self.boku_patcher.by_url.return_value = patch_mock
-
-        product = self.boku.product_create(account, app)
-        eq_(product, existing_boku_product_uri)
-        self.boku_patcher.by_url.assert_called_with(existing_boku_product_uri)
-        patch_mock.patch.assert_called_with(data={
-            'seller_boku': account.uri,
-            'seller_product': generic_product_uri,
-        })
-
-    def test_multiple_existing_products_raises_exception(self):
-        account = self.make_account()
-        app = app_factory()
-
-        generic_product_uri = '/generic/product/1/'
-        self.generic_patcher.product.get_object_or_404.return_value = {
-            'resource_pk': 1,
-            'resource_uri': generic_product_uri,
-        }
-
-        self.boku_patcher.product.get_object_or_404.side_effect = (
-            MultipleObjectsReturned)
-        with self.assertRaises(MultipleObjectsReturned):
-            self.boku.product_create(account, app)
