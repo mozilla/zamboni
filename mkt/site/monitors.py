@@ -164,23 +164,19 @@ def path():
 
 def redis():
     # Check Redis
-    redis_results = [None, 'REDIS_BACKENDS is not set']
-    status = 'REDIS_BACKENDS is not set'
-    if getattr(settings, 'REDIS_BACKENDS', False):
-        import redisutils
-        status = []
+    redis_results = [None, 'REDIS_BACKEND is not set']
+    status = 'REDIS_BACKEND is not set'
+    if getattr(settings, 'REDIS_BACKEND', False):
+        from caching.invalidation import get_redis_backend
+        status = ''
 
-        redis_results = {}
-
-        for alias, redis in redisutils.connections.iteritems():
-            try:
-                redis_results[alias] = redis.info()
-            except Exception, e:
-                redis_results[alias] = None
-                status.append('Failed to chat with redis:%s' % alias)
-                monitor_log.critical('Failed to chat with redis: (%s)' % e)
-
-        status = ','.join(status)
+        try:
+            redis = get_redis_backend()
+            redis_results = redis.info()
+        except Exception, e:
+            redis_results = None
+            status = ('Failed to chat with redis')
+            monitor_log.critical('Failed to chat with redis: (%s)' % e)
 
     return status, redis_results
 

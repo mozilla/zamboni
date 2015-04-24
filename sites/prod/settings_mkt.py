@@ -36,21 +36,6 @@ SYSLOG_CSP = "http_app_mkt_prod_csp"
 # Redis
 REDIS_BACKEND = getattr(
     private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
-REDIS_BACKENDS_CACHE_SLAVE = getattr(
-    private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE',
-    private.REDIS_BACKENDS_CACHE_SLAVE)
-REDIS_BACKENDS_MASTER = getattr(
-    private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
-REDIS_BACKENDS_SLAVE = getattr(
-    private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
-
-REDIS_BACKENDS = {
-    'cache': REDIS_BACKEND,
-    'cache_slave': REDIS_BACKENDS_CACHE_SLAVE,
-    'master': REDIS_BACKENDS_MASTER,
-    'slave': REDIS_BACKENDS_SLAVE,
-}
-
 CACHE_MACHINE_ENABLED = True
 
 # Celery
