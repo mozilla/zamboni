@@ -29,7 +29,6 @@ from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from redisutils import mock_redis, reset_redis
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -191,18 +190,6 @@ def check_links(expected, elements, selected=None, verify=True):
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
             eq_(bool(e.length), text == selected)
-
-
-class RedisTest(object):
-    """Mixin for when you need to mock redis for testing."""
-
-    def _pre_setup(self):
-        self._redis = mock_redis()
-        super(RedisTest, self)._pre_setup()
-
-    def _post_teardown(self):
-        super(RedisTest, self)._post_teardown()
-        reset_redis(self._redis)
 
 
 class TestClient(Client):
@@ -443,8 +430,7 @@ class ClassFixtureTestCase(test.TestCase):
             connections.all = real_connections_all
 
 
-class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
-               ClassFixtureTestCase):
+class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
     """Base class for all mkt tests."""
     client_class = TestClient
 

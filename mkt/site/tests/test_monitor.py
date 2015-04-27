@@ -4,8 +4,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 from mock import Mock, patch
-from nose.tools import eq_, ok_
-import redisutils
+from nose.tools import eq_
 import requests
 
 import mkt.site.tests
@@ -60,11 +59,10 @@ class TestMonitor(mkt.site.tests.TestCase):
         status, path_result = monitors.path()
         eq_(status, '')
 
-    @patch.object(redisutils.MockRedis, 'info', create=True)
-    def test_redis(self, mock_redis):
+    @patch('caching.invalidation.get_redis_backend')
+    def test_redis(self, get_redis_backend):
         status, redis_result = monitors.redis()
         eq_(status, '')
-        ok_(mock_redis.called)
 
     def test_settings_check(self):
         status, settings_check_result = monitors.settings_check()

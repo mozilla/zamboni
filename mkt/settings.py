@@ -981,15 +981,8 @@ QA_APP_ID = 0
 # Read-only mode setup.
 READ_ONLY = False
 
-REDIS_BACKENDS = {
-    'master': {
-        'HOST': os.environ.get('REDIS_HOST', 'localhost'),
-        'PORT': '6379',
-        'OPTIONS': {
-            'socket_timeout': '0.5',
-        }
-    }
-}
+REDIS_BACKEND = 'redis://{0}:6379?socket_timeout=0.1'.format(
+                os.environ.get('REDIS_HOST', 'localhost'))
 
 REST_FRAMEWORK = {
     'DEFAULT_MODEL_SERIALIZER_CLASS':

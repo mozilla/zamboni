@@ -93,12 +93,6 @@ LOGGING['loggers'].update({
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
-REDIS_BACKENDS = {
-    'cache': private.REDIS_BACKENDS_CACHE,
-    'cache_slave': private.REDIS_BACKENDS_CACHE_SLAVE,
-    'master': private.REDIS_BACKENDS_MASTER,
-    'slave': private.REDIS_BACKENDS_SLAVE,
-}
 CACHE_MACHINE_USE_REDIS = True
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
