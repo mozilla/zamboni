@@ -71,6 +71,8 @@
  {"type": "packaged", "status": "pending", "rereview": true},
  {"type": "packaged", "status": "public", "premium_type": "premium"},
  {"type": "packaged", "status": "pending", "premium_type": "premium"},
+ {"type": "packaged", "status": "public", "premium_type": "free-inapp"},
+ {"type": "packaged", "status": "pending", "premium_type": "free-inapp"},
  {"type": "packaged", "status": "public", "num_ratings": 0},
  {"type": "packaged", "status": "public", "num_ratings": 100},
  {"type": "packaged", "status": "public", "num_previews": 5},
@@ -88,6 +90,11 @@
  {"type": "privileged", "status": "unlisted", "permissions": ["camera", "storage"]},
  {"type": "privileged", "status": "deleted", "permissions": ["camera", "storage"]},
  {"type": "privileged", "status": "incomplete", "permissions": ["camera", "storage"]},
+
+ {"type": "hosted", "status": "public",  "premium_type": "free-inapp",
+  "device_types": ["firefoxos"]},
+ {"type": "hosted", "status": "pending", "premium_type": "free-inapp",
+  "device_types": ["firefoxos"]},
 
  {"type": "hosted", "status": "public",  "premium_type": "premium",
   "device_types": ["firefoxos"]},
