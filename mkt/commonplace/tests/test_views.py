@@ -342,9 +342,3 @@ class TestLangAttrs(CommonplaceTestMixin):
         html = doc('html[lang][dir]')
         eq_(html.attr('lang'), 'rtl')
         eq_(html.attr('dir'), 'rtl')
-
-    def test_comm_does_not_set_tags(self):
-        res = self._test_url('/comm/')
-        doc = pq(res.content)
-        ok_(not doc('html[lang]'), 'html[lang] should not be set')
-        ok_(not doc('html[dir]'), 'html[dir] should not be set')
