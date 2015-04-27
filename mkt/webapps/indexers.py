@@ -88,6 +88,9 @@ class WebappIndexer(BaseIndexer):
                                     'analyzer': 'default_icu',
                                     'position_offset_gap': 100},
                     'device': {'type': 'byte'},
+                    # The date this app was added to the escalation queue.
+                    'escalation_date': {'format': 'dateOptionalTime',
+                                        'type': 'date', 'doc_values': True},
                     'features': {
                         'type': 'object',
                         'properties': dict(
@@ -161,6 +164,9 @@ class WebappIndexer(BaseIndexer):
                     'region_exclusions': {'type': 'short'},
                     'reviewed': {'format': 'dateOptionalTime', 'type': 'date',
                                  'doc_values': True},
+                    # The date this app was added to the re-review queue.
+                    'rereview_date': {'format': 'dateOptionalTime',
+                                      'type': 'date', 'doc_values': True},
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
@@ -258,9 +264,17 @@ class WebappIndexer(BaseIndexer):
         d['installs_allowed_from'] = (
             version.manifest.get('installs_allowed_from', ['*'])
             if version else ['*'])
-        d['is_escalated'] = obj.escalationqueue_set.exists()
         d['is_priority'] = obj.priority_review
-        d['is_rereviewed'] = obj.rereviewqueue_set.exists()
+
+        is_escalated = obj.escalationqueue_set.exists()
+        d['is_escalated'] = is_escalated
+        d['escalation_date'] = (obj.escalationqueue_set.get().created
+                                if is_escalated else None)
+        is_rereviewed = obj.rereviewqueue_set.exists()
+        d['is_rereviewed'] = is_rereviewed
+        d['rereview_date'] = (obj.rereviewqueue_set.get().created
+                              if is_rereviewed else None)
+
         if latest_version:
             d['latest_version'] = {
                 'status': status,

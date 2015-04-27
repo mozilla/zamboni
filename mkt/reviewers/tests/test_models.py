@@ -12,9 +12,9 @@ import mkt.site.tests
 
 from mkt.constants import comm
 from mkt.comm.models import CommunicationNote
-from mkt.reviewers.models import (
-    AdditionalReview, QUEUE_TARAKO, RereviewQueue, ReviewerScore,
-    tarako_failed, tarako_passed)
+from mkt.reviewers.models import (AdditionalReview, EscalationQueue,
+                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore,
+                                  tarako_failed, tarako_passed)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import user_factory
 from mkt.tags.models import Tag
@@ -507,3 +507,24 @@ class TestRereviewQueue(mkt.site.tests.TestCase):
         RereviewQueue.flag(self.app, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
         eq_(self.app.threads.all()[0].notes.all()[0].note_type,
             comm.REREVIEW_PREMIUM_TYPE_UPGRADE)
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
+    def test_signals(self, mock):
+        RereviewQueue.flag(self.app, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
+        assert mock.called
+        mock.reset()
+        RereviewQueue.objects.filter(addon=self.app).delete()
+        assert mock.called
+
+
+class TestEscalationQueue(mkt.site.tests.TestCase):
+    def setUp(self):
+        self.app = mkt.site.tests.app_factory()
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
+    def test_signals(self, mock):
+        EscalationQueue.objects.create(addon=self.app)
+        assert mock.called
+        mock.reset()
+        EscalationQueue.objects.filter(addon=self.app).delete()
+        assert mock.called
