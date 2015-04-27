@@ -309,3 +309,42 @@ class TestBuildId(CommonplaceTestMixin):
             src = pq(script).attr('src')
             if 'fireplace' in src:
                 ok_(src.endswith('?b=0118999'))
+
+
+class TestLangAttrs(CommonplaceTestMixin):
+
+    def test_lang_en(self):
+        res = self._test_url('/server.html')
+        doc = pq(res.content)
+        html = doc('html[lang][dir]')
+        eq_(html.attr('lang'), 'en-US')
+        eq_(html.attr('dir'), 'ltr')
+
+    def test_lang_fr(self):
+        res = self._test_url('/server.html?lang=fr')
+        doc = pq(res.content)
+        html = doc('html[lang][dir]')
+        eq_(html.attr('lang'), 'fr')
+        eq_(html.attr('dir'), 'ltr')
+
+    @override_settings(LANGUAGE_URL_MAP={'ar': 'ar'})
+    def test_lang_ar(self):
+        res = self._test_url('/server.html?lang=ar')
+        doc = pq(res.content)
+        html = doc('html[lang][dir]')
+        eq_(html.attr('lang'), 'ar')
+        eq_(html.attr('dir'), 'rtl')
+
+    @override_settings(LANGUAGE_URL_MAP={'rtl': 'rtl'})
+    def test_lang_rtl(self):
+        res = self._test_url('/server.html?lang=rtl')
+        doc = pq(res.content)
+        html = doc('html[lang][dir]')
+        eq_(html.attr('lang'), 'rtl')
+        eq_(html.attr('dir'), 'rtl')
+
+    def test_comm_does_not_set_tags(self):
+        res = self._test_url('/comm/')
+        doc = pq(res.content)
+        ok_(not doc('html[lang]'), 'html[lang] should not be set')
+        ok_(not doc('html[dir]'), 'html[dir] should not be set')

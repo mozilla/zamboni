@@ -8,6 +8,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import resolve
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.utils import translation
 from django.views.decorators.cache import cache_control
 from django.views.decorators.gzip import gzip_page
 
@@ -124,6 +125,8 @@ def commonplace(request, repo, **kwargs):
 
     ctx = {
         'BUILD_ID': BUILD_ID,
+        'LANG': request.LANG,
+        'DIR': lang_dir(request.LANG),
         'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
         'include_persona': False,
         'include_splash': include_splash,
@@ -210,3 +213,10 @@ def potatolytics(request):
         'allowed_origins': get_allowed_origins(request,
                                                include_loop=False)
     })
+
+
+def lang_dir(lang):
+    if lang == 'rtl' or translation.get_language_bidi():
+        return 'rtl'
+    else:
+        return 'ltr'
