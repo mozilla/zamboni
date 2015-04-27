@@ -115,14 +115,14 @@ def generate_ratings(app, num):
 
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
-                        **spec):
+                        rated=True, **spec):
     generated_url = 'http://%s.greyface.org/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
                     file_kw={'status': status},
-                    rated=True, manifest_url=spec.get('manifest_url',
-                                                      generated_url))
+                    rated=rated, manifest_url=spec.get('manifest_url',
+                                                       generated_url))
     if device_types:
         for dt in device_types:
             a.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])

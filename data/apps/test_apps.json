@@ -4,6 +4,7 @@
  {"type": "hosted", "status": "rejected"},
  {"type": "hosted", "status": "blocked"},
  {"type": "hosted", "status": "incomplete"},
+ {"type": "hosted", "status": "incomplete", "rated": false},
  {"type": "hosted", "status": "unlisted"},
  {"type": "hosted", "status": "deleted"},
  {"type": "hosted", "status": "pending", "rereview": true},
