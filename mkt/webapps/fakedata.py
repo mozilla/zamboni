@@ -371,7 +371,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.support_email = developer_email
     premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
-    if premium_type != mkt.ADDON_FREE:
+    if premium_type != mkt.ADDON_FREE and status != mkt.STATUS_NULL:
         acct = get_or_create_payment_account(developer_email, developer_name)
         product_uri = Reference().product_create(acct, app)
         AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
