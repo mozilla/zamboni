@@ -27,24 +27,31 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
-from mkt.webapps.models import AddonUser, AppManifest, Preview
+from mkt.webapps.models import AddonUser, AppManifest, Preview, Webapp
 
-adjectives = ['Exquisite', 'Delicious', 'Elegant', 'Swanky', 'Spicy',
-              'Food Truck', 'Artisanal', 'Tasty', 'Questionable', u'Drôle']
-nouns = ['Sandwich', 'Pizza', 'Curry', 'Pierogi', 'Sushi', 'Salad', 'Stew',
-         'Pasta', 'Barbeque', 'Bacon', 'Pancake', 'Waffle', 'Chocolate',
-         'Gyro', 'Cookie', 'Burrito', 'Pie', u'Crème brûlée', u'пельмень']
+adjectives = [u'Exquisite', u'Delicious', u'Elegant', u'Swanky', u'Spicy',
+              u'Food Truck', u'Artisanal', u'Tasty', u'Questionable', u'Drôle']
+nouns = [u'Sandwich', u'Pizza', u'Curry', u'Pierogi', u'Sushi', u'Salad',
+         u'Stew', u'Pasta', u'Barbeque', u'Bacon', u'Pancake', u'Waffle',
+         u'Chocolate', u'Gyro', u'Cookie', u'Burrito', 'Pie', u'Crème brûlée',
+         u'пельмень']
 fake_app_names = list(itertools.product(adjectives, nouns))
 
 
-def generate_app_data(num):
+def generate_app_data(num, skip_names=()):
+    skip_names = set(skip_names)
+
     def _names():
         for name in fake_app_names:
-            yield ' '.join(name)
+            ns = u' '.join(name)
+            if ns not in skip_names:
+                yield ns
         repeat = 1
         while True:
             for name in fake_app_names:
-                yield ' '.join(name + (str(repeat),))
+                ns = u' '.join(name + (str(repeat),))
+                if ns not in skip_names:
+                    yield ns
             repeat += 1
 
     cats = itertools.cycle([c[0] for c in CATEGORY_CHOICES])
@@ -62,7 +69,7 @@ foreground = ["rgb(45,79,255)",
 
 def generate_icon(app):
     gen = pydenticon.Generator(8, 8, foreground=foreground)
-    img = gen.generate(unicode(app.name).encode('utf8'), 128, 128,
+    img = gen.generate(unicode(app.name), 128, 128,
                        output_format="png")
     save_icon(app, img)
 
@@ -71,7 +78,7 @@ def generate_previews(app, n=1):
     gen = pydenticon.Generator(8, 12, foreground=foreground,
                                digest=hashlib.sha512)
     for i in range(n):
-        img = gen.generate(unicode(app.name).encode('utf8') + chr(i), 320, 480,
+        img = gen.generate(unicode(app.name) + unichr(i), 320, 480,
                            output_format="png")
         p = Preview.objects.create(addon=app, filetype="image/png",
                                    thumbtype="image/png",
@@ -109,7 +116,7 @@ def generate_ratings(app, num):
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
                         **spec):
-    generated_url = 'http://%s.testmanifest.com/manifest.webapp' % (
+    generated_url = 'http://%s.greyface.org/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
@@ -302,10 +309,20 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
     return generate_apps_from_specs(specs, None)
 
 
+GENERIC_DESCRIPTION = ""
+
+
 def generate_apps_from_specs(specs, specdir, repeats=1):
+    global GENERIC_DESCRIPTION
     apps = []
     specs = specs * repeats
-    for spec, (appname, cat_slug) in zip(specs, generate_app_data(len(specs))):
+    GENERIC_DESCRIPTION = requests.get('http://baconipsum.com/api/'
+                                       '?type=meat-and-filler&paras=2'
+                                       '&start-with-lorem=1').json()[0]
+    existing = [unicode(w.name) for w in Webapp.with_deleted.all()]
+    data = zip(specs, generate_app_data(len(specs), skip_names=existing))
+    for spec, (appname, cat_slug) in data:
+        spec = spec.copy()
         if spec.get('preview_files'):
             spec['preview_files'] = [os.path.join(specdir, p)
                                      for p in spec['preview_files']]
@@ -348,9 +365,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     generate_ratings(app, num_ratings)
     app.name = generate_localized_names(app.name, num_locales)
     if not description:
-        description = requests.get('http://baconipsum.com/api/'
-                                   '?type=meat-and-filler&paras=2'
-                                   '&start-with-lorem=1').json()[0]
+        description = GENERIC_DESCRIPTION
     app.description = description
     app.privacy_policy = privacy_policy
     app.support_email = developer_email
