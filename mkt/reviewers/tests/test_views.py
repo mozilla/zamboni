@@ -58,6 +58,7 @@ from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.zadmin.models import get_config, set_config
 
 
+TIME_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 TEST_PATH = path.dirname(path.abspath(__file__))
 ATTACHMENTS_DIR = path.abspath(path.join(TEST_PATH, '..', '..', 'comm',
                                          'tests', 'attachments'))
@@ -412,8 +413,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                  version_kw={'nomination': self.days_ago(1)},
                                  file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='ZZZ')]
-        self.apps[0].update(created=self.days_ago(2))
-        self.apps[1].update(created=self.days_ago(1))
+        self.apps[0].update(created=self.days_ago(12))
+        self.apps[1].update(created=self.days_ago(11))
 
         RereviewQueue.objects.create(addon=self.apps[2])
 
@@ -558,10 +559,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             self.reindex(Webapp)
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
-        if self.uses_es():
-            eq_([a.id for a in res.context['addons']], [self.apps[1].id])
-        else:
-            eq_([a.app for a in res.context['addons']], [self.apps[1]])
+        eq_([a.app.id for a in res.context['addons']], [self.apps[1].id])
 
         doc = pq(res.content)
         links = doc('.tabnav li a')
@@ -579,6 +577,15 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             user=UserProfile.objects.get(email='editor@mozilla.com'))
         doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
+
+    def test_waiting_time(self):
+        """Check objects show queue objects' created."""
+        res = self.client.get(self.url)
+        waiting_times = [wait.attrib['isotime'] for wait in
+                         pq(res.content)('td time')]
+        expected_waiting_times = [isotime(app.latest_version.nomination)
+                                  for app in self.apps[0:2]]
+        self.assertSetEqual(expected_waiting_times, waiting_times)
 
 
 class TestAppQueueES(mkt.site.tests.ESTestCase, TestAppQueue):
@@ -650,9 +657,9 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             created=self.days_ago(3))
         RereviewQueue.objects.create(addon=self.apps[2]).update(
             created=self.days_ago(1))
-        self.apps[0].update(created=self.days_ago(5))
-        self.apps[1].update(created=self.days_ago(3))
-        self.apps[2].update(created=self.days_ago(1))
+        self.apps[0].update(created=self.days_ago(15))
+        self.apps[1].update(created=self.days_ago(13))
+        self.apps[2].update(created=self.days_ago(11))
 
         if self.uses_es():
             self.reindex(Webapp)
@@ -915,11 +922,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            eq_([a.id for a in res.context['addons']],
-                [a.id for a in self.apps[1:]])
-        else:
-            eq_([a.app for a in res.context['addons']], self.apps[1:])
+        eq_([a.app.id for a in res.context['addons']],
+            [app.id for app in self.apps[1:]])
 
         doc = pq(res.content)
         links = doc('.tabnav li a')
@@ -936,14 +940,9 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            apps = [a.id for a in res.context['addons']]
-            eq_(apps[0], self.apps[1].id)
-            eq_(apps[1], self.apps[0].id)
-        else:
-            apps = list(res.context['addons'])
-            eq_(apps[0].app, self.apps[1])
-            eq_(apps[1].app, self.apps[0])
+        apps = list(res.context['addons'])
+        eq_(apps[0].app.id, self.apps[1].id)
+        eq_(apps[1].app.id, self.apps[0].id)
 
     def test_only_updates_in_queue(self):
         # Add new packaged app, which should only show up in the pending queue.
@@ -955,14 +954,9 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            apps = [a.id for a in res.context['addons']]
-            assert app.id not in apps, (
-                'Unexpected: Found a new packaged app in the updates queue.')
-        else:
-            apps = [a.app for a in res.context['addons']]
-            assert app not in apps, (
-                'Unexpected: Found a new packaged app in the updates queue.')
+        apps = [a.app for a in res.context['addons']]
+        assert app not in apps, (
+            'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (2)')
 
     def test_approved_update_in_queue(self):
@@ -981,10 +975,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            assert app.id in [a.id for a in res.context['addons']]
-        else:
-            assert app in [a.app for a in res.context['addons']]
+        assert app.id in [a.app.id for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_update_queue_with_empty_nomination(self):
@@ -1010,10 +1001,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             self.reindex(Webapp)
 
         res = self.client.get(self.url)
-        if self.uses_es():
-            assert app.id in [a.id for a in res.context['addons']]
-        else:
-            assert app in [a.app for a in res.context['addons']]
+        assert app.id in [a.app.id for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_deleted_version_not_in_queue(self):
@@ -1041,14 +1029,18 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         # Verify the apps in the context are what we expect.
         doc = pq(res.content)
         eq_(doc('.tabnav li a')[2].text, u'Updates (1)')
-        if self.uses_es():
-            apps = [a.id for a in res.context['addons']]
-            ok_(app.id not in apps)
-            ok_(self.apps[1].id in apps)
-        else:
-            apps = [a.app for a in res.context['addons']]
-            ok_(app not in apps)
-            ok_(self.apps[1] in apps)
+        apps = [a.app.id for a in res.context['addons']]
+        ok_(app.id not in apps)
+        ok_(self.apps[1].id in apps)
+
+    def test_waiting_time(self):
+        """Check objects show queue objects' created."""
+        r = self.client.get(self.url)
+        waiting_times = [wait.attrib['isotime'] for wait in
+                         pq(r.content)('td time')]
+        expected_waiting_times = [isotime(app.latest_version.nomination)
+                                  for app in self.apps]
+        self.assertSetEqual(expected_waiting_times, waiting_times)
 
 
 class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
@@ -1075,9 +1067,9 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
             created=self.days_ago(3))
         EscalationQueue.objects.create(addon=self.apps[2]).update(
             created=self.days_ago(1))
-        self.apps[0].update(created=self.days_ago(5))
-        self.apps[1].update(created=self.days_ago(3))
-        self.apps[2].update(created=self.days_ago(1))
+        self.apps[0].update(created=self.days_ago(15))
+        self.apps[1].update(created=self.days_ago(13))
+        self.apps[2].update(created=self.days_ago(11))
 
         self.login_as_senior_reviewer()
         self.url = reverse('reviewers.apps.queue_escalated')

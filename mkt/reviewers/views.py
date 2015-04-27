@@ -449,9 +449,9 @@ def app_review(request, addon):
     raise
 
 
-QueuedApp = collections.namedtuple('QueuedApp', 'app created')
+QueuedApp = collections.namedtuple('QueuedApp', 'app date_field')
 ActionableQueuedApp = collections.namedtuple(
-    'QueuedApp', 'app created action_url')
+    'QueuedApp', 'app date_field action_url')
 
 
 def _queue(request, apps, tab, pager_processor=None, date_sort='created',
@@ -484,7 +484,10 @@ def queue_apps(request):
     apps = queues_helper.get_pending_queue()
     apps = queues_helper.sort(apps, date_sort=sort_field)
 
-    if not use_es:
+    if use_es:
+        apps = [QueuedApp(app, app.latest_version.nomination_date)
+                for app in apps.execute()]
+    else:
         apps = [QueuedApp(app, app.all_versions[0].nomination)
                 for app in Webapp.version_and_file_transformer(apps)]
 
@@ -538,7 +541,9 @@ def queue_rereview(request):
     apps = queues_helper.get_rereview_queue()
     apps = queues_helper.sort(apps, date_sort='created')
 
-    if not use_es:
+    if use_es:
+        apps = [QueuedApp(app, app.rereview_date) for app in apps.execute()]
+    else:
         apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
                 for app in apps]
 
@@ -554,7 +559,9 @@ def queue_escalated(request):
     apps = queues_helper.get_escalated_queue()
     apps = queues_helper.sort(apps, date_sort='created')
 
-    if not use_es:
+    if use_es:
+        apps = [QueuedApp(app, app.escalation_date) for app in apps.execute()]
+    else:
         apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
                 for app in apps]
 
@@ -570,7 +577,10 @@ def queue_updates(request):
     apps = queues_helper.get_updates_queue()
     apps = queues_helper.sort(apps, date_sort='nomination')
 
-    if not use_es:
+    if use_es:
+        apps = [QueuedApp(app, app.latest_version.nomination_date)
+                for app in apps.execute()]
+    else:
         apps = [QueuedApp(app, app.all_versions[0].nomination)
                 for app in Webapp.version_and_file_transformer(apps)]
 

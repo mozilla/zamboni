@@ -135,11 +135,13 @@ class TestWebappIndexer(TestCase):
         EscalationQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
+        self.assertCloseToNow(doc['escalation_date'])
 
     def test_extract_is_rereviewed(self):
         RereviewQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_rereviewed'], True)
+        self.assertCloseToNow(doc['rereview_date'])
 
     def test_extract_is_priority(self):
         self.app.update(priority_review=True)

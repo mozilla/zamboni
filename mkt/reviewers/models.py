@@ -484,3 +484,16 @@ def cleanup_queues(sender, instance, **kwargs):
 
 models.signals.post_delete.connect(cleanup_queues, sender=Webapp,
                                    dispatch_uid='queue-addon-cleanup')
+
+
+def update_search_index(sender, instance, **kwargs):
+    WebappIndexer.index_ids([instance.addon_id])
+
+
+for model in (RereviewQueue, EscalationQueue):
+    models.signals.post_save.connect(
+        update_search_index, sender=model,
+        dispatch_uid='%s-save-update-index' % model._meta.model_name)
+    models.signals.post_delete.connect(
+        update_search_index, sender=model,
+        dispatch_uid='%s-delete-update-index' % model._meta.model_name)
