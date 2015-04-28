@@ -41,8 +41,6 @@ DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
 DATABASES['slave']['ATOMIC_REQUESTS'] = True
 DATABASES['slave']['CONN_MAX_AGE'] = 5 * 60  # 5m for persistent connections.
 
-SERVICES_DATABASE = dj_database_url.parse(private.SERVICES_DATABASE_URL)
-
 SLAVE_DATABASES = ['slave']
 
 CACHES = {

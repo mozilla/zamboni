@@ -1028,11 +1028,6 @@ SEND_REAL_EMAIL = False
 
 SENTRY_DSN = None
 
-# A database to be used by the services scripts, which does not use Django.
-# The settings can be copied from DATABASES, but since its not a full Django
-# database connection, only some values are supported.
-SERVICES_DATABASE = DATABASES['default']
-
 SHORTER_LANGUAGES = {'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT',
                      'sv': 'sv-SE', 'zh': 'zh-CN'}
 
