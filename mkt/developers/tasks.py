@@ -18,7 +18,7 @@ from django.core.files.storage import default_storage as storage
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
-from celeryutils import task
+from celery import task
 from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _

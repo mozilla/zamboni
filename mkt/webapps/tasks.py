@@ -17,7 +17,7 @@ import pytz
 import requests
 from celery import chord
 from celery.exceptions import RetryTaskError
-from celeryutils import task
+from celery import task
 from requests.exceptions import RequestException
 from tower import ugettext as _
 

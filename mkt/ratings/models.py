@@ -6,7 +6,7 @@ from django.db import models
 
 import bleach
 from caching.base import CachingQuerySet
-from celeryutils import task
+from celery import task
 from tower import ugettext_lazy as _
 
 from mkt.site.models import ManagerBase, ModelBase

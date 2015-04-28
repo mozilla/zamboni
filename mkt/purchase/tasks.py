@@ -1,7 +1,7 @@
 import logging
 
 import jingo.helpers
-from celeryutils import task
+from celery import task
 from tower import ugettext as _
 
 from mkt.purchase.models import Contribution

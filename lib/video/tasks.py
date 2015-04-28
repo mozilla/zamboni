@@ -4,7 +4,7 @@ import shutil
 
 from django.conf import settings
 
-from celeryutils import task
+from celery import task
 
 import mkt
 import waffle

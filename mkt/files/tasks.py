@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 
 from cache_nuggets.lib import Message
-from celeryutils import task
+from celery import task
 from tower import ugettext as _
 
 

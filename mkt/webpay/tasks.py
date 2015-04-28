@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
-from celeryutils import task
+from celery import task
 import requests
 
 from mkt.site.utils import ImageCheck, resize_image

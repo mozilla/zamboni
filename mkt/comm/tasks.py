@@ -1,5 +1,5 @@
 import logging
-from celeryutils import task
+from celery import task
 
 from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.comm.utils_mail import save_from_email_reply

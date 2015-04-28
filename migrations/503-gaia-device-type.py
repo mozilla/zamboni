@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from celeryutils import task
+from celery import task
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count

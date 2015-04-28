@@ -1,6 +1,6 @@
 import logging
 
-from celeryutils import task
+from celery import task
 
 from mkt.site.decorators import write
 

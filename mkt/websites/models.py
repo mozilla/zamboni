@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 
-import json_field
+from django_extensions.db.fields.json import JSONField
 
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.base import STATUS_CHOICES, STATUS_NULL
@@ -22,9 +22,9 @@ class Website(ModelBase):
     short_title = TranslatedField()
     description = TranslatedField()
     keywords = models.ManyToManyField(Tag)
-    region_exclusions = json_field.JSONField(default=None)
-    devices = json_field.JSONField(default=None)
-    categories = json_field.JSONField(default=None)
+    region_exclusions = JSONField(default=None)
+    devices = JSONField(default=None)
+    categories = JSONField(default=None)
     icon_type = models.CharField(max_length=25, blank=True)
     icon_hash = models.CharField(max_length=8, blank=True)
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)

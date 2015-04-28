@@ -1,10 +1,11 @@
 import logging
+import logging.config
 import logging.handlers
 
 from django.conf import settings
 
 import commonware.log
-import dictconfig
+
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
             ':%(pathname)s:%(lineno)s')
@@ -129,4 +130,4 @@ def log_configure():
         if logger is not cfg['root'] and 'propagate' not in logger:
             logger['propagate'] = False
 
-    dictconfig.dictConfig(cfg)
+    logging.config.dictConfig(cfg)
