@@ -192,20 +192,6 @@ def check_links(expected, elements, selected=None, verify=True):
             eq_(bool(e.length), text == selected)
 
 
-class TestClient(Client):
-
-    def __getattr__(self, name):
-        """
-        Provides get_ajax, post_ajax, head_ajax methods etc in the
-        test_client so that you don't need to specify the headers.
-        """
-        if name.endswith('_ajax'):
-            method = getattr(self, name.split('_')[0])
-            return partial(method, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        else:
-            raise AttributeError
-
-
 class _JSONifiedResponse(object):
 
     def __init__(self, response):
@@ -229,7 +215,7 @@ class _JSONifiedResponse(object):
             return self._content_json
 
 
-class JSONClient(TestClient):
+class JSONClient(Client):
 
     def _with_json(self, response):
         if hasattr(response, 'json'):
@@ -432,7 +418,7 @@ class ClassFixtureTestCase(test.TestCase):
 
 class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
     """Base class for all mkt tests."""
-    client_class = TestClient
+    client_class = Client
 
     def shortDescription(self):
         # Stop nose using the test docstring and instead the test method name.
