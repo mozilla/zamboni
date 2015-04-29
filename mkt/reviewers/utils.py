@@ -31,15 +31,24 @@ from mkt.webapps.tasks import set_storefront_data
 log = commonware.log.getLogger('z.mailer')
 
 
+def get_review_type(request, addon, version):
+    if EscalationQueue.objects.filter(addon=addon).exists():
+        queue = 'escalated'
+    elif RereviewQueue.objects.filter(addon=addon).exists():
+        queue = 'rereview'
+    else:
+        queue = 'pending'
+    return queue
+
+
 class ReviewBase(object):
 
-    def __init__(self, request, addon, version, review_type,
-                 attachment_formset=None):
+    def __init__(self, request, addon, version, attachment_formset=None):
         self.request = request
         self.user = self.request.user
         self.addon = addon
         self.version = version
-        self.review_type = review_type
+        self.review_type = get_review_type(request, addon, version)
         self.files = None
         self.comm_thread = None
         self.attachment_formset = attachment_formset
@@ -345,22 +354,13 @@ class ReviewHelper(object):
         self.version = version
         self.all_files = version and version.files.all()
         self.attachment_formset = attachment_formset
-        self.get_review_type(request, addon, version)
+        self.handler = ReviewApp(request, addon, version,
+                                 attachment_formset=self.attachment_formset)
+        self.review_type = self.handler.review_type
         self.actions = self.get_actions()
 
     def set_data(self, data):
         self.handler.set_data(data)
-
-    def get_review_type(self, request, addon, version):
-        if EscalationQueue.objects.filter(addon=addon).exists():
-            queue = 'escalated'
-        elif RereviewQueue.objects.filter(addon=addon).exists():
-            queue = 'rereview'
-        else:
-            queue = 'pending'
-        self.review_type = queue
-        self.handler = ReviewApp(request, addon, version, queue,
-                                 attachment_formset=self.attachment_formset)
 
     def get_actions(self):
         """Get the appropriate handler based on the action."""
