@@ -1,0 +1,15 @@
+[{
+    "email": "admin@mozilla.com",
+    "group_name": "Admins"
+ },
+ {
+     "email": "appreviewer@mozilla.com",
+     "group_name": "App Reviewers"
+ },
+ {
+    "email": "developer@mozilla.com"
+ },
+ {
+    "email": "enduser@mozilla.com"
+ }]
+
