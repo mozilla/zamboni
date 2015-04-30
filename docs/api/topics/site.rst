@@ -123,9 +123,7 @@ Regions
         {
             "id": "1",
             "name": "Appistan",
-            "resource_uri": "/api/v2/services/region/ap/",
             "slug": "ap",
-            "default_currency": "USD",
         }
 
 Configuration

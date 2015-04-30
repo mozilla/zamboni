@@ -48,8 +48,6 @@ class REGION(object):
     """
     id = None
     name = slug = ''
-    default_currency = 'USD'
-    default_language = 'en-US'
     adolescent = True
     mcc = None
     weight = 0

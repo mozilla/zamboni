@@ -70,7 +70,7 @@ class CarrierSerializer(serializers.Serializer):
 
 
 class RegionSerializer(CarrierSerializer):
-    default_currency = serializers.CharField()
+    pass
 
 
 class CategorySerializer(serializers.Serializer):
