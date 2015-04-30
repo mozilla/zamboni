@@ -114,6 +114,7 @@ lookup = {
     'SLV': _lazy(u'El Salvador'),
     'SRB': _lazy(u'Serbia'),
     'TUN': _lazy(u'Tunisia'),
+    'TWN': _lazy(u'Taiwan'),
     'TZA': _lazy(u'Tanzania'),
     'URY': _lazy(u'Uruguay'),
     'USA': _lazy(u'United States'),
