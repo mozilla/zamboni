@@ -3,7 +3,7 @@ import logging
 from django.db.models import Count, Avg, F
 
 import caching.base as caching
-from celeryutils import task
+from celery import task
 
 from lib.post_request_task.task import task as post_request_task
 from mkt.webapps.models import Webapp

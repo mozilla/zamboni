@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from celeryutils import task
+from celery import task
 
 from mkt.site.decorators import write
 from mkt.webapps.models import AddonExcludedRegion

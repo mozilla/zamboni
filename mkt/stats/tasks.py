@@ -2,7 +2,7 @@ import json
 import logging
 import datetime
 
-from celeryutils import task
+from celery import task
 
 import mkt
 from mkt.constants.regions import REGIONS_CHOICES_SLUG

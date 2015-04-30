@@ -2450,7 +2450,7 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
         eq_(self.geo.reload().region_cn_status, status)
 
     def test_banner_regions_names(self):
-        eq_(self.geo.banner_regions, None)
+        eq_(self.geo.banner_regions, {})
         eq_(self.geo.banner_regions_names(), [])
 
         self.geo.update(

@@ -22,8 +22,8 @@ from django.utils.translation import trans_real as translation
 
 import caching.base as caching
 import commonware.log
-import json_field
 from cache_nuggets.lib import memoize, memoize_key
+from django_extensions.db.fields.json import JSONField
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
@@ -227,7 +227,7 @@ class Preview(ModelBase):
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
-    sizes = json_field.JSONField(max_length=25, default={})
+    sizes = JSONField(max_length=25)
 
     class Meta:
         db_table = 'previews'
@@ -456,7 +456,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
-    categories = json_field.JSONField(default=None)
+    categories = JSONField(default=None)
     premium_type = models.PositiveIntegerField(
         choices=mkt.ADDON_PREMIUM_TYPES.items(), default=mkt.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
@@ -2674,7 +2674,7 @@ class AppManifest(ModelBase):
         db_table = 'app_manifest'
 
 
-class RegionListField(json_field.JSONField):
+class RegionListField(JSONField):
     def to_python(self, value):
         value = super(RegionListField, self).to_python(value)
         if value:

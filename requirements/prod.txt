@@ -116,7 +116,6 @@ urllib3==1.10.3
 
 ## Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
--e git+https://github.com/mozilla/nuggets.git@9c4344a802b07d95c0dd6256570a4facddf54784#egg=nuggets
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
 -e git+https://github.com/diox/django-cache-machine@ad16132780d40beff01803f5ca5d91a69236d105#egg=django-cache-machine
@@ -124,7 +123,6 @@ urllib3==1.10.3
 
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
 
 ## moved for 2014/04/02 deployment expediency
 MySQL-python==1.2.5

@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import requests
-from celeryutils import task
+from celery import task
 from django_statsd.clients import statsd
 from signing_clients.apps import JarExtractor
 

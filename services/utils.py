@@ -1,5 +1,5 @@
-import dictconfig
 import logging
+import logging.config
 import os
 
 
@@ -52,7 +52,7 @@ def log_configure():
         # when imported into the marketplace Django app.
         'disable_existing_loggers': False,
     }
-    dictconfig.dictConfig(cfg)
+    logging.config.dictConfig(cfg)
 
 
 def log_exception(data):

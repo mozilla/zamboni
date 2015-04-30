@@ -811,7 +811,7 @@ class TestAdminSettingsForm(TestAdmin):
 
     def test_banner_regions_initial(self):
         form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        eq_(self.webapp.geodata.banner_regions, None)
+        eq_(self.webapp.geodata.banner_regions, {})
         eq_(form.initial['banner_regions'], [])
 
         self.webapp.geodata.update(banner_regions=[])

@@ -4,7 +4,7 @@ import sys
 from django.conf import settings
 
 import elasticsearch
-from celeryutils import task
+from celery import task
 from elasticsearch import helpers
 from elasticsearch_dsl import Search
 

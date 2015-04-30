@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from celeryutils import task
+from celery import task
 
 from mkt.site.utils import chunked
 from mkt.site.decorators import write
