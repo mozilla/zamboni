@@ -14,9 +14,6 @@ if settingmodule.startswith(('zamboni',  # typical git clone destination
 
 import sys  # noqa
 
-import MySQLdb as mysql  # noqa
-import sqlalchemy.pool as pool  # noqa
-
 from django.utils import importlib  # noqa
 settings = importlib.import_module(settingmodule)
 
@@ -25,15 +22,6 @@ from mkt.constants.payments import (  # noqa
     CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 from lib.log_settings_base import formatters, handlers  # noqa
-
-
-def getconn():
-    db = settings.SERVICES_DATABASE
-    return mysql.connect(host=db['HOST'], user=db['USER'],
-                         passwd=db['PASSWORD'], db=db['NAME'])
-
-
-mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 
 def log_configure():

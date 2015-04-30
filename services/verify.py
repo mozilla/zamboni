@@ -18,8 +18,7 @@ from lib.utils import static_url
 from services.utils import settings
 
 from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE, CONTRIB_PURCHASE,
-                   CONTRIB_REFUND, log_configure, log_exception, log_info,
-                   mypool)
+                   CONTRIB_REFUND, log_configure, log_exception, log_info)
 
 # Go configure the log.
 log_configure()
@@ -223,7 +222,8 @@ class Verify:
         Django ORM.
         """
         if not self.cursor:
-            self.conn = mypool.connect()
+            from django.db import connections
+            self.conn = connections['default']
             self.cursor = self.conn.cursor()
 
     def check_purchase(self):
@@ -399,8 +399,8 @@ def status_check(environ):
         return 500, 'SIGNING_SERVER_ACTIVE is not set'
 
     try:
-        conn = mypool.connect()
-        cursor = conn.cursor()
+        from django.db import connections
+        cursor = connections['default'].cursor()
         cursor.execute('SELECT id FROM users_install ORDER BY id DESC LIMIT 1')
     except Exception, err:
         return 500, str(err)
