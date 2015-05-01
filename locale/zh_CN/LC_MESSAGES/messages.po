@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:23-0700\n"
+"POT-Creation-Date: 2015-05-01 08:18-0700\n"
 "PO-Revision-Date: 2015-04-23 00:38+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -255,7 +255,7 @@ msgstr "布隆迪"
 msgid "Cambodia"
 msgstr "柬埔寨"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
 msgid "Cameroon"
 msgstr "喀麦隆"
 
@@ -271,7 +271,7 @@ msgstr "佛得角"
 msgid "Cayman Islands"
 msgstr "开曼群岛"
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
 msgid "Central African Republic"
 msgstr "中非共和国"
 
@@ -279,11 +279,11 @@ msgstr "中非共和国"
 msgid "Chad"
 msgstr "乍得"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
 msgid "Chile"
 msgstr "智利"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
 msgid "China"
 msgstr "中国"
 
@@ -295,7 +295,7 @@ msgstr "圣诞岛"
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯群岛"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
 msgid "Colombia"
 msgstr "哥伦比亚"
 
@@ -315,11 +315,11 @@ msgstr "刚果民主共和国"
 msgid "Cook Islands"
 msgstr "库克群岛"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
 msgid "Costa Rica"
 msgstr "哥斯达黎加"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
 msgid "Côte d'Ivoire"
 msgstr "科特迪瓦"
 
@@ -339,7 +339,7 @@ msgstr "库拉索岛"
 msgid "Cyprus"
 msgstr "塞浦路斯"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
 msgid "Czech Republic"
 msgstr "捷克共和国"
 
@@ -359,15 +359,15 @@ msgstr "多美尼加"
 msgid "Dominican Republic"
 msgstr "多美尼加共和国"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
 msgid "Ecuador"
 msgstr "厄瓜多尔"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
 msgid "Egypt"
 msgstr "埃及"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
 msgid "El Salvador"
 msgstr "萨尔瓦多"
 
@@ -431,7 +431,7 @@ msgstr "冈比亚"
 msgid "Georgia"
 msgstr "格鲁吉亚"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
 msgid "Germany"
 msgstr "德国"
 
@@ -443,7 +443,7 @@ msgstr "加纳"
 msgid "Gibraltar"
 msgstr "直布罗陀"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
 msgid "Greece"
 msgstr "希腊"
 
@@ -463,7 +463,7 @@ msgstr "瓜德罗普岛"
 msgid "Guam"
 msgstr "关岛"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
 msgid "Guatemala"
 msgstr "危地马拉"
 
@@ -475,7 +475,7 @@ msgstr "根西岛"
 msgid "Guinea"
 msgstr "几内亚"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
 msgid "Guinea-Bissau"
 msgstr "几内亚比绍共和国"
 
@@ -503,7 +503,7 @@ msgstr "洪都拉斯"
 msgid "Hong Kong"
 msgstr "中国香港"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
 msgid "Hungary"
 msgstr "匈牙利"
 
@@ -511,7 +511,7 @@ msgstr "匈牙利"
 msgid "Iceland"
 msgstr "冰岛"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
 msgid "India"
 msgstr "印度"
 
@@ -539,7 +539,7 @@ msgstr "马恩岛"
 msgid "Israel"
 msgstr "以色列"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
 msgid "Italy"
 msgstr "意大利"
 
@@ -547,7 +547,7 @@ msgstr "意大利"
 msgid "Jamaica"
 msgstr "牙买加"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
 msgid "Japan"
 msgstr "日本"
 
@@ -555,7 +555,7 @@ msgstr "日本"
 msgid "Jersey"
 msgstr "泽西岛"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
 msgid "Jordan"
 msgstr "约旦"
 
@@ -563,7 +563,7 @@ msgstr "约旦"
 msgid "Kazakhstan"
 msgstr "哈萨克斯坦"
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
 msgid "Kenya"
 msgstr "肯尼亚"
 
@@ -619,7 +619,7 @@ msgstr "阿拉伯利比亚民众国"
 msgid "Liechtenstei"
 msgstr "列支敦士登"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
 msgid "Lithuania"
 msgstr "立陶宛"
 
@@ -635,7 +635,7 @@ msgstr "中国澳门"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "前南斯拉夫的马其顿共和国"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
 msgid "Madagascar"
 msgstr "马达加斯加"
 
@@ -651,7 +651,7 @@ msgstr "马来西亚"
 msgid "Maldives"
 msgstr "马尔代夫"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
 msgid "Mali"
 msgstr "马里"
 
@@ -671,7 +671,7 @@ msgstr "马提尼克"
 msgid "Mauritania"
 msgstr "毛里塔尼亚"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
 msgid "Mauritius"
 msgstr "毛里求斯"
 
@@ -679,7 +679,7 @@ msgstr "毛里求斯"
 msgid "Mayotte"
 msgstr "马约特岛"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
 msgid "Mexico"
 msgstr "墨西哥"
 
@@ -699,7 +699,7 @@ msgstr "摩纳哥"
 msgid "Mongolia"
 msgstr "蒙古"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
 msgid "Montenegro"
 msgstr "黑山"
 
@@ -715,7 +715,7 @@ msgstr "摩洛哥"
 msgid "Mozambique"
 msgstr "莫桑比克"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
 msgid "Myanmar"
 msgstr "缅甸"
 
@@ -743,11 +743,11 @@ msgstr "新喀里多尼亚"
 msgid "New Zealand"
 msgstr "新西兰"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
 msgid "Niger"
 msgstr "尼日尔"
 
@@ -787,7 +787,7 @@ msgstr "帕劳"
 msgid "Palestinian Territory, Occupied"
 msgstr "巴勒斯坦被占领土"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
 msgid "Panama"
 msgstr "巴拿马"
 
@@ -799,11 +799,11 @@ msgstr "巴布亚新几内亚"
 msgid "Paraguay"
 msgstr "巴拉圭"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
 msgid "Peru"
 msgstr "秘鲁"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
 msgid "Philippines"
 msgstr "菲律宾"
 
@@ -811,7 +811,7 @@ msgstr "菲律宾"
 msgid "Pitcairn"
 msgstr "皮特凯恩"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
 msgid "Poland"
 msgstr "波兰"
 
@@ -891,7 +891,7 @@ msgstr "沙特阿拉伯"
 msgid "Senega"
 msgstr "塞内加尔"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
 msgid "Serbia"
 msgstr "塞尔维亚"
 
@@ -931,7 +931,7 @@ msgstr "所罗门群岛"
 msgid "Somalia"
 msgstr "索马里"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
 msgid "South Africa"
 msgstr "南非"
 
@@ -943,7 +943,7 @@ msgstr "南乔治亚岛和南桑维奇群岛"
 msgid "South Sudan"
 msgstr "南苏丹"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
 msgid "Spain"
 msgstr "西班牙"
 
@@ -1015,7 +1015,7 @@ msgstr "汤加"
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
 msgid "Tunisia"
 msgstr "突尼斯"
 
@@ -1051,7 +1051,7 @@ msgstr "阿拉伯联合酋长国"
 msgid "United Kingdom"
 msgstr "英国"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
 msgid "United States"
 msgstr "美国"
 
@@ -1059,7 +1059,7 @@ msgstr "美国"
 msgid "United States Minor Outlying Islands"
 msgstr "美国本土外小岛屿"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
 msgid "Uruguay"
 msgstr "乌拉圭"
 
@@ -1067,7 +1067,7 @@ msgstr "乌拉圭"
 msgid "Uzbekistan"
 msgstr "乌兹别克斯坦"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
 msgid "Vanuatu"
 msgstr "瓦努阿图"
 
@@ -1972,19 +1972,27 @@ msgstr "泛欧洲游戏信息组织"
 msgid "Rest of World"
 msgstr "其他地区"
 
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:89
+msgid "Guinea-Conakry"
+msgstr ""
+
+#: mkt/constants/regions.py:112
 msgid "Russia"
 msgstr "俄罗斯"
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:113
 msgid "Senegal"
 msgstr "塞内加尔"
 
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:117
+msgid "Taiwan"
+msgstr ""
+
+#: mkt/constants/regions.py:118
 msgid "Tanzania"
 msgstr "坦桑尼亚"
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:121
 msgid "Venezuela"
 msgstr "委内瑞拉"
 
@@ -2004,7 +2012,7 @@ msgstr "同意"
 msgid "Submit"
 msgstr "提交"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
 msgid "Details"
 msgstr "详情"
 
@@ -2080,7 +2088,7 @@ msgstr "该域名下已经存在一个应用了；每个域名下只允许一个
 msgid "Invalid region(s) selected."
 msgstr "选择了无效的区域。"
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
 msgid "You must upload at least one screenshot or video."
 msgstr "您至少应该上传一个截屏或视频。"
 
@@ -2577,7 +2585,7 @@ msgstr "应用已成功地重新提交。"
 msgid "New version successfully added."
 msgstr "新版本添加成功。"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
@@ -3890,7 +3898,7 @@ msgstr "状态和版本"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
 msgid "Content Ratings"
 msgstr "内容评级"
 
@@ -4768,7 +4776,7 @@ msgid "Developing Game Apps"
 msgstr "开发游戏应用"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
 msgid "Payments"
 msgstr "支付"
 
@@ -7751,62 +7759,62 @@ msgstr "请为此账号使用已验证的邮箱。"
 msgid "Listed"
 msgstr "已列出"
 
-#: mkt/webapps/models.py:1366
+#: mkt/webapps/models.py:1365
 msgid "You must provide a support email or URL."
 msgstr "您必须提供一个技术支持邮箱或网址。"
 
-#: mkt/webapps/models.py:1368
+#: mkt/webapps/models.py:1367
 msgid "You must provide an app name."
 msgstr "您至少应该填写一个应用名称。"
 
-#: mkt/webapps/models.py:1370
+#: mkt/webapps/models.py:1369
 msgid "You must provide at least one device type."
 msgstr "至少提供一种设备类型。"
 
-#: mkt/webapps/models.py:1373
+#: mkt/webapps/models.py:1372
 msgid "You must provide at least one category."
 msgstr "您必须提供至少一个种类。"
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1439
 msgid "You must set up content ratings."
 msgstr "必须设置内容评级。"
 
-#: mkt/webapps/models.py:1442
+#: mkt/webapps/models.py:1441
 msgid "You must set up a payment account."
 msgstr "必须设置支付账号。"
 
-#: mkt/webapps/models.py:1467
+#: mkt/webapps/models.py:1466
 msgid "This app's submission process has not been fully completed."
 msgstr "程序提交步骤尚未完全完成。"
 
-#: mkt/webapps/models.py:1474
+#: mkt/webapps/models.py:1473
 msgid "This app needs to get a content rating."
 msgstr "该程序需要获取内容分级。"
 
-#: mkt/webapps/models.py:1480
+#: mkt/webapps/models.py:1479
 msgid "This app needs a payment account set up."
 msgstr "该程序需要设置一个支付账户。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2739
+#: mkt/webapps/models.py:2738
 msgid "awaiting approval"
 msgstr "等待审核"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2741
+#: mkt/webapps/models.py:2740
 msgid "rejected"
 msgstr "已拒绝"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2743
+#: mkt/webapps/models.py:2742
 msgid "requires additional review"
 msgstr "需要额外审核"
 
-#: mkt/webapps/models.py:2794
+#: mkt/webapps/models.py:2793
 msgid "{region} approval status"
 msgstr "{region} 审核状态"
 
-#: mkt/webapps/models.py:2802
+#: mkt/webapps/models.py:2801
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 

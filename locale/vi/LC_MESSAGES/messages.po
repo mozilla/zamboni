@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:23-0700\n"
+"POT-Creation-Date: 2015-05-01 08:18-0700\n"
 "PO-Revision-Date: 2011-04-05 16:16+0200\n"
 "Last-Translator: Hùng. <loveleeyoungae@yahoo.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "Cambodia"
 msgstr ""
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
 msgid "Cameroon"
 msgstr ""
 
@@ -270,7 +270,7 @@ msgstr ""
 msgid "Cayman Islands"
 msgstr ""
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
 msgid "Central African Republic"
 msgstr ""
 
@@ -278,11 +278,11 @@ msgstr ""
 msgid "Chad"
 msgstr ""
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
 msgid "Chile"
 msgstr ""
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
 msgid "China"
 msgstr ""
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
 msgid "Colombia"
 msgstr ""
 
@@ -314,11 +314,11 @@ msgstr ""
 msgid "Cook Islands"
 msgstr ""
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
 msgid "Costa Rica"
 msgstr ""
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
 msgid "Côte d'Ivoire"
 msgstr ""
 
@@ -338,7 +338,7 @@ msgstr ""
 msgid "Cyprus"
 msgstr ""
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
 msgid "Czech Republic"
 msgstr ""
 
@@ -358,15 +358,15 @@ msgstr ""
 msgid "Dominican Republic"
 msgstr ""
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
 msgid "Ecuador"
 msgstr ""
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
 msgid "Egypt"
 msgstr ""
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
 msgid "El Salvador"
 msgstr ""
 
@@ -430,7 +430,7 @@ msgstr ""
 msgid "Georgia"
 msgstr ""
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
 msgid "Germany"
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Gibraltar"
 msgstr ""
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
 msgid "Greece"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Guam"
 msgstr ""
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
 msgid "Guatemala"
 msgstr ""
 
@@ -474,7 +474,7 @@ msgstr ""
 msgid "Guinea"
 msgstr ""
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
 msgid "Guinea-Bissau"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgstr ""
 msgid "Hong Kong"
 msgstr ""
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
 msgid "Hungary"
 msgstr ""
 
@@ -510,7 +510,7 @@ msgstr ""
 msgid "Iceland"
 msgstr ""
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
 msgid "India"
 msgstr ""
 
@@ -538,7 +538,7 @@ msgstr ""
 msgid "Israel"
 msgstr ""
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
 msgid "Italy"
 msgstr ""
 
@@ -546,7 +546,7 @@ msgstr ""
 msgid "Jamaica"
 msgstr ""
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
 msgid "Japan"
 msgstr ""
 
@@ -554,7 +554,7 @@ msgstr ""
 msgid "Jersey"
 msgstr ""
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
 msgid "Jordan"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Kazakhstan"
 msgstr ""
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
 msgid "Kenya"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgstr ""
 msgid "Liechtenstei"
 msgstr ""
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
 msgid "Lithuania"
 msgstr ""
 
@@ -634,7 +634,7 @@ msgstr ""
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr ""
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
 msgid "Madagascar"
 msgstr ""
 
@@ -650,7 +650,7 @@ msgstr ""
 msgid "Maldives"
 msgstr ""
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
 msgid "Mali"
 msgstr ""
 
@@ -670,7 +670,7 @@ msgstr ""
 msgid "Mauritania"
 msgstr ""
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
 msgid "Mauritius"
 msgstr ""
 
@@ -678,7 +678,7 @@ msgstr ""
 msgid "Mayotte"
 msgstr ""
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
 msgid "Mexico"
 msgstr ""
 
@@ -698,7 +698,7 @@ msgstr ""
 msgid "Mongolia"
 msgstr ""
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
 msgid "Montenegro"
 msgstr ""
 
@@ -714,7 +714,7 @@ msgstr ""
 msgid "Mozambique"
 msgstr ""
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
 msgid "Myanmar"
 msgstr ""
 
@@ -742,11 +742,11 @@ msgstr ""
 msgid "New Zealand"
 msgstr ""
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
 msgid "Nicaragua"
 msgstr ""
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
 msgid "Niger"
 msgstr ""
 
@@ -786,7 +786,7 @@ msgstr ""
 msgid "Palestinian Territory, Occupied"
 msgstr ""
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
 msgid "Panama"
 msgstr ""
 
@@ -798,11 +798,11 @@ msgstr ""
 msgid "Paraguay"
 msgstr ""
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
 msgid "Peru"
 msgstr ""
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
 msgid "Philippines"
 msgstr ""
 
@@ -810,7 +810,7 @@ msgstr ""
 msgid "Pitcairn"
 msgstr ""
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
 msgid "Poland"
 msgstr ""
 
@@ -890,7 +890,7 @@ msgstr ""
 msgid "Senega"
 msgstr ""
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
 msgid "Serbia"
 msgstr ""
 
@@ -930,7 +930,7 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
 msgid "South Africa"
 msgstr ""
 
@@ -942,7 +942,7 @@ msgstr ""
 msgid "South Sudan"
 msgstr ""
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
 msgid "Spain"
 msgstr ""
 
@@ -1014,7 +1014,7 @@ msgstr ""
 msgid "Trinidad and Tobago"
 msgstr ""
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
 msgid "Tunisia"
 msgstr ""
 
@@ -1050,7 +1050,7 @@ msgstr ""
 msgid "United Kingdom"
 msgstr ""
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
 msgid "United States"
 msgstr ""
 
@@ -1058,7 +1058,7 @@ msgstr ""
 msgid "United States Minor Outlying Islands"
 msgstr ""
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
 msgid "Uruguay"
 msgstr ""
 
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "Uzbekistan"
 msgstr ""
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
 msgid "Vanuatu"
 msgstr ""
 
@@ -1971,19 +1971,27 @@ msgstr ""
 msgid "Rest of World"
 msgstr ""
 
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:89
+msgid "Guinea-Conakry"
+msgstr ""
+
+#: mkt/constants/regions.py:112
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:113
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:117
+msgid "Taiwan"
+msgstr ""
+
+#: mkt/constants/regions.py:118
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:121
 msgid "Venezuela"
 msgstr ""
 
@@ -2003,7 +2011,7 @@ msgstr ""
 msgid "Submit"
 msgstr "Gửi"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
 msgid "Details"
 msgstr "Chi tiết"
 
@@ -2079,7 +2087,7 @@ msgstr ""
 msgid "Invalid region(s) selected."
 msgstr ""
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
@@ -2576,7 +2584,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
 msgstr "Thay đổi đã được lưu thành công."
 
@@ -3884,7 +3892,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
 msgid "Content Ratings"
 msgstr ""
 
@@ -4756,7 +4764,7 @@ msgid "Developing Game Apps"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
 msgid "Payments"
 msgstr ""
 
@@ -7735,62 +7743,62 @@ msgstr ""
 msgid "Listed"
 msgstr "Liệt kê"
 
-#: mkt/webapps/models.py:1366
+#: mkt/webapps/models.py:1365
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1368
+#: mkt/webapps/models.py:1367
 msgid "You must provide an app name."
 msgstr ""
 
-#: mkt/webapps/models.py:1370
+#: mkt/webapps/models.py:1369
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:1373
+#: mkt/webapps/models.py:1372
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1439
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:1442
+#: mkt/webapps/models.py:1441
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:1467
+#: mkt/webapps/models.py:1466
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1474
+#: mkt/webapps/models.py:1473
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1480
+#: mkt/webapps/models.py:1479
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2739
+#: mkt/webapps/models.py:2738
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2741
+#: mkt/webapps/models.py:2740
 msgid "rejected"
 msgstr "bị từ chối"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2743
+#: mkt/webapps/models.py:2742
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2794
+#: mkt/webapps/models.py:2793
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2802
+#: mkt/webapps/models.py:2801
 msgid "{region} nomination date"
 msgstr ""
 

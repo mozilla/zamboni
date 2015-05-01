@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:23-0700\n"
+"POT-Creation-Date: 2015-05-01 08:18-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -258,7 +258,7 @@ msgstr "An Bhurúin"
 msgid "Cambodia"
 msgstr "An Chambóid"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
 msgid "Cameroon"
 msgstr "Camarún"
 
@@ -274,7 +274,7 @@ msgstr "Rinn Verde"
 msgid "Cayman Islands"
 msgstr "Na hOileáin Cayman"
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
 msgid "Central African Republic"
 msgstr "Poblacht na hAfraice Láir"
 
@@ -282,11 +282,11 @@ msgstr "Poblacht na hAfraice Láir"
 msgid "Chad"
 msgstr "Sead"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
 msgid "Chile"
 msgstr "An tSile"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
 msgid "China"
 msgstr "An tSín"
 
@@ -298,7 +298,7 @@ msgstr "Oileán na Nollag"
 msgid "Cocos (Keeling) Islands"
 msgstr "Oileáin na gCócónna (Keeling)"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
 msgid "Colombia"
 msgstr "An Cholóim"
 
@@ -318,11 +318,11 @@ msgstr "Poblacht Dhaonlathach an Chongó"
 msgid "Cook Islands"
 msgstr "Oileáin Cook"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
 msgid "Costa Rica"
 msgstr "Cósta Ríce"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
 msgid "Côte d'Ivoire"
 msgstr "An Cósta Eabhair"
 
@@ -342,7 +342,7 @@ msgstr "Curasao"
 msgid "Cyprus"
 msgstr "An Chipir"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
 msgid "Czech Republic"
 msgstr "Poblacht na Seice"
 
@@ -362,15 +362,15 @@ msgstr "Dominice"
 msgid "Dominican Republic"
 msgstr "An Phoblacht Dhoiminiceach"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
 msgid "Ecuador"
 msgstr "Eacuadór"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
 msgid "Egypt"
 msgstr "An Éigipt"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
 msgid "El Salvador"
 msgstr "An tSalvadóir"
 
@@ -434,7 +434,7 @@ msgstr "An Ghaimbia"
 msgid "Georgia"
 msgstr "An tSeoirsia"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
 msgid "Germany"
 msgstr "An Ghearmáin"
 
@@ -446,7 +446,7 @@ msgstr "Gána"
 msgid "Gibraltar"
 msgstr "Giobráltar"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
 msgid "Greece"
 msgstr "An Ghréig"
 
@@ -466,7 +466,7 @@ msgstr "An Ghuadalúip"
 msgid "Guam"
 msgstr "Guam"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
 msgid "Guatemala"
 msgstr "Guatamala"
 
@@ -478,7 +478,7 @@ msgstr "Geansaí"
 msgid "Guinea"
 msgstr "An Ghuine"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
 msgid "Guinea-Bissau"
 msgstr "Guine Bhissau"
 
@@ -506,7 +506,7 @@ msgstr "Hondúras"
 msgid "Hong Kong"
 msgstr "Hong Cong"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
 msgid "Hungary"
 msgstr "An Ungáir"
 
@@ -514,7 +514,7 @@ msgstr "An Ungáir"
 msgid "Iceland"
 msgstr "An Íoslainn"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
 msgid "India"
 msgstr "An India"
 
@@ -542,7 +542,7 @@ msgstr "Oileán Mhanann"
 msgid "Israel"
 msgstr "Iosrael"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
 msgid "Italy"
 msgstr "An Iodáil"
 
@@ -550,7 +550,7 @@ msgstr "An Iodáil"
 msgid "Jamaica"
 msgstr "An Iamáice"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
 msgid "Japan"
 msgstr "An tSeapáin"
 
@@ -558,7 +558,7 @@ msgstr "An tSeapáin"
 msgid "Jersey"
 msgstr "Geirsí"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
 msgid "Jordan"
 msgstr "An Iordáin"
 
@@ -566,7 +566,7 @@ msgstr "An Iordáin"
 msgid "Kazakhstan"
 msgstr "An Chasacstáin"
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
 msgid "Kenya"
 msgstr "An Chéinia"
 
@@ -622,7 +622,7 @@ msgstr "Poblacht Arabach na Libia"
 msgid "Liechtenstei"
 msgstr "Lichtinstéin"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
 msgid "Lithuania"
 msgstr "An Liotuáin"
 
@@ -638,7 +638,7 @@ msgstr "Macao"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Poblacht Iar-Iúgslavach na Macadóine"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
 msgid "Madagascar"
 msgstr "Madagascar"
 
@@ -654,7 +654,7 @@ msgstr "An Mhalaeisia"
 msgid "Maldives"
 msgstr "Oileáin Mhaildíve"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
 msgid "Mali"
 msgstr "Mailí"
 
@@ -674,7 +674,7 @@ msgstr "Martainíc"
 msgid "Mauritania"
 msgstr "An Mháratáin"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
 msgid "Mauritius"
 msgstr "Oileán Mhuirís"
 
@@ -682,7 +682,7 @@ msgstr "Oileán Mhuirís"
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
 msgid "Mexico"
 msgstr "Meicsiceo"
 
@@ -702,7 +702,7 @@ msgstr "Monacó"
 msgid "Mongolia"
 msgstr "An Mhongóil"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
 msgid "Montenegro"
 msgstr "Montainéagró"
 
@@ -718,7 +718,7 @@ msgstr "Maracó"
 msgid "Mozambique"
 msgstr "Mósaimbíc"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
 msgid "Myanmar"
 msgstr "Maenmar"
 
@@ -748,11 +748,11 @@ msgstr "An Nua-Chaladóin"
 msgid "New Zealand"
 msgstr "An Nua-Shéalainn"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
 msgid "Nicaragua"
 msgstr "Nicearagua"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
 msgid "Niger"
 msgstr "An Nígir"
 
@@ -792,7 +792,7 @@ msgstr "Palau"
 msgid "Palestinian Territory, Occupied"
 msgstr "Críoch na bPalaistíneach faoi fhorghabháil"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
 msgid "Panama"
 msgstr "Panama"
 
@@ -804,11 +804,11 @@ msgstr "Nua-Ghuine Phapua"
 msgid "Paraguay"
 msgstr "Paragua"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
 msgid "Peru"
 msgstr "Peiriú"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
 msgid "Philippines"
 msgstr "Na hOileáin Fhilipíneacha"
 
@@ -816,7 +816,7 @@ msgstr "Na hOileáin Fhilipíneacha"
 msgid "Pitcairn"
 msgstr "Oileán Pitcairn"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
 msgid "Poland"
 msgstr "An Pholainn"
 
@@ -896,7 +896,7 @@ msgstr "An Araib Shádach"
 msgid "Senega"
 msgstr "An tSeineagáil"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
 msgid "Serbia"
 msgstr "An tSeirbia"
 
@@ -936,7 +936,7 @@ msgstr "Oileáin Sholamóin"
 msgid "Somalia"
 msgstr "An tSomáil"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
 msgid "South Africa"
 msgstr "An Afraic Theas"
 
@@ -948,7 +948,7 @@ msgstr "An tSeoirsia Theas agus Oileáin Sandwich Theas"
 msgid "South Sudan"
 msgstr "An tSúdáin Theas"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
 msgid "Spain"
 msgstr "An Spáinn"
 
@@ -1020,7 +1020,7 @@ msgstr "Tongais"
 msgid "Trinidad and Tobago"
 msgstr "Oileán na Tríonóide agus Tobága"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
 msgid "Tunisia"
 msgstr "An Túinéis"
 
@@ -1056,7 +1056,7 @@ msgstr "Aontas na nÉimíríochtaí Arabacha"
 msgid "United Kingdom"
 msgstr "An Ríocht Aontaithe"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
 msgid "United States"
 msgstr "Stáit Aontaithe Mheiriceá"
 
@@ -1064,7 +1064,7 @@ msgstr "Stáit Aontaithe Mheiriceá"
 msgid "United States Minor Outlying Islands"
 msgstr "Mion-Oileáin Imeallacha S.A.M."
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
 msgid "Uruguay"
 msgstr "Uragua"
 
@@ -1072,7 +1072,7 @@ msgstr "Uragua"
 msgid "Uzbekistan"
 msgstr "An Úisbéiceastáin"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
 msgid "Vanuatu"
 msgstr "Vanuatú"
 
@@ -1975,19 +1975,27 @@ msgstr ""
 msgid "Rest of World"
 msgstr "An chuid eile den domhan"
 
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:89
+msgid "Guinea-Conakry"
+msgstr ""
+
+#: mkt/constants/regions.py:112
 msgid "Russia"
 msgstr "An Rúis"
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:113
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:117
+msgid "Taiwan"
+msgstr ""
+
+#: mkt/constants/regions.py:118
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:121
 msgid "Venezuela"
 msgstr "Veiniséala"
 
@@ -2007,7 +2015,7 @@ msgstr "Comhaontú"
 msgid "Submit"
 msgstr "Seol"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
 msgid "Details"
 msgstr "Mionsonraí"
 
@@ -2083,7 +2091,7 @@ msgstr ""
 msgid "Invalid region(s) selected."
 msgstr "Roghnaigh tú réigiú(i)n neamhbhailí."
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
@@ -2585,7 +2593,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
 msgstr "Sábháladh na hathruithe."
 
@@ -3899,7 +3907,7 @@ msgstr "Stádas agus Leaganacha"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
 msgid "Content Ratings"
 msgstr "Rátálacha Ábhair"
 
@@ -4775,7 +4783,7 @@ msgid "Developing Game Apps"
 msgstr "Cluichí a Fhorbairt"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
 msgid "Payments"
 msgstr "Íocaíochtaí"
 
@@ -7804,62 +7812,62 @@ msgstr ""
 msgid "Listed"
 msgstr "Liostaithe"
 
-#: mkt/webapps/models.py:1366
+#: mkt/webapps/models.py:1365
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1368
+#: mkt/webapps/models.py:1367
 msgid "You must provide an app name."
 msgstr "Caithfidh tú ainm a chur ar an aip."
 
-#: mkt/webapps/models.py:1370
+#: mkt/webapps/models.py:1369
 msgid "You must provide at least one device type."
 msgstr "Caithfidh tú cineál gléis amháin a thabhairt."
 
-#: mkt/webapps/models.py:1373
+#: mkt/webapps/models.py:1372
 msgid "You must provide at least one category."
 msgstr "Caithfidh tú catagóir amháin a thabhairt."
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1439
 msgid "You must set up content ratings."
 msgstr "Caithfidh tú rátálacha ábhair a shocrú."
 
-#: mkt/webapps/models.py:1442
+#: mkt/webapps/models.py:1441
 msgid "You must set up a payment account."
 msgstr "Caithfidh tú cuntas íocaíochta a shocrú."
 
-#: mkt/webapps/models.py:1467
+#: mkt/webapps/models.py:1466
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1474
+#: mkt/webapps/models.py:1473
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1480
+#: mkt/webapps/models.py:1479
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2739
+#: mkt/webapps/models.py:2738
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2741
+#: mkt/webapps/models.py:2740
 msgid "rejected"
 msgstr "diúltaithe"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2743
+#: mkt/webapps/models.py:2742
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2794
+#: mkt/webapps/models.py:2793
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2802
+#: mkt/webapps/models.py:2801
 msgid "{region} nomination date"
 msgstr ""
 

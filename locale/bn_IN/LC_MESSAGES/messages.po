@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:23-0700\n"
+"POT-Creation-Date: 2015-05-01 08:18-0700\n"
 "PO-Revision-Date: 2014-11-23 19:53+0000\n"
 "Last-Translator: Ayan <ayay700@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -255,7 +255,7 @@ msgstr "বুরুন্ডি"
 msgid "Cambodia"
 msgstr "কম্বোডিয়া"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
 msgid "Cameroon"
 msgstr "ক্যামেরুন"
 
@@ -271,7 +271,7 @@ msgstr "ক্যাপ ভেরডে"
 msgid "Cayman Islands"
 msgstr "কেম্যান আইল্যান্ড"
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
 msgid "Central African Republic"
 msgstr "মধ্য আফ্রিকান রিপাব্লিক"
 
@@ -279,11 +279,11 @@ msgstr "মধ্য আফ্রিকান রিপাব্লিক"
 msgid "Chad"
 msgstr "চাড"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
 msgid "Chile"
 msgstr "চিলি"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
 msgid "China"
 msgstr "চীন"
 
@@ -295,7 +295,7 @@ msgstr "ক্রিসমাস আইল্যান্ড"
 msgid "Cocos (Keeling) Islands"
 msgstr "ককস (কীলিং) আইল্যান্ড"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
 msgid "Colombia"
 msgstr "কলোম্বিয়া"
 
@@ -315,11 +315,11 @@ msgstr "কঙ্গো, গণতান্ত্রিক প্রজাতন
 msgid "Cook Islands"
 msgstr "কুক আইল্যান্ড"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
 msgid "Costa Rica"
 msgstr "কোস্টারিকা"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
 msgid "Côte d'Ivoire"
 msgstr "আইভরি কোস্ট"
 
@@ -339,7 +339,7 @@ msgstr "কুরাকাও"
 msgid "Cyprus"
 msgstr "সাইপ্রাস"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
 msgid "Czech Republic"
 msgstr "চেক রিপাব্লিক"
 
@@ -359,15 +359,15 @@ msgstr "ডোমিনিকা"
 msgid "Dominican Republic"
 msgstr "ডোমিনিকান প্রজাতন্ত্র"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
 msgid "Ecuador"
 msgstr "ইকুয়াডর"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
 msgid "Egypt"
 msgstr "ইজিপ্ট"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
 msgid "El Salvador"
 msgstr "এল স্যালভাডোর"
 
@@ -431,7 +431,7 @@ msgstr "গাম্বিয়া"
 msgid "Georgia"
 msgstr "জর্জিয়া"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
 msgid "Germany"
 msgstr "জার্মানি"
 
@@ -443,7 +443,7 @@ msgstr "ঘানা"
 msgid "Gibraltar"
 msgstr "জিব্রালটার"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
 msgid "Greece"
 msgstr "গ্রীস"
 
@@ -463,7 +463,7 @@ msgstr "গুয়াডেলোপ"
 msgid "Guam"
 msgstr "গাম্বিয়া"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
 msgid "Guatemala"
 msgstr "গুয়াটেমালা"
 
@@ -475,7 +475,7 @@ msgstr "গেঁজি"
 msgid "Guinea"
 msgstr "গিনি"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
 msgid "Guinea-Bissau"
 msgstr "গিনি-বিসাউ"
 
@@ -503,7 +503,7 @@ msgstr "হন্ডুরাস"
 msgid "Hong Kong"
 msgstr "হং কং"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
 msgid "Hungary"
 msgstr "হাঙ্গেরি"
 
@@ -511,7 +511,7 @@ msgstr "হাঙ্গেরি"
 msgid "Iceland"
 msgstr "আইসল্যান্ড"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
 msgid "India"
 msgstr "ভারত"
 
@@ -539,7 +539,7 @@ msgstr "আইল অব ম্যান"
 msgid "Israel"
 msgstr "ইজরায়েল"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
 msgid "Italy"
 msgstr "ইতালি"
 
@@ -547,7 +547,7 @@ msgstr "ইতালি"
 msgid "Jamaica"
 msgstr "জ্যামাইকা"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
 msgid "Japan"
 msgstr "জাপান"
 
@@ -555,7 +555,7 @@ msgstr "জাপান"
 msgid "Jersey"
 msgstr "জার্সি"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
 msgid "Jordan"
 msgstr "জর্দান"
 
@@ -563,7 +563,7 @@ msgstr "জর্দান"
 msgid "Kazakhstan"
 msgstr "কাজাখাস্তান"
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
 msgid "Kenya"
 msgstr "কেনিয়া"
 
@@ -619,7 +619,7 @@ msgstr "লিবিয় আরব জামাহিরিয়া"
 msgid "Liechtenstei"
 msgstr "লিশটেনস্টাইন"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
 msgid "Lithuania"
 msgstr "লিথুয়ানিয়া"
 
@@ -635,7 +635,7 @@ msgstr "ম্যাকাও"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "ম্যাসেডোনিয়া, সাবেক যুগোস্লাভ রিপাবলিক"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
 msgid "Madagascar"
 msgstr "মাদাগাস্কার"
 
@@ -651,7 +651,7 @@ msgstr "মালেশিয়া"
 msgid "Maldives"
 msgstr "মালদ্বীপ"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
 msgid "Mali"
 msgstr "মালি"
 
@@ -671,7 +671,7 @@ msgstr "মার্টিনিক"
 msgid "Mauritania"
 msgstr "মৌরিতানিয়া"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
 msgid "Mauritius"
 msgstr "মরিশাস"
 
@@ -679,7 +679,7 @@ msgstr "মরিশাস"
 msgid "Mayotte"
 msgstr "মায়োত্তে"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
 msgid "Mexico"
 msgstr "মেক্সিকো"
 
@@ -699,7 +699,7 @@ msgstr "মোনাকো"
 msgid "Mongolia"
 msgstr "মঙ্গোলিয়া"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
 msgid "Montenegro"
 msgstr "মন্টেনেগ্রো"
 
@@ -715,7 +715,7 @@ msgstr "মরক্কো"
 msgid "Mozambique"
 msgstr "মোজাম্বিক"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
 msgid "Myanmar"
 msgstr "মায়ানমার"
 
@@ -743,11 +743,11 @@ msgstr "নিউ ক্যালেডোনিয়া"
 msgid "New Zealand"
 msgstr "নিউজিল্যান্ড"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
 msgid "Nicaragua"
 msgstr "নিকারাগুয়া"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
 msgid "Niger"
 msgstr "নাইজার"
 
@@ -787,7 +787,7 @@ msgstr "পালাউ"
 msgid "Palestinian Territory, Occupied"
 msgstr "অধিকৃত ফিলিস্তিনি অঞ্চল"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
 msgid "Panama"
 msgstr "পানামা"
 
@@ -799,11 +799,11 @@ msgstr "পাপুয়া নিউ গিনি"
 msgid "Paraguay"
 msgstr "প্যারাগুয়ে"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
 msgid "Peru"
 msgstr "পেরু"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
 msgid "Philippines"
 msgstr "ফিলিপাইন"
 
@@ -811,7 +811,7 @@ msgstr "ফিলিপাইন"
 msgid "Pitcairn"
 msgstr "পিটকেয়ার্ন"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
 msgid "Poland"
 msgstr "পোল্যান্ড"
 
@@ -891,7 +891,7 @@ msgstr "সৌদি আরব"
 msgid "Senega"
 msgstr "সেনেগা"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
 msgid "Serbia"
 msgstr "সার্বিয়া"
 
@@ -931,7 +931,7 @@ msgstr "সলোমন দ্বীপপুঞ্জ"
 msgid "Somalia"
 msgstr "সোমালিয়া"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
 msgid "South Africa"
 msgstr "দক্ষিণ আফ্রিকা"
 
@@ -943,7 +943,7 @@ msgstr "দক্ষিণ জর্জিয়া ও দক্ষিণ স�
 msgid "South Sudan"
 msgstr "দক্ষিণ সুদান"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
 msgid "Spain"
 msgstr "স্পেন"
 
@@ -1015,7 +1015,7 @@ msgstr "টোঙ্গা"
 msgid "Trinidad and Tobago"
 msgstr "ত্রিনিদাদ এবং টোবাগো"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
 msgid "Tunisia"
 msgstr "তিউনিশিয়া"
 
@@ -1051,7 +1051,7 @@ msgstr "সংযুক্ত আরব আমিরাত"
 msgid "United Kingdom"
 msgstr "যুক্তরাজ্য"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
 msgid "United States"
 msgstr "মার্কিন যুক্তরাষ্ট্র"
 
@@ -1059,7 +1059,7 @@ msgstr "মার্কিন যুক্তরাষ্ট্র"
 msgid "United States Minor Outlying Islands"
 msgstr "মার্কিন যুক্তরাষ্ট্র ক্ষুদ্র ও পার্শ্ববর্তী দ্বীপপুঞ্জ"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
 msgid "Uruguay"
 msgstr "উরুগুয়ে"
 
@@ -1067,7 +1067,7 @@ msgstr "উরুগুয়ে"
 msgid "Uzbekistan"
 msgstr "উজবেকিস্তান"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
 msgid "Vanuatu"
 msgstr "ভানুয়াতু"
 
@@ -1972,19 +1972,27 @@ msgstr "প্যান ইউরোপিয়ান গেম তথ্য"
 msgid "Rest of World"
 msgstr "বাকি পৃথিবী"
 
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:89
+msgid "Guinea-Conakry"
+msgstr ""
+
+#: mkt/constants/regions.py:112
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:113
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:117
+msgid "Taiwan"
+msgstr ""
+
+#: mkt/constants/regions.py:118
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:121
 msgid "Venezuela"
 msgstr "ভেনেজুয়েলা"
 
@@ -2004,7 +2012,7 @@ msgstr "চুক্তি"
 msgid "Submit"
 msgstr "জমা"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
 msgid "Details"
 msgstr "বিবরণ"
 
@@ -2080,7 +2088,7 @@ msgstr "একটি অ্যাপ ইতিমধ্যে এই ডোম�
 msgid "Invalid region(s) selected."
 msgstr "অকার্যকর এলাকা(গুলি) নির্বাচিত।"
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
 msgid "You must upload at least one screenshot or video."
 msgstr "আপনাকে অন্তত একটা স্ক্রিনশট বা ভিডিও আপলোড করতে হবে।"
 
@@ -2580,7 +2588,7 @@ msgstr "অ্যাপ সফলভাবে পুনঃজমা হয়েছ
 msgid "New version successfully added."
 msgstr "নতুন সংস্করণ সফলভাবে যোগ হয়েছে।"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
 msgstr "পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।"
 
@@ -3895,7 +3903,7 @@ msgstr "অবস্থা এবং; ভার্শন"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
 msgid "Content Ratings"
 msgstr "কন্টেন্ট রেটিংস"
 
@@ -4781,7 +4789,7 @@ msgid "Developing Game Apps"
 msgstr "গেম অ্যাপ ডেভেলপ করা"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
 msgid "Payments"
 msgstr "পেমেন্টস"
 
@@ -7782,62 +7790,62 @@ msgstr ""
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
 
-#: mkt/webapps/models.py:1366
+#: mkt/webapps/models.py:1365
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1368
+#: mkt/webapps/models.py:1367
 msgid "You must provide an app name."
 msgstr "আপনাকে অবশ্যই একটি অ্যাপের নাম প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1370
+#: mkt/webapps/models.py:1369
 msgid "You must provide at least one device type."
 msgstr "আপনাকে অবশ্যই অন্ততপক্ষে একটা ডিভাইসের ধরন প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1373
+#: mkt/webapps/models.py:1372
 msgid "You must provide at least one category."
 msgstr "আপনার কমপক্ষে একটি বিভাগের উল্লেখ করতেই হবে।"
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1439
 msgid "You must set up content ratings."
 msgstr "আপনাকে কন্টেন্ট রেটিংস সেট আপ করতেই হবে।"
 
-#: mkt/webapps/models.py:1442
+#: mkt/webapps/models.py:1441
 msgid "You must set up a payment account."
 msgstr "আপনাকে অবশ্যই একটি পেমেন্ট একাউন্ট সেট আপ করতে হবে।"
 
-#: mkt/webapps/models.py:1467
+#: mkt/webapps/models.py:1466
 msgid "This app's submission process has not been fully completed."
 msgstr "এই অ্যাপ্লিকেশন এর জমা প্রক্রিয়া সম্পূর্ণরূপে সম্পন্ন হয়নি।"
 
-#: mkt/webapps/models.py:1474
+#: mkt/webapps/models.py:1473
 msgid "This app needs to get a content rating."
 msgstr "এই অ্যাপ্লিকেশনের একটি কন্টেন্ট রেটিং পাওয়া প্রয়োজন।"
 
-#: mkt/webapps/models.py:1480
+#: mkt/webapps/models.py:1479
 msgid "This app needs a payment account set up."
 msgstr "এই অ্যাপ্লিকেশনের একটি পেমেন্ট একাউন্ট সেট আপ করা প্রয়োজন।"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2739
+#: mkt/webapps/models.py:2738
 msgid "awaiting approval"
 msgstr "অনুমোদনের জন্যে অপেক্ষারত"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2741
+#: mkt/webapps/models.py:2740
 msgid "rejected"
 msgstr "বাতিল"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2743
+#: mkt/webapps/models.py:2742
 msgid "requires additional review"
 msgstr "অতিরিক্ত রিভিউ এর দরকার আছে"
 
-#: mkt/webapps/models.py:2794
+#: mkt/webapps/models.py:2793
 msgid "{region} approval status"
 msgstr "{region} অনুমোদনের অবস্থা"
 
-#: mkt/webapps/models.py:2802
+#: mkt/webapps/models.py:2801
 msgid "{region} nomination date"
 msgstr "{region} মনোনয়ন তারিখ"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:23-0700\n"
+"POT-Creation-Date: 2015-05-01 08:18-0700\n"
 "PO-Revision-Date: 2015-04-28 04:10+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -256,7 +256,7 @@ msgstr "ਬੋਰੋਨਡੀਂ"
 msgid "Cambodia"
 msgstr "ਕੋਲੰਬੋਡੀਆ"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
 msgid "Cameroon"
 msgstr "ਕੈਮਰੂਨ"
 
@@ -272,7 +272,7 @@ msgstr "ਕੇਪੀ ਵੀਰਡੀ"
 msgid "Cayman Islands"
 msgstr "ਕਯਾਮੇਨ ਟਾਪੂ"
 
-#: mkt/constants/bango.py:61
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
 msgid "Central African Republic"
 msgstr "ਕੇਂਦਰੀ ਅਫ਼ਰੀਕੀ ਗਣਰਾਜ"
 
@@ -280,11 +280,11 @@ msgstr "ਕੇਂਦਰੀ ਅਫ਼ਰੀਕੀ ਗਣਰਾਜ"
 msgid "Chad"
 msgstr "ਚਾਦ"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
 msgid "Chile"
 msgstr "ਚਿੱਲੀ"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
 msgid "China"
 msgstr "ਚੀਨ"
 
@@ -296,7 +296,7 @@ msgstr "ਕ੍ਰਿਸਮਿਸ ਟਾਪੂ"
 msgid "Cocos (Keeling) Islands"
 msgstr "ਕੁਕੁਸ (ਕੱਲਿੰਗ) ਟਾਪੂ"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
 msgid "Colombia"
 msgstr "ਕੋਲੰਬੀਆ"
 
@@ -316,11 +316,11 @@ msgstr "ਕੌਂਗੋ, -ਡੈਮੋਕਰੈਟਿਕ ਰੀਪਬਲਿਕ"
 msgid "Cook Islands"
 msgstr "ਕੁੱਕੁ ਟਾਪੂ"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
 msgid "Costa Rica"
 msgstr "ਕੋਸਟਾ ਰੀਸਾ"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
 msgid "Côte d'Ivoire"
 msgstr "ਕੋਟੀ ਡੀਲਵੋਈਰੀ"
 
@@ -340,7 +340,7 @@ msgstr "ਕੁਰਾਸਾਉ"
 msgid "Cyprus"
 msgstr "ਸਾਈਪਰਸ"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
 msgid "Czech Republic"
 msgstr "ਚੈੱਕ ਗਣਰਾਜ"
 
@@ -360,15 +360,15 @@ msgstr "ਡੋਮੀਨੀਕਾ"
 msgid "Dominican Republic"
 msgstr "ਡੋਮੀਨੀਕੇਨ ਗਣਰਾਜ"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
 msgid "Ecuador"
 msgstr "ਏਕਵੇਡੋਰ"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
 msgid "Egypt"
 msgstr "ਮਿਸਰ"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
 msgid "El Salvador"
 msgstr "ਏਲ ਸਲਵਾਡੋਰ"
 
@@ -432,7 +432,7 @@ msgstr "ਗਾਮਬੀਆ"
 msgid "Georgia"
 msgstr "ਜਾਰਜੀਆ"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
 msgid "Germany"
 msgstr "ਜਰਮਨੀ"
 
@@ -444,7 +444,7 @@ msgstr "ਘਾਨਾ"
 msgid "Gibraltar"
 msgstr "ਗੀਬਰਾਲਟਰ"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
 msgid "Greece"
 msgstr "ਗਰੀਸ"
 
@@ -464,7 +464,7 @@ msgstr "ਗੂਆਡਾਲਪੀ"
 msgid "Guam"
 msgstr "ਗੁਆਮ"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
 msgid "Guatemala"
 msgstr "ਗੁਆਟੇਮਾਲਾ"
 
@@ -476,7 +476,7 @@ msgstr "ਗੁਇਰਸਿਆ"
 msgid "Guinea"
 msgstr "ਗੁਈਨੀਆ"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
 msgid "Guinea-Bissau"
 msgstr "ਗੁਨੇਆ-ਬਿਸਾਉ"
 
@@ -504,7 +504,7 @@ msgstr "ਹੋਨਡੂਰਸ"
 msgid "Hong Kong"
 msgstr "ਹਾਂਗਕਾਂਗ"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
 msgid "Hungary"
 msgstr "ਹੰਗਰੀ"
 
@@ -512,7 +512,7 @@ msgstr "ਹੰਗਰੀ"
 msgid "Iceland"
 msgstr "ਆਈਲੈਂਡ"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
 msgid "India"
 msgstr "ਭਾਰਤ"
 
@@ -540,7 +540,7 @@ msgstr "ਇਸਲੀ ਆਫ ਮੈਨ"
 msgid "Israel"
 msgstr "ਇਜ਼ਰਾਈਲ"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
 msgid "Italy"
 msgstr "ਇਟਲੀ"
 
@@ -548,7 +548,7 @@ msgstr "ਇਟਲੀ"
 msgid "Jamaica"
 msgstr "ਜੈਮਿਕਾ"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
 msgid "Japan"
 msgstr "ਜਾਪਾਨ"
 
@@ -556,7 +556,7 @@ msgstr "ਜਾਪਾਨ"
 msgid "Jersey"
 msgstr "ਜਰਸੀ"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
 msgid "Jordan"
 msgstr "ਜਾਰਡਨ"
 
@@ -564,7 +564,7 @@ msgstr "ਜਾਰਡਨ"
 msgid "Kazakhstan"
 msgstr "ਕਜ਼ਾਖਸਤਾਨ"
 
-#: mkt/constants/bango.py:134
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
 msgid "Kenya"
 msgstr "ਕੀਨੀਆ"
 
@@ -620,7 +620,7 @@ msgstr "ਲਿਬੀਆਨ ਅਰਬ ਜਮਹੀਰਿਆ"
 msgid "Liechtenstei"
 msgstr "ਲਿਚਅੱਸਟਾਈਨ"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
 msgid "Lithuania"
 msgstr "ਲੀਥੂਨੀਆ"
 
@@ -636,7 +636,7 @@ msgstr "ਮੈਕੋ"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "ਮੈਕਡੋਨਿਆ, ਫਾਰਮਰ ਯੂਗੋਸਲਾਵ ਰਿਪ"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
 msgid "Madagascar"
 msgstr "ਮਾਡਾਗਾਸਕਾਰ"
 
@@ -652,7 +652,7 @@ msgstr "ਮਲੇਸ਼ੀਆ"
 msgid "Maldives"
 msgstr "ਮਾਲਦੀਵ"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
 msgid "Mali"
 msgstr "ਮਾਲੀ"
 
@@ -672,7 +672,7 @@ msgstr "ਮਾਰਟੀਨੀਕ"
 msgid "Mauritania"
 msgstr "ਮੌਰੀਟਾਨੀਆ"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
 msgid "Mauritius"
 msgstr "ਮੋਰੇਸ਼ਿਅਸ"
 
@@ -680,7 +680,7 @@ msgstr "ਮੋਰੇਸ਼ਿਅਸ"
 msgid "Mayotte"
 msgstr "ਮਾਯੋਟੀ"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
 msgid "Mexico"
 msgstr "ਮੈਕਸਿਕੋ"
 
@@ -700,7 +700,7 @@ msgstr "ਮਾਨਾਕੋ"
 msgid "Mongolia"
 msgstr "ਮੰਗੋਲੀਆ"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
 msgid "Montenegro"
 msgstr "ਮੋਨਟੀਨੀਗਰੋ"
 
@@ -716,7 +716,7 @@ msgstr "ਮੋਰੋੱਕੋ"
 msgid "Mozambique"
 msgstr "ਮੋਜ਼ਾਮਬੀਕ"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
 msgid "Myanmar"
 msgstr "ਮਿਆਂਮਾਰ"
 
@@ -744,11 +744,11 @@ msgstr "ਨਵਾਂ ਕੇਲੇਡੋਨੀਆ"
 msgid "New Zealand"
 msgstr "ਨਿਊਜ਼ੀਲੈਂਡ"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
 msgid "Nicaragua"
 msgstr "ਨਿਕਾਰਾਗੁਆ"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
 msgid "Niger"
 msgstr "ਨਾਈਜਰ"
 
@@ -788,7 +788,7 @@ msgstr "ਪਲਾਉ"
 msgid "Palestinian Territory, Occupied"
 msgstr "ਫਿਲੀਸਤੀਨੀ ਖੇਤਰ"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
 msgid "Panama"
 msgstr "ਪੈਨਾਮਾ"
 
@@ -800,11 +800,11 @@ msgstr "ਪਾਪੁਆ ਨਵਾਂ ਜੀਨੇਵਾ"
 msgid "Paraguay"
 msgstr "ਪੇਰੂਗੁਵੇ"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
 msgid "Peru"
 msgstr "ਪੇਰੂ"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
 msgid "Philippines"
 msgstr "ਫਿਲੀਪੀਨਸ"
 
@@ -812,7 +812,7 @@ msgstr "ਫਿਲੀਪੀਨਸ"
 msgid "Pitcairn"
 msgstr "ਪਿਟਕੀਰਨ"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
 msgid "Poland"
 msgstr "ਪੋਲੈਂਡ"
 
@@ -892,7 +892,7 @@ msgstr "ਸਾਊਦੀ ਅਰਬ"
 msgid "Senega"
 msgstr "ਸੇਨੇਗਾ"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
 msgid "Serbia"
 msgstr "ਸਰਬੀਆ"
 
@@ -932,7 +932,7 @@ msgstr "ਸੋਲੋਮਨ ਟਾਪੂ"
 msgid "Somalia"
 msgstr "ਸੋਮਾਲੀਆ"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
 msgid "South Africa"
 msgstr "ਦੱਖਣੀ ਅਫਰੀਕਾ"
 
@@ -944,7 +944,7 @@ msgstr "ਦੱਖਣ ਜਾਰਜੀਆ  ਅਤੇ ਦੱਖਣੀ ਸੈਂਡ�
 msgid "South Sudan"
 msgstr "ਦੱਖਣੀ ਸੂਡਾਨ"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
 msgid "Spain"
 msgstr "ਸਪੇਨ"
 
@@ -1016,7 +1016,7 @@ msgstr "ਟੋਂਗਾ"
 msgid "Trinidad and Tobago"
 msgstr "ਟਰਿਨੀਦਾਦ ਅਤੇ ਟੋਬੇਗੋ"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
 msgid "Tunisia"
 msgstr "ਟੁਨੀਸੀਆ"
 
@@ -1052,7 +1052,7 @@ msgstr "ਸੰਯੁਕਤ ਅਰਬ ਅਮੀਰਾਤ"
 msgid "United Kingdom"
 msgstr "ਬਰਤਾਨੀਆ"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
 msgid "United States"
 msgstr "ਅਮਰੀਕਾ"
 
@@ -1060,7 +1060,7 @@ msgstr "ਅਮਰੀਕਾ"
 msgid "United States Minor Outlying Islands"
 msgstr "ਯੂਨਾਈਟੇਡ ਸਟੇਟਸ ਮਾਈਨੋਰ ਆਉਟਲਾਈਂਗ ਟਾਪੂ"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
 msgid "Uruguay"
 msgstr "ਉਰੂਗਵੇ"
 
@@ -1068,7 +1068,7 @@ msgstr "ਉਰੂਗਵੇ"
 msgid "Uzbekistan"
 msgstr "ਉਜ਼ਬੇਕਸਤਾਨ"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
 msgid "Vanuatu"
 msgstr "ਵਾਨੁਆਟੂ"
 
@@ -1440,9 +1440,7 @@ msgstr "API ਐਪ ਪ੍ਰਬੰਧ"
 
 #: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
-msgstr ""
-"ਐਪ ਨੂੰ ਹੋਰਾਂ ਐਪਾਂ ਨੂੰ ਇੰਸਟਾਲ ਅਤੇ ਸੰਭਾਲਣ ਲਈ 'navigator.mozApps' API ਦੀ ਲੋੜ "
-"ਹੈ।"
+msgstr "ਐਪ ਨੂੰ ਹੋਰਾਂ ਐਪਾਂ ਨੂੰ ਇੰਸਟਾਲ ਅਤੇ ਸੰਭਾਲਣ ਲਈ 'navigator.mozApps' API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
@@ -1450,9 +1448,7 @@ msgstr "API ਐਪਸ ਇੰਸਟਾਲ ਪੈਕਿਜ਼ ਕੀਤਾ ਗਿ�
 
 #: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr ""
-"ਐਪ ਨੂੰ ਹੋਰ ਪੈਕ ਹੋਈਆਂ ਐਪਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ "
-"'navigator.mozApps.installPackage' API ਦੀ ਲੋੜ ਹੈ।"
+msgstr "ਐਪ ਨੂੰ ਹੋਰ ਪੈਕ ਹੋਈਆਂ ਐਪਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ 'navigator.mozApps.installPackage' API ਦੀ ਲੋੜ ਹੈ।"
 
 #: mkt/constants/features.py:31
 msgid "Web Payment"
@@ -1604,9 +1600,7 @@ msgstr "ਛੂਹਣਾ"
 
 #: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr ""
-"ਐਪ ਨੂੰ ਟੱਚ ਕਾਰਜਾਂ ਦੇ ਸਹਿਯੋਗ ਲਈ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ। ਇਹ ਚੋਣ ਦੱਸਦੀ ਹੈ ਜਦੋਂ ਤੁਸੀਂ "
-"ਇੱਕ ਮਾਊਸ ਦੀ ਵਰਤੋਂ ਕਰੋਗੇ ਇਹ ਐਪ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।"
+msgstr "ਐਪ ਨੂੰ ਟੱਚ ਕਾਰਜਾਂ ਦੇ ਸਹਿਯੋਗ ਲਈ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ। ਇਹ ਚੋਣ ਦੱਸਦੀ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਇੱਕ ਮਾਊਸ ਦੀ ਵਰਤੋਂ ਕਰੋਗੇ ਇਹ ਐਪ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।"
 
 #: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
@@ -1616,10 +1610,7 @@ msgstr "ਸਮਾਰਟਫ਼ੋਨ-ਆਕਾਰ ਵਿਖਾਓ (qHD)"
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
-msgstr ""
-"ਐਪ ਨੂੰ ਸਮਾਰਟਫ਼ੋਨ-ਅਕਾਰ ਡਿਸਪਲੇਅ (qHD resolution ਵਾਲੀ) ਲਈ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ ਹੈ। ਇਹ "
-"ਚੋਣ ਦੱਸਦੀ ਹੈ ਐਪ ਦੀ ਵੱਡੇ ਡਿਸਪਲੇਆਂ ਤੇ ਵਰਤੋਂ ਨਹੀਂ ਹੋ ਸਕਦੀ ( ਜਿਵੇਂ, ਟੈਬਲੇਟ, "
-"ਡੈਸਕਟਾਪ, ਵੱਡੇ ਜਾਂ ਉੱਚ-DPI ਫ਼ੋਨ।)"
+msgstr "ਐਪ ਨੂੰ ਸਮਾਰਟਫ਼ੋਨ-ਅਕਾਰ ਡਿਸਪਲੇਅ (qHD resolution ਵਾਲੀ) ਲਈ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ ਹੈ। ਇਹ ਚੋਣ ਦੱਸਦੀ ਹੈ ਐਪ ਦੀ ਵੱਡੇ ਡਿਸਪਲੇਆਂ ਤੇ ਵਰਤੋਂ ਨਹੀਂ ਹੋ ਸਕਦੀ ( ਜਿਵੇਂ, ਟੈਬਲੇਟ, ਡੈਸਕਟਾਪ, ਵੱਡੇ ਜਾਂ ਉੱਚ-DPI ਫ਼ੋਨ।)"
 
 #: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -1643,14 +1634,11 @@ msgstr "ਐਪ ਪਲੇਟਫਾਰਮ ਵੈੱਬ ਆਡੀਓ API (`window.A
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
-"ਐਪ ਨੂੰ ਲੋੜ ਹੈ ਕੀ ਪਲੇਟਫਾਰਮ ਡੀਕੋਡ ਕਰ ਅਤੇ H.264 ਵੀਡੀਓ ਫ਼ਾਈਲਾਂ ਚਲਾ ਸਕਦਾ ਹੋਵੇ।"
+msgstr "ਐਪ ਨੂੰ ਲੋੜ ਹੈ ਕੀ ਪਲੇਟਫਾਰਮ ਡੀਕੋਡ ਕਰ ਅਤੇ H.264 ਵੀਡੀਓ ਫ਼ਾਈਲਾਂ ਚਲਾ ਸਕਦਾ ਹੋਵੇ।"
 
 #: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr ""
-"ਐਪ ਨੂੰ ਲੋੜ ਹੈ ਕੀ ਪਲੇਟਫ਼ਾਰਮ ਡੀਕੋਡ ਕਰ ਅਤੇ WebM ਵੀਡੀਓ ਫ਼ਾਈਲਾਂ (VP8) ਚਲਾ ਸਕਦਾ "
-"ਹੋਵੇ।"
+msgstr "ਐਪ ਨੂੰ ਲੋੜ ਹੈ ਕੀ ਪਲੇਟਫ਼ਾਰਮ ਡੀਕੋਡ ਕਰ ਅਤੇ WebM ਵੀਡੀਓ ਫ਼ਾਈਲਾਂ (VP8) ਚਲਾ ਸਕਦਾ ਹੋਵੇ।"
 
 #: mkt/constants/features.py:193
 msgid "Full Screen"
@@ -1666,9 +1654,7 @@ msgstr "ਗੇਮਪੈਡ"
 
 #: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
-"ਐਪ ਨੂੰ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ ਜੋ ਗੇਮਪੈਡ API ਨੂੰ ਸਹਿਯੋਗ ਕਰੇ "
-"('navigator.getGamepads')।"
+msgstr "ਐਪ ਨੂੰ ਪਲੇਟਫਾਰਮ ਦੀ ਲੋੜ ਜੋ ਗੇਮਪੈਡ API ਨੂੰ ਸਹਿਯੋਗ ਕਰੇ ('navigator.getGamepads')।"
 
 #: mkt/constants/features.py:206
 msgid "Quota Management"
@@ -1990,19 +1976,27 @@ msgstr ""
 msgid "Rest of World"
 msgstr ""
 
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:89
+msgid "Guinea-Conakry"
+msgstr ""
+
+#: mkt/constants/regions.py:112
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:113
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:117
+msgid "Taiwan"
+msgstr ""
+
+#: mkt/constants/regions.py:118
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:121
 #, fuzzy
 msgid "Venezuela"
 msgstr "ਵੀਨੀਜ਼ੂਲਾ"
@@ -2024,7 +2018,7 @@ msgstr ""
 msgid "Submit"
 msgstr "ਭੇਜੋ"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1466
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
 #, fuzzy
 msgid "Details"
 msgstr "ਵੇਰਵਾ"
@@ -2102,7 +2096,7 @@ msgstr ""
 msgid "Invalid region(s) selected."
 msgstr ""
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1375
+#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
@@ -2610,7 +2604,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:650
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
 msgstr ""
 
@@ -3937,7 +3931,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1473
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
 msgid "Content Ratings"
 msgstr ""
 
@@ -4832,7 +4826,7 @@ msgid "Developing Game Apps"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1479
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
 msgid "Payments"
 msgstr ""
 
@@ -7896,63 +7890,63 @@ msgstr ""
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
-#: mkt/webapps/models.py:1366
+#: mkt/webapps/models.py:1365
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1368
+#: mkt/webapps/models.py:1367
 msgid "You must provide an app name."
 msgstr ""
 
-#: mkt/webapps/models.py:1370
+#: mkt/webapps/models.py:1369
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:1373
+#: mkt/webapps/models.py:1372
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1439
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:1442
+#: mkt/webapps/models.py:1441
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:1467
+#: mkt/webapps/models.py:1466
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1474
+#: mkt/webapps/models.py:1473
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1480
+#: mkt/webapps/models.py:1479
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2739
+#: mkt/webapps/models.py:2738
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2741
+#: mkt/webapps/models.py:2740
 #, fuzzy
 msgid "rejected"
 msgstr "ਰੱਦ ਕੀਤਾ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2743
+#: mkt/webapps/models.py:2742
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2794
+#: mkt/webapps/models.py:2793
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2802
+#: mkt/webapps/models.py:2801
 msgid "{region} nomination date"
 msgstr ""
 
