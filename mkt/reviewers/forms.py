@@ -12,7 +12,7 @@ import mkt
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
-from mkt.search.forms import ApiSearchForm
+from mkt.search.forms import ApiSearchForm, SimpleSearchForm
 from mkt.webapps.models import AddonDeviceType
 
 
@@ -169,6 +169,14 @@ def get_review_form(data, files, request=None, addon=None, version=None,
     return ReviewAppForm(data=data, files=files, helper=helper)
 
 
+def _search_form_status(cleaned_data):
+        status = cleaned_data['status']
+        if status == 'any':
+            return None
+
+        return mkt.STATUS_CHOICES_API_LOOKUP.get(status, mkt.STATUS_PENDING)
+
+
 class ApiReviewersSearchForm(ApiSearchForm):
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_lazy(u'Status'))
@@ -204,11 +212,7 @@ class ApiReviewersSearchForm(ApiSearchForm):
                 self.fields[field_name].choices = BOOL_CHOICES
 
     def clean_status(self):
-        status = self.cleaned_data['status']
-        if status == 'any':
-            return None
-
-        return mkt.STATUS_CHOICES_API_LOOKUP.get(status, mkt.STATUS_PENDING)
+        return _search_form_status(self.cleaned_data)
 
     def clean(self):
         # Transform dev_and_device into the separate dev/device parameters.
@@ -220,6 +224,14 @@ class ApiReviewersSearchForm(ApiSearchForm):
             self.cleaned_data['device'] = dev_and_device[1]
 
         return super(ApiReviewersSearchForm, self).clean()
+
+
+class ReviewersWebsiteSearchForm(SimpleSearchForm):
+    status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
+                               label=_lazy(u'Status'))
+
+    def clean_status(self):
+        return _search_form_status(self.cleaned_data)
 
 
 class ApproveRegionForm(happyforms.Form):

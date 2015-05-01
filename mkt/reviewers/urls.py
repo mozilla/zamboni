@@ -5,6 +5,7 @@ from rest_framework.routers import SimpleRouter
 import mkt
 from mkt.receipts.urls import receipt_patterns
 from mkt.reviewers import views
+from mkt.websites.views import ReviewersWebsiteSearchView
 
 
 # All URLs under /reviewers/.
@@ -71,6 +72,8 @@ api_patterns = patterns(
     url(r'reviewers/', include(reviewers_router.urls)),
     url('^reviewers/search', views.ReviewersSearchView.as_view(),
         name='reviewers-search-api'),
+    url('^reviewers/sites/search', ReviewersWebsiteSearchView.as_view(),
+        name='reviewers-website-search-api'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)?$',
         views.ApproveRegion.as_view(), name='approve-region'),
     url(r'^reviewers/queue/additional$',

@@ -46,3 +46,10 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         obj.es_data = data
 
         return obj
+
+
+class ReviewerESWebsiteSerializer(ESWebsiteSerializer):
+    class Meta:
+        model = Website
+        fields = ['categories', 'description', 'device_types', 'id',
+                  'short_title', 'status', 'title', 'url']

@@ -5,14 +5,19 @@ from rest_framework.permissions import AllowAny
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.api.authorization import GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
-from mkt.search.filters import (PublicAppsFilter, PublicSearchFormFilter,
-                                RegionFilter, SearchQueryFilter, SortingFilter)
+from mkt.reviewers.forms import ReviewersWebsiteSearchForm
+from mkt.search.filters import (PublicAppsFilter, WebsiteSearchFormFilter,
+                                RegionFilter, ReviewerWebsiteSearchFormFilter,
+                                SearchQueryFilter, SortingFilter)
 from mkt.search.forms import SimpleSearchForm
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
-from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
+from mkt.websites.serializers import (ESWebsiteSerializer,
+                                      ReviewerESWebsiteSerializer,
+                                      WebsiteSerializer)
 
 
 class WebsiteView(CORSMixin, MarketplaceView, ListAPIView):
@@ -32,7 +37,7 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicAppsFilter, PublicSearchFormFilter, RegionFilter,
+    filter_backends = [PublicAppsFilter, WebsiteSearchFormFilter, RegionFilter,
                        SearchQueryFilter, SortingFilter]
     serializer_class = ESWebsiteSerializer
     paginator_class = ESPaginator
@@ -48,3 +53,11 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
         # to be wrapped in transactions.
         view = super(WebsiteSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class ReviewersWebsiteSearchView(WebsiteSearchView):
+    permission_classes = [GroupPermission('Apps', 'Review')]
+    filter_backends = [SearchQueryFilter, ReviewerWebsiteSearchFormFilter,
+                       SortingFilter]
+    serializer_class = ReviewerESWebsiteSerializer
+    form_class = ReviewersWebsiteSearchForm
