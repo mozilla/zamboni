@@ -103,6 +103,7 @@ signing_clients==0.1.7
 six==1.9.0
 # slumber is required by curling
 slumber==0.6.2
+SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
 tower==0.4.1
