@@ -5601,7 +5601,7 @@ msgstr "Szukaj"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr "Aplikacja: 0}"
+msgstr "Aplikacja: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
