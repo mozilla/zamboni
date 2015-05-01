@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:18-0700\n"
-"PO-Revision-Date: 2015-04-23 19:25-0400\n"
+"PO-Revision-Date: 2015-05-01 18:10-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1980,7 +1980,7 @@ msgstr "その他の地域"
 
 #: mkt/constants/regions.py:89
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "ギネア・コナクリ"
 
 #: mkt/constants/regions.py:112
 msgid "Russia"
@@ -1992,7 +1992,7 @@ msgstr "セネガル"
 
 #: mkt/constants/regions.py:117
 msgid "Taiwan"
-msgstr ""
+msgstr "台湾"
 
 #: mkt/constants/regions.py:118
 msgid "Tanzania"
