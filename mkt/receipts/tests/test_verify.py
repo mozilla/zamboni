@@ -65,12 +65,12 @@ class TestVerify(ReceiptTest):
 
     def test_setup_db(self):
         verifier = verify.Verify('', RequestFactory().get('/verifyme/').META)
-        assert not verifier.conn
-        assert not verifier.cursor
+        assert not verifier.connection
         verifier.setup_db()
-        assert verifier.cursor
-        assert verifier.conn
-        assert verifier.conn.get_connection_params()['db'].startswith('test_')
+        assert verifier.connection
+        assert verifier.connection.cursor()
+        assert (verifier.connection.get_connection_params()['db']
+                .startswith('test_'))
 
     def verify_signed_receipt(self, signed_receipt, check_purchase=True):
         verifier = verify.Verify(
