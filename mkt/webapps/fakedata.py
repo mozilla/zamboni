@@ -116,7 +116,7 @@ def generate_ratings(app, num):
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
                         rated=True, **spec):
-    generated_url = 'http://%s.greyface.org/manifest.webapp' % (
+    generated_url = 'http://%s.testmanifest.com/fake-data/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
