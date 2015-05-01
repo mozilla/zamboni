@@ -4,6 +4,7 @@ import time
 import uuid
 from urllib import urlencode
 
+from django.db import connection
 from django.conf import settings
 from django.test.client import RequestFactory
 
@@ -63,20 +64,13 @@ class ReceiptTest(mkt.site.tests.TestCase):
 @mock.patch.object(settings, 'WEBAPPS_RECEIPT_URL', '/verifyme/')
 class TestVerify(ReceiptTest):
 
-    def test_setup_db(self):
-        verifier = verify.Verify('', RequestFactory().get('/verifyme/').META)
-        assert not verifier.connection
-        verifier.setup_db()
-        assert verifier.connection
-        assert verifier.connection.cursor()
-        assert (verifier.connection.get_connection_params()['db']
-                .startswith('test_'))
-
     def verify_signed_receipt(self, signed_receipt, check_purchase=True):
+        # Ensure that the verify code is using the test database cursor.
         verifier = verify.Verify(
             signed_receipt,
             RequestFactory().get('/verifyme/').META
         )
+        verifier.cursor = connection.cursor()
 
         if check_purchase:
             return verifier.check_full()
@@ -444,16 +438,8 @@ class TestURL(TestBase):
 
 class TestServices(mkt.site.tests.TestCase):
 
-    def test_settings(self):
-        # services.verify is not a real django app, it imports django settings
-        # manually, so we can't simply use self.settings() context manager.
-        # See https://bugzilla.mozilla.org/show_bug.cgi?id=1159746
-        with mock.patch('services.verify.settings') as settings:
-            settings.SIGNING_SERVER_ACTIVE = True
-            eq_(verify.status_check({})[0], 200)
-
-        with mock.patch('services.verify.settings') as settings:
-            settings.SIGNING_SERVER_ACTIVE = False
+    def test_wrong_settings(self):
+        with self.settings(SIGNING_SERVER_ACTIVE=''):
             eq_(verify.status_check({})[0], 500)
 
     def test_options_request_for_cors(self):
