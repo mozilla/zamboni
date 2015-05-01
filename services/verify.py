@@ -55,9 +55,7 @@ class Verify:
     def __init__(self, receipt, environ):
         self.receipt = receipt
         self.environ = environ
-
-        # This is so the unit tests can override the connection.
-        self.conn, self.cursor = None, None
+        self.connection = None
 
     def check_full(self):
         """
@@ -221,10 +219,8 @@ class Verify:
         All database calls are done at a low level and avoid the
         Django ORM.
         """
-        if not self.cursor:
-            from django.db import connections
-            self.conn = connections['default']
-            self.cursor = self.conn.cursor()
+        from django.db import connections
+        self.connection = connections['default']
 
     def check_purchase(self):
         """
@@ -244,11 +240,10 @@ class Verify:
         sql = """SELECT i.guid, c.type FROM stats_contributions c
                  JOIN inapp_products i ON i.id=c.inapp_product_id
                  WHERE c.id = %(contribution_id)s LIMIT 1;"""
-        self.cursor.execute(
-            sql,
-            {'contribution_id': self.get_contribution_id()}
-        )
-        result = self.cursor.fetchone()
+        with self.connection.cursor() as cursor:
+            cursor.execute(
+                sql, {'contribution_id': self.get_contribution_id()})
+            result = cursor.fetchone()
         if not result:
             log_info('Invalid in-app receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
@@ -270,9 +265,10 @@ class Verify:
         sql = """SELECT type FROM addon_purchase
                  WHERE addon_id = %(app_id)s
                  AND uuid = %(uuid)s LIMIT 1;"""
-        self.cursor.execute(sql, {'app_id': self.get_app_id(),
-                                  'uuid': self.get_user()})
-        result = self.cursor.fetchone()
+        with self.connection.cursor() as cursor:
+            cursor.execute(sql, {'app_id': self.get_app_id(),
+                                 'uuid': self.get_user()})
+            result = cursor.fetchone()
         if not result:
             log_info('Invalid app receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
@@ -400,8 +396,9 @@ def status_check(environ):
 
     try:
         from django.db import connections
-        cursor = connections['default'].cursor()
-        cursor.execute('SELECT id FROM users_install ORDER BY id DESC LIMIT 1')
+        with connections['default'].cursor() as cursor:
+            cursor.execute(
+                'SELECT id FROM users_install ORDER BY id DESC LIMIT 1')
     except Exception, err:
         return 500, str(err)
 
