@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:18-0700\n"
-"PO-Revision-Date: 2015-05-02 12:42+0000\n"
+"PO-Revision-Date: 2015-05-03 19:24+0000\n"
 "Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430570554.0\n"
+"X-POOTLE-MTIME: 1430681041.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1833,14 +1833,17 @@ msgstr "Appareil avec 1 Go de RAM"
 #: mkt/constants/features.py:335
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr ""
+"Cette application a besoin que l'appareil dispose d'au moins 1 Go de RAM."
 
 #: mkt/constants/features.py:340
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr ""
+"Cette application a besoin d'accéder à l'API NFC (communication en champ "
+"proche)."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1991,23 +1994,23 @@ msgstr "Reste du monde"
 
 #: mkt/constants/regions.py:89
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Guinée-Conakry"
 
 #: mkt/constants/regions.py:112
 msgid "Russia"
-msgstr ""
+msgstr "Russie"
 
 #: mkt/constants/regions.py:113
 msgid "Senegal"
-msgstr ""
+msgstr "Sénégal"
 
 #: mkt/constants/regions.py:117
 msgid "Taiwan"
-msgstr ""
+msgstr "Taïwan"
 
 #: mkt/constants/regions.py:118
 msgid "Tanzania"
-msgstr ""
+msgstr "Tanzanie"
 
 #: mkt/constants/regions.py:121
 msgid "Venezuela"
@@ -2127,11 +2130,14 @@ msgstr "Cette description sera affichée sur la page de détails."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:287
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Mots-clés de recherche :"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"Les mots-clés de recherche sont utilisés pour renvoyer des résultats de "
+"recherche dans le Firefox Marketplace. Assurez-vous d'utiliser des mots-clés "
+"qui représentent bien votre application."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -3534,6 +3540,12 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Le nom de l'application est un des champs utilisés pour renvoyer des "
+"résultats de recherche dans le Firefox Marketplace. Le nom de l'application "
+"apparaît également dans la page descriptive de l'application. Assurez-vous "
+"que vous avez bien inclus un nom pertinent dans le manifeste de votre "
+"application. Si vous souhaitez changer le nom de votre application, il "
+"faudra faire la modification dans le manifeste de l'application."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3594,10 +3606,15 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"La description de l'application est un des champs utilisés pour renvoyer des "
+"résultats de recherche dans le Firefox Marketplace. La description de "
+"l'application apparaît également dans la page détaillant votre application. "
+"Assurez-vous de fournir une description pertinente et représentative de "
+"votre application."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Mots-clés de recherche"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -3712,11 +3729,13 @@ msgstr "Si votre application utilise Flash, elle ne sera pas visible sur le Mark
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Fonctionne hors connexion"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr ""
+"Si votre application fonctionne sans avoir besoin de connexion Internet, "
+"nous indiquerons « Fonctionne hors connexion »."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3740,11 +3759,11 @@ msgstr "Cette application ne nécessite aucune fonctionnalité de l'appareil."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:84
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:86
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Identifiant interne pour cette application sur Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -4017,6 +4036,16 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Vous pouvez soumettre votre application afin qu'elle soit "
+"<strong>préinstallée et livrée avec les appareils Firefox OS</strong> par "
+"les opérateurs téléphoniques. Pour proposer votre application à la "
+"préinstallation, nous vous invitons à télécharger un canevas-test disponible "
+"ci-dessous, le remplir et nous le renvoyer via <a href=\"%(submit_url)s\">le "
+"formulaire de soumission pour la préinstallation des applications</a>. Nous "
+"conserverons vos résultats sur nos serveurs où ils seront inspectées par les "
+"opérateurs téléphoniques intéressés. Pour toute précisions ou renseignement "
+"complémentaire, <a href=\"%(support_url)s\">contactez-nous</a>. "
+"               "
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -5230,26 +5259,35 @@ msgstr ""
 #: mkt/langpacks/utils.py:28
 msgid "Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Votre pack langue doit contenir une langue dans l'objet \"languages-"
+"provided\"."
 
 #: mkt/langpacks/utils.py:33
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
 msgstr ""
+"Votre pack langue contient trop de langues. Seule une langue par pack est "
+"acceptée."
 
 #: mkt/langpacks/utils.py:39
 msgid "Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Votre pack langue doit contenir une langue dans l'objet \"languages-target\"."
 
 #: mkt/langpacks/utils.py:44
 msgid "Your language pack contains too many targets. Only one target per pack is supported."
 msgstr ""
+"Votre pack langue contient trop de cible (\"targets\"). Seule une cible par "
+"pack est acceptée."
 
 #: mkt/langpacks/utils.py:50
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "La version du pack langue doit être précisée."
 
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr ""
+"La version de votre pack langue doit être différente de celle qu'il "
+"remplace."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5443,7 +5481,7 @@ msgstr "Outil de recherche <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Information sur le Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -5459,11 +5497,11 @@ msgstr "Transaction liée"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
-msgstr ""
+msgstr "Informations sur le fournisseur de payement"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Impossible d'obtenir l'état de la transaction pour le moment."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
@@ -5987,11 +6025,13 @@ msgstr "Ceci rejettera l'application, la supprimera de la file de revue et la d�
 
 #: mkt/reviewers/utils.py:382
 msgid "Message developer"
-msgstr ""
+msgstr "Envoyer un message au développeur"
 
 #: mkt/reviewers/utils.py:384
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Cela enverra un message à l'auteur ainsi qu'aux personnes inscrites au fil "
+"de discussion. Cela ne modifiera pas le statut de l'application."
 
 #: mkt/reviewers/utils.py:389
 msgid "Escalate"
@@ -6003,11 +6043,14 @@ msgstr "Notifier pour une vérification par un administrateur. Les commentaires 
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
-msgstr ""
+msgstr "Commentaire privé"
 
 #: mkt/reviewers/utils.py:398
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Écrire un commentaire privé sur cette application. Ce commentaire ne sera "
+"pas visible des auteurs et aucune notification ne leur sera envoyée. "
+"               "
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
