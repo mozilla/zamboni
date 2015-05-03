@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:18-0700\n"
-"PO-Revision-Date: 2015-04-23 16:45+0000\n"
+"PO-Revision-Date: 2015-05-03 13:13+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429807551.0\n"
+"X-POOTLE-MTIME: 1430658834.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1981,7 +1981,7 @@ msgstr "Resto del mondo"
 
 #: mkt/constants/regions.py:89
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Guinea, Repubblica di (Conakry)"
 
 #: mkt/constants/regions.py:112
 msgid "Russia"
@@ -1993,7 +1993,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:117
 msgid "Taiwan"
-msgstr ""
+msgstr "Taiwan"
 
 #: mkt/constants/regions.py:118
 msgid "Tanzania"
