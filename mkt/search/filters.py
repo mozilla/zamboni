@@ -180,6 +180,14 @@ class ReviewerSearchFormFilter(SearchFormFilter):
         return queryset
 
 
+class WebsiteSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['keywords', 'category', 'device']
+
+
+class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['keywords', 'category', 'device', 'status', 'is_disabled']
+
+
 class PublicAppsFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only public items --
