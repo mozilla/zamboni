@@ -115,12 +115,12 @@ def generate_ratings(app, num):
 
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
-                        rated=True, **spec):
+                        rated=True, uses_flash=False, **spec):
     generated_url = 'http://%s.testmanifest.com/fake-data/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
-                    file_kw={'status': status},
+                    file_kw={'status': status, 'uses_flash': uses_flash},
                     rated=rated, manifest_url=spec.get('manifest_url',
                                                        generated_url))
     if device_types:
@@ -213,7 +213,7 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
 def generate_packaged_app(name, apptype, categories, developer_name,
                           privacy_policy=None, device_types=(),
                           permissions=(), versions=None, num_locales=2,
-                          package_file=None, status=4, **kw):
+                          package_file=None, status=4, uses_flash=False, **kw):
     if versions is None:
         versions = [status]
     now = datetime.datetime.now()
@@ -224,7 +224,7 @@ def generate_packaged_app(name, apptype, categories, developer_name,
                           'version': '1.0',
                           'reviewed': now if status >= 4 else None,
                           '_developer_name': developer_name},
-                      file_kw={'status': status})
+                      file_kw={'status': status, 'uses_flash': uses_flash})
     if device_types:
         for dt in device_types:
             app.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
@@ -343,7 +343,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            developer_email='fakedeveloper@example.com',
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
-                           rereview=False, **spec):
+                           rereview=False, uses_flash=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     if type == 'hosted':
         app = generate_hosted_app(name, categories, developer_name,
@@ -379,6 +379,10 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                            product_uri=product_uri)
         price = get_or_create_price(spec.get('price', '0.99'))
         AddonPremium.objects.create(addon=app, price=price)
+
+    for optField in ('support_url', 'homepage', 'is_offline'):
+        if optField in spec:
+            setattr(app, optField, spec[optField])
 
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
