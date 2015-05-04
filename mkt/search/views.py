@@ -72,11 +72,14 @@ class MultiSearchView(SearchView):
         return context
 
     def get_queryset(self):
-        return Search(
+        excluded_fields = list(set(WebappIndexer.hidden_fields +
+                                   WebsiteIndexer.hidden_fields))
+        return (Search(
             using=BaseIndexer.get_es(),
             index=[WebappIndexer.get_index(), WebsiteIndexer.get_index()],
             doc_type=[WebappIndexer.get_mapping_type_name(),
                       WebsiteIndexer.get_mapping_type_name()])
+                .extra(_source={'exclude': excluded_fields}))
 
 
 class FeaturedSearchView(SearchView):

@@ -30,6 +30,10 @@ class BaseIndexer(object):
     """
     _es = {}
 
+    """Fields we don't need to expose in the results, only used for filtering
+    or sorting."""
+    hidden_fields = ()
+
     @classmethod
     def _key(cls, es_settings):
         """
@@ -120,9 +124,11 @@ class BaseIndexer(object):
         """
         Returns a `Search` object from elasticsearch_dsl.
         """
-        return Search(using=using or cls.get_es(),
-                      index=cls.get_index(),
-                      doc_type=cls.get_mapping_type_name())
+        return (Search(
+            using=using or cls.get_es(),
+            index=cls.get_index(),
+            doc_type=cls.get_mapping_type_name())
+            .extra(_source={'exclude': cls.hidden_fields}))
 
     @classmethod
     def get_index(cls):
@@ -352,7 +358,7 @@ class BaseIndexer(object):
         """
         def _locale_field_mapping(field, analyzer):
             return {
-                '%s_%s' % (field, analyzer): {
+                '%s_l10n_%s' % (field, analyzer): {
                     'type': 'string',
                     'analyzer': (('%s_analyzer' % analyzer)
                                  if analyzer in mkt.STEMMER_MAP else analyzer)
@@ -457,7 +463,7 @@ class BaseIndexer(object):
                     analyzer in mkt.SEARCH_ANALYZER_PLUGINS):
                 continue
 
-            extend_with_me['%s_%s' % (field, analyzer)] = list(
+            extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
                 set(string for locale, string
                     in obj.translations[getattr(obj, db_field)]
                     if locale.lower() in languages))

@@ -52,7 +52,7 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['description'], [unicode(self.obj.description)])
         eq_(doc['description_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.description)}])
-        eq_(doc['description_english'], [unicode(self.obj.description)])
+        eq_(doc['description_l10n_english'], [unicode(self.obj.description)])
         eq_(doc['default_locale'], self.obj.default_locale)
         eq_(doc['icon_hash'], self.obj.icon_hash)
         eq_(doc['icon_type'], self.obj.icon_type)
@@ -68,7 +68,7 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['title'], [unicode(self.obj.title)])
         eq_(doc['title_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.title)}])
-        eq_(doc['title_english'], [unicode(self.obj.title)])
+        eq_(doc['title_l10n_english'], [unicode(self.obj.title)])
         eq_(doc['device'], self.obj.devices)
         eq_(doc['region_exclusions'], self.obj.region_exclusions)
 
@@ -85,8 +85,8 @@ class TestWebsiteIndexer(TestCase):
         eq_(sorted(doc['title_translations']),
             [{'lang': 'en-US', 'string': title['en-US']},
              {'lang': 'fr', 'string': title['fr']}])
-        eq_(doc['title_english'], [title['en-US']])
-        eq_(doc['title_french'], [title['fr']])
+        eq_(doc['title_l10n_english'], [title['en-US']])
+        eq_(doc['title_l10n_french'], [title['fr']])
 
     def test_installs_to_popularity(self):
         self.obj = website_factory()
