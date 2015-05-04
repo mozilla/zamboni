@@ -84,7 +84,7 @@ App
                 "64": "/tmp/uploads/addon_icons/0/24-64.png?modified=1362762723",
                 "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723"
             },
-            "id": "24",
+            "id": 24,
             "is_disabled": false,
             "is_packaged": false,
             "last_updated": "2013-09-17T13:19:16",
@@ -278,7 +278,7 @@ App
     :type regions.adolescent: boolean
     :param regions.mcc: represents the region's ITU `mobile
         country code`_.
-    :type regions.mcc: string|null
+    :type regions.mcc: int|null
     :param regions.name: The region name.
     :type regions.name: string
     :param regions.slug: The region slug.
