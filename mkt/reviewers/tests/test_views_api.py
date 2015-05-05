@@ -26,6 +26,7 @@ from mkt.site.tests import ESTestCase
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
+from mkt.websites.utils import website_factory
 
 
 class TestReviewing(RestOAuth):
@@ -299,6 +300,44 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         res = self.client.get(self.url, {'dev': 'android', 'device': 'mobile'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
+
+
+class TestWebsiteReviewerActions(RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestWebsiteReviewerActions, self).setUp()
+        self.website = website_factory(
+            title='something',
+            categories=json.dumps(['books', 'sports']))
+        self.user = UserProfile.objects.get(pk=2519)
+        self.grant_permission(self.user, 'Websites:Review')
+
+    def postit(self, view):
+        url = reverse('website-' + view, kwargs={'pk': self.website.pk})
+        return self.client.post(url)
+
+    def test_anon(self):
+        r = self.anon.post(
+            reverse('website-approve', kwargs={'pk': self.website.pk}))
+        eq_(r.status_code, 403)
+
+    def test_no_perms(self):
+        self.remove_permission(self.user, 'Websites:Review')
+        res = self.postit('approve')
+        eq_(res.status_code, 403)
+
+    def test_approve(self):
+        self.website.status = mkt.STATUS_PENDING
+        res = self.postit('approve')
+        eq_(res.status_code, 200)
+        eq_(self.website.reload().status, mkt.STATUS_PUBLIC)
+
+    def test_reject(self):
+        self.website.status = mkt.STATUS_PENDING
+        res = self.postit('reject')
+        eq_(res.status_code, 200)
+        eq_(self.website.reload().status, mkt.STATUS_REJECTED)
 
 
 class TestApproveRegion(RestOAuth):

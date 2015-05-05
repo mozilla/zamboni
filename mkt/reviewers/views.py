@@ -79,6 +79,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
 from mkt.webapps.signals import version_changed
+from mkt.websites.models import Website
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
@@ -1122,6 +1123,27 @@ class AppRereview(_AppAction, DestroyAPIView):
 
 class AppReviewerComment(_AppAction, CreateAPIView):
     verb = "comment"
+
+
+class _WebsiteAction(object):
+    permission_classes = [GroupPermission('Websites', 'Review')]
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    model = Website
+
+
+class WebsiteApprove(_WebsiteAction, CreateAPIView):
+    def post(self, request, pk, *a, **kw):
+        website = self.get_object()
+        website.update(status=mkt.STATUS_PUBLIC)
+        return Response()
+
+
+class WebsiteReject(_WebsiteAction, CreateAPIView):
+    def post(self, request, pk, *a, **kw):
+        website = self.get_object()
+        website.update(status=mkt.STATUS_REJECTED)
+        return Response()
 
 
 class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
