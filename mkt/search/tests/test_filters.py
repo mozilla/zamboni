@@ -52,14 +52,14 @@ class TestQueryFilter(FilterTestsBase):
             in should)
         ok_({'prefix': {'name': {'boost': 1.5, 'value': 'search terms'}}}
             in should)
-        ok_({'match': {'name_english': {'query': 'search terms',
-                                        'boost': 2.5}}}
+        ok_({'match': {'name_l10n_english': {'query': 'search terms',
+                                             'boost': 2.5}}}
             in should)
-        ok_({'match': {'description_english': {'query': 'search terms',
-                                               'boost': 0.6,
-                                               'analyzer': 'english_analyzer',
-                                               'type': 'phrase'}}}
-            in should)
+        ok_({'match': {'description_l10n_english':
+            {'query': 'search terms',
+             'boost': 0.6,
+             'analyzer': 'english_analyzer',
+             'type': 'phrase'}}} in should)
 
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'term'})
@@ -81,13 +81,13 @@ class TestQueryFilter(FilterTestsBase):
         with self.activate(locale='pl'):
             qs = self._filter(data={'q': u'próba'})
             should = (qs['query']['function_score']['query']['bool']['should'])
-            ok_({'match': {'name_polish': {'query': u'pr\xf3ba',
-                                           'boost': 2.5}}}
+            ok_({'match': {'name_l10n_polish': {'query': u'pr\xf3ba',
+                                                'boost': 2.5}}}
                 in should)
-            ok_({'match': {'description_polish': {'query': u'pr\xf3ba',
-                                                  'boost': 0.6,
-                                                  'analyzer': 'polish',
-                                                  'type': 'phrase'}}}
+            ok_({'match': {'description_l10n_polish': {'query': u'pr\xf3ba',
+                                                       'boost': 0.6,
+                                                       'analyzer': 'polish',
+                                                       'type': 'phrase'}}}
                 in should)
 
 
@@ -387,5 +387,5 @@ class TestCombinedFilter(FilterTestsBase):
         query = qs['query']['filtered']['query']
         ok_({'field_value_factor': {'field': 'boost'}}
             in query['function_score']['functions'])
-        ok_({'match': {'name_english': {'boost': 2.5, 'query': u'test'}}}
+        ok_({'match': {'name_l10n_english': {'boost': 2.5, 'query': u'test'}}}
             in query['function_score']['query']['bool']['should'])

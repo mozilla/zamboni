@@ -20,6 +20,25 @@ log = commonware.log.getLogger('z.addons')
 
 
 class WebappIndexer(BaseIndexer):
+    """Fields we don't need to expose in the results, only used for filtering
+    or sorting."""
+    hidden_fields = (
+        '*.raw',
+        '*_sort',
+        'popularity_*',
+        'trending_*',
+        'boost',
+        'owners',
+        'features',
+        # 'name' and 'description', as well as the locale variants, are only
+        # used for filtering. The fields that are used by the API are
+        # 'name_translations' and 'description_translations'.
+        'name',
+        'description',
+        'name_l10n_*',
+        'description_l10n_*',
+    )
+
     """
     Bunch of ES stuff for Webapp include mappings, indexing, search.
     """
@@ -30,9 +49,10 @@ class WebappIndexer(BaseIndexer):
 
         We override this to use our patched version which adds statsd timing.
         """
-        return Search(using=using or cls.get_es(),
-                      index=cls.get_index(),
-                      doc_type=cls.get_mapping_type_name())
+        return (Search(
+            using=using or cls.get_es(), index=cls.get_index(),
+            doc_type=cls.get_mapping_type_name())
+            .extra(_source={'exclude': cls.hidden_fields}))
 
     @classmethod
     def get_mapping_type_name(cls):

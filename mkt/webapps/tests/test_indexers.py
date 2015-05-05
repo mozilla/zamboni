@@ -250,6 +250,31 @@ class TestWebappIndexer(TestCase):
         eq_(doc['trending_7'], 50.0)
 
 
+class TestExcludedFields(ESTestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        super(TestExcludedFields, self).setUp()
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp.trending.create(region=2, value=50.0)
+        self.webapp.popularity.create(region=2, value=142.0)
+        self.reindex(Webapp)
+
+    def test_excluded_fields(self):
+        ok_(WebappIndexer.hidden_fields)
+
+        data = WebappIndexer.search().execute().hits
+        eq_(len(data), 1)
+        obj = data[0]
+        ok_('trending_2' not in obj)
+        ok_('popularity_2' not in obj)
+        ok_('name_translations' in obj)
+        ok_('name' not in obj)
+        ok_('name_l10n_english' not in obj)
+        ok_('name_sort' not in obj)
+        ok_('name.raw' not in obj)
+
+
 class TestAppFilter(ESTestCase):
 
     def setUp(self):

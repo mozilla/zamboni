@@ -7,6 +7,20 @@ from mkt.translations.models import attach_trans_dict
 class WebsiteIndexer(BaseIndexer):
     translated_fields = ('description', 'short_title', 'title', 'url')
     fields_with_language_analyzers = ('description', 'title')
+    hidden_fields = (
+        '*.raw',
+        '*_sort',
+        'popularity_*',
+        'trending_*',
+        'boost',
+        # 'title' and 'description', as well as the locale variants, are only
+        # used for filtering. The fields that are used by the API are
+        # 'title_translations' and 'description_translations'.
+        'title',
+        'description',
+        'title_l10n_',
+        'description_l10n_',
+    )
 
     @classmethod
     def get_mapping_type_name(cls):

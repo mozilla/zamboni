@@ -455,13 +455,13 @@ def app_search(request):
             results.append(app)
         else:
             # This is a result from elasticsearch which returns `Result`
-            # objects and name as a list, one for each locale.
-            for name in app.name:
+            # objects and "name_translations" as a list, one for each locale.
+            for trans in app.name_translations:
                 results.append({
                     'id': app.id,
                     'url': reverse('lookup.app_summary', args=[app.id]),
                     'app_slug': app.get('app_slug'),
-                    'name': name,
+                    'name': trans['string'],
                 })
     return {'results': results}
 
