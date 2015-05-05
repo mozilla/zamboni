@@ -3,8 +3,7 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
-from django.core.exceptions import (
-    ImproperlyConfigured, MultipleObjectsReturned, ObjectDoesNotExist)
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 
 import bleach
@@ -15,8 +14,7 @@ from lib.crypto import generate_key
 # Because client is used in the classes, renaming here for clarity.
 from lib.pay_server import client as pay_client
 from mkt.constants.payments import ACCESS_PURCHASE
-from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
-                                    PROVIDER_REFERENCE)
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
@@ -361,92 +359,9 @@ class Reference(Provider):
         return self.client.sellers(account.account_id).put(data)
 
 
-class Boku(Provider):
-    """
-    Specific Boku implementation details.
-    """
-    client = pay_client.api.boku
-    forms = {
-        'account': forms_payments.BokuAccountForm,
-    }
-    full = _('Boku')
-    name = 'boku'
-    provider = PROVIDER_BOKU
-    templates = {
-        'add': os.path.join(root, 'add_payment_account_boku.html'),
-        'edit': os.path.join(root, 'edit_payment_account_boku.html'),
-    }
-    signup_url = settings.BOKU_SIGNUP_URL
-
-    def account_create(self, user, form_data):
-        user_seller = self.setup_seller(user)
-        form_data.update({'seller': user_seller.resource_uri})
-        name = form_data.pop('account_name')
-        res = self.client.seller.post(data=form_data)
-        return self.setup_account(account_id=res['id'],
-                                  agreed_tos=True,
-                                  name=name,
-                                  solitude_seller=user_seller,
-                                  user=user,
-                                  uri=res['resource_uri'])
-
-    @account_check
-    def account_retrieve(self, account):
-        return {}
-
-    @account_check
-    def terms_retrieve(self, account):
-        return {'accepted': True}
-
-    @account_check
-    def terms_update(self, account):
-        account.update(agreed_tos=True)
-        return {'accepted': True}
-
-    @account_check
-    def product_create(self, account, app):
-        """
-        Check solitude to see if there is a generic product existing in for for
-        this app. If not create it.
-
-        Then check solitude to see if there any Boku products connected to that
-        generic product. If not create it.
-
-        If there is one patch it to point to this seller.
-        """
-        generic_product = self.get_or_create_generic_product(app)
-
-        try:
-            boku_product = self.client.product.get_object_or_404(
-                seller_product=generic_product['resource_pk'])
-
-        except ObjectDoesNotExist:
-            log.info('boku.product does not exist in solitude, creating: {0}'
-                     .format(generic_product))
-
-            boku_product = self.client.product.post(data={
-                'seller_boku': account.uri,
-                'seller_product': generic_product['resource_uri']})
-            return boku_product['resource_uri']
-
-        except MultipleObjectsReturned:
-            log.error('multiple boku.products exist in solitude: {0}'
-                      .format(generic_product))
-            raise
-
-        api = self.client.by_url(boku_product['resource_uri'])
-        boku_product = api.patch(data={
-            'seller_boku': account.uri,
-            'seller_product': generic_product['resource_uri']})
-        return boku_product['resource_uri']
-
-    def get_portal_url(self, app_slug=None):
-        return settings.BOKU_PORTAL
-
-
 ALL_PROVIDERS = {}
 ALL_PROVIDERS_BY_ID = {}
-for p in (Bango, Reference, Boku):
+for p in (Bango, Reference):
     ALL_PROVIDERS[p.name] = p
     ALL_PROVIDERS_BY_ID[p.provider] = p
 
