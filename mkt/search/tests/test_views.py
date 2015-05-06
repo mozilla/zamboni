@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -241,50 +240,48 @@ class TestSearchView(RestOAuth, ESTestCase):
 
         with patch('mkt.api.middleware.RestSharedSecretMiddleware'
                    '.process_request', fakeauth):
-            with self.settings(SITE_URL=''):
-                self.create()
+            self.create()
             res = self.anon.get(self.url, data={'cat': self.category})
             obj = res.json['objects'][0]
             assert 'user' in obj
 
     def test_dehydrate(self):
-        with self.settings(SITE_URL='http://hy.fr'):
-            self.create()
-            res = self.anon.get(self.url, data={'cat': self.category})
-            eq_(res.status_code, 200)
-            obj = res.json['objects'][0]
-            content_ratings = obj['content_ratings']
-            eq_(obj['absolute_url'],
-                absolutify(self.webapp.get_absolute_url()))
-            eq_(obj['app_type'], self.webapp.app_type)
-            eq_(obj['categories'], [self.category])
-            eq_(content_ratings['body'], 'generic')
-            eq_(content_ratings['rating'], None)
-            eq_(content_ratings['descriptors'], [])
-            eq_(content_ratings['interactives'], [])
-            eq_(obj['current_version'], u'1.0')
-            eq_(obj['description'],
-                {'en-US': self.webapp.description.localized_string})
-            eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
-            ok_(obj['icons']['128'].endswith('?modified=fakehash'))
-            eq_(obj['id'], long(self.webapp.id))
-            eq_(obj['is_offline'], False)
-            eq_(obj['manifest_url'], self.webapp.get_manifest_url())
-            eq_(obj['package_path'], None)
-            eq_(obj['payment_account'], None)
-            self.assertApiUrlEqual(obj['privacy_policy'],
-                                   '/apps/app/337141/privacy/')
-            eq_(obj['public_stats'], self.webapp.public_stats)
-            eq_(obj['ratings'], {'average': 0.0, 'count': 0})
-            self.assertApiUrlEqual(obj['resource_uri'],
-                                   '/apps/app/337141/')
-            eq_(obj['slug'], self.webapp.app_slug)
-            self.assertSetEqual(obj['supported_locales'],
-                                ['en-US', 'es', 'pt-BR'])
-            eq_(obj['tags'], [])
-            ok_('1.0' in obj['versions'])
-            self.assertApiUrlEqual(obj['versions']['1.0'],
-                                   '/apps/versions/1268829/')
+        self.create()
+        res = self.anon.get(self.url, data={'cat': self.category})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        content_ratings = obj['content_ratings']
+        eq_(obj['absolute_url'],
+            absolutify(self.webapp.get_absolute_url()))
+        eq_(obj['app_type'], self.webapp.app_type)
+        eq_(obj['categories'], [self.category])
+        eq_(content_ratings['body'], 'generic')
+        eq_(content_ratings['rating'], None)
+        eq_(content_ratings['descriptors'], [])
+        eq_(content_ratings['interactives'], [])
+        eq_(obj['current_version'], u'1.0')
+        eq_(obj['description'],
+            {'en-US': self.webapp.description.localized_string})
+        eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+        ok_(obj['icons']['128'].endswith('?modified=fakehash'))
+        eq_(obj['id'], long(self.webapp.id))
+        eq_(obj['is_offline'], False)
+        eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+        eq_(obj['package_path'], None)
+        eq_(obj['payment_account'], None)
+        self.assertApiUrlEqual(obj['privacy_policy'],
+                               '/apps/app/337141/privacy/')
+        eq_(obj['public_stats'], self.webapp.public_stats)
+        eq_(obj['ratings'], {'average': 0.0, 'count': 0})
+        self.assertApiUrlEqual(obj['resource_uri'],
+                               '/apps/app/337141/')
+        eq_(obj['slug'], self.webapp.app_slug)
+        self.assertSetEqual(obj['supported_locales'],
+                            ['en-US', 'es', 'pt-BR'])
+        eq_(obj['tags'], [])
+        ok_('1.0' in obj['versions'])
+        self.assertApiUrlEqual(obj['versions']['1.0'],
+                               '/apps/versions/1268829/')
 
         # These only exists if requested by a reviewer.
         ok_('latest_version' not in obj)
@@ -637,7 +634,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['is_packaged'], False)
         eq_(obj['package_path'], None)
 
-    @override_settings(SITE_URL='http://hy.fr')
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
         f = self.webapp.current_version.all_files[0]
@@ -943,7 +939,6 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 404)
 
 
-@patch.object(settings, 'SITE_URL', 'http://testserver')
 class TestSuggestionsView(ESTestCase):
     fixtures = fixture('webapp_337141')
 
@@ -1003,7 +998,6 @@ class TestSuggestionsView(ESTestCase):
             eq_(json.loads(res.content)[1], [])
 
 
-@patch.object(settings, 'SITE_URL', 'http://testserver')
 class TestNonPublicSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -1073,7 +1067,6 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 0)
 
 
-@patch.object(settings, 'SITE_URL', 'http://testserver')
 class TestNoRegionSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 

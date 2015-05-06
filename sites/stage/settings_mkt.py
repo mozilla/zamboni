@@ -85,7 +85,7 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # secrets used for them
     API_PASSWORD = getattr(private_mkt, 'API_PASSWORD', FAKEAUTH_TOKEN)
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ha', 'ln', 'sw', 'tl')
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ln', 'sw', 'tl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -145,8 +145,6 @@ PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
 
-BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'  # noqa
-
 FXA_AUTH_DOMAIN = 'api.accounts.firefox.com'
 FXA_OAUTH_URL = 'https://oauth.accounts.firefox.com'
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
@@ -156,7 +154,7 @@ FXA_SECRETS = {
 }
 
 DEFAULT_PAYMENT_PROVIDER = 'bango'
-PAYMENT_PROVIDERS = ['bango', 'boku']
+PAYMENT_PROVIDERS = ['bango']
 
 RECOMMENDATIONS_API_URL = 'https://recommend.allizom.org'
 RECOMMENDATIONS_ENABLED = True

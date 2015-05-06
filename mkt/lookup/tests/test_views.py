@@ -18,8 +18,9 @@ import mkt
 import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
-from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
-                                    PROVIDER_BOKU, SOLITUDE_REFUND_STATUSES)
+from mkt.constants.payments import (
+    FAILED, PENDING, PROVIDER_BANGO, PROVIDER_REFERENCE,
+    SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
@@ -62,20 +63,13 @@ class SummaryTest(TestCase):
 
         app.save()
 
-    def verify_bango_boku_portals(self, app, response):
+    def verify_bango_portal(self, app, response):
         bango = pq(response.content)('[data-provider-name=bango]')
         heading = pq('dt', bango).text()
         assert 'Bango' in heading, heading
         assert unicode(app.name) in heading, heading
         eq_(pq('dd a', bango).attr('href'),
             get_provider(name='bango').get_portal_url(app.app_slug))
-
-        boku = pq(response.content)('[data-provider-name=boku]')
-        heading = pq('dt', boku).text()
-        assert 'Boku' in heading, heading
-        assert unicode(app.name) in heading, heading
-        eq_(pq('dd a', boku).attr('href'),
-            get_provider(name='boku').get_portal_url(app.app_slug))
 
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
@@ -140,13 +134,13 @@ class TestAcctSummary(SummaryTest):
         res = self.summary()
         eq_(res.context['account'].pk, self.user.pk)
 
-    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'boku'])
+    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'reference'])
     def test_multiple_payment_accounts(self):
         app = self.steamcube
-        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_BOKU],
+        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_REFERENCE],
                                   app=app)
         res = self.summary()
-        self.verify_bango_boku_portals(app, res)
+        self.verify_bango_portal(app, res)
 
     def test_app_counts(self):
         self.buy_stuff(mkt.CONTRIB_PURCHASE)
@@ -896,11 +890,11 @@ class TestAppSummary(AppSummaryTest):
         self.app.reload()
         eq_(self.app.priority_review, True)
 
-    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'boku'])
+    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'reference'])
     def test_multiple_payment_accounts(self):
-        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_BOKU])
+        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_REFERENCE])
         res = self.summary()
-        self.verify_bango_boku_portals(self.app, res)
+        self.verify_bango_portal(self.app, res)
 
 
 class TestAppSummaryPurchases(AppSummaryTest):

@@ -7,10 +7,12 @@ from django.test.client import RequestFactory
 from nose.tools import eq_
 
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.base import STATUS_PENDING
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
+from mkt.users.models import UserProfile
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
 from mkt.websites.views import WebsiteView
@@ -166,3 +168,44 @@ class TestWebsiteView(TestCase):
         response = self._test_get()
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 2)
+
+
+class TestReviewerSearch(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.website = website_factory(**{
+            'title': 'something',
+            'categories': json.dumps(['books', 'sports']),
+            'status': STATUS_PENDING,
+        })
+        self.url = reverse('api-v2:reviewers-website-search-api')
+        self.user = UserProfile.objects.get(pk=2519)
+        self.grant_permission(self.user, 'Apps:Review')
+        super(TestReviewerSearch, self).setUp()
+        self.refresh('website')
+
+    def tearDown(self):
+        Website.get_indexer().unindexer(_all=True)
+        super(TestReviewerSearch, self).tearDown()
+
+    def test_access(self):
+        eq_(self.anon.get(self.url).status_code, 403)
+        self.remove_permission(self.user, 'Apps:Review')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'get')
+
+    def test_status_filtering(self):
+        res = self.client.get(self.url, data={'status': 'public'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+        res = self.client.get(self.url, data={'status': 'pending'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)

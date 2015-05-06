@@ -1,4 +1,6 @@
-[{"type": "hosted", "status": "public"},
+[{"type": "hosted", "status": "public", "homepage": "http://example.com",
+  "support_url": "http://support.mozilla.org/", "is_offline": true,
+  "uses_flash": true},
  {"type": "hosted", "status": "pending"},
  {"type": "hosted", "status": "waiting"},
  {"type": "hosted", "status": "rejected"},

@@ -486,10 +486,11 @@ ALLOW_SELF_REVIEWS = True
 
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
-    'af', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'ee', 'el', 'en-US', 'es',
-    'eu', 'ff', 'fr', 'fy', 'ga-IE', 'hr', 'hu', 'ig', 'it', 'ja', 'ko', 'mk',
-    'nb-NO', 'nl', 'pa', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr',
-    'sr-Latn', 'sv-SE', 'ta', 'tr', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu',
+    'af', 'bg', 'bn-BD', 'bn-IN', 'ca', 'cs', 'cy', 'da', 'de', 'dsb', 'ee',
+    'el', 'en-US', 'es', 'eu', 'ff', 'fr', 'fy', 'ga-IE', 'ha', 'hr', 'hsb',
+    'hu', 'id', 'ig', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pa', 'pl',
+    'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'sv-SE', 'ta', 'tr',
+    'uk', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu',
 )
 
 
@@ -546,15 +547,6 @@ BANGO_FAKE_REFUNDS = False
 
 # Basket subscription url for newsletter signups
 BASKET_URL = 'https://basket.mozilla.com'
-
-# URL to Boku signup flow, this will change per server.
-# See https://mana.mozilla.org/wiki/display/MARKET/Boku for more.
-#
-# This a good test one that developers can use.
-BOKU_SIGNUP_URL = ('https://merchants.boku.com/signup/signup_business?'
-                   'params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy'
-                   '5JYGMWnUYDvxyEk8lxalYW56b6hrqfw%3D')
-BOKU_PORTAL = 'https://merchants.boku.com/merchant_product_statistics'
 
 # Domain to allow cross-frame requests from for privacy policy and TOS.
 BROWSERID_DOMAIN = 'login.persona.org'

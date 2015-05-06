@@ -72,11 +72,11 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if analyzer:
             should.append(
-                query.Match(**{'name_%s' % analyzer: {'query': q,
-                                                      'boost': 2.5}}))
+                query.Match(**{'name_l10n_%s' % analyzer: {'query': q,
+                                                           'boost': 2.5}}))
             should.append(
-                query.Match(**{'title_%s' % analyzer: {'query': q,
-                                                       'boost': 2.5}}))
+                query.Match(**{'title_l10n_%s' % analyzer: {'query': q,
+                                                            'boost': 2.5}}))
 
         # Add searches on the description field.
         should.append(
@@ -84,7 +84,7 @@ class SearchQueryFilter(BaseFilterBackend):
                                      'type': 'phrase'}))
 
         if analyzer:
-            desc_field = 'description_%s' % analyzer
+            desc_field = 'description_l10n_%s' % analyzer
             desc_analyzer = ('%s_analyzer' % analyzer
                              if analyzer in mkt.STEMMER_MAP else analyzer)
             should.append(
@@ -178,6 +178,14 @@ class ReviewerSearchFormFilter(SearchFormFilter):
                     Bool(must=[~F('term', tags='tarako')]))
 
         return queryset
+
+
+class WebsiteSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['keywords', 'category', 'device']
+
+
+class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['keywords', 'category', 'device', 'status', 'is_disabled']
 
 
 class PublicAppsFilter(BaseFilterBackend):
