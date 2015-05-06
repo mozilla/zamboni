@@ -315,9 +315,6 @@ class TestPrices(RestOAuth):
         self.list_url = reverse('price-list')
         self.get_url = reverse('price-detail', kwargs={'pk': self.price.pk})
 
-        # If regions change, this will blow up.
-        assert regions.BRA.default_currency == 'BRL'
-
     def get_currencies(self, data):
         return [p['currency'] for p in data['prices']]
 
