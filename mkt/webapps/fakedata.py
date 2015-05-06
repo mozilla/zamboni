@@ -90,15 +90,20 @@ def generate_previews(app, n=1):
         resize_preview(f.name, p)
 
 
-def generate_localized_names(name, n):
-    prefixes = [('fr', u'fran\xe7ais'),
-                ('es', u'espa\xf1ol'),
-                ('ru', u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439'),
-                ('ja', u'\u65e5\u672c\u8a9e'),
-                ('pt', u'portugu\xeas')]
-    names = dict((lang, u'%s %s' % (prefix, name))
-                 for lang, prefix in prefixes[:n])
-    names['en-us'] = unicode(name)
+lang_prefixes = {
+    'fr': u'fran\xe7ais',
+    'es-ES': u'espa\xf1ol',
+    'ru': u'\u0420\u0443\u0441\u0441\u043a\u0438\u0439',
+    'ja': u'\u65e5\u672c\u8a9e',
+    'pt-BR': u'portugu\xeas',
+    'rtl': u'(RTL)',
+    'en-US': u''
+}
+
+
+def generate_localized_names(name, langs):
+    names = dict((lang, u'%s %s' % (name, lang_prefixes[lang]))
+                 for lang in langs)
     return names
 
 
@@ -115,14 +120,15 @@ def generate_ratings(app, num):
 
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
-                        rated=True, uses_flash=False, **spec):
+                        rated=True, uses_flash=False, default_locale='en-US',
+                        **spec):
     generated_url = 'http://%s.testmanifest.com/fake-data/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
                     file_kw={'status': status, 'uses_flash': uses_flash},
-                    rated=rated, manifest_url=spec.get('manifest_url',
-                                                       generated_url))
+                    default_locale=default_locale, rated=rated,
+                    manifest_url=spec.get('manifest_url', generated_url))
     if device_types:
         for dt in device_types:
             a.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
@@ -159,8 +165,8 @@ def generate_hosted_manifest(app):
         version=app._latest_version, manifest=json.dumps(data))
 
 
-def generate_app_package(app, out, apptype, permissions, version='1.0',
-                         num_locales=2):
+def generate_app_package(app, out, apptype, permissions, locale_names,
+                         default_locale='en-US', version='1.0'):
     manifest = {
         'version': version.version,
         'name': unicode(app.name),
@@ -181,10 +187,10 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
             'name': name,
             'description': 'This packaged app has been automatically generated'
         }) for lang, name in generate_localized_names(
-            app.name, num_locales).items()),
+            app.name, locale_names).items()),
         'permissions': dict(((k, {"description": k})
                              for k in permissions)),
-        'default_locale': 'en',
+        'default_locale': default_locale,
         'orientation': 'landscape',
         'type': 'web' if apptype == 'packaged' else apptype,
         'fullscreen': 'true'
@@ -212,7 +218,8 @@ def generate_app_package(app, out, apptype, permissions, version='1.0',
 
 def generate_packaged_app(name, apptype, categories, developer_name,
                           privacy_policy=None, device_types=(),
-                          permissions=(), versions=None, num_locales=2,
+                          permissions=(), versions=None,
+                          default_locale='en-US', locale_names=('en-US', 'es-ES'),
                           package_file=None, status=4, uses_flash=False, **kw):
     if versions is None:
         versions = [status]
@@ -242,7 +249,8 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     with open(fp, 'w') as out:
         generate_app_package(app, out, apptype, permissions=permissions,
                              version=app.latest_version,
-                             num_locales=num_locales)
+                             default_locale=default_locale,
+                             locale_names=locale_names)
         for i, f_status in enumerate(versions[1:], 1):
             st = STATUS_CHOICES_API_LOOKUP[f_status]
             rtime = (now + datetime.timedelta(i)) if st >= 4 else None
@@ -250,8 +258,8 @@ def generate_packaged_app(name, apptype, categories, developer_name,
                                 reviewed=rtime, created=rtime,
                                 file_kw={'status': st},
                                 _developer_name=developer_name)
-            generate_app_package(app, out, apptype, permissions, v,
-                                 num_locales=num_locales)
+            generate_app_package(app, out, apptype, permissions,
+                                 locale_names=locale_names, version=v)
         app.update_version()
     return app
 
@@ -338,20 +346,25 @@ def generate_apps_from_specs(specs, specdir, repeats=1):
 
 
 def generate_app_from_spec(name, categories, type, status, num_previews=1,
-                           num_ratings=1, num_locales=0, preview_files=(),
+                           num_ratings=1, locale_names=('en-US', 'es-ES'),
+                           preview_files=(),
                            developer_name='Fake App Developer',
                            developer_email='fakedeveloper@example.com',
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
-                           rereview=False, uses_flash=False, **spec):
+                           default_locale='en-US', rereview=False,
+                           uses_flash=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
+    names = generate_localized_names(name, locale_names)
     if type == 'hosted':
-        app = generate_hosted_app(name, categories, developer_name,
-                                  status=status, **spec)
+        import pdb; pdb.set_trace()
+        app = generate_hosted_app(
+            names[default_locale], categories, developer_name, status=status,
+            default_locale=default_locale, **spec)
     else:
         app = generate_packaged_app(
-            name, type, categories, developer_name,
-            status=status, **spec)
+            names[default_locale], type, categories, developer_name,
+            default_locale=default_locale, status=status, **spec)
     generate_icon(app)
     if not preview_files:
         generate_previews(app, num_previews)
@@ -363,7 +376,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                        position=i)
         resize_preview(f, p)
     generate_ratings(app, num_ratings)
-    app.name = generate_localized_names(app.name, num_locales)
+    app.name = names
     if not description:
         description = GENERIC_DESCRIPTION
     app.description = description
@@ -371,6 +384,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.support_email = developer_email
     premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
+    app.default_locale = default_locale
     if premium_type != mkt.ADDON_FREE and status != mkt.STATUS_NULL:
         acct = get_or_create_payment_account(developer_email, developer_name)
         product_uri = Reference().product_create(acct, app)
