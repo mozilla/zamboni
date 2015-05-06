@@ -1,4 +1,5 @@
 import json
+import operator
 
 from django.conf import settings
 from django.http import Http404
@@ -142,7 +143,7 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     paginate_by = len(REGIONS_DICT)
 
     def get_queryset(self, *args, **kwargs):
-        return REGIONS_DICT.values()
+        return sorted(REGIONS_DICT.values(), key=operator.attrgetter('name'))
 
     def get_object(self, *args, **kwargs):
         region = parse_region(self.kwargs['pk'])
@@ -154,9 +155,10 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
 
 class CarrierViewSet(RegionViewSet):
     serializer_class = CarrierSerializer
+    paginate_by = len(CARRIERS)
 
     def get_queryset(self, *args, **kwargs):
-        return CARRIERS
+        return sorted(CARRIERS, key=operator.attrgetter('name'))
 
     def get_object(self, *args, **kwargs):
         return CARRIER_MAP.get(self.kwargs['pk'], None)

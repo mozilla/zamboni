@@ -112,6 +112,20 @@ class TestRegion(RestOAuth):
             eq_(row['id'], region.id)
         eq_(len(data['objects']), len(mkt.regions.REGIONS_DICT))
         eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
+        eq_(data['objects'][0]['name'], 'Argentina')
+
+    def test_list_translation(self):
+        res = self.anon.get(urlparams(reverse('regions-list'), lang='fr'))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        for row in data['objects']:
+            region = mkt.regions.REGIONS_DICT.get(row['slug'])
+            eq_(row['name'], region.name)
+            eq_(row['slug'], region.slug)
+            eq_(row['id'], region.id)
+        eq_(len(data['objects']), len(mkt.regions.REGIONS_DICT))
+        eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
+        eq_(data['objects'][0]['name'], 'Afrique du Sud')
 
     def test_detail(self):
         res = self.get_region('br')
