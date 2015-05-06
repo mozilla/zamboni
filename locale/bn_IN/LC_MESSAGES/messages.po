@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:18-0700\n"
+"POT-Creation-Date: 2015-05-06 08:29-0700\n"
 "PO-Revision-Date: 2014-11-23 19:53+0000\n"
 "Last-Translator: Ayan <ayay700@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -26,15 +26,15 @@ msgstr "এই ক্ষেত্রের দৈর্ঘ্য অন্তত
 msgid "The language code {lang_code} is invalid."
 msgstr "ভাষা কোড {lang_code} অবৈধ।"
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "অজানা"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
 msgid "Yes"
 msgstr "হ্যাঁ"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:201 mkt/submit/forms.py:330
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:330
 msgid "No"
 msgstr "না"
 
@@ -143,7 +143,7 @@ msgstr "অ্যান্টার্কটিকা"
 msgid "Antigua and Barbuda"
 msgstr "অ্যান্টিগুয়া ও বার্বুডা"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
 msgid "Argentina"
 msgstr "আর্জেন্টিনা"
 
@@ -175,7 +175,7 @@ msgstr "বাহামাস"
 msgid "Bahrain"
 msgstr "বাহরিন"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
 msgid "Bangladesh"
 msgstr "বাংলাদেশ"
 
@@ -219,7 +219,7 @@ msgstr "বোনের, সেন্ট ইউস্টাশিয়াস �
 msgid "Bosnia and Herzegovina"
 msgstr "বসনিয়া এবং হেরযেগভিনা"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
 msgstr "বোতসোয়ানা"
 
@@ -227,7 +227,7 @@ msgstr "বোতসোয়ানা"
 msgid "Bouvet Island"
 msgstr "বউভেট আইল্যান্ড"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
 msgstr "ব্রাজিল"
 
@@ -255,7 +255,7 @@ msgstr "বুরুন্ডি"
 msgid "Cambodia"
 msgstr "কম্বোডিয়া"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
 msgid "Cameroon"
 msgstr "ক্যামেরুন"
 
@@ -271,7 +271,7 @@ msgstr "ক্যাপ ভেরডে"
 msgid "Cayman Islands"
 msgstr "কেম্যান আইল্যান্ড"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
 msgstr "মধ্য আফ্রিকান রিপাব্লিক"
 
@@ -279,11 +279,11 @@ msgstr "মধ্য আফ্রিকান রিপাব্লিক"
 msgid "Chad"
 msgstr "চাড"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
 msgstr "চিলি"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
 msgid "China"
 msgstr "চীন"
 
@@ -295,7 +295,7 @@ msgstr "ক্রিসমাস আইল্যান্ড"
 msgid "Cocos (Keeling) Islands"
 msgstr "ককস (কীলিং) আইল্যান্ড"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
 msgid "Colombia"
 msgstr "কলোম্বিয়া"
 
@@ -315,11 +315,11 @@ msgstr "কঙ্গো, গণতান্ত্রিক প্রজাতন
 msgid "Cook Islands"
 msgstr "কুক আইল্যান্ড"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
 msgid "Costa Rica"
 msgstr "কোস্টারিকা"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
 msgstr "আইভরি কোস্ট"
 
@@ -339,7 +339,7 @@ msgstr "কুরাকাও"
 msgid "Cyprus"
 msgstr "সাইপ্রাস"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
 msgid "Czech Republic"
 msgstr "চেক রিপাব্লিক"
 
@@ -359,15 +359,15 @@ msgstr "ডোমিনিকা"
 msgid "Dominican Republic"
 msgstr "ডোমিনিকান প্রজাতন্ত্র"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
 msgstr "ইকুয়াডর"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
 msgstr "ইজিপ্ট"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
 msgstr "এল স্যালভাডোর"
 
@@ -403,7 +403,7 @@ msgstr "ফিজি"
 msgid "Finland"
 msgstr "ফিনল্যান্ড"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
 msgid "France"
 msgstr "ফ্রান্স"
 
@@ -431,7 +431,7 @@ msgstr "গাম্বিয়া"
 msgid "Georgia"
 msgstr "জর্জিয়া"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:81
 msgid "Germany"
 msgstr "জার্মানি"
 
@@ -443,7 +443,7 @@ msgstr "ঘানা"
 msgid "Gibraltar"
 msgstr "জিব্রালটার"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "গ্রীস"
 
@@ -463,7 +463,7 @@ msgstr "গুয়াডেলোপ"
 msgid "Guam"
 msgstr "গাম্বিয়া"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "গুয়াটেমালা"
 
@@ -475,7 +475,7 @@ msgstr "গেঁজি"
 msgid "Guinea"
 msgstr "গিনি"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
 msgid "Guinea-Bissau"
 msgstr "গিনি-বিসাউ"
 
@@ -503,7 +503,7 @@ msgstr "হন্ডুরাস"
 msgid "Hong Kong"
 msgstr "হং কং"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "হাঙ্গেরি"
 
@@ -511,7 +511,7 @@ msgstr "হাঙ্গেরি"
 msgid "Iceland"
 msgstr "আইসল্যান্ড"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "ভারত"
 
@@ -539,7 +539,7 @@ msgstr "আইল অব ম্যান"
 msgid "Israel"
 msgstr "ইজরায়েল"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "ইতালি"
 
@@ -547,7 +547,7 @@ msgstr "ইতালি"
 msgid "Jamaica"
 msgstr "জ্যামাইকা"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "জাপান"
 
@@ -555,7 +555,7 @@ msgstr "জাপান"
 msgid "Jersey"
 msgstr "জার্সি"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "জর্দান"
 
@@ -563,7 +563,7 @@ msgstr "জর্দান"
 msgid "Kazakhstan"
 msgstr "কাজাখাস্তান"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
 msgid "Kenya"
 msgstr "কেনিয়া"
 
@@ -619,7 +619,7 @@ msgstr "লিবিয় আরব জামাহিরিয়া"
 msgid "Liechtenstei"
 msgstr "লিশটেনস্টাইন"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
 msgid "Lithuania"
 msgstr "লিথুয়ানিয়া"
 
@@ -635,7 +635,7 @@ msgstr "ম্যাকাও"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "ম্যাসেডোনিয়া, সাবেক যুগোস্লাভ রিপাবলিক"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
 msgid "Madagascar"
 msgstr "মাদাগাস্কার"
 
@@ -651,7 +651,7 @@ msgstr "মালেশিয়া"
 msgid "Maldives"
 msgstr "মালদ্বীপ"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
 msgstr "মালি"
 
@@ -671,7 +671,7 @@ msgstr "মার্টিনিক"
 msgid "Mauritania"
 msgstr "মৌরিতানিয়া"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
 msgid "Mauritius"
 msgstr "মরিশাস"
 
@@ -679,7 +679,7 @@ msgstr "মরিশাস"
 msgid "Mayotte"
 msgstr "মায়োত্তে"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
 msgid "Mexico"
 msgstr "মেক্সিকো"
 
@@ -699,7 +699,7 @@ msgstr "মোনাকো"
 msgid "Mongolia"
 msgstr "মঙ্গোলিয়া"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
 msgid "Montenegro"
 msgstr "মন্টেনেগ্রো"
 
@@ -715,7 +715,7 @@ msgstr "মরক্কো"
 msgid "Mozambique"
 msgstr "মোজাম্বিক"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
 msgid "Myanmar"
 msgstr "মায়ানমার"
 
@@ -743,11 +743,11 @@ msgstr "নিউ ক্যালেডোনিয়া"
 msgid "New Zealand"
 msgstr "নিউজিল্যান্ড"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
 msgid "Nicaragua"
 msgstr "নিকারাগুয়া"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
 msgid "Niger"
 msgstr "নাইজার"
 
@@ -787,7 +787,7 @@ msgstr "পালাউ"
 msgid "Palestinian Territory, Occupied"
 msgstr "অধিকৃত ফিলিস্তিনি অঞ্চল"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
 msgid "Panama"
 msgstr "পানামা"
 
@@ -799,11 +799,11 @@ msgstr "পাপুয়া নিউ গিনি"
 msgid "Paraguay"
 msgstr "প্যারাগুয়ে"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
 msgstr "পেরু"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
 msgstr "ফিলিপাইন"
 
@@ -811,7 +811,7 @@ msgstr "ফিলিপাইন"
 msgid "Pitcairn"
 msgstr "পিটকেয়ার্ন"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
 msgstr "পোল্যান্ড"
 
@@ -891,7 +891,7 @@ msgstr "সৌদি আরব"
 msgid "Senega"
 msgstr "সেনেগা"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
 msgid "Serbia"
 msgstr "সার্বিয়া"
 
@@ -931,7 +931,7 @@ msgstr "সলোমন দ্বীপপুঞ্জ"
 msgid "Somalia"
 msgstr "সোমালিয়া"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
 msgstr "দক্ষিণ আফ্রিকা"
 
@@ -943,7 +943,7 @@ msgstr "দক্ষিণ জর্জিয়া ও দক্ষিণ স�
 msgid "South Sudan"
 msgstr "দক্ষিণ সুদান"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
 msgid "Spain"
 msgstr "স্পেন"
 
@@ -1015,7 +1015,7 @@ msgstr "টোঙ্গা"
 msgid "Trinidad and Tobago"
 msgstr "ত্রিনিদাদ এবং টোবাগো"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
 msgid "Tunisia"
 msgstr "তিউনিশিয়া"
 
@@ -1047,11 +1047,11 @@ msgstr "ইউক্রেন"
 msgid "United Arab Emirates"
 msgstr "সংযুক্ত আরব আমিরাত"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
 msgid "United Kingdom"
 msgstr "যুক্তরাজ্য"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
 msgid "United States"
 msgstr "মার্কিন যুক্তরাষ্ট্র"
 
@@ -1059,7 +1059,7 @@ msgstr "মার্কিন যুক্তরাষ্ট্র"
 msgid "United States Minor Outlying Islands"
 msgstr "মার্কিন যুক্তরাষ্ট্র ক্ষুদ্র ও পার্শ্ববর্তী দ্বীপপুঞ্জ"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
 msgid "Uruguay"
 msgstr "উরুগুয়ে"
 
@@ -1067,7 +1067,7 @@ msgstr "উরুগুয়ে"
 msgid "Uzbekistan"
 msgstr "উজবেকিস্তান"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
 msgid "Vanuatu"
 msgstr "ভানুয়াতু"
 
@@ -1337,7 +1337,7 @@ msgstr "নিষিদ্ধ"
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "ধাপে ধাপে বৃদ্ধি পেয়েছে"
 
@@ -1845,7 +1845,7 @@ msgstr "ফেরত"
 msgid "Voluntary"
 msgstr "স্বেছাসেবা"
 
-#: mkt/constants/payments.py:63 mkt/constants/payments.py:121
+#: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
 msgstr "অমীমাংসিত"
 
@@ -1857,7 +1857,7 @@ msgstr "তৎক্ষণাৎ অনুমোদিত"
 msgid "Declined"
 msgstr "অস্বীকার"
 
-#: mkt/constants/payments.py:75 mkt/constants/payments.py:123
+#: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
 msgstr "ব্যর্থ"
 
@@ -1877,7 +1877,7 @@ msgstr "বিপরীতমুখীটি ব্যর্থ হয়েছ�
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "পেমেন্ট পাওয়া গেছিল, কিন্তু সম্পূর্ণ হয়নি এবং এর প্রক্রিয়াজাতকরণ অপেক্ষারত।"
 
-#: mkt/constants/payments.py:122
+#: mkt/constants/payments.py:120
 msgid "Completed"
 msgstr "সম্পূর্ণ"
 
@@ -1968,31 +1968,31 @@ msgstr "ইউরোপ"
 msgid "Pan European Game Information"
 msgstr "প্যান ইউরোপিয়ান গেম তথ্য"
 
-#: mkt/constants/regions.py:63
+#: mkt/constants/regions.py:61
 msgid "Rest of World"
 msgstr "বাকি পৃথিবী"
 
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
 msgstr ""
 
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:110
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:111
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:115
 msgid "Taiwan"
 msgstr ""
 
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:116
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:119
 msgid "Venezuela"
 msgstr "ভেনেজুয়েলা"
 
@@ -2212,7 +2212,7 @@ msgstr "টেক্সট"
 msgid "You must agree to the Privacy Policy."
 msgstr "আপনাকে অতি অবশ্যই গোপনীয়তা নীতিকে স্বীকার করে নিতে হবে।"
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "দেশ"
 
@@ -2286,178 +2286,170 @@ msgstr "এই IARC সার্টিফিকেটটি ইতিমধ্�
 msgid "Invalid submission ID or security code."
 msgstr "অবৈধ জমাকরণ আইডি বা সিকিউরিটি কোড।"
 
-#: mkt/developers/forms_payments.py:59
+#: mkt/developers/forms_payments.py:57
 msgid "App Price"
 msgstr "অ্যাপের মূল্য"
 
-#: mkt/developers/forms_payments.py:112
+#: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
 msgstr "বিনামূল্য (ইন-অ্যাপ পেমেন্টসের সাথে)"
 
-#: mkt/developers/forms_payments.py:124
+#: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
 msgstr "প্রোমোশনাল প্রাইসিং"
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr "শুধুমাত্র ক্যারিয়ার বিলিং সাপোর্ট করে"
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr "শুধুমাত্র ক্রেডিট-কার্ড বিলিং সাপোর্ট করে"
 
-#: mkt/developers/forms_payments.py:144
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr "সমস্ত বিলিং পদ্ধতি সাপোর্ট করে"
 
-#: mkt/developers/forms_payments.py:216
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "যদি অ্যাপ মূল্যহীন হয়, ইন-অ্যাপ পেমেন্টস অতি অবশ্যই সক্রিয় থাকবে"
 
-#: mkt/developers/forms_payments.py:223
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "বৈধ নির্বাচন নয়"
 
-#: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:301
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
 msgstr "এটি একটি প্রদত্ত আপগ্রেড"
 
-#: mkt/developers/forms_payments.py:329
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "আপগ্রেড করা নয়"
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr "ব্যাঙ্ক অ্যাকাউন্ট হোল্ডারের নাম"
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "কোম্পানির নাম"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "ভেন্ডরের নাম"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "আর্থিক ইমেল"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "প্রশাসনিক ইমেইল"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "সাপোর্ট ইমেইল"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "ঠিকানা"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "ঠিকানা 2"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "শহর/পৌরসভা"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "রাজ্য/প্রদেশ/অঞ্চল"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "জিপ/পোস্টাল কোড"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "ফোন"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "আমি প্রদান করা পছন্দ করব"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "VAT নাম্বার"
 
-#: mkt/developers/forms_payments.py:408
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "ব্যাঙ্ক অ্যাকাউন্ট নাম্বার"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "SWIFT কোড"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "ব্যাঙ্কের নাম"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "ব্যাংক ঠিকানা"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "ব্যাংক ঠিকানা 2"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "ব্যাংক শহর/পৌরসভা"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
 msgstr "ব্যাংক রাজ্য/প্রদেশ/অঞ্চল"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "ব্যাংক জিপ/পোস্টাল কোড"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "ব্যাংকের দেশ"
 
-#: mkt/developers/forms_payments.py:428 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "অ্যাকাউন্ট নাম"
 
-#: mkt/developers/forms_payments.py:457
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "পেমেন্ট অ্যাকাউন্ট"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
 msgstr "আপনি একটি অ্যাপ থেকে একটি পেমেন্ট অ্যাকাউন্ট মুছে ফেলতে পারবেন না।"
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
 msgstr "আপনার পেমেন্ট অ্যাকাউন্ট পরিবর্তন করার অনুমতি নেই।"
 
-#: mkt/developers/forms_payments.py:621 mkt/developers/forms_payments.py:637
+#: mkt/developers/forms_payments.py:619
 msgid "Account name"
 msgstr "অ্যাকাউন্টের নাম"
 
-#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
 msgid "Name"
 msgstr "নাম"
 
-#: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:621 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "ইমেইল"
 
-#: mkt/developers/forms_payments.py:640
-msgid "Service ID"
-msgstr "সার্ভিস আইডি"
-
-#: mkt/developers/forms_payments.py:647
-msgid "Service ID is not valid"
-msgstr "সার্ভিস আইডি বৈধ নয়"
-
-#: mkt/developers/forms_payments.py:661
+#: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
 msgstr "ওই অ্যাপের জন্য কোনো পেমেন্ট অ্যাকাউন্ট সেট করা হয়নি"
 
@@ -2482,13 +2474,9 @@ msgstr "রিভিউ"
 msgid "Version {0}"
 msgstr "সংস্করণ {0}"
 
-#: mkt/developers/providers.py:286
+#: mkt/developers/providers.py:284
 msgid "Reference Implementation"
 msgstr "রেফারেন্সের বাস্তবায়ন"
-
-#: mkt/developers/providers.py:372
-msgid "Boku"
-msgstr "বকু"
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -3035,8 +3023,7 @@ msgstr "পরিবর্তন সংরক্ষণ করুন"
 
 #: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:4 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
 msgstr "বন্ধ"
@@ -3072,8 +3059,8 @@ msgstr "অবস্থা এবং সংস্করণসমূহ"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:174 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "অবস্থা"
 
@@ -4446,54 +4433,19 @@ msgstr "রেজিস্টার করা কোম্পানির না
 msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr "Marketplace -এ অ্যাকাউন্ট নাম (not sent to Bango)."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "পেমেন্ট অ্যাকাউন্ট রেজিস্টার করুন"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "আবেদন প্রসেস করা হচ্ছে..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "অনুগ্রহ করে অপেক্ষা করুন যখন আমরা পেমেন্ট সার্ভারের সাথে যোগাযোগ করছি।"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
-msgid "Add Boku Account"
-msgstr "বকু অ্যাকাউন্ট যোগ করুন"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
-msgid ""
-"To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
-"documentation and access to the Boku site on the Mozilla Developer Network."
-msgstr ""
-"একটি Boku পেমেন্ট অ্যাকাউন্ট যোগ করবার জন্য আপনাকে অতি অবশ্যই নতুন Mozilla-এর নির্দিষ্ট অ্যাকাউন্টে সাইন আপ করতে হবে Boku-র ওয়েবসাইটে। সাইন আপের পরে এটা Boku-র ২৪-৪৮ ঘন্টা নেবে অনুমোদন করতে। আপনি Mozilla "
-"ডেভেলপার নেটওয়ার্কে Boku-র সাইট পরিচালনা করার ডকুমেন্টেশন পেয়ে যাবেন।"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
-msgid "Go to Boku documentation on MDN"
-msgstr "Boku ডকুমেন্টেশনের যান MDN-এ"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
-msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr "আপনি কি Boku অ্যাকাউন্টে সাইন আপ করেছেন এবং আপনার অ্যাকাউন্ট অনুমোদিত আছে? অনুগ্রহ করে একটি অ্যাকাউন্ট এবং আপনার Boku আইডি নিচে তৈরি করুন।"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
-msgid "Create a name for this account."
-msgstr "এই অ্যাকাউন্টের জন্য একটি নাম তৈরি করুন।"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
-msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr "Boku ওয়েবসাইটে আলফা-নিউমেরিক আইডি তালিকাভুক্ত হয়েছে সার্ভিস মানের অধীনে। আরও জানুন <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku পেজে</a>।"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
-msgid "Close"
-msgstr "বন্ধ"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -4510,16 +4462,6 @@ msgstr "একটি নাম যা মার্কেটপ্লেসের
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "অ্যাকাউন্ট আপডেট করুন"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
-msgid "Modify Boku Account"
-msgstr "Boku অ্যাকাউন্ট সংশোধন করুন"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
-msgid "Currently editing a Boku account is not possible."
-msgstr "বর্তমানে Boku অ্যাকাউন্ট সম্পাদনা সম্ভব না।"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5829,19 +5771,19 @@ msgstr "Tarako ডিভাইসে এই অ্যাপ কাজ করে�
 msgid "Choose a canned response..."
 msgstr "Canned প্রতিক্রিয়া চয়ন করুন..."
 
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "সম্পাদকের মন্তব্য আছে তাতে"
 
-#: mkt/reviewers/forms.py:181
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "আরও তথ্য দেওয়ার জন্যে অনুরোধ করা হচ্ছে"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Tarako-এর জন্যে তৈরি"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "ডিভাইস"
 
@@ -6512,6 +6454,10 @@ msgstr "উন্নত অনুসন্ধান"
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
 msgstr "অনুসন্ধানগুলি পরিষ্কার করুন"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
+msgid "Close"
+msgstr "বন্ধ"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"

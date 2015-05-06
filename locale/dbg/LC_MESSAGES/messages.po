@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:18-0700\n"
+"POT-Creation-Date: 2015-05-06 08:29-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,21 +25,21 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Ŧħḗ ŀȧƞɠŭȧɠḗ ƈǿḓḗ {ŀȧƞɠ_ƈǿḓḗ} īş īƞṽȧŀīḓ."
 
 #: mkt/api/forms.py:110
-#: mkt/reviewers/forms.py:199
+#: mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 #: mkt/api/forms.py:111
-#: mkt/developers/forms_payments.py:56
-#: mkt/reviewers/forms.py:200
+#: mkt/developers/forms_payments.py:54
+#: mkt/reviewers/forms.py:208
 #: mkt/submit/forms.py:329
 msgid "Yes"
 msgstr "Ẏḗş"
 
 #: mkt/api/forms.py:112
-#: mkt/developers/forms_payments.py:56
+#: mkt/developers/forms_payments.py:54
 #: mkt/lookup/templates/lookup/user_summary.html:57
-#: mkt/reviewers/forms.py:201
+#: mkt/reviewers/forms.py:209
 #: mkt/submit/forms.py:330
 msgid "No"
 msgstr "Ƞǿ"
@@ -175,7 +175,7 @@ msgid "Antigua and Barbuda"
 msgstr "Ȧƞŧīɠŭȧ ȧƞḓ Ɓȧřƀŭḓȧ"
 
 #: mkt/constants/bango.py:29
-#: mkt/constants/regions.py:71
+#: mkt/constants/regions.py:69
 msgid "Argentina"
 msgstr "Ȧřɠḗƞŧīƞȧ"
 
@@ -208,7 +208,7 @@ msgid "Bahrain"
 msgstr "Ɓȧħřȧīƞ"
 
 #: mkt/constants/bango.py:37
-#: mkt/constants/regions.py:72
+#: mkt/constants/regions.py:70
 msgid "Bangladesh"
 msgstr "Ɓȧƞɠŀȧḓḗşħ"
 
@@ -253,7 +253,7 @@ msgid "Bosnia and Herzegovina"
 msgstr "Ɓǿşƞīȧ ȧƞḓ Ħḗřzḗɠǿṽīƞȧ"
 
 #: mkt/constants/bango.py:48
-#: mkt/constants/regions.py:74
+#: mkt/constants/regions.py:72
 msgid "Botswana"
 msgstr "Ɓǿŧşẇȧƞȧ"
 
@@ -263,7 +263,7 @@ msgstr "Ɓǿŭṽḗŧ Īşŀȧƞḓ"
 
 #: mkt/constants/bango.py:50
 #: mkt/constants/ratingsbodies.py:90
-#: mkt/constants/regions.py:73
+#: mkt/constants/regions.py:71
 msgid "Brazil"
 msgstr "Ɓřȧzīŀ"
 
@@ -292,7 +292,7 @@ msgid "Cambodia"
 msgstr "Ƈȧḿƀǿḓīȧ"
 
 #: mkt/constants/bango.py:57
-#: mkt/constants/regions.py:79
+#: mkt/constants/regions.py:77
 msgid "Cameroon"
 msgstr "Ƈȧḿḗřǿǿƞ"
 
@@ -309,7 +309,7 @@ msgid "Cayman Islands"
 msgstr "Ƈȧẏḿȧƞ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:61
-#: mkt/constants/regions.py:75
+#: mkt/constants/regions.py:73
 msgid "Central African Republic"
 msgstr "Ƈḗƞŧřȧŀ Ȧƒřīƈȧƞ Řḗƥŭƀŀīƈ"
 
@@ -318,12 +318,12 @@ msgid "Chad"
 msgstr "Ƈħȧḓ"
 
 #: mkt/constants/bango.py:63
-#: mkt/constants/regions.py:76
+#: mkt/constants/regions.py:74
 msgid "Chile"
 msgstr "Ƈħīŀḗ"
 
 #: mkt/constants/bango.py:64
-#: mkt/constants/regions.py:77
+#: mkt/constants/regions.py:75
 msgid "China"
 msgstr "Ƈħīƞȧ"
 
@@ -336,7 +336,7 @@ msgid "Cocos (Keeling) Islands"
 msgstr "Ƈǿƈǿş (Ķḗḗŀīƞɠ) Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:67
-#: mkt/constants/regions.py:80
+#: mkt/constants/regions.py:78
 msgid "Colombia"
 msgstr "Ƈǿŀǿḿƀīȧ"
 
@@ -357,12 +357,12 @@ msgid "Cook Islands"
 msgstr "Ƈǿǿķ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:72
-#: mkt/constants/regions.py:81
+#: mkt/constants/regions.py:79
 msgid "Costa Rica"
 msgstr "Ƈǿşŧȧ Řīƈȧ"
 
 #: mkt/constants/bango.py:73
-#: mkt/constants/regions.py:78
+#: mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
 msgstr "Ƈôŧḗ ḓ'Īṽǿīřḗ"
 
@@ -383,7 +383,7 @@ msgid "Cyprus"
 msgstr "Ƈẏƥřŭş"
 
 #: mkt/constants/bango.py:78
-#: mkt/constants/regions.py:82
+#: mkt/constants/regions.py:80
 msgid "Czech Republic"
 msgstr "Ƈzḗƈħ Řḗƥŭƀŀīƈ"
 
@@ -404,17 +404,17 @@ msgid "Dominican Republic"
 msgstr "Ḓǿḿīƞīƈȧƞ Řḗƥŭƀŀīƈ"
 
 #: mkt/constants/bango.py:83
-#: mkt/constants/regions.py:84
+#: mkt/constants/regions.py:82
 msgid "Ecuador"
 msgstr "Ḗƈŭȧḓǿř"
 
 #: mkt/constants/bango.py:84
-#: mkt/constants/regions.py:85
+#: mkt/constants/regions.py:83
 msgid "Egypt"
 msgstr "Ḗɠẏƥŧ"
 
 #: mkt/constants/bango.py:85
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:112
 msgid "El Salvador"
 msgstr "Ḗŀ Şȧŀṽȧḓǿř"
 
@@ -451,7 +451,7 @@ msgid "Finland"
 msgstr "Ƒīƞŀȧƞḓ"
 
 #: mkt/constants/bango.py:94
-#: mkt/constants/regions.py:87
+#: mkt/constants/regions.py:85
 msgid "France"
 msgstr "Ƒřȧƞƈḗ"
 
@@ -481,7 +481,7 @@ msgstr "Ɠḗǿřɠīȧ"
 
 #: mkt/constants/bango.py:101
 #: mkt/constants/ratingsbodies.py:197
-#: mkt/constants/regions.py:83
+#: mkt/constants/regions.py:81
 msgid "Germany"
 msgstr "Ɠḗřḿȧƞẏ"
 
@@ -494,7 +494,7 @@ msgid "Gibraltar"
 msgstr "Ɠīƀřȧŀŧȧř"
 
 #: mkt/constants/bango.py:104
-#: mkt/constants/regions.py:91
+#: mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "Ɠřḗḗƈḗ"
 
@@ -515,7 +515,7 @@ msgid "Guam"
 msgstr "Ɠŭȧḿ"
 
 #: mkt/constants/bango.py:109
-#: mkt/constants/regions.py:92
+#: mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "Ɠŭȧŧḗḿȧŀȧ"
 
@@ -528,7 +528,7 @@ msgid "Guinea"
 msgstr "Ɠŭīƞḗȧ"
 
 #: mkt/constants/bango.py:112
-#: mkt/constants/regions.py:90
+#: mkt/constants/regions.py:88
 msgid "Guinea-Bissau"
 msgstr "Ɠŭīƞḗȧ-Ɓīşşȧŭ"
 
@@ -557,7 +557,7 @@ msgid "Hong Kong"
 msgstr "Ħǿƞɠ Ķǿƞɠ"
 
 #: mkt/constants/bango.py:119
-#: mkt/constants/regions.py:93
+#: mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "Ħŭƞɠȧřẏ"
 
@@ -566,7 +566,7 @@ msgid "Iceland"
 msgstr "Īƈḗŀȧƞḓ"
 
 #: mkt/constants/bango.py:121
-#: mkt/constants/regions.py:94
+#: mkt/constants/regions.py:92
 msgid "India"
 msgstr "Īƞḓīȧ"
 
@@ -595,7 +595,7 @@ msgid "Israel"
 msgstr "Īşřȧḗŀ"
 
 #: mkt/constants/bango.py:128
-#: mkt/constants/regions.py:95
+#: mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "Īŧȧŀẏ"
 
@@ -604,7 +604,7 @@ msgid "Jamaica"
 msgstr "Ĵȧḿȧīƈȧ"
 
 #: mkt/constants/bango.py:130
-#: mkt/constants/regions.py:97
+#: mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "Ĵȧƥȧƞ"
 
@@ -613,7 +613,7 @@ msgid "Jersey"
 msgstr "Ĵḗřşḗẏ"
 
 #: mkt/constants/bango.py:132
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "Ĵǿřḓȧƞ"
 
@@ -622,7 +622,7 @@ msgid "Kazakhstan"
 msgstr "Ķȧzȧķħşŧȧƞ"
 
 #: mkt/constants/bango.py:134
-#: mkt/constants/regions.py:98
+#: mkt/constants/regions.py:96
 msgid "Kenya"
 msgstr "Ķḗƞẏȧ"
 
@@ -679,7 +679,7 @@ msgid "Liechtenstei"
 msgstr "Ŀīḗƈħŧḗƞşŧḗī"
 
 #: mkt/constants/bango.py:148
-#: mkt/constants/regions.py:99
+#: mkt/constants/regions.py:97
 msgid "Lithuania"
 msgstr "Ŀīŧħŭȧƞīȧ"
 
@@ -696,7 +696,7 @@ msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Ḿȧƈḗḓǿƞīȧ, Ƒǿřḿḗř Ẏŭɠǿşŀȧṽ Řḗƥ"
 
 #: mkt/constants/bango.py:152
-#: mkt/constants/regions.py:100
+#: mkt/constants/regions.py:98
 msgid "Madagascar"
 msgstr "Ḿȧḓȧɠȧşƈȧř"
 
@@ -713,7 +713,7 @@ msgid "Maldives"
 msgstr "Ḿȧŀḓīṽḗş"
 
 #: mkt/constants/bango.py:156
-#: mkt/constants/regions.py:102
+#: mkt/constants/regions.py:100
 msgid "Mali"
 msgstr "Ḿȧŀī"
 
@@ -734,7 +734,7 @@ msgid "Mauritania"
 msgstr "Ḿȧŭřīŧȧƞīȧ"
 
 #: mkt/constants/bango.py:161
-#: mkt/constants/regions.py:105
+#: mkt/constants/regions.py:103
 msgid "Mauritius"
 msgstr "Ḿȧŭřīŧīŭş"
 
@@ -743,7 +743,7 @@ msgid "Mayotte"
 msgstr "Ḿȧẏǿŧŧḗ"
 
 #: mkt/constants/bango.py:163
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:99
 msgid "Mexico"
 msgstr "Ḿḗẋīƈǿ"
 
@@ -764,7 +764,7 @@ msgid "Mongolia"
 msgstr "Ḿǿƞɠǿŀīȧ"
 
 #: mkt/constants/bango.py:168
-#: mkt/constants/regions.py:104
+#: mkt/constants/regions.py:102
 msgid "Montenegro"
 msgstr "Ḿǿƞŧḗƞḗɠřǿ"
 
@@ -781,7 +781,7 @@ msgid "Mozambique"
 msgstr "Ḿǿzȧḿƀīɋŭḗ"
 
 #: mkt/constants/bango.py:172
-#: mkt/constants/regions.py:103
+#: mkt/constants/regions.py:101
 msgid "Myanmar"
 msgstr "Ḿẏȧƞḿȧř"
 
@@ -810,12 +810,12 @@ msgid "New Zealand"
 msgstr "Ƞḗẇ Ẑḗȧŀȧƞḓ"
 
 #: mkt/constants/bango.py:179
-#: mkt/constants/regions.py:107
+#: mkt/constants/regions.py:105
 msgid "Nicaragua"
 msgstr "Ƞīƈȧřȧɠŭȧ"
 
 #: mkt/constants/bango.py:180
-#: mkt/constants/regions.py:106
+#: mkt/constants/regions.py:104
 msgid "Niger"
 msgstr "Ƞīɠḗř"
 
@@ -856,7 +856,7 @@ msgid "Palestinian Territory, Occupied"
 msgstr "Ƥȧŀḗşŧīƞīȧƞ Ŧḗřřīŧǿřẏ, Ǿƈƈŭƥīḗḓ"
 
 #: mkt/constants/bango.py:190
-#: mkt/constants/regions.py:108
+#: mkt/constants/regions.py:106
 msgid "Panama"
 msgstr "Ƥȧƞȧḿȧ"
 
@@ -869,12 +869,12 @@ msgid "Paraguay"
 msgstr "Ƥȧřȧɠŭȧẏ"
 
 #: mkt/constants/bango.py:193
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:107
 msgid "Peru"
 msgstr "Ƥḗřŭ"
 
 #: mkt/constants/bango.py:194
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:108
 msgid "Philippines"
 msgstr "Ƥħīŀīƥƥīƞḗş"
 
@@ -883,7 +883,7 @@ msgid "Pitcairn"
 msgstr "Ƥīŧƈȧīřƞ"
 
 #: mkt/constants/bango.py:196
-#: mkt/constants/regions.py:111
+#: mkt/constants/regions.py:109
 msgid "Poland"
 msgstr "Ƥǿŀȧƞḓ"
 
@@ -964,7 +964,7 @@ msgid "Senega"
 msgstr "Şḗƞḗɠȧ"
 
 #: mkt/constants/bango.py:216
-#: mkt/constants/regions.py:115
+#: mkt/constants/regions.py:113
 msgid "Serbia"
 msgstr "Şḗřƀīȧ"
 
@@ -1005,7 +1005,7 @@ msgid "Somalia"
 msgstr "Şǿḿȧŀīȧ"
 
 #: mkt/constants/bango.py:226
-#: mkt/constants/regions.py:123
+#: mkt/constants/regions.py:121
 msgid "South Africa"
 msgstr "Şǿŭŧħ Ȧƒřīƈȧ"
 
@@ -1018,7 +1018,7 @@ msgid "South Sudan"
 msgstr "Şǿŭŧħ Şŭḓȧƞ"
 
 #: mkt/constants/bango.py:229
-#: mkt/constants/regions.py:86
+#: mkt/constants/regions.py:84
 msgid "Spain"
 msgstr "Şƥȧīƞ"
 
@@ -1091,7 +1091,7 @@ msgid "Trinidad and Tobago"
 msgstr "Ŧřīƞīḓȧḓ ȧƞḓ Ŧǿƀȧɠǿ"
 
 #: mkt/constants/bango.py:247
-#: mkt/constants/regions.py:116
+#: mkt/constants/regions.py:114
 msgid "Tunisia"
 msgstr "Ŧŭƞīşīȧ"
 
@@ -1124,12 +1124,12 @@ msgid "United Arab Emirates"
 msgstr "Ŭƞīŧḗḓ Ȧřȧƀ Ḗḿīřȧŧḗş"
 
 #: mkt/constants/bango.py:255
-#: mkt/constants/regions.py:88
+#: mkt/constants/regions.py:86
 msgid "United Kingdom"
 msgstr "Ŭƞīŧḗḓ Ķīƞɠḓǿḿ"
 
 #: mkt/constants/bango.py:256
-#: mkt/constants/regions.py:120
+#: mkt/constants/regions.py:118
 msgid "United States"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş"
 
@@ -1138,7 +1138,7 @@ msgid "United States Minor Outlying Islands"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş Ḿīƞǿř Ǿŭŧŀẏīƞɠ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:258
-#: mkt/constants/regions.py:119
+#: mkt/constants/regions.py:117
 msgid "Uruguay"
 msgstr "Ŭřŭɠŭȧẏ"
 
@@ -1147,7 +1147,7 @@ msgid "Uzbekistan"
 msgstr "Ŭzƀḗķīşŧȧƞ"
 
 #: mkt/constants/bango.py:260
-#: mkt/constants/regions.py:122
+#: mkt/constants/regions.py:120
 msgid "Vanuatu"
 msgstr "Ṽȧƞŭȧŧŭ"
 
@@ -1443,7 +1443,7 @@ msgid "Reviewer comment"
 msgstr "Řḗṽīḗẇḗř ƈǿḿḿḗƞŧ"
 
 #: mkt/constants/comm.py:48
-#: mkt/reviewers/forms.py:185
+#: mkt/reviewers/forms.py:193
 #: mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
@@ -2052,7 +2052,7 @@ msgid "Voluntary"
 msgstr "Ṽǿŀŭƞŧȧřẏ"
 
 #: mkt/constants/payments.py:63
-#: mkt/constants/payments.py:121
+#: mkt/constants/payments.py:119
 msgid "Pending"
 msgstr "Ƥḗƞḓīƞɠ"
 
@@ -2065,7 +2065,7 @@ msgid "Declined"
 msgstr "Ḓḗƈŀīƞḗḓ"
 
 #: mkt/constants/payments.py:75
-#: mkt/constants/payments.py:123
+#: mkt/constants/payments.py:121
 msgid "Failed"
 msgstr "Ƒȧīŀḗḓ"
 
@@ -2086,7 +2086,7 @@ msgstr "Ŧħḗ řḗṽḗřşȧŀ ƒȧīŀḗḓ."
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "Ŧħḗ ƥȧẏḿḗƞŧ ẇȧş řḗƈḗīṽḗḓ, ƀŭŧ ƞǿŧ ƈǿḿƥŀḗŧḗḓ ȧƞḓ īş ȧẇȧīŧīƞɠ ƥřǿƈḗşşīƞɠ."
 
-#: mkt/constants/payments.py:122
+#: mkt/constants/payments.py:120
 msgid "Completed"
 msgstr "Ƈǿḿƥŀḗŧḗḓ"
 
@@ -2185,31 +2185,31 @@ msgstr "Ḗŭřǿƥḗ"
 msgid "Pan European Game Information"
 msgstr "Ƥȧƞ Ḗŭřǿƥḗȧƞ Ɠȧḿḗ Īƞƒǿřḿȧŧīǿƞ"
 
-#: mkt/constants/regions.py:63
+#: mkt/constants/regions.py:61
 msgid "Rest of World"
 msgstr "Řḗşŧ ǿƒ Ẇǿřŀḓ"
 
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
 msgstr "Ɠŭīƞḗȧ-Ƈǿƞȧķřẏ"
 
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:110
 msgid "Russia"
 msgstr "Řŭşşīȧ"
 
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:111
 msgid "Senegal"
 msgstr "Şḗƞḗɠȧŀ"
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:115
 msgid "Taiwan"
 msgstr "Ŧȧīẇȧƞ"
 
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:116
 msgid "Tanzania"
 msgstr "Ŧȧƞzȧƞīȧ"
 
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:119
 msgid "Venezuela"
 msgstr "Ṽḗƞḗzŭḗŀȧ"
 
@@ -2500,7 +2500,7 @@ msgid "You must agree to the Privacy Policy."
 msgstr "Ẏǿŭ ḿŭşŧ ȧɠřḗḗ ŧǿ ŧħḗ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ."
 
 #: mkt/developers/forms.py:1092
-#: mkt/developers/forms_payments.py:399
+#: mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Ƈǿŭƞŧřẏ"
@@ -2594,163 +2594,162 @@ msgstr ""
 msgid "Invalid submission ID or security code."
 msgstr "Īƞṽȧŀīḓ şŭƀḿīşşīǿƞ ĪḒ ǿř şḗƈŭřīŧẏ ƈǿḓḗ."
 
-#: mkt/developers/forms_payments.py:59
+#: mkt/developers/forms_payments.py:57
 msgid "App Price"
 msgstr "Ȧƥƥ Ƥřīƈḗ"
 
-#: mkt/developers/forms_payments.py:112
+#: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
 msgstr "Ƒřḗḗ (ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş)"
 
-#: mkt/developers/forms_payments.py:124
+#: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
 msgstr "Ƥřǿḿǿŧīǿƞȧŀ Ƥřīƈīƞɠ"
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr "Ǿƞŀẏ şŭƥƥǿřŧş ƈȧřřīḗř ƀīŀŀīƞɠ"
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr "Ǿƞŀẏ şŭƥƥǿřŧş ƈřḗḓīŧ-ƈȧřḓ ƀīŀŀīƞɠ"
 
-#: mkt/developers/forms_payments.py:144
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr "Şŭƥƥǿřŧş ȧŀŀ ƀīŀŀīƞɠ ḿḗŧħǿḓş"
 
-#: mkt/developers/forms_payments.py:216
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "Īƒ ȧƥƥ īş Ƒřḗḗ, īƞ-ȧƥƥ ƥȧẏḿḗƞŧş ḿŭşŧ ƀḗ ḗƞȧƀŀḗḓ"
 
-#: mkt/developers/forms_payments.py:223
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "Ƞǿŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ"
 
-#: mkt/developers/forms_payments.py:328
+#: mkt/developers/forms_payments.py:326
 #: mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
 msgstr "Ŧħīş īş ȧ ƥȧīḓ ŭƥɠřȧḓḗ ǿƒ"
 
-#: mkt/developers/forms_payments.py:329
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "Ƞǿŧ ȧƞ ŭƥɠřȧḓḗ"
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr "Ɓȧƞķ Ȧƈƈǿŭƞŧ Ħǿŀḓḗř Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "Ƈǿḿƥȧƞẏ Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "Ṽḗƞḓǿř Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "Ƒīƞȧƞƈīȧŀ Ḗḿȧīŀ"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "Ȧḓḿīƞīşŧřȧŧīṽḗ Ḗḿȧīŀ"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "Şŭƥƥǿřŧ Ḗḿȧīŀ"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "Ȧḓḓřḗşş"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "Ȧḓḓřḗşş 2"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "Ƈīŧẏ/Municipality"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "Şŧȧŧḗ/Province/Region"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "Ẑīƥ/Postal Ƈǿḓḗ"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "Ƥħǿƞḗ"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "Ī ƥřḗƒḗř ŧǿ ƀḗ ƥȧīḓ īƞ"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "ṼȦŦ Ƞŭḿƀḗř"
 
-#: mkt/developers/forms_payments.py:408
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "Ɓȧƞķ Ȧƈƈǿŭƞŧ Ƞŭḿƀḗř"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "ŞẆĪƑŦ ƈǿḓḗ"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "Ɓȧƞķ Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "Ɓȧƞķ Ȧḓḓřḗşş"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "Ɓȧƞķ Ȧḓḓřḗşş 2"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "Ɓȧƞķ Ƈīŧẏ/Municipality"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
 msgstr "Ɓȧƞķ Şŧȧŧḗ/Province/Region"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "Ɓȧƞķ Ẑīƥ/Postal Ƈǿḓḗ"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "Ɓȧƞķ Ƈǿŭƞŧřẏ"
 
-#: mkt/developers/forms_payments.py:428
+#: mkt/developers/forms_payments.py:426
 #: mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Ȧƈƈǿŭƞŧ Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:457
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "Ƥȧẏḿḗƞŧ Ȧƈƈǿŭƞŧ"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ řḗḿǿṽḗ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ȧƞ ȧƥƥ."
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
 msgstr "Ẏǿŭ ȧřḗ ƞǿŧ ƥḗřḿīŧŧḗḓ ŧǿ ƈħȧƞɠḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
-#: mkt/developers/forms_payments.py:621
-#: mkt/developers/forms_payments.py:637
+#: mkt/developers/forms_payments.py:619
 msgid "Account name"
 msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:622
+#: mkt/developers/forms_payments.py:620
 #: mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24
@@ -2760,7 +2759,7 @@ msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 msgid "Name"
 msgstr "Ƞȧḿḗ"
 
-#: mkt/developers/forms_payments.py:623
+#: mkt/developers/forms_payments.py:621
 #: mkt/developers/templates/developers/apps/edit/support.html:21
 #: mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127
@@ -2768,15 +2767,7 @@ msgstr "Ƞȧḿḗ"
 msgid "Email"
 msgstr "Ḗḿȧīŀ"
 
-#: mkt/developers/forms_payments.py:640
-msgid "Service ID"
-msgstr "Şḗřṽīƈḗ ĪḒ"
-
-#: mkt/developers/forms_payments.py:647
-msgid "Service ID is not valid"
-msgstr "Şḗřṽīƈḗ ĪḒ īş ƞǿŧ ṽȧŀīḓ"
-
-#: mkt/developers/forms_payments.py:661
+#: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
 msgstr "Ƞǿ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ ƒǿř ŧħȧŧ ȧƥƥ"
 
@@ -2805,13 +2796,9 @@ msgstr "Řḗṽīḗẇ"
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
-#: mkt/developers/providers.py:286
+#: mkt/developers/providers.py:284
 msgid "Reference Implementation"
 msgstr "Řḗƒḗřḗƞƈḗ Īḿƥŀḗḿḗƞŧȧŧīǿƞ"
-
-#: mkt/developers/providers.py:372
-msgid "Boku"
-msgstr "Ɓǿķŭ"
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -3524,10 +3511,8 @@ msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:4
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
 msgstr "ƈŀǿşḗ"
@@ -3580,7 +3565,8 @@ msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 #: mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152
-#: mkt/reviewers/forms.py:174
+#: mkt/reviewers/forms.py:182
+#: mkt/reviewers/forms.py:231
 #: mkt/reviewers/templates/reviewers/review.html:29
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
@@ -5383,73 +5369,23 @@ msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr "Ƞȧḿḗ ǿƒ ȧƈƈǿŭƞŧ ǿƞ ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ (ƞǿŧ şḗƞŧ ŧǿ Ɓȧƞɠǿ)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "Řḗɠīşŧḗř Ƥȧẏḿḗƞŧ Ȧƈƈǿŭƞŧ"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "Ƥřǿƈḗşşīƞɠ Řḗɋŭḗşŧ..."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "Ƥŀḗȧşḗ ẇȧīŧ ẇħīŀḗ ẇḗ ƈǿƞŧȧƈŧ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
-msgid "Add Boku Account"
-msgstr "Ȧḓḓ Ɓǿķŭ Ȧƈƈǿŭƞŧ"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
-msgid ""
-"To add a Boku payment account you must sign up for a new Mozilla specific "
-"account on Boku's website. After sign up it will take 24-48 hours for Boku "
-"to approve the account. You can find documentation and access to the Boku "
-"site on the Mozilla Developer Network."
-msgstr ""
-"Ŧǿ ȧḓḓ ȧ Ɓǿķŭ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẏǿŭ ḿŭşŧ şīɠƞ ŭƥ ƒǿř ȧ ƞḗẇ Ḿǿzīŀŀȧ şƥḗƈīƒīƈ "
-"ȧƈƈǿŭƞŧ ǿƞ Ɓǿķŭ'ş ẇḗƀşīŧḗ. Ȧƒŧḗř şīɠƞ ŭƥ īŧ ẇīŀŀ ŧȧķḗ 24-48 ħǿŭřş ƒǿř Ɓǿķŭ "
-"ŧǿ ȧƥƥřǿṽḗ ŧħḗ ȧƈƈǿŭƞŧ. Ẏǿŭ ƈȧƞ ƒīƞḓ ḓǿƈŭḿḗƞŧȧŧīǿƞ ȧƞḓ ȧƈƈḗşş ŧǿ ŧħḗ Ɓǿķŭ "
-"şīŧḗ ǿƞ ŧħḗ Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƞḗŧẇǿřķ."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
-msgid "Go to Boku documentation on MDN"
-msgstr "Ɠǿ ŧǿ Ɓǿķŭ ḓǿƈŭḿḗƞŧȧŧīǿƞ ǿƞ ḾḒȠ"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
-msgid ""
-"Have you signed up for a Boku account and had your account approved? Please "
-"create an account name and your Boku service id below."
-msgstr ""
-"Ħȧṽḗ ẏǿŭ şīɠƞḗḓ ŭƥ ƒǿř ȧ Ɓǿķŭ ȧƈƈǿŭƞŧ ȧƞḓ ħȧḓ ẏǿŭř ȧƈƈǿŭƞŧ ȧƥƥřǿṽḗḓ? Ƥŀḗȧşḗ "
-"ƈřḗȧŧḗ ȧƞ ȧƈƈǿŭƞŧ ƞȧḿḗ ȧƞḓ ẏǿŭř Ɓǿķŭ şḗřṽīƈḗ īḓ ƀḗŀǿẇ."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
-msgid "Create a name for this account."
-msgstr "Ƈřḗȧŧḗ ȧ ƞȧḿḗ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
-msgid ""
-"Alpha-numeric id listed under Service Name on Boku website. Learn more on "
-"the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
-"Ȧŀƥħȧ-ƞŭḿḗřīƈ īḓ ŀīşŧḗḓ ŭƞḓḗř Şḗřṽīƈḗ Ƞȧḿḗ ǿƞ Ɓǿķŭ ẇḗƀşīŧḗ. Ŀḗȧřƞ ḿǿřḗ ǿƞ "
-"ŧħḗ <a href=\"%(boku_docs_url)s\" target=\"_blank\">ḾḒȠ Ɓǿķŭ ƥȧɠḗ</a>."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55
-#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
-msgid "Close"
-msgstr "Ƈŀǿşḗ"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -5467,16 +5403,6 @@ msgstr "Ȧ ƞȧḿḗ ŧǿ řḗƒḗř ŧǿ ŧħḗ ȧƈƈǿŭƞŧ ǿƞ ŧħḗ
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "Ŭƥḓȧŧḗ Ȧƈƈǿŭƞŧ"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
-msgid "Modify Boku Account"
-msgstr "Ḿǿḓīƒẏ Ɓǿķŭ Ȧƈƈǿŭƞŧ"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
-msgid "Currently editing a Boku account is not possible."
-msgstr "Ƈŭřřḗƞŧŀẏ ḗḓīŧīƞɠ ȧ Ɓǿķŭ ȧƈƈǿŭƞŧ īş ƞǿŧ ƥǿşşīƀŀḗ."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -7065,19 +6991,19 @@ msgstr "Ŧħīş ȧƥƥ ẇǿřķş ǿƞ Ŧȧřȧķǿ ḓḗṽīƈḗş."
 msgid "Choose a canned response..."
 msgstr "Ƈħǿǿşḗ ȧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
 
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "Ħȧş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: mkt/reviewers/forms.py:181
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "Ḿǿřḗ Īƞƒǿ Řḗɋŭḗşŧḗḓ"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Ŧȧřȧķǿ-řḗȧḓẏ"
 
-#: mkt/reviewers/forms.py:193
+#: mkt/reviewers/forms.py:201
 #: mkt/reviewers/helpers.py:45
 #: mkt/search/forms.py:84
 msgid "Device"
@@ -7843,6 +7769,10 @@ msgstr "Ȧḓṽȧƞƈḗḓ Şḗȧřƈħ"
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
 msgstr "Ƈŀḗȧř Şḗȧřƈħ"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
+msgid "Close"
+msgstr "Ƈŀǿşḗ"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid ""

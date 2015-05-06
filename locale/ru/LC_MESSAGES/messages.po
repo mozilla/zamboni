@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:18-0700\n"
+"POT-Creation-Date: 2015-05-06 08:29-0700\n"
 "PO-Revision-Date: 2014-10-08 05:49+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -34,15 +34,15 @@ msgstr "Поле должно иметь длину не менее {num} сим
 msgid "The language code {lang_code} is invalid."
 msgstr "Неверный код подтверждения"
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
 msgid "Yes"
 msgstr "Да"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:201 mkt/submit/forms.py:330
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:330
 msgid "No"
 msgstr "Нет"
 
@@ -154,7 +154,7 @@ msgstr "Антарктика"
 msgid "Antigua and Barbuda"
 msgstr "Антигуа и Барбуда"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
 msgid "Argentina"
 msgstr "Аргентина"
 
@@ -186,7 +186,7 @@ msgstr "Багамские острова"
 msgid "Bahrain"
 msgstr "Бахрейн"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
 msgid "Bangladesh"
 msgstr "Бангладеш"
 
@@ -230,7 +230,7 @@ msgstr "Бонайре, Сен-Эстатиус и Саба"
 msgid "Bosnia and Herzegovina"
 msgstr "Босния и Герцеговина"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
 msgstr "Ботсвана"
 
@@ -238,7 +238,7 @@ msgstr "Ботсвана"
 msgid "Bouvet Island"
 msgstr "Остров Буве"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
 msgstr "Бразилия"
 
@@ -266,7 +266,7 @@ msgstr "Бурунди"
 msgid "Cambodia"
 msgstr "Камбоджа"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
 msgid "Cameroon"
 msgstr "Камерун"
 
@@ -282,7 +282,7 @@ msgstr "Кабо-Верде"
 msgid "Cayman Islands"
 msgstr "Каймановы острова"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
 msgstr "Центральноафриканская Республика"
 
@@ -290,11 +290,11 @@ msgstr "Центральноафриканская Республика"
 msgid "Chad"
 msgstr "Чад"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
 msgstr "Чили"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
 msgid "China"
 msgstr "Китай"
 
@@ -306,7 +306,7 @@ msgstr "Остров Рождества"
 msgid "Cocos (Keeling) Islands"
 msgstr "Кокосовые (Килинг) острова"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
 msgid "Colombia"
 msgstr "Колумбия"
 
@@ -326,11 +326,11 @@ msgstr "Конго, Демократическая Республика"
 msgid "Cook Islands"
 msgstr "Острова Кука"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
 msgid "Costa Rica"
 msgstr "Коста-Рика"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
 msgstr "Кот д ' Ивуар"
 
@@ -350,7 +350,7 @@ msgstr "Кюрасао"
 msgid "Cyprus"
 msgstr "Кипр"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
 msgid "Czech Republic"
 msgstr "Чехия"
 
@@ -370,15 +370,15 @@ msgstr "Доминика"
 msgid "Dominican Republic"
 msgstr "Доминиканская Республика"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
 msgstr "Эквадор"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
 msgstr "Египет"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
 msgstr "Сальвадор"
 
@@ -414,7 +414,7 @@ msgstr "Фиджи"
 msgid "Finland"
 msgstr "Финляндия"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
 msgid "France"
 msgstr "Франция"
 
@@ -442,7 +442,7 @@ msgstr "Гамбия"
 msgid "Georgia"
 msgstr "Грузия"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:81
 msgid "Germany"
 msgstr "Германия"
 
@@ -454,7 +454,7 @@ msgstr "Гана"
 msgid "Gibraltar"
 msgstr "Гибралтар"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "Греция"
 
@@ -474,7 +474,7 @@ msgstr "Гваделупа"
 msgid "Guam"
 msgstr "Гуам"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "Гватемала"
 
@@ -486,7 +486,7 @@ msgstr "Гернси"
 msgid "Guinea"
 msgstr "Гвинея"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
 msgid "Guinea-Bissau"
 msgstr "Гвинея-Бисау"
 
@@ -514,7 +514,7 @@ msgstr "Гондурас"
 msgid "Hong Kong"
 msgstr "Гонконг"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "Венгрия"
 
@@ -522,7 +522,7 @@ msgstr "Венгрия"
 msgid "Iceland"
 msgstr "Исландия"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "Индия"
 
@@ -550,7 +550,7 @@ msgstr "Остров Мэн"
 msgid "Israel"
 msgstr "Израиль"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "Италия"
 
@@ -558,7 +558,7 @@ msgstr "Италия"
 msgid "Jamaica"
 msgstr "Ямайка"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "Япония"
 
@@ -566,7 +566,7 @@ msgstr "Япония"
 msgid "Jersey"
 msgstr "Джерси"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "Иордания"
 
@@ -574,7 +574,7 @@ msgstr "Иордания"
 msgid "Kazakhstan"
 msgstr "Казахстан"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
 msgid "Kenya"
 msgstr "Кения"
 
@@ -630,7 +630,7 @@ msgstr "Ливия"
 msgid "Liechtenstei"
 msgstr "Лихтенштейн"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
 msgid "Lithuania"
 msgstr "Литва"
 
@@ -646,7 +646,7 @@ msgstr "Макао"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Македония"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
 msgid "Madagascar"
 msgstr "Мадагаскар"
 
@@ -662,7 +662,7 @@ msgstr "Малайзия"
 msgid "Maldives"
 msgstr "Мальдивские острова"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
 msgstr "Мали"
 
@@ -682,7 +682,7 @@ msgstr "Мартиника"
 msgid "Mauritania"
 msgstr "Мавритания"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
 msgid "Mauritius"
 msgstr "Маврикий"
 
@@ -690,7 +690,7 @@ msgstr "Маврикий"
 msgid "Mayotte"
 msgstr "Майотта"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
 msgid "Mexico"
 msgstr "Мексика"
 
@@ -710,7 +710,7 @@ msgstr "Монако"
 msgid "Mongolia"
 msgstr "Монголия"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
 msgid "Montenegro"
 msgstr "Черногория"
 
@@ -726,7 +726,7 @@ msgstr "Марокко"
 msgid "Mozambique"
 msgstr "Мозамбик"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
 msgid "Myanmar"
 msgstr "Мьянма"
 
@@ -754,11 +754,11 @@ msgstr "Новая Каледония"
 msgid "New Zealand"
 msgstr "Новая Зеландия"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
 msgid "Nicaragua"
 msgstr "Никарагуа"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
 msgid "Niger"
 msgstr "Нигер"
 
@@ -798,7 +798,7 @@ msgstr "Палау"
 msgid "Palestinian Territory, Occupied"
 msgstr "Палестинская территория"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
 msgid "Panama"
 msgstr "Панама"
 
@@ -810,11 +810,11 @@ msgstr "Папуа-Новая Гвинея"
 msgid "Paraguay"
 msgstr "Парагвай"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
 msgstr "Перу"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
 msgstr "Филиппины"
 
@@ -822,7 +822,7 @@ msgstr "Филиппины"
 msgid "Pitcairn"
 msgstr "Питкэрн"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
 msgstr "Польша"
 
@@ -902,7 +902,7 @@ msgstr "Саудовская Аравия"
 msgid "Senega"
 msgstr "Сенегал"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
 msgid "Serbia"
 msgstr "Сербия"
 
@@ -942,7 +942,7 @@ msgstr "Соломоновы острова"
 msgid "Somalia"
 msgstr "Сомали"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
 msgstr "Южная Африка"
 
@@ -954,7 +954,7 @@ msgstr "Южная Георгия и южные Сандвичевы остро�
 msgid "South Sudan"
 msgstr "Южный Судан"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
 msgid "Spain"
 msgstr "Испания"
 
@@ -1026,7 +1026,7 @@ msgstr "Тонга"
 msgid "Trinidad and Tobago"
 msgstr "Тринидад и Тобаго"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
 msgid "Tunisia"
 msgstr "Тунис"
 
@@ -1058,11 +1058,11 @@ msgstr "Украина"
 msgid "United Arab Emirates"
 msgstr "Объединенные Арабские Эмираты"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
 msgid "United Kingdom"
 msgstr "Великобритания"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
 msgid "United States"
 msgstr "Соединённые Штаты"
 
@@ -1070,7 +1070,7 @@ msgstr "Соединённые Штаты"
 msgid "United States Minor Outlying Islands"
 msgstr "Малые Удалённые Острова США"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
 msgid "Uruguay"
 msgstr "Уругвай"
 
@@ -1078,7 +1078,7 @@ msgstr "Уругвай"
 msgid "Uzbekistan"
 msgstr "Узбекистан"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
 msgid "Vanuatu"
 msgstr "Вануату"
 
@@ -1354,7 +1354,7 @@ msgstr "Забаненные пользователи"
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Отправлено наверх"
 
@@ -1877,7 +1877,7 @@ msgstr "Возмещение"
 msgid "Voluntary"
 msgstr "Добровольно"
 
-#: mkt/constants/payments.py:63 mkt/constants/payments.py:121
+#: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
 msgstr "В ожидании"
 
@@ -1889,7 +1889,7 @@ msgstr "Мгновенно одобрен"
 msgid "Declined"
 msgstr "Отклонен"
 
-#: mkt/constants/payments.py:75 mkt/constants/payments.py:123
+#: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
 msgstr "Не удалось"
 
@@ -1910,7 +1910,7 @@ msgstr "Отмена не прошла."
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "Платёж был принят, но не завершен и на данный момент находится в процессе ожидания"
 
-#: mkt/constants/payments.py:122
+#: mkt/constants/payments.py:120
 msgid "Completed"
 msgstr "Завершено"
 
@@ -2003,31 +2003,31 @@ msgstr "Европа"
 msgid "Pan European Game Information"
 msgstr ""
 
-#: mkt/constants/regions.py:63
+#: mkt/constants/regions.py:61
 msgid "Rest of World"
 msgstr "Остальной мир"
 
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
 msgstr ""
 
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:110
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:111
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:115
 msgid "Taiwan"
 msgstr ""
 
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:116
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:119
 msgid "Venezuela"
 msgstr "Венесуэла"
 
@@ -2253,7 +2253,7 @@ msgstr "Текст"
 msgid "You must agree to the Privacy Policy."
 msgstr "Вы должны принять Политику приватности."
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Страна"
 
@@ -2326,183 +2326,173 @@ msgstr ""
 msgid "Invalid submission ID or security code."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:59
+#: mkt/developers/forms_payments.py:57
 msgid "App Price"
 msgstr "Цена приложения"
 
-#: mkt/developers/forms_payments.py:112
+#: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
 msgstr "Бесплатные (с платежами в приложении)"
 
-#: mkt/developers/forms_payments.py:124
+#: mkt/developers/forms_payments.py:122
 #, fuzzy
 msgid "Promotional Pricing"
 msgstr "Шаг 2. Цена и доступность"
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:144
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:216
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:223
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "Недействительный выбор"
 
-#: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:301
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
 msgstr "Это платное обновление для"
 
-#: mkt/developers/forms_payments.py:329
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "Не обновление"
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "Имя компании"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "Имя вендора"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "Финансовый адрес эл. почты"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "Административный адрес эл. почты"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "Адрес эл. почты поддержки"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "Адрес"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "Адрес 2"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "Город"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "Область/Край/Регион"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "Почтовый индекс"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "Телефон"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "Я предпочитаю оплату в"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "Номер VAT"
 
-#: mkt/developers/forms_payments.py:408
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "Номер счёта банка"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "Код SWIFT"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "Имя банка"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "Адрес банка"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "Адрес банка 2"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "Город банка/Муниципалитет"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:420
 #, fuzzy
 msgid "Bank State/Province/Region"
 msgstr "Область/Край/Регион"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "Почтовый индекс банка"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "Страна банка"
 
-#: mkt/developers/forms_payments.py:428 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Имя счёта"
 
-#: mkt/developers/forms_payments.py:457
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "Счёт для платежа"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:530
 #, fuzzy
 msgid "You are not permitted to change payment accounts."
 msgstr "Сейчас у вас нет ни одного счёта для платежей."
 
-#: mkt/developers/forms_payments.py:621 mkt/developers/forms_payments.py:637
+#: mkt/developers/forms_payments.py:619
 msgid "Account name"
 msgstr "Имя счёта"
 
-#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
 msgid "Name"
 msgstr "Имя"
 
-#: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:621 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "Адрес эл. почты"
 
-#: mkt/developers/forms_payments.py:640
-#, fuzzy
-msgid "Service ID"
-msgstr "ID"
-
-#: mkt/developers/forms_payments.py:647
-#, fuzzy
-msgid "Service ID is not valid"
-msgstr "Введите корректный ID представления."
-
-#: mkt/developers/forms_payments.py:661
+#: mkt/developers/forms_payments.py:642
 #, fuzzy
 msgid "No payment account set up for that app"
 msgstr "Настроить счёт для платежей"
@@ -2528,13 +2518,9 @@ msgstr "Отзыв"
 msgid "Version {0}"
 msgstr "Версия {0}"
 
-#: mkt/developers/providers.py:286
+#: mkt/developers/providers.py:284
 msgid "Reference Implementation"
 msgstr "Референсная реализация"
-
-#: mkt/developers/providers.py:372
-msgid "Boku"
-msgstr ""
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -3088,8 +3074,7 @@ msgstr "Сохранить изменения"
 
 #: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:4 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
 msgstr "закрыть"
@@ -3126,8 +3111,8 @@ msgstr "Статус и версии"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:174 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Состояние"
 
@@ -4538,54 +4523,19 @@ msgstr ""
 msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "Регистрация счёта для платежей"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "Обработка запроса..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
-#, fuzzy
-msgid "Add Boku Account"
-msgstr "Добавить новый счёт для платежей"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
-msgid ""
-"To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
-"documentation and access to the Boku site on the Mozilla Developer Network."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
-msgid "Go to Boku documentation on MDN"
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
-msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
-#, fuzzy
-msgid "Create a name for this account."
-msgstr "Создать аккаунт"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
-msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
-msgid "Close"
-msgstr "Закрыть"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 #, fuzzy
@@ -4603,17 +4553,6 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "Обновить учётную запись"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
-#, fuzzy
-msgid "Modify Boku Account"
-msgstr "Изменить учётную запись Bango"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
-msgid "Currently editing a Boku account is not possible."
-msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 #, fuzzy
@@ -5965,22 +5904,22 @@ msgstr ""
 msgid "Choose a canned response..."
 msgstr "Выберите стандартный ответ..."
 
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:185
 #, fuzzy
 msgid "Has Editor Comment"
 msgstr "дополнение, проверяющий или комментарий"
 
-#: mkt/reviewers/forms.py:181
+#: mkt/reviewers/forms.py:189
 #, fuzzy
 msgid "More Info Requested"
 msgstr "Запрошено больше информации: {0}"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:197
 #, fuzzy
 msgid "Tarako-ready"
 msgstr "Готово для локализации"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Устройство"
 
@@ -6686,6 +6625,10 @@ msgstr "Продвинутый поиск"
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
 msgstr "Очистить поиск"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
+msgid "Close"
+msgstr "Закрыть"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"

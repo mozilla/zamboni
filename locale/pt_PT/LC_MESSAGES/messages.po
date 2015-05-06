@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:18-0700\n"
+"POT-Creation-Date: 2015-05-06 08:29-0700\n"
 "PO-Revision-Date: 2015-05-01 22:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -26,15 +26,15 @@ msgstr "O campo tem de ter um comprimento de pelo menos {num} carateres."
 msgid "The language code {lang_code} is invalid."
 msgstr "O código de linguagem {lang_code} é inválido."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
 msgid "Yes"
 msgstr "Sim"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:201 mkt/submit/forms.py:330
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:330
 msgid "No"
 msgstr "Não"
 
@@ -143,7 +143,7 @@ msgstr "Antártida"
 msgid "Antigua and Barbuda"
 msgstr "Antígua e Barbuda"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -175,7 +175,7 @@ msgstr "Bahamas"
 msgid "Bahrain"
 msgstr "Barém"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
 msgid "Bangladesh"
 msgstr "Bangladeche"
 
@@ -219,7 +219,7 @@ msgstr "Bonaire, Santo Eustáquio e Saba"
 msgid "Bosnia and Herzegovina"
 msgstr "Bósnia e Herzegovina"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
 msgstr "Botsuana"
 
@@ -227,7 +227,7 @@ msgstr "Botsuana"
 msgid "Bouvet Island"
 msgstr "Ilha Bouvet"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
 msgstr "Brasil"
 
@@ -255,7 +255,7 @@ msgstr "Burúndi"
 msgid "Cambodia"
 msgstr "República dos Camarões"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
 msgid "Cameroon"
 msgstr "República dos Camarões"
 
@@ -271,7 +271,7 @@ msgstr "Cabo Verde"
 msgid "Cayman Islands"
 msgstr "Ilhas Caimão"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
 msgstr "República Centro-Africana"
 
@@ -279,11 +279,11 @@ msgstr "República Centro-Africana"
 msgid "Chad"
 msgstr "Chade"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
 msgstr "Chile"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
 msgid "China"
 msgstr "China"
 
@@ -295,7 +295,7 @@ msgstr "Ilha do Natal"
 msgid "Cocos (Keeling) Islands"
 msgstr "Ilhas Cocos (Keeling)"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
 msgid "Colombia"
 msgstr "Colômbia"
 
@@ -315,11 +315,11 @@ msgstr "República Democrática do Congo"
 msgid "Cook Islands"
 msgstr "Ilhas Cook"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
 msgstr "Costa do Marfim"
 
@@ -339,7 +339,7 @@ msgstr "Curação"
 msgid "Cyprus"
 msgstr "Chipre"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
 msgid "Czech Republic"
 msgstr "República Checa"
 
@@ -359,15 +359,15 @@ msgstr "Domínica"
 msgid "Dominican Republic"
 msgstr "República Dominicana"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
 msgstr "Equador"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
 msgstr "Egito"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
 msgstr "El Salvador"
 
@@ -403,7 +403,7 @@ msgstr "Fiji"
 msgid "Finland"
 msgstr "Finlândia"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
 msgid "France"
 msgstr "França"
 
@@ -431,7 +431,7 @@ msgstr "Gâmbia"
 msgid "Georgia"
 msgstr "Geórgia"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:81
 msgid "Germany"
 msgstr "Alemanha"
 
@@ -443,7 +443,7 @@ msgstr "Gana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "Grécia"
 
@@ -463,7 +463,7 @@ msgstr "Guadalupe"
 msgid "Guam"
 msgstr "Guam"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "Guatemala"
 
@@ -475,7 +475,7 @@ msgstr "Guernsey"
 msgid "Guinea"
 msgstr "Guiné"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
 msgid "Guinea-Bissau"
 msgstr "Guiné-Bissau"
 
@@ -503,7 +503,7 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "Hungria"
 
@@ -511,7 +511,7 @@ msgstr "Hungria"
 msgid "Iceland"
 msgstr "Islândia"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "Índia"
 
@@ -539,7 +539,7 @@ msgstr "Ilha de Man"
 msgid "Israel"
 msgstr "Israel"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "Itália"
 
@@ -547,7 +547,7 @@ msgstr "Itália"
 msgid "Jamaica"
 msgstr "Jamaica"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "Japão"
 
@@ -555,7 +555,7 @@ msgstr "Japão"
 msgid "Jersey"
 msgstr "Jersey"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "Jordânia"
 
@@ -563,7 +563,7 @@ msgstr "Jordânia"
 msgid "Kazakhstan"
 msgstr "Cazaquistão"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
 msgid "Kenya"
 msgstr "Quénia"
 
@@ -619,7 +619,7 @@ msgstr "Líbia"
 msgid "Liechtenstei"
 msgstr "Liechtenstein"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
 msgid "Lithuania"
 msgstr "Lituânia"
 
@@ -635,7 +635,7 @@ msgstr "Macau"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Macedónia, Antiga República Jugoslava"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
 msgid "Madagascar"
 msgstr "Madagáscar"
 
@@ -651,7 +651,7 @@ msgstr "Malásia"
 msgid "Maldives"
 msgstr "Maldivas"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
 msgstr "Mali"
 
@@ -671,7 +671,7 @@ msgstr "Martinica"
 msgid "Mauritania"
 msgstr "Mauritânia"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
 msgid "Mauritius"
 msgstr "Maurício"
 
@@ -679,7 +679,7 @@ msgstr "Maurício"
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
 msgid "Mexico"
 msgstr "México"
 
@@ -699,7 +699,7 @@ msgstr "Mónaco"
 msgid "Mongolia"
 msgstr "Mongólia"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -715,7 +715,7 @@ msgstr "Marrocos"
 msgid "Mozambique"
 msgstr "Moçambique"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
 msgid "Myanmar"
 msgstr "Mianmar"
 
@@ -743,11 +743,11 @@ msgstr "Nova Caledónia"
 msgid "New Zealand"
 msgstr "Nova Zelândia"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
 msgid "Nicaragua"
 msgstr "Nicarágua"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
 msgid "Niger"
 msgstr "Níger"
 
@@ -787,7 +787,7 @@ msgstr "Palau"
 msgid "Palestinian Territory, Occupied"
 msgstr "Território Palestiniano, Ocupado"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
 msgid "Panama"
 msgstr "Panamá"
 
@@ -799,11 +799,11 @@ msgstr "Papua Nova-Guiné"
 msgid "Paraguay"
 msgstr "Paraguai"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
 msgstr "Peru"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
 msgstr "Filipinas"
 
@@ -811,7 +811,7 @@ msgstr "Filipinas"
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
 msgstr "Polónia"
 
@@ -891,7 +891,7 @@ msgstr "Arábia Saudita"
 msgid "Senega"
 msgstr "Senegal"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
 msgid "Serbia"
 msgstr "Sérvia"
 
@@ -931,7 +931,7 @@ msgstr "Ilhas Salomão"
 msgid "Somalia"
 msgstr "Somália"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
 msgstr "África do Sul"
 
@@ -943,7 +943,7 @@ msgstr "Geórgia do Sul e Ilhas Sandwich do Sul"
 msgid "South Sudan"
 msgstr "Sudão do Sul"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
 msgid "Spain"
 msgstr "Espanha"
 
@@ -1015,7 +1015,7 @@ msgstr "Tonga"
 msgid "Trinidad and Tobago"
 msgstr "Trindade e Tobago"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
 msgid "Tunisia"
 msgstr "Tunísia"
 
@@ -1047,11 +1047,11 @@ msgstr "Ucrânia"
 msgid "United Arab Emirates"
 msgstr "Emirados Árabes Unidos"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
 msgid "United Kingdom"
 msgstr "Reino Unido"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
 msgid "United States"
 msgstr "Estados Unidos"
 
@@ -1059,7 +1059,7 @@ msgstr "Estados Unidos"
 msgid "United States Minor Outlying Islands"
 msgstr "Ilhas Menores Distantes dos Estados Unidos"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
 msgid "Uruguay"
 msgstr "Uruguai"
 
@@ -1067,7 +1067,7 @@ msgstr "Uruguai"
 msgid "Uzbekistan"
 msgstr "Usbequistão"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
@@ -1340,7 +1340,7 @@ msgstr "Banido"
 msgid "Reviewer comment"
 msgstr "Comentário do revisor"
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Encaminhado para análise superior"
 
@@ -1850,7 +1850,7 @@ msgstr "Devolver"
 msgid "Voluntary"
 msgstr "Voluntário"
 
-#: mkt/constants/payments.py:63 mkt/constants/payments.py:121
+#: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
 msgstr "Em espera"
 
@@ -1862,7 +1862,7 @@ msgstr "Aprovado instantaneamente"
 msgid "Declined"
 msgstr "Recusado"
 
-#: mkt/constants/payments.py:75 mkt/constants/payments.py:123
+#: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
 msgstr "Falha"
 
@@ -1882,7 +1882,7 @@ msgstr "O reembolso falhou."
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "O pagamento foi recebido, mas ainda está sendo processado."
 
-#: mkt/constants/payments.py:122
+#: mkt/constants/payments.py:120
 msgid "Completed"
 msgstr "Concluído"
 
@@ -1973,31 +1973,31 @@ msgstr "Europa"
 msgid "Pan European Game Information"
 msgstr "Informação pan-europeia de jogo"
 
-#: mkt/constants/regions.py:63
+#: mkt/constants/regions.py:61
 msgid "Rest of World"
 msgstr "Resto do Mundo"
 
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
 msgstr "Guiné-Conacri"
 
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:110
 msgid "Russia"
 msgstr "Rússia"
 
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:111
 msgid "Senegal"
 msgstr "Senegal"
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:115
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:116
 msgid "Tanzania"
 msgstr "Tanzânia"
 
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:119
 msgid "Venezuela"
 msgstr "Venezuela"
 
@@ -2218,7 +2218,7 @@ msgstr "Texto"
 msgid "You must agree to the Privacy Policy."
 msgstr "Deve concordar com a política de privacidade."
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "País"
 
@@ -2292,179 +2292,171 @@ msgstr "Este certificado IARC já está a ser utilizado por outra aplicação. P
 msgid "Invalid submission ID or security code."
 msgstr "ID de submissão ou código de segurança inválido."
 
-#: mkt/developers/forms_payments.py:59
+#: mkt/developers/forms_payments.py:57
 msgid "App Price"
 msgstr "Preço da aplicação"
 
-#: mkt/developers/forms_payments.py:112
+#: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
 msgstr "Gratuito (com compras na aplicação)"
 
-#: mkt/developers/forms_payments.py:124
+#: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
 msgstr "Preço promocional"
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr "Apenas suporta pagamentos através da operadora"
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr "Apenas suporta pagamentos através de cartão de crédito"
 
-#: mkt/developers/forms_payments.py:144
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr "Suporta todos os métodos de pagamento"
 
-#: mkt/developers/forms_payments.py:216
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "Se a aplicação é gratuita, as compras na aplicação devem estar ativas"
 
-#: mkt/developers/forms_payments.py:223
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "Não é uma escolha válida"
 
 # 75%
-#: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:301
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
 msgstr "Esta é uma atualização paga de"
 
-#: mkt/developers/forms_payments.py:329
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "Não é uma atualização"
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr "Nome do proprietário da conta"
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "Nome da empresa"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "Nome do fornecedor"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "E-mail financeiro"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "E-mail administrativo"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "E-mail de apoio"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "Endereço"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "Endereço 2"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "Cidade/Município"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "Estado/Província/Região"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "Código postal"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "Telefone"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "Eu prefiro ser pago em"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "Número do IVA"
 
-#: mkt/developers/forms_payments.py:408
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "Número da conta bancária"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "Código SWIFT"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "Nome do banco"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "Endereço do banco"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "Endereço do banco 2"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "Cidade/município do banco"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
 msgstr "Estado/província/região do banco"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "Código postal do banco"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "País do banco"
 
-#: mkt/developers/forms_payments.py:428 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Nome da conta"
 
-#: mkt/developers/forms_payments.py:457
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "Conta de pagamento"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
 msgstr "Não pode remover uma conta de pagamento de uma aplicação."
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
 msgstr "Não tem permissão para alterar contas de pagamento."
 
-#: mkt/developers/forms_payments.py:621 mkt/developers/forms_payments.py:637
+#: mkt/developers/forms_payments.py:619
 msgid "Account name"
 msgstr "Nome da conta"
 
-#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
 msgid "Name"
 msgstr "Nome"
 
-#: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:621 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "Correio eletrónico"
 
-#: mkt/developers/forms_payments.py:640
-msgid "Service ID"
-msgstr "ID do serviço"
-
-#: mkt/developers/forms_payments.py:647
-msgid "Service ID is not valid"
-msgstr "O ID do serviço não é válido"
-
-#: mkt/developers/forms_payments.py:661
+#: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
 msgstr "Nenhuma conta de pagamento definida para esta aplicação"
 
@@ -2490,13 +2482,9 @@ msgstr "Análise"
 msgid "Version {0}"
 msgstr "Versão {0}"
 
-#: mkt/developers/providers.py:286
+#: mkt/developers/providers.py:284
 msgid "Reference Implementation"
 msgstr "Implementação de referência"
-
-#: mkt/developers/providers.py:372
-msgid "Boku"
-msgstr "Boku"
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -3047,8 +3035,7 @@ msgstr "Guardar alterações"
 
 #: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:4 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
 msgstr "fechar"
@@ -3084,8 +3071,8 @@ msgstr "Estado e versões"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:174 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Estado"
 
@@ -4489,54 +4476,19 @@ msgstr "Nome da empresa registada ou individuo."
 msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr "Nome da conta no Marketplace (não é enviado para o Bango)."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "Registar conta de pagamento"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "A processar pedido..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "Por favor, aguarde enquanto contactamos o servidor de pagamentos."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
-msgid "Add Boku Account"
-msgstr "Adicionar uma conta Boku"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
-msgid ""
-"To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
-"documentation and access to the Boku site on the Mozilla Developer Network."
-msgstr ""
-"Para adicionar uma conta de pagamento Boku tem de registar uma nova conta específica da Mozilla no site web de Boku. Depois registar demorará 24-48 horas para que Boku aprove a conta. Pode "
-"encontrar documentação e acesso ao site Boku no Rede de Programadores da Mozilla (MDN)."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
-msgid "Go to Boku documentation on MDN"
-msgstr "Ir para a documentação Boku na MDN"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
-msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr "Registou uma conta Boku e a sua conta está aprovada? Por favor crie um nome de conta e adicione o identificador de serviço Boku em baixo."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
-msgid "Create a name for this account."
-msgstr "Criar um nome para esta conta."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
-msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr "Identificador alfa-numérico listado sob o nome de serviço no site Boku. Saiba mais na <a href=\"%(boku_docs_url)s\" target=\"_blank\">página Boku na MDN</a>."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
-msgid "Close"
-msgstr "Fechar"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -4553,16 +4505,6 @@ msgstr "Um nome para a conta no Marketplace, que não é enviado para a Bango."
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "Atualizar conta"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
-msgid "Modify Boku Account"
-msgstr "Modificar conta Boku"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
-msgid "Currently editing a Boku account is not possible."
-msgstr "Não é possível editar a conta Boku neste momento."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5880,19 +5822,19 @@ msgstr "Esta aplicação funciona em dispositivos Tarako."
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta..."
 
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "Tem comentário do editor"
 
-#: mkt/reviewers/forms.py:181
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "Solicitadas mais informações"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Pronto para Tarako"
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -6571,6 +6513,10 @@ msgstr "Pesquisa avançada"
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
 msgstr "Limpar pesquisa"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
+msgid "Close"
+msgstr "Fechar"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"

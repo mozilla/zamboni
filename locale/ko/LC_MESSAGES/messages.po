@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:18-0700\n"
+"POT-Creation-Date: 2015-05-06 08:29-0700\n"
 "PO-Revision-Date: 2015-05-06 02:54+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: none\n"
@@ -30,15 +30,15 @@ msgstr "적어도 {num}자 이상 되어야 합니다."
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:199
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:200 mkt/submit/forms.py:329
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
 msgid "Yes"
 msgstr "예"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:201 mkt/submit/forms.py:330
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:330
 msgid "No"
 msgstr "아니오"
 
@@ -147,7 +147,7 @@ msgstr "남극"
 msgid "Antigua and Barbuda"
 msgstr "앤티가 바부다"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
 msgid "Argentina"
 msgstr "아르헨티나"
 
@@ -179,7 +179,7 @@ msgstr "바하마"
 msgid "Bahrain"
 msgstr "바레인"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
 msgid "Bangladesh"
 msgstr "방글라데시"
 
@@ -223,7 +223,7 @@ msgstr "보네르, 세인트 유스타티우스, 사바 섬"
 msgid "Bosnia and Herzegovina"
 msgstr "보스니아 헤르체코비나"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
 msgstr "보츠와나"
 
@@ -231,7 +231,7 @@ msgstr "보츠와나"
 msgid "Bouvet Island"
 msgstr "부베 섬"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
 msgstr "브라질"
 
@@ -259,7 +259,7 @@ msgstr "부룬디"
 msgid "Cambodia"
 msgstr "캄보디아"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
 msgid "Cameroon"
 msgstr "카메룬"
 
@@ -275,7 +275,7 @@ msgstr "카보베르데"
 msgid "Cayman Islands"
 msgstr "케이맨 제도"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
 msgstr "중앙아프리카 공화국"
 
@@ -283,11 +283,11 @@ msgstr "중앙아프리카 공화국"
 msgid "Chad"
 msgstr "차드"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
 msgstr "칠레"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
 msgid "China"
 msgstr "중국"
 
@@ -299,7 +299,7 @@ msgstr "크리스마스 섬"
 msgid "Cocos (Keeling) Islands"
 msgstr "코코스 (킬링) 제도"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
 msgid "Colombia"
 msgstr "콜롬비아"
 
@@ -319,11 +319,11 @@ msgstr "콩고 민주 공화국"
 msgid "Cook Islands"
 msgstr "쿡 제도"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
 msgid "Costa Rica"
 msgstr "코스타리카"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
 msgstr "코트디부아르"
 
@@ -343,7 +343,7 @@ msgstr "쿠라사우 섬"
 msgid "Cyprus"
 msgstr "사이프러스"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
 msgid "Czech Republic"
 msgstr "체코 공화국"
 
@@ -363,15 +363,15 @@ msgstr "도미니카"
 msgid "Dominican Republic"
 msgstr "도미니카 공화국"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
 msgstr "에콰도르"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
 msgstr "이집트"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
 msgstr "엘살바도르"
 
@@ -407,7 +407,7 @@ msgstr "피지"
 msgid "Finland"
 msgstr "핀란드"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:87
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
 msgid "France"
 msgstr "프랑스"
 
@@ -435,7 +435,7 @@ msgstr "감비아"
 msgid "Georgia"
 msgstr "조지아"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:81
 msgid "Germany"
 msgstr "독일"
 
@@ -447,7 +447,7 @@ msgstr "가나"
 msgid "Gibraltar"
 msgstr "지브롤터"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
 msgid "Greece"
 msgstr "그리스"
 
@@ -467,7 +467,7 @@ msgstr "과들루프"
 msgid "Guam"
 msgstr "괌"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
 msgid "Guatemala"
 msgstr "과테말라"
 
@@ -479,7 +479,7 @@ msgstr "건지"
 msgid "Guinea"
 msgstr "기니"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
 msgid "Guinea-Bissau"
 msgstr "기니비사우"
 
@@ -507,7 +507,7 @@ msgstr "온두라스"
 msgid "Hong Kong"
 msgstr "홍콩"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
 msgstr "헝가리"
 
@@ -515,7 +515,7 @@ msgstr "헝가리"
 msgid "Iceland"
 msgstr "아이슬란드"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
 msgstr "인도"
 
@@ -543,7 +543,7 @@ msgstr "맨 섬"
 msgid "Israel"
 msgstr "이스라엘"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
 msgid "Italy"
 msgstr "이탈리아"
 
@@ -551,7 +551,7 @@ msgstr "이탈리아"
 msgid "Jamaica"
 msgstr "자메이카"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
 msgid "Japan"
 msgstr "일본"
 
@@ -559,7 +559,7 @@ msgstr "일본"
 msgid "Jersey"
 msgstr "저지 섬"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
 msgstr "요르단"
 
@@ -567,7 +567,7 @@ msgstr "요르단"
 msgid "Kazakhstan"
 msgstr "카자흐스탄"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
 msgid "Kenya"
 msgstr "케냐"
 
@@ -623,7 +623,7 @@ msgstr "리비아"
 msgid "Liechtenstei"
 msgstr "리히텐슈타인"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
 msgid "Lithuania"
 msgstr "리투아니아"
 
@@ -639,7 +639,7 @@ msgstr "마카오"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "마케도니아"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
 msgid "Madagascar"
 msgstr "마다가스카르"
 
@@ -655,7 +655,7 @@ msgstr "말레이시아"
 msgid "Maldives"
 msgstr "몰디브"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
 msgstr "말리"
 
@@ -675,7 +675,7 @@ msgstr "마르티니크"
 msgid "Mauritania"
 msgstr "모리타니아"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
 msgid "Mauritius"
 msgstr "모리셔스"
 
@@ -683,7 +683,7 @@ msgstr "모리셔스"
 msgid "Mayotte"
 msgstr "마요트 섬"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
 msgid "Mexico"
 msgstr "멕시코"
 
@@ -703,7 +703,7 @@ msgstr "모나코"
 msgid "Mongolia"
 msgstr "몽골"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
 msgid "Montenegro"
 msgstr "몬테네그로"
 
@@ -719,7 +719,7 @@ msgstr "모로코"
 msgid "Mozambique"
 msgstr "모잠비크"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
 msgid "Myanmar"
 msgstr "미얀마"
 
@@ -747,11 +747,11 @@ msgstr "뉴칼레도니아"
 msgid "New Zealand"
 msgstr "뉴질랜드"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
 msgid "Nicaragua"
 msgstr "니카라과"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
 msgid "Niger"
 msgstr "니제르"
 
@@ -791,7 +791,7 @@ msgstr "팔라우"
 msgid "Palestinian Territory, Occupied"
 msgstr "팔레스타인"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
 msgid "Panama"
 msgstr "파나마"
 
@@ -803,11 +803,11 @@ msgstr "파푸아뉴기니"
 msgid "Paraguay"
 msgstr "파라과이"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
 msgstr "페루"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:110
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
 msgstr "필리핀"
 
@@ -815,7 +815,7 @@ msgstr "필리핀"
 msgid "Pitcairn"
 msgstr "피트케언 섬"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:111
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
 msgstr "폴란드"
 
@@ -895,7 +895,7 @@ msgstr "사우디아라비아"
 msgid "Senega"
 msgstr "세네갈"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:115
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
 msgid "Serbia"
 msgstr "세르비아"
 
@@ -935,7 +935,7 @@ msgstr "솔로몬 제도"
 msgid "Somalia"
 msgstr "소말리아"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:123
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
 msgstr "남아공"
 
@@ -947,7 +947,7 @@ msgstr "사우스조지아 사우스샌드위치 제도"
 msgid "South Sudan"
 msgstr "남수단"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
 msgid "Spain"
 msgstr "스페인"
 
@@ -1019,7 +1019,7 @@ msgstr "통가"
 msgid "Trinidad and Tobago"
 msgstr "트리니다드 토바고"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:116
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
 msgid "Tunisia"
 msgstr "튀니지"
 
@@ -1051,11 +1051,11 @@ msgstr "우크라이나"
 msgid "United Arab Emirates"
 msgstr "아랍에미리트"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
 msgid "United Kingdom"
 msgstr "영국"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
 msgid "United States"
 msgstr "미국"
 
@@ -1063,7 +1063,7 @@ msgstr "미국"
 msgid "United States Minor Outlying Islands"
 msgstr "미국령 군소 제도"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:119
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
 msgid "Uruguay"
 msgstr "우루과이"
 
@@ -1071,7 +1071,7 @@ msgstr "우루과이"
 msgid "Uzbekistan"
 msgstr "우즈베키스탄"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:122
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
 msgid "Vanuatu"
 msgstr "바누아투"
 
@@ -1343,7 +1343,7 @@ msgstr ""
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:185 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "검토 대상이 됨"
 
@@ -1849,7 +1849,7 @@ msgstr "환불"
 msgid "Voluntary"
 msgstr "기부"
 
-#: mkt/constants/payments.py:63 mkt/constants/payments.py:121
+#: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
 msgstr "대기중"
 
@@ -1861,7 +1861,7 @@ msgstr "즉시 승인"
 msgid "Declined"
 msgstr "거부"
 
-#: mkt/constants/payments.py:75 mkt/constants/payments.py:123
+#: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
 msgstr "실패"
 
@@ -1881,7 +1881,7 @@ msgstr "전환 작업을 실패했습니다."
 msgid "The payment was received, but not completed and is awaiting processing."
 msgstr "결제 대금을 수령했지만 결제를 완료하지 못하고 처리를 대기중에 있습니다."
 
-#: mkt/constants/payments.py:122
+#: mkt/constants/payments.py:120
 msgid "Completed"
 msgstr "완료됨"
 
@@ -1972,31 +1972,31 @@ msgstr "유럽"
 msgid "Pan European Game Information"
 msgstr ""
 
-#: mkt/constants/regions.py:63
+#: mkt/constants/regions.py:61
 msgid "Rest of World"
 msgstr ""
 
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
 msgstr ""
 
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:110
 msgid "Russia"
 msgstr ""
 
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:111
 msgid "Senegal"
 msgstr ""
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:115
 msgid "Taiwan"
 msgstr ""
 
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:116
 msgid "Tanzania"
 msgstr ""
 
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:119
 msgid "Venezuela"
 msgstr "베네수엘라"
 
@@ -2215,7 +2215,7 @@ msgstr "본문"
 msgid "You must agree to the Privacy Policy."
 msgstr "개인 정보 보호 정책에 동의해야 합니다."
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:399 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "국가"
 
@@ -2287,179 +2287,171 @@ msgstr ""
 msgid "Invalid submission ID or security code."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:59
+#: mkt/developers/forms_payments.py:57
 msgid "App Price"
 msgstr "앱 가격"
 
-#: mkt/developers/forms_payments.py:112
+#: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
 msgstr "무료 (앱 내부 결제 시스템 탑재)"
 
-#: mkt/developers/forms_payments.py:124
+#: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
 msgstr "특별 할인가"
 
-#: mkt/developers/forms_payments.py:137
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr "통신사 요금 결제만 지원"
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr "신용 카드 결제만 지원"
 
-#: mkt/developers/forms_payments.py:144
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr "모든 결제 방식 지원"
 
-#: mkt/developers/forms_payments.py:216
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "앱이 무료일 경우 앱 내부 결제 시스템을 반드시 사용해야 합니다"
 
-#: mkt/developers/forms_payments.py:223
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "유효한 선택이 아닙니다"
 
 # 75%
-#: mkt/developers/forms_payments.py:328 mkt/developers/templates/developers/payments/premium.html:301
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
 msgstr "유료 업그레이드:"
 
-#: mkt/developers/forms_payments.py:329
+#: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
 msgstr "업그레이드 아님"
 
-#: mkt/developers/forms_payments.py:371
+#: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:373
+#: mkt/developers/forms_payments.py:371
 msgid "Company Name"
 msgstr "회사명"
 
-#: mkt/developers/forms_payments.py:375
+#: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
 msgstr "판매 회사명"
 
-#: mkt/developers/forms_payments.py:377
+#: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
 msgstr "회계 담당 이메일"
 
-#: mkt/developers/forms_payments.py:380
+#: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
 msgstr "관리 담당 이메일"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:381
 msgid "Support Email"
 msgstr "이메일 기술 지원"
 
-#: mkt/developers/forms_payments.py:387
+#: mkt/developers/forms_payments.py:385
 msgid "Address"
 msgstr "주소"
 
-#: mkt/developers/forms_payments.py:389
+#: mkt/developers/forms_payments.py:387
 msgid "Address 2"
 msgstr "주소2"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
 msgstr "시/도"
 
-#: mkt/developers/forms_payments.py:393
+#: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
 msgstr "주/도"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
 msgstr "우편번호"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:395
 msgid "Phone"
 msgstr "전화"
 
-#: mkt/developers/forms_payments.py:402
+#: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
 msgstr "선호하는 입금 방식"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
 msgstr "VAT 번호"
 
-#: mkt/developers/forms_payments.py:408
+#: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
 msgstr "은행 계좌번호"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:411
+#: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
 msgstr "SWIFT 코드"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
 msgstr "은행명"
 
-#: mkt/developers/forms_payments.py:415
+#: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
 msgstr "은행 주소"
 
-#: mkt/developers/forms_payments.py:417
+#: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
 msgstr "은행 주소2"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
 msgstr "은행 시/도"
 
-#: mkt/developers/forms_payments.py:422
+#: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
 msgstr "은행 주/도"
 
-#: mkt/developers/forms_payments.py:424
+#: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
 msgstr "은행 우편번호"
 
-#: mkt/developers/forms_payments.py:426
+#: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
 msgstr "은행 국가"
 
-#: mkt/developers/forms_payments.py:428 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "계정명"
 
-#: mkt/developers/forms_payments.py:457
+#: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
 msgstr "지불 계정"
 
-#: mkt/developers/forms_payments.py:528
+#: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
 msgstr "앱에서 지불 계정을 삭제할 수 없습니다."
 
-#: mkt/developers/forms_payments.py:532
+#: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
 msgstr "지불 계좌를 변경할 수 있는 권한이 없습니다."
 
-#: mkt/developers/forms_payments.py:621 mkt/developers/forms_payments.py:637
+#: mkt/developers/forms_payments.py:619
 msgid "Account name"
 msgstr ""
 
-#: mkt/developers/forms_payments.py:622 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
 msgid "Name"
 msgstr "이름"
 
-#: mkt/developers/forms_payments.py:623 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:621 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "이메일"
 
-#: mkt/developers/forms_payments.py:640
-msgid "Service ID"
-msgstr ""
-
-#: mkt/developers/forms_payments.py:647
-msgid "Service ID is not valid"
-msgstr ""
-
-#: mkt/developers/forms_payments.py:661
+#: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
 msgstr "앱에 설정된 지불 계좌 없음"
 
@@ -2484,12 +2476,8 @@ msgstr "평가"
 msgid "Version {0}"
 msgstr "버전 {0}"
 
-#: mkt/developers/providers.py:286
+#: mkt/developers/providers.py:284
 msgid "Reference Implementation"
-msgstr ""
-
-#: mkt/developers/providers.py:372
-msgid "Boku"
 msgstr ""
 
 #: mkt/developers/tasks.py:403
@@ -3033,8 +3021,7 @@ msgstr "변경사항 저장"
 
 #: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
 #: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:4 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:4
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
 msgstr "닫기"
@@ -3070,8 +3057,8 @@ msgstr "상태 및 버전"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:174 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "상태"
 
@@ -4445,52 +4432,19 @@ msgstr ""
 msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "결제 계좌 등록"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "요청 진행 중..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "지불 서버와 통신하는데 잠시만 기다려 주십시오."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
-msgid "Add Boku Account"
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
-msgid ""
-"To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
-"documentation and access to the Boku site on the Mozilla Developer Network."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
-msgid "Go to Boku documentation on MDN"
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
-msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
-msgid "Create a name for this account."
-msgstr "본 계정의 이름을 등록하세요."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
-msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
-msgid "Close"
-msgstr "닫기"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -4507,16 +4461,6 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "계정 업데이트"
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
-msgid "Modify Boku Account"
-msgstr ""
-
-#. Boku should not be localised
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
-msgid "Currently editing a Boku account is not possible."
-msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5837,19 +5781,19 @@ msgstr ""
 msgid "Choose a canned response..."
 msgstr "자동 응답 메시지를 선택해 주세요..."
 
-#: mkt/reviewers/forms.py:177
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr ""
 
-#: mkt/reviewers/forms.py:181
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr ""
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr ""
 
-#: mkt/reviewers/forms.py:193 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
 msgid "Device"
 msgstr ""
 
@@ -6519,6 +6463,10 @@ msgstr "고급 검색"
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
 msgstr "검색 내역 초기화"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
+msgid "Close"
+msgstr "닫기"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
