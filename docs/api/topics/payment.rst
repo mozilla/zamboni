@@ -681,7 +681,7 @@ times.
     .. code-block:: json
 
         {
-            "reason": "NO_PURCHASE"
+            "reason": "NO_PURCHASE",
             "receipt": "",
             "status": "invalid"
         }
