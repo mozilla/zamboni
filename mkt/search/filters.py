@@ -159,6 +159,7 @@ class ReviewerSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['app_type', 'author.raw', 'category', 'device',
                      'latest_version.has_editor_comment',
                      'latest_version.has_info_request',
+                     'latest_version.status',
                      'installs_allowed_from', 'is_escalated', 'is_offline',
                      'manifest_url', 'premium_type', 'status',
                      'supported_locales', 'tags']
