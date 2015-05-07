@@ -219,8 +219,9 @@ def generate_app_package(app, out, apptype, permissions, locale_names,
 def generate_packaged_app(name, apptype, categories, developer_name,
                           privacy_policy=None, device_types=(),
                           permissions=(), versions=None,
-                          default_locale='en-US', locale_names=('en-US', 'es-ES'),
-                          package_file=None, status=4, uses_flash=False, **kw):
+                          default_locale='en-US',
+                          locale_names=('en-US', 'es-ES'), package_file=None,
+                          status=4, uses_flash=False, **kw):
     if versions is None:
         versions = [status]
     now = datetime.datetime.now()
@@ -357,7 +358,6 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
-        import pdb; pdb.set_trace()
         app = generate_hosted_app(
             names[default_locale], categories, developer_name, status=status,
             default_locale=default_locale, **spec)
