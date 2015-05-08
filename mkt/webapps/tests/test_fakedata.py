@@ -58,7 +58,8 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         app = generate_app_from_spec(
             appname, categories, 'packaged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
-            versions=['public', 'disabled', 'public'],
+            versions=[{'status': 'public'}, {'status': 'disabled'},
+                      {'status': 'public'}],
             description='test app')
         eq_(app.name, appname)
         eq_(app.categories, categories)
@@ -66,8 +67,8 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         eq_(app.reload().total_reviews, 4)
         eq_(app.reviews.count(), 4)
         eq_(app.get_previews().count(), 3)
-        eq_(app.versions.count(), 3)
-        eq_(app.latest_version.version, '1.2')
+        eq_(app.versions.count(), 4)
+        eq_(app.latest_version.version, '1.3')
 
     def test_generate_privileged_app(self):
         appname = 'a test app'
@@ -75,7 +76,10 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         app = generate_app_from_spec(
             appname, categories, 'privileged', num_previews=3,
             num_ratings=4, num_locales=1, status='public',
-            permissions=['storage'], versions=['public', 'disabled', 'public'],
+            permissions=['storage'], versions=[
+                {'status': 'public'},
+                {'status': 'disabled'},
+                {'status': 'public'}],
             description='test app')
         eq_(app.name, appname)
         eq_(app.categories, categories)
@@ -83,5 +87,5 @@ class TestAppGeneration(mkt.site.tests.TestCase):
         eq_(app.reload().total_reviews, 4)
         eq_(app.reviews.count(), 4)
         eq_(app.get_previews().count(), 3)
-        eq_(app.versions.count(), 3)
-        eq_(app.latest_version.version, '1.2')
+        eq_(app.versions.count(), 4)
+        eq_(app.latest_version.version, '1.3')

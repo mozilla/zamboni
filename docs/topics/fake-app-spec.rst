@@ -32,8 +32,9 @@ num_locales
     Number of locales to localize this app's name in (max 5).
 
 versions
-    An array of integers representing version statuses; a version with each
-    status will be created, oldest first. (Not applicable to hosted apps.)
+    An array of objects with optional version-specific fields: "status",
+    "type", and "permissions". Additional versions with these fields are
+    created, oldest first.
 
 permissions
     An array of app permissions, to be placed in the manifest.

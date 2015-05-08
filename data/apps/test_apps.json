@@ -83,12 +83,25 @@
  {"type": "packaged", "status": "public", "num_ratings": 100},
  {"type": "packaged", "status": "public", "num_previews": 5},
  {"type": "packaged", "status": "public", "num_locales": 5},
- {"type": "packaged", "status": "public", "versions": ["public", "public", "public"]},
- {"type": "packaged", "status": "public", "versions": ["public", "pending"]},
- {"type": "packaged", "status": "public", "versions": ["public", "disabled"]},
- {"type": "packaged", "status": "public", "versions": ["public", "deleted"]},
- {"type": "packaged", "status": "public", "versions": ["public", "waiting"]},
- {"type": "packaged", "status": "incomplete", "versions": ["deleted", "deleted"]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "public"},
+     {"status": "public"}]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "pending"}]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "disabled"}]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "deleted"}]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "waiting"}]},
+{"type": "packaged", "status": "incomplete", "versions": [
+    {"status": "deleted"},
+    {"status": "deleted"}]},
  {"type": "privileged", "status": "public", "permissions": ["camera", "storage"]},
  {"type": "privileged", "status": "pending", "permissions": ["camera", "storage"]},
  {"type": "privileged", "status": "waiting", "permissions": ["camera", "storage"]},
@@ -97,6 +110,21 @@
  {"type": "privileged", "status": "deleted", "permissions": ["camera", "storage"]},
  {"type": "privileged", "status": "incomplete", "permissions": ["camera", "storage"]},
 
+ {"type": "privileged", "status": "public", "permissions": ["camera", "storage"]},
+ {"type": "privileged", "status": "pending", "permissions": ["camera", "storage"]},
+
+ {"type": "privileged", "status": "public", "permissions": ["camera", "storage"],
+  "versions": [
+      {"status": "public", "type": "packaged", "permissions": ["storage"]},
+      {"status": "public", "type": "packaged", "permissions": ["storage"]},
+      {"status": "public", "type": "privileged", "permissions": ["camera", "storage"]}]},
+
+ {"type": "packaged", "status": "public", "permissions": ["storage"],
+  "versions": [
+      {"status": "public", "type": "packaged", "permissions": ["storage"]},
+      {"status": "public", "type": "packaged", "permissions": ["storage"]},
+      {"status": "pending", "type": "privileged", "permissions": ["camera", "storage"]}]},
+ 
  {"type": "hosted", "status": "public",  "premium_type": "free-inapp",
   "device_types": ["firefoxos"]},
  {"type": "hosted", "status": "pending", "premium_type": "free-inapp",
@@ -152,18 +180,31 @@
  {"type": "packaged", "status": "public", "num_locales": 5,
   "premium_type": "premium", "device_types": ["firefoxos"]},
  {"type": "packaged", "status": "public",
-  "versions": ["public", "public", "public"],
+  "versions": [
+      {"status": "public"},
+      {"status": "public"},
+      {"status": "public"}],
   "premium_type": "premium", "device_types": ["firefoxos"]},
- {"type": "packaged", "status": "public", "versions": ["public", "pending"],
+{"type": "packaged", "status": "public", "versions": [
+    {"status": "public"},
+    {"status": "pending"}],
+ "premium_type": "premium", "device_types": ["firefoxos"]},
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "disabled"}],
   "premium_type": "premium", "device_types": ["firefoxos"]},
- {"type": "packaged", "status": "public", "versions": ["public", "disabled"],
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "deleted"}],
   "premium_type": "premium", "device_types": ["firefoxos"]},
- {"type": "packaged", "status": "public", "versions": ["public", "deleted"],
-   "premium_type": "premium", "device_types": ["firefoxos"]},
- {"type": "packaged", "status": "public", "versions": ["public", "waiting"],
+ {"type": "packaged", "status": "public", "versions": [
+     {"status": "public"},
+     {"status": "waiting"}],
    "premium_type": "premium", "device_types": ["firefoxos"]},
  {"type": "packaged", "status": "incomplete",
-  "versions": ["deleted", "deleted"],
+  "versions": [
+      {"status": "deleted"},
+      {"status": "deleted"}],
   "premium_type": "premium", "device_types": ["firefoxos"]},
  {"type": "privileged", "status": "public",
   "permissions": ["camera", "storage"], "premium_type": "premium",

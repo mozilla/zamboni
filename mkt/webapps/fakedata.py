@@ -102,8 +102,12 @@ lang_prefixes = {
 
 
 def generate_localized_names(name, langs):
-    names = dict((lang, u'%s %s' % (name, lang_prefixes[lang]))
-                 for lang in langs)
+    names = {}
+    for lang in langs:
+        prefix = lang_prefixes[lang]
+        if prefix:
+            name = u'%s %s' % (prefix, name)
+        names[lang] = name
     return names
 
 
@@ -165,7 +169,7 @@ def generate_hosted_manifest(app):
         version=app._latest_version, manifest=json.dumps(data))
 
 
-def generate_app_package(app, out, apptype, permissions, locale_names,
+def generate_app_package(app, out, apptype, permissions, namedict,
                          default_locale='en-US', version='1.0'):
     manifest = {
         'version': version.version,
@@ -181,13 +185,12 @@ def generate_app_package(app, out, apptype, permissions, locale_names,
             'name': 'Marketplace Team',
             'url': 'https://marketplace.firefox.com/credits'
         },
-        'installs_allowed_launch': ['*'],
-        'from_path': 'index.html',
+        'installs_allowed_from': ['*'],
+        'launch_path': '/index.html',
         'locales': dict((lang, {
-            'name': name,
+            'name': lang,
             'description': 'This packaged app has been automatically generated'
-        }) for lang, name in generate_localized_names(
-            app.name, locale_names).items()),
+        }) for lang, name in namedict.items()),
         'permissions': dict(((k, {"description": k})
                              for k in permissions)),
         'default_locale': default_locale,
@@ -216,17 +219,14 @@ def generate_app_package(app, out, apptype, permissions, locale_names,
         version=version, manifest=json.dumps(manifest))
 
 
-def generate_packaged_app(name, apptype, categories, developer_name,
+def generate_packaged_app(namedict, apptype, categories, developer_name,
                           privacy_policy=None, device_types=(),
-                          permissions=(), versions=None,
-                          default_locale='en-US',
-                          locale_names=('en-US', 'es-ES'), package_file=None,
+                          permissions=(), versions=(),
+                          default_locale='en-US', package_file=None,
                           status=4, uses_flash=False, **kw):
-    if versions is None:
-        versions = [status]
     now = datetime.datetime.now()
-    app = app_factory(categories=categories, name=name, complete=False,
-                      rated=True, is_packaged=True,
+    app = app_factory(categories=categories, name=namedict[default_locale],
+                      complete=False, rated=True, is_packaged=True,
                       privacy_policy=privacy_policy,
                       version_kw={
                           'version': '1.0',
@@ -248,19 +248,28 @@ def generate_packaged_app(name, apptype, categories, developer_name,
     if package_file:
         return app
     with open(fp, 'w') as out:
-        generate_app_package(app, out, apptype, permissions=permissions,
-                             version=app.latest_version,
-                             default_locale=default_locale,
-                             locale_names=locale_names)
-        for i, f_status in enumerate(versions[1:], 1):
-            st = STATUS_CHOICES_API_LOOKUP[f_status]
-            rtime = (now + datetime.timedelta(i)) if st >= 4 else None
-            v = version_factory(version="1." + str(i), addon=app,
-                                reviewed=rtime, created=rtime,
-                                file_kw={'status': st},
-                                _developer_name=developer_name)
-            generate_app_package(app, out, apptype, permissions,
-                                 locale_names=locale_names, version=v)
+        generate_app_package(app, out, apptype,
+                             permissions, namedict,
+                             version=app.latest_version)
+    for i, vspec in enumerate(versions, 1):
+        st = STATUS_CHOICES_API_LOOKUP[vspec.get("status", "public")]
+        rtime = (now + datetime.timedelta(i))
+        v = version_factory(version="1." + str(i), addon=app,
+                            reviewed=rtime if st >= 4 else None,
+                            created=rtime,
+                            file_kw={'status': st},
+                            _developer_name=developer_name)
+        f = v.files.all()[0]
+        f.update(filename=f.generate_filename())
+        fp = os.path.join(app.latest_version.path_prefix, f.filename)
+        try:
+            os.makedirs(os.path.dirname(fp))
+        except OSError:
+            pass
+        with open(fp, 'w') as out:
+            generate_app_package(app, out, vspec.get("type", apptype),
+                                 vspec.get("permissions", permissions),
+                                 namedict, version=v)
         app.update_version()
     return app
 
@@ -363,7 +372,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
             default_locale=default_locale, **spec)
     else:
         app = generate_packaged_app(
-            names[default_locale], type, categories, developer_name,
+            names, type, categories, developer_name,
             default_locale=default_locale, status=status, **spec)
     generate_icon(app)
     if not preview_files:
