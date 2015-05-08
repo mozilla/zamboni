@@ -13,6 +13,8 @@ from django.conf import settings
 import pydenticon
 import requests
 
+from lib.video.tasks import resize_video
+
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
@@ -344,6 +346,9 @@ def generate_apps_from_specs(specs, specdir, repeats=1):
         if spec.get('preview_files'):
             spec['preview_files'] = [os.path.join(specdir, p)
                                      for p in spec['preview_files']]
+        if spec.get('video_files'):
+            spec['video_files'] = [os.path.join(specdir, p)
+                                   for p in spec['video_files']]
         if spec.get('package_file'):
             spec['package_file'] = os.path.join(specdir, spec['package_file'])
         if spec.get('manifest_file'):
@@ -358,6 +363,7 @@ def generate_apps_from_specs(specs, specdir, repeats=1):
 def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            num_ratings=1, locale_names=('en-US', 'es-ES'),
                            preview_files=(),
+                           video_files=(),
                            developer_name='Fake App Developer',
                            developer_email='fakedeveloper@example.com',
                            privacy_policy='Fake privacy policy',
@@ -377,13 +383,20 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     generate_icon(app)
     if not preview_files:
         generate_previews(app, num_previews)
+    if video_files:
+        for i, f in enumerate(video_files):
+            p = Preview.objects.create(addon=app, filetype="video/webm",
+                                       thumbtype="image/png",
+                                       caption="video " + str(i),
+                                       position=i)
+            resize_video(f, p)
     if preview_files:
         for i, f in enumerate(preview_files):
             p = Preview.objects.create(addon=app, filetype="image/png",
                                        thumbtype="image/png",
                                        caption="screenshot " + str(i),
-                                       position=i)
-        resize_preview(f, p)
+                                       position=i + len(video_files))
+            resize_preview(f, p)
     generate_ratings(app, num_ratings)
     app.name = names
     if not description:
