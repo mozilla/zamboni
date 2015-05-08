@@ -28,6 +28,9 @@ num_previews
 preview_files
     List of paths (relative to the JSON file) of preview images.
 
+video_files
+    List of paths (relative to the JSON file) of preview videos in webm format.
+
 num_locales
     Number of locales to localize this app's name in (max 5).
 
