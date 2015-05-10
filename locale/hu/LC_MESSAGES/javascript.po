@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:00-0700\n"
-"PO-Revision-Date: 2014-02-27 16:18+0000\n"
-"Last-Translator: Gábor <kelemeng@gnome.hu>\n"
+"PO-Revision-Date: 2015-05-09 13:01+0000\n"
+"Last-Translator: Kroszki <kroszki@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393517910.0\n"
+"X-POOTLE-MTIME: 1431176506.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -93,7 +93,7 @@ msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr "Az ellenőrzés közben váratlan hiba történt."
+msgstr "Az ellenőrzés közben váratlan szerverhiba történt."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
@@ -123,7 +123,7 @@ msgstr "Az app manifest nem dolgozható fel."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr "Az app manifest hibás."
+msgstr "Az app manifest érvénytelen."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
@@ -167,11 +167,11 @@ msgstr "Adja meg az új csapattag e-mail címét"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest frissítve"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Manifest frissítése nem sikerült. Próbálja újra később."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -203,11 +203,11 @@ msgstr "Flash Playert</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Engedélyezve"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -227,11 +227,11 @@ msgstr "Nem sikerült bejelentkezni a Personába. Hiba történt a szerveren."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Az állapot sikeresen módosítva a következőre: „{0}”"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Nem sikerült az állapot módosítása a következőre: „{0}”"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -327,11 +327,16 @@ msgstr "Észlelt: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi "
+"appokból. A fizetési fiókkal nem rendelkező alkalmazások nem "
+"értékesíthetőek."
 msgstr[1] ""
+"A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi "
+"appból. A fizetési fiókkal nem rendelkező alkalmazások nem értékesíthetőek."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "{appName} fizetési fiókok:"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
@@ -364,7 +369,7 @@ msgstr "<b>{0}</b> kiegészítő keresése"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Hiba történt, próbálja újra."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -375,7 +380,7 @@ msgstr[1] "{0} karakter maradt."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr "Az összes teszten sikeren átment."
+msgstr "Az összes teszten sikeresen átment."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
@@ -483,7 +488,7 @@ msgstr "kevesebb..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Értékelés megőrzése / Jelzők eltávolítása"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -547,15 +552,17 @@ msgstr "Hiba az app elutasításakor: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Hiba az app átengedésekor: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Hiba az app buktatásakor: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Elnézést, hiba történt az értékelési előzmények lekérésekor. Próbáljon meg "
+"újra bejelentkezni.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86

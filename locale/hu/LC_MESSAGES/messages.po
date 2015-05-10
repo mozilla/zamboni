@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:29-0700\n"
-"PO-Revision-Date: 2014-03-01 02:51+0000\n"
-"Last-Translator: Gábor <kelemeng@gnome.hu>\n"
+"PO-Revision-Date: 2015-05-10 19:56+0000\n"
+"Last-Translator: tamasstekler <tamasstekler@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -22,19 +22,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1393642294.0\n"
+"X-POOTLE-MTIME: 1431287781.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Válasszon érvényes opciót. %(value)s nem az elérhető opciók egyike."
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "A mezőnek legalább {num} karakter hosszúnak kell lennie."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "A következő nyelvkód érvénytelen: {lang_code}."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
@@ -50,39 +50,39 @@ msgstr "Nem"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Az űrlap nem küldhető be."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "A megjegyzés törzse üres."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Érvénytelen megjegyzéstípus."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "A következő verzió nem létezik: %s"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "Melléklet:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:279
 msgid "Description:"
-msgstr ""
+msgstr "Leírás:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "A melléklet meghaladja a maximális méretet: %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "A Firefox Marketplace a webes platform appjainak hivatalos forrása."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
 msgid "Desktop"
@@ -107,7 +107,7 @@ msgstr "Felhasználó"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr ""
+msgstr "Vizsgálatot végző"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
@@ -115,191 +115,191 @@ msgstr "Fejlesztő"
 
 #: mkt/constants/bango.py:19
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afganisztán"
 
 #: mkt/constants/bango.py:20
 msgid "Åland Islands"
-msgstr ""
+msgstr "Åland-szigetek"
 
 #: mkt/constants/bango.py:21
 msgid "Albania"
-msgstr ""
+msgstr "Albánia"
 
 #: mkt/constants/bango.py:22
 msgid "Algeria"
-msgstr ""
+msgstr "Algéria"
 
 #: mkt/constants/bango.py:23
 msgid "American Samoa"
-msgstr ""
+msgstr "Amerikai Szamoa"
 
 #: mkt/constants/bango.py:24
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: mkt/constants/bango.py:25
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: mkt/constants/bango.py:26
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguilla"
 
 #: mkt/constants/bango.py:27
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktisz"
 
 #: mkt/constants/bango.py:28
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Antigua és Barbuda"
 
 #: mkt/constants/bango.py:29 mkt/constants/regions.py:69
 msgid "Argentina"
-msgstr ""
+msgstr "Argentína"
 
 #: mkt/constants/bango.py:30
 msgid "Armenia"
-msgstr ""
+msgstr "Örményország"
 
 #: mkt/constants/bango.py:31
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: mkt/constants/bango.py:32
 msgid "Australia"
-msgstr ""
+msgstr "Ausztrália"
 
 #: mkt/constants/bango.py:33
 msgid "Austria"
-msgstr ""
+msgstr "Ausztria"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbajdzsán"
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahama-szigetek"
 
 #: mkt/constants/bango.py:36
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrein"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:70
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladesh"
 
 #: mkt/constants/bango.py:38
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados                "
 
 #: mkt/constants/bango.py:39
 msgid "Belarus"
-msgstr ""
+msgstr "Fehéroroszország"
 
 #: mkt/constants/bango.py:40
 msgid "Belgium"
-msgstr ""
+msgstr "Belgium"
 
 #: mkt/constants/bango.py:41
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: mkt/constants/bango.py:42
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: mkt/constants/bango.py:43
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: mkt/constants/bango.py:44
 msgid "Bhutan"
-msgstr ""
+msgstr "Bhután"
 
 #: mkt/constants/bango.py:45
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolívia"
 
 #: mkt/constants/bango.py:46
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Saint Eustasius és Saba"
 
 #: mkt/constants/bango.py:47
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosznia-Hercegovina"
 
 #: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
-msgstr ""
+msgstr "Botswana"
 
 #: mkt/constants/bango.py:49
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet-sziget"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
-msgstr ""
+msgstr "Brazília"
 
 #: mkt/constants/bango.py:51
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "Brit Indiai-óceáni terület"
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei Szultanátus"
 
 #: mkt/constants/bango.py:53
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgária"
 
 #: mkt/constants/bango.py:54
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: mkt/constants/bango.py:55
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: mkt/constants/bango.py:56
 msgid "Cambodia"
-msgstr ""
+msgstr "Kambodzsa"
 
 #: mkt/constants/bango.py:57 mkt/constants/regions.py:77
 msgid "Cameroon"
-msgstr ""
+msgstr "Kamerun"
 
 #: mkt/constants/bango.py:58
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr ""
+msgstr "Zöld-foki Köztársaság"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Kajmán-szigetek"
 
 #: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
-msgstr ""
+msgstr "Közép-afrikai Köztársaság"
 
 #: mkt/constants/bango.py:62
 msgid "Chad"
-msgstr ""
+msgstr "Csád"
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: mkt/constants/bango.py:64 mkt/constants/regions.py:75
 msgid "China"
-msgstr ""
+msgstr "Kína"
 
 #: mkt/constants/bango.py:65
 msgid "Christmas Island"
-msgstr ""
+msgstr "Karácsony-sziget"
 
 #: mkt/constants/bango.py:66
 msgid "Cocos (Keeling) Islands"
@@ -315,19 +315,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:69
 msgid "Congo"
-msgstr ""
+msgstr "Kongó"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "Kongói Demokratikus Köztársaság"
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
-msgstr ""
+msgstr "Cook-szigetek"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:79
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: mkt/constants/bango.py:73 mkt/constants/regions.py:76
 msgid "Côte d'Ivoire"
@@ -335,11 +335,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:74
 msgid "Croatia"
-msgstr ""
+msgstr "Horvátország"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr ""
+msgstr "Kuba"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
@@ -347,15 +347,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
-msgstr ""
+msgstr "Ciprus"
 
 #: mkt/constants/bango.py:78 mkt/constants/regions.py:80
 msgid "Czech Republic"
-msgstr ""
+msgstr "Cseh Köztársaság"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Dánia"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -363,19 +363,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:81
 msgid "Dominica"
-msgstr ""
+msgstr "Dominika"
 
 #: mkt/constants/bango.py:82
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominikai Köztársaság"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
-msgstr ""
+msgstr "Ecuador"
 
 #: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
-msgstr ""
+msgstr "Egyiptom"
 
 #: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
@@ -391,11 +391,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
-msgstr ""
+msgstr "Észtország"
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiópia"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
@@ -515,7 +515,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
-msgstr ""
+msgstr "Magyarország"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
@@ -739,11 +739,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:175
 msgid "Nepal"
-msgstr ""
+msgstr "Nepál"
 
 #: mkt/constants/bango.py:176
 msgid "Netherlands"
-msgstr ""
+msgstr "Hollandia"
 
 #: mkt/constants/bango.py:177
 msgid "New Caledonia"
@@ -751,19 +751,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:178
 msgid "New Zealand"
-msgstr ""
+msgstr "Új-Zéland"
 
 #: mkt/constants/bango.py:179 mkt/constants/regions.py:105
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: mkt/constants/bango.py:180 mkt/constants/regions.py:104
 msgid "Niger"
-msgstr ""
+msgstr "Niger"
 
 #: mkt/constants/bango.py:181
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigéria"
 
 #: mkt/constants/bango.py:182
 msgid "Niue"
@@ -779,7 +779,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:185
 msgid "Norway"
-msgstr ""
+msgstr "Norvégia"
 
 #: mkt/constants/bango.py:186
 msgid "Oman"
@@ -787,11 +787,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:187
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakisztán"
 
 #: mkt/constants/bango.py:188
 msgid "Palau"
-msgstr ""
+msgstr "Palaui Köztársaság"
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
@@ -803,15 +803,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:191
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Pápua Új-Guinea"
 
 #: mkt/constants/bango.py:192
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguayi Köztársaság"
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
@@ -823,15 +823,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
-msgstr ""
+msgstr "Lengyelország"
 
 #: mkt/constants/bango.py:197
 msgid "Portugal"
-msgstr ""
+msgstr "Portugália"
 
 #: mkt/constants/bango.py:198
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: mkt/constants/bango.py:199
 msgid "Qatar"
@@ -843,7 +843,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:201
 msgid "Romania"
-msgstr ""
+msgstr "Románia"
 
 #: mkt/constants/bango.py:202
 msgid "Russian Federation"
@@ -895,7 +895,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:214
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Szaúd-Arábia"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
@@ -903,11 +903,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:113
 msgid "Serbia"
-msgstr ""
+msgstr "Szerbia"
 
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Szerbia és Montenegró"
 
 #: mkt/constants/bango.py:218
 msgid "Seychelles"
@@ -919,7 +919,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:220
 msgid "Singapore"
-msgstr ""
+msgstr "Szingapúr"
 
 #: mkt/constants/bango.py:221
 msgid "Sint Maarten (Dutch part)"
@@ -927,11 +927,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:222
 msgid "Slovakia"
-msgstr ""
+msgstr "Szlovákia"
 
 #: mkt/constants/bango.py:223
 msgid "Slovenia"
-msgstr ""
+msgstr "Szlovénia"
 
 #: mkt/constants/bango.py:224
 msgid "Solomon Islands"
@@ -943,7 +943,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
-msgstr ""
+msgstr "Dél-Afrika"
 
 #: mkt/constants/bango.py:227
 msgid "South Georgia and the South Sandwich Islands"
@@ -963,7 +963,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:231
 msgid "Sudan"
-msgstr ""
+msgstr "Szudán"
 
 #: mkt/constants/bango.py:232
 msgid "Suriname"
@@ -979,11 +979,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:235
 msgid "Sweden"
-msgstr ""
+msgstr "Svédország"
 
 #: mkt/constants/bango.py:236
 msgid "Switzerland"
-msgstr ""
+msgstr "Svájc"
 
 #: mkt/constants/bango.py:237
 msgid "Syrian Arab Republic"
@@ -995,7 +995,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tádzsikisztán"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
@@ -1027,15 +1027,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:247 mkt/constants/regions.py:114
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunézia"
 
 #: mkt/constants/bango.py:248
 msgid "Turkey"
-msgstr ""
+msgstr "Törökország"
 
 #: mkt/constants/bango.py:249
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Türkmenisztán"
 
 #: mkt/constants/bango.py:250
 msgid "Turks and Caicos Islands"
@@ -1047,11 +1047,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:252
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: mkt/constants/bango.py:253
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukrajna"
 
 #: mkt/constants/bango.py:254
 msgid "United Arab Emirates"
@@ -1059,7 +1059,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:255 mkt/constants/regions.py:86
 msgid "United Kingdom"
-msgstr ""
+msgstr "Nagy-Britannia és Észak-Írország Egyesült Királysága"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:118
 msgid "United States"
@@ -1127,11 +1127,11 @@ msgstr "Vizsgálatra vár"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Közzétéve"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Kitiltva a Marketplace-ről"
 
 #: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1143,7 +1143,7 @@ msgstr "Elutasított"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Jóváhagyott, de privát"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1187,15 +1187,15 @@ msgstr "Prémium"
 
 #: mkt/constants/base.py:138
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Prémium, alkalmazásbeli fizetéssel"
 
 #: mkt/constants/base.py:139
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Ingyenes, alkalmazásbeli fizetéssel"
 
 #: mkt/constants/base.py:140
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Alkalmazáson belüli fizetésekhez a saját rendszeremet fogom használni"
 
 #: mkt/constants/base.py:197
 msgid "Manual Reviewer Points"
@@ -1227,7 +1227,7 @@ msgstr ""
 
 #: mkt/constants/base.py:204
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Moderált appértékelés"
 
 #: mkt/constants/base.py:205
 msgid "App Review Moderation Reverted"
@@ -1235,31 +1235,31 @@ msgstr ""
 
 #: mkt/constants/base.py:206
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako appértékelés"
 
 #: mkt/constants/base.py:236
 msgid "Level 1"
-msgstr ""
+msgstr "1. szint"
 
 #: mkt/constants/base.py:237
 msgid "Level 2"
-msgstr ""
+msgstr "2. szint"
 
 #: mkt/constants/base.py:238
 msgid "Level 3"
-msgstr ""
+msgstr "3. szint"
 
 #: mkt/constants/base.py:239
 msgid "Level 4"
-msgstr ""
+msgstr "4. szint"
 
 #: mkt/constants/base.py:240
 msgid "Level 5"
-msgstr ""
+msgstr "5. szint"
 
 #: mkt/constants/base.py:241
 msgid "Level 6"
-msgstr ""
+msgstr "6. szint"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
@@ -1343,11 +1343,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Kitiltva"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Véleményező hozzászólása"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
@@ -1355,7 +1355,7 @@ msgstr "Továbbított"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Privát véleményező hozzászólása"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1383,7 +1383,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "Fejlesztő hozzászólása"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
@@ -1463,27 +1463,31 @@ msgstr ""
 
 #: mkt/constants/features.py:31
 msgid "Web Payment"
-msgstr ""
+msgstr "Webes fizetés"
 
 #: mkt/constants/features.py:32
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Az app megköveteli a „navigator.mozApps” API-t."
 
 #: mkt/constants/features.py:36
 msgid "Web Activities"
-msgstr ""
+msgstr "Webes tevékenységek"
 
 #: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr ""
+"Az app használatához a Webes tevékenységek szükségesek (a „MozActivity” "
+"API)."
 
 #: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Környezetifény-érzékelő"
 
 #: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr ""
+"Az app használatához környezetifény-érzékelő szükséges (az „ondevicelight” "
+"API)."
 
 #: mkt/constants/features.py:48
 msgid "Archive"
@@ -1491,7 +1495,7 @@ msgstr ""
 
 #: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Az app használatához az „ArchiveReader” API szükséges."
 
 #: mkt/constants/features.py:53
 msgid "Battery"
@@ -1499,11 +1503,11 @@ msgstr ""
 
 #: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.battery” API szükséges."
 
 #: mkt/constants/features.py:59
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.mozBluetooth” API szükséges."
 
 #: mkt/constants/features.py:64
 msgid "Contacts"
@@ -1511,7 +1515,7 @@ msgstr ""
 
 #: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.mozContacts” API szükséges."
 
 #: mkt/constants/features.py:70
 msgid "Device Storage"
@@ -1642,10 +1646,14 @@ msgstr ""
 #: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Az app megköveteli, hogy a platform támogassa a Web Audio API-t "
+"(„window.AudioContext”)."
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Az app megköveteli, hogy a platform képes legyen dekódolni és lejátszani a "
+"H.264 videókat."
 
 #: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
@@ -1677,31 +1685,37 @@ msgstr ""
 
 #: mkt/constants/features.py:215
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Az app megköveteli, hogy a platform hozzáférést adjon a készülék kamerájának "
+"videójához a LocalMediaStream objektumon keresztül."
 
 #: mkt/constants/features.py:222
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"Az app megköveteli, hogy a platform hozzáférést adjon a készülék mikrofonján "
+"keresztüli hangbemenethez."
 
 #: mkt/constants/features.py:228
 msgid "Screen Capture"
-msgstr ""
+msgstr "Képernyőrögzítés"
 
 #: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"Az app képernyőrögzítés céljából megköveteli, hogy a platform hozzáférést "
+"adjon a készülék képernyőjéhez."
 
 #: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:236
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
@@ -1709,19 +1723,23 @@ msgstr ""
 
 #: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Az app megköveteli, hogy a platform ne csak hang vagy videó esetében "
+"engedélyezze az egyenrangú adatcserét."
 
 #: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Az app megköveteli, hogy a platform engedélyezze a partnerek közt "
+"folyamadatok küldését."
 
 #: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
@@ -1730,6 +1748,7 @@ msgstr ""
 #: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr ""
+"Az app megköveteli, hogy a platform hozzáférést adjon a szövegfelolvasóhoz."
 
 #: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
@@ -1738,6 +1757,7 @@ msgstr ""
 #: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"Az app megköveteli, hogy a platform hozzáférést adjon a beszédfelismerőhöz."
 
 #: mkt/constants/features.py:268
 msgid "Pointer Lock"
@@ -1754,38 +1774,46 @@ msgstr "Értesítések"
 #: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"Az app megköveteli, hogy a platform engedélyezze a telefonos és asztali "
+"értesítések megjelenítését."
 
 #: mkt/constants/features.py:282
 msgid "Alarms"
-msgstr ""
+msgstr "Riasztások"
 
 #: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"Az app megköveteli, hogy a platform hozzáférést adjon a készülék riasztási "
+"beállításaihoz, hogy adott időben értesítéseket és eseményeket ütemezhessen."
 
 #: mkt/constants/features.py:290
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"Az app megköveteli, hogy a platform engedélyt adjon aszinkron HTTP-kérések "
+"kiküldésére az azonos származás házirend figyelembevétele nélkül."
 
 #: mkt/constants/features.py:297
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP-szoftvercsatorna"
 
 #: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr ""
+"Az app megköveteli, hogy a platform engedélyezze a nyers TCP-"
+"szoftvercsatornák nyitását."
 
 #: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Külsőbillentyűzet-támogatás"
 
 #: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "Az app megköveteli, hogy a platform támogassa a külső billentyűzeteket."
 
 #: mkt/constants/features.py:309
 msgid "Multiple Network Information"
@@ -1802,14 +1830,16 @@ msgstr ""
 #: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr ""
+"Az app megköveteli a hozzáférést a „navigator.getMobileIdAssertion” API-hoz."
 
 #: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js előfordítás"
 
 #: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr ""
+"Az app megköveteli, hogy a készülék támogassa az asm.js kódok előfordítását."
 
 #: mkt/constants/features.py:328
 msgid "512MB RAM Device"
@@ -1818,6 +1848,7 @@ msgstr ""
 #: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr ""
+"Az app megköveteli, hogy a készülék legalább 512MB RAM-mal rendelkezzen."
 
 #: mkt/constants/features.py:334
 msgid "1GB RAM Device"
@@ -1829,7 +1860,7 @@ msgstr ""
 
 #: mkt/constants/features.py:340
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
@@ -1877,7 +1908,7 @@ msgstr ""
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "A fizetés sikertelen."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
@@ -2300,7 +2331,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Ingyenes (alkalmazáson belüli fizetésekkel)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
@@ -2321,6 +2352,8 @@ msgstr ""
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
+"Ingyenes alkalmazás esetén az alkalmazáson belüli fizetéseket engedélyezni "
+"kell"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -2368,11 +2401,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
-msgstr ""
+msgstr "Város/önkormányzat"
 
 #: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Város/Tartomány/Régió"
 
 #: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
@@ -2388,36 +2421,36 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
-msgstr ""
+msgstr "ÁFA szám"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Bankszámlaszám"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT kód"
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
-msgstr ""
+msgstr "Bank neve"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
-msgstr ""
+msgstr "Bank címe"
 
 #: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Bank címe 2"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Bank városa/önkormányzata"
 
 #: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Bank állama/tartománya/régiója"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
@@ -2429,23 +2462,23 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Számlanév"
 
 #: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
-msgstr ""
+msgstr "Fizetési számla"
 
 #: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "A fizetési számla nem távolítható el az appból."
 
 #: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Nincs engedélye a fizetési számlák módosításához."
 
 #: mkt/developers/forms_payments.py:619
 msgid "Account name"
-msgstr ""
+msgstr "Számlanév"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
@@ -2459,11 +2492,11 @@ msgstr "E-mail"
 
 #: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Ehhez az apphoz nincs beállítva fizetési számla"
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
-msgstr ""
+msgstr "Fejlesztők"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:65
 msgid "My Submissions"
@@ -2484,7 +2517,7 @@ msgstr "{0} verzió"
 
 #: mkt/developers/providers.py:284
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Referencia megvalósítás"
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -2570,11 +2603,11 @@ msgstr ""
 
 #: mkt/developers/views.py:162
 msgid "App deleted."
-msgstr ""
+msgstr "App törölve."
 
 #: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "Hibás jelszó. Az app nem került törlésre."
 
 #: mkt/developers/views.py:211
 msgid "App successfully resubmitted."
@@ -2582,7 +2615,7 @@ msgstr ""
 
 #: mkt/developers/views.py:244
 msgid "New version successfully added."
-msgstr ""
+msgstr "Új verzió sikeresen hozzáadva."
 
 #: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
 msgid "Changes successfully saved."
@@ -2626,7 +2659,7 @@ msgstr "Hiba történt az előnézet feltöltésekor."
 
 #: mkt/developers/views.py:1005
 msgid "Terms of service accepted."
-msgstr ""
+msgstr "Szolgáltatási feltételek elfogadva."
 
 #: mkt/developers/views.py:1017
 msgid "Users with the admin role cannot use the API."
@@ -2634,11 +2667,11 @@ msgstr ""
 
 #: mkt/developers/views.py:1026
 msgid "No such API key."
-msgstr ""
+msgstr "Nincs ilyen API kulcs."
 
 #: mkt/developers/views.py:1032
 msgid "New API key generated."
-msgstr ""
+msgstr "Új API kulcs létrehozva."
 
 #: mkt/developers/views.py:1050
 msgid "Created blocklisted version."
@@ -2650,7 +2683,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
-msgstr ""
+msgstr "Hiba történt a fizetési kiszolgálóhoz való kapcsolódás közben."
 
 #: mkt/developers/views_payments.py:175 mkt/files/forms.py:28
 msgid "All"
@@ -2658,7 +2691,7 @@ msgstr "Összes"
 
 #: mkt/developers/views_payments.py:176
 msgid "Credit card"
-msgstr ""
+msgstr "Hitelkártya"
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
@@ -2678,7 +2711,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:366
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Az app nincs beállítva alkalmazáson belüli fizetésre."
 
 #: mkt/developers/views_payments.py:369
 msgid "No payment account for this app."
@@ -2739,7 +2772,7 @@ msgstr "Törlés"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "Jelenleg nem rendelkezik API kulccsal."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
@@ -2808,7 +2841,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "A(z) %(app_name)s szeretne hozzáférni a Marketplace fiókjához."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -3901,7 +3934,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
 #: mkt/developers/templates/developers/payments/premium.html:184
 msgid "In-App Payments"
-msgstr ""
+msgstr "Alkalmazáson belüli fizetés"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:99 mkt/developers/templates/developers/includes/addons_edit_nav.html:33
 msgid "Messages"
@@ -4116,15 +4149,18 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Alkalmazáson belüli fizetés tesztelése"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "Alkalmazáson belüli fizetés kulcsok"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"A Firefox Marketplace engedélyezi az alkalmazáson belüli fizetéseket. Az <a "
+"href=\"{guide}\">alkalmazáson belüli fizetés útmutató</a> magyarázatot nyújt "
+"az alkalmazás alábbi paraméterekkel történő beállítására a fizetéshez."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4150,6 +4186,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
 msgstr ""
+"Tudjon meg többet az <b>alkalmazáson belüli fizetésekről</b> az MDN oldalon."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
@@ -4163,7 +4200,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Alkalmazáson belüli termékek"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
@@ -4172,26 +4209,35 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Az alkalmazásbeli termékek lehetővé teszik a fizetések fogadását az appban, "
+"illetve úgy egyszerűsítki le a folyamatot, hogy engedélyezi termékek "
+"létrehozását és kezelését a Firefox Marketplace Fejlesztőközponton belül."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Alkalmazásbeli termékek beállítása"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:40
 msgid "In-App Keys"
-msgstr ""
+msgstr "Alkalmazásbeli kulcsok"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:47
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Az alkalmazásbeli fizetés kulcsok lehetővé teszik fizetés befogadását az "
+"alkalmazáson belül, tetszőleges áron. A termékek meghatározása és kezelése "
+"az Ön felelőssége."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
 msgstr ""
+"Megjegyzés: amennyiben az asztali Firefox felhasználói részére kíván "
+"alkalmazásbeli termékeket biztosítani, akkor kérjük használjon "
+"alkalmazásbeli termékeket."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Alkalmazásbeli kulcsok beállítása"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -4200,6 +4246,10 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
+"Az alkalmazásbeli termékek csak azokhoz a hosztolt vagy csomagolt "
+"alkalmazásokhoz támogatják, melyekhez definiálva van az <a href=\"%"
+"(origin)s\">origin</a> a manifesten belül. Az Ön alkalmazása nem határoz meg "
+"forrást."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -4239,7 +4289,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:88 mkt/developers/templates/developers/payments/premium.html:90 mkt/submit/templates/submit/manifest.html:38
 msgid "Paid / In-app"
-msgstr ""
+msgstr "Fizetős / Alkalmazásbeli"
 
 #: mkt/developers/templates/developers/payments/premium.html:99
 msgid "Change to Paid"
@@ -4276,11 +4326,11 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
-msgstr ""
+msgstr "Ár"
 
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr ""
+msgstr "Az alkalmazása használja a Mozilla alkalmazásbeli fizetési platformját?"
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "A server error occurred. Please try again later."
@@ -4385,11 +4435,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Fizetési számla törlésének megerősítése"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Fizetési számla törlése"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -4401,7 +4451,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr ""
+msgstr "Nem állított be fizetési számlát."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -4535,7 +4585,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox OS szimulátor"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
@@ -6576,11 +6626,11 @@ msgstr ""
 
 #: mkt/search/forms.py:36
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Prémium alkalmazásbelivel"
 
 #: mkt/search/forms.py:37
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Egyéb rendszer alkalmazásbelivel"
 
 #: mkt/search/forms.py:44
 msgid "Android"
@@ -6980,11 +7030,11 @@ msgstr "Eszkaláció törölve erről: {addon}."
 
 #: mkt/site/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} tiltva."
 
 #: mkt/site/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "Alkalmazás tiltva."
 
 #: mkt/site/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
