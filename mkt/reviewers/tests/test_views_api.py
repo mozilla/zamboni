@@ -18,7 +18,8 @@ from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  QUEUE_TARAKO, ReviewerScore)
+                                  EscalationQueue, QUEUE_TARAKO,
+                                  RereviewQueue, ReviewerScore)
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase
@@ -932,3 +933,85 @@ class TestReviewerScoreAPI(RestOAuth):
         res = self.client.delete(self.url_detail)
         eq_(res.status_code, 204)
         eq_(ReviewerScore.objects.count(), 0)
+
+
+class TestReviewerActions(RestOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestReviewerActions, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.comment = "test comment"
+        self.user = UserProfile.objects.get(pk=2519)
+        self.grant_permission(self.user, 'Apps:Review')
+
+    def postit(self, view):
+        url = reverse('app-' + view, kwargs={'pk': '337141'})
+        return self.client.post(url, json.dumps(
+            {'comments': self.comment}))
+
+    def check_note(self):
+        note = self.app.threads.get().notes.get()
+        eq_(note.body, self.comment)
+
+    def test_approve(self):
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('approve')
+        eq_(res.status_code, 200)
+        eq_(res.json['score'], 60)
+        eq_(self.app.reload().status, mkt.STATUS_PUBLIC)
+        self.check_note()
+
+    def test_reject(self):
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('reject')
+        eq_(res.status_code, 200)
+        eq_(self.app.reload().status, mkt.STATUS_REJECTED)
+        self.check_note()
+
+    def test_request_info(self):
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('info')
+        eq_(res.status_code, 200)
+        ok_(self.app.latest_version.reload().has_info_request)
+        self.check_note()
+
+    def test_escalate(self):
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('escalate')
+        eq_(res.status_code, 200)
+        ok_(EscalationQueue.objects.filter(addon=self.app).exists())
+        self.check_note()
+
+    def test_clear_escalation(self):
+        self.app.status = mkt.STATUS_PENDING
+        EscalationQueue.objects.create(addon=self.app)
+        url = reverse('app-escalate', kwargs={'pk': '337141'})
+        res = self.client.delete(url, {'comments': self.comment})
+        eq_(res.status_code, 200)
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists())
+        self.check_note()
+
+    def test_disable(self):
+        self.grant_permission(self.user, 'Apps:Edit')
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('disable')
+        eq_(res.status_code, 200)
+        eq_(self.app.reload().status, mkt.STATUS_DISABLED)
+        self.check_note()
+
+    def test_rereview(self):
+        self.app.status = mkt.STATUS_PENDING
+        RereviewQueue.objects.create(addon=self.app)
+        url = reverse('app-rereview', kwargs={'pk': '337141'})
+        res = self.client.delete(url, {'comments': self.comment})
+        eq_(res.status_code, 200)
+        ok_(not RereviewQueue.objects.filter(addon=self.app).exists())
+        self.check_note()
+
+    def test_comment(self):
+        self.app.status = mkt.STATUS_PENDING
+        res = self.postit('comment')
+        eq_(res.status_code, 200)
+        ok_(self.app.latest_version.reload().has_editor_comment, True)
+        self.check_note()

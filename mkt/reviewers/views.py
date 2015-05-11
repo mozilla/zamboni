@@ -28,8 +28,9 @@ from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
 from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
-from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
-from rest_framework.permissions import BasePermission
+from rest_framework.generics import (CreateAPIView, ListAPIView, UpdateAPIView,
+                                     DestroyAPIView)
+from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
@@ -40,7 +41,7 @@ from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AnyOf, GroupPermission
+from mkt.api.authorization import AnyOf, ByHttpMethod, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
@@ -61,7 +62,7 @@ from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, log_reviewer_action,
-                                 ReviewersQueuesHelper)
+                                 ReviewApp, ReviewersQueuesHelper)
 from mkt.search.filters import (ReviewerSearchFormFilter, SearchQueryFilter,
                                 SortingFilter)
 from mkt.search.views import SearchView
@@ -1003,6 +1004,81 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         form.save()
 
         return Response({'approved': bool(form.cleaned_data['approve'])})
+
+
+class _AppAction(SlugOrIdMixin):
+    permission_classes = [GroupPermission('Apps', 'Review')]
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    model = Webapp
+    slug_field = 'app_slug'
+
+    def _do_post(self, request, pk):
+        app = self.get_object()
+        handler = ReviewApp(request, app, app.latest_version, ())
+        handler.set_data(request.DATA)
+        return getattr(handler, "process_" + self.verb)()
+
+    def post(self, request, pk, *a, **kw):
+        self._do_post(request, pk)
+        return Response()
+
+
+class AppApprove(_AppAction, CreateAPIView):
+    verb = "approve"
+
+    def post(self, request, pk, *a, **kw):
+        result = self._do_post(request, pk)
+        if result is None:
+            return Response(status=409)
+        return Response({'score': result})
+
+
+class AppReject(_AppAction, CreateAPIView):
+    verb = "reject"
+
+    def post(self, request, pk, *a, **kw):
+        result = self._do_post(request, pk)
+        return Response({'score': result})
+
+
+class AppInfo(_AppAction, CreateAPIView):
+    verb = "request_information"
+
+
+class AppEscalate(_AppAction, CreateAPIView, DestroyAPIView):
+    permission_classes = [ByHttpMethod({
+        'options': AllowAny,
+        'post': GroupPermission('Apps', 'Review'),
+        'delete': GroupPermission('Apps', 'Edit'),
+    })]
+    verb = "escalate"
+
+    def delete(self, request, pk, *a, **kw):
+        app = self.get_object()
+        handler = ReviewApp(request, app, app.latest_version, ())
+        handler.set_data(request.QUERY_PARAMS)
+        handler.process_clear_escalation()
+        return Response()
+
+
+class AppDisable(_AppAction, CreateAPIView):
+    permission_classes = [GroupPermission('Apps', 'Edit')]
+    verb = "disable"
+
+
+class AppRereview(_AppAction, DestroyAPIView):
+
+    def delete(self, request, pk, *a, **kw):
+        app = self.get_object()
+        handler = ReviewApp(request, app, app.latest_version, ())
+        handler.set_data(request.QUERY_PARAMS)
+        result = handler.process_clear_rereview()
+        return Response({'score': result})
+
+
+class AppReviewerComment(_AppAction, CreateAPIView):
+    verb = "comment"
 
 
 class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
