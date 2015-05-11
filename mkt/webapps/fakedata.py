@@ -369,7 +369,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
-                           uses_flash=False, **spec):
+                           uses_flash=False, special_regions=(), **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
@@ -419,11 +419,15 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     for optField in ('support_url', 'homepage', 'is_offline'):
         if optField in spec:
             setattr(app, optField, spec[optField])
-
     # Status has to be updated at the end because STATUS_DELETED apps can't
     # be saved.
     app.status = status
     app.save()
+    for (region, region_status) in special_regions.iteritems():
+        app.geodata.update(**{'region_%s_nominated' % (region,):
+                              datetime.datetime.now(),
+                              'region_%s_status' % (region,):
+                              STATUS_CHOICES_API_LOOKUP[region_status]})
     addon_review_aggregates(app.pk)
     if rereview:
         RereviewQueue.objects.get_or_create(addon=app)
