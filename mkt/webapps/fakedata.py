@@ -258,6 +258,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
         rtime = (now + datetime.timedelta(i))
         v = version_factory(version="1." + str(i), addon=app,
                             reviewed=rtime if st >= 4 else None,
+                            nominated=rtime if st > 0 else None,
                             created=rtime,
                             file_kw={'status': st},
                             _developer_name=developer_name)
