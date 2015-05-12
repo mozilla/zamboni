@@ -50,33 +50,24 @@ class SearchQueryFilter(BaseFilterBackend):
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for k, v in rules:
-            for field in ('name', 'short_title', 'app_slug', 'author'):
-                should.append(k(**{field: v}))
-        # We also add those rules with a bigger boost for website titles and
-        # urls, to compensate for them having less fields than apps.
-        for k, v in rules:
-            for field in ('title', 'url'):
-                v = v.copy()
-                v['boost'] *= 4
+            for field in ('name', 'short_name', 'title', 'app_slug', 'author',
+                          'url'):
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's
         # do a term query on `name.raw` for an exact match against the item
         # name and give it a good boost since this is likely what the user
         # wants.
-        # For websites, we do the same on title.raw. It won't work perfectly
-        # on some websites that use a description of the site in the title but
-        # it's better than nothing.
         should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
-        should.append(query.Term(**{'title.raw': {'value': q, 'boost': 10}}))
 
         if analyzer:
             should.append(
                 query.Match(**{'name_l10n_%s' % analyzer: {'query': q,
                                                            'boost': 2.5}}))
             should.append(
-                query.Match(**{'title_l10n_%s' % analyzer: {'query': q,
-                                                            'boost': 2.5}}))
+                query.Match(**{'short_name_l10n_%s' % analyzer: {
+                    'query': q,
+                    'boost': 2.5}}))
 
         # Add searches on the description field.
         should.append(

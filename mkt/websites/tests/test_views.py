@@ -53,10 +53,12 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         data = response.json['objects'][0]
         eq_(data['description'], {'en-US': self.website.description})
         eq_(data['title'], {'en-US': self.website.title})
-        eq_(data['short_title'], {'en-US': self.website.short_title})
-        eq_(data['url'], {'en-US': self.website.url})
+        eq_(data['name'], {'en-US': self.website.name})
+        eq_(data['short_name'], {'en-US': self.website.short_name})
+        eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
+        # FIXME: regions, keywords, icon
 
     def test_list(self):
         self.website2 = website_factory(url='http://www.lol.com/')
@@ -157,11 +159,12 @@ class TestWebsiteView(TestCase):
         data = response.json['objects'][0]
         eq_(data['description'], {'en-US': self.website.description})
         eq_(data['title'], {'en-US': self.website.title})
-        eq_(data['short_title'], {'en-US': self.website.short_title})
-        eq_(data['url'], {'en-US': self.website.url})
+        eq_(data['name'], {'en-US': self.website.name})
+        eq_(data['short_name'], {'en-US': self.website.short_name})
+        eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
-        # FIXME: regions, keywords
+        # FIXME: regions, keywords, icon
 
     def test_list(self):
         self.website2 = website_factory()
