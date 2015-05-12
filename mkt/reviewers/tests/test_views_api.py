@@ -984,6 +984,7 @@ class TestReviewerActions(RestOAuth):
         self.check_note()
 
     def test_clear_escalation(self):
+        self.grant_permission(self.user, 'Apps:Edit')
         self.app.status = mkt.STATUS_PENDING
         EscalationQueue.objects.create(addon=self.app)
         url = reverse('app-escalate', kwargs={'pk': '337141'})
