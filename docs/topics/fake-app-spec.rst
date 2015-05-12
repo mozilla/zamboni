@@ -71,3 +71,7 @@ privacy_policy
 
 rereview
     Boolean indicating whether to place app in rereview queue.
+
+special_regions
+    An object with region names as keys, and status strings as values. Adds app to special
+    region with given status.
