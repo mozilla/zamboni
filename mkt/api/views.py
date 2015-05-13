@@ -33,7 +33,8 @@ from mkt.api.serializers import (CarrierSerializer, CategorySerializer,
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.constants.categories import CATEGORY_CHOICES, CATEGORY_CHOICES_DICT
 from mkt.constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
-from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
+from mkt.constants.regions import (REGIONS_CHOICES_SLUG,
+                                   REGIONS_LIST_SORTED_BY_NAME)
 from mkt.prices.models import Price, PriceCurrency
 from mkt.regions.utils import parse_region
 from mkt.webapps.models import Webapp
@@ -140,10 +141,10 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = RegionSerializer
-    paginate_by = len(REGIONS_DICT)
+    paginate_by = len(REGIONS_CHOICES_SLUG)
 
     def get_queryset(self, *args, **kwargs):
-        return sorted(REGIONS_DICT.values(), key=operator.attrgetter('name'))
+        return REGIONS_LIST_SORTED_BY_NAME()
 
     def get_object(self, *args, **kwargs):
         region = parse_region(self.kwargs['pk'])

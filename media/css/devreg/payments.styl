@@ -652,11 +652,7 @@ body > label {
 }
 
 .region {
-    background-repeat: no-repeat;
-    background-size: 14px auto;
-    min-height: 14px;
     overflow: visible;
-    padding: 1px 0 0 20px;
     text-overflow: normal;
 }
 
@@ -686,12 +682,6 @@ label .region {
 .payment-account-note {
     padding-top: 3px;
 }
-
-// India (in) is in quotes since `in` is a reserved word.
-for region in ar bd br bw cf ci cl cm cn co cr cz de ec eg es fr gn gr gt gw hu 'in' it jo jp ke lt me mg ml mm mu mx ne ni pa pe ph pl rs ru sn sv tn tw tz uk us uy ve vu za restofworld
-    .region-{region} {
-        background-image: url(unquote('../../img/mkt/icons/regions/' + region + '.png'));
-    }
 
 .no-payment-regions:not(.hidden) {
     border-bottom: 1px dotted $faint-gray;
