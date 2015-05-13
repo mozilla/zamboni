@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:29-0700\n"
+"POT-Creation-Date: 2015-05-13 08:36-0700\n"
 "PO-Revision-Date: 2015-05-06 02:54+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: none\n"
@@ -2578,7 +2578,7 @@ msgstr "앱이 다시 제출됐습니다."
 msgid "New version successfully added."
 msgstr "새 버전을 추가했습니다."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:661
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
 
@@ -5941,48 +5941,48 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "New Apps (Under 5 days)"
 msgstr "신규 앱 (5일간)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Passable (5 to 10 days)"
 msgstr "통과 가능 (5~10일 이내)"
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:139
 msgid "Overdue (Over 10 days)"
 msgstr "기한 초과 (10일 초과)"
 
-#: mkt/reviewers/views.py:249
+#: mkt/reviewers/views.py:250
 msgid "Self-reviews are not allowed."
 msgstr "자신의 부가 기능은 심사할 수 없습니다."
 
-#: mkt/reviewers/views.py:255
+#: mkt/reviewers/views.py:256
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "상급 심사자만 차단 목록에 있는 앱을 심사할 수 있습니다."
 
-#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "{0}에 등록"
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:332 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "{0}에 삭제됨"
 
-#: mkt/reviewers/views.py:311
+#: mkt/reviewers/views.py:312
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:333
+#: mkt/reviewers/views.py:334
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:360
+#: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views.py:362
+#: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
 msgstr "심사 작업을 진행 합니다."
 

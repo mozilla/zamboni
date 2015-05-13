@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:29-0700\n"
+"POT-Creation-Date: 2015-05-13 08:36-0700\n"
 "PO-Revision-Date: 2014-10-17 12:14+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -2588,7 +2588,7 @@ msgstr "App enviada correctamente."
 msgid "New version successfully added."
 msgstr "Nueva versión agregada correctamente."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:661
 msgid "Changes successfully saved."
 msgstr "Cambios guardados correctamente."
 
@@ -5990,48 +5990,48 @@ msgstr "Prohibir app"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Prohíbe la app de Marketplace. Es parecido a Rechazar, pero el autor (o autores) no podrá volver a enviarla. Esta acción solo debe ser utilizada en casos extremos."
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "New Apps (Under 5 days)"
 msgstr "Apps nuevas (menos de 5 días)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Passable (5 to 10 days)"
 msgstr "Recientes (5 a 10 días)"
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:139
 msgid "Overdue (Over 10 days)"
 msgstr "Atrasadas (Más de 10 días)"
 
-#: mkt/reviewers/views.py:249
+#: mkt/reviewers/views.py:250
 msgid "Self-reviews are not allowed."
 msgstr "Las autorrevisiones no están permitidas."
 
-#: mkt/reviewers/views.py:255
+#: mkt/reviewers/views.py:256
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Solo los revisores experimentados pueden revisar las apps de la lista bloqueadas."
 
-#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Agregados {0}"
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:332 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "Eliminados {0}"
 
-#: mkt/reviewers/views.py:311
+#: mkt/reviewers/views.py:312
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispositivo(s) cambiado(s) por el revisor: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:333
+#: mkt/reviewers/views.py:334
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Requisitos modificados por el revisor: {0}"
 
-#: mkt/reviewers/views.py:360
+#: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" se han procesado correctamente (+ {1} puntos, {2} total)."
 
-#: mkt/reviewers/views.py:362
+#: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
 msgstr "Revisión procesada correctamente."
 

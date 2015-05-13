@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:29-0700\n"
+"POT-Creation-Date: 2015-05-13 08:36-0700\n"
 "PO-Revision-Date: 2014-11-23 19:53+0000\n"
 "Last-Translator: Ayan <ayay700@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -2576,7 +2576,7 @@ msgstr "অ্যাপ সফলভাবে পুনঃজমা হয়েছ
 msgid "New version successfully added."
 msgstr "নতুন সংস্করণ সফলভাবে যোগ হয়েছে।"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:661
 msgid "Changes successfully saved."
 msgstr "পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।"
 
@@ -5928,48 +5928,48 @@ msgstr "অ্যাপ টি নিষিদ্ধ করা হোক"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "মার্কেটপ্লেস থেকে অ্যাপ টি কে নিষিদ্ধ করা হোক। এই ধরনের সকল অ্যাপ বাতিল করা হবে এবং এর লেখক(গণ) তা পুনরায় দাখিল করতে পারবেন না। শুধুমাত্র চরম ক্ষেত্রেই ব্যবহার করা যাবে।"
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "New Apps (Under 5 days)"
 msgstr "নতুন অ্যাপ (৫ দিনের মধ্যে)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Passable (5 to 10 days)"
 msgstr "পাশযোগ্য (৫ থেকে ১০ দিনের মধ্যে)"
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:139
 msgid "Overdue (Over 10 days)"
 msgstr "পরিশোধসময়াতীত (১০ দিনের বেশি)"
 
-#: mkt/reviewers/views.py:249
+#: mkt/reviewers/views.py:250
 msgid "Self-reviews are not allowed."
 msgstr "নিজ রিভিউ এর অনুমতি দেওয়া হয় না।"
 
-#: mkt/reviewers/views.py:255
+#: mkt/reviewers/views.py:256
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "কেবলমাত্র প্রবীণ রিভিউয়ারগণই ব্লকলিস্টে থাকা অ্যাপ গুলির রিভিউ করতে পারবেন।"
 
-#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "যোগ করা হয়েছে {0}"
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:332 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "বাতিল করা হয়েছে {0}"
 
-#: mkt/reviewers/views.py:311
+#: mkt/reviewers/views.py:312
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "ডিভাইস(গুলো) রিভিউকারী দ্বারা পরিবর্তিত হয়েছে: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:333
+#: mkt/reviewers/views.py:334
 msgid "Requirements changed by reviewer: {0}"
 msgstr "রিভিউকারীর দ্বারা প্রয়োজনীয়তার পরিবর্তন: {0}"
 
-#: mkt/reviewers/views.py:360
+#: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" সফলভাবে প্রক্রিয়াভুক্ত (+{1} পয়েন্ট, {2} সর্বমোট)।"
 
-#: mkt/reviewers/views.py:362
+#: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
 msgstr "রিভিউ সফলভাবে প্রক্রিয়াভুক্ত"
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:29-0700\n"
+"POT-Creation-Date: 2015-05-13 08:36-0700\n"
 "PO-Revision-Date: 2015-05-10 19:56+0000\n"
 "Last-Translator: tamasstekler <tamasstekler@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1475,9 +1475,7 @@ msgstr "Webes tevékenységek"
 
 #: mkt/constants/features.py:37
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
-"Az app használatához a Webes tevékenységek szükségesek (a „MozActivity” "
-"API)."
+msgstr "Az app használatához a Webes tevékenységek szükségesek (a „MozActivity” API)."
 
 #: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
@@ -1485,9 +1483,7 @@ msgstr "Környezetifény-érzékelő"
 
 #: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
-"Az app használatához környezetifény-érzékelő szükséges (az „ondevicelight” "
-"API)."
+msgstr "Az app használatához környezetifény-érzékelő szükséges (az „ondevicelight” API)."
 
 #: mkt/constants/features.py:48
 msgid "Archive"
@@ -1645,15 +1641,11 @@ msgstr ""
 
 #: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr ""
-"Az app megköveteli, hogy a platform támogassa a Web Audio API-t "
-"(„window.AudioContext”)."
+msgstr "Az app megköveteli, hogy a platform támogassa a Web Audio API-t („window.AudioContext”)."
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
-"Az app megköveteli, hogy a platform képes legyen dekódolni és lejátszani a "
-"H.264 videókat."
+msgstr "Az app megköveteli, hogy a platform képes legyen dekódolni és lejátszani a H.264 videókat."
 
 #: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
@@ -1689,9 +1681,7 @@ msgstr "Kamera"
 
 #: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
-"Az app megköveteli, hogy a platform hozzáférést adjon a készülék kamerájának "
-"videójához a LocalMediaStream objektumon keresztül."
+msgstr "Az app megköveteli, hogy a platform hozzáférést adjon a készülék kamerájának videójához a LocalMediaStream objektumon keresztül."
 
 #: mkt/constants/features.py:222
 msgid "Microphone"
@@ -1699,9 +1689,7 @@ msgstr "Mikrofon"
 
 #: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
-"Az app megköveteli, hogy a platform hozzáférést adjon a készülék mikrofonján "
-"keresztüli hangbemenethez."
+msgstr "Az app megköveteli, hogy a platform hozzáférést adjon a készülék mikrofonján keresztüli hangbemenethez."
 
 #: mkt/constants/features.py:228
 msgid "Screen Capture"
@@ -1709,9 +1697,7 @@ msgstr "Képernyőrögzítés"
 
 #: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
-"Az app képernyőrögzítés céljából megköveteli, hogy a platform hozzáférést "
-"adjon a készülék képernyőjéhez."
+msgstr "Az app képernyőrögzítés céljából megköveteli, hogy a platform hozzáférést adjon a készülék képernyőjéhez."
 
 #: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
@@ -1727,9 +1713,7 @@ msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:243
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
-"Az app megköveteli, hogy a platform ne csak hang vagy videó esetében "
-"engedélyezze az egyenrangú adatcserét."
+msgstr "Az app megköveteli, hogy a platform ne csak hang vagy videó esetében engedélyezze az egyenrangú adatcserét."
 
 #: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
@@ -1737,9 +1721,7 @@ msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
-"Az app megköveteli, hogy a platform engedélyezze a partnerek közt "
-"folyamadatok küldését."
+msgstr "Az app megköveteli, hogy a platform engedélyezze a partnerek közt folyamadatok küldését."
 
 #: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
@@ -1747,8 +1729,7 @@ msgstr ""
 
 #: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
-"Az app megköveteli, hogy a platform hozzáférést adjon a szövegfelolvasóhoz."
+msgstr "Az app megköveteli, hogy a platform hozzáférést adjon a szövegfelolvasóhoz."
 
 #: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
@@ -1756,8 +1737,7 @@ msgstr ""
 
 #: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
-"Az app megköveteli, hogy a platform hozzáférést adjon a beszédfelismerőhöz."
+msgstr "Az app megköveteli, hogy a platform hozzáférést adjon a beszédfelismerőhöz."
 
 #: mkt/constants/features.py:268
 msgid "Pointer Lock"
@@ -1773,9 +1753,7 @@ msgstr "Értesítések"
 
 #: mkt/constants/features.py:276
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr ""
-"Az app megköveteli, hogy a platform engedélyezze a telefonos és asztali "
-"értesítések megjelenítését."
+msgstr "Az app megköveteli, hogy a platform engedélyezze a telefonos és asztali értesítések megjelenítését."
 
 #: mkt/constants/features.py:282
 msgid "Alarms"
@@ -1783,9 +1761,7 @@ msgstr "Riasztások"
 
 #: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr ""
-"Az app megköveteli, hogy a platform hozzáférést adjon a készülék riasztási "
-"beállításaihoz, hogy adott időben értesítéseket és eseményeket ütemezhessen."
+msgstr "Az app megköveteli, hogy a platform hozzáférést adjon a készülék riasztási beállításaihoz, hogy adott időben értesítéseket és eseményeket ütemezhessen."
 
 #: mkt/constants/features.py:290
 msgid "SystemXHR"
@@ -1793,9 +1769,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:291
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr ""
-"Az app megköveteli, hogy a platform engedélyt adjon aszinkron HTTP-kérések "
-"kiküldésére az azonos származás házirend figyelembevétele nélkül."
+msgstr "Az app megköveteli, hogy a platform engedélyt adjon aszinkron HTTP-kérések kiküldésére az azonos származás házirend figyelembevétele nélkül."
 
 #: mkt/constants/features.py:297
 msgid "TCP Sockets"
@@ -1803,9 +1777,7 @@ msgstr "TCP-szoftvercsatorna"
 
 #: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
-"Az app megköveteli, hogy a platform engedélyezze a nyers TCP-"
-"szoftvercsatornák nyitását."
+msgstr "Az app megköveteli, hogy a platform engedélyezze a nyers TCP-szoftvercsatornák nyitását."
 
 #: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
@@ -1829,8 +1801,7 @@ msgstr ""
 
 #: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
-"Az app megköveteli a hozzáférést a „navigator.getMobileIdAssertion” API-hoz."
+msgstr "Az app megköveteli a hozzáférést a „navigator.getMobileIdAssertion” API-hoz."
 
 #: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
@@ -1838,8 +1809,7 @@ msgstr "Asm.js előfordítás"
 
 #: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
-"Az app megköveteli, hogy a készülék támogassa az asm.js kódok előfordítását."
+msgstr "Az app megköveteli, hogy a készülék támogassa az asm.js kódok előfordítását."
 
 #: mkt/constants/features.py:328
 msgid "512MB RAM Device"
@@ -1847,8 +1817,7 @@ msgstr ""
 
 #: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
-"Az app megköveteli, hogy a készülék legalább 512MB RAM-mal rendelkezzen."
+msgstr "Az app megköveteli, hogy a készülék legalább 512MB RAM-mal rendelkezzen."
 
 #: mkt/constants/features.py:334
 msgid "1GB RAM Device"
@@ -2351,9 +2320,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
-"Ingyenes alkalmazás esetén az alkalmazáson belüli fizetéseket engedélyezni "
-"kell"
+msgstr "Ingyenes alkalmazás esetén az alkalmazáson belüli fizetéseket engedélyezni kell"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -2617,7 +2584,7 @@ msgstr ""
 msgid "New version successfully added."
 msgstr "Új verzió sikeresen hozzáadva."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:660
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:661
 msgid "Changes successfully saved."
 msgstr "A változások sikeresen elmentve."
 
@@ -4158,9 +4125,8 @@ msgstr "Alkalmazáson belüli fizetés kulcsok"
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
-"A Firefox Marketplace engedélyezi az alkalmazáson belüli fizetéseket. Az <a "
-"href=\"{guide}\">alkalmazáson belüli fizetés útmutató</a> magyarázatot nyújt "
-"az alkalmazás alábbi paraméterekkel történő beállítására a fizetéshez."
+"A Firefox Marketplace engedélyezi az alkalmazáson belüli fizetéseket. Az <a href=\"{guide}\">alkalmazáson belüli fizetés útmutató</a> magyarázatot nyújt az alkalmazás alábbi paraméterekkel történő "
+"beállítására a fizetéshez."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4185,8 +4151,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
-"Tudjon meg többet az <b>alkalmazáson belüli fizetésekről</b> az MDN oldalon."
+msgstr "Tudjon meg többet az <b>alkalmazáson belüli fizetésekről</b> az MDN oldalon."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
@@ -4209,9 +4174,8 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
-"Az alkalmazásbeli termékek lehetővé teszik a fizetések fogadását az appban, "
-"illetve úgy egyszerűsítki le a folyamatot, hogy engedélyezi termékek "
-"létrehozását és kezelését a Firefox Marketplace Fejlesztőközponton belül."
+"Az alkalmazásbeli termékek lehetővé teszik a fizetések fogadását az appban, illetve úgy egyszerűsítki le a folyamatot, hogy engedélyezi termékek létrehozását és kezelését a Firefox Marketplace "
+"Fejlesztőközponton belül."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
@@ -4223,17 +4187,11 @@ msgstr "Alkalmazásbeli kulcsok"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:47
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
-"Az alkalmazásbeli fizetés kulcsok lehetővé teszik fizetés befogadását az "
-"alkalmazáson belül, tetszőleges áron. A termékek meghatározása és kezelése "
-"az Ön felelőssége."
+msgstr "Az alkalmazásbeli fizetés kulcsok lehetővé teszik fizetés befogadását az alkalmazáson belül, tetszőleges áron. A termékek meghatározása és kezelése az Ön felelőssége."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
-"Megjegyzés: amennyiben az asztali Firefox felhasználói részére kíván "
-"alkalmazásbeli termékeket biztosítani, akkor kérjük használjon "
-"alkalmazásbeli termékeket."
+msgstr "Megjegyzés: amennyiben az asztali Firefox felhasználói részére kíván alkalmazásbeli termékeket biztosítani, akkor kérjük használjon alkalmazásbeli termékeket."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -4246,10 +4204,8 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
 msgstr ""
-"Az alkalmazásbeli termékek csak azokhoz a hosztolt vagy csomagolt "
-"alkalmazásokhoz támogatják, melyekhez definiálva van az <a href=\"%"
-"(origin)s\">origin</a> a manifesten belül. Az Ön alkalmazása nem határoz meg "
-"forrást."
+"Az alkalmazásbeli termékek csak azokhoz a hosztolt vagy csomagolt alkalmazásokhoz támogatják, melyekhez definiálva van az <a href=\"%(origin)s\">origin</a> a manifesten belül. Az Ön alkalmazása nem "
+"határoz meg forrást."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -5971,48 +5927,48 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:137
 msgid "New Apps (Under 5 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:139
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:249
+#: mkt/reviewers/views.py:250
 msgid "Self-reviews are not allowed."
 msgstr "Saját átvizsgálás nem engedélyezett."
 
-#: mkt/reviewers/views.py:255
+#: mkt/reviewers/views.py:256
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:305 mkt/reviewers/views.py:330 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Hozzáadva: {0}"
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:331 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:332 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:311
+#: mkt/reviewers/views.py:312
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:333
+#: mkt/reviewers/views.py:334
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:360
+#: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views.py:362
+#: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
 msgstr "Az átvizsgálás sikeresen megtörtént."
 

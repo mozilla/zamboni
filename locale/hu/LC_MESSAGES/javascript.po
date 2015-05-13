@@ -326,13 +326,8 @@ msgstr "Észlelt: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi "
-"appokból. A fizetési fiókkal nem rendelkező alkalmazások nem "
-"értékesíthetőek."
-msgstr[1] ""
-"A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi "
-"appból. A fizetési fiókkal nem rendelkező alkalmazások nem értékesíthetőek."
+msgstr[0] "A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi appokból. A fizetési fiókkal nem rendelkező alkalmazások nem értékesíthetőek."
+msgstr[1] "A(z) „{0}” fizetési fiók törlése eltávolítja a fizetési fiókot az alábbi appból. A fizetési fiókkal nem rendelkező alkalmazások nem értékesíthetőek."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -560,9 +555,7 @@ msgstr "Hiba az app buktatásakor: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Elnézést, hiba történt az értékelési előzmények lekérésekor. Próbáljon meg "
-"újra bejelentkezni.<p>"
+msgstr "Elnézést, hiba történt az értékelési előzmények lekérésekor. Próbáljon meg újra bejelentkezni.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
