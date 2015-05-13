@@ -57,8 +57,8 @@ By default zamboni automatically processes jobs without needing Celery.
 
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
-If you're setting up Rabbit and want to use ``celeryd`` you will need to
-alter you local settings file to set this up.
+If you're setting up RabbitMQ and want to use ``celery worker`` you will need to
+alter your local settings file to set this up.
 
 See :doc:`./celery` for more instructions.
 

@@ -9,7 +9,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 wsgi_loaded = datetime.now()
 
 # Tell celery that we're using Django.
-os.environ['CELERY_LOADER'] = 'django'
+import djcelery  # noqa
+djcelery.setup_loader()
 
 # Add the zamboni dir to the python path so we can import manage.
 wsgidir = os.path.dirname(__file__)

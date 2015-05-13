@@ -80,7 +80,7 @@ def pre_index(new_index, old_index, alias, indexer, settings):
     _print('Flagging the database to start the reindexation.', alias)
     Reindexing.flag_reindexing(new_index=new_index, old_index=old_index,
                                alias=alias)
-    time.sleep(5)  # Give celeryd some time to flag the DB.
+    time.sleep(5)  # Give the celery worker some time to flag the DB.
 
     _print('Creating the mapping for index {index}.'.format(index=new_index),
            alias)

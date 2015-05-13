@@ -8,10 +8,12 @@ from urlparse import urlparse
 from django.utils.functional import lazy
 
 import dj_database_url
-from mpconstants import mozilla_languages
+import djcelery
 from heka.config import client_from_dict_config
+from mpconstants import mozilla_languages
 
 from mkt import asset_bundles
+
 
 #################################################
 # Environment.
@@ -407,9 +409,10 @@ CELERY_IGNORE_RESULT = True
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
                   'lib.es.management.commands.reindex')
 CELERY_RESULT_BACKEND = 'amqp'
+CELERY_ACCEPT_CONTENT = ['json']
 
-# We have separate celeryds for processing devhub & images as fast as possible
-# Some notes:
+# We have separate celery workers for processing devhub & images as fast as
+# possible.  Some notes:
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
 CELERY_ROUTES = {
@@ -1197,3 +1200,7 @@ DEV_PAY_PROVIDERS = {
 # JWT algorithms that we support for decoding.
 # Any JWT we receive with another algorithm will be rejected.
 SUPPORTED_JWT_ALGORITHMS = ['HS256', 'RS512']
+
+
+# Django-celery setup.
+djcelery.setup_loader()

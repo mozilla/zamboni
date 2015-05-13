@@ -40,9 +40,6 @@ def new(self, arg):
 
 Markup.__mod__ = new
 
-import djcelery  # noqa
-djcelery.setup_loader()
-
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
 from lib.utils import update_csp, validate_modules, validate_settings  # noqa
