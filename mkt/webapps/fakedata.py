@@ -370,7 +370,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
-                           uses_flash=False, special_regions=(), **spec):
+                           uses_flash=False, special_regions={}, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
