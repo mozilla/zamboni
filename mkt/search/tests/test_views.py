@@ -1358,3 +1358,19 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[1]['id'], self.webapp.pk)
         eq_(objs[1]['name'], self.webapp.name)
         eq_(objs[1]['slug'], self.webapp.app_slug)
+
+    def test_site_only(self):
+        res = self.anon.get(self.url, data={'q': 'something',
+                                            'doc_type': 'website'})
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(objs[0]['doc_type'], 'website')
+        eq_(objs[0]['id'], self.website.pk)
+
+    def test_app_only(self):
+        res = self.anon.get(self.url, data={'q': 'something',
+                                            'doc_type': 'webapp'})
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(objs[0]['doc_type'], 'webapp')
+        eq_(objs[0]['id'], self.webapp.pk)

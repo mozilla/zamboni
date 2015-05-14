@@ -85,6 +85,28 @@ Search
     :status 200: successfully completed.
 
 
+Multi-Search
+============
+
+.. _multi-search-api:
+
+This API allows search for mixed content by various properties. Content types
+include webapps and websites.
+
+.. http:get:: /api/v2/multi-search/
+
+    **Request**
+
+    :param optional doc_type: The type of content to search for. Defaults to
+        all types of content. Options include `webapp` or `website`.
+    :type doc_type: string
+
+    **Response**
+
+    Similar to Search API but results list can contain multiple kinds of
+    content.
+
+
 .. _feature-profile-label:
 
 Feature Profile Signatures

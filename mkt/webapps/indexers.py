@@ -431,7 +431,7 @@ class WebappIndexer(BaseIndexer):
             except Exception as e:
                 log.error('Failed to index webapp {0}: {1}'
                           .format(obj.id, repr(e)),
-                          # trying to chase down a cache-machine problem
+                          # Trying to chase down a cache-machine problem.
                           exc_info="marketplace:" in str(e))
 
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())
