@@ -61,7 +61,36 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
 
 
 class MultiSearchView(SearchView):
+    """
+    Search View capable of returning multiple content types in the same
+    results list (e.g., apps + sites). Can take a `doc_type` param to filter by
+    `app`s only or `site`s only.
+    """
     serializer_class = DynamicSearchSerializer
+
+    def _get_doc_types(self):
+        # Check if we are filtering by a doc_type (e.g., apps, sites).
+        # Default to all content types.
+        doc_type = self.request.GET.get('doc_type', 'all')
+        app_doc = WebappIndexer.get_mapping_type_name()
+        site_doc = WebsiteIndexer.get_mapping_type_name()
+        if doc_type == 'webapp':
+            return [app_doc]
+        elif doc_type == 'website':
+            return [site_doc]
+        return [app_doc, site_doc]
+
+    def _get_indices(self):
+        # Check if we are filtering by a doc_type (e.g., apps, sites).
+        # Default to all content types.
+        doc_type = self.request.GET.get('doc_type', 'all')
+        app_index = WebappIndexer.get_index()
+        site_index = WebsiteIndexer.get_index()
+        if doc_type == 'webapp':
+            return [app_index]
+        elif doc_type == 'website':
+            return [site_index]
+        return [app_index, site_index]
 
     def get_serializer_context(self):
         context = super(MultiSearchView, self).get_serializer_context()
@@ -74,11 +103,9 @@ class MultiSearchView(SearchView):
     def get_queryset(self):
         excluded_fields = list(set(WebappIndexer.hidden_fields +
                                    WebsiteIndexer.hidden_fields))
-        return (Search(
-            using=BaseIndexer.get_es(),
-            index=[WebappIndexer.get_index(), WebsiteIndexer.get_index()],
-            doc_type=[WebappIndexer.get_mapping_type_name(),
-                      WebsiteIndexer.get_mapping_type_name()])
+        return (Search(using=BaseIndexer.get_es(),
+                       index=self._get_indices(),
+                       doc_type=self._get_doc_types())
                 .extra(_source={'exclude': excluded_fields}))
 
 
