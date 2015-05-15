@@ -104,6 +104,10 @@ api_patterns = patterns(
         '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
         views.review_translate,
         name='reviewers.review_translate'),
+    url('^reviewers/(?P<app_slug>[\w-]+)/abuse/(?P<report_pk>\d+)/translate'
+        '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+        views.abuse_report_translate,
+        name='reviewers.abuse_report_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
         views.GenerateToken.as_view(), name='generate-reviewer-token')
 )
