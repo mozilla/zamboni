@@ -7,6 +7,7 @@ from mkt.site.mail import send_mail
 from mkt.site.models import ModelBase
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
+from mkt.websites.models import Website
 
 
 log = logging.getLogger('z.abuse')
@@ -17,24 +18,36 @@ class AbuseReport(ModelBase):
     reporter = models.ForeignKey(UserProfile, null=True,
                                  blank=True, related_name='abuse_reported')
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
-    # An abuse report can be for an addon or a user. Only one of these should
-    # be null.
+    # An abuse report can be for an addon, a user, or a website. Only one of
+    # these should be null.
     addon = models.ForeignKey(Webapp, null=True, related_name='abuse_reports')
     user = models.ForeignKey(UserProfile, null=True,
                              related_name='abuse_reports')
+    website = models.ForeignKey(Website, null=True,
+                                related_name='abuse_reports')
     message = models.TextField()
+    read = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'abuse_reports'
 
+    @property
+    def object(self):
+        return self.addon or self.user or self.website
+
     def send(self):
-        obj = self.addon or self.user
+        obj = self.object
         if self.reporter:
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
             user_name = 'An anonymous coward'
 
-        type_ = ('App' if self.addon else 'User')
+        if self.addon:
+            type_ = 'App'
+        elif self.user:
+            type_ = 'User'
+        else:
+            type_ = 'Website'
         subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
         msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
             user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
@@ -74,6 +87,8 @@ def send_abuse_report(request, obj, message):
         report.addon = obj
     elif isinstance(obj, UserProfile):
         report.user = obj
+    elif isinstance(obj, Website):
+        report.website = obj
     report.save()
     report.send()
 

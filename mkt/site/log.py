@@ -683,6 +683,15 @@ class FAIL_ADDITIONAL_REVIEW(_LOG):
     review_queue = True
 
 
+class APP_ABUSE_MARKREAD(_LOG):
+    """Requires report.id and add-on objects."""
+    id = 131
+    format = _(u'Abuse report {report} for {addon} deleted.')
+    editor_format = _(u'{user} marked read {report} for {addon}.')
+    keep = True
+    editor_event = True
+
+
 # Adding a log type? If it's a review_queue log type, you have to add a
 # note_type to constants/comm.py.
 

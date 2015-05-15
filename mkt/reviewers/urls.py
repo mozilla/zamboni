@@ -27,6 +27,8 @@ url_patterns = patterns(
         name='reviewers.apps.queue_escalated'),
     url(r'^apps/queue/moderated/$', views.queue_moderated,
         name='reviewers.apps.queue_moderated'),
+    url(r'^apps/queue/abuse/$', views.queue_abuse,
+        name='reviewers.apps.queue_abuse'),
     url(r'^apps/review/%s$' % mkt.APP_SLUG, views.app_review,
         name='reviewers.apps.review'),
     url(r'^app/%s/$' % mkt.APP_SLUG, views.app_review),

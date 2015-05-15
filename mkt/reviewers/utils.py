@@ -12,6 +12,7 @@ from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
 import mkt
+from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -689,6 +690,16 @@ class ReviewersQueuesHelper(object):
                 .exclude(addon__status=mkt.STATUS_DELETED)
                 .filter(editorreview=True)
                 .order_by('reviewflag__created'))
+
+    def get_abuse_queue(self):
+        report_ids = (AbuseReport.objects.no_cache()
+                      .exclude(addon__isnull=True)
+                      .exclude(addon__status=mkt.STATUS_DELETED)
+                      .filter(read=False)
+                      .select_related('addon')
+                      .values_list('addon', flat=True))
+
+        return Webapp.objects.filter(id__in=report_ids).order_by('created')
 
     def sort(self, qs, date_sort='created'):
         """Given a queue queryset, return the sorted version."""
