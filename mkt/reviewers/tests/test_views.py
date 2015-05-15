@@ -3287,6 +3287,111 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
         eq_(doc('.tabnav li a')[0].text, u'Moderated Reviews (0)')
 
 
+class TestAbuseQueue(mkt.site.tests.TestCase, AccessMixin):
+
+    def setUp(self):
+        super(TestAbuseQueue, self).setUp()
+
+        self.app1 = app_factory()
+        self.app2 = app_factory()
+        # Add some extra apps, which shouldn't show up.
+        app_factory()
+        app_factory()
+
+        self.abuseviewer_user = user_factory(email='abuser')
+        self.grant_permission(self.abuseviewer_user, 'Apps:ReadAbuse')
+        user_factory(email='regular')
+
+        user1 = user_factory()
+        user2 = user_factory()
+
+        self.url = reverse('reviewers.apps.queue_abuse')
+
+        AbuseReport.objects.create(reporter=user1, ip_address='123.45.67.89',
+                                   addon=self.app1, message='bad')
+        AbuseReport.objects.create(reporter=user2, ip_address='123.01.67.89',
+                                   addon=self.app1, message='terrible')
+        AbuseReport.objects.create(reporter=user1, ip_address='123.01.02.89',
+                                   addon=self.app2, message='the worst')
+        self.login(self.abuseviewer_user)
+
+    def _post(self, action, form_index=0):
+        ctx = self.client.get(self.url).context
+        data_formset = formset(initial(ctx['abuse_formset'].forms[0]))
+        data_formset['form-%s-action' % (form_index)] = action
+
+        res = self.client.post(self.url, data_formset)
+        self.assert3xx(res, self.url)
+
+    def _get_logs(self, action):
+        return ActivityLog.objects.filter(action=action.id)
+
+    def test_anonymous_flagger(self):
+        AbuseReport.objects.all()[0].update(reporter=None)
+        res = self.client.get(self.url)
+        txt = pq(res.content)('.abuse-reports-reports li div span').text()
+        teststring = u'Submitted by an anonymous user on'
+        ok_(txt.startswith(teststring),
+            '"%s" doesn\'t start with "%s"' % (txt, teststring))
+
+    def test_setup(self):
+        eq_(AbuseReport.objects.filter(read=False).count(), 3)
+        eq_(AbuseReport.objects.filter(addon=self.app1).count(), 2)
+
+        res = self.client.get(self.url)
+
+        # Check there are 2 apps listed.
+        eq_(len(res.context['page'].object_list), 2)
+
+    def test_skip(self):
+        # Skip the first app's reports, which still leaves 2 apps with reports.
+        self._post(False)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 2)
+
+    def test_first_read(self):
+        # Mark read the first apps's reports, which leaves one.
+        self._post(True)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 1)
+        # There are two abuse reports for app1, so two log entries.
+        eq_(self._get_logs(mkt.LOG.APP_ABUSE_MARKREAD).count(), 2)
+        # Check the remaining abuse report remains unread.
+        eq_(AbuseReport.objects.filter(read=False).count(), 1)
+
+    def test_no_reviews(self):
+        AbuseReport.objects.all().delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('#abuse-reports .no-results').length, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a')[0].text, u'Abuse Reports (2)')
+
+    def test_queue_count_reviewer_and_moderator(self):
+        self.grant_permission(self.abuseviewer_user, 'Apps:Review')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[3].text, u'Reviewing (0)')
+        eq_(links[4].text, u'Abuse Reports (2)')
+
+    def test_deleted_app(self):
+        "Test that a deleted app doesn't break the queue."
+        self.app1.delete()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a')[0].text, u'Abuse Reports (1)')
+
+
 class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
 
     def setUp(self):
