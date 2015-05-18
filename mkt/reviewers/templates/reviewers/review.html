@@ -14,7 +14,7 @@
 
 <header class="c">
   <h1 class="addon"{{ product.name|locale_html }}>
-    <img src="{{ product.icon_url }}" class="icon">
+    <img src="{{ product.get_icon_url(32) }}" class="icon">
     <span>{{ product.name }}</span>
   </h1>
   <p class="author">{{ _('by') }} {{ product.listed_authors|join(', ', attribute='email') }}</p>

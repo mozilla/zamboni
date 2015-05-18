@@ -15,10 +15,6 @@ LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 
-ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
-PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
-
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 

@@ -139,7 +139,7 @@ def _hash_file(fd):
 @post_request_task
 @set_modified_on
 def resize_icon(src, dst, sizes, locally=False, **kw):
-    """Resizes addon icons."""
+    """Resizes addon/websites icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
         for s in sizes:
@@ -160,7 +160,7 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
         log.info('Icon resizing completed for: %s' % dst)
         return {'icon_hash': icon_hash}
     except Exception, e:
-        log.error("Error saving addon icon: %s; %s" % (e, dst))
+        log.error("Error resizing icon: %s; %s" % (e, dst))
 
 
 @task
@@ -283,23 +283,27 @@ def get_content_and_check_size(response, max_size):
     return content
 
 
-def save_icon(webapp, content):
+def save_icon(obj, icon_content):
+    """
+    Saves the icon for `obj` to its final destination. `obj` can be an app or a
+    website.
+    """
     tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
     with storage.open(tmp_dst, 'wb') as fd:
-        fd.write(content)
+        fd.write(icon_content)
 
-    dirname = webapp.get_icon_dir()
-    destination = os.path.join(dirname, '%s' % webapp.id)
+    dirname = obj.get_icon_dir()
+    destination = os.path.join(dirname, '%s' % obj.pk)
     remove_icons(destination)
-    resize_icon(tmp_dst, destination, mkt.APP_ICON_SIZES,
-                set_modified_on=[webapp])
+    resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
+                set_modified_on=[obj])
 
     # Need to set the icon type so .get_icon_url() works
     # normally submit step 4 does it through AppFormMedia,
     # but we want to beat them to the punch.
     # resize_icon outputs pngs, so we know it's 'image/png'
-    webapp.icon_type = 'image/png'
-    webapp.save()
+    obj.icon_type = 'image/png'
+    obj.save()
 
 
 @post_request_task

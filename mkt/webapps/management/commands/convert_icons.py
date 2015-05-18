@@ -13,7 +13,7 @@ from mkt.webapps.models import Webapp
 
 
 extensions = ['.png', '.jpg', '.gif']
-sizes = mkt.APP_ICON_SIZES
+sizes = mkt.CONTENT_ICON_SIZES
 size_suffixes = ['-%s' % s for s in sizes]
 
 

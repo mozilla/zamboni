@@ -2,10 +2,10 @@ import json
 
 from django.core.urlresolvers import reverse
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.constants.base import STATUS_PENDING
+from mkt.constants.base import CONTENT_ICON_SIZES, STATUS_PENDING
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.site.fixtures import fixture
@@ -26,6 +26,8 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
             # array of ids, not slugs.
             'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
             'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            'icon_type': 'image/png',
+            'icon_hash': 'fakehash',
         })
         self.category = 'books'
         self.url = reverse('api-v2:website-search-api')
@@ -55,7 +57,9 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
-        # FIXME: regions, keywords, icon
+        eq_(data['icons']['128'], self.website.get_icon_url(128))
+        ok_(data['icons']['128'].endswith('?modified=fakehash'))
+        eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
 
     def test_list(self):
         self.website2 = website_factory(url='http://www.lol.com/')
@@ -136,6 +140,8 @@ class TestWebsiteView(RestOAuth, TestCase):
             # array of ids, not slugs.
             'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
             'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            'icon_type': 'image/png',
+            'icon_hash': 'fakehash',
         })
         self.url = reverse('api-v2:website-detail',
                            kwargs={'pk': self.website.pk})
@@ -157,7 +163,9 @@ class TestWebsiteView(RestOAuth, TestCase):
         eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
-        # FIXME: regions, keywords, icon
+        eq_(data['icons']['128'], self.website.get_icon_url(128))
+        ok_(data['icons']['128'].endswith('?modified=fakehash'))
+        eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
 
     def test_disabled(self):
         self.website.update(is_disabled=True)

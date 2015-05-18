@@ -5,7 +5,6 @@ import itertools
 import json
 import operator
 import os
-import re
 import time
 import urlparse
 import uuid
@@ -49,7 +48,7 @@ from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import copy_stored_file
-from mkt.site.utils import (cached_property, slugify, smart_path,
+from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
                             sorted_groupby, urlparams)
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
@@ -804,17 +803,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return AddonUser.objects.filter(addon=self, user=user,
                                         role__in=roles).exists()
 
-    @property
-    def thumbnail_url(self):
-        """
-        Returns the addon's thumbnail url or a default.
-        """
-        try:
-            preview = self.all_previews[0]
-            return preview.thumbnail_url
-        except IndexError:
-            return settings.MEDIA_URL + '/img/icons/no-preview.png'
-
     def get_purchase_type(self, user):
         if user and isinstance(user, UserProfile):
             try:
@@ -961,10 +949,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         except IndexError:
             pass
 
-    @property
-    def icon_url(self):
-        return self.get_icon_url(32)
-
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
@@ -983,34 +967,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return os.path.join(settings.ADDON_ICONS_PATH, str(self.id / 1000))
 
     def get_icon_url(self, size):
-        """
-        Returns either the icon URL or a default icon.
-        """
-        icon_type_split = []
-        if self.icon_type:
-            icon_type_split = self.icon_type.split('/')
-
-        # Get the closest allowed size without going over.
-        if (size not in mkt.APP_ICON_SIZES and size >= mkt.APP_ICON_SIZES[0]):
-            size = [s for s in mkt.APP_ICON_SIZES if s < size][-1]
-        elif size < mkt.APP_ICON_SIZES[0]:
-            size = mkt.APP_ICON_SIZES[0]
-
-        # Figure out what to return for an image URL.
-        if not self.icon_type:
-            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
-                                     'default', size)
-        elif icon_type_split[0] == 'icon':
-            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
-                                     icon_type_split[1], size)
-        else:
-            # [1] is the whole ID, [2] is the directory.
-            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            # If we don't have the icon_hash set to a dummy string ("never"),
-            # when the icon is eventually changed, icon_hash will be updated.
-            suffix = getattr(self, 'icon_hash', None) or 'never'
-            return static_url('ADDON_ICON_URL') % (
-                split_id.group(2) or 0, self.id, size, suffix)
+        return get_icon_url(static_url('ADDON_ICON_URL'), self, size)
 
     @staticmethod
     def transformer(apps):
