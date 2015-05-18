@@ -37,6 +37,7 @@ from waffle.decorators import waffle_switch
 
 import mkt
 from lib.crypto.packaged import SigningError
+from mkt.abuse.forms import AbuseViewFormSet
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -162,6 +163,7 @@ def queue_counts(request):
         'updates': queues_helper.get_updates_queue().count(),
         'escalated': queues_helper.get_escalated_queue().count(),
         'moderated': queues_helper.get_moderated_queue().count(),
+        'abuse': queues_helper.get_abuse_queue().count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
         'additional_tarako': (
             AdditionalReview.objects
@@ -610,6 +612,26 @@ def queue_moderated(request):
                           tab='moderated', page=page, flags=flags))
 
 
+@permission_required([('Apps', 'ReadAbuse')])
+def queue_abuse(request):
+    """Queue for reviewing abuse reports."""
+    queues_helper = ReviewersQueuesHelper(request)
+    apps = queues_helper.get_abuse_queue()
+
+    page = paginate(request, apps, per_page=20)
+    abuse_formset = AbuseViewFormSet(request.POST or None,
+                                     queryset=page.object_list,
+                                     request=request)
+
+    if abuse_formset.is_valid():
+        abuse_formset.save()
+        return redirect(reverse('reviewers.apps.queue_abuse'))
+
+    return render(request, 'reviewers/queue.html',
+                  context(request, abuse_formset=abuse_formset,
+                          tab='abuse', page=page))
+
+
 def _get_search_form(request):
     form = ApiReviewersSearchForm()
     fields = [f.name for f in form.visible_fields() + form.hidden_fields()]
@@ -956,6 +978,26 @@ def review_translate(request, app_slug, review_pk, language):
     else:
         return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
             lang=language, text=review.body))
+
+
+@waffle_switch('reviews-translate')
+@permission_required([('Apps', 'ReadAbuse')])
+def abuse_report_translate(request, app_slug, report_pk, language):
+    report = get_object_or_404(AbuseReport, addon__app_slug=app_slug,
+                               pk=report_pk)
+
+    if '-' in language:
+        language = language.split('-')[0]
+
+    if request.is_ajax():
+        if report.message is not None:
+            trans, r = _retrieve_translation(report.message, language)
+
+            return http.HttpResponse(json.dumps({'body': trans}),
+                                     status=r.status_code)
+    else:
+        return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
+            lang=language, text=report.message))
 
 
 class ReviewingView(ListAPIView):

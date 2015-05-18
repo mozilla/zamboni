@@ -4,7 +4,7 @@ from nose.tools import eq_, ok_
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.search.utils import get_boost
-from mkt.site.tests import TestCase
+from mkt.site.tests import ESTestCase, TestCase
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -59,16 +59,16 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['default_locale'], self.obj.default_locale)
         eq_(doc['created'], self.obj.created)
         eq_(doc['modified'], self.obj.modified)
-        eq_(doc['url'], [unicode(self.obj.url)])
-        eq_(doc['url_translations'], [{
-            'lang': u'en-US', 'string': unicode(self.obj.url)}])
-        eq_(doc['short_title'], [unicode(self.obj.short_title)])
-        eq_(doc['short_title_translations'], [{
-            'lang': u'en-US', 'string': unicode(self.obj.short_title)}])
+        eq_(doc['url'], unicode(self.obj.url))
+        eq_(doc['name'], [unicode(self.obj.name)])
+        eq_(doc['name_translations'], [{
+            'lang': u'en-US', 'string': unicode(self.obj.name)}])
+        eq_(doc['short_name'], [unicode(self.obj.short_name)])
+        eq_(doc['short_name_translations'], [{
+            'lang': u'en-US', 'string': unicode(self.obj.short_name)}])
         eq_(doc['title'], [unicode(self.obj.title)])
         eq_(doc['title_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.title)}])
-        eq_(doc['title_l10n_english'], [unicode(self.obj.title)])
         eq_(doc['device'], self.obj.devices)
         eq_(doc['region_exclusions'], self.obj.region_exclusions)
 
@@ -79,14 +79,26 @@ class TestWebsiteIndexer(TestCase):
             'fr': u'Titrè du sïte',
         }
         self.obj.title = title
+        name = {
+            'en-US': u'Namé Site',
+            'fr': u'Nom du sïte',
+        }
+        self.obj.name = name
         self.obj.save()
         doc = self._get_doc()
+
         eq_(sorted(doc['title']), [title['en-US'], title['fr']])
         eq_(sorted(doc['title_translations']),
             [{'lang': 'en-US', 'string': title['en-US']},
              {'lang': 'fr', 'string': title['fr']}])
-        eq_(doc['title_l10n_english'], [title['en-US']])
-        eq_(doc['title_l10n_french'], [title['fr']])
+
+        eq_(sorted(doc['name']), [name['en-US'], name['fr']])
+        eq_(sorted(doc['name_translations']),
+            [{'lang': 'en-US', 'string': name['en-US']},
+             {'lang': 'fr', 'string': name['fr']}])
+        eq_(doc['name_l10n_french'], [name['fr']])
+        eq_(doc['name_l10n_english'], [name['en-US']])
+        eq_(doc['name_sort'], name['en-US'].lower())
 
     def test_installs_to_popularity(self):
         self.obj = website_factory()
@@ -123,3 +135,35 @@ class TestWebsiteIndexer(TestCase):
         # An adolescent region uses the global trending value.
         eq_(doc['trending_2'], 10.0)
         eq_(doc['trending_7'], 50.0)
+
+
+class TestExcludedFields(ESTestCase):
+    def setUp(self):
+        super(TestExcludedFields, self).setUp()
+        self.website = website_factory()
+        self.website.trending.create(region=2, value=50.0)
+        self.website.popularity.create(region=2, value=142.0)
+        self.reindex(Website)
+
+    def test_excluded_fields(self):
+        ok_(WebsiteIndexer.hidden_fields)
+
+        data = WebsiteIndexer.search().execute().hits
+        eq_(len(data), 1)
+        obj = data[0]
+        ok_('trending_2' not in obj)
+        ok_('popularity_2' not in obj)
+
+        ok_('description_translations' in obj)
+        ok_('description' not in obj)
+        ok_('description_l10n_english' not in obj)
+
+        ok_('name_translations' in obj)
+        ok_('name' not in obj)
+        ok_('name_l10n_english' not in obj)
+        ok_('name_sort' not in obj)
+        ok_('name.raw' not in obj)
+
+        ok_('short_name_translations' in obj)
+        ok_('short_name' not in obj)
+        ok_('short_name_l10n_english' not in obj)

@@ -552,6 +552,106 @@ div.editor-stats-table > div.editor-stats-dark {
     }
 }
 
+/* Abuse report viewer */
+
+#abuse-reports {
+    .abuse-reports-items {
+        border-top: 1px dotted $medium-gray;
+        line-height: 20px;
+        margin: 0 0 1em 1em;
+        padding: 1em;
+
+        ul {
+            margin-bottom: 0;
+        }
+    }
+    &:first-child {
+        border-top: 0;
+    }
+    .abuse-reports-reports {
+        background-color: lighten($green, 85%);
+        border-radius: 10px;
+        clear: both;
+        margin: 0;
+        padding: 0 10px;
+
+        li {
+            border-top: 1px dotted $light-gray;
+            padding: 10px 0;
+
+            &:first-child {
+                border-top: 0;
+            }
+        }
+    }
+    h3 {
+        margin: 0;
+    }
+    p {
+        margin-bottom: 1.0em;
+    }
+    .abuse-report-actions {
+        border-left: 1px dashed $medium-gray;
+        float: right;
+        margin: 5px;
+        padding-left: 10px;
+        width: 200px;
+
+        label {
+            font-weight: normal;
+        }
+    }
+    form {
+        margin: 0;
+    }
+    div.reports-process {
+        margin-bottom: 0;
+        padding: 10px;
+        text-align: right;
+    }
+    span.light {
+        color: $note-gray;
+    }
+    span.submitted-by {
+        font-style: italic;
+    }
+}
+
+.simple-toggle {
+    background-repeat: repeat-x;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    font: 400 14px/48px"Feura Sans", FeuraSansWeb, "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    height: 48px;
+    min-width: 100px;
+    padding: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    width: 2em;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+.simple-toggle {
+    background-color: #FAFBFC;
+    background-image: linear-gradient(#E7E7E7, #FAFBFC);
+    border: 1px solid #B7B7B7;
+    color: #A7A7A7;
+}
+.simple-toggle span:after {
+    content: attr(data-off)
+}
+input:checked + .simple-toggle {
+    background-color: #1793E5;
+    background-image: linear-gradient(#4CB1FF, #1793E5);
+    border: 1px solid #1793E5;
+    color: #FFF;
+}
+input:checked + .simple-toggle span:after {
+    content: attr(data-on)
+}
 /* data grid search form */
 #log-filter form {
     margin: 0;

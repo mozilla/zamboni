@@ -1271,6 +1271,8 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.webapp.update(categories=[self.shared_category, 'business'])
         self.webapp.popularity.create(region=0, value=11.0)
         self.website = website_factory(
+            name='something something webcube',
+            short_name='something',
             title='title something something webcube',
             description={'en-US': 'desc something something webcube',
                          'fr': 'desc something something webcube fr'},
@@ -1348,8 +1350,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(res.json['meta']['total_count'], 2)
         eq_(len(objs), 2)
-        # Website should be first because it's more relevant (exact match) than
-        # the Webapp.
+        # Website should be first because it's more relevant than the Webapp.
         eq_(objs[0]['doc_type'], 'website')
         eq_(objs[0]['id'], self.website.pk)
         eq_(objs[0]['title'], self.website.title)
@@ -1358,3 +1359,19 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[1]['id'], self.webapp.pk)
         eq_(objs[1]['name'], self.webapp.name)
         eq_(objs[1]['slug'], self.webapp.app_slug)
+
+    def test_site_only(self):
+        res = self.anon.get(self.url, data={'q': 'something',
+                                            'doc_type': 'website'})
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(objs[0]['doc_type'], 'website')
+        eq_(objs[0]['id'], self.website.pk)
+
+    def test_app_only(self):
+        res = self.anon.get(self.url, data={'q': 'something',
+                                            'doc_type': 'webapp'})
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(objs[0]['doc_type'], 'webapp')
+        eq_(objs[0]['id'], self.webapp.pk)

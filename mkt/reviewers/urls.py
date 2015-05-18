@@ -27,6 +27,8 @@ url_patterns = patterns(
         name='reviewers.apps.queue_escalated'),
     url(r'^apps/queue/moderated/$', views.queue_moderated,
         name='reviewers.apps.queue_moderated'),
+    url(r'^apps/queue/abuse/$', views.queue_abuse,
+        name='reviewers.apps.queue_abuse'),
     url(r'^apps/review/%s$' % mkt.APP_SLUG, views.app_review,
         name='reviewers.apps.review'),
     url(r'^app/%s/$' % mkt.APP_SLUG, views.app_review),
@@ -102,6 +104,10 @@ api_patterns = patterns(
         '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
         views.review_translate,
         name='reviewers.review_translate'),
+    url('^reviewers/(?P<app_slug>[\w-]+)/abuse/(?P<report_pk>\d+)/translate'
+        '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+        views.abuse_report_translate,
+        name='reviewers.abuse_report_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
         views.GenerateToken.as_view(), name='generate-reviewer-token')
 )

@@ -429,8 +429,10 @@ class WebappIndexer(BaseIndexer):
             try:
                 docs.append(cls.extract_document(obj.id, obj=obj))
             except Exception as e:
-                log.error('Failed to index webapp {0}: {1}'.format(
-                    obj.id, e))
+                log.error('Failed to index webapp {0}: {1}'
+                          .format(obj.id, repr(e)),
+                          # Trying to chase down a cache-machine problem.
+                          exc_info="marketplace:" in str(e))
 
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())
 

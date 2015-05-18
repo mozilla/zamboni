@@ -1,0 +1,66 @@
+<div id="abuse-reports">
+  <form method="post" class="item">
+    {% if queue_counts[tab] != 0 %}
+      <div class="reports-process reviewers-desktop">
+        <button type="submit">{{ _('Process') }}</button>
+      </div>
+    {% endif %}
+    {{ csrf() }}
+    {{ abuse_formset.management_form }}
+    {% for item in abuse_formset.forms %}
+      <div class="abuse-reports-items">
+        <div class="abuse-report-actions reviewers-desktop">
+          {{ item.errors }}
+          {{ item.id }}
+          {{ item.action }}
+          <label class="simple-toggle" for="{{ item.action.id_for_label }}">
+            <span data-off="{{ _('Skip') }}" data-on="{{ _('Mark Read') }}">&nbsp;</span>
+          </label>
+        </div>
+        <h3>
+            <a href="{{ item.instance.get_url_path() }}">{{ item.instance.name }}</a>
+        </h3>
+        {% trans review_url=url('reviewers.apps.review', item.instance.app_slug),
+           abuses_url=url('reviewers.apps.review.abuse', item.instance.app_slug),
+           abuses_count=item.instance.abuse_reports.count()|numberfmt %}
+        [<a href="{{ review_url }}">Review page</a> | <a href="{{ abuses_url }}">All abuse reports ({{ abuses_count }})</a>]
+        {% endtrans %}
+        <ul class="abuse-reports-reports">
+          {% for abuse_report in item.instance.abuse_reports.filter(read=False) %}
+            <li>
+              <div>
+                {% trans user=abuse_report.reporter.email|default('an anonymous user'),
+                   date=abuse_report.created|datetime,
+                   ip_address=abuse_report.ip_address %}
+                <span class="submitted-by">Submitted by {{ user }} on {{ date }} [{{ ip_address }}]</span>
+                {% endtrans %}
+                {% if waffle.switch('reviews-translate') %}
+                - <a class="translate reviewers-desktop" rel="nofollow" target="_blank"
+                 href="{{ url('reviewers.abuse_report_translate', item.instance.app_slug, abuse_report.id, LANG) }}">
+                 {{ _('translate') }}
+                </a>
+                {% endif %}
+                <p class="description">{{ abuse_report.message|nl2br }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="abuse-report-actions reviewers-mobile hidden">
+          {{ item.errors }}
+          {{ item.id }}
+          {{ item.action }}
+          <label class="simple-toggle" for="{{ item.action.id_for_label }}">
+            <span data-off="{{ _('Skip') }}" data-on="{{ _('Mark Read') }}">&nbsp;</span>
+          </label>
+        </div>
+      </div>
+    {% endfor %}
+    {% if queue_counts[tab] == 0 %}
+      <div class="no-results">{{ _('All abuse reports read. Good work!') }}</div>
+    {% else %}
+      <div class="reports-process abuse-reports">
+        <button type="submit">{{ _('Process') }}</button>
+      </div>
+    {% endif %}
+  </form>
+</div>

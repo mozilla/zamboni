@@ -11,9 +11,9 @@ class WebsiteSerializer(serializers.ModelSerializer):
     description = TranslationSerializerField()
     device_types = ListField(serializers.CharField(), source='device_names')
     id = serializers.IntegerField(source='pk')
-    short_title = TranslationSerializerField()
+    short_name = TranslationSerializerField()
+    name = TranslationSerializerField()
     title = TranslationSerializerField()
-    url = TranslationSerializerField()  # FIXME: add extra URL validation.
 
     # FIXME: keywords, regions, icons... try to stay compatible with Webapp API
     # as much as possible.
@@ -21,7 +21,7 @@ class WebsiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Website
         fields = ['categories', 'description', 'device_types', 'id',
-                  'short_title', 'title', 'url']
+                  'mobile_url', 'name', 'short_name', 'title', 'url']
 
 
 class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
@@ -29,8 +29,8 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         """Create a fake instance of Website from ES data."""
         obj = Website(id=data['id'])
 
-        # Set base attributes on the fake instance using the data from ES.
-        self._attach_fields(obj, data, ('default_locale',))
+        # Set basic attributes on the fake instance using the data from ES.
+        self._attach_fields(obj, data, ('default_locale', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.
@@ -40,7 +40,7 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Attach translations for all translated attributes. obj.default_locale
         # should be set first for this to work.
         self._attach_translations(
-            obj, data, ('url', 'description', 'short_title', 'title'))
+            obj, data, ('description', 'name', 'short_name', 'title'))
 
         # Some methods might need the raw data from ES, put it on obj.
         obj.es_data = data
@@ -49,7 +49,6 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
 
 
 class ReviewerESWebsiteSerializer(ESWebsiteSerializer):
-    class Meta:
+    class Meta(ESWebsiteSerializer.Meta):
         model = Website
-        fields = ['categories', 'description', 'device_types', 'id',
-                  'short_title', 'status', 'title', 'url']
+        fields = ESWebsiteSerializer.Meta.fields + ['status']
