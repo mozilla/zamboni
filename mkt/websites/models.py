@@ -17,9 +17,11 @@ from mkt.websites.indexers import WebsiteIndexer
 class Website(ModelBase):
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE)
-    url = TranslatedField()
+    url = models.URLField(max_length=255, blank=True, null=True)
+    mobile_url = models.URLField(max_length=255, blank=True, null=True)
     title = TranslatedField()
-    short_title = TranslatedField()
+    name = TranslatedField()
+    short_name = TranslatedField()
     description = TranslatedField()
     keywords = models.ManyToManyField(Tag)
     region_exclusions = JSONField(default=None)

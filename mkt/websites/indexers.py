@@ -5,21 +5,28 @@ from mkt.translations.models import attach_trans_dict
 
 
 class WebsiteIndexer(BaseIndexer):
-    translated_fields = ('description', 'short_title', 'title', 'url')
-    fields_with_language_analyzers = ('description', 'title')
+    translated_fields = ('description', 'name', 'short_name', 'title')
+    fields_with_language_analyzers = ('description', 'name', 'short_name')
     hidden_fields = (
         '*.raw',
         '*_sort',
         'popularity_*',
         'trending_*',
         'boost',
-        # 'title' and 'description', as well as the locale variants, are only
-        # used for filtering. The fields that are used by the API are
-        # 'title_translations' and 'description_translations'.
-        'title',
+        # 'name', 'short_name' and 'description', as well as their locale
+        # variants ('name_l10n_<language>', etc.) are only used for the query
+        # matches, and are never returned to the client through the API. The
+        # fields that are returned to the API are '*_translations'.
         'description',
-        'title_l10n_',
-        'description_l10n_',
+        'name',
+        'short_name',
+        'description_l10n_*',
+        'name_l10n_*',
+        'short_name_l10n_*',
+        # Title is not analyzed with language-specific analyzers but again, we
+        # need `title_translations` for the API, `title` is only used for
+        # querying.
+        'title',
     )
 
     @classmethod
@@ -55,22 +62,27 @@ class WebsiteIndexer(BaseIndexer):
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
-                    'region_exclusions': {'type': 'short'},
-                    'short_title': {'type': 'string',
-                                    'analyzer': 'default_icu'},
-                    'status': {'type': 'byte'},
-                    'title': {
+                    'name': {
                         'type': 'string',
                         'analyzer': 'default_icu',
                         'position_offset_gap': 100,
-                        # For exact matches. Referenced as `title.raw`.
+                        # For exact matches. Referenced as `name.raw`.
                         'fields': {
                             'raw': cls.string_not_analyzed(
                                 position_offset_gap=100)
                         },
                     },
-                    # Title for sorting.
-                    'title_sort': cls.string_not_analyzed(doc_values=True),
+                    # Name for sorting.
+                    'name_sort': cls.string_not_analyzed(doc_values=True),
+                    'region_exclusions': {'type': 'short'},
+                    'short_name': {'type': 'string',
+                                   'analyzer': 'default_icu'},
+                    'status': {'type': 'byte'},
+                    'title': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'position_offset_gap': 100,
+                    },
                     # FIXME: Add custom analyzer for url, that strips http,
                     # https, maybe also www. and any .tld ?
                     'url': {'type': 'string', 'analyzer': 'simple'},
@@ -104,12 +116,12 @@ class WebsiteIndexer(BaseIndexer):
         attach_trans_dict(cls.get_model(), [obj])
 
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
-                 'is_disabled', 'last_updated', 'modified', 'status')
+                 'is_disabled', 'last_updated', 'modified', 'status', 'url')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['category'] = obj.categories or []
         doc['device'] = obj.devices or []
-        doc['title_sort'] = unicode(obj.title).lower()
+        doc['name_sort'] = unicode(obj.name).lower()
         doc['region_exclusions'] = obj.region_exclusions or []
 
         # Add boost, popularity, trending values.

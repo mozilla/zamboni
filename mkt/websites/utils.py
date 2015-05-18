@@ -20,11 +20,12 @@ def rand_text():
 def website_factory(**kwargs):
     text = rand_text()
     data = {
-        'url': 'http://%s.example.com' % text,
-        'short_title': text[:10],
-        'title': 'Title %s' % text,
-        'description': 'Description for %s' % text,
+        'description': 'Description for %s' % text.capitalize(),
+        'name': text.capitalize(),
+        'short_name': text[:10].capitalize(),
         'status': STATUS_PUBLIC,
+        'title': 'Title for %s' % text.capitalize(),
+        'url': 'http://%s.example.com' % text,
     }
     data.update(kwargs)
     return Website.objects.create(**data)
