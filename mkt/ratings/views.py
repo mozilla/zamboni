@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 
 import commonware.log
@@ -66,17 +67,21 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         Custom filter method allowing us to filter on app slug/pk and user pk
         (or the special user value "mine"). A full FilterSet is overkill here.
         """
-        filters = {}
+        filters = Q()
         app = self.request.GET.get('app')
         user = self.request.GET.get('user')
+        lang = self.request.GET.get('lang')
+        match_lang = self.request.GET.get('match_lang')
         if app:
             self.app = self.get_app(app)
-            filters['addon'] = self.app
+            filters &= Q(addon=self.app)
         if user:
-            filters['user'] = self.get_user(user)
+            filters &= Q(user=self.get_user(user))
+        elif lang and match_lang == '1':
+            filters &= Q(lang=lang)
 
         if filters:
-            queryset = queryset.filter(**filters)
+            queryset = queryset.filter(filters)
         return queryset
 
     def get_user(self, ident):
@@ -168,6 +173,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         extra_info = {
             'average': app.average_rating,
             'slug': app.app_slug,
+            'total_reviews': app.total_reviews,
             'current_version': getattr(app.current_version, 'version', None)
         }
 
