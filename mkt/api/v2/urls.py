@@ -13,7 +13,7 @@ from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import (MultiSearchView, NonPublicSearchView,
                               NoRegionSearchView, RocketbarViewV2)
-from mkt.websites.views import WebsiteSearchView
+from mkt.websites.views import WebsiteSearchView, WebsiteView
 
 
 feed = SimpleRouter()
@@ -41,7 +41,6 @@ subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
 
 langpacks = SimpleRouter()
 langpacks.register(r'', LangPackViewSet, base_name='langpack')
-
 
 comm_thread = SimpleRouter()
 comm_thread.register(r'', ThreadViewSetV2, base_name='comm-thread')
@@ -92,6 +91,8 @@ urlpatterns = patterns(
     url(r'^langpacks', include(langpacks.urls)),
     url(r'^websites/search/', WebsiteSearchView.as_view(),
         name='website-search-api'),
+    url(r'^websites/website/(?P<pk>[^/.]+)/', WebsiteView.as_view(),
+        name='website-detail'),
     url(r'^multi-search/', MultiSearchView.as_view(),
         name='multi-search-api'),
 ) + v1_urls

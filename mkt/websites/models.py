@@ -6,12 +6,17 @@ from django.dispatch import receiver
 from django_extensions.db.fields.json import JSONField
 
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.constants.base import STATUS_CHOICES, STATUS_NULL
-from mkt.site.models import ModelBase
+from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.translations.utils import no_translation
 from mkt.websites.indexers import WebsiteIndexer
+
+
+class WebsiteManager(ManagerBase):
+    def valid(self):
+        return self.filter(status__in=LISTED_STATUSES, is_disabled=False)
 
 
 class Website(ModelBase):
@@ -33,6 +38,8 @@ class Website(ModelBase):
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), default=STATUS_NULL)
     is_disabled = models.BooleanField(default=False)
+
+    objects = WebsiteManager()
 
     class Meta:
         ordering = (('-last_updated'), )
