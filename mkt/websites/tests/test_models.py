@@ -1,9 +1,41 @@
 import mock
 from nose.tools import eq_
 
+from lib.utils import static_url
 from mkt.site.tests import TestCase
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
+
+
+class TestWebsiteModel(TestCase):
+    def test_get_icon_url(self):
+        website = Website(pk=1, icon_type='image/png')
+        expected = (static_url('WEBSITE_ICON_URL')
+                    % ('0', website.pk, 32, 'never'))
+        assert website.get_icon_url(32).endswith(expected), (
+            'Expected %s, got %s' % (expected, website.get_icon_url(32)))
+
+    def test_get_icon_url_big_pk(self):
+        website = Website(pk=9876, icon_type='image/png')
+        expected = (static_url('WEBSITE_ICON_URL')
+                    % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        assert website.get_icon_url(32).endswith(expected), (
+            'Expected %s, got %s' % (expected, website.get_icon_url(32)))
+
+    def test_get_icon_url_bigger_pk(self):
+        website = Website(pk=98765432, icon_type='image/png')
+        expected = (static_url('WEBSITE_ICON_URL')
+                    % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        assert website.get_icon_url(32).endswith(expected), (
+            'Expected %s, got %s' % (expected, website.get_icon_url(32)))
+
+    def test_get_icon_url_hash(self):
+        website = Website(pk=1, icon_type='image/png', icon_hash='abcdef')
+        assert website.get_icon_url(32).endswith('?modified=abcdef')
+
+    def test_get_icon_no_icon(self):
+        website = Website(pk=1)
+        assert website.get_icon_url(32).endswith('/default-32.png')
 
 
 class TestWebsiteESIndexation(TestCase):

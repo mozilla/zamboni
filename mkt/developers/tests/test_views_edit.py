@@ -638,21 +638,6 @@ class TestEditMedia(TestEdit):
         for k in data:
             eq_(unicode(getattr(webapp, k)), data[k])
 
-    def test_edit_preuploadedicon(self):
-        data = dict(icon_type='icon/appearance')
-        data_formset = self.formset_media(prev_blank=self.new_preview_hash(),
-                                          **data)
-
-        r = self.client.post(self.edit_url, data_formset)
-        self.assertNoFormErrors(r)
-        webapp = self.get_webapp()
-
-        assert webapp.get_icon_url(64).endswith('appearance-64.png')
-        assert webapp.get_icon_url(128).endswith('appearance-128.png')
-
-        for k in data:
-            eq_(unicode(getattr(webapp, k)), data[k])
-
     def test_edit_uploadedicon(self):
         img = get_image_path('mozilla-sq.png')
         src_image = open(img, 'rb')

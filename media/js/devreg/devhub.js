@@ -776,8 +776,6 @@ function initUploadIcon() {
             $('#id_unsaved_icon_data').val(file.dataURL);
 
             $('#icons_default input:checked').attr('checked', false);
-            $('input[name="icon_type"][value="'+file.type+'"]')
-                    .attr('checked', true);
         },
 
         upload_start = function(e, file) {

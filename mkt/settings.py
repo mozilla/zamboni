@@ -320,14 +320,13 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 
-ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/hub')
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
+WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 
 #  File path for storing XPI/JAR files (or any files associated with an
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
 CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'mkt/site/certificates/roots.pem')
-COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 
 # Where dumped apps will be written too.
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
@@ -371,8 +370,11 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 SITE_URL = 'http://%s' % DOMAIN
 STATIC_URL = SITE_URL + '/'
 
-ADDON_ICONS_DEFAULT_URL = 'img/hub'
+ICONS_DEFAULT_URL = 'img/hub'
+
+# Directory must match ADDON_ICONS_PATH and WEBSITE_ICONS_PATH, respectively.
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+WEBSITE_ICON_URL = 'img/uploads/website_icons/%s/%s-%s.png?modified=%s'
 
 LOCAL_MIRROR_URL = 'https://marketplace.cdn.mozilla.net/_files'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'

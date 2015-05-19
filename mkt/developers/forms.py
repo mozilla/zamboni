@@ -48,12 +48,10 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.forms import clean_slug, icons
 from mkt.webapps.models import (AddonUser, BlockedSlug, IARCInfo, Preview,
                                 Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
                                update_manifests)
-from mkt.webapps.widgets import IconWidgetRenderer
 
 from . import tasks
 
@@ -509,9 +507,6 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         models = Webapp
         fields = ('name', 'slug')
 
-    def clean_slug(self):
-        return clean_slug(self.cleaned_data['slug'], self.instance)
-
 
 class AppFormBasic(AddonFormBase):
     """Form to edit basic app info."""
@@ -676,9 +671,6 @@ class AppFormDetails(AddonFormBase):
 
 
 class AppFormMedia(AddonFormBase):
-    icon_type = forms.CharField(
-        required=False,
-        widget=forms.RadioSelect(renderer=IconWidgetRenderer, choices=[]))
     icon_upload_hash = forms.CharField(required=False)
     unsaved_icon_data = forms.CharField(required=False,
                                         widget=forms.HiddenInput)
@@ -686,13 +678,6 @@ class AppFormMedia(AddonFormBase):
     class Meta:
         model = Webapp
         fields = ('icon_upload_hash', 'icon_type')
-
-    def __init__(self, *args, **kwargs):
-        super(AppFormMedia, self).__init__(*args, **kwargs)
-
-        # Add icons here so we only read the directory when
-        # AppFormMedia is actually being used.
-        self.fields['icon_type'].widget.choices = icons()
 
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
@@ -704,7 +689,7 @@ class AppFormMedia(AddonFormBase):
 
             remove_icons(destination)
             tasks.resize_icon.delay(upload_path, destination,
-                                    mkt.APP_ICON_SIZES,
+                                    mkt.CONTENT_ICON_SIZES,
                                     set_modified_on=[addon])
 
         return super(AppFormMedia, self).save(commit)

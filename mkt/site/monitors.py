@@ -132,7 +132,7 @@ def path():
           settings.ADDONS_PATH,
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
-          settings.COLLECTIONS_ICON_PATH,
+          settings.WEBSITE_ICONS_PATH,
           settings.PREVIEWS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,)
     r = [os.path.join(settings.ROOT, 'locale')]

@@ -44,9 +44,6 @@ CSS = {
         # Tables.
         'css/devreg/data-grid.styl',
 
-        # Landing page
-        'css/devreg/landing.styl',
-
         # "Manage ..." pages.
         'css/devreg/manage.styl',
         'css/devreg/prose.styl',

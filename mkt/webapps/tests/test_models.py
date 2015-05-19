@@ -79,30 +79,18 @@ class TestWebapp(WebappTestCase):
         return AddonPaymentAccount.objects.create(
             addon=app, payment_account=payment, product_uri=uuid.uuid4())
 
-    def test_icon_url(self):
+    def test_get_icon_url(self):
         app = self.get_app()
         expected = (static_url('ADDON_ICON_URL')
                     % (str(app.id)[0:3], app.id, 32, 'never'))
-        assert app.icon_url.endswith(expected), (
+        assert app.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, app.icon_url))
 
         app.icon_hash = 'abcdef'
-        assert app.icon_url.endswith('?modified=abcdef')
+        assert app.get_icon_url(32).endswith('?modified=abcdef')
 
         app.icon_type = None
-        assert app.icon_url.endswith('hub/default-32.png')
-
-    def test_thumbnail_url_no_preview(self):
-        app = self.get_app()
-        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
-            'No match for %s' % app.thumbnail_url)
-
-    def test_thumbnail_url(self):
-        app = self.get_app()
-        preview = Preview.objects.create(addon=app, filetype='image/png',
-                                         position=0)
-        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
-                                       % (preview.id / 1000, preview.id))
+        assert app.get_icon_url(32).endswith('hub/default-32.png')
 
     def test_has_payment_account(self):
         app = self.get_app()

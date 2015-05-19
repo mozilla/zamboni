@@ -113,7 +113,7 @@ Thread
                 "id": 5,
                 "name": "Test App (kinkajou3969)",
                 "review_url": "/reviewers/apps/review/test-app-kinkajou3969/",
-                "thumbnail_url": "/media/img/icons/no-preview.png",
+                "thumbnail_url": "/tmp/uploads/previews/thumbs/0/37.png?modified=1362762723",
                 "url": "/app/test-app-kinkajou3969/"
             },
             "created": "2013-06-14T11:54:24",

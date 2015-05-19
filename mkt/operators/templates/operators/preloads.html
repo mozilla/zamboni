@@ -23,7 +23,7 @@
       {% for preload in preloads %}
         <tr>
           <td>
-            <a href="{{ preload.addon.get_detail_url() }}"><img src="{{ preload.addon.icon_url }}"></a>
+            <a href="{{ preload.addon.get_detail_url() }}"><img src="{{ preload.addon.get_icon_url(32) }}"></a>
             <h3><a href="{{ preload.addon.get_detail_url() }}">{{ preload.addon.name }}</a></h3>
             <p>{{ preload.addon.description|truncate(length=150) }}</p>
           </td>
