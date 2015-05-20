@@ -7023,7 +7023,7 @@ msgstr "অনেক বেশি সংখ্যক অপব্যবহার
 
 #: mkt/site/log.py:442
 msgid "High Abuse Reports"
-msgstr "{addon} বাড়ানো হয়েছে উচ্চ সংখ্যায় ফেরত আবেদনের জন্য।"
+msgstr ""
 
 #: mkt/site/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
