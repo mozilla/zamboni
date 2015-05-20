@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2014-09-05 18:44+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,15 +175,15 @@ msgstr "ম্যানিফেস্ট রিফ্রেশ করা যা
 msgid "There was an error uploading your file."
 msgstr "আপনার ফাইল আপলোড করার সময় একটু ত্রুটি পাওয়া গেছে।"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "বিস্তারিত জানুন"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "উদাহরণ"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2014-09-06 11:15+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -180,15 +180,15 @@ msgstr "Obnovení manifestu se nezdařilo. Zkuste to znovu později."
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Dozvědět se více"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Příklad"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2015-05-01 15:30+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,15 +175,15 @@ msgstr "Manifest konnte nicht aktualisiert werden. Versuchen Sie es später erne
 msgid "There was an error uploading your file."
 msgstr "Beim Hochladen Ihrer Datei ist ein Fehler aufgetreten."
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Erfahren Sie mehr"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Beispiel"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2012-03-08 05:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -174,15 +174,15 @@ msgstr ""
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Παράδειγμα"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 

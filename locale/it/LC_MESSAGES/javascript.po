@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2015-03-05 16:34+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -176,15 +176,15 @@ msgstr "Impossibile aggiornare il manifesto. Riprova più tardi."
 msgid "There was an error uploading your file."
 msgstr "Si è verificato un errore durante il caricamento del file."
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Esempio"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 

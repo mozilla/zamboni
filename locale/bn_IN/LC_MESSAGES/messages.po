@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 08:36-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2015-05-16 07:49+0000\n"
 "Last-Translator: Ayan <ayay700@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -1127,7 +1127,7 @@ msgstr "মার্কেটপ্লেস থেকে নিষিদ্ধ"
 msgid "Deleted"
 msgstr "মুছে ফেলা হয়েছে"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:176 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:184 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "বাতিল করা হয়েছে"
 
@@ -1527,9 +1527,7 @@ msgstr "কর্মহীন"
 
 #: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
-"এই অ্যাপটির `addIdleObserver` API-কে সাপোর্ট করবার জন্য প্ল্যাটফর্মের "
-"প্রয়োজন।"
+msgstr "এই অ্যাপটির `addIdleObserver` API-কে সাপোর্ট করবার জন্য প্ল্যাটফর্মের প্রয়োজন।"
 
 #: mkt/constants/features.py:94
 msgid "Network Information"
@@ -1825,8 +1823,7 @@ msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
-"অ্যাপ্লিকেশন নিয়ার ফিল্ড কমিউনিকেশন (NFC) API ব্যবহার করার সুযোগ প্রয়োজন."
+msgstr "অ্যাপ্লিকেশন নিয়ার ফিল্ড কমিউনিকেশন (NFC) API ব্যবহার করার সুযোগ প্রয়োজন."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2015,7 +2012,7 @@ msgstr "চুক্তি"
 msgid "Submit"
 msgstr "জমা"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1465
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1422
 msgid "Details"
 msgstr "বিবরণ"
 
@@ -2039,224 +2036,221 @@ msgstr "শেয়ার করা অ্যাকাউন্ট মুছে �
 msgid "Content rating changed to Adult."
 msgstr "কন্টেন্ট রেটিং প্রাপ্তবয়স্কতে পরিবর্তিত হয়েছে।"
 
-#: mkt/developers/forms.py:65
+#: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
 msgstr "আপনি {region} নির্বাচন করতে পারবেন না।"
 
-#: mkt/developers/forms.py:123
+#: mkt/developers/forms.py:121
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "দলের সমস্ত সদস্যকে অতি অবশ্যই ডেভেলপার চুক্তি পড়তে এবং স্বীকার করতে হবে।"
 
-#: mkt/developers/forms.py:154
+#: mkt/developers/forms.py:152
 msgid "Must have at least one owner."
 msgstr "অন্তত একজন মালিক থাকতেই হবে।"
 
-#: mkt/developers/forms.py:157
+#: mkt/developers/forms.py:155
 msgid "At least one team member must be listed."
 msgstr "অন্তত দলের একজন সদস্যকে তালিকাভুক্ত করতেই হবে।"
 
-#: mkt/developers/forms.py:161
+#: mkt/developers/forms.py:159
 msgid "A team member can only be listed once."
 msgstr "একজন দলের সদস্য শুধুমাত্র একবারই তালিকাভুক্ত হতে পারবে।"
 
-#: mkt/developers/forms.py:188
+#: mkt/developers/forms.py:186
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটা এখন পাবলিক। <a href=\"%s\">অ্যাপ সম্পাদনা করুন</a>"
 
-#: mkt/developers/forms.py:192
+#: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটা এখন অপেক্ষারত। <a href=\"%s\">অ্যাপ সম্পাদনা করুন</a>"
 
-#: mkt/developers/forms.py:196
+#: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটা এখন অসমাপ্ত। <a href=\"%s\">অ্যাপ্লিকেশন পুনরায় শুরু করুন</a>"
 
-#: mkt/developers/forms.py:200
+#: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটা এখন বাতিল করা হয়েছে। <a href=\"%s\">অ্যাপ সম্পাদনা করুন</a>"
 
-#: mkt/developers/forms.py:204
+#: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটা এখন মার্কেটপ্লেসে নিষিদ্ধ। <a href=\"%s\">অ্যাপ সম্পাদনা করুন</a>"
 
-#: mkt/developers/forms.py:208
+#: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "উফ! দেখা যাচ্ছে যে আপনি ইতিমধ্যে এই ম্যানিফেস্টটি জমা দিয়ে দিয়েছেন %s-র জন্য, যেটাকে এখন অক্ষম করা হয়েছে। <a href=\"%s\">অ্যাপ সম্পাদনা করুন</a>"
 
-#: mkt/developers/forms.py:223
+#: mkt/developers/forms.py:221
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "একটি অ্যাপ ইতিমধ্যে এই ডোমেইনে আছে; শুধুমাত্র একটি করে অ্যাপ অনুমোদিত প্রত্যেক ডোমেইনে।"
 
-#: mkt/developers/forms.py:339
+#: mkt/developers/forms.py:337
 msgid "Invalid region(s) selected."
 msgstr "অকার্যকর এলাকা(গুলি) নির্বাচিত।"
 
-#: mkt/developers/forms.py:394 mkt/webapps/models.py:1374
+#: mkt/developers/forms.py:392 mkt/webapps/models.py:1331
 msgid "You must upload at least one screenshot or video."
 msgstr "আপনাকে অন্তত একটা স্ক্রিনশট বা ভিডিও আপলোড করতে হবে।"
 
-#: mkt/developers/forms.py:435
+#: mkt/developers/forms.py:433
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "প্যাকেজ অ্যাপ জমা দেওয়ার ক্ষেত্রে খুব বড়। প্যাকেজকে অবশ্যই %s-র থেকে ছোটো হতে হবে।"
 
-#: mkt/developers/forms.py:450
+#: mkt/developers/forms.py:448
 msgid "Error extracting manifest from zip file."
 msgstr "জিপ ফাইল থেকে ম্যানিফেস্ট নিষ্কাশনে ত্রুটি।"
 
-#: mkt/developers/forms.py:522
+#: mkt/developers/forms.py:517
 msgid "Provide a detailed description of your app"
 msgstr "আপনার অ্যাপের একটি বিস্তৃত বিবরণ প্রদান করুন"
 
-#: mkt/developers/forms.py:523
+#: mkt/developers/forms.py:518
 msgid "This description will appear on the details page."
 msgstr "এই বর্ণনাটি বিবরণ পেজে দেখা যাবে।"
 
-#: mkt/developers/forms.py:526 mkt/submit/forms.py:287
+#: mkt/developers/forms.py:521 mkt/submit/forms.py:287
 msgid "Search Keywords:"
 msgstr "খোঁজার মূল শব্দ:"
 
-#: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
+#: mkt/developers/forms.py:523 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
-msgstr ""
-"খোঁজার মূল শব্দটি Firefox Marketplace থেকে ফলাফল ফেরত দিতে সাহায্য করে। "
-"নিশ্চিত থাকুন যে আপনি এমন শব্দ দেবেন যা সঠিকভাবে আপনার ফলাফলকে প্রতিফলিত "
-"করবে।"
+msgstr "খোঁজার মূল শব্দটি Firefox Marketplace থেকে ফলাফল ফেরত দিতে সাহায্য করে। নিশ্চিত থাকুন যে আপনি এমন শব্দ দেবেন যা সঠিকভাবে আপনার ফলাফলকে প্রতিফলিত করবে।"
 
-#: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
+#: mkt/developers/forms.py:578 mkt/submit/forms.py:373
 msgid "This slug is already in use. Please choose another."
 msgstr "এই স্লাগটি ইতিমধ্যে ব্যবহার হয়েছে। অনুগ্রহ করে আরেকটি চেষ্টা করুন।"
 
-#: mkt/developers/forms.py:586 mkt/submit/forms.py:377 mkt/webapps/forms.py:26
+#: mkt/developers/forms.py:581 mkt/submit/forms.py:377
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "স্লাগটি \"%s\" হতে পারে না। অনুগ্রহ করে আরেকটি বাছুন।"
 
-#: mkt/developers/forms.py:614
+#: mkt/developers/forms.py:609
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "ম্যানিফেস্ট URL {before_url} থেকে {after_url}-এ পরিবর্তিত হয়েছে।"
 
-#: mkt/developers/forms.py:651
+#: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
 msgstr "আপনার অ্যাপের গোপনীয়তা নীতি অনুগ্রহ করে উল্লেখ করুন"
 
-#: mkt/developers/forms.py:672
+#: mkt/developers/forms.py:667
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "আপনার ডিফল্ট লোকেল বদলানোর আগে আপনার অতি অবশ্যই ওই লোকেলে নাম ও বর্ণনা থাকতে হবে। আপনি অনুপস্থিত %s।"
 
-#: mkt/developers/forms.py:741 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:726 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "আপনাকে হয় একটা ওয়েবসাইট, একটি ইমেইল, অথবা দুটোই প্রদান করতে হবে।"
 
-#: mkt/developers/forms.py:766
+#: mkt/developers/forms.py:751
 msgid "Your comments"
 msgstr "আপনার মন্তব্যসমূহ"
 
-#: mkt/developers/forms.py:793
+#: mkt/developers/forms.py:778
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>পাবলিশ হয়েছে</b>: মার্কেটপ্লেসের প্রত্যেকের কাছে দর্শনীয় এবং সার্চ রেজাল্ট ও তালিকাতেও অন্তর্ভুক্ত।"
 
-#: mkt/developers/forms.py:797
+#: mkt/developers/forms.py:782
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>তালিকাভুক্ত নয়</b>: দর্শনীয় শুধুমাত্র ওই সমস্ত মানুষের কাছে যাদের কাছে URL আছে এবং সার্চ রেজাল্ট বা তালিকাভুক্ত পেজে প্রদর্শিত হবে না।"
 
-#: mkt/developers/forms.py:813
+#: mkt/developers/forms.py:798
 msgid "App Visibility:"
 msgstr "অ্যাপের দৃষ্টিপাত:"
 
-#: mkt/developers/forms.py:815
+#: mkt/developers/forms.py:800
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>আমার দলের সীমা</b>: শুধুমাত্র দলের সদস্যের কাছে দর্শনীয়।"
 
-#: mkt/developers/forms.py:861
+#: mkt/developers/forms.py:846
 msgid "Choose the regions your app will be listed in:"
 msgstr "এলাকাটি বাছুন যেখানে আপনার অ্যাপ তালিকাভুক্ত হবে:"
 
-#: mkt/developers/forms.py:863 mkt/developers/forms.py:964
+#: mkt/developers/forms.py:848 mkt/developers/forms.py:949
 msgid "You must select at least one region."
 msgstr "আপনাকে অন্তত একটি এলাকা নির্বাচন করতে হবে।"
 
-#: mkt/developers/forms.py:868
+#: mkt/developers/forms.py:853
 msgid "Enable new regions"
 msgstr "নতুন এলাকা সক্রিয় করুন"
 
-#: mkt/developers/forms.py:871
+#: mkt/developers/forms.py:856
 msgid "Make my app available in most regions"
 msgstr "আমার অ্যাপকে বেশিরভাগ এলাকায় উপলব্ধ করুন"
 
-#: mkt/developers/forms.py:872
+#: mkt/developers/forms.py:857
 msgid "Choose where my app is made available"
 msgstr "বাছুন কোথায় আমার অ্যাপকে উপলব্ধ করা হয়েছে"
 
-#: mkt/developers/forms.py:1025 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
+#: mkt/developers/forms.py:1010 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
 msgid "Categories"
 msgstr "বৈশিষ্ট্যসমূহ"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1050 mkt/webapps/serializers.py:268
+#: mkt/developers/forms.py:1035 mkt/webapps/serializers.py:268
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "আপনার শুধুমাত্র {0} বৈশিষ্ট্য থাকতে পারে।"
 msgstr[1] "আপনার শুধুমাত্র {0} বৈশিষ্ট্যসমূহ থাকতে পারে।"
 
-#: mkt/developers/forms.py:1064
+#: mkt/developers/forms.py:1049
 msgid "Agree"
 msgstr "রাজি"
 
-#: mkt/developers/forms.py:1081
+#: mkt/developers/forms.py:1066
 msgid "Please enter a valid email address."
 msgstr "অনুগ্রহ করে একটি বৈধ ইমেইল ঠিকানা প্রবেশ করান।"
 
-#: mkt/developers/forms.py:1084
+#: mkt/developers/forms.py:1069
 msgid "Your email address"
 msgstr "আপনার ইমেইল ঠিকানা"
 
-#: mkt/developers/forms.py:1087
+#: mkt/developers/forms.py:1072
 msgid "Text"
 msgstr "টেক্সট"
 
-#: mkt/developers/forms.py:1091
+#: mkt/developers/forms.py:1076
 msgid "You must agree to the Privacy Policy."
 msgstr "আপনাকে অতি অবশ্যই গোপনীয়তা নীতিকে স্বীকার করে নিতে হবে।"
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1077 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "দেশ"
 
-#: mkt/developers/forms.py:1126 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
+#: mkt/developers/forms.py:1111 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "অ্যাপ"
 
-#: mkt/developers/forms.py:1128
+#: mkt/developers/forms.py:1113
 msgid "Transaction Type"
 msgstr "ট্রাঞ্জাকশনের ধরন"
 
-#: mkt/developers/forms.py:1131 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1116 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "ট্রাঞ্জাকশন আইডি"
 
-#: mkt/developers/forms.py:1137
+#: mkt/developers/forms.py:1122
 msgid "From"
 msgstr "থেকে"
 
-#: mkt/developers/forms.py:1140
+#: mkt/developers/forms.py:1125
 msgid "To"
 msgstr "থেকে"
 
-#: mkt/developers/forms.py:1151
+#: mkt/developers/forms.py:1136
 msgid "Web site"
 msgstr "ওয়েব সাইট"
 
-#: mkt/developers/forms.py:1152
+#: mkt/developers/forms.py:1137
 msgid "Command line"
 msgstr "কম্যান্ড লাইন"
 
-#: mkt/developers/forms.py:1173
+#: mkt/developers/forms.py:1158
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "পর্যালোচনা এবং অনুমোদন হওয়ার পর যত দ্রুত সম্ভব এটিকে আমার অ্যাপটির সক্রিয় সংস্করণ হিসাবে ব্যাবহার করুন।"
 
-#: mkt/developers/forms.py:1200
+#: mkt/developers/forms.py:1185
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
@@ -2264,31 +2258,31 @@ msgstr ""
 "একটি Firefox OS ডিভাইসে আাগে লোড করা প্রার্থী হিসাবে আমার অ্যাপ্লিকেশনটিকে বিবেচনা করুন। আমি উপরোক্ত শর্তাবলীর সাথে সম্মতি জ্ঞাপন করছি। আমি বুঝতে পারছি যে এই নথি আমার অ্যাপ্লিকেশনকে পূর্বে লোড হওয়ার অঙ্গীকার করে "
 "না।"
 
-#: mkt/developers/forms.py:1207
+#: mkt/developers/forms.py:1192
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "আপনার পরীক্ষার প্ল্যান আপলোড করুন (.pdf, .xls 2.5MB-র নীচে)"
 
-#: mkt/developers/forms.py:1223
+#: mkt/developers/forms.py:1208
 msgid "Test plan required."
 msgstr "পরীক্ষা প্ল্যান প্রয়োজনীয়।"
 
-#: mkt/developers/forms.py:1230
+#: mkt/developers/forms.py:1215
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "ফাইল খুব বড়। এর সাইজ %s-এর নীচে রাখুন। বর্তমান সাইজ %s।"
 
-#: mkt/developers/forms.py:1236
+#: mkt/developers/forms.py:1221
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "অবৈধ ফাইলের প্রকার {0}। শুধুমাত্র {1} ফাইলসমূহ সাপোর্ট করে।"
 
-#: mkt/developers/forms.py:1260
+#: mkt/developers/forms.py:1245
 msgid "Please enter a valid submission ID."
 msgstr "অনুগ্রহ করে বৈধ জমাকরণের আইডি প্রবেশ করান।"
 
-#: mkt/developers/forms.py:1276
+#: mkt/developers/forms.py:1261
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "এই IARC সার্টিফিকেটটি ইতিমধ্যে অন্য একটি অ্যাপের জন্য ব্যবহৃত হয়ে গেছে। অনুগ্রহ করে একটি নতুন IARC রেটিংস সার্টিফিকেট তৈরি করুন।"
 
-#: mkt/developers/forms.py:1311 mkt/developers/forms.py:1323
+#: mkt/developers/forms.py:1296 mkt/developers/forms.py:1308
 msgid "Invalid submission ID or security code."
 msgstr "অবৈধ জমাকরণ আইডি বা সিকিউরিটি কোড।"
 
@@ -2484,35 +2478,35 @@ msgstr "সংস্করণ {0}"
 msgid "Reference Implementation"
 msgstr "রেফারেন্সের বাস্তবায়ন"
 
-#: mkt/developers/tasks.py:403
+#: mkt/developers/tasks.py:407
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "এই URL-এ কোনো ম্যানিফেস্ট পাওয়া যায়নি। ঠিকানাটি আবার চেক করুন এবং পুনরায় চেষ্টা করুন।"
 
-#: mkt/developers/tasks.py:409
+#: mkt/developers/tasks.py:413
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "ম্যানিফেস্ট অবশ্যই HTTP হেডারের সঙ্গে পরিবেশিত হবে \"Content-Type: application/x-web-app-manifest+json\"। দেখুন %s আরও তথ্যের জন্য।"
 
-#: mkt/developers/tasks.py:418
+#: mkt/developers/tasks.py:422
 msgid "Your manifest must be less than %s bytes."
 msgstr "আপনার ম্যানিফেস্ট অবশ্যই %s বাইটের কম হতে হবে।"
 
-#: mkt/developers/tasks.py:426
+#: mkt/developers/tasks.py:430
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "আপনার ম্যানিফেস্ট ফাইল UTF-8 এ এনকোডেড নয়।"
 
-#: mkt/developers/tasks.py:437
+#: mkt/developers/tasks.py:441
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "HTTP Content-Type এ প্রদান করা অক্ষরসেট ম্যানিফেস্ট এনকোডিং এর সাথে মিলছে না।"
 
-#: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:471 mkt/developers/tasks.py:477 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "এবং"
 
-#: mkt/developers/tasks.py:487
+#: mkt/developers/tasks.py:491
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} এলাকা Firefox মার্কেটপ্লেসে যোগ করা হয়েছে"
 
-#: mkt/developers/tasks.py:491
+#: mkt/developers/tasks.py:495
 msgid "New regions added to the Firefox Marketplace"
 msgstr "নতুন এলাকা Firefox মার্কেটপ্লেসে যোগ করা হয়েছে"
 
@@ -2582,7 +2576,7 @@ msgstr "অ্যাপ সফলভাবে পুনঃজমা হয়েছ
 msgid "New version successfully added."
 msgstr "নতুন সংস্করণ সফলভাবে যোগ হয়েছে।"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:661
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:683
 msgid "Changes successfully saved."
 msgstr "পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।"
 
@@ -3096,9 +3090,7 @@ msgstr "এই অ্যাপটি <b>মার্কেটপ্লেসে 
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr ""
-"আপনার অ্যাপ সাইটের প্রশাসকের দ্বারা নিষিদ্ধ করা হয়েছে। যদি কোনো প্রশ্ন থাকে, "
-"অনুগ্রহ করে <a href=\"%(support_url)s\"> আমাদের যোগাযোগ করুন</a>।"
+msgstr "আপনার অ্যাপ সাইটের প্রশাসকের দ্বারা নিষিদ্ধ করা হয়েছে। যদি কোনো প্রশ্ন থাকে, অনুগ্রহ করে <a href=\"%(support_url)s\"> আমাদের যোগাযোগ করুন</a>।"
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3106,9 +3098,7 @@ msgstr "এই অ্যাপটি <b>Mozilla কতৃক ব্লক রয়
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr ""
-"আপনার অ্যাপ সাইটের প্রশাসকের দ্বারা ব্লক করা হয়েছে। যদি আপনার কোন প্রশ্ন "
-"থাকে, অনুগ্রহ করে <a href=\"%(support_url)s\">আমাদের যোগাযোগ করুন</a>।"
+msgstr "আপনার অ্যাপ সাইটের প্রশাসকের দ্বারা ব্লক করা হয়েছে। যদি আপনার কোন প্রশ্ন থাকে, অনুগ্রহ করে <a href=\"%(support_url)s\">আমাদের যোগাযোগ করুন</a>।"
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3299,9 +3289,7 @@ msgstr "<a href=\"%(lnk_url)s\">আপনার পরীক্ষার পর�
 
 #: mkt/developers/templates/developers/apps/status.html:381
 msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
-msgstr ""
-"<a href=\"%(lnk_url)s\">কিভাবে শিখব</a>আপনার অ্যাপ্লিকেশন Firefox OS ডিভাইসের "
-"প্রাক ইনস্টল পেতে"
+msgstr "<a href=\"%(lnk_url)s\">কিভাবে শিখব</a>আপনার অ্যাপ্লিকেশন Firefox OS ডিভাইসের প্রাক ইনস্টল পেতে"
 
 #: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
 msgid "List App"
@@ -3684,9 +3672,7 @@ msgstr "অফলাইনে কাজ করে"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
-msgstr ""
-"আপনার অ্যাপ্লিকেশন যদি ইন্টারনেট সংযোগ ছাড়া কাজ করে, তারপর আমরা তালিকা "
-"প্রস্তুত করা যাবে আপনার অ্যাপ্লিকেশন &quot যে কাজ অফলাইন করুন &quot;।"
+msgstr "আপনার অ্যাপ্লিকেশন যদি ইন্টারনেট সংযোগ ছাড়া কাজ করে, তারপর আমরা তালিকা প্রস্তুত করা যাবে আপনার অ্যাপ্লিকেশন &quot যে কাজ অফলাইন করুন &quot;।"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3904,7 +3890,7 @@ msgstr "অবস্থা এবং; ভার্শন"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1472
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1429
 msgid "Content Ratings"
 msgstr "কন্টেন্ট রেটিংস"
 
@@ -4215,10 +4201,7 @@ msgstr "সক্রিয়"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr ""
-"ইন-অ্যাপ প্রোডাক্ট শুধুমাত্র হোস্টেড অ্যাপ বা প্যাকেজড অ্যাপের জন্য কাজ করে "
-"যা একটি <a href=\"%(origin)s\">উৎস</a>-কে বর্ণনা করে একটি ম্যানিফেস্টে। আপনার "
-"অ্যাপ একটি উৎস বর্ণনা করেনা।"
+msgstr "ইন-অ্যাপ প্রোডাক্ট শুধুমাত্র হোস্টেড অ্যাপ বা প্যাকেজড অ্যাপের জন্য কাজ করে যা একটি <a href=\"%(origin)s\">উৎস</a>-কে বর্ণনা করে একটি ম্যানিফেস্টে। আপনার অ্যাপ একটি উৎস বর্ণনা করেনা।"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -4339,14 +4322,11 @@ msgstr "বিলিং প্রক্রিয়া"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
-msgstr ""
-"একটি পেমেন্ট অ্যাকাউন্ট যোগ করুন আপনার অ্যাপকে আরও জায়গায় বিক্রি করবার জন্য"
+msgstr "একটি পেমেন্ট অ্যাকাউন্ট যোগ করুন আপনার অ্যাপকে আরও জায়গায় বিক্রি করবার জন্য"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr ""
-"যেহেতু \"বাকি পৃথিবীকে\" নির্বাচন করা হয়েছে সেই জন্য আপনার অ্যাপ কেনার জন্য "
-"উপলব্ধ থাকবে \"<a href=\"#regions-other\">বাকি এলাকায়</a>\"।"
+msgstr "যেহেতু \"বাকি পৃথিবীকে\" নির্বাচন করা হয়েছে সেই জন্য আপনার অ্যাপ কেনার জন্য উপলব্ধ থাকবে \"<a href=\"#regions-other\">বাকি এলাকায়</a>\"।"
 
 #: mkt/developers/templates/developers/payments/premium.html:256
 msgid "Other regions"
@@ -4354,9 +4334,7 @@ msgstr "অন্যান্য এলাকাসমূহ"
 
 #: mkt/developers/templates/developers/payments/premium.html:258
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr ""
-"কোনো জায়গাতে আপনার অ্যাপকে না রাখতে চাইলে, আপনি ওই জায়গাটি আনচেক করতে পারেন "
-"সংরক্ষণ করবার আগে।"
+msgstr "কোনো জায়গাতে আপনার অ্যাপকে না রাখতে চাইলে, আপনি ওই জায়গাটি আনচেক করতে পারেন সংরক্ষণ করবার আগে।"
 
 #: mkt/developers/templates/developers/payments/premium.html:278
 msgid "Regions and Listings"
@@ -4515,9 +4493,7 @@ msgstr "আপনার অ্যাপ ভবিষ্যতে যেকোন
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr ""
-"(নির্বাচিত দাম বিন্দু জন্য যে অঞ্চলে উপলব্ধ অর্থ প্রদান বা \"বিশ্ব বিশ্রাম\" "
-"সাপেক্ষে একটিকে একটি পেমেন্ট বিকল্প হিসাবে নির্বাচিত করা হচ্ছে)"
+msgstr "(নির্বাচিত দাম বিন্দু জন্য যে অঞ্চলে উপলব্ধ অর্থ প্রদান বা \"বিশ্ব বিশ্রাম\" সাপেক্ষে একটিকে একটি পেমেন্ট বিকল্প হিসাবে নির্বাচিত করা হচ্ছে)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -4755,7 +4731,7 @@ msgid "Developing Game Apps"
 msgstr "গেম অ্যাপ ডেভেলপ করা"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1478
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1435
 msgid "Payments"
 msgstr "পেমেন্টস"
 
@@ -5022,9 +4998,7 @@ msgstr "ওয়েবঅ্যাপ ম্যানিফেস্টটি ব�
 
 #: mkt/files/utils.py:112
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
-msgstr ""
-"\"Langpack\" ভূমিকা ওয়েব আপ্পসের এর জন্য অবৈধ। অনুগ্রহ করে এর পরিবর্তে একটি "
-"ভাষা প্যাক হিসাবে এই অ্যাপ্লিকেশন জমা দিন।"
+msgstr "\"Langpack\" ভূমিকা ওয়েব আপ্পসের এর জন্য অবৈধ। অনুগ্রহ করে এর পরিবর্তে একটি ভাষা প্যাক হিসাবে এই অ্যাপ্লিকেশন জমা দিন।"
 
 #: mkt/files/utils.py:120
 msgid "Your specified app locales are not in the correct format."
@@ -5156,8 +5130,7 @@ msgstr "আপনার ভাষা প্যাকে অবশ্যই `lang
 
 #: mkt/langpacks/utils.py:33
 msgid "Your language pack contains too many languages. Only one language per pack is supported."
-msgstr ""
-"আপনার ভাষা প্যাকে অনেক ভাষা আছে। শুধু একটি ভাষা প্রত্যেক প্যাক সমর্থন করে।"
+msgstr "আপনার ভাষা প্যাকে অনেক ভাষা আছে। শুধু একটি ভাষা প্রত্যেক প্যাক সমর্থন করে।"
 
 #: mkt/langpacks/utils.py:39
 msgid "Your language pack must contain one language in `languages-target` object."
@@ -5173,8 +5146,7 @@ msgstr "আপনার ভাষা প্যাকে একটি সংস�
 
 #: mkt/langpacks/utils.py:53
 msgid "Your language pack version must be different to the one you are replacing."
-msgstr ""
-"আপনার ভাষা প্যাকে একটি সংস্করণ অন্য হতে হবে তার থেকে যেটি আপনি বদল করছেন।"
+msgstr "আপনার ভাষা প্যাকে একটি সংস্করণ অন্য হতে হবে তার থেকে যেটি আপনি বদল করছেন।"
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5301,7 +5273,7 @@ msgstr "রিভিউ অমীমাংসিত"
 msgid "Review failed"
 msgstr "রিভিউ ব্যর্থ"
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/helpers.py:47 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Abuse Reports"
 msgstr "অপব্যবহার রিপোর্ট"
@@ -5392,15 +5364,11 @@ msgstr "বর্তমানে ট্রাঞ্জাকশনের স্�
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
 msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
-msgstr ""
-"এই পেমেন্টটি Bango-এর মাধ্যমে করা হয়েছে। আরও তথ্য পেতে হলে <a href=\"mailto:%"
-"(bango_support)s\">Bango সাপোর্ট</a> এর সাথে যোগাযোগ করুন।"
+msgstr "এই পেমেন্টটি Bango-এর মাধ্যমে করা হয়েছে। আরও তথ্য পেতে হলে <a href=\"mailto:%(bango_support)s\">Bango সাপোর্ট</a> এর সাথে যোগাযোগ করুন।"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
-msgstr ""
-"এই পেমেন্টটি <b>রেফারেন্স ইমপ্লিমেন্টেশন</b> -এর মাধ্যমে করা হয়েছে। এটা আসল "
-"ট্রাঞ্জাকশন হয়নি।"
+msgstr "এই পেমেন্টটি <b>রেফারেন্স ইমপ্লিমেন্টেশন</b> -এর মাধ্যমে করা হয়েছে। এটা আসল ট্রাঞ্জাকশন হয়নি।"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
@@ -5668,19 +5636,19 @@ msgstr "এখনো রিভিউ করা হয়নি"
 msgid "Reviewed %s out of 5 stars"
 msgstr "5 স্টারের মধ্যে %s পর্যালোচনা করা হয়েছে"
 
-#: mkt/ratings/models.py:137
+#: mkt/ratings/models.py:145
 msgid "Spam or otherwise non-review content"
 msgstr "স্প্যাম কিমবা এমন কোন বিষয় যা রিভিউ করা যাবে না"
 
-#: mkt/ratings/models.py:138
+#: mkt/ratings/models.py:146
 msgid "Inappropriate language/dialog"
 msgstr "অনুপযুক্ত ভাষা/উক্তি"
 
-#: mkt/ratings/models.py:139
+#: mkt/ratings/models.py:147
 msgid "Misplaced bug report or support request"
 msgstr "মিসপ্লেস বাগ রিপোর্ট অথবা সমর্থন অনুরোধ"
 
-#: mkt/ratings/models.py:140
+#: mkt/ratings/models.py:148
 msgid "Other (please specify)"
 msgstr "অন্যান্য (অনুগ্রহ করে উল্লেখ করুন)"
 
@@ -5819,7 +5787,7 @@ msgstr "Tarako-এর জন্যে তৈরি"
 msgid "Device"
 msgstr "ডিভাইস"
 
-#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:66 mkt/site/context_processors.py:70
+#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:67 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
 msgstr "রিভিউ করার সরঞ্জাম"
 
@@ -5839,173 +5807,174 @@ msgstr "আপডেটসমূহ"
 msgid "Escalations"
 msgstr "তীব্রতাবৃদ্ধি"
 
-#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:143
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:151
 msgid "Moderated Reviews"
 msgstr "নিয়ন্ত্রিত রিভিউসমূহ"
 
-#: mkt/reviewers/helpers.py:47
+#: mkt/reviewers/helpers.py:48
 msgid "Reviewing"
 msgstr "রিভিউ করা হচ্ছে"
 
-#: mkt/reviewers/helpers.py:49 mkt/reviewers/templates/reviewers/queue_region.html:7
+#: mkt/reviewers/helpers.py:50 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
 msgstr "আঞ্চলিক সারি"
 
-#: mkt/reviewers/helpers.py:88
+#: mkt/reviewers/helpers.py:89
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr "অ্যাপসমূহ ({0})"
 
-#: mkt/reviewers/helpers.py:91
+#: mkt/reviewers/helpers.py:92
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr "পুনরায় রিভিউ ({0})"
 
-#: mkt/reviewers/helpers.py:95
+#: mkt/reviewers/helpers.py:96
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr "আপডেটসমূহ ({0})"
 
-#: mkt/reviewers/helpers.py:99
+#: mkt/reviewers/helpers.py:100
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr "বৃদ্ধি ({0})"
 
-#: mkt/reviewers/helpers.py:103
+#: mkt/reviewers/helpers.py:104
 msgid "Reviewing ({0})"
 msgstr "রিভিউ হচ্ছে ({0})"
 
-#: mkt/reviewers/helpers.py:109
+#: mkt/reviewers/helpers.py:110
 msgid "China ({0})"
 msgstr "চীন ({0})"
 
-#: mkt/reviewers/helpers.py:114
+#: mkt/reviewers/helpers.py:115
 msgid "Tarako ({0})"
 msgstr "টারাকো ({0})"
 
-#: mkt/reviewers/helpers.py:121
+#: mkt/reviewers/helpers.py:122
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "মধ্যমানের রিভিউগুলি ({0})"
 
-#: mkt/reviewers/helpers.py:138
+#: mkt/reviewers/helpers.py:129
+msgctxt "abuse"
+msgid "Abuse Reports ({0})"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:146
 msgid "Reviews"
 msgstr "রিভিউগুলি"
 
-#: mkt/reviewers/helpers.py:180
+#: mkt/reviewers/helpers.py:188
 msgid "Rejected or Unreviewed"
 msgstr "বাতিল করা হয়েছে অথবা রিভিউ করা হয়নি"
 
-#: mkt/reviewers/utils.py:370 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:371 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "অনুমোদন"
 
-#: mkt/reviewers/utils.py:371
+#: mkt/reviewers/utils.py:372
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "এটা করলে অ্যাপ টি অনুমোদিত হবে এবং এর লেখক(গণ) তা প্রকাশ করতে পারবেন।"
 
-#: mkt/reviewers/utils.py:375 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:376 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "প্রত্যাখ্যান করুন"
 
-#: mkt/reviewers/utils.py:377
+#: mkt/reviewers/utils.py:378
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "এটি করলে, অ্যাপটি প্রত্যাখ্যাত হবে, পর্যালোচনা হওয়ার অপেক্ষমাণ তালিকা থেকে মুছে যাবে এবং প্রকাশ হয়ে গেলেও এটি অপ্রকাশিত অবস্থায় চলে যাবে।"
 
-#: mkt/reviewers/utils.py:382
+#: mkt/reviewers/utils.py:383
 msgid "Message developer"
 msgstr "বার্তা ডেভেলপার"
 
-#: mkt/reviewers/utils.py:384
+#: mkt/reviewers/utils.py:385
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
-msgstr ""
-"এগুলো লেখক(s) দের পাঠানো হবে - এবং অন্যান্য থ্রেড সাবস্ক্রাইবারদের - একটি "
-"বার্তা। এটা অ্যাপের স্ট্যাটাসকে বদলাবে না।"
+msgstr "এগুলো লেখক(s) দের পাঠানো হবে - এবং অন্যান্য থ্রেড সাবস্ক্রাইবারদের - একটি বার্তা। এটা অ্যাপের স্ট্যাটাসকে বদলাবে না।"
 
-#: mkt/reviewers/utils.py:389
+#: mkt/reviewers/utils.py:390
 msgid "Escalate"
 msgstr "উত্তরণ"
 
-#: mkt/reviewers/utils.py:391
+#: mkt/reviewers/utils.py:392
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "কোন অ্যাডমিনের দ্বারা এই অ্যাপের পর্যালোচনা করাতে ফ্ল্যাগ দিন। এই মন্তব্যগুলো অ্যাডমিনের কাছে যাবে, লেখক কাছে যাবে না।"
 
-#: mkt/reviewers/utils.py:396
+#: mkt/reviewers/utils.py:397
 msgid "Private comment"
 msgstr "গোপন মন্তব্য"
 
-#: mkt/reviewers/utils.py:398
+#: mkt/reviewers/utils.py:399
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
-msgstr ""
-"একটি গোপন রিভিউয়ারের মন্তব্য করান এই অ্যাপে। এই বার্তা লেখকদের কাছে দর্শনীয় "
-"হবে না, এবং কোনো নোটিফিকেশন পাঠানো হবে না তাদের।"
+msgstr "একটি গোপন রিভিউয়ারের মন্তব্য করান এই অ্যাপে। এই বার্তা লেখকদের কাছে দর্শনীয় হবে না, এবং কোনো নোটিফিকেশন পাঠানো হবে না তাদের।"
 
-#: mkt/reviewers/utils.py:404
+#: mkt/reviewers/utils.py:405
 msgid "Clear Escalation"
 msgstr "ক্রমবৃদ্ধি সাফ করুন"
 
-#: mkt/reviewers/utils.py:406
+#: mkt/reviewers/utils.py:407
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "বৃদ্ধির সারি থেকে এই অ্যাপটি মুছে ফেলুন। লেখকেরা কোনো মেইল পাবেন না বা কোনো কমেন্ট দেখতে পাবেন না।"
 
-#: mkt/reviewers/utils.py:411
+#: mkt/reviewers/utils.py:412
 msgid "Clear Re-review"
 msgstr "পুনরায়-করা রিভিউ মুছে ফেলা হোক"
 
-#: mkt/reviewers/utils.py:413
+#: mkt/reviewers/utils.py:414
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "এই অ্যাপটি কে পুনরায়-রিভিউ এর সারি থেকে সরিয়ে ফেলা হোক। এর লেখক(গণ) কোন ইমেইল পাবেন না অথবা এখানে কোন মন্তব্য দেখতে পাবেন না।"
 
-#: mkt/reviewers/utils.py:418
+#: mkt/reviewers/utils.py:419
 msgid "Ban app"
 msgstr "অ্যাপ টি নিষিদ্ধ করা হোক"
 
-#: mkt/reviewers/utils.py:420
+#: mkt/reviewers/utils.py:421
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "মার্কেটপ্লেস থেকে অ্যাপ টি কে নিষিদ্ধ করা হোক। এই ধরনের সকল অ্যাপ বাতিল করা হবে এবং এর লেখক(গণ) তা পুনরায় দাখিল করতে পারবেন না। শুধুমাত্র চরম ক্ষেত্রেই ব্যবহার করা যাবে।"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:138
 msgid "New Apps (Under 5 days)"
 msgstr "নতুন অ্যাপ (৫ দিনের মধ্যে)"
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:139
 msgid "Passable (5 to 10 days)"
 msgstr "পাশযোগ্য (৫ থেকে ১০ দিনের মধ্যে)"
 
-#: mkt/reviewers/views.py:139
+#: mkt/reviewers/views.py:140
 msgid "Overdue (Over 10 days)"
 msgstr "পরিশোধসময়াতীত (১০ দিনের বেশি)"
 
-#: mkt/reviewers/views.py:250
+#: mkt/reviewers/views.py:252
 msgid "Self-reviews are not allowed."
 msgstr "নিজ রিভিউ এর অনুমতি দেওয়া হয় না।"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:258
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "কেবলমাত্র প্রবীণ রিভিউয়ারগণই ব্লকলিস্টে থাকা অ্যাপ গুলির রিভিউ করতে পারবেন।"
 
-#: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:333 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "যোগ করা হয়েছে {0}"
 
-#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:332 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:311 mkt/reviewers/views.py:334 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "বাতিল করা হয়েছে {0}"
 
-#: mkt/reviewers/views.py:312
+#: mkt/reviewers/views.py:314
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "ডিভাইস(গুলো) রিভিউকারী দ্বারা পরিবর্তিত হয়েছে: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:334
+#: mkt/reviewers/views.py:336
 msgid "Requirements changed by reviewer: {0}"
 msgstr "রিভিউকারীর দ্বারা প্রয়োজনীয়তার পরিবর্তন: {0}"
 
-#: mkt/reviewers/views.py:361
+#: mkt/reviewers/views.py:363
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" সফলভাবে প্রক্রিয়াভুক্ত (+{1} পয়েন্ট, {2} সর্বমোট)।"
 
-#: mkt/reviewers/views.py:363
+#: mkt/reviewers/views.py:365
 msgid "Review successfully processed."
 msgstr "রিভিউ সফলভাবে প্রক্রিয়াভুক্ত"
 
@@ -6013,13 +5982,9 @@ msgstr "রিভিউ সফলভাবে প্রক্রিয়াভু�
 msgid "Abuse Reports for {addon} ({num})"
 msgstr "অপব্যবহারের রিপোর্ট {addon}-এর জন্য ({num})"
 
-#: mkt/reviewers/templates/reviewers/abuse.html:15
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(date)সমূহ-এ %(user)গণ [%(ip_address)সমূহ]"
-
-#: mkt/reviewers/templates/reviewers/abuse.html:19
-msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr "<i>অনামী</i>%(date)s-এ [%(ip_address)s]"
+#: mkt/reviewers/templates/reviewers/abuse.html:13
+msgid "%(reporter)s on %(date)s [%(ip_address)s]"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6037,7 +6002,7 @@ msgstr "পাস"
 msgid "Fail"
 msgstr "ব্যর্থ"
 
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:86 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:88 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr "এই ধরনের আর কোন বস্তু রিভিউ এর অপেক্ষায় নেই।"
 
@@ -6045,12 +6010,12 @@ msgstr "এই ধরনের আর কোন বস্তু রিভিউ 
 msgid "You are currently not reviewing any apps."
 msgstr "এই মুহূর্তে আপনি কোন অ্যাপ রিভিউ করছেন না।"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:127 mkt/reviewers/templates/reviewers/includes/mobile_details.html:138 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "ফ্ল্যাগসমূহ"
 
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
 msgstr "ডিভাইসগুলি"
@@ -6257,19 +6222,19 @@ msgstr "বছর"
 msgid "All-Time"
 msgstr "সব-সময়"
 
-#: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
 msgid "Waiting Time"
 msgstr "অপেক্ষারত সময়"
 
-#: mkt/reviewers/templates/reviewers/queue.html:50 mkt/reviewers/templates/reviewers/queue.html:71
+#: mkt/reviewers/templates/reviewers/queue.html:52 mkt/reviewers/templates/reviewers/queue.html:73
 msgid "Payment Category:"
 msgstr "পেমেন্ট বৈশিষ্ট্য:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:101
+#: mkt/reviewers/templates/reviewers/queue.html:103
 msgid "Helpful Links:"
 msgstr "সাহায্যকারী লিঙ্কসমূহ:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:102
+#: mkt/reviewers/templates/reviewers/queue.html:104
 msgid "Reviewers' Guide"
 msgstr "রিভিউকারীর গাইড"
 
@@ -6459,6 +6424,34 @@ msgstr ""
 msgid "Newer versions"
 msgstr ""
 
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
+msgid "Process"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+msgid "Skip"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+msgid "Mark Read"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
+msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
+msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
+msgid "translate"
+msgstr "অনুবাদ"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
+msgid "All abuse reports read. Good work!"
+msgstr ""
+
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
 msgstr "প্রক্রিয়া পর্যালোচনা"
@@ -6470,10 +6463,6 @@ msgstr "মডারেশান কর্ম:"
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgstr "%(user)s এর দ্বারা %(date)s তারিখে %(stars)s (%(locale)s)"
-
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
-msgid "translate"
-msgstr "অনুবাদ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -7222,31 +7211,39 @@ msgstr "{addon} {version} {queue} রিভিউ পাস করেছে।"
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} {queue} রিভিউ ফেল করেছে।"
 
+#: mkt/site/log.py:689
+msgid "Abuse report {report} for {addon} deleted."
+msgstr ""
+
+#: mkt/site/log.py:690
+msgid "{user} marked read {report} for {addon}."
+msgstr ""
+
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:705
+#: mkt/site/utils.py:706
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "অকার্যকর ট্যাগঃ {0}"
 msgstr[1] "অকার্যকর ট্যাগঃ {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:715
+#: mkt/site/utils.py:716
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" হল একটি সংরক্ষিত ট্যাগ এবং এটাকে ব্যবহার করা যাবে না।"
 msgstr[1] "\"{0}\" হল সংরক্ষিত ট্যাগ এবং এগুলোকে ব্যবহার করা যাবে না।"
 
-#: mkt/site/utils.py:723
+#: mkt/site/utils.py:724
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "আপনার {0} অনেক বেশী ট্যাগ রয়েছে।"
 msgstr[1] "আপনার {0} অনেক বেশী ট্যাগ রয়েছে।"
 
-#: mkt/site/utils.py:729
+#: mkt/site/utils.py:730
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "সমস্ত ট্যাগ অবশ্যই %s অক্ষরের হবে বা এর কম হবে অবৈধ অক্ষর মুছে ফেলার পরে।"
 
-#: mkt/site/utils.py:733
+#: mkt/site/utils.py:734
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "সমস্ত ট্যাগ অবশ্যই অন্ততপক্ষে {0} অক্ষরের হতে হবে।"
@@ -7768,66 +7765,66 @@ msgstr ""
 msgid "Please use the verified email for this account."
 msgstr ""
 
-#: mkt/webapps/models.py:208
+#: mkt/webapps/models.py:207
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
 
-#: mkt/webapps/models.py:1365
+#: mkt/webapps/models.py:1322
 msgid "You must provide a support email or URL."
 msgstr "আপনাকে অবশ্যই একটি সাপোর্ট ইমেইল বা URL প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1367
+#: mkt/webapps/models.py:1324
 msgid "You must provide an app name."
 msgstr "আপনাকে অবশ্যই একটি অ্যাপের নাম প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1369
+#: mkt/webapps/models.py:1326
 msgid "You must provide at least one device type."
 msgstr "আপনাকে অবশ্যই অন্ততপক্ষে একটা ডিভাইসের ধরন প্রদান করতে হবে।"
 
-#: mkt/webapps/models.py:1372
+#: mkt/webapps/models.py:1329
 msgid "You must provide at least one category."
 msgstr "আপনার কমপক্ষে একটি বিভাগের উল্লেখ করতেই হবে।"
 
-#: mkt/webapps/models.py:1439
+#: mkt/webapps/models.py:1396
 msgid "You must set up content ratings."
 msgstr "আপনাকে কন্টেন্ট রেটিংস সেট আপ করতেই হবে।"
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1398
 msgid "You must set up a payment account."
 msgstr "আপনাকে অবশ্যই একটি পেমেন্ট একাউন্ট সেট আপ করতে হবে।"
 
-#: mkt/webapps/models.py:1466
+#: mkt/webapps/models.py:1423
 msgid "This app's submission process has not been fully completed."
 msgstr "এই অ্যাপ্লিকেশন এর জমা প্রক্রিয়া সম্পূর্ণরূপে সম্পন্ন হয়নি।"
 
-#: mkt/webapps/models.py:1473
+#: mkt/webapps/models.py:1430
 msgid "This app needs to get a content rating."
 msgstr "এই অ্যাপ্লিকেশনের একটি কন্টেন্ট রেটিং পাওয়া প্রয়োজন।"
 
-#: mkt/webapps/models.py:1479
+#: mkt/webapps/models.py:1436
 msgid "This app needs a payment account set up."
 msgstr "এই অ্যাপ্লিকেশনের একটি পেমেন্ট একাউন্ট সেট আপ করা প্রয়োজন।"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2738
+#: mkt/webapps/models.py:2695
 msgid "awaiting approval"
 msgstr "অনুমোদনের জন্যে অপেক্ষারত"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2740
+#: mkt/webapps/models.py:2697
 msgid "rejected"
 msgstr "বাতিল"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2742
+#: mkt/webapps/models.py:2699
 msgid "requires additional review"
 msgstr "অতিরিক্ত রিভিউ এর দরকার আছে"
 
-#: mkt/webapps/models.py:2793
+#: mkt/webapps/models.py:2750
 msgid "{region} approval status"
 msgstr "{region} অনুমোদনের অবস্থা"
 
-#: mkt/webapps/models.py:2801
+#: mkt/webapps/models.py:2758
 msgid "{region} nomination date"
 msgstr "{region} মনোনয়ন তারিখ"
 

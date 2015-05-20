@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:00-0700\n"
+"POT-Creation-Date: 2015-05-20 10:12-0700\n"
 "PO-Revision-Date: 2015-05-11 21:54+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: librezale@librezale.org\n"
@@ -177,15 +177,15 @@ msgstr "Ezin izan da manifestua eguneratu. Saiatu berriro geroago."
 msgid "There was an error uploading your file."
 msgstr "Errorea gertatu da fitxategia igotzean."
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Argibide gehiago"
 
-#: media/js/devreg/devhub.js:951
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Adibidea"
 
-#: media/js/devreg/devhub.js:1220
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Irudi-aldaketak prozesatzen ari dira"
 
