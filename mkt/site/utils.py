@@ -41,6 +41,7 @@ from PIL import Image
 from tower import ugettext as _, ungettext as ngettext
 
 import mkt
+from lib.utils import static_url
 from mkt.access import acl
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
@@ -228,7 +229,7 @@ def resize_image(src, dst, size=None, remove_src=True, locally=False):
 
 
 def remove_icons(destination):
-    for size in mkt.APP_ICON_SIZES:
+    for size in mkt.CONTENT_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
         if storage.exists(filename):
             storage.delete(filename)
@@ -736,3 +737,30 @@ def clean_tags(request, tags):
         raise forms.ValidationError(msg)
 
     return target
+
+
+def get_icon_url(base_url_format, obj, size):
+    """
+    Returns either the icon URL for a given (`obj`, `size`). base_url_format`
+    is a string that will be used for url formatting, see ADDON_ICON_URL for an
+    example.
+
+    If no icon type if set on the `obj`, then the url for the
+    appropriate default icon for the given `size` will be returned.
+
+    `obj` needs to implement `icon_type` and `icon_hash` properties for this
+    function to work.
+
+    Note: does not check size, so it can return 404 URLs if you specify an
+    invalid size.
+    """
+    # Return default image if no icon_type was stored.
+    if not obj.icon_type:
+        return '%s/default-%s.png' % (static_url('ICONS_DEFAULT_URL'), size)
+    else:
+        # [1] is the whole ID, [2] is the directory.
+        split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
+        # If we don't have the icon_hash set to a dummy string ("never"),
+        # when the icon is eventually changed, icon_hash will be updated.
+        suffix = obj.icon_hash or 'never'
+        return base_url_format % (split_id.group(2) or 0, obj.pk, size, suffix)

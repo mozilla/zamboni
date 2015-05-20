@@ -12,14 +12,15 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:36-0700\n"
-"PO-Revision-Date: 2015-04-27 10:25+0200\n"
+"PO-Revision-Date: 2015-05-17 16:15+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.4\n"
 
 #: mkt/api/fields.py:20
@@ -79,8 +80,10 @@ msgid "Mozilla"
 msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
-msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr "Firefox Marketplace jest oficjalnym źródłem aplikacji dla platformy sieciowej."
+msgid ""
+"The Firefox Marketplace is the official source of apps for the Web Platform."
+msgstr ""
+"Firefox Marketplace jest oficjalnym źródłem aplikacji dla platformy sieciowej."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
 msgid "Desktop"
@@ -1429,11 +1432,11 @@ msgstr "Prośba o priorytetowe sprawdzenie"
 
 #: mkt/constants/comm.py:69
 msgid "Additional review passed"
-msgstr ""
+msgstr "Dodatkowe sprawdzenie powiodło się"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review failed"
-msgstr ""
+msgstr "Dodatkowe sprawdzenie nie powiodło się"
 
 #: mkt/constants/comm.py:71
 msgid "Version notes for reviewer"
@@ -1448,16 +1451,23 @@ msgid "App Management API"
 msgstr "API App Management"
 
 #: mkt/constants/features.py:19
-msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
-msgstr "Aplikacja wymaga API `nanavigator.mozApps`, by instalować aplikacje i zarządzać nimi."
+msgid ""
+"The app requires the `navigator.mozApps` API to install and manage other apps."
+msgstr ""
+"Aplikacja wymaga API `nanavigator.mozApps`, by instalować aplikacje i "
+"zarządzać nimi."
 
 #: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
 msgstr "API Packaged Apps Install"
 
 #: mkt/constants/features.py:25
-msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "Aplikacja wymaga API `navigator.mozApps.installPackage`, by instalować inne spakowane aplikacje."
+msgid ""
+"The app requires the `navigator.mozApps.installPackage` API to install other "
+"packaged apps."
+msgstr ""
+"Aplikacja wymaga API `navigator.mozApps.installPackage`, by instalować inne "
+"spakowane aplikacje."
 
 #: mkt/constants/features.py:31
 msgid "Web Payment"
@@ -1489,7 +1499,7 @@ msgstr "Archive"
 
 #: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Aplikacji wymaga API „ArchiveReader”."
 
 #: mkt/constants/features.py:53
 msgid "Battery"
@@ -1516,8 +1526,10 @@ msgid "Device Storage"
 msgstr "Pamięć urządzenia (Device Storage)"
 
 #: mkt/constants/features.py:71
-msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr "Aplikacja wymaga API Device Storage do dostępu do plików w systemie plików."
+msgid ""
+"The app requires the Device Storage API to access files on the filesystem."
+msgstr ""
+"Aplikacja wymaga API Device Storage do dostępu do plików w systemie plików."
 
 #: mkt/constants/features.py:77
 msgid "The app requires the platform to support IndexedDB."
@@ -1528,7 +1540,8 @@ msgid "Geolocation"
 msgstr "Geolokacja (Geolocation)"
 
 #: mkt/constants/features.py:83
-msgid "The app requires the platform to support the `navigator.geolocation` API."
+msgid ""
+"The app requires the platform to support the `navigator.geolocation` API."
 msgstr "Aplikacja wymaga platformy do obsługi `navigator.geolocation` API ."
 
 #: mkt/constants/features.py:88
@@ -1537,15 +1550,19 @@ msgstr "Idle"
 
 #: mkt/constants/features.py:89
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Aplikacja wymaga platformy do obsługi API „addIdleObserver”."
 
 #: mkt/constants/features.py:94
 msgid "Network Information"
 msgstr "Informacje o sieci (Network Information)"
 
 #: mkt/constants/features.py:95
-msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr "Aplikacja wymaga możliwości uzyskania informacji o połączeniu sieciowym (API `navigator.mozConnection`) ."
+msgid ""
+"The app requires the ability to get information about the network connection "
+"(the `navigator.mozConnection` API)."
+msgstr ""
+"Aplikacja wymaga możliwości uzyskania informacji o połączeniu sieciowym (API "
+"`navigator.mozConnection`) ."
 
 #: mkt/constants/features.py:101
 msgid "Network Stats"
@@ -1592,8 +1609,11 @@ msgid "Vibration"
 msgstr "Wibracje (Vibration)"
 
 #: mkt/constants/features.py:130
-msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr "Aplikacja wymaga urządzenia obsługującego wibracje (API `navigator.vibrate`)."
+msgid ""
+"The app requires the device to support vibration (the `navigator.vibrate` "
+"API)."
+msgstr ""
+"Aplikacja wymaga urządzenia obsługującego wibracje (API `navigator.vibrate`)."
 
 #: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
@@ -1608,8 +1628,12 @@ msgid "Touch"
 msgstr "Dotyk (Touch)"
 
 #: mkt/constants/features.py:147
-msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr "Aplikacja wymaga platformy obsługi zdarzeń dotykowych. Ta opcja oznacza, że aplikacja nie będzie działać w przypadku korzystania z myszy."
+msgid ""
+"The app requires the platform to support touch events. This option indicates "
+"that the app will not function when used with a mouse."
+msgstr ""
+"Aplikacja wymaga platformy obsługi zdarzeń dotykowych. Ta opcja oznacza, że "
+"aplikacja nie będzie działać w przypadku korzystania z myszy."
 
 #: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
@@ -1617,15 +1641,20 @@ msgstr "Wyświetlacze rozmiaru smartfona (qHD)"
 
 #: mkt/constants/features.py:154
 msgid ""
-"The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
+"The app requires the platform to have a smartphone-sized display (having qHD "
+"resolution). This option indicates that the app will be unusable on larger "
+"displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
-"Aplikacja wymaga platformy mającej wyświetlacz rozmiaru smartfona (rozdzielczość qHD). Ta opcja oznacza, że aplikacji nie będzie można używać na większych wyświetlaczach (np. tabletach, "
+"Aplikacja wymaga platformy mającej wyświetlacz rozmiaru smartfona "
+"(rozdzielczość qHD). Ta opcja oznacza, że aplikacji nie będzie można używać "
+"na większych wyświetlaczach (np. tabletach, "
 "urządzeniach desktopowych, większych telefonach lub z wysoką rozdzielczością)."
 
 #: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr "Ta aplikacja wymaga, by platforma mogła dekodować i odtwarzać pliki MP3."
+msgstr ""
+"Ta aplikacja wymaga, by platforma mogła dekodować i odtwarzać pliki MP3."
 
 #: mkt/constants/features.py:169
 msgid "Audio"
@@ -1640,89 +1669,133 @@ msgid "Web Audio"
 msgstr "Web Audio"
 
 #: mkt/constants/features.py:176
-msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr "Aplikacja wymaga platformy obsługującej API Web Audio (`window.AudioContext`)."
+msgid ""
+"The app requires that the platform supports the Web Audio API "
+"(`window.AudioContext`)."
+msgstr ""
+"Aplikacja wymaga platformy obsługującej API Web Audio (`window.AudioContext`)."
 
 #: mkt/constants/features.py:182
-msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr "Aplikacja wymaga platformy mogącej dekodować i wyświetlać pliki wideo H.264."
+msgid ""
+"The app requires that the platform can decode and play H.264 video files."
+msgstr ""
+"Aplikacja wymaga platformy mogącej dekodować i wyświetlać pliki wideo H.264."
 
 #: mkt/constants/features.py:188
-msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr "Aplikacja wymaga platformy mogącej dekodować i odtwarzać pliki wideo WebM (VP8)."
+msgid ""
+"The app requires that the platform can decode and play WebM video files (VP8)."
+msgstr ""
+"Aplikacja wymaga platformy mogącej dekodować i odtwarzać pliki wideo WebM "
+"(VP8)."
 
 #: mkt/constants/features.py:193
 msgid "Full Screen"
 msgstr "Pełny ekran (Full Screen)"
 
 #: mkt/constants/features.py:194
-msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
-msgstr "Aplikacja wymaga API Full Screen (`requestFullScreen` lub `mozRequestFullScreen`)."
+msgid ""
+"The app requires the Full Screen API (`requestFullScreen` or "
+"`mozRequestFullScreen`)."
+msgstr ""
+"Aplikacja wymaga API Full Screen (`requestFullScreen` lub "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:200
 msgid "Gamepad"
 msgstr "Gamepad"
 
 #: mkt/constants/features.py:201
-msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr "Aplikacja wymaga platformy obsługującej API gamepad (`navigator.getGamepads`)."
+msgid ""
+"The app requires the platform to support the gamepad API "
+"(`navigator.getGamepads`)."
+msgstr ""
+"Aplikacja wymaga platformy obsługującej API gamepad (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:206
 msgid "Quota Management"
 msgstr "Zarządzanie przestrzenią (Quota Management)"
 
 #: mkt/constants/features.py:207
-msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
+msgid ""
+"The app requires the platform to allow persistent storage limit increases "
+"above the normally allowed limits for an app (`window.StorageInfo` or "
+"`window.persistentStorage`)."
 msgstr ""
-"Aplikacja wymaga platformy umożliwiającej trwałe zwiększenie limitu przechowywania danych ponad normalnie dopuszczalny limit dla aplikacji (`window.StorageInfo` lub `window.persistentStorage`)."
+"Aplikacja wymaga platformy umożliwiającej trwałe zwiększenie limitu "
+"przechowywania danych ponad normalnie dopuszczalny limit dla aplikacji "
+"(`window.StorageInfo` lub `window.persistentStorage`)."
 
 #: mkt/constants/features.py:215
 msgid "Camera"
 msgstr "Aparat (Camera)"
 
 #: mkt/constants/features.py:216
-msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr "Aplikacja wymaga platformy umożliwiającej dostęp do wideo z aparatu na urządzeniu poprzez obiekt LocalMediaStream."
+msgid ""
+"The app requires the platform to allow access to video from the device camera "
+"via a LocalMediaStream object."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej dostęp do wideo z aparatu na "
+"urządzeniu poprzez obiekt LocalMediaStream."
 
 #: mkt/constants/features.py:222
 msgid "Microphone"
 msgstr "Mikrofon (Microphone)"
 
 #: mkt/constants/features.py:223
-msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr "Aplikacja wymaga platformy umożliwiającej dostęp do dźwięku z mikrofonu na urządzeniu."
+msgid ""
+"The app requires the platform to allow access to audio from the device "
+"microphone."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej dostęp do dźwięku z mikrofonu na "
+"urządzeniu."
 
 #: mkt/constants/features.py:228
 msgid "Screen Capture"
 msgstr "Zrzut ekranu (Screen Capture)"
 
 #: mkt/constants/features.py:229
-msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr "Aplikacja wymaga platformy umożliwiającej dostęp do ekranu urządzenia, aby zrobić zrzut."
+msgid ""
+"The app requires the platform to allow access to the device screen for "
+"capture."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej dostęp do ekranu urządzenia, aby "
+"zrobić zrzut."
 
 #: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
 msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:236
-msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr "Aplikacja wymaga platformy umożliwiającej komunikację w czasie rzeczywistym strumieni mediów przychodzących między przeglądarkami."
+msgid ""
+"The app requires the platform to allow web real-time communication "
+"browser-to-browser inbound media streams."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej komunikację w czasie rzeczywistym "
+"strumieni mediów przychodzących między przeglądarkami."
 
 #: mkt/constants/features.py:242
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:243
-msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr "Aplikacja wymaga platformy umożliwiającej wymianę danych typu peer-to-peer innych niż audio i wideo."
+msgid ""
+"The app requires the platform to allow peer-to-peer exchange of data other "
+"than audio and video."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej wymianę danych typu peer-to-peer "
+"innych niż audio i wideo."
 
 #: mkt/constants/features.py:249
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:250
-msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr "Aplikacja wymaga platformy umożliwiającej komunikacji strumieni danych między użytkownikami."
+msgid ""
+"The app requires the platform to allow communication of streaming data "
+"between peers."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej komunikacji strumieni danych między "
+"użytkownikami."
 
 #: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
@@ -1730,7 +1803,8 @@ msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr "Aplikacja wymaga platformy umożliwiającej użycie przetwarzania tekstu na mowę."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej użycie przetwarzania tekstu na mowę."
 
 #: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
@@ -1738,39 +1812,56 @@ msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr "Aplikacja wymaga platformy umożliwiającej użycie przetwarzania mowy na tekst."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej użycie przetwarzania mowy na tekst."
 
 #: mkt/constants/features.py:268
 msgid "Pointer Lock"
 msgstr "Blokada wskaźnika (Pointer Lock)"
 
 #: mkt/constants/features.py:269
-msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr "Aplikacja wymaga platformy do dostarczenia dodatkowych informacji i kontroli wskaźnika."
+msgid ""
+"The app requires the platform to provide additional information and control "
+"about the pointer."
+msgstr ""
+"Aplikacja wymaga platformy do dostarczenia dodatkowych informacji i kontroli "
+"wskaźnika."
 
 #: mkt/constants/features.py:275
 msgid "Notifications"
 msgstr "Powiadomienia"
 
 #: mkt/constants/features.py:276
-msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr "Aplikacja wymaga platformy umożliwiającej wyświetlanie użytkownikowi powiadomień na telefonie i urządzeniu desktopowym."
+msgid ""
+"The app requires the platform to allow the displaying phone and desktop "
+"notifications to the user."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej wyświetlanie użytkownikowi "
+"powiadomień na telefonie i urządzeniu desktopowym."
 
 #: mkt/constants/features.py:282
 msgid "Alarms"
 msgstr "Alarmy (Alarms)"
 
 #: mkt/constants/features.py:283
-msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr "Aplikacja wymaga platformy do dostarczenia dostępu do ustawień alarmów urządzenia, by ustawić powiadomienia i zdarzenia w określonym czasie."
+msgid ""
+"The app requires the platform to provide access to the device alarm settings "
+"to schedule notifications and events at specific time."
+msgstr ""
+"Aplikacja wymaga platformy do dostarczenia dostępu do ustawień alarmów "
+"urządzenia, by ustawić powiadomienia i zdarzenia w określonym czasie."
 
 #: mkt/constants/features.py:290
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
 #: mkt/constants/features.py:291
-msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr "Aplikacja wymaga platformy do umożliwienia wysyłania asynchronicznych zapytań HTTP bez ograniczeń zasady tego samego źródła."
+msgid ""
+"The app requires the platform to allow the sending of asynchronous HTTP "
+"requests without the restrictions of the same-origin policy."
+msgstr ""
+"Aplikacja wymaga platformy do umożliwienia wysyłania asynchronicznych zapytań "
+"HTTP bez ograniczeń zasady tego samego źródła."
 
 #: mkt/constants/features.py:297
 msgid "TCP Sockets"
@@ -1778,7 +1869,8 @@ msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:298
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr "Aplikacja wymaga platformy umożliwiającej otwarcie czystych gniazd TCP."
+msgstr ""
+"Aplikacja wymaga platformy umożliwiającej otwarcie czystych gniazd TCP."
 
 #: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
@@ -1786,14 +1878,17 @@ msgstr "Wsparcie klawiatury zewnętrznych dostawców"
 
 #: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
-msgstr "Aplikacja wymaga platformy do wsparcia klawiatur zewnętrznych dostawców."
+msgstr ""
+"Aplikacja wymaga platformy do wsparcia klawiatur zewnętrznych dostawców."
 
 #: mkt/constants/features.py:309
 msgid "Multiple Network Information"
 msgstr ""
 
 #: mkt/constants/features.py:310
-msgid "The app requires the ability to get information about multiple network connections."
+msgid ""
+"The app requires the ability to get information about multiple network "
+"connections."
 msgstr ""
 
 #: mkt/constants/features.py:316
@@ -1802,7 +1897,7 @@ msgstr "Mobile ID"
 
 #: mkt/constants/features.py:317
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Aplikacja wymaga dostępu do API „navigator.getMobileIdAssertion”."
 
 #: mkt/constants/features.py:322
 msgid "Asm.js Precompilation"
@@ -1810,7 +1905,8 @@ msgstr "Prekompilacja Asm.js"
 
 #: mkt/constants/features.py:323
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr "Ta aplikacja wymaga wsparcia przez urządzenie prekompilacji kodu asm.js."
+msgstr ""
+"Ta aplikacja wymaga wsparcia przez urządzenie prekompilacji kodu asm.js."
 
 #: mkt/constants/features.py:328
 msgid "512MB RAM Device"
@@ -1818,7 +1914,8 @@ msgstr "Urządzenie z 512MB RAM"
 
 #: mkt/constants/features.py:329
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr "Ta aplikacja wymaga, by urządzenie miało przynajmniej 512MB pamięci RAM."
+msgstr ""
+"Ta aplikacja wymaga, by urządzenie miało przynajmniej 512MB pamięci RAM."
 
 #: mkt/constants/features.py:334
 msgid "1GB RAM Device"
@@ -1834,7 +1931,7 @@ msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "Aplikacja wymaga dostępu do API Near Field Communication (NFC)"
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1886,7 +1983,8 @@ msgstr "Unieważnienie nie powiodło się."
 
 #: mkt/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
-msgstr "Płatność została przyjęta, ale nie jest ukończona i oczekuje na przetworzenie."
+msgstr ""
+"Płatność została przyjęta, ale nie jest ukończona i oczekuje na przetworzenie."
 
 #: mkt/constants/payments.py:120
 msgid "Completed"
@@ -1985,7 +2083,7 @@ msgstr "Reszta świata"
 
 #: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Gwinea"
 
 #: mkt/constants/regions.py:110
 msgid "Russia"
@@ -1997,7 +2095,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:115
 msgid "Taiwan"
-msgstr ""
+msgstr "Tajwan"
 
 #: mkt/constants/regions.py:116
 msgid "Tanzania"
@@ -2053,7 +2151,8 @@ msgstr "Nie możesz wybrać regionu {region}."
 
 #: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
-msgstr "Wszyscy członkowie zespołu muszą przeczytać i zatwierdzić umowę autora."
+msgstr ""
+"Wszyscy członkowie zespołu muszą przeczytać i zatwierdzić umowę autora."
 
 #: mkt/developers/forms.py:154
 msgid "Must have at least one owner."
@@ -2068,32 +2167,59 @@ msgid "A team member can only be listed once."
 msgstr "Członek zespołu może być podany tylko raz."
 
 #: mkt/developers/forms.py:188
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która jest obecnie upubliczniona. <a href=\"%s\">Edytuj aplikację</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently public. <a href=\"%s\">Edit app</a>"
+msgstr ""
+"Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która "
+"jest obecnie upubliczniona. <a href=\"%s\">Edytuj aplikację</a>"
 
 #: mkt/developers/forms.py:192
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która obecnie oczekuje. <a href=\"%s\">Edytuj aplikację</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently pending. <a href=\"%s\">Edit app</a>"
+msgstr ""
+"Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która "
+"obecnie oczekuje. <a href=\"%s\">Edytuj aplikację</a>"
 
 #: mkt/developers/forms.py:196
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która obecnie niekompletna. <a href=\"%s\">Wznów aplikację</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently incomplete. <a href=\"%s\">Resume app</a>"
+msgstr ""
+"Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która "
+"obecnie niekompletna. <a href=\"%s\">Wznów aplikację</a>"
 
 #: mkt/developers/forms.py:200
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która obecnie odrzucona. <a href=\"%s\">Edytuj aplikację</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently rejected. <a href=\"%s\">Edit app</a>"
+msgstr ""
+"Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która "
+"obecnie odrzucona. <a href=\"%s\">Edytuj aplikację</a>"
 
 #: mkt/developers/forms.py:204
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oops, wygląda, że już zgłoszono manifest dla %s, który jest obecnie "
+"zablokowany w Marketplace. <a href=\"%s\">Edytuj aplikację</a>"
 
 #: mkt/developers/forms.py:208
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która obecnie wyłączona. <a href=\"%s\">Edytuj aplikację</a>"
+msgid ""
+"Oops, looks like you already submitted that manifest for %s, which is "
+"currently disabled. <a href=\"%s\">Edit app</a>"
+msgstr ""
+"Ups, wygląda na to, że już przesłano ten manifest dla aplikacji %s, która "
+"obecnie wyłączona. <a href=\"%s\">Edytuj aplikację</a>"
 
 #: mkt/developers/forms.py:223
-msgid "An app already exists on this domain; only one app per domain is allowed."
-msgstr "W tej domenie istnieje już aplikacja, dozwolona jest tylko jedna aplikacja w domenie."
+msgid ""
+"An app already exists on this domain; only one app per domain is allowed."
+msgstr ""
+"W tej domenie istnieje już aplikacja, dozwolona jest tylko jedna aplikacja w "
+"domenie."
 
 #: mkt/developers/forms.py:339
 msgid "Invalid region(s) selected."
@@ -2104,8 +2230,11 @@ msgid "You must upload at least one screenshot or video."
 msgstr "Musisz wgrać przynajmniej jeden obrazek lub wideo."
 
 #: mkt/developers/forms.py:435
-msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr "Spakowana aplikacja jest zbyt duża do zgłoszenia. Paczki muszą być mniejsze niż %s."
+msgid ""
+"Packaged app too large for submission. Packages must be smaller than %s."
+msgstr ""
+"Spakowana aplikacja jest zbyt duża do zgłoszenia. Paczki muszą być mniejsze "
+"niż %s."
 
 #: mkt/developers/forms.py:450
 msgid "Error extracting manifest from zip file."
@@ -2124,8 +2253,13 @@ msgid "Search Keywords:"
 msgstr "Słowa kluczowe wyszukiwania:"
 
 #: mkt/developers/forms.py:528 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
-msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
+msgid ""
+"The search keywords are used to return search results in the Firefox "
+"Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"Słowa kluczowe wyszukiwania są używane do zwracania wyników wyszukiwania w "
+"Marketplace. Pamiętaj, aby podać słowa kluczowe dokładnie odpowiadające "
+"twojej aplikacji."
 
 #: mkt/developers/forms.py:583 mkt/submit/forms.py:373 mkt/webapps/forms.py:23
 msgid "This slug is already in use. Please choose another."
@@ -2144,8 +2278,12 @@ msgid "Please specify your app's Privacy Policy"
 msgstr "Określ własną politykę prywatności aplikacji"
 
 #: mkt/developers/forms.py:672
-msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
-msgstr "Przed zmianą domyślnej lokalizacji musisz mieć w niej nazwę i opis. Pominięto:  %s."
+msgid ""
+"Before changing your default locale you must have a name and description in "
+"that locale. You are missing %s."
+msgstr ""
+"Przed zmianą domyślnej lokalizacji musisz mieć w niej nazwę i opis. "
+"Pominięto:  %s."
 
 #: mkt/developers/forms.py:741 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
@@ -2156,11 +2294,15 @@ msgid "Your comments"
 msgstr "Twoje komentarze"
 
 #: mkt/developers/forms.py:793
-msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
+msgid ""
+"<b>Published</b>: Visible to everyone in the Marketplace and included in "
+"search results and listing pages."
 msgstr ""
 
 #: mkt/developers/forms.py:797
-msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
+msgid ""
+"<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
+"search results and listing pages."
 msgstr ""
 
 #: mkt/developers/forms.py:813
@@ -2169,7 +2311,8 @@ msgstr "Widoczność aplikacji:"
 
 #: mkt/developers/forms.py:815
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr "<b>Ogranicz do mojego zespołu</b>: Widoczne tylko dla członków zespołu."
+msgstr ""
+"<b>Ogranicz do mojego zespołu</b>: Widoczne tylko dla członków zespołu."
 
 #: mkt/developers/forms.py:861
 msgid "Choose the regions your app will be listed in:"
@@ -2259,12 +2402,18 @@ msgid "Command line"
 msgstr "Wiersz poleceń"
 
 #: mkt/developers/forms.py:1173
-msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
+msgid ""
+"Make this the Active version of my app as soon as it has been reviewed and "
+"approved."
 msgstr ""
+"Ustaw tę wersję aplikacji jako aktywną, gdy tylko zostanie sprawdzona i "
+"zaakceptowana."
 
 #: mkt/developers/forms.py:1200
 msgid ""
-"Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
+"Please consider my app as a candidate to be pre-loaded on a Firefox OS "
+"device. I agree to the terms and conditions outlined above. I understand that "
+"this document is not a commitment to pre-load my "
 "app."
 msgstr ""
 
@@ -2289,7 +2438,9 @@ msgid "Please enter a valid submission ID."
 msgstr "Wprowadź poprawnie ID zgłoszenia."
 
 #: mkt/developers/forms.py:1276
-msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
+msgid ""
+"This IARC certificate is already being used for another app. Please create a "
+"new IARC Ratings Certificate."
 msgstr ""
 
 #: mkt/developers/forms.py:1311 mkt/developers/forms.py:1323
@@ -2322,7 +2473,8 @@ msgstr "Obsługuje wszystkie sposoby płatności"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr "Jeśli aplikacja jest darmowa, płatności w aplikacji muszą być wyłączone."
+msgstr ""
+"Jeśli aplikacja jest darmowa, płatności w aplikacji muszą być wyłączone."
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -2490,11 +2642,17 @@ msgstr ""
 
 #: mkt/developers/tasks.py:403
 msgid "No manifest was found at that URL. Check the address and try again."
-msgstr "Nie znaleziono manifestu pod tym adresem URL. Sprawdź adres i spróbuj ponownie."
+msgstr ""
+"Nie znaleziono manifestu pod tym adresem URL. Sprawdź adres i spróbuj "
+"ponownie."
 
 #: mkt/developers/tasks.py:409
-msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
-msgstr "Manifesty muszą być wysyłane z nagłówkiem HTTP „Content-Type: application/x-web-app-manifest+json”. Zobacz %s, by dowiedzieć się więcej."
+msgid ""
+"Manifests must be served with the HTTP header \"Content-Type: "
+"application/x-web-app-manifest+json\". See %s for more information."
+msgstr ""
+"Manifesty muszą być wysyłane z nagłówkiem HTTP „Content-Type: "
+"application/x-web-app-manifest+json”. Zobacz %s, by dowiedzieć się więcej."
 
 #: mkt/developers/tasks.py:418
 msgid "Your manifest must be less than %s bytes."
@@ -2505,8 +2663,12 @@ msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Twój plik manifestu nie został zakodowany jako poprawny UTF-8."
 
 #: mkt/developers/tasks.py:437
-msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
-msgstr "Kodowanie manifestu nie pasuje do zestawu znaków podanego w nagłówku HTTP Content-Type."
+msgid ""
+"The manifest's encoding does not match the charset provided in the HTTP "
+"Content-Type."
+msgstr ""
+"Kodowanie manifestu nie pasuje do zestawu znaków podanego w nagłówku HTTP "
+"Content-Type."
 
 #: mkt/developers/tasks.py:467 mkt/developers/tasks.py:473 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
@@ -2564,7 +2726,9 @@ msgstr "Ikony muszą być kwadratowe."
 #. in px.
 #: mkt/developers/utils.py:121
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr "Obrazki aplikacji muszą mieć wymiary przynajmniej {0}px na {1}px lub {1}px na {0}px."
+msgstr ""
+"Obrazki aplikacji muszą mieć wymiary przynajmniej {0}px na {1}px lub {1}px na "
+"{0}px."
 
 #: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -2591,8 +2755,12 @@ msgid "Changes successfully saved."
 msgstr "Zmiany zostały zapisane."
 
 #: mkt/developers/views.py:315
-msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr "Gratulacje, twoje zgłoszenie aplikacji jest teraz kompletne i niebawem zostanie ocenione!"
+msgid ""
+"Congratulations, your app submission is now complete and will be reviewed "
+"shortly!"
+msgstr ""
+"Gratulacje, twoje zgłoszenie aplikacji jest teraz kompletne i niebawem "
+"zostanie ocenione!"
 
 #: mkt/developers/views.py:317
 msgid "Content ratings successfully saved."
@@ -2691,17 +2859,28 @@ msgid "Marketplace API"
 msgstr "API Marketplace"
 
 #: mkt/developers/templates/developers/api.html:12
-msgid "To access the Marketplace API, create an OAuth key pair using the form below."
-msgstr "Aby mieć dostęp do API Marketplace, utwórz parę kluczy OAuth, używając poniższego formularza."
+msgid ""
+"To access the Marketplace API, create an OAuth key pair using the form below."
+msgstr ""
+"Aby mieć dostęp do API Marketplace, utwórz parę kluczy OAuth, używając "
+"poniższego formularza."
 
 #: mkt/developers/templates/developers/api.html:18
-msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
-msgstr "Aby mieć dostęp do API Marketplace, zaakceptuj <a href=\"%(terms)s\">warunki korzystania</a> i utwórz parę kluczy OAuth, używając poniższego formularza."
+msgid ""
+"To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of "
+"service</a> and create an OAuth key pair using the form below."
+msgstr ""
+"Aby mieć dostęp do API Marketplace, zaakceptuj <a href=\"%(terms)s\">warunki "
+"korzystania</a> i utwórz parę kluczy OAuth, używając poniższego formularza."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
-"<p> There are two main uses for the Marketplace API. From another web site using a traditional OAuth flow or from a command line tool. The difference is discussed in the <a href=\"https://firefox-"
-"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
+"<p> There are two main uses for the Marketplace API. From another web site "
+"using a traditional OAuth flow or from a command line tool. The difference is "
+"discussed in the <a href=\"https://firefox-"
+"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">"
+"Marketplace documentation</a>. Any testing should occur on the <a "
+"href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
 
@@ -2748,13 +2927,19 @@ msgid "OAuth Example"
 msgstr "Przykład OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
-msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
+msgid ""
+"<p>Example using a Python library for the command-line on Mac OS X using your "
+"OAuth credentials:</p>"
 msgstr ""
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
-msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr "Musisz ustawić: <a href=\"%(next_url)s\">%(next_step_name)s</a>, zanim twoja aplikacja będzie mogła być oceniona lub upubliczniona."
+msgid ""
+"You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your "
+"app can be reviewed or published."
+msgstr ""
+"Musisz ustawić: <a href=\"%(next_url)s\">%(next_step_name)s</a>, zanim twoja "
+"aplikacja będzie mogła być oceniona lub upubliczniona."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
@@ -2810,7 +2995,8 @@ msgstr "Autoryzuj dostęp"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr "Aplikacja %(app_name)s chciałaby uzyskać dostęp do twojego konta Marketplace."
+msgstr ""
+"Aplikacja %(app_name)s chciałaby uzyskać dostęp do twojego konta Marketplace."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -2845,20 +3031,31 @@ msgid "Settings"
 msgstr "Ustawienia"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92 mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje są tymczasowo wyłączone. Pełna funkcjonalność zostanie przywrócona wkrótce."
+msgid ""
+"Some features are temporarily disabled while we perform website maintenance. "
+"We'll be back to full capacity shortly."
+msgstr ""
+"W trakcie wykonywania serwisu witryny niektóre funkcje są tymczasowo "
+"wyłączone. Pełna funkcjonalność zostanie przywrócona wkrótce."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
-msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
-msgstr "Zasady użytkowania zmieniły się od twojego ostatniego zatwierdzenia. Przeczytaj i zatwierdź <a href=\"%(url)s\">nowe zasady</a>."
+msgid ""
+"The Terms of Service have changed since you last agreed to them. Please read "
+"and agree to the <a href=\"%(url)s\">new terms</a>."
+msgstr ""
+"Zasady użytkowania zmieniły się od twojego ostatniego zatwierdzenia. "
+"Przeczytaj i zatwierdź <a href=\"%(url)s\">nowe zasady</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
 msgstr "Zaloguj się"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
-msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr "Zaloguj się lub zarejestruj przy użyciu <a href=\"%(url)s\">Firefox Accounts</a> poniżej."
+msgid ""
+"Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
+msgstr ""
+"Zaloguj się lub zarejestruj przy użyciu <a href=\"%(url)s\">Firefox Accounts<"
+"/a> poniżej."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -2882,8 +3079,12 @@ msgid "Testing"
 msgstr "Testowanie"
 
 #: mkt/developers/templates/developers/testing.html:14
-msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr "Użyj tych narzędzi do przetestowania aplikacji przed zgłoszeniem ich do Marketplace."
+msgid ""
+"Use these tools for testing your apps prior to submission to the Firefox "
+"Marketplace."
+msgstr ""
+"Użyj tych narzędzi do przetestowania aplikacji przed zgłoszeniem ich do "
+"Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -2935,12 +3136,22 @@ msgid "Validate"
 msgstr "Weryfikuj"
 
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
-msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
-msgstr "<strong>Nie zapomnij o protokole!</strong> Spróbuj dodać <a href=\"#\">%(http)s</a> lub <a href=\"#\">%(https)s</a>."
+msgid ""
+"<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%"
+"(http)s</a> or <a href=\"#\">%(https)s</a>."
+msgstr ""
+"<strong>Nie zapomnij o protokole!</strong> Spróbuj dodać <a href=\"#\">%"
+"(http)s</a> lub <a href=\"#\">%(https)s</a>."
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
-msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr "Adresy URL manifestu muszą rozpoczynać się protokołem (np.: <code>http://</code> lub <code>https://</code>) i zwykle używają rozszerzenia <code>.webapp</code>."
+msgid ""
+"Manifest URLs must start with a protocol (for example, <code>http://</code> "
+"or <code>https://</code>) and typically use the <code>.webapp</code> "
+"extension."
+msgstr ""
+"Adresy URL manifestu muszą rozpoczynać się protokołem (np.: <code>http://<"
+"/code> lub <code>https://</code>) i zwykle używają rozszerzenia <code>"
+".webapp</code>."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
@@ -2948,8 +3159,11 @@ msgstr "Dowiedz się więcej o zgłaszaniu aplikacji."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
-"The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
-"how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
+"The validator is a tool which can help test your app for errors, best "
+"practices, and compliance with Marketplace guidelines before actually "
+"submitting your app for review. If you're interested in "
+"how it works or would like to run a copy of your own, the source code is "
+"available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
@@ -2989,8 +3203,12 @@ msgid "Welcome to the Developer Dashboard"
 msgstr "Witamy w panelu autora"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:29
-msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
-msgstr "Nie masz jeszcze aplikacji przesłanych do Firefox Marketplace. Gdy <a href=\"%(app_url)s\">stworzysz aplikację</a>, kliknij poniżej Prześlij aplikację."
+msgid ""
+"You haven't yet submitted an app to the Firefox Marketplace. Once you've <a "
+"href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
+msgstr ""
+"Nie masz jeszcze aplikacji przesłanych do Firefox Marketplace. Gdy <a href=\"%"
+"(app_url)s\">stworzysz aplikację</a>, kliknij poniżej Prześlij aplikację."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -3041,19 +3259,30 @@ msgstr "O rolach członków zespołu"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr "Aplikacje mogą mieć dowolną liczbę członków zespołu z 4 czterema możliwymi rolami:"
+msgstr ""
+"Aplikacje mogą mieć dowolną liczbę członków zespołu z 4 czterema możliwymi "
+"rolami:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
-msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
-msgstr "Może zarządzać wszystkimi aspektami aplikacji, w tym dodawaniem i usuwaniem innych członków zespołu"
+msgid ""
+"Can manage all aspects of the app's listing, including adding and removing "
+"other team members"
+msgstr ""
+"Może zarządzać wszystkimi aspektami aplikacji, w tym dodawaniem i usuwaniem "
+"innych członków zespołu"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
-msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
-msgstr "Może zarządzać wszystkimi aspektami aplikacji, z wyjątkiem dodawania i usuwania innych członków zespołu i zarządzania płatnościami"
+msgid ""
+"Can manage all aspects of the app's listing, except for adding and removing "
+"other team members and managing payments"
+msgstr ""
+"Może zarządzać wszystkimi aspektami aplikacji, z wyjątkiem dodawania i "
+"usuwania innych członków zespołu i zarządzania płatnościami"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
-msgstr "Może wyświetlać ustawienia aplikacji, ale nie może dokonywać żadnych zmian"
+msgstr ""
+"Może wyświetlać ustawienia aplikacji, ale nie może dokonywać żadnych zmian"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
@@ -3088,7 +3317,10 @@ msgid "This app has been <b>disabled by Mozilla</b>."
 msgstr "Ta aplikacja została <b>wyłączona przez Mozillę</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
-msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
+msgid ""
+"Your app was disabled because it is missing content ratings. It will "
+"automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining "
+"content ratings</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:50
@@ -3096,20 +3328,29 @@ msgid "This app has been <b>banned on Marketplace</b>."
 msgstr "Ta aplikacja została <b>zablokowana w Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
-msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgid ""
+"Your app was banned by a site administrator. If you have any questions, "
+"please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Aplikacja została usunięta przez administratora strony. Jeśli masz pytania, <"
+"a href=\"%(support_url)s\"> skontaktuj się z nami</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "Twoja aplikacja została <b>zablokowana przez Mozillę</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
-msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
+msgid ""
+"Your app was blocked by a site administrator. If you have any questions, "
+"please <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"Aplikacja została zablokowana przez administratora strony. Jeśli masz "
+"pytania, <a href=\"%(support_url)s\"> skontaktuj się z nami</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
-msgstr "Ta aplikacja została <b>odrzucona</b> przez recenzenta Firefox Marketplace."
+msgstr ""
+"Ta aplikacja została <b>odrzucona</b> przez recenzenta Firefox Marketplace."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
@@ -3123,7 +3364,9 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr "Ta aplikacja <b>oczekuje na sprawdzenie</b> przez recenzenta Firefox Marketplace."
+msgstr ""
+"Ta aplikacja <b>oczekuje na sprawdzenie</b> przez recenzenta Firefox "
+"Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
@@ -3136,18 +3379,31 @@ msgstr "Ta aplikacje jest <b>upubliczniona</b>."
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
 msgstr ""
+"Aplikacja została <b>zatwierdzona</b> i obecnie jest <b>niewyświetlana</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
-msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgid ""
+"Only those with the following URL can view and install this app:<br> <a "
+"href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Tylko osoby znające podany adres URL mogą zobaczyć i instalować tę "
+"aplikację:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
-msgid "Your app has been <b>approved</b> and is currently only visible to team members."
+msgid ""
+"Your app has been <b>approved</b> and is currently only visible to team "
+"members."
 msgstr ""
+"Aplikacja została <b>zatwierdzona</b> i obecnie jest widoczna tylko dla "
+"członków zespołu."
 
 #: mkt/developers/templates/developers/apps/status.html:118
-msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgid ""
+"Only <b>team members</b> with the following URL can view and install this "
+"app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Tylko <b>członkowie</b> poprzez podany adres URL mogą zobaczyć i instalować "
+"tę aplikację:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
@@ -3162,11 +3418,16 @@ msgid "Reviewed by <b>%(reviewer)s</b>"
 msgstr "Sprawdzone przez: <b>%(reviewer)s</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:161
-msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
-msgstr "Gdy rozwiążesz te problemy, możesz <a href=\"%(resubmit_url)s\">zgłosić niżej ponownie swoją aplikację</a>."
+msgid ""
+"Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">"
+"resubmit your app below</a>."
+msgstr ""
+"Gdy rozwiążesz te problemy, możesz <a href=\"%(resubmit_url)s\">zgłosić niżej "
+"ponownie swoją aplikację</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:166
-msgid "Once you have addressed these concerns, you may resubmit your app below."
+msgid ""
+"Once you have addressed these concerns, you may resubmit your app below."
 msgstr "Po rozwiązaniu tych problemów możesz niżej ponownie zgłosić aplikację."
 
 #: mkt/developers/templates/developers/apps/status.html:177
@@ -3174,7 +3435,9 @@ msgid "Resubmit App"
 msgstr "Prześlij ponownie aplikację"
 
 #: mkt/developers/templates/developers/apps/status.html:180
-msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
+msgid ""
+"You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before "
+"resubmitting your app."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:194
@@ -3202,11 +3465,17 @@ msgid "Upload New Version"
 msgstr "Ładowanie nowej wersji"
 
 #: mkt/developers/templates/developers/apps/status.html:253
-msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
-msgstr "Załaduj nową wersję tej spakowanej aplikacji. Nowe wersje muszą zostać ocenione przed udostępnieniem ich do instalacji."
+msgid ""
+"Upload a new version of this packaged app. New versions must be reviewed "
+"before they will be available for installation."
+msgstr ""
+"Załaduj nową wersję tej spakowanej aplikacji. Nowe wersje muszą zostać "
+"ocenione przed udostępnieniem ich do instalacji."
 
 #: mkt/developers/templates/developers/apps/status.html:259
-msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
+msgid ""
+"Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> "
+"if a large portion of the app's content has changed."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:189
@@ -3228,18 +3497,21 @@ msgstr "Twoja aplikacja nie jest widoczna na urządzeniach z małą pamięcią."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Nie masz próśb o sprawdzenie dla małej pamięci."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
 msgstr "Twoja aplikacja oczekuje na sprawdzenie"
 
 #: mkt/developers/templates/developers/apps/status.html:305
-msgid "Our review on {review_date} found that your app supports low-memory devices."
+msgid ""
+"Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:308
-msgid "Our review on {review_date} found that your app does not support low-memory devices."
+msgid ""
+"Our review on {review_date} found that your app does not support low-memory "
+"devices."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:311
@@ -3251,11 +3523,15 @@ msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:319
-msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
+msgid ""
+"You can update your regions on the <a href=\"{compatibility_page}\">"
+"compatibility page</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:326
-msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
+msgid ""
+"If your app works on low-memory devices then you can request a review to be "
+"shown on low-memory devices."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
@@ -3275,8 +3551,12 @@ msgid "Pre-Installed App Status"
 msgstr "Status preinstalowanej aplikacji"
 
 #: mkt/developers/templates/developers/apps/status.html:360
-msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr "<strong class=\"submitted\">Aplikacja zgłoszona</strong> dnia %(last_submission)s"
+msgid ""
+"<strong class=\"submitted\">Application Submitted</strong> on %"
+"(last_submission)s"
+msgstr ""
+"<strong class=\"submitted\">Aplikacja zgłoszona</strong> dnia %"
+"(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
@@ -3295,7 +3575,9 @@ msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
 msgstr "<Zaktualizuj swój plan testu>"
 
 #: mkt/developers/templates/developers/apps/status.html:381
-msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
+msgid ""
+"<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on "
+"Firefox OS devices"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
@@ -3308,12 +3590,19 @@ msgid "Delist App"
 msgstr "Nie wyświetlaj aplikacji"
 
 #: mkt/developers/templates/developers/apps/status.html:397
-msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "Wyświetlanie twojej aplikacji jest wyłączone i nie pojawi się ona nigdzie w Firefox Marketplace. Możesz ponownie włączyć wyświetlanie w dowolnym czasie."
+msgid ""
+"Your app's listing is disabled and will not appear in the Firefox "
+"Marketplace. You may re-list it at any time."
+msgstr ""
+"Wyświetlanie twojej aplikacji jest wyłączone i nie pojawi się ona nigdzie w "
+"Firefox Marketplace. Możesz ponownie włączyć wyświetlanie w dowolnym czasie."
 
 #: mkt/developers/templates/developers/apps/status.html:402
-msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
-msgstr "Wyłączenie wyświetlania aplikacji sprawi, że nie pojawi się ona nigdzie w Marketplace."
+msgid ""
+"Delisting your app will prevent it from appearing anywhere in the Marketplace."
+msgstr ""
+"Wyłączenie wyświetlania aplikacji sprawi, że nie pojawi się ona nigdzie w "
+"Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
@@ -3321,8 +3610,12 @@ msgid "Delete App"
 msgstr "Usuń aplikację"
 
 #: mkt/developers/templates/developers/apps/status.html:427
-msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
-msgstr "Skasowane aplikacji trwale usunie ją z witryny.  <strong>Tej czynności nie da się cofnąć.</strong>"
+msgid ""
+"Deleting your app will permanently delete it from the site. <strong>There is "
+"no going back.</strong>"
+msgstr ""
+"Skasowane aplikacji trwale usunie ją z witryny.  <strong>Tej czynności nie da "
+"się cofnąć.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
@@ -3330,11 +3623,17 @@ msgstr "Zablokuj aplikację"
 
 #: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
-"Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
-"submitted and approved. These changes cannot be undone. Please proceed with caution."
+"Blocklisting an app will upgrade the users to a special version which will "
+"make the app unusable on their Firefox OS devices. This will also remove this "
+"app from public pages until a new version is "
+"submitted and approved. These changes cannot be undone. Please proceed with "
+"caution."
 msgstr ""
-"Zablokowanie aplikacji zaktualizuje ją u użytkowników do specjalnej wersji, która sprawi, że aplikacja nie będzie działała na urządzeniu z Firefox OS. Usunie również aplikację ze wszystkich "
-"publicznych stron, zanim nowa wersja nie zostanie przesłana i zatwierdzona. Tych zmian nie da się cofnąć. Postępuj ostrożnie."
+"Zablokowanie aplikacji zaktualizuje ją u użytkowników do specjalnej wersji, "
+"która sprawi, że aplikacja nie będzie działała na urządzeniu z Firefox OS. "
+"Usunie również aplikację ze wszystkich "
+"publicznych stron, zanim nowa wersja nie zostanie przesłana i zatwierdzona. "
+"Tych zmian nie da się cofnąć. Postępuj ostrożnie."
 
 #: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
@@ -3404,7 +3703,9 @@ msgstr "Usuń wersję"
 
 #: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr "Czy na pewno chcesz zablokować pokazywanie swojej aplikacji na urządzeniach z małą pamięcią?"
+msgstr ""
+"Czy na pewno chcesz zablokować pokazywanie swojej aplikacji na urządzeniach z "
+"małą pamięcią?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:57
 msgid "Version Notes"
@@ -3412,9 +3713,13 @@ msgstr "Informacje o wersji"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
-"Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
+"Information about changes in this release, new features, known bugs, and "
+"other useful information specific to this release/version. This information "
+"is also shown in the Apps Manager when updating."
 msgstr ""
-"Informacja o zmianach w tym wydaniu, nowych funkcjach, znanych błędach oraz inne przydatne informacje, związane z tym wydaniem lub wersją. Ta informacja jest wyświetlana również w menedżerze "
+"Informacja o zmianach w tym wydaniu, nowych funkcjach, znanych błędach oraz "
+"inne przydatne informacje, związane z tym wydaniem lub wersją. Ta informacja "
+"jest wyświetlana również w menedżerze "
 "aplikacji podczas aktualizacji."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
@@ -3422,8 +3727,12 @@ msgid "Notes for Reviewers"
 msgstr "Informacje dla recenzentów"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
-msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "Opcjonalne podaj informacje, które mogą być przydatne dla recenzenta podczas sprawdzania tej aplikacji, np. informacje o koncie testowym."
+msgid ""
+"Optionally, enter any information that may be useful to the Reviewer "
+"reviewing this app, such as test account information."
+msgstr ""
+"Opcjonalne podaj informacje, które mogą być przydatne dla recenzenta podczas "
+"sprawdzania tej aplikacji, np. informacje o koncie testowym."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
@@ -3442,8 +3751,12 @@ msgid "Mozilla Contact"
 msgstr "Kontakt z Mozillą"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
-msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr "Adres e-mail (lub adresy oddzielone przecinkami) kontaktu do Mozilli dla tej aplikacji, na które będą przesyłanie kopie wszystkich e-maili recenzentów."
+msgid ""
+"An e-mail address (or addresses separated by commas) of this app's Mozilla "
+"contact that will be CC'd on any reviewer emails."
+msgstr ""
+"Adres e-mail (lub adresy oddzielone przecinkami) kontaktu do Mozilli dla tej "
+"aplikacji, na które będą przesyłanie kopie wszystkich e-maili recenzentów."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -3454,7 +3767,9 @@ msgid "Mozilla VIP App"
 msgstr "Aplikacja Mozilla VIP"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
-msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
+msgid ""
+"Is this a very important app that should always be handled by Mozilla Staff "
+"or Senior App Reviewers?"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
@@ -3466,7 +3781,8 @@ msgid "Priority review needed"
 msgstr "Potrzebne priorytetowe sprawdzenie"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
-msgid "The app will be treated as a priority and placed the top of the review queue"
+msgid ""
+"The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
@@ -3478,8 +3794,10 @@ msgid "Banner message"
 msgstr "Tekst banera"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
-msgid "Exclusive message shown on the listing page, only in the selected regions."
+msgid ""
+"Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Specjalny komunikat pojawiający się na stronie tylko w wybranych regionach."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
@@ -3500,8 +3818,11 @@ msgstr "Informacje podstawowe o {0}"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/submit/templates/submit/details.html:60
 msgid ""
-"The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
-"app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
+"The app name is one of the fields used to return search results in the "
+"Firefox Marketplace. The app name also appears on the app’s detail page. Be "
+"sure you’ve included a descriptive name in your "
+"app manifest. If you want to change the app name, you’ll need to do that in "
+"your app manifest."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
@@ -3510,15 +3831,20 @@ msgstr "Nazwa autora"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:38
 msgid "This field can only be edited by updating it in the manifest."
-msgstr "To pole może być edytowane jedynie poprzez aktualizację go w manifeście."
+msgstr ""
+"To pole może być edytowane jedynie poprzez aktualizację go w manifeście."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:48 mkt/submit/templates/submit/details.html:72
 msgid "App URL"
 msgstr "URL aplikacji"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:49 mkt/submit/templates/submit/details.html:74
-msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
-msgstr "Wybierz unikalny adres URL dla strony ze szczegółami. Domyślnie używamy nazwy aplikacji do utworzenia adresu."
+msgid ""
+"Select a unique URL for your detail page. By default we use your app name to "
+"create this URL."
+msgstr ""
+"Wybierz unikalny adres URL dla strony ze szczegółami. Domyślnie używamy nazwy "
+"aplikacji do utworzenia adresu."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:62 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
@@ -3548,9 +3874,15 @@ msgstr "Odśwież"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:87
 msgid ""
-"Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
+"Please try not to change your manifest URL too frequently. If you change your "
+"manifest URL, existing users won't be upgraded to use the new manifest URL. "
+"For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Staraj się nie zmieniać zbyt często adresu URL manifestu. Jeśli zmienić adres "
+"URL manifestu, obecni użytkownicy nie otrzymają aktualizacji, by używać "
+"nowego adresu URL manifestu. Aby dowiedzieć się więcej, przeczytać <a href="
+"\"%(doc_url)s\" target=\"_blank\">dokumentację aktualizowania aplikacji</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/reviewers/templates/reviewers/includes/details.html:138
 msgid "Description"
@@ -3558,9 +3890,15 @@ msgstr "Opis"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
+"The app description is one of the fields used to return search results in the "
+"Firefox Marketplace. The app description also appears on the app's detail "
+"page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"Opis aplikacji jest jednym z pól używanych w wynikach wyszukiwania w Firefox "
+"Marketplace. Opis aplikacji pojawia się również na stronie ze szczegółami "
+"aplikacji. Pamiętaj, aby podać opis, który dokładnie przedstawia twoją "
+"aplikację."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -3571,12 +3909,21 @@ msgid "Release Notes"
 msgstr "Informacje o wydaniu"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:152
-msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
+msgid ""
+"Information about changes in the latest release, new features, known bugs, "
+"and other useful information specific to this release/version."
 msgstr ""
+"Informacje o zmianach w ostatniej wersji, nowe funkcje, znane błędy oraz inne "
+"przydatne informacje specyficzne dla tego wydania lub wersji."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:173
-msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
-msgstr "Kategorie są podstawowym sposobem przeglądania aplikacji przez użytkowników. Wybierz kategorie pasujące do funkcji aplikacji w celu lepszego wyeksponowania."
+msgid ""
+"Categories are the primary way users browse through apps. Choose any that fit "
+"your app's functionality for the most exposure."
+msgstr ""
+"Kategorie są podstawowym sposobem przeglądania aplikacji przez użytkowników. "
+"Wybierz kategorie pasujące do funkcji aplikacji w celu lepszego "
+"wyeksponowania."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -3588,16 +3935,26 @@ msgid "Default Locale"
 msgstr "Domyślny język"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
-msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
-msgstr "Informacje o aplikacji wyświetlane są w tym języku, chyba że zastąpisz je tłumaczeniem."
+msgid ""
+"Information about your app is displayed in this locale unless you override it "
+"with a locale-specific translation."
+msgstr ""
+"Informacje o aplikacji wyświetlane są w tym języku, chyba że zastąpisz je "
+"tłumaczeniem."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
 msgstr "Strona domowa"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
-msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
-msgstr "Jeśli ta aplikacja ma inną stronę domową, wprowadź tutaj jej adres. Jeśli witryna jest przetłumaczona na inne języki, można dodać wiele tłumaczeń tego pola."
+msgid ""
+"If your app has another homepage, enter its address here. If your website is "
+"localized into other languages multiple translations of this field can be "
+"added."
+msgstr ""
+"Jeśli ta aplikacja ma inną stronę domową, wprowadź tutaj jej adres. Jeśli "
+"witryna jest przetłumaczona na inne języki, można dodać wiele tłumaczeń tego "
+"pola."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
@@ -3605,8 +3962,12 @@ msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:57
-msgid "A privacy policy is required that explains what data is transmitted from a user's computer and how it is used."
-msgstr "Wymagana jest polityka prywatności, wyjaśniająca, jakie dane przesyłane są z komputera użytkownika i jak są wykorzystywane."
+msgid ""
+"A privacy policy is required that explains what data is transmitted from a "
+"user's computer and how it is used."
+msgstr ""
+"Wymagana jest polityka prywatności, wyjaśniająca, jakie dane przesyłane są z "
+"komputera użytkownika i jak są wykorzystywane."
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
@@ -3647,7 +4008,10 @@ msgid "Support Information for {0}"
 msgstr "Informacje o pomocy dla {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
-msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
+msgid ""
+"The email address used by end users to contact you with support issues. If "
+"you have different addresses for each language multiple translations of this "
+"field can be added."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
@@ -3655,8 +4019,14 @@ msgid "Website"
 msgstr "Witryna"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
-msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr "Jeśli aplikacja ma stronę lub forum pomocy, wprowadź tu jej adres. Jeśli strona jest przetłumaczona na inne języki, można dodać wiele tłumaczeń tego pola."
+msgid ""
+"If your app has a support website or forum, enter its address here. If your "
+"website is localized into other languages, multiple translations of this "
+"field can be added."
+msgstr ""
+"Jeśli aplikacja ma stronę lub forum pomocy, wprowadź tu jej adres. Jeśli "
+"strona jest przetłumaczona na inne języki, można dodać wiele tłumaczeń tego "
+"pola."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -3672,24 +4042,36 @@ msgid "Uses Flash"
 msgstr "Używa Flasha"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
-msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr "Jeśli twoja aplikacja używa Flasha, będzie niewidoczna w Marketplace na urządzeniach nieobsługujących Flasha."
+msgid ""
+"If your app uses Flash, it will be hidden from the Marketplace on devices "
+"without Flash support."
+msgstr ""
+"Jeśli twoja aplikacja używa Flasha, będzie niewidoczna w Marketplace na "
+"urządzeniach nieobsługujących Flasha."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
 msgstr "Działa offline"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
-msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
+msgid ""
+"If your app works without an Internet connection then we will list that your "
+"app &quot;Works Offline&quot;."
 msgstr ""
+"Jeśli aplikacja działa bez połączenia internetowego, wtedy poinformujemy, że "
+"aplikacja „działa offline”."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
 msgstr "Upublicznić statystyki?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
-msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
-msgstr "Czy statystyki instalacji i użycia twojej aplikacji mogą być wyświetlane przez nas online?"
+msgid ""
+"Whether the install and usage stats of your app can be displayed in our "
+"online viewer."
+msgstr ""
+"Czy statystyki instalacji i użycia twojej aplikacji mogą być wyświetlane "
+"przez nas online?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:57
 msgid "This app's stats are publicly viewable."
@@ -3716,8 +4098,14 @@ msgid "App Icon"
 msgstr "Ikona aplikacji"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
-msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "Wgraj ikonkę aplikacji lub dołącz jedną z naszych. Ikona jest wyświetlana prawie wszędzie tam, gdzie aplikacja. Wgrywane obrazy muszą być w formacie .png lub .jpg"
+msgid ""
+"Upload an icon for your app or choose from one of ours. The icon is displayed "
+"nearly everywhere your app is. Uploaded images must be one of the following "
+"image types: .png, .jpg"
+msgstr ""
+"Wgraj ikonkę aplikacji lub dołącz jedną z naszych. Ikona jest wyświetlana "
+"prawie wszędzie tam, gdzie aplikacja. Wgrywane obrazy muszą być w formacie "
+".png lub .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
@@ -3748,7 +4136,8 @@ msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
-msgstr "Używane na listach aplikacji, jak wyniki wyszukiwania i polecane aplikacje."
+msgstr ""
+"Używane na listach aplikacji, jak wyniki wyszukiwania i polecane aplikacje."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -3756,7 +4145,9 @@ msgstr "Prześlij własną ikonę…"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
-msgstr "Obsługiwane są formaty PNG i JPG. Ikony muszą mieć wymiary przynajmniej 128x128 pikseli."
+msgstr ""
+"Obsługiwane są formaty PNG i JPG. Ikony muszą mieć wymiary przynajmniej "
+"128x128 pikseli."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
@@ -3771,8 +4162,12 @@ msgid "Add a Screenshot or Video..."
 msgstr "Dodaj obrazek lub wideo…"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
-msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
-msgstr "Obrazki i wideo muszą mieć rozmiar przynajmniej 320px na 480px. Najlepsze są media proporcjonalne do 320px na 480px. Wideo musi być w formacie WebM."
+msgid ""
+"Screenshots and videos must be at least 320px by 480px. Media proportional to "
+"320px by 480px is optimal. Video must be encoded as WebM."
+msgstr ""
+"Obrazki i wideo muszą mieć rozmiar przynajmniej 320px na 480px. Najlepsze są "
+"media proporcjonalne do 320px na 480px. Wideo musi być w formacie WebM."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
@@ -3978,9 +4373,14 @@ msgstr "Prześlij aplikację do preinstalowania"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
-"You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
-"us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
+"You can submit your app to be considered for being <strong>preloaded and "
+"shipped with FirefoxOS devices</strong> by phone operators. To opt-in for "
+"preloading, you may download a test template from "
+"us below, test your app, fill out the template, and upload your results back "
+"to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We "
+"will store your test results on our "
+"servers where they will be reviewed by interested phone operators. If you "
+"have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
@@ -3993,20 +4393,30 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
-"To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
-"short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
+"To have your app listed on the Marketplace, you must attain an International "
+"Age Rating Coalition (IARC) certificate. Clicking on the button below will "
+"open a new window where you can fill out a "
+"short yes-or-no questionnaire about the contents of your app. Upon "
+"completion, the window will close and your app will then have an age rating."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
-msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
+msgid ""
+"By using the IARC ratings certificate tool, you agree to abide by their <a "
+"href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms "
+"of Service agreement</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
-msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
+msgid ""
+"IARC content rating process complete, you will be redirected to your app's <a "
+"href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
-msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
+msgid ""
+"Sorry, there was an error on our side processing content ratings. You can "
+"keep trying or try again later."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
@@ -4018,7 +4428,9 @@ msgid "Already Have Your App Rated?"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
-msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
+msgid ""
+"If you have already gotten your app rated via the IARC Global Ratings Tool "
+"above and already have an IARC security code, you can manually enter it here."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
@@ -4026,16 +4438,24 @@ msgid "Submission ID"
 msgstr "ID zgłoszenia"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
-msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr "ID zgłoszenia można znaleźć na certyfikacie przesłanym do ciebie. Jest to wartość liczbowa jak &quot;14&quot;."
+msgid ""
+"The submission ID can be found on the certificate sent to you. It is a "
+"numeric value like &quot;14&quot;."
+msgstr ""
+"ID zgłoszenia można znaleźć na certyfikacie przesłanym do ciebie. Jest to "
+"wartość liczbowa jak &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
 msgstr "Kod bezpieczeństwa"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
-msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr "Kod bezpieczeństwa można znaleźć na certyfikacie przesłanym do ciebie. Jest to zestaw liter i liczba jak  &quot;AB12CD3&quot;."
+msgid ""
+"The security code can be found on the certificate sent to you. It is a mix of "
+"letters and numbers like &quot;AB12CD3&quot;."
+msgstr ""
+"Kod bezpieczeństwa można znaleźć na certyfikacie przesłanym do ciebie. Jest "
+"to zestaw liter i liczba jak  &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
@@ -4103,12 +4523,19 @@ msgstr[1] "<b>Szacowany czas oczekiwania:</b> %(num)s dni robocze"
 msgstr[2] "<b>Szacowany czas oczekiwania:</b> %(num)s dni roboczych"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
-msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
+msgid ""
+"Most apps are reviewed in about a week. If your review has taken longer than "
+"this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:119
-msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
-msgstr "Zaznacz funkcje, których twoja aplikacja wymaga do poprawnego działania. Aplikacja będzie ukryta przed użytkownikami, których urządzenia nie obsługują tych funkcji."
+msgid ""
+"Check the boxes of the features that your app requires to function properly. "
+"Your app will be hidden from users whose devices don't support it."
+msgstr ""
+"Zaznacz funkcje, których twoja aplikacja wymaga do poprawnego działania. "
+"Aplikacja będzie ukryta przed użytkownikami, których urządzenia nie obsługują "
+"tych funkcji."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4131,9 +4558,14 @@ msgid "In-App Payments Keys"
 msgstr "Klucze płatności w aplikacji"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
-msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
+msgid ""
+"The Firefox Marketplace allows your app to take in-app payments. The <a "
+"href=\"{guide}\">in-app payment guide</a> explains how to configure your app "
+"for payments with the parameters below."
 msgstr ""
-"Firefox Marketplace pozwala na realizację płatności wbudowanych w aplikację. <a href=\"{guide}\">Przewodnik płatności w aplikacji</a> wyjaśnia, jak skonfigurować aplikację do płatności z poniższymi "
+"Firefox Marketplace pozwala na realizację płatności wbudowanych w aplikację. "
+"<a href=\"{guide}\">Przewodnik płatności w aplikacji</a> wyjaśnia, jak "
+"skonfigurować aplikację do płatności z poniższymi "
 "parametrami."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
@@ -4163,11 +4595,17 @@ msgstr "Dowiedz się więcej <b>płatnościach w aplikacji</b> na MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
-"The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
-"set up your payment credentials, and generate a new key specifically for that app."
+"The following key/secret will only allow you to simulate in-app payments "
+"while you develop your app. To generate a key for real in-app payments you "
+"must <a href=\"%(submit)s\">submit</a> your app, "
+"set up your payment credentials, and generate a new key specifically for that "
+"app."
 msgstr ""
-"Poniższy klucz/poufny kod pozwoli ci jedynie na symulację płatności w aplikacji podczas tworzenia aplikacji. Aby wygenerować klucz dla rzeczywistych płatności w aplikacji, musisz <a href="
-"\"%(submit)s\">przesłać</a> swoją aplikację, skonfigurować swoje uwierzytelnienia i wygenerować nowy klucz specjalnie dla danej aplikacji."
+"Poniższy klucz/poufny kod pozwoli ci jedynie na symulację płatności w "
+"aplikacji podczas tworzenia aplikacji. Aby wygenerować klucz dla "
+"rzeczywistych płatności w aplikacji, musisz <a href="
+"\"%(submit)s\">przesłać</a> swoją aplikację, skonfigurować swoje "
+"uwierzytelnienia i wygenerować nowy klucz specjalnie dla danej aplikacji."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4182,7 +4620,10 @@ msgid "Recommended"
 msgstr "Polecane"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
-msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
+msgid ""
+"In-App Products allow you to take payments in your application and simplifies "
+"the process by allowing you to create and manage your products in the Firefox "
+"Marketplace Developer Hub."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
@@ -4194,11 +4635,16 @@ msgid "In-App Keys"
 msgstr "Klucze w aplikacji"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:47
-msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
+msgid ""
+"In-App Payments Keys allow you to take payments in your application for any "
+"arbitrary price point. You are responsible for the definition and management "
+"of products."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
-msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
+msgid ""
+"Note: If you're wanting to provide in-app products to Firefox for Desktop "
+"users then please use in-app products."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
@@ -4210,15 +4656,25 @@ msgid "Enable"
 msgstr "Włącz"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
-msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
+msgid ""
+"In-app products are only supported for hosted apps or packaged apps that "
+"define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does "
+"not define an origin."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:38
-msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
+msgid ""
+"This feature is under active development. Please refer to the <a "
+"target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more "
+"information."
 msgstr ""
+"Ta funkcja jest w trakcie tworzenia. Przejdź do <a target=\"_blank\" href=\"%"
+"(doc_link)s\">dokumentacji</a>, aby dowiedzieć się więcej."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
-msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
+msgid ""
+"If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">"
+"report a bug</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:56
@@ -4262,17 +4718,26 @@ msgid "Changing to Paid will put your app back into review."
 msgstr "Zmiana trybu na płatny skieruje aplikację ponownie do sprawdzenia."
 
 #: mkt/developers/templates/developers/payments/premium.html:108
-msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
+msgid ""
+"Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment "
+"types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">"
+"validating purchase receipts</a>."
 msgstr ""
-"Dowiedz się o <a href=\"%(payments_url)s\" target=\"_blank\">różnych typach płatności</a>.<br /> Dowiedz się o <a href=\"%(receipts_url)s\" target=\"_blank\">sprawdzaniu potwierdzenia płatności</a>."
+"Dowiedz się o <a href=\"%(payments_url)s\" target=\"_blank\">różnych typach "
+"płatności</a>.<br /> Dowiedz się o <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">sprawdzaniu potwierdzenia płatności</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:119 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
 msgstr "Rachunki płatnicze"
 
 #: mkt/developers/templates/developers/payments/premium.html:123
-msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Twoja aplikacja nie jest kompletna. Wybierz rachunki płatnicze i cenę bazową, by to zmienić."
+msgid ""
+"Your app is currently incomplete. Select a payment account and price point to "
+"restore it."
+msgstr ""
+"Twoja aplikacja nie jest kompletna. Wybierz rachunki płatnicze i cenę bazową, "
+"by to zmienić."
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
@@ -4312,7 +4777,9 @@ msgid "Available Regions"
 msgstr "Dostępne regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
-msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
+msgid ""
+"Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to "
+"see which countries are currently enabled for sale."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:225
@@ -4336,7 +4803,9 @@ msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:248
-msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
+msgid ""
+"As \"Rest of World\" is selected your app will be available for purchase in "
+"all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:256
@@ -4344,7 +4813,9 @@ msgid "Other regions"
 msgstr "Inne regiony"
 
 #: mkt/developers/templates/developers/payments/premium.html:258
-msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
+msgid ""
+"To exclude your app from appearing in a region, you may uncheck that region "
+"before saving."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:278
@@ -4356,12 +4827,19 @@ msgid "Promote as upgrade to free version"
 msgstr "Promuj jako aktualizację do darmowej wersji"
 
 #: mkt/developers/templates/developers/payments/premium.html:302
-msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr "Jeśli masz darmową aplikację, możesz tutaj połączyć i promować płatną aplikację obok wersji darmowej."
+msgid ""
+"If you have a free app, you can link and promote your premium app next to the "
+"free version here."
+msgstr ""
+"Jeśli masz darmową aplikację, możesz tutaj połączyć i promować płatną "
+"aplikację obok wersji darmowej."
 
 #: mkt/developers/templates/developers/payments/premium.html:310
-msgid "Linking this app will promote your premium app next to the free version."
-msgstr "Połączenie tej aplikacji będzie promowało twoją płatną aplikację obok wersji darmowej."
+msgid ""
+"Linking this app will promote your premium app next to the free version."
+msgstr ""
+"Połączenie tej aplikacji będzie promowało twoją płatną aplikację obok wersji "
+"darmowej."
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
@@ -4405,11 +4883,15 @@ msgid "Delete Payment Account"
 msgstr "Usuń rachunek płatniczy"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
-msgid "The current payment account was associated with the app by an app owner."
-msgstr "Aktualny rachunek płatniczy został powiązany z aplikacją przez właściciela aplikacji."
+msgid ""
+"The current payment account was associated with the app by an app owner."
+msgstr ""
+"Aktualny rachunek płatniczy został powiązany z aplikacją przez właściciela "
+"aplikacji."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
-msgid "You have an incomplete payment account. Complete it or set up a new one below."
+msgid ""
+"You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
@@ -4421,7 +4903,9 @@ msgid "Add Bango Account"
 msgstr "Dodaj konto Bango"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
-msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
+msgid ""
+"Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment "
+"Accounts</a>."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
@@ -4483,8 +4967,12 @@ msgid "Regions that require extra consideration:"
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
-msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
+msgid ""
+"You must <a href=\"{status_page}\">request a review</a> to have your app "
+"shown on low-memory devices."
 msgstr ""
+"Musisz <a href=\"{status_page}\">poprosić o sprawdzenie</a>, by twoja "
+"aplikacja pokazywała się na urządzenia z małą ilością pamięci."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -4495,15 +4983,27 @@ msgid "Learn why some regions are restricted."
 msgstr "Dowiedz się, dlaczego niektóre regiony są ograniczone."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
-msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr "Twoja aplikacja nie będzie wyświetlana w niektórych regionach, ponieważ te regiony nie obsługują płatności. Przenieśliśmy twój wybór regionów. Sprawdź zmiany przed zapisaniem."
+msgid ""
+"Your app will no longer be listed in certain regions because those regions do "
+"not support payments. We have transferred your region choices. Please review "
+"the changes before saving."
+msgstr ""
+"Twoja aplikacja nie będzie wyświetlana w niektórych regionach, ponieważ te "
+"regiony nie obsługują płatności. Przenieśliśmy twój wybór regionów. Sprawdź "
+"zmiany przed zapisaniem."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
-msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr "Twoja aplikacja będzie wyświetlana w każdym regionalnym Marketplace dodanym w przyszłości."
+msgid ""
+"Your app will be displayed in any regional Marketplace that is added in the "
+"future."
+msgstr ""
+"Twoja aplikacja będzie wyświetlana w każdym regionalnym Marketplace dodanym w "
+"przyszłości."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
-msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
+msgid ""
+"(Subject to payments being available in that region for the selected price "
+"point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
@@ -4519,8 +5019,10 @@ msgid "Thank you for subscribing!"
 msgstr "Dziękujemy za subskrypcję!"
 
 #: mkt/ecosystem/views.py:59
-msgid "We apologize, but an error occurred in our system. Please try again later."
-msgstr "Przepraszamy, ale wystąpił błąd w naszym systemie. Spróbuj ponownie później."
+msgid ""
+"We apologize, but an error occurred in our system. Please try again later."
+msgstr ""
+"Przepraszamy, ale wystąpił błąd w naszym systemie. Spróbuj ponownie później."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
@@ -4579,16 +5081,28 @@ msgid "Develop HTML5 Web Apps for an open marketplace."
 msgstr "Twórz aplikacje sieciowe HTML5 dla otwartego sklepu."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
-msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Dowiedz się, jak projektować aplikacje zoptymalizowane dla użytkowników Firefox OS i Mobile"
+msgid ""
+"Learn how to design apps that provide a user experience optimized for Firefox "
+"OS &amp; Mobile"
+msgstr ""
+"Dowiedz się, jak projektować aplikacje zoptymalizowane dla użytkowników "
+"Firefox OS i Mobile"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
-msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr "Wszelkie narzędzia i dokumentacje, których potrzebujesz do tworzenia i testowania aplikacji"
+msgid ""
+"All the tools, docs and references you'll need for development and testing of "
+"your app"
+msgstr ""
+"Wszelkie narzędzia i dokumentacje, których potrzebujesz do tworzenia i "
+"testowania aplikacji"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
-msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Dowiedz się, jak dystrybuować aplikacje w otwartym sklepie, stawiającym na pierwszym miejscu użytkowników i autorów"
+msgid ""
+"Find out how to distribute your apps on an open marketplace that puts users "
+"and developers first"
+msgstr ""
+"Dowiedz się, jak dystrybuować aplikacje w otwartym sklepie, stawiającym na "
+"pierwszym miejscu użytkowników i autorów"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -4607,8 +5121,14 @@ msgid "Look who's already here"
 msgstr "Zobacz, kto już tu jest"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
-msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "Reprezentujesz firmę internetową, dostawcę usług lub firmę OEM, która chce zostać partnerem Mozilli? <a href=\"%(partner_url)s\">Więcej informacji na stronie partnerów</a>"
+msgid ""
+"Are you a Web Company, Third-Party Service, or OEM looking to partner with "
+"Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more "
+"info.</a>"
+msgstr ""
+"Reprezentujesz firmę internetową, dostawcę usług lub firmę OEM, która chce "
+"zostać partnerem Mozilli? <a href=\"%(partner_url)s\">Więcej informacji na "
+"stronie partnerów</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -4616,39 +5136,61 @@ msgstr "Platforma aplikacji Mozilli"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
-"Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
+"Building apps for the Web provides developers with full control over content, "
+"functionality and how apps are distributed, including access to hundreds of "
+"millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Tworzenie aplikacji dla Sieci daje twórcom pełną kontrolę nad treścią, funkcjonalnością i sposobem dystrybucji aplikacji, włączając w to dostęp do setek milionów użytkowników Firefoksa poprzez "
+"Tworzenie aplikacji dla Sieci daje twórcom pełną kontrolę nad treścią, "
+"funkcjonalnością i sposobem dystrybucji aplikacji, włączając w to dostęp do "
+"setek milionów użytkowników Firefoksa poprzez "
 "Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
-"Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
+"Using open Web standards and Mozilla-designed APIs, great app experiences can "
+"be delivered across multiple platforms, devices and operating systems &mdash; "
+"closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
-"Wykorzystanie otwartych standardów sieciowych oraz API stworzonych przez Mozillę może dostarczyć wspaniałych doświadczeń z aplikacjami na wielu platformach, urządzeniach oraz systemach operacyjnych "
+"Wykorzystanie otwartych standardów sieciowych oraz API stworzonych przez "
+"Mozillę może dostarczyć wspaniałych doświadczeń z aplikacjami na wielu "
+"platformach, urządzeniach oraz systemach operacyjnych "
 "&mdash; zamykając po raz pierwszy lukę między siecią i aplikacjami natywnymi."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
-"The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
-"across all categories that users can use to get the most out of their daily lives."
+"The Firefox Marketplace gives users the opportunity to find, try and buy apps "
+"and content that matters most to them. This means exciting, useful and "
+"high-quality Apps relevant to local markets "
+"across all categories that users can use to get the most out of their daily "
+"lives."
 msgstr ""
-"Firefox Marketplace daje użytkownikom możliwość znalezienia, wypróbowania i zakupu aplikacji oraz treści ważnych dla nich. Oznacza to ekscytujące, użyteczne i wysokiej jakości aplikacji odpowiednie "
-"dla lokalnych rynków we wszystkich kategoriach, z których użytkownicy mogą korzystać, aby jak najlepiej wyzyskać codzienne życie."
+"Firefox Marketplace daje użytkownikom możliwość znalezienia, wypróbowania i "
+"zakupu aplikacji oraz treści ważnych dla nich. Oznacza to ekscytujące, "
+"użyteczne i wysokiej jakości aplikacji odpowiednie "
+"dla lokalnych rynków we wszystkich kategoriach, z których użytkownicy mogą "
+"korzystać, aby jak najlepiej wyzyskać codzienne życie."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
-"Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
-"developers can get their app into the hands of their target users around the world."
+"Mozilla's global reach extends to hundreds of millions of Firefox users "
+"worldwide. Through intelligent Marketplace curation and effective use of "
+"Mozilla’s marketing channels, Mozilla can help "
+"developers can get their app into the hands of their target users around the "
+"world."
 msgstr ""
-"Globalny zasięg Mozilli obejmuje setki milionów użytkowników Firefoksa na całym świecie. Poprzez inteligentny Marketplace oraz efektywne użycie kanałów marketingowych Mozilli może ona pomóc autorom "
+"Globalny zasięg Mozilli obejmuje setki milionów użytkowników Firefoksa na "
+"całym świecie. Poprzez inteligentny Marketplace oraz efektywne użycie kanałów "
+"marketingowych Mozilli może ona pomóc autorom "
 "w dostarczeniu ich aplikacji docelowym użytkownikom na całym świecie."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
-msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
+msgid ""
+"The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
+"Firefox Markeplace jest teraz otwarty i akceptuje aplikacje. Zgłoś swoja "
+"aplikację do:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
@@ -4667,8 +5209,13 @@ msgid "Firefox Apps &amp; Hacks"
 msgstr "Firefox Apps &amp; Hacks"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
-msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "Zapisz się na comiesięczny newsletter o Firefox OS, Marketplace i ekosystemie aplikacji. <a href=\"%(dev_phone_url)s\">Sprawdź telefon dla programistów</a>"
+msgid ""
+"Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps "
+"ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone "
+"preview</a>"
+msgstr ""
+"Zapisz się na comiesięczny newsletter o Firefox OS, Marketplace i ekosystemie "
+"aplikacji. <a href=\"%(dev_phone_url)s\">Sprawdź telefon dla programistów</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -4683,8 +5230,12 @@ msgid "Events &amp; Meetups"
 msgstr "Wydarzenia i spotkania"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
-msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr "Akceptuję sposób wykorzystania danych przez Mozillę, opisany <a href=\"%(privacy_link)s\">Polityce prywatności</a>."
+msgid ""
+"I'm okay with Mozilla handling this information as explained in the <a "
+"href=\"%(privacy_link)s\">Privacy Policy</a>."
+msgstr ""
+"Akceptuję sposób wykorzystania danych przez Mozillę, opisany <a href=\"%"
+"(privacy_link)s\">Polityce prywatności</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
@@ -4788,40 +5339,74 @@ msgid "Check them out!"
 msgstr "Sprawdź ich!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
-msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "Zostań partnerem Mozilli, by udostępniać swoje aplikacje 450 milionom użytkowników poprzez otwarty sklep "
+msgid ""
+"Partner with Mozilla to distribute your apps through an open marketplace to "
+"over 450 million users"
+msgstr ""
+"Zostań partnerem Mozilli, by udostępniać swoje aplikacje 450 milionom "
+"użytkowników poprzez otwarty sklep "
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
-msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
-msgstr "<a href=\"%(submit_url)s\" class=\"button\">Prześlij teraz</a> <span>lub</span> <a href=\"%(api_url)s\" class=\"button api\">Prześlij przez API</a>"
+msgid ""
+"<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a "
+"href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
+msgstr ""
+"<a href=\"%(submit_url)s\" class=\"button\">Prześlij teraz</a> <span>lub<"
+"/span> <a href=\"%(api_url)s\" class=\"button api\">Prześlij przez API</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
-msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr "Dzięki potężnej platformie sieciowej, otwartemu sklepowi i partnerom takim, jak Ty, jesteśmy gotowi na powitanie kolejnych 2 miliardów użytkowników sieci"
+msgid ""
+"With a powerful web platform, an open marketplace, and partners like you, we "
+"are ready to welcome the next 2 billion users online"
+msgstr ""
+"Dzięki potężnej platformie sieciowej, otwartemu sklepowi i partnerom takim, "
+"jak Ty, jesteśmy gotowi na powitanie kolejnych 2 miliardów użytkowników sieci"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
-msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr "<strong>Sieć jest platformą</strong> &ndash; napisz swoją aplikację w HTML5 tylko raz i rozpowszechniaj w całej sieci."
+msgid ""
+"<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once "
+"and distribute it across the entire web."
+msgstr ""
+"<strong>Sieć jest platformą</strong> &ndash; napisz swoją aplikację w HTML5 "
+"tylko raz i rozpowszechniaj w całej sieci."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
-msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr "<strong>Łatwe płatności</strong> &ndash; dzięki wielu rodzajom płatności oraz rachunkom zintegrowanym z operatorami umożliwiamy Ci bezproblemowe zarabianie na twojej aplikacji."
+msgid ""
+"<strong>Seamless Payments</strong> &ndash; with multiple payment models and "
+"carrier-integrated billing, we bring you frictionless monetization to your "
+"app."
+msgstr ""
+"<strong>Łatwe płatności</strong> &ndash; dzięki wielu rodzajom płatności oraz "
+"rachunkom zintegrowanym z operatorami umożliwiamy Ci bezproblemowe zarabianie "
+"na twojej aplikacji."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
-msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr "<strong>Masowy odbiorca</strong> &ndash; ponad 450 milionów użytkowników zaprosiło Firefoksa do domu, oddaj już dziś w ich ręce swoją aplikację."
+msgid ""
+"<strong>A Massive Audience</strong> &ndash; over 450 million users call "
+"Firefox home, put your app in their hands today."
+msgstr ""
+"<strong>Masowy odbiorca</strong> &ndash; ponad 450 milionów użytkowników "
+"zaprosiło Firefoksa do domu, oddaj już dziś w ich ręce swoją aplikację."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
 msgstr "Dołącz do największych i najlepszych"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
-msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr "Najpopularniejsze marki świata i Twoje wszystkie ulubione aplikacje tworzą swoją przygodę w Firefox Marketplace."
+msgid ""
+"The world's most popular brands and all your favorite apps are building their "
+"experience on Firefox Marketplace."
+msgstr ""
+"Najpopularniejsze marki świata i Twoje wszystkie ulubione aplikacje tworzą "
+"swoją przygodę w Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
-msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr "Prawdziwie międzyplatformowe, niezależne od urządzeń, niezastrzeżone prawami miejsce dla najlepszych globalnych i lokalnych aplikacji HTML5."
+msgid ""
+"A truly cross-platform, cross-device, non-proprietary home for the world's "
+"best global and local HTML5 apps."
+msgstr ""
+"Prawdziwie międzyplatformowe, niezależne od urządzeń, niezastrzeżone prawami "
+"miejsce dla najlepszych globalnych i lokalnych aplikacji HTML5."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -4860,8 +5445,14 @@ msgid "Badges, banners, and icons"
 msgstr "Znaczki, banery i ikony"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
-msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
-msgstr "„Pobierz w Firefox Marketplace” to znaczki, które można używać na swoich stronach internetowych i w materiałach promocyjnych, by wskazać swoje produkty w Firefox Marketplace."
+msgid ""
+"\"Get it in the Firefox Marketplace\" are badges that you can use on your web "
+"site and promotional materials to point to your products on the Firefox "
+"Marketplace."
+msgstr ""
+"„Pobierz w Firefox Marketplace” to znaczki, które można używać na swoich "
+"stronach internetowych i w materiałach promocyjnych, by wskazać swoje "
+"produkty w Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -4872,12 +5463,22 @@ msgid "You may not alter the badge in any way"
 msgstr "Nie możesz zmieniać znaczka w żaden sposób"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
-msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr "Gdy używasz obok logotypów innych sklepów („Pobierz w Google Play”, „Pobierz w App Store”), znaczek Firefox Marketplace powinien być równej lub większej wielkości."
+msgid ""
+"When used alongside logos for other marketplaces (\"Get it on Google Play\", "
+"\"Download on the App Store\"), the Firefox Marketplace badge should be of "
+"equal or greater size"
+msgstr ""
+"Gdy używasz obok logotypów innych sklepów („Pobierz w Google Play”, „Pobierz "
+"w App Store”), znaczek Firefox Marketplace powinien być równej lub większej "
+"wielkości."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
-msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr "Znaczek powinien linkować do strony ze szczegółami aplikacji w Firefox Marketplace<br> Na przykład: https://marketplace.firefox.com/app/twitter"
+msgid ""
+"The badge should link to an app details page within the Firefox Marketplace<"
+"br> For example: https://marketplace.firefox.com/app/twitter"
+msgstr ""
+"Znaczek powinien linkować do strony ze szczegółami aplikacji w Firefox "
+"Marketplace<br> Na przykład: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -4896,8 +5497,12 @@ msgid "Logo"
 msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
-msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
-msgstr "Aby zobaczyć i pobrać logo Firefox Marketplace, odwiedź stronę <a href=\"%(style_guide_url)s\">Mozilla style guide</a>"
+msgid ""
+"To view and download the Firefox Marketplace logo, please visit the <a "
+"href=\"%(style_guide_url)s\">Mozilla style guide</a>."
+msgstr ""
+"Aby zobaczyć i pobrać logo Firefox Marketplace, odwiedź stronę <a href=\"%"
+"(style_guide_url)s\">Mozilla style guide</a>"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -4932,9 +5537,14 @@ msgid "Do you still have questions?"
 msgstr "Czy masz jeszcze pytania?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
-msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
+msgid ""
+"While we are working on creating a set of channels to help you with your "
+"issues you can visit StackOverflow to resolve all your questions related to "
+"the development of Web apps."
 msgstr ""
-"Podczas gdy pracujemy nad stworzeniem zestawu kanałów, pomocnych w rozwiązywaniu problemów, możesz odwiedzić StackOverflow, by znaleźć odpowiedzi na wszystkie swoje pytania związane z tworzeniem "
+"Podczas gdy pracujemy nad stworzeniem zestawu kanałów, pomocnych w "
+"rozwiązywaniu problemów, możesz odwiedzić StackOverflow, by znaleźć "
+"odpowiedzi na wszystkie swoje pytania związane z tworzeniem "
 "aplikacji sieciowych."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
@@ -4942,8 +5552,12 @@ msgid "Stack Overflow"
 msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
-msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
-msgstr "Jeśli chcesz współpracować z innymi programistami, dołącz do naszych dynamicznych społeczności na listach mailingowych:"
+msgid ""
+"If you want to engage with other developers, join our vibrant communities in "
+"these mailing lists:"
+msgstr ""
+"Jeśli chcesz współpracować z innymi programistami, dołącz do naszych "
+"dynamicznych społeczności na listach mailingowych:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
@@ -4983,8 +5597,12 @@ msgid "Problems decoding {0}."
 msgstr "Problemy z dekodowaniem {0}."
 
 #: mkt/files/helpers.py:213
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Zawartości tego pliku nie można zobaczyć w trybie online. Pobierz plik, by zobaczyć jego zawartość."
+msgid ""
+"This file is not viewable online. Please download the file to view the "
+"contents."
+msgstr ""
+"Zawartości tego pliku nie można zobaczyć w trybie online. Pobierz plik, by "
+"zobaczyć jego zawartość."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
@@ -4999,28 +5617,44 @@ msgid "There was an error accessing file %s."
 msgstr "Wystąpił błąd w dostępie do pliku %s."
 
 #: mkt/files/utils.py:75
-msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr "Nie znaleziono pliku „manifest.webapp” w katalogu głównym spakowanego archiwum aplikacji."
+msgid ""
+"The file \"manifest.webapp\" was not found at the root of the packaged app "
+"archive."
+msgstr ""
+"Nie znaleziono pliku „manifest.webapp” w katalogu głównym spakowanego "
+"archiwum aplikacji."
 
 #: mkt/files/utils.py:97
-msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
+msgid ""
+"Could not decode the webapp manifest file. Check your manifest file for "
+"special non-utf-8 characters."
 msgstr ""
+"Nie można zdekodować pliku z manifestem aplikacji. Sprawdź plik manifestu "
+"aplikacji, czy nie zawiera znaków specjalnych spoza UTF-8."
 
 #: mkt/files/utils.py:105
 msgid "The webapp manifest is not valid JSON."
 msgstr "Manifest webappp nie jest poprawnym formatem JSON."
 
 #: mkt/files/utils.py:112
-msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
+msgid ""
+"The \"langpack\" role is invalid for Web Apps. Please submit this app as a "
+"language pack instead."
 msgstr ""
+"Rola „langpack” jest nieprawidłowa dla aplikacji sieciowych. Zgłoś zamiast "
+"tego tę aplikację jako pakiet językowy."
 
 #: mkt/files/utils.py:120
 msgid "Your specified app locales are not in the correct format."
 msgstr "Określone języki aplikacji nie są w poprawnym formacie."
 
 #: mkt/files/utils.py:137
-msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr "W manifeście wymagana jest nazwa autora, by wyświetlić ją na stronie aplikacji."
+msgid ""
+"Developer name is required in the manifest in order to display it on the "
+"app's listing."
+msgstr ""
+"W manifeście wymagana jest nazwa autora, by wyświetlić ją na stronie "
+"aplikacji."
 
 #: mkt/files/utils.py:187
 msgid "Invalid file name in archive: {0}"
@@ -5047,8 +5681,12 @@ msgid "Download {0}"
 msgstr "Pobierz {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr "Wersja: %(version)s &bull; rozmiar: %(size)s &bull; suma kontrolna MD5: %(md5)s &bull; typ MIME: %(mimetype)s"
+msgid ""
+"Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
+"Mimetype: %(mimetype)s"
+msgstr ""
+"Wersja: %(version)s &bull; rozmiar: %(size)s &bull; suma kontrolna MD5: %"
+"(md5)s &bull; typ MIME: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
@@ -5132,35 +5770,49 @@ msgstr "Pobieranie pliku."
 
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr "Logo produktu musi mieć wymiary 64x64. Sprawdź, czy adres URL jest poprawny."
+msgstr ""
+"Logo produktu musi mieć wymiary 64x64. Sprawdź, czy adres URL jest poprawny."
 
 #: mkt/langpacks/utils.py:23
 msgid "Your language pack should contain \"role\": \"langpack\"."
-msgstr ""
+msgstr "Pakiet językowy powinien zawierać \"role\": \"langpack\"."
 
 #: mkt/langpacks/utils.py:28
-msgid "Your language pack must contain one language in `languages-provided` object."
+msgid ""
+"Your language pack must contain one language in `languages-provided` object."
 msgstr ""
+"Pakiet językowy musi zawierać jeden język w obiekcie „languages-provided”."
 
 #: mkt/langpacks/utils.py:33
-msgid "Your language pack contains too many languages. Only one language per pack is supported."
+msgid ""
+"Your language pack contains too many languages. Only one language per pack is "
+"supported."
 msgstr ""
+"Pakiet językowy zawiera zbyt wiele języków. Obsługiwany jest tylko jeden "
+"język dla pakietu."
 
 #: mkt/langpacks/utils.py:39
-msgid "Your language pack must contain one language in `languages-target` object."
+msgid ""
+"Your language pack must contain one language in `languages-target` object."
 msgstr ""
+"Pakiet językowy musi zawierać tylko jeden język w obiekcie „languages-target”."
 
 #: mkt/langpacks/utils.py:44
-msgid "Your language pack contains too many targets. Only one target per pack is supported."
+msgid ""
+"Your language pack contains too many targets. Only one target per pack is "
+"supported."
 msgstr ""
+"Pakiet językowy zawiera zbyt wiele celów. Obsługiwany jest tylko jeden cel "
+"dla pakietu."
 
 #: mkt/langpacks/utils.py:50
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Pakiet językowy musi zawierać wersję."
 
 #: mkt/langpacks/utils.py:53
-msgid "Your language pack version must be different to the one you are replacing."
-msgstr ""
+msgid ""
+"Your language pack version must be different to the one you are replacing."
+msgstr "Wersja pakietu językowego musi być inna niż zmieniana."
 
 #: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
@@ -5204,8 +5856,11 @@ msgstr "Aktywność"
 
 #: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
 #: mkt/lookup/templates/lookup/user_activity.html:43
-msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> przez użytkownika %(user)s"
+msgid ""
+"<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
+msgstr ""
+"<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> przez "
+"użytkownika %(user)s"
 
 #: mkt/lookup/templates/lookup/app_activity.html:30 mkt/lookup/templates/lookup/user_activity.html:34
 msgid "Administrative Actions"
@@ -5277,7 +5932,7 @@ msgstr "Tarako niewłączone"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "Nie poproszono o sprawdzenie"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
@@ -5302,7 +5957,7 @@ msgstr "Nie podano powodów"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Nie poproszono o uprawnienia"
 
 #: mkt/lookup/templates/lookup/app_summary.html:117 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
@@ -5374,14 +6029,19 @@ msgstr "Informacje dostawcy płatności"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:44
 msgid "Currently unable to retrieve transaction status."
-msgstr ""
+msgstr "Nie można obecnie pobrać statusu transakcji."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:49
-msgid "This payment was made through Bango. To get more information contact <a href=\"mailto:%(bango_support)s\">Bango support</a> with the following information."
+msgid ""
+"This payment was made through Bango. To get more information contact <a "
+"href=\"mailto:%(bango_support)s\">Bango support</a> with the following "
+"information."
 msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
-msgid "This payment was made through the <b>reference implementation</b>. It wasn't a real transaction."
+msgid ""
+"This payment was made through the <b>reference implementation</b>. It wasn't "
+"a real transaction."
 msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
@@ -5401,7 +6061,10 @@ msgid "Unrequested"
 msgstr "Bez prośby"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:105
-msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
+msgid ""
+"If a manual refund has been processed by the payment provider, check this "
+"box. This will refund it in the Mozilla servers but not contact the payment "
+"provider."
 msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:111
@@ -5490,8 +6153,12 @@ msgid "Delete User"
 msgstr "Usuń użytkownika"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
-msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr "Usunięcie tego użytkownika <strong>trwale</strong> skasuje konto tego użytkownika."
+msgid ""
+"Deleting this user will <strong>permanently</strong> delete this user's "
+"account."
+msgstr ""
+"Usunięcie tego użytkownika <strong>trwale</strong> skasuje konto tego "
+"użytkownika."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
@@ -5695,12 +6362,21 @@ msgid "Test receipt details"
 msgstr "Szczegóły testowego potwierdzenia"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
-msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
-msgstr "To jest zastępcza strona dla szczegółów potwierdzeń. Gdy zainstalujesz prawdziwą aplikację z Marketplace, ta strona powinna pokazać więcej szczegółów."
+msgid ""
+"This is a placeholder page for the receipt details. If you'd installed a real "
+"app from the Marketplace, this page would show more details."
+msgstr ""
+"To jest zastępcza strona dla szczegółów potwierdzeń. Gdy zainstalujesz "
+"prawdziwą aplikację z Marketplace, ta strona powinna pokazać więcej "
+"szczegółów."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
-msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr "Przetestuj instalowanie swojej aplikacji, zanim prześlesz ją do Marketplace. Możesz wybrać różne rodzaje potwierdzeń, aby przetestować obsługę potwierdzeń."
+msgid ""
+"Test installation of your app before uploading to the marketplace. You can "
+"choose different kinds of receipts to test your receipt handling."
+msgstr ""
+"Przetestuj instalowanie swojej aplikacji, zanim prześlesz ją do Marketplace. "
+"Możesz wybrać różne rodzaje potwierdzeń, aby przetestować obsługę potwierdzeń."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -5774,8 +6450,12 @@ msgid "Device Type Override:"
 msgstr "Zastąpienie typu urządzenia:"
 
 #: mkt/reviewers/forms.py:118
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Poinformuj mnie następnym razem, gdy manifest zostanie zaktualizowany. (Kolejne aktualizacje nie będą generowały e-maila)"
+msgid ""
+"Notify me the next time the manifest is updated. (Subsequent updates will not "
+"generate an email)"
+msgstr ""
+"Poinformuj mnie następnym razem, gdy manifest zostanie zaktualizowany. "
+"(Kolejne aktualizacje nie będą generowały e-maila)"
 
 #: mkt/reviewers/forms.py:122
 msgid "This app works on Tarako devices."
@@ -5891,7 +6571,9 @@ msgid "Reject"
 msgstr "Odrzuć"
 
 #: mkt/reviewers/utils.py:377
-msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
+msgid ""
+"This will reject the app, remove it from the review queue and un-publish it "
+"if already published."
 msgstr ""
 
 #: mkt/reviewers/utils.py:382
@@ -5899,7 +6581,9 @@ msgid "Message developer"
 msgstr "Informacja programisty"
 
 #: mkt/reviewers/utils.py:384
-msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
+msgid ""
+"This will send the author(s) - and other thread subscribers - a message. This "
+"will not change the app's status."
 msgstr ""
 
 #: mkt/reviewers/utils.py:389
@@ -5907,40 +6591,60 @@ msgid "Escalate"
 msgstr "Przekazano"
 
 #: mkt/reviewers/utils.py:391
-msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
+msgid ""
+"Flag this app for an admin to review. The comments are sent to the admins, "
+"not the author(s)."
 msgstr ""
+"Oznacz tę aplikację dla do sprawdzenia dla administratora. Komentarze "
+"przesyłane są do administratora, nie do autorów."
 
 #: mkt/reviewers/utils.py:396
 msgid "Private comment"
 msgstr "Komentarz prywatny"
 
 #: mkt/reviewers/utils.py:398
-msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
+msgid ""
+"Make a private reviewer comment on this app. The message won't be visible to "
+"the author(s), and no notification will be sent them."
 msgstr ""
+"Dodaj prywatny komentarz recenzenta do tej aplikacji. Wiadomość nie będzie "
+"widoczna dla autorów i żadne powiadomienia nie będą do nich przesyłane."
 
 #: mkt/reviewers/utils.py:404
 msgid "Clear Escalation"
 msgstr "Wyczyść przekazania"
 
 #: mkt/reviewers/utils.py:406
-msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
+msgid ""
+"Clear this app from the escalation queue. The author(s) will get no email or "
+"see comments here."
 msgstr ""
+"Usuń tę aplikację z kolejki do rozszerzenia. Autorzy nie otrzymają e-maila "
+"ani nie zobaczą tutaj komentarzy."
 
 #: mkt/reviewers/utils.py:411
 msgid "Clear Re-review"
 msgstr "Wyczyść ponowne sprawdzenia"
 
 #: mkt/reviewers/utils.py:413
-msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
+msgid ""
+"Clear this app from the re-review queue. The author(s) will get no email or "
+"see comments here."
 msgstr ""
+"Usuń tę aplikację z kolejki do ponownego sprawdzenia.  Autorzy nie otrzymają "
+"e-maila ani nie zobaczą tutaj komentarzy."
 
 #: mkt/reviewers/utils.py:418
 msgid "Ban app"
 msgstr "Zablokuj aplikację"
 
 #: mkt/reviewers/utils.py:420
-msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
+msgid ""
+"Ban the app from Marketplace. Similar to Reject but the author(s) can't "
+"resubmit. To only be used in extreme cases."
 msgstr ""
+"Usuń aplikację z Marketplace, podobne do odrzucenia, ale autorzy nie mogą "
+"ponownie zgłaszać. Do użycia tylko w ekstremalnych przypadkach."
 
 #: mkt/reviewers/views.py:137
 msgid "New Apps (Under 5 days)"
@@ -5960,7 +6664,8 @@ msgstr "Sprawdzanie własnych dodatków jest niedozwolone."
 
 #: mkt/reviewers/views.py:256
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr "Tylko starci recenzenci mogą sprawdzań aplikacje z listy zablokowanych."
+msgstr ""
+"Tylko starci recenzenci mogą sprawdzań aplikacje z listy zablokowanych."
 
 #: mkt/reviewers/views.py:306 mkt/reviewers/views.py:331 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
@@ -5972,7 +6677,7 @@ msgstr "Usunięto {0}"
 
 #: mkt/reviewers/views.py:312
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Urządzenia zmienione przez recenzenta: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:334
@@ -6162,7 +6867,7 @@ msgstr "W tym okresie nie znaleziono żadnych zdarzeń."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Dziennik moderowanych sprawdzeń"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
@@ -6301,8 +7006,11 @@ msgid "App submission incomplete"
 msgstr "Zgłoszenie aplikacji niekompletne"
 
 #: mkt/reviewers/templates/reviewers/review.html:119
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Nadal możesz wysłać ten formularz pod warunkiem, że nie będzie on sprzeczny."
+msgid ""
+"You can still submit this form, however only do so if you know it won't "
+"conflict."
+msgstr ""
+"Nadal możesz wysłać ten formularz pod warunkiem, że nie będzie on sprzeczny."
 
 #: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Insert canned response..."
@@ -6329,7 +7037,8 @@ msgid "Minimum Requirements Override:"
 msgstr "Zastąpienie minimalnych wymagań:"
 
 #: mkt/reviewers/templates/reviewers/review.html:205
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgid ""
+"<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Uwaga!</strong> Inny użytkownik oglądał tę stronę przed tobą."
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
@@ -6370,7 +7079,7 @@ msgstr "Oceny"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94 mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Nie oceniono jeszcze tej aplikacji"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Updated"
@@ -6459,8 +7168,12 @@ msgid "translate"
 msgstr "przetłumacz"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Oznaczony przez %(user)s dnia %(date)s</span>"
+msgid ""
+"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %"
+"(date)s</span>"
+msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Oznaczony przez %(user)s "
+"dnia %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
@@ -6479,8 +7192,12 @@ msgid "Close"
 msgstr "Zamknij"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
-msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Wersja %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgid ""
+"Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+"Wersja %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28
 msgid "Files in this version:"
@@ -6521,8 +7238,12 @@ msgstr "Wstecz"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26 mkt/site/templates/site/impala_paginator.html:5
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Strona <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgid ""
+"Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
+msgstr ""
+"Strona <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
@@ -6674,7 +7395,8 @@ msgstr "Wyszukiwanie niedostępne"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Wyszukiwanie jest czasowo niedostępne. Spróbuj ponownie za kilka minut."
+msgstr ""
+"Wyszukiwanie jest czasowo niedostępne. Spróbuj ponownie za kilka minut."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -7014,7 +7736,8 @@ msgstr "Zablokowano aplikację"
 
 #: mkt/site/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr "Rozszerzono sprawdzenie {addon} z powodu dużej liczby zgłoszeń nadużyć."
+msgstr ""
+"Rozszerzono sprawdzenie {addon} z powodu dużej liczby zgłoszeń nadużyć."
 
 #: mkt/site/log.py:442
 msgid "High Abuse Reports"
@@ -7022,7 +7745,8 @@ msgstr "Zgłoszenia poważnych nadużyć"
 
 #: mkt/site/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
-msgstr "Rozszerzono sprawdzenie {addon} z powodu dużej liczby żądań zwrotu pieniędzy."
+msgstr ""
+"Rozszerzono sprawdzenie {addon} z powodu dużej liczby żądań zwrotu pieniędzy."
 
 #: mkt/site/log.py:450
 msgid "High Refund Requests"
@@ -7158,7 +7882,8 @@ msgstr "Użytkownik {0.name} został usunięty z {group}."
 
 #: mkt/site/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Minimalne wymagania {addon} zostały ręcznie zmienione przez recenzenta."
+msgstr ""
+"Minimalne wymagania {addon} zostały ręcznie zmienione przez recenzenta."
 
 #: mkt/site/log.py:626
 msgid "Requirements Changed by Reviewer"
@@ -7230,8 +7955,11 @@ msgstr[1] "Masz za dużo o {0} etykiety."
 msgstr[2] "Masz za dużo o {0} etykiet."
 
 #: mkt/site/utils.py:729
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Etykiety muszą mieć nie więcej niż %s znaków. Wszystkie pozostałe znaki zostaną usunięte."
+msgid ""
+"All tags must be %s characters or less after invalid characters are removed."
+msgstr ""
+"Etykiety muszą mieć nie więcej niż %s znaków. Wszystkie pozostałe znaki "
+"zostaną usunięte."
 
 #: mkt/site/utils.py:733
 msgid "All tags must be at least {0} character."
@@ -7265,16 +7993,24 @@ msgid "We're sorry, but we can't find what you're looking for."
 msgstr "Przepraszamy, ale nie możemy znaleźć tego, czego szukasz."
 
 #: mkt/site/templates/site/404.html:11
-msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr "Na naszej witrynie nie znaleziono żądanej strony lub pliku. Możliwe, że kliknięty został nieaktualny odnośnik lub wpisano nieprawidłowo adres."
+msgid ""
+"The page or file you requested wasn't found on our site. It's possible that "
+"you clicked a link that's out of date, or typed in the address incorrectly."
+msgstr ""
+"Na naszej witrynie nie znaleziono żądanej strony lub pliku. Możliwe, że "
+"kliknięty został nieaktualny odnośnik lub wpisano nieprawidłowo adres."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
 msgstr "Jeśli wpisałeś adres, sprawdź dokładnie pisownię."
 
 #: mkt/site/templates/site/404.html:19
-msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr "Odwiedź <a class=\"sync\" href=\"%(home)s\">stronę główną Firefox Marketplace</a>."
+msgid ""
+"Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page<"
+"/a>."
+msgstr ""
+"Odwiedź <a class=\"sync\" href=\"%(home)s\">stronę główną Firefox "
+"Marketplace</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
@@ -7342,12 +8078,20 @@ msgid "User submitting validation does not match."
 msgstr ""
 
 #: mkt/submit/forms.py:269
-msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr "Publikuj moją aplikację i ustaw widoczną dla wszystkich w Marketplace, włączając w to wyniki wyszukiwania."
+msgid ""
+"Publish my app and make it visible to everyone in the Marketplace and include "
+"it in search results."
+msgstr ""
+"Publikuj moją aplikację i ustaw widoczną dla wszystkich w Marketplace, "
+"włączając w to wyniki wyszukiwania."
 
 #: mkt/submit/forms.py:272
-msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr "Nie publikuj mojej aplikacji. Poinformuj mnie i dostosuję widoczność aplikacji po jej zatwierdzeniu."
+msgid ""
+"Do not publish my app. Notify me and I will adjust app visibility after it is "
+"approved."
+msgstr ""
+"Nie publikuj mojej aplikacji. Poinformuj mnie i dostosuję widoczność "
+"aplikacji po jej zatwierdzeniu."
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
@@ -7355,8 +8099,12 @@ msgstr "Polityka prywatności:"
 
 #: mkt/submit/forms.py:296
 msgid ""
-"A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
-"you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
+"A privacy policy explains how you handle data received through your app. For "
+"example: what data do you receive? How do you use it? Who do you share it "
+"with? Do you receive personal information? Do "
+"you take steps to make it anonymous? What choices do users have to control "
+"what data you and others receive? Enter your privacy policy link or text "
+"above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
 
@@ -7381,8 +8129,14 @@ msgid "Email:"
 msgstr "E-mail:"
 
 #: mkt/submit/forms.py:320
-msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
+msgid ""
+"This email address will be listed publicly on the Marketplace and used by end "
+"users to contact you with support issues. This email address will be listed "
+"publicly on your app details page."
 msgstr ""
+"Ten adres e-mail będzie publicznie dostępny w Marketplace i używany przez "
+"użytkowników końcowych do kontaktowania się z tobą w sprawach pomocy. Adres "
+"będzie publicznie podany na stronie ze szczegółami twojej aplikacji."
 
 #: mkt/submit/forms.py:326
 msgid "Does your app require Flash support?"
@@ -7393,8 +8147,13 @@ msgid "Your comments for reviewers:"
 msgstr "Twoje komentarze dla recenzentów:"
 
 #: mkt/submit/forms.py:334
-msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
+msgid ""
+"Your app will be reviewed by Mozilla before it becomes publicly listed on the "
+"Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Twoja aplikacja zostanie sprawdzona przez Mozillę, zanim stanie się "
+"publicznie dostępna w Marketplace. Podaj tutaj specjalne instrukcje dla "
+"recenzentów."
 
 #: mkt/submit/forms.py:339
 msgid "Once your app is approved, choose a publishing option:"
@@ -7418,8 +8177,12 @@ msgid "Submit an App"
 msgstr "Prześlij aplikację"
 
 #: mkt/submit/templates/submit/details.html:25
-msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
-msgstr "Sprawdź informacje wymienione poniżej. Wypełniliśmy wstępnie tyle, ile mogliśmy uzyskać z manifestu."
+msgid ""
+"Please review your listing information below. We've pre-filled as much as we "
+"can from your manifest."
+msgstr ""
+"Sprawdź informacje wymienione poniżej. Wypełniliśmy wstępnie tyle, ile "
+"mogliśmy uzyskać z manifestu."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -7438,8 +8201,14 @@ msgid "You must provide at least one."
 msgstr "Musisz dodać przynajmniej jeden."
 
 #: mkt/submit/templates/submit/details.html:176
-msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr "Obsługiwane są formaty PNG i JPG. Obrazki muszą mieć wymiary przynajmniej 320px na 480px. Obrazki proporcjonalne do wymiarów 320px na 480px są optymalne. Obsługiwany jest format wideo WebM."
+msgid ""
+"PNG and JPG supported. Screenshots must be at least 320px by 480px. "
+"Screenshots proportional to 320px by 480px are optimal. WebM supported for "
+"video."
+msgstr ""
+"Obsługiwane są formaty PNG i JPG. Obrazki muszą mieć wymiary przynajmniej "
+"320px na 480px. Obrazki proporcjonalne do wymiarów 320px na 480px są "
+"optymalne. Obsługiwany jest format wideo WebM."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -7451,22 +8220,38 @@ msgstr "Udało się! Co dalej?"
 
 #: mkt/submit/templates/submit/done.html:18
 msgid ""
-"We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
-"a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
+"We've got your app saved and ready to go! Your app is currently awaiting "
+"review, and once it is reviewed you will need to manually enable your app "
+"from the <a href=\"%(url)s\">Manage Status page</"
+"a> for it to show up on listing pages and in search. Until then, feel free to "
+"tweak your app's details and settings."
 msgstr ""
-"Aplikacja została zapisana i jest gotowa! Aplikacja obecnie oczekuje na sprawdzenie, po którym będzie można ją włączyć ręcznie na <a href=\"%(url)s\">stronie zarządzania statusem</a>, by pokazywała "
-"się w wykazach i wynikach wyszukiwania. Do tego czasu bez obaw możesz dopracowywać szczegóły i ustawienia."
+"Aplikacja została zapisana i jest gotowa! Aplikacja obecnie oczekuje na "
+"sprawdzenie, po którym będzie można ją włączyć ręcznie na <a href=\"%(url)s\">"
+"stronie zarządzania statusem</a>, by pokazywała "
+"się w wykazach i wynikach wyszukiwania. Do tego czasu bez obaw możesz "
+"dopracowywać szczegóły i ustawienia."
 
 #: mkt/submit/templates/submit/done.html:29
-msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
-msgstr "Zanim aplikacja zostania udostępniona, musisz podać informacje o płatności. Po dodaniu rachunku płatniczego i ceny twoja aplikacja zostanie zgłoszona do sprawdzenia."
+msgid ""
+"Before your app can go live, you need to provide payment information. Once "
+"you've added a payment account and price, your app will be submitted for "
+"review."
+msgstr ""
+"Zanim aplikacja zostania udostępniona, musisz podać informacje o płatności. "
+"Po dodaniu rachunku płatniczego i ceny twoja aplikacja zostanie zgłoszona do "
+"sprawdzenia."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
-"We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
+"We've got your app saved and ready to go! Your app is currently awaiting "
+"review, and will show up on listing pages and in search once it is reviewed. "
+"Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Twoja aplikacja jest zapisana i gotowa do pracy! Aplikacja obecnie oczekuje na sprawdzenie, w wynikach wyszukiwania pojawi się po sprawdzeniu. Do tego czasu możesz dopracować opis i ustawienia "
+"Twoja aplikacja jest zapisana i gotowa do pracy! Aplikacja obecnie oczekuje "
+"na sprawdzenie, w wynikach wyszukiwania pojawi się po sprawdzeniu. Do tego "
+"czasu możesz dopracować opis i ustawienia "
 "aplikacji."
 
 #: mkt/submit/templates/submit/done.html:51
@@ -7515,44 +8300,65 @@ msgstr "Czekaj na ocenę"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
-msgstr ""
+msgstr "W dowolnym momencie możesz"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "Popraw dane aplikacji w <a href=\"%(url)s\">Edycji strony</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:53
-msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
+msgid ""
+"View a list of all of your submissions on <a href=\"%(url)s\">My Submissions<"
+"/a>"
 msgstr ""
+"Zobacz listę wszystkich swoich zgłoszeń w <a href=\"%(url)s\">Zgłoszeniach</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:60
-msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
+msgid ""
+"Request that your app be shown on low-memory devices on <a href=\"%"
+"(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:64
-msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
+msgid ""
+"Request that your app be shown on low-memory devices on <a href=\"%"
+"(status_url)s\">Status</a>"
 msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:74
-msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
+msgid ""
+"Once your app is reviewed, you will have to manually publish your app from <a "
+"href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages "
+"and in search for others to enjoy."
 msgstr ""
+"Gdy aplikacja zostanie sprawdzona, należy upublicznić ją ręcznie w <a href=\"%"
+"(url)s\">Zarządzaniu statusem</a>. Pojawi się wtedy w spisach i wynikach "
+"wyszukiwania, by inni mogli z niej korzystać."
 
 #: mkt/submit/templates/submit/next_steps.html:81
-msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
+msgid ""
+"Your app has been approved! It is now showing up on listing pages and in "
+"search for others to enjoy."
 msgstr ""
+"Twoja aplikacja została zatwierdzona! Pokazuje się teraz w spisach i wynikach "
+"wyszukiwania, by inni mogli z niej korzystać."
 
 #: mkt/submit/templates/submit/next_steps.html:86
-msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
+msgid ""
+"Once your app is reviewed, it will show up on listing pages and in search for "
+"others to enjoy."
 msgstr ""
+"Gdy aplikacja zostanie sprawdzona, pojawi się w spisach i wynikach "
+"wyszukiwania, by inni mogli z niej korzystać."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:99
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Co dalej:</strong> Skonfiguruj %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Co dalej:</strong> Opublikuj aplikację"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
@@ -7560,19 +8366,27 @@ msgstr "Program Marketplace Developer"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
-"We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
+"We're excited you've built an app using web technologies, and submitting it "
+"to the Firefox Marketplace is the best way for users to discover and enjoy it "
+"across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
-"Cieszymy się, że utworzyłeś aplikację, używając technologii sieciowych, zaś umieszczenie jej w Firefox Marketplace jest najlepszym sposobem dla użytkowników, by ją odkryli i cieszyli się na swoich "
-"różnych urządzeniach. Po pierwsze musisz dołączyć do programu Marketplace Developer."
+"Cieszymy się, że utworzyłeś aplikację, używając technologii sieciowych, zaś "
+"umieszczenie jej w Firefox Marketplace jest najlepszym sposobem dla "
+"użytkowników, by ją odkryli i cieszyli się na swoich "
+"różnych urządzeniach. Po pierwsze musisz dołączyć do programu Marketplace "
+"Developer."
 
 #: mkt/submit/templates/submit/terms.html:24
-msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
+msgid ""
+"To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr "Aby rozpocząć, przeczytaj naszą <strong>Umowę autora</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr "Mozilla może przesyłać do mnie e-mailem aktualności dla twórców aplikacji oraz ankiety"
+msgstr ""
+"Mozilla może przesyłać do mnie e-mailem aktualności dla twórców aplikacji "
+"oraz ankiety"
 
 #: mkt/submit/tests/test_forms.py:321
 msgid "Héllo"
@@ -7592,10 +8406,14 @@ msgstr "Wyloguj"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
-"Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
+"Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this "
+"site is licensed under the <a href=\"%(cc_url)s\">Creative Commons "
+"Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
-"Wyłączając miejsca, gdzie wskazano <a href=\"%(legal_url)s\">inaczej</a>, zawartość tej witryny jest dostępna na licencji <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License "
+"Wyłączając miejsca, gdzie wskazano <a href=\"%(legal_url)s\">inaczej</a>, "
+"zawartość tej witryny jest dostępna na licencji <a href=\"%(cc_url)s\">"
+"Creative Commons Attribution Share-Alike License "
 "wer. 3.0</a> lub dowolnej nowszej wersji."
 
 #: mkt/templates/mkt/footer.html:17
@@ -7637,8 +8455,12 @@ msgstr "Nowe lokalizacje"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
-msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr "Zmiany w lokalizacji <b>{0}</b> nie zostały zapisane. Czy chcesz je zapisać przed zmianą lokalizacji?"
+msgid ""
+"You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
+"your changes before switching locales?"
+msgstr ""
+"Zmiany w lokalizacji <b>{0}</b> nie zostały zapisane. Czy chcesz je zapisać "
+"przed zmianą lokalizacji?"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -7646,8 +8468,12 @@ msgstr "Odrzuć zmiany"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:56
-msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Czy na pewno chcesz usunąć wszystkie tłumaczenia <b>{0}</b>? Tej operacji nie można cofnąć."
+msgid ""
+"Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
+"undone."
+msgstr ""
+"Czy na pewno chcesz usunąć wszystkie tłumaczenia <b>{0}</b>? Tej operacji nie "
+"można cofnąć."
 
 #: mkt/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -7718,12 +8544,17 @@ msgid "Mozilla needs to contact me about my individual app"
 msgstr "Mozilla potrzebuje skontaktować się ze mną w sprawie mojej aplikacji"
 
 #: mkt/users/notifications.py:139
-msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr "Mozilla chce skontaktować się ze mną w sprawie istotnych aktualności oraz ankiet"
+msgid ""
+"Mozilla wants to contact me about relevant App Developer news and surveys"
+msgstr ""
+"Mozilla chce skontaktować się ze mną w sprawie istotnych aktualności oraz "
+"ankiet"
 
 #: mkt/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr "Mozilla chce skontaktować się ze mną w sprawie nowych regionów dodanych do Marketplace"
+msgstr ""
+"Mozilla chce skontaktować się ze mną w sprawie nowych regionów dodanych do "
+"Marketplace"
 
 #: mkt/users/notifications.py:158
 msgid "User Notifications"
@@ -7738,8 +8569,12 @@ msgid "A user with that email address does not exist."
 msgstr "Nie ma użytkownika z takim adresem e-mail."
 
 #: mkt/users/views.py:48
-msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr "Użytkownik z tym adresem e-mail nie istnieje lub nie zaakceptował jeszcze umowy autora."
+msgid ""
+"A user with that email address does not exist, or the user has not yet "
+"accepted the developer agreement."
+msgstr ""
+"Użytkownik z tym adresem e-mail nie istnieje lub nie zaakceptował jeszcze "
+"umowy autora."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
@@ -7844,3 +8679,4 @@ msgstr "Wymagane pola"
 #: templates/includes/forms.html:10
 msgid "(optional)"
 msgstr "(opcjonalne)"
+

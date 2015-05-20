@@ -1,13 +1,11 @@
 import json
 
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
-from django.test.client import RequestFactory
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.constants.base import STATUS_PENDING
+from mkt.constants.base import CONTENT_ICON_SIZES, STATUS_PENDING
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.site.fixtures import fixture
@@ -15,7 +13,6 @@ from mkt.site.tests import ESTestCase, TestCase
 from mkt.users.models import UserProfile
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
-from mkt.websites.views import WebsiteView
 
 
 class TestWebsiteESView(RestOAuth, ESTestCase):
@@ -29,6 +26,8 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
             # array of ids, not slugs.
             'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
             'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            'icon_type': 'image/png',
+            'icon_hash': 'fakehash',
         })
         self.category = 'books'
         self.url = reverse('api-v2:website-search-api')
@@ -58,7 +57,9 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
-        # FIXME: regions, keywords, icon
+        eq_(data['icons']['128'], self.website.get_icon_url(128))
+        ok_(data['icons']['128'].endswith('?modified=fakehash'))
+        eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
 
     def test_list(self):
         self.website2 = website_factory(url='http://www.lol.com/')
@@ -130,33 +131,31 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(len(objs), 1)
 
 
-class TestWebsiteView(TestCase):
+class TestWebsiteView(RestOAuth, TestCase):
     def setUp(self):
+        super(TestWebsiteView, self).setUp()
         self.website = website_factory(**{
             'categories': json.dumps(['books', 'sports']),
             # This assumes devices and region_exclusions are stored as a json
             # array of ids, not slugs.
             'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
             'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            'icon_type': 'image/png',
+            'icon_hash': 'fakehash',
         })
+        self.url = reverse('api-v2:website-detail',
+                           kwargs={'pk': self.website.pk})
 
-    def _test_get(self):
-        # The view is not registered in urls.py at the moment, so we call it
-        # and render the response manually instead of letting django do it for
-        # us.
-        self.req = RequestFactory().get('/')
-        self.req.user = AnonymousUser()
-        view = WebsiteView.as_view()
-        response = view(self.req)
-        response.render()
-        response.json = json.loads(response.content)
-        return response
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_basic(self):
-        response = self._test_get()
+        response = self.anon.get(self.url)
         eq_(response.status_code, 200)
-        eq_(len(response.json['objects']), 1)
-        data = response.json['objects'][0]
+        data = response.json
         eq_(data['description'], {'en-US': self.website.description})
         eq_(data['title'], {'en-US': self.website.title})
         eq_(data['name'], {'en-US': self.website.name})
@@ -164,13 +163,19 @@ class TestWebsiteView(TestCase):
         eq_(data['url'], self.website.url)
         eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
-        # FIXME: regions, keywords, icon
+        eq_(data['icons']['128'], self.website.get_icon_url(128))
+        ok_(data['icons']['128'].endswith('?modified=fakehash'))
+        eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
 
-    def test_list(self):
-        self.website2 = website_factory()
-        response = self._test_get()
-        eq_(response.status_code, 200)
-        eq_(len(response.json['objects']), 2)
+    def test_disabled(self):
+        self.website.update(is_disabled=True)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 404)
+
+    def test_wrong_status(self):
+        self.website.update(status=STATUS_PENDING)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 404)
 
 
 class TestReviewerSearch(RestOAuth, ESTestCase):

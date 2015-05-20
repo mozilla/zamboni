@@ -805,7 +805,7 @@ class TestDetails(TestSubmit):
         eq_(rp.status_code, 302)
         ad = self.get_webapp()
         eq_(ad.icon_type, 'image/png')
-        for size in mkt.APP_ICON_SIZES:
+        for size in mkt.CONTENT_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
             assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
                 'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))

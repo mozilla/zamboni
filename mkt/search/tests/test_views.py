@@ -264,6 +264,8 @@ class TestSearchView(RestOAuth, ESTestCase):
             {'en-US': self.webapp.description.localized_string})
         eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
         ok_(obj['icons']['128'].endswith('?modified=fakehash'))
+        eq_(sorted(int(k) for k in obj['icons'].keys()),
+            mkt.CONTENT_ICON_SIZES)
         eq_(obj['id'], long(self.webapp.id))
         eq_(obj['is_offline'], False)
         eq_(obj['manifest_url'], self.webapp.get_manifest_url())

@@ -57,12 +57,13 @@ def static_url(url):
     If the URL starts with https:// or http://, then no changes are made.
     """
     prefix = {
-        'ADDON_ICONS_DEFAULT_URL': settings.MEDIA_URL,
+        'ICONS_DEFAULT_URL': settings.MEDIA_URL,
         'ADDON_ICON_URL': settings.STATIC_URL,
         'PREVIEW_THUMBNAIL_URL': settings.STATIC_URL,
         'PREVIEW_FULL_URL': settings.STATIC_URL,
         'PRODUCT_ICON_URL': settings.MEDIA_URL,
-        'WEBAPPS_RECEIPT_URL': settings.SITE_URL
+        'WEBAPPS_RECEIPT_URL': settings.SITE_URL,
+        'WEBSITE_ICON_URL': settings.STATIC_URL,
     }
 
     value = getattr(settings, url)

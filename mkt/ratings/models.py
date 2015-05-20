@@ -7,6 +7,7 @@ from django.db import models
 import bleach
 from caching.base import CachingQuerySet
 from celery import task
+
 from tower import ugettext_lazy as _
 
 from mkt.site.models import ManagerBase, ModelBase
@@ -56,6 +57,8 @@ class Review(ModelBase):
     rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField(require_locale=False)
     body = TranslatedField(require_locale=False)
+    lang = models.CharField(max_length=5, null=True, blank=True,
+                            editable=False)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
@@ -102,6 +105,12 @@ class Review(ModelBase):
             # Avoid slave lag with the delay.
             check_spam.apply_async(args=[instance.id], countdown=600)
 
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        if kwargs.get('raw'):
+            return
+        instance.refresh(update_denorm=True)
+
     def refresh(self, update_denorm=False):
         from . import tasks
 
@@ -110,7 +119,6 @@ class Review(ModelBase):
             # Do this immediately so is_latest is correct. Use default
             # to avoid slave lag.
             tasks.update_denorm(pair, using='default')
-
         # Review counts have changed, so run the task and trigger a reindex.
         tasks.addon_review_aggregates.delay(self.addon_id, using='default')
 

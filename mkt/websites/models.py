@@ -1,17 +1,26 @@
 # -*- coding: utf-8 -*-
+import os.path
+
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 
 from django_extensions.db.fields.json import JSONField
 
+from lib.utils import static_url
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.constants.base import STATUS_CHOICES, STATUS_NULL
-from mkt.site.models import ModelBase
+from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
+from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.utils import get_icon_url
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.translations.utils import no_translation
 from mkt.websites.indexers import WebsiteIndexer
+
+
+class WebsiteManager(ManagerBase):
+    def valid(self):
+        return self.filter(status__in=LISTED_STATUSES, is_disabled=False)
 
 
 class Website(ModelBase):
@@ -33,6 +42,8 @@ class Website(ModelBase):
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), default=STATUS_NULL)
     is_disabled = models.BooleanField(default=False)
+
+    objects = WebsiteManager()
 
     class Meta:
         ordering = (('-last_updated'), )
@@ -61,6 +72,12 @@ class Website(ModelBase):
         # Change this when we start having dummy websites for QA purposes, see
         # Webapp implementation.
         return False
+
+    def get_icon_dir(self):
+        return os.path.join(settings.WEBSITE_ICONS_PATH, str(self.pk / 1000))
+
+    def get_icon_url(self, size):
+        return get_icon_url(static_url('WEBSITE_ICON_URL'), self, size)
 
 
 class WebsitePopularity(ModelBase):

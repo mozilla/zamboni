@@ -7,6 +7,7 @@ from mkt.account.serializers import UserSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
 from mkt.ratings.models import Review, ReviewFlag
+from mkt.ratings.utils import guess_language
 from mkt.regions import get_region
 from mkt.versions.serializers import SimpleVersionSerializer
 from mkt.webapps.models import Webapp
@@ -27,10 +28,11 @@ class RatingSerializer(serializers.ModelSerializer):
     is_author = serializers.SerializerMethodField('get_is_author')
     has_flagged = serializers.SerializerMethodField('get_has_flagged')
     version = SimpleVersionSerializer(read_only=True)
+    lang = serializers.SerializerMethodField('get_lang')
 
     class Meta:
         model = Review
-        fields = ('app', 'body', 'created', 'has_flagged', 'is_author',
+        fields = ('app', 'body', 'created', 'has_flagged', 'is_author', 'lang',
                   'modified', 'rating', 'report_spam', 'resource_uri', 'user',
                   'version')
 
@@ -71,6 +73,12 @@ class RatingSerializer(serializers.ModelSerializer):
         return (not self.get_is_author(obj) and
                 obj.reviewflag_set.filter(user=self.request.user).exists())
 
+    def get_lang(self, obj):
+        if obj.pk is None:
+            return self.request.LANG
+        else:
+            return obj.lang
+
     def validate(self, attrs):
         if not getattr(self, 'object'):
             # If we are creating a rating, then we need to do various checks on
@@ -82,6 +90,11 @@ class RatingSerializer(serializers.ModelSerializer):
             user = self.request.user
             attrs['user'] = user
             attrs['ip_address'] = self.request.META.get('REMOTE_ADDR', '')
+            guessed_lang = guess_language(attrs['body'])
+            if guessed_lang is None:
+                attrs['lang'] = user.lang
+            else:
+                attrs['lang'] = guessed_lang
 
             # If the app is packaged, add in the current version.
             if attrs['addon'].is_packaged:

@@ -1,6 +1,7 @@
 from drf_compound_fields.fields import ListField
 from rest_framework import serializers
 
+from mkt.constants.base import CONTENT_ICON_SIZES
 from mkt.api.fields import TranslationSerializerField
 from mkt.search.serializers import BaseESSerializer
 from mkt.websites.models import Website
@@ -14,14 +15,19 @@ class WebsiteSerializer(serializers.ModelSerializer):
     short_name = TranslationSerializerField()
     name = TranslationSerializerField()
     title = TranslationSerializerField()
+    icons = serializers.SerializerMethodField('get_icons')
 
-    # FIXME: keywords, regions, icons... try to stay compatible with Webapp API
+    # FIXME: keywords, regions. try to stay compatible with Webapp API
     # as much as possible.
 
     class Meta:
         model = Website
-        fields = ['categories', 'description', 'device_types', 'id',
+        fields = ['categories', 'description', 'device_types', 'icons', 'id',
                   'mobile_url', 'name', 'short_name', 'title', 'url']
+
+    def get_icons(self, obj):
+        return dict([(icon_size, obj.get_icon_url(icon_size))
+                     for icon_size in CONTENT_ICON_SIZES])
 
 
 class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
@@ -30,12 +36,17 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         obj = Website(id=data['id'])
 
         # Set basic attributes on the fake instance using the data from ES.
-        self._attach_fields(obj, data, ('default_locale', 'url'))
+        self._attach_fields(obj, data, ('default_locale', 'icon_hash', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.
         obj.categories = data['category']
         obj.devices = data['device']
+
+        if obj.icon_hash:
+            # If we have an icon_hash, then we have an icon. All the icons we
+            # store are PNGs.
+            obj.icon_type = 'image/png'
 
         # Attach translations for all translated attributes. obj.default_locale
         # should be set first for this to work.

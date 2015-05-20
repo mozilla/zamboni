@@ -173,7 +173,7 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
-                     for icon_size in mkt.APP_ICON_SIZES])
+                     for icon_size in mkt.CONTENT_ICON_SIZES])
 
     def get_payment_account(self, app):
         # Avoid a query for payment_account if the app is not premium.

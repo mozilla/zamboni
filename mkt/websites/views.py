@@ -1,6 +1,6 @@
 from django.db.transaction import non_atomic_requests
 
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
 
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -20,13 +20,13 @@ from mkt.websites.serializers import (ESWebsiteSerializer,
                                       WebsiteSerializer)
 
 
-class WebsiteView(CORSMixin, MarketplaceView, ListAPIView):
+class WebsiteView(CORSMixin, MarketplaceView, RetrieveAPIView):
     cors_allowed_methods = ['get']
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
     serializer_class = WebsiteSerializer
-    model = Website
+    queryset = Website.objects.valid()
 
 
 class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):

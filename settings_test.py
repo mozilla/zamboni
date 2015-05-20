@@ -32,12 +32,13 @@ def _polite_tmpdir():
 # Various paths. See mkt/settings.py for documentation:
 NETAPP_STORAGE = _polite_tmpdir()
 ADDONS_PATH = _polite_tmpdir()
+ADDON_ICONS_PATH = _polite_tmpdir()
+WEBSITE_ICONS_PATH = _polite_tmpdir()
 GUARDED_ADDONS_PATH = _polite_tmpdir()
 SIGNED_APPS_PATH = _polite_tmpdir()
 SIGNED_APPS_REVIEWER_PATH = _polite_tmpdir()
 UPLOADS_PATH = _polite_tmpdir()
 TMP_PATH = _polite_tmpdir()
-COLLECTIONS_ICON_PATH = _polite_tmpdir()
 REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()
 DUMPED_APPS_PATH = _polite_tmpdir()
 
