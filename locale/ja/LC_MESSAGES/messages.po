@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-01 18:10-0400\n"
+"PO-Revision-Date: 2015-05-20 17:17-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5871,7 +5871,7 @@ msgstr "管理者審査 ({0})"
 #: mkt/reviewers/helpers.py:129
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "不正報告 ({0})"
 
 #: mkt/reviewers/helpers.py:146
 msgid "Reviews"
@@ -5996,7 +5996,7 @@ msgstr "{addon} の不正報告 ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s / %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6433,23 +6433,23 @@ msgstr "より新しいバージョン"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "Process"
-msgstr ""
+msgstr "処理を実行"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Skip"
-msgstr ""
+msgstr "スキップ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Mark Read"
-msgstr ""
+msgstr "既読にする"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
+msgstr "[<a href=\"%(review_url)s\">審査ページ</a> | <a href=\"%(abuses_url)s\">すべての不正報告 (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
-msgstr ""
+msgstr "<span class=\"submitted-by\">投稿者: %(user)s / %(date)s [%(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
@@ -6457,7 +6457,7 @@ msgstr "翻訳"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "すべての不正報告が読まれました。頑張りましたね！"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -7221,11 +7221,11 @@ msgstr "{addon} {version} が {queue} 審査に不合格となりました。"
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} deleted."
-msgstr ""
+msgstr "{addon} の不正報告 {report} が削除されました。"
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} が {addon} の {report} を既読にしました。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/site/utils.py:706
