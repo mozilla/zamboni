@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-01 16:26+0000\n"
+"PO-Revision-Date: 2015-05-20 17:23+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430497576.0\n"
+"X-POOTLE-MTIME: 1432142621.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5883,7 +5883,7 @@ msgstr "({0}) 個有問題的評論"
 #: mkt/reviewers/helpers.py:129
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "濫用回報（{0}）"
 
 #: mkt/reviewers/helpers.py:146
 msgid "Reviews"
@@ -6010,7 +6010,7 @@ msgstr "{addon} ({num}) 的濫用回報"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s 回報於 %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6450,23 +6450,26 @@ msgstr "較新版本"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "Process"
-msgstr ""
+msgstr "處理"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Skip"
-msgstr ""
+msgstr "跳過"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Mark Read"
-msgstr ""
+msgstr "標示為已讀"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"[<a href=\"%(review_url)s\">審核頁面</a> | <a href=\"%(abuses_url)s\">所有濫用報告（%"
+"(abuses_count)s）</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">由 %(user)s 於 %(date)s [%(ip_address)s] 送出</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
@@ -6474,7 +6477,7 @@ msgstr "翻譯"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "已閱讀所有濫用回報。做得好！"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -7241,11 +7244,11 @@ msgstr "{addon} {version} 未通過 {queue} 審查。"
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} deleted."
-msgstr ""
+msgstr "已刪除 {addon} 的濫用回報 {report}。"
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} 已將 {addon} 的 {report} 標示為已讀。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/site/utils.py:706
