@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-21 11:36+0000\n"
+"PO-Revision-Date: 2015-05-21 11:42+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432208184.0\n"
+"X-POOTLE-MTIME: 1432208558.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -4108,7 +4108,7 @@ msgstr "Kies één of twee categorieën."
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr "Kategoryën:"
+msgstr "Kategoryen:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -6670,7 +6670,7 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:57
 msgid "All Categories"
-msgstr "Alle kategoryën"
+msgstr "Alle kategoryen"
 
 #: mkt/search/forms.py:72
 msgid "Search for apps"
