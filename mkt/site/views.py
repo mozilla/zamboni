@@ -17,6 +17,7 @@ from django.views.generic.base import TemplateView
 import commonware.log
 import jingo_minify
 import waffle
+from jingo.helpers import urlparams
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 
@@ -25,7 +26,7 @@ from mkt.detail.views import manifest as mini_manifest
 from mkt.site import monitors
 from mkt.site.context_processors import get_collect_timings
 from mkt.site.helpers import media
-from mkt.site.utils import log_cef, urlparams
+from mkt.site.utils import log_cef
 
 
 log = commonware.log.getLogger('z.mkt.site')

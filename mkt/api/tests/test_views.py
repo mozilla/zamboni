@@ -1,5 +1,6 @@
 import json
 
+from jingo.helpers import urlparams
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, ok_
@@ -15,7 +16,6 @@ import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.views import endpoint_removed, ErrorViewSet
 from mkt.site.fixtures import fixture
-from mkt.site.utils import urlparams
 
 
 class TestErrorService(RestOAuth):

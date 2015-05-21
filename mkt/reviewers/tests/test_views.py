@@ -19,6 +19,7 @@ import mock
 import requests
 import waffle
 from cache_nuggets.lib import Token
+from jingo.helpers import urlparams
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -46,8 +47,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify, isotime
 from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
-from mkt.site.utils import (app_factory, make_game, paginate, urlparams,
-                            version_factory)
+from mkt.site.utils import app_factory, make_game, paginate, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile

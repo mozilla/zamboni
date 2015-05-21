@@ -8,10 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 from oauthlib import oauth1
 from oauthlib.common import safe_string_equals
+from jingo.helpers import urlparams
 
 from mkt.api.models import Access, Nonce, Token, REQUEST_TOKEN, ACCESS_TOKEN
 from mkt.site.decorators import login_required
-from mkt.site.utils import urlparams
 
 
 DUMMY_CLIENT_KEY = u'DummyOAuthClientKeyString'

@@ -10,6 +10,7 @@ from django.test.client import RequestFactory
 from django.utils.encoding import iri_to_uri, smart_str
 
 from django_browserid.tests import mock_browserid
+from jingo.helpers import urlparams
 from nose.tools import eq_, ok_
 from oauthlib import oauth1
 from pyquery import PyQuery as pq
@@ -22,7 +23,6 @@ from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import JSONClient, TestCase
-from mkt.site.utils import urlparams
 from mkt.users.models import UserProfile
 
 

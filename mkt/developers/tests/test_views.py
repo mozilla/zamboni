@@ -15,6 +15,7 @@ from django.test.utils import override_settings
 from django.utils.encoding import smart_unicode
 
 import mock
+from jingo.helpers import urlparams
 from jinja2.utils import escape
 from nose.plugins.attrib import attr
 from nose.tools import eq_, ok_
@@ -38,7 +39,6 @@ from mkt.site.helpers import absolutify
 from mkt.site.tests import assert_no_validation_errors
 from mkt.site.utils import app_factory, version_factory
 from mkt.site.tests.test_utils_ import get_image_path
-from mkt.site.utils import urlparams
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
