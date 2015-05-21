@@ -19,7 +19,7 @@ class AbuseReport(ModelBase):
                                  blank=True, related_name='abuse_reported')
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
     # An abuse report can be for an addon, a user, or a website. Only one of
-    # these should be null.
+    # these should be set.
     addon = models.ForeignKey(Webapp, null=True, related_name='abuse_reports')
     user = models.ForeignKey(UserProfile, null=True,
                              related_name='abuse_reports')
@@ -42,17 +42,25 @@ class AbuseReport(ModelBase):
         else:
             user_name = 'An anonymous coward'
 
-        if self.addon:
-            type_ = 'App'
-        elif self.user:
-            type_ = 'User'
+        if self.website:
+            # For Websites, it's not just abuse, the scope is broader, it could
+            # be any issue about the website listing itself, so use a different
+            # wording and recipient list.
+            type_ = u'Website'
+            subject = u'[%s] Issue Report for %s' % (type_, obj.name)
+            recipient_list = (settings.MKT_FEEDBACK_EMAIL,)
         else:
-            type_ = 'Website'
-        subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
-        msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
+            if self.addon:
+                type_ = 'App'
+            elif self.user:
+                type_ = 'User'
+            subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
+            recipient_list = (settings.ABUSE_EMAIL,)
+
+        msg = u'%s reported an issue for %s (%s%s).\n\n%s' % (
             user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
             self.message)
-        send_mail(subject, msg, recipient_list=(settings.ABUSE_EMAIL,))
+        send_mail(subject, msg, recipient_list=recipient_list)
 
     @classmethod
     def recent_high_abuse_reports(cls, threshold, period, addon_id=None):

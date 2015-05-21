@@ -31,6 +31,20 @@ class PotatoCaptchaSerializer(serializers.Serializer):
     # This field's value should always be 'potato' (set by JS).
     sprout = serializers.CharField()
 
+    def get_fields(self):
+        fields = super(PotatoCaptchaSerializer, self).get_fields()
+        if self.request.user.is_authenticated():
+            # If the user is authenticated, we don't need PotatoCaptcha (tm).
+            fields.pop('tuber', None)
+            fields.pop('sprout', None)
+            self.has_potato_recaptcha = False
+        elif 'tuber' not in fields or 'sprout' not in fields:
+            # If 'tuber' and 'sprout' were not included, for instance because
+            # the serializer explicitely set 'fields', add them back.
+            fields['tuber'] = self.base_fields['tuber']
+            fields['sprout'] = self.base_fields['sprout']
+        return fields
+
     def __init__(self, *args, **kwargs):
         super(PotatoCaptchaSerializer, self).__init__(*args, **kwargs)
         if hasattr(self, 'context') and 'request' in self.context:
@@ -39,10 +53,6 @@ class PotatoCaptchaSerializer(serializers.Serializer):
             raise serializers.ValidationError('Need request in context')
 
         self.has_potato_recaptcha = True
-        if self.request.user.is_authenticated():
-            self.fields.pop('tuber')
-            self.fields.pop('sprout')
-            self.has_potato_recaptcha = False
 
     def validate(self, attrs):
         attrs = super(PotatoCaptchaSerializer, self).validate(attrs)

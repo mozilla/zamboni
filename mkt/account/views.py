@@ -161,7 +161,7 @@ class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
         sender = getattr(request.user, 'email', settings.NOBODY_EMAIL)
         send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
                         context_data, headers={'Reply-To': sender},
-                        recipient_list=[settings.MKT_FEEDBACK_EMAIL])
+                        recipient_list=[settings.MKT_APPS_FEEDBACK_EMAIL])
 
     def get_context_data(self, request, serializer):
         context_data = {

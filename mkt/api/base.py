@@ -1,10 +1,8 @@
 import functools
-import json
 
 from django.db.models.sql import EmptyResultSet
 
 import commonware.log
-from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin
@@ -46,15 +44,6 @@ def _collect_form_errors(forms):
 def form_errors(forms):
     errors = _collect_form_errors(forms)
     raise ParseError(errors)
-
-
-def check_potatocaptcha(data):
-    if data.get('tuber', False):
-        return Response(json.dumps({'tuber': 'Invalid value'}),
-                        status=status.HTTP_400_BAD_REQUEST)
-    if data.get('sprout', None) != 'potato':
-        return Response(json.dumps({'sprout': 'Invalid value'}),
-                        status=status.HTTP_400_BAD_REQUEST)
 
 
 def get_region_from_request(request):

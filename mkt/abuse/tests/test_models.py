@@ -8,6 +8,7 @@ from mkt.abuse.models import AbuseReport
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
+from mkt.websites.utils import website_factory
 
 
 class TestAbuse(mkt.site.tests.TestCase):
@@ -25,8 +26,16 @@ class TestAbuse(mkt.site.tests.TestCase):
     def test_addon(self):
         AbuseReport(addon=self.app).send()
         assert mail.outbox[0].subject.startswith('[App]')
+        eq_(mail.outbox[0].to, [settings.ABUSE_EMAIL])
 
     def test_addon_fr(self):
         with self.activate(locale='fr'):
             AbuseReport(addon=self.app).send()
         assert mail.outbox[0].subject.startswith('[App]')
+        eq_(mail.outbox[0].to, [settings.ABUSE_EMAIL])
+
+    def test_website(self):
+        website = website_factory()
+        AbuseReport(website=website).send()
+        assert mail.outbox[0].subject.startswith('[Website]')
+        eq_(mail.outbox[0].to, [settings.MKT_FEEDBACK_EMAIL])

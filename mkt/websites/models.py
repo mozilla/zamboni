@@ -2,6 +2,7 @@
 import os.path
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.dispatch import receiver
 
@@ -78,6 +79,9 @@ class Website(ModelBase):
 
     def get_icon_url(self, size):
         return get_icon_url(static_url('WEBSITE_ICON_URL'), self, size)
+
+    def get_url_path(self):
+        return reverse('website.detail', kwargs={'pk': self.pk})
 
 
 class WebsitePopularity(ModelBase):
