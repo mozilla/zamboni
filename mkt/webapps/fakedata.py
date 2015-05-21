@@ -25,7 +25,7 @@ from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
-from mkt.reviewers.models import RereviewQueue
+from mkt.reviewers.models import AdditionalReview, RereviewQueue
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
@@ -370,7 +370,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
-                           uses_flash=False, special_regions={}, **spec):
+                           uses_flash=False, special_regions={},
+                           tarako=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
@@ -429,6 +430,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                               datetime.datetime.now(),
                               'region_%s_status' % (region,):
                               STATUS_CHOICES_API_LOOKUP[region_status]})
+    if tarako:
+        AdditionalReview.objects.create(app=app, queue='tarako')
     addon_review_aggregates(app.pk)
     if rereview:
         RereviewQueue.objects.get_or_create(addon=app)

@@ -10,6 +10,7 @@
  {"type": "hosted", "status": "unlisted"},
  {"type": "hosted", "status": "deleted"},
  {"type": "hosted", "status": "pending", "rereview": true},
+ {"type": "hosted", "status": "public", "tarako": true},
  {"type": "hosted", "status": "public", "special_regions": {"cn": "pending"}},
  {"type": "hosted", "status": "public", "num_ratings": 0},
  {"type": "hosted", "status": "public", "num_ratings": 100},
