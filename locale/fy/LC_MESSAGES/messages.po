@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-04 14:10+0000\n"
+"PO-Revision-Date: 2015-05-21 11:36+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430748604.0\n"
+"X-POOTLE-MTIME: 1432208184.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5893,7 +5893,7 @@ msgstr "Bewerkte beoordelingen ({0})"
 #: mkt/reviewers/helpers.py:129
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Misbrûkrapporten ({0})"
 
 #: mkt/reviewers/helpers.py:146
 msgid "Reviews"
@@ -6018,7 +6018,7 @@ msgstr "Misbruikmeldingen voor {addon} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)'s op %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6460,31 +6460,35 @@ msgstr "Nijere ferzjes"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "Process"
-msgstr ""
+msgstr "Proses"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Skip"
-msgstr ""
+msgstr "Oerslaan"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Mark Read"
-msgstr ""
+msgstr "Markearje as lêzen"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"[<a href=\"%(review_url)s\">Side beoardiele</a> | <a href=\"%"
+"(abuses_url)s\">Alle misbrûkrapporten (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">Ynstjoerd troch %(user)s op %(date)s [%"
+"(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
-msgstr "vertalen"
+msgstr "Alle misbrûkrapporten lêzen. Goed dien!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "Alle misbrûkrapporten lêzen. Goed dien!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -7250,11 +7254,11 @@ msgstr "{addon} {version} heeft de {queue}-beoordeling niet doorstaan."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} deleted."
-msgstr ""
+msgstr "Misbrûkrapport {report} foar {addon} fuortsmiten."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} hat {report} as lêzen markearre foar {addon}."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/site/utils.py:706
