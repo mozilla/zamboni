@@ -11,6 +11,7 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
+from mkt.websites.utils import website_factory
 
 
 class BaseTestAbuseResource(object):
@@ -59,7 +60,7 @@ class AbuseResourceTests(object):
         """
         Tests common when looking to ensure complete successful responses.
         """
-        eq_(201, res.status_code)
+        eq_(201, res.status_code, res.content)
         fields = self.default_data.copy()
 
         del fields['sprout']
@@ -70,12 +71,16 @@ class AbuseResourceTests(object):
         if 'app' in fields:
             eq_(int(data.pop('app')['id']), self.app.pk)
             del fields['app']
+        if 'website' in fields:
+            eq_(int(data.pop('website')['id']), self.website.pk)
+            del fields['website']
 
         for name in fields.keys():
             eq_(fields[name], data[name])
 
         newest_report = AbuseReport.objects.order_by('-id')[0]
         eq_(newest_report.message, data['text'])
+        eq_(newest_report.ip_address, self.headers['REMOTE_ADDR'])
 
         eq_(len(mail.outbox), 1)
         assert self.default_data['text'] in mail.outbox[0].body
@@ -88,11 +93,13 @@ class AbuseResourceTests(object):
         res, data = self._call()
         self._test_success(res, data)
         assert 'display_name' in data['reporter']
+        assert 'ip_address' not in data
 
     def test_send_anonymous(self):
         res, data = self._call(anonymous=True)
         self._test_success(res, data)
         eq_(data['reporter'], None)
+        assert 'ip_address' not in data
 
     def test_send_potato(self):
         tuber_res, tuber_data = self._call(data={'tuber': 'potat-toh'},
@@ -144,3 +151,22 @@ class TestAppAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
     def test_slug_app(self):
         res, data = self._call(data={'app': self.app.app_slug})
         eq_(201, res.status_code)
+
+
+class TestWebsiteAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
+                               RestOAuth):
+    resource_name = 'website'
+
+    def setUp(self):
+        super(TestWebsiteAbuseResource, self).setUp()
+        self.website = website_factory()
+        self.default_data = {
+            'text': 'This website is weird.',
+            'sprout': 'potato',
+            'website': self.website.pk
+        }
+
+    def test_invalid_website(self):
+        res, data = self._call(data={'website': self.website.pk + 42})
+        eq_(400, res.status_code)
+        assert 'does not exist' in data['website'][0]

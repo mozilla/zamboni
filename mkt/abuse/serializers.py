@@ -3,28 +3,37 @@ from rest_framework import serializers
 from mkt.abuse.models import AbuseReport
 from mkt.account.serializers import UserSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
+from mkt.api.serializers import PotatoCaptchaSerializer
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
+from mkt.websites.serializers import WebsiteSerializer
 
 
-class BaseAbuseSerializer(serializers.ModelSerializer):
+class BaseAbuseSerializer(PotatoCaptchaSerializer,
+                          serializers.ModelSerializer):
     text = serializers.CharField(source='message')
-    ip_address = serializers.CharField(required=False)
     reporter = SplitField(serializers.PrimaryKeyRelatedField(required=False),
                           UserSerializer())
 
-    def save(self, force_insert=False):
-        serializers.ModelSerializer.save(self)
-        del self.data['ip_address']
-        return self.object
+    class Meta:
+        model = AbuseReport
+        fields = ('text', 'reporter')
+
+    def validate(self, attrs):
+        request = self.context['request']
+        if request.user.is_authenticated():
+            attrs['reporter'] = request.user
+        else:
+            attrs['reporter'] = None
+        attrs['ip_address'] = request.META.get('REMOTE_ADDR', '')
+        return super(BaseAbuseSerializer, self).validate(attrs)
 
 
 class UserAbuseSerializer(BaseAbuseSerializer):
     user = SplitField(serializers.PrimaryKeyRelatedField(), UserSerializer())
 
-    class Meta:
-        model = AbuseReport
-        fields = ('text', 'ip_address', 'reporter', 'user')
+    class Meta(BaseAbuseSerializer.Meta):
+        fields = BaseAbuseSerializer.Meta.fields + ('user',)
 
 
 class AppAbuseSerializer(BaseAbuseSerializer):
@@ -33,6 +42,13 @@ class AppAbuseSerializer(BaseAbuseSerializer):
                                      queryset=Webapp.objects.all()),
         SimpleAppSerializer(source='addon'))
 
-    class Meta:
-        model = AbuseReport
-        fields = ('text', 'ip_address', 'reporter', 'app')
+    class Meta(BaseAbuseSerializer.Meta):
+        fields = BaseAbuseSerializer.Meta.fields + ('app',)
+
+
+class WebsiteAbuseSerializer(BaseAbuseSerializer):
+    website = SplitField(serializers.PrimaryKeyRelatedField(),
+                         WebsiteSerializer())
+
+    class Meta(BaseAbuseSerializer.Meta):
+        fields = BaseAbuseSerializer.Meta.fields + ('website',)
