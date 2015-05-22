@@ -58,6 +58,7 @@ html5lib==0.999
 # httplib2 is required by curling, google-api-python-client
 httplib2==0.9.1
 importlib-no-failure==1.0.2
+jingo==0.7.1
 # kombu is required by celery
 kombu==2.5.16
 heka-py==0.30.3
@@ -120,7 +121,6 @@ urllib3==1.10.3
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
 -e git+https://github.com/diox/django-cache-machine@ad16132780d40beff01803f5ca5d91a69236d105#egg=django-cache-machine
--e git+https://github.com/jbalogh/jingo@fce09043542e71d972cc97d2ae703740741f80d0#egg=jingo
 
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield

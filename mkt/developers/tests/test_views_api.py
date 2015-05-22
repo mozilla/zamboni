@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
+from jingo.helpers import urlparams
 from nose.tools import eq_
 
 import mkt
@@ -13,7 +14,7 @@ from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
-from mkt.site.utils import app_factory, urlparams
+from mkt.site.utils import app_factory
 from mkt.webapps.models import ContentRating, Geodata
 from mkt.users.models import UserProfile
 

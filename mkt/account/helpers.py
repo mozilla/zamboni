@@ -4,9 +4,9 @@ from django.conf import settings
 
 import jinja2
 from jingo import register
+from jingo.helpers import urlparams
 
 from mkt.account.views import fxa_oauth_api
-from mkt.site.utils import urlparams
 
 
 @jinja2.contextfunction

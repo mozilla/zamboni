@@ -10,6 +10,7 @@ from django.views.decorators.http import condition
 
 import commonware.log
 from cache_nuggets.lib import Message, Token
+from jingo.helpers import urlparams
 from tower import ugettext as _
 
 from mkt.access import acl
@@ -19,7 +20,7 @@ from mkt.files.decorators import (compare_webapp_file_view, etag,
                                   webapp_file_view_token)
 from mkt.files.tasks import extract_file
 from mkt.site.decorators import json_view
-from mkt.site.utils import HttpResponseSendFile, urlparams
+from mkt.site.utils import HttpResponseSendFile
 
 log = commonware.log.getLogger('z.addons')
 

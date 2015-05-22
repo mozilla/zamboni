@@ -11,7 +11,6 @@ from urlparse import urljoin
 import mkt.site.tests
 from mkt.site.helpers import absolutify, css, js, product_as_dict, timesince
 from mkt.site.fixtures import fixture
-from mkt.site.utils import urlparams
 from mkt.webapps.models import Webapp
 
 
@@ -177,48 +176,3 @@ def test_isotime():
     eq_(s, '2009-12-25T18:11:12Z')
     s = render('{{ d|isotime }}', {'d': None})
     eq_(s, '')
-
-
-def test_urlparams():
-    url = '/developers'
-    c = {'base': url,
-         'base_frag': url + '#hash',
-         'base_query': url + '?x=y',
-         'sort': 'name', 'frag': 'frag'}
-
-    # Adding a query.
-    s = render('{{ base_frag|urlparams(sort=sort) }}', c)
-    eq_(s, '%s?sort=name#hash' % url)
-
-    # Adding a fragment.
-    s = render('{{ base|urlparams(frag) }}', c)
-    eq_(s, '%s#frag' % url)
-
-    # Replacing a fragment.
-    s = render('{{ base_frag|urlparams(frag) }}', c)
-    eq_(s, '%s#frag' % url)
-
-    # Adding query and fragment.
-    s = render('{{ base_frag|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name#frag' % url)
-
-    # Adding query with existing params.
-    s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name&amp;x=y#frag' % url)
-
-    # Replacing a query param.
-    s = render('{{ base_query|urlparams(frag, x="z") }}', c)
-    eq_(s, '%s?x=z#frag' % url)
-
-    # Params with value of None get dropped.
-    s = render('{{ base|urlparams(sort=None) }}', c)
-    eq_(s, url)
-
-    # Removing a query
-    s = render('{{ base_query|urlparams(x=None) }}', c)
-    eq_(s, url)
-
-
-def test_urlparams_unicode():
-    url = u'/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
-    urlparams(url)

@@ -21,13 +21,10 @@ from tower import ugettext as _
 
 from mkt.translations.helpers import truncate
 from mkt.translations.utils import get_locale_from_lang
-from mkt.site.utils import append_tz, urlparams
+from mkt.site.utils import append_tz
 
 
 log = commonware.log.getLogger('z.mkt.site')
-
-# Registering some utils as filters:
-register.filter(urlparams)
 
 
 @jinja2.contextfunction
@@ -121,7 +118,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         'name': product.name,
         'categories': product.categories,
         'manifest_url': product.get_manifest_url(reviewer),
-        'recordUrl': urlparams(receipt_url, src=src),
+        'recordUrl': helpers.urlparams(receipt_url, src=src),
         'tokenUrl': token_url,
         'is_packaged': product.is_packaged,
         'src': src
@@ -325,7 +322,7 @@ def url(viewname, *args, **kwargs):
     src = kwargs.pop('src', '')
     url = '%s%s' % (host, reverse(viewname, args=args, kwargs=kwargs))
     if src:
-        url = urlparams(url, src=src)
+        url = helpers.urlparams(url, src=src)
     return url
 
 
@@ -353,7 +350,7 @@ def media(context, url, key='MEDIA_URL'):
             build = context['BUILD_ID_CSS']
         else:
             build = context['BUILD_ID_IMG']
-    return urljoin(context[key], urlparams(url, b=build))
+    return urljoin(context[key], helpers.urlparams(url, b=build))
 
 
 @register.function

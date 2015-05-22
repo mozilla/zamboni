@@ -26,6 +26,7 @@ import requests
 import waffle
 from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
+from jingo.helpers import urlparams
 from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import (CreateAPIView, ListAPIView, UpdateAPIView,
@@ -71,7 +72,7 @@ from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
                             JSONEncoder, paginate, redirect_for_login,
-                            smart_decode, urlparams)
+                            smart_decode)
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile

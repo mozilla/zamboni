@@ -13,6 +13,7 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
 
 import commonware
+from jingo.helpers import urlparams
 from uuidfield.fields import UUIDField
 
 import mkt
@@ -20,7 +21,7 @@ from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase, OnChangeMixin, UncachedManagerBase
-from mkt.site.utils import smart_path, urlparams
+from mkt.site.utils import smart_path
 
 log = commonware.log.getLogger('z.files')
 

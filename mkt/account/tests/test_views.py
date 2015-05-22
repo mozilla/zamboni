@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.utils.http import urlencode
 
+from jingo.helpers import urlparams
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
@@ -19,7 +20,7 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
-from mkt.site.utils import app_factory, urlparams
+from mkt.site.utils import app_factory
 from mkt.webapps.models import Installed, Webapp
 from mkt.users.models import UserProfile
 

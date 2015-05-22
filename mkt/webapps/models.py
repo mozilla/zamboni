@@ -23,6 +23,7 @@ import caching.base as caching
 import commonware.log
 from cache_nuggets.lib import memoize, memoize_key
 from django_extensions.db.fields.json import JSONField
+from jingo.helpers import urlparams
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
@@ -49,7 +50,7 @@ from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import copy_stored_file
 from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
-                            sorted_groupby, urlparams)
+                            sorted_groupby)
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)

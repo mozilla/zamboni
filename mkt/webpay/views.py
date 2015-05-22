@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware.log
+from jingo.helpers import urlparams
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import GenericAPIView
@@ -27,7 +28,6 @@ from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_inapp_receipt
 from mkt.site.mail import send_mail_jinja
 from mkt.site.helpers import absolutify
-from mkt.site.utils import urlparams
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import (ContributionSerializer,
