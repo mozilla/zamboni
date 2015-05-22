@@ -121,6 +121,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         ok_('featured' not in res.json)
         ok_('collections' not in res.json)
         ok_('operator' not in res.json)
+        return res
 
     def test_anonymous_user(self):
         res = self.anon.get(self.url)
@@ -143,6 +144,18 @@ class TestSearchView(RestOAuth, ESTestCase):
             urlparse(self.webapp.get_icon_url(64))[0:3])
         eq_(urlparse(data['128'])[0:3],
             urlparse(self.webapp.get_icon_url(128))[0:3])
+
+
+class TestMultiSearchView(TestSearchView):
+    # The fireplace variant of multi-search view is only different for apps
+    # at the moment, not websites, so simply re-use TestSearchView tests.
+    def setUp(self):
+        super(TestMultiSearchView, self).setUp()
+        self.url = reverse('fireplace-multi-search-api')
+
+    def test_get(self):
+        res = super(TestMultiSearchView, self).test_get()
+        eq_(res.json['objects'][0]['doc_type'], 'webapp')
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):

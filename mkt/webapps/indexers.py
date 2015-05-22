@@ -425,7 +425,7 @@ class WebappIndexer(BaseIndexer):
         ES = ES or cls.get_es()
 
         docs = []
-        for obj in qs:
+        for obj in list(qs):
             try:
                 docs.append(cls.extract_document(obj.id, obj=obj))
             except Exception as e:

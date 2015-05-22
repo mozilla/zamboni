@@ -5,7 +5,8 @@ from django.utils.encoding import iri_to_uri
 
 from rest_framework.routers import SimpleRouter
 
-from mkt.fireplace.views import AppViewSet, ConsumerInfoView, SearchView
+from mkt.fireplace.views import (AppViewSet, ConsumerInfoView, MultiSearchView,
+                                 SearchView)
 from mkt.site.decorators import allow_cross_site_request
 
 
@@ -32,16 +33,19 @@ urlpatterns = patterns(
     url(r'^fireplace/collection/(?P<slug>[^/.]+)/$', redirect_to_feed_element,
         name='feed.fire_rocketfuel_compat'),
 
-    url(r'^fireplace/consumer-info/',
+    url(r'^fireplace/consumer-info/$',
         ConsumerInfoView.as_view(),
         name='fireplace-consumer-info'),
     # /featured/ is not used by fireplace anymore, but still used by yogafire,
     # so we have to keep it, it's just an alias to the regular search instead
     # of including extra data about collections.
-    url(r'^fireplace/search/featured/',
+    url(r'^fireplace/search/featured/$',
         SearchView.as_view(),
         name='fireplace-featured-search-api'),
-    url(r'^fireplace/search/',
+    url(r'^fireplace/search/$',
         SearchView.as_view(),
         name='fireplace-search-api'),
+    url(r'^fireplace/multi-search/$',
+        MultiSearchView.as_view(),
+        name='fireplace-multi-search-api'),
 )

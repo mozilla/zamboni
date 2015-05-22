@@ -10,8 +10,11 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceESAppSerializer)
-from mkt.search.views import SearchView as BaseSearchView
+from mkt.search.views import (
+    SearchView as BaseSearchView,
+    MultiSearchView as BaseMultiSearchView)
 from mkt.webapps.views import AppViewSet as BaseAppViewset
+from mkt.websites.serializers import ESWebsiteSerializer
 
 
 class AppViewSet(BaseAppViewset):
@@ -20,6 +23,16 @@ class AppViewSet(BaseAppViewset):
 
 class SearchView(BaseSearchView):
     serializer_class = FireplaceESAppSerializer
+
+
+class MultiSearchView(BaseMultiSearchView):
+    def get_serializer_context(self):
+        context = super(MultiSearchView, self).get_serializer_context()
+        context['serializer_classes'] = {
+            'webapp': FireplaceESAppSerializer,
+            'website': ESWebsiteSerializer
+        }
+        return context
 
 
 class ConsumerInfoView(CORSMixin, RetrieveAPIView):
