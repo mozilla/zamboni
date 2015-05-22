@@ -1,8 +1,8 @@
 .. _app:
 
-===
-App
-===
+====
+Apps
+====
 
 App
 ===
@@ -202,6 +202,7 @@ App
     :param device_types: An array of strings representing the devices the app
         is marked as compatible with. Currently available devices names are
         ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``.
+    :type device_types: array
     :param file_size: Size of the app's current version in bytes.
     :type file_size: int
     :param homepage: The app's homepage.
@@ -422,7 +423,7 @@ Versions
         public version of the application.
     :type is_current_version: boolean
     :param features: each item represents a
-        :ref:`device feature <features>` required to run the application.
+        :ref:`device feature <app_features>` required to run the application.
     :type features: array
     :param release_notes: the release notes for that version.
     :type release_notes: string|object|null
@@ -449,7 +450,7 @@ Versions
         }
 
     :param features: each item represents a
-        :ref:`device feature <features>` required to run the application.
+        :ref:`device feature <app_features>` required to run the application.
         Features not present are assumed not to be required.
     :type features: array
 

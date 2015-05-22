@@ -79,6 +79,15 @@ Featured Search
 
     Only kept for backwards-compatibility purposes, don't use in new code.
 
+Multi Search
+============
+
+.. http:get:: /api/v2/fireplace/multi-search/
+
+    A copy of :ref:`the multi-search API <multi-search-api>`. Like the App API
+    above, the response only contains the specific subset of fields Fireplace
+    needs.
+
 
 Consumer Information
 ====================
