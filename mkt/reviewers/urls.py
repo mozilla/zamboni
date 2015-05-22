@@ -100,12 +100,12 @@ api_patterns = patterns(
         name='additionalreview-detail'),
     url(r'^reviewers/reviewing', views.ReviewingView.as_view(),
         name='reviewing-list'),
-    url('^reviewers/(?P<app_slug>[\w-]+)/review/(?P<review_pk>\d+)/translate'
-        '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+    url('^reviewers/%s/review/(?P<review_pk>\d+)/translate/'
+        '(?P<language>[a-z]{2}(-[A-Z]{2})?)$' % mkt.APP_SLUG,
         views.review_translate,
         name='reviewers.review_translate'),
-    url('^reviewers/(?P<app_slug>[\w-]+)/abuse/(?P<report_pk>\d+)/translate'
-        '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+    url('^reviewers/%s/abuse/(?P<report_pk>\d+)/translate/'
+        '(?P<language>[a-z]{2}(-[A-Z]{2})?)$' % mkt.APP_SLUG,
         views.abuse_report_translate,
         name='reviewers.abuse_report_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
