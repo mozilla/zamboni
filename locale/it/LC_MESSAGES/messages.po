@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-03 13:13+0000\n"
+"PO-Revision-Date: 2015-05-22 13:10+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430658834.0\n"
+"X-POOTLE-MTIME: 1432300234.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -5908,7 +5908,7 @@ msgstr "Recensioni moderate ({0})"
 #: mkt/reviewers/helpers.py:129
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Segnalazioni di abuso ({0})"
 
 #: mkt/reviewers/helpers.py:146
 msgid "Reviews"
@@ -6035,7 +6035,7 @@ msgstr "Segnalazione abusi per {addon} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s il %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6477,23 +6477,27 @@ msgstr "Ultime versioni"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "Process"
-msgstr ""
+msgstr "Elabora"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Skip"
-msgstr ""
+msgstr "Ignora"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Mark Read"
-msgstr ""
+msgstr "Contrassegna come letto"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"[<a href=\"%(review_url)s\">Pagina Commenti</a> | <a href=\"%"
+"(abuses_url)s\">Tutte le segnalazioni di abuso (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">Segnalato da %(user)s il %(date)s [%"
+"(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
@@ -6501,7 +6505,7 @@ msgstr "Traduci"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "Hai controllato tutte le segnalazioni di abuso. Ottimo lavoro!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -7265,11 +7269,11 @@ msgstr "{addon} {version} non ha passato la revisione {queue}."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} deleted."
-msgstr ""
+msgstr "La segnalazione di abuso {report} per {addon} è stata eliminata."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} ha contrassegnato {report} per {addon} come letta."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/site/utils.py:706
