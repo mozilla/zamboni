@@ -4,24 +4,25 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2013-11-06 12:13+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2015-03-06 14:35+0000\n"
+"Last-Translator: Miha <miha.kosi@amis.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1383740003.0\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1425652539.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Izberite veljavno izbiro. %(value)s ni ena od veljavnih izbir."
 
 #: mkt/api/fields.py:87
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "To polje mora vsebovati vsaj {num} znakov."
 
 #: mkt/api/fields.py:89
 msgid "The language code {lang_code} is invalid."
@@ -41,19 +42,19 @@ msgstr "Ne"
 
 #: mkt/api/serializers.py:57
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Obrazca ni mogoče posredovati."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "V opombah ni besedila."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Neveljaven tip besedila."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Različica %s ne obstaja"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
@@ -65,7 +66,7 @@ msgstr "Opis:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Priloga presega omejitev velikosti %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
@@ -73,7 +74,7 @@ msgstr ""
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Firefox Marketplace je uraden vir aplikacij za splet."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
 msgid "Desktop"
@@ -1079,7 +1080,7 @@ msgstr "Venezuela, Bolivarska republika"
 
 #: mkt/constants/bango.py:262
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: mkt/constants/bango.py:263
 msgid "Virgin Islands, British"
@@ -1119,7 +1120,7 @@ msgstr "Čaka na odobritev"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Objavljeno"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
@@ -1148,7 +1149,7 @@ msgstr ""
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Zastarelo"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
@@ -1220,7 +1221,7 @@ msgstr ""
 
 #: mkt/constants/base.py:204
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Moderirani pregled aplikacije"
 
 #: mkt/constants/base.py:205
 msgid "App Review Moderation Reverted"
@@ -1332,7 +1333,7 @@ msgstr "Orodja"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Ni akcije"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
@@ -1352,7 +1353,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "Ponovna objava aplikacije"
 
 #: mkt/constants/comm.py:52 mkt/site/log.py:426
 msgid "Escalation cleared"
@@ -1360,11 +1361,11 @@ msgstr "Eskalacija odobrena"
 
 #: mkt/constants/comm.py:53
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Stopnjevano zaradi poročil o visoki zlorabi"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Stopnjevano zaradi veliko zahtevkov povračil"
 
 #: mkt/constants/comm.py:55 mkt/site/log.py:474
 msgid "Re-review cleared"
@@ -1440,11 +1441,13 @@ msgstr ""
 
 #: mkt/constants/features.py:18
 msgid "App Management API"
-msgstr ""
+msgstr "API za upravljanje aplikacije"
 
 #: mkt/constants/features.py:19
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"Aplikacija zahteva `navigator.mozApps` API za namestitev in upravljanje "
+"drugih aplikacij."
 
 #: mkt/constants/features.py:24
 msgid "Packaged Apps Install API"
@@ -1488,7 +1491,7 @@ msgstr ""
 
 #: mkt/constants/features.py:53
 msgid "Battery"
-msgstr ""
+msgstr "Baterija"
 
 #: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
@@ -1605,6 +1608,8 @@ msgstr "Dotikh"
 #: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"Aplikacija zahteva podporo dotika. Aplikacija ne bo delovala, če uporabljate "
+"miško."
 
 #: mkt/constants/features.py:153
 msgid "Smartphone-Sized Displays (qHD)"
@@ -1618,7 +1623,7 @@ msgstr ""
 
 #: mkt/constants/features.py:164
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "Aplikacija zahteva podporo za predvajanje MP3 datotek."
 
 #: mkt/constants/features.py:169
 msgid "Audio"
@@ -1626,7 +1631,7 @@ msgstr "Audio"
 
 #: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Aplikacija zahteva podporo za HTML5 audio API."
 
 #: mkt/constants/features.py:175
 msgid "Web Audio"
@@ -1638,11 +1643,11 @@ msgstr ""
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
+msgstr "Aplikacija zahteva podporo za H.264 video datoteke."
 
 #: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr ""
+msgstr "Aplikacija zahteva podporo za WebM video datoteke (VP8)."
 
 #: mkt/constants/features.py:193
 msgid "Full Screen"
@@ -1670,27 +1675,27 @@ msgstr ""
 
 #: mkt/constants/features.py:215
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
+msgstr "Aplikacija zahteva dostop do kamere preko LocalMediaStream objekta."
 
 #: mkt/constants/features.py:222
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "Aplikacija zahteva dostop do mikrofona."
 
 #: mkt/constants/features.py:228
 msgid "Screen Capture"
-msgstr ""
+msgstr "Posnetek zaslona"
 
 #: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "Aplikacija zahteva dostop do zaslona naprave za zajem."
 
 #: mkt/constants/features.py:235
 msgid "WebRTC MediaStream"
@@ -1714,23 +1719,24 @@ msgstr ""
 
 #: mkt/constants/features.py:250
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
+msgstr "Aplikacija zahteva dostop do izmenjave podatkov preko odjemalcev."
 
 #: mkt/constants/features.py:256
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Sinteza spletnega govora"
 
 #: mkt/constants/features.py:257
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Aplikacija zahteva dovoljenje za uporabo pretvarjanja besedila v govor."
 
 #: mkt/constants/features.py:262
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Prepoznavanje spletnega govora"
 
 #: mkt/constants/features.py:263
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"Aplikacija zahteva dovoljenje za uporabo pretvarjanja govora v besedilo."
 
 #: mkt/constants/features.py:268
 msgid "Pointer Lock"
@@ -1750,7 +1756,7 @@ msgstr ""
 
 #: mkt/constants/features.py:282
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmi"
 
 #: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -1786,7 +1792,7 @@ msgstr ""
 
 #: mkt/constants/features.py:310
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
+msgstr "Aplikacija zahteva informacije o večih mrežnih povezavah."
 
 #: mkt/constants/features.py:316
 msgid "Mobile ID"
@@ -1886,7 +1892,7 @@ msgstr "Dokončano"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox za namizje"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
@@ -1902,7 +1908,7 @@ msgstr "Android telefoni"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
-msgstr ""
+msgstr "Tablice"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
@@ -1935,29 +1941,29 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Za vse"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Za vse 10 +"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Za najstnike"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Za odrasle 17 +"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Samo za odrasle 18 +"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Cela Amerika (razen Brazilije)"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
@@ -1965,7 +1971,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Evropa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2105,7 +2111,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:517
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Podroben opis vaše aplikacije"
 
 # 93%
 #: mkt/developers/forms.py:518
@@ -2140,6 +2146,7 @@ msgstr "Navedite prosim politiko zasebnosti za svojo aplikacijo"
 #: mkt/developers/forms.py:667
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Preden spremenite vaše nastavitve, morate dodati ime in opis. Manjka %s."
 
 #: mkt/developers/forms.py:726 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
@@ -2175,11 +2182,11 @@ msgstr "Navesti morate vsaj eno regijo."
 
 #: mkt/developers/forms.py:853
 msgid "Enable new regions"
-msgstr ""
+msgstr "Omogoči nove regije"
 
 #: mkt/developers/forms.py:856
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Omogoči mojo aplikacijo v večini regij"
 
 #: mkt/developers/forms.py:857
 msgid "Choose where my app is made available"
@@ -2265,15 +2272,16 @@ msgstr ""
 
 #: mkt/developers/forms.py:1192
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Prenesite vaš testni načrt (.pdf ali .xls do 2.5 MB)"
 
 #: mkt/developers/forms.py:1208
 msgid "Test plan required."
-msgstr ""
+msgstr "Zahtevan je testni načrt."
 
 #: mkt/developers/forms.py:1215
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
+"Datoteka je prevelika. Največja velikost je %s. Trenutna velikost je %s."
 
 #: mkt/developers/forms.py:1221
 msgid "Invalid file type {0}. Only {1} files are supported."
@@ -2313,15 +2321,15 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Omogoča vse možnosti plačila"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Če je aplikacija brezplačna, morajo biti omogočeni nakupi v aplikaciji."
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Neveljavna izbira"
 
 # 75%
 #: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
@@ -2396,7 +2404,7 @@ msgstr "Številka bančnega računa"
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT koda"
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
@@ -2440,11 +2448,11 @@ msgstr "Računa za plačila iz aplikacije morete odstraniti."
 
 #: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Nimate dovoljenja za spreminjanje računov za plačilo."
 
 #: mkt/developers/forms_payments.py:619
 msgid "Account name"
-msgstr ""
+msgstr "Ime računa"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
@@ -2458,7 +2466,7 @@ msgstr "E-pošta"
 
 #: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Za to aplikacijo ni nastavljenega računa za plačilo"
 
 # 90%
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
@@ -2605,7 +2613,7 @@ msgstr ""
 
 #: mkt/developers/views.py:444
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Napaka pri obrazcu."
 
 #: mkt/developers/views.py:474
 msgid "Version successfully edited."
@@ -2662,15 +2670,15 @@ msgstr "Vsi"
 
 #: mkt/developers/views_payments.py:176
 msgid "Credit card"
-msgstr ""
+msgstr "Kreditna kartica"
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
-msgstr ""
+msgstr "Nosilec"
 
 #: mkt/developers/views_payments.py:329
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Napaka strežnika pri dostopu do ključa aplikacije."
 
 #: mkt/developers/views_payments.py:336
 msgid "Secret was reset successfully."
@@ -4958,7 +4966,7 @@ msgstr ""
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Različice ni mogoče razlikovati same od sebe"
 
 #: mkt/files/helpers.py:152
 msgid "That file no longer exists."
@@ -5011,15 +5019,15 @@ msgstr "Lokalne nastavitve, navedene za vašo aplikacijo, niso v pravilnem forma
 
 #: mkt/files/utils.py:137
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr ""
+msgstr "Za prikaz kotacije aplikacije je zahtevano ime razvijalca v manifestu."
 
 #: mkt/files/utils.py:187
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Neveljavno ime v arhivu: {0}"
 
 #: mkt/files/utils.py:195
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Datoteka presega omejitve: {0}"
 
 #: mkt/files/utils.py:245
 msgid "Invalid archive."
@@ -5581,7 +5589,7 @@ msgstr ""
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:87
 msgid "Tier %s"
-msgstr ""
+msgstr "Raven %s"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:29
@@ -5878,7 +5886,7 @@ msgstr "Pregledi"
 
 #: mkt/reviewers/helpers.py:188
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Zavrnjen ali neocenjen"
 
 # 87%
 #: mkt/reviewers/utils.py:371 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
@@ -6127,7 +6135,7 @@ msgstr "Pregledi ta mesec"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:3 mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Lestvica ocenjevalcev"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
@@ -6472,7 +6480,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
-msgstr ""
+msgstr "prevedi"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "All abuse reports read. Good work!"
@@ -6565,19 +6573,19 @@ msgstr "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Nedavne točke"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Ni še podeljenih točk."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Najboljši pregledovalci (zadnjih 7 dni)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Ni še najboljših pregledovalcev."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -6586,7 +6594,7 @@ msgstr "Ves čas"
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Imate <span>{0}</span> točk."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
@@ -6735,11 +6743,12 @@ msgstr "Vnesite vsaj eno vrednost."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Koda barve (šestnajstiški sistem)"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr ""
+"Koda barve mora biti veljavna (šestnajstiški sistem), na primer #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
@@ -6987,7 +6996,7 @@ msgstr "Avtorje se je po pošti obvestilo o skladnosti za {version}."
 
 #: mkt/site/log.py:355
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Sporočilo poslano avtorju o združljivosti dodatka."
 
 #: mkt/site/log.py:360
 msgid "Password changed."
@@ -7104,19 +7113,19 @@ msgstr "Video odstranjen"
 
 #: mkt/site/log.py:497
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} ponovno ocenjen zaradi dodane/ih nove/ih naprave/naprav."
 
 #: mkt/site/log.py:498
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Dodana/e naprava/e"
 
 #: mkt/site/log.py:505
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "Podpora za {addon} je ročno spremenil pregledovalec."
 
 #: mkt/site/log.py:506
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Pregledovalec je spremenil napravo/e"
 
 #: mkt/site/log.py:513
 msgid "{addon} resubmitted for review."
@@ -7129,10 +7138,11 @@ msgstr "Ponovna prijava aplikacije"
 #: mkt/site/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr ""
+"{addon} je bil samodejno premaknjen na vrh, ker je prednostna aplikacija."
 
 #: mkt/site/log.py:522
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "Premikanje prednostne aplikacije na vrh"
 
 #: mkt/site/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
@@ -7197,45 +7207,45 @@ msgstr "Uporabnik {0.name} odstranil iz {group}."
 
 #: mkt/site/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Minimalne zahteve za {addon} je ročno spremenil pregledovalec."
 
 #: mkt/site/log.py:626
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Pregledovalec je spremenil zahteve"
 
 #: mkt/site/log.py:633
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Minimalne zahteve za {addon} so bile ročno spremenjene."
 
 #: mkt/site/log.py:634
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Zahteve so bile spremenjene"
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:642
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} status je bil spremenjen v {0}."
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Uporabnik {0.name} {0.id} je bil odstranjen preko orodja za iskanje."
 
 #: mkt/site/log.py:655
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Ocena za vsebino {addon} je bila spremenjena v za odrasle."
 
 #: mkt/site/log.py:661
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Vsebina za vsebino {addon} je bila spremenjena."
 
 #: mkt/site/log.py:666
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Prednostni pregled je bil zahtevan za {addon}."
 
 #: mkt/site/log.py:667
 msgid "Priority Review"
-msgstr ""
+msgstr "Prednostni pregled"
 
 #: mkt/site/log.py:675
 msgid "{addon} {version} passed the {queue} review."

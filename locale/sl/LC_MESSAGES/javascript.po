@@ -4,36 +4,37 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2014-03-19 20:15+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2015-03-06 14:35+0000\n"
+"Last-Translator: Miha <miha.kosi@amis.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395260142.0\n"
+"X-POOTLE-MTIME: 1425652539.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Datoteke, ki ste jo naložili, ni mogoče prepoznati."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Prenos je bil preklican."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Fotografije morajo biti v formatu PNG ali JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoposnetki morajo biti v formatu WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Pri dostopu do strežnika je prišlo do napake."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -42,16 +43,17 @@ msgstr "Izberite datoteko..."
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr ""
+"Vaša končnica aplikacije v stisnjeni mapi bi morala biti <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% dokončanega"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} od {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
@@ -59,97 +61,104 @@ msgstr "Prekliči"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Nalaganje {0}"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Napaka pri {0}"
 
+# 1st Line: Singular, 2nd Line: Plural
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pri potrjevanju vaše aplikacije je prišlo do {0} napake."
+msgstr[1] "Pri potrjevanju vaše aplikacije je prišlo do {0} napak."
 msgstr[2] ""
 msgstr[3] ""
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip; in še {0}"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
-msgstr ""
+msgstr "Poglej celotno poročilo o potrjevanju"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr ""
+msgstr "Potrjevanje poteka {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "S strežnika ni bilo odziva; status {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Nepričakovana napaka strežnika pri potrjevanju."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Potrjevanje končano {0}"
 
+# 1st Line: Singular, 2nd Line: Plural for 2, 3rd Line: Plural for 3 and more
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] ""
+"Potrjevanje vaše aplikacije je bilo končano brez napak in {0} opozorilom."
 msgstr[1] ""
+"Potrjevanje vaše aplikacije je bilo končano brez napak in {0} opozoriloma."
 msgstr[2] ""
+"Potrjevanje vaše aplikacije je bilo končano brez napak in {0} opozorili."
 msgstr[3] ""
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Vaša aplikacija je prestala potrjevanje brez napak ali opozoril."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Manifest ni bil najden v dani lokaciji."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Gostitelj aplikacije ni dosegljiv."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Manifest za aplikacijo ni veljaven."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Manifest je neveljaven."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Aplikacija je že nameščena."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Napaka strežnika."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Napaka strežnika pri nameščanju aplikacije."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Nameščanje neuspešno. Prosimo, poskusite znova."
 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
+"Vaša aplikacija ni prešla potrjevanja ({0} napaka/napake in {1} "
+"sporočilo/sporočil)."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
@@ -158,21 +167,23 @@ msgstr[3] ""
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Vaša aplikacija je prešla potrjevanje brez napak in {0} "
+"sporočilom/sporočili."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Potrjevanje vaše aplikacije je bilo končano brez napak ali opozoril."
 
 #: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
-msgstr ""
+msgstr "Spremembe so bile shranjene"
 
 #: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Vnesite elektronski naslov novega člana skupine"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
@@ -180,11 +191,11 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Manifesta ni bilo mogoče osvežiti. Poskusite znova kasneje."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Napaka pri nalaganju datoteke."
 
 #: media/js/devreg/devhub.js:945
 msgid "Learn more"
@@ -192,47 +203,51 @@ msgstr "Več o tem"
 
 #: media/js/devreg/devhub.js:949
 msgid "Example"
-msgstr ""
+msgstr "Primer"
 
 #: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Poteka spreminjanje fotografij"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Ta videoposnetek zahteva brskalnik s podporo za odprti video"
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "ali <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Vključeno"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Izključeno"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
+"Ta možnost je začasno onemogočena zaradi vzdrževanja spletnega mesta. "
+"Prosimo, poskusite kasneje."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Odstrani ta prevod"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Prijava v Persono neuspešna. Morda nimate uporabniškega računa za ta "
+"elektronski naslov?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Prijava v Persono neuspešna. Napaka pri dostopu do strežnika."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
@@ -244,323 +259,331 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
-msgstr ""
+msgstr "Pokaži vse rezultate"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Najdenih več kot {0} rezultatov, poskusite strniti iskalni pojem."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Zahtevana dovoljenja:"
 
+# Certified refers to an app
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Overjena"
 
+# Privileged refers to an app
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Privilegirana"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Neprivilegirano"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Brez znanega razloga"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "V redu"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Španska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Irska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belgijska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Španska/Francoska/Italijanska/Nizozemska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Nizozemska/Ameriška bančna številka"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Kanadska/Nemška bančna številka"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Korejska/Indonezijska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Grška/Indonezijska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "Britanska/Irska/Novozelandska/Avstralska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Avstrijska/Švicarska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Danska/Švicarska bančna številka"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Švicarska/Iraška bančna številka"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Iraška bančna številka"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Zaznana: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"Izbris računa za plačilo \"{0}\" bo odstranil račun za plačilo iz naslednjih "
+"aplikacij. Aplikacije brez plačila ne bodo več na voljo za prodajo."
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "{appName} računi za nakup:"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Napaka"
 
 #: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Napaka pri dostopu do strežnika za plačilo."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
-msgstr ""
+msgstr "Napaka pri preverjanju pristnosti"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Trenutno nimate uporabniških računov za plačilo."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Išči teme: <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Išči aplikacije: <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Išči dodatke: <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
 msgstr ""
 
+# 1st Line: Singular, 2nd Line: Plural for 2, 3rd Line: Plural for 3 and 4, 4th Line: Plural for 5 and more
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} preostali znak."
+msgstr[1] "{0} preostala znaka."
+msgstr[2] "{0} preostali znaki."
+msgstr[3] "{0} preostalih znakov."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Vsi preizkusi so bili uspešno prestani."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ti preizkusi niso potekli."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr ""
+msgstr "Testi"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr ""
+msgstr "Opozorilo"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Združljivostni testi"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr ""
+msgstr "Aplikacija ni prešla potrjevanja."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr ""
+msgstr "Aplikacija je prešla potrjevanje."
 
+# 1st Line: Singular, 2nd Line: Plural for 2; 3rd Line: Plural for 3 and 4, 4th Line: Plural for 5 and more
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} napaka"
+msgstr[1] "{0} napaki"
+msgstr[2] "{0} napake"
+msgstr[3] "{0} napaka"
 
+# 1st Line: Singular, 2nd Line: Plural for 2; 3rd Line: Plural for 3 and 4, 4th Line: Plural for 5 and more
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} opozorilo"
+msgstr[1] "{0} opozorili"
+msgstr[2] "{0} opozorila"
+msgstr[3] "{0} opozoril"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Potrjevanje ni bilo končano ali pa je prišlo do napak"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr ""
+msgstr "Napaka strežnika"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Nakup poteka"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Nakup dokončan"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Zaženi"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} si je prvi/a ogledal/a to stran."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Aplikacija je preverila prejem."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Aplikacija ni preverila prejema."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} si je prvi/a ogledal/a ta dodatek."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Nalaganje &hellip;"
 
 #: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
-msgstr ""
+msgstr "Opombe za to različico"
 
 #: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Opombe za ocenjevalce"
 
 #: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
-msgstr ""
+msgstr "Ni najdenih opomb"
 
 #: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
-msgstr ""
+msgstr "Najprej izberite aplikacijo"
 
 #: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
-msgstr ""
+msgstr "Napaka pri nalaganju prevoda"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "več..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "manj..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Ohrani oceno / Odstrani zastavice"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Izbriši oceno"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Preskoči za zdaj"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Nakup neuspešen. Poskusite znova kasneje."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr ""
+msgstr "Zapakirana aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr ""
+msgstr "Privilegirana aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
-msgstr ""
+msgstr "Zahtevanih je več informacij"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Vsebuje komentarje urejevalca"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
-msgstr ""
+msgstr "Vrhunska aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr ""
+msgstr "Stopnjevanje"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Brezplačno"
 
+# Refers to masculine
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr ""
+msgstr "Kakršen koli"
 
 #: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Sprejeta aplikacija: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zavrnjena aplikacija: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Napaka pri sprejemanju aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Napaka pri zavračanju aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
@@ -577,4 +600,4 @@ msgstr ""
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Avtor: {0}, objavljeno dne {1}"
