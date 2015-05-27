@@ -27,7 +27,7 @@ from mkt.ratings.validators import validate_rating
 from mkt.site.decorators import use_master
 from mkt.site.fields import ColorField
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.translations.fields import PurifiedField, save_signal
+from mkt.translations.fields import PurifiedField, TranslatedField, save_signal
 from mkt.webapps.models import clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 
@@ -266,7 +266,7 @@ class FeedCollection(GroupedAppsMixin, BaseFeedCollection,
     _apps = models.ManyToManyField(Webapp, through=FeedCollectionMembership,
                                    related_name='app_feed_collections')
     color = models.CharField(max_length=20, null=True, blank=True)
-    name = PurifiedField()
+    name = TranslatedField()
     description = PurifiedField(blank=True, null=True)
     type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,
                             null=True)
@@ -314,7 +314,7 @@ class FeedShelf(GroupedAppsMixin, BaseFeedCollection, BaseFeedImage):
                                    related_name='app_shelves')
     carrier = models.IntegerField(choices=mkt.carriers.CARRIER_CHOICES)
     description = PurifiedField(null=True)
-    name = PurifiedField()
+    name = TranslatedField()
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID)
 
