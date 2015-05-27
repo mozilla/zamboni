@@ -2,12 +2,18 @@ import mock
 from nose.tools import eq_
 
 from lib.utils import static_url
+from mkt.constants.applications import DEVICE_TYPE_LIST
 from mkt.site.tests import TestCase
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
 
 
 class TestWebsiteModel(TestCase):
+    def test_devices(self):
+        website = Website()
+        eq_(sorted(website.devices),
+            sorted([device.id for device in DEVICE_TYPE_LIST]))
+
     def test_get_icon_url(self):
         website = Website(pk=1, icon_type='image/png')
         expected = (static_url('WEBSITE_ICON_URL')

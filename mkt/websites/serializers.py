@@ -11,7 +11,6 @@ from mkt.websites.models import Website
 class WebsiteSerializer(serializers.ModelSerializer):
     categories = ListField(serializers.CharField())
     description = TranslationSerializerField()
-    device_types = ListField(serializers.CharField(), source='device_names')
     id = serializers.IntegerField(source='pk')
     short_name = TranslationSerializerField()
     keywords = serializers.SerializerMethodField('get_keywords')
@@ -21,9 +20,8 @@ class WebsiteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Website
-        fields = ['categories', 'description', 'device_types', 'icons', 'id',
-                  'keywords', 'mobile_url', 'name', 'short_name', 'title',
-                  'url']
+        fields = ['categories', 'description', 'icons', 'id', 'keywords',
+                  'mobile_url', 'name', 'short_name', 'title', 'url']
 
     def get_icons(self, obj):
         return dict([(icon_size, obj.get_icon_url(icon_size))
@@ -46,7 +44,6 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Set attributes with names that don't exactly match the one on the
         # model.
         obj.categories = data['category']
-        obj.devices = data['device']
         obj.keywords_list = data['tags']
 
         if obj.icon_hash:

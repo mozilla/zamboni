@@ -75,7 +75,7 @@ class WebsiteIndexer(BaseIndexer):
                     },
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
-                    'region_exclusions': {'type': 'short'},
+                    'preferred_regions': {'type': 'short'},
                     'short_name': {'type': 'string',
                                    'analyzer': 'default_icu'},
                     'status': {'type': 'byte'},
@@ -127,7 +127,7 @@ class WebsiteIndexer(BaseIndexer):
         doc['category'] = obj.categories or []
         doc['device'] = obj.devices or []
         doc['name_sort'] = unicode(obj.name).lower()
-        doc['region_exclusions'] = obj.region_exclusions or []
+        doc['preferred_regions'] = obj.preferred_regions or []
         doc['tags'] = getattr(obj, 'keywords_list', [])
 
         # Add boost, popularity, trending values.

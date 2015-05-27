@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 
-from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
-from mkt.constants.regions import BRA, GTM, URY
+from mkt.constants.regions import URY, USA
 from mkt.search.utils import get_boost
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.tags.models import Tag
@@ -39,10 +38,8 @@ class TestWebsiteIndexer(TestCase):
     def test_extract(self):
         self.obj = website_factory(**{
             'categories': ['books', 'sports'],
-            # This assumes devices and region_exclusions are stored as a json
-            # array of ids, not slugs.
-            'devices': [DEVICE_GAIA.id, DEVICE_DESKTOP.id],
-            'region_exclusions': [BRA.id, GTM.id, URY.id],
+            # Preferred_regions are stored as a json array of ids.
+            'preferred_regions': [URY.id, USA.id],
             'icon_type': 'png',
             'icon_hash': 'f4k3h4sh',
         })
@@ -73,8 +70,8 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['title_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.title)}])
         eq_(doc['device'], self.obj.devices)
-        eq_(doc['region_exclusions'], self.obj.region_exclusions)
         eq_(sorted(doc['tags']), sorted(['hodor', 'radar']))
+        eq_(doc['preferred_regions'], self.obj.preferred_regions)
 
     def test_extract_with_translations(self):
         self.obj = website_factory()
