@@ -57,6 +57,7 @@ class TestWebappIndexer(TestCase):
     def test_extract(self):
         obj, doc = self._get_doc()
         eq_(doc['id'], obj.id)
+        eq_(doc['guid'], obj.guid)
         eq_(doc['app_slug'], obj.app_slug)
         eq_(doc['category'], [])
         eq_(doc['default_locale'], obj.default_locale)

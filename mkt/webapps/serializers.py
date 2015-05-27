@@ -426,7 +426,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
         # Set base attributes on the "fake" app using the data from ES.
         self._attach_fields(
-            obj, data, ('created', 'default_locale', 'icon_hash',
+            obj, data, ('created', 'default_locale', 'guid', 'icon_hash',
                         'is_escalated', 'is_offline', 'last_updated',
                         'manifest_url', 'modified', 'premium_type', 'regions',
                         'reviewed', 'status'))

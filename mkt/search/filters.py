@@ -59,6 +59,11 @@ class SearchQueryFilter(BaseFilterBackend):
         # name and give it a good boost since this is likely what the user
         # wants.
         should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
+        # Do the same for GUID searches.
+        should.append(query.Term(**{'guid': {'value': q, 'boost': 10}}))
+        # If query is numeric, check if it is an ID.
+        if q.isnumeric():
+            should.append(query.Term(**{'id': {'value': q, 'boost': 10}}))
 
         if analyzer:
             should.append(
@@ -148,7 +153,7 @@ class SearchFormFilter(BaseFilterBackend):
 
 
 class PublicSearchFormFilter(SearchFormFilter):
-    VALID_FILTERS = ['app_type', 'author.raw', 'category', 'device',
+    VALID_FILTERS = ['app_type', 'author.raw', 'category', 'device', 'guid',
                      'installs_allowed_from', 'is_offline', 'manifest_url',
                      'premium_type', 'supported_locales', 'tags']
 

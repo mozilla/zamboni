@@ -797,6 +797,16 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         self.assertSetEqual(obj['tags'], ['tagtagtag', 'tarako'])
 
+    def test_guid(self):
+        res = self.anon.get(self.url, {'guid': self.webapp.guid})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['id'], self.webapp.id)
+
+    def test_guid_as_q(self):
+        res = self.anon.get(self.url, {'q': self.webapp.guid})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['id'], self.webapp.id)
+
     def test_ratings_sort(self):
         app1 = self.webapp
         app2 = app_factory()

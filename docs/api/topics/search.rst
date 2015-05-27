@@ -60,6 +60,8 @@ Search
         requesting IP address. To disable automatic region detection, `None`
         may be passed.
     :type region: string
+    :param optional guid: Filter for a specific app by Marketplace GUID.
+    :type guid: string
     :param optional sort: The fields to sort by. One or more of 'created',
         'downloads', 'name', 'rating', 'reviewed', or 'trending'. Sorts by
         relevance by default. In every case except 'name', sorting is done in

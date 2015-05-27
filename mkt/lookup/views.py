@@ -23,23 +23,25 @@ import mkt.constants.lookup as lkp
 from lib.pay_server import client
 from mkt.access import acl
 from mkt.account.utils import purchase_list
+from mkt.api.authorization import GroupPermission
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
-from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
-                                    PROVIDER_BANGO, PROVIDER_LOOKUP,
-                                    SOLITUDE_REFUND_STATUSES)
+from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
+                                    PROVIDER_LOOKUP, SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
+from mkt.lookup.serializers import AppLookupSerializer
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
+from mkt.search.filters import SearchQueryFilter
+from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.utils import paginate
 from mkt.users.models import UserProfile
-from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 
@@ -412,7 +414,7 @@ def user_search(request):
     for user in qs:
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         results.append(user)
-    return {'results': results}
+    return {'objects': results}
 
 
 @login_required
@@ -426,44 +428,19 @@ def transaction_search(request):
         return render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
-@login_required
-@permission_required([('AppLookup', 'View')])
-@json_view
-def app_search(request):
-    results = []
-    q = request.GET.get('q', u'').lower().strip()
-    limit = (lkp.MAX_RESULTS if request.GET.get('all_results')
-             else lkp.SEARCH_LIMIT)
-    fields = ('name', 'app_slug')
-    non_es_fields = ['id', 'name__localized_string'] + list(fields)
+class AppLookupSearchView(SearchView):
+    permission_classes = [GroupPermission('AppLookup', 'View')]
+    filter_backends = [SearchQueryFilter]
+    serializer_class = AppLookupSerializer
+    paginate_by = lkp.SEARCH_LIMIT
+    max_paginate_by = lkp.MAX_RESULTS
 
-    if q.isnumeric():
-        qs = Webapp.objects.filter(pk=q).values(*non_es_fields)[:limit]
-    else:
-        # Try to load by GUID:
-        qs = Webapp.objects.filter(guid=q).values(*non_es_fields)[:limit]
-        if not qs.count():
-            # TODO: Update to `.fields(...)` when the DSL supports it.
-            qs = (WebappIndexer.search()
-                  .query(_expand_query(q, fields))[:limit])
-            qs = qs.execute()
-    for app in qs:
-        if isinstance(app, dict):
-            # This is a result from the database.
-            app['url'] = reverse('lookup.app_summary', args=[app['id']])
-            app['name'] = app['name__localized_string']
-            results.append(app)
+    def get_paginate_by(self, *args, **kwargs):
+        if self.request.GET.get(self.paginate_by_param) == 'max':
+            return self.max_paginate_by
         else:
-            # This is a result from elasticsearch which returns `Result`
-            # objects and "name_translations" as a list, one for each locale.
-            for trans in app.name_translations:
-                results.append({
-                    'id': app.id,
-                    'url': reverse('lookup.app_summary', args=[app.id]),
-                    'app_slug': app.get('app_slug'),
-                    'name': trans['string'],
-                })
-    return {'results': results}
+            return super(AppLookupSearchView, self).get_paginate_by(*args,
+                                                                    **kwargs)
 
 
 def _app_summary(user_id):
@@ -536,7 +513,7 @@ def _app_purchases_and_refunds(addon):
 
 
 def _slice_results(request, qs):
-    if request.GET.get('all_results'):
+    if request.GET.get('limit') == 'max':
         return qs[:lkp.MAX_RESULTS]
     else:
         return qs[:lkp.SEARCH_LIMIT]

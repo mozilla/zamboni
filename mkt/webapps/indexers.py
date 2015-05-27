@@ -120,6 +120,7 @@ class WebappIndexer(BaseIndexer):
                             for f in APP_FEATURES)
                     },
                     'file_size': {'type': 'long'},
+                    'guid': cls.string_not_analyzed(),
                     'has_public_stats': {'type': 'boolean'},
                     'icon_hash': cls.string_not_indexed(),
                     'interactive_elements': cls.string_not_indexed(),
@@ -260,9 +261,9 @@ class WebappIndexer(BaseIndexer):
             status = None
 
         attrs = ('app_slug', 'bayesian_rating', 'created', 'default_locale',
-                 'icon_hash', 'id', 'is_disabled', 'is_offline', 'file_size',
-                 'last_updated', 'modified', 'premium_type', 'status',
-                 'uses_flash')
+                 'guid', 'icon_hash', 'id', 'is_disabled', 'is_offline',
+                 'file_size', 'last_updated', 'modified', 'premium_type',
+                 'status', 'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id
