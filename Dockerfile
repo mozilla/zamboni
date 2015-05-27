@@ -6,7 +6,7 @@
 FROM mozillamarketplace/centos-mysql-mkt:0.2
 
 # Fix multilib issues when installing openssl-devel.
-RUN yum install -y --enablerepo=centosplus libselinux-devel
+RUN yum install -y --enablerepo=centosplus libselinux-devel && yum clean all
 
 RUN yum install -y redis \
     openssl-devel \
@@ -16,7 +16,7 @@ RUN yum install -y redis \
     npm \
     wget \
     totem \
-    supervisor
+    supervisor && yum clean all
 
 RUN mkdir -p /pip/{cache,build}
 
