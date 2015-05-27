@@ -1344,7 +1344,7 @@
             "modified": "2012-04-19T18:43:22",
             "name": "Staff",
             "notes": "",
-            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,Lookup:View,Stats:View"
+            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,Lookup:View,Stats:View,Websites:*"
         },
         "model": "access.group",
         "pk": 50000
@@ -1623,6 +1623,17 @@
         },
         "model": "access.group",
         "pk": 50079
+    },
+    {
+        "fields": {
+            "created": "2015-05-14T17:17:55",
+            "modified": "2012-05-14T17:17:55",
+            "name": "Website Reviewers",
+            "notes": "Users who can review websites",
+            "rules": "Websites:Review"
+        },
+        "model": "access.group",
+        "pk": 50080
     },
     {
         "fields": {
