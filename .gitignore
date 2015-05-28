@@ -26,6 +26,7 @@ media/external/*
 .nose*
 tmp/*
 tags
+!/mkt/tags
 tagz.py
 node_modules
 commonplace_projects

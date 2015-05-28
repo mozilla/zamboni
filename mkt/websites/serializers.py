@@ -4,6 +4,7 @@ from rest_framework import serializers
 from mkt.constants.base import CONTENT_ICON_SIZES
 from mkt.api.fields import TranslationSerializerField
 from mkt.search.serializers import BaseESSerializer
+from mkt.tags.models import attach_tags
 from mkt.websites.models import Website
 
 
@@ -13,21 +14,25 @@ class WebsiteSerializer(serializers.ModelSerializer):
     device_types = ListField(serializers.CharField(), source='device_names')
     id = serializers.IntegerField(source='pk')
     short_name = TranslationSerializerField()
+    keywords = serializers.SerializerMethodField('get_keywords')
     name = TranslationSerializerField()
     title = TranslationSerializerField()
     icons = serializers.SerializerMethodField('get_icons')
 
-    # FIXME: keywords, regions. try to stay compatible with Webapp API
-    # as much as possible.
-
     class Meta:
         model = Website
         fields = ['categories', 'description', 'device_types', 'icons', 'id',
-                  'mobile_url', 'name', 'short_name', 'title', 'url']
+                  'keywords', 'mobile_url', 'name', 'short_name', 'title',
+                  'url']
 
     def get_icons(self, obj):
         return dict([(icon_size, obj.get_icon_url(icon_size))
                      for icon_size in CONTENT_ICON_SIZES])
+
+    def get_keywords(self, obj):
+        if not hasattr(obj, 'keywords_list'):
+            attach_tags([obj], m2m_name='keywords')
+        return getattr(obj, 'keywords_list', [])
 
 
 class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
@@ -42,6 +47,7 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # model.
         obj.categories = data['category']
         obj.devices = data['device']
+        obj.keywords_list = data['tags']
 
         if obj.icon_hash:
             # If we have an icon_hash, then we have an icon. All the icons we

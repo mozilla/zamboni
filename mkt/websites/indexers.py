@@ -1,6 +1,7 @@
 from operator import attrgetter
 
 from mkt.search.indexers import BaseIndexer
+from mkt.tags.models import attach_tags
 from mkt.translations.models import attach_trans_dict
 
 
@@ -78,6 +79,7 @@ class WebsiteIndexer(BaseIndexer):
                     'short_name': {'type': 'string',
                                    'analyzer': 'default_icu'},
                     'status': {'type': 'byte'},
+                    'tags': {'type': 'string', 'analyzer': 'simple'},
                     'title': {
                         'type': 'string',
                         'analyzer': 'default_icu',
@@ -115,6 +117,9 @@ class WebsiteIndexer(BaseIndexer):
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
 
+        # Attach tags (keywords).
+        attach_tags([obj], m2m_name='keywords')
+
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
                  'is_disabled', 'last_updated', 'modified', 'status', 'url')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
@@ -123,6 +128,7 @@ class WebsiteIndexer(BaseIndexer):
         doc['device'] = obj.devices or []
         doc['name_sort'] = unicode(obj.name).lower()
         doc['region_exclusions'] = obj.region_exclusions or []
+        doc['tags'] = getattr(obj, 'keywords_list', [])
 
         # Add boost, popularity, trending values.
         doc.update(cls.extract_popularity_trending_boost(obj))

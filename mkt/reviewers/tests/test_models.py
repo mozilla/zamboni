@@ -449,14 +449,13 @@ class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
         super(TestTarakoFunctions, self).setUp()
         self.index = self.patch('mkt.reviewers.models.WebappIndexer.index_ids')
 
-    def tag_exists(self):
-        return (self.tag.addons.filter(addon_tags__addon_id=self.app.id)
-                               .exists())
+    def has_tag(self):
+        return self.tag.webapp_set.filter(id=self.app.id).exists()
 
     def test_tarako_passed_adds_tarako_tag(self):
-        ok_(not self.tag_exists(), 'expected no tarako tag')
+        ok_(not self.has_tag(), 'expected no tarako tag')
         tarako_passed(self.review)
-        ok_(self.tag_exists(), 'expected the tarako tag')
+        ok_(self.has_tag(), 'expected the tarako tag')
 
     def test_tarako_passed_reindexes_the_app(self):
         ok_(not self.index.called)
@@ -465,9 +464,9 @@ class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
 
     def test_tarako_failed_removes_tarako_tag(self):
         self.tag.save_tag(self.app)
-        ok_(self.tag_exists(), 'expected the tarako tag')
+        ok_(self.has_tag(), 'expected the tarako tag')
         tarako_failed(self.review)
-        ok_(not self.tag_exists(), 'expected no tarako tag')
+        ok_(not self.has_tag(), 'expected no tarako tag')
 
     def test_tarako_failed_reindexes_the_app(self):
         ok_(not self.index.called)

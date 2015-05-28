@@ -12,7 +12,7 @@ import unicodedata
 import urllib
 import uuid
 
-from django import forms, http
+from django import http
 from django.conf import settings
 from django.core import paginator
 from django.core.cache import cache
@@ -37,14 +37,11 @@ from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
 from PIL import Image
-from tower import ugettext as _, ungettext as ngettext
 
 import mkt
 from lib.utils import static_url
-from mkt.access import acl
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.tags.models import Tag
 from mkt.translations.models import Translation
 
 
@@ -664,56 +661,6 @@ def make_rated(app):
     app.set_iarc_info(123, 'abc')
     app.set_descriptors([])
     app.set_interactives([])
-
-
-def clean_tags(request, tags):
-    target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
-    target = set(filter(None, target))
-
-    min_len = mkt.MIN_TAG_LENGTH
-    max_len = Tag._meta.get_field('tag_text').max_length
-    max_tags = mkt.MAX_TAGS
-    total = len(target)
-
-    blocked = (Tag.objects.values_list('tag_text', flat=True)
-               .filter(tag_text__in=target, blocked=True))
-    if blocked:
-        # L10n: {0} is a single tag or a comma-separated list of tags.
-        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                       len(blocked)).format(', '.join(blocked))
-        raise forms.ValidationError(msg)
-
-    restricted = (Tag.objects.values_list('tag_text', flat=True)
-                     .filter(tag_text__in=target, restricted=True))
-    if not acl.action_allowed(request, 'Apps', 'Edit'):
-        if restricted:
-            # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
-                           '"{0}" are reserved tags and cannot be used.',
-                           len(restricted)).format('", "'.join(restricted))
-            raise forms.ValidationError(msg)
-    else:
-        # Admin's restricted tags don't count towards the limit.
-        total = len(target - set(restricted))
-
-    if total > max_tags:
-        num = total - max_tags
-        msg = ngettext('You have {0} too many tags.',
-                       'You have {0} too many tags.', num).format(num)
-        raise forms.ValidationError(msg)
-
-    if any(t for t in target if len(t) > max_len):
-        raise forms.ValidationError(
-            _('All tags must be %s characters '
-              'or less after invalid characters are removed.' % max_len))
-
-    if any(t for t in target if len(t) < min_len):
-        msg = ngettext("All tags must be at least {0} character.",
-                       "All tags must be at least {0} characters.",
-                       min_len).format(min_len)
-        raise forms.ValidationError(msg)
-
-    return target
 
 
 def get_icon_url(base_url_format, obj, size):

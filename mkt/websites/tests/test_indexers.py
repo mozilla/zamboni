@@ -5,6 +5,7 @@ from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.search.utils import get_boost
 from mkt.site.tests import ESTestCase, TestCase
+from mkt.tags.models import Tag
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -45,6 +46,8 @@ class TestWebsiteIndexer(TestCase):
             'icon_type': 'png',
             'icon_hash': 'f4k3h4sh',
         })
+        self.obj.keywords.add(Tag.objects.create(tag_text='hodor'))
+        self.obj.keywords.add(Tag.objects.create(tag_text='radar'))
         doc = self._get_doc()
         eq_(doc['id'], self.obj.id)
         eq_(doc['category'], self.obj.categories)
@@ -71,6 +74,7 @@ class TestWebsiteIndexer(TestCase):
             'lang': u'en-US', 'string': unicode(self.obj.title)}])
         eq_(doc['device'], self.obj.devices)
         eq_(doc['region_exclusions'], self.obj.region_exclusions)
+        eq_(sorted(doc['tags']), sorted(['hodor', 'radar']))
 
     def test_extract_with_translations(self):
         self.obj = website_factory()

@@ -3,6 +3,7 @@ from django.core.urlresolvers import NoReverseMatch, reverse
 
 import mkt
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.utils import sorted_groupby
 
 
 class TagManager(ManagerBase):
@@ -16,8 +17,6 @@ class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
     blocked = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
-    addons = models.ManyToManyField('webapps.Webapp', through='AddonTag',
-                                    related_name='tags')
 
     objects = TagManager()
 
@@ -57,3 +56,21 @@ class AddonTag(ModelBase):
 
     class Meta:
         db_table = 'users_tags_addons'
+
+
+def attach_tags(objs, m2m_name):
+    """
+    Fetch tags from `objs` in one query and then attach them to a property on
+    each instance. The name of the property will be `m2m_name` + '_list'.
+
+    Assumes every instance in `objs` uses the same model, and needs `m2m_name`
+    to be set to the name of the m2m field between the model and Tag.
+    """
+    if objs:
+        obj_dict = {obj.id: obj for obj in objs}
+        field_name = getattr(objs[0], m2m_name).query_field_name
+        qs = (Tag.objects.not_blocked()
+              .filter(**{'%s__in' % field_name: obj_dict.keys()})
+              .values_list('%s__id' % field_name, 'tag_text'))
+        for obj, tags in sorted_groupby(qs, lambda x: x[0]):
+            setattr(obj_dict[obj], '%s_list' % m2m_name, [t[1] for t in tags])

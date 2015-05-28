@@ -22,6 +22,7 @@ from mkt.search.serializers import BaseESSerializer, es_to_datetime
 from mkt.site.helpers import absolutify
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
+from mkt.tags.models import attach_tags
 from mkt.translations.utils import no_translation
 from mkt.versions.models import Version
 from mkt.webapps.models import (AddonUpsell, AppFeatures, Geodata, Preview,
@@ -217,7 +218,9 @@ class AppSerializer(serializers.ModelSerializer):
             return []
 
     def get_tags(self, app):
-        return [t.tag_text for t in app.tags.all()]
+        if not hasattr(app, 'tags_list'):
+            attach_tags([app], m2m_name='tags')
+        return getattr(app, 'tags_list', [])
 
     def get_upsell(self, app):
         upsell = False
@@ -417,6 +420,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
                     filetype=p['filetype'], sizes=p.get('sizes', {}))
             for p in data['previews']]
         obj.categories = data['category']
+        obj.tags_list = data['tags']
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
         obj._is_disabled = data['is_disabled']
 
@@ -514,9 +518,6 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def get_file_size(self, obj):
         return obj.es_data.get('file_size')
-
-    def get_tags(self, obj):
-        return obj.es_data['tags']
 
 
 class BaseESAppFeedSerializer(ESAppSerializer):

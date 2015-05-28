@@ -10,6 +10,7 @@ from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
 from mkt.constants.regions import BRA, GTM, URY
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -129,6 +130,18 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
+
+    def test_keywords(self):
+        website_factory()
+        self.website.keywords.add(Tag.objects.create(tag_text='hodor'))
+        self.website.keywords.add(Tag.objects.create(tag_text='radar'))
+        self.website.save()
+        self.refresh('website')
+        res = self.anon.get(self.url, data={'q': 'hodor'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(sorted(objs[0]['keywords']), sorted(['hodor', 'radar']))
 
 
 class TestWebsiteView(RestOAuth, TestCase):

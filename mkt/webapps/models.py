@@ -51,7 +51,7 @@ from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
 from mkt.site.storage_utils import copy_stored_file
 from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
                             sorted_groupby)
-from mkt.tags.models import Tag
+from mkt.tags.models import AddonTag, Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)
 from mkt.translations.models import attach_trans_dict
@@ -190,14 +190,6 @@ def attach_prices(addons):
 def attach_translations(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Webapp, addons)
-
-
-def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    qs = (Tag.objects.not_blocked().filter(addons__in=addon_dict)
-          .values_list('addons__id', 'tag_text'))
-    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
-        addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
 class AddonUser(caching.CachingMixin, models.Model):
@@ -482,6 +474,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     solitude_public_id = models.CharField(max_length=255, null=True,
                                           blank=True)
     is_offline = models.BooleanField(default=False)
+    tags = models.ManyToManyField(Tag, through=AddonTag)
 
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)
