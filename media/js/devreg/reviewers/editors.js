@@ -323,7 +323,7 @@ function initScrollingSidebar() {
 // Editors review translations.
 $(function () {
     // Click to translate.
-    $('#reviews-flagged').delegate('.review-flagged .translate', 'click', _pd(function(event) {
+    var clickToTranslate = function(event) {
         var $this = $(this);
         // Flag when translated.
         if ($this.data('translated')) {
@@ -356,5 +356,7 @@ $(function () {
                          gettext('Error loading translation') +
                          '</small></p>');
         });
-    }));
+    }
+    $('#reviews-flagged').delegate('.review-flagged .translate', 'click', _pd(clickToTranslate));
+    $('#abuse-reports').delegate('.abuse-reports-reports .translate', 'click', _pd(clickToTranslate));
 });
