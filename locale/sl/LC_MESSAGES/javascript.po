@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-05-27 09:47+0000\n"
+"PO-Revision-Date: 2015-05-28 09:10+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432720022.0\n"
+"X-POOTLE-MTIME: 1432804205.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -188,7 +188,7 @@ msgstr "Vnesite elektronski naslov novega člana skupine"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest osvežen"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
@@ -252,11 +252,11 @@ msgstr "Prijava v Persono neuspešna. Napaka pri dostopu do strežnika."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Stanje uspešno spremenjeno v \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Stanja ni bilo mogoče spremeniti v \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -405,7 +405,7 @@ msgstr "Išči dodatke: <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Prišlo je do napake. Poskusite znova pozneje."
 
 # 1st Line: Singular, 2nd Line: Plural for 2, 3rd Line: Plural for 3 and 4, 4th Line: Plural for 5 and more
 #. L10n: {0} is the number of characters left.
@@ -598,15 +598,17 @@ msgstr "Napaka pri zavračanju aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Napaka pri razčlenjevanju aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Napaka aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Žal je prišlo do napake ob pridobivanju zgodovine ocenjevanja. Poskusite se "
+"znova prijaviti.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
