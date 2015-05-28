@@ -191,7 +191,7 @@ def generate_app_package(app, out, apptype, permissions, namedict,
         'installs_allowed_from': ['*'],
         'launch_path': '/index.html',
         'locales': dict((lang, {
-            'name': lang,
+            'name': name,
             'description': 'This packaged app has been automatically generated'
         }) for lang, name in namedict.items()),
         'permissions': dict(((k, {"description": k})
