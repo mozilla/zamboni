@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 import datetime
 import hashlib
@@ -190,7 +191,7 @@ def generate_app_package(app, out, apptype, permissions, namedict,
         'installs_allowed_from': ['*'],
         'launch_path': '/index.html',
         'locales': dict((lang, {
-            'name': lang,
+            'name': name,
             'description': 'This packaged app has been automatically generated'
         }) for lang, name in namedict.items()),
         'permissions': dict(((k, {"description": k})
@@ -333,10 +334,19 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
 GENERIC_DESCRIPTION = ""
 
 
-def generate_apps_from_specs(specs, specdir, repeats=1):
+def generate_apps_from_specs(orig_specs, specdir, repeats=0):
     global GENERIC_DESCRIPTION
     apps = []
-    specs = specs * repeats
+    repeat_specs = orig_specs * repeats
+
+    # Only the first repeat should have popularity set.
+    for i, s in enumerate(repeat_specs):
+        if 'popularity' in s:
+            ss = s.copy()
+            del ss['popularity']
+            repeat_specs[i] = ss
+
+    specs = orig_specs + repeat_specs
     GENERIC_DESCRIPTION = requests.get('http://baconipsum.com/api/'
                                        '?type=meat-and-filler&paras=2'
                                        '&start-with-lorem=1').json()[0]
@@ -371,7 +381,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
                            uses_flash=False, special_regions={},
-                           tarako=False, **spec):
+                           popularity=0, tarako=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
@@ -409,6 +419,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
     app.default_locale = default_locale
+    if popularity:
+        app.popularity.create(value=popularity)
     if premium_type != mkt.ADDON_FREE and status != mkt.STATUS_NULL:
         acct = get_or_create_payment_account(developer_email, developer_name)
         product_uri = Reference().product_create(acct, app)

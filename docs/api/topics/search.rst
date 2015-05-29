@@ -24,10 +24,10 @@ Search
         'android', or 'firefoxos'.
     :type dev: string
     :param optional device: Enables additional filtering by device profile
-    if device is 'android'. One of 'mobile' or 'tablet'.
+        if device is 'android'. One of 'mobile' or 'tablet'.
     :type device: string
     :param optional pro: A :ref:`feature profile <feature-profile-label>`
-                         describing the features to filter by.
+        describing the features to filter by.
     :type pro: string
     :param optional premium_types: Filters by whether the app is free or
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
@@ -103,8 +103,9 @@ include webapps and websites.
 
     **Response**
 
-    Similar to Search API but results list can contain multiple kinds of
-    content.
+    Similar to Search API but the `objects` field can contain
+    :ref:`apps <app-response-label>` and
+    :ref:`_websites <website-response-label>`
 
 
 .. _feature-profile-label:

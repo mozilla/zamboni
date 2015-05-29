@@ -68,10 +68,13 @@ tagz.py:
 
 tag_release: tagz.py
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
+	echo "Tagging release $(RELEASE_DATE)"
 	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/spartacus,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-operator-dashboard,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/transonic,mozilla/zamboni -c create -t $(RELEASE_DATE)
+	echo "Tag complete."
 
 deploy_release: check_deploy_env
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
+	echo "Pushing to stage now with the command:"
 	curl -k -X POST $(JENKINS_URL) \
 		--user $(JENKINS_USERNAME):$(JENKINS_API_TOKEN) \
 		--data-urlencode json='{"parameter": [{"name":"DeployRef", "value":"$(RELEASE_DATE)"}]}'

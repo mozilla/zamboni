@@ -78,7 +78,7 @@ Login
 
 
 Logout
------
+------
 
 .. http:delete:: /api/v2/account/logout/
 
@@ -191,7 +191,7 @@ a reason contained in the response. For example:
             {"reason": "Terms of service not accepted."}
 
 Example clients
-~~~~~~~~~~~~~~~
+---------------
 
 * The `Marketplace.Python <https://github.com/mozilla/Marketplace.Python/>`_ library uses 2-legged OAuth to authenticate requests.
 
