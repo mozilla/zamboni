@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-05-29 13:25-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr "Ẏḗş"
 msgid "No"
 msgstr "Ƞǿ"
 
-#: mkt/api/serializers.py:57
+#: mkt/api/serializers.py:67
 msgid "Form could not be submitted."
 msgstr "Ƒǿřḿ ƈǿŭŀḓ ƞǿŧ ƀḗ şŭƀḿīŧŧḗḓ."
 
@@ -2240,7 +2240,7 @@ msgstr "Şŭƀḿīŧ"
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1422
+#: mkt/webapps/models.py:1423
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -2344,7 +2344,7 @@ msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
 #: mkt/developers/forms.py:392
-#: mkt/webapps/models.py:1331
+#: mkt/webapps/models.py:1332
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
@@ -2911,7 +2911,7 @@ msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 #: mkt/developers/views.py:570
 #: mkt/developers/views_payments.py:113
 #: mkt/developers/views_payments.py:437
-#: mkt/reviewers/views.py:683
+#: mkt/reviewers/views.py:685
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
@@ -3130,7 +3130,7 @@ msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ <a href=\"%(next_url)s\">%(next_step_name
 #: mkt/ecosystem/templates/ecosystem/partners.html:12
 #: mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59
-#: mkt/site/helpers.py:308
+#: mkt/site/helpers.py:305
 #: mkt/zadmin/templates/admin/base.html:19
 #: templates/base.html:13
 msgid "Firefox Marketplace"
@@ -4659,7 +4659,7 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1429
+#: mkt/webapps/models.py:1430
 msgid "Content Ratings"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠş"
 
@@ -5764,7 +5764,7 @@ msgstr "Ḓḗṽḗŀǿƥīƞɠ Ɠȧḿḗ Ȧƥƥş"
 #: mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1435
+#: mkt/webapps/models.py:1436
 msgid "Payments"
 msgstr "Ƥȧẏḿḗƞŧş"
 
@@ -6138,11 +6138,11 @@ msgstr "Ƒīŀḗ ḗẋƈḗḗḓīƞɠ şīzḗ ŀīḿīŧ īƞ ȧřƈħī�
 msgid "Invalid archive."
 msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 
-#: mkt/files/views.py:43
+#: mkt/files/views.py:44
 msgid "Back to review"
 msgstr "Ɓȧƈķ ŧǿ řḗṽīḗẇ"
 
-#: mkt/files/views.py:48
+#: mkt/files/views.py:49
 msgid "Back to app"
 msgstr "Ɓȧƈķ ŧǿ ȧƥƥ"
 
@@ -6907,7 +6907,7 @@ msgid "Manifest location"
 msgstr "Ḿȧƞīƒḗşŧ ŀǿƈȧŧīǿƞ"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:36
-#: mkt/site/helpers.py:94
+#: mkt/site/helpers.py:91
 msgid "Install"
 msgstr "Īƞşŧȧŀŀ"
 
@@ -7015,7 +7015,7 @@ msgid "Reviewer Tools"
 msgstr "Řḗṽīḗẇḗř Ŧǿǿŀş"
 
 #: mkt/reviewers/helpers.py:41
-#: mkt/site/helpers.py:173
+#: mkt/site/helpers.py:170
 msgid "Apps"
 msgstr "Ȧƥƥş"
 
@@ -7191,54 +7191,54 @@ msgstr ""
 "Ɓȧƞ ŧħḗ ȧƥƥ ƒřǿḿ Ḿȧřķḗŧƥŀȧƈḗ. Şīḿīŀȧř ŧǿ Řḗĵḗƈŧ ƀŭŧ ŧħḗ ȧŭŧħǿř(ş) ƈȧƞ'ŧ "
 "řḗşŭƀḿīŧ. Ŧǿ ǿƞŀẏ ƀḗ ŭşḗḓ īƞ ḗẋŧřḗḿḗ ƈȧşḗş."
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:140
 msgid "New Apps (Under 5 days)"
 msgstr "Ƞḗẇ Ȧƥƥş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:139
+#: mkt/reviewers/views.py:141
 msgid "Passable (5 to 10 days)"
 msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:142
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:252
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: mkt/reviewers/views.py:258
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Ǿƞŀẏ şḗƞīǿř řḗṽīḗẇḗřş ƈȧƞ řḗṽīḗẇ ƀŀǿƈķŀīşŧḗḓ ȧƥƥş."
 
-#: mkt/reviewers/views.py:308
-#: mkt/reviewers/views.py:333
+#: mkt/reviewers/views.py:310
+#: mkt/reviewers/views.py:335
 #: mkt/submit/forms.py:32
 #: mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Ȧḓḓḗḓ {0}"
 
-#: mkt/reviewers/views.py:311
-#: mkt/reviewers/views.py:334
+#: mkt/reviewers/views.py:313
+#: mkt/reviewers/views.py:336
 #: mkt/submit/forms.py:34
 #: mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "Řḗḿǿṽḗḓ {0}"
 
-#: mkt/reviewers/views.py:314
+#: mkt/reviewers/views.py:316
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:336
+#: mkt/reviewers/views.py:338
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Řḗɋŭīřḗḿḗƞŧş ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:363
+#: mkt/reviewers/views.py:365
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:367
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
@@ -8060,12 +8060,12 @@ msgstr "Ȧş şǿǿƞ ȧş īŧ īş ȧƥƥřǿṽḗḓ."
 msgid "Not until I manually make it public."
 msgstr "Ƞǿŧ ŭƞŧīŀ Ī ḿȧƞŭȧŀŀẏ ḿȧķḗ īŧ ƥŭƀŀīƈ."
 
-#: mkt/site/helpers.py:163
+#: mkt/site/helpers.py:160
 msgid "Home"
 msgstr "Ħǿḿḗ"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:318
+#: mkt/site/helpers.py:315
 msgid "{0} ago"
 msgstr "{0} ȧɠǿ"
 
@@ -8559,32 +8559,32 @@ msgid "{user} marked read {report} for {addon}."
 msgstr "{ŭşḗř} ḿȧřķḗḓ řḗȧḓ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ}."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:706
+#: mkt/site/utils.py:683
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Īƞṽȧŀīḓ ŧȧɠ: {0}"
 msgstr[1] "Īƞṽȧŀīḓ ŧȧɠş: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:716
+#: mkt/site/utils.py:693
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" īş ȧ řḗşḗřṽḗḓ ŧȧɠ ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 msgstr[1] "\"{0}\" ȧřḗ řḗşḗřṽḗḓ ŧȧɠş ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: mkt/site/utils.py:724
+#: mkt/site/utils.py:701
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 msgstr[1] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 
-#: mkt/site/utils.py:730
+#: mkt/site/utils.py:707
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
 "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ŀḗşş ȧƒŧḗř īƞṽȧŀīḓ ƈħȧřȧƈŧḗřş ȧřḗ řḗḿǿṽḗḓ."
 
-#: mkt/site/utils.py:734
+#: mkt/site/utils.py:711
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
@@ -9216,66 +9216,66 @@ msgstr "Ƞȧŧīṽḗ ƑẋȦ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:207
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: mkt/webapps/models.py:1322
+#: mkt/webapps/models.py:1323
 msgid "You must provide a support email or URL."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧ şŭƥƥǿřŧ ḗḿȧīŀ ǿř ŬŘĿ."
 
-#: mkt/webapps/models.py:1324
+#: mkt/webapps/models.py:1325
 msgid "You must provide an app name."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ȧƥƥ ƞȧḿḗ."
 
-#: mkt/webapps/models.py:1326
+#: mkt/webapps/models.py:1327
 msgid "You must provide at least one device type."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ḓḗṽīƈḗ ŧẏƥḗ."
 
-#: mkt/webapps/models.py:1329
+#: mkt/webapps/models.py:1330
 msgid "You must provide at least one category."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ƈȧŧḗɠǿřẏ."
 
-#: mkt/webapps/models.py:1396
+#: mkt/webapps/models.py:1397
 msgid "You must set up content ratings."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ƈǿƞŧḗƞŧ řȧŧīƞɠş."
 
-#: mkt/webapps/models.py:1398
+#: mkt/webapps/models.py:1399
 msgid "You must set up a payment account."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1424
 msgid "This app's submission process has not been fully completed."
 msgstr "Ŧħīş ȧƥƥ'ş şŭƀḿīşşīǿƞ ƥřǿƈḗşş ħȧş ƞǿŧ ƀḗḗƞ ƒŭŀŀẏ ƈǿḿƥŀḗŧḗḓ."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1431
 msgid "This app needs to get a content rating."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ŧǿ ɠḗŧ ȧ ƈǿƞŧḗƞŧ řȧŧīƞɠ."
 
-#: mkt/webapps/models.py:1436
+#: mkt/webapps/models.py:1437
 msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2695
+#: mkt/webapps/models.py:2696
 msgid "awaiting approval"
 msgstr "ȧẇȧīŧīƞɠ ȧƥƥřǿṽȧŀ"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2697
+#: mkt/webapps/models.py:2698
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2699
+#: mkt/webapps/models.py:2700
 msgid "requires additional review"
 msgstr "řḗɋŭīřḗş ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ"
 
-#: mkt/webapps/models.py:2750
+#: mkt/webapps/models.py:2751
 msgid "{region} approval status"
 msgstr "{řḗɠīǿƞ} ȧƥƥřǿṽȧŀ şŧȧŧŭş"
 
-#: mkt/webapps/models.py:2758
+#: mkt/webapps/models.py:2759
 msgid "{region} nomination date"
 msgstr "{řḗɠīǿƞ} ƞǿḿīƞȧŧīǿƞ ḓȧŧḗ"
 

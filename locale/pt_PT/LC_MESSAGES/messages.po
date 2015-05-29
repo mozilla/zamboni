@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-05-29 13:25-0700\n"
 "PO-Revision-Date: 2015-05-23 23:45+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -38,7 +38,7 @@ msgstr "Sim"
 msgid "No"
 msgstr "Não"
 
-#: mkt/api/serializers.py:57
+#: mkt/api/serializers.py:67
 msgid "Form could not be submitted."
 msgstr "Não foi possível enviar o formulário."
 
@@ -2017,7 +2017,7 @@ msgstr "Acordo"
 msgid "Submit"
 msgstr "Submeter"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1422
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1423
 msgid "Details"
 msgstr "Detalhes"
 
@@ -2093,7 +2093,7 @@ msgstr "Já existe uma aplicação nesse domínio; apenas é permitida uma aplic
 msgid "Invalid region(s) selected."
 msgstr "Região(ões) selecionada(s) inválida(s) ."
 
-#: mkt/developers/forms.py:392 mkt/webapps/models.py:1331
+#: mkt/developers/forms.py:392 mkt/webapps/models.py:1332
 msgid "You must upload at least one screenshot or video."
 msgstr "Você deve enviar pelo menos uma captura de tela ou vídeo."
 
@@ -2586,7 +2586,7 @@ msgstr "A aplicação foi resubmetida com sucesso."
 msgid "New version successfully added."
 msgstr "Nova versão adicionada com sucesso."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:683
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:685
 msgid "Changes successfully saved."
 msgstr "Alterações guardadas com sucesso."
 
@@ -2766,7 +2766,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "Deve configurar <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:305
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3920,7 +3920,7 @@ msgstr "Estado e versões"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1429
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1430
 msgid "Content Ratings"
 msgstr "Classificações de conteúdo"
 
@@ -4776,7 +4776,7 @@ msgid "Developing Game Apps"
 msgstr "Programar jogos"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1435
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1436
 msgid "Payments"
 msgstr "Pagamentos"
 
@@ -5069,11 +5069,11 @@ msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
 
-#: mkt/files/views.py:43
+#: mkt/files/views.py:44
 msgid "Back to review"
 msgstr "Voltar à análise"
 
-#: mkt/files/views.py:48
+#: mkt/files/views.py:49
 msgid "Back to app"
 msgstr "Voltar para a aplicação"
 
@@ -5747,7 +5747,7 @@ msgstr "Tipo de recibo"
 msgid "Manifest location"
 msgstr "Localização do manifesto"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:91
 msgid "Install"
 msgstr "Instalar"
 
@@ -5842,7 +5842,7 @@ msgstr "Dispositivo"
 msgid "Reviewer Tools"
 msgstr "Ferramentas de revisão"
 
-#: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:173
+#: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:170
 msgid "Apps"
 msgstr "Aplicações"
 
@@ -5986,48 +5986,48 @@ msgstr "Banir aplicação"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Banir a aplicação do Marketplace. Parecido com Rejeitar mas o(s) autor(es) não podem submeter novamente. Apenas deve ser utilizado em casos extremos."
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:140
 msgid "New Apps (Under 5 days)"
 msgstr "Novas aplicações (menos de 5 dias)"
 
-#: mkt/reviewers/views.py:139
+#: mkt/reviewers/views.py:141
 msgid "Passable (5 to 10 days)"
 msgstr "Razoável (5 a 10 dias)"
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:142
 msgid "Overdue (Over 10 days)"
 msgstr "Antigos (mais de 10 dias)"
 
-#: mkt/reviewers/views.py:252
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Não são permitidas análises aos seus próprios recursos."
 
-#: mkt/reviewers/views.py:258
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Apenas revisores seniores podem rever aplicações bloqueadas."
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:333 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:335 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Adicionado a {0}"
 
-#: mkt/reviewers/views.py:311 mkt/reviewers/views.py:334 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:336 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "{0} removido"
 
-#: mkt/reviewers/views.py:314
+#: mkt/reviewers/views.py:316
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispositivo(s) alterado(s) pelo revisor: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:336
+#: mkt/reviewers/views.py:338
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Requisitos alterados pelo revisor: {0}"
 
-#: mkt/reviewers/views.py:363
+#: mkt/reviewers/views.py:365
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" processado com sucesso (+{1} pontos, {2} total)."
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:367
 msgid "Review successfully processed."
 msgstr "Análise processada com sucesso."
 
@@ -6497,15 +6497,11 @@ msgstr "Marcar como lido"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
-"[<a href=\"%(review_url)s\">Página de revisão</a> | <a href=\"%"
-"(abuses_url)s\">Todas as denúncias de abusos (%(abuses_count)s)</a>]"
+msgstr "[<a href=\"%(review_url)s\">Página de revisão</a> | <a href=\"%(abuses_url)s\">Todas as denúncias de abusos (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
-msgstr ""
-"<span class=\"submitted-by\">Enviado por %(user)s a %(date)s [%"
-"(ip_address)s]</span>"
+msgstr "<span class=\"submitted-by\">Enviado por %(user)s a %(date)s [%(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
@@ -6786,12 +6782,12 @@ msgstr "Assim que for aprovado."
 msgid "Not until I manually make it public."
 msgstr "Não até que eu a publique manualmente."
 
-#: mkt/site/helpers.py:163
+#: mkt/site/helpers.py:160
 msgid "Home"
 msgstr "Início"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:318
+#: mkt/site/helpers.py:315
 msgid "{0} ago"
 msgstr "{0} atrás"
 
@@ -7287,30 +7283,30 @@ msgid "{user} marked read {report} for {addon}."
 msgstr "{user} marcou como lido {report} para {addon}."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:706
+#: mkt/site/utils.py:683
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Etiqueta inválida: {0}"
 msgstr[1] "Etiquetas inválidas: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:716
+#: mkt/site/utils.py:693
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" é uma etiqueta reservada e não pode ser usada."
 msgstr[1] "\"{0}\" são etiquetas reservadas e não podem ser usadas."
 
-#: mkt/site/utils.py:724
+#: mkt/site/utils.py:701
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Tem {0} etiqueta a mais."
 msgstr[1] "Tem {0} etiquetas a mais."
 
-#: mkt/site/utils.py:730
+#: mkt/site/utils.py:707
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Todas as etiquetas têm de ter %s caracteres ou menos depois de removidos os caracteres inválidos."
 
-#: mkt/site/utils.py:734
+#: mkt/site/utils.py:711
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
@@ -7838,66 +7834,66 @@ msgid "Please use the verified email for this account."
 msgstr "Por favor utilize o email confirmado para esta conta."
 
 # Column name in a table.
-#: mkt/webapps/models.py:207
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "Listado"
 
-#: mkt/webapps/models.py:1322
+#: mkt/webapps/models.py:1323
 msgid "You must provide a support email or URL."
 msgstr "Deve fornecer um email ou URL de apoio."
 
-#: mkt/webapps/models.py:1324
+#: mkt/webapps/models.py:1325
 msgid "You must provide an app name."
 msgstr "Deve fornecer um nome para a sua aplicação."
 
-#: mkt/webapps/models.py:1326
+#: mkt/webapps/models.py:1327
 msgid "You must provide at least one device type."
 msgstr "Tem de indicar pelo menos um tipo de dispositivo."
 
-#: mkt/webapps/models.py:1329
+#: mkt/webapps/models.py:1330
 msgid "You must provide at least one category."
 msgstr "Você deve fornecer pelo menos uma categoria."
 
-#: mkt/webapps/models.py:1396
+#: mkt/webapps/models.py:1397
 msgid "You must set up content ratings."
 msgstr "Tem de definir a classificação de conteúdo."
 
-#: mkt/webapps/models.py:1398
+#: mkt/webapps/models.py:1399
 msgid "You must set up a payment account."
 msgstr "Tem de definir uma conta de pagamento."
 
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1424
 msgid "This app's submission process has not been fully completed."
 msgstr "O processo de submissão desta aplicação não foi totalmente concluído."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1431
 msgid "This app needs to get a content rating."
 msgstr "Esta aplicação precisa de ter uma classificação de conteúdo."
 
-#: mkt/webapps/models.py:1436
+#: mkt/webapps/models.py:1437
 msgid "This app needs a payment account set up."
 msgstr "Esta aplicação precisa de ter uma conta de pagamento definida."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2695
+#: mkt/webapps/models.py:2696
 msgid "awaiting approval"
 msgstr "a aguardar aprovação"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2697
+#: mkt/webapps/models.py:2698
 msgid "rejected"
 msgstr "rejeitado"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2699
+#: mkt/webapps/models.py:2700
 msgid "requires additional review"
 msgstr "requer revisão adicional"
 
-#: mkt/webapps/models.py:2750
+#: mkt/webapps/models.py:2751
 msgid "{region} approval status"
 msgstr "estado de aprovação de {region}"
 
-#: mkt/webapps/models.py:2758
+#: mkt/webapps/models.py:2759
 msgid "{region} nomination date"
 msgstr "data de nomeação de {region}"
 

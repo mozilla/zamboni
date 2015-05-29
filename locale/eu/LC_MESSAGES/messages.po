@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-05-29 13:25-0700\n"
 "PO-Revision-Date: 2015-05-11 21:55+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: librezale@librezale.org\n"
@@ -45,7 +45,7 @@ msgstr "Bai"
 msgid "No"
 msgstr "Ez"
 
-#: mkt/api/serializers.py:57
+#: mkt/api/serializers.py:67
 msgid "Form could not be submitted."
 msgstr "Inprimakia ezin izan da bidali."
 
@@ -2024,7 +2024,7 @@ msgstr "Kontratua"
 msgid "Submit"
 msgstr "Bidali"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1422
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1423
 msgid "Details"
 msgstr "Xehetasunak"
 
@@ -2100,7 +2100,7 @@ msgstr "Dagoeneko existitzen da aplikazio bat domeinu honetan; domeinuko aplikaz
 msgid "Invalid region(s) selected."
 msgstr "Eskualde baliogabea(k) hautatu d(it)uzu."
 
-#: mkt/developers/forms.py:392 mkt/webapps/models.py:1331
+#: mkt/developers/forms.py:392 mkt/webapps/models.py:1332
 msgid "You must upload at least one screenshot or video."
 msgstr "Gutxienez pantaila-argazki edo bideo bat igo behar duzu."
 
@@ -2588,7 +2588,7 @@ msgstr "Aplikazioa ondo birbidali da."
 msgid "New version successfully added."
 msgstr "Bertsio berria ongi gehitu da."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:683
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:685
 msgid "Changes successfully saved."
 msgstr "Aldaketak arrakastaz gorde dira."
 
@@ -2767,7 +2767,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "<a href=\"%(next_url)s\">%(next_step_name)s</a> konfiguratu beharra duzu."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:308
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:305
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3903,7 +3903,7 @@ msgstr "Egoera eta bertsioak"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1429
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1430
 msgid "Content Ratings"
 msgstr "Edukiaren sailkapena"
 
@@ -4737,7 +4737,7 @@ msgid "Developing Game Apps"
 msgstr "Joko motako aplikazioak garatzea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1435
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1436
 msgid "Payments"
 msgstr "Ordainketak"
 
@@ -5026,11 +5026,11 @@ msgstr ""
 msgid "Invalid archive."
 msgstr "Artxibo baliogabea."
 
-#: mkt/files/views.py:43
+#: mkt/files/views.py:44
 msgid "Back to review"
 msgstr "Itzuli berrikuspenera"
 
-#: mkt/files/views.py:48
+#: mkt/files/views.py:49
 msgid "Back to app"
 msgstr "Itzuli aplikaziora"
 
@@ -5705,7 +5705,7 @@ msgstr "Ordainagiri mota"
 msgid "Manifest location"
 msgstr "Manifestuaren kokalekua"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:94
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:91
 msgid "Install"
 msgstr "Instalatu"
 
@@ -5801,7 +5801,7 @@ msgstr "Gailua"
 msgid "Reviewer Tools"
 msgstr "Berrikuspen-tresnak"
 
-#: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:173
+#: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:170
 msgid "Apps"
 msgstr "Aplikazioak"
 
@@ -5944,48 +5944,48 @@ msgstr ""
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:138
+#: mkt/reviewers/views.py:140
 msgid "New Apps (Under 5 days)"
 msgstr "Aplikazio berriak (5 egun baino gutxiagokoak)"
 
-#: mkt/reviewers/views.py:139
+#: mkt/reviewers/views.py:141
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:142
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:252
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Norbere berrikuspenak ez dira onartzen."
 
-#: mkt/reviewers/views.py:258
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:308 mkt/reviewers/views.py:333 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:335 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Noiz gehitua: {0}"
 
-#: mkt/reviewers/views.py:311 mkt/reviewers/views.py:334 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:336 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:314
+#: mkt/reviewers/views.py:316
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:336
+#: mkt/reviewers/views.py:338
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:363
+#: mkt/reviewers/views.py:365
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:367
 msgid "Review successfully processed."
 msgstr "Berrikuspena arrakastaz prozesatu da."
 
@@ -6733,12 +6733,12 @@ msgstr "Onartu bezain laster."
 msgid "Not until I manually make it public."
 msgstr "Ez eskuz publiko egin arte."
 
-#: mkt/site/helpers.py:163
+#: mkt/site/helpers.py:160
 msgid "Home"
 msgstr "Nagusia"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:318
+#: mkt/site/helpers.py:315
 msgid "{0} ago"
 msgstr "duela {0}"
 
@@ -7234,30 +7234,30 @@ msgid "{user} marked read {report} for {addon}."
 msgstr ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:706
+#: mkt/site/utils.py:683
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Etiketa baliogabea: {0}"
 msgstr[1] "Etiketa baliogabeak: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:716
+#: mkt/site/utils.py:693
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" erreserbatutako etiketa bat da, eta ezin da erabili."
 msgstr[1] "\"{0}\" erreserbatutako etiketak dira, eta ezin dira erabili."
 
-#: mkt/site/utils.py:724
+#: mkt/site/utils.py:701
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Behar baino etiketa {0} gehiago duzu."
 msgstr[1] "Behar baino {0} etiketa gehiago dituzu."
 
-#: mkt/site/utils.py:730
+#: mkt/site/utils.py:707
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Etiketa guztiek %s karaktere edo gutxiago izan behar dituzte karaktere baliogabeak kendu ondoren."
 
-#: mkt/site/utils.py:734
+#: mkt/site/utils.py:711
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Etiketa guztiek gutxienez karaktere bat izan behar dute."
@@ -7770,66 +7770,66 @@ msgid "Please use the verified email for this account."
 msgstr ""
 
 # Column name in a table.
-#: mkt/webapps/models.py:207
+#: mkt/webapps/models.py:208
 msgid "Listed"
 msgstr "Zerrendatuta"
 
-#: mkt/webapps/models.py:1322
+#: mkt/webapps/models.py:1323
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1324
+#: mkt/webapps/models.py:1325
 msgid "You must provide an app name."
 msgstr "Aplikazioaren izena idatzi behar duzu."
 
-#: mkt/webapps/models.py:1326
+#: mkt/webapps/models.py:1327
 msgid "You must provide at least one device type."
 msgstr "Gutxienez gailu mota bat aukeratu behar duzu."
 
-#: mkt/webapps/models.py:1329
+#: mkt/webapps/models.py:1330
 msgid "You must provide at least one category."
 msgstr "Gutxienez kategoria bat idatzi behar duzu."
 
-#: mkt/webapps/models.py:1396
+#: mkt/webapps/models.py:1397
 msgid "You must set up content ratings."
 msgstr "Edukien balorazioak konfiguratu behar dituzu."
 
-#: mkt/webapps/models.py:1398
+#: mkt/webapps/models.py:1399
 msgid "You must set up a payment account."
 msgstr "Ordainketa-kontu bat konfiguratu behar duzu."
 
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1424
 msgid "This app's submission process has not been fully completed."
 msgstr "Aplikazio honen bidalketa-prozesua ez da osatu."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1431
 msgid "This app needs to get a content rating."
 msgstr "Aplikazio honek edukien balorazio bat behar du."
 
-#: mkt/webapps/models.py:1436
+#: mkt/webapps/models.py:1437
 msgid "This app needs a payment account set up."
 msgstr "Aplikazio honek ordainketa-kontu bat behar du."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2695
+#: mkt/webapps/models.py:2696
 msgid "awaiting approval"
 msgstr "onarpenaren zain"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2697
+#: mkt/webapps/models.py:2698
 msgid "rejected"
 msgstr "baztertuta"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2699
+#: mkt/webapps/models.py:2700
 msgid "requires additional review"
 msgstr "berrikuspen gehiago behar du"
 
-#: mkt/webapps/models.py:2750
+#: mkt/webapps/models.py:2751
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2758
+#: mkt/webapps/models.py:2759
 msgid "{region} nomination date"
 msgstr ""
 

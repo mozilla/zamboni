@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1432804205.0\n"
 
@@ -42,8 +41,7 @@ msgstr "Izberite datoteko..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
-"Vaša končnica aplikacije v stisnjeni mapi bi morala biti <code>.zip</code>."
+msgstr "Vaša končnica aplikacije v stisnjeni mapi bi morala biti <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
@@ -109,14 +107,10 @@ msgstr "Potrjevanje končano {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} opozorilom."
-msgstr[1] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} opozoriloma."
-msgstr[2] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} opozorili."
-msgstr[3] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} opozorili."
+msgstr[0] "Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} opozorilom."
+msgstr[1] "Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} opozoriloma."
+msgstr[2] "Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} opozorili."
+msgstr[3] "Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} opozorili."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -165,14 +159,10 @@ msgstr[3] "Preverjanje aplikacije je spodletelo s {0} napakami in sporočili ({1
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} sporočilom."
-msgstr[1] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} sporočiloma."
-msgstr[2] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} sporočili."
-msgstr[3] ""
-"Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} sporočili."
+msgstr[0] "Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} sporočilom."
+msgstr[1] "Potrjevanje vaše aplikacije je bilo končano brez napak in z {0} sporočiloma."
+msgstr[2] "Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} sporočili."
+msgstr[3] "Potrjevanje vaše aplikacije je bilo končano brez napak in s {0} sporočili."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
@@ -232,9 +222,7 @@ msgstr "Izključeno"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Ta možnost je začasno onemogočena zaradi vzdrževanja spletnega mesta. "
-"Prosimo, poskusite kasneje."
+msgstr "Ta možnost je začasno onemogočena zaradi vzdrževanja spletnega mesta. Prosimo, poskusite kasneje."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -242,9 +230,7 @@ msgstr "Odstrani ta prevod"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Prijava v Persono neuspešna. Morda nimate uporabniškega računa za ta "
-"elektronski naslov?"
+msgstr "Prijava v Persono neuspešna. Morda nimate uporabniškega računa za ta elektronski naslov?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -353,22 +339,10 @@ msgstr "Zaznana: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih "
-"aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za "
-"prodajo."
-msgstr[1] ""
-"Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih "
-"aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za "
-"prodajo."
-msgstr[2] ""
-"Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih "
-"aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za "
-"prodajo."
-msgstr[3] ""
-"Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih "
-"aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za "
-"prodajo."
+msgstr[0] "Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za prodajo."
+msgstr[1] "Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za prodajo."
+msgstr[2] "Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za prodajo."
+msgstr[3] "Izbris plačilnega računa \"{0}\" bo odstranil plačilni račun iz naslednjih aplikacij. Aplikacije brez plačilnega računa ne bodo več na voljo za prodajo."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -606,9 +580,7 @@ msgstr "Napaka aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Žal je prišlo do napake ob pridobivanju zgodovine ocenjevanja. Poskusite se "
-"znova prijaviti.<p>"
+msgstr "Žal je prišlo do napake ob pridobivanju zgodovine ocenjevanja. Poskusite se znova prijaviti.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
