@@ -321,10 +321,10 @@ Key statuses are:
 
 Valid transitions that users can initiate are:
 
-* *incomplete* to *pending*: call this once your app has been completed and it
-  will be added to the Marketplace review queue. This can only be called if all
-  the required data is there. If not, you'll get an error containing the
-  reason. For example:
+  * *incomplete* to *pending*: call this once your app has been completed and it
+    will be added to the Marketplace review queue. This can only be called if all
+    the required data is there. If not, you'll get an error containing the
+    reason. For example:
 
     .. code-block:: json
 
@@ -341,10 +341,10 @@ Valid transitions that users can initiate are:
             }
         }
 
-* Once reviewed by the Marketplace review team, the app will be in one of the
-  approved statuses ('public', 'waiting', or 'unlisted') and you can
-  toggle between any of these statuses, e.g., *waiting* to *unlisted.
-* *disabled_by_user*: by changing this value from `True` to `False` you can
-  enable or disable an app.
+  * Once reviewed by the Marketplace review team, the app will be in one of the
+    approved statuses ('public', 'waiting', or 'unlisted') and you can
+    toggle between any of these statuses, e.g., *waiting* to *unlisted*.
+  * *disabled_by_user*: by changing this value from `True` to `False` you can
+    enable or disable an app.
 
 .. _`terms of use`: https://marketplace.firefox.com/developers/terms
