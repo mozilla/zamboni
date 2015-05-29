@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-02-20 12:58+0000\n"
+"PO-Revision-Date: 2015-05-29 07:07+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424437102.0\n"
+"X-POOTLE-MTIME: 1432883273.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1824,7 +1825,7 @@ msgstr "Апликација захтева да уређај има барем 
 
 #: mkt/constants/features.py:340
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
@@ -1979,7 +1980,7 @@ msgstr "Остатак света"
 
 #: mkt/constants/regions.py:87
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Гвинеја-Конакри"
 
 #: mkt/constants/regions.py:110
 msgid "Russia"
@@ -1987,15 +1988,15 @@ msgstr "Русија"
 
 #: mkt/constants/regions.py:111
 msgid "Senegal"
-msgstr ""
+msgstr "Сенегал"
 
 #: mkt/constants/regions.py:115
 msgid "Taiwan"
-msgstr ""
+msgstr "Тајван"
 
 #: mkt/constants/regions.py:116
 msgid "Tanzania"
-msgstr ""
+msgstr "Танзанија"
 
 #: mkt/constants/regions.py:119
 msgid "Venezuela"
@@ -3567,7 +3568,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Претражи кључне речи"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:151
 msgid "Release Notes"
@@ -4185,7 +4186,7 @@ msgstr "Производи у оквиру апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
-msgstr ""
+msgstr "Препоручено"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
@@ -5447,7 +5448,7 @@ msgstr "Име"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Идентификатор Firefox налога"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
@@ -5910,7 +5911,7 @@ msgstr "Ово ће одбити апликацију, уклонити је и�
 
 #: mkt/reviewers/utils.py:383
 msgid "Message developer"
-msgstr ""
+msgstr "Пиши програмеру"
 
 #: mkt/reviewers/utils.py:385
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
@@ -5926,7 +5927,7 @@ msgstr "Обележи ову апликацију за преглед адми�
 
 #: mkt/reviewers/utils.py:397
 msgid "Private comment"
-msgstr ""
+msgstr "Приватни коментар"
 
 #: mkt/reviewers/utils.py:399
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
@@ -6007,7 +6008,7 @@ msgstr "Извештаји злоупотребе за {addon} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s датума %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6447,11 +6448,11 @@ msgstr "више..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Старије верзије"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Новије верзије"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "Process"
@@ -6459,11 +6460,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Skip"
-msgstr ""
+msgstr "Прескочи"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
 msgid "Mark Read"
-msgstr ""
+msgstr "Означи као прочитано"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
@@ -6539,11 +6540,11 @@ msgstr "Учитавам историјат апликације &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Следећи коментари"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Претходни коментари"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -7796,7 +7797,7 @@ msgstr ""
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Молимо Вас користите верификовану е-пошту за овај налог."
 
 # Column name in a table.
 #: mkt/webapps/models.py:207
