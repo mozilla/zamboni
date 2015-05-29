@@ -334,7 +334,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
 GENERIC_DESCRIPTION = ""
 
 
-def generate_apps_from_specs(orig_specs, specdir, repeats=1):
+def generate_apps_from_specs(orig_specs, specdir, repeats=0):
     global GENERIC_DESCRIPTION
     apps = []
     repeat_specs = orig_specs * repeats
