@@ -17,8 +17,9 @@ from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
 from mkt.reviewers.models import RereviewQueue
-from mkt.site.utils import clean_tags, slug_validator
+from mkt.site.utils import slug_validator
 from mkt.tags.models import Tag
+from mkt.tags.utils import clean_tags
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea

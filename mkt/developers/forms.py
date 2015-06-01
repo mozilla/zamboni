@@ -41,8 +41,9 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fields import SeparatedValuesField
 from mkt.site.forms import AddonChoiceField
-from mkt.site.utils import clean_tags, remove_icons, slug_validator, slugify
+from mkt.site.utils import remove_icons, slug_validator, slugify
 from mkt.tags.models import Tag
+from mkt.tags.utils import clean_tags
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation

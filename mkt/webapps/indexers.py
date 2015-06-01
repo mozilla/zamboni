@@ -1,3 +1,4 @@
+from functools import partial
 from operator import attrgetter
 
 from django.core.urlresolvers import reverse
@@ -13,6 +14,7 @@ from mkt.constants.applications import DEVICE_GAIA
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
+from mkt.tags.models import attach_tags
 from mkt.translations.models import attach_trans_dict
 
 
@@ -234,15 +236,15 @@ class WebappIndexer(BaseIndexer):
     def extract_document(cls, pk=None, obj=None):
         """Extracts the ElasticSearch index document for this instance."""
         from mkt.webapps.models import (AppFeatures, attach_devices,
-                                        attach_prices, attach_tags,
-                                        attach_translations, RatingDescriptors,
-                                        RatingInteractives)
+                                        attach_prices, attach_translations,
+                                        RatingDescriptors, RatingInteractives)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
 
         # Attach everything we need to index apps.
-        for transform in (attach_devices, attach_prices, attach_tags,
+        attach_tags_apps = partial(attach_tags, m2m_name='tags')
+        for transform in (attach_devices, attach_prices, attach_tags_apps,
                           attach_translations):
             transform([obj])
 
@@ -344,7 +346,7 @@ class WebappIndexer(BaseIndexer):
             supported_locales.extend(other_locales)
         d['supported_locales'] = list(set(supported_locales))
 
-        d['tags'] = getattr(obj, 'tag_list', [])
+        d['tags'] = getattr(obj, 'tags_list', [])
 
         if obj.upsell and obj.upsell.premium.is_published():
             upsell_obj = obj.upsell.premium
