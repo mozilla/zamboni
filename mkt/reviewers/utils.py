@@ -44,7 +44,8 @@ def get_review_type(request, addon, version):
 
 class ReviewBase(object):
 
-    def __init__(self, request, addon, version, attachment_formset=None):
+    def __init__(self, request, addon, version, attachment_formset=None,
+                 testedon_formset=None):
         self.request = request
         self.user = self.request.user
         self.addon = addon
@@ -53,6 +54,7 @@ class ReviewBase(object):
         self.files = None
         self.comm_thread = None
         self.attachment_formset = attachment_formset
+        self.testedon_formset = testedon_formset
         self.in_pending = self.addon.status == mkt.STATUS_PENDING
         self.in_rereview = RereviewQueue.objects.filter(
             addon=self.addon).exists()
@@ -122,19 +124,33 @@ class ReviewBase(object):
 
     def get_tested(self):
         """
-        Get string indicating device/browser used by reviewer to test.
+        Get string indicating devices/browsers used by reviewer to test.
         Will be automatically attached to the note body.
         """
-        devices = self.data.get('device_types')
-        browsers = self.data.get('browsers')
+        tested_on_text = []
+        if not self.testedon_formset:
+            return ''
+        for form in self.testedon_formset.forms:
+            if form.cleaned_data:
+                dtype = form.cleaned_data.get('device_type', None)
+                device = form.cleaned_data.get('device', None)
+                version = form.cleaned_data.get('version', None)
 
-        if devices and browsers:
-            return 'Tested on %s with %s' % (devices, browsers)
-        elif devices and not browsers:
-            return 'Tested on %s' % devices
-        elif not devices and browsers:
-            return 'Tested with %s' % browsers
-        return ''
+                if device and version:
+                    text = ('%s platform on %s with version %s' %
+                            (dtype, device, version))
+                elif device and not version:
+                    text = '%s platform on %s' % (dtype, device)
+                elif not device and version:
+                    text = '%s with version %s' % (dtype, version)
+                else:
+                    text = dtype
+                if text:
+                    tested_on_text.append(text)
+        if not len(tested_on_text):
+            return ''
+        else:
+            return 'Tested on ' + '; '.join(tested_on_text)
 
 
 class ReviewApp(ReviewBase):
@@ -348,15 +364,17 @@ class ReviewHelper(object):
     """
 
     def __init__(self, request=None, addon=None, version=None,
-                 attachment_formset=None):
+                 attachment_formset=None, testedon_formset=None):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.version = version
         self.all_files = version and version.files.all()
         self.attachment_formset = attachment_formset
+        self.testedon_formset = testedon_formset
         self.handler = ReviewApp(request, addon, version,
-                                 attachment_formset=self.attachment_formset)
+                                 attachment_formset=self.attachment_formset,
+                                 testedon_formset=self.testedon_formset)
         self.review_type = self.handler.review_type
         self.actions = self.get_actions()
 

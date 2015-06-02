@@ -53,7 +53,7 @@ from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
-                                 MOTDForm)
+                                 MOTDForm, TestedOnFormSet)
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
                                   EditorSubscription, QUEUE_TARAKO,
                                   ReviewerScore)
@@ -263,12 +263,15 @@ def _review(request, addon, version):
     attachment_formset = CommAttachmentFormSet(data=request.POST or None,
                                                files=request.FILES or None,
                                                prefix='attachment')
+    testedon_formset = TestedOnFormSet(data=request.POST or None,
+                                       prefix='testedon')
     form = forms.get_review_form(data=request.POST or None,
                                  files=request.FILES or None, request=request,
                                  addon=addon, version=version,
-                                 attachment_formset=attachment_formset)
+                                 attachment_formset=attachment_formset,
+                                 testedon_formset=testedon_formset)
     postdata = request.POST if request.method == 'POST' else None
-    all_forms = [form, attachment_formset]
+    all_forms = [form, attachment_formset, testedon_formset]
 
     if version:
         features_list = [unicode(f) for f in version.features.to_list()]
@@ -414,7 +417,8 @@ def _review(request, addon, version):
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,
                   attachment_formset=attachment_formset,
-                  appfeatures_form=appfeatures_form)
+                  appfeatures_form=appfeatures_form,
+                  testedon_formset=testedon_formset)
 
     if features_list is not None:
         ctx['feature_list'] = features_list
