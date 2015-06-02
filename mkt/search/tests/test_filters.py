@@ -72,6 +72,15 @@ class TestQueryFilter(FilterTestsBase):
         qs_str = json.dumps(qs)
         ok_('fuzzy' not in qs_str)
 
+    def test_preferred_regions(self):
+        self.req = RequestFactory().get('/', data={'q': 'something'})
+        self.req.REGION = mkt.regions.FRA
+        qs = self._filter(req=self.req)
+        should = (qs['query']['function_score']['query']['bool']['should'])
+        ok_({'term': {'preferred_regions': {'value': mkt.regions.FRA.id,
+                                            'boost': 4}}}
+            in should)
+
     @override_settings(ES_USE_PLUGINS=True)
     def test_polish_analyzer(self):
         """
@@ -242,14 +251,14 @@ class TestDeviceTypeFilter(FilterTestsBase):
     def test_mobile(self):
         self.req.MOBILE = True
         qs = self._filter(self.req)
-        ok_({'term': {'uses_flash': False}}
-            in qs['query']['filtered']['filter']['bool']['must'])
+        ok_({'term': {'uses_flash': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
 
     def test_gaia(self):
         self.req.GAIA = True
         qs = self._filter(self.req)
-        ok_({'term': {'uses_flash': False}}
-            in qs['query']['filtered']['filter']['bool']['must'])
+        ok_({'term': {'uses_flash': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
 
     def test_tablet(self):
         self.req.TABLET = True

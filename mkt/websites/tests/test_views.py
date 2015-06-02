@@ -6,8 +6,7 @@ from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.base import CONTENT_ICON_SIZES, STATUS_PENDING
-from mkt.constants.applications import DEVICE_GAIA, DEVICE_DESKTOP
-from mkt.constants.regions import BRA, GTM, URY
+from mkt.constants.regions import URY, USA
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.tags.models import Tag
@@ -23,10 +22,8 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         self.website = website_factory(**{
             'title': 'something',
             'categories': json.dumps(['books', 'sports']),
-            # This assumes devices and region_exclusions are stored as a json
-            # array of ids, not slugs.
-            'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
-            'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            # Preferred_regions are stored as a json array of ids.
+            'preferred_regions': json.dumps([URY.id, USA.id]),
             'icon_type': 'image/png',
             'icon_hash': 'fakehash',
         })
@@ -56,7 +53,6 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['name'], {'en-US': self.website.name})
         eq_(data['short_name'], {'en-US': self.website.short_name})
         eq_(data['url'], self.website.url)
-        eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
@@ -87,16 +83,15 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 1)
 
-    def test_region_filtering(self):
+    def test_region_preference(self):
+        # Websites don't have region exclusions, only "preferred" regions.
         res = self.anon.get(self.url, data={'region': 'br'})
         eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
+        eq_(len(res.json['objects']), 1)
 
-        res = self.anon.get(self.url, data={'region': 'es'})
+        res = self.anon.get(self.url, data={'region': 'us'})
         eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 1)
+        eq_(len(res.json['objects']), 1)
 
     def test_q(self):
         res = self.anon.get(self.url, data={'q': 'something'})
@@ -104,14 +99,14 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['id'], self.website.pk)
 
-    def test_q_relevency(self):
+    def test_q_relevancy(self):
         # Add 2 websites - the last one has 'something' appearing in both its
         # title and its description, so it should be booster and appear higher
         # in the results.
         website_factory(title='something')
         boosted_website = website_factory(title='something',
                                           description='something')
-        self.refresh('website')
+        self.reindex(Website)
 
         res = self.anon.get(self.url, data={'q': 'something'})
         eq_(res.status_code, 200)
@@ -119,11 +114,33 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['id'], boosted_website.pk)
 
+    def test_q_relevancy_region(self):
+        # Add another website without any preferred regions: it should rank
+        # higher without region (description increases its score), lower with
+        # one (region preference increases the score for the initial website).
+        self.website2 = website_factory(title='something',
+                                        description='something')
+        self.reindex(Website)
+        res = self.anon.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.website2.pk)
+        eq_(objs[1]['id'], self.website.pk)
+
+        res = self.anon.get(self.url, data={'q': 'something', 'region': 'us'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.website.pk)
+        eq_(objs[1]['id'], self.website2.pk)
+
     def test_device_not_present(self):
+        # Websites are marked as compatible with every device.
         res = self.anon.get(
             self.url, data={'dev': 'android', 'device': 'tablet'})
         eq_(res.status_code, 200)
-        eq_(res.json['objects'], [])
+        eq_(len(res.json['objects']), 1)
 
     def test_device_present(self):
         res = self.anon.get(self.url, data={'dev': 'desktop'})
@@ -149,10 +166,8 @@ class TestWebsiteView(RestOAuth, TestCase):
         super(TestWebsiteView, self).setUp()
         self.website = website_factory(**{
             'categories': json.dumps(['books', 'sports']),
-            # This assumes devices and region_exclusions are stored as a json
-            # array of ids, not slugs.
-            'devices': json.dumps([DEVICE_GAIA.id, DEVICE_DESKTOP.id]),
-            'region_exclusions': json.dumps([BRA.id, GTM.id, URY.id]),
+            # Preferred_regions are stored as a json array of ids.
+            'preferred_regions': json.dumps([URY.id, USA.id]),
             'icon_type': 'image/png',
             'icon_hash': 'fakehash',
         })
@@ -174,7 +189,6 @@ class TestWebsiteView(RestOAuth, TestCase):
         eq_(data['name'], {'en-US': self.website.name})
         eq_(data['short_name'], {'en-US': self.website.short_name})
         eq_(data['url'], self.website.url)
-        eq_(data['device_types'], ['firefoxos', 'desktop'])
         eq_(data['categories'], ['books', 'sports'])
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))

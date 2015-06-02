@@ -13,9 +13,9 @@ from mkt.features.utils import get_feature_profile
 
 class SearchQueryFilter(BaseFilterBackend):
     """
-    A django-rest-framework filter backend that filters the given queryset
-    based on the search query found in the current request's query parameters.
-
+    A django-rest-framework filter backend that scores the given ES queryset
+    with a should query based on the search query found in the current
+    request's query parameters.
     """
     def _get_locale_analyzer(self, lang):
         analyzer = mkt.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
@@ -87,6 +87,13 @@ class SearchQueryFilter(BaseFilterBackend):
         should.append(query.Match(tags={'query': q}))
         if ' ' not in q:
             should.append(query.Fuzzy(tags={'value': q, 'prefix_length': 1}))
+
+        # Add a boost for the preferred region, if it exists.
+        region = get_region_from_request(request)
+        if region:
+            should.append(query.Term(**{'preferred_regions': {
+                'value': region.id,
+                'boost': 4}}))
 
         return queryset.query(
             'function_score',
@@ -225,7 +232,7 @@ class DeviceTypeFilter(BaseFilterBackend):
                 Bool(must=[F('term', device=device_id)]))
         if flash_incompatible:
             queryset = queryset.filter(
-                Bool(must=[F('term', uses_flash=False)]))
+                Bool(must_not=[F('term', uses_flash=True)]))
 
         return queryset
 
