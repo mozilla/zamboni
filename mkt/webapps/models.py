@@ -2375,9 +2375,8 @@ def get_excluded_in(region_id):
           dispatch_uid='clean_memoized_exclusions')
 def clean_memoized_exclusions(sender, **kw):
     if not kw.get('raw'):
-        for k in mkt.regions.ALL_REGION_IDS:
-            cache.delete_many([memoize_key('get_excluded_in', k)
-                               for k in mkt.regions.ALL_REGION_IDS])
+        cache.delete_many([memoize_key('get_excluded_in', k)
+                           for k in mkt.regions.ALL_REGION_IDS])
 
 
 class IARCInfo(ModelBase):

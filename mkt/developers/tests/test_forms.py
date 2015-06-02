@@ -115,6 +115,7 @@ class TestCategoryForm(mkt.site.tests.WebappTestCase):
         ok_(self.form.errors)
 
 
+@mock.patch('mkt.webapps.models.clean_memoized_exclusions', None)
 class TestRegionForm(mkt.site.tests.WebappTestCase):
     fixtures = fixture('webapp_337141')
 
