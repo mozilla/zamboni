@@ -17,8 +17,8 @@ Search
 
     :param optional q: The query string to search for.
     :type q: string
-    :param optional cat: The category slug or ID to filter by. Use the
-        category API to find the ids of the categories.
+    :param optional cat: The category slug to filter by. Use the category API
+        to find the category slugs.
     :type cat: int|string
     :param optional dev: Filters by supported device. One of 'desktop',
         'android', or 'firefoxos'.

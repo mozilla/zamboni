@@ -46,8 +46,8 @@ Listing
 
     The following query string parameters can be used to filter the results:
 
-    :param cat: a category ID/slug.
-    :type cat: int|string
+    :param cat: a category slug.
+    :type cat: string
     :param region: a region ID/slug.
     :type region: int|string
     :param carrier: a carrier ID/slug.
@@ -98,9 +98,9 @@ Create
     :param carrier: the ID of the carrier to attach this collection to. Defaults
         to ``null``.
     :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
+    :param category: the slug of the category to attach this collection to.
         Defaults to ``null``.
-    :type category: int|null
+    :type category: slug|null
     :param collection_type: the type of collection to create.
     :type collection_type: int
     :param description: a description of the collection.
@@ -156,8 +156,8 @@ Update
     :type can_be_hero: boolean
     :param carrier: the ID of the carrier to attach this collection to.
     :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
-    :type category: int|null
+    :param category: the slug of the category to attach this collection to.
+    :type category: string|null
     :param collection_type: the type of the collection.
     :type collection_type: int
     :param description: a description of the collection.
@@ -207,8 +207,8 @@ Duplicate
     :type can_be_hero: boolean
     :param carrier: the ID of the carrier to attach this collection to.
     :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
-    :type category: int|null
+    :param category: the slug of the category to attach this collection to.
+    :type category: string|null
     :param collection_type: the type of the collection.
     :type collection_type: int
     :param description: a description of the collection.

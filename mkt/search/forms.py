@@ -3,8 +3,9 @@ from django import forms
 from tower import ugettext_lazy as _lazy
 
 import mkt
-from mkt.constants import (CATEGORY_CHOICES, TARAKO_CATEGORY_CHOICES,
-                           TARAKO_CATEGORIES_MAPPING)
+from mkt.constants import (CATEGORY_CHOICES, CATEGORY_CHOICES_DICT,
+                           CATEGORY_REDIRECTS, TARAKO_CATEGORIES_MAPPING,
+                           TARAKO_CATEGORY_CHOICES)
 from mkt.constants.applications import DEVICE_LOOKUP
 
 
@@ -54,6 +55,10 @@ DEVICE_CHOICES = [
     ('tablet', _lazy(u'Tablet')),
 ]
 
+# TODO: Remove at appropriate time (see bug 1161869).
+REDIRECTED_CATEGORY_CHOICES = [(old, CATEGORY_CHOICES_DICT[new])
+                               for old, new in CATEGORY_REDIRECTS.items()]
+
 CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 
 # Tags are only available to admins. They are free-form, and we expose them in
@@ -78,8 +83,10 @@ class SimpleSearchForm(forms.Form):
         required=False, label=_lazy(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
                                       'placeholder': _lazy(u'Search')}))
+    choices = (list(CATEGORY_CHOICES) + list(TARAKO_CATEGORY_CHOICES) +
+               list(REDIRECTED_CATEGORY_CHOICES))
     cat = forms.ChoiceField(required=False, label=_lazy(u'Categories'),
-                            choices=CATEGORY_CHOICES + TARAKO_CATEGORY_CHOICES)
+                            choices=choices)
     dev = forms.ChoiceField(
         required=False, choices=DEV_CHOICES, label=_lazy(u'Device'))
     device = forms.ChoiceField(
@@ -91,9 +98,13 @@ class SimpleSearchForm(forms.Form):
     def clean_cat(self):
         # If request category is a tarako one, get the corresponding list of
         # slugs, otherwise just build a list with the slug requested.
-        if self.cleaned_data['cat']:
-            return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
-                                                 [self.cleaned_data['cat']])
+        cat = self.cleaned_data['cat']
+        if cat.startswith('tarako'):
+            return TARAKO_CATEGORIES_MAPPING.get(cat, [cat])
+        if cat in CATEGORY_REDIRECTS:
+            return [CATEGORY_REDIRECTS[cat]]
+        if cat:
+            return [cat]
 
     def clean_device_and_dev(self):
         device = self.cleaned_data.pop('dev', None)

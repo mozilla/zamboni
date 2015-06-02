@@ -583,7 +583,7 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.webapp.update(status=mkt.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
-        self.cat1 = 'books'
+        self.cat1 = 'books-comics'
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)

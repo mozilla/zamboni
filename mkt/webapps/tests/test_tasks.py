@@ -25,11 +25,12 @@ from mkt.files.models import File, FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Preview, Webapp
-from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
-                               fix_excluded_regions,
+from mkt.webapps.tasks import (adjust_categories, dump_app, dump_user_installs,
+                               export_data, fix_excluded_regions,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
@@ -541,7 +542,7 @@ class TestDumpApps(mkt.site.tests.TestCase):
 
     def test_removed(self):
         # At least one public app must exist for dump_apps to run.
-        mkt.site.tests.app_factory(name='second app', status=mkt.STATUS_PUBLIC)
+        app_factory(name='second app', status=mkt.STATUS_PUBLIC)
         app_path = os.path.join(settings.DUMPED_APPS_PATH, 'apps', '337',
                                 '337141.json')
         app = Webapp.objects.get(pk=337141)
@@ -599,7 +600,7 @@ class TestDumpUserInstalls(mkt.site.tests.TestCase):
 
     def test_dump_exludes_deleted(self):
         """We can't recommend deleted apps, so don't include them."""
-        app = mkt.site.tests.app_factory()
+        app = app_factory()
         app.installed.create(user=self.user)
         app.delete()
 
@@ -790,3 +791,31 @@ class TestFixExcludedRegions(mkt.site.tests.TestCase):
                             mkt.regions.SPECIAL_REGION_IDS)
         eq_(self.app.addonexcludedregion.count(),
             len(mkt.regions.SPECIAL_REGION_IDS))
+
+
+class TestAdjustCategories(mkt.site.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    def test_adjust_single_category(self):
+        self.app.categories = ['news-weather']
+        self.app.save()
+        adjust_categories([self.app.pk])
+        eq_(self.app.reload().categories, ['news'])
+
+    def test_adjust_double_category(self):
+        self.app.categories = ['news-weather', 'social']
+        self.app.save()
+        adjust_categories([self.app.pk])
+        self.assertSetEqual(self.app.reload().categories, ['news', 'social'])
+
+    def test_new_category(self):
+        app_id = 424184
+        # `complete=True` adds the 'utilities' category.
+        app = app_factory(id=app_id, name='second', status=mkt.STATUS_PUBLIC,
+                          complete=True)
+        adjust_categories([app_id])
+        self.assertSetEqual(app.reload().categories,
+                            ['food-drink', 'health-fitness'])

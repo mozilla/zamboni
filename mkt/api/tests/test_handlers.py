@@ -40,7 +40,7 @@ class CreateHandler(RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.file = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
         self.manifest_copy_over(self.file, 'mozball-nice-slug.webapp')
-        self.categories = ['games', 'books']
+        self.categories = ['games', 'books-comics']
 
     def create(self, fil=None):
         if fil is None:
@@ -701,9 +701,9 @@ class TestCategoryHandler(RestOAuth):
     def test_get_categories(self):
         res = self.anon.get(self.list_url)
         data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 18)
-        eq_(data['objects'][0]['name'], 'Books')
-        eq_(data['objects'][0]['slug'], 'books')
+        eq_(data['meta']['total_count'], 25)
+        eq_(data['objects'][0]['name'], 'Books & Comics')
+        eq_(data['objects'][0]['slug'], 'books-comics')
 
     def test_get_category(self):
         res = self.anon.get(self.get_url)

@@ -21,13 +21,13 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
     def setUp(self):
         self.website = website_factory(**{
             'title': 'something',
-            'categories': json.dumps(['books', 'sports']),
+            'categories': json.dumps(['books-comics', 'sports']),
             # Preferred_regions are stored as a json array of ids.
             'preferred_regions': json.dumps([URY.id, USA.id]),
             'icon_type': 'image/png',
             'icon_hash': 'fakehash',
         })
-        self.category = 'books'
+        self.category = 'books-comics'
         self.url = reverse('api-v2:website-search-api')
         super(TestWebsiteESView, self).setUp()
         self.refresh('website')
@@ -53,7 +53,7 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['name'], {'en-US': self.website.name})
         eq_(data['short_name'], {'en-US': self.website.short_name})
         eq_(data['url'], self.website.url)
-        eq_(data['categories'], ['books', 'sports'])
+        eq_(data['categories'], ['books-comics', 'sports'])
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
         eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
@@ -165,7 +165,7 @@ class TestWebsiteView(RestOAuth, TestCase):
     def setUp(self):
         super(TestWebsiteView, self).setUp()
         self.website = website_factory(**{
-            'categories': json.dumps(['books', 'sports']),
+            'categories': json.dumps(['books-comics', 'sports']),
             # Preferred_regions are stored as a json array of ids.
             'preferred_regions': json.dumps([URY.id, USA.id]),
             'icon_type': 'image/png',
@@ -189,7 +189,7 @@ class TestWebsiteView(RestOAuth, TestCase):
         eq_(data['name'], {'en-US': self.website.name})
         eq_(data['short_name'], {'en-US': self.website.short_name})
         eq_(data['url'], self.website.url)
-        eq_(data['categories'], ['books', 'sports'])
+        eq_(data['categories'], ['books-comics', 'sports'])
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
         eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
@@ -211,7 +211,7 @@ class TestReviewerSearch(RestOAuth, ESTestCase):
     def setUp(self):
         self.website = website_factory(**{
             'title': 'something',
-            'categories': json.dumps(['books', 'sports']),
+            'categories': json.dumps(['books-comics', 'sports']),
             'status': STATUS_PENDING,
         })
         self.url = reverse('api-v2:reviewers-website-search-api')

@@ -112,8 +112,8 @@ represented thusly:
     *string|null* - the slug of a :ref:`carrier <carriers>`. If
     defined, this feed item will only be available by users of that carrier.
 ``category``
-    *int|null* - the ID of a :ref:`category <categories>`. If defined, this
-    feed item will only be available to users browsing that category.
+    *string|null* - the slug of a :ref:`category <categories>`. If defined,
+    this feed item will only be available to users browsing that category.
 ``collection``
     *object|null* - the full representation of a  :ref:`collection
     <collections>`.
@@ -190,10 +190,10 @@ Create
     :param carrier: the ID of a :ref:`carrier <carriers>`. If defined, it will
         restrict this feed item to only be viewed by users of this carrier.
     :type carrier: int|null
-    :param category: the ID of a :ref:`category <categories>`. If defined, it
-        will restrict this feed item to only be viewed by users browsing this
-        category.
-    :type category: int|null
+    :param category: the slug of a :ref:`category <categories>`. If defined,
+        it will restrict this feed item to only be viewed by users browsing
+        this category.
+    :type category: string|null
     :param region: the ID of a :ref:`region <regions>`. If defined, it will
         restrict this feed item to only be viewed in this region.
     :type region: int|null
@@ -237,10 +237,10 @@ Update
     :param carrier: the ID of a :ref:`carrier <carriers>`. If defined, it will
         restrict this feed item to only be viewed by users of this carrier.
     :type carrier: int|null
-    :param category: the ID of a :ref:`category <categories>`. If defined, it
-        will restrict this feed item to only be viewed by users browsing this
-        category.
-    :type category: int|null
+    :param category: the slug of a :ref:`category <categories>`. If defined,
+        it will restrict this feed item to only be viewed by users browsing
+        this category.
+    :type category: slug|null
     :param region: the ID of a :ref:`region <regions>`. If defined, it will
         restrict this feed item to only be viewed in this region.
     :type region: int|null

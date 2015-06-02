@@ -109,6 +109,12 @@ class TestFormFilter(FilterTestsBase):
         ok_({'terms': {'category': ['games']}}
             in qs['query']['filtered']['filter']['bool']['must'])
 
+    # TODO: Remove me (bug 1161869).
+    def test_old_category(self):
+        qs = self._filter(data={'cat': 'books'})
+        ok_({'terms': {'category': ['books-comics']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
+
     def test_tag(self):
         qs = self._filter(data={'tag': 'tarako'})
         ok_({'term': {'tags': 'tarako'}}

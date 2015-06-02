@@ -31,7 +31,7 @@ Website
 
         {
           "categories": [
-            "news-weather"
+            "news"
           ],
           "created": "2014-11-18T14:13:12",
           "description": {

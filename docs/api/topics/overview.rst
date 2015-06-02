@@ -239,19 +239,13 @@ objects depends upon the listing in question. For example:
 
         {
             "objects": [{
-                "id": "156",
                 "name": "Music",
-                "resource_uri": "/api/v2/apps/category/156/",
                 "slug": "music"
             }, {
-                "id": "157",
                 "name": "News",
-                "resource_uri": "/api/v2/apps/category/157/",
-                "slug": "news-weather"
+                "slug": "news"
             }, {
-                "id": "158",
                 "name": "Productivity",
-                "resource_uri": "/api/v2/apps/category/158/",
                 "slug": "productivity"
             }]
         }

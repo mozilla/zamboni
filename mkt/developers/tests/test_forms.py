@@ -100,14 +100,14 @@ class TestCategoryForm(mkt.site.tests.WebappTestCase):
         eq_(self.form.max_categories(), 2)
 
     def test_save_cats(self):
-        self._make_form({'categories': ['books', 'social']})
+        self._make_form({'categories': ['books-comics', 'social']})
         assert self.form.is_valid(), self.form.errors
         self.form.save()
-        eq_(self.app.reload().categories, ['books', 'social'])
+        eq_(self.app.reload().categories, ['books-comics', 'social'])
         eq_(self.form.max_categories(), 2)
 
     def test_save_too_many_cats(self):
-        self._make_form({'categories': ['books', 'social', 'games']})
+        self._make_form({'categories': ['books-comics', 'social', 'games']})
         ok_(self.form.errors)
 
     def test_save_non_existent_cat(self):

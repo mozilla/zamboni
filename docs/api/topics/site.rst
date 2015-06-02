@@ -33,7 +33,7 @@ Categories
 
 .. _category-response-label:
 
-.. http:get:: /api/v2/apps/category/(int:id)/
+.. http:get:: /api/v2/apps/category/(string:slug)/
 
     Returns a category.
 
@@ -42,9 +42,7 @@ Categories
     .. code-block:: json
 
         {
-            "id": 1,
             "name": "Games",
-            "resource_uri": "/api/v2/apps/category/1/",
             "slug": "games"
         }
 

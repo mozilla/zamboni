@@ -124,7 +124,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         super(TestSearchView, self).setUp()
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = 'books'
+        self.category = 'books-comics'
         self.webapp.icon_hash = 'fakehash'
         self.webapp.save()
         self.refresh('webapp')
@@ -207,6 +207,13 @@ class TestSearchView(RestOAuth, ESTestCase):
     def test_right_category_present(self):
         self.create()
         res = self.anon.get(self.url, data={'cat': self.category})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+
+    def test_old_category(self):
+        self.create()
+        res = self.anon.get(self.url, data={'cat': 'books'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
@@ -1279,7 +1286,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         super(TestMultiSearchView, self).setUp()
         self.url = reverse('api-v2:multi-search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.shared_category = 'books'
+        self.shared_category = 'books-comics'
         self.webapp.update(categories=[self.shared_category, 'business'])
         self.webapp.popularity.create(region=0, value=11.0)
         self.website = website_factory(

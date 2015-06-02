@@ -333,13 +333,13 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#addon-categories-edit').text(), unicode('Games'))
 
     def test_edit_categories_add(self):
-        new = 'books'
+        new = 'books-comics'
         cats = [self.cat, new]
         self.client.post(self.edit_url, self.get_dict(categories=cats))
         eq_(sorted(self.get_webapp().categories), sorted(cats))
 
     def test_edit_categories_addandremove(self):
-        new = 'books'
+        new = 'books-comics'
         cats = [new]
         self.client.post(self.edit_url, self.get_dict(categories=cats))
         eq_(sorted(self.get_webapp().categories), sorted(cats))
@@ -366,7 +366,7 @@ class TestEditBasic(TestEdit):
              'choices.'])
 
     def test_edit_categories_max(self):
-        cats = [self.cat, 'books', 'social']
+        cats = [self.cat, 'books-comics', 'social']
         r = self.client.post(self.edit_url, self.get_dict(categories=cats))
         eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
