@@ -97,6 +97,18 @@ class NonValidatingChoiceField(forms.ChoiceField):
         pass
 
 
+class TestedOnForm(happyforms.Form):
+    device_type = NonValidatingChoiceField(
+        choices=([('', 'Choose...')] +
+                 [(v.name, v.name) for _, v in mkt.DEVICE_TYPES.items()]),
+        label=_lazy(u'Device Type:'), required=False)
+    device = forms.CharField(required=False, label=_lazy(u'Device:'))
+    version = forms.CharField(required=False, label=_lazy(u'Firefox Version:'))
+
+
+TestedOnFormSet = forms.formsets.formset_factory(TestedOnForm)
+
+
 class MOTDForm(happyforms.Form):
     motd = forms.CharField(required=True, widget=widgets.Textarea())
 
@@ -106,10 +118,6 @@ class ReviewAppForm(happyforms.Form):
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(widget=forms.RadioSelect())
-    device_types = forms.CharField(required=False,
-                                   label=_lazy(u'Device Types:'))
-    browsers = forms.CharField(required=False,
-                               label=_lazy(u'Browsers:'))
     device_override = forms.TypedMultipleChoiceField(
         choices=[(k, v.name) for k, v in mkt.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
@@ -163,9 +171,10 @@ class ReviewAppForm(happyforms.Form):
 
 
 def get_review_form(data, files, request=None, addon=None, version=None,
-                    attachment_formset=None):
+                    attachment_formset=None, testedon_formset=None):
     helper = ReviewHelper(request=request, addon=addon, version=version,
-                          attachment_formset=attachment_formset)
+                          attachment_formset=attachment_formset,
+                          testedon_formset=testedon_formset)
     return ReviewAppForm(data=data, files=files, helper=helper)
 
 

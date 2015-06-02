@@ -86,6 +86,7 @@
 <form method="POST" enctype="multipart/form-data">
   {{ csrf() }}
   {{ attachment_formset.management_form }}
+  {{ testedon_formset.management_form }}
   {# form #}
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
@@ -106,6 +107,7 @@
       </ul>
       {{ form.action.errors }}
       {{ attachment_formset.non_form_errors() }}
+      {{ testedon_formset.non_form_errors() }}
     </div>
 
     <div id="review-actions-form">
@@ -127,20 +129,36 @@
         {{ form.canned_response }}
       </div>
 
-      <div class="review-actions-section review-actions-tested data-toggle"
-           data-value="{{ actions_minimal|join("|") }}">
-        <strong>{{ _('Tested with:') }}</strong>
-        <label for="{{ form.device_types.auto_id }}">
-          {{ _('Device Types:') }}
-        </label>
-        {{ form.device_types }}
-        <label for="{{ form.browsers.auto_id }}">
-          {{ _('Browsers:') }}
-        </label>
-        {{ form.browsers }}
-        {{ form.device_types.errors }}
-        {{ form.browsers.errors }}
+      <div class="review-actions-section review-actions-testedon">
+        <strong>{{ _('Tested on:') }}</strong>
+        {% for testedon_form_errors in testedon_formset.errors %}
+          {% for error in testedon_form_errors.values() %}
+            {{ error }}
+          {% endfor %}
+        {% endfor %}
+        {% set testedon_forms = testedon_formset.forms + [testedon_formset.empty_form] %}
+        {% for testedon_form in testedon_forms %}
+          <div class="formset{% if loop.last %} empty hidden{% endif %}">
+            <label for="{{ testedon_form.device_type.auto_id }}">
+              {{ testedon_form.device_type.label }}
+            </label>
+            {{ testedon_form.device_type }}
+            {{ testedon_form.device_type.errors }}
+            <label for="{{ testedon_form.device.auto_id }}">
+              {{ testedon_form.device.label }}
+            </label>
+            {{ testedon_form.device }}
+            {{ testedon_form.device.errors }}
+            <label for="{{ testedon_form.version.auto_id }}">
+              {{ testedon_form.version.label }}
+            </label>
+            {{ testedon_form.version }}
+            {{ testedon_form.version.errors }}
+          </div>
+        {% endfor %}
+        <a href="#" class="add-row">{{ _('Add device') }}</a>
       </div>
+
       <div class="review-actions-section review-actions-attachments filesystem-only">
         {% set max_attachment_size = attachment_formset[0].max_upload_size|filesizeformat %}
         <strong>{{ _('Attach a screenshot or log file (max {0})'|f(max_attachment_size)) }}</strong>
