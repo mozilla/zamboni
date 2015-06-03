@@ -68,6 +68,30 @@ STATUS_CHOICES_API_LOOKUP = {
     'unlisted': STATUS_UNLISTED,
 }
 
+STATUS_CHOICES_API_v2 = {
+    STATUS_NULL: 'incomplete',
+    STATUS_PENDING: 'pending',
+    STATUS_PUBLIC: 'public',
+    STATUS_DISABLED: 'banned',
+    STATUS_DELETED: 'deleted',
+    STATUS_REJECTED: 'rejected',
+    STATUS_APPROVED: 'private',
+    STATUS_BLOCKED: 'blocked',
+    STATUS_UNLISTED: 'unlisted',
+}
+
+STATUS_CHOICES_API_LOOKUP_v2 = {
+    'incomplete': STATUS_NULL,
+    'pending': STATUS_PENDING,
+    'public': STATUS_PUBLIC,
+    'banned': STATUS_DISABLED,
+    'deleted': STATUS_DELETED,
+    'rejected': STATUS_REJECTED,
+    'private': STATUS_APPROVED,
+    'blocked': STATUS_BLOCKED,
+    'unlisted': STATUS_UNLISTED,
+}
+
 # Publishing types.
 PUBLISH_IMMEDIATE = 0
 PUBLISH_HIDDEN = 1

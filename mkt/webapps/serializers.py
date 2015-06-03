@@ -81,7 +81,7 @@ class AppSerializer(serializers.ModelSerializer):
     file_size = serializers.IntegerField(source='file_size', read_only=True)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
-    is_disabled = serializers.BooleanField(read_only=True)
+    is_disabled = serializers.BooleanField(read_only=True, default=False)
     is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
     last_updated = serializers.DateField(read_only=True)
@@ -373,7 +373,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
     # Override those, because we want a different source. Also, related fields
     # will call self.queryset early if they are not read_only, so force that.
     file_size = serializers.SerializerMethodField('get_file_size')
-    is_disabled = serializers.BooleanField(source='_is_disabled')
+    is_disabled = serializers.BooleanField(source='_is_disabled',
+                                           default=False)
     manifest_url = serializers.CharField(source='manifest_url')
     package_path = serializers.SerializerMethodField('get_package_path')
 

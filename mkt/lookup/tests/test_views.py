@@ -660,6 +660,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         eq_(data['objects'][0]['url'], reverse('lookup.app_summary',
                                                args=[self.app.pk]))
         eq_(data['objects'][0]['app_slug'], self.app.app_slug)
+        eq_(data['objects'][0]['status'],
+            mkt.STATUS_CHOICES_API_v2[self.app.status])
 
     def test_auth_required(self):
         self.client.logout()
@@ -727,6 +729,20 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         # Test maximum search result.
         data = self.search(q='chr', limit='max')
         eq_(len(data['objects']), 3)
+
+    def test_statuses(self):
+        for status, api_status in mkt.STATUS_CHOICES_API_v2.items():
+            self.app.update(status=status)
+            self.refresh('webapp')
+            data = self.search(q='something')
+            eq_(data['objects'][0]['status'], api_status)
+
+    def test_disabled(self):
+        """We override the status for disabled apps to be 'disabled'."""
+        self.app.update(disabled_by_user=True)
+        self.refresh('webapp')
+        data = self.search(q=self.app.app_slug)
+        eq_(data['objects'][0]['status'], 'disabled')
 
 
 class AppSummaryTest(SummaryTest):
