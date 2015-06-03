@@ -29,7 +29,7 @@
 
     {{ newrelic_header()|safe if repo == 'fireplace' }}
   </head>
-  <body class="home{{ ' overlayed' if repo == 'fireplace' }}" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}" data-waffle-switches="{{ waffle_switches|json }}"{% if geoip_region %} data-region="{{ geoip_region.slug }}"{% endif %}>
+  <body class="home{{ ' overlayed' if repo == 'fireplace' }}" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}" data-waffle-switches="{{ waffle_switches|json }}"{% if geoip_region %} data-region="{{ geoip_region.slug }}"{% endif %}>
 
     {% if not robots -%}
       <noscript><p>Sorry, you need JavaScript to access the Marketplace.</p></noscript>
