@@ -119,9 +119,9 @@ class TestWebsiteIndexer(TestCase):
         doc = self._get_doc()
         eq_(doc['boost'], get_boost(self.obj))
         eq_(doc['popularity'], 50)
-        # An adolescent region uses the global trending value.
-        eq_(doc['popularity_2'], 50)
         eq_(doc['popularity_7'], 10)
+        # Adolescent regions popularity value is not stored.
+        ok_('popularity_2' not in doc)
 
     def test_trending(self):
         self.obj = website_factory()
@@ -133,9 +133,10 @@ class TestWebsiteIndexer(TestCase):
 
         doc = self._get_doc()
         eq_(doc['trending'], 10.0)
-        # An adolescent region uses the global trending value.
-        eq_(doc['trending_2'], 10.0)
         eq_(doc['trending_7'], 50.0)
+
+        # Adolescent regions trending value is not stored.
+        ok_('trending_2' not in doc)
 
 
 class TestExcludedFields(ESTestCase):

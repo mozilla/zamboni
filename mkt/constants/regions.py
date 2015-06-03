@@ -358,10 +358,10 @@ REGIONS_CHOICES_ID_DICT = dict(REGIONS_CHOICES_ID)
 # Provide a dict for looking up the region by slug that includes aliases:
 # - "worldwide" is an alias for RESTOFWORLD (bug 940561).
 # - "gb" is an alias for GBR (bug 973883).
-# Note: GBR is inserted into globals() above
+# Note: GBR is inserted into locals() above
 REGION_LOOKUP = dict(
     REGIONS_DICT.items() +
-    [('worldwide', RESTOFWORLD), ('gb', GBR)])  # noqa
+    [('worldwide', RESTOFWORLD), ('gb', locals()['GBR'])])
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 
@@ -370,6 +370,9 @@ SPECIAL_REGION_IDS = sorted(x.id for x in SPECIAL_REGIONS)
 
 # Regions not including restofworld.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
+
+# Mature regions.
+MATURE_REGION_IDS = sorted(x.id for x in ALL_REGIONS if not x.adolescent)
 
 GENERIC_RATING_REGION_SLUG = 'generic'
 
