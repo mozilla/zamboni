@@ -85,12 +85,12 @@ require(['prefetchManifest']);
         var def = $.Deferred();
 
         var first_item = template(
-            '<li><a class="sel" href="{url}"><span>{id}</span> ' +
+            '<li><a class="sel" href="{url}"><span class="status-{status}" title="{status}">{id}</span> ' +
             '<em class="name">{name}</em> ' +
             '<em class="email">{email}</em></a></li>'
         );
         var li_item = template(
-            '<li><a href="{url}"><span>{id}</span> ' +
+            '<li><a href="{url}"><span class="status-{status}" title="{status}">{id}</span> ' +
             '<em class="name">{name}</em> ' +
             '<em class="email">{email}</em></a></li>'
         );
@@ -113,7 +113,8 @@ require(['prefetchManifest']);
                             url: escape_(item.url) || '#',
                             id: item.id,
                             email: item.email || '',
-                            name: item.name || item.display_name
+                            name: item.name || item.display_name,
+                            status: item.status
                         };
                         if (d.url && d.id) {
                             d.name = escape_(d.name);

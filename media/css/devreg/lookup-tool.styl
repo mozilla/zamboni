@@ -102,7 +102,34 @@ h1 {
                 font-size: 11px;
                 border-radius: 5px;
                 border: 1px solid $light-gray;
+
+                &.status-public,
+                &.status-private,
+                &.status-unlisted {
+                    background-color: $green;
+                    color: $white;
+                }
+                &.status-rejected,
+                &.status-banned,
+                &.status-blocked {
+                    background-color: $red;
+                    color: $white;
+                }
+                &.status-incomplete {
+                    background-color: $gray;
+                    color: $white;
+                }
+                &.status-pending {
+                    background-color: $notice-yellow;
+                    color: $black;
+                }
+                &.status-deleted,
+                &.status-disabled {
+                    background-color: $black;
+                    color: $white;
+                }
             }
+
             .email {
                 float: right;
             }
