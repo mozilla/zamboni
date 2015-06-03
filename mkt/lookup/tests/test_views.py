@@ -291,11 +291,11 @@ class TestBangoRedirect(TestCase):
 
 class SearchTestMixin(object):
 
-    def search(self, expect_results=True, **data):
+    def search(self, expect_objects=True, **data):
         res = self.client.get(self.url, data)
         data = json.loads(res.content)
-        if expect_results:
-            assert len(data['results']), 'should be more than 0 results'
+        if expect_objects:
+            assert len(data['objects']), 'should be more than 0 objects'
         return data
 
     def test_auth_required(self):
@@ -314,11 +314,11 @@ class TestAcctSearch(TestCase, SearchTestMixin):
         self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
 
     def verify_result(self, data):
-        eq_(data['results'][0]['fxa_uid'], self.user.fxa_uid)
-        eq_(data['results'][0]['display_name'], self.user.display_name)
-        eq_(data['results'][0]['email'], self.user.email)
-        eq_(data['results'][0]['id'], self.user.pk)
-        eq_(data['results'][0]['url'], reverse('lookup.user_summary',
+        eq_(data['objects'][0]['fxa_uid'], self.user.fxa_uid)
+        eq_(data['objects'][0]['display_name'], self.user.display_name)
+        eq_(data['objects'][0]['email'], self.user.email)
+        eq_(data['objects'][0]['id'], self.user.pk)
+        eq_(data['objects'][0]['url'], reverse('lookup.user_summary',
                                                args=[self.user.pk]))
 
     def test_by_fxa_uid(self):
@@ -349,15 +349,15 @@ class TestAcctSearch(TestCase, SearchTestMixin):
 
         # Test not at search limit.
         data = self.search(q='clouserw')
-        eq_(len(data['results']), 1)
+        eq_(len(data['objects']), 1)
 
         # Test search limit.
         data = self.search(q='chr')
-        eq_(len(data['results']), 2)
+        eq_(len(data['objects']), 2)
 
         # Test maximum search result.
-        data = self.search(q='chr', all_results=True)
-        eq_(len(data['results']), 3)
+        data = self.search(q='chr', limit='max')
+        eq_(len(data['objects']), 3)
 
 
 class TestTransactionSearch(TestCase):
@@ -649,12 +649,27 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.app = Webapp.objects.get(pk=337141)
         self.login('support-staff@mozilla.com')
 
+    def search(self, *args, **kwargs):
+        if 'lang' not in kwargs:
+            kwargs.update({'lang': 'en-US'})
+        return super(TestAppSearch, self).search(*args, **kwargs)
+
     def verify_result(self, data):
-        eq_(data['results'][0]['name'], self.app.name.localized_string)
-        eq_(data['results'][0]['id'], self.app.pk)
-        eq_(data['results'][0]['url'], reverse('lookup.app_summary',
+        eq_(data['objects'][0]['name'], self.app.name.localized_string)
+        eq_(data['objects'][0]['id'], self.app.pk)
+        eq_(data['objects'][0]['url'], reverse('lookup.app_summary',
                                                args=[self.app.pk]))
-        eq_(data['results'][0]['app_slug'], self.app.app_slug)
+        eq_(data['objects'][0]['app_slug'], self.app.app_slug)
+
+    def test_auth_required(self):
+        self.client.logout()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    def test_operator(self):
+        self.login('operator@mozilla.com')
+        res = self.client.get(self.url, {'q': self.app.pk})
+        eq_(res.status_code, 200)
 
     def test_by_name_part(self):
         self.app.name = 'This is Steamcube'
@@ -689,7 +704,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_by_guid(self):
-        self.app.update(guid='abcdef')
+        self.app.update(guid='1ab2c3d4-1234-5678-ab12-c34defa5b678')
+        self.refresh('webapp')
         data = self.search(q=self.app.guid)
         self.verify_result(data)
 
@@ -697,13 +713,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         data = self.search(q=self.app.pk)
         self.verify_result(data)
 
-    def test_operator(self):
-        self.login('operator@mozilla.com')
-        data = self.search(q=self.app.pk)
-        self.verify_result(data)
-
-    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
-    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
+    @mock.patch('mkt.lookup.views.AppLookupSearchView.paginate_by', 2)
+    @mock.patch('mkt.lookup.views.AppLookupSearchView.max_paginate_by', 3)
     def test_all_results(self):
         for x in range(4):
             app_factory(name='chr' + str(x))
@@ -711,11 +722,11 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
         # Test search limit.
         data = self.search(q='chr')
-        eq_(len(data['results']), 2)
+        eq_(len(data['objects']), 2)
 
         # Test maximum search result.
-        data = self.search(q='chr', all_results=True)
-        eq_(len(data['results']), 3)
+        data = self.search(q='chr', limit='max')
+        eq_(len(data['objects']), 3)
 
 
 class AppSummaryTest(SummaryTest):

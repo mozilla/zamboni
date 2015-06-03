@@ -62,7 +62,7 @@ require(['prefetchManifest']);
         // Make request for all data.
         processResults({
             data: {
-                all_results: true,
+                limit: 'max',
                 q: searchTerm,
                 type: $('[name=type] option:selected').val()
             },
@@ -107,7 +107,7 @@ require(['prefetchManifest']);
                 var eventName;
                 if (items !== undefined) {
                     var ul = '';
-                    items = items.results;
+                    items = items.objects;
                     $.each(items, function(i, item) {
                         var d = {
                             url: escape_(item.url) || '#',

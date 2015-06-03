@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 
 from jingo.helpers import urlparams
@@ -112,7 +113,10 @@ class TestRegion(RestOAuth):
             eq_(row['id'], region.id)
         eq_(len(data['objects']), len(mkt.regions.REGIONS_DICT))
         eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
-        eq_(data['objects'][0]['name'], 'Argentina')
+        eq_(data['objects'][0]['name'],
+            mkt.regions.REGIONS_LIST_SORTED_BY_NAME()[0].name)
+        eq_(data['objects'][-1]['name'],
+            unicode(mkt.regions.REGIONS_LIST_SORTED_BY_NAME()[-1].name))
 
     def test_list_translation(self):
         res = self.anon.get(urlparams(reverse('regions-list'), lang='fr'))
@@ -125,33 +129,39 @@ class TestRegion(RestOAuth):
             eq_(row['id'], region.id)
         eq_(len(data['objects']), len(mkt.regions.REGIONS_DICT))
         eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
-        eq_(data['objects'][0]['name'], 'Afrique du Sud')
+        eq_(data['objects'][1]['name'], 'Afrique du Sud')
+        eq_(data['objects'][-1]['name'], 'Reste du monde')
 
     def test_detail(self):
-        res = self.get_region('br')
+        res = self.anon.get(reverse('regions-detail', kwargs={'pk': 'br'}))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         region = mkt.regions.REGIONS_DICT['br']
         self.assert_matches_region(data, region)
 
+    def test_detail_translated(self):
+        res = self.anon.get(urlparams(reverse('regions-detail',
+                            kwargs={'pk': 'br'}), lang='fr'))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['name'], u'Brésil')
+
     def test_detail_worldwide(self):
-        res = self.get_region('worldwide')
+        res = self.anon.get(reverse('regions-detail',
+                            kwargs={'pk': 'worldwide'}))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         region = mkt.regions.REGIONS_DICT['restofworld']
         self.assert_matches_region(data, region)
 
     def test_detail_bad_region(self):
-        res = self.get_region('foo')
+        res = self.anon.get(reverse('regions-detail', kwargs={'pk': 'foo'}))
         eq_(res.status_code, 404)
 
     def assert_matches_region(self, data, region):
-        eq_(data['name'], region.name)
+        eq_(data['name'], unicode(region.name))
         eq_(data['slug'], region.slug)
         eq_(data['id'], region.id)
-
-    def get_region(self, slug):
-        return self.anon.get(reverse('regions-detail', kwargs={'pk': slug}))
 
 
 class TestCarrier(RestOAuth):

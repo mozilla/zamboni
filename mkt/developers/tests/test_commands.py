@@ -9,8 +9,8 @@ from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 migrate_geodata,
                                                 refresh_iarc_ratings)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonPremium, IARCInfo, RatingDescriptors,
-                                Webapp)
+from mkt.webapps.models import (AddonExcludedRegion, AddonPremium, IARCInfo,
+                                RatingDescriptors, Webapp)
 
 
 class TestCommandViews(mkt.site.tests.TestCase):
@@ -60,8 +60,9 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
         # Exclude in everywhere except Brazil.
         regions = list(mkt.regions.REGIONS_CHOICES_ID_DICT)
         regions.remove(mkt.regions.BRA.id)
-        for region in regions:
-            self.webapp.addonexcludedregion.create(region=region)
+        AddonExcludedRegion.objects.bulk_create(
+            [AddonExcludedRegion(region=region, addon=self.webapp) for region
+             in regions])
 
         eq_(self.webapp.geodata.reload().popular_region, None)
 

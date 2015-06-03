@@ -21,7 +21,7 @@ import mkt.site.tests
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
-from mkt.constants import comm, regions
+from mkt.constants import comm
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
@@ -571,9 +571,8 @@ class TestEditCountryLanguage(TestEdit):
         eq_(res.status_code, 200)
 
         # Reproduce the (weird) ordering we expect.
-        listed_countries = self.get_webapp().get_region_ids(restofworld=True)
-        countries = [unicode(regions.REGIONS_CHOICES_ID_DICT.get(region).name)
-                     for region in listed_countries]
+        listed_countries = self.get_webapp().get_regions(sort_by='name')
+        countries = [unicode(country.name) for country in listed_countries]
         # Escape like it should be.
         ok_(escape(u', '.join(countries)) in smart_unicode(res.content))
 

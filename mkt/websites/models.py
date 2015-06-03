@@ -9,13 +9,12 @@ from django.dispatch import receiver
 from django_extensions.db.fields.json import JSONField
 
 from lib.utils import static_url
-from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.applications import DEVICE_TYPE_LIST
 from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.utils import get_icon_url
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
-from mkt.translations.utils import no_translation
 from mkt.websites.indexers import WebsiteIndexer
 
 
@@ -25,23 +24,52 @@ class WebsiteManager(ManagerBase):
 
 
 class Website(ModelBase):
+    # The default_locale used for translated fields. See get_fallback() method
+    # below.
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE)
+    # The Website URL.
     url = models.URLField(max_length=255, blank=True, null=True)
+
+    # The Website mobile-specific URL, if one exists.
     mobile_url = models.URLField(max_length=255, blank=True, null=True)
+
+    # The <title> for the Website, used in search, not exposed to the frontend.
     title = TranslatedField()
+
+    # The name and optionnal short name for the Website, used in the detail
+    # page and listing pages, respectively.
     name = TranslatedField()
     short_name = TranslatedField()
+
+    # Description.
     description = TranslatedField()
+
+    # Website keywords.
     keywords = models.ManyToManyField(Tag)
-    region_exclusions = JSONField(default=None)
-    devices = JSONField(default=None)
+
+    # Regions the website is known to be relevant in, used for search boosting.
+    # Stored as a JSON list of ids.
+    preferred_regions = JSONField(default=None)
+
+    # Categories, similar to apps. Stored as a JSON list of names.
     categories = JSONField(default=None)
+
+    # Icon content-type.
     icon_type = models.CharField(max_length=25, blank=True)
+
+    # Icon cache-busting hash.
     icon_hash = models.CharField(max_length=8, blank=True)
+
+    # Date & time the entry was last updated.
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    # Status, similar to apps. See WebsiteManager.valid() above.
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), default=STATUS_NULL)
+
+    # Whether the website entry is disabled (not shown in frontend, regardless
+    # of status) or not.
     is_disabled = models.BooleanField(default=False)
 
     objects = WebsiteManager()
@@ -61,10 +89,12 @@ class Website(ModelBase):
         return unicode(self.url or '(no url set)')
 
     @property
-    def device_names(self):
-        device_ids = self.devices or []
-        with no_translation():
-            return [DEVICE_TYPES[d].api_name for d in device_ids]
+    def devices(self):
+        # If the frontend wants to hide websites on desktop, it passes
+        # doc_type='webapp' to the search view. Since a dev/device parameter is
+        # sent anyway, we want ES to consider websites are compatible with all
+        # devices.
+        return [device.id for device in DEVICE_TYPE_LIST]
 
     def is_dummy_content_for_qa(self):
         """

@@ -5,6 +5,7 @@
       {{ _('App Lookup') }}
     </label>
     <input type="search" id="app-search" name="q" autocomplete="off">
+    <input type="hidden" id="app-lang" name="lang" autocomplete="off" value="{{ request.LANG|default('en-US') }}">
     <button>{{ _('Search') }}</button>
     <ul id="app-search-suggestions" class="search-suggestions"
         data-src="{{ url('lookup.app_search') }}"></ul>

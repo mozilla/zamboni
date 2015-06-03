@@ -74,30 +74,41 @@ $(document).ready(function() {
     // Better <input type="file" />s
     $('[data-fileinput]').fakeFileField();
 
-    // Create additional forms in the attachment formset
-    var $attachments = $('.review-actions-attachments');
+    // Enables the add new row (additional form) functionality to formsets.
+    var setup_add_row = function($node) {
+        $node.removeClass('hidden');
 
-    // Hide attachments from Gaia; it doesn't like <file type="input" />.
-    if($attachments.length && !z.capabilities.gaia) {
-        $attachments.removeClass('hidden');
+        $node.each(function(index, row) {
 
-        $attachments.each(function(index, attachment) {
-
-            var $attachment = $(attachment),
-                $addRowBtn = $attachment.find('.add-row');
+            var $row = $(row),
+                $addRowBtn = $row.find('.add-row');
 
             // Init the formset
-            $attachment.formset();
+            $row.formset();
 
             // Add a new formset row when the button is clicked
             $addRowBtn.on('click', function(evt) {
                 evt.preventDefault();
-                $attachment.formset('addRow');
-                var $added = $attachment.formset('options')['latestRow'];
-                $added.find('[data-fileinput]').fakeFileField();
+                $row.formset('addRow');
+                var $added = $row.formset('options')['latestRow'];
+                var field = $added.find('[data-fileinput]');
+                if (field.length>0) {
+                    field.fakeFileField();
+                }
             });
 
         });
+    }
+
+    var $testedon = $('.review-actions-testedon');
+    if ($testedon.length) {
+        setup_add_row($testedon);
+    }
+
+    var $attachments = $('.review-actions-attachments');
+    // Hide attachments from Gaia; it doesn't like <file type="input" />.
+    if ($attachments.length && !z.capabilities.gaia) {
+        setup_add_row($attachments);
     }
 });
 

@@ -90,6 +90,33 @@ class AttachmentManagementMixin(object):
         return data
 
 
+class TestedonManagementMixin(object):
+
+    def _testedon_management_form(self, num=0):
+        """
+        Generate and return data for a management form for `num` tested on
+        platforms.
+        """
+        return {'testedon-TOTAL_FORMS': max(1, num),
+                'testedon-INITIAL_FORMS': 0,
+                'testedon-MAX_NUM_FORMS': 1000}
+
+    def _platforms(self, num, device_types=[u'\xd0esktop', u'FirefoxOS'],
+                   devices=[u'PC ', u'ZT\xc8 Open'],
+                   versions=[u'34', u'1.3<']):
+        """Generate and return data for `num` tested on platforms """
+        data = {}
+        if num > 0:
+            for n in xrange(num):
+                i = n % len(device_types)
+                data.update({
+                    'testedon-%d-device_type' % n: device_types[i],
+                    'testedon-%d-device' % n: devices[i],
+                    'testedon-%d-version' % n: versions[i],
+                })
+        return data
+
+
 class AppReviewerTest(mkt.site.tests.TestCase):
 
     def setUp(self):
@@ -1182,7 +1209,8 @@ class TestEscalationQueueES(mkt.site.tests.ESTestCase, TestEscalationQueue):
 class TestReviewTransaction(AttachmentManagementMixin,
                             mkt.site.tests.MockEsMixin,
                             mkt.site.tests.MockBrowserIdMixin,
-                            test.TransactionTestCase):
+                            test.TransactionTestCase,
+                            TestedonManagementMixin):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -1212,6 +1240,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         self.login('editor@mozilla.com')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         resp = self.client.post(
             reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
         eq_(resp.status_code, 302)
@@ -1237,6 +1266,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         self.login('editor@mozilla.com')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         resp = self.client.post(
             reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
         eq_(resp.status_code, 302)
@@ -1310,7 +1340,8 @@ class TestReviewMixin(object):
 
 
 class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
-                    AttachmentManagementMixin, PackagedFilesMixin):
+                    AttachmentManagementMixin, PackagedFilesMixin,
+                    TestedonManagementMixin):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -1385,6 +1416,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(self.client.get(self.url).status_code, 200)
         data = {'action': 'public', 'comments': 'yo'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         res = self.client.post(self.url, data)
         self.assert3xx(res, reverse('reviewers.apps.queue_pending'))
 
@@ -1395,10 +1427,10 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=mkt.DEVICE_TABLET.id)
         eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something',
+        data = {'action': 'reject', 'comments': 'something',
                 'device_override': [mkt.DEVICE_DESKTOP.id]}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
@@ -1414,6 +1446,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
@@ -1432,6 +1465,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data = {'action': 'reject', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
@@ -1444,6 +1478,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         assert self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
@@ -1460,6 +1495,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_NULL)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
 
         # Still incomplete.
@@ -1482,6 +1518,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.client.post(self.url, data, HTTP_ACCEPT_LANGUAGE='es')
         eq_(translation.get_language(), 'es')
 
@@ -1501,15 +1538,16 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.get_app().update(is_packaged=True)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.client.post(self.url, data)
         eq_(self.get_app().status, mkt.STATUS_PENDING)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_no_mozilla_contact(self, storefront_mock):
         self.app.update(mozilla_contact='')
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -1527,6 +1565,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     def test_pending_to_escalation(self, messages):
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(EscalationQueue.objects.count(), 1)
         self._check_log(mkt.LOG.ESCALATE_MANUAL)
@@ -1547,6 +1586,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_DISABLED)
@@ -1560,6 +1600,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         res = self.client.post(self.url, data)
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
@@ -1570,9 +1611,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     def test_escalation_to_public(self, storefront_mock):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, mkt.STATUS_PENDING)
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -1589,9 +1630,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, mkt.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, mkt.STATUS_REJECTED)
@@ -1610,6 +1651,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, mkt.STATUS_DISABLED)
@@ -1624,6 +1666,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         res = self.client.post(self.url, data, queue='escalated')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
@@ -1637,6 +1680,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         EscalationQueue.objects.create(addon=self.app)
         data = {'action': 'clear_escalation', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='escalated')
         eq_(EscalationQueue.objects.count(), 0)
         self._check_log(mkt.LOG.ESCALATION_CLEARED)
@@ -1648,9 +1692,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='rereview')
         eq_(self.get_app().status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
@@ -1666,9 +1710,9 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        data = {'action': 'disable', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'disable', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='rereview')
         eq_(self.get_app().status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.APP_DISABLED)
@@ -1681,6 +1725,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         res = self.client.post(self.url, data, queue='rereview')
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
@@ -1694,6 +1739,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(mkt.LOG.REREVIEW_CLEARED)
@@ -1708,6 +1754,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(mkt.LOG.REREVIEW_CLEARED)
@@ -1720,6 +1767,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data, queue='rereview')
         eq_(EscalationQueue.objects.count(), 1)
         self._check_log(mkt.LOG.ESCALATE_MANUAL)
@@ -1734,6 +1782,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         # Test the same for all queues.
         data = {'action': 'info', 'comments': 'Knead moor in faux'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(self.get_app().status, mkt.STATUS_PENDING)
         self._check_log(mkt.LOG.REQUEST_INFORMATION)
@@ -1750,6 +1799,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self.app.update(mozilla_contact=self.mozilla_contact)
         data = {'action': 'info', 'comments': 'Knead moor in faux'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(len(mail.outbox), 3)
         subject = 'Reviewer comment'
@@ -1763,6 +1813,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         # Test the same for all queues.
         data = {'action': 'comment', 'comments': 'mmm, nice app'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(len(mail.outbox), 1)
         self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
@@ -1907,32 +1958,33 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         data.update(self._attachments(num))
         return data
 
-    def _attachment_post(self, num):
-        """
-        Test that `num` attachment objects are successfully created by the
-        appropriate form submission. Tests this in two ways:
-
-        1) Ensuring that the form is submitted correctly.
-        2) Checking that the appropriate number of objects are created.
-        """
-        old_attachment_count = ActivityLogAttachment.objects.all().count()
-        self.post(self._attachment_form_data(num=num))
-        new_attachment_count = ActivityLogAttachment.objects.all().count()
-        eq_(new_attachment_count - old_attachment_count, num,
-            'AcitvityLog objects not being created')
-
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_no_attachments(self, save_mock):
         """ Test addition of no attachment """
-        self.post(self._attachment_form_data(num=0, action='public'))
+        data = self._attachment_form_data(num=0, action='public')
+        data.update(self._testedon_management_form())
+        self.post(data)
         eq_(save_mock.called, False, save_mock.call_args_list)
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('mkt.site.utils.LocalFileStorage.save')
     def test_attachment(self, save_mock):
         """ Test addition of an attachment """
-        self._attachment_post(1)
+        """
+        Test that an attachment object is successfully created by the
+        appropriate form submission. Tests this in two ways:
+
+        1) Ensuring that the form is submitted correctly.
+        2) Checking that the appropriate number of objects are created.
+        """
+        old_attachment_count = ActivityLogAttachment.objects.all().count()
+        data = self._attachment_form_data(num=1)
+        data.update(self._testedon_management_form())
+        self.post(data)
+        new_attachment_count = ActivityLogAttachment.objects.all().count()
+        eq_(new_attachment_count - old_attachment_count, 1,
+            'AcitvityLog objects not being created')
         eq_(save_mock.call_args_list[0],
             mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
@@ -1954,17 +2006,17 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
     def test_priority_flag_cleared_for_public(self):
         self.get_app().update(priority_review=True)
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(self.get_app().priority_review, False)
 
     def test_priority_flag_uncleared_for_reject(self):
         self.get_app().update(priority_review=True)
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(self.get_app().priority_review, True)
 
@@ -1980,6 +2032,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         # Note: Using action=comment b/c it does less and keeps test faster.
         data = {'action': 'comment', 'comments': 'blah', 'is_tarako': 'on'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         tags = self.get_app().tags.values_list('tag_text', flat=True)
         assert 'tarako' in tags
@@ -1989,6 +2042,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         # Note: `is_tarako` isn't passed b/c checkboxes.
         data = {'action': 'comment', 'comments': 'blah'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         tags = self.get_app().tags.values_list('tag_text', flat=True)
         assert 'tarako' not in tags
@@ -2052,7 +2106,7 @@ class TestCannedResponses(AppReviewerTest):
 @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
 @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
 class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
-                           AttachmentManagementMixin):
+                           AttachmentManagementMixin, TestedonManagementMixin):
     """
     A separate test class for apps going to an approved state. All other state
     transitions are tested above.
@@ -2089,9 +2143,9 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -2120,9 +2174,9 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_UNLISTED)
@@ -2151,9 +2205,9 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(index_webapps.delay.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2187,6 +2241,7 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
 
         data = {'action': 'reject', 'comments': 'suxor'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         eq_(index_webapps.delay.call_count, 1)
         app = self.get_app()
@@ -2214,7 +2269,8 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
 @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
 @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
 class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
-                             AttachmentManagementMixin):
+                             AttachmentManagementMixin,
+                             TestedonManagementMixin):
     """
     A separate test class for packaged apps going to an approved state.
 
@@ -2251,9 +2307,9 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -2282,9 +2338,9 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_UNLISTED)
@@ -2313,9 +2369,9 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2343,9 +2399,9 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_REJECTED)
@@ -2388,9 +2444,9 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(self.app.current_version, None)
         eq_(self.app.latest_version, self.new_version)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2420,7 +2476,8 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
 @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
 @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
 class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
-                                  AttachmentManagementMixin):
+                                  AttachmentManagementMixin,
+                                  TestedonManagementMixin):
     """
     A separate test class for packaged apps with a 2nd version going to an
     approved state.
@@ -2460,9 +2517,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -2493,9 +2550,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -2526,9 +2583,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_UNLISTED)
@@ -2559,9 +2616,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_UNLISTED)
@@ -2592,9 +2649,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2625,9 +2682,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2658,9 +2715,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_PUBLIC)
@@ -2691,9 +2748,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_UNLISTED)
@@ -2724,9 +2781,9 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
 
-        data = {'action': 'reject', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
+        data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -3000,7 +3057,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
 
 
 class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
-                        TestReviewMixin):
+                        TestReviewMixin, TestedonManagementMixin):
     """
     Integration test that notes are created and that emails are
     sent to the right groups of people.
@@ -3035,6 +3092,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
 
         data = {'action': 'public', 'comments': 'gud jerb'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test emails.
@@ -3050,6 +3108,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         """
         data = {'action': 'public', 'comments': 'gud jerb'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3066,6 +3125,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         """
         data = {'action': 'reject', 'comments': 'rubesh'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3082,6 +3142,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         """
         data = {'action': 'info', 'comments': 'huh'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3098,6 +3159,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         """
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3118,6 +3180,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         """
         data = {'action': 'comment', 'comments': 'huh'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3138,6 +3201,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         self.login_as_admin()
         data = {'action': 'disable', 'comments': 'u dun it'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test notes.
@@ -3152,23 +3216,41 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         data = {'action': 'comment', 'comments': 'huh'}
         data.update(self._attachment_management_form(num=2))
         data.update(self._attachments(num=2))
+        data.update(self._testedon_management_form())
         self._post(data)
 
         # Test attachments.
         note = self._get_note()
         eq_(note.attachments.count(), 2)
 
-    def test_tested_with(self):
-        """Tested 'Tested with' message appended to note body."""
-        data = {'action': 'reject', 'comments': 'rubesh',
-                'device_types': 'iFun', 'browsers': 'FurFocks'}
+    def test_tested_on_one(self):
+        """Tested 'Tested on' message appended to note body."""
+        data = {'action': 'reject', 'comments': 'rubesh'}
         data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form(num=1))
+        data.update(self._platforms(1))
         self._post(data)
 
         # Test notes.
         note = self._get_note()
         eq_(note.note_type, comm.REJECTION)
-        eq_(note.body, 'rubesh\n\nTested on iFun with FurFocks')
+        eq_(note.body, u'rubesh\n\n'
+            u'Tested on \xd0esktop platform on PC with version 34')
+
+    def test_tested_on_two(self):
+        """Tested two 'Tested on' messages appended to note body."""
+        data = {'action': 'reject', 'comments': 'rubesh'}
+        data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form(num=2))
+        data.update(self._platforms(2))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.REJECTION)
+        eq_(note.body, u'rubesh\n\n'
+            u'Tested on \xd0esktop platform on PC with version 34; '
+            u'FirefoxOS platform on ZT\xc8 Open with version 1.3<')
 
 
 class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
