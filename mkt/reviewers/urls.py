@@ -8,6 +8,15 @@ from mkt.reviewers import views
 from mkt.websites.views import ReviewersWebsiteSearchView
 
 
+# Reviewer urls for MOW.
+website_patterns = patterns(
+    '',
+    url(r'^queue/abuse/$', views.queue_abuse_websites,
+        name='reviewers.websites.queue_abuse'),
+    url(r'^review/(?P<pk>[^/<>"\']+)/abuse$', views.website_abuse,
+        name='reviewers.websites.review.abuse'),
+)
+
 # All URLs under /reviewers/.
 url_patterns = patterns(
     '',
@@ -62,6 +71,8 @@ url_patterns = patterns(
     url(r'''^performance/(?P<email>[^/<>"']+)?$''', views.performance,
         name='reviewers.performance'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
+
+    url(r'^websites/', include(website_patterns)),
 )
 
 reviewers_router = SimpleRouter()
@@ -74,11 +85,11 @@ api_patterns = patterns(
     url(r'reviewers/', include(reviewers_router.urls)),
     url('^reviewers/search', views.ReviewersSearchView.as_view(),
         name='reviewers-search-api'),
-    url('^reviewers/sites/search', ReviewersWebsiteSearchView.as_view(),
+    url('^reviewers/websites/search', ReviewersWebsiteSearchView.as_view(),
         name='reviewers-website-search-api'),
-    url(r'^reviewers/sites/(?P<pk>[^/<>"\']+)/approve/$',
+    url(r'^reviewers/websites/(?P<pk>[^/<>"\']+)/approve/$',
         views.WebsiteApprove.as_view(), name='website-approve'),
-    url(r'^reviewers/sites/(?P<pk>[^/<>"\']+)/reject/$',
+    url(r'^reviewers/websites/(?P<pk>[^/<>"\']+)/reject/$',
         views.WebsiteReject.as_view(), name='website-reject'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)$',
         views.ApproveRegion.as_view(), name='approve-region'),
@@ -108,10 +119,14 @@ api_patterns = patterns(
         '(?P<language>[a-z]{2}(-[A-Z]{2})?)$' % mkt.APP_SLUG,
         views.review_translate,
         name='reviewers.review_translate'),
-    url('^reviewers/%s/abuse/(?P<report_pk>\d+)/translate/'
+    url('^reviewers/app/%s/abuse/(?P<report_pk>\d+)/translate/'
         '(?P<language>[a-z]{2}(-[A-Z]{2})?)$' % mkt.APP_SLUG,
         views.abuse_report_translate,
-        name='reviewers.abuse_report_translate'),
+        name='reviewers.apps.abuse_report_translate'),
+    url('^reviewers/website/(?P<website_pk>[^/<>"\']+)/abuse/'
+        '(?P<report_pk>\d+)/translate/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
+        views.abuse_report_translate,
+        name='reviewers.websites.abuse_report_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
         views.GenerateToken.as_view(), name='generate-reviewer-token')
 )

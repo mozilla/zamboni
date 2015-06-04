@@ -686,8 +686,17 @@ class FAIL_ADDITIONAL_REVIEW(_LOG):
 class APP_ABUSE_MARKREAD(_LOG):
     """Requires report.id and add-on objects."""
     id = 131
-    format = _(u'Abuse report {report} for {addon} deleted.')
+    format = _(u'Abuse report {report} for {addon} read.')
     editor_format = _(u'{user} marked read {report} for {addon}.')
+    keep = True
+    editor_event = True
+
+
+class WEBSITE_ABUSE_MARKREAD(_LOG):
+    """Requires report.id and website objects."""
+    id = 132
+    format = _(u'Abuse report {report} for {website} read.')
+    editor_format = _(u'{user} marked read {report} for {website}.')
     keep = True
     editor_event = True
 

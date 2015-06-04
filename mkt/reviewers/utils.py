@@ -27,6 +27,7 @@ from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.tasks import set_storefront_data
+from mkt.websites.models import Website
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -718,6 +719,16 @@ class ReviewersQueuesHelper(object):
                       .values_list('addon', flat=True))
 
         return Webapp.objects.filter(id__in=report_ids).order_by('created')
+
+    def get_abuse_queue_websites(self):
+        report_ids = (AbuseReport.objects.no_cache()
+                      .exclude(website__isnull=True)
+                      .exclude(website__status=mkt.STATUS_DELETED)
+                      .filter(read=False)
+                      .select_related('website')
+                      .values_list('website', flat=True))
+
+        return Website.objects.filter(id__in=report_ids).order_by('created')
 
     def sort(self, qs, date_sort='created'):
         """Given a queue queryset, return the sorted version."""

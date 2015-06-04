@@ -20,10 +20,13 @@
         <h3>
             <a href="{{ item.instance.get_url_path() }}">{{ item.instance.name }}</a>
         </h3>
-        {% trans review_url=url('reviewers.apps.review', item.instance.app_slug),
-           abuses_url=url('reviewers.apps.review.abuse', item.instance.app_slug),
-           abuses_count=item.instance.abuse_reports.count()|numberfmt %}
-        [<a href="{{ review_url }}">Review page</a> | <a href="{{ abuses_url }}">All abuse reports ({{ abuses_count }})</a>]
+        [
+        {% if item.instance.app_slug %}
+          <a href="{{ url('reviewers.apps.review', item.instance.app_slug) }}">{{ _('Review page') }}</a> |
+        {% endif %}
+        {% trans abuses_url=url('reviewers.apps.review.abuse', item.instance.app_slug) if item.instance.app_slug else url('reviewers.websites.review.abuse', item.instance.pk),
+                 abuses_count=item.instance.abuse_reports.count()|numberfmt %}
+          <a href="{{ abuses_url }}">All abuse reports ({{ abuses_count }})</a>]
         {% endtrans %}
         <ul class="abuse-reports-reports">
           {% for abuse_report in item.instance.abuse_reports.filter(read=False) %}
@@ -35,10 +38,13 @@
                 <span class="submitted-by">Submitted by {{ user }} on {{ date }} [{{ ip_address }}]</span>
                 {% endtrans %}
                 {% if waffle.switch('reviews-translate') %}
+                  {% trans translate_url=url('reviewers.apps.abuse_report_translate',
+                                             item.instance.app_slug, abuse_report.id, LANG) if item.instance.app_slug else url('reviewers.websites.abuse_report_translate',
+                                             item.instance.pk, abuse_report.id, LANG)
+                  %}
                 - <a class="translate reviewers-desktop" rel="nofollow" target="_blank"
-                 href="{{ url('reviewers.abuse_report_translate', item.instance.app_slug, abuse_report.id, LANG) }}">
-                 {{ _('translate') }}
-                </a>
+                 href="{{ translate_url }}">translate</a>
+                {% endtrans %}
                 {% endif %}
                 <p class="description">{{ abuse_report.message|nl2br }}</p>
               </div>

@@ -243,10 +243,13 @@ class JSONClient(Client):
 
 
 ES_patchers = [mock.patch('elasticsearch.Elasticsearch'),
+               mock.patch('mkt.websites.indexers.WebsiteIndexer', spec=True),
                mock.patch('mkt.webapps.indexers.WebappIndexer', spec=True),
                mock.patch('mkt.search.indexers.index', spec=True),
+               mock.patch('mkt.search.indexers.BaseIndexer.unindex'),
                mock.patch('mkt.search.indexers.Reindexing', spec=True,
-                          side_effect=lambda i: [i])]
+                          side_effect=lambda i: [i]),
+               ]
 
 
 def start_es_mock():

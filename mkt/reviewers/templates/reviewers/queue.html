@@ -19,7 +19,7 @@
   <section id="queue-island" class="island search-toggle">
     {% if tab == 'moderated' %}
       {% include "reviewers/includes/queue_moderation.html" %}
-    {% elif tab == 'abuse' %}
+    {% elif tab in ['abuse', 'abusewebsites'] %}
       {% include "reviewers/includes/queue_abuse.html" %}
     {% else %}
       {% if addons %}
