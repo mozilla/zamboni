@@ -54,6 +54,7 @@ INDEX_DICT = {
     'apps': [INDEXES[0]],
     'feed': [INDEXES[1], INDEXES[2], INDEXES[3], INDEXES[4], INDEXES[5]],
     'feeditems': [INDEXES[5]],
+    'websites': [INDEXES[6]],
 }
 
 ES = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
@@ -194,7 +195,11 @@ class Command(BaseCommand):
 
         if index_choice:
             # If we only want to reindex a subset of indexes.
-            INDEXES = INDEX_DICT.get(index_choice, INDEXES)
+            INDEXES = INDEX_DICT.get(index_choice, None)
+            if INDEXES is None:
+                raise CommandError(
+                    'Incorrect index name specified. '
+                    'Choose one of: %s' % ', '.join(INDEX_DICT.keys()))
 
         if Reindexing.is_reindexing() and not force:
             raise CommandError('Indexation already occuring - use --force to '
