@@ -11,7 +11,8 @@ from elasticsearch_dsl import Search
 import mkt
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
-from mkt.search.utils import get_boost, get_popularity, get_trending
+from mkt.constants.regions import MATURE_REGION_IDS
+from mkt.search.utils import get_boost
 from mkt.site.decorators import write
 from mkt.translations.utils import to_language
 
@@ -394,8 +395,11 @@ class BaseIndexer(object):
         new_properties['trending'] = {
             'type': 'long', 'doc_values': True
         }
-        # Add region-specific popularity and trending fields.
-        for region in mkt.regions.ALL_REGION_IDS:
+        # Add region-specific popularity / trending fields for mature regions.
+        # We don't have to store anything for adolescent regions, as the
+        # sorting code in SortingFilter will not try to sort using the regional
+        # value if the region in the request is adolescent.
+        for region in MATURE_REGION_IDS:
             new_properties['popularity_%s' % region] = {
                 'type': 'long', 'doc_values': True
             }
@@ -408,14 +412,35 @@ class BaseIndexer(object):
 
     @classmethod
     def extract_popularity_trending_boost(cls, obj):
+        # 0 is a special region when considering popularity/trending, it's the
+        # one holding the global value.
+        ALL_REGIONS_ID = 0
+
+        def get_dict(obj, prop):
+            if obj.is_dummy_content_for_qa():
+                return {}
+            qs = getattr(obj, prop).filter(
+                region__in=MATURE_REGION_IDS + [ALL_REGIONS_ID])
+            return dict(qs.values_list('region', 'value'))
+
         extend = {
             'boost': get_boost(obj),
-            'popularity': get_popularity(obj),
-            'trending': get_trending(obj)
         }
-        for region in mkt.regions.ALL_REGIONS:
-            extend['trending_%s' % region.id] = get_trending(obj, region)
-            extend['popularity_%s' % region.id] = get_popularity(obj, region)
+        trending = get_dict(obj, 'trending')
+        popularity = get_dict(obj, 'popularity')
+
+        # Global popularity.
+        extend['trending'] = trending.get(ALL_REGIONS_ID, 0)
+        extend['popularity'] = popularity.get(ALL_REGIONS_ID, 0)
+
+        # For all mature regions, store in ES the value from the queries we
+        # made, or 0 if none was found. As in the
+        # attach_trending_and_popularity_mappings() method above, no neeed to
+        # store anything for the adolescent regions.
+        for region_id in MATURE_REGION_IDS:
+            extend['trending_%s' % region_id] = trending.get(region_id, 0)
+            extend['popularity_%s' % region_id] = popularity.get(region_id, 0)
+
         return extend
 
     @classmethod
