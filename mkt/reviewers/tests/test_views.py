@@ -55,6 +55,7 @@ from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.webapps.tests.test_models import PackagedFilesMixin
+from mkt.websites.utils import website_factory
 from mkt.zadmin.models import get_config, set_config
 
 
@@ -3369,33 +3370,15 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
         eq_(doc('.tabnav li a')[0].text, u'Moderated Reviews (0)')
 
 
-class TestAbuseQueue(mkt.site.tests.TestCase, AccessMixin):
+class AbuseQueueMixin(object):
 
-    def setUp(self):
-        super(TestAbuseQueue, self).setUp()
-
-        self.app1 = app_factory()
-        self.app2 = app_factory()
-        # Add some extra apps, which shouldn't show up.
-        app_factory()
-        app_factory()
-
+    def _setUp(self):
         self.abuseviewer_user = user_factory(email='abuser')
-        self.grant_permission(self.abuseviewer_user, 'Apps:ReadAbuse')
+        self.grant_permission(self.abuseviewer_user, self.perm)
+        self.login(self.abuseviewer_user)
         user_factory(email='regular')
 
-        user1 = user_factory()
-        user2 = user_factory()
-
-        self.url = reverse('reviewers.apps.queue_abuse')
-
-        AbuseReport.objects.create(reporter=user1, ip_address='123.45.67.89',
-                                   addon=self.app1, message='bad')
-        AbuseReport.objects.create(reporter=user2, ip_address='123.01.67.89',
-                                   addon=self.app1, message='terrible')
-        AbuseReport.objects.create(reporter=user1, ip_address='123.01.02.89',
-                                   addon=self.app2, message='the worst')
-        self.login(self.abuseviewer_user)
+        self.url = reverse(self.view_name)
 
     def _post(self, action, form_index=0):
         ctx = self.client.get(self.url).context
@@ -3416,19 +3399,72 @@ class TestAbuseQueue(mkt.site.tests.TestCase, AccessMixin):
         ok_(txt.startswith(teststring),
             '"%s" doesn\'t start with "%s"' % (txt, teststring))
 
+    def test_no_reviews(self):
+        AbuseReport.objects.all().delete()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(pq(res.content)('#abuse-reports .no-results').length, 1)
+
+    def test_queue_count(self):
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        txt = pq(r.content)('.tabnav li a')[0].text
+        teststring = u'Abuse Reports (2)'
+        ok_(txt.endswith(teststring),
+            '"%s" doesn\'t start with "%s"' % (txt, teststring))
+
+    def test_skip(self):
+        # Skip the first site's reports, which still leaves 2 apps/sites.
+        self._post(False)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 2)
+
+    def test_xss(self):
+        xss = '<script>alert("xss")</script>'
+        AbuseReport.objects.all()[0].update(message=xss)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        tbody = pq(res.content)(
+            '#abuse-reports .abuse-reports-reports').html()
+        assert '&lt;script&gt;' in tbody
+        assert '<script>' not in tbody
+
+
+class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
+                        AbuseQueueMixin):
+    perm = 'Apps:ReadAbuse'
+    view_name = 'reviewers.apps.queue_abuse'
+
+    def setUp(self):
+        super(TestAppAbuseQueue, self).setUp()
+        self._setUp()
+
+    @classmethod
+    def setUpTestData(cls):
+        app1 = app_factory()
+        app2 = app_factory()
+        # Add some extra apps, which shouldn't show up.
+        app_factory()
+        app_factory()
+
+        user1 = user_factory()
+        user2 = user_factory()
+
+        AbuseReport.objects.create(reporter=user1, ip_address='123.45.67.89',
+                                   addon=app1, message='bad')
+        AbuseReport.objects.create(reporter=user2, ip_address='123.01.67.89',
+                                   addon=app1, message='terrible')
+        AbuseReport.objects.create(reporter=user1, ip_address='123.01.02.89',
+                                   addon=app2, message='the worst')
+
     def test_setup(self):
         eq_(AbuseReport.objects.filter(read=False).count(), 3)
-        eq_(AbuseReport.objects.filter(addon=self.app1).count(), 2)
+        eq_(AbuseReport.objects.filter(addon=Webapp.objects.all()[0]).count(),
+            2)
 
         res = self.client.get(self.url)
 
         # Check there are 2 apps listed.
-        eq_(len(res.context['page'].object_list), 2)
-
-    def test_skip(self):
-        # Skip the first app's reports, which still leaves 2 apps with reports.
-        self._post(False)
-        res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 2)
 
     def test_first_read(self):
@@ -3440,18 +3476,6 @@ class TestAbuseQueue(mkt.site.tests.TestCase, AccessMixin):
         eq_(self._get_logs(mkt.LOG.APP_ABUSE_MARKREAD).count(), 2)
         # Check the remaining abuse report remains unread.
         eq_(AbuseReport.objects.filter(read=False).count(), 1)
-
-    def test_no_reviews(self):
-        AbuseReport.objects.all().delete()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        eq_(pq(res.content)('#abuse-reports .no-results').length, 1)
-
-    def test_queue_count(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.tabnav li a')[0].text, u'Abuse Reports (2)')
 
     def test_queue_count_reviewer_and_moderator(self):
         self.grant_permission(self.abuseviewer_user, 'Apps:Review')
@@ -3467,11 +3491,67 @@ class TestAbuseQueue(mkt.site.tests.TestCase, AccessMixin):
 
     def test_deleted_app(self):
         "Test that a deleted app doesn't break the queue."
-        self.app1.delete()
+        AbuseReport.objects.all()[0].addon.delete()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('.tabnav li a')[0].text, u'Abuse Reports (1)')
+
+
+class TestWebsiteAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
+                            AbuseQueueMixin):
+    perm = 'Websites:ReadAbuse'
+    view_name = 'reviewers.websites.queue_abuse'
+
+    def setUp(self):
+        super(TestWebsiteAbuseQueue, self).setUp()
+        self._setUp()
+
+    @classmethod
+    def setUpTestData(cls):
+        website1 = website_factory()
+        website2 = website_factory()
+        # Add some extra sites, which shouldn't show up.
+        website_factory()
+        website_factory()
+
+        user1 = user_factory()
+        user2 = user_factory()
+
+        AbuseReport.objects.create(reporter=user1, ip_address='123.45.67.89',
+                                   website=website1, message='bad')
+        AbuseReport.objects.create(reporter=user2, ip_address='123.01.67.89',
+                                   website=website1, message='terrible')
+        AbuseReport.objects.create(reporter=user1, ip_address='123.01.02.89',
+                                   website=website2, message='the worst')
+        cls.website1 = website1
+
+    def test_setup(self):
+        eq_(AbuseReport.objects.filter(read=False).count(), 3)
+        eq_(AbuseReport.objects.filter(website=self.website1).count(), 2)
+
+        res = self.client.get(self.url)
+
+        # Check there are 2 websites listed.
+        eq_(len(res.context['page'].object_list), 2)
+
+    def test_first_read(self):
+        # Mark read the first sites's reports, which leaves one.
+        self._post(True)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 1)
+        # There are two abuse reports for website1, so two log entries.
+        eq_(self._get_logs(mkt.LOG.WEBSITE_ABUSE_MARKREAD).count(), 2)
+        # Check the remaining abuse report remains unread.
+        eq_(AbuseReport.objects.filter(read=False).count(), 1)
+
+    def test_deleted_website(self):
+        "Test that a deleted website doesn't break the queue."
+        AbuseReport.objects.all()[0].website.delete()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a')[0].text, u'Website Abuse Reports (1)')
 
 
 class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):

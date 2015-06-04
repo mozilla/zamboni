@@ -45,6 +45,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'device': _('Device'),
                   'moderated': _('Moderated Reviews'),
                   'abuse': _('Abuse Reports'),
+                  'abusewebsites': _('Website Abuse Reports'),
                   'reviewing': _('Reviewing'),
 
                   'region': _('Regional Queues')}
@@ -128,6 +129,13 @@ def queue_tabnav(context):
             (reverse('reviewers.apps.queue_abuse'), 'abuse',
              _('Abuse Reports ({0})', counts['abuse'])
              .format(counts['abuse'])),
+        )
+
+    if acl.action_allowed(request, 'Websites', 'ReadAbuse'):
+        rv.append(
+            (reverse('reviewers.websites.queue_abuse'), 'abusewebsites',
+             _('Website Abuse Reports ({0})', counts['abusewebsites'])
+             .format(counts['abusewebsites'])),
         )
 
     return rv

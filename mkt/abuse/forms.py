@@ -6,6 +6,7 @@ from quieter_formset.formset import BaseModelFormSet
 
 import mkt
 from mkt.webapps.models import Webapp
+from mkt.websites.models import Website
 
 
 class BaseAbuseViewFormSet(BaseModelFormSet):
@@ -19,9 +20,9 @@ class BaseAbuseViewFormSet(BaseModelFormSet):
         for form in self.forms:
             if form.cleaned_data:
                 mark_read = form.cleaned_data.get('action', False)
-                app = form.instance
+                inst = form.instance
                 if mark_read:
-                    for report in app.abuse_reports.all():
+                    for report in inst.abuse_reports.all().filter(read=False):
                         report.read = True
                         report.save()
                         if report.addon:
@@ -36,8 +37,13 @@ class BaseAbuseViewFormSet(BaseModelFormSet):
                             # Not possible on Marketplace currently.
                             pass
                         elif report.website:
-                            # Not possible on Marketplace currently.
-                            pass
+                            mkt.log(mkt.LOG.WEBSITE_ABUSE_MARKREAD,
+                                    report.website, report,
+                                    details=dict(
+                                        body=unicode(report.message),
+                                        website_id=report.website.id,
+                                        website_title=unicode(
+                                            report.website.name)))
 
 
 class AbuseViewForm(happyforms.ModelForm):
@@ -51,6 +57,10 @@ class AbuseViewForm(happyforms.ModelForm):
         fields = ('action',)
 
 
-AbuseViewFormSet = modelformset_factory(Webapp, extra=0,
-                                        form=AbuseViewForm,
-                                        formset=BaseAbuseViewFormSet)
+AppAbuseViewFormSet = modelformset_factory(Webapp, extra=0,
+                                           form=AbuseViewForm,
+                                           formset=BaseAbuseViewFormSet)
+
+WebsiteAbuseViewFormSet = modelformset_factory(Website, extra=0,
+                                               form=AbuseViewForm,
+                                               formset=BaseAbuseViewFormSet)

@@ -30,6 +30,7 @@ from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
+from mkt.websites.models import Website
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -469,6 +470,7 @@ class ActivityLog(ModelBase):
         collection = None
         tag = None
         group = None
+        website = None
 
         for arg in self.arguments:
             if isinstance(arg, Webapp) and not addon:
@@ -491,6 +493,10 @@ class ActivityLog(ModelBase):
                     tag = self.f('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
                 group = arg.name
+                arguments.remove(arg)
+            if isinstance(arg, Website) and not website:
+                website = self.f(u'<a href="{0}">{1}</a>',
+                                 arg.get_url_path(), arg.name)
                 arguments.remove(arg)
 
         try:

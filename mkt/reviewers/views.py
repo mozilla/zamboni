@@ -38,7 +38,7 @@ from waffle.decorators import waffle_switch
 
 import mkt
 from lib.crypto.packaged import SigningError
-from mkt.abuse.forms import AbuseViewFormSet
+from mkt.abuse.forms import AppAbuseViewFormSet, WebsiteAbuseViewFormSet
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -79,6 +79,7 @@ from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
 from mkt.webapps.signals import version_changed
+from mkt.websites.decorators import website_view
 from mkt.websites.models import Website
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -166,6 +167,7 @@ def queue_counts(request):
         'escalated': queues_helper.get_escalated_queue().count(),
         'moderated': queues_helper.get_moderated_queue().count(),
         'abuse': queues_helper.get_abuse_queue().count(),
+        'abusewebsites': queues_helper.get_abuse_queue_websites().count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
         'additional_tarako': (
             AdditionalReview.objects
@@ -620,14 +622,14 @@ def queue_moderated(request):
 
 @permission_required([('Apps', 'ReadAbuse')])
 def queue_abuse(request):
-    """Queue for reviewing abuse reports."""
+    """Queue for reviewing abuse reports for apps."""
     queues_helper = ReviewersQueuesHelper(request)
     apps = queues_helper.get_abuse_queue()
 
     page = paginate(request, apps, per_page=20)
-    abuse_formset = AbuseViewFormSet(request.POST or None,
-                                     queryset=page.object_list,
-                                     request=request)
+    abuse_formset = AppAbuseViewFormSet(request.POST or None,
+                                        queryset=page.object_list,
+                                        request=request)
 
     if abuse_formset.is_valid():
         abuse_formset.save()
@@ -636,6 +638,26 @@ def queue_abuse(request):
     return render(request, 'reviewers/queue.html',
                   context(request, abuse_formset=abuse_formset,
                           tab='abuse', page=page))
+
+
+@permission_required([('Websites', 'ReadAbuse')])
+def queue_abuse_websites(request):
+    """Queue for reviewing abuse reports for websites."""
+    queues_helper = ReviewersQueuesHelper(request)
+    sites = queues_helper.get_abuse_queue_websites()
+
+    page = paginate(request, sites, per_page=20)
+    abuse_formset = WebsiteAbuseViewFormSet(request.POST or None,
+                                            queryset=page.object_list,
+                                            request=request)
+
+    if abuse_formset.is_valid():
+        abuse_formset.save()
+        return redirect(reverse('reviewers.websites.queue_abuse'))
+
+    return render(request, 'reviewers/queue.html',
+                  context(request, abuse_formset=abuse_formset,
+                          tab='abusewebsites', page=page))
 
 
 def _get_search_form(request):
@@ -835,14 +857,25 @@ def _mini_manifest(addon, version_id, token=None):
     return json.dumps(data, cls=JSONEncoder)
 
 
-@reviewer_required
+@permission_required([('Apps', 'ReadAbuse'), ('Apps', 'Review')])
 @app_view
 def app_abuse(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
     reports = paginate(request, reports, count=total)
     return render(request, 'reviewers/abuse.html',
-                  context(request, addon=addon, reports=reports,
+                  context(request, item=addon, reports=reports,
+                          total=total))
+
+
+@permission_required([('Websites', 'ReadAbuse'), ('Websites', 'Review')])
+@website_view
+def website_abuse(request, website):
+    reports = AbuseReport.objects.filter(website=website).order_by('-created')
+    total = reports.count()
+    reports = paginate(request, reports, count=total)
+    return render(request, 'reviewers/abuse.html',
+                  context(request, item=website, reports=reports,
                           total=total))
 
 
@@ -987,10 +1020,15 @@ def review_translate(request, app_slug, review_pk, language):
 
 
 @waffle_switch('reviews-translate')
-@permission_required([('Apps', 'ReadAbuse')])
-def abuse_report_translate(request, app_slug, report_pk, language):
-    report = get_object_or_404(AbuseReport, addon__app_slug=app_slug,
-                               pk=report_pk)
+@permission_required([('Apps', 'ReadAbuse'), ('Websites', 'ReadAbuse')])
+def abuse_report_translate(request, report_pk, language, app_slug=None,
+                           website_pk=None):
+    if app_slug:
+        report = get_object_or_404(AbuseReport, addon__app_slug=app_slug,
+                                   pk=report_pk)
+    else:
+        report = get_object_or_404(AbuseReport, website__id=website_pk,
+                                   pk=report_pk)
 
     if '-' in language:
         language = language.split('-')[0]
