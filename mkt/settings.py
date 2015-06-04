@@ -741,8 +741,8 @@ FXA_SECRETS = {
     '049d4b105daa1cb9':
         '2b8661ab4ee0b996009ab5413359b74064c433b4afae61b02fd455631fb6c198',
     # http://localhost:8680 - marketplace-submission.
-    'a3ade82f6c47e9e0':
-        '5c457641122b63c1b4521a1be47630a3c56bee2b04382554ac1327bcbdcd9f76',
+    '8822419fecd26a6c':
+        'e9c1237312e141a0294715c2fac6855ff06ab4f5103b9cfa394cc83ea6653f26',
 }
 
 FXA_CLIENT_ID = os.environ.get('FXA_CLIENT_ID', '6b00a7db54f9efee')
