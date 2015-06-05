@@ -632,10 +632,10 @@ class PreGenAPKError(Exception):
 def pre_generate_apk(app_id, **kw):
     app = Webapp.objects.get(pk=app_id)
     manifest_url = app.get_manifest_url()
-    task_log.info('pre-generating APK for app {a} at {url}'
+    task_log.info(u'pre-generating APK for app {a} at {url}'
                   .format(a=app, url=manifest_url))
     if not manifest_url:
-        raise PreGenAPKError('Webapp {w} has an empty manifest URL'
+        raise PreGenAPKError(u'Webapp {w} has an empty manifest URL'
                              .format(w=app))
     try:
         res = requests.get(
@@ -644,9 +644,9 @@ def pre_generate_apk(app_id, **kw):
             headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
         res.raise_for_status()
     except RequestException, exc:
-        raise PreGenAPKError('Error pre-generating APK for app {a} at {url}; '
-                             'generator={gen} (SSL cert ok?); '
-                             '{e.__class__.__name__}: {e}'
+        raise PreGenAPKError(u'Error pre-generating APK for app {a} at {url}; '
+                             u'generator={gen} (SSL cert ok?); '
+                             u'{e.__class__.__name__}: {e}'
                              .format(a=app, url=manifest_url, e=exc,
                                      gen=settings.PRE_GENERATE_APK_URL))
 
