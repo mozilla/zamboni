@@ -673,7 +673,7 @@ class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
         super(TestPreGenAPKs, self).setUp()
-        self.manifest_url = 'http://some-app.net/manifest.webapp'
+        self.manifest_url = u'http://some-âpp.net/manifest.webapp'
         self.app.update(manifest_url=self.manifest_url)
 
     def test_get(self, req):
