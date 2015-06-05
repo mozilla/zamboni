@@ -24,6 +24,9 @@ class WebsiteManager(ManagerBase):
 
 
 class Website(ModelBase):
+    # Identifier used for the initial e.me import.
+    moz_id = models.PositiveIntegerField(null=True, unique=True, blank=True)
+
     # The default_locale used for translated fields. See get_fallback() method
     # below.
     default_locale = models.CharField(max_length=10,
