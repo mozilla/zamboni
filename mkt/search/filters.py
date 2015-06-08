@@ -51,7 +51,7 @@ class SearchQueryFilter(BaseFilterBackend):
         # in every document type / indexes.
         for k, v in rules:
             for field in ('name', 'short_name', 'title', 'app_slug', 'author',
-                          'url'):
+                          'url_tokenized'):
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's

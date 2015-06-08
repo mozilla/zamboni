@@ -1,8 +1,16 @@
+import re
 from operator import attrgetter
+from urlparse import urlparse
 
 from mkt.search.indexers import BaseIndexer
 from mkt.tags.models import attach_tags
 from mkt.translations.models import attach_trans_dict
+
+
+URL_RE = re.compile(
+    r'^www\.|^m\.|^mobile\.|'  # Remove common subdomains.
+    r'\.com$|\.net$|\.org$|\.\w{2}$'  # Remove common TLDs incl. ccTLDs.
+)
 
 
 class WebsiteIndexer(BaseIndexer):
@@ -85,9 +93,8 @@ class WebsiteIndexer(BaseIndexer):
                         'analyzer': 'default_icu',
                         'position_offset_gap': 100,
                     },
-                    # FIXME: Add custom analyzer for url, that strips http,
-                    # https, maybe also www. and any .tld ?
-                    'url': {'type': 'string', 'analyzer': 'simple'},
+                    'url': cls.string_not_analyzed(),
+                    'url_tokenized': {'type': 'string', 'analyzer': 'simple'},
                 }
             }
         }
@@ -129,6 +136,7 @@ class WebsiteIndexer(BaseIndexer):
         doc['name_sort'] = unicode(obj.name).lower()
         doc['preferred_regions'] = obj.preferred_regions or []
         doc['tags'] = getattr(obj, 'keywords_list', [])
+        doc['url_tokenized'] = cls.strip_url(obj.url)
 
         # Add boost, popularity, trending values.
         doc.update(cls.extract_popularity_trending_boost(obj))
@@ -144,3 +152,29 @@ class WebsiteIndexer(BaseIndexer):
             doc.update(cls.extract_field_analyzed_translations(obj, field))
 
         return doc
+
+    @classmethod
+    def strip_url(cls, url):
+        """
+        Remove all unwanted sections of the URL and return a string that will
+        be passed to Elasticsearch.
+
+        E.g. 'https://m.domain.com/topic/' will become 'domain/topic/', which
+        will further get tokenized by Elasticsearch into 'domain' and 'topic'.
+
+        This will never be perfect but it should remove a majority of cruft
+        from getting indexed.
+
+        """
+        bits = urlparse(url)
+
+        # Get just the netloc.
+        url = bits.netloc
+
+        # Strip common subdomains and TLDs.
+        url = URL_RE.sub('', url)
+
+        # Add back stuff in the path.
+        url += bits.path
+
+        return url

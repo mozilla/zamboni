@@ -59,7 +59,9 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['default_locale'], self.obj.default_locale)
         eq_(doc['created'], self.obj.created)
         eq_(doc['modified'], self.obj.modified)
-        eq_(doc['url'], unicode(self.obj.url))
+        eq_(doc['url'], self.obj.url)
+        eq_(doc['url_tokenized'],
+            unicode(self.indexer.strip_url(self.obj.url)))
         eq_(doc['name'], [unicode(self.obj.name)])
         eq_(doc['name_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.name)}])
@@ -137,6 +139,20 @@ class TestWebsiteIndexer(TestCase):
 
         # Adolescent regions trending value is not stored.
         ok_('trending_2' not in doc)
+
+    def test_url(self):
+        self.obj = website_factory()
+        expected = {
+            'http://domain.com': 'domain',
+            'https://www.domain.com': 'domain',
+            'http://m.domain.com': 'domain',
+            'http://mobile.domain.com': 'domain',
+            'http://domain.uk': 'domain',
+            'http://www.domain.com/path/': 'domain/path/',
+            'http://www.domain.com/path/?query#fragment': 'domain/path/',
+        }
+        for k, v in expected.items():
+            eq_(self.indexer.strip_url(k), v)
 
 
 class TestExcludedFields(ESTestCase):
