@@ -15,7 +15,6 @@ def format_currencies(context, currencies):
     return jinja2.Markup(cs)
 
 
-# page_type is used for setting the link 'sel' class (activity/purchases)
 @register.function
 def user_header(account, title, is_admin=False, page_type=''):
     t = env.get_template('lookup/helpers/user_header.html')
@@ -23,7 +22,6 @@ def user_header(account, title, is_admin=False, page_type=''):
                                    'title': title, 'page_type': page_type}))
 
 
-# page_type is used for setting the link 'sel' class
 @register.function
 @jinja2.contextfunction
 def app_header(context, app, page_type=''):
@@ -39,6 +37,15 @@ def app_header(context, app, page_type=''):
                                    'is_reviewer': is_reviewer,
                                    'is_author': is_author,
                                    'is_operator': is_operator}))
+
+
+@register.function
+@jinja2.contextfunction
+def website_header(context, website, page_type=''):
+    t = env.get_template('lookup/helpers/website_header.html')
+
+    return jinja2.Markup(t.render({'website': website,
+                                   'page_type': page_type}))
 
 
 @register.function

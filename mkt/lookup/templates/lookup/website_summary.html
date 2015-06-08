@@ -1,0 +1,56 @@
+{% extends 'lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  {% include 'lookup/includes/website_search.html' %}
+
+  <section class="island c transaction-lookup">
+    {{ website_header(website, 'summary') }}
+
+    <section class="column-b">
+      <dl>
+        <dt>{{ _('Title') }}</dt>
+        <dd>{{ website.title }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Name - Short Name') }}</dt>
+        <dd>{{ website.name }} - {{ website.short_name }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Description') }}</dt>
+        <dd>{{ website.description }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('URL') }}</dt>
+        <dd>{{ website.url }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Mobile URL') }}</dt>
+        <dd>{{ website.mobile_url }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Keywords') }}</dt>
+        <dd>{{ website.keywords_list|join(', ') }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Preferred Regions') }}</dt>
+        <dd>{{ website.get_preferred_regions(sort_by='name')|map(attribute='name')|join(', ') }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Categories') }}</dt>
+        <dd>{{ website.categories|categories_names|join(', ') }}</dd>
+      </dl>
+      <dl>
+        <dt>{{ _('Status') }}</dt>
+        <dd>
+          {{ mkt.STATUS_CHOICES[website.status] }}
+          {% if website.is_disabled %}
+            ({{ _('disabled') }})
+          {% endif %}
+        </dd>
+      </dl>
+    </section>
+
+{% endblock %}

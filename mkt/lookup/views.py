@@ -33,7 +33,7 @@ from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
-from mkt.lookup.serializers import AppLookupSerializer
+from mkt.lookup.serializers import AppLookupSerializer, WebsiteLookupSerializer
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
@@ -41,8 +41,11 @@ from mkt.search.filters import SearchQueryFilter
 from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.utils import paginate
+from mkt.tags.models import attach_tags
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
+from mkt.websites.models import Website
+from mkt.websites.views import WebsiteSearchView
 
 
 log = commonware.log.getLogger('z.lookup')
@@ -315,6 +318,18 @@ def app_summary(request, addon_id):
 
 
 @login_required
+@permission_required([('WebsiteLookup', 'View')])
+def website_summary(request, addon_id):
+    website = get_object_or_404(Website, pk=addon_id)
+    if not hasattr(website, 'keywords_list'):
+        attach_tags([website], m2m_name='keywords')
+
+    return render(request, 'lookup/website_summary.html', {
+        'website': website,
+    })
+
+
+@login_required
 @permission_required([('AccountLookup', 'View')])
 def app_activity(request, addon_id):
     """Shows the app activity age for single app."""
@@ -441,6 +456,21 @@ class AppLookupSearchView(SearchView):
         else:
             return super(AppLookupSearchView, self).get_paginate_by(*args,
                                                                     **kwargs)
+
+
+class WebsiteLookupSearchView(WebsiteSearchView):
+    permission_classes = [GroupPermission('WebsiteLookup', 'View')]
+    filter_backends = [SearchQueryFilter]
+    serializer_class = WebsiteLookupSerializer
+    paginate_by = lkp.SEARCH_LIMIT
+    max_paginate_by = lkp.MAX_RESULTS
+
+    def get_paginate_by(self, *args, **kwargs):
+        if self.request.GET.get(self.paginate_by_param) == 'max':
+            return self.max_paginate_by
+        else:
+            return super(WebsiteLookupSearchView,
+                         self).get_paginate_by(*args, **kwargs)
 
 
 def _app_summary(user_id):

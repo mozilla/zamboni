@@ -45,10 +45,9 @@ require(['prefetchManifest']);
     }));
 
     // Search suggestions.
-    $('#account-search').searchSuggestions($('#account-search-suggestions'),
-                                           processResults);
-    $('#app-search').searchSuggestions($('#app-search-suggestions'),
-                                       processResults);
+    $('#account-search').searchSuggestions($('#account-search-suggestions'), processResults);
+    $('#app-search').searchSuggestions($('#app-search-suggestions'), processResults);
+    $('#website-search').searchSuggestions($('#website-search-suggestions'), processResults);
 
     // Show All Results.
     var searchTerm = '';
@@ -114,7 +113,7 @@ require(['prefetchManifest']);
                             id: item.id,
                             email: item.email || '',
                             name: item.name || item.display_name,
-                            status: item.status
+                            status: item.status || 'none'
                         };
                         if (d.url && d.id) {
                             d.name = escape_(d.name);

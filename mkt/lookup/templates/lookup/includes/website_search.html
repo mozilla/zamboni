@@ -1,0 +1,13 @@
+<section class="island">
+  <form method="post" class="lookup-search-form" id="website-search-form">
+    {{ csrf() }}
+    <label>
+      {{ _('Website Lookup') }}
+    </label>
+    <input type="search" id="website-search" name="q" autocomplete="off">
+    <input type="hidden" id="website-lang" name="lang" autocomplete="off" value="{{ request.LANG|default('en-US') }}">
+    <button>{{ _('Search') }}</button>
+    <ul id="website-search-suggestions" class="search-suggestions"
+        data-src="{{ url('lookup.website_search') }}"></ul>
+  </form>
+</section>

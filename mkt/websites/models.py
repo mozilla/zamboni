@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import operator
 import os.path
 
 from django.conf import settings
@@ -8,6 +9,7 @@ from django.dispatch import receiver
 
 from django_extensions.db.fields.json import JSONField
 
+import mkt
 from lib.utils import static_url
 from mkt.constants.applications import DEVICE_TYPE_LIST
 from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
@@ -115,6 +117,17 @@ class Website(ModelBase):
 
     def get_url_path(self):
         return reverse('website.detail', kwargs={'pk': self.pk})
+
+    def get_preferred_regions(self, sort_by='slug'):
+        """
+        Return a list of region objects the website is preferred in, e.g.::
+
+             [<class 'mkt.constants.regions.GBR'>, ...]
+
+        """
+        _regions = map(mkt.regions.REGIONS_CHOICES_ID_DICT.get,
+                       self.preferred_regions)
+        return sorted(_regions, key=operator.attrgetter(sort_by))
 
 
 class WebsitePopularity(ModelBase):

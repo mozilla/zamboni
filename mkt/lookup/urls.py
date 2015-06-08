@@ -27,6 +27,14 @@ app_patterns = patterns(
 )
 
 
+# These views all start with website/<ID>.
+website_patterns = patterns(
+    '',
+    url(r'^summary$', views.website_summary,
+        name='lookup.website_summary'),
+)
+
+
 # These views all start with transaction ID.
 transaction_patterns = patterns(
     '',
@@ -49,7 +57,10 @@ urlpatterns = patterns(
         name='lookup.transaction_search'),
     url(r'^user_search$', views.user_search,
         name='lookup.user_search'),
+    url(r'^website_search$', views.WebsiteLookupSearchView.as_view(),
+        name='lookup.website_search'),
     (r'^app/(?P<addon_id>[^/]+)/', include(app_patterns)),
+    (r'^website/(?P<addon_id>[^/]+)/', include(website_patterns)),
     (r'^transaction/(?P<tx_uuid>[^/]+)/',
      include(transaction_patterns)),
     (r'^user/(?P<user_id>[^/]+)/', include(user_patterns)),

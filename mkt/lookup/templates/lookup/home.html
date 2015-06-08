@@ -13,4 +13,7 @@
   {% if action_allowed('AppLookup', 'View') %}
     {% include 'lookup/includes/app_search.html' %}
   {% endif %}
+  {% if action_allowed('WebsiteLookup', 'View') %}
+    {% include 'lookup/includes/website_search.html' %}
+  {% endif %}
 {% endblock %}

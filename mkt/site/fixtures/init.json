@@ -1344,7 +1344,7 @@
             "modified": "2012-04-19T18:43:22",
             "name": "Staff",
             "notes": "",
-            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,Lookup:View,Stats:View,Websites:*"
+            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,WebsiteLookup:View,Lookup:View,Stats:View,Websites:*"
         },
         "model": "access.group",
         "pk": 50000
@@ -1476,7 +1476,7 @@
             "modified": "2012-05-22T17:12:04",
             "name": "Support Staff",
             "notes": "",
-            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View"
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View,WebsiteLookup:View"
         },
         "model": "access.group",
         "pk": 50057
@@ -1564,7 +1564,7 @@
             "modified": "2013-09-13T12:54:58",
             "name": "Operators",
             "notes": "For operators to perform app lookups",
-            "rules": "Lookup:View,AppLookup:View,Operators:*"
+            "rules": "Lookup:View,AppLookup:View,WebsiteLookup:View,Operators:*"
         },
         "model": "access.group",
         "pk": 50070

@@ -18,9 +18,9 @@ import mkt
 import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
-from mkt.constants.payments import (
-    FAILED, PENDING, PROVIDER_BANGO, PROVIDER_REFERENCE,
-    SOLITUDE_REFUND_STATUSES)
+from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
+                                    PROVIDER_REFERENCE,
+                                    SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
@@ -38,6 +38,7 @@ from mkt.site.utils import app_factory, file_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
+from mkt.websites.utils import website_factory
 
 
 class SummaryTest(TestCase):
@@ -293,6 +294,7 @@ class SearchTestMixin(object):
 
     def search(self, expect_objects=True, **data):
         res = self.client.get(self.url, data)
+        eq_(res.status_code, 200)
         data = json.loads(res.content)
         if expect_objects:
             assert len(data['objects']), 'should be more than 0 objects'
@@ -1174,3 +1176,38 @@ class TestAppActivity(mkt.site.tests.TestCase):
         doc = pq(res.content)
         assert 'manifest updated' in doc('li.item').eq(0).text()
         assert 'Comment on' in doc('li.item').eq(1).text()
+
+
+class TestWebsiteSearch(ESTestCase, SearchTestMixin):
+    fixtures = fixture('user_support_staff', 'user_999')
+
+    def setUp(self):
+        super(TestWebsiteSearch, self).setUp()
+        self.url = reverse('lookup.website_search')
+        self.website = website_factory()
+        self.refresh('website')
+        self.login('support-staff@mozilla.com')
+
+    def search(self, *args, **kwargs):
+        if 'lang' not in kwargs:
+            kwargs.update({'lang': 'en-US'})
+        return super(TestWebsiteSearch, self).search(*args, **kwargs)
+
+    def verify_result(self, data):
+        eq_(data['objects'][0]['id'], self.website.pk)
+        eq_(data['objects'][0]['name'], self.website.name.localized_string)
+        eq_(data['objects'][0]['url'], reverse('lookup.website_summary',
+                                               args=[self.website.pk]))
+
+    def test_auth_required(self):
+        self.client.logout()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    def test_by_name(self):
+        data = self.search(q=self.website.name.localized_string)
+        self.verify_result(data)
+
+    def test_by_id(self):
+        data = self.search(q=self.website.pk)
+        self.verify_result(data)

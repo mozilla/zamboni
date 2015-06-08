@@ -1,0 +1,15 @@
+<h1>
+  {{ _('Website Lookup results for') }}
+  <a href="{{ website.get_url_path() }}"
+     title="{{ _('Website Detail') }}">{{ website.name }}</a>
+  ({{ website.pk }})
+</h1>
+
+<section class="column-a">
+  <img src="{{ website.get_icon_url(64) }}">
+  <nav class="shortcuts" role="navigation">
+    <ul>
+      {# TODO: Add "Edit Listing" for admins/staff (bug 1161867) #}
+    </ul>
+  </nav>
+</section>

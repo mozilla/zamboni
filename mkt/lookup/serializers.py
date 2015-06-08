@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 import mkt
 from mkt.webapps.serializers import ESAppSerializer
+from mkt.websites.serializers import ESWebsiteSerializer
 
 
 class AppLookupSerializer(ESAppSerializer):
@@ -30,3 +31,13 @@ class AppLookupSerializer(ESAppSerializer):
         else:
             status = mkt.STATUS_CHOICES_API_v2[obj.status]
         return status
+
+
+class WebsiteLookupSerializer(ESWebsiteSerializer):
+    url = serializers.SerializerMethodField('get_website_summary_url')
+
+    class Meta(ESWebsiteSerializer.Meta):
+        fields = ['id', 'name', 'url']
+
+    def get_website_summary_url(self, obj):
+        return reverse('lookup.website_summary', args=[obj.id])

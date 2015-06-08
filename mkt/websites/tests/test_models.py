@@ -1,8 +1,11 @@
+import json
+
 import mock
 from nose.tools import eq_
 
 from lib.utils import static_url
 from mkt.constants.applications import DEVICE_TYPE_LIST
+from mkt.constants.regions import URY, USA
 from mkt.site.tests import TestCase
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -42,6 +45,12 @@ class TestWebsiteModel(TestCase):
     def test_get_icon_no_icon(self):
         website = Website(pk=1)
         assert website.get_icon_url(32).endswith('/default-32.png')
+
+    def test_get_preferred_regions(self):
+        website = Website()
+        website.preferred_regions = json.dumps([URY.id, USA.id])
+        eq_([r.slug for r in website.get_preferred_regions()],
+            [USA.slug, URY.slug])
 
 
 class TestWebsiteESIndexation(TestCase):
