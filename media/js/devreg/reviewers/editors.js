@@ -238,7 +238,7 @@ function initQueue() {
                 $.each(data, function(k, v) {
                     $('#addon-' + k).addClass('locked')
                                     .attr('title',
-                                          format(gettext('{name} was viewing this add-on first.'),
+                                          format(gettext('{name} was viewing this app first.'),
                                                  {name: v}));
                 });
                 setTimeout(checkCurrentlyViewing, 2000);
