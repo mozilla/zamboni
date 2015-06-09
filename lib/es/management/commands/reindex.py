@@ -3,6 +3,7 @@ Marketplace ElasticSearch Indexer.
 
 Currently creates the indexes and re-indexes apps and feed elements.
 """
+import itertools
 import logging
 import sys
 import time
@@ -31,31 +32,27 @@ logger = logging.getLogger('z.elasticsearch')
 
 # The subset of settings.ES_INDEXES we are concerned with.
 ES_INDEXES = settings.ES_INDEXES
-INDEXES = (
-    # Index, Indexer, chunk size.
-    # Webapp documents average about 5k. Indexing 500 at a time sends a payload
-    # of about 2.5mb to the bulk indexing API.
-    (ES_INDEXES['webapp'], WebappIndexer, 500),
-    # Currently using 500 since these are manually created by a curator and
-    # there will probably never be this many.
-    (ES_INDEXES['mkt_feed_app'], f_indexers.FeedAppIndexer, 500),
-    (ES_INDEXES['mkt_feed_brand'], f_indexers.FeedBrandIndexer, 500),
-    (ES_INDEXES['mkt_feed_collection'], f_indexers.FeedCollectionIndexer, 500),
-    (ES_INDEXES['mkt_feed_shelf'], f_indexers.FeedShelfIndexer, 500),
-    # Currently using 1000 since FeedItem documents are pretty small.
-    (ES_INDEXES['mkt_feed_item'], f_indexers.FeedItemIndexer, 1000),
 
-    # Currently using 500 because we don't really know what size they'll be.
-    (ES_INDEXES['website'], WebsiteIndexer, 500),
-)
-
-INDEX_DICT = {
+# When `--index=...` is provided to the management command, we index the
+# following subsets.
+INDEX_CHOICES = {
     # In case we want to index only a subset of indexes.
-    'apps': [INDEXES[0]],
-    'feed': [INDEXES[1], INDEXES[2], INDEXES[3], INDEXES[4], INDEXES[5]],
-    'feeditems': [INDEXES[5]],
-    'websites': [INDEXES[6]],
+    'apps': [WebappIndexer],
+    'feed': [f_indexers.FeedAppIndexer,
+             f_indexers.FeedBrandIndexer,
+             f_indexers.FeedCollectionIndexer,
+             f_indexers.FeedShelfIndexer,
+             f_indexers.FeedItemIndexer],
+    'feeditems': [f_indexers.FeedItemIndexer],
+    'websites': [WebsiteIndexer],
 }
+
+# Get the list of all possible distinct indexers from INDEX_CHOICES.
+INDEXERS = list(set(itertools.chain.from_iterable(INDEX_CHOICES.values())))
+
+# We have this mapping so we can pass which indexer to use to celery.
+INDEXER_MAP = dict((indexer.get_mapping_type_name(), indexer)
+                   for indexer in INDEXERS)
 
 ES = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
 
@@ -69,13 +66,15 @@ def _print(msg, alias=''):
 
 
 @task
-def pre_index(new_index, old_index, alias, indexer, settings):
+def pre_index(new_index, old_index, alias, index_name, settings):
     """
     This sets up everything needed before indexing:
         * Flags the database.
         * Creates the new index.
 
     """
+    indexer = INDEXER_MAP[index_name]
+
     # Flag the database to indicate that the reindexing has started.
     _print('Flagging the database to start the reindexation.', alias)
     Reindexing.flag_reindexing(new_index=new_index, old_index=old_index,
@@ -104,7 +103,7 @@ def pre_index(new_index, old_index, alias, indexer, settings):
 
 
 @task
-def post_index(new_index, old_index, alias, indexer, settings):
+def post_index(new_index, old_index, alias, index_name, settings):
     """
     Perform post-indexing tasks:
         * Optimize (which also does a refresh and a flush by default).
@@ -141,14 +140,16 @@ def post_index(new_index, old_index, alias, indexer, settings):
         ES.indices.delete(index=old_index)
 
     alias_output = ''
-    for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
-        alias_output += unicode(ES.indices.get_aliases(index=ALIAS)) + '\n'
+    for indexer in INDEXERS:
+        alias = ES_INDEXES[indexer.get_mapping_type_name()]
+        alias_output += unicode(ES.indices.get_aliases(index=alias)) + '\n'
+
     _print('Reindexation done. Current aliases configuration: '
            '{output}\n'.format(output=alias_output), alias)
 
 
 @task(ignore_result=False)
-def run_indexing(index, indexer, ids):
+def run_indexing(index, index_name, ids):
     """Index the objects.
 
     - index: name of the index
@@ -157,6 +158,7 @@ def run_indexing(index, indexer, ids):
     the callback.
 
     """
+    indexer = INDEXER_MAP[index_name]
     indexer.run_indexing(ids, ES, index=index)
 
 
@@ -187,19 +189,19 @@ class Command(BaseCommand):
         Creates a Tasktree that creates a new indexes and indexes all objects,
         then points the alias to this new index when finished.
         """
-        global INDEXES
-
         index_choice = kwargs.get('index', None)
         prefix = kwargs.get('prefix', '')
         force = kwargs.get('force', False)
 
         if index_choice:
             # If we only want to reindex a subset of indexes.
-            INDEXES = INDEX_DICT.get(index_choice, None)
+            INDEXES = INDEX_CHOICES.get(index_choice, None)
             if INDEXES is None:
                 raise CommandError(
                     'Incorrect index name specified. '
-                    'Choose one of: %s' % ', '.join(INDEX_DICT.keys()))
+                    'Choose one of: %s' % ', '.join(INDEX_CHOICES.keys()))
+        else:
+            INDEXES = INDEXERS
 
         if Reindexing.is_reindexing() and not force:
             raise CommandError('Indexation already occuring - use --force to '
@@ -207,26 +209,29 @@ class Command(BaseCommand):
         elif force:
             Reindexing.unflag_reindexing()
 
-        for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
+        for INDEXER in INDEXES:
+            index_name = INDEXER.get_mapping_type_name()
+            chunk_size = INDEXER.chunk_size
+            alias = ES_INDEXES[index_name]
 
-            chunks, total = chunk_indexing(INDEXER, CHUNK_SIZE)
+            chunks, total = chunk_indexing(INDEXER, chunk_size)
             if not total:
-                _print('No items to queue.', ALIAS)
+                _print('No items to queue.', alias)
             else:
-                total_chunks = int(ceil(total / float(CHUNK_SIZE)))
+                total_chunks = int(ceil(total / float(chunk_size)))
                 _print('Indexing {total} items into {n} chunks of size {size}'
-                       .format(total=total, n=total_chunks, size=CHUNK_SIZE),
-                       ALIAS)
+                       .format(total=total, n=total_chunks, size=chunk_size),
+                       alias)
 
             # Get the old index if it exists.
             try:
-                aliases = ES.indices.get_alias(name=ALIAS).keys()
+                aliases = ES.indices.get_alias(name=alias).keys()
             except elasticsearch.NotFoundError:
                 aliases = []
             old_index = aliases[0] if aliases else None
 
             # Create a new index, using the index name with a timestamp.
-            new_index = timestamp_index(prefix + ALIAS)
+            new_index = timestamp_index(prefix + alias)
 
             # See how the index is currently configured.
             if old_index:
@@ -242,23 +247,23 @@ class Command(BaseCommand):
             num_shards = s.get('number_of_shards',
                                settings.ES_DEFAULT_NUM_SHARDS)
 
-            pre_task = pre_index.si(new_index, old_index, ALIAS, INDEXER, {
+            pre_task = pre_index.si(new_index, old_index, alias, index_name, {
                 'analysis': INDEXER.get_analysis(),
                 'number_of_replicas': 0,
                 'number_of_shards': num_shards,
                 'store.compress.tv': True,
                 'store.compress.stored': True,
                 'refresh_interval': '-1'})
-            post_task = post_index.si(new_index, old_index, ALIAS, INDEXER, {
-                'number_of_replicas': num_replicas,
-                'refresh_interval': '5s'})
+            post_task = post_index.si(new_index, old_index, alias, index_name,
+                                      {'number_of_replicas': num_replicas,
+                                       'refresh_interval': '5s'})
 
             # Ship it.
             if not total:
                 # If there's no data we still create the index and alias.
                 chain(pre_task, post_task).apply_async()
             else:
-                index_tasks = [run_indexing.si(new_index, INDEXER, chunk)
+                index_tasks = [run_indexing.si(new_index, index_name, chunk)
                                for chunk in chunks]
 
                 if settings.CELERY_ALWAYS_EAGER:
