@@ -125,21 +125,28 @@
   <a href="#" class="button toggle view-all">{{ _('View all') }}</a>
   <a href="#" class="button toggle hide-all hidden">{{ _('Hide all') }}</a>
   <ul class="feature-choices">
+    {% set has_configure_permission =  action_allowed('Apps', 'Configure') %}
     {% for field in form.required_api_fields() %}
       {% set key = field.name|replace('has_', '')|upper %}
       {% set tooltip = form.get_tooltip(field) %}
-      <li>
-        <label for="{{ field.auto_id }}">
-          {{ field }}
-          <span class="label">{{ field.help_text }}</span>
-          <div class="apis">
-            {% for api in mkt.constants.APP_FEATURES[key].apis %}
-              <code class="api">{{ api }}</code>
-            {% endfor %}
-          </div>
-          {% if tooltip %}<span class="hint">{{ tooltip }}</span>{% endif %}
-        </label>
-      </li>
+      {% if mkt.constants.APP_FEATURES[key]['hidden'] and not has_configure_permission %}
+        {# Hide special features from regular developers. There is no additional security,
+           they can still find out about it in the HTML, but it would be of no use to them. #}
+        <li style="display: none">{{ field.as_hidden() }}</li>
+      {% else %}
+        <li>
+          <label for="{{ field.auto_id }}">
+            {{ field }}
+            <span class="label">{{ field.help_text }}</span>
+            <div class="apis">
+              {% for api in mkt.constants.APP_FEATURES[key].apis %}
+                <code class="api">{{ api }}</code>
+              {% endfor %}
+            </div>
+            {% if tooltip %}<span class="hint">{{ tooltip }}</span>{% endif %}
+          </label>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 {% endmacro %}

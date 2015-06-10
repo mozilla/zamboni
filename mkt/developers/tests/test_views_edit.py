@@ -1502,9 +1502,25 @@ class TestEditVersion(TestEdit):
     def test_existing_features_initial_form_data(self):
         features = self.webapp.current_version.features
         features.update(has_audio=True, has_apps=True)
-        r = self.client.get(self.url)
-        eq_(r.context['appfeatures_form'].initial,
+        response = self.client.get(self.url)
+        eq_(response.context['appfeatures_form'].initial,
             dict(id=features.id, **features.to_dict()))
+        doc = pq(response.content)
+        ok_(doc.find('#id_has_apps[type=checkbox]'))
+
+    def test_openmobileacl_feature(self):
+        features = self.webapp.current_version.features
+        features.update(has_openmobileacl=True)
+        response = self.client.get(self.url)
+        eq_(response.context['appfeatures_form'].initial,
+            dict(id=features.id, **features.to_dict()))
+        doc = pq(response.content)
+        field = doc.find('#id_has_openmobileacl')
+        eq_(field.attr('type'), 'hidden')
+        eq_(field.attr('value'), 'True')
+        version = self.test_post(has_openmobileacl=field.attr('value'))
+        # We should still have the feature.
+        ok_(version.features.has_openmobileacl)
 
     @mock.patch('mkt.webapps.tasks.index_webapps.delay')
     def test_new_features(self, index_webapps):
