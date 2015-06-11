@@ -125,73 +125,75 @@ number, and VERSION is a decimal number indicating the version of the
 features table.
 
 Each bit in the features bitfield represents the presence or absence
-of a feature.
+of a feature. New features will always be added as the least significant
+bit.
 
-Feature table version 7:
+Feature table version 8:
 
-=====  ============================
-  bit   feature
-=====  ============================
-    0   Multiple Network Information
-    1   Third-Party Keyboard Support
-    2   TCP Sockets
-    3   SystemXHR
-    4   Alarms
-    5   Notifications
-    6   Pointer Lock
-    7   Web Speech Recognition
-    8   Web Speech Synthesis
-    9   WebRTC PeerConnection
-   10   WebRTC DataChannel
-   11   WebRTC MediaStream
-   12   Screen Capture
-   13   Microphone
-   14   Camera
-   15   Quota Management
-   16   Gamepad
-   17   Full Screen
-   18   WebM
-   19   H.264
-   20   Web Audio
-   21   Audio
-   22   MP3
-   23   Smartphone-Sized Displays
-   24   Touch
-   25   WebSMS
-   26   WebFM
-   27   Vibration
-   28   Time/Clock
-   29   Screen Orientation
-   30   Simple Push
-   31   Proximity
-   32   Network Stats
-   33   Network Information
-   34   Idle
-   35   Geolocation
-   36   IndexedDB
-   37   Device Storage
-   38   Contacts
-   39   Bluetooth
-   40   Battery
-   41   Archive
-   42   Ambient Light Sensor
-   43   Web Activities
-   44   Web Payment
-   45   Packaged Apps Install API
-   46   App Management API
-   47   Mobile ID
-   48   Asm.js Precompilation
-   49   512MB RAM Device
-   50   1GB RAM Device
-   51   NFC
-=====  ============================
+==============  ===============================
+  bit position   feature
+ =============  ===============================
+             0  OpenMobile ACL
+             1  NFC
+             2  1GB RAM Device
+             3  512MB RAM Device
+             4  Asm.js Precompilation
+             5  Mobile ID
+             6  Multiple Network Information
+             7  Third-Party Keyboard Support
+             8  TCP Sockets
+             9  SystemXHR
+            10  Alarms
+            11  Notifications
+            12  Pointer Lock
+            13  Web Speech Recognition
+            14  Web Speech Synthesis
+            15  WebRTC PeerConnection
+            16  WebRTC DataChannel
+            17  WebRTC MediaStream
+            18  Screen Capture
+            19  Microphone
+            20  Camera
+            21  Quota Management
+            22  Gamepad
+            23  Full Screen
+            24  WebM
+            25  H.264
+            26  Web Audio
+            27  Audio
+            28  MP3
+            29  Smartphone-Sized Displays (qHD)
+            30  Touch
+            31  WebSMS
+            32  WebFM
+            33  Vibration
+            34  Time/Clock
+            35  Screen Orientation
+            36  Simple Push
+            37  Proximity
+            38  Network Stats
+            39  Network Information
+            40  Idle
+            41  Geolocation
+            42  IndexedDB
+            43  Device Storage
+            44  Contacts
+            45  Bluetooth
+            46  Battery
+            47  Archive
+            48  Ambient Light Sensor
+            49  Web Activities
+            50  Web Payment
+            51  Packaged Apps Install API
+            52  App Management API
+==============  ===============================
 
 
 For example, a device with only the 'App Management API', 'Proximity',
 'Ambient Light Sensor', and 'Vibration' features enabled would send this
 feature profile signature::
 
-    8801000000000.52.7
+    11002200000000.53.8
 
 .. [1] `other` denotes a payment system other than the Firefox Marketplace
   payments. This field is not currently populated by the Marketplace Developer

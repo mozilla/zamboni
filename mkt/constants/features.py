@@ -341,6 +341,15 @@ APP_FEATURES = OrderedDict([
         'description': _lazy(u'The app requires access to the Near Field '
                              u'Communication (NFC) API.'),
         'apis': ('navigator.mozNfc',),
+    }),
+    ('OPENMOBILEACL', {
+        # This feature requirement is limited to partners for now, and
+        # therefore has no description, no translation, and will not be shown
+        # to regular developers.
+        'name': u'OpenMobile ACL',
+        'description': '',
+        'apis': (),
+        'hidden': True,
     })
 ])
 
