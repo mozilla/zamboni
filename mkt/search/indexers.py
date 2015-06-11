@@ -35,6 +35,10 @@ class BaseIndexer(object):
     or sorting."""
     hidden_fields = ()
 
+    # How many documents do we use when bulk indexing. The goal is to send
+    # about 2.5mb of data to Elasticsearch during bulk indexing.
+    chunk_size = 500
+
     @classmethod
     def _key(cls, es_settings):
         """

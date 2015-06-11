@@ -294,6 +294,9 @@ class FeedShelfIndexer(BaseIndexer):
 
 
 class FeedItemIndexer(BaseIndexer):
+
+    chunk_size = 1000
+
     @classmethod
     def get_model(cls):
         from mkt.feed.models import FeedItem

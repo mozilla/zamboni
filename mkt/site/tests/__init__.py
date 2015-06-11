@@ -901,7 +901,7 @@ class ESTestCase(TestCase):
             except elasticsearch.NotFoundError as e:
                 print 'Could not delete index %r: %s' % (index, e)
 
-        for index, indexer, batch in reindex.INDEXES:
+        for indexer in reindex.INDEXERS:
             indexer.setup_mapping()
 
     @classmethod
