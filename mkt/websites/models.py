@@ -101,6 +101,10 @@ class Website(ModelBase):
         # devices.
         return [device.id for device in DEVICE_TYPE_LIST]
 
+    @property
+    def device_names(self):
+        return [device.api_name for device in DEVICE_TYPE_LIST]
+
     def is_dummy_content_for_qa(self):
         """
         Returns whether this app is a dummy app used for testing only or not.
