@@ -79,8 +79,10 @@ urlpatterns = patterns(
         {'repo': 'marketplace-operator-dashboard'},
         name='commonplace.operatordashboard'),
 
-    url('^manifest.appcache$', views.appcache_manifest,
-        name='commonplace.appcache'),
+    # Submission:
+    url('^submission/.*$', views.commonplace,
+        {'repo': 'submission'},
+        name='commonplace.submission'),
 )
 
 if settings.DEBUG:

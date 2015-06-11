@@ -590,10 +590,11 @@ except ImportError:
 CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
                               path('node_modules/clean-css/bin/cleancss'))
 
-# Name of our Commonplace repositories on GitHub.
+# Name of our frontend repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'transonic', 'marketplace-operator-dashboard']
-COMMONPLACE_REPOS_APPCACHED = []
+REACT_REPOS = ['submission']
+FRONTEND_REPOS = COMMONPLACE_REPOS + REACT_REPOS
 
 # CSP Settings
 CSP_REPORT_URI = '/services/csp/report'
