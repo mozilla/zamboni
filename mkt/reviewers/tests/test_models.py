@@ -16,16 +16,18 @@ from mkt.reviewers.models import (AdditionalReview, EscalationQueue,
                                   QUEUE_TARAKO, RereviewQueue, ReviewerScore,
                                   tarako_failed, tarako_passed)
 from mkt.site.fixtures import fixture
-from mkt.site.tests import user_factory
+from mkt.site.tests import app_factory, user_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonDeviceType, Webapp
+from mkt.websites.utils import website_factory
 
 
 class TestReviewerScore(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory(status=mkt.STATUS_PENDING)
+        self.app = app_factory(status=mkt.STATUS_PENDING)
+        self.website = website_factory()
         self.user = user_factory(email='editor')
         self.grant_permission(self.user, 'Apps:Review')
         self.admin_user = user_factory(email='admin')
@@ -42,7 +44,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
             'Score event status:%s was not %s' % (status, event)))
 
     def test_events_webapps(self):
-        self.app = mkt.site.tests.app_factory()
+        self.app = app_factory()
         self.check_event(mkt.STATUS_PENDING,
                          mkt.REVIEWED_WEBAPP_HOSTED)
 
@@ -119,6 +121,20 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         score3 = (mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
                   mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2)
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score3)
+
+    def test_award_mark_abuse_points_app(self):
+        ReviewerScore.award_mark_abuse_points(self.user, addon=self.app)
+        score = ReviewerScore.objects.all()[0]
+        eq_(score.score, mkt.REVIEWED_SCORES.get(
+            mkt.REVIEWED_APP_ABUSE_REPORT))
+        eq_(score.note_key, mkt.REVIEWED_APP_ABUSE_REPORT)
+
+    def test_award_mark_abuse_points_website(self):
+        ReviewerScore.award_mark_abuse_points(self.user, website=self.website)
+        score = ReviewerScore.objects.all()[0]
+        eq_(score.score, mkt.REVIEWED_SCORES.get(
+            mkt.REVIEWED_WEBSITE_ABUSE_REPORT))
+        eq_(score.note_key, mkt.REVIEWED_WEBSITE_ABUSE_REPORT)
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')

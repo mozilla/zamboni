@@ -3414,10 +3414,33 @@ class AbuseQueueMixin(object):
             '"%s" doesn\'t start with "%s"' % (txt, teststring))
 
     def test_skip(self):
-        # Skip the first site's reports, which still leaves 2 apps/sites.
-        self._post(False)
+        # Skip the first xxx's reports, which still leaves 2 apps/sites.
+        self._post(mkt.abuse.forms.ABUSE_REPORT_SKIP)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 2)
+
+    def test_first_read(self):
+        # Mark read the first xxx's reports, which leaves one.
+        self._post(mkt.abuse.forms.ABUSE_REPORT_READ)
+        res = self.client.get(self.url)
+        eq_(len(res.context['page'].object_list), 1)
+        # There are two abuse reports for app1/website1, so two log entries.
+        eq_(self._get_logs(self.log_const).count(), 2)
+        # Check the remaining abuse report remains unread.
+        eq_(AbuseReport.objects.filter(read=False).count(), 1)
+
+    def test_first_flag(self):
+        # Flag the first xxx's reports.
+        self._post(mkt.abuse.forms.ABUSE_REPORT_FLAG)
+        res = self.client.get(self.url)
+        # Check one is left.
+        eq_(len(res.context['page'].object_list), 1)
+        # Check the object is flagged.
+        eq_(RereviewQueue.objects.count(), 1)
+        # As flagging marks read too, there should be 2 log entries.
+        eq_(self._get_logs(self.log_const).count(), 2)
+        # Check the remaining abuse report remains unread.
+        eq_(AbuseReport.objects.filter(read=False).count(), 1)
 
     def test_xss(self):
         xss = '<script>alert("xss")</script>'
@@ -3429,11 +3452,22 @@ class AbuseQueueMixin(object):
         assert '&lt;script&gt;' in tbody
         assert '<script>' not in tbody
 
+    def test_deleted_website(self):
+        "Test that a deleted app/website doesn't break the queue."
+        AbuseReport.objects.all()[0].object.delete()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        txt = pq(r.content)('.tabnav li a')[0].text
+        teststring = u'Abuse Reports (1)'
+        ok_(txt.endswith(teststring),
+            '"%s" doesn\'t start with "%s"' % (txt, teststring))
+
 
 class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
                         AbuseQueueMixin):
     perm = 'Apps:ReadAbuse'
     view_name = 'reviewers.apps.queue_abuse'
+    log_const = mkt.LOG.APP_ABUSE_MARKREAD
 
     def setUp(self):
         super(TestAppAbuseQueue, self).setUp()
@@ -3467,16 +3501,6 @@ class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
         # Check there are 2 apps listed.
         eq_(len(res.context['page'].object_list), 2)
 
-    def test_first_read(self):
-        # Mark read the first apps's reports, which leaves one.
-        self._post(True)
-        res = self.client.get(self.url)
-        eq_(len(res.context['page'].object_list), 1)
-        # There are two abuse reports for app1, so two log entries.
-        eq_(self._get_logs(mkt.LOG.APP_ABUSE_MARKREAD).count(), 2)
-        # Check the remaining abuse report remains unread.
-        eq_(AbuseReport.objects.filter(read=False).count(), 1)
-
     def test_queue_count_reviewer_and_moderator(self):
         self.grant_permission(self.abuseviewer_user, 'Apps:Review')
         r = self.client.get(self.url)
@@ -3489,19 +3513,12 @@ class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
         eq_(links[3].text, u'Reviewing (0)')
         eq_(links[4].text, u'Abuse Reports (2)')
 
-    def test_deleted_app(self):
-        "Test that a deleted app doesn't break the queue."
-        AbuseReport.objects.all()[0].addon.delete()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.tabnav li a')[0].text, u'Abuse Reports (1)')
-
 
 class TestWebsiteAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
                             AbuseQueueMixin):
     perm = 'Websites:ReadAbuse'
     view_name = 'reviewers.websites.queue_abuse'
+    log_const = mkt.LOG.WEBSITE_ABUSE_MARKREAD
 
     def setUp(self):
         super(TestWebsiteAbuseQueue, self).setUp()
@@ -3535,23 +3552,9 @@ class TestWebsiteAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
         # Check there are 2 websites listed.
         eq_(len(res.context['page'].object_list), 2)
 
-    def test_first_read(self):
-        # Mark read the first sites's reports, which leaves one.
-        self._post(True)
-        res = self.client.get(self.url)
-        eq_(len(res.context['page'].object_list), 1)
-        # There are two abuse reports for website1, so two log entries.
-        eq_(self._get_logs(mkt.LOG.WEBSITE_ABUSE_MARKREAD).count(), 2)
-        # Check the remaining abuse report remains unread.
-        eq_(AbuseReport.objects.filter(read=False).count(), 1)
-
-    def test_deleted_website(self):
-        "Test that a deleted website doesn't break the queue."
-        AbuseReport.objects.all()[0].website.delete()
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('.tabnav li a')[0].text, u'Website Abuse Reports (1)')
+    def test_first_flag(self):
+        # No re-review flagging for Websites yet - no re-review queue!
+        raise SkipTest()
 
 
 class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):

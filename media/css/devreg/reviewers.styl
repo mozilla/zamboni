@@ -609,6 +609,12 @@ div.editor-stats-table > div.editor-stats-dark {
         padding: 10px;
         text-align: right;
     }
+    label[for$=action_1] {
+        color: $green;
+    }
+    label[for$=action_2] {
+        color: $blue;
+    }
     span.light {
         color: $note-gray;
     }
@@ -617,41 +623,7 @@ div.editor-stats-table > div.editor-stats-dark {
     }
 }
 
-.simple-toggle {
-    background-repeat: repeat-x;
-    border-radius: 3px;
-    cursor: pointer;
-    display: inline-block;
-    font: 400 14px/48px"Feura Sans", FeuraSansWeb, "Open Sans", "Helvetica Neue", Arial, sans-serif;
-    height: 48px;
-    min-width: 100px;
-    padding: 0px 20px;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    width: 2em;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-}
-.simple-toggle {
-    background-color: #FAFBFC;
-    background-image: linear-gradient(#E7E7E7, #FAFBFC);
-    border: 1px solid #B7B7B7;
-    color: #A7A7A7;
-}
-.simple-toggle span:after {
-    content: attr(data-off)
-}
-input:checked + .simple-toggle {
-    background-color: #1793E5;
-    background-image: linear-gradient(#4CB1FF, #1793E5);
-    border: 1px solid #1793E5;
-    color: #FFF;
-}
-input:checked + .simple-toggle span:after {
-    content: attr(data-on)
-}
+
 /* data grid search form */
 #log-filter form {
     margin: 0;

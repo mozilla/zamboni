@@ -38,6 +38,7 @@ ADDITIONAL_REVIEW_FAILED = 26
 DEVELOPER_VERSION_NOTE_FOR_REVIEWER = 27
 REVIEWER_PUBLIC_COMMENT = 28
 REREVIEW_CONTENT_RATING_ADULT = 29
+REREVIEW_ABUSE_APP = 30
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -69,7 +70,8 @@ NOTE_TYPES = {
     ADDITIONAL_REVIEW_PASSED: _('Additional review passed'),
     ADDITIONAL_REVIEW_FAILED: _('Additional review failed'),
     DEVELOPER_VERSION_NOTE_FOR_REVIEWER: _('Version notes for reviewer'),
-    REVIEWER_PUBLIC_COMMENT: _('Public reviewer comment')
+    REVIEWER_PUBLIC_COMMENT: _('Public reviewer comment'),
+    REREVIEW_ABUSE_APP: _('Abuse reports investigation'),
 }
 
 # Note types only visible by reviewers and not developers.
@@ -89,7 +91,8 @@ REVIEWER_NOTE_TYPES = (
     REREVIEW_CLEARED,
     ESCALATION_VIP_APP,
     ESCALATION_PRERELEASE_APP,
-    PRIORITY_REVIEW_REQUESTED
+    PRIORITY_REVIEW_REQUESTED,
+    REREVIEW_ABUSE_APP,
 )
 
 # Note types that can be created through the API view.
@@ -171,6 +174,7 @@ def ACTION_MAP(activity_action):
         mkt.LOG.PRIORITY_REVIEW_REQUESTED.id: PRIORITY_REVIEW_REQUESTED,
         mkt.LOG.PASS_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW_PASSED,
         mkt.LOG.FAIL_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW_FAILED,
+        mkt.LOG.REREVIEW_ABUSE_APP.id: REREVIEW_ABUSE_APP,
     }.get(activity_action, NO_ACTION)
 
 
