@@ -1363,6 +1363,21 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[1]['name'], self.webapp.name)
         eq_(objs[1]['slug'], self.webapp.app_slug)
 
+    def test_search_sort_by_reviewed(self):
+        res = self.anon.get(self.url, data={'lang': 'en-US',
+                                            'sort': 'reviewed'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['doc_type'], 'website')
+        eq_(objs[0]['id'], self.website.pk)
+        eq_(objs[0]['title'], self.website.title)
+        eq_(objs[0]['url'], self.website.url)
+        eq_(objs[1]['doc_type'], 'webapp')
+        eq_(objs[1]['id'], self.webapp.pk)
+        eq_(objs[1]['name'], self.webapp.name)
+        eq_(objs[1]['slug'], self.webapp.app_slug)
+
     def test_search_q(self):
         res = self.anon.get(self.url, data={'q': 'something', 'lang': 'en-US'})
         eq_(res.status_code, 200)

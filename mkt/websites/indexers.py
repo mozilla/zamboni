@@ -84,6 +84,8 @@ class WebsiteIndexer(BaseIndexer):
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
                     'preferred_regions': {'type': 'short'},
+                    'reviewed': {'format': 'dateOptionalTime', 'type': 'date',
+                                 'doc_values': True},
                     'short_name': {'type': 'string',
                                    'analyzer': 'default_icu'},
                     'status': {'type': 'byte'},
@@ -137,6 +139,10 @@ class WebsiteIndexer(BaseIndexer):
         doc['preferred_regions'] = obj.preferred_regions or []
         doc['tags'] = getattr(obj, 'keywords_list', [])
         doc['url_tokenized'] = cls.strip_url(obj.url)
+
+        # For now, websites are not reviewed, since we're manually injecting
+        # data, so just use last_updated.
+        doc['reviewed'] = obj.last_updated
 
         # Add boost, popularity, trending values.
         doc.update(cls.extract_popularity_trending_boost(obj))

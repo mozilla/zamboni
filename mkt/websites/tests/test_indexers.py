@@ -59,6 +59,7 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['default_locale'], self.obj.default_locale)
         eq_(doc['created'], self.obj.created)
         eq_(doc['modified'], self.obj.modified)
+        eq_(doc['reviewed'], self.obj.last_updated)
         eq_(doc['url'], self.obj.url)
         eq_(doc['url_tokenized'],
             unicode(self.indexer.strip_url(self.obj.url)))
