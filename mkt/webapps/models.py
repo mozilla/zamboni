@@ -1247,8 +1247,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         else:
             return self.manifest_url
 
-    def has_icon_in_manifest(self):
-        data = self.get_manifest_json()
+    def has_icon_in_manifest(self, file_obj=None):
+        data = self.get_manifest_json(file_obj)
         return 'icons' in data
 
     def get_manifest_json(self, file_obj=None):
