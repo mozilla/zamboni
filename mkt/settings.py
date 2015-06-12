@@ -409,9 +409,9 @@ CELERY_IGNORE_RESULT = True
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
                   'lib.es.management.commands.reindex')
 CELERY_RESULT_BACKEND = 'amqp'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['pickle']
+CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_RESULT_SERIALIZER = 'pickle'
 
 # We have separate celery workers for processing devhub & images as fast as
 # possible.  Some notes:

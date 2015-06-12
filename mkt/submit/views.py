@@ -103,6 +103,7 @@ def manifest(request):
 
         upload = form.cleaned_data['upload']
         addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
+        file_obj = addon.latest_version.all_files[0]
 
         if form.is_packaged():
             validation = json.loads(upload.validation)
@@ -119,7 +120,7 @@ def manifest(request):
         if premium:
             addon.update(premium_type=premium)
 
-        if addon.has_icon_in_manifest():
+        if addon.has_icon_in_manifest(file_obj):
             # Fetch the icon, do polling.
             addon.update(icon_type='image/png')
         else:
@@ -134,9 +135,7 @@ def manifest(request):
         # Create feature profile.
         addon.latest_version.features.update(**features_form.cleaned_data)
 
-        # Call task outside of `atomic` to avoid it running before
-        # the transaction is committed and not finding the app.
-        tasks.fetch_icon.delay(addon, addon.latest_version.all_files[0])
+        tasks.fetch_icon.delay(addon, file_obj)
 
         return redirect('submit.app.details', addon.app_slug)
 
