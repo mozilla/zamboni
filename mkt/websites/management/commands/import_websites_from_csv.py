@@ -1,4 +1,7 @@
+import collections
 import csv
+import random
+from operator import itemgetter
 from optparse import make_option
 from os.path import basename, splitext
 
@@ -11,10 +14,11 @@ from mpconstants.mozilla_languages import LANGUAGES
 
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.constants.categories import CATEGORY_CHOICES_DICT
-from mkt.constants.regions import REGIONS_DICT
+from mkt.constants.regions import REGIONS_CHOICES_ID_DICT, REGIONS_DICT
 from mkt.tags.models import Tag
 from mkt.translations.utils import to_language
-from mkt.websites.models import Website
+from mkt.webapps.models import Installs, Webapp
+from mkt.websites.models import Website, WebsitePopularity
 from mkt.websites.tasks import fetch_icon
 
 
@@ -30,7 +34,7 @@ class Command(BaseCommand):
 
     """
     help = u'Import Websites from a CSV file'
-    args = u'<file> [--overwrite]'
+    args = u'<file> [--overwrite] [--limit] [--set-popularity]'
     subcommand = splitext(basename(__file__))[0]
 
     option_list = BaseCommand.option_list + (
@@ -51,6 +55,14 @@ class Command(BaseCommand):
             default=None,
             help='Maximum number of sites to import. Skipped websites do not '
                  'count towards the limit',
+        ),
+        make_option(
+            '--set-popularity',
+            action='store_true',
+            dest='set_popularity',
+            default=False,
+            help='Set a (fake) initial popularity and last updated date '
+                 'using the Rank and Unique Moz ID columns in the CSV.',
         ),
     )
 
@@ -202,8 +214,65 @@ class Command(BaseCommand):
         except IOError as err:
             raise CommandError(err)
 
+    def assign_popularity(self):
+        print 'Setting regional popularity values...'
+        for region in self.ranking_per_region.keys():
+            websites_len = len(self.ranking_per_region[region])
+            print u'Setting regional popularity for %d site(s) in %s' % (
+                websites_len, unicode(REGIONS_CHOICES_ID_DICT[region].name))
+            # Sort sites by rank in that region.
+            websites = sorted(self.ranking_per_region[region],
+                              key=itemgetter(1), reverse=True)
+            # Take the same number of popularity values for apps in that
+            # region.
+            apps_popularity = (Installs.objects.filter(region=region)
+                                       .values_list('value', flat=True)
+                                       .order_by('-value')[:websites_len])
+
+            for i, app_popularity_value in enumerate(apps_popularity):
+                # Steal popularity value, minus one just to get a chance to end
+                # up with a more stable ordering (no equal values).
+                pk = websites[i][0]
+                popularity, created = WebsitePopularity.objects.get_or_create(
+                    website_id=pk, region=region)
+                popularity.update(value=app_popularity_value - 1)
+        print 'Setting global popularity values...'
+        GLOBAL_REGION = 0
+        for pk in self.websites:
+            values = list(WebsitePopularity.objects
+                                           .filter(website=pk)
+                                           .exclude(region=GLOBAL_REGION)
+                                           .values_list('value', flat=True))
+            popularity, created = WebsitePopularity.objects.get_or_create(
+                website_id=pk, region=GLOBAL_REGION)
+            popularity.update(value=sum(values))
+
+    def assign_last_updated(self):
+        print 'Setting last updated dates...'
+        # To make new and popular different, assign a random value for
+        # last_updated stolen from the last x apps, where x is twice the number
+        # of websites.
+        desired_len = len(self.websites) * 2
+        last_updated_dates = list(
+            Webapp.objects
+                  .exclude(last_updated=None)
+                  .values_list('last_updated', flat=True)
+                  .order_by('-last_updated')[:desired_len])
+        if len(last_updated_dates) < desired_len:
+            raise CommandError('Not enough apps with a last_updated set in the'
+                               ' database to continue!')
+            return
+        random.shuffle(last_updated_dates)
+        for pk in self.websites:
+            (Website.objects.filter(pk=pk)
+                            .update(last_updated=last_updated_dates.pop()))
+
+    def remember_website_ranking(self, instance, rank):
+        for region in instance.preferred_regions:
+            self.ranking_per_region[region].append((instance.pk, rank))
+        self.websites.append(instance.pk)
+
     def create_instances(self, data):
-        created_instances = []
         created_count = 0
         for i, row in enumerate(data):
             if (i + 1) % 100 == 0:
@@ -214,6 +283,7 @@ class Command(BaseCommand):
                 break
 
             id_ = int(self.clean_string(row['Unique Moz ID']))
+            rank = int(self.clean_string(row['Rank']))
             try:
                 website = Website.objects.get(moz_id=id_)
                 if self.overwrite:
@@ -222,7 +292,9 @@ class Command(BaseCommand):
                     website.delete()
                 else:
                     # Existing website and we were not asked to overwrite: skip
-                    # it!
+                    # it, storing its ranking first to set popularity later.
+                    if self.set_popularity:
+                        self.remember_website_ranking(website, rank)
                     continue
 
             except Website.DoesNotExist:
@@ -238,17 +310,20 @@ class Command(BaseCommand):
                     self.set_url(website, row)
                     website.save()
 
+                    if self.set_popularity:
+                        # Remember ranking to set popularity later.
+                        self.remember_website_ranking(website, rank)
+
                     # Keywords use a M2M, so do that once the website is saved.
                     self.set_tags(website, row)
 
                     # Launch task to fetch icon once we know everything is OK.
                     self.set_icon(website, row)
 
-                    created_instances.append(website)
                     created_count += 1
                 except ParsingError as e:
                     print e.message
-        return created_count, created_instances
+        return created_count
 
     def handle(self, *args, **kwargs):
         if len(args) != 1:
@@ -257,6 +332,15 @@ class Command(BaseCommand):
         filename = args[0]
         self.overwrite = kwargs.get('overwrite', False)
         self.limit = kwargs.get('limit', None)
+        self.set_popularity = kwargs.get('set_popularity', False)
+
+        if self.set_popularity:
+            if self.limit:
+                raise CommandError(
+                    'Can not use --set_popularity with --limit, the full data '
+                    'set is needed to set popularity, aborting.')
+            self.websites = []
+            self.ranking_per_region = collections.defaultdict(list)
 
         with translation.override('en-US'):
             self.languages = dict(LANGUAGES).keys()
@@ -266,11 +350,16 @@ class Command(BaseCommand):
             self.reversed_categories = {unicode(v).lower(): k for k, v
                                         in CATEGORY_CHOICES_DICT.items()}
         data = self.parse(filename)
-        created_count, created_instances = self.create_instances(data)
-        print 'Done, created %d websites.' % created_count
+        created_count = self.create_instances(data)
+        print 'Import phase done, created %d websites.' % created_count
+
+        if self.set_popularity:
+            self.assign_popularity()
+            self.assign_last_updated()
 
         # No need to manually call _send_tasks() even though we are in a
         # management command. The only tasks we are using are fetch_icon(),
         # for which we use original_apply_async() directly, and the indexation
         # task, which would be useless to fire since the fetch icon task will
-        # trigger a save and a re-index anyway.
+        # trigger a save and a re-index anyway. Plus, we won't have many sites
+        # so it's probably simpler to trigger a full reindex.
