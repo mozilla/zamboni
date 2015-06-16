@@ -25,7 +25,7 @@ from mkt.search.views import SearchView
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import app_factory, ESTestCase, TestCase, user_factory
-from mkt.tags.models import AddonTag, Tag
+from mkt.tags.models import Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
@@ -796,8 +796,8 @@ class TestSearchView(RestOAuth, ESTestCase):
         tag1 = Tag.objects.create(tag_text='tagtagtag')
         tag2 = Tag.objects.create(tag_text='tarako')
         Tag.objects.create(tag_text='dummy')
-        AddonTag.objects.create(addon=self.webapp, tag=tag1)
-        AddonTag.objects.create(addon=self.webapp, tag=tag2)
+        self.webapp.tags.add(tag1)
+        self.webapp.tags.add(tag2)
         self.reindex(Webapp)
         res = self.anon.get(self.url, {'tag': 'tarako'})
         eq_(res.status_code, 200)

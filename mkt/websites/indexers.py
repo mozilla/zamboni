@@ -127,7 +127,7 @@ class WebsiteIndexer(BaseIndexer):
         attach_trans_dict(cls.get_model(), [obj])
 
         # Attach tags (keywords).
-        attach_tags([obj], m2m_name='keywords')
+        attach_tags([obj])
 
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
                  'is_disabled', 'last_updated', 'modified', 'status', 'url')

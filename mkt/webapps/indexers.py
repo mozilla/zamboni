@@ -1,4 +1,3 @@
-from functools import partial
 from operator import attrgetter
 
 from django.core.urlresolvers import reverse
@@ -244,8 +243,7 @@ class WebappIndexer(BaseIndexer):
             obj = cls.get_model().objects.no_cache().get(pk=pk)
 
         # Attach everything we need to index apps.
-        attach_tags_apps = partial(attach_tags, m2m_name='tags')
-        for transform in (attach_devices, attach_prices, attach_tags_apps,
+        for transform in (attach_devices, attach_prices, attach_tags,
                           attach_translations):
             transform([obj])
 

@@ -51,7 +51,7 @@ from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
 from mkt.site.storage_utils import copy_stored_file
 from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
                             sorted_groupby)
-from mkt.tags.models import AddonTag, Tag
+from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)
 from mkt.translations.models import attach_trans_dict
@@ -474,7 +474,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     solitude_public_id = models.CharField(max_length=255, null=True,
                                           blank=True)
     is_offline = models.BooleanField(default=False)
-    tags = models.ManyToManyField(Tag, through=AddonTag)
+    tags = models.ManyToManyField(Tag)
 
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)

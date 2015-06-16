@@ -2,7 +2,7 @@ from nose.tools import eq_, ok_
 
 import mkt.site.tests
 from mkt.site.utils import app_factory
-from mkt.tags.models import AddonTag, attach_tags, Tag
+from mkt.tags.models import attach_tags, Tag
 from mkt.websites.utils import website_factory
 
 
@@ -21,24 +21,25 @@ class TestTagManager(mkt.site.tests.TestCase):
 
 
 class TestAttachTags(mkt.site.tests.TestCase):
+
     def test_attach_tags_apps(self):
         tag1 = Tag.objects.create(tag_text='abc', blocked=False)
         tag2 = Tag.objects.create(tag_text='xyz', blocked=False)
         tag3 = Tag.objects.create(tag_text='swearword', blocked=True)
 
         app1 = app_factory()
-        AddonTag.objects.create(tag=tag1, addon=app1)
-        AddonTag.objects.create(tag=tag2, addon=app1)
-        AddonTag.objects.create(tag=tag3, addon=app1)
+        app1.tags.add(tag1)
+        app1.tags.add(tag2)
+        app1.tags.add(tag3)
 
         app2 = app_factory()
-        AddonTag.objects.create(tag=tag2, addon=app2)
-        AddonTag.objects.create(tag=tag3, addon=app2)
+        app2.tags.add(tag2)
+        app2.tags.add(tag3)
 
         app3 = app_factory()
 
         ok_(not hasattr(app1, 'tags_list'))
-        attach_tags([app3, app2, app1], m2m_name='tags')
+        attach_tags([app3, app2, app1])
         eq_(app1.tags_list, ['abc', 'xyz'])
         eq_(app2.tags_list, ['xyz'])
         ok_(not hasattr(app3, 'tags_list'))
@@ -60,7 +61,7 @@ class TestAttachTags(mkt.site.tests.TestCase):
         website3 = website_factory()
 
         ok_(not hasattr(website1, 'keywords_list'))
-        attach_tags([website3, website2, website1], m2m_name='keywords')
+        attach_tags([website3, website2, website1])
         eq_(website1.keywords_list, ['abc', 'xyz'])
         eq_(website2.keywords_list, ['xyz'])
         ok_(not hasattr(website3, 'keywords_list'))

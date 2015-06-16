@@ -37,37 +37,35 @@ class Tag(ModelBase):
     def get_url_path(self):
         return reverse('tags.detail', args=[self.tag_text])
 
-    def save_tag(self, addon):
+    @classmethod
+    def _get_m2m_name(cls, obj):
+        """Return the related field name of the m2n on Tag."""
+        related_models = cls._meta.get_all_related_m2m_objects_with_model()
+        field_map = {rm[0].model: rm[0].field.name for rm in related_models}
+        return field_map.get(obj._meta.model)
+
+    def save_tag(self, obj):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
-        AddonTag.objects.get_or_create(addon=addon, tag=tag)
-        mkt.log(mkt.LOG.ADD_TAG, tag, addon)
+        getattr(obj, self._get_m2m_name(obj)).add(tag)
+        mkt.log(mkt.LOG.ADD_TAG, self.tag_text, obj)
         return tag
 
-    def remove_tag(self, addon):
-        tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
-        for addon_tag in AddonTag.objects.filter(addon=addon, tag=tag):
-            addon_tag.delete()
-        mkt.log(mkt.LOG.REMOVE_TAG, tag, addon)
+    def remove_tag(self, obj):
+        for tag in obj.tags.filter(tag_text=self.tag_text):
+            getattr(obj, self._get_m2m_name(obj)).remove(tag)
+        mkt.log(mkt.LOG.REMOVE_TAG, self.tag_text, obj)
 
 
-class AddonTag(ModelBase):
-    addon = models.ForeignKey('webapps.Webapp', related_name='addon_tags')
-    tag = models.ForeignKey(Tag, related_name='addon_tags')
-
-    class Meta:
-        db_table = 'users_tags_addons'
-
-
-def attach_tags(objs, m2m_name):
+def attach_tags(objs):
     """
     Fetch tags from `objs` in one query and then attach them to a property on
-    each instance. The name of the property will be `m2m_name` + '_list'.
+    each instance.
 
-    Assumes every instance in `objs` uses the same model, and needs `m2m_name`
-    to be set to the name of the m2m field between the model and Tag.
+    Assumes every instance in `objs` uses the same model.
     """
     if objs:
         obj_dict = {obj.id: obj for obj in objs}
+        m2m_name = Tag._get_m2m_name(objs[0])
         field_name = getattr(objs[0], m2m_name).query_field_name
         qs = (Tag.objects.not_blocked()
               .filter(**{'%s__in' % field_name: obj_dict.keys()})

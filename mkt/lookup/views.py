@@ -322,7 +322,7 @@ def app_summary(request, addon_id):
 def website_summary(request, addon_id):
     website = get_object_or_404(Website, pk=addon_id)
     if not hasattr(website, 'keywords_list'):
-        attach_tags([website], m2m_name='keywords')
+        attach_tags([website])
 
     return render(request, 'lookup/website_summary.html', {
         'website': website,

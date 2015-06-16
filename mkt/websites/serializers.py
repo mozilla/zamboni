@@ -31,7 +31,7 @@ class WebsiteSerializer(serializers.ModelSerializer):
 
     def get_keywords(self, obj):
         if not hasattr(obj, 'keywords_list'):
-            attach_tags([obj], m2m_name='keywords')
+            attach_tags([obj])
         return getattr(obj, 'keywords_list', [])
 
 

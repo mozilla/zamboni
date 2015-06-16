@@ -219,7 +219,7 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_tags(self, app):
         if not hasattr(app, 'tags_list'):
-            attach_tags([app], m2m_name='tags')
+            attach_tags([app])
         return getattr(app, 'tags_list', [])
 
     def get_upsell(self, app):

@@ -25,7 +25,7 @@ from mkt.prices.models import Price, PriceCurrency
 from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
 from mkt.site.tests import MktPaths, app_factory, TestCase
-from mkt.tags.models import AddonTag, Tag
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AddonUser, Preview, Webapp)
@@ -663,8 +663,8 @@ class TestAppDetail(RestOAuth):
     def test_tags(self):
         tag1 = Tag.objects.create(tag_text='example1')
         tag2 = Tag.objects.create(tag_text='example2')
-        AddonTag.objects.create(tag=tag1, addon=self.app)
-        AddonTag.objects.create(tag=tag2, addon=self.app)
+        self.app.tags.add(tag1)
+        self.app.tags.add(tag2)
         res = self.client.get(self.get_url, pk=self.app.app_slug)
         data = json.loads(res.content)
         eq_(data['tags'], ['example1', 'example2'])
