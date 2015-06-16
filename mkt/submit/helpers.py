@@ -1,5 +1,8 @@
-from jingo import register, env
+import re
+
 import jinja2
+from jingo import register, env
+from langid import classify
 
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
@@ -38,3 +41,33 @@ def progress(request, addon, step):
     c = dict(steps=steps, current=step, completed=completed)
     t = env.get_template('submit/helpers/progress.html').render(c)
     return jinja2.Markup(t)
+
+
+def guess_language(text):
+    """
+    Passed a string, returns a two-tuple indicating the language of that
+    string, and the confidence on a 0-1.0 scale.
+
+    If the confidence is below 0.7, or below 0.9 in a string of 3 words or
+    less, will return None.
+    """
+    guess, confidence = classify(text)
+    if confidence < 0.7:
+        return None
+    elif confidence < 0.9:
+        word_count = len(re.findall(r"[\w']+", text))
+        if word_count <= 3:
+            return None
+    return guess
+
+
+def string_to_translatedfield_value(text):
+    """
+    Passed a string, will return a dict mapping 'language': string, suitable to
+    be assigned to the value of a TranslatedField. If the language can not be
+    determined with confidence, will assume en-US.
+    """
+    lang = guess_language(text)
+    if lang:
+        return {lang: text}
+    return {'en-us': text}
