@@ -2037,7 +2037,7 @@ msgstr "ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਬਾਲਗ ਤੇ ਬਦਲੀ �
 
 #: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
-msgstr "ਤੁਸੀਂ ਨਹੀਂ ਚੁਣਿਆ {ਇਲਾਕਾ}।"
+msgstr "ਤੁਸੀਂ ਨਹੀਂ ਚੁਣਿਆ {region}।"
 
 #: mkt/developers/forms.py:121
 msgid "All team members must have read and agreed to the developer agreement."
