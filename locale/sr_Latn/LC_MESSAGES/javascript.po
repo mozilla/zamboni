@@ -10,7 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1410957415.0\n"
 
@@ -30,7 +31,8 @@ msgstr "Slike moraju biti PNG ili JPG formata."
 msgid "Videos must be in WebM."
 msgstr "Video snimci moraju biti u WebM formatu."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Došlo je do problema pri kontaktiranju servera."
 
@@ -78,7 +80,8 @@ msgstr[0] "&hellip;i još {0}"
 msgstr[1] "&hellip;i još {0}"
 msgstr[2] "&hellip;i još {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Pogledajte potpuni izveštaj pregleda"
 
@@ -128,7 +131,7 @@ msgstr "Manifest aplikacije je neispravan."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "Aplikacija je već instalirana."
+msgstr "Aplikacija je već instalirana."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
@@ -206,27 +209,36 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr "Omogućeno"
+msgstr "Omogućeno"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr "Onemogućeno"
+msgstr "Onemogućeno"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo održavanja sajta. Molimo probajte malo kasnije."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Ova mogućnost je privremeno onemogućena dok obavljamo održavanja sajta. "
+"Molimo probajte malo kasnije."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Ukloni ovu lokalizaciju"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom adresom e-pošte?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom "
+"adresom e-pošte?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Prijava putem Persona sistema je neuspešna. Došlo je do greške na serveru."
+msgstr ""
+"Prijava putem Persona sistema je neuspešna. Došlo je do greške na serveru."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
@@ -234,7 +246,7 @@ msgstr "Status uspešno promenjen u \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr "Nemoguće promeniti status u \"{0}\""
+msgstr "Nemoguće promeniti status u \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -254,11 +266,11 @@ msgstr "Sertifikovano"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr "Ovlašćeno"
+msgstr "Ovlašćeno"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr "Neovlašćeno"
+msgstr "Neovlašćeno"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
@@ -302,7 +314,9 @@ msgstr "HEBIC Grčke/Kod banke Indonezije"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Kod banke Ujedinjenog Kraljevstva/Irske ili prefiks novozelandskog naloga ili Australijski BSB kod"
+msgstr ""
+"Kod banke Ujedinjenog Kraljevstva/Irske ili prefiks novozelandskog naloga "
+"ili Australijski BSB kod"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -327,24 +341,40 @@ msgstr "Otkriveno: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledećih aplikacija. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
-msgstr[1] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
-msgstr[2] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledećih "
+"aplikacija. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
+msgstr[1] ""
+"Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće "
+"aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
+msgstr[2] ""
+"Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće "
+"aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr "{appName} nalozi za plaćanje:"
+msgstr "{appName} nalozi za plaćanje:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Greška"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr "Došlo je do greške prilikom kontaktiranja servera za plaćanje."
+msgstr "Došlo je do greške prilikom kontaktiranja servera za plaćanje."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
@@ -352,7 +382,7 @@ msgstr "Greška tokom autentifikacije"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
-msgstr "Trenutno nemate ni jedan nalog za plaćanje."
+msgstr "Trenutno nemate ni jedan nalog za plaćanje."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -502,7 +532,7 @@ msgstr "Preskoči za sada"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr "Plaćanje neuspešno. Pokušajte kasnije."
+msgstr "Plaćanje neuspešno. Pokušajte kasnije."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
@@ -510,7 +540,7 @@ msgstr "Upakovana aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr "Ovlašćena aplikacija"
+msgstr "Ovlašćena aplikacija"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
@@ -536,11 +566,13 @@ msgstr "Besplatno"
 msgid "Any"
 msgstr "Bilo koju"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Odobrena aplikacija: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Odbijena aplikacija: {app}"
 
@@ -561,8 +593,12 @@ msgid "Error failing app: {app}"
 msgstr "Error failing aplikacija: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Izvinjavamo se! Imali smo grešku pri preuzimanju istorije pregleda. Molimo Vas pokušajte ponovo da se prijavite.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Izvinjavamo se! Imali smo grešku pri preuzimanju istorije pregleda. Molimo "
+"Vas pokušajte ponovo da se prijavite.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
