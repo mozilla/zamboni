@@ -26,8 +26,8 @@ class WebsiteSerializer(serializers.ModelSerializer):
                   'url']
 
     def get_icons(self, obj):
-        return dict([(icon_size, obj.get_icon_url(icon_size))
-                     for icon_size in CONTENT_ICON_SIZES])
+        return {icon_size: obj.get_icon_url(icon_size)
+                for icon_size in CONTENT_ICON_SIZES}
 
     def get_keywords(self, obj):
         if not hasattr(obj, 'keywords_list'):

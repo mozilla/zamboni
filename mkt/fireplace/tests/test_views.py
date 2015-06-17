@@ -11,23 +11,35 @@ from nose.tools import eq_, ok_
 import mkt
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.fireplace.serializers import FireplaceAppSerializer
+from mkt.fireplace.serializers import (FireplaceAppSerializer,
+                                       FireplaceWebsiteSerializer)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.webapps.models import AddonUser, Installed, Webapp
+from mkt.websites.models import Website, WebsitePopularity
+from mkt.websites.utils import website_factory
 
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
-FIREPLACE_EXCLUDED_FIELDS = (
+FIREPLACE_APP_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
     'regions', 'resource_uri', 'supported_locales', 'tags', 'upsold',
     'versions')
 
+FIREPLACE_WEBSITE_EXCLUDED_FIELDS = ('title', )
+
 
 def assert_fireplace_app(data):
-    for field in FIREPLACE_EXCLUDED_FIELDS:
+    for field in FIREPLACE_APP_EXCLUDED_FIELDS:
         ok_(field not in data, field)
     for field in FireplaceAppSerializer.Meta.fields:
+        ok_(field in data, field)
+
+
+def assert_fireplace_website(data):
+    for field in FIREPLACE_WEBSITE_EXCLUDED_FIELDS:
+        ok_(field not in data, field)
+    for field in FireplaceWebsiteSerializer.Meta.fields:
         ok_(field in data, field)
 
 
@@ -121,7 +133,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         ok_('featured' not in res.json)
         ok_('collections' not in res.json)
         ok_('operator' not in res.json)
-        return res
 
     def test_anonymous_user(self):
         res = self.anon.get(self.url)
@@ -146,16 +157,49 @@ class TestSearchView(RestOAuth, ESTestCase):
             urlparse(self.webapp.get_icon_url(128))[0:3])
 
 
-class TestMultiSearchView(TestSearchView):
-    # The fireplace variant of multi-search view is only different for apps
-    # at the moment, not websites, so simply re-use TestSearchView tests.
+class TestMultiSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
     def setUp(self):
         super(TestMultiSearchView, self).setUp()
         self.url = reverse('fireplace-multi-search-api')
+        self.website = website_factory()
+        self.website.popularity.add(WebsitePopularity(region=0, value=666))
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.reindex(Webapp)
+        self.reindex(Website)
 
-    def test_get(self):
-        res = super(TestMultiSearchView, self).test_get()
-        eq_(res.json['objects'][0]['doc_type'], 'webapp')
+    def tearDown(self):
+        Website.get_indexer().unindexer(_all=True)
+        super(TestMultiSearchView, self).tearDown()
+
+    def test_get_multi(self):
+        res = self.client.get(self.url)
+        objects = res.json['objects']
+        eq_(objects[0]['doc_type'], 'website')
+        assert_fireplace_website(objects[0])
+        eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
+        eq_(objects[1]['doc_type'], 'webapp')
+        assert_fireplace_app(objects[1])
+
+    def test_icons(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        eq_(objects[0]['doc_type'], 'website')
+        data = objects[0]['icons']
+        eq_(len(data), 2)
+        eq_(urlparse(data['64'])[0:3],
+            urlparse(self.website.get_icon_url(64))[0:3])
+        eq_(urlparse(data['128'])[0:3],
+            urlparse(self.website.get_icon_url(128))[0:3])
+        eq_(objects[1]['doc_type'], 'webapp')
+        data = objects[1]['icons']
+        eq_(len(data), 2)
+        eq_(urlparse(data['64'])[0:3],
+            urlparse(self.webapp.get_icon_url(64))[0:3])
+        eq_(urlparse(data['128'])[0:3],
+            urlparse(self.webapp.get_icon_url(128))[0:3])
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):
