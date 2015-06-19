@@ -11,88 +11,13 @@ from django_extensions.db.fields.json import JSONField
 
 import mkt
 from lib.utils import static_url
-from mkt.api.fields import IntegerRangeField
 from mkt.constants.applications import DEVICE_TYPE_LIST
 from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.utils import get_icon_url
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
-from mkt.users.models import UserProfile
 from mkt.websites.indexers import WebsiteIndexer
-
-
-class WebsiteSubmissionManager(ManagerBase):
-    """
-    Custom manager for the WebsiteSubmission model. By default, exclude all
-    approved sites from querysets.
-    """
-    def get_queryset(self):
-        qs = super(WebsiteSubmissionManager, self).get_queryset()
-        return qs.filter(approved=False)
-
-    def approved(self):
-        qs = super(WebsiteSubmissionManager, self).get_queryset()
-        return qs.filter(approved=True)
-
-
-class WebsiteSubmission(ModelBase):
-    """
-    Model representing a website submission.
-
-    When approved, the data from this will be copied to a new instance of the
-    Website model, and approved=True will be set on the submission instance.
-    """
-    name = TranslatedField()
-    keywords = models.ManyToManyField(Tag)
-    description = TranslatedField()
-    categories = JSONField(default=None)
-
-    date_approved = models.DateTimeField(blank=True)
-
-    # `detected_icon` is the URL of the icon we are able to gather from the
-    # submitted site's metadata. In the reviewer tools, reviewers will be able
-    # to accept that icon, or upload one of their own.
-    detected_icon = models.URLField(max_length=255, blank=True)
-    icon_type = models.CharField(max_length=25, blank=True)
-    icon_hash = models.CharField(max_length=8, blank=True)
-
-    # The `url` field is the URL as entered by the submitter. The
-    # `canonical_url` field is the URL that the site reports as the canonical
-    # location for the submitted URL. In the reviewer tools, reviewers will
-    # have the ability to copy the `canonical_url` value to the `url` field.
-    url = models.URLField(max_length=255)
-    canonical_url = models.URLField(max_length=255, blank=True, null=True)
-
-    # A 1-5 Likert scale indicating how well the submitter says the website
-    # works. This is primarily used to make the submitter question the
-    # relevance of their submission, though submissions should be prevented if
-    # the user says it works poorly.
-    works_well = IntegerRangeField(min_value=2, max_value=5)
-
-    # Who is submitting the website? Do they want public credit for their
-    # submission?
-    submitter = models.ForeignKey(UserProfile,
-                                  related_name='websites_submitted')
-    public_credit = models.BooleanField(default=False)
-
-    # Why does the user think the website is relevant to Marketplace?
-    why_relevant = models.TextField()
-
-    # If the submitter says the website is relevant worldwide,
-    # preferred_regions should be set to [].
-    preferred_regions = JSONField(default=None)
-
-    # Turn true when a reviewer has approved and published a submission.
-    approved = models.BooleanField(default=False)
-
-    objects = WebsiteSubmissionManager()
-
-    class Meta:
-        ordering = (('-modified'), )
-
-    def __unicode__(self):
-        return unicode(self.url)
 
 
 class WebsiteManager(ManagerBase):
