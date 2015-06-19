@@ -2,12 +2,10 @@ from gzip import GzipFile
 import json
 from StringIO import StringIO
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -61,6 +59,12 @@ class TestCommonplace(CommonplaceTestMixin):
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
+    def test_submission(self):
+        res = self._test_url('/submission/')
+        self.assertTemplateUsed(res, 'commonplace/index_react.html')
+        self.assertEquals(res.context['repo'], 'submission')
+        eq_(res['Cache-Control'], 'max-age=180')
+
     @mock.patch('mkt.commonplace.views.fxa_auth_info')
     def test_transonic(self, mock_fxa):
         mock_fxa.return_value = ('fakestate', 'http://example.com/fakeauthurl')
@@ -93,39 +97,6 @@ class TestCommonplace(CommonplaceTestMixin):
             res = self._test_url(url)
             self.assertEquals(res.context['geoip_region'], test_region)
             self.assertContains(res, 'data-region="testoland"')
-
-
-class TestAppcacheManifest(CommonplaceTestMixin):
-
-    def test_no_repo(self):
-        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
-            raise SkipTest
-
-        res = self.client.get(reverse('commonplace.appcache'))
-        eq_(res.status_code, 404)
-
-    def test_bad_repo(self):
-        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
-            raise SkipTest
-
-        res = self.client.get(reverse('commonplace.appcache'),
-                              {'repo': 'transonic'})
-        eq_(res.status_code, 404)
-
-    @mock.patch('mkt.commonplace.views.get_build_id', new=lambda x: 'p00p')
-    @mock.patch('mkt.commonplace.views.get_imgurls')
-    def test_good_repo(self, get_imgurls_mock):
-        if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
-            raise SkipTest
-
-        img = '/media/img/icons/eggs/h1.gif'
-        get_imgurls_mock.return_value = [img]
-        res = self._test_url(reverse('commonplace.appcache'),
-                             {'repo': 'fireplace'})
-        eq_(res.status_code, 200)
-        assert '# BUILD_ID p00p' in res.content
-        img = img.replace('/media/', '/media/fireplace/')
-        assert img + '\n' in res.content
 
 
 class TestIFrames(CommonplaceTestMixin):
