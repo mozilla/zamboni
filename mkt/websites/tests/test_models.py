@@ -42,9 +42,15 @@ class TestWebsiteModel(TestCase):
         website = Website(pk=1, icon_type='image/png', icon_hash='abcdef')
         assert website.get_icon_url(32).endswith('?modified=abcdef')
 
-    def test_get_icon_no_icon(self):
-        website = Website(pk=1)
-        assert website.get_icon_url(32).endswith('/default-32.png')
+    def test_get_icon_no_icon_blue(self):
+        website = Website(pk=8)
+        url = website.get_icon_url(32)
+        assert url.endswith('hub/asia-australia-blue-32.png'), url
+
+    def test_get_icon_no_icon_pink(self):
+        website = Website(pk=164)
+        url = website.get_icon_url(32)
+        assert url.endswith('hub/europe-africa-pink-32.png'), url
 
     def test_get_preferred_regions(self):
         website = Website()

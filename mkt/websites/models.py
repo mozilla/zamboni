@@ -20,6 +20,14 @@ from mkt.translations.fields import save_signal, TranslatedField
 from mkt.websites.indexers import WebsiteIndexer
 
 
+DEFAULT_ICON_REGIONS = ['americas', 'asia-australia', 'europe-africa']
+DEFAULT_ICON_COLORS = ['blue', 'cerulean', 'green', 'orange', 'pink', 'purple',
+                       'red', 'yellow']
+DEFAULT_ICONS = ['-'.join([region, color])
+                 for region in DEFAULT_ICON_REGIONS
+                 for color in DEFAULT_ICON_COLORS]
+
+
 class WebsiteManager(ManagerBase):
     def valid(self):
         return self.filter(status__in=LISTED_STATUSES, is_disabled=False)
@@ -117,7 +125,10 @@ class Website(ModelBase):
         return os.path.join(settings.WEBSITE_ICONS_PATH, str(self.pk / 1000))
 
     def get_icon_url(self, size):
-        return get_icon_url(static_url('WEBSITE_ICON_URL'), self, size)
+        icon_name = '{icon}-{{size}}.png'.format(
+            icon=DEFAULT_ICONS[self.pk % len(DEFAULT_ICONS)])
+        return get_icon_url(static_url('WEBSITE_ICON_URL'), self, size,
+                            default_format=icon_name)
 
     def get_url_path(self):
         return reverse('website.detail', kwargs={'pk': self.pk})
