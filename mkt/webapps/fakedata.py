@@ -334,7 +334,7 @@ def generate_apps(hosted=0, packaged=0, privileged=0, versions=('public',),
 GENERIC_DESCRIPTION = ""
 
 
-def generate_apps_from_specs(orig_specs, specdir, repeats=0):
+def generate_apps_from_specs(orig_specs, specdir, repeats=0, prefix=''):
     global GENERIC_DESCRIPTION
     apps = []
     repeat_specs = orig_specs * repeats
@@ -365,7 +365,7 @@ def generate_apps_from_specs(orig_specs, specdir, repeats=0):
         if spec.get('manifest_file'):
             spec['manifest_file'] = os.path.join(specdir,
                                                  spec['manifest_file'])
-        spec['name'] = spec.get('name', appname)
+        spec['name'] = '%s%s' % (prefix, spec.get('name', appname))
         spec['categories'] = spec.get('categories', [cat_slug])
         apps.append(generate_app_from_spec(**spec))
     return apps
