@@ -15,16 +15,21 @@ class Command(BaseCommand):
     """
 
     help = 'Generate example apps for QA'
-    args = '<JSON spec filename> <number of repeats>'
+    args = '<JSON spec filename> <number of repeats> <name prefix>'
 
     def handle(self, *args, **kwargs):
         if len(args) < 1:
             raise CommandError('Provide a spec filename.')
 
         specs = json.load(open(args[0]))
-        repeats = 1
+        repeats = 0
         if (len(args) > 1):
             repeats = int(args[1])
+        if (len(args) > 2):
+            prefix = str(args[2])
+        else:
+            prefix = ''
         generate_apps_from_specs(specs,
                                  os.path.abspath(os.path.dirname(args[0])),
-                                 repeats)
+                                 repeats,
+                                 prefix)
