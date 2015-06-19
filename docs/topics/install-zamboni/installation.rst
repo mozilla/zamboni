@@ -71,7 +71,7 @@ which adds commands to your shell.
 Since each shell setup is different, you can install everything you need
 and configure your shell using the `virtualenv-burrito`_. Type this::
 
-    curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+    curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
 
 Open a new shell to test it out. You should have the ``workon`` and
 ``mkvirtualenv`` commands.
