@@ -1,0 +1,22 @@
+{
+    "name": "Pets",
+    "description": "Random app that does magical things.",
+    "launch_path": "/",
+    "icons": {
+        "16": "https://fbstatic-a.akamaihd.net/rsrc.php/v2/yu/r/9a_ZCHI6igB.png",
+        "32": "https://fbstatic-a.akamaihd.net/rsrc.php/v2/yO/r/hwIuG_aaRN5.png",
+        "48": "https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/nxIyFtMM33u.png",
+        "128": "https://fbstatic-a.akamaihd.net/rsrc.php/v2/yo/r/---VLP2qoii.png",
+        "256": "https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/yi-h6CNodEW.png"
+    },
+    "developer": {
+        "name": "Mozilla",
+        "url": "http://www.mozilla.org"
+    },
+    "default_locale": "en",
+    "permissions": {
+        "geolocation": {
+            "description": "gonna see where you are"
+        }
+    }
+}

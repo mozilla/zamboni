@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
 
@@ -426,29 +425,3 @@ class SemiSerializerMethodField(serializers.SerializerMethodField):
     """
     def field_from_native(self, data, files, field_name, into):
         into[field_name] = data.get(field_name, None)
-
-
-class IntegerRangeField(models.IntegerField):
-    """
-    Subclass of IntegerField that adds two params:
-
-    - `min_value` - minimum value of the field
-    - `max_value` - maximum value of the field
-
-    Usage:
-    likert_field = models.IntegerRangeField(min_value=1, max_value=5)
-    """
-    def __init__(self, verbose_name=None, name=None, min_value=None,
-                 max_value=None, **kwargs):
-        self.min_value = min_value
-        self.max_value = max_value
-        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
-
-    def to_python(self, value):
-        if self.min_value is not None and value < self.min_value:
-            raise ValidationError('%s is less than the min value of %s' % (
-                                  value, self.min_value))
-        if self.max_value is not None and value > self.max_value:
-            raise ValidationError('%s is more than the max value of %s' % (
-                                  value, self.max_value))
-        return super(IntegerRangeField, self).to_python(value)

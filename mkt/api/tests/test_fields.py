@@ -8,9 +8,9 @@ from rest_framework.request import Request
 from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
 
-from mkt.api.fields import (ESTranslationSerializerField, IntegerRangeField,
-                            SlugChoiceField, SlugOrPrimaryKeyRelatedField,
-                            SplitField, TranslationSerializerField)
+from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
+                            SlugOrPrimaryKeyRelatedField, SplitField,
+                            TranslationSerializerField)
 from mkt.carriers import CARRIER_MAP
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
@@ -393,40 +393,3 @@ class TestSplitField(TestCase):
         eq_(self.request, field.output.context['request'],
             self.serializer.context['request'])
         ok_(not hasattr(field.input, 'context'))
-
-
-class TestIntegerRangeField(TestCase):
-    field_class = IntegerRangeField
-
-    def setUp(self):
-        self.field = None
-
-    def set_field(self, min_value=None, max_value=None):
-        self.field = self.field_class(min_value=min_value, max_value=max_value)
-
-    def is_invalid(self, value):
-        with self.assertRaises(ValidationError):
-            self.field.to_python(value)
-
-    def is_valid(self, value):
-        eq_(value, self.field.to_python(value))
-
-    def test_min_value(self):
-        self.set_field(min_value=2)
-        self.is_invalid(1)
-        self.is_valid(2)
-        self.is_valid(3)
-
-    def test_max_value(self):
-        self.set_field(max_value=2)
-        self.is_valid(1)
-        self.is_valid(2)
-        self.is_invalid(3)
-
-    def test_min_max_value(self):
-        self.set_field(min_value=2, max_value=4)
-        self.is_invalid(1)
-        self.is_valid(2)
-        self.is_valid(3)
-        self.is_valid(4)
-        self.is_invalid(5)

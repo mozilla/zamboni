@@ -1,0 +1,15 @@
+    {
+        "name": "TuneIn Radio", 
+        "default_locale": "en", 
+        "icons": {
+            "128": "http://d11im0xz45jykv.cloudfront.net/partners/TuneInOnTeal128x128.jpg", 
+            "60": "http://d11im0xz45jykv.cloudfront.net/partners/TuneInOnTeal60x60.png", 
+            "512": "http://d11im0xz45jykv.cloudfront.net/partners/TuneInOnTeal512x512.jpg"
+        }, 
+        "description": "Listen to the world\u2019s largest collection of radio stations absolutely free.  TuneIn has all of the best sports, news, music and talk radio as well as live events and top podcasts.  Stream over 100,000 real radio stations, playing live from around the world.  This is real radio.", 
+        "launch_path": "/?utm_source=FirefoxMarketplace&utm_medium=marketplace&utm_campaign=FirefoxMarketplace", 
+        "developer": {
+            "url": "http://www.tunein.com", 
+            "name": "TuneIn, Inc."
+        }
+    }
