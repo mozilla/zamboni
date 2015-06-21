@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-06-17 03:22+0000\n"
-"Last-Translator: Siddharth <sid_shanker@hotmail.com>\n"
+"PO-Revision-Date: 2015-06-21 08:57+0000\n"
+"Last-Translator: archana <archana.changotra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434511353.0\n"
+"X-POOTLE-MTIME: 1434877060.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -224,7 +224,6 @@ msgstr ""
 "नहीं हो?"
 
 #: media/js/devreg/login.js:131
-#, fuzzy
 msgid "Persona login failed. A server error was encountered."
 msgstr "व्यक्तित्व लॉगिन विफल रहा. एक सर्वर त्रुटि पाया गया."
 
@@ -330,6 +329,10 @@ msgstr "Detected: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"भुगतान खाता हटाने \"{0}\" निम्नलिखित क्षुधा से भुगतान खाते को हटा देगा. एक "
+"भुगतान खाते के बिना आवेदन नहीं रह बिक्री के लिए उपलब्ध हो जाएगा. भुगतान खाता "
+"हटाने \"{0}\" निम्नलिखित क्षुधा से भुगतान खाते को हटा देगा. एक भुगतान खाते के "
+"बिना आवेदन नहीं रह बिक्री के लिए उपलब्ध हो जाएगा."
 msgstr[1] ""
 
 #: media/js/devreg/payments-manage.js:45
