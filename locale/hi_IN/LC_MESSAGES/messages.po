@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:25-0700\n"
-"PO-Revision-Date: 2015-03-20 19:28+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2015-06-17 03:22+0000\n"
+"Last-Translator: Siddharth <sid_shanker@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426879708.0\n"
+"X-POOTLE-MTIME: 1434511353.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -84,20 +84,20 @@ msgstr "Firefox Mobile"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "फ़ायरफ़ाॅक्स टैबलेट"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:45 mkt/search/forms.py:52
 msgid "Firefox OS"
-msgstr ""
+msgstr "                  फ़ायरफ़ॉक्स ओएस                "
 
 #: mkt/constants/apps.py:9
 msgid "User"
-msgstr ""
+msgstr "प्रयोगकर्ता"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr ""
+msgstr "समीक्षक"
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
@@ -205,35 +205,35 @@ msgstr "बरमूडा"
 
 #: mkt/constants/bango.py:44
 msgid "Bhutan"
-msgstr ""
+msgstr "भूटान"
 
 #: mkt/constants/bango.py:45
 msgid "Bolivia"
-msgstr ""
+msgstr "बोलीविया"
 
 #: mkt/constants/bango.py:46
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "बोनेयर, सेंट Eustatius और सबा"
 
 #: mkt/constants/bango.py:47
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "बोस्निया और हर्जेगोविना"
 
 #: mkt/constants/bango.py:48 mkt/constants/regions.py:72
 msgid "Botswana"
-msgstr ""
+msgstr "बोत्सवाना"
 
 #: mkt/constants/bango.py:49
 msgid "Bouvet Island"
-msgstr ""
+msgstr "बुवेत द्वीप"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
 msgid "Brazil"
-msgstr ""
+msgstr "बुवेत द्वीप"
 
 #: mkt/constants/bango.py:51
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "ब्रिटिश भारतीय महासागर क्षेत्र"
 
 #: mkt/constants/bango.py:52
 msgid "Brunei Darussalam"
@@ -273,11 +273,11 @@ msgstr "केमैन द्वीप"
 
 #: mkt/constants/bango.py:61 mkt/constants/regions.py:73
 msgid "Central African Republic"
-msgstr ""
+msgstr "केन्द्रीय अफ्रिकी गणतंत्र"
 
 #: mkt/constants/bango.py:62
 msgid "Chad"
-msgstr ""
+msgstr "चाड"
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:74
 msgid "Chile"
@@ -350,35 +350,35 @@ msgstr "डेनमार्क"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
-msgstr ""
+msgstr "ज़िबूती"
 
 #: mkt/constants/bango.py:81
 msgid "Dominica"
-msgstr ""
+msgstr "डोमिनिका"
 
 #: mkt/constants/bango.py:82
 msgid "Dominican Republic"
-msgstr ""
+msgstr "डोमिनिकी गणतंत्र"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:82
 msgid "Ecuador"
-msgstr ""
+msgstr "ईक्वाडोर"
 
 #: mkt/constants/bango.py:84 mkt/constants/regions.py:83
 msgid "Egypt"
-msgstr ""
+msgstr "मिस्र"
 
 #: mkt/constants/bango.py:85 mkt/constants/regions.py:112
 msgid "El Salvador"
-msgstr ""
+msgstr "अल साल्वाडोर"
 
 #: mkt/constants/bango.py:86
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "भूमध्यरेखीय गिनी"
 
 #: mkt/constants/bango.py:87
 msgid "Eritrea"
-msgstr ""
+msgstr "इरित्रिया"
 
 #: mkt/constants/bango.py:88
 msgid "Estonia"
@@ -454,7 +454,7 @@ msgstr "ग्रीनलैंड"
 
 #: mkt/constants/bango.py:106
 msgid "Grenada"
-msgstr ""
+msgstr "ग्रेनाडा"
 
 #: mkt/constants/bango.py:107
 msgid "Guadeloupe"
@@ -494,23 +494,23 @@ msgstr "हर्ड और मैकडोनाल्ड आइलैंड्
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "होली सी (वैटिकन सिटी राज्य)"
 
 #: mkt/constants/bango.py:117
 msgid "Honduras"
-msgstr ""
+msgstr "होंडुरस"
 
 #: mkt/constants/bango.py:118
 msgid "Hong Kong"
-msgstr ""
+msgstr "हाँग काँग"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
-msgstr ""
+msgstr "हंगरी"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
-msgstr ""
+msgstr "आइसलैंड"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
@@ -522,7 +522,7 @@ msgstr "इंडोनेशिया"
 
 #: mkt/constants/bango.py:123
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "इरान इस्लामिक गणतन्त्र"
 
 #: mkt/constants/bango.py:124
 msgid "Iraq"
@@ -566,7 +566,7 @@ msgstr "कजाखस्तान"
 
 #: mkt/constants/bango.py:134 mkt/constants/regions.py:96
 msgid "Kenya"
-msgstr ""
+msgstr "केन्या"
 
 #: mkt/constants/bango.py:135
 msgid "Kiribati"
@@ -642,31 +642,31 @@ msgstr "मडागास्कर"
 
 #: mkt/constants/bango.py:153
 msgid "Malawi"
-msgstr ""
+msgstr "मलावी"
 
 #: mkt/constants/bango.py:154
 msgid "Malaysia"
-msgstr ""
+msgstr "मलेशिया"
 
 #: mkt/constants/bango.py:155
 msgid "Maldives"
-msgstr ""
+msgstr "मालदीव"
 
 #: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
-msgstr ""
+msgstr "माली"
 
 #: mkt/constants/bango.py:157
 msgid "Malta"
-msgstr ""
+msgstr "माल्टा"
 
 #: mkt/constants/bango.py:158
 msgid "Marshall Islands"
-msgstr ""
+msgstr "मार्शल द्वीपसमूह"
 
 #: mkt/constants/bango.py:159
 msgid "Martinique"
-msgstr ""
+msgstr "मारटीनीक्यू"
 
 #: mkt/constants/bango.py:160
 msgid "Mauritania"
@@ -710,7 +710,7 @@ msgstr "मोंटेसेराट"
 
 #: mkt/constants/bango.py:170
 msgid "Morocco"
-msgstr ""
+msgstr "मोरक्को"
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
@@ -786,27 +786,27 @@ msgstr "पलाऊ"
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "फलीस्तीनी क्षेत्र, अधिकृत"
 
 #: mkt/constants/bango.py:190 mkt/constants/regions.py:106
 msgid "Panama"
-msgstr ""
+msgstr "पनामा"
 
 #: mkt/constants/bango.py:191
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "पापुआ न्यु गुयाना"
 
 #: mkt/constants/bango.py:192
 msgid "Paraguay"
-msgstr ""
+msgstr "पराग्वे"
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
-msgstr ""
+msgstr "पेरु"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
-msgstr ""
+msgstr "फिलीपिन्स्"
 
 #: mkt/constants/bango.py:195
 msgid "Pitcairn"
@@ -814,7 +814,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
-msgstr ""
+msgstr "पोलैण्ड"
 
 #: mkt/constants/bango.py:197
 msgid "Portugal"
@@ -930,23 +930,23 @@ msgstr "सोलोमन द्वीप"
 
 #: mkt/constants/bango.py:225
 msgid "Somalia"
-msgstr ""
+msgstr "सोमालिया"
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:121
 msgid "South Africa"
-msgstr ""
+msgstr "दक्षिण अफ्रीका"
 
 #: mkt/constants/bango.py:227
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "दक्षिण जोर्जिया व दक्षिण सैन्डविच आइलैंडस्"
 
 #: mkt/constants/bango.py:228
 msgid "South Sudan"
-msgstr ""
+msgstr "दक्षिण सूडान"
 
 #: mkt/constants/bango.py:229 mkt/constants/regions.py:84
 msgid "Spain"
-msgstr ""
+msgstr "स्पेन"
 
 #: mkt/constants/bango.py:230
 msgid "Sri Lanka"
@@ -1082,27 +1082,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:263
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "वर्जिन द्वीपसमूह, ब्रिटिश"
 
 #: mkt/constants/bango.py:264
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "वर्जिन द्वीपसमूह, संयुक्त राज्य"
 
 #: mkt/constants/bango.py:265
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "वैलिस एंड फ्यूटूना"
 
 #: mkt/constants/bango.py:266
 msgid "Western Sahara"
-msgstr ""
+msgstr "पश्चिमी सहारा"
 
 #: mkt/constants/bango.py:267
 msgid "Yemen"
-msgstr ""
+msgstr "यमन"
 
 #: mkt/constants/bango.py:268
 msgid "Zambia"
-msgstr ""
+msgstr "ज़म्बिया"
 
 #: mkt/constants/bango.py:269
 msgid "Zimbabwe"
@@ -1110,7 +1110,7 @@ msgstr "ज़िम्बाब्वे"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:177
 msgid "Incomplete"
-msgstr ""
+msgstr "अपूर्ण"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
@@ -1151,15 +1151,15 @@ msgstr "अप्रचलित"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
-msgstr ""
+msgstr "अनुमोदित"
 
 #: mkt/constants/base.py:108 mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
-msgstr ""
+msgstr "मालिक"
 
 #: mkt/constants/base.py:110 mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
-msgstr ""
+msgstr "दर्शक"
 
 #: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
@@ -1169,7 +1169,7 @@ msgstr ""
 #: mkt/constants/base.py:136 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:33
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
-msgstr ""
+msgstr "मुक्त"
 
 #: mkt/constants/base.py:137 mkt/search/forms.py:35
 msgid "Premium"
@@ -1177,7 +1177,7 @@ msgstr ""
 
 #: mkt/constants/base.py:138
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "प्रीमियम-एप्प भुगतान में"
 
 #: mkt/constants/base.py:139
 msgid "Free with in-app payments"
@@ -1229,27 +1229,27 @@ msgstr ""
 
 #: mkt/constants/base.py:236
 msgid "Level 1"
-msgstr ""
+msgstr "स्तर 1"
 
 #: mkt/constants/base.py:237
 msgid "Level 2"
-msgstr ""
+msgstr "स्तर 2"
 
 #: mkt/constants/base.py:238
 msgid "Level 3"
-msgstr ""
+msgstr "स्तर 3"
 
 #: mkt/constants/base.py:239
 msgid "Level 4"
-msgstr ""
+msgstr "स्तर 4"
 
 #: mkt/constants/base.py:240
 msgid "Level 5"
-msgstr ""
+msgstr "स्तर 5"
 
 #: mkt/constants/base.py:241
 msgid "Level 6"
-msgstr ""
+msgstr "स्तर 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books"
@@ -1298,15 +1298,15 @@ msgstr "फोटो और वीडियो"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "उत्पादकता"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "संदर्भ"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "खरीदारी"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
@@ -1326,27 +1326,27 @@ msgstr ""
 
 #: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
-msgstr ""
+msgstr "उपकरण"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "कोई कार्रवाई नहीं"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "प्रतिबंध लगा दिया"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "समीक्षक टिप्पणी"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
-msgstr ""
+msgstr "परिवर्धित"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "निजी समीक्षक टिप्पणी"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
@@ -1374,11 +1374,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "डेवलेपर टिप्पणी"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "समीक्षक द्वारा डिवाइस (s) बदला गया"
 
 #: mkt/constants/comm.py:59
 msgid "Requirement(s) changed by reviewer"
@@ -1486,7 +1486,7 @@ msgstr ""
 
 #: mkt/constants/features.py:53
 msgid "Battery"
-msgstr ""
+msgstr "बैटरी"
 
 #: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
@@ -1498,7 +1498,7 @@ msgstr ""
 
 #: mkt/constants/features.py:64
 msgid "Contacts"
-msgstr ""
+msgstr "संपर्कों"
 
 #: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
@@ -1582,11 +1582,12 @@ msgstr ""
 
 #: mkt/constants/features.py:129
 msgid "Vibration"
-msgstr ""
+msgstr "कंपन"
 
 #: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"यह एप्प उपकरण से कंपन समर्थन की अपेक्षा करता है ( 'navigator.vibrate' एपीआई)"
 
 #: mkt/constants/features.py:136
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
@@ -1598,7 +1599,7 @@ msgstr ""
 
 #: mkt/constants/features.py:146
 msgid "Touch"
-msgstr ""
+msgstr "छूयें"
 
 #: mkt/constants/features.py:147
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
@@ -1620,47 +1621,56 @@ msgstr ""
 
 #: mkt/constants/features.py:169
 msgid "Audio"
-msgstr ""
+msgstr "आडियो"
 
 #: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "एप्प आकांक्षा करता है कि प्लेटफार्म HTML5 आडियो API का समर्थन करे."
 
 #: mkt/constants/features.py:175
 msgid "Web Audio"
-msgstr ""
+msgstr "वेब आडियो"
 
 #: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"एप्प आकांक्षा करता है कि प्लेटफार्म वेब आडियो API (`window.AudioContext`) का "
+"समर्थन करे."
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"एप्प आकांक्षा करता है कि प्लेटफार्म H.264 विडियो फाइलों को डिकोड और चला सके."
 
 #: mkt/constants/features.py:188
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"एप्प आकांक्षा करता है कि प्लेटफार्म WebM विडियो फाइलों (VP8) को डिकोड और चला "
+"सके."
 
 #: mkt/constants/features.py:193
 msgid "Full Screen"
-msgstr ""
+msgstr "पूर्ण स्क्रीन"
 
 #: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"एप्प पूर्ण स्क्रीन API (`requestFullScreen` or `mozRequestFullScreen`) की "
+"आकांक्षा करता है."
 
 #: mkt/constants/features.py:200
 msgid "Gamepad"
-msgstr ""
+msgstr "खेलपैड"
 
 #: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"एप्प आकांक्षा करता है कि प्लेटफार्म खेलपैड API (`navigator.getGamepads`) का "
+"समर्थन करे."
 
 #: mkt/constants/features.py:206
 msgid "Quota Management"
-msgstr ""
+msgstr "कोटा प्रबंधन"
 
 #: mkt/constants/features.py:207
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
@@ -1668,7 +1678,7 @@ msgstr ""
 
 #: mkt/constants/features.py:215
 msgid "Camera"
-msgstr ""
+msgstr "कैमरा"
 
 #: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
@@ -2064,34 +2074,47 @@ msgstr ""
 #: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"उफ, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, "
+"जोकि विचाराधीन है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
 #: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
+"उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, "
+"जोकि अपूर्ण है। <a href=\"%s\">ऐप्प पुनः शुरू करें</a>"
 
 #: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, "
+"जोकि वर्तमान में अस्वीकृत है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
 #: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, "
+"जोकि वर्तमान में बाज़ार में प्रतिबंधित है। <a href=\"%s\">ऐप्प संपादित "
+"करें</a>"
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, "
+"जोकि वर्तमान में निर्योग्य है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
 #: mkt/developers/forms.py:221
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
+"एक ऐप्प पहले से ही इस डोमेन पर मौजूद है; केवल एक ऐप्प प्रति डोमेन की अनुमति "
+"है।"
 
 #: mkt/developers/forms.py:337
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "अमान्य क्षेत्र चयनित।"
 
 #: mkt/developers/forms.py:392 mkt/webapps/models.py:1332
 msgid "You must upload at least one screenshot or video."
-msgstr ""
+msgstr "आपको कम से कम एक स्क्रीनशॉट या विडियो अपलोड करना होगा।"
 
 #: mkt/developers/forms.py:433
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
@@ -2103,7 +2126,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:517
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "अपने ऐप्प का विस्तृत विवरण प्रदान करेंं"
 
 #: mkt/developers/forms.py:518
 msgid "This description will appear on the details page."
@@ -2199,11 +2222,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1066
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "कृपया वैध ईमेल पता दर्ज करें."
 
 #: mkt/developers/forms.py:1069
 msgid "Your email address"
-msgstr ""
+msgstr "आपका ईमेल पता"
 
 #: mkt/developers/forms.py:1072
 msgid "Text"
@@ -2215,13 +2238,13 @@ msgstr ""
 
 #: mkt/developers/forms.py:1077 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "देश"
 
 #: mkt/developers/forms.py:1111 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "एप्प"
 
 #: mkt/developers/forms.py:1113
 msgid "Transaction Type"
@@ -2233,19 +2256,19 @@ msgstr ""
 
 #: mkt/developers/forms.py:1122
 msgid "From"
-msgstr ""
+msgstr "द्वारा"
 
 #: mkt/developers/forms.py:1125
 msgid "To"
-msgstr ""
+msgstr "को"
 
 #: mkt/developers/forms.py:1136
 msgid "Web site"
-msgstr ""
+msgstr "वेबसाइट"
 
 #: mkt/developers/forms.py:1137
 msgid "Command line"
-msgstr ""
+msgstr "कमाण्ड लाइन"
 
 #: mkt/developers/forms.py:1158
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
@@ -2267,11 +2290,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1215
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "फाइल बहुत बड़ी है। आकार %s से नीचे रखें। मोजूदा आकार %s है।"
 
 #: mkt/developers/forms.py:1221
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "अमान्य फाइल प्रकार {0}। केवल {1} फाइलें समर्थित हैं।"
 
 #: mkt/developers/forms.py:1245
 msgid "Please enter a valid submission ID."
@@ -2315,7 +2338,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "मान्य चयन नहीं"
 
 #: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
@@ -2327,11 +2350,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "बैंक खाताधारक नाम"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
-msgstr ""
+msgstr "कम्पनी नाम"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
@@ -2351,19 +2374,19 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:385
 msgid "Address"
-msgstr ""
+msgstr "पता"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address 2"
-msgstr ""
+msgstr "पता 2"
 
 #: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
-msgstr ""
+msgstr "शहर/नगर पालिका"
 
 #: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
-msgstr ""
+msgstr "राज्य/प्रांत/क्षेत्र"
 
 #: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
@@ -2371,7 +2394,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:395
 msgid "Phone"
-msgstr ""
+msgstr "दूरभाष"
 
 #: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
@@ -2379,11 +2402,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
-msgstr ""
+msgstr "वैट संख्या"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
-msgstr ""
+msgstr "बैंक खाता संख्या"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:409
@@ -2404,11 +2427,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "बैंक शहर/नगरपालिका"
 
 #: mkt/developers/forms_payments.py:420
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "बैंक राज्य/प्रांत/क्षेत्र"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
@@ -2416,27 +2439,27 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
-msgstr ""
+msgstr "बैेक देश"
 
 #: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "खाता नाम"
 
 #: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
-msgstr ""
+msgstr "भुगतान खाता"
 
 #: mkt/developers/forms_payments.py:526
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "आप एप्प से भुगतान खाता नहीं हटा सकते।"
 
 #: mkt/developers/forms_payments.py:530
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "आपको भुगतान खातों को बदलने की आनुमति नहीं है।"
 
 #: mkt/developers/forms_payments.py:619
 msgid "Account name"
-msgstr ""
+msgstr "खाता नाम"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
@@ -3695,7 +3718,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "एप्प आइकन"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
@@ -3703,7 +3726,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "अपने एप्प के लिए एक आइकन चुनें :"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -3717,16 +3740,16 @@ msgstr ""
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
-msgstr ""
+msgstr "एप्प विवरण पृष्ठों में प्रयोग हुआ। "
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
@@ -3952,7 +3975,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "परीक्षण पूर्ण हुआ ?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
@@ -4696,11 +4719,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:113
 msgid "For Current Web Developers"
-msgstr ""
+msgstr "मौजूदा वेब डेवलेपरों के लिए"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:117
 msgid "For Current Mobile Developers"
-msgstr ""
+msgstr "मौजूदा मोबाइल डेवलेपरों के लिए"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:121
 msgid "Using Apps Offline"
@@ -4708,12 +4731,12 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:125
 msgid "Developing Game Apps"
-msgstr ""
+msgstr "खेल एप्पस् बनाना"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1436
 msgid "Payments"
-msgstr ""
+msgstr "भुगतान"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
@@ -4781,11 +4804,13 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
-msgstr ""
+msgstr "जुड़ें सबसे बड़े व सबसे अच्छे से"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
 msgstr ""
+"दुनिया के सर्वाधिक लोकप्रिय ब्रांड और आपके सभी पसन्दीदा एप्पस् फ़ायरफाॅक्स "
+"बाज़ारस्थान पर अपना अनुभव बना रहे हैं ।"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
@@ -4793,51 +4818,54 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
-msgstr ""
+msgstr "अब उपलब्ध !"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:100
 msgid "Android Tablets"
-msgstr ""
+msgstr "एंड्रोएड टैबलेट्स"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
-msgstr ""
+msgstr "आप + मोज़्ज़िला = कमाल"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "जुड़े रहें ।"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
-msgstr ""
+msgstr "एप्स ब्लाॅग"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "ट्विटर"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "यूट्यूब"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr ""
+msgstr "फ़ायरफ़ाॅक्स बाज़ार यूट्यूब चैनल"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "बिल्ले, बैनरें, और अइकनें"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"\"फ़ायरफ़ाॅक्स बाज़ार पर इसे पायें\" वे बिल्ले हैं जिसे आप अपने वेबसाइट या "
+"प्रचार सामग्री पर फ़ायरफ़ाॅक्स बाज़ार पर अपने उत्पाद को इंगित करने के लिए "
+"प्रयोग कर सकते हैं ।"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "दिशा-निर्देशों"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "आप बिल्ले में किसी भी तरह का बदलाव नहीं कर सकते"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
@@ -4849,7 +4877,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "नारंगी"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
@@ -4857,15 +4885,17 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "काला"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "लोगो"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"फ़ायरफ़ाॅक्स बाज़ार का लोगो देखने व डउनलोड करने के लिए, कृपया <a href=\"%"
+"(style_guide_url)s\">मोज़्ज़िला स्टाइल गाइड</a> देखें ।"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -4873,11 +4903,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr ""
+msgstr "एप्प निर्मित करने के पहले मुझे क्या जानना चाहिए ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr ""
+msgstr "मैं कैसे अपना एप्प फ़ायरफ़ाॅक्स बाज़ार पर अपलोड कर सकता हूँ ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
@@ -4889,15 +4919,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "भुगतान कैसे काम करता है ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "मैं अपनी बिक्री के करों का प्रबन्धन कैसे करुँ ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "क्या अभी भी अपके पास प्रश्न हैं ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
@@ -5694,7 +5724,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
 msgid "Any Device"
-msgstr ""
+msgstr "कोई उपकरण"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
@@ -6454,11 +6484,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
-msgstr ""
+msgstr "उन्नत खोज"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "खोज साफ करें"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -6470,11 +6500,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28
 msgid "Files in this version:"
-msgstr ""
+msgstr "इस वर्जन में फाइलें :"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:35
 msgid "Validation"
-msgstr ""
+msgstr "मान्यीकरण"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:37
 msgid "Contents"
@@ -6482,7 +6512,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:40
 msgid "Compare"
-msgstr ""
+msgstr "तुलना"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
@@ -6498,52 +6528,54 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
-msgstr ""
+msgstr "प्रथम पृष्ठ पर जायें"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:12 mkt/site/templates/site/impala_paginator.html:22
 msgid "Previous"
-msgstr ""
+msgstr "पिछला"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26 mkt/site/templates/site/impala_paginator.html:5
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"पृष्ठ <a href=\"%(last_pg_url)s\">%(last_pg)s</a> का <a href=\"%"
+"(current_pg_url)s\">%(current_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
 #.                third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "<b>%(count)s</b> के <b>%(begin)s</b>&ndash;<b>%(end)s</b> दिखा रहे"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "हालिया बिन्दु"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "अभी तक कोई बिन्दु नहीं प्रदान हुए ।"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "शीर्ष समीक्षक(पिछले 7 दिनों में)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "अभी तक कोई शीर्ष समीक्षक नहीं ।"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "सम्पूर्ण समय"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "आपके पास <span>{0}</span> बिन्दु हैं ।"
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "कोई परिणाम नही मिला"
 
 #: mkt/search/forms.py:12
 msgid "Relevance"
@@ -6551,7 +6583,7 @@ msgstr ""
 
 #: mkt/search/forms.py:13
 msgid "Popularity"
-msgstr ""
+msgstr "लोकप्रियता"
 
 #: mkt/search/forms.py:14
 msgid "Weekly Downloads"
@@ -6563,11 +6595,11 @@ msgstr ""
 
 #: mkt/search/forms.py:17
 msgid "Newest"
-msgstr ""
+msgstr "नवीनतम"
 
 #: mkt/search/forms.py:18
 msgid "Reviewed"
-msgstr ""
+msgstr "समीक्षित"
 
 #: mkt/search/forms.py:20
 msgid "Trending"
@@ -6575,7 +6607,7 @@ msgstr ""
 
 #: mkt/search/forms.py:26
 msgid "Any App Type"
-msgstr ""
+msgstr "किसी एप्प प्रकार"
 
 #: mkt/search/forms.py:29
 msgid "Privileged packaged app"
@@ -6595,31 +6627,31 @@ msgstr ""
 
 #: mkt/search/forms.py:44
 msgid "Android"
-msgstr ""
+msgstr "एन्ड्राइड"
 
 #: mkt/search/forms.py:51
 msgid "Any Device Type"
-msgstr ""
+msgstr "कोई उपकरण प्रकार"
 
 #: mkt/search/forms.py:53
 msgid "Mobile"
-msgstr ""
+msgstr "मोबिल"
 
 #: mkt/search/forms.py:54
 msgid "Tablet"
-msgstr ""
+msgstr "टैबलेट"
 
 #: mkt/search/forms.py:57
 msgid "All Categories"
-msgstr ""
+msgstr "सभी श्रेणियाँ"
 
 #: mkt/search/forms.py:72
 msgid "Search for apps"
-msgstr ""
+msgstr "एप्प के लिए खोजें"
 
 #: mkt/search/forms.py:86
 msgid "Device type"
-msgstr ""
+msgstr "उपकरण प्रकार"
 
 #: mkt/search/forms.py:126
 msgid "Premium types"
@@ -7235,23 +7267,23 @@ msgstr ""
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "उफ! अनुमति नही है ।"
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "आपने कुछ ऐसा करने की कोशिश की जिसकी आपको अनुमति नहीं थी ।"
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
-msgstr ""
+msgstr "पिछले पृष्ठ पर जाने की कोशिश करें, रीफ्रेश व पुनः प्रयास करें ।"
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "पृष्ठ नहीं मिला"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
+msgstr "हमें खेद है, परन्तु हम वो नहीं खोज पाये जो आप देखना चाहते हैं ।"
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
@@ -7259,15 +7291,17 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+msgstr "अगर आपने पते में लिखा है, तो कृपया वर्तनी का पुनः निरीक्षण करें ।"
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr ""
+"<a class=\"sync\" href=\"%(home)s\">फ़ायरफाॅक्स बाज़ारस्थान मुख पृष्ठ</a> का "
+"भ्रमण करें ।"
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "सर्वर त्रुटि"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
@@ -7275,23 +7309,23 @@ msgstr ""
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
-msgstr ""
+msgstr "हमें इसे जल्द ही ठीक कर देंगे ।"
 
 #: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
-msgstr ""
+msgstr "आप पृष्ठ ताज़ा कर सकते हैं, या पुनः बाद में प्रयास करें ।"
 
 #: mkt/stats/forms.py:9
 msgid "Day"
-msgstr ""
+msgstr "दिन"
 
 #: mkt/stats/forms.py:10
 msgid "Week"
-msgstr ""
+msgstr "सप्ताह"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "चौथाई"
 
 #: mkt/submit/forms.py:31
 msgid "Device(s) changed: {0}"
@@ -7308,23 +7342,23 @@ msgstr ""
 
 #: mkt/submit/forms.py:50
 msgid "Please select a device."
-msgstr ""
+msgstr "कृपया एक उपकरण चुनें ।"
 
 #: mkt/submit/forms.py:128
 msgid "Agree and Continue"
-msgstr ""
+msgstr "सहमत व जारी रखें"
 
 #: mkt/submit/forms.py:155 mkt/submit/forms.py:229
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "आपके अपलोड के साथ कुछ त्रुटि है । कृपया पुनः प्रयास करें ।"
 
 #: mkt/submit/forms.py:190
 msgid "Version %s already exists."
-msgstr ""
+msgstr "वर्जन %s पहले से मौजूद है ।"
 
 #: mkt/submit/forms.py:201
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "\"मूल\" में बदलाव की अनुमति नहीं है ।"
 
 #: mkt/submit/forms.py:224
 msgid "User submitting validation does not match."
@@ -7333,14 +7367,18 @@ msgstr ""
 #: mkt/submit/forms.py:269
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"मेरे एप्प को प्रकाशित करें और बाज़ारस्थान में इसे सभी के लिए दृष्य करें तथा "
+"इसे खोज परिणाम में सम्मिलित करेंं ।"
 
 #: mkt/submit/forms.py:272
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"मेरे एप्प को प्रकाशित करें । मंजूर होने के बाद मुझे सूचित करे और मैं एप्प "
+"दृष्यता को समायोजित करुँगा ।"
 
 #: mkt/submit/forms.py:294
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "गोपनीयता नीति"
 
 #: mkt/submit/forms.py:296
 msgid ""
@@ -7351,31 +7389,34 @@ msgstr ""
 
 #: mkt/submit/forms.py:307
 msgid "Homepage:"
-msgstr ""
+msgstr "मुखपृष्ठ :"
 
 #: mkt/submit/forms.py:309
 msgid "If your app has another homepage, enter its address here."
-msgstr ""
+msgstr "अगर आपके एप्प का कोइ दूसरा मुखपृष्ठ हो, तो यहाँ उसका पता लिखें ।"
 
 #: mkt/submit/forms.py:312
 msgid "Website:"
-msgstr ""
+msgstr "वेबसाइट :"
 
 #: mkt/submit/forms.py:314
 msgid "If your app has a support website or forum, enter its address here."
-msgstr ""
+msgstr "अगर आपके पास कोइ समर्थन वेबसाइट या गोष्ठी है, तो उसका पता यहाँ लिखें ।"
 
 #: mkt/submit/forms.py:318
 msgid "Email:"
-msgstr ""
+msgstr "ईमेल :"
 
 #: mkt/submit/forms.py:320
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"यह ईमेल पता बाज़ारस्थान पर सार्वजनिक रूप से सूचीबद्ध किया जायेगा तथा अंत "
+"उपयोगकर्ताओं द्वारा आपसे समर्थन मुद्दों पर संपर्क के लिए प्रयोग होगा । यह "
+"ईमेल पता आपके एप्प विवरण पृष्ठ पर सार्वजनिक रूप से सूचीबद्ध किया जायेगा ।"
 
 #: mkt/submit/forms.py:326
 msgid "Does your app require Flash support?"
-msgstr ""
+msgstr "क्या आपका एप्प फ्लैश समर्थन की अपेक्षा करता है ।"
 
 #: mkt/submit/forms.py:332
 msgid "Your comments for reviewers:"
@@ -7476,19 +7517,19 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
-msgstr ""
+msgstr "लगभग पहुँच गये ।"
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "एप्प मेनिफेस्ट जमा करें"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
-msgstr ""
+msgstr "एप्प विवरण प्रविष्ट करें"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span><a href=\"%(rating_url)s\">सामग्री रेटिंग</a> बनायें </span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
@@ -7496,23 +7537,26 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
-msgstr ""
+msgstr "समीक्षा की प्रतीक्षा करें"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
-msgstr ""
+msgstr "किसी भी बिन्दु पर, आप कर सकते हैं"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">सूची संपादन</a> पर अपने एप्प का विवरण दोबारा जाँच लें"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr ""
+"a href=\"%(url)s\">मेरी प्रविष्टियाँ</a> पर अपने सभी प्रविष्टियो की सूची देखें"
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"अपने एप्प को कम-स्मृति उपकरणो पर दिखाए जाने के लिए <a href=\"%"
+"(status_url)s\">स्थिति &amp; संसकरण</a> पर अनुरोध करें"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"

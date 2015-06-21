@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:12-0700\n"
-"PO-Revision-Date: 2015-03-20 19:30+0000\n"
-"Last-Translator: Umesh <umesh.agarwal1@gmail.com>\n"
+"PO-Revision-Date: 2015-06-17 03:22+0000\n"
+"Last-Translator: Siddharth <sid_shanker@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426879853.0\n"
+"X-POOTLE-MTIME: 1434511353.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -210,6 +210,8 @@ msgstr "निर्योग्य"
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
+"यह सुविधा अस्थायी रुप से अक्षम है जबतक की हम वेबसाइट रखरखाव कर रहे हैं। "
+"कृपया कुछ देर पुनः जाँचे करें।"
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -218,6 +220,8 @@ msgstr "इस स्थानीयकरण को निकालें"
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"व्यक्तित्व लॉगिन विफल । हो सकता है कि आपके पास उस ईमेल पते के तहत एक खाता "
+"नहीं हो?"
 
 #: media/js/devreg/login.js:131
 #, fuzzy
@@ -238,7 +242,7 @@ msgstr "सभी परिणाम दिखाए"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "{0} परिणाम प्राप्त, अपनी खोज को परिष्कृत करने पर विचार करें।"
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -414,7 +418,7 @@ msgstr[1] "{0} चेतावनी"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "मान्यकरण कार्य पूर्ण न हो सका या त्रुटियों के साथ पूर्ण हुआ"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
