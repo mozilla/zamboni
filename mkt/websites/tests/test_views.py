@@ -2,6 +2,7 @@ import json
 
 from django.core.urlresolvers import reverse
 
+import responses
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
@@ -13,6 +14,7 @@ from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
+from mkt.websites.views import WebsiteMetadataScraperView
 
 
 class TestWebsiteESView(RestOAuth, ESTestCase):
@@ -244,3 +246,58 @@ class TestReviewerSearch(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
+
+
+class TestWebsiteScrape(RestOAuth, TestCase):
+    def setUp(self):
+        self.url = reverse('api-v2:website-scrape')
+        super(TestWebsiteScrape, self).setUp()
+
+    def go(self, url=None):
+        qs = {}
+        if url:
+            qs = {'url': url}
+        response = self.anon.get(self.url, qs)
+        return response, json.loads(response.content)
+
+    def test_no_url(self):
+        response, content = self.go()
+        eq_(response.status_code, 400)
+        eq_(content, WebsiteMetadataScraperView.errors['no_url'])
+
+    @responses.activate
+    def test_site_404(self):
+        URL = 'https://marketplace.firefox.com/'
+        responses.add(responses.GET, URL, status=404)
+        response, content = self.go(url=URL)
+        eq_(response.status_code, 400)
+        eq_(content, WebsiteMetadataScraperView.errors['network'])
+
+    @responses.activate
+    def test_site_500(self):
+        URL = 'https://marketplace.firefox.com/'
+        responses.add(responses.GET, URL, status=500)
+        response, content = self.go(url=URL)
+        eq_(response.status_code, 400)
+        eq_(content, WebsiteMetadataScraperView.errors['network'])
+
+    @responses.activate
+    def test_empty_body(self):
+        URL = 'https://marketplace.firefox.com/'
+        responses.add(responses.GET, URL, '', status=200)
+        response, content = self.go(url=URL)
+        eq_(response.status_code, 400)
+        eq_(content, WebsiteMetadataScraperView.errors['malformed_data'])
+
+    @responses.activate
+    def test_valid(self):
+        URL = 'https://marketplace.firefox.com/'
+        responses.add(responses.GET, URL, '<html />', status=200)
+        response, content = self.go(url=URL)
+        eq_(response.status_code, 200)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'get')
