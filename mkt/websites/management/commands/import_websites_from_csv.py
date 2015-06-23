@@ -92,6 +92,10 @@ class Command(BaseCommand):
             for prop, column in mapping.items():
                 setattr(instance, prop, self.clean_string(row[column]))
 
+            if not instance.name:
+                raise ParsingError(
+                    u'Website %s name is empty !' % (row['Unique Moz ID']))
+
     def set_default_locale(self, instance, row):
         lang = to_language(self.clean_string(row['Language of Meta Data']))
         if not lang or lang == 'english':
