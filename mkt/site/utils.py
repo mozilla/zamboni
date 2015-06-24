@@ -663,7 +663,8 @@ def make_rated(app):
     app.set_interactives([])
 
 
-def get_icon_url(base_url_format, obj, size):
+def get_icon_url(base_url_format, obj, size,
+                 default_format='default-{size}.png'):
     """
     Returns either the icon URL for a given (`obj`, `size`). base_url_format`
     is a string that will be used for url formatting, see ADDON_ICON_URL for an
@@ -680,7 +681,8 @@ def get_icon_url(base_url_format, obj, size):
     """
     # Return default image if no icon_type was stored.
     if not obj.icon_type:
-        return '%s/default-%s.png' % (static_url('ICONS_DEFAULT_URL'), size)
+        return '{path}/{name}'.format(path=static_url('ICONS_DEFAULT_URL'),
+                                      name=default_format.format(size=size))
     else:
         # [1] is the whole ID, [2] is the directory.
         split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
