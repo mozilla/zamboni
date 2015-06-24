@@ -1,15 +1,27 @@
 <h1>
-  {{ _('Website Lookup results for') }}
-  <a href="{{ website.get_url_path() }}"
-     title="{{ _('Website Detail') }}">{{ website.name }}</a>
-  ({{ website.pk }})
+  {% if page_type == 'summary' %}
+    {{ _('Website Summary for') }} {{ website.name }} ({{ website.pk }})
+  {% elif page_type == 'edit' %}
+    {{ _('Edit Website') }} {{ website.name }} ({{ website.pk }})
+  {% endif %}
 </h1>
 
 <section class="column-a">
   <img src="{{ website.get_icon_url(64) }}">
   <nav class="shortcuts" role="navigation">
     <ul>
-      {# TODO: Add "Edit Listing" for admins/staff (bug 1161867) #}
+      <li>
+        <a href="{{ url('lookup.website_summary', website.id) }}"
+          {% if page_type == 'summary' %}class="sel"{% endif %}>
+            {{ _('Summary') }}
+          </a>
+      </li>
+      <li>
+        <a href="{{ url('lookup.website_edit', website.id) }}"
+          {% if page_type == 'edit' %}class="sel"{% endif %}>
+          {{ _('Edit Listing') }}
+        </a>
+      </li>
     </ul>
   </nav>
 </section>

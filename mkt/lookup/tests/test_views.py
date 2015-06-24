@@ -7,6 +7,7 @@ from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
+from django.utils.http import urlquote
 
 import mock
 from babel import numbers
@@ -1211,3 +1212,38 @@ class TestWebsiteSearch(ESTestCase, SearchTestMixin):
     def test_by_id(self):
         data = self.search(q=self.website.pk)
         self.verify_result(data)
+
+
+class TestWebsiteEdit(mkt.site.tests.TestCase):
+    fixtures = fixture('user_support_staff')
+
+    def setUp(self):
+        super(TestWebsiteEdit, self).setUp()
+        self.website = website_factory()
+        self.url = reverse('lookup.website_edit', args=[self.website.pk])
+        self.login('support-staff@mozilla.com')
+
+    def test_auth(self):
+        eq_(self.client.get(self.url).status_code, 200)
+        eq_(self.client.post(self.url, {'keywords': 'blah'}).status_code, 200)
+
+        self.client.logout()
+        login_url = '%s?to=%s' % (reverse('users.login'), urlquote(self.url))
+        self.assert3xx(self.client.get(self.url), login_url)
+        self.assert3xx(self.client.post(self.url), login_url)
+
+    def test_basic(self):
+        data = {
+            'name_en-us': 'New name',
+            'description_en-us': 'New description',
+            'url': 'http://example.com/',
+            'status': 4,
+            'categories': ['kids', 'games'],
+        }
+        resp = self.client.post(self.url, data)
+        self.assert3xx(resp, reverse('lookup.website_summary',
+                                     args=[self.website.pk]))
+        self.website.reload()
+        eq_(unicode(self.website.name), data['name_en-us'])
+        eq_(unicode(self.website.description), data['description_en-us'])
+        eq_(self.website.url, data['url'])

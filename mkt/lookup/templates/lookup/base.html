@@ -4,6 +4,10 @@
 
 {% block bodyclass %}account-lookup{% endblock %}
 
+{% block bodyattrs %}
+  {% if website %}data-default-locale="{{ website.default_locale|lower }}"{% endif %}
+{% endblock %}
+
 {% block masthead %}
 <h1 id="masthead" class="site-title prominent">
   <a href="{{ url('lookup.home') }}">

@@ -39,19 +39,19 @@ from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.search.filters import SearchQueryFilter
 from mkt.search.views import SearchView
-from mkt.site.decorators import json_view, login_required, permission_required
+from mkt.site.decorators import json_view, permission_required
 from mkt.site.utils import paginate
 from mkt.tags.models import attach_tags
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.websites.models import Website
+from mkt.websites.forms import WebsiteForm
 from mkt.websites.views import WebsiteSearchView
 
 
 log = commonware.log.getLogger('z.lookup')
 
 
-@login_required
 @permission_required([('Lookup', 'View')])
 def home(request):
     tx_form = TransactionSearchForm()
@@ -59,7 +59,6 @@ def home(request):
     return render(request, 'lookup/home.html', {'tx_form': tx_form})
 
 
-@login_required
 @permission_required([('AccountLookup', 'View')])
 def user_summary(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
@@ -94,7 +93,6 @@ def user_summary(request, user_id):
                    'provider_portals': provider_portals})
 
 
-@login_required
 @permission_required([('AccountLookup', 'View')])
 def user_delete(request, user_id):
     delete_form = DeleteUserForm(request.POST)
@@ -113,7 +111,6 @@ def user_delete(request, user_id):
     return HttpResponseRedirect(reverse('lookup.user_summary', args=[user_id]))
 
 
-@login_required
 @permission_required([('Transaction', 'View')])
 def transaction_summary(request, tx_uuid):
     tx_data = _transaction_summary(tx_uuid)
@@ -188,7 +185,6 @@ def _transaction_summary(tx_uuid):
 
 
 @require_POST
-@login_required
 @permission_required([('Transaction', 'Refund')])
 def transaction_refund(request, tx_uuid):
     contrib = get_object_or_404(Contribution, uuid=tx_uuid,
@@ -262,7 +258,6 @@ def transaction_refund(request, tx_uuid):
     return redirect(reverse('lookup.transaction_summary', args=[tx_uuid]))
 
 
-@login_required
 @permission_required([('AppLookup', 'View')])
 def app_summary(request, addon_id):
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
@@ -317,7 +312,6 @@ def app_summary(request, addon_id):
     })
 
 
-@login_required
 @permission_required([('WebsiteLookup', 'View')])
 def website_summary(request, addon_id):
     website = get_object_or_404(Website, pk=addon_id)
@@ -329,7 +323,23 @@ def website_summary(request, addon_id):
     })
 
 
-@login_required
+@permission_required([('WebsiteLookup', 'View')])
+def website_edit(request, addon_id):
+    website = get_object_or_404(Website, pk=addon_id)
+    form = WebsiteForm(request.POST or None, request=request, instance=website)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.success(request, _('Website saved.'))
+        return redirect(
+            reverse('lookup.website_summary', args=[website.pk]))
+
+    return render(request, 'lookup/website_edit.html', {
+        'website': website,
+        'form': form,
+    })
+
+
 @permission_required([('AccountLookup', 'View')])
 def app_activity(request, addon_id):
     """Shows the app activity age for single app."""
@@ -347,7 +357,6 @@ def app_activity(request, addon_id):
         'admin_items': admin_items, 'app': app, 'user_items': user_items})
 
 
-@login_required
 @permission_required([('BangoPortal', 'Redirect')])
 def bango_portal_from_package(request, package_id):
     response = _redirect_to_bango_portal(package_id,
@@ -361,7 +370,6 @@ def bango_portal_from_package(request, package_id):
         return HttpResponseRedirect(reverse('lookup.home'))
 
 
-@login_required
 @permission_required([('AccountLookup', 'View')])
 def user_purchases(request, user_id):
     """Shows the purchase page for another user."""
@@ -373,7 +381,6 @@ def user_purchases(request, user_id):
                    'single': bool(None), 'show_link': False})
 
 
-@login_required
 @permission_required([('AccountLookup', 'View')])
 def user_activity(request, user_id):
     """Shows the user activity page for another user."""
@@ -406,7 +413,6 @@ def _expand_query(q, fields):
     return query.Bool(should=should)
 
 
-@login_required
 @permission_required([('AccountLookup', 'View')])
 @json_view
 def user_search(request):
@@ -432,7 +438,6 @@ def user_search(request):
     return {'objects': results}
 
 
-@login_required
 @permission_required([('Transaction', 'View')])
 def transaction_search(request):
     tx_form = TransactionSearchForm(request.GET)

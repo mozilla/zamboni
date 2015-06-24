@@ -32,6 +32,8 @@ website_patterns = patterns(
     '',
     url(r'^summary$', views.website_summary,
         name='lookup.website_summary'),
+    url(r'^edit$', views.website_edit,
+        name='lookup.website_edit'),
 )
 
 

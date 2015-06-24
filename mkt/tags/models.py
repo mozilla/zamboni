@@ -39,7 +39,7 @@ class Tag(ModelBase):
 
     @classmethod
     def _get_m2m_name(cls, obj):
-        """Return the related field name of the m2n on Tag."""
+        """Return the related field name of the m2m on Tag."""
         related_models = cls._meta.get_all_related_m2m_objects_with_model()
         field_map = {rm[0].model: rm[0].field.name for rm in related_models}
         return field_map.get(obj._meta.model)
@@ -51,8 +51,9 @@ class Tag(ModelBase):
         return tag
 
     def remove_tag(self, obj):
-        for tag in obj.tags.filter(tag_text=self.tag_text):
-            getattr(obj, self._get_m2m_name(obj)).remove(tag)
+        m2m_name = self._get_m2m_name(obj)
+        for tag in getattr(obj, m2m_name).filter(tag_text=self.tag_text):
+            getattr(obj, m2m_name).remove(tag)
         mkt.log(mkt.LOG.REMOVE_TAG, self.tag_text, obj)
 
 
