@@ -1,5 +1,5 @@
 import itertools
-from ordereddict import OrderedDict
+from collections import OrderedDict
 
 from django.conf import settings
 
