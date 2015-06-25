@@ -664,7 +664,7 @@ class TestRegenerateIconsAndThumbnails(mkt.site.tests.TestCase):
         preview = Preview.objects.create(filetype='image/png', addon_id=337141)
         call_command('process_addons', task='regenerate_icons_and_thumbnails')
 
-        resize_preview.assert_called_once_with(preview.image_path, preview,
+        resize_preview.assert_called_once_with(preview.image_path, preview.pk,
                                                generate_image=False)
 
 

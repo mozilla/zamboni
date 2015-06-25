@@ -4,12 +4,15 @@ import shutil
 
 from django.conf import settings
 
+import waffle
 from celery import task
 
 import mkt
-import waffle
 from lib.video import library
 from mkt.site.decorators import set_modified_on
+from mkt.users.models import UserProfile
+from mkt.webapps.models import Preview
+
 
 log = logging.getLogger('z.devhub.task')
 time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
@@ -18,8 +21,10 @@ time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
 # Video decoding can take a while, so let's increase these limits.
 @task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
 @set_modified_on
-def resize_video(src, instance, user=None, **kw):
+def resize_video(src, pk, user_pk=None, **kw):
     """Try and resize a video and cope if it fails."""
+    instance = Preview.objects.get(pk=pk)
+    user = UserProfile.objects.get(pk=user_pk) if user_pk else None
     try:
         result = _resize_video(src, instance, **kw)
     except Exception, err:

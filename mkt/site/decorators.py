@@ -143,9 +143,10 @@ def set_modified_on(f):
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
                 set_modified_on_object.apply_async(
-                    args=[obj], kwargs=extra_kwargs,
-                    eta=datetime.datetime.now() +
-                    datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+                    args=[obj._meta.app_label, obj._meta.model_name, obj.pk],
+                    kwargs=extra_kwargs,
+                    eta=datetime.datetime.now() + datetime.timedelta(
+                        seconds=settings.NFS_LAG_DELAY))
         return result
     return wrapper
 

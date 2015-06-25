@@ -26,13 +26,14 @@ from tower import ugettext as _
 import mkt
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
+from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import remove_icons, resize_image, strip_bom
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 
 
@@ -207,8 +208,9 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
 
 @post_request_task
 @set_modified_on
-def resize_preview(src, instance, **kw):
+def resize_preview(src, pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
+    instance = Preview.objects.get(pk=pk)
     thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
     sizes = instance.sizes or {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
@@ -308,19 +310,23 @@ def save_icon(obj, icon_content):
 
 @post_request_task
 @write
-def fetch_icon(webapp, file_obj=None, **kw):
+def fetch_icon(pk, file_pk=None, **kw):
     """
     Downloads a webapp icon from the location specified in the manifest.
 
     Returns False if icon was not able to be retrieved
 
-    If `file_obj` is not provided it will use the file from the app's
+    If `file_pk` is not provided it will use the file from the app's
     `current_version`.
 
     """
+    webapp = Webapp.objects.get(pk=pk)
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
-    file_obj = (file_obj or
-                webapp.current_version and webapp.current_version.all_files[0])
+    if file_pk:
+        file_obj = File.objects.get(pk=file_pk)
+    else:
+        file_obj = (webapp.current_version and
+                    webapp.current_version.all_files[0])
     manifest = webapp.get_manifest_json(file_obj)
 
     if not manifest or 'icons' not in manifest:
@@ -462,7 +468,8 @@ def fetch_manifest(url, upload_pk=None, **kw):
 
 
 @task
-def region_email(ids, regions, **kw):
+def region_email(ids, region_ids, **kw):
+    regions = [REGIONS_CHOICES_ID_DICT[id] for id in region_ids]
     region_names = regions = sorted([unicode(r.name) for r in regions])
 
     # Format the region names with commas and fanciness.
@@ -507,7 +514,8 @@ def region_email(ids, regions, **kw):
 
 @task
 @write
-def region_exclude(ids, regions, **kw):
+def region_exclude(ids, region_ids, **kw):
+    regions = [REGIONS_CHOICES_ID_DICT[id] for id in region_ids]
     region_names = ', '.join(sorted([unicode(r.name) for r in regions]))
 
     log.info('[%s@%s] Excluding new region(s): %s.' %

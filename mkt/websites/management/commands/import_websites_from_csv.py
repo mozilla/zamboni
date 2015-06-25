@@ -190,7 +190,7 @@ class Command(BaseCommand):
                 # Use original_apply_async instead of using the
                 # post_request_task mechanism. See comment below at the end of
                 # the file for an explanation.
-                fetch_icon.original_apply_async(args=(instance, icon_url))
+                fetch_icon.original_apply_async(args=(instance.pk, icon_url))
             else:
                 raise ValidationError('Empty Icon URL')
         except ValidationError:

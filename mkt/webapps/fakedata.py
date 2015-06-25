@@ -90,7 +90,7 @@ def generate_previews(app, n=1):
         f = tempfile.NamedTemporaryFile(suffix='.png')
         f.write(img)
         f.flush()
-        resize_preview(f.name, p)
+        resize_preview(f.name, p.pk)
 
 
 lang_prefixes = {
@@ -401,14 +401,14 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                        thumbtype="image/png",
                                        caption="video " + str(i),
                                        position=i)
-            resize_video(f, p)
+            resize_video(f, p.pk)
     if preview_files:
         for i, f in enumerate(preview_files):
             p = Preview.objects.create(addon=app, filetype="image/png",
                                        thumbtype="image/png",
                                        caption="screenshot " + str(i),
                                        position=i + len(video_files))
-            resize_preview(f, p)
+            resize_preview(f, p.pk)
     generate_ratings(app, num_ratings)
     app.name = names
     if not description:

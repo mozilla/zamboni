@@ -135,7 +135,7 @@ def manifest(request):
         # Create feature profile.
         addon.latest_version.features.update(**features_form.cleaned_data)
 
-        tasks.fetch_icon.delay(addon, file_obj)
+        tasks.fetch_icon.delay(addon.pk, file_obj.pk)
 
         return redirect('submit.app.details', addon.app_slug)
 

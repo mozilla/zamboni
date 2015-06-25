@@ -557,7 +557,7 @@ def _fix_missing_icons(id):
         filename = '%s-%s.png' % (destination, size)
         if not storage.exists(filename):
             _log(id, u'Webapp is missing icon size %d' % (size, ))
-            return fetch_icon(webapp)
+            return fetch_icon(webapp.pk)
 
 
 @task
@@ -580,7 +580,8 @@ def _regenerate_icons_and_thumbnails(pk):
         # have and asking the task to only deal with the thumbnail. We no
         # longer have the original, but it's fine, the image should be large
         # enough for us to generate a thumbnail.
-        resize_preview.delay(preview.image_path, preview, generate_image=False)
+        resize_preview.delay(preview.image_path, preview.pk,
+                             generate_image=False)
 
     # Icons. The only thing we need to do is crush the 64x64 icon.
     icon_path = os.path.join(webapp.get_icon_dir(), '%s-64.png' % webapp.id)
