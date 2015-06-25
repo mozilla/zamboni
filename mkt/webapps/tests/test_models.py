@@ -1767,7 +1767,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         self.setup_files()
         manifest = self._get_manifest_json()
 
-        data = json.loads(webapp.get_cached_manifest(self.file))
+        data = json.loads(webapp.get_cached_manifest(self.file)[0])
         eq_(data['name'], webapp.name)
         eq_(data['version'], webapp.current_version.version)
         eq_(data['size'], self.file.size)

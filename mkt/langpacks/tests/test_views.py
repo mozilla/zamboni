@@ -555,7 +555,8 @@ class TestLangPackNonAPIViews(TestCase):
         response = self.client.get(self.langpack.manifest_url)
         eq_(response.status_code, 200)
         eq_(response['Content-Type'], MANIFEST_CONTENT_TYPE)
-        manifest_contents = json.loads(self.langpack.get_minifest_contents())
+        manifest_contents = json.loads(
+            self.langpack.get_minifest_contents()[0])
         data = json.loads(response.content)
         eq_(data, manifest_contents)
 
@@ -570,6 +571,7 @@ class TestLangPackNonAPIViews(TestCase):
 
         # Test that the etag is different if the langpack file_version changes.
         self.langpack.update(file_version=42)
+        self.langpack.get_minifest_contents(force=True)  # Re-generate cache.
         response = self.client.get(self.langpack.manifest_url)
         eq_(response.status_code, 200)
         new_etag = response['ETag']
@@ -578,12 +580,14 @@ class TestLangPackNonAPIViews(TestCase):
 
         # Test that the etag is different if just the minifest contents change,
         # but not the langpack instance itself.
-        minifest_contents = json.loads(self.langpack.get_minifest_contents())
+        minifest_contents = json.loads(
+            self.langpack.get_minifest_contents()[0])
         minifest_contents['name'] = 'Different Name'
         minifest_contents = json.dumps(minifest_contents)
         patch_method = 'mkt.langpacks.models.LangPack.get_minifest_contents'
         with patch(patch_method) as get_minifest_contents_mock:
-            get_minifest_contents_mock.return_value = minifest_contents
+            get_minifest_contents_mock.return_value = (
+                minifest_contents, 'yet_another_etag')
             response = self.client.get(self.langpack.manifest_url)
             eq_(response.status_code, 200)
             yet_another_etag = response['ETag']
@@ -610,6 +614,7 @@ class TestLangPackNonAPIViews(TestCase):
         eq_(self.langpack.manifest_url, '')
         response = self.client.get(manifest_url)
         eq_(response.status_code, 200)
-        manifest_contents = json.loads(self.langpack.get_minifest_contents())
+        manifest_contents = json.loads(
+            self.langpack.get_minifest_contents()[0])
         data = json.loads(response.content)
         eq_(data, manifest_contents)
