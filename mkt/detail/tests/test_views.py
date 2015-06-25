@@ -162,3 +162,19 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         _storage.size.return_value = 1234
         self.client.get(self.url)
         assert _packaged.sign.called
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_queries(self, _mock):
+        """
+        We explicitly want to avoid wanting to use all the query transforms
+        since we don't need them here.
+
+        The queries we are expecting are:
+          * 2 savepoints
+          * 2 addons - 1 for the addon, and 1 for the translations
+
+        """
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
+        with self.assertNumQueries(4):
+            res = self.client.get(self.url)
+            eq_(res.status_code, 200)
