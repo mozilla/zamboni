@@ -3,12 +3,12 @@ import json
 import mimetypes
 import os
 import stat
+from collections import OrderedDict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import filesizeformat
-from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
 
 import commonware.log
@@ -199,7 +199,7 @@ class FileViewer(object):
                             k in data]
 
             processed_nodes = [(k, do_format(v)) for k, v in data.items()]
-            return SortedDict(prefix_nodes + sorted(processed_nodes))
+            return OrderedDict(prefix_nodes + sorted(processed_nodes))
 
         return json.dumps(format_dict(json_data), indent=2)
 
@@ -230,7 +230,7 @@ class FileViewer(object):
 
     def get_files(self):
         """
-        Returns a SortedDict, ordered by the filename of all the files in the
+        Returns an OrderedDict, ordered by the filename of all the files in the
         addon-file. Full of all the useful information you'll need to serve
         this file, build templates etc.
         """
@@ -286,7 +286,7 @@ class FileViewer(object):
 
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self):
-        all_files, res = [], SortedDict()
+        all_files, res = [], OrderedDict()
         # Not using os.path.walk so we get just the right order.
 
         def iterate(path):
@@ -390,7 +390,7 @@ class DiffHelper(object):
         are files that have been deleted between the two versions.
         Every element will be marked as a diff.
         """
-        different = SortedDict()
+        different = OrderedDict()
 
         left_files = self.left.get_files()
         right_files = self.right.get_files()

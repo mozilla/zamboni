@@ -1,11 +1,11 @@
 import json
 import urllib
+from collections import OrderedDict
 from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
-from django.utils.datastructures import SortedDict
 
 import commonware.log
 from elasticsearch_dsl import filter as es_filter
@@ -441,7 +441,7 @@ class ReviewHelper(object):
                              u'Reject but the author(s) can\'t resubmit. To '
                              u'only be used in extreme cases.')}
 
-        actions = SortedDict()
+        actions = OrderedDict()
 
         if not self.version:
             # Return early if there is no version, this app is incomplete.
