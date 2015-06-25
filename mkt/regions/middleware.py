@@ -44,7 +44,7 @@ class RegionMiddleware(object):
             return
 
         # Try 'region' in POST/GET data first, if it's not there try geoip.
-        url_region = request.REQUEST.get('region')
+        url_region = request.GET.get('region')
         if url_region in regions:
             statsd.incr('z.regions.middleware.source.url')
             user_region = regions[url_region]

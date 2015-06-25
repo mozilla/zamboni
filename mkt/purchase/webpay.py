@@ -56,7 +56,7 @@ def _prepare_pay(request, addon):
         amount=addon.get_price(region=request.REGION.id),
         paykey=None,
         price_tier=addon.premium.price,
-        source=request.REQUEST.get('src', ''),
+        source=request.GET.get('src', ''),
         source_locale=request.LANG,
         type=mkt.CONTRIB_PENDING,
         user=request.user,

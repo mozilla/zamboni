@@ -27,7 +27,7 @@ class CarrierURLMiddleware(object):
         if remembered in CARRIER_MAP:
             carrier = stored_carrier = remembered
 
-        choice = request.REQUEST.get('carrier')
+        choice = request.GET.get('carrier')
         if choice in CARRIER_MAP:
             carrier = choice
         elif 'carrier' in request.GET:
@@ -41,6 +41,6 @@ class CarrierURLMiddleware(object):
         set_carrier(carrier)
 
     def process_response(self, request, response):
-        if request.REQUEST.get('vary') != '0':
+        if request.GET.get('vary') != '0':
             patch_vary_headers(response, ['Accept-Language', 'Cookie'])
         return response
