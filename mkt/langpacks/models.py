@@ -98,8 +98,8 @@ class LangPack(ModelBase):
         return self.download_url
 
     def get_minifest_contents(self, force=False):
-        """Return the "mini" manifest for this langpack, caching it in the
-        process.
+        """Return the "mini" manifest + etag for this langpack, caching it in
+        the process.
 
         Call this with `force=True` whenever we need to update the cached
         version of this manifest, e.g., when a new version of the langpack

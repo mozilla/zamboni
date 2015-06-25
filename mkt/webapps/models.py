@@ -1738,7 +1738,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def get_cached_manifest(self, force=False):
         """
-        Build, cache and return the "mini" manifest for this app.
+        Build, cache and return the "mini" manifest + corresponding etag
+        for this app.
 
         Call this with `force=True` whenever we need to update the cached
         version of this manifest, e.g., when a new version of the packaged app

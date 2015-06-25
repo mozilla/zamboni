@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import hashlib
 import json
 import zipfile
 
@@ -36,17 +35,6 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     def tearDown(self):
         storage.delete(self.latest_file.file_path)
-
-    def get_digest_from_manifest(self, manifest=None):
-        if manifest is None:
-            manifest = self._mocked_json()
-        elif not isinstance(manifest, (str, unicode)):
-            manifest = json.dumps(manifest)
-
-        hash_ = hashlib.sha256()
-        hash_.update(manifest)
-        hash_.update(self.app.get_latest_file().hash)
-        return hash_.hexdigest()
 
     def _mocked_json(self):
         data = {
@@ -96,14 +84,14 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_unlisted(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_unlisted_reviewer(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.login_as_reviewer()
         self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
@@ -111,7 +99,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_unlisted_author(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.login_as_author()
         self.app.update(status=mkt.STATUS_UNLISTED)
         res = self.client.get(self.url)
@@ -124,7 +112,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_private_reviewer(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.login_as_reviewer()
         self.app.update(status=mkt.STATUS_APPROVED)
         res = self.client.get(self.url)
@@ -132,7 +120,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_private_author(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.login_as_author()
         self.app.update(status=mkt.STATUS_APPROVED)
         res = self.client.get(self.url)
@@ -140,52 +128,22 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_app_public(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         res = self.client.get(self.url)
         eq_(res.content, self._mocked_json())
         eq_(res['Content-Type'], MANIFEST_CONTENT_TYPE)
-        eq_(res['ETag'], '"%s"' % self.get_digest_from_manifest())
-
-    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
-    def test_etag_updates(self, _mock):
-        _mock.return_value = self._mocked_json()
-
-        # Get the minifest with the first simulated package.
-        res = self.client.get(self.url)
-        eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], MANIFEST_CONTENT_TYPE)
-
-        first_etag = res['ETag']
-
-        # Write a new value to the packaged app.
-        latest_file = self.app.get_latest_file()
-        with storage.open(latest_file.file_path,
-                          mode='w') as package:
-            test_package = zipfile.ZipFile(package, 'w')
-            test_package.writestr('manifest.webapp', 'poop')
-            test_package.close()
-            latest_file.update(hash=latest_file.generate_hash())
-
-        # Get the minifest with the second simulated package.
-        res = self.client.get(self.url)
-        eq_(res.content, self._mocked_json())
-        eq_(res['Content-Type'], MANIFEST_CONTENT_TYPE)
-
-        second_etag = res['ETag']
-
-        self.assertNotEqual(first_etag, second_etag)
+        eq_(res['ETag'], '"fake_etag"')
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_conditional_get(self, _mock):
-        _mock.return_value = self._mocked_json()
-        etag = self.get_digest_from_manifest()
-        res = self.client.get(self.url, HTTP_IF_NONE_MATCH='%s' % etag)
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
+        res = self.client.get(self.url, HTTP_IF_NONE_MATCH='"fake_etag"')
         eq_(res.content, '')
         eq_(res.status_code, 304)
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_logged_out(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         self.client.logout()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -193,7 +151,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     def test_has_cors(self, _mock):
-        _mock.return_value = self._mocked_json()
+        _mock.return_value = (self._mocked_json(), 'fake_etag')
         res = self.client.get(self.url)
         self.assertCORS(res, 'get')
 

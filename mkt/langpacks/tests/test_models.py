@@ -50,7 +50,7 @@ class TestLangPackBasic(TestCase):
             version='0.3',
             manifest=json.dumps(fake_manifest))
         storage_mock.size.return_value = 666
-        minifest_contents = json.loads(langpack.get_minifest_contents())
+        minifest_contents = json.loads(langpack.get_minifest_contents()[0])
 
         eq_(minifest_contents,
             {'version': '0.3',
@@ -64,7 +64,7 @@ class TestLangPackBasic(TestCase):
         langpack, minifest_contents = self.test_get_minifest_contents()
         langpack.update(manifest='{}')
         # Because of caching, get_minifest_contents should not have changed.
-        new_minifest_contents = json.loads(langpack.get_minifest_contents())
+        new_minifest_contents = json.loads(langpack.get_minifest_contents()[0])
         eq_(minifest_contents, new_minifest_contents)
 
     def test_language_choices_and_display(self):
