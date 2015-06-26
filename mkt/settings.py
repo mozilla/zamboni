@@ -593,7 +593,7 @@ CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
 # Name of our frontend repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
                      'transonic', 'marketplace-operator-dashboard']
-REACT_REPOS = ['submission']
+REACT_REPOS = ['marketplace-submission']
 FRONTEND_REPOS = COMMONPLACE_REPOS + REACT_REPOS
 
 # CSP Settings
