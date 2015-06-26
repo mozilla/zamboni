@@ -394,6 +394,18 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         # Remove fields that we don't have in ES at the moment.
         self.fields.pop('upsold', None)
 
+    def _attach_payments_info(self, obj):
+        try:
+            # When fetching Webapp from the database, optimizations are made
+            # with attach_prices() etc. But we can't do that with ES, so we
+            # have to manually select_related() the price when fetching the
+            # AddonPremium object to do fewer queries. The `premium` property
+            # will use `_premium` if it exists.
+            obj._premium = (
+                AddonPremium.objects.select_related('price').get(addon=obj))
+        except AddonPremium.DoesNotExist:
+            obj._premium = None
+
     def fake_object(self, data):
         """Create a fake instance of Webapp and related models from ES data."""
         is_packaged = data['app_type'] != mkt.ADDON_WEBAPP_HOSTED
@@ -452,10 +464,13 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         # Set attributes that have a different name in ES.
         obj.public_stats = data['has_public_stats']
 
-        # Override obj.get_region() with a static list of regions generated
-        # from the region_exclusions stored in ES.
-        obj.get_regions = obj.get_regions(obj.get_region_ids(
-            restofworld=True, excluded=data['region_exclusions']))
+        # Override obj.get_excluded_region_ids() to just return the list of
+        # regions stored in ES instead of making SQL queries.
+        obj.get_excluded_region_ids = lambda: data['region_exclusions']
+
+        # Set up payments stuff to avoid extra queries.
+        if obj.is_premium():
+            self._attach_payments_info(obj)
 
         # Some methods below will need the raw data from ES, put it on obj.
         obj.es_data = data

@@ -18,6 +18,8 @@ from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.operators.models import OperatorPermission
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.filters import SortingFilter
@@ -254,7 +256,8 @@ class TestSearchView(RestOAuth, ESTestCase):
 
     def test_dehydrate(self):
         self.create()
-        res = self.anon.get(self.url, data={'cat': self.category})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'cat': self.category})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         content_ratings = obj['content_ratings']
@@ -299,12 +302,14 @@ class TestSearchView(RestOAuth, ESTestCase):
     @patch('mkt.webapps.models.Webapp.get_excluded_region_ids')
     def test_upsell(self, get_excluded_region_ids):
         get_excluded_region_ids.return_value = []
-        upsell = app_factory(premium_type=mkt.ADDON_PREMIUM)
+        upsell = app_factory()
+        self.make_premium(upsell)
         AddonUpsell.objects.create(free=self.webapp, premium=upsell)
         self.webapp.save()
         self.refresh('webapp')
 
-        res = self.anon.get(self.url, {'premium_types': 'free'})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, {'premium_types': 'free'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
         obj = res.json['objects'][0]
@@ -381,7 +386,8 @@ class TestSearchView(RestOAuth, ESTestCase):
         check(offline='None', visible=True)
 
     def test_q(self):
-        res = self.anon.get(self.url, data={'q': 'something'})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'something'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -397,7 +403,8 @@ class TestSearchView(RestOAuth, ESTestCase):
 
         es.search = monkey_search
 
-        res = self.anon.get(self.url, data={'q': 'something'})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'something'})
         eq_(res.status_code, 200)
         eq_(res.json['meta']['total_count'], 1)
         eq_(len(res.json['objects']), 1)
@@ -595,8 +602,7 @@ class TestSearchView(RestOAuth, ESTestCase):
     def test_device(self):
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
-        self.webapp.save()
-        self.refresh('webapp')
+        self.reindex(Webapp)
         res = self.anon.get(self.url, data={'dev': 'desktop'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
@@ -608,22 +614,48 @@ class TestSearchView(RestOAuth, ESTestCase):
         f = self.webapp.get_latest_file()
         f.uses_flash = True
         f.save()
-        self.webapp.save()
-        self.refresh('webapp')
+        self.reindex(Webapp)
         res = self.anon.get(self.url, data={'dev': 'firefoxos'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
     def test_premium_types(self):
-        res = self.anon.get(self.url,
-                            data={'premium_types': 'free'})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'premium_types': 'free'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_premium_type_premium(self):
+        # Make the app paid.
+        self.make_premium(self.webapp)
+        self.user = UserProfile.objects.get(pk=2519)
+
+        # Payment account stuff. We need to create one to avoid useless queries
+        # made when we can't find the payment account in Webapp model.
+        self.seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', uuid='seller-id', user=self.user)
+        self.account = PaymentAccount.objects.create(
+            user=self.user, uri='asdf', name='test', inactive=False,
+            solitude_seller=self.seller, account_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=self.webapp, account_uri='foo',
+            payment_account=self.account, product_uri='bpruri')
+
+        # Reindex once we have everything.
+        self.reindex(Webapp)
+
+        # There should (sadly) be 2 queries: one for the AddonPremium model and
+        # price, and one for the AddonPaymentAccount.
+        with self.assertNumQueries(2):
+            res = self.anon.get(self.url, data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_premium_types_empty(self):
-        res = self.anon.get(self.url,
-                            data={'premium_types': 'premium'})
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 0)
