@@ -29,7 +29,7 @@ class WebappAdmin(admin.ModelAdmin):
         }),
     )
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         return models.Webapp.objects.all()
 
 
