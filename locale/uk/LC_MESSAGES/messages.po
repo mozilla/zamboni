@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:25-0700\n"
-"PO-Revision-Date: 2015-06-27 20:13+0000\n"
+"PO-Revision-Date: 2015-06-27 20:16+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435436013.0\n"
+"X-POOTLE-MTIME: 1435436194.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -566,7 +566,7 @@ msgstr "Джерсі"
 
 #: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
-msgstr ""
+msgstr "Йорданія"
 
 #: mkt/constants/bango.py:133
 msgid "Kazakhstan"
@@ -650,15 +650,15 @@ msgstr "Мадагаскар"
 
 #: mkt/constants/bango.py:153
 msgid "Malawi"
-msgstr ""
+msgstr "Малаві"
 
 #: mkt/constants/bango.py:154
 msgid "Malaysia"
-msgstr ""
+msgstr "Малайзія"
 
 #: mkt/constants/bango.py:155
 msgid "Maldives"
-msgstr ""
+msgstr "Мальдивські острови"
 
 #: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
@@ -822,11 +822,11 @@ msgstr "Піткерн"
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
-msgstr ""
+msgstr "Польща"
 
 #: mkt/constants/bango.py:197
 msgid "Portugal"
-msgstr ""
+msgstr "Португалія"
 
 #: mkt/constants/bango.py:198
 msgid "Puerto Rico"
@@ -834,7 +834,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:199
 msgid "Qatar"
-msgstr ""
+msgstr "Катар"
 
 #: mkt/constants/bango.py:200
 msgid "Réunion"
@@ -882,11 +882,11 @@ msgstr "Сент-Вінсент і Ґренадини"
 
 #: mkt/constants/bango.py:211
 msgid "Samoa"
-msgstr ""
+msgstr "Самоа"
 
 #: mkt/constants/bango.py:212
 msgid "San Marino"
-msgstr ""
+msgstr "Сан-Марино"
 
 #: mkt/constants/bango.py:213
 msgid "Sao Tome and Principe"
@@ -1150,11 +1150,11 @@ msgstr "Заблоковано"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Не в списку"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Застаріле"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
