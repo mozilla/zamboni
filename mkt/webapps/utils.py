@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 
 from django.core.cache import cache
@@ -94,14 +95,18 @@ def get_cached_minifest(app_or_langpack, force=False):
 
     Note that platform expects name/developer/locales to match the data from
     the real manifest in the package, so it needs to be read from the zip file.
+
+    Returns a tuple with the minifest contents and the corresponding etag.
     """
-    cache_key = '{0}:{1}:manifest'.format(app_or_langpack._meta.model_name,
-                                          app_or_langpack.pk)
+    cache_prefix = 1  # Change this if you are modifying what enters the cache.
+    cache_key = '{0}:{1}:{2}:manifest'.format(cache_prefix,
+                                              app_or_langpack._meta.model_name,
+                                              app_or_langpack.pk)
 
     if not force:
-        data = cache.get(cache_key)
-        if data:
-            return data
+        cached_data = cache.get(cache_key)
+        if cached_data:
+            return cached_data
 
     sign_if_packaged = getattr(app_or_langpack, 'sign_if_packaged', None)
     if sign_if_packaged is None:
@@ -127,15 +132,24 @@ def get_cached_minifest(app_or_langpack, force=False):
     if hasattr(app_or_langpack, 'current_version'):
         data['version'] = app_or_langpack.current_version.version
         data['release_notes'] = app_or_langpack.current_version.releasenotes
+        file_hash = app_or_langpack.current_version.all_files[0].hash
     else:
         # LangPacks have no version model, the version number is an attribute
         # and they don't have release notes.
         data['version'] = app_or_langpack.version
+        # File hash is not stored for langpacks, but file_version changes with
+        # every new upload so we can use that instead.
+        file_hash = unicode(app_or_langpack.file_version)
 
     for key in ['developer', 'icons', 'locales', 'name']:
         if key in manifest:
             data[key] = manifest[key]
 
     data = json.dumps(data, cls=JSONEncoder)
-    cache.set(cache_key, data, None)
-    return data
+    etag = hashlib.sha256()
+    etag.update(data)
+    if file_hash:
+        etag.update(file_hash)
+    rval = (data, etag.hexdigest())
+    cache.set(cache_key, rval, None)
+    return rval

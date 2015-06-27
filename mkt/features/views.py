@@ -1,4 +1,4 @@
-from ordereddict import OrderedDict
+from collections import OrderedDict
 
 from rest_framework import status
 from rest_framework.response import Response

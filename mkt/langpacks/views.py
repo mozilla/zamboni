@@ -90,13 +90,10 @@ def manifest(request, uuid):
     langpack = get_object_or_404(LangPack, pk=uuid_hex)
 
     if langpack.active or action_allowed(request, 'LangPacks', '%'):
-        manifest_contents = langpack.get_minifest_contents()
-        langpack_etag = hashlib.sha256()
-        langpack_etag.update(manifest_contents)
-        langpack_etag.update(unicode(langpack.file_version))
+        manifest_contents, langpack_etag = langpack.get_minifest_contents()
 
         @condition(last_modified_func=lambda request: langpack.modified,
-                   etag_func=lambda request: langpack_etag.hexdigest())
+                   etag_func=lambda request: langpack_etag)
         def _inner_view(request):
             return HttpResponse(manifest_contents,
                                 content_type=MANIFEST_CONTENT_TYPE)

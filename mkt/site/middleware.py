@@ -111,7 +111,7 @@ class LocaleMiddleware(object):
             if stored_ov_lang.lower() in settings.LANGUAGE_URL_MAP:
                 ov_lang = stored_ov_lang
 
-        if 'lang' in request.REQUEST:
+        if 'lang' in request.GET:
             # `get_language` uses request.GET['lang'] and does safety checks.
             ov_lang = a_l
             lang = self.get_language(request)
@@ -136,7 +136,7 @@ class LocaleMiddleware(object):
                 not getattr(request, 'API', False)):
             response.set_cookie('lang', request.LANG_COOKIE)
 
-        if request.REQUEST.get('vary') == '0':
+        if request.GET.get('vary') == '0':
             del response['Vary']
         else:
             patch_vary_headers(response, ['Accept-Language', 'Cookie'])

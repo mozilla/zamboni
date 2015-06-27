@@ -81,7 +81,7 @@ urlpatterns = patterns(
 
     # Submission:
     url('^submission/.*$', views.commonplace,
-        {'repo': 'submission'},
+        {'repo': 'marketplace-submission'},
         name='commonplace.submission'),
 )
 
