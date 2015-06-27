@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:25-0700\n"
-"PO-Revision-Date: 2015-06-14 13:56+0000\n"
+"PO-Revision-Date: 2015-06-27 20:13+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434290168.0\n"
+"X-POOTLE-MTIME: 1435436013.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -353,11 +354,11 @@ msgstr "Чехія"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark"
-msgstr ""
+msgstr "Данія"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
-msgstr ""
+msgstr "Джибуті"
 
 #: mkt/constants/bango.py:81
 msgid "Dominica"
@@ -401,11 +402,11 @@ msgstr "Фолклендські (Мальвінські) острови"
 
 #: mkt/constants/bango.py:91
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Фарерські острови"
 
 #: mkt/constants/bango.py:92
 msgid "Fiji"
-msgstr ""
+msgstr "Фіджі"
 
 #: mkt/constants/bango.py:93
 msgid "Finland"
@@ -489,15 +490,15 @@ msgstr "Гвінея-Бісау"
 
 #: mkt/constants/bango.py:113
 msgid "Guyana"
-msgstr ""
+msgstr "Гайана"
 
 #: mkt/constants/bango.py:114
 msgid "Haiti"
-msgstr ""
+msgstr "Гаїті"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Острови Херд і Макдональд"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
@@ -505,19 +506,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:117
 msgid "Honduras"
-msgstr ""
+msgstr "Гондурас"
 
 #: mkt/constants/bango.py:118
 msgid "Hong Kong"
-msgstr ""
+msgstr "Гонконг"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:91
 msgid "Hungary"
-msgstr ""
+msgstr "Угорщина"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
-msgstr ""
+msgstr "Ісландія"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:92
 msgid "India"
@@ -561,7 +562,7 @@ msgstr "Японія"
 
 #: mkt/constants/bango.py:131
 msgid "Jersey"
-msgstr ""
+msgstr "Джерсі"
 
 #: mkt/constants/bango.py:132 mkt/constants/regions.py:94
 msgid "Jordan"
@@ -661,23 +662,23 @@ msgstr ""
 
 #: mkt/constants/bango.py:156 mkt/constants/regions.py:100
 msgid "Mali"
-msgstr ""
+msgstr "Малі"
 
 #: mkt/constants/bango.py:157
 msgid "Malta"
-msgstr ""
+msgstr "Мальта"
 
 #: mkt/constants/bango.py:158
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Маршалові Острови"
 
 #: mkt/constants/bango.py:159
 msgid "Martinique"
-msgstr ""
+msgstr "Мартиніка"
 
 #: mkt/constants/bango.py:160
 msgid "Mauritania"
-msgstr ""
+msgstr "Мавританія"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:103
 msgid "Mauritius"
@@ -721,11 +722,11 @@ msgstr "Марокко"
 
 #: mkt/constants/bango.py:171
 msgid "Mozambique"
-msgstr ""
+msgstr "Мозамбік"
 
 #: mkt/constants/bango.py:172 mkt/constants/regions.py:101
 msgid "Myanmar"
-msgstr ""
+msgstr "М'янма"
 
 #: mkt/constants/bango.py:173
 msgid "Namibia"
@@ -809,15 +810,15 @@ msgstr "Парагвай"
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:107
 msgid "Peru"
-msgstr ""
+msgstr "Перу"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:108
 msgid "Philippines"
-msgstr ""
+msgstr "Філіппіни"
 
 #: mkt/constants/bango.py:195
 msgid "Pitcairn"
-msgstr ""
+msgstr "Піткерн"
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:109
 msgid "Poland"
@@ -977,27 +978,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:235
 msgid "Sweden"
-msgstr ""
+msgstr "Швеція"
 
 #: mkt/constants/bango.py:236
 msgid "Switzerland"
-msgstr ""
+msgstr "Швейцарія"
 
 #: mkt/constants/bango.py:237
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Сирія"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Тайвань"
 
 #: mkt/constants/bango.py:239
 msgid "Tajikistan"
-msgstr ""
+msgstr "Таджикистан"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Танзанія"
 
 #: mkt/constants/bango.py:241
 msgid "Thailand"
@@ -1041,11 +1042,11 @@ msgstr "Острови Теркс і Кайкос"
 
 #: mkt/constants/bango.py:251
 msgid "Tuvalu"
-msgstr ""
+msgstr "Тувалу"
 
 #: mkt/constants/bango.py:252
 msgid "Uganda"
-msgstr ""
+msgstr "Уганда"
 
 #: mkt/constants/bango.py:253
 msgid "Ukraine"
@@ -1121,7 +1122,7 @@ msgstr "Неповний"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
-msgstr ""
+msgstr "Очікує схвалення"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
@@ -1235,19 +1236,19 @@ msgstr ""
 
 #: mkt/constants/base.py:236
 msgid "Level 1"
-msgstr ""
+msgstr "Рівень 1"
 
 #: mkt/constants/base.py:237
 msgid "Level 2"
-msgstr ""
+msgstr "Рівень 2"
 
 #: mkt/constants/base.py:238
 msgid "Level 3"
-msgstr ""
+msgstr "Рівень 3"
 
 #: mkt/constants/base.py:239
 msgid "Level 4"
-msgstr ""
+msgstr "Рівень 4"
 
 #: mkt/constants/base.py:240
 msgid "Level 5"
@@ -1283,43 +1284,43 @@ msgstr ""
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "Стиль"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Карти і навігація"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "Новини й погода"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "Фото і відео"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "Продуктивність"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "Посилання"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "Покупки"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "Соціальні"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "Спорт"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
@@ -1379,7 +1380,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:57
 msgid "Developer comment"
-msgstr ""
+msgstr "Коментар розробника"
 
 #: mkt/constants/comm.py:58
 msgid "Device(s) changed by reviewer"
@@ -1483,7 +1484,7 @@ msgstr ""
 
 #: mkt/constants/features.py:48
 msgid "Archive"
-msgstr ""
+msgstr "Архів"
 
 #: mkt/constants/features.py:49
 msgid "The app requires the `ArchiveReader` API."
@@ -1491,7 +1492,7 @@ msgstr ""
 
 #: mkt/constants/features.py:53
 msgid "Battery"
-msgstr ""
+msgstr "Батарея"
 
 #: mkt/constants/features.py:54
 msgid "The app requires the `navigator.battery` API."
@@ -1503,7 +1504,7 @@ msgstr ""
 
 #: mkt/constants/features.py:64
 msgid "Contacts"
-msgstr ""
+msgstr "Контакти"
 
 #: mkt/constants/features.py:65
 msgid "The app requires the `navigator.mozContacts` API."
@@ -1511,7 +1512,7 @@ msgstr ""
 
 #: mkt/constants/features.py:70
 msgid "Device Storage"
-msgstr ""
+msgstr "Сховище пристрою"
 
 #: mkt/constants/features.py:71
 msgid "The app requires the Device Storage API to access files on the filesystem."
@@ -1523,7 +1524,7 @@ msgstr ""
 
 #: mkt/constants/features.py:82
 msgid "Geolocation"
-msgstr ""
+msgstr "Геолокація"
 
 #: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
@@ -1539,7 +1540,7 @@ msgstr ""
 
 #: mkt/constants/features.py:94
 msgid "Network Information"
-msgstr ""
+msgstr "Інформація мережі"
 
 #: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
@@ -1579,7 +1580,7 @@ msgstr ""
 
 #: mkt/constants/features.py:124
 msgid "Time/Clock"
-msgstr ""
+msgstr "Час/Годинник"
 
 #: mkt/constants/features.py:125
 msgid "The app requires the `navigator.mozTime` API."
@@ -1587,7 +1588,7 @@ msgstr ""
 
 #: mkt/constants/features.py:129
 msgid "Vibration"
-msgstr ""
+msgstr "Вібрація"
 
 #: mkt/constants/features.py:130
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
@@ -1625,7 +1626,7 @@ msgstr ""
 
 #: mkt/constants/features.py:169
 msgid "Audio"
-msgstr ""
+msgstr "Аудіо"
 
 #: mkt/constants/features.py:170
 msgid "The app requires that the platform supports the HTML5 audio API."
@@ -1633,7 +1634,7 @@ msgstr ""
 
 #: mkt/constants/features.py:175
 msgid "Web Audio"
-msgstr ""
+msgstr "Веб-аудіо"
 
 #: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
@@ -1649,7 +1650,7 @@ msgstr ""
 
 #: mkt/constants/features.py:193
 msgid "Full Screen"
-msgstr ""
+msgstr "Повний екран"
 
 #: mkt/constants/features.py:194
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
@@ -1673,7 +1674,7 @@ msgstr ""
 
 #: mkt/constants/features.py:215
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 #: mkt/constants/features.py:216
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
@@ -1681,7 +1682,7 @@ msgstr ""
 
 #: mkt/constants/features.py:222
 msgid "Microphone"
-msgstr ""
+msgstr "Мікрофон"
 
 #: mkt/constants/features.py:223
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -1689,7 +1690,7 @@ msgstr ""
 
 #: mkt/constants/features.py:228
 msgid "Screen Capture"
-msgstr ""
+msgstr "Знімок екрана"
 
 #: mkt/constants/features.py:229
 msgid "The app requires the platform to allow access to the device screen for capture."
@@ -1753,7 +1754,7 @@ msgstr ""
 
 #: mkt/constants/features.py:282
 msgid "Alarms"
-msgstr ""
+msgstr "Попередження"
 
 #: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -1777,7 +1778,7 @@ msgstr ""
 
 #: mkt/constants/features.py:303
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Підтримка сторонніх клавіатур"
 
 #: mkt/constants/features.py:304
 msgid "The app requires the platform to support third-party keyboards."
