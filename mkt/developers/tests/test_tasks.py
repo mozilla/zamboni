@@ -26,7 +26,7 @@ from mkt.developers import tasks
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_utils_ import get_image_path
-from mkt.site.utils import ImageCheck
+from mkt.site.utils import app_factory, ImageCheck
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import Preview, Webapp
@@ -139,20 +139,17 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
             '%s%s' % (os.path.splitext(name)[0], expected_suffix), name)
         eq_(rval, {'image_hash': 'bb362450'})
 
+    @mock.patch('mkt.webapps.models.Webapp.update')
     @mock.patch('shutil.move')
-    def test_set_modified(self, mock_move):
+    def test_set_modified(self, mock_move, update_mock):
         """Test passed instance is updated with the hash."""
         name = self.src.name
+        obj = app_factory()
 
-        instance_mock = mock.Mock()
-        update_mock = mock.Mock()
-        instance_mock.update = update_mock
-
-        ret = tasks.pngcrush_image(name, 'some_hash',
-                                   set_modified_on=[instance_mock])
+        ret = tasks.pngcrush_image(name, 'some_hash', set_modified_on=[obj])
         ok_('some_hash' in ret)
-        eq_(update_mock.call_args_list[0][1]['some_hash'], ret['some_hash'])
-        ok_('modified' in update_mock.call_args_list[0][1])
+        eq_(update_mock.call_args_list[-1][1]['some_hash'], ret['some_hash'])
+        ok_('modified' in update_mock.call_args_list[-1][1])
 
 
 class TestValidator(mkt.site.tests.TestCase):
@@ -242,7 +239,7 @@ class TestResizePreview(mkt.site.tests.TestCase):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
         src = self.get_image('preview.jpg')
-        tasks.resize_preview(src, preview)
+        tasks.resize_preview(src, preview.pk)
         preview = preview.reload()
         eq_(preview.image_size, [400, 533])
         eq_(preview.thumbnail_size, [100, 133])
@@ -258,7 +255,7 @@ class TestResizePreview(mkt.site.tests.TestCase):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
         src = self.get_image('preview_landscape.jpg')
-        tasks.resize_preview(src, preview)
+        tasks.resize_preview(src, preview.pk)
         preview = preview.reload()
         eq_(preview.image_size, [533, 400])
         eq_(preview.thumbnail_size, [133, 100])
@@ -274,7 +271,7 @@ class TestResizePreview(mkt.site.tests.TestCase):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
         src = self.get_image('preview.jpg')
-        tasks.resize_preview(src, preview, generate_image=False)
+        tasks.resize_preview(src, preview.pk, generate_image=False)
         preview = preview.reload()
         eq_(preview.image_size, [])
         eq_(preview.thumbnail_size, [100, 133])
@@ -485,21 +482,21 @@ class TestFetchIcon(BaseWebAppTest):
         return self.post_addon()
 
     def test_no_version(self):
-        app = Webapp()
-        eq_(tasks.fetch_icon(app), None)
+        app = app_factory()
+        eq_(tasks.fetch_icon(app.pk), None)
 
     def test_no_icons(self):
         path = os.path.join(self.apps_path, 'noicon.webapp')
         iconless_app = self.webapp_from_path(path)
-        tasks.fetch_icon(iconless_app,
-                         iconless_app.latest_version.all_files[0])
+        tasks.fetch_icon(iconless_app.pk,
+                         iconless_app.latest_version.all_files[0].pk)
         assert not self.requests_mock.called
 
     def test_bad_icons(self):
         path = os.path.join(self.apps_path, 'badicon.webapp')
         iconless_app = self.webapp_from_path(path)
-        tasks.fetch_icon(iconless_app,
-                         iconless_app.latest_version.all_files[0])
+        tasks.fetch_icon(iconless_app.pk,
+                         iconless_app.latest_version.all_files[0].pk)
         assert not self.requests_mock.called
 
     def check_icons(self, webapp, file_obj=None):
@@ -522,7 +519,7 @@ class TestFetchIcon(BaseWebAppTest):
         webapp = self.webapp_from_path(app_path)
         file_obj = webapp.latest_version.all_files[0]
 
-        tasks.fetch_icon(webapp, file_obj)
+        tasks.fetch_icon(webapp.pk, file_obj.pk)
         eq_(webapp.icon_type, self.content_type)
 
         self.check_icons(webapp, file_obj)
@@ -539,34 +536,31 @@ class TestFetchIcon(BaseWebAppTest):
 
         self.check_icons(webapp, file_obj)
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('mkt.developers.tasks._fetch_content')
     @mock.patch('mkt.developers.tasks.save_icon')
-    def test_cdn_icon(self, save, fetch):
+    def test_cdn_icon(self, save, fetch, json):
         response = mock.Mock()
         response.read.return_value = ''
-        webapp = mock.Mock()
-        webapp.is_packaged = False
+        webapp = app_factory()
         url = 'http://foo.com/bar'
-        webapp.get_manifest_json.return_value = {'icons': {'128': url}}
-        # Pass anything here for the `file_obj` argument to avoid it trying to
-        # get the `current_version`.
-        tasks.fetch_icon(webapp, mock.Mock())
+        json.return_value = {'icons': {'128': url}}
+        tasks.fetch_icon(webapp.pk, webapp.latest_version.all_files[0].pk)
         assert url in fetch.call_args[0][0]
 
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('mkt.developers.tasks.SafeUnzip')
     @mock.patch('mkt.developers.tasks.save_icon')
-    def test_packaged_icon(self, save, zip):
+    def test_packaged_icon(self, save, zip, json):
         response = mock.Mock()
         response.read.return_value = ''
         zf = mock.Mock()
         zip.return_value = zf
-        webapp = mock.Mock()
-        webapp.is_packaged = True
-        file_obj = mock.Mock()
-        file_obj.file_path = '/path/to/icon/'
+        webapp = app_factory(is_packaged=True)
+        file_obj = webapp.latest_version.all_files[0]
         url = '/path/to/icon.png'
-        webapp.get_manifest_json.return_value = {'icons': {'128': url}}
-        tasks.fetch_icon(webapp, file_obj)
+        json.return_value = {'icons': {'128': url}}
+        tasks.fetch_icon(webapp.pk, file_obj.pk)
         assert url[1:] in zf.extract_path.call_args[0][0]
 
 
@@ -574,7 +568,7 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_one_new_region(self):
-        tasks.region_email([self.app.id], [mkt.regions.BRA])
+        tasks.region_email([self.app.id], [mkt.regions.BRA.id])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: Brazil region added to the Firefox Marketplace'
             % self.app.name)
@@ -591,7 +585,7 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_two_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.GBR, mkt.regions.BRA])
+                           [mkt.regions.GBR.id, mkt.regions.BRA.id])
         msg = mail.outbox[0]
         eq_(msg.subject, '%s: New regions added to the Firefox Marketplace'
                          % self.app.name)
@@ -608,7 +602,8 @@ class TestRegionEmail(mkt.site.tests.WebappTestCase):
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_several_new_regions(self):
         tasks.region_email([self.app.id],
-                           [mkt.regions.GBR, mkt.regions.USA, mkt.regions.BRA])
+                           [mkt.regions.GBR.id, mkt.regions.USA.id,
+                            mkt.regions.BRA.id])
         msg = mail.outbox[0]
         eq_(msg.subject,
             '%s: New regions added to the Firefox Marketplace' % self.app.name)
@@ -622,7 +617,7 @@ class TestRegionExclude(mkt.site.tests.WebappTestCase):
         tasks.region_exclude([], [])
         eq_(AER.objects.count(), 0)
 
-        tasks.region_exclude([], [mkt.regions.GBR])
+        tasks.region_exclude([], [mkt.regions.GBR.id])
         eq_(AER.objects.count(), 0)
 
     def test_exclude_no_regions(self):
@@ -630,13 +625,14 @@ class TestRegionExclude(mkt.site.tests.WebappTestCase):
         eq_(AER.objects.count(), 0)
 
     def test_exclude_one_new_region(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.GBR])
+        tasks.region_exclude([self.app.id], [mkt.regions.GBR.id])
         excluded = list(AER.objects.filter(addon=self.app)
                         .values_list('region', flat=True))
         eq_(excluded, [mkt.regions.GBR.id])
 
     def test_exclude_several_new_regions(self):
-        tasks.region_exclude([self.app.id], [mkt.regions.USA, mkt.regions.GBR])
+        tasks.region_exclude([self.app.id], [mkt.regions.USA.id,
+                                             mkt.regions.GBR.id])
         excluded = sorted(AER.objects.filter(addon=self.app)
                           .values_list('region', flat=True))
         eq_(excluded, sorted([mkt.regions.USA.id, mkt.regions.GBR.id]))

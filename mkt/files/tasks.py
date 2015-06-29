@@ -6,13 +6,17 @@ from cache_nuggets.lib import Message
 from celery import task
 from tower import ugettext as _
 
+from mkt.files.helpers import FileViewer
+from mkt.files.models import File
+
 
 task_log = logging.getLogger('z.task')
 
 
 @task
-def extract_file(viewer, **kw):
+def extract_file(file_id, **kw):
     # This message is for end users so they'll see a nice error.
+    viewer = FileViewer(File.objects.get(pk=file_id))
     msg = Message('file-viewer:%s' % viewer)
     msg.delete()
     # This flag is so that we can signal when the extraction is completed.

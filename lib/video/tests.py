@@ -11,11 +11,13 @@ from django.conf import settings
 
 import mkt
 import mkt.site.tests
-from mkt.site.tests.test_utils_ import get_image_path
 from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog
+from mkt.site.fixtures import fixture
+from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Preview, Webapp
 
 
 files = {
@@ -165,48 +167,56 @@ def test_choose(ffmpeg_, totem_):
 
 
 class TestTask(mkt.site.tests.TestCase):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='video-encode', active=True)
-        self.mock = Mock()
-        self.mock.thumbnail_path = tempfile.mkstemp()[1]
-        self.mock.image_path = tempfile.mkstemp()[1]
-        self.mock.pk = 1
+        self.app = Webapp.objects.get(pk=337141)
+        self.preview = Preview.objects.create(
+            addon=self.app, thumbnail_path=tempfile.mkstemp()[1],
+            image_path=tempfile.mkstemp()[1])
 
+    @patch('lib.video.tasks.Preview.delete')
     @patch('lib.video.tasks._resize_video')
-    def test_resize_error(self, _resize_video):
+    def test_resize_error(self, _resize_video, _preview_delete):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.side_effect = ValueError
         with self.assertRaises(ValueError):
-            resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
-        assert self.mock.delete.called
+            resize_video(files['good'], self.preview.pk, user_pk=user.pk,
+                         lib=dummy.Video)
+        assert _preview_delete.called
         assert UserLog.objects.filter(
             user=user, activity_log__action=mkt.LOG.VIDEO_ERROR.id).exists()
 
+    @patch('lib.video.tasks.Preview.delete')
     @patch('lib.video.tasks._resize_video')
-    def test_resize_failed(self, _resize_video):
+    def test_resize_failed(self, _resize_video, _preview_delete):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.return_value = None
-        resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
-        assert self.mock.delete.called
+        resize_video(files['good'], self.preview.pk, user_pk=user.pk,
+                     lib=dummy.Video)
+        assert _preview_delete.called
 
+    @patch('lib.video.tasks.Preview.save')
     @patch('lib.video.ffmpeg.Video.get_encoded')
-    def test_resize_video_no_encode(self, get_encoded):
+    def test_resize_video_no_encode(self, get_encoded, _preview_save):
         waffle.models.Switch.objects.update(name='video-encode', active=False)
-        resize_video(files['good'], self.mock, lib=dummy.Video)
+        resize_video(files['good'], self.preview.pk, lib=dummy.Video)
         assert not get_encoded.called
-        assert self.mock.save.called
+        assert _preview_save.called
 
+    @patch('lib.video.tasks.Preview.save')
     @patch('lib.video.totem.Video.get_encoded')
-    def test_resize_video(self, get_encoded):
+    def test_resize_video(self, get_encoded, _preview_save):
         name = tempfile.mkstemp()[1]
         get_encoded.return_value = name
-        resize_video(files['good'], self.mock, lib=dummy.Video)
-        mode = oct(os.stat(self.mock.image_path)[stat.ST_MODE])
+        resize_video(files['good'], self.preview.pk, lib=dummy.Video)
+        mode = oct(os.stat(self.preview.image_path)[stat.ST_MODE])
         assert mode.endswith('644'), mode
-        assert self.mock.save.called
+        assert _preview_save.called
 
-    def test_resize_image(self):
-        resize_video(files['bad'], self.mock, lib=dummy.Video)
-        assert not isinstance(self.mock.sizes, dict)
-        assert not self.mock.save.called
+    @patch('lib.video.tasks.Preview.save')
+    def test_resize_image(self, _preview_save):
+        resize_video(files['bad'], self.preview.pk, lib=dummy.Video)
+        eq_(self.preview.sizes, {})
+        assert not _preview_save.called

@@ -90,7 +90,7 @@ def browse(request, viewer, key=None, type_='file'):
     data['form'] = form
 
     if not viewer.is_extracted():
-        extract_file(viewer)
+        extract_file(viewer.file.id)
 
     if viewer.is_extracted():
         data.update({'status': True, 'files': viewer.get_files()})
@@ -107,7 +107,7 @@ def browse(request, viewer, key=None, type_='file'):
             data['content'] = viewer.read_file()
 
     else:
-        extract_file.delay(viewer)
+        extract_file.delay(viewer.file.id)
 
     tmpl = 'content' if type_ == 'fragment' else 'viewer'
     return render(request, 'fileviewer/%s.html' % tmpl, data)
@@ -144,8 +144,8 @@ def compare(request, diff, key=None, type_='file'):
     data['form'] = form
 
     if not diff.is_extracted():
-        extract_file(diff.left)
-        extract_file(diff.right)
+        extract_file(diff.left.file.id)
+        extract_file(diff.right.file.id)
 
     if diff.is_extracted():
         data.update({'status': True,
@@ -161,8 +161,8 @@ def compare(request, diff, key=None, type_='file'):
             data['left'], data['right'] = diff.read_file()
 
     else:
-        extract_file.delay(diff.left)
-        extract_file.delay(diff.right)
+        extract_file.delay(diff.left.file.id)
+        extract_file.delay(diff.right.file.id)
 
     tmpl = 'content' if type_ == 'fragment' else 'viewer'
     return render(request, 'fileviewer/%s.html' % tmpl, data)

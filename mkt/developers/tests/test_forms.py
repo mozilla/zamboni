@@ -28,11 +28,13 @@ from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         self.addon = Webapp.objects.get(pk=337141)
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
+        self.user = UserProfile.objects.get(pk=999)
+        mkt.set_user(self.user)
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
 

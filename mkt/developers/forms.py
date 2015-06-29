@@ -252,12 +252,12 @@ class PreviewForm(happyforms.ModelForm):
                                    .replace('-', '/'))
                 if filetype in mkt.VIDEO_TYPES:
                     self.instance.update(filetype=filetype)
-                    vtasks.resize_video.delay(upload_path, self.instance,
-                                              user=mkt.get_user(),
+                    vtasks.resize_video.delay(upload_path, self.instance.pk,
+                                              user_pk=mkt.get_user().pk,
                                               set_modified_on=[self.instance])
                 else:
                     self.instance.update(filetype='image/png')
-                    tasks.resize_preview.delay(upload_path, self.instance,
+                    tasks.resize_preview.delay(upload_path, self.instance.pk,
                                                set_modified_on=[self.instance])
 
     class Meta:
