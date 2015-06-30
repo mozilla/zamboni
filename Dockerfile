@@ -19,17 +19,7 @@ RUN yum install -y redis \
     supervisor && yum clean all
 
 COPY requirements /srv/zamboni/requirements
-
-# Remove some compiled deps so we just use the packaged versions already installed.
-#
-# If you install the M2Crypto version inside compiled.txt, you will hit an
-# error on libssl. Unfortunately this changes the layer, so the pip install
-# won't be cached by docker and makes builds way slower.
-#
-# Fixing this and removing this would speed things up a lot.
-RUN sed -i 's/M2Crypto.*$/# Removed in favour of packaged version/' /pip/requirements/compiled.txt
-
-RUN pip install --no-deps -r /srv/zamboni/requirements/prod.txt --find-links https://pyrepo.addons.mozilla.org/
+RUN pip install --no-deps -r /srv/zamboni/requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
 
 COPY . /srv/zamboni
 RUN cd /srv/zamboni && git show -s --pretty="format:%h" > git-rev.txt
