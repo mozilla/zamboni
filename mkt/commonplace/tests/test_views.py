@@ -241,12 +241,16 @@ class TestOpenGraph(mkt.site.tests.TestCase):
         ok_(description.startswith('The Firefox Marketplace is'))
 
     def test_detail(self):
-        app = mkt.site.tests.app_factory(description='Awesome')
+        app = mkt.site.tests.app_factory(
+            description='Awesome <a href="/">Home</a> "helloareyouthere"')
         res = self.client.get(reverse('detail', args=[app.app_slug]))
         title, image, description = self._get_tags(res)
         eq_(title, app.name)
         eq_(image, app.get_icon_url(64))
-        eq_(description, app.description)
+        ok_('<meta name="description" '
+            'content="Awesome Home &#34;helloareyouthere&#34;">'
+            in res.content)
+        eq_(description, 'Awesome Home "helloareyouthere"')
 
     def test_detail_dne(self):
         res = self.client.get(reverse('detail', args=['DO NOT EXISTS']))
