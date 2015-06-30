@@ -95,15 +95,20 @@ class SearchQueryFilter(BaseFilterBackend):
 
         # Add a boost for the preferred region, if it exists.
         region = get_region_from_request(request)
-        if region:
-            should.append(query.Term(**{'preferred_regions': {
-                'value': region.id,
-                'boost': 4}}))
+        region_function = {
+            'filter': {'term': {'preferred_regions': region.id}},
+            # TODO: When we upgrade to Elasticsearch 1.4, change this to
+            # 'weight'
+            'boost_factor': 4,
+        }
 
         return queryset.query(
             'function_score',
             query=query.Bool(should=should),
-            functions=[query.SF('field_value_factor', field='boost')])
+            functions=[
+                query.SF('field_value_factor', field='boost'),
+                region_function,
+            ])
 
 
 class SearchFormFilter(BaseFilterBackend):
