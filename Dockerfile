@@ -3,7 +3,7 @@
 
 # NOTE: this is not provided for production usage.
 
-FROM mozillamarketplace/centos-mysql-mkt:0.2
+FROM mozillamarketplace/centos-mysql-mkt:latest
 
 # Fix multilib issues when installing openssl-devel.
 RUN yum install -y --enablerepo=centosplus libselinux-devel && yum clean all
@@ -18,15 +18,21 @@ RUN yum install -y redis \
     totem \
     supervisor && yum clean all
 
-RUN mkdir -p /pip/{cache,build}
-
-ADD requirements /pip/requirements
+COPY requirements /srv/zamboni/requirements
 
 # Remove some compiled deps so we just use the packaged versions already installed.
+#
+# If you install the M2Crypto version inside compiled.txt, you will hit an
+# error on libssl. Unfortunately this changes the layer, so the pip install
+# won't be cached by docker and makes builds way slower.
+#
+# Fixing this and removing this would speed things up a lot.
 RUN sed -i 's/M2Crypto.*$/# Removed in favour of packaged version/' /pip/requirements/compiled.txt
 
-# This cd into /pip ensures egg-links for git installed deps are created in /pip/src
-RUN cd /pip && pip install -b /pip/build --no-deps --download-cache /pip/cache -r /pip/requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
+RUN pip install --no-deps -r /srv/zamboni/requirements/prod.txt --find-links https://pyrepo.addons.mozilla.org/
+
+COPY . /srv/zamboni
+RUN cd /srv/zamboni && git show -s --pretty="format:%h" > git-rev.txt
 
 # Install the node_modules.
 RUN mkdir -p /srv/zamboni-node
