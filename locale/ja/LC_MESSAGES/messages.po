@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-20 17:17-0400\n"
+"PO-Revision-Date: 2015-07-01 15:58-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -865,7 +865,7 @@ msgstr "セントルシア"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr "サン・マルタン"
+msgstr "セント・マーチン島"
 
 #: mkt/constants/bango.py:209 mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
@@ -1257,7 +1257,7 @@ msgstr "レベル 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "本 & コミック"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1273,11 +1273,11 @@ msgstr "エンタテインメント"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "食べ物 & 飲み物"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "子供向け"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1289,11 +1289,11 @@ msgstr "健康 & フィットネス"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "ユーモア"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "インターネット"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1309,11 +1309,11 @@ msgstr "音楽"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "ニュース"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "パーソナライズ"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1329,7 +1329,7 @@ msgstr "リファレンス"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "科学 & 技術"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1353,7 +1353,7 @@ msgstr "ユーティリティ"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "天気"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2008,19 +2008,19 @@ msgstr "その他の地域"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "ボネール島、シント・ユースタティウス島、サバ島"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "ボリビア多民族国"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "コンゴ民主共和国"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "カーボベルデ"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2028,31 +2028,31 @@ msgstr "ギネア・コナクリ"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "ハード島、マクドナルド諸島"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "ラオス人民民主共和国"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "リビア"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "リヒテンシュタイン"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "セント・マーチン島 (フランス領)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "マケドニア旧ユーゴスラビア共和国"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "パレスチナ"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2064,7 +2064,7 @@ msgstr "セネガル"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "セントヘレナ・アセンションおよびトリスタンダクーニャ"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2076,7 +2076,7 @@ msgstr "タンザニア"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "ローマ教皇庁"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -5284,7 +5284,7 @@ msgstr "このトランザクションの返品は失敗しました。"
 
 #: mkt/lookup/views.py:333
 msgid "Website saved."
-msgstr ""
+msgstr "Web サイトが保存されました。"
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5600,35 +5600,35 @@ msgstr "理由"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr ""
+msgstr "省略名"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
 msgid "Mobile URL"
-msgstr ""
+msgstr "モバイル向け URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
 msgid "Keywords"
-msgstr ""
+msgstr "キーワード"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "推奨地域"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "名前 - 省略名"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "無効化されています"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5656,11 +5656,11 @@ msgstr "アカウントは削除されました"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Web サイトの要約:"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Web サイトを編集"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5682,7 +5682,7 @@ msgstr "アカウント検索"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Web サイト検索"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5892,15 +5892,15 @@ msgstr "アプリ、審査担当者またはコメント"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "端末の種類:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "端末:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox のバージョン:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -5964,7 +5964,7 @@ msgstr "管理者審査"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Web サイト不正報告"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6019,7 +6019,7 @@ msgstr "不正報告 ({0})"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Web サイト不正報告 ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6140,7 +6140,7 @@ msgstr "審査処理が完了しました。"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "{item} の不正報告 ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6447,11 +6447,11 @@ msgstr "定型文の返信を挿入..."
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "動作確認済み:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "端末を追加"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -6597,11 +6597,11 @@ msgstr "既読にする"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "レビューページ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
+msgstr "<a href=\"%(abuses_url)s\">すべての不正報告 (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
@@ -6609,7 +6609,7 @@ msgstr "<span class=\"submitted-by\">投稿者: %(user)s / %(date)s [%(ip_addres
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
-msgstr ""
+msgstr "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">翻訳</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -7381,7 +7381,7 @@ msgstr "{addon} {version} が {queue} 審査に不合格となりました。"
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "{addon} の不正報告 {report} が読まれました。"
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7389,11 +7389,11 @@ msgstr "{user} が {addon} の {report} を既読にしました。"
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "{website} の不正報告 {report} が読まれました。"
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} が {website} の {report} を既読にしました。"
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
