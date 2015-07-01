@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2015-05-01 15:30+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,11 +231,11 @@ msgstr "Status erfolgreich auf „{0}“ geändert"
 msgid "Could not change status to \"{0}\""
 msgstr "Status konnte nicht auf „{0}“ geändert werden"
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Alle Ergebnisse anzeigen"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Über {0} Ergebnisse gefunden, Sie sollten Ihre Suchanfrage präzisieren."
 
@@ -444,8 +444,8 @@ msgid "Receipt was not checked by app."
 msgstr "Quittung wurde nicht von App überprüft."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} hat sich dieses Add-on zuerst angesehen."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

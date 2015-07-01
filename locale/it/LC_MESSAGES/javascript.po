@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2015-05-22 13:11+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -232,11 +232,11 @@ msgstr "Lo stato è stato correttamente modificato in \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Impossibile modificare lo stato in \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Visualizza tutti i risultati"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Trovati oltre {0} risultati. Considera la possibilità di restringere la ricerca."
 
@@ -445,8 +445,8 @@ msgid "Receipt was not checked by app."
 msgstr "La ricevuta non è stata verificata dalla App."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} stava visualizzando questo componente aggiuntivo per primo."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:25-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2015-05-20 19:46+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr "此字段至少要填写 {num} 个字符。"
 msgid "The language code {lang_code} is invalid."
 msgstr "语言代码 {lang_code} 无效。"
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:216
 msgid "Unknown"
 msgstr "未知"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:217 mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "是"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:330
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:218 mkt/submit/forms.py:331
 msgid "No"
 msgstr "否"
 
@@ -58,7 +58,7 @@ msgstr "不存在版本 %s"
 msgid "Attachment:"
 msgstr "附件："
 
-#: mkt/comm/forms.py:46 mkt/submit/forms.py:279
+#: mkt/comm/forms.py:46 mkt/submit/forms.py:280
 msgid "Description:"
 msgstr "描述："
 
@@ -74,7 +74,7 @@ msgstr "Mozilla"
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr "火狐应用市场是网络平台下应用的官方来源。"
 
-#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
+#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:44
 msgid "Desktop"
 msgstr "桌面版"
 
@@ -87,7 +87,7 @@ msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
-#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:45 mkt/search/forms.py:52
+#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:46 mkt/search/forms.py:53
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -99,111 +99,111 @@ msgstr "用户"
 msgid "Reviewer"
 msgstr "审核者"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
+#: mkt/constants/apps.py:11 mkt/constants/base.py:133 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "开发者"
 
-#: mkt/constants/bango.py:19
+#: mkt/constants/bango.py:19 mkt/constants/regions.py:70
 msgid "Afghanistan"
 msgstr "阿富汗"
 
-#: mkt/constants/bango.py:20
+#: mkt/constants/bango.py:20 mkt/constants/regions.py:73
 msgid "Åland Islands"
 msgstr "奥兰群岛"
 
-#: mkt/constants/bango.py:21
+#: mkt/constants/bango.py:21 mkt/constants/regions.py:74
 msgid "Albania"
 msgstr "阿尔巴尼亚"
 
-#: mkt/constants/bango.py:22
+#: mkt/constants/bango.py:22 mkt/constants/regions.py:133
 msgid "Algeria"
 msgstr "阿尔及利亚"
 
-#: mkt/constants/bango.py:23
+#: mkt/constants/bango.py:23 mkt/constants/regions.py:79
 msgid "American Samoa"
 msgstr "美属萨摩亚"
 
-#: mkt/constants/bango.py:24
+#: mkt/constants/bango.py:24 mkt/constants/regions.py:75
 msgid "Andorra"
 msgstr "安道尔"
 
-#: mkt/constants/bango.py:25
+#: mkt/constants/bango.py:25 mkt/constants/regions.py:71
 msgid "Angola"
 msgstr "安哥拉"
 
-#: mkt/constants/bango.py:26
+#: mkt/constants/bango.py:26 mkt/constants/regions.py:72
 msgid "Anguilla"
 msgstr "安圭拉"
 
-#: mkt/constants/bango.py:27
+#: mkt/constants/bango.py:27 mkt/constants/regions.py:80
 msgid "Antarctica"
 msgstr "南极洲"
 
-#: mkt/constants/bango.py:28
+#: mkt/constants/bango.py:28 mkt/constants/regions.py:82
 msgid "Antigua and Barbuda"
 msgstr "安提瓜和巴布达"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:77
 msgid "Argentina"
 msgstr "阿根廷"
 
-#: mkt/constants/bango.py:30
+#: mkt/constants/bango.py:30 mkt/constants/regions.py:78
 msgid "Armenia"
 msgstr "亚美尼亚"
 
-#: mkt/constants/bango.py:31
+#: mkt/constants/bango.py:31 mkt/constants/regions.py:69
 msgid "Aruba"
 msgstr "阿鲁巴"
 
-#: mkt/constants/bango.py:32
+#: mkt/constants/bango.py:32 mkt/constants/regions.py:83
 msgid "Australia"
 msgstr "澳大利亚"
 
-#: mkt/constants/bango.py:33
+#: mkt/constants/bango.py:33 mkt/constants/regions.py:84
 msgid "Austria"
 msgstr "奥地利"
 
-#: mkt/constants/bango.py:34
+#: mkt/constants/bango.py:34 mkt/constants/regions.py:85
 msgid "Azerbaijan"
 msgstr "阿塞拜疆"
 
-#: mkt/constants/bango.py:35
+#: mkt/constants/bango.py:35 mkt/constants/regions.py:94
 msgid "Bahamas"
 msgstr "巴哈马"
 
-#: mkt/constants/bango.py:36
+#: mkt/constants/bango.py:36 mkt/constants/regions.py:93
 msgid "Bahrain"
 msgstr "巴林"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:91
 msgid "Bangladesh"
 msgstr "孟加拉国"
 
-#: mkt/constants/bango.py:38
+#: mkt/constants/bango.py:38 mkt/constants/regions.py:102
 msgid "Barbados"
 msgstr "巴巴多斯岛"
 
-#: mkt/constants/bango.py:39
+#: mkt/constants/bango.py:39 mkt/constants/regions.py:97
 msgid "Belarus"
 msgstr "白俄罗斯"
 
-#: mkt/constants/bango.py:40
+#: mkt/constants/bango.py:40 mkt/constants/regions.py:87
 msgid "Belgium"
 msgstr "比利时"
 
-#: mkt/constants/bango.py:41
+#: mkt/constants/bango.py:41 mkt/constants/regions.py:98
 msgid "Belize"
 msgstr "伯利兹城"
 
-#: mkt/constants/bango.py:42
+#: mkt/constants/bango.py:42 mkt/constants/regions.py:88
 msgid "Benin"
 msgstr "贝宁"
 
-#: mkt/constants/bango.py:43
+#: mkt/constants/bango.py:43 mkt/constants/regions.py:99
 msgid "Bermuda"
 msgstr "百慕大群岛"
 
-#: mkt/constants/bango.py:44
+#: mkt/constants/bango.py:44 mkt/constants/regions.py:104
 msgid "Bhutan"
 msgstr "不丹"
 
@@ -215,51 +215,51 @@ msgstr "玻利维亚"
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr "博内尔岛，圣圣尤斯特歇斯和萨巴岛"
 
-#: mkt/constants/bango.py:47
+#: mkt/constants/bango.py:47 mkt/constants/regions.py:95
 msgid "Bosnia and Herzegovina"
 msgstr "波黑"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:106
 msgid "Botswana"
 msgstr "博茨瓦纳"
 
-#: mkt/constants/bango.py:49
+#: mkt/constants/bango.py:49 mkt/constants/regions.py:105
 msgid "Bouvet Island"
 msgstr "布维岛"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:71
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:101
 msgid "Brazil"
 msgstr "巴西"
 
-#: mkt/constants/bango.py:51
+#: mkt/constants/bango.py:51 mkt/constants/regions.py:174
 msgid "British Indian Ocean Territory"
 msgstr "英属印度洋领地"
 
-#: mkt/constants/bango.py:52
+#: mkt/constants/bango.py:52 mkt/constants/regions.py:103
 msgid "Brunei Darussalam"
 msgstr "文莱"
 
-#: mkt/constants/bango.py:53
+#: mkt/constants/bango.py:53 mkt/constants/regions.py:92
 msgid "Bulgaria"
 msgstr "保加利亚"
 
-#: mkt/constants/bango.py:54
+#: mkt/constants/bango.py:54 mkt/constants/regions.py:90
 msgid "Burkina Faso"
 msgstr "布基纳法索"
 
-#: mkt/constants/bango.py:55
+#: mkt/constants/bango.py:55 mkt/constants/regions.py:86
 msgid "Burundi"
 msgstr "布隆迪"
 
-#: mkt/constants/bango.py:56
+#: mkt/constants/bango.py:56 mkt/constants/regions.py:187
 msgid "Cambodia"
 msgstr "柬埔寨"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:114
 msgid "Cameroon"
 msgstr "喀麦隆"
 
-#: mkt/constants/bango.py:58
+#: mkt/constants/bango.py:58 mkt/constants/regions.py:108
 msgid "Canada"
 msgstr "加拿大"
 
@@ -267,43 +267,43 @@ msgstr "加拿大"
 msgid "Cape Verde"
 msgstr "佛得角"
 
-#: mkt/constants/bango.py:60
+#: mkt/constants/bango.py:60 mkt/constants/regions.py:125
 msgid "Cayman Islands"
 msgstr "开曼群岛"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:107
 msgid "Central African Republic"
 msgstr "中非共和国"
 
-#: mkt/constants/bango.py:62
+#: mkt/constants/bango.py:62 mkt/constants/regions.py:283
 msgid "Chad"
 msgstr "乍得"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:111
 msgid "Chile"
 msgstr "智利"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:112
 msgid "China"
 msgstr "中国"
 
-#: mkt/constants/bango.py:65
+#: mkt/constants/bango.py:65 mkt/constants/regions.py:124
 msgid "Christmas Island"
 msgstr "圣诞岛"
 
-#: mkt/constants/bango.py:66
+#: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯群岛"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
 msgstr "哥伦比亚"
 
-#: mkt/constants/bango.py:68
+#: mkt/constants/bango.py:68 mkt/constants/regions.py:119
 msgid "Comoros"
 msgstr "科摩罗"
 
-#: mkt/constants/bango.py:69
+#: mkt/constants/bango.py:69 mkt/constants/regions.py:116
 msgid "Congo"
 msgstr "刚果"
 
@@ -311,163 +311,163 @@ msgstr "刚果"
 msgid "Congo, Democratic Republic"
 msgstr "刚果民主共和国"
 
-#: mkt/constants/bango.py:71
+#: mkt/constants/bango.py:71 mkt/constants/regions.py:117
 msgid "Cook Islands"
 msgstr "库克群岛"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:121
 msgid "Costa Rica"
 msgstr "哥斯达黎加"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:113
 msgid "Côte d'Ivoire"
 msgstr "科特迪瓦"
 
-#: mkt/constants/bango.py:74
+#: mkt/constants/bango.py:74 mkt/constants/regions.py:168
 msgid "Croatia"
 msgstr "克罗地亚"
 
-#: mkt/constants/bango.py:75
+#: mkt/constants/bango.py:75 mkt/constants/regions.py:122
 msgid "Cuba"
 msgstr "古巴"
 
-#: mkt/constants/bango.py:76
+#: mkt/constants/bango.py:76 mkt/constants/regions.py:123
 msgid "Curaçao"
 msgstr "库拉索岛"
 
-#: mkt/constants/bango.py:77
+#: mkt/constants/bango.py:77 mkt/constants/regions.py:126
 msgid "Cyprus"
 msgstr "塞浦路斯"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:127
 msgid "Czech Republic"
 msgstr "捷克共和国"
 
-#: mkt/constants/bango.py:79
+#: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
 msgstr "丹麦"
 
-#: mkt/constants/bango.py:80
+#: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
 msgstr "吉布提"
 
-#: mkt/constants/bango.py:81
+#: mkt/constants/bango.py:81 mkt/constants/regions.py:130
 msgid "Dominica"
 msgstr "多美尼加"
 
-#: mkt/constants/bango.py:82
+#: mkt/constants/bango.py:82 mkt/constants/regions.py:132
 msgid "Dominican Republic"
 msgstr "多美尼加共和国"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:134
 msgid "Ecuador"
 msgstr "厄瓜多尔"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:135
 msgid "Egypt"
 msgstr "埃及"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:267
 msgid "El Salvador"
 msgstr "萨尔瓦多"
 
-#: mkt/constants/bango.py:86
+#: mkt/constants/bango.py:86 mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
 msgstr "赤道几内亚"
 
-#: mkt/constants/bango.py:87
+#: mkt/constants/bango.py:87 mkt/constants/regions.py:136
 msgid "Eritrea"
 msgstr "厄立特里亚国"
 
-#: mkt/constants/bango.py:88
+#: mkt/constants/bango.py:88 mkt/constants/regions.py:139
 msgid "Estonia"
 msgstr "爱沙尼亚"
 
-#: mkt/constants/bango.py:89
+#: mkt/constants/bango.py:89 mkt/constants/regions.py:140
 msgid "Ethiopia"
 msgstr "埃塞俄比亚"
 
-#: mkt/constants/bango.py:90
+#: mkt/constants/bango.py:90 mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
 msgstr "福克兰群岛（马尔维纳斯群岛）"
 
-#: mkt/constants/bango.py:91
+#: mkt/constants/bango.py:91 mkt/constants/regions.py:145
 msgid "Faroe Islands"
 msgstr "法罗群岛"
 
-#: mkt/constants/bango.py:92
+#: mkt/constants/bango.py:92 mkt/constants/regions.py:142
 msgid "Fiji"
 msgstr "斐济"
 
-#: mkt/constants/bango.py:93
+#: mkt/constants/bango.py:93 mkt/constants/regions.py:141
 msgid "Finland"
 msgstr "芬兰"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:144
 msgid "France"
 msgstr "法国"
 
-#: mkt/constants/bango.py:95
+#: mkt/constants/bango.py:95 mkt/constants/regions.py:162
 msgid "French Guiana"
 msgstr "法属圭亚那"
 
-#: mkt/constants/bango.py:96
+#: mkt/constants/bango.py:96 mkt/constants/regions.py:252
 msgid "French Polynesia"
 msgstr "法属玻里尼西亚"
 
-#: mkt/constants/bango.py:97
+#: mkt/constants/bango.py:97 mkt/constants/regions.py:81
 msgid "French Southern Territories"
 msgstr "法国南部领土"
 
-#: mkt/constants/bango.py:98
+#: mkt/constants/bango.py:98 mkt/constants/regions.py:147
 msgid "Gabon"
 msgstr "加蓬"
 
-#: mkt/constants/bango.py:99
+#: mkt/constants/bango.py:99 mkt/constants/regions.py:155
 msgid "Gambia"
 msgstr "冈比亚"
 
-#: mkt/constants/bango.py:100
+#: mkt/constants/bango.py:100 mkt/constants/regions.py:149
 msgid "Georgia"
 msgstr "格鲁吉亚"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:128
 msgid "Germany"
 msgstr "德国"
 
-#: mkt/constants/bango.py:102
+#: mkt/constants/bango.py:102 mkt/constants/regions.py:151
 msgid "Ghana"
 msgstr "加纳"
 
-#: mkt/constants/bango.py:103
+#: mkt/constants/bango.py:103 mkt/constants/regions.py:152
 msgid "Gibraltar"
 msgstr "直布罗陀"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:158
 msgid "Greece"
 msgstr "希腊"
 
-#: mkt/constants/bango.py:105
+#: mkt/constants/bango.py:105 mkt/constants/regions.py:160
 msgid "Greenland"
 msgstr "格陵兰"
 
-#: mkt/constants/bango.py:106
+#: mkt/constants/bango.py:106 mkt/constants/regions.py:159
 msgid "Grenada"
 msgstr "格林纳达"
 
-#: mkt/constants/bango.py:107
+#: mkt/constants/bango.py:107 mkt/constants/regions.py:154
 msgid "Guadeloupe"
 msgstr "瓜德罗普岛"
 
-#: mkt/constants/bango.py:108
+#: mkt/constants/bango.py:108 mkt/constants/regions.py:163
 msgid "Guam"
 msgstr "关岛"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:161
 msgid "Guatemala"
 msgstr "危地马拉"
 
-#: mkt/constants/bango.py:110
+#: mkt/constants/bango.py:110 mkt/constants/regions.py:150
 msgid "Guernsey"
 msgstr "根西岛"
 
@@ -475,15 +475,15 @@ msgstr "根西岛"
 msgid "Guinea"
 msgstr "几内亚"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:156
 msgid "Guinea-Bissau"
 msgstr "几内亚比绍共和国"
 
-#: mkt/constants/bango.py:113
+#: mkt/constants/bango.py:113 mkt/constants/regions.py:164
 msgid "Guyana"
 msgstr "圭亚那"
 
-#: mkt/constants/bango.py:114
+#: mkt/constants/bango.py:114 mkt/constants/regions.py:169
 msgid "Haiti"
 msgstr "海地"
 
@@ -495,27 +495,27 @@ msgstr "赫德岛和麦当劳群岛"
 msgid "Holy See (Vatican City State)"
 msgstr "罗马教廷（梵蒂冈城国）"
 
-#: mkt/constants/bango.py:117
+#: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
 msgstr "洪都拉斯"
 
-#: mkt/constants/bango.py:118
+#: mkt/constants/bango.py:118 mkt/constants/regions.py:165
 msgid "Hong Kong"
 msgstr "中国香港"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:170
 msgid "Hungary"
 msgstr "匈牙利"
 
-#: mkt/constants/bango.py:120
+#: mkt/constants/bango.py:120 mkt/constants/regions.py:177
 msgid "Iceland"
 msgstr "冰岛"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:173
 msgid "India"
 msgstr "印度"
 
-#: mkt/constants/bango.py:122
+#: mkt/constants/bango.py:122 mkt/constants/regions.py:171
 msgid "Indonesia"
 msgstr "印度尼西亚"
 
@@ -523,51 +523,51 @@ msgstr "印度尼西亚"
 msgid "Iran, Islamic Republic of"
 msgstr "伊朗伊斯兰共和国"
 
-#: mkt/constants/bango.py:124
+#: mkt/constants/bango.py:124 mkt/constants/regions.py:176
 msgid "Iraq"
 msgstr "伊拉克"
 
-#: mkt/constants/bango.py:125
+#: mkt/constants/bango.py:125 mkt/constants/regions.py:175
 msgid "Ireland"
 msgstr "爱尔兰"
 
-#: mkt/constants/bango.py:126
+#: mkt/constants/bango.py:126 mkt/constants/regions.py:172
 msgid "Isle of Man"
 msgstr "马恩岛"
 
-#: mkt/constants/bango.py:127
+#: mkt/constants/bango.py:127 mkt/constants/regions.py:178
 msgid "Israel"
 msgstr "以色列"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:179
 msgid "Italy"
 msgstr "意大利"
 
-#: mkt/constants/bango.py:129
+#: mkt/constants/bango.py:129 mkt/constants/regions.py:180
 msgid "Jamaica"
 msgstr "牙买加"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:183
 msgid "Japan"
 msgstr "日本"
 
-#: mkt/constants/bango.py:131
+#: mkt/constants/bango.py:131 mkt/constants/regions.py:181
 msgid "Jersey"
 msgstr "泽西岛"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:182
 msgid "Jordan"
 msgstr "约旦"
 
-#: mkt/constants/bango.py:133
+#: mkt/constants/bango.py:133 mkt/constants/regions.py:184
 msgid "Kazakhstan"
 msgstr "哈萨克斯坦"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:185
 msgid "Kenya"
 msgstr "肯尼亚"
 
-#: mkt/constants/bango.py:135
+#: mkt/constants/bango.py:135 mkt/constants/regions.py:188
 msgid "Kiribati"
 msgstr "基里巴斯"
 
@@ -575,7 +575,7 @@ msgstr "基里巴斯"
 msgid "Korea, Democratic People's Rep"
 msgstr "朝鲜民主主义人民共和国"
 
-#: mkt/constants/bango.py:137
+#: mkt/constants/bango.py:137 mkt/constants/regions.py:190
 msgid "Korea, Republic of"
 msgstr "韩国"
 
@@ -583,11 +583,11 @@ msgstr "韩国"
 msgid "Kosovo"
 msgstr "科索沃"
 
-#: mkt/constants/bango.py:139
+#: mkt/constants/bango.py:139 mkt/constants/regions.py:191
 msgid "Kuwait"
 msgstr "科威特"
 
-#: mkt/constants/bango.py:140
+#: mkt/constants/bango.py:140 mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
 msgstr "吉尔吉斯斯坦"
 
@@ -595,19 +595,19 @@ msgstr "吉尔吉斯斯坦"
 msgid "Lao People's Democratic Rep"
 msgstr "老挝人民民主共和国"
 
-#: mkt/constants/bango.py:142
+#: mkt/constants/bango.py:142 mkt/constants/regions.py:202
 msgid "Latvia"
 msgstr "拉脱维亚"
 
-#: mkt/constants/bango.py:143
+#: mkt/constants/bango.py:143 mkt/constants/regions.py:193
 msgid "Lebanon"
 msgstr "黎巴嫩"
 
-#: mkt/constants/bango.py:144
+#: mkt/constants/bango.py:144 mkt/constants/regions.py:199
 msgid "Lesotho"
 msgstr "莱索托"
 
-#: mkt/constants/bango.py:145
+#: mkt/constants/bango.py:145 mkt/constants/regions.py:194
 msgid "Liberia"
 msgstr "利比里亚"
 
@@ -619,15 +619,15 @@ msgstr "阿拉伯利比亚民众国"
 msgid "Liechtenstei"
 msgstr "列支敦士登"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:200
 msgid "Lithuania"
 msgstr "立陶宛"
 
-#: mkt/constants/bango.py:149
+#: mkt/constants/bango.py:149 mkt/constants/regions.py:201
 msgid "Luxembourg"
 msgstr "卢森堡"
 
-#: mkt/constants/bango.py:150
+#: mkt/constants/bango.py:150 mkt/constants/regions.py:203
 msgid "Macao"
 msgstr "中国澳门"
 
@@ -635,151 +635,151 @@ msgstr "中国澳门"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "前南斯拉夫的马其顿共和国"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:208
 msgid "Madagascar"
 msgstr "马达加斯加"
 
-#: mkt/constants/bango.py:153
+#: mkt/constants/bango.py:153 mkt/constants/regions.py:224
 msgid "Malawi"
 msgstr "马拉维"
 
-#: mkt/constants/bango.py:154
+#: mkt/constants/bango.py:154 mkt/constants/regions.py:225
 msgid "Malaysia"
 msgstr "马来西亚"
 
-#: mkt/constants/bango.py:155
+#: mkt/constants/bango.py:155 mkt/constants/regions.py:209
 msgid "Maldives"
 msgstr "马尔代夫"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:213
 msgid "Mali"
 msgstr "马里"
 
-#: mkt/constants/bango.py:157
+#: mkt/constants/bango.py:157 mkt/constants/regions.py:214
 msgid "Malta"
 msgstr "马耳他"
 
-#: mkt/constants/bango.py:158
+#: mkt/constants/bango.py:158 mkt/constants/regions.py:211
 msgid "Marshall Islands"
 msgstr "马绍尔群岛"
 
-#: mkt/constants/bango.py:159
+#: mkt/constants/bango.py:159 mkt/constants/regions.py:222
 msgid "Martinique"
 msgstr "马提尼克"
 
-#: mkt/constants/bango.py:160
+#: mkt/constants/bango.py:160 mkt/constants/regions.py:220
 msgid "Mauritania"
 msgstr "毛里塔尼亚"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:223
 msgid "Mauritius"
 msgstr "毛里求斯"
 
-#: mkt/constants/bango.py:162
+#: mkt/constants/bango.py:162 mkt/constants/regions.py:226
 msgid "Mayotte"
 msgstr "马约特岛"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:210
 msgid "Mexico"
 msgstr "墨西哥"
 
-#: mkt/constants/bango.py:164
+#: mkt/constants/bango.py:164 mkt/constants/regions.py:146
 msgid "Micronesia, Federated States of"
 msgstr "密克罗尼西亚联邦"
 
-#: mkt/constants/bango.py:165
+#: mkt/constants/bango.py:165 mkt/constants/regions.py:207
 msgid "Moldova, Republic of"
 msgstr "摩尔多瓦共和国"
 
-#: mkt/constants/bango.py:166
+#: mkt/constants/bango.py:166 mkt/constants/regions.py:206
 msgid "Monaco"
 msgstr "摩纳哥"
 
-#: mkt/constants/bango.py:167
+#: mkt/constants/bango.py:167 mkt/constants/regions.py:217
 msgid "Mongolia"
 msgstr "蒙古"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:216
 msgid "Montenegro"
 msgstr "黑山"
 
-#: mkt/constants/bango.py:169
+#: mkt/constants/bango.py:169 mkt/constants/regions.py:221
 msgid "Montserrat"
 msgstr "蒙特塞拉特"
 
-#: mkt/constants/bango.py:170
+#: mkt/constants/bango.py:170 mkt/constants/regions.py:205
 msgid "Morocco"
 msgstr "摩洛哥"
 
-#: mkt/constants/bango.py:171
+#: mkt/constants/bango.py:171 mkt/constants/regions.py:219
 msgid "Mozambique"
 msgstr "莫桑比克"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:215
 msgid "Myanmar"
 msgstr "缅甸"
 
-#: mkt/constants/bango.py:173
+#: mkt/constants/bango.py:173 mkt/constants/regions.py:227
 msgid "Namibia"
 msgstr "纳米比亚"
 
-#: mkt/constants/bango.py:174
+#: mkt/constants/bango.py:174 mkt/constants/regions.py:237
 msgid "Nauru"
 msgstr "瑙鲁"
 
-#: mkt/constants/bango.py:175
+#: mkt/constants/bango.py:175 mkt/constants/regions.py:236
 msgid "Nepal"
 msgstr "尼泊尔"
 
-#: mkt/constants/bango.py:176
+#: mkt/constants/bango.py:176 mkt/constants/regions.py:234
 msgid "Netherlands"
 msgstr "荷兰"
 
-#: mkt/constants/bango.py:177
+#: mkt/constants/bango.py:177 mkt/constants/regions.py:228
 msgid "New Caledonia"
 msgstr "新喀里多尼亚"
 
-#: mkt/constants/bango.py:178
+#: mkt/constants/bango.py:178 mkt/constants/regions.py:238
 msgid "New Zealand"
 msgstr "新西兰"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:232
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:229
 msgid "Niger"
 msgstr "尼日尔"
 
-#: mkt/constants/bango.py:181
+#: mkt/constants/bango.py:181 mkt/constants/regions.py:231
 msgid "Nigeria"
 msgstr "尼日利亚"
 
-#: mkt/constants/bango.py:182
+#: mkt/constants/bango.py:182 mkt/constants/regions.py:233
 msgid "Niue"
 msgstr "纽埃"
 
-#: mkt/constants/bango.py:183
+#: mkt/constants/bango.py:183 mkt/constants/regions.py:230
 msgid "Norfolk Island"
 msgstr "诺福克岛"
 
-#: mkt/constants/bango.py:184
+#: mkt/constants/bango.py:184 mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
 msgstr "北马里亚纳群岛"
 
-#: mkt/constants/bango.py:185
+#: mkt/constants/bango.py:185 mkt/constants/regions.py:235
 msgid "Norway"
 msgstr "挪威"
 
-#: mkt/constants/bango.py:186
+#: mkt/constants/bango.py:186 mkt/constants/regions.py:239
 msgid "Oman"
 msgstr "阿曼"
 
-#: mkt/constants/bango.py:187
+#: mkt/constants/bango.py:187 mkt/constants/regions.py:240
 msgid "Pakistan"
 msgstr "巴基斯坦"
 
-#: mkt/constants/bango.py:188
+#: mkt/constants/bango.py:188 mkt/constants/regions.py:245
 msgid "Palau"
 msgstr "帕劳"
 
@@ -787,51 +787,51 @@ msgstr "帕劳"
 msgid "Palestinian Territory, Occupied"
 msgstr "巴勒斯坦被占领土"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:241
 msgid "Panama"
 msgstr "巴拿马"
 
-#: mkt/constants/bango.py:191
+#: mkt/constants/bango.py:191 mkt/constants/regions.py:246
 msgid "Papua New Guinea"
 msgstr "巴布亚新几内亚"
 
-#: mkt/constants/bango.py:192
+#: mkt/constants/bango.py:192 mkt/constants/regions.py:250
 msgid "Paraguay"
 msgstr "巴拉圭"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:243
 msgid "Peru"
 msgstr "秘鲁"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:244
 msgid "Philippines"
 msgstr "菲律宾"
 
-#: mkt/constants/bango.py:195
+#: mkt/constants/bango.py:195 mkt/constants/regions.py:242
 msgid "Pitcairn"
 msgstr "皮特凯恩"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
 msgstr "波兰"
 
-#: mkt/constants/bango.py:197
+#: mkt/constants/bango.py:197 mkt/constants/regions.py:249
 msgid "Portugal"
 msgstr "葡萄牙"
 
-#: mkt/constants/bango.py:198
+#: mkt/constants/bango.py:198 mkt/constants/regions.py:248
 msgid "Puerto Rico"
 msgstr "波多黎各"
 
-#: mkt/constants/bango.py:199
+#: mkt/constants/bango.py:199 mkt/constants/regions.py:253
 msgid "Qatar"
 msgstr "卡塔尔"
 
-#: mkt/constants/bango.py:200
+#: mkt/constants/bango.py:200 mkt/constants/regions.py:254
 msgid "Réunion"
 msgstr "留尼旺岛"
 
-#: mkt/constants/bango.py:201
+#: mkt/constants/bango.py:201 mkt/constants/regions.py:255
 msgid "Romania"
 msgstr "罗马尼亚"
 
@@ -839,11 +839,11 @@ msgstr "罗马尼亚"
 msgid "Russian Federation"
 msgstr "俄罗斯联邦"
 
-#: mkt/constants/bango.py:203
+#: mkt/constants/bango.py:203 mkt/constants/regions.py:257
 msgid "Rwanda"
 msgstr "卢旺达"
 
-#: mkt/constants/bango.py:204
+#: mkt/constants/bango.py:204 mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
 msgstr "圣巴泰勒米"
 
@@ -851,11 +851,11 @@ msgstr "圣巴泰勒米"
 msgid "Saint Helena"
 msgstr "圣赫勒拿岛"
 
-#: mkt/constants/bango.py:206
+#: mkt/constants/bango.py:206 mkt/constants/regions.py:189
 msgid "Saint Kitts and Nevis"
 msgstr "圣基茨和尼维斯"
 
-#: mkt/constants/bango.py:207
+#: mkt/constants/bango.py:207 mkt/constants/regions.py:196
 msgid "Saint Lucia"
 msgstr "圣卢西亚"
 
@@ -863,27 +863,27 @@ msgstr "圣卢西亚"
 msgid "Saint Martin"
 msgstr "圣马丁"
 
-#: mkt/constants/bango.py:209
+#: mkt/constants/bango.py:209 mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
 msgstr "圣皮埃尔和密克隆"
 
-#: mkt/constants/bango.py:210
+#: mkt/constants/bango.py:210 mkt/constants/regions.py:304
 msgid "Saint Vincent and the Grenadines"
 msgstr "圣文森特和格林纳丁斯"
 
-#: mkt/constants/bango.py:211
+#: mkt/constants/bango.py:211 mkt/constants/regions.py:311
 msgid "Samoa"
 msgstr "萨摩亚"
 
-#: mkt/constants/bango.py:212
+#: mkt/constants/bango.py:212 mkt/constants/regions.py:268
 msgid "San Marino"
 msgstr "圣马力诺"
 
-#: mkt/constants/bango.py:213
+#: mkt/constants/bango.py:213 mkt/constants/regions.py:273
 msgid "Sao Tome and Principe"
 msgstr "圣多美和普林西比"
 
-#: mkt/constants/bango.py:214
+#: mkt/constants/bango.py:214 mkt/constants/regions.py:258
 msgid "Saudi Arabia"
 msgstr "沙特阿拉伯"
 
@@ -891,7 +891,7 @@ msgstr "沙特阿拉伯"
 msgid "Senega"
 msgstr "塞内加尔"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:271
 msgid "Serbia"
 msgstr "塞尔维亚"
 
@@ -899,83 +899,83 @@ msgstr "塞尔维亚"
 msgid "Serbia and Montenegro"
 msgstr "塞尔维亚和黑山"
 
-#: mkt/constants/bango.py:218
+#: mkt/constants/bango.py:218 mkt/constants/regions.py:280
 msgid "Seychelles"
 msgstr "塞舌尔"
 
-#: mkt/constants/bango.py:219
+#: mkt/constants/bango.py:219 mkt/constants/regions.py:266
 msgid "Sierra Leone"
 msgstr "塞拉利昂"
 
-#: mkt/constants/bango.py:220
+#: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
 msgstr "新加坡"
 
-#: mkt/constants/bango.py:221
+#: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
 msgstr "圣马丁（荷兰一部分）"
 
-#: mkt/constants/bango.py:222
+#: mkt/constants/bango.py:222 mkt/constants/regions.py:275
 msgid "Slovakia"
 msgstr "斯洛伐克"
 
-#: mkt/constants/bango.py:223
+#: mkt/constants/bango.py:223 mkt/constants/regions.py:276
 msgid "Slovenia"
 msgstr "斯洛文尼亚"
 
-#: mkt/constants/bango.py:224
+#: mkt/constants/bango.py:224 mkt/constants/regions.py:265
 msgid "Solomon Islands"
 msgstr "所罗门群岛"
 
-#: mkt/constants/bango.py:225
+#: mkt/constants/bango.py:225 mkt/constants/regions.py:269
 msgid "Somalia"
 msgstr "索马里"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:313
 msgid "South Africa"
 msgstr "南非"
 
-#: mkt/constants/bango.py:227
+#: mkt/constants/bango.py:227 mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "南乔治亚岛和南桑维奇群岛"
 
-#: mkt/constants/bango.py:228
+#: mkt/constants/bango.py:228 mkt/constants/regions.py:272
 msgid "South Sudan"
 msgstr "南苏丹"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:138
 msgid "Spain"
 msgstr "西班牙"
 
-#: mkt/constants/bango.py:230
+#: mkt/constants/bango.py:230 mkt/constants/regions.py:198
 msgid "Sri Lanka"
 msgstr "斯里兰卡"
 
-#: mkt/constants/bango.py:231
+#: mkt/constants/bango.py:231 mkt/constants/regions.py:259
 msgid "Sudan"
 msgstr "苏丹"
 
-#: mkt/constants/bango.py:232
+#: mkt/constants/bango.py:232 mkt/constants/regions.py:274
 msgid "Suriname"
 msgstr "苏里南"
 
-#: mkt/constants/bango.py:233
+#: mkt/constants/bango.py:233 mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
 msgstr "斯瓦尔巴群岛和扬马延岛"
 
-#: mkt/constants/bango.py:234
+#: mkt/constants/bango.py:234 mkt/constants/regions.py:278
 msgid "Swaziland"
 msgstr "斯威士兰"
 
-#: mkt/constants/bango.py:235
+#: mkt/constants/bango.py:235 mkt/constants/regions.py:277
 msgid "Sweden"
 msgstr "瑞典"
 
-#: mkt/constants/bango.py:236
+#: mkt/constants/bango.py:236 mkt/constants/regions.py:110
 msgid "Switzerland"
 msgstr "瑞士"
 
-#: mkt/constants/bango.py:237
+#: mkt/constants/bango.py:237 mkt/constants/regions.py:281
 msgid "Syrian Arab Republic"
 msgstr "阿拉伯叙利亚共和国"
 
@@ -983,7 +983,7 @@ msgstr "阿拉伯叙利亚共和国"
 msgid "Taiwan, Province of China"
 msgstr "中国台湾省"
 
-#: mkt/constants/bango.py:239
+#: mkt/constants/bango.py:239 mkt/constants/regions.py:286
 msgid "Tajikistan"
 msgstr "塔吉克斯坦"
 
@@ -991,83 +991,83 @@ msgstr "塔吉克斯坦"
 msgid "Tanzania, United Republic of"
 msgstr "坦桑尼亚联合共和国"
 
-#: mkt/constants/bango.py:241
+#: mkt/constants/bango.py:241 mkt/constants/regions.py:285
 msgid "Thailand"
 msgstr "泰国"
 
-#: mkt/constants/bango.py:242
+#: mkt/constants/bango.py:242 mkt/constants/regions.py:289
 msgid "Timor-Leste"
 msgstr "东帝汶"
 
-#: mkt/constants/bango.py:243
+#: mkt/constants/bango.py:243 mkt/constants/regions.py:284
 msgid "Togo"
 msgstr "多哥"
 
-#: mkt/constants/bango.py:244
+#: mkt/constants/bango.py:244 mkt/constants/regions.py:287
 msgid "Tokelau"
 msgstr "托克劳"
 
-#: mkt/constants/bango.py:245
+#: mkt/constants/bango.py:245 mkt/constants/regions.py:290
 msgid "Tonga"
 msgstr "汤加"
 
-#: mkt/constants/bango.py:246
+#: mkt/constants/bango.py:246 mkt/constants/regions.py:291
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:292
 msgid "Tunisia"
 msgstr "突尼斯"
 
-#: mkt/constants/bango.py:248
+#: mkt/constants/bango.py:248 mkt/constants/regions.py:293
 msgid "Turkey"
 msgstr "土耳其"
 
-#: mkt/constants/bango.py:249
+#: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
 msgstr "土库曼斯坦"
 
-#: mkt/constants/bango.py:250
+#: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
 msgstr "特克斯和凯科斯群岛"
 
-#: mkt/constants/bango.py:251
+#: mkt/constants/bango.py:251 mkt/constants/regions.py:294
 msgid "Tuvalu"
 msgstr "图瓦卢"
 
-#: mkt/constants/bango.py:252
+#: mkt/constants/bango.py:252 mkt/constants/regions.py:297
 msgid "Uganda"
 msgstr "乌干达"
 
-#: mkt/constants/bango.py:253
+#: mkt/constants/bango.py:253 mkt/constants/regions.py:298
 msgid "Ukraine"
 msgstr "乌克兰"
 
-#: mkt/constants/bango.py:254
+#: mkt/constants/bango.py:254 mkt/constants/regions.py:76
 msgid "United Arab Emirates"
 msgstr "阿拉伯联合酋长国"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:148
 msgid "United Kingdom"
 msgstr "英国"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:301
 msgid "United States"
 msgstr "美国"
 
-#: mkt/constants/bango.py:257
+#: mkt/constants/bango.py:257 mkt/constants/regions.py:299
 msgid "United States Minor Outlying Islands"
 msgstr "美国本土外小岛屿"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:300
 msgid "Uruguay"
 msgstr "乌拉圭"
 
-#: mkt/constants/bango.py:259
+#: mkt/constants/bango.py:259 mkt/constants/regions.py:302
 msgid "Uzbekistan"
 msgstr "乌兹别克斯坦"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:309
 msgid "Vanuatu"
 msgstr "瓦努阿图"
 
@@ -1075,39 +1075,39 @@ msgstr "瓦努阿图"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "委内瑞拉玻利瓦尔共和国"
 
-#: mkt/constants/bango.py:262
+#: mkt/constants/bango.py:262 mkt/constants/regions.py:308
 msgid "Viet Nam"
 msgstr "越南"
 
-#: mkt/constants/bango.py:263
+#: mkt/constants/bango.py:263 mkt/constants/regions.py:306
 msgid "Virgin Islands, British"
 msgstr "英属维尔京群岛"
 
-#: mkt/constants/bango.py:264
+#: mkt/constants/bango.py:264 mkt/constants/regions.py:307
 msgid "Virgin Islands, U.S."
 msgstr "美属维尔京群岛"
 
-#: mkt/constants/bango.py:265
+#: mkt/constants/bango.py:265 mkt/constants/regions.py:310
 msgid "Wallis and Futuna"
 msgstr "瓦利斯群岛和富图纳群岛"
 
-#: mkt/constants/bango.py:266
+#: mkt/constants/bango.py:266 mkt/constants/regions.py:137
 msgid "Western Sahara"
 msgstr "西撒哈拉"
 
-#: mkt/constants/bango.py:267
+#: mkt/constants/bango.py:267 mkt/constants/regions.py:312
 msgid "Yemen"
 msgstr "也门"
 
-#: mkt/constants/bango.py:268
+#: mkt/constants/bango.py:268 mkt/constants/regions.py:314
 msgid "Zambia"
 msgstr "赞比亚"
 
-#: mkt/constants/bango.py:269
+#: mkt/constants/bango.py:269 mkt/constants/regions.py:315
 msgid "Zimbabwe"
 msgstr "津巴布韦"
 
-#: mkt/constants/base.py:26 mkt/lookup/views.py:177
+#: mkt/constants/base.py:26 mkt/lookup/views.py:179
 msgid "Incomplete"
 msgstr "未完成"
 
@@ -1127,7 +1127,7 @@ msgstr "已被应用市场封禁"
 msgid "Deleted"
 msgstr "已删除"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:184 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "已被退回"
 
@@ -1152,108 +1152,108 @@ msgid "Approved"
 msgstr "已核准"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:108 mkt/developers/templates/developers/apps/owner.html:88
+#: mkt/constants/base.py:132 mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
 msgstr "所有者"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:110 mkt/developers/templates/developers/apps/owner.html:94
+#: mkt/constants/base.py:134 mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
 msgstr "查看者"
 
-#: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
+#: mkt/constants/base.py:135 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
 msgstr "支持"
 
-#: mkt/constants/base.py:136 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:33
+#: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:34
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
 msgstr "免费版"
 
-#: mkt/constants/base.py:137 mkt/search/forms.py:35
+#: mkt/constants/base.py:161 mkt/search/forms.py:36
 msgid "Premium"
 msgstr "付费版"
 
-#: mkt/constants/base.py:138
+#: mkt/constants/base.py:162
 msgid "Premium with in-app payments"
 msgstr "付费版，使用“应用内付款”"
 
-#: mkt/constants/base.py:139
+#: mkt/constants/base.py:163
 msgid "Free with in-app payments"
 msgstr "免费版，使用“应用内付款”"
 
-#: mkt/constants/base.py:140
+#: mkt/constants/base.py:164
 msgid "I'll use my own system for in-app payments"
 msgstr "我将使用我自己的系统进行应用内收费"
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:221
 msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:222
 msgid "Web App Review"
 msgstr "网页应用审核"
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:223
 msgid "Packaged App Review"
 msgstr "封装应用审核"
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:224
 msgid "Privileged App Review"
 msgstr "有特权的应用审核"
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:225
 msgid "Web App Re-review"
 msgstr "网络应用重新审核"
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:226
 msgid "Updated Packaged App Review"
 msgstr "更新封装应用审核"
 
-#: mkt/constants/base.py:203
+#: mkt/constants/base.py:227
 msgid "Updated Privileged App Review"
 msgstr "已更新的有特权应用审核"
 
-#: mkt/constants/base.py:204
+#: mkt/constants/base.py:228
 msgid "Moderated App Review"
 msgstr "提请仲裁的应用审核"
 
-#: mkt/constants/base.py:205
+#: mkt/constants/base.py:229
 msgid "App Review Moderation Reverted"
 msgstr "已还原提请仲裁的应用审核"
 
-#: mkt/constants/base.py:206
+#: mkt/constants/base.py:230
 msgid "Tarako App Review"
 msgstr "Tarako 应用审核"
 
-#: mkt/constants/base.py:236
+#: mkt/constants/base.py:260
 msgid "Level 1"
 msgstr "第1级"
 
-#: mkt/constants/base.py:237
+#: mkt/constants/base.py:261
 msgid "Level 2"
 msgstr "第2级"
 
-#: mkt/constants/base.py:238
+#: mkt/constants/base.py:262
 msgid "Level 3"
 msgstr "第3级"
 
-#: mkt/constants/base.py:239
+#: mkt/constants/base.py:263
 msgid "Level 4"
 msgstr "第4级"
 
-#: mkt/constants/base.py:240
+#: mkt/constants/base.py:264
 msgid "Level 5"
 msgstr "第5级"
 
-#: mkt/constants/base.py:241
+#: mkt/constants/base.py:265
 msgid "Level 6"
 msgstr "第6级"
 
 #: mkt/constants/categories.py:5
-msgid "Books"
-msgstr "书籍"
+msgid "Books & Comics"
+msgstr ""
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1267,63 +1267,91 @@ msgstr "教育"
 msgid "Entertainment"
 msgstr "娱乐"
 
-#: mkt/constants/categories.py:9 mkt/constants/categories.py:39
+#: mkt/constants/categories.py:9
+msgid "Food & Drink"
+msgstr ""
+
+#: mkt/constants/categories.py:10
+msgid "Kids"
+msgstr ""
+
+#: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
 msgstr "游戏"
 
-#: mkt/constants/categories.py:10
+#: mkt/constants/categories.py:12
 msgid "Health & Fitness"
 msgstr "健康和健身"
 
-#: mkt/constants/categories.py:11 mkt/constants/categories.py:40
+#: mkt/constants/categories.py:13
+msgid "Humor"
+msgstr ""
+
+#: mkt/constants/categories.py:14
+msgid "Internet"
+msgstr ""
+
+#: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
 msgstr "生活方式"
 
-#: mkt/constants/categories.py:12
+#: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
 msgstr "地图和导航"
 
-#: mkt/constants/categories.py:13
+#: mkt/constants/categories.py:17
 msgid "Music"
 msgstr "音乐"
 
-#: mkt/constants/categories.py:14
-msgid "News & Weather"
-msgstr "新闻和天气"
+#: mkt/constants/categories.py:18
+msgid "News"
+msgstr ""
 
-#: mkt/constants/categories.py:15
+#: mkt/constants/categories.py:19
+msgid "Personalization"
+msgstr ""
+
+#: mkt/constants/categories.py:20
 msgid "Photo & Video"
 msgstr "照片和视频"
 
-#: mkt/constants/categories.py:16
+#: mkt/constants/categories.py:21
 msgid "Productivity"
 msgstr "效率"
 
-#: mkt/constants/categories.py:17
+#: mkt/constants/categories.py:22
 msgid "Reference"
 msgstr "参考"
 
-#: mkt/constants/categories.py:18
+#: mkt/constants/categories.py:23
+msgid "Science & Tech"
+msgstr ""
+
+#: mkt/constants/categories.py:24
 msgid "Shopping"
 msgstr "购物"
 
-#: mkt/constants/categories.py:19
+#: mkt/constants/categories.py:25
 msgid "Social"
 msgstr "社交"
 
-#: mkt/constants/categories.py:20
+#: mkt/constants/categories.py:26
 msgid "Sports"
 msgstr "运动"
 
-#: mkt/constants/categories.py:21
+#: mkt/constants/categories.py:27
 msgid "Travel"
 msgstr "旅游"
 
-#: mkt/constants/categories.py:22
+#: mkt/constants/categories.py:28
 msgid "Utilities"
 msgstr "工具"
 
-#: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
+#: mkt/constants/categories.py:29
+msgid "Weather"
+msgstr ""
+
+#: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
 msgstr "工具"
 
@@ -1339,7 +1367,7 @@ msgstr "已封禁"
 msgid "Reviewer comment"
 msgstr "审核者留言"
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "已向上呈报"
 
@@ -1972,35 +2000,87 @@ msgstr "泛欧洲游戏信息组织"
 msgid "Rest of World"
 msgstr "其他地区"
 
-#: mkt/constants/regions.py:87
+#: mkt/constants/regions.py:89
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr ""
+
+#: mkt/constants/regions.py:100
+msgid "Bolivia, Plurinational State of"
+msgstr ""
+
+#: mkt/constants/regions.py:115
+msgid "Congo, Democratic Republic of the"
+msgstr ""
+
+#: mkt/constants/regions.py:120
+msgid "Cabo Verde"
+msgstr ""
+
+#: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
 msgstr "几内亚-科纳克里"
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:166
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: mkt/constants/regions.py:192
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: mkt/constants/regions.py:195
+msgid "Libya"
+msgstr ""
+
+#: mkt/constants/regions.py:197
+msgid "Liechtenstein"
+msgstr ""
+
+#: mkt/constants/regions.py:204
+msgid "Saint Martin (French part)"
+msgstr ""
+
+#: mkt/constants/regions.py:212
+msgid "Macedonia, the former Yugoslav Republic of"
+msgstr ""
+
+#: mkt/constants/regions.py:251
+msgid "Palestine, State of"
+msgstr ""
+
+#: mkt/constants/regions.py:256
 msgid "Russia"
 msgstr "俄罗斯"
 
-#: mkt/constants/regions.py:111
+#: mkt/constants/regions.py:260
 msgid "Senegal"
 msgstr "塞内加尔"
 
-#: mkt/constants/regions.py:115
+#: mkt/constants/regions.py:263
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr ""
+
+#: mkt/constants/regions.py:295
 msgid "Taiwan"
 msgstr "台湾"
 
-#: mkt/constants/regions.py:116
+#: mkt/constants/regions.py:296
 msgid "Tanzania"
 msgstr "坦桑尼亚"
 
-#: mkt/constants/regions.py:119
+#: mkt/constants/regions.py:303
+msgid "Holy See"
+msgstr ""
+
+#: mkt/constants/regions.py:305
 msgid "Venezuela"
 msgstr "委内瑞拉"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:49
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
 msgstr "已托管应用"
 
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:83
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
 msgstr "已封装"
 
@@ -2012,7 +2092,7 @@ msgstr "同意"
 msgid "Submit"
 msgstr "提交"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1423
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1416
 msgid "Details"
 msgstr "详情"
 
@@ -2032,254 +2112,254 @@ msgstr "无法连接到支付服务器。"
 msgid "Cannot delete shared account"
 msgstr "不能删除已分享的账户"
 
-#: mkt/developers/cron.py:126
+#: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
 msgstr "内容分级已改为成人。"
 
-#: mkt/developers/forms.py:63
+#: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
 msgstr "您不能选择 {region}。"
 
-#: mkt/developers/forms.py:121
+#: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "团队全体成员必须阅读和同意开发者协议。"
 
-#: mkt/developers/forms.py:152
+#: mkt/developers/forms.py:153
 msgid "Must have at least one owner."
 msgstr "至少要有一个所有者。"
 
-#: mkt/developers/forms.py:155
+#: mkt/developers/forms.py:156
 msgid "At least one team member must be listed."
 msgstr "必须至少列出一名团队成员。"
 
-#: mkt/developers/forms.py:159
+#: mkt/developers/forms.py:160
 msgid "A team member can only be listed once."
 msgstr "每一名团队成员只能列出一次。"
 
-#: mkt/developers/forms.py:186
+#: mkt/developers/forms.py:187
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "错误，您好像已经提交了%s的清单，而它当前已经公开。 <a href=\"%s\">编辑应用</a>"
 
-#: mkt/developers/forms.py:190
+#: mkt/developers/forms.py:191
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "哦，看起来您已经提交了 %s 的清单，目前正在处理当中。<a href=\"%s\">编辑应用</a>"
 
-#: mkt/developers/forms.py:194
+#: mkt/developers/forms.py:195
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "哦，看起来您已经提交了 %s 的清单，目前尚未完成。<a href=\"%s\">继续</a>"
 
-#: mkt/developers/forms.py:198
+#: mkt/developers/forms.py:199
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "哦，看上去您已经提交了 %s 的清单，目前被拒绝。<a href=\"%s\">编辑应用</a>"
 
-#: mkt/developers/forms.py:202
+#: mkt/developers/forms.py:203
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "看起来您已经提交了 %s 的清单，而它目前已被应用市场封禁。<a href=\"%s\">编辑应用</a>"
 
-#: mkt/developers/forms.py:206
+#: mkt/developers/forms.py:207
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "哦，看起来您已经提交了 %s 的清单，目前被禁用了。<a href=\"%s\">编辑应用</a>"
 
-#: mkt/developers/forms.py:221
+#: mkt/developers/forms.py:222
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "该域名下已经存在一个应用了；每个域名下只允许一个应用。"
 
-#: mkt/developers/forms.py:337
+#: mkt/developers/forms.py:338 mkt/websites/forms.py:71
 msgid "Invalid region(s) selected."
 msgstr "选择了无效的区域。"
 
-#: mkt/developers/forms.py:392 mkt/webapps/models.py:1332
+#: mkt/developers/forms.py:393 mkt/webapps/models.py:1325
 msgid "You must upload at least one screenshot or video."
 msgstr "您至少应该上传一个截屏或视频。"
 
-#: mkt/developers/forms.py:433
+#: mkt/developers/forms.py:434
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "封装应用文件体积过大，必须小于 %s 才能提交。"
 
-#: mkt/developers/forms.py:448
+#: mkt/developers/forms.py:449
 msgid "Error extracting manifest from zip file."
 msgstr "从 zip 文件中解压缩资源配置时出错。"
 
-#: mkt/developers/forms.py:517
+#: mkt/developers/forms.py:518
 msgid "Provide a detailed description of your app"
 msgstr "请为您的应用提供详细的描述"
 
-#: mkt/developers/forms.py:518
+#: mkt/developers/forms.py:519
 msgid "This description will appear on the details page."
 msgstr "该描述将在详细页面显示。"
 
-#: mkt/developers/forms.py:521 mkt/submit/forms.py:287
+#: mkt/developers/forms.py:522 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr "搜索关键词："
 
-#: mkt/developers/forms.py:523 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:289
+#: mkt/developers/forms.py:524 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "搜索关键词用来 Firefox 应用市场返回的搜索结果中。请确保包含准确反映了您的应用的关键词。"
 
-#: mkt/developers/forms.py:578 mkt/submit/forms.py:373
+#: mkt/developers/forms.py:579 mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
 
-#: mkt/developers/forms.py:581 mkt/submit/forms.py:377
+#: mkt/developers/forms.py:582 mkt/submit/forms.py:378
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "短网址不能是 \"%s\"。请另选一个。"
 
-#: mkt/developers/forms.py:609
+#: mkt/developers/forms.py:610
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "清单 URL 已自 {before_url} 变更为 {after_url}"
 
-#: mkt/developers/forms.py:646
+#: mkt/developers/forms.py:647
 msgid "Please specify your app's Privacy Policy"
 msgstr "请详细说明您应用的隐私策略"
 
-#: mkt/developers/forms.py:667
+#: mkt/developers/forms.py:668
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "要有那个语种的名称和描述才能改变默认语种。现在缺少 %s 。"
 
-#: mkt/developers/forms.py:726 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:727 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "您必须提供网站、电子邮件之一或两者。"
 
-#: mkt/developers/forms.py:751
+#: mkt/developers/forms.py:752
 msgid "Your comments"
 msgstr "您的评论。"
 
-#: mkt/developers/forms.py:778
+#: mkt/developers/forms.py:779
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>已发布</b>：所有人都能在应用市场中看到它，并且会出现在搜索结果和列表页面。"
 
-#: mkt/developers/forms.py:782
+#: mkt/developers/forms.py:783
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>未上架</b>：只有通过特定网址访问的人可以看到，并且不会出现在搜索结果和列表页面中。"
 
-#: mkt/developers/forms.py:798
+#: mkt/developers/forms.py:799
 msgid "App Visibility:"
 msgstr "应用可见度："
 
-#: mkt/developers/forms.py:800
+#: mkt/developers/forms.py:801
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>仅限于我的团队</b>：只有团队成员可见。"
 
-#: mkt/developers/forms.py:846
+#: mkt/developers/forms.py:847
 msgid "Choose the regions your app will be listed in:"
 msgstr "选择您的应用将会被列出的地区。"
 
-#: mkt/developers/forms.py:848 mkt/developers/forms.py:949
+#: mkt/developers/forms.py:849 mkt/developers/forms.py:950
 msgid "You must select at least one region."
 msgstr "您必须选择至少一个地区。"
 
-#: mkt/developers/forms.py:853
+#: mkt/developers/forms.py:854
 msgid "Enable new regions"
 msgstr "启用新地区"
 
-#: mkt/developers/forms.py:856
+#: mkt/developers/forms.py:857
 msgid "Make my app available in most regions"
 msgstr "让我的应用在大部分地区可用"
 
-#: mkt/developers/forms.py:857
+#: mkt/developers/forms.py:858
 msgid "Choose where my app is made available"
 msgstr "选择我的应用在哪些地方发布"
 
-#: mkt/developers/forms.py:1010 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/reviewers/templates/reviewers/includes/details.html:125
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:81
+#: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:21
 msgid "Categories"
 msgstr "类别"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1035 mkt/webapps/serializers.py:268
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:56
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您只能选择 {0} 个分类。"
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1050
 msgid "Agree"
 msgstr "同意"
 
-#: mkt/developers/forms.py:1066
+#: mkt/developers/forms.py:1067
 msgid "Please enter a valid email address."
 msgstr "请输入一个有效的电子邮件地址。"
 
-#: mkt/developers/forms.py:1069
+#: mkt/developers/forms.py:1070
 msgid "Your email address"
 msgstr "你的电子邮件地址"
 
-#: mkt/developers/forms.py:1072
+#: mkt/developers/forms.py:1073
 msgid "Text"
 msgstr "文本"
 
-#: mkt/developers/forms.py:1076
+#: mkt/developers/forms.py:1077
 msgid "You must agree to the Privacy Policy."
 msgstr "您必须同意隐私策略。"
 
-#: mkt/developers/forms.py:1077 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "国家"
 
-#: mkt/developers/forms.py:1111 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
+#: mkt/developers/forms.py:1112 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "应用"
 
-#: mkt/developers/forms.py:1113
+#: mkt/developers/forms.py:1114
 msgid "Transaction Type"
 msgstr "交易类型"
 
-#: mkt/developers/forms.py:1116 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1117 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "交易 ID"
 
-#: mkt/developers/forms.py:1122
+#: mkt/developers/forms.py:1123
 msgid "From"
 msgstr "从"
 
-#: mkt/developers/forms.py:1125
+#: mkt/developers/forms.py:1126
 msgid "To"
 msgstr "到"
 
-#: mkt/developers/forms.py:1136
+#: mkt/developers/forms.py:1137
 msgid "Web site"
 msgstr "网站"
 
-#: mkt/developers/forms.py:1137
+#: mkt/developers/forms.py:1138
 msgid "Command line"
 msgstr "命令行"
 
-#: mkt/developers/forms.py:1158
+#: mkt/developers/forms.py:1159
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "我的应用通过审核并被批准时设定为公开。"
 
-#: mkt/developers/forms.py:1185
+#: mkt/developers/forms.py:1186
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr "请考虑将我的应用作为预装到 Firefox OS 设备中的候选软件。我同意上述条款和条件说明。我理解这份文件并不意味着我的应用会被预装。"
 
-#: mkt/developers/forms.py:1192
+#: mkt/developers/forms.py:1193
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "上传您的测试计划 (.pdf, .xls 小于 2.5MB)"
 
-#: mkt/developers/forms.py:1208
+#: mkt/developers/forms.py:1209
 msgid "Test plan required."
 msgstr "测试计划是必须的。"
 
-#: mkt/developers/forms.py:1215
+#: mkt/developers/forms.py:1216
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "文件过大。请保持大小小于 %s。当前大小 %s。"
 
-#: mkt/developers/forms.py:1221
+#: mkt/developers/forms.py:1222
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "无效的文件类型 {0}。仅支持 {1} 文件。"
 
-#: mkt/developers/forms.py:1245
+#: mkt/developers/forms.py:1246
 msgid "Please enter a valid submission ID."
 msgstr "请输入一个有效的提交ID。"
 
-#: mkt/developers/forms.py:1261
+#: mkt/developers/forms.py:1262
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "这个 IARC 证书已经用于另外一个应用。请创建一个新的 IARC 评级证书。"
 
-#: mkt/developers/forms.py:1296 mkt/developers/forms.py:1308
+#: mkt/developers/forms.py:1297 mkt/developers/forms.py:1309
 msgid "Invalid submission ID or security code."
 msgstr "无效的提交 ID 或安全码。"
 
@@ -2437,7 +2517,8 @@ msgid "Account name"
 msgstr "账号名称"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
-#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+#: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:27
 msgid "Name"
 msgstr "名称"
 
@@ -2459,15 +2540,15 @@ msgid "My Submissions"
 msgstr "我的提交"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:137
+#: mkt/developers/models.py:138
 msgid "Donate to {0}"
 msgstr "捐赠给 {0}"
 
-#: mkt/developers/models.py:480
+#: mkt/developers/models.py:482
 msgid "Review"
 msgstr "评论"
 
-#: mkt/developers/models.py:483 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:485 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "版本 {0}"
 
@@ -2475,35 +2556,35 @@ msgstr "版本 {0}"
 msgid "Reference Implementation"
 msgstr "引用工具"
 
-#: mkt/developers/tasks.py:407
+#: mkt/developers/tasks.py:413
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "域名错误，请检查拼写再次尝试。"
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:419
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "清单必须带有 HTTP 头\"Content-Type: application/x-web-app-manifest+json\"。查看 %s 获取更多信息。"
 
-#: mkt/developers/tasks.py:422
+#: mkt/developers/tasks.py:428
 msgid "Your manifest must be less than %s bytes."
 msgstr "您的清单必须小于 %s 字节。"
 
-#: mkt/developers/tasks.py:430
+#: mkt/developers/tasks.py:436
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "您的清单文件没有使用有效的 UTF-8 编码。"
 
-#: mkt/developers/tasks.py:441
+#: mkt/developers/tasks.py:447
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "清单的编码与 HTTP Content-Type 中提供的字符集不匹配。"
 
-#: mkt/developers/tasks.py:471 mkt/developers/tasks.py:477 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:478 mkt/developers/tasks.py:484 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "至"
 
-#: mkt/developers/tasks.py:491
+#: mkt/developers/tasks.py:498
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} 区域已添加到火狐应用市场"
 
-#: mkt/developers/tasks.py:495
+#: mkt/developers/tasks.py:502
 msgid "New regions added to the Firefox Marketplace"
 msgstr "火狐市场添加了新地区。"
 
@@ -2573,7 +2654,7 @@ msgstr "应用已成功地重新提交。"
 msgid "New version successfully added."
 msgstr "新版本添加成功。"
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:685
+#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
@@ -2777,7 +2858,7 @@ msgid "Update Message of the Day"
 msgstr "更新每日消息"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:209
+#: mkt/reviewers/templates/reviewers/review.html:227
 msgid "Save"
 msgstr "保存"
 
@@ -2986,7 +3067,8 @@ msgid "Submit An App"
 msgstr "提交一个应用"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/reviewers/templates/reviewers/review.html:61
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
+#: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Edit Listing"
 msgstr "编辑信息"
 
@@ -3013,7 +3095,8 @@ msgstr "关于团队成员角色"
 #: mkt/developers/templates/developers/apps/edit/basic.html:194 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
-#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/translations/templates/translations/trans-menu.html:48
+#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "保存更改"
 
@@ -3055,8 +3138,9 @@ msgstr "状态和版本"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
-#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/reviewers/forms.py:191
+#: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "状态"
 
@@ -3174,7 +3258,7 @@ msgstr "封包版本"
 msgid "Submission date"
 msgstr "提交日期"
 
-#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24
+#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:95
 msgid "Disabled"
 msgstr "已停用"
 
@@ -3341,7 +3425,8 @@ msgstr "您确认希望将应用移出列表？"
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/lookup/templates/lookup/website_edit.html:104 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "或"
 
@@ -3353,7 +3438,8 @@ msgstr "或"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
-#: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/lookup/templates/lookup/website_edit.html:105 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "取消"
 
@@ -3524,7 +3610,7 @@ msgid "View API documentation"
 msgstr "查看 API 文档"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:131
+#: mkt/search/forms.py:142
 msgid "Manifest URL"
 msgstr "清单网址"
 
@@ -3538,11 +3624,12 @@ msgid ""
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr "请不要频繁更换您的清单 URL。如果您更改了您的清单 URL，现有的用户将不会升级为使用新的清单 URL。相关的更多信息请阅读 <a href=\"%(doc_url)s\" target=\"_blank\">有关“更新应用”的文档</a>。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/reviewers/templates/reviewers/includes/details.html:138
+#: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:22
+#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:23
 msgid "Description"
 msgstr "描述"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:280
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:281
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
@@ -3885,7 +3972,7 @@ msgstr "状态和版本"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1430
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1423
 msgid "Content Ratings"
 msgstr "内容评级"
 
@@ -4028,7 +4115,7 @@ msgstr "安全码"
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "可以在发送给您的证书中找到安全码。这是一组字母数字混合的代码，类似于“AB12CD3”。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "概述"
 
@@ -4074,7 +4161,7 @@ msgstr "支持一些 HTML。"
 msgid "Remove this application"
 msgstr "移除此应用程序"
 
-#: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81
+#: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81 mkt/lookup/templates/lookup/website_edit.html:79
 msgid "Pick one or two categories."
 msgstr "选择一到两个分类。"
 
@@ -4271,7 +4358,7 @@ msgid "Prices and Countries"
 msgstr "价格和国家"
 
 #: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:17
 msgid "Price"
 msgstr "价格"
 
@@ -4720,7 +4807,7 @@ msgid "Developing Game Apps"
 msgstr "开发游戏应用"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1436
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1429
 msgid "Payments"
 msgstr "支付"
 
@@ -4965,11 +5052,11 @@ msgstr "此文件无法在线查看。请下载该文件以查看其内容。"
 msgid "This file is a directory."
 msgstr "此文件是一个目录。"
 
-#: mkt/files/tasks.py:28
+#: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
 msgstr "访问文件 %s 时遇到错误。%s。"
 
-#: mkt/files/tasks.py:31
+#: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
 msgstr "访问文件 %s 时遇到错误。"
 
@@ -5153,25 +5240,29 @@ msgstr "为退款交易输入退款详情"
 msgid "Reason for Deletion"
 msgstr "删除原因"
 
-#: mkt/lookup/views.py:195
+#: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
 msgstr "退款已处理。"
 
-#: mkt/lookup/views.py:218
+#: mkt/lookup/views.py:219
 msgid "You cannot make a refund request for this transaction."
 msgstr "这个交易不能退款。"
 
-#: mkt/lookup/views.py:242
+#: mkt/lookup/views.py:243
 msgid "Refund for this transaction now pending."
 msgstr "这个交易的退款目前在挂起。"
 
-#: mkt/lookup/views.py:250
+#: mkt/lookup/views.py:251
 msgid "Refund for this transaction successfully approved."
 msgstr "这个交易的退款已审核通过。"
 
-#: mkt/lookup/views.py:255
+#: mkt/lookup/views.py:256
 msgid "Refund request for this transaction failed."
 msgstr "这个交易的退款请求失败。"
+
+#: mkt/lookup/views.py:333
+msgid "Website saved."
+msgstr ""
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5323,7 +5414,7 @@ msgstr "文件名（ID，大小）"
 msgid "Lookup Tool"
 msgstr "查找工具"
 
-#: mkt/lookup/templates/lookup/base.html:10
+#: mkt/lookup/templates/lookup/base.html:14
 msgid "<small>Marketplace</small> Lookup Tool"
 msgstr "<small>应用市场</small> 查找工具"
 
@@ -5484,6 +5575,38 @@ msgstr "删除者"
 msgid "Reason"
 msgstr "理由"
 
+#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
+msgid "Short Name"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
+msgid "Title"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
+msgid "URL"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
+msgid "Mobile URL"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
+msgid "Keywords"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
+msgid "Preferred Regions"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_summary.html:18
+msgid "Name - Short Name"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_summary.html:50
+msgid "disabled"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
 msgstr "应用查询结果"
@@ -5508,13 +5631,21 @@ msgstr "账户概览"
 msgid "Account Deleted"
 msgstr "账户已删除"
 
+#: mkt/lookup/templates/lookup/helpers/website_header.html:3
+msgid "Website Summary for"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/helpers/website_header.html:5
+msgid "Edit Website"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
 msgstr "应用查询"
 
-#: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:78 mkt/search/forms.py:80
-#: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
+#: mkt/lookup/templates/lookup/includes/app_search.html:9 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
+#: mkt/lookup/templates/lookup/includes/website_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
+#: mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "搜索"
 
@@ -5525,6 +5656,10 @@ msgstr "应用: {0}"
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "账户查找"
+
+#: mkt/lookup/templates/lookup/includes/website_search.html:5
+msgid "Website Lookup"
+msgstr ""
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5701,7 +5836,7 @@ msgstr "已通过审核的评论"
 msgid "Deleted reviews"
 msgstr "已删除的评论"
 
-#: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
+#: mkt/reviewers/forms.py:34 mkt/search/forms.py:43
 msgid "Any Device"
 msgstr "任何设备"
 
@@ -5732,51 +5867,55 @@ msgstr "结束日期"
 msgid "app, reviewer, or comment"
 msgstr "应用，审核者或评论"
 
+#: mkt/reviewers/forms.py:104
+msgid "Device Type:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:105
+msgid "Device:"
+msgstr ""
+
 #: mkt/reviewers/forms.py:106
+msgid "Firefox Version:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:118
 msgid "Comments:"
 msgstr "意见："
 
-#: mkt/reviewers/forms.py:110 mkt/reviewers/templates/reviewers/review.html:134
-msgid "Device Types:"
-msgstr "设备类型："
-
-#: mkt/reviewers/forms.py:112 mkt/reviewers/templates/reviewers/review.html:138
-msgid "Browsers:"
-msgstr "浏览器:"
-
-#: mkt/reviewers/forms.py:115
+#: mkt/reviewers/forms.py:123
 msgid "Device Type Override:"
 msgstr "排除的设备类型："
 
-#: mkt/reviewers/forms.py:118
+#: mkt/reviewers/forms.py:126
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
 msgstr "下次更新资源配置文件时通知我。（随后的更新将不再产生邮件）"
 
-#: mkt/reviewers/forms.py:122
+#: mkt/reviewers/forms.py:130
 msgid "This app works on Tarako devices."
 msgstr "此应用运行于 Tarako 设备。"
 
-#: mkt/reviewers/forms.py:129
+#: mkt/reviewers/forms.py:137
 msgid "Choose a canned response..."
 msgstr "选择一项预置的回复..."
 
-#: mkt/reviewers/forms.py:185
+#: mkt/reviewers/forms.py:194
 msgid "Has Editor Comment"
 msgstr "有编辑评论"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:198
 msgid "More Info Requested"
 msgstr "请求更多信息"
 
-#: mkt/reviewers/forms.py:197
+#: mkt/reviewers/forms.py:206
 msgid "Tarako-ready"
 msgstr "可用于 Tarako"
 
-#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:91
 msgid "Device"
 msgstr "设备"
 
-#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:67 mkt/site/context_processors.py:70
+#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
 msgstr "审阅工具"
 
@@ -5796,180 +5935,189 @@ msgstr "更新"
 msgid "Escalations"
 msgstr "向上呈报"
 
-#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:151
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:159
 msgid "Moderated Reviews"
 msgstr "提请仲裁的评论"
 
 #: mkt/reviewers/helpers.py:48
+msgid "Website Abuse Reports"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
 msgstr "正在审核"
 
-#: mkt/reviewers/helpers.py:50 mkt/reviewers/templates/reviewers/queue_region.html:7
+#: mkt/reviewers/helpers.py:51 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
 msgstr "区域队列"
 
-#: mkt/reviewers/helpers.py:89
+#: mkt/reviewers/helpers.py:90
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr "应用（{0}）"
 
-#: mkt/reviewers/helpers.py:92
+#: mkt/reviewers/helpers.py:93
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr "重新审核 ({0})"
 
-#: mkt/reviewers/helpers.py:96
+#: mkt/reviewers/helpers.py:97
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr "更新 ({0})"
 
-#: mkt/reviewers/helpers.py:100
+#: mkt/reviewers/helpers.py:101
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr "{0} 个向上呈报"
 
-#: mkt/reviewers/helpers.py:104
+#: mkt/reviewers/helpers.py:105
 msgid "Reviewing ({0})"
 msgstr "正在审核（{0}）"
 
-#: mkt/reviewers/helpers.py:110
+#: mkt/reviewers/helpers.py:111
 msgid "China ({0})"
 msgstr "中国 ({0})"
 
-#: mkt/reviewers/helpers.py:115
+#: mkt/reviewers/helpers.py:116
 msgid "Tarako ({0})"
 msgstr "Tarako ({0})"
 
-#: mkt/reviewers/helpers.py:122
+#: mkt/reviewers/helpers.py:123
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "提请仲裁的评论 ({0})"
 
-#: mkt/reviewers/helpers.py:129
+#: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr "滥用报告 ({0})"
 
-#: mkt/reviewers/helpers.py:146
+#: mkt/reviewers/helpers.py:137
+msgctxt "abusewebsites"
+msgid "Website Abuse Reports ({0})"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:154
 msgid "Reviews"
 msgstr "评论"
 
-#: mkt/reviewers/helpers.py:188
+#: mkt/reviewers/helpers.py:196
 msgid "Rejected or Unreviewed"
 msgstr "已拒绝或未审核"
 
-#: mkt/reviewers/utils.py:371 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:390 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "核准"
 
-#: mkt/reviewers/utils.py:372
+#: mkt/reviewers/utils.py:391
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "这将会核准该应用并允许作者发布。"
 
-#: mkt/reviewers/utils.py:376 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:395 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "拒绝"
 
-#: mkt/reviewers/utils.py:378
+#: mkt/reviewers/utils.py:397
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "将会拒绝应用，从审核队列中移除，如果已经发布则会下架。"
 
-#: mkt/reviewers/utils.py:383
+#: mkt/reviewers/utils.py:402
 msgid "Message developer"
 msgstr "开发者消息"
 
-#: mkt/reviewers/utils.py:385
+#: mkt/reviewers/utils.py:404
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr "这将发送给作者及主题订阅者一条消息。这不会更改应用的状态。"
 
-#: mkt/reviewers/utils.py:390
+#: mkt/reviewers/utils.py:409
 msgid "Escalate"
 msgstr "上升"
 
-#: mkt/reviewers/utils.py:392
+#: mkt/reviewers/utils.py:411
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "将应用标记为管理员审核。将会给管理员而不是作者发送评论。"
 
-#: mkt/reviewers/utils.py:397
+#: mkt/reviewers/utils.py:416
 msgid "Private comment"
 msgstr "私人留言"
 
-#: mkt/reviewers/utils.py:399
+#: mkt/reviewers/utils.py:418
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr "在此应用上留下一条审核者的私人留言。作者不能看到此消息，并且不会收到相关通知。"
 
-#: mkt/reviewers/utils.py:405
+#: mkt/reviewers/utils.py:424
 msgid "Clear Escalation"
 msgstr "清除向上呈报"
 
-#: mkt/reviewers/utils.py:407
+#: mkt/reviewers/utils.py:426
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "从向上呈报队列中清除此应用。作者不会收到邮件通知或看到这里的评论。"
 
-#: mkt/reviewers/utils.py:412
+#: mkt/reviewers/utils.py:431
 msgid "Clear Re-review"
 msgstr "清除重新审核"
 
-#: mkt/reviewers/utils.py:414
+#: mkt/reviewers/utils.py:433
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "从重新审核队列中清除这个应用。作者不会收到邮件通知或者看到这里的评论。"
 
-#: mkt/reviewers/utils.py:419
+#: mkt/reviewers/utils.py:438
 msgid "Ban app"
 msgstr "封禁应用"
 
-#: mkt/reviewers/utils.py:421
+#: mkt/reviewers/utils.py:440
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "从应用市场中封禁该应用。类似拒绝，但作者不能重新提交。仅在极端情况下使用。"
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:141
 msgid "New Apps (Under 5 days)"
 msgstr "新购买的应用（5天之内）"
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:142
 msgid "Passable (5 to 10 days)"
 msgstr "可通过（五至十天）"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:143
 msgid "Overdue (Over 10 days)"
 msgstr "逾期（超过十天）"
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:256
 msgid "Self-reviews are not allowed."
 msgstr "不允许自我审核。"
 
-#: mkt/reviewers/views.py:260
+#: mkt/reviewers/views.py:262
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "只有资深审核者可以审核封锁的应用。"
 
-#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:335 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340 mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "{0} 添加"
 
-#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:336 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341 mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "已移除 {0}"
 
-#: mkt/reviewers/views.py:316
+#: mkt/reviewers/views.py:321
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "审核者更改了设备：{0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:338
+#: mkt/reviewers/views.py:343
 msgid "Requirements changed by reviewer: {0}"
 msgstr "审核者修改了需求：{0}"
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "已成功处理 \"{0}\" （+{1} 点，共 {2} ）。"
 
-#: mkt/reviewers/views.py:367
+#: mkt/reviewers/views.py:372
 msgid "Review successfully processed."
 msgstr "审核处理成功。"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
-msgid "Abuse Reports for {addon} ({num})"
-msgstr "{addon} 的滥用报告（{num}）"
+msgid "Abuse Reports for {item} ({num})"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6262,39 +6410,43 @@ msgstr "应用历史"
 msgid "Resolution"
 msgstr "决定"
 
-#: mkt/reviewers/templates/reviewers/review.html:99
+#: mkt/reviewers/templates/reviewers/review.html:100
 msgid "App submission incomplete"
 msgstr "应用尚未完成提交"
 
-#: mkt/reviewers/templates/reviewers/review.html:119
+#: mkt/reviewers/templates/reviewers/review.html:121
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "您依然可以提交此表单，但请在确保它不会发生冲突时提交。"
 
-#: mkt/reviewers/templates/reviewers/review.html:126
+#: mkt/reviewers/templates/reviewers/review.html:128
 msgid "Insert canned response..."
 msgstr "插入一项预置的回复..."
 
-#: mkt/reviewers/templates/reviewers/review.html:132
-msgid "Tested with:"
-msgstr "已测试："
+#: mkt/reviewers/templates/reviewers/review.html:133
+msgid "Tested on:"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:158
+#: mkt/reviewers/templates/reviewers/review.html:159
+msgid "Add device"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
 msgstr "浏览"
 
-#: mkt/reviewers/templates/reviewers/review.html:170
+#: mkt/reviewers/templates/reviewers/review.html:188
 msgid "Attach another file"
 msgstr "添加另一个附件"
 
-#: mkt/reviewers/templates/reviewers/review.html:173
+#: mkt/reviewers/templates/reviewers/review.html:191
 msgid "Device Override:"
 msgstr "排除设备："
 
-#: mkt/reviewers/templates/reviewers/review.html:186
+#: mkt/reviewers/templates/reviewers/review.html:204
 msgid "Minimum Requirements Override:"
 msgstr "覆盖最低需求："
 
-#: mkt/reviewers/templates/reviewers/review.html:205
+#: mkt/reviewers/templates/reviewers/review.html:223
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
@@ -6408,31 +6560,35 @@ msgstr "较早版本"
 msgid "Newer versions"
 msgstr "较新版本"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
 msgid "Process"
 msgstr "处理"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Skip"
 msgstr "跳过"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Mark Read"
 msgstr "标为已读"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
-msgid "[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr "[<a href=\"%(review_url)s\">审核页面</a> | <a href=\"%(abuses_url)s\">所有滥用报告 (%(abuses_count)s)</a>]"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+msgid "Review page"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr "<span class=\"submitted-by\">由 %(user)s 于 %(date)s 提交 [%(ip_address)s]</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
-msgid "translate"
-msgstr "翻译"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
 msgstr "已阅读所有滥用报告。做得不错！"
 
@@ -6447,6 +6603,10 @@ msgstr "仲裁操作："
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgstr "由 %(user)s 于 %(date)s %(stars)s（%(locale)s）"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
+msgid "translate"
+msgstr "翻译"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -6550,111 +6710,111 @@ msgstr "您有 <span>{0}</span> 点。"
 msgid "No results found"
 msgstr "找不到结果"
 
-#: mkt/search/forms.py:12
+#: mkt/search/forms.py:13
 msgid "Relevance"
 msgstr "相关性"
 
-#: mkt/search/forms.py:13
+#: mkt/search/forms.py:14
 msgid "Popularity"
 msgstr "热门度"
 
-#: mkt/search/forms.py:14
+#: mkt/search/forms.py:15
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: mkt/search/forms.py:15
+#: mkt/search/forms.py:16
 msgid "Top Rated"
 msgstr "评分最高"
 
-#: mkt/search/forms.py:17
+#: mkt/search/forms.py:18
 msgid "Newest"
 msgstr "最新的"
 
-#: mkt/search/forms.py:18
+#: mkt/search/forms.py:19
 msgid "Reviewed"
 msgstr "已审核"
 
-#: mkt/search/forms.py:20
+#: mkt/search/forms.py:21
 msgid "Trending"
 msgstr "趋势"
 
-#: mkt/search/forms.py:26
+#: mkt/search/forms.py:27
 msgid "Any App Type"
 msgstr "任何应用类型"
 
-#: mkt/search/forms.py:29
+#: mkt/search/forms.py:30
 msgid "Privileged packaged app"
 msgstr "特权封装应用"
 
-#: mkt/search/forms.py:34
+#: mkt/search/forms.py:35
 msgid "Free with In-app"
 msgstr "免费（应用内付款）"
 
-#: mkt/search/forms.py:36
+#: mkt/search/forms.py:37
 msgid "Premium with In-app"
 msgstr "付费（应用内付款）"
 
-#: mkt/search/forms.py:37
+#: mkt/search/forms.py:38
 msgid "Other System for In-App"
 msgstr "其他应用内付款系统"
 
-#: mkt/search/forms.py:44
+#: mkt/search/forms.py:45
 msgid "Android"
 msgstr "Android"
 
-#: mkt/search/forms.py:51
+#: mkt/search/forms.py:52
 msgid "Any Device Type"
 msgstr "任何设备类型"
 
-#: mkt/search/forms.py:53
+#: mkt/search/forms.py:54
 msgid "Mobile"
 msgstr "移动版"
 
-#: mkt/search/forms.py:54
+#: mkt/search/forms.py:55
 msgid "Tablet"
 msgstr "工具栏"
 
-#: mkt/search/forms.py:57
+#: mkt/search/forms.py:62
 msgid "All Categories"
 msgstr "全部分类"
 
-#: mkt/search/forms.py:72
+#: mkt/search/forms.py:77
 msgid "Search for apps"
 msgstr "搜索应用"
 
-#: mkt/search/forms.py:86
+#: mkt/search/forms.py:93
 msgid "Device type"
 msgstr "设备类型"
 
-#: mkt/search/forms.py:126
+#: mkt/search/forms.py:137
 msgid "Premium types"
 msgstr "付费类型"
 
-#: mkt/search/forms.py:130
+#: mkt/search/forms.py:141
 msgid "App type"
 msgstr "应用类型"
 
-#: mkt/search/forms.py:134
+#: mkt/search/forms.py:145
 msgid "Installs allowed from"
 msgstr "允许安装从"
 
-#: mkt/search/forms.py:135
+#: mkt/search/forms.py:146
 msgid "Everywhere"
 msgstr "所有地方"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:148
 msgid "Works offline"
 msgstr "可离线工作"
 
-#: mkt/search/forms.py:139
+#: mkt/search/forms.py:150
 msgid "Supported languages"
 msgstr "支持的语言"
 
-#: mkt/search/forms.py:140
+#: mkt/search/forms.py:151
 msgid "Author name"
 msgstr "作者名称"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:152
 msgid "Tags"
 msgstr "标签"
 
@@ -7197,38 +7357,20 @@ msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} 未通过 {queue} 审核。"
 
 #: mkt/site/log.py:689
-msgid "Abuse report {report} for {addon} deleted."
-msgstr "{addon} 的滥用报告 {report} 已删除。"
+msgid "Abuse report {report} for {addon} read."
+msgstr ""
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
 msgstr "{user} 将 {addon} 的滥用报告 {report} 标为已读。"
 
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:683
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "无效的标签：{0}"
+#: mkt/site/log.py:698
+msgid "Abuse report {report} for {website} read."
+msgstr ""
 
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:693
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "“{0}”为保留标签，不能使用。"
-
-#: mkt/site/utils.py:701
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "您的标签多出了 {0} 个。"
-
-#: mkt/site/utils.py:707
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符。"
-
-#: mkt/site/utils.py:711
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "所有标签至少要包含 {0} 个字符。"
+#: mkt/site/log.py:699
+msgid "{user} marked read {report} for {website}."
+msgstr ""
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -7294,56 +7436,56 @@ msgstr "周"
 msgid "Quarter"
 msgstr "季度"
 
-#: mkt/submit/forms.py:31
+#: mkt/submit/forms.py:32
 msgid "Device(s) changed: {0}"
 msgstr "设备已更改：{0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:41
+#: mkt/submit/forms.py:42
 msgid "Requirements changed: {0}"
 msgstr "需求已更改：{0}"
 
-#: mkt/submit/forms.py:49
+#: mkt/submit/forms.py:50
 msgid "Cannot be free and paid."
 msgstr "不能同时免费和付费。"
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:51
 msgid "Please select a device."
 msgstr "请选择设备。"
 
-#: mkt/submit/forms.py:128
+#: mkt/submit/forms.py:129
 msgid "Agree and Continue"
 msgstr "同意并继续"
 
-#: mkt/submit/forms.py:155 mkt/submit/forms.py:229
+#: mkt/submit/forms.py:156 mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上传过程中发生错误，请重试。"
 
-#: mkt/submit/forms.py:190
+#: mkt/submit/forms.py:191
 msgid "Version %s already exists."
 msgstr "版本 %s 已经存在。"
 
-#: mkt/submit/forms.py:201
+#: mkt/submit/forms.py:202
 msgid "Changes to \"origin\" are not allowed."
 msgstr "不允许更改为 \"origin\"。"
 
-#: mkt/submit/forms.py:224
+#: mkt/submit/forms.py:225
 msgid "User submitting validation does not match."
 msgstr "用户提交的验证信息不匹配。"
 
-#: mkt/submit/forms.py:269
+#: mkt/submit/forms.py:270
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr "发布我的应用，让所有人都能在应用市场中看的，并且会出现在搜索结果中。"
 
-#: mkt/submit/forms.py:272
+#: mkt/submit/forms.py:273
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "不要自动发布我的应用。在通过审核后通知我，我会自行调整此应用的可见度。"
 
-#: mkt/submit/forms.py:294
+#: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
 msgstr "隐私政策："
 
-#: mkt/submit/forms.py:296
+#: mkt/submit/forms.py:297
 msgid ""
 "A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
@@ -7352,47 +7494,47 @@ msgstr ""
 "一个隐私政策是用来解释您如何处理通过您的应用接收到的数据。举例来说：您会收到什么样的数据？您会如何使用它？您会将其与谁分享？您会收到个人信息吗？您会采取匿名化措施吗？用户有哪些选择权来控制您与其他人"
 "收到的信息？请在上方输入您的隐私政策链接或文本。如果您没有一个隐私政策，<a href=\"{url}\" target=\"_blank\">了解如何写一个</a>。"
 
-#: mkt/submit/forms.py:307
+#: mkt/submit/forms.py:308
 msgid "Homepage:"
 msgstr "主页："
 
-#: mkt/submit/forms.py:309
+#: mkt/submit/forms.py:310
 msgid "If your app has another homepage, enter its address here."
 msgstr "如果您的应用有另一个主页，在这里输入地址。"
 
-#: mkt/submit/forms.py:312
+#: mkt/submit/forms.py:313
 msgid "Website:"
 msgstr "网站："
 
-#: mkt/submit/forms.py:314
+#: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "如果您的应用有支持网站或者论坛，在这里输入地址。"
 
-#: mkt/submit/forms.py:318
+#: mkt/submit/forms.py:319
 msgid "Email:"
 msgstr "电子邮件："
 
-#: mkt/submit/forms.py:320
+#: mkt/submit/forms.py:321
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr "这个邮件地址会公开显示在应用市场以便最终用户联系您获得支持。邮件地址会公开显示在应用详情页面。"
 
-#: mkt/submit/forms.py:326
+#: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
 msgstr "您的应用是否需要 Flash 支持？"
 
-#: mkt/submit/forms.py:332
+#: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
 msgstr "您对审核者的留言："
 
-#: mkt/submit/forms.py:334
+#: mkt/submit/forms.py:335
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr "您的应用在公开上架到“应用市场”之前将由 Mozilla 进行审核。请在此输入任何您要给应用审核员的特殊说明。"
 
-#: mkt/submit/forms.py:339
+#: mkt/submit/forms.py:340
 msgid "Once your app is approved, choose a publishing option:"
 msgstr "选择在您的应用通过审核后的发布选项："
 
-#: mkt/submit/forms.py:343
+#: mkt/submit/forms.py:344
 msgid "My app works without an Internet connection."
 msgstr "我的应用可以在没有互联网连接时使用。"
 
@@ -7566,6 +7708,32 @@ msgstr "Mozilla 可以向我发送有关应用开发者的新闻与调查的邮�
 msgid "Héllo"
 msgstr "您好"
 
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:25
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "无效的标签：{0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:35
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "“{0}”为保留标签，不能使用。"
+
+#: mkt/tags/utils.py:43
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "您的标签多出了 {0} 个。"
+
+#: mkt/tags/utils.py:49
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符。"
+
+#: mkt/tags/utils.py:53
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "所有标签至少要包含 {0} 个字符。"
+
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
 msgstr "编辑账户设置"
@@ -7736,70 +7904,70 @@ msgid "Please use the verified email for this account."
 msgstr "请为此账号使用已验证的邮箱。"
 
 # Column name in a table.
-#: mkt/webapps/models.py:208
+#: mkt/webapps/models.py:200
 msgid "Listed"
 msgstr "已列出"
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1316
 msgid "You must provide a support email or URL."
 msgstr "您必须提供一个技术支持邮箱或网址。"
 
-#: mkt/webapps/models.py:1325
+#: mkt/webapps/models.py:1318
 msgid "You must provide an app name."
 msgstr "您至少应该填写一个应用名称。"
 
-#: mkt/webapps/models.py:1327
+#: mkt/webapps/models.py:1320
 msgid "You must provide at least one device type."
 msgstr "至少提供一种设备类型。"
 
-#: mkt/webapps/models.py:1330
+#: mkt/webapps/models.py:1323
 msgid "You must provide at least one category."
 msgstr "您必须提供至少一个种类。"
 
-#: mkt/webapps/models.py:1397
+#: mkt/webapps/models.py:1390
 msgid "You must set up content ratings."
 msgstr "必须设置内容评级。"
 
-#: mkt/webapps/models.py:1399
+#: mkt/webapps/models.py:1392
 msgid "You must set up a payment account."
 msgstr "必须设置支付账号。"
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1417
 msgid "This app's submission process has not been fully completed."
 msgstr "程序提交步骤尚未完全完成。"
 
-#: mkt/webapps/models.py:1431
+#: mkt/webapps/models.py:1424
 msgid "This app needs to get a content rating."
 msgstr "该程序需要获取内容分级。"
 
-#: mkt/webapps/models.py:1437
+#: mkt/webapps/models.py:1430
 msgid "This app needs a payment account set up."
 msgstr "该程序需要设置一个支付账户。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2696
+#: mkt/webapps/models.py:2689
 msgid "awaiting approval"
 msgstr "等待审核"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2698
+#: mkt/webapps/models.py:2691
 msgid "rejected"
 msgstr "已拒绝"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2700
+#: mkt/webapps/models.py:2693
 msgid "requires additional review"
 msgstr "需要额外审核"
 
-#: mkt/webapps/models.py:2751
+#: mkt/webapps/models.py:2744
 msgid "{region} approval status"
 msgstr "{region} 审核状态"
 
-#: mkt/webapps/models.py:2759
+#: mkt/webapps/models.py:2752
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "火狐应用市场中您的应用 \"{app}\" 的问题"
 

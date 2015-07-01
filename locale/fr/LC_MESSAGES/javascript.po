@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-09-06 11:46+0200\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -237,11 +237,11 @@ msgstr "Statut correctement modifié en « {0} »"
 msgid "Could not change status to \"{0}\""
 msgstr "Impossible de changer le statut en « {0} »"
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Afficher tous les résultats"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Plus de {0} résultats trouvés, merci d'affiner votre recherche."
 
@@ -450,8 +450,8 @@ msgid "Receipt was not checked by app."
 msgstr "Reçu non vérifié par l'application."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} regardait ce module en premier."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

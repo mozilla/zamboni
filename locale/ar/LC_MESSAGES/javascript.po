@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2013-02-12 23:44+0200\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -251,11 +251,11 @@ msgstr ""
 msgid "Could not change status to \"{0}\""
 msgstr ""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr ""
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
 
@@ -480,7 +480,7 @@ msgid "Receipt was not checked by app."
 msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
+msgid "{name} was viewing this app first."
 msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252

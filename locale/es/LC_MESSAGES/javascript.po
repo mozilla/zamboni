@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-09-27 23:39+0200\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,11 +231,11 @@ msgstr "Estado cambiado a \"{0}\" correctamente"
 msgid "Could not change status to \"{0}\""
 msgstr "No se pudo cambiar estado a \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Mostrar todos los resultados"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Más de {0} resultados encontrados, intenta concretar más tu búsqueda."
 
@@ -444,8 +444,8 @@ msgid "Receipt was not checked by app."
 msgstr "El recibo no fue comprobado por la app."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} fue el primero en ver este complemento."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

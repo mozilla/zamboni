@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:25-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-06-26 21:25+0000\n"
 "Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,11 +231,11 @@ msgstr ""
 msgid "Could not change status to \"{0}\""
 msgstr ""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "ਸਭ ਨਤੀਜੇ ਵੇਖੋ"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} ਤੋਂ ਵੱਧ ਨਤੀਜੇ ਮਿਲੇ, ਆਪਣੀ ਖੋਜ ਨੂੰ ਸੋਧਣ ਬਾਰੇ ਸੋਚੋ।"
 
@@ -444,8 +444,8 @@ msgid "Receipt was not checked by app."
 msgstr "ਐਪ ਵਲੋਂ ਰਸੀਦ ਦੀ ਜਾਂਚ ਨਹੀਂ ਕੀਤੀ।"
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} ਨੇ ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਵੇਖੀ।"
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

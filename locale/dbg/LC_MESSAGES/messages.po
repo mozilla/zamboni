@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:25-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,22 +25,22 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Ŧħḗ ŀȧƞɠŭȧɠḗ ƈǿḓḗ {ŀȧƞɠ_ƈǿḓḗ} īş īƞṽȧŀīḓ."
 
 #: mkt/api/forms.py:110
-#: mkt/reviewers/forms.py:207
+#: mkt/reviewers/forms.py:216
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 #: mkt/api/forms.py:111
 #: mkt/developers/forms_payments.py:54
-#: mkt/reviewers/forms.py:208
-#: mkt/submit/forms.py:329
+#: mkt/reviewers/forms.py:217
+#: mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "Ẏḗş"
 
 #: mkt/api/forms.py:112
 #: mkt/developers/forms_payments.py:54
 #: mkt/lookup/templates/lookup/user_summary.html:57
-#: mkt/reviewers/forms.py:209
-#: mkt/submit/forms.py:330
+#: mkt/reviewers/forms.py:218
+#: mkt/submit/forms.py:331
 msgid "No"
 msgstr "Ƞǿ"
 
@@ -65,7 +65,7 @@ msgid "Attachment:"
 msgstr "Ȧŧŧȧƈħḿḗƞŧ:"
 
 #: mkt/comm/forms.py:46
-#: mkt/submit/forms.py:279
+#: mkt/submit/forms.py:280
 msgid "Description:"
 msgstr "Ḓḗşƈřīƥŧīǿƞ:"
 
@@ -85,7 +85,7 @@ msgstr ""
 
 #: mkt/constants/applications.py:6
 #: mkt/ecosystem/templates/ecosystem/partners.html:104
-#: mkt/search/forms.py:43
+#: mkt/search/forms.py:44
 msgid "Desktop"
 msgstr "Ḓḗşķŧǿƥ"
 
@@ -112,8 +112,8 @@ msgstr "Ƒīřḗƒǿẋ Ŧȧƀŀḗŧ"
 #: mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32
 #: mkt/ecosystem/templates/ecosystem/partners.html:91
-#: mkt/search/forms.py:45
-#: mkt/search/forms.py:52
+#: mkt/search/forms.py:46
+#: mkt/search/forms.py:53
 msgid "Firefox OS"
 msgstr "Ƒīřḗƒǿẋ ǾŞ"
 
@@ -127,7 +127,7 @@ msgid "Reviewer"
 msgstr "Řḗṽīḗẇḗř"
 
 #: mkt/constants/apps.py:11
-#: mkt/constants/base.py:109
+#: mkt/constants/base.py:133
 #: mkt/developers/templates/developers/apps/owner.html:91
 #: mkt/operators/templates/operators/preloads.html:15
 #: mkt/users/notifications.py:157
@@ -135,108 +135,132 @@ msgid "Developer"
 msgstr "Ḓḗṽḗŀǿƥḗř"
 
 #: mkt/constants/bango.py:19
+#: mkt/constants/regions.py:70
 msgid "Afghanistan"
 msgstr "Ȧƒɠħȧƞīşŧȧƞ"
 
 #: mkt/constants/bango.py:20
+#: mkt/constants/regions.py:73
 msgid "Åland Islands"
 msgstr "Åŀȧƞḓ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:21
+#: mkt/constants/regions.py:74
 msgid "Albania"
 msgstr "Ȧŀƀȧƞīȧ"
 
 #: mkt/constants/bango.py:22
+#: mkt/constants/regions.py:133
 msgid "Algeria"
 msgstr "Ȧŀɠḗřīȧ"
 
 #: mkt/constants/bango.py:23
+#: mkt/constants/regions.py:79
 msgid "American Samoa"
 msgstr "Ȧḿḗřīƈȧƞ Şȧḿǿȧ"
 
 #: mkt/constants/bango.py:24
+#: mkt/constants/regions.py:75
 msgid "Andorra"
 msgstr "Ȧƞḓǿřřȧ"
 
 #: mkt/constants/bango.py:25
+#: mkt/constants/regions.py:71
 msgid "Angola"
 msgstr "Ȧƞɠǿŀȧ"
 
 #: mkt/constants/bango.py:26
+#: mkt/constants/regions.py:72
 msgid "Anguilla"
 msgstr "Ȧƞɠŭīŀŀȧ"
 
 #: mkt/constants/bango.py:27
+#: mkt/constants/regions.py:80
 msgid "Antarctica"
 msgstr "Ȧƞŧȧřƈŧīƈȧ"
 
 #: mkt/constants/bango.py:28
+#: mkt/constants/regions.py:82
 msgid "Antigua and Barbuda"
 msgstr "Ȧƞŧīɠŭȧ ȧƞḓ Ɓȧřƀŭḓȧ"
 
 #: mkt/constants/bango.py:29
-#: mkt/constants/regions.py:69
+#: mkt/constants/regions.py:77
 msgid "Argentina"
 msgstr "Ȧřɠḗƞŧīƞȧ"
 
 #: mkt/constants/bango.py:30
+#: mkt/constants/regions.py:78
 msgid "Armenia"
 msgstr "Ȧřḿḗƞīȧ"
 
 #: mkt/constants/bango.py:31
+#: mkt/constants/regions.py:69
 msgid "Aruba"
 msgstr "Ȧřŭƀȧ"
 
 #: mkt/constants/bango.py:32
+#: mkt/constants/regions.py:83
 msgid "Australia"
 msgstr "Ȧŭşŧřȧŀīȧ"
 
 #: mkt/constants/bango.py:33
+#: mkt/constants/regions.py:84
 msgid "Austria"
 msgstr "Ȧŭşŧřīȧ"
 
 #: mkt/constants/bango.py:34
+#: mkt/constants/regions.py:85
 msgid "Azerbaijan"
 msgstr "Ȧzḗřƀȧīĵȧƞ"
 
 #: mkt/constants/bango.py:35
+#: mkt/constants/regions.py:94
 msgid "Bahamas"
 msgstr "Ɓȧħȧḿȧş"
 
 #: mkt/constants/bango.py:36
+#: mkt/constants/regions.py:93
 msgid "Bahrain"
 msgstr "Ɓȧħřȧīƞ"
 
 #: mkt/constants/bango.py:37
-#: mkt/constants/regions.py:70
+#: mkt/constants/regions.py:91
 msgid "Bangladesh"
 msgstr "Ɓȧƞɠŀȧḓḗşħ"
 
 #: mkt/constants/bango.py:38
+#: mkt/constants/regions.py:102
 msgid "Barbados"
 msgstr "Ɓȧřƀȧḓǿş"
 
 #: mkt/constants/bango.py:39
+#: mkt/constants/regions.py:97
 msgid "Belarus"
 msgstr "Ɓḗŀȧřŭş"
 
 #: mkt/constants/bango.py:40
+#: mkt/constants/regions.py:87
 msgid "Belgium"
 msgstr "Ɓḗŀɠīŭḿ"
 
 #: mkt/constants/bango.py:41
+#: mkt/constants/regions.py:98
 msgid "Belize"
 msgstr "Ɓḗŀīzḗ"
 
 #: mkt/constants/bango.py:42
+#: mkt/constants/regions.py:88
 msgid "Benin"
 msgstr "Ɓḗƞīƞ"
 
 #: mkt/constants/bango.py:43
+#: mkt/constants/regions.py:99
 msgid "Bermuda"
 msgstr "Ɓḗřḿŭḓȧ"
 
 #: mkt/constants/bango.py:44
+#: mkt/constants/regions.py:104
 msgid "Bhutan"
 msgstr "Ɓħŭŧȧƞ"
 
@@ -249,54 +273,63 @@ msgid "Bonaire, Saint Eustatius and Saba"
 msgstr "Ɓǿƞȧīřḗ, Şȧīƞŧ Ḗŭşŧȧŧīŭş ȧƞḓ Şȧƀȧ"
 
 #: mkt/constants/bango.py:47
+#: mkt/constants/regions.py:95
 msgid "Bosnia and Herzegovina"
 msgstr "Ɓǿşƞīȧ ȧƞḓ Ħḗřzḗɠǿṽīƞȧ"
 
 #: mkt/constants/bango.py:48
-#: mkt/constants/regions.py:72
+#: mkt/constants/regions.py:106
 msgid "Botswana"
 msgstr "Ɓǿŧşẇȧƞȧ"
 
 #: mkt/constants/bango.py:49
+#: mkt/constants/regions.py:105
 msgid "Bouvet Island"
 msgstr "Ɓǿŭṽḗŧ Īşŀȧƞḓ"
 
 #: mkt/constants/bango.py:50
 #: mkt/constants/ratingsbodies.py:90
-#: mkt/constants/regions.py:71
+#: mkt/constants/regions.py:101
 msgid "Brazil"
 msgstr "Ɓřȧzīŀ"
 
 #: mkt/constants/bango.py:51
+#: mkt/constants/regions.py:174
 msgid "British Indian Ocean Territory"
 msgstr "Ɓřīŧīşħ Īƞḓīȧƞ Ǿƈḗȧƞ Ŧḗřřīŧǿřẏ"
 
 #: mkt/constants/bango.py:52
+#: mkt/constants/regions.py:103
 msgid "Brunei Darussalam"
 msgstr "Ɓřŭƞḗī Ḓȧřŭşşȧŀȧḿ"
 
 #: mkt/constants/bango.py:53
+#: mkt/constants/regions.py:92
 msgid "Bulgaria"
 msgstr "Ɓŭŀɠȧřīȧ"
 
 #: mkt/constants/bango.py:54
+#: mkt/constants/regions.py:90
 msgid "Burkina Faso"
 msgstr "Ɓŭřķīƞȧ Ƒȧşǿ"
 
 #: mkt/constants/bango.py:55
+#: mkt/constants/regions.py:86
 msgid "Burundi"
 msgstr "Ɓŭřŭƞḓī"
 
 #: mkt/constants/bango.py:56
+#: mkt/constants/regions.py:187
 msgid "Cambodia"
 msgstr "Ƈȧḿƀǿḓīȧ"
 
 #: mkt/constants/bango.py:57
-#: mkt/constants/regions.py:77
+#: mkt/constants/regions.py:114
 msgid "Cameroon"
 msgstr "Ƈȧḿḗřǿǿƞ"
 
 #: mkt/constants/bango.py:58
+#: mkt/constants/regions.py:108
 msgid "Canada"
 msgstr "Ƈȧƞȧḓȧ"
 
@@ -305,46 +338,52 @@ msgid "Cape Verde"
 msgstr "Ƈȧƥḗ Ṽḗřḓḗ"
 
 #: mkt/constants/bango.py:60
+#: mkt/constants/regions.py:125
 msgid "Cayman Islands"
 msgstr "Ƈȧẏḿȧƞ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:61
-#: mkt/constants/regions.py:73
+#: mkt/constants/regions.py:107
 msgid "Central African Republic"
 msgstr "Ƈḗƞŧřȧŀ Ȧƒřīƈȧƞ Řḗƥŭƀŀīƈ"
 
 #: mkt/constants/bango.py:62
+#: mkt/constants/regions.py:283
 msgid "Chad"
 msgstr "Ƈħȧḓ"
 
 #: mkt/constants/bango.py:63
-#: mkt/constants/regions.py:74
+#: mkt/constants/regions.py:111
 msgid "Chile"
 msgstr "Ƈħīŀḗ"
 
 #: mkt/constants/bango.py:64
-#: mkt/constants/regions.py:75
+#: mkt/constants/regions.py:112
 msgid "China"
 msgstr "Ƈħīƞȧ"
 
 #: mkt/constants/bango.py:65
+#: mkt/constants/regions.py:124
 msgid "Christmas Island"
 msgstr "Ƈħřīşŧḿȧş Īşŀȧƞḓ"
 
 #: mkt/constants/bango.py:66
+#: mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
 msgstr "Ƈǿƈǿş (Ķḗḗŀīƞɠ) Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:67
-#: mkt/constants/regions.py:78
+#: mkt/constants/regions.py:118
 msgid "Colombia"
 msgstr "Ƈǿŀǿḿƀīȧ"
 
 #: mkt/constants/bango.py:68
+#: mkt/constants/regions.py:119
 msgid "Comoros"
 msgstr "Ƈǿḿǿřǿş"
 
 #: mkt/constants/bango.py:69
+#: mkt/constants/regions.py:116
 msgid "Congo"
 msgstr "Ƈǿƞɠǿ"
 
@@ -353,173 +392,203 @@ msgid "Congo, Democratic Republic"
 msgstr "Ƈǿƞɠǿ, Ḓḗḿǿƈřȧŧīƈ Řḗƥŭƀŀīƈ"
 
 #: mkt/constants/bango.py:71
+#: mkt/constants/regions.py:117
 msgid "Cook Islands"
 msgstr "Ƈǿǿķ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:72
-#: mkt/constants/regions.py:79
+#: mkt/constants/regions.py:121
 msgid "Costa Rica"
 msgstr "Ƈǿşŧȧ Řīƈȧ"
 
 #: mkt/constants/bango.py:73
-#: mkt/constants/regions.py:76
+#: mkt/constants/regions.py:113
 msgid "Côte d'Ivoire"
 msgstr "Ƈôŧḗ ḓ'Īṽǿīřḗ"
 
 #: mkt/constants/bango.py:74
+#: mkt/constants/regions.py:168
 msgid "Croatia"
 msgstr "Ƈřǿȧŧīȧ"
 
 #: mkt/constants/bango.py:75
+#: mkt/constants/regions.py:122
 msgid "Cuba"
 msgstr "Ƈŭƀȧ"
 
 #: mkt/constants/bango.py:76
+#: mkt/constants/regions.py:123
 msgid "Curaçao"
 msgstr "Ƈŭřȧçȧǿ"
 
 #: mkt/constants/bango.py:77
+#: mkt/constants/regions.py:126
 msgid "Cyprus"
 msgstr "Ƈẏƥřŭş"
 
 #: mkt/constants/bango.py:78
-#: mkt/constants/regions.py:80
+#: mkt/constants/regions.py:127
 msgid "Czech Republic"
 msgstr "Ƈzḗƈħ Řḗƥŭƀŀīƈ"
 
 #: mkt/constants/bango.py:79
+#: mkt/constants/regions.py:131
 msgid "Denmark"
 msgstr "Ḓḗƞḿȧřķ"
 
 #: mkt/constants/bango.py:80
+#: mkt/constants/regions.py:129
 msgid "Djibouti"
 msgstr "Ḓĵīƀǿŭŧī"
 
 #: mkt/constants/bango.py:81
+#: mkt/constants/regions.py:130
 msgid "Dominica"
 msgstr "Ḓǿḿīƞīƈȧ"
 
 #: mkt/constants/bango.py:82
+#: mkt/constants/regions.py:132
 msgid "Dominican Republic"
 msgstr "Ḓǿḿīƞīƈȧƞ Řḗƥŭƀŀīƈ"
 
 #: mkt/constants/bango.py:83
-#: mkt/constants/regions.py:82
+#: mkt/constants/regions.py:134
 msgid "Ecuador"
 msgstr "Ḗƈŭȧḓǿř"
 
 #: mkt/constants/bango.py:84
-#: mkt/constants/regions.py:83
+#: mkt/constants/regions.py:135
 msgid "Egypt"
 msgstr "Ḗɠẏƥŧ"
 
 #: mkt/constants/bango.py:85
-#: mkt/constants/regions.py:112
+#: mkt/constants/regions.py:267
 msgid "El Salvador"
 msgstr "Ḗŀ Şȧŀṽȧḓǿř"
 
 #: mkt/constants/bango.py:86
+#: mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
 msgstr "Ḗɋŭȧŧǿřīȧŀ Ɠŭīƞḗȧ"
 
 #: mkt/constants/bango.py:87
+#: mkt/constants/regions.py:136
 msgid "Eritrea"
 msgstr "Ḗřīŧřḗȧ"
 
 #: mkt/constants/bango.py:88
+#: mkt/constants/regions.py:139
 msgid "Estonia"
 msgstr "Ḗşŧǿƞīȧ"
 
 #: mkt/constants/bango.py:89
+#: mkt/constants/regions.py:140
 msgid "Ethiopia"
 msgstr "Ḗŧħīǿƥīȧ"
 
 #: mkt/constants/bango.py:90
+#: mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
 msgstr "Ƒȧŀķŀȧƞḓ Īşŀȧƞḓş (Ḿȧŀṽīƞȧş)"
 
 #: mkt/constants/bango.py:91
+#: mkt/constants/regions.py:145
 msgid "Faroe Islands"
 msgstr "Ƒȧřǿḗ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:92
+#: mkt/constants/regions.py:142
 msgid "Fiji"
 msgstr "Ƒīĵī"
 
 #: mkt/constants/bango.py:93
+#: mkt/constants/regions.py:141
 msgid "Finland"
 msgstr "Ƒīƞŀȧƞḓ"
 
 #: mkt/constants/bango.py:94
-#: mkt/constants/regions.py:85
+#: mkt/constants/regions.py:144
 msgid "France"
 msgstr "Ƒřȧƞƈḗ"
 
 #: mkt/constants/bango.py:95
+#: mkt/constants/regions.py:162
 msgid "French Guiana"
 msgstr "Ƒřḗƞƈħ Ɠŭīȧƞȧ"
 
 #: mkt/constants/bango.py:96
+#: mkt/constants/regions.py:252
 msgid "French Polynesia"
 msgstr "Ƒřḗƞƈħ Ƥǿŀẏƞḗşīȧ"
 
 #: mkt/constants/bango.py:97
+#: mkt/constants/regions.py:81
 msgid "French Southern Territories"
 msgstr "Ƒřḗƞƈħ Şǿŭŧħḗřƞ Ŧḗřřīŧǿřīḗş"
 
 #: mkt/constants/bango.py:98
+#: mkt/constants/regions.py:147
 msgid "Gabon"
 msgstr "Ɠȧƀǿƞ"
 
 #: mkt/constants/bango.py:99
+#: mkt/constants/regions.py:155
 msgid "Gambia"
 msgstr "Ɠȧḿƀīȧ"
 
 #: mkt/constants/bango.py:100
+#: mkt/constants/regions.py:149
 msgid "Georgia"
 msgstr "Ɠḗǿřɠīȧ"
 
 #: mkt/constants/bango.py:101
 #: mkt/constants/ratingsbodies.py:197
-#: mkt/constants/regions.py:81
+#: mkt/constants/regions.py:128
 msgid "Germany"
 msgstr "Ɠḗřḿȧƞẏ"
 
 #: mkt/constants/bango.py:102
+#: mkt/constants/regions.py:151
 msgid "Ghana"
 msgstr "Ɠħȧƞȧ"
 
 #: mkt/constants/bango.py:103
+#: mkt/constants/regions.py:152
 msgid "Gibraltar"
 msgstr "Ɠīƀřȧŀŧȧř"
 
 #: mkt/constants/bango.py:104
-#: mkt/constants/regions.py:89
+#: mkt/constants/regions.py:158
 msgid "Greece"
 msgstr "Ɠřḗḗƈḗ"
 
 #: mkt/constants/bango.py:105
+#: mkt/constants/regions.py:160
 msgid "Greenland"
 msgstr "Ɠřḗḗƞŀȧƞḓ"
 
 #: mkt/constants/bango.py:106
+#: mkt/constants/regions.py:159
 msgid "Grenada"
 msgstr "Ɠřḗƞȧḓȧ"
 
 #: mkt/constants/bango.py:107
+#: mkt/constants/regions.py:154
 msgid "Guadeloupe"
 msgstr "Ɠŭȧḓḗŀǿŭƥḗ"
 
 #: mkt/constants/bango.py:108
+#: mkt/constants/regions.py:163
 msgid "Guam"
 msgstr "Ɠŭȧḿ"
 
 #: mkt/constants/bango.py:109
-#: mkt/constants/regions.py:90
+#: mkt/constants/regions.py:161
 msgid "Guatemala"
 msgstr "Ɠŭȧŧḗḿȧŀȧ"
 
 #: mkt/constants/bango.py:110
+#: mkt/constants/regions.py:150
 msgid "Guernsey"
 msgstr "Ɠŭḗřƞşḗẏ"
 
@@ -528,15 +597,17 @@ msgid "Guinea"
 msgstr "Ɠŭīƞḗȧ"
 
 #: mkt/constants/bango.py:112
-#: mkt/constants/regions.py:88
+#: mkt/constants/regions.py:156
 msgid "Guinea-Bissau"
 msgstr "Ɠŭīƞḗȧ-Ɓīşşȧŭ"
 
 #: mkt/constants/bango.py:113
+#: mkt/constants/regions.py:164
 msgid "Guyana"
 msgstr "Ɠŭẏȧƞȧ"
 
 #: mkt/constants/bango.py:114
+#: mkt/constants/regions.py:169
 msgid "Haiti"
 msgstr "Ħȧīŧī"
 
@@ -549,28 +620,32 @@ msgid "Holy See (Vatican City State)"
 msgstr "Ħǿŀẏ Şḗḗ (Ṽȧŧīƈȧƞ Ƈīŧẏ Şŧȧŧḗ)"
 
 #: mkt/constants/bango.py:117
+#: mkt/constants/regions.py:167
 msgid "Honduras"
 msgstr "Ħǿƞḓŭřȧş"
 
 #: mkt/constants/bango.py:118
+#: mkt/constants/regions.py:165
 msgid "Hong Kong"
 msgstr "Ħǿƞɠ Ķǿƞɠ"
 
 #: mkt/constants/bango.py:119
-#: mkt/constants/regions.py:91
+#: mkt/constants/regions.py:170
 msgid "Hungary"
 msgstr "Ħŭƞɠȧřẏ"
 
 #: mkt/constants/bango.py:120
+#: mkt/constants/regions.py:177
 msgid "Iceland"
 msgstr "Īƈḗŀȧƞḓ"
 
 #: mkt/constants/bango.py:121
-#: mkt/constants/regions.py:92
+#: mkt/constants/regions.py:173
 msgid "India"
 msgstr "Īƞḓīȧ"
 
 #: mkt/constants/bango.py:122
+#: mkt/constants/regions.py:171
 msgid "Indonesia"
 msgstr "Īƞḓǿƞḗşīȧ"
 
@@ -579,54 +654,62 @@ msgid "Iran, Islamic Republic of"
 msgstr "Īřȧƞ, Īşŀȧḿīƈ Řḗƥŭƀŀīƈ ǿƒ"
 
 #: mkt/constants/bango.py:124
+#: mkt/constants/regions.py:176
 msgid "Iraq"
 msgstr "Īřȧɋ"
 
 #: mkt/constants/bango.py:125
+#: mkt/constants/regions.py:175
 msgid "Ireland"
 msgstr "Īřḗŀȧƞḓ"
 
 #: mkt/constants/bango.py:126
+#: mkt/constants/regions.py:172
 msgid "Isle of Man"
 msgstr "Īşŀḗ ǿƒ Ḿȧƞ"
 
 #: mkt/constants/bango.py:127
+#: mkt/constants/regions.py:178
 msgid "Israel"
 msgstr "Īşřȧḗŀ"
 
 #: mkt/constants/bango.py:128
-#: mkt/constants/regions.py:93
+#: mkt/constants/regions.py:179
 msgid "Italy"
 msgstr "Īŧȧŀẏ"
 
 #: mkt/constants/bango.py:129
+#: mkt/constants/regions.py:180
 msgid "Jamaica"
 msgstr "Ĵȧḿȧīƈȧ"
 
 #: mkt/constants/bango.py:130
-#: mkt/constants/regions.py:95
+#: mkt/constants/regions.py:183
 msgid "Japan"
 msgstr "Ĵȧƥȧƞ"
 
 #: mkt/constants/bango.py:131
+#: mkt/constants/regions.py:181
 msgid "Jersey"
 msgstr "Ĵḗřşḗẏ"
 
 #: mkt/constants/bango.py:132
-#: mkt/constants/regions.py:94
+#: mkt/constants/regions.py:182
 msgid "Jordan"
 msgstr "Ĵǿřḓȧƞ"
 
 #: mkt/constants/bango.py:133
+#: mkt/constants/regions.py:184
 msgid "Kazakhstan"
 msgstr "Ķȧzȧķħşŧȧƞ"
 
 #: mkt/constants/bango.py:134
-#: mkt/constants/regions.py:96
+#: mkt/constants/regions.py:185
 msgid "Kenya"
 msgstr "Ķḗƞẏȧ"
 
 #: mkt/constants/bango.py:135
+#: mkt/constants/regions.py:188
 msgid "Kiribati"
 msgstr "Ķīřīƀȧŧī"
 
@@ -635,6 +718,7 @@ msgid "Korea, Democratic People's Rep"
 msgstr "Ķǿřḗȧ, Ḓḗḿǿƈřȧŧīƈ Ƥḗǿƥŀḗ'ş Řḗƥ"
 
 #: mkt/constants/bango.py:137
+#: mkt/constants/regions.py:190
 msgid "Korea, Republic of"
 msgstr "Ķǿřḗȧ, Řḗƥŭƀŀīƈ ǿƒ"
 
@@ -643,10 +727,12 @@ msgid "Kosovo"
 msgstr "Ķǿşǿṽǿ"
 
 #: mkt/constants/bango.py:139
+#: mkt/constants/regions.py:191
 msgid "Kuwait"
 msgstr "Ķŭẇȧīŧ"
 
 #: mkt/constants/bango.py:140
+#: mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
 msgstr "Ķẏřɠẏzşŧȧƞ"
 
@@ -655,18 +741,22 @@ msgid "Lao People's Democratic Rep"
 msgstr "Ŀȧǿ Ƥḗǿƥŀḗ'ş Ḓḗḿǿƈřȧŧīƈ Řḗƥ"
 
 #: mkt/constants/bango.py:142
+#: mkt/constants/regions.py:202
 msgid "Latvia"
 msgstr "Ŀȧŧṽīȧ"
 
 #: mkt/constants/bango.py:143
+#: mkt/constants/regions.py:193
 msgid "Lebanon"
 msgstr "Ŀḗƀȧƞǿƞ"
 
 #: mkt/constants/bango.py:144
+#: mkt/constants/regions.py:199
 msgid "Lesotho"
 msgstr "Ŀḗşǿŧħǿ"
 
 #: mkt/constants/bango.py:145
+#: mkt/constants/regions.py:194
 msgid "Liberia"
 msgstr "Ŀīƀḗřīȧ"
 
@@ -679,15 +769,17 @@ msgid "Liechtenstei"
 msgstr "Ŀīḗƈħŧḗƞşŧḗī"
 
 #: mkt/constants/bango.py:148
-#: mkt/constants/regions.py:97
+#: mkt/constants/regions.py:200
 msgid "Lithuania"
 msgstr "Ŀīŧħŭȧƞīȧ"
 
 #: mkt/constants/bango.py:149
+#: mkt/constants/regions.py:201
 msgid "Luxembourg"
 msgstr "Ŀŭẋḗḿƀǿŭřɠ"
 
 #: mkt/constants/bango.py:150
+#: mkt/constants/regions.py:203
 msgid "Macao"
 msgstr "Ḿȧƈȧǿ"
 
@@ -696,158 +788,187 @@ msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Ḿȧƈḗḓǿƞīȧ, Ƒǿřḿḗř Ẏŭɠǿşŀȧṽ Řḗƥ"
 
 #: mkt/constants/bango.py:152
-#: mkt/constants/regions.py:98
+#: mkt/constants/regions.py:208
 msgid "Madagascar"
 msgstr "Ḿȧḓȧɠȧşƈȧř"
 
 #: mkt/constants/bango.py:153
+#: mkt/constants/regions.py:224
 msgid "Malawi"
 msgstr "Ḿȧŀȧẇī"
 
 #: mkt/constants/bango.py:154
+#: mkt/constants/regions.py:225
 msgid "Malaysia"
 msgstr "Ḿȧŀȧẏşīȧ"
 
 #: mkt/constants/bango.py:155
+#: mkt/constants/regions.py:209
 msgid "Maldives"
 msgstr "Ḿȧŀḓīṽḗş"
 
 #: mkt/constants/bango.py:156
-#: mkt/constants/regions.py:100
+#: mkt/constants/regions.py:213
 msgid "Mali"
 msgstr "Ḿȧŀī"
 
 #: mkt/constants/bango.py:157
+#: mkt/constants/regions.py:214
 msgid "Malta"
 msgstr "Ḿȧŀŧȧ"
 
 #: mkt/constants/bango.py:158
+#: mkt/constants/regions.py:211
 msgid "Marshall Islands"
 msgstr "Ḿȧřşħȧŀŀ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:159
+#: mkt/constants/regions.py:222
 msgid "Martinique"
 msgstr "Ḿȧřŧīƞīɋŭḗ"
 
 #: mkt/constants/bango.py:160
+#: mkt/constants/regions.py:220
 msgid "Mauritania"
 msgstr "Ḿȧŭřīŧȧƞīȧ"
 
 #: mkt/constants/bango.py:161
-#: mkt/constants/regions.py:103
+#: mkt/constants/regions.py:223
 msgid "Mauritius"
 msgstr "Ḿȧŭřīŧīŭş"
 
 #: mkt/constants/bango.py:162
+#: mkt/constants/regions.py:226
 msgid "Mayotte"
 msgstr "Ḿȧẏǿŧŧḗ"
 
 #: mkt/constants/bango.py:163
-#: mkt/constants/regions.py:99
+#: mkt/constants/regions.py:210
 msgid "Mexico"
 msgstr "Ḿḗẋīƈǿ"
 
 #: mkt/constants/bango.py:164
+#: mkt/constants/regions.py:146
 msgid "Micronesia, Federated States of"
 msgstr "Ḿīƈřǿƞḗşīȧ, Ƒḗḓḗřȧŧḗḓ Şŧȧŧḗş ǿƒ"
 
 #: mkt/constants/bango.py:165
+#: mkt/constants/regions.py:207
 msgid "Moldova, Republic of"
 msgstr "Ḿǿŀḓǿṽȧ, Řḗƥŭƀŀīƈ ǿƒ"
 
 #: mkt/constants/bango.py:166
+#: mkt/constants/regions.py:206
 msgid "Monaco"
 msgstr "Ḿǿƞȧƈǿ"
 
 #: mkt/constants/bango.py:167
+#: mkt/constants/regions.py:217
 msgid "Mongolia"
 msgstr "Ḿǿƞɠǿŀīȧ"
 
 #: mkt/constants/bango.py:168
-#: mkt/constants/regions.py:102
+#: mkt/constants/regions.py:216
 msgid "Montenegro"
 msgstr "Ḿǿƞŧḗƞḗɠřǿ"
 
 #: mkt/constants/bango.py:169
+#: mkt/constants/regions.py:221
 msgid "Montserrat"
 msgstr "Ḿǿƞŧşḗřřȧŧ"
 
 #: mkt/constants/bango.py:170
+#: mkt/constants/regions.py:205
 msgid "Morocco"
 msgstr "Ḿǿřǿƈƈǿ"
 
 #: mkt/constants/bango.py:171
+#: mkt/constants/regions.py:219
 msgid "Mozambique"
 msgstr "Ḿǿzȧḿƀīɋŭḗ"
 
 #: mkt/constants/bango.py:172
-#: mkt/constants/regions.py:101
+#: mkt/constants/regions.py:215
 msgid "Myanmar"
 msgstr "Ḿẏȧƞḿȧř"
 
 #: mkt/constants/bango.py:173
+#: mkt/constants/regions.py:227
 msgid "Namibia"
 msgstr "Ƞȧḿīƀīȧ"
 
 #: mkt/constants/bango.py:174
+#: mkt/constants/regions.py:237
 msgid "Nauru"
 msgstr "Ƞȧŭřŭ"
 
 #: mkt/constants/bango.py:175
+#: mkt/constants/regions.py:236
 msgid "Nepal"
 msgstr "Ƞḗƥȧŀ"
 
 #: mkt/constants/bango.py:176
+#: mkt/constants/regions.py:234
 msgid "Netherlands"
 msgstr "Ƞḗŧħḗřŀȧƞḓş"
 
 #: mkt/constants/bango.py:177
+#: mkt/constants/regions.py:228
 msgid "New Caledonia"
 msgstr "Ƞḗẇ Ƈȧŀḗḓǿƞīȧ"
 
 #: mkt/constants/bango.py:178
+#: mkt/constants/regions.py:238
 msgid "New Zealand"
 msgstr "Ƞḗẇ Ẑḗȧŀȧƞḓ"
 
 #: mkt/constants/bango.py:179
-#: mkt/constants/regions.py:105
+#: mkt/constants/regions.py:232
 msgid "Nicaragua"
 msgstr "Ƞīƈȧřȧɠŭȧ"
 
 #: mkt/constants/bango.py:180
-#: mkt/constants/regions.py:104
+#: mkt/constants/regions.py:229
 msgid "Niger"
 msgstr "Ƞīɠḗř"
 
 #: mkt/constants/bango.py:181
+#: mkt/constants/regions.py:231
 msgid "Nigeria"
 msgstr "Ƞīɠḗřīȧ"
 
 #: mkt/constants/bango.py:182
+#: mkt/constants/regions.py:233
 msgid "Niue"
 msgstr "Ƞīŭḗ"
 
 #: mkt/constants/bango.py:183
+#: mkt/constants/regions.py:230
 msgid "Norfolk Island"
 msgstr "Ƞǿřƒǿŀķ Īşŀȧƞḓ"
 
 #: mkt/constants/bango.py:184
+#: mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
 msgstr "Ƞǿřŧħḗřƞ Ḿȧřīȧƞȧ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:185
+#: mkt/constants/regions.py:235
 msgid "Norway"
 msgstr "Ƞǿřẇȧẏ"
 
 #: mkt/constants/bango.py:186
+#: mkt/constants/regions.py:239
 msgid "Oman"
 msgstr "Ǿḿȧƞ"
 
 #: mkt/constants/bango.py:187
+#: mkt/constants/regions.py:240
 msgid "Pakistan"
 msgstr "Ƥȧķīşŧȧƞ"
 
 #: mkt/constants/bango.py:188
+#: mkt/constants/regions.py:245
 msgid "Palau"
 msgstr "Ƥȧŀȧŭ"
 
@@ -856,54 +977,62 @@ msgid "Palestinian Territory, Occupied"
 msgstr "Ƥȧŀḗşŧīƞīȧƞ Ŧḗřřīŧǿřẏ, Ǿƈƈŭƥīḗḓ"
 
 #: mkt/constants/bango.py:190
-#: mkt/constants/regions.py:106
+#: mkt/constants/regions.py:241
 msgid "Panama"
 msgstr "Ƥȧƞȧḿȧ"
 
 #: mkt/constants/bango.py:191
+#: mkt/constants/regions.py:246
 msgid "Papua New Guinea"
 msgstr "Ƥȧƥŭȧ Ƞḗẇ Ɠŭīƞḗȧ"
 
 #: mkt/constants/bango.py:192
+#: mkt/constants/regions.py:250
 msgid "Paraguay"
 msgstr "Ƥȧřȧɠŭȧẏ"
 
 #: mkt/constants/bango.py:193
-#: mkt/constants/regions.py:107
+#: mkt/constants/regions.py:243
 msgid "Peru"
 msgstr "Ƥḗřŭ"
 
 #: mkt/constants/bango.py:194
-#: mkt/constants/regions.py:108
+#: mkt/constants/regions.py:244
 msgid "Philippines"
 msgstr "Ƥħīŀīƥƥīƞḗş"
 
 #: mkt/constants/bango.py:195
+#: mkt/constants/regions.py:242
 msgid "Pitcairn"
 msgstr "Ƥīŧƈȧīřƞ"
 
 #: mkt/constants/bango.py:196
-#: mkt/constants/regions.py:109
+#: mkt/constants/regions.py:247
 msgid "Poland"
 msgstr "Ƥǿŀȧƞḓ"
 
 #: mkt/constants/bango.py:197
+#: mkt/constants/regions.py:249
 msgid "Portugal"
 msgstr "Ƥǿřŧŭɠȧŀ"
 
 #: mkt/constants/bango.py:198
+#: mkt/constants/regions.py:248
 msgid "Puerto Rico"
 msgstr "Ƥŭḗřŧǿ Řīƈǿ"
 
 #: mkt/constants/bango.py:199
+#: mkt/constants/regions.py:253
 msgid "Qatar"
 msgstr "Ɋȧŧȧř"
 
 #: mkt/constants/bango.py:200
+#: mkt/constants/regions.py:254
 msgid "Réunion"
 msgstr "Řéŭƞīǿƞ"
 
 #: mkt/constants/bango.py:201
+#: mkt/constants/regions.py:255
 msgid "Romania"
 msgstr "Řǿḿȧƞīȧ"
 
@@ -912,10 +1041,12 @@ msgid "Russian Federation"
 msgstr "Řŭşşīȧƞ Ƒḗḓḗřȧŧīǿƞ"
 
 #: mkt/constants/bango.py:203
+#: mkt/constants/regions.py:257
 msgid "Rwanda"
 msgstr "Řẇȧƞḓȧ"
 
 #: mkt/constants/bango.py:204
+#: mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
 msgstr "Şȧīƞŧ Ɓȧřŧħéŀḗḿẏ"
 
@@ -924,10 +1055,12 @@ msgid "Saint Helena"
 msgstr "Şȧīƞŧ Ħḗŀḗƞȧ"
 
 #: mkt/constants/bango.py:206
+#: mkt/constants/regions.py:189
 msgid "Saint Kitts and Nevis"
 msgstr "Şȧīƞŧ Ķīŧŧş ȧƞḓ Ƞḗṽīş"
 
 #: mkt/constants/bango.py:207
+#: mkt/constants/regions.py:196
 msgid "Saint Lucia"
 msgstr "Şȧīƞŧ Ŀŭƈīȧ"
 
@@ -936,26 +1069,32 @@ msgid "Saint Martin"
 msgstr "Şȧīƞŧ Ḿȧřŧīƞ"
 
 #: mkt/constants/bango.py:209
+#: mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
 msgstr "Şȧīƞŧ Ƥīḗřřḗ ȧƞḓ Ḿīɋŭḗŀǿƞ"
 
 #: mkt/constants/bango.py:210
+#: mkt/constants/regions.py:304
 msgid "Saint Vincent and the Grenadines"
 msgstr "Şȧīƞŧ Ṽīƞƈḗƞŧ ȧƞḓ ŧħḗ Ɠřḗƞȧḓīƞḗş"
 
 #: mkt/constants/bango.py:211
+#: mkt/constants/regions.py:311
 msgid "Samoa"
 msgstr "Şȧḿǿȧ"
 
 #: mkt/constants/bango.py:212
+#: mkt/constants/regions.py:268
 msgid "San Marino"
 msgstr "Şȧƞ Ḿȧřīƞǿ"
 
 #: mkt/constants/bango.py:213
+#: mkt/constants/regions.py:273
 msgid "Sao Tome and Principe"
 msgstr "Şȧǿ Ŧǿḿḗ ȧƞḓ Ƥřīƞƈīƥḗ"
 
 #: mkt/constants/bango.py:214
+#: mkt/constants/regions.py:258
 msgid "Saudi Arabia"
 msgstr "Şȧŭḓī Ȧřȧƀīȧ"
 
@@ -964,7 +1103,7 @@ msgid "Senega"
 msgstr "Şḗƞḗɠȧ"
 
 #: mkt/constants/bango.py:216
-#: mkt/constants/regions.py:113
+#: mkt/constants/regions.py:271
 msgid "Serbia"
 msgstr "Şḗřƀīȧ"
 
@@ -973,84 +1112,102 @@ msgid "Serbia and Montenegro"
 msgstr "Şḗřƀīȧ ȧƞḓ Ḿǿƞŧḗƞḗɠřǿ"
 
 #: mkt/constants/bango.py:218
+#: mkt/constants/regions.py:280
 msgid "Seychelles"
 msgstr "Şḗẏƈħḗŀŀḗş"
 
 #: mkt/constants/bango.py:219
+#: mkt/constants/regions.py:266
 msgid "Sierra Leone"
 msgstr "Şīḗřřȧ Ŀḗǿƞḗ"
 
 #: mkt/constants/bango.py:220
+#: mkt/constants/regions.py:261
 msgid "Singapore"
 msgstr "Şīƞɠȧƥǿřḗ"
 
 #: mkt/constants/bango.py:221
+#: mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
 msgstr "Şīƞŧ Ḿȧȧřŧḗƞ (Ḓŭŧƈħ ƥȧřŧ)"
 
 #: mkt/constants/bango.py:222
+#: mkt/constants/regions.py:275
 msgid "Slovakia"
 msgstr "Şŀǿṽȧķīȧ"
 
 #: mkt/constants/bango.py:223
+#: mkt/constants/regions.py:276
 msgid "Slovenia"
 msgstr "Şŀǿṽḗƞīȧ"
 
 #: mkt/constants/bango.py:224
+#: mkt/constants/regions.py:265
 msgid "Solomon Islands"
 msgstr "Şǿŀǿḿǿƞ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:225
+#: mkt/constants/regions.py:269
 msgid "Somalia"
 msgstr "Şǿḿȧŀīȧ"
 
 #: mkt/constants/bango.py:226
-#: mkt/constants/regions.py:121
+#: mkt/constants/regions.py:313
 msgid "South Africa"
 msgstr "Şǿŭŧħ Ȧƒřīƈȧ"
 
 #: mkt/constants/bango.py:227
+#: mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "Şǿŭŧħ Ɠḗǿřɠīȧ ȧƞḓ ŧħḗ Şǿŭŧħ Şȧƞḓẇīƈħ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:228
+#: mkt/constants/regions.py:272
 msgid "South Sudan"
 msgstr "Şǿŭŧħ Şŭḓȧƞ"
 
 #: mkt/constants/bango.py:229
-#: mkt/constants/regions.py:84
+#: mkt/constants/regions.py:138
 msgid "Spain"
 msgstr "Şƥȧīƞ"
 
 #: mkt/constants/bango.py:230
+#: mkt/constants/regions.py:198
 msgid "Sri Lanka"
 msgstr "Şřī Ŀȧƞķȧ"
 
 #: mkt/constants/bango.py:231
+#: mkt/constants/regions.py:259
 msgid "Sudan"
 msgstr "Şŭḓȧƞ"
 
 #: mkt/constants/bango.py:232
+#: mkt/constants/regions.py:274
 msgid "Suriname"
 msgstr "Şŭřīƞȧḿḗ"
 
 #: mkt/constants/bango.py:233
+#: mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
 msgstr "Şṽȧŀƀȧřḓ ȧƞḓ Ĵȧƞ Ḿȧẏḗƞ"
 
 #: mkt/constants/bango.py:234
+#: mkt/constants/regions.py:278
 msgid "Swaziland"
 msgstr "Şẇȧzīŀȧƞḓ"
 
 #: mkt/constants/bango.py:235
+#: mkt/constants/regions.py:277
 msgid "Sweden"
 msgstr "Şẇḗḓḗƞ"
 
 #: mkt/constants/bango.py:236
+#: mkt/constants/regions.py:110
 msgid "Switzerland"
 msgstr "Şẇīŧzḗřŀȧƞḓ"
 
 #: mkt/constants/bango.py:237
+#: mkt/constants/regions.py:281
 msgid "Syrian Arab Republic"
 msgstr "Şẏřīȧƞ Ȧřȧƀ Řḗƥŭƀŀīƈ"
 
@@ -1059,6 +1216,7 @@ msgid "Taiwan, Province of China"
 msgstr "Ŧȧīẇȧƞ, Ƥřǿṽīƞƈḗ ǿƒ Ƈħīƞȧ"
 
 #: mkt/constants/bango.py:239
+#: mkt/constants/regions.py:286
 msgid "Tajikistan"
 msgstr "Ŧȧĵīķīşŧȧƞ"
 
@@ -1067,87 +1225,102 @@ msgid "Tanzania, United Republic of"
 msgstr "Ŧȧƞzȧƞīȧ, Ŭƞīŧḗḓ Řḗƥŭƀŀīƈ ǿƒ"
 
 #: mkt/constants/bango.py:241
+#: mkt/constants/regions.py:285
 msgid "Thailand"
 msgstr "Ŧħȧīŀȧƞḓ"
 
 #: mkt/constants/bango.py:242
+#: mkt/constants/regions.py:289
 msgid "Timor-Leste"
 msgstr "Ŧīḿǿř-Ŀḗşŧḗ"
 
 #: mkt/constants/bango.py:243
+#: mkt/constants/regions.py:284
 msgid "Togo"
 msgstr "Ŧǿɠǿ"
 
 #: mkt/constants/bango.py:244
+#: mkt/constants/regions.py:287
 msgid "Tokelau"
 msgstr "Ŧǿķḗŀȧŭ"
 
 #: mkt/constants/bango.py:245
+#: mkt/constants/regions.py:290
 msgid "Tonga"
 msgstr "Ŧǿƞɠȧ"
 
 #: mkt/constants/bango.py:246
+#: mkt/constants/regions.py:291
 msgid "Trinidad and Tobago"
 msgstr "Ŧřīƞīḓȧḓ ȧƞḓ Ŧǿƀȧɠǿ"
 
 #: mkt/constants/bango.py:247
-#: mkt/constants/regions.py:114
+#: mkt/constants/regions.py:292
 msgid "Tunisia"
 msgstr "Ŧŭƞīşīȧ"
 
 #: mkt/constants/bango.py:248
+#: mkt/constants/regions.py:293
 msgid "Turkey"
 msgstr "Ŧŭřķḗẏ"
 
 #: mkt/constants/bango.py:249
+#: mkt/constants/regions.py:288
 msgid "Turkmenistan"
 msgstr "Ŧŭřķḿḗƞīşŧȧƞ"
 
 #: mkt/constants/bango.py:250
+#: mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
 msgstr "Ŧŭřķş ȧƞḓ Ƈȧīƈǿş Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:251
+#: mkt/constants/regions.py:294
 msgid "Tuvalu"
 msgstr "Ŧŭṽȧŀŭ"
 
 #: mkt/constants/bango.py:252
+#: mkt/constants/regions.py:297
 msgid "Uganda"
 msgstr "Ŭɠȧƞḓȧ"
 
 #: mkt/constants/bango.py:253
+#: mkt/constants/regions.py:298
 msgid "Ukraine"
 msgstr "Ŭķřȧīƞḗ"
 
 #: mkt/constants/bango.py:254
+#: mkt/constants/regions.py:76
 msgid "United Arab Emirates"
 msgstr "Ŭƞīŧḗḓ Ȧřȧƀ Ḗḿīřȧŧḗş"
 
 #: mkt/constants/bango.py:255
-#: mkt/constants/regions.py:86
+#: mkt/constants/regions.py:148
 msgid "United Kingdom"
 msgstr "Ŭƞīŧḗḓ Ķīƞɠḓǿḿ"
 
 #: mkt/constants/bango.py:256
-#: mkt/constants/regions.py:118
+#: mkt/constants/regions.py:301
 msgid "United States"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş"
 
 #: mkt/constants/bango.py:257
+#: mkt/constants/regions.py:299
 msgid "United States Minor Outlying Islands"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş Ḿīƞǿř Ǿŭŧŀẏīƞɠ Īşŀȧƞḓş"
 
 #: mkt/constants/bango.py:258
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:300
 msgid "Uruguay"
 msgstr "Ŭřŭɠŭȧẏ"
 
 #: mkt/constants/bango.py:259
+#: mkt/constants/regions.py:302
 msgid "Uzbekistan"
 msgstr "Ŭzƀḗķīşŧȧƞ"
 
 #: mkt/constants/bango.py:260
-#: mkt/constants/regions.py:120
+#: mkt/constants/regions.py:309
 msgid "Vanuatu"
 msgstr "Ṽȧƞŭȧŧŭ"
 
@@ -1156,39 +1329,47 @@ msgid "Venezuela, Bolivarian Republic of"
 msgstr "Ṽḗƞḗzŭḗŀȧ, Ɓǿŀīṽȧřīȧƞ Řḗƥŭƀŀīƈ ǿƒ"
 
 #: mkt/constants/bango.py:262
+#: mkt/constants/regions.py:308
 msgid "Viet Nam"
 msgstr "Ṽīḗŧ Ƞȧḿ"
 
 #: mkt/constants/bango.py:263
+#: mkt/constants/regions.py:306
 msgid "Virgin Islands, British"
 msgstr "Ṽīřɠīƞ Īşŀȧƞḓş, Ɓřīŧīşħ"
 
 #: mkt/constants/bango.py:264
+#: mkt/constants/regions.py:307
 msgid "Virgin Islands, U.S."
 msgstr "Ṽīřɠīƞ Īşŀȧƞḓş, Ŭ.Ş."
 
 #: mkt/constants/bango.py:265
+#: mkt/constants/regions.py:310
 msgid "Wallis and Futuna"
 msgstr "Ẇȧŀŀīş ȧƞḓ Ƒŭŧŭƞȧ"
 
 #: mkt/constants/bango.py:266
+#: mkt/constants/regions.py:137
 msgid "Western Sahara"
 msgstr "Ẇḗşŧḗřƞ Şȧħȧřȧ"
 
 #: mkt/constants/bango.py:267
+#: mkt/constants/regions.py:312
 msgid "Yemen"
 msgstr "Ẏḗḿḗƞ"
 
 #: mkt/constants/bango.py:268
+#: mkt/constants/regions.py:314
 msgid "Zambia"
 msgstr "Ẑȧḿƀīȧ"
 
 #: mkt/constants/bango.py:269
+#: mkt/constants/regions.py:315
 msgid "Zimbabwe"
 msgstr "Ẑīḿƀȧƀẇḗ"
 
 #: mkt/constants/base.py:26
-#: mkt/lookup/views.py:177
+#: mkt/lookup/views.py:179
 msgid "Incomplete"
 msgstr "Īƞƈǿḿƥŀḗŧḗ"
 
@@ -1212,7 +1393,7 @@ msgstr "Ḓḗŀḗŧḗḓ"
 
 #: mkt/constants/base.py:31
 #: mkt/constants/comm.py:45
-#: mkt/reviewers/helpers.py:184
+#: mkt/reviewers/helpers.py:192
 #: mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
@@ -1242,17 +1423,17 @@ msgstr "Ǿƀşǿŀḗŧḗ"
 msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
-#: mkt/constants/base.py:108
+#: mkt/constants/base.py:132
 #: mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
 msgstr "Ǿẇƞḗř"
 
-#: mkt/constants/base.py:110
+#: mkt/constants/base.py:134
 #: mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
 msgstr "Ṽīḗẇḗř"
 
-#: mkt/constants/base.py:111
+#: mkt/constants/base.py:135
 #: mkt/developers/templates/developers/skeleton_impala.html:60
 #: mkt/developers/templates/developers/apps/owner.html:96
 #: mkt/ecosystem/templates/ecosystem/support.html:5
@@ -1261,98 +1442,98 @@ msgstr "Ṽīḗẇḗř"
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
 
-#: mkt/constants/base.py:136
+#: mkt/constants/base.py:160
 #: mkt/detail/templates/detail/includes/price.html:6
 #: mkt/developers/templates/developers/payments/premium.html:62
-#: mkt/search/forms.py:33
+#: mkt/search/forms.py:34
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
-#: mkt/constants/base.py:137
-#: mkt/search/forms.py:35
+#: mkt/constants/base.py:161
+#: mkt/search/forms.py:36
 msgid "Premium"
 msgstr "Ƥřḗḿīŭḿ"
 
-#: mkt/constants/base.py:138
+#: mkt/constants/base.py:162
 msgid "Premium with in-app payments"
 msgstr "Ƥřḗḿīŭḿ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:139
+#: mkt/constants/base.py:163
 msgid "Free with in-app payments"
 msgstr "Ƒřḗḗ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:140
+#: mkt/constants/base.py:164
 msgid "I'll use my own system for in-app payments"
 msgstr "Ī'ŀŀ ŭşḗ ḿẏ ǿẇƞ şẏşŧḗḿ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:221
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:222
 msgid "Web App Review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:223
 msgid "Packaged App Review"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:224
 msgid "Privileged App Review"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:225
 msgid "Web App Re-review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗ-řḗṽīḗẇ"
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:226
 msgid "Updated Packaged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:203
+#: mkt/constants/base.py:227
 msgid "Updated Privileged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:204
+#: mkt/constants/base.py:228
 msgid "Moderated App Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:205
+#: mkt/constants/base.py:229
 msgid "App Review Moderation Reverted"
 msgstr "Ȧƥƥ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
 
-#: mkt/constants/base.py:206
+#: mkt/constants/base.py:230
 msgid "Tarako App Review"
 msgstr "Ŧȧřȧķǿ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:236
+#: mkt/constants/base.py:260
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: mkt/constants/base.py:237
+#: mkt/constants/base.py:261
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: mkt/constants/base.py:238
+#: mkt/constants/base.py:262
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: mkt/constants/base.py:239
+#: mkt/constants/base.py:263
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: mkt/constants/base.py:240
+#: mkt/constants/base.py:264
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: mkt/constants/base.py:241
+#: mkt/constants/base.py:265
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
 #: mkt/constants/categories.py:5
-msgid "Books"
-msgstr "Ɓǿǿķş"
+msgid "Books & Comics"
+msgstr "Ɓǿǿķş & Ƈǿḿīƈş"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1367,64 +1548,92 @@ msgid "Entertainment"
 msgstr "Ḗƞŧḗřŧȧīƞḿḗƞŧ"
 
 #: mkt/constants/categories.py:9
-#: mkt/constants/categories.py:39
+msgid "Food & Drink"
+msgstr "Ƒǿǿḓ & Ḓřīƞķ"
+
+#: mkt/constants/categories.py:10
+msgid "Kids"
+msgstr "Ķīḓş"
+
+#: mkt/constants/categories.py:11
+#: mkt/constants/categories.py:46
 msgid "Games"
 msgstr "Ɠȧḿḗş"
 
-#: mkt/constants/categories.py:10
+#: mkt/constants/categories.py:12
 msgid "Health & Fitness"
 msgstr "Ħḗȧŀŧħ & Ƒīŧƞḗşş"
 
-#: mkt/constants/categories.py:11
-#: mkt/constants/categories.py:40
+#: mkt/constants/categories.py:13
+msgid "Humor"
+msgstr "Ħŭḿǿř"
+
+#: mkt/constants/categories.py:14
+msgid "Internet"
+msgstr "Īƞŧḗřƞḗŧ"
+
+#: mkt/constants/categories.py:15
+#: mkt/constants/categories.py:47
 msgid "Lifestyle"
 msgstr "Ŀīƒḗşŧẏŀḗ"
 
-#: mkt/constants/categories.py:12
+#: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
 msgstr "Ḿȧƥş & Ƞȧṽīɠȧŧīǿƞ"
 
-#: mkt/constants/categories.py:13
+#: mkt/constants/categories.py:17
 msgid "Music"
 msgstr "Ḿŭşīƈ"
 
-#: mkt/constants/categories.py:14
-msgid "News & Weather"
-msgstr "Ƞḗẇş & Ẇḗȧŧħḗř"
+#: mkt/constants/categories.py:18
+msgid "News"
+msgstr "Ƞḗẇş"
 
-#: mkt/constants/categories.py:15
+#: mkt/constants/categories.py:19
+msgid "Personalization"
+msgstr "Ƥḗřşǿƞȧŀīzȧŧīǿƞ"
+
+#: mkt/constants/categories.py:20
 msgid "Photo & Video"
 msgstr "Ƥħǿŧǿ & Ṽīḓḗǿ"
 
-#: mkt/constants/categories.py:16
+#: mkt/constants/categories.py:21
 msgid "Productivity"
 msgstr "Ƥřǿḓŭƈŧīṽīŧẏ"
 
-#: mkt/constants/categories.py:17
+#: mkt/constants/categories.py:22
 msgid "Reference"
 msgstr "Řḗƒḗřḗƞƈḗ"
 
-#: mkt/constants/categories.py:18
+#: mkt/constants/categories.py:23
+msgid "Science & Tech"
+msgstr "Şƈīḗƞƈḗ & Ŧḗƈħ"
+
+#: mkt/constants/categories.py:24
 msgid "Shopping"
 msgstr "Şħǿƥƥīƞɠ"
 
-#: mkt/constants/categories.py:19
+#: mkt/constants/categories.py:25
 msgid "Social"
 msgstr "Şǿƈīȧŀ"
 
-#: mkt/constants/categories.py:20
+#: mkt/constants/categories.py:26
 msgid "Sports"
 msgstr "Şƥǿřŧş"
 
-#: mkt/constants/categories.py:21
+#: mkt/constants/categories.py:27
 msgid "Travel"
 msgstr "Ŧřȧṽḗŀ"
 
-#: mkt/constants/categories.py:22
+#: mkt/constants/categories.py:28
 msgid "Utilities"
 msgstr "Ŭŧīŀīŧīḗş"
 
-#: mkt/constants/categories.py:38
+#: mkt/constants/categories.py:29
+msgid "Weather"
+msgstr "Ẇḗȧŧħḗř"
+
+#: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
 #: mkt/site/context_processors.py:48
 msgid "Tools"
@@ -1443,7 +1652,7 @@ msgid "Reviewer comment"
 msgstr "Řḗṽīḗẇḗř ƈǿḿḿḗƞŧ"
 
 #: mkt/constants/comm.py:48
-#: mkt/reviewers/forms.py:193
+#: mkt/reviewers/forms.py:202
 #: mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
@@ -2189,40 +2398,92 @@ msgstr "Ƥȧƞ Ḗŭřǿƥḗȧƞ Ɠȧḿḗ Īƞƒǿřḿȧŧīǿƞ"
 msgid "Rest of World"
 msgstr "Řḗşŧ ǿƒ Ẇǿřŀḓ"
 
-#: mkt/constants/regions.py:87
+#: mkt/constants/regions.py:89
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Ɓǿƞȧīřḗ, Şīƞŧ Ḗŭşŧȧŧīŭş ȧƞḓ Şȧƀȧ"
+
+#: mkt/constants/regions.py:100
+msgid "Bolivia, Plurinational State of"
+msgstr "Ɓǿŀīṽīȧ, Ƥŀŭřīƞȧŧīǿƞȧŀ Şŧȧŧḗ ǿƒ"
+
+#: mkt/constants/regions.py:115
+msgid "Congo, Democratic Republic of the"
+msgstr "Ƈǿƞɠǿ, Ḓḗḿǿƈřȧŧīƈ Řḗƥŭƀŀīƈ ǿƒ ŧħḗ"
+
+#: mkt/constants/regions.py:120
+msgid "Cabo Verde"
+msgstr "Ƈȧƀǿ Ṽḗřḓḗ"
+
+#: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
 msgstr "Ɠŭīƞḗȧ-Ƈǿƞȧķřẏ"
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:166
+msgid "Heard Island and McDonald Islands"
+msgstr "Ħḗȧřḓ Īşŀȧƞḓ ȧƞḓ ḾƈḒǿƞȧŀḓ Īşŀȧƞḓş"
+
+#: mkt/constants/regions.py:192
+msgid "Lao People's Democratic Republic"
+msgstr "Ŀȧǿ Ƥḗǿƥŀḗ'ş Ḓḗḿǿƈřȧŧīƈ Řḗƥŭƀŀīƈ"
+
+#: mkt/constants/regions.py:195
+msgid "Libya"
+msgstr "Ŀīƀẏȧ"
+
+#: mkt/constants/regions.py:197
+msgid "Liechtenstein"
+msgstr "Ŀīḗƈħŧḗƞşŧḗīƞ"
+
+#: mkt/constants/regions.py:204
+msgid "Saint Martin (French part)"
+msgstr "Şȧīƞŧ Ḿȧřŧīƞ (Ƒřḗƞƈħ ƥȧřŧ)"
+
+#: mkt/constants/regions.py:212
+msgid "Macedonia, the former Yugoslav Republic of"
+msgstr "Ḿȧƈḗḓǿƞīȧ, ŧħḗ ƒǿřḿḗř Ẏŭɠǿşŀȧṽ Řḗƥŭƀŀīƈ ǿƒ"
+
+#: mkt/constants/regions.py:251
+msgid "Palestine, State of"
+msgstr "Ƥȧŀḗşŧīƞḗ, Şŧȧŧḗ ǿƒ"
+
+#: mkt/constants/regions.py:256
 msgid "Russia"
 msgstr "Řŭşşīȧ"
 
-#: mkt/constants/regions.py:111
+#: mkt/constants/regions.py:260
 msgid "Senegal"
 msgstr "Şḗƞḗɠȧŀ"
 
-#: mkt/constants/regions.py:115
+#: mkt/constants/regions.py:263
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "Şȧīƞŧ Ħḗŀḗƞȧ, Ȧşƈḗƞşīǿƞ ȧƞḓ Ŧřīşŧȧƞ ḓȧ Ƈŭƞħȧ"
+
+#: mkt/constants/regions.py:295
 msgid "Taiwan"
 msgstr "Ŧȧīẇȧƞ"
 
-#: mkt/constants/regions.py:116
+#: mkt/constants/regions.py:296
 msgid "Tanzania"
 msgstr "Ŧȧƞzȧƞīȧ"
 
-#: mkt/constants/regions.py:119
+#: mkt/constants/regions.py:303
+msgid "Holy See"
+msgstr "Ħǿŀẏ Şḗḗ"
+
+#: mkt/constants/regions.py:305
 msgid "Venezuela"
 msgstr "Ṽḗƞḗzŭḗŀȧ"
 
 #: mkt/constants/reviewers.py:7
 #: mkt/developers/templates/developers/validate_app.html:16
-#: mkt/search/forms.py:27
+#: mkt/search/forms.py:28
 #: mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
 msgstr "Ħǿşŧḗḓ"
 
 #: mkt/constants/reviewers.py:8
 #: mkt/developers/templates/developers/validate_app.html:54
-#: mkt/search/forms.py:28
+#: mkt/search/forms.py:29
 #: mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
 msgstr "Ƥȧƈķȧɠḗḓ"
@@ -2240,7 +2501,7 @@ msgstr "Şŭƀḿīŧ"
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1416
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -2261,31 +2522,31 @@ msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞƞḗƈŧ ŧǿ ƥȧẏḿḗƞŧ şḗřṽḗ�
 msgid "Cannot delete shared account"
 msgstr "Ƈȧƞƞǿŧ ḓḗŀḗŧḗ şħȧřḗḓ ȧƈƈǿŭƞŧ"
 
-#: mkt/developers/cron.py:126
+#: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
 msgstr "Ƈǿƞŧḗƞŧ řȧŧīƞɠ ƈħȧƞɠḗḓ ŧǿ Ȧḓŭŀŧ."
 
-#: mkt/developers/forms.py:63
+#: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şḗŀḗƈŧ {řḗɠīǿƞ}."
 
-#: mkt/developers/forms.py:121
+#: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "Ȧŀŀ ŧḗȧḿ ḿḗḿƀḗřş ḿŭşŧ ħȧṽḗ řḗȧḓ ȧƞḓ ȧɠřḗḗḓ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř ȧɠřḗḗḿḗƞŧ."
 
-#: mkt/developers/forms.py:152
+#: mkt/developers/forms.py:153
 msgid "Must have at least one owner."
 msgstr "Ḿŭşŧ ħȧṽḗ ȧŧ ŀḗȧşŧ ǿƞḗ ǿẇƞḗř."
 
-#: mkt/developers/forms.py:155
+#: mkt/developers/forms.py:156
 msgid "At least one team member must be listed."
 msgstr "Ȧŧ ŀḗȧşŧ ǿƞḗ ŧḗȧḿ ḿḗḿƀḗř ḿŭşŧ ƀḗ ŀīşŧḗḓ."
 
-#: mkt/developers/forms.py:159
+#: mkt/developers/forms.py:160
 msgid "A team member can only be listed once."
 msgstr "Ȧ ŧḗȧḿ ḿḗḿƀḗř ƈȧƞ ǿƞŀẏ ƀḗ ŀīşŧḗḓ ǿƞƈḗ."
 
-#: mkt/developers/forms.py:186
+#: mkt/developers/forms.py:187
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently public. <a href=\"%s\">Edit app</a>"
@@ -2293,7 +2554,7 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ ƥŭƀŀīƈ. <a href=\"%s\">Ḗḓīŧ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:190
+#: mkt/developers/forms.py:191
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently pending. <a href=\"%s\">Edit app</a>"
@@ -2301,7 +2562,7 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ ƥḗƞḓīƞɠ. <a href=\"%s\">Ḗḓīŧ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:194
+#: mkt/developers/forms.py:195
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently incomplete. <a href=\"%s\">Resume app</a>"
@@ -2309,7 +2570,7 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ īƞƈǿḿƥŀḗŧḗ. <a href=\"%s\">Řḗşŭḿḗ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:198
+#: mkt/developers/forms.py:199
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently rejected. <a href=\"%s\">Edit app</a>"
@@ -2317,7 +2578,7 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ řḗĵḗƈŧḗḓ. <a href=\"%s\">Ḗḓīŧ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:202
+#: mkt/developers/forms.py:203
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
@@ -2325,7 +2586,7 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ ƀȧƞƞḗḓ ǿƞ Ḿȧřķḗŧƥŀȧƈḗ. <a href=\"%s\">Ḗḓīŧ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:206
+#: mkt/developers/forms.py:207
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2333,47 +2594,48 @@ msgstr ""
 "Ǿǿƥş, ŀǿǿķş ŀīķḗ ẏǿŭ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ŧħȧŧ ḿȧƞīƒḗşŧ ƒǿř %s, ẇħīƈħ īş "
 "ƈŭřřḗƞŧŀẏ ḓīşȧƀŀḗḓ. <a href=\"%s\">Ḗḓīŧ ȧƥƥ</a>"
 
-#: mkt/developers/forms.py:221
+#: mkt/developers/forms.py:222
 msgid ""
 "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
 "Ȧƞ ȧƥƥ ȧŀřḗȧḓẏ ḗẋīşŧş ǿƞ ŧħīş ḓǿḿȧīƞ; ǿƞŀẏ ǿƞḗ ȧƥƥ ƥḗř ḓǿḿȧīƞ īş ȧŀŀǿẇḗḓ."
 
-#: mkt/developers/forms.py:337
+#: mkt/developers/forms.py:338
+#: mkt/websites/forms.py:71
 msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
-#: mkt/developers/forms.py:392
-#: mkt/webapps/models.py:1332
+#: mkt/developers/forms.py:393
+#: mkt/webapps/models.py:1325
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
-#: mkt/developers/forms.py:433
+#: mkt/developers/forms.py:434
 msgid ""
 "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 "Ƥȧƈķȧɠḗḓ ȧƥƥ ŧǿǿ ŀȧřɠḗ ƒǿř şŭƀḿīşşīǿƞ. Ƥȧƈķȧɠḗş ḿŭşŧ ƀḗ şḿȧŀŀḗř ŧħȧƞ %s."
 
-#: mkt/developers/forms.py:448
+#: mkt/developers/forms.py:449
 msgid "Error extracting manifest from zip file."
 msgstr "Ḗřřǿř ḗẋŧřȧƈŧīƞɠ ḿȧƞīƒḗşŧ ƒřǿḿ zīƥ ƒīŀḗ."
 
-#: mkt/developers/forms.py:517
+#: mkt/developers/forms.py:518
 msgid "Provide a detailed description of your app"
 msgstr "Ƥřǿṽīḓḗ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř ȧƥƥ"
 
-#: mkt/developers/forms.py:518
+#: mkt/developers/forms.py:519
 msgid "This description will appear on the details page."
 msgstr "Ŧħīş ḓḗşƈřīƥŧīǿƞ ẇīŀŀ ȧƥƥḗȧř ǿƞ ŧħḗ ḓḗŧȧīŀş ƥȧɠḗ."
 
-#: mkt/developers/forms.py:521
-#: mkt/submit/forms.py:287
+#: mkt/developers/forms.py:522
+#: mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr "Şḗȧřƈħ Ķḗẏẇǿřḓş:"
 
-#: mkt/developers/forms.py:523
+#: mkt/developers/forms.py:524
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
-#: mkt/submit/forms.py:289
+#: mkt/submit/forms.py:290
 msgid ""
 "The search keywords are used to return search results in the Firefox "
 "Marketplace. Be sure to include a keywords that accurately reflect your app."
@@ -2381,25 +2643,25 @@ msgstr ""
 "Ŧħḗ şḗȧřƈħ ķḗẏẇǿřḓş ȧřḗ ŭşḗḓ ŧǿ řḗŧŭřƞ şḗȧřƈħ řḗşŭŀŧş īƞ ŧħḗ Ƒīřḗƒǿẋ "
 "Ḿȧřķḗŧƥŀȧƈḗ. Ɓḗ şŭřḗ ŧǿ īƞƈŀŭḓḗ ȧ ķḗẏẇǿřḓş ŧħȧŧ ȧƈƈŭřȧŧḗŀẏ řḗƒŀḗƈŧ ẏǿŭř ȧƥƥ."
 
-#: mkt/developers/forms.py:578
-#: mkt/submit/forms.py:373
+#: mkt/developers/forms.py:579
+#: mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
 msgstr "Ŧħīş şŀŭɠ īş ȧŀřḗȧḓẏ īƞ ŭşḗ. Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
-#: mkt/developers/forms.py:581
-#: mkt/submit/forms.py:377
+#: mkt/developers/forms.py:582
+#: mkt/submit/forms.py:378
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ŧħḗ şŀŭɠ ƈȧƞƞǿŧ ƀḗ \"%s\". Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
-#: mkt/developers/forms.py:609
+#: mkt/developers/forms.py:610
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "Ḿȧƞīƒḗşŧ ŬŘĿ ƈħȧƞɠḗḓ ƒřǿḿ {ƀḗƒǿřḗ_ŭřŀ} ŧǿ {ȧƒŧḗř_ŭřŀ}"
 
-#: mkt/developers/forms.py:646
+#: mkt/developers/forms.py:647
 msgid "Please specify your app's Privacy Policy"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧƥƥ'ş Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
-#: mkt/developers/forms.py:667
+#: mkt/developers/forms.py:668
 msgid ""
 "Before changing your default locale you must have a name and description in "
 "that locale. You are missing %s."
@@ -2407,16 +2669,16 @@ msgstr ""
 "Ɓḗƒǿřḗ ƈħȧƞɠīƞɠ ẏǿŭř ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ ƞȧḿḗ ȧƞḓ ḓḗşƈřīƥŧīǿƞ īƞ "
 "ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
-#: mkt/developers/forms.py:726
+#: mkt/developers/forms.py:727
 #: mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ḗīŧħḗř ȧ ẇḗƀşīŧḗ, ȧƞ ḗḿȧīŀ, ǿř ƀǿŧħ."
 
-#: mkt/developers/forms.py:751
+#: mkt/developers/forms.py:752
 msgid "Your comments"
 msgstr "Ẏǿŭř ƈǿḿḿḗƞŧş"
 
-#: mkt/developers/forms.py:778
+#: mkt/developers/forms.py:779
 msgid ""
 "<b>Published</b>: Visible to everyone in the Marketplace and included in "
 "search results and listing pages."
@@ -2424,7 +2686,7 @@ msgstr ""
 "<b>Ƥŭƀŀīşħḗḓ</b>: Ṽīşīƀŀḗ ŧǿ ḗṽḗřẏǿƞḗ īƞ ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ ȧƞḓ īƞƈŀŭḓḗḓ īƞ "
 "şḗȧřƈħ řḗşŭŀŧş ȧƞḓ ŀīşŧīƞɠ ƥȧɠḗş."
 
-#: mkt/developers/forms.py:782
+#: mkt/developers/forms.py:783
 msgid ""
 "<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
 "search results and listing pages."
@@ -2432,78 +2694,82 @@ msgstr ""
 "<b>Ŭƞŀīşŧḗḓ</b>: Ṽīşīƀŀḗ ŧǿ ǿƞŀẏ ƥḗǿƥŀḗ ẇīŧħ ŧħḗ ŬŘĿ ȧƞḓ ḓǿḗş ƞǿŧ ȧƥƥḗȧř īƞ "
 "şḗȧřƈħ řḗşŭŀŧş ȧƞḓ ŀīşŧīƞɠ ƥȧɠḗş."
 
-#: mkt/developers/forms.py:798
+#: mkt/developers/forms.py:799
 msgid "App Visibility:"
 msgstr "Ȧƥƥ Ṽīşīƀīŀīŧẏ:"
 
-#: mkt/developers/forms.py:800
+#: mkt/developers/forms.py:801
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>Ŀīḿīŧ ŧǿ ḿẏ ŧḗȧḿ</b>: Ṽīşīƀŀḗ ŧǿ ǿƞŀẏ Ŧḗȧḿ Ḿḗḿƀḗřş."
 
-#: mkt/developers/forms.py:846
+#: mkt/developers/forms.py:847
 msgid "Choose the regions your app will be listed in:"
 msgstr "Ƈħǿǿşḗ ŧħḗ řḗɠīǿƞş ẏǿŭř ȧƥƥ ẇīŀŀ ƀḗ ŀīşŧḗḓ īƞ:"
 
-#: mkt/developers/forms.py:848
-#: mkt/developers/forms.py:949
+#: mkt/developers/forms.py:849
+#: mkt/developers/forms.py:950
 msgid "You must select at least one region."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŀḗƈŧ ȧŧ ŀḗȧşŧ ǿƞḗ řḗɠīǿƞ."
 
-#: mkt/developers/forms.py:853
+#: mkt/developers/forms.py:854
 msgid "Enable new regions"
 msgstr "Ḗƞȧƀŀḗ ƞḗẇ řḗɠīǿƞş"
 
-#: mkt/developers/forms.py:856
+#: mkt/developers/forms.py:857
 msgid "Make my app available in most regions"
 msgstr "Ḿȧķḗ ḿẏ ȧƥƥ ȧṽȧīŀȧƀŀḗ īƞ ḿǿşŧ řḗɠīǿƞş"
 
-#: mkt/developers/forms.py:857
+#: mkt/developers/forms.py:858
 msgid "Choose where my app is made available"
 msgstr "Ƈħǿǿşḗ ẇħḗřḗ ḿẏ ȧƥƥ īş ḿȧḓḗ ȧṽȧīŀȧƀŀḗ"
 
-#: mkt/developers/forms.py:1010
+#: mkt/developers/forms.py:1011
 #: mkt/developers/templates/developers/apps/edit/basic.html:172
+#: mkt/lookup/templates/lookup/website_edit.html:76
+#: mkt/lookup/templates/lookup/website_summary.html:42
 #: mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
-#: mkt/search/forms.py:81
+#: mkt/search/forms.py:88
+#: mkt/websites/forms.py:21
 msgid "Categories"
 msgstr "Ƈȧŧḗɠǿřīḗş"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1035
-#: mkt/webapps/serializers.py:268
+#: mkt/developers/forms.py:1036
+#: mkt/webapps/serializers.py:271
+#: mkt/websites/forms.py:56
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřẏ."
 msgstr[1] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřīḗş."
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1050
 msgid "Agree"
 msgstr "Ȧɠřḗḗ"
 
-#: mkt/developers/forms.py:1066
+#: mkt/developers/forms.py:1067
 msgid "Please enter a valid email address."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ ṽȧŀīḓ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: mkt/developers/forms.py:1069
+#: mkt/developers/forms.py:1070
 msgid "Your email address"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: mkt/developers/forms.py:1072
+#: mkt/developers/forms.py:1073
 msgid "Text"
 msgstr "Ŧḗẋŧ"
 
-#: mkt/developers/forms.py:1076
+#: mkt/developers/forms.py:1077
 msgid "You must agree to the Privacy Policy."
 msgstr "Ẏǿŭ ḿŭşŧ ȧɠřḗḗ ŧǿ ŧħḗ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ."
 
-#: mkt/developers/forms.py:1077
+#: mkt/developers/forms.py:1078
 #: mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Ƈǿŭƞŧřẏ"
 
-#: mkt/developers/forms.py:1111
+#: mkt/developers/forms.py:1112
 #: mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:27
 #: mkt/operators/templates/operators/preloads.html:14
@@ -2515,33 +2781,33 @@ msgstr "Ƈǿŭƞŧřẏ"
 msgid "App"
 msgstr "Ȧƥƥ"
 
-#: mkt/developers/forms.py:1113
+#: mkt/developers/forms.py:1114
 msgid "Transaction Type"
 msgstr "Ŧřȧƞşȧƈŧīǿƞ Ŧẏƥḗ"
 
-#: mkt/developers/forms.py:1116
+#: mkt/developers/forms.py:1117
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "Ŧřȧƞşȧƈŧīǿƞ ĪḒ"
 
-#: mkt/developers/forms.py:1122
+#: mkt/developers/forms.py:1123
 msgid "From"
 msgstr "Ƒřǿḿ"
 
-#: mkt/developers/forms.py:1125
+#: mkt/developers/forms.py:1126
 msgid "To"
 msgstr "Ŧǿ"
 
-#: mkt/developers/forms.py:1136
+#: mkt/developers/forms.py:1137
 msgid "Web site"
 msgstr "Ẇḗƀ şīŧḗ"
 
-#: mkt/developers/forms.py:1137
+#: mkt/developers/forms.py:1138
 msgid "Command line"
 msgstr "Ƈǿḿḿȧƞḓ ŀīƞḗ"
 
-#: mkt/developers/forms.py:1158
+#: mkt/developers/forms.py:1159
 msgid ""
 "Make this the Active version of my app as soon as it has been reviewed and "
 "approved."
@@ -2549,7 +2815,7 @@ msgstr ""
 "Ḿȧķḗ ŧħīş ŧħḗ Ȧƈŧīṽḗ ṽḗřşīǿƞ ǿƒ ḿẏ ȧƥƥ ȧş şǿǿƞ ȧş īŧ ħȧş ƀḗḗƞ řḗṽīḗẇḗḓ ȧƞḓ "
 "ȧƥƥřǿṽḗḓ."
 
-#: mkt/developers/forms.py:1185
+#: mkt/developers/forms.py:1186
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS "
 "device. I agree to the terms and conditions outlined above. I understand "
@@ -2559,27 +2825,27 @@ msgstr ""
 "ḓḗṽīƈḗ. Ī ȧɠřḗḗ ŧǿ ŧħḗ ŧḗřḿş ȧƞḓ ƈǿƞḓīŧīǿƞş ǿŭŧŀīƞḗḓ ȧƀǿṽḗ. Ī ŭƞḓḗřşŧȧƞḓ "
 "ŧħȧŧ ŧħīş ḓǿƈŭḿḗƞŧ īş ƞǿŧ ȧ ƈǿḿḿīŧḿḗƞŧ ŧǿ ƥřḗ-ŀǿȧḓ ḿẏ ȧƥƥ."
 
-#: mkt/developers/forms.py:1192
+#: mkt/developers/forms.py:1193
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Ŭƥŀǿȧḓ Ẏǿŭř Ŧḗşŧ Ƥŀȧƞ (.ƥḓƒ, .ẋŀş ŭƞḓḗř 2.5ḾƁ)"
 
-#: mkt/developers/forms.py:1208
+#: mkt/developers/forms.py:1209
 msgid "Test plan required."
 msgstr "Ŧḗşŧ ƥŀȧƞ řḗɋŭīřḗḓ."
 
-#: mkt/developers/forms.py:1215
+#: mkt/developers/forms.py:1216
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "Ƒīŀḗ ŧǿǿ ŀȧřɠḗ. Ķḗḗƥ şīzḗ ŭƞḓḗř %s. Ƈŭřřḗƞŧ şīzḗ %s."
 
-#: mkt/developers/forms.py:1221
+#: mkt/developers/forms.py:1222
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ŧẏƥḗ {0}. Ǿƞŀẏ {1} ƒīŀḗş ȧřḗ şŭƥƥǿřŧḗḓ."
 
-#: mkt/developers/forms.py:1245
+#: mkt/developers/forms.py:1246
 msgid "Please enter a valid submission ID."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ ṽȧŀīḓ şŭƀḿīşşīǿƞ ĪḒ."
 
-#: mkt/developers/forms.py:1261
+#: mkt/developers/forms.py:1262
 msgid ""
 "This IARC certificate is already being used for another app. Please create a "
 "new IARC Ratings Certificate."
@@ -2587,8 +2853,8 @@ msgstr ""
 "Ŧħīş ĪȦŘƇ ƈḗřŧīƒīƈȧŧḗ īş ȧŀřḗȧḓẏ ƀḗīƞɠ ŭşḗḓ ƒǿř ȧƞǿŧħḗř ȧƥƥ. Ƥŀḗȧşḗ ƈřḗȧŧḗ ȧ "
 "ƞḗẇ ĪȦŘƇ Řȧŧīƞɠş Ƈḗřŧīƒīƈȧŧḗ."
 
-#: mkt/developers/forms.py:1296
-#: mkt/developers/forms.py:1308
+#: mkt/developers/forms.py:1297
+#: mkt/developers/forms.py:1309
 msgid "Invalid submission ID or security code."
 msgstr "Īƞṽȧŀīḓ şŭƀḿīşşīǿƞ ĪḒ ǿř şḗƈŭřīŧẏ ƈǿḓḗ."
 
@@ -2750,10 +3016,12 @@ msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 #: mkt/developers/forms_payments.py:620
 #: mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/lookup/templates/lookup/website_edit.html:20
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24
-#: mkt/search/forms.py:19
+#: mkt/search/forms.py:20
 #: mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+#: mkt/websites/forms.py:27
 msgid "Name"
 msgstr "Ƞȧḿḗ"
 
@@ -2781,15 +3049,15 @@ msgid "My Submissions"
 msgstr "Ḿẏ Şŭƀḿīşşīǿƞş"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:137
+#: mkt/developers/models.py:138
 msgid "Donate to {0}"
 msgstr "Ḓǿƞȧŧḗ ŧǿ {0}"
 
-#: mkt/developers/models.py:480
+#: mkt/developers/models.py:482
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: mkt/developers/models.py:483
+#: mkt/developers/models.py:485
 #: mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
@@ -2798,11 +3066,11 @@ msgstr "Ṽḗřşīǿƞ {0}"
 msgid "Reference Implementation"
 msgstr "Řḗƒḗřḗƞƈḗ Īḿƥŀḗḿḗƞŧȧŧīǿƞ"
 
-#: mkt/developers/tasks.py:407
+#: mkt/developers/tasks.py:413
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Ƞǿ ḿȧƞīƒḗşŧ ẇȧş ƒǿŭƞḓ ȧŧ ŧħȧŧ ŬŘĿ. Ƈħḗƈķ ŧħḗ ȧḓḓřḗşş ȧƞḓ ŧřẏ ȧɠȧīƞ."
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:419
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x"
 "-web-app-manifest+json\". See %s for more information."
@@ -2810,15 +3078,15 @@ msgstr ""
 "Ḿȧƞīƒḗşŧş ḿŭşŧ ƀḗ şḗřṽḗḓ ẇīŧħ ŧħḗ ĦŦŦƤ ħḗȧḓḗř \"Ƈǿƞŧḗƞŧ-Ŧẏƥḗ: ȧƥƥŀīƈȧŧīǿƞ/x"
 "-web-app-manifest+json\". Şḗḗ %s ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
-#: mkt/developers/tasks.py:422
+#: mkt/developers/tasks.py:428
 msgid "Your manifest must be less than %s bytes."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ %s ƀẏŧḗş."
 
-#: mkt/developers/tasks.py:430
+#: mkt/developers/tasks.py:436
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ƒīŀḗ ẇȧş ƞǿŧ ḗƞƈǿḓḗḓ ȧş ṽȧŀīḓ ŬŦƑ-8."
 
-#: mkt/developers/tasks.py:441
+#: mkt/developers/tasks.py:447
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
@@ -2826,18 +3094,18 @@ msgstr ""
 "Ŧħḗ ḿȧƞīƒḗşŧ'ş ḗƞƈǿḓīƞɠ ḓǿḗş ƞǿŧ ḿȧŧƈħ ŧħḗ ƈħȧřşḗŧ ƥřǿṽīḓḗḓ īƞ ŧħḗ ĦŦŦƤ "
 "Ƈǿƞŧḗƞŧ-Ŧẏƥḗ."
 
-#: mkt/developers/tasks.py:471
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:478
+#: mkt/developers/tasks.py:484
 #: mkt/reviewers/forms.py:42
 #: mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "ȧƞḓ"
 
-#: mkt/developers/tasks.py:491
+#: mkt/developers/tasks.py:498
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{řḗɠīǿƞ} řḗɠīǿƞ ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: mkt/developers/tasks.py:495
+#: mkt/developers/tasks.py:502
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Ƞḗẇ řḗɠīǿƞş ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
@@ -2911,7 +3179,7 @@ msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 #: mkt/developers/views.py:570
 #: mkt/developers/views_payments.py:113
 #: mkt/developers/views_payments.py:437
-#: mkt/reviewers/views.py:685
+#: mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
@@ -3162,7 +3430,7 @@ msgstr "Ŭƥḓȧŧḗ Ḿḗşşȧɠḗ ǿƒ ŧħḗ Ḓȧẏ"
 #: mkt/developers/templates/developers/motd.html:14
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:32
 #: mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:209
+#: mkt/reviewers/templates/reviewers/review.html:227
 msgid "Save"
 msgstr "Şȧṽḗ"
 
@@ -3455,6 +3723,7 @@ msgstr "Şŭƀḿīŧ Ȧƞ Ȧƥƥ"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2
 #: mkt/lookup/templates/lookup/helpers/app_header.html:33
+#: mkt/lookup/templates/lookup/helpers/website_header.html:22
 #: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Edit Listing"
 msgstr "Ḗḓīŧ Ŀīşŧīƞɠ"
@@ -3501,6 +3770,7 @@ msgstr "Ȧƀǿŭŧ ŧḗȧḿ ḿḗḿƀḗř řǿŀḗş"
 #: mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286
 #: mkt/developers/templates/developers/payments/premium.html:325
+#: mkt/lookup/templates/lookup/website_edit.html:104
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
@@ -3563,8 +3833,10 @@ msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 #: mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152
-#: mkt/reviewers/forms.py:182
-#: mkt/reviewers/forms.py:231
+#: mkt/lookup/templates/lookup/website_edit.html:88
+#: mkt/lookup/templates/lookup/website_summary.html:46
+#: mkt/reviewers/forms.py:191
+#: mkt/reviewers/forms.py:240
 #: mkt/reviewers/templates/reviewers/review.html:29
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
@@ -3723,6 +3995,7 @@ msgstr "Şŭƀḿīşşīǿƞ ḓȧŧḗ"
 
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
+#: mkt/lookup/templates/lookup/website_edit.html:95
 msgid "Disabled"
 msgstr "Ḓīşȧƀŀḗḓ"
 
@@ -3958,6 +4231,7 @@ msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ḓḗŀīşŧ ẏǿŭ�
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
+#: mkt/lookup/templates/lookup/website_edit.html:104
 #: mkt/submit/templates/submit/done.html:48
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -3984,6 +4258,7 @@ msgstr "ǿř"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30
 #: mkt/lookup/templates/lookup/user_summary.html:115
 #: mkt/lookup/templates/lookup/user_summary.html:118
+#: mkt/lookup/templates/lookup/website_edit.html:105
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -4200,7 +4475,7 @@ msgstr "Ṽīḗẇ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ"
 #: mkt/developers/templates/developers/apps/edit/basic.html:77
 #: mkt/reviewers/templates/reviewers/includes/details.html:26
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:131
+#: mkt/search/forms.py:142
 msgid "Manifest URL"
 msgstr "Ḿȧƞīƒḗşŧ ŬŘĿ"
 
@@ -4221,12 +4496,15 @@ msgstr ""
 ">ḓǿƈŭḿḗƞŧȧŧīǿƞ ǿƞ Ŭƥḓȧŧīƞɠ Ȧƥƥş</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102
+#: mkt/lookup/templates/lookup/website_edit.html:41
+#: mkt/lookup/templates/lookup/website_summary.html:22
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
+#: mkt/websites/forms.py:23
 msgid "Description"
 msgstr "Ḓḗşƈřīƥŧīǿƞ"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:104
-#: mkt/submit/forms.py:280
+#: mkt/submit/forms.py:281
 msgid ""
 "The app description is one of the fields used to return search results in "
 "the Firefox Marketplace. The app description also appears on the app's "
@@ -4659,7 +4937,7 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1423
 msgid "Content Ratings"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠş"
 
@@ -4854,6 +5132,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
+#: mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Şŭḿḿȧřẏ"
 
@@ -4903,6 +5182,7 @@ msgstr "Řḗḿǿṽḗ ŧħīş ȧƥƥŀīƈȧŧīǿƞ"
 
 #: mkt/developers/templates/developers/includes/macros.html:67
 #: mkt/developers/templates/developers/includes/macros.html:81
+#: mkt/lookup/templates/lookup/website_edit.html:79
 msgid "Pick one or two categories."
 msgstr "Ƥīƈķ ǿƞḗ ǿř ŧẇǿ ƈȧŧḗɠǿřīḗş."
 
@@ -5176,7 +5456,7 @@ msgstr "Ƥřīƈḗş ȧƞḓ Ƈǿŭƞŧřīḗş"
 #: mkt/reviewers/templates/reviewers/includes/details.html:79
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:9
-#: mkt/search/forms.py:16
+#: mkt/search/forms.py:17
 msgid "Price"
 msgstr "Ƥřīƈḗ"
 
@@ -5764,7 +6044,7 @@ msgstr "Ḓḗṽḗŀǿƥīƞɠ Ɠȧḿḗ Ȧƥƥş"
 #: mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1436
+#: mkt/webapps/models.py:1429
 msgid "Payments"
 msgstr "Ƥȧẏḿḗƞŧş"
 
@@ -6078,11 +6358,11 @@ msgstr ""
 msgid "This file is a directory."
 msgstr "Ŧħīş ƒīŀḗ īş ȧ ḓīřḗƈŧǿřẏ."
 
-#: mkt/files/tasks.py:28
+#: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. %s."
 
-#: mkt/files/tasks.py:31
+#: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
@@ -6310,25 +6590,29 @@ msgstr "Ḗƞŧḗř řḗƒŭƞḓ ḓḗŧȧīŀş ŧǿ řḗƒŭƞḓ ŧřȧ�
 msgid "Reason for Deletion"
 msgstr "Řḗȧşǿƞ ƒǿř Ḓḗŀḗŧīǿƞ"
 
-#: mkt/lookup/views.py:195
+#: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
 msgstr "Ȧ řḗƒŭƞḓ ħȧş ȧŀřḗȧḓẏ ƀḗḗƞ ƥřǿƈḗşşḗḓ."
 
-#: mkt/lookup/views.py:218
+#: mkt/lookup/views.py:219
 msgid "You cannot make a refund request for this transaction."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ḿȧķḗ ȧ řḗƒŭƞḓ řḗɋŭḗşŧ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ."
 
-#: mkt/lookup/views.py:242
+#: mkt/lookup/views.py:243
 msgid "Refund for this transaction now pending."
 msgstr "Řḗƒŭƞḓ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ ƞǿẇ ƥḗƞḓīƞɠ."
 
-#: mkt/lookup/views.py:250
+#: mkt/lookup/views.py:251
 msgid "Refund for this transaction successfully approved."
 msgstr "Řḗƒŭƞḓ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧƥƥřǿṽḗḓ."
 
-#: mkt/lookup/views.py:255
+#: mkt/lookup/views.py:256
 msgid "Refund request for this transaction failed."
 msgstr "Řḗƒŭƞḓ řḗɋŭḗşŧ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ ƒȧīŀḗḓ."
+
+#: mkt/lookup/views.py:333
+msgid "Website saved."
+msgstr "Ẇḗƀşīŧḗ şȧṽḗḓ."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10
 #: mkt/lookup/templates/lookup/helpers/app_header.html:22
@@ -6502,7 +6786,7 @@ msgstr "Ƒīŀḗƞȧḿḗ (ĪḒ, Şīzḗ)"
 msgid "Lookup Tool"
 msgstr "Ŀǿǿķŭƥ Ŧǿǿŀ"
 
-#: mkt/lookup/templates/lookup/base.html:10
+#: mkt/lookup/templates/lookup/base.html:14
 msgid "<small>Marketplace</small> Lookup Tool"
 msgstr "<small>Ḿȧřķḗŧƥŀȧƈḗ</small> Ŀǿǿķŭƥ Ŧǿǿŀ"
 
@@ -6685,6 +6969,48 @@ msgstr "Ḓḗŀḗŧḗḓ ƀẏ"
 msgid "Reason"
 msgstr "Řḗȧşǿƞ"
 
+#: mkt/lookup/templates/lookup/website_edit.html:27
+#: mkt/websites/forms.py:31
+msgid "Short Name"
+msgstr "Şħǿřŧ Ƞȧḿḗ"
+
+#: mkt/lookup/templates/lookup/website_edit.html:34
+#: mkt/lookup/templates/lookup/website_summary.html:14
+#: mkt/websites/forms.py:33
+msgid "Title"
+msgstr "Ŧīŧŀḗ"
+
+#: mkt/lookup/templates/lookup/website_edit.html:48
+#: mkt/lookup/templates/lookup/website_summary.html:26
+#: mkt/websites/forms.py:35
+msgid "URL"
+msgstr "ŬŘĿ"
+
+#: mkt/lookup/templates/lookup/website_edit.html:55
+#: mkt/lookup/templates/lookup/website_summary.html:30
+msgid "Mobile URL"
+msgstr "Ḿǿƀīŀḗ ŬŘĿ"
+
+#: mkt/lookup/templates/lookup/website_edit.html:62
+#: mkt/lookup/templates/lookup/website_summary.html:34
+#: mkt/websites/forms.py:25
+msgid "Keywords"
+msgstr "Ķḗẏẇǿřḓş"
+
+#: mkt/lookup/templates/lookup/website_edit.html:69
+#: mkt/lookup/templates/lookup/website_summary.html:38
+#: mkt/websites/forms.py:29
+msgid "Preferred Regions"
+msgstr "Ƥřḗƒḗřřḗḓ Řḗɠīǿƞş"
+
+#: mkt/lookup/templates/lookup/website_summary.html:18
+msgid "Name - Short Name"
+msgstr "Ƞȧḿḗ - Şħǿřŧ Ƞȧḿḗ"
+
+#: mkt/lookup/templates/lookup/website_summary.html:50
+msgid "disabled"
+msgstr "ḓīşȧƀŀḗḓ"
+
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
 msgstr "Ȧƥƥ Ŀǿǿķŭƥ řḗşŭŀŧş ƒǿř"
@@ -6709,17 +7035,26 @@ msgstr "Ȧƈƈǿŭƞŧ Şŭḿḿȧřẏ"
 msgid "Account Deleted"
 msgstr "Ȧƈƈǿŭƞŧ Ḓḗŀḗŧḗḓ"
 
+#: mkt/lookup/templates/lookup/helpers/website_header.html:3
+msgid "Website Summary for"
+msgstr "Ẇḗƀşīŧḗ Şŭḿḿȧřẏ ƒǿř"
+
+#: mkt/lookup/templates/lookup/helpers/website_header.html:5
+msgid "Edit Website"
+msgstr "Ḗḓīŧ Ẇḗƀşīŧḗ"
+
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
 msgstr "Ȧƥƥ Ŀǿǿķŭƥ"
 
-#: mkt/lookup/templates/lookup/includes/app_search.html:8
+#: mkt/lookup/templates/lookup/includes/app_search.html:9
 #: mkt/lookup/templates/lookup/includes/transaction_search.html:6
 #: mkt/lookup/templates/lookup/includes/user_search.html:6
+#: mkt/lookup/templates/lookup/includes/website_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:78
-#: mkt/search/forms.py:80
+#: mkt/search/forms.py:83
+#: mkt/search/forms.py:85
 #: mkt/templates/mkt/header.html:9
 #: mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13
@@ -6733,6 +7068,10 @@ msgstr "Ȧƥƥ: {0}"
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "Ȧƈƈǿŭƞŧ Ŀǿǿķŭƥ"
+
+#: mkt/lookup/templates/lookup/includes/website_search.html:5
+msgid "Website Lookup"
+msgstr "Ẇḗƀşīŧḗ Ŀǿǿķŭƥ"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -6924,7 +7263,7 @@ msgid "Deleted reviews"
 msgstr "Ḓḗŀḗŧḗḓ řḗṽīḗẇş"
 
 #: mkt/reviewers/forms.py:34
-#: mkt/search/forms.py:42
+#: mkt/search/forms.py:43
 msgid "Any Device"
 msgstr "Ȧƞẏ Ḓḗṽīƈḗ"
 
@@ -6956,25 +7295,27 @@ msgstr "ḗƞḓ"
 msgid "app, reviewer, or comment"
 msgstr "ȧƥƥ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
 
+#: mkt/reviewers/forms.py:104
+msgid "Device Type:"
+msgstr "Ḓḗṽīƈḗ Ŧẏƥḗ:"
+
+#: mkt/reviewers/forms.py:105
+msgid "Device:"
+msgstr "Ḓḗṽīƈḗ:"
+
 #: mkt/reviewers/forms.py:106
+msgid "Firefox Version:"
+msgstr "Ƒīřḗƒǿẋ Ṽḗřşīǿƞ:"
+
+#: mkt/reviewers/forms.py:118
 msgid "Comments:"
 msgstr "Ƈǿḿḿḗƞŧş:"
 
-#: mkt/reviewers/forms.py:110
-#: mkt/reviewers/templates/reviewers/review.html:134
-msgid "Device Types:"
-msgstr "Ḓḗṽīƈḗ Ŧẏƥḗş:"
-
-#: mkt/reviewers/forms.py:112
-#: mkt/reviewers/templates/reviewers/review.html:138
-msgid "Browsers:"
-msgstr "Ɓřǿẇşḗřş:"
-
-#: mkt/reviewers/forms.py:115
+#: mkt/reviewers/forms.py:123
 msgid "Device Type Override:"
 msgstr "Ḓḗṽīƈḗ Ŧẏƥḗ Ǿṽḗřřīḓḗ:"
 
-#: mkt/reviewers/forms.py:118
+#: mkt/reviewers/forms.py:126
 msgid ""
 "Notify me the next time the manifest is updated. (Subsequent updates will "
 "not generate an email)"
@@ -6982,34 +7323,34 @@ msgstr ""
 "Ƞǿŧīƒẏ ḿḗ ŧħḗ ƞḗẋŧ ŧīḿḗ ŧħḗ ḿȧƞīƒḗşŧ īş ŭƥḓȧŧḗḓ. (Şŭƀşḗɋŭḗƞŧ ŭƥḓȧŧḗş ẇīŀŀ "
 "ƞǿŧ ɠḗƞḗřȧŧḗ ȧƞ ḗḿȧīŀ)"
 
-#: mkt/reviewers/forms.py:122
+#: mkt/reviewers/forms.py:130
 msgid "This app works on Tarako devices."
 msgstr "Ŧħīş ȧƥƥ ẇǿřķş ǿƞ Ŧȧřȧķǿ ḓḗṽīƈḗş."
 
-#: mkt/reviewers/forms.py:129
+#: mkt/reviewers/forms.py:137
 msgid "Choose a canned response..."
 msgstr "Ƈħǿǿşḗ ȧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
 
-#: mkt/reviewers/forms.py:185
+#: mkt/reviewers/forms.py:194
 msgid "Has Editor Comment"
 msgstr "Ħȧş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:198
 msgid "More Info Requested"
 msgstr "Ḿǿřḗ Īƞƒǿ Řḗɋŭḗşŧḗḓ"
 
-#: mkt/reviewers/forms.py:197
+#: mkt/reviewers/forms.py:206
 msgid "Tarako-ready"
 msgstr "Ŧȧřȧķǿ-řḗȧḓẏ"
 
-#: mkt/reviewers/forms.py:201
+#: mkt/reviewers/forms.py:210
 #: mkt/reviewers/helpers.py:45
-#: mkt/search/forms.py:84
+#: mkt/search/forms.py:91
 msgid "Device"
 msgstr "Ḓḗṽīƈḗ"
 
 #: mkt/reviewers/helpers.py:38
-#: mkt/reviewers/helpers.py:67
+#: mkt/reviewers/helpers.py:68
 #: mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
 msgstr "Řḗṽīḗẇḗř Ŧǿǿŀş"
@@ -7032,86 +7373,95 @@ msgid "Escalations"
 msgstr "Ḗşƈȧŀȧŧīǿƞş"
 
 #: mkt/reviewers/helpers.py:46
-#: mkt/reviewers/helpers.py:151
+#: mkt/reviewers/helpers.py:159
 msgid "Moderated Reviews"
 msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
 
 #: mkt/reviewers/helpers.py:48
+msgid "Website Abuse Reports"
+msgstr "Ẇḗƀşīŧḗ Ȧƀŭşḗ Řḗƥǿřŧş"
+
+#: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
 msgstr "Řḗṽīḗẇīƞɠ"
 
-#: mkt/reviewers/helpers.py:50
+#: mkt/reviewers/helpers.py:51
 #: mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
 msgstr "Řḗɠīǿƞȧŀ Ɋŭḗŭḗş"
 
-#: mkt/reviewers/helpers.py:89
+#: mkt/reviewers/helpers.py:90
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr "Ȧƥƥş ({0})"
 
-#: mkt/reviewers/helpers.py:92
+#: mkt/reviewers/helpers.py:93
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr "Řḗ-řḗṽīḗẇş ({0})"
 
-#: mkt/reviewers/helpers.py:96
+#: mkt/reviewers/helpers.py:97
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr "Ŭƥḓȧŧḗş ({0})"
 
-#: mkt/reviewers/helpers.py:100
+#: mkt/reviewers/helpers.py:101
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr "Ḗşƈȧŀȧŧīǿƞş ({0})"
 
-#: mkt/reviewers/helpers.py:104
+#: mkt/reviewers/helpers.py:105
 msgid "Reviewing ({0})"
 msgstr "Řḗṽīḗẇīƞɠ ({0})"
 
-#: mkt/reviewers/helpers.py:110
+#: mkt/reviewers/helpers.py:111
 msgid "China ({0})"
 msgstr "Ƈħīƞȧ ({0})"
 
-#: mkt/reviewers/helpers.py:115
+#: mkt/reviewers/helpers.py:116
 msgid "Tarako ({0})"
 msgstr "Ŧȧřȧķǿ ({0})"
 
-#: mkt/reviewers/helpers.py:122
+#: mkt/reviewers/helpers.py:123
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş ({0})"
 
-#: mkt/reviewers/helpers.py:129
+#: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ({0})"
 
-#: mkt/reviewers/helpers.py:146
+#: mkt/reviewers/helpers.py:137
+msgctxt "abusewebsites"
+msgid "Website Abuse Reports ({0})"
+msgstr "Ẇḗƀşīŧḗ Ȧƀŭşḗ Řḗƥǿřŧş ({0})"
+
+#: mkt/reviewers/helpers.py:154
 msgid "Reviews"
 msgstr "Řḗṽīḗẇş"
 
-#: mkt/reviewers/helpers.py:188
+#: mkt/reviewers/helpers.py:196
 msgid "Rejected or Unreviewed"
 msgstr "Řḗĵḗƈŧḗḓ ǿř Ŭƞřḗṽīḗẇḗḓ"
 
-#: mkt/reviewers/utils.py:371
+#: mkt/reviewers/utils.py:390
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "Ȧƥƥřǿṽḗ"
 
-#: mkt/reviewers/utils.py:372
+#: mkt/reviewers/utils.py:391
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ ŧħḗ ȧƥƥ ȧƞḓ ȧŀŀǿẇ ŧħḗ ȧŭŧħǿř(ş) ŧǿ ƥŭƀŀīşħ īŧ."
 
-#: mkt/reviewers/utils.py:376
+#: mkt/reviewers/utils.py:395
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Řḗĵḗƈŧ"
 
-#: mkt/reviewers/utils.py:378
+#: mkt/reviewers/utils.py:397
 msgid ""
 "This will reject the app, remove it from the review queue and un-publish it "
 "if already published."
@@ -7119,11 +7469,11 @@ msgstr ""
 "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħḗ ȧƥƥ, řḗḿǿṽḗ īŧ ƒřǿḿ ŧħḗ řḗṽīḗẇ ɋŭḗŭḗ ȧƞḓ ŭƞ-ƥŭƀŀīşħ īŧ "
 "īƒ ȧŀřḗȧḓẏ ƥŭƀŀīşħḗḓ."
 
-#: mkt/reviewers/utils.py:383
+#: mkt/reviewers/utils.py:402
 msgid "Message developer"
 msgstr "Ḿḗşşȧɠḗ ḓḗṽḗŀǿƥḗř"
 
-#: mkt/reviewers/utils.py:385
+#: mkt/reviewers/utils.py:404
 msgid ""
 "This will send the author(s) - and other thread subscribers - a message. "
 "This will not change the app's status."
@@ -7131,11 +7481,11 @@ msgstr ""
 "Ŧħīş ẇīŀŀ şḗƞḓ ŧħḗ ȧŭŧħǿř(ş) - ȧƞḓ ǿŧħḗř ŧħřḗȧḓ şŭƀşƈřīƀḗřş - ȧ ḿḗşşȧɠḗ. "
 "Ŧħīş ẇīŀŀ ƞǿŧ ƈħȧƞɠḗ ŧħḗ ȧƥƥ'ş şŧȧŧŭş."
 
-#: mkt/reviewers/utils.py:390
+#: mkt/reviewers/utils.py:409
 msgid "Escalate"
 msgstr "Ḗşƈȧŀȧŧḗ"
 
-#: mkt/reviewers/utils.py:392
+#: mkt/reviewers/utils.py:411
 msgid ""
 "Flag this app for an admin to review. The comments are sent to the admins, "
 "not the author(s)."
@@ -7143,11 +7493,11 @@ msgstr ""
 "Ƒŀȧɠ ŧħīş ȧƥƥ ƒǿř ȧƞ ȧḓḿīƞ ŧǿ řḗṽīḗẇ. Ŧħḗ ƈǿḿḿḗƞŧş ȧřḗ şḗƞŧ ŧǿ ŧħḗ ȧḓḿīƞş, "
 "ƞǿŧ ŧħḗ ȧŭŧħǿř(ş)."
 
-#: mkt/reviewers/utils.py:397
+#: mkt/reviewers/utils.py:416
 msgid "Private comment"
 msgstr "Ƥřīṽȧŧḗ ƈǿḿḿḗƞŧ"
 
-#: mkt/reviewers/utils.py:399
+#: mkt/reviewers/utils.py:418
 msgid ""
 "Make a private reviewer comment on this app. The message won't be visible to "
 "the author(s), and no notification will be sent them."
@@ -7155,11 +7505,11 @@ msgstr ""
 "Ḿȧķḗ ȧ ƥřīṽȧŧḗ řḗṽīḗẇḗř ƈǿḿḿḗƞŧ ǿƞ ŧħīş ȧƥƥ. Ŧħḗ ḿḗşşȧɠḗ ẇǿƞ'ŧ ƀḗ ṽīşīƀŀḗ ŧǿ "
 "ŧħḗ ȧŭŧħǿř(ş), ȧƞḓ ƞǿ ƞǿŧīƒīƈȧŧīǿƞ ẇīŀŀ ƀḗ şḗƞŧ ŧħḗḿ."
 
-#: mkt/reviewers/utils.py:405
+#: mkt/reviewers/utils.py:424
 msgid "Clear Escalation"
 msgstr "Ƈŀḗȧř Ḗşƈȧŀȧŧīǿƞ"
 
-#: mkt/reviewers/utils.py:407
+#: mkt/reviewers/utils.py:426
 msgid ""
 "Clear this app from the escalation queue. The author(s) will get no email or "
 "see comments here."
@@ -7167,11 +7517,11 @@ msgstr ""
 "Ƈŀḗȧř ŧħīş ȧƥƥ ƒřǿḿ ŧħḗ ḗşƈȧŀȧŧīǿƞ ɋŭḗŭḗ. Ŧħḗ ȧŭŧħǿř(ş) ẇīŀŀ ɠḗŧ ƞǿ ḗḿȧīŀ ǿř "
 "şḗḗ ƈǿḿḿḗƞŧş ħḗřḗ."
 
-#: mkt/reviewers/utils.py:412
+#: mkt/reviewers/utils.py:431
 msgid "Clear Re-review"
 msgstr "Ƈŀḗȧř Řḗ-řḗṽīḗẇ"
 
-#: mkt/reviewers/utils.py:414
+#: mkt/reviewers/utils.py:433
 msgid ""
 "Clear this app from the re-review queue. The author(s) will get no email or "
 "see comments here."
@@ -7179,11 +7529,11 @@ msgstr ""
 "Ƈŀḗȧř ŧħīş ȧƥƥ ƒřǿḿ ŧħḗ řḗ-řḗṽīḗẇ ɋŭḗŭḗ. Ŧħḗ ȧŭŧħǿř(ş) ẇīŀŀ ɠḗŧ ƞǿ ḗḿȧīŀ ǿř "
 "şḗḗ ƈǿḿḿḗƞŧş ħḗřḗ."
 
-#: mkt/reviewers/utils.py:419
+#: mkt/reviewers/utils.py:438
 msgid "Ban app"
 msgstr "Ɓȧƞ ȧƥƥ"
 
-#: mkt/reviewers/utils.py:421
+#: mkt/reviewers/utils.py:440
 msgid ""
 "Ban the app from Marketplace. Similar to Reject but the author(s) can't "
 "resubmit. To only be used in extreme cases."
@@ -7191,60 +7541,60 @@ msgstr ""
 "Ɓȧƞ ŧħḗ ȧƥƥ ƒřǿḿ Ḿȧřķḗŧƥŀȧƈḗ. Şīḿīŀȧř ŧǿ Řḗĵḗƈŧ ƀŭŧ ŧħḗ ȧŭŧħǿř(ş) ƈȧƞ'ŧ "
 "řḗşŭƀḿīŧ. Ŧǿ ǿƞŀẏ ƀḗ ŭşḗḓ īƞ ḗẋŧřḗḿḗ ƈȧşḗş."
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:141
 msgid "New Apps (Under 5 days)"
 msgstr "Ƞḗẇ Ȧƥƥş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:142
 msgid "Passable (5 to 10 days)"
 msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:143
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:256
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: mkt/reviewers/views.py:260
+#: mkt/reviewers/views.py:262
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Ǿƞŀẏ şḗƞīǿř řḗṽīḗẇḗřş ƈȧƞ řḗṽīḗẇ ƀŀǿƈķŀīşŧḗḓ ȧƥƥş."
 
-#: mkt/reviewers/views.py:310
-#: mkt/reviewers/views.py:335
-#: mkt/submit/forms.py:32
-#: mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:315
+#: mkt/reviewers/views.py:340
+#: mkt/submit/forms.py:33
+#: mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "Ȧḓḓḗḓ {0}"
 
-#: mkt/reviewers/views.py:313
-#: mkt/reviewers/views.py:336
-#: mkt/submit/forms.py:34
-#: mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:318
+#: mkt/reviewers/views.py:341
+#: mkt/submit/forms.py:35
+#: mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "Řḗḿǿṽḗḓ {0}"
 
-#: mkt/reviewers/views.py:316
+#: mkt/reviewers/views.py:321
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:338
+#: mkt/reviewers/views.py:343
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Řḗɋŭīřḗḿḗƞŧş ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
-#: mkt/reviewers/views.py:367
+#: mkt/reviewers/views.py:372
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
-msgid "Abuse Reports for {addon} ({num})"
-msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ƒǿř {ȧḓḓǿƞ} ({ƞŭḿ})"
+msgid "Abuse Reports for {item} ({num})"
+msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ƒǿř {īŧḗḿ} ({ƞŭḿ})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -7568,11 +7918,11 @@ msgstr "Ȧƥƥ Ħīşŧǿřẏ"
 msgid "Resolution"
 msgstr "Řḗşǿŀŭŧīǿƞ"
 
-#: mkt/reviewers/templates/reviewers/review.html:99
+#: mkt/reviewers/templates/reviewers/review.html:100
 msgid "App submission incomplete"
 msgstr "Ȧƥƥ şŭƀḿīşşīǿƞ īƞƈǿḿƥŀḗŧḗ"
 
-#: mkt/reviewers/templates/reviewers/review.html:119
+#: mkt/reviewers/templates/reviewers/review.html:121
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
@@ -7580,31 +7930,35 @@ msgstr ""
 "Ẏǿŭ ƈȧƞ şŧīŀŀ şŭƀḿīŧ ŧħīş ƒǿřḿ, ħǿẇḗṽḗř ǿƞŀẏ ḓǿ şǿ īƒ ẏǿŭ ķƞǿẇ īŧ ẇǿƞ'ŧ "
 "ƈǿƞƒŀīƈŧ."
 
-#: mkt/reviewers/templates/reviewers/review.html:126
+#: mkt/reviewers/templates/reviewers/review.html:128
 msgid "Insert canned response..."
 msgstr "Īƞşḗřŧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
 
-#: mkt/reviewers/templates/reviewers/review.html:132
-msgid "Tested with:"
-msgstr "Ŧḗşŧḗḓ ẇīŧħ:"
+#: mkt/reviewers/templates/reviewers/review.html:133
+msgid "Tested on:"
+msgstr "Ŧḗşŧḗḓ ǿƞ:"
 
-#: mkt/reviewers/templates/reviewers/review.html:158
+#: mkt/reviewers/templates/reviewers/review.html:159
+msgid "Add device"
+msgstr "Ȧḓḓ ḓḗṽīƈḗ"
+
+#: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
 msgstr "Ɓřǿẇşḗ"
 
-#: mkt/reviewers/templates/reviewers/review.html:170
+#: mkt/reviewers/templates/reviewers/review.html:188
 msgid "Attach another file"
 msgstr "Ȧŧŧȧƈħ ȧƞǿŧħḗř ƒīŀḗ"
 
-#: mkt/reviewers/templates/reviewers/review.html:173
+#: mkt/reviewers/templates/reviewers/review.html:191
 msgid "Device Override:"
 msgstr "Ḓḗṽīƈḗ Ǿṽḗřřīḓḗ:"
 
-#: mkt/reviewers/templates/reviewers/review.html:186
+#: mkt/reviewers/templates/reviewers/review.html:204
 msgid "Minimum Requirements Override:"
 msgstr "Ḿīƞīḿŭḿ Řḗɋŭīřḗḿḗƞŧş Ǿṽḗřřīḓḗ:"
 
-#: mkt/reviewers/templates/reviewers/review.html:205
+#: mkt/reviewers/templates/reviewers/review.html:223
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -7731,29 +8085,29 @@ msgid "Newer versions"
 msgstr "Ƞḗẇḗř ṽḗřşīǿƞş"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
 msgid "Process"
 msgstr "Ƥřǿƈḗşş"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Skip"
 msgstr "Şķīƥ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Mark Read"
 msgstr "Ḿȧřķ Řḗȧḓ"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
-msgid ""
-"[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All "
-"abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
-"[<a href=\"%(review_url)s\">Řḗṽīḗẇ ƥȧɠḗ</a> | <a href=\"%(abuses_url)s\">Ȧŀŀ "
-"ȧƀŭşḗ řḗƥǿřŧş (%(abuses_count)s)</a>]"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+msgid "Review page"
+msgstr "Řḗṽīḗẇ ƥȧɠḗ"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
+msgstr "<a href=\"%(abuses_url)s\">Ȧŀŀ ȧƀŭşḗ řḗƥǿřŧş (%(abuses_count)s)</a>]"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
@@ -7761,12 +8115,15 @@ msgstr ""
 "<span class=\"submitted-by\">Şŭƀḿīŧŧḗḓ ƀẏ %(user)s ǿƞ %(date)s "
 "[%(ip_address)s]</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
-msgid "translate"
-msgstr "ŧřȧƞşŀȧŧḗ"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+msgid ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\""
+" href=\"%(translate_url)s\">translate</a>"
+msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\""
+" href=\"%(translate_url)s\">ŧřȧƞşŀȧŧḗ</a>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
 msgstr "Ȧŀŀ ȧƀŭşḗ řḗƥǿřŧş řḗȧḓ. Ɠǿǿḓ ẇǿřķ!"
 
@@ -7783,6 +8140,10 @@ msgstr "Ḿǿḓḗřȧŧīǿƞ ȧƈŧīǿƞş:"
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgstr "ƀẏ %(user)s ǿƞ %(date)s %(stars)s (%(locale)s)"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
+msgid "translate"
+msgstr "ŧřȧƞşŀȧŧḗ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid ""
@@ -7904,111 +8265,111 @@ msgstr "Ẏǿŭ ħȧṽḗ <span>{0}</span> ƥǿīƞŧş."
 msgid "No results found"
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
 
-#: mkt/search/forms.py:12
+#: mkt/search/forms.py:13
 msgid "Relevance"
 msgstr "Řḗŀḗṽȧƞƈḗ"
 
-#: mkt/search/forms.py:13
+#: mkt/search/forms.py:14
 msgid "Popularity"
 msgstr "Ƥǿƥŭŀȧřīŧẏ"
 
-#: mkt/search/forms.py:14
+#: mkt/search/forms.py:15
 msgid "Weekly Downloads"
 msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
-#: mkt/search/forms.py:15
+#: mkt/search/forms.py:16
 msgid "Top Rated"
 msgstr "Ŧǿƥ Řȧŧḗḓ"
 
-#: mkt/search/forms.py:17
+#: mkt/search/forms.py:18
 msgid "Newest"
 msgstr "Ƞḗẇḗşŧ"
 
-#: mkt/search/forms.py:18
+#: mkt/search/forms.py:19
 msgid "Reviewed"
 msgstr "Řḗṽīḗẇḗḓ"
 
-#: mkt/search/forms.py:20
+#: mkt/search/forms.py:21
 msgid "Trending"
 msgstr "Ŧřḗƞḓīƞɠ"
 
-#: mkt/search/forms.py:26
+#: mkt/search/forms.py:27
 msgid "Any App Type"
 msgstr "Ȧƞẏ Ȧƥƥ Ŧẏƥḗ"
 
-#: mkt/search/forms.py:29
+#: mkt/search/forms.py:30
 msgid "Privileged packaged app"
 msgstr "Ƥřīṽīŀḗɠḗḓ ƥȧƈķȧɠḗḓ ȧƥƥ"
 
-#: mkt/search/forms.py:34
+#: mkt/search/forms.py:35
 msgid "Free with In-app"
 msgstr "Ƒřḗḗ ẇīŧħ Īƞ-ȧƥƥ"
 
-#: mkt/search/forms.py:36
+#: mkt/search/forms.py:37
 msgid "Premium with In-app"
 msgstr "Ƥřḗḿīŭḿ ẇīŧħ Īƞ-ȧƥƥ"
 
-#: mkt/search/forms.py:37
+#: mkt/search/forms.py:38
 msgid "Other System for In-App"
 msgstr "Ǿŧħḗř Şẏşŧḗḿ ƒǿř Īƞ-Ȧƥƥ"
 
-#: mkt/search/forms.py:44
+#: mkt/search/forms.py:45
 msgid "Android"
 msgstr "Ȧƞḓřǿīḓ"
 
-#: mkt/search/forms.py:51
+#: mkt/search/forms.py:52
 msgid "Any Device Type"
 msgstr "Ȧƞẏ Ḓḗṽīƈḗ Ŧẏƥḗ"
 
-#: mkt/search/forms.py:53
+#: mkt/search/forms.py:54
 msgid "Mobile"
 msgstr "Ḿǿƀīŀḗ"
 
-#: mkt/search/forms.py:54
+#: mkt/search/forms.py:55
 msgid "Tablet"
 msgstr "Ŧȧƀŀḗŧ"
 
-#: mkt/search/forms.py:57
+#: mkt/search/forms.py:62
 msgid "All Categories"
 msgstr "Ȧŀŀ Ƈȧŧḗɠǿřīḗş"
 
-#: mkt/search/forms.py:72
+#: mkt/search/forms.py:77
 msgid "Search for apps"
 msgstr "Şḗȧřƈħ ƒǿř ȧƥƥş"
 
-#: mkt/search/forms.py:86
+#: mkt/search/forms.py:93
 msgid "Device type"
 msgstr "Ḓḗṽīƈḗ ŧẏƥḗ"
 
-#: mkt/search/forms.py:126
+#: mkt/search/forms.py:137
 msgid "Premium types"
 msgstr "Ƥřḗḿīŭḿ ŧẏƥḗş"
 
-#: mkt/search/forms.py:130
+#: mkt/search/forms.py:141
 msgid "App type"
 msgstr "Ȧƥƥ ŧẏƥḗ"
 
-#: mkt/search/forms.py:134
+#: mkt/search/forms.py:145
 msgid "Installs allowed from"
 msgstr "Īƞşŧȧŀŀş ȧŀŀǿẇḗḓ ƒřǿḿ"
 
-#: mkt/search/forms.py:135
+#: mkt/search/forms.py:146
 msgid "Everywhere"
 msgstr "Ḗṽḗřẏẇħḗřḗ"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:148
 msgid "Works offline"
 msgstr "Ẇǿřķş ǿƒƒŀīƞḗ"
 
-#: mkt/search/forms.py:139
+#: mkt/search/forms.py:150
 msgid "Supported languages"
 msgstr "Şŭƥƥǿřŧḗḓ ŀȧƞɠŭȧɠḗş"
 
-#: mkt/search/forms.py:140
+#: mkt/search/forms.py:151
 msgid "Author name"
 msgstr "Ȧŭŧħǿř ƞȧḿḗ"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:152
 msgid "Tags"
 msgstr "Ŧȧɠş"
 
@@ -8551,44 +8912,20 @@ msgid "{addon} {version} failed the {queue} review."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ƒȧīŀḗḓ ŧħḗ {ɋŭḗŭḗ} řḗṽīḗẇ."
 
 #: mkt/site/log.py:689
-msgid "Abuse report {report} for {addon} deleted."
-msgstr "Ȧƀŭşḗ řḗƥǿřŧ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ} ḓḗŀḗŧḗḓ."
+msgid "Abuse report {report} for {addon} read."
+msgstr "Ȧƀŭşḗ řḗƥǿřŧ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ} řḗȧḓ."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
 msgstr "{ŭşḗř} ḿȧřķḗḓ řḗȧḓ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ}."
 
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:683
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Īƞṽȧŀīḓ ŧȧɠ: {0}"
-msgstr[1] "Īƞṽȧŀīḓ ŧȧɠş: {0}"
+#: mkt/site/log.py:698
+msgid "Abuse report {report} for {website} read."
+msgstr "Ȧƀŭşḗ řḗƥǿřŧ {řḗƥǿřŧ} ƒǿř {ẇḗƀşīŧḗ} řḗȧḓ."
 
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:693
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" īş ȧ řḗşḗřṽḗḓ ŧȧɠ ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
-msgstr[1] "\"{0}\" ȧřḗ řḗşḗřṽḗḓ ŧȧɠş ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
-
-#: mkt/site/utils.py:701
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
-msgstr[1] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
-
-#: mkt/site/utils.py:707
-msgid ""
-"All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
-"Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ŀḗşş ȧƒŧḗř īƞṽȧŀīḓ ƈħȧřȧƈŧḗřş ȧřḗ řḗḿǿṽḗḓ."
-
-#: mkt/site/utils.py:711
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
-msgstr[1] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
+#: mkt/site/log.py:699
+msgid "{user} marked read {report} for {website}."
+msgstr "{ŭşḗř} ḿȧřķḗḓ řḗȧḓ {řḗƥǿřŧ} ƒǿř {ẇḗƀşīŧḗ}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -8662,45 +8999,45 @@ msgstr "Ẇḗḗķ"
 msgid "Quarter"
 msgstr "Ɋŭȧřŧḗř"
 
-#: mkt/submit/forms.py:31
+#: mkt/submit/forms.py:32
 msgid "Device(s) changed: {0}"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:41
+#: mkt/submit/forms.py:42
 msgid "Requirements changed: {0}"
 msgstr "Řḗɋŭīřḗḿḗƞŧş ƈħȧƞɠḗḓ: {0}"
 
-#: mkt/submit/forms.py:49
+#: mkt/submit/forms.py:50
 msgid "Cannot be free and paid."
 msgstr "Ƈȧƞƞǿŧ ƀḗ ƒřḗḗ ȧƞḓ ƥȧīḓ."
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:51
 msgid "Please select a device."
 msgstr "Ƥŀḗȧşḗ şḗŀḗƈŧ ȧ ḓḗṽīƈḗ."
 
-#: mkt/submit/forms.py:128
+#: mkt/submit/forms.py:129
 msgid "Agree and Continue"
 msgstr "Ȧɠřḗḗ ȧƞḓ Ƈǿƞŧīƞŭḗ"
 
-#: mkt/submit/forms.py:155
-#: mkt/submit/forms.py:229
+#: mkt/submit/forms.py:156
+#: mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
-#: mkt/submit/forms.py:190
+#: mkt/submit/forms.py:191
 msgid "Version %s already exists."
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş."
 
-#: mkt/submit/forms.py:201
+#: mkt/submit/forms.py:202
 msgid "Changes to \"origin\" are not allowed."
 msgstr "Ƈħȧƞɠḗş ŧǿ \"ǿřīɠīƞ\" ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: mkt/submit/forms.py:224
+#: mkt/submit/forms.py:225
 msgid "User submitting validation does not match."
 msgstr "Ŭşḗř şŭƀḿīŧŧīƞɠ ṽȧŀīḓȧŧīǿƞ ḓǿḗş ƞǿŧ ḿȧŧƈħ."
 
-#: mkt/submit/forms.py:269
+#: mkt/submit/forms.py:270
 msgid ""
 "Publish my app and make it visible to everyone in the Marketplace and "
 "include it in search results."
@@ -8708,7 +9045,7 @@ msgstr ""
 "Ƥŭƀŀīşħ ḿẏ ȧƥƥ ȧƞḓ ḿȧķḗ īŧ ṽīşīƀŀḗ ŧǿ ḗṽḗřẏǿƞḗ īƞ ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ ȧƞḓ "
 "īƞƈŀŭḓḗ īŧ īƞ şḗȧřƈħ řḗşŭŀŧş."
 
-#: mkt/submit/forms.py:272
+#: mkt/submit/forms.py:273
 msgid ""
 "Do not publish my app. Notify me and I will adjust app visibility after it "
 "is approved."
@@ -8716,11 +9053,11 @@ msgstr ""
 "Ḓǿ ƞǿŧ ƥŭƀŀīşħ ḿẏ ȧƥƥ. Ƞǿŧīƒẏ ḿḗ ȧƞḓ Ī ẇīŀŀ ȧḓĵŭşŧ ȧƥƥ ṽīşīƀīŀīŧẏ ȧƒŧḗř īŧ "
 "īş ȧƥƥřǿṽḗḓ."
 
-#: mkt/submit/forms.py:294
+#: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
 msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ:"
 
-#: mkt/submit/forms.py:296
+#: mkt/submit/forms.py:297
 msgid ""
 "A privacy policy explains how you handle data received through your app. For "
 "example: what data do you receive? How do you use it? Who do you share it "
@@ -8738,27 +9075,27 @@ msgstr ""
 "ƥřīṽȧƈẏ ƥǿŀīƈẏ, <a href=\"{url}\" target=\"_blank\">ŀḗȧřƞ ḿǿřḗ ǿƞ ħǿẇ ŧǿ "
 "ẇřīŧḗ ǿƞḗ.</a>"
 
-#: mkt/submit/forms.py:307
+#: mkt/submit/forms.py:308
 msgid "Homepage:"
 msgstr "Ħǿḿḗƥȧɠḗ:"
 
-#: mkt/submit/forms.py:309
+#: mkt/submit/forms.py:310
 msgid "If your app has another homepage, enter its address here."
 msgstr "Īƒ ẏǿŭř ȧƥƥ ħȧş ȧƞǿŧħḗř ħǿḿḗƥȧɠḗ, ḗƞŧḗř īŧş ȧḓḓřḗşş ħḗřḗ."
 
-#: mkt/submit/forms.py:312
+#: mkt/submit/forms.py:313
 msgid "Website:"
 msgstr "Ẇḗƀşīŧḗ:"
 
-#: mkt/submit/forms.py:314
+#: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Īƒ ẏǿŭř ȧƥƥ ħȧş ȧ şŭƥƥǿřŧ ẇḗƀşīŧḗ ǿř ƒǿřŭḿ, ḗƞŧḗř īŧş ȧḓḓřḗşş ħḗřḗ."
 
-#: mkt/submit/forms.py:318
+#: mkt/submit/forms.py:319
 msgid "Email:"
 msgstr "Ḗḿȧīŀ:"
 
-#: mkt/submit/forms.py:320
+#: mkt/submit/forms.py:321
 msgid ""
 "This email address will be listed publicly on the Marketplace and used by "
 "end users to contact you with support issues. This email address will be "
@@ -8768,15 +9105,15 @@ msgstr ""
 "ḗƞḓ ŭşḗřş ŧǿ ƈǿƞŧȧƈŧ ẏǿŭ ẇīŧħ şŭƥƥǿřŧ īşşŭḗş. Ŧħīş ḗḿȧīŀ ȧḓḓřḗşş ẇīŀŀ ƀḗ "
 "ŀīşŧḗḓ ƥŭƀŀīƈŀẏ ǿƞ ẏǿŭř ȧƥƥ ḓḗŧȧīŀş ƥȧɠḗ."
 
-#: mkt/submit/forms.py:326
+#: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
 msgstr "Ḓǿḗş ẏǿŭř ȧƥƥ řḗɋŭīřḗ Ƒŀȧşħ şŭƥƥǿřŧ?"
 
-#: mkt/submit/forms.py:332
+#: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
 msgstr "Ẏǿŭř ƈǿḿḿḗƞŧş ƒǿř řḗṽīḗẇḗřş:"
 
-#: mkt/submit/forms.py:334
+#: mkt/submit/forms.py:335
 msgid ""
 "Your app will be reviewed by Mozilla before it becomes publicly listed on "
 "the Marketplace. Enter any special instructions for the app reviewers here."
@@ -8784,11 +9121,11 @@ msgstr ""
 "Ẏǿŭř ȧƥƥ ẇīŀŀ ƀḗ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ ƀḗƒǿřḗ īŧ ƀḗƈǿḿḗş ƥŭƀŀīƈŀẏ ŀīşŧḗḓ ǿƞ "
 "ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ. Ḗƞŧḗř ȧƞẏ şƥḗƈīȧŀ īƞşŧřŭƈŧīǿƞş ƒǿř ŧħḗ ȧƥƥ řḗṽīḗẇḗřş ħḗřḗ."
 
-#: mkt/submit/forms.py:339
+#: mkt/submit/forms.py:340
 msgid "Once your app is approved, choose a publishing option:"
 msgstr "Ǿƞƈḗ ẏǿŭř ȧƥƥ īş ȧƥƥřǿṽḗḓ, ƈħǿǿşḗ ȧ ƥŭƀŀīşħīƞɠ ǿƥŧīǿƞ:"
 
-#: mkt/submit/forms.py:343
+#: mkt/submit/forms.py:344
 msgid "My app works without an Internet connection."
 msgstr "Ḿẏ ȧƥƥ ẇǿřķş ẇīŧħǿŭŧ ȧƞ Īƞŧḗřƞḗŧ ƈǿƞƞḗƈŧīǿƞ."
 
@@ -9028,6 +9365,38 @@ msgstr "Ḿǿzīŀŀȧ ḿȧẏ ḗḿȧīŀ ḿḗ ẇīŧħ řḗŀḗṽȧƞ�
 msgid "Héllo"
 msgstr "Ħéŀŀǿ"
 
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:25
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Īƞṽȧŀīḓ ŧȧɠ: {0}"
+msgstr[1] "Īƞṽȧŀīḓ ŧȧɠş: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:35
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" īş ȧ řḗşḗřṽḗḓ ŧȧɠ ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
+msgstr[1] "\"{0}\" ȧřḗ řḗşḗřṽḗḓ ŧȧɠş ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
+
+#: mkt/tags/utils.py:43
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
+msgstr[1] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
+
+#: mkt/tags/utils.py:49
+msgid ""
+"All tags must be %s characters or less after invalid characters are removed."
+msgstr ""
+"Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ŀḗşş ȧƒŧḗř īƞṽȧŀīḓ ƈħȧřȧƈŧḗřş ȧřḗ řḗḿǿṽḗḓ."
+
+#: mkt/tags/utils.py:53
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
+msgstr[1] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
+
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
 msgstr "Ḗḓīŧ Ȧƈƈǿŭƞŧ Şḗŧŧīƞɠş"
@@ -9216,70 +9585,70 @@ msgstr "Ƞȧŧīṽḗ ƑẋȦ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:208
+#: mkt/webapps/models.py:200
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1316
 msgid "You must provide a support email or URL."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧ şŭƥƥǿřŧ ḗḿȧīŀ ǿř ŬŘĿ."
 
-#: mkt/webapps/models.py:1325
+#: mkt/webapps/models.py:1318
 msgid "You must provide an app name."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ȧƥƥ ƞȧḿḗ."
 
-#: mkt/webapps/models.py:1327
+#: mkt/webapps/models.py:1320
 msgid "You must provide at least one device type."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ḓḗṽīƈḗ ŧẏƥḗ."
 
-#: mkt/webapps/models.py:1330
+#: mkt/webapps/models.py:1323
 msgid "You must provide at least one category."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ƈȧŧḗɠǿřẏ."
 
-#: mkt/webapps/models.py:1397
+#: mkt/webapps/models.py:1390
 msgid "You must set up content ratings."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ƈǿƞŧḗƞŧ řȧŧīƞɠş."
 
-#: mkt/webapps/models.py:1399
+#: mkt/webapps/models.py:1392
 msgid "You must set up a payment account."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1417
 msgid "This app's submission process has not been fully completed."
 msgstr "Ŧħīş ȧƥƥ'ş şŭƀḿīşşīǿƞ ƥřǿƈḗşş ħȧş ƞǿŧ ƀḗḗƞ ƒŭŀŀẏ ƈǿḿƥŀḗŧḗḓ."
 
-#: mkt/webapps/models.py:1431
+#: mkt/webapps/models.py:1424
 msgid "This app needs to get a content rating."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ŧǿ ɠḗŧ ȧ ƈǿƞŧḗƞŧ řȧŧīƞɠ."
 
-#: mkt/webapps/models.py:1437
+#: mkt/webapps/models.py:1430
 msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2696
+#: mkt/webapps/models.py:2689
 msgid "awaiting approval"
 msgstr "ȧẇȧīŧīƞɠ ȧƥƥřǿṽȧŀ"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2698
+#: mkt/webapps/models.py:2691
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2700
+#: mkt/webapps/models.py:2693
 msgid "requires additional review"
 msgstr "řḗɋŭīřḗş ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ"
 
-#: mkt/webapps/models.py:2751
+#: mkt/webapps/models.py:2744
 msgid "{region} approval status"
 msgstr "{řḗɠīǿƞ} ȧƥƥřǿṽȧŀ şŧȧŧŭş"
 
-#: mkt/webapps/models.py:2759
+#: mkt/webapps/models.py:2752
 msgid "{region} nomination date"
 msgstr "{řḗɠīǿƞ} ƞǿḿīƞȧŧīǿƞ ḓȧŧḗ"
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Īşşŭḗ ẇīŧħ ẏǿŭř ȧƥƥ \"{ȧƥƥ}\" ǿƞ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 

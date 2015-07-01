@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-11-19 21:12+0000\n"
 "Last-Translator: SreeMegha21 <s.guha21@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -231,11 +231,11 @@ msgstr "স্থিতি সফলভাবে পরিবর্তিত \"{
 msgid "Could not change status to \"{0}\""
 msgstr "অবস্থা পরিবর্তন করা যায়নি \"{0}\"                "
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "সব ফলাফল দেখান"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} টির বেশি ফলাফল পাওয়া গিয়েছে, আরও নিখুঁত ভাবে খুঁজতে পারেন।"
 
@@ -444,8 +444,8 @@ msgid "Receipt was not checked by app."
 msgstr "রিসিপ্ট অ্যাপ দ্বারা চেক করা হয়েনি।"
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} এই প্রথম add-on দেখার জন্য।"
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

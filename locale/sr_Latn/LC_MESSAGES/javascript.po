@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-09-17 12:36+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,11 +248,11 @@ msgstr "Status uspešno promenjen u \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Nemoguće promeniti status u \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Prikaži sve rezultate"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Preko {0} rezultata je nađeno, pokušajte da definišete Vašu pretragu."
 
@@ -483,8 +483,8 @@ msgid "Receipt was not checked by app."
 msgstr "Potvrda nije proverena od strane aplikacije."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} je prvi pregledavao ovaj dodatak."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

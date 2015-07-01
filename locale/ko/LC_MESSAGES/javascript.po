@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,11 +226,11 @@ msgstr ""
 msgid "Could not change status to \"{0}\""
 msgstr ""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "모든 결과 표시"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0}개 이상의 결과가 발견되어 검색 결과를 간추렸습니다."
 
@@ -435,8 +435,8 @@ msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

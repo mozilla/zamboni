@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2015-05-09 13:01+0000\n"
 "Last-Translator: Kroszki <kroszki@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -233,11 +233,11 @@ msgstr "Az állapot sikeresen módosítva a következőre: „{0}”"
 msgid "Could not change status to \"{0}\""
 msgstr "Nem sikerült az állapot módosítása a következőre: „{0}”"
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Minden találat megjelenítése"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Több mint {0} találat, finomítsa keresését."
 
@@ -446,8 +446,8 @@ msgid "Receipt was not checked by app."
 msgstr "Az app nem ellenőrizte a fogadást."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} nézte meg először a kiegészítőt."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

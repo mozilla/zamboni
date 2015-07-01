@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -229,11 +229,11 @@ msgstr "Status successfully changed to \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Could not change status to \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Show All Results"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "Over {0} results found, consider refining your search."
 
@@ -442,8 +442,8 @@ msgid "Receipt was not checked by app."
 msgstr "Receipt was not checked by app."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} was viewing this add-on first."
+msgid "{name} was viewing this app first."
+msgstr "{name} was viewing this app first."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

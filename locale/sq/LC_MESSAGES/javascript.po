@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-20 10:12-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2014-12-16 20:25+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -235,11 +235,11 @@ msgstr "Gjendja u ndryshua me sukses si \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Nuk u ndryshua dot gjendja si \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:98
+#: media/js/devreg/lookup-tool.js:97
 msgid "Show All Results"
 msgstr "Shfaqi Krejt Përfundimet"
 
-#: media/js/devreg/lookup-tool.js:101
+#: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr "U gjetën mbi {0} përfundime, shihni ta përimtësoni kërkimin tuaj."
 
@@ -448,8 +448,8 @@ msgid "Receipt was not checked by app."
 msgstr "Dëftesa nuk qe kontrolluar nga aplikacioni."
 
 #: media/js/devreg/reviewers/editors.js:241
-msgid "{name} was viewing this add-on first."
-msgstr "{name} po e shihte i pari këtë shtesë."
+msgid "{name} was viewing this app first."
+msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"

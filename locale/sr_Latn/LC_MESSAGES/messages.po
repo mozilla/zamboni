@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:25-0700\n"
+"POT-Creation-Date: 2015-07-01 08:32-0700\n"
 "PO-Revision-Date: 2015-05-29 07:07+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -30,18 +30,18 @@ msgstr "Polje mora da bude dužine barem {num} karaktera."
 msgid "The language code {lang_code} is invalid."
 msgstr "Kod jezika {lang_code} je neispravan."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:216
 msgid "Unknown"
 msgstr "Nepoznato"
 
 #: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54
-#: mkt/reviewers/forms.py:208 mkt/submit/forms.py:329
+#: mkt/reviewers/forms.py:217 mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "Da"
 
 #: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54
-#: mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209
-#: mkt/submit/forms.py:330
+#: mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:218
+#: mkt/submit/forms.py:331
 msgid "No"
 msgstr "Ne"
 
@@ -65,7 +65,7 @@ msgstr "Verzija %s ne postoji"
 msgid "Attachment:"
 msgstr "Prilog:"
 
-#: mkt/comm/forms.py:46 mkt/submit/forms.py:279
+#: mkt/comm/forms.py:46 mkt/submit/forms.py:280
 msgid "Description:"
 msgstr "Opis:"
 
@@ -83,7 +83,7 @@ msgid ""
 msgstr "Firefox Marketplace je zvanični izvor aplikacija za veb platformu."
 
 #: mkt/constants/applications.py:6
-#: mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
+#: mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:44
 msgid "Desktop"
 msgstr "Radna površina"
 
@@ -103,8 +103,8 @@ msgstr "Firefox tablet"
 #: mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14
 #: mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32
-#: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:45
-#: mkt/search/forms.py:52
+#: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:46
+#: mkt/search/forms.py:53
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -116,114 +116,114 @@ msgstr "Korisnik"
 msgid "Reviewer"
 msgstr "Recenzent"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:109
+#: mkt/constants/apps.py:11 mkt/constants/base.py:133
 #: mkt/developers/templates/developers/apps/owner.html:91
 #: mkt/operators/templates/operators/preloads.html:15
 #: mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "Autor"
 
-#: mkt/constants/bango.py:19
+#: mkt/constants/bango.py:19 mkt/constants/regions.py:70
 msgid "Afghanistan"
 msgstr "Avganistan"
 
-#: mkt/constants/bango.py:20
+#: mkt/constants/bango.py:20 mkt/constants/regions.py:73
 msgid "Åland Islands"
 msgstr "Olandska Ostrva"
 
-#: mkt/constants/bango.py:21
+#: mkt/constants/bango.py:21 mkt/constants/regions.py:74
 msgid "Albania"
 msgstr "Albanija"
 
-#: mkt/constants/bango.py:22
+#: mkt/constants/bango.py:22 mkt/constants/regions.py:133
 msgid "Algeria"
 msgstr "Alžir"
 
-#: mkt/constants/bango.py:23
+#: mkt/constants/bango.py:23 mkt/constants/regions.py:79
 msgid "American Samoa"
 msgstr "Amrerička samoa"
 
-#: mkt/constants/bango.py:24
+#: mkt/constants/bango.py:24 mkt/constants/regions.py:75
 msgid "Andorra"
 msgstr "Andora"
 
-#: mkt/constants/bango.py:25
+#: mkt/constants/bango.py:25 mkt/constants/regions.py:71
 msgid "Angola"
 msgstr "Angola"
 
-#: mkt/constants/bango.py:26
+#: mkt/constants/bango.py:26 mkt/constants/regions.py:72
 msgid "Anguilla"
 msgstr "Angvila"
 
-#: mkt/constants/bango.py:27
+#: mkt/constants/bango.py:27 mkt/constants/regions.py:80
 msgid "Antarctica"
 msgstr "Antartik"
 
-#: mkt/constants/bango.py:28
+#: mkt/constants/bango.py:28 mkt/constants/regions.py:82
 msgid "Antigua and Barbuda"
 msgstr "Antigva i Barbuda"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:69
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:77
 msgid "Argentina"
 msgstr "Argentina"
 
-#: mkt/constants/bango.py:30
+#: mkt/constants/bango.py:30 mkt/constants/regions.py:78
 msgid "Armenia"
 msgstr "Jermenija"
 
-#: mkt/constants/bango.py:31
+#: mkt/constants/bango.py:31 mkt/constants/regions.py:69
 msgid "Aruba"
 msgstr "Aruba"
 
-#: mkt/constants/bango.py:32
+#: mkt/constants/bango.py:32 mkt/constants/regions.py:83
 msgid "Australia"
 msgstr "Australija"
 
-#: mkt/constants/bango.py:33
+#: mkt/constants/bango.py:33 mkt/constants/regions.py:84
 msgid "Austria"
 msgstr "Austrija"
 
-#: mkt/constants/bango.py:34
+#: mkt/constants/bango.py:34 mkt/constants/regions.py:85
 msgid "Azerbaijan"
 msgstr "Azerbejdžan"
 
-#: mkt/constants/bango.py:35
+#: mkt/constants/bango.py:35 mkt/constants/regions.py:94
 msgid "Bahamas"
 msgstr "Bahami"
 
-#: mkt/constants/bango.py:36
+#: mkt/constants/bango.py:36 mkt/constants/regions.py:93
 msgid "Bahrain"
 msgstr "Bahrein"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:70
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:91
 msgid "Bangladesh"
 msgstr "Bangladeš"
 
-#: mkt/constants/bango.py:38
+#: mkt/constants/bango.py:38 mkt/constants/regions.py:102
 msgid "Barbados"
 msgstr "Barbados"
 
-#: mkt/constants/bango.py:39
+#: mkt/constants/bango.py:39 mkt/constants/regions.py:97
 msgid "Belarus"
 msgstr "Belorusija"
 
-#: mkt/constants/bango.py:40
+#: mkt/constants/bango.py:40 mkt/constants/regions.py:87
 msgid "Belgium"
 msgstr "Belgija"
 
-#: mkt/constants/bango.py:41
+#: mkt/constants/bango.py:41 mkt/constants/regions.py:98
 msgid "Belize"
 msgstr "Belize"
 
-#: mkt/constants/bango.py:42
+#: mkt/constants/bango.py:42 mkt/constants/regions.py:88
 msgid "Benin"
 msgstr "Benin"
 
-#: mkt/constants/bango.py:43
+#: mkt/constants/bango.py:43 mkt/constants/regions.py:99
 msgid "Bermuda"
 msgstr "Bermuda"
 
-#: mkt/constants/bango.py:44
+#: mkt/constants/bango.py:44 mkt/constants/regions.py:104
 msgid "Bhutan"
 msgstr "Butan"
 
@@ -235,52 +235,52 @@ msgstr "Bolivija"
 msgid "Bonaire, Saint Eustatius and Saba"
 msgstr "Boner, Sveti Eustahije i Saba"
 
-#: mkt/constants/bango.py:47
+#: mkt/constants/bango.py:47 mkt/constants/regions.py:95
 msgid "Bosnia and Herzegovina"
 msgstr "Bosna i Hercegovina"
 
-#: mkt/constants/bango.py:48 mkt/constants/regions.py:72
+#: mkt/constants/bango.py:48 mkt/constants/regions.py:106
 msgid "Botswana"
 msgstr "Bocvana"
 
-#: mkt/constants/bango.py:49
+#: mkt/constants/bango.py:49 mkt/constants/regions.py:105
 msgid "Bouvet Island"
 msgstr "Ostrvo Buve"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90
-#: mkt/constants/regions.py:71
+#: mkt/constants/regions.py:101
 msgid "Brazil"
 msgstr "Brazil"
 
-#: mkt/constants/bango.py:51
+#: mkt/constants/bango.py:51 mkt/constants/regions.py:174
 msgid "British Indian Ocean Territory"
 msgstr "Britanska teritorija Indijskog okeana"
 
-#: mkt/constants/bango.py:52
+#: mkt/constants/bango.py:52 mkt/constants/regions.py:103
 msgid "Brunei Darussalam"
 msgstr "Brunej"
 
-#: mkt/constants/bango.py:53
+#: mkt/constants/bango.py:53 mkt/constants/regions.py:92
 msgid "Bulgaria"
 msgstr "Bugarska"
 
-#: mkt/constants/bango.py:54
+#: mkt/constants/bango.py:54 mkt/constants/regions.py:90
 msgid "Burkina Faso"
 msgstr "Burkina faso"
 
-#: mkt/constants/bango.py:55
+#: mkt/constants/bango.py:55 mkt/constants/regions.py:86
 msgid "Burundi"
 msgstr "Burundi"
 
-#: mkt/constants/bango.py:56
+#: mkt/constants/bango.py:56 mkt/constants/regions.py:187
 msgid "Cambodia"
 msgstr "Kambodža"
 
-#: mkt/constants/bango.py:57 mkt/constants/regions.py:77
+#: mkt/constants/bango.py:57 mkt/constants/regions.py:114
 msgid "Cameroon"
 msgstr "Kamerun"
 
-#: mkt/constants/bango.py:58
+#: mkt/constants/bango.py:58 mkt/constants/regions.py:108
 msgid "Canada"
 msgstr "Kanada"
 
@@ -288,43 +288,43 @@ msgstr "Kanada"
 msgid "Cape Verde"
 msgstr "Kape Verde"
 
-#: mkt/constants/bango.py:60
+#: mkt/constants/bango.py:60 mkt/constants/regions.py:125
 msgid "Cayman Islands"
 msgstr "Kajmanska Ostrva"
 
-#: mkt/constants/bango.py:61 mkt/constants/regions.py:73
+#: mkt/constants/bango.py:61 mkt/constants/regions.py:107
 msgid "Central African Republic"
 msgstr "Centralnoafrička Republika"
 
-#: mkt/constants/bango.py:62
+#: mkt/constants/bango.py:62 mkt/constants/regions.py:283
 msgid "Chad"
 msgstr "Čad"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:74
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:111
 msgid "Chile"
 msgstr "Čile"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:75
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:112
 msgid "China"
 msgstr "Kina"
 
-#: mkt/constants/bango.py:65
+#: mkt/constants/bango.py:65 mkt/constants/regions.py:124
 msgid "Christmas Island"
 msgstr "Božićno ostrvo"
 
-#: mkt/constants/bango.py:66
+#: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokos (Kiling) ostrva"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:78
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
 msgstr "Kolumbija"
 
-#: mkt/constants/bango.py:68
+#: mkt/constants/bango.py:68 mkt/constants/regions.py:119
 msgid "Comoros"
 msgstr "Komoros"
 
-#: mkt/constants/bango.py:69
+#: mkt/constants/bango.py:69 mkt/constants/regions.py:116
 msgid "Congo"
 msgstr "Kongo"
 
@@ -332,164 +332,164 @@ msgstr "Kongo"
 msgid "Congo, Democratic Republic"
 msgstr "Kongo, Demokratska Republika"
 
-#: mkt/constants/bango.py:71
+#: mkt/constants/bango.py:71 mkt/constants/regions.py:117
 msgid "Cook Islands"
 msgstr "Kukova ostrva"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:79
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:121
 msgid "Costa Rica"
 msgstr "Kostarika"
 
-#: mkt/constants/bango.py:73 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:73 mkt/constants/regions.py:113
 msgid "Côte d'Ivoire"
 msgstr "Obala Slonovače"
 
-#: mkt/constants/bango.py:74
+#: mkt/constants/bango.py:74 mkt/constants/regions.py:168
 msgid "Croatia"
 msgstr "Hrvatska"
 
-#: mkt/constants/bango.py:75
+#: mkt/constants/bango.py:75 mkt/constants/regions.py:122
 msgid "Cuba"
 msgstr "Kuba"
 
-#: mkt/constants/bango.py:76
+#: mkt/constants/bango.py:76 mkt/constants/regions.py:123
 msgid "Curaçao"
 msgstr "Kurasao"
 
-#: mkt/constants/bango.py:77
+#: mkt/constants/bango.py:77 mkt/constants/regions.py:126
 msgid "Cyprus"
 msgstr "Kipar"
 
-#: mkt/constants/bango.py:78 mkt/constants/regions.py:80
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:127
 msgid "Czech Republic"
 msgstr "Češka"
 
-#: mkt/constants/bango.py:79
+#: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
 msgstr "Danska"
 
-#: mkt/constants/bango.py:80
+#: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
 msgstr "Džibuti"
 
-#: mkt/constants/bango.py:81
+#: mkt/constants/bango.py:81 mkt/constants/regions.py:130
 msgid "Dominica"
 msgstr "Dominika"
 
-#: mkt/constants/bango.py:82
+#: mkt/constants/bango.py:82 mkt/constants/regions.py:132
 msgid "Dominican Republic"
 msgstr "Dominikanska republika"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:82
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:134
 msgid "Ecuador"
 msgstr "Ekvador"
 
-#: mkt/constants/bango.py:84 mkt/constants/regions.py:83
+#: mkt/constants/bango.py:84 mkt/constants/regions.py:135
 msgid "Egypt"
 msgstr "Egipat"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:112
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:267
 msgid "El Salvador"
 msgstr "Salvador"
 
-#: mkt/constants/bango.py:86
+#: mkt/constants/bango.py:86 mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
 msgstr "Ekvatorijalna Gvineja"
 
-#: mkt/constants/bango.py:87
+#: mkt/constants/bango.py:87 mkt/constants/regions.py:136
 msgid "Eritrea"
 msgstr "Eritreja"
 
-#: mkt/constants/bango.py:88
+#: mkt/constants/bango.py:88 mkt/constants/regions.py:139
 msgid "Estonia"
 msgstr "Estonija"
 
-#: mkt/constants/bango.py:89
+#: mkt/constants/bango.py:89 mkt/constants/regions.py:140
 msgid "Ethiopia"
 msgstr "Etiopija"
 
-#: mkt/constants/bango.py:90
+#: mkt/constants/bango.py:90 mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
 msgstr "Foklandska ostrva"
 
-#: mkt/constants/bango.py:91
+#: mkt/constants/bango.py:91 mkt/constants/regions.py:145
 msgid "Faroe Islands"
 msgstr "Farska ostrva"
 
-#: mkt/constants/bango.py:92
+#: mkt/constants/bango.py:92 mkt/constants/regions.py:142
 msgid "Fiji"
 msgstr "Fidži"
 
-#: mkt/constants/bango.py:93
+#: mkt/constants/bango.py:93 mkt/constants/regions.py:141
 msgid "Finland"
 msgstr "Finska"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:144
 msgid "France"
 msgstr "Francuska"
 
-#: mkt/constants/bango.py:95
+#: mkt/constants/bango.py:95 mkt/constants/regions.py:162
 msgid "French Guiana"
 msgstr "Francuska Gvajana"
 
-#: mkt/constants/bango.py:96
+#: mkt/constants/bango.py:96 mkt/constants/regions.py:252
 msgid "French Polynesia"
 msgstr "Francuska Polinezija"
 
-#: mkt/constants/bango.py:97
+#: mkt/constants/bango.py:97 mkt/constants/regions.py:81
 msgid "French Southern Territories"
 msgstr "Francuske južne teritorije"
 
-#: mkt/constants/bango.py:98
+#: mkt/constants/bango.py:98 mkt/constants/regions.py:147
 msgid "Gabon"
 msgstr "Gabon"
 
-#: mkt/constants/bango.py:99
+#: mkt/constants/bango.py:99 mkt/constants/regions.py:155
 msgid "Gambia"
 msgstr "Gambija"
 
-#: mkt/constants/bango.py:100
+#: mkt/constants/bango.py:100 mkt/constants/regions.py:149
 msgid "Georgia"
 msgstr "Gruzija"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197
-#: mkt/constants/regions.py:81
+#: mkt/constants/regions.py:128
 msgid "Germany"
 msgstr "Nemačka"
 
-#: mkt/constants/bango.py:102
+#: mkt/constants/bango.py:102 mkt/constants/regions.py:151
 msgid "Ghana"
 msgstr "Gana"
 
-#: mkt/constants/bango.py:103
+#: mkt/constants/bango.py:103 mkt/constants/regions.py:152
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:89
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:158
 msgid "Greece"
 msgstr "Grčka"
 
-#: mkt/constants/bango.py:105
+#: mkt/constants/bango.py:105 mkt/constants/regions.py:160
 msgid "Greenland"
 msgstr "Grenland"
 
-#: mkt/constants/bango.py:106
+#: mkt/constants/bango.py:106 mkt/constants/regions.py:159
 msgid "Grenada"
 msgstr "Grenada"
 
-#: mkt/constants/bango.py:107
+#: mkt/constants/bango.py:107 mkt/constants/regions.py:154
 msgid "Guadeloupe"
 msgstr "Gvadelup"
 
-#: mkt/constants/bango.py:108
+#: mkt/constants/bango.py:108 mkt/constants/regions.py:163
 msgid "Guam"
 msgstr "Guam"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:90
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:161
 msgid "Guatemala"
 msgstr "Gvatemala"
 
-#: mkt/constants/bango.py:110
+#: mkt/constants/bango.py:110 mkt/constants/regions.py:150
 msgid "Guernsey"
 msgstr "Gernzi"
 
@@ -497,15 +497,15 @@ msgstr "Gernzi"
 msgid "Guinea"
 msgstr "Gvineja"
 
-#: mkt/constants/bango.py:112 mkt/constants/regions.py:88
+#: mkt/constants/bango.py:112 mkt/constants/regions.py:156
 msgid "Guinea-Bissau"
 msgstr "Gvineja Bisao"
 
-#: mkt/constants/bango.py:113
+#: mkt/constants/bango.py:113 mkt/constants/regions.py:164
 msgid "Guyana"
 msgstr "Gvajana"
 
-#: mkt/constants/bango.py:114
+#: mkt/constants/bango.py:114 mkt/constants/regions.py:169
 msgid "Haiti"
 msgstr "Haiti"
 
@@ -517,27 +517,27 @@ msgstr "Ostrva Herd i Makdonald"
 msgid "Holy See (Vatican City State)"
 msgstr "Sveta Stolica (Vatikan)"
 
-#: mkt/constants/bango.py:117
+#: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
 msgstr "Honduras"
 
-#: mkt/constants/bango.py:118
+#: mkt/constants/bango.py:118 mkt/constants/regions.py:165
 msgid "Hong Kong"
 msgstr "Hongkong"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:91
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:170
 msgid "Hungary"
 msgstr "Mađarska"
 
-#: mkt/constants/bango.py:120
+#: mkt/constants/bango.py:120 mkt/constants/regions.py:177
 msgid "Iceland"
 msgstr "Island"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:92
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:173
 msgid "India"
 msgstr "Indija"
 
-#: mkt/constants/bango.py:122
+#: mkt/constants/bango.py:122 mkt/constants/regions.py:171
 msgid "Indonesia"
 msgstr "Indonezija"
 
@@ -545,51 +545,51 @@ msgstr "Indonezija"
 msgid "Iran, Islamic Republic of"
 msgstr "Iran, Islamska Republika"
 
-#: mkt/constants/bango.py:124
+#: mkt/constants/bango.py:124 mkt/constants/regions.py:176
 msgid "Iraq"
 msgstr "Irak"
 
-#: mkt/constants/bango.py:125
+#: mkt/constants/bango.py:125 mkt/constants/regions.py:175
 msgid "Ireland"
 msgstr "Irska"
 
-#: mkt/constants/bango.py:126
+#: mkt/constants/bango.py:126 mkt/constants/regions.py:172
 msgid "Isle of Man"
 msgstr "Ostrvo Man"
 
-#: mkt/constants/bango.py:127
+#: mkt/constants/bango.py:127 mkt/constants/regions.py:178
 msgid "Israel"
 msgstr "Izrael"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:93
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:179
 msgid "Italy"
 msgstr "Italija"
 
-#: mkt/constants/bango.py:129
+#: mkt/constants/bango.py:129 mkt/constants/regions.py:180
 msgid "Jamaica"
 msgstr "Jamajka"
 
-#: mkt/constants/bango.py:130 mkt/constants/regions.py:95
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:183
 msgid "Japan"
 msgstr "Japan"
 
-#: mkt/constants/bango.py:131
+#: mkt/constants/bango.py:131 mkt/constants/regions.py:181
 msgid "Jersey"
 msgstr "Džerzi"
 
-#: mkt/constants/bango.py:132 mkt/constants/regions.py:94
+#: mkt/constants/bango.py:132 mkt/constants/regions.py:182
 msgid "Jordan"
 msgstr "Jordan"
 
-#: mkt/constants/bango.py:133
+#: mkt/constants/bango.py:133 mkt/constants/regions.py:184
 msgid "Kazakhstan"
 msgstr "Kazahstan"
 
-#: mkt/constants/bango.py:134 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:134 mkt/constants/regions.py:185
 msgid "Kenya"
 msgstr "Kenija"
 
-#: mkt/constants/bango.py:135
+#: mkt/constants/bango.py:135 mkt/constants/regions.py:188
 msgid "Kiribati"
 msgstr "Kiribati"
 
@@ -597,7 +597,7 @@ msgstr "Kiribati"
 msgid "Korea, Democratic People's Rep"
 msgstr "Koreja, Demokratska Narodna Republika"
 
-#: mkt/constants/bango.py:137
+#: mkt/constants/bango.py:137 mkt/constants/regions.py:190
 msgid "Korea, Republic of"
 msgstr "Koreja, Republika"
 
@@ -605,11 +605,11 @@ msgstr "Koreja, Republika"
 msgid "Kosovo"
 msgstr "Kosovo"
 
-#: mkt/constants/bango.py:139
+#: mkt/constants/bango.py:139 mkt/constants/regions.py:191
 msgid "Kuwait"
 msgstr "Kuvajt"
 
-#: mkt/constants/bango.py:140
+#: mkt/constants/bango.py:140 mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
 msgstr "Kirgistan"
 
@@ -617,19 +617,19 @@ msgstr "Kirgistan"
 msgid "Lao People's Democratic Rep"
 msgstr "Laoška Narodna Demokratska Republika"
 
-#: mkt/constants/bango.py:142
+#: mkt/constants/bango.py:142 mkt/constants/regions.py:202
 msgid "Latvia"
 msgstr "Letonija"
 
-#: mkt/constants/bango.py:143
+#: mkt/constants/bango.py:143 mkt/constants/regions.py:193
 msgid "Lebanon"
 msgstr "Liban"
 
-#: mkt/constants/bango.py:144
+#: mkt/constants/bango.py:144 mkt/constants/regions.py:199
 msgid "Lesotho"
 msgstr "Lesoto"
 
-#: mkt/constants/bango.py:145
+#: mkt/constants/bango.py:145 mkt/constants/regions.py:194
 msgid "Liberia"
 msgstr "Liberija"
 
@@ -641,15 +641,15 @@ msgstr "Libijska Arapska Džamahirija"
 msgid "Liechtenstei"
 msgstr "Lihtenštajn"
 
-#: mkt/constants/bango.py:148 mkt/constants/regions.py:97
+#: mkt/constants/bango.py:148 mkt/constants/regions.py:200
 msgid "Lithuania"
 msgstr "Litvanija"
 
-#: mkt/constants/bango.py:149
+#: mkt/constants/bango.py:149 mkt/constants/regions.py:201
 msgid "Luxembourg"
 msgstr "Luksemburg"
 
-#: mkt/constants/bango.py:150
+#: mkt/constants/bango.py:150 mkt/constants/regions.py:203
 msgid "Macao"
 msgstr "Makao"
 
@@ -657,151 +657,151 @@ msgstr "Makao"
 msgid "Macedonia, Former Yugoslav Rep"
 msgstr "Makedonija"
 
-#: mkt/constants/bango.py:152 mkt/constants/regions.py:98
+#: mkt/constants/bango.py:152 mkt/constants/regions.py:208
 msgid "Madagascar"
 msgstr "Madagaskar"
 
-#: mkt/constants/bango.py:153
+#: mkt/constants/bango.py:153 mkt/constants/regions.py:224
 msgid "Malawi"
 msgstr "Malavi"
 
-#: mkt/constants/bango.py:154
+#: mkt/constants/bango.py:154 mkt/constants/regions.py:225
 msgid "Malaysia"
 msgstr "Malezija"
 
-#: mkt/constants/bango.py:155
+#: mkt/constants/bango.py:155 mkt/constants/regions.py:209
 msgid "Maldives"
 msgstr "Maldivi"
 
-#: mkt/constants/bango.py:156 mkt/constants/regions.py:100
+#: mkt/constants/bango.py:156 mkt/constants/regions.py:213
 msgid "Mali"
 msgstr "Mali"
 
-#: mkt/constants/bango.py:157
+#: mkt/constants/bango.py:157 mkt/constants/regions.py:214
 msgid "Malta"
 msgstr "Malta"
 
-#: mkt/constants/bango.py:158
+#: mkt/constants/bango.py:158 mkt/constants/regions.py:211
 msgid "Marshall Islands"
 msgstr "Maršalska Ostrva"
 
-#: mkt/constants/bango.py:159
+#: mkt/constants/bango.py:159 mkt/constants/regions.py:222
 msgid "Martinique"
 msgstr "Martinik"
 
-#: mkt/constants/bango.py:160
+#: mkt/constants/bango.py:160 mkt/constants/regions.py:220
 msgid "Mauritania"
 msgstr "Mauritanija"
 
-#: mkt/constants/bango.py:161 mkt/constants/regions.py:103
+#: mkt/constants/bango.py:161 mkt/constants/regions.py:223
 msgid "Mauritius"
 msgstr "Mauricijus"
 
-#: mkt/constants/bango.py:162
+#: mkt/constants/bango.py:162 mkt/constants/regions.py:226
 msgid "Mayotte"
 msgstr "Majote"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:99
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:210
 msgid "Mexico"
 msgstr "Meksiko"
 
-#: mkt/constants/bango.py:164
+#: mkt/constants/bango.py:164 mkt/constants/regions.py:146
 msgid "Micronesia, Federated States of"
 msgstr "Mikronezija, Federalne Države"
 
-#: mkt/constants/bango.py:165
+#: mkt/constants/bango.py:165 mkt/constants/regions.py:207
 msgid "Moldova, Republic of"
 msgstr "Moldavija, Republika"
 
-#: mkt/constants/bango.py:166
+#: mkt/constants/bango.py:166 mkt/constants/regions.py:206
 msgid "Monaco"
 msgstr "Monako"
 
-#: mkt/constants/bango.py:167
+#: mkt/constants/bango.py:167 mkt/constants/regions.py:217
 msgid "Mongolia"
 msgstr "Mongolija"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:102
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:216
 msgid "Montenegro"
 msgstr "Crna Gora"
 
-#: mkt/constants/bango.py:169
+#: mkt/constants/bango.py:169 mkt/constants/regions.py:221
 msgid "Montserrat"
 msgstr "Monserat"
 
-#: mkt/constants/bango.py:170
+#: mkt/constants/bango.py:170 mkt/constants/regions.py:205
 msgid "Morocco"
 msgstr "Maroko"
 
-#: mkt/constants/bango.py:171
+#: mkt/constants/bango.py:171 mkt/constants/regions.py:219
 msgid "Mozambique"
 msgstr "Mozambik"
 
-#: mkt/constants/bango.py:172 mkt/constants/regions.py:101
+#: mkt/constants/bango.py:172 mkt/constants/regions.py:215
 msgid "Myanmar"
 msgstr "Mijanmar"
 
-#: mkt/constants/bango.py:173
+#: mkt/constants/bango.py:173 mkt/constants/regions.py:227
 msgid "Namibia"
 msgstr "Namibija"
 
-#: mkt/constants/bango.py:174
+#: mkt/constants/bango.py:174 mkt/constants/regions.py:237
 msgid "Nauru"
 msgstr "Nauru"
 
-#: mkt/constants/bango.py:175
+#: mkt/constants/bango.py:175 mkt/constants/regions.py:236
 msgid "Nepal"
 msgstr "Nepal"
 
-#: mkt/constants/bango.py:176
+#: mkt/constants/bango.py:176 mkt/constants/regions.py:234
 msgid "Netherlands"
 msgstr "Holandija"
 
-#: mkt/constants/bango.py:177
+#: mkt/constants/bango.py:177 mkt/constants/regions.py:228
 msgid "New Caledonia"
 msgstr "Nova Kaledonija"
 
-#: mkt/constants/bango.py:178
+#: mkt/constants/bango.py:178 mkt/constants/regions.py:238
 msgid "New Zealand"
 msgstr "Novi Zeland"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:105
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:232
 msgid "Nicaragua"
 msgstr "Nikaragva"
 
-#: mkt/constants/bango.py:180 mkt/constants/regions.py:104
+#: mkt/constants/bango.py:180 mkt/constants/regions.py:229
 msgid "Niger"
 msgstr "Niger"
 
-#: mkt/constants/bango.py:181
+#: mkt/constants/bango.py:181 mkt/constants/regions.py:231
 msgid "Nigeria"
 msgstr "Nigerija"
 
-#: mkt/constants/bango.py:182
+#: mkt/constants/bango.py:182 mkt/constants/regions.py:233
 msgid "Niue"
 msgstr "Nijue"
 
-#: mkt/constants/bango.py:183
+#: mkt/constants/bango.py:183 mkt/constants/regions.py:230
 msgid "Norfolk Island"
 msgstr "Ostrvo Norfolk"
 
-#: mkt/constants/bango.py:184
+#: mkt/constants/bango.py:184 mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
 msgstr "Severna Marijanska ostrva"
 
-#: mkt/constants/bango.py:185
+#: mkt/constants/bango.py:185 mkt/constants/regions.py:235
 msgid "Norway"
 msgstr "Norveška"
 
-#: mkt/constants/bango.py:186
+#: mkt/constants/bango.py:186 mkt/constants/regions.py:239
 msgid "Oman"
 msgstr "Oman"
 
-#: mkt/constants/bango.py:187
+#: mkt/constants/bango.py:187 mkt/constants/regions.py:240
 msgid "Pakistan"
 msgstr "Pakistan"
 
-#: mkt/constants/bango.py:188
+#: mkt/constants/bango.py:188 mkt/constants/regions.py:245
 msgid "Palau"
 msgstr "Palau"
 
@@ -809,51 +809,51 @@ msgstr "Palau"
 msgid "Palestinian Territory, Occupied"
 msgstr "Palestinska teritorija, okupirano"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:241
 msgid "Panama"
 msgstr "Panama"
 
-#: mkt/constants/bango.py:191
+#: mkt/constants/bango.py:191 mkt/constants/regions.py:246
 msgid "Papua New Guinea"
 msgstr "Papua Nova Gvineja"
 
-#: mkt/constants/bango.py:192
+#: mkt/constants/bango.py:192 mkt/constants/regions.py:250
 msgid "Paraguay"
 msgstr "Paragvaj"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:107
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:243
 msgid "Peru"
 msgstr "Peru"
 
-#: mkt/constants/bango.py:194 mkt/constants/regions.py:108
+#: mkt/constants/bango.py:194 mkt/constants/regions.py:244
 msgid "Philippines"
 msgstr "Filipini"
 
-#: mkt/constants/bango.py:195
+#: mkt/constants/bango.py:195 mkt/constants/regions.py:242
 msgid "Pitcairn"
 msgstr "Pitkern"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:109
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
 msgstr "Poljska"
 
-#: mkt/constants/bango.py:197
+#: mkt/constants/bango.py:197 mkt/constants/regions.py:249
 msgid "Portugal"
 msgstr "Portugalija"
 
-#: mkt/constants/bango.py:198
+#: mkt/constants/bango.py:198 mkt/constants/regions.py:248
 msgid "Puerto Rico"
 msgstr "Portoriko"
 
-#: mkt/constants/bango.py:199
+#: mkt/constants/bango.py:199 mkt/constants/regions.py:253
 msgid "Qatar"
 msgstr "Katar"
 
-#: mkt/constants/bango.py:200
+#: mkt/constants/bango.py:200 mkt/constants/regions.py:254
 msgid "Réunion"
 msgstr "Reinion"
 
-#: mkt/constants/bango.py:201
+#: mkt/constants/bango.py:201 mkt/constants/regions.py:255
 msgid "Romania"
 msgstr "Rumunija"
 
@@ -861,11 +861,11 @@ msgstr "Rumunija"
 msgid "Russian Federation"
 msgstr "Ruska Federacija"
 
-#: mkt/constants/bango.py:203
+#: mkt/constants/bango.py:203 mkt/constants/regions.py:257
 msgid "Rwanda"
 msgstr "Ruanda"
 
-#: mkt/constants/bango.py:204
+#: mkt/constants/bango.py:204 mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
 msgstr "Sveti Bartolomej"
 
@@ -873,11 +873,11 @@ msgstr "Sveti Bartolomej"
 msgid "Saint Helena"
 msgstr "Sveta Helena"
 
-#: mkt/constants/bango.py:206
+#: mkt/constants/bango.py:206 mkt/constants/regions.py:189
 msgid "Saint Kitts and Nevis"
 msgstr "Sveti Kits i Nevis"
 
-#: mkt/constants/bango.py:207
+#: mkt/constants/bango.py:207 mkt/constants/regions.py:196
 msgid "Saint Lucia"
 msgstr "Sveta Lucija"
 
@@ -885,27 +885,27 @@ msgstr "Sveta Lucija"
 msgid "Saint Martin"
 msgstr "Sveti Martin"
 
-#: mkt/constants/bango.py:209
+#: mkt/constants/bango.py:209 mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
 msgstr "Sveti Pjer i Mikelon"
 
-#: mkt/constants/bango.py:210
+#: mkt/constants/bango.py:210 mkt/constants/regions.py:304
 msgid "Saint Vincent and the Grenadines"
 msgstr "Sveti Vinsent i Grenadini"
 
-#: mkt/constants/bango.py:211
+#: mkt/constants/bango.py:211 mkt/constants/regions.py:311
 msgid "Samoa"
 msgstr "Samoa"
 
-#: mkt/constants/bango.py:212
+#: mkt/constants/bango.py:212 mkt/constants/regions.py:268
 msgid "San Marino"
 msgstr "San Marino"
 
-#: mkt/constants/bango.py:213
+#: mkt/constants/bango.py:213 mkt/constants/regions.py:273
 msgid "Sao Tome and Principe"
 msgstr "Sao Tome i Prinsipe"
 
-#: mkt/constants/bango.py:214
+#: mkt/constants/bango.py:214 mkt/constants/regions.py:258
 msgid "Saudi Arabia"
 msgstr "Saudijska Arabija"
 
@@ -913,7 +913,7 @@ msgstr "Saudijska Arabija"
 msgid "Senega"
 msgstr "Senegal"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:113
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:271
 msgid "Serbia"
 msgstr "Srbija"
 
@@ -921,83 +921,83 @@ msgstr "Srbija"
 msgid "Serbia and Montenegro"
 msgstr "Srbija i Crna Gora"
 
-#: mkt/constants/bango.py:218
+#: mkt/constants/bango.py:218 mkt/constants/regions.py:280
 msgid "Seychelles"
 msgstr "Sejšeli"
 
-#: mkt/constants/bango.py:219
+#: mkt/constants/bango.py:219 mkt/constants/regions.py:266
 msgid "Sierra Leone"
 msgstr "Sijera Leone"
 
-#: mkt/constants/bango.py:220
+#: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
 msgstr "Singapur"
 
-#: mkt/constants/bango.py:221
+#: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
 msgstr "Sveti Martin (Holandija)"
 
-#: mkt/constants/bango.py:222
+#: mkt/constants/bango.py:222 mkt/constants/regions.py:275
 msgid "Slovakia"
 msgstr "Slovačka"
 
-#: mkt/constants/bango.py:223
+#: mkt/constants/bango.py:223 mkt/constants/regions.py:276
 msgid "Slovenia"
 msgstr "Slovenija"
 
-#: mkt/constants/bango.py:224
+#: mkt/constants/bango.py:224 mkt/constants/regions.py:265
 msgid "Solomon Islands"
 msgstr "Solomonska Ostrva"
 
-#: mkt/constants/bango.py:225
+#: mkt/constants/bango.py:225 mkt/constants/regions.py:269
 msgid "Somalia"
 msgstr "Somalija"
 
-#: mkt/constants/bango.py:226 mkt/constants/regions.py:121
+#: mkt/constants/bango.py:226 mkt/constants/regions.py:313
 msgid "South Africa"
 msgstr "Južna Afrika"
 
-#: mkt/constants/bango.py:227
+#: mkt/constants/bango.py:227 mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "Južna Džordžija i Južna Sendvička Ostrva"
 
-#: mkt/constants/bango.py:228
+#: mkt/constants/bango.py:228 mkt/constants/regions.py:272
 msgid "South Sudan"
 msgstr "Južni Sudan"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:84
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:138
 msgid "Spain"
 msgstr "Španija"
 
-#: mkt/constants/bango.py:230
+#: mkt/constants/bango.py:230 mkt/constants/regions.py:198
 msgid "Sri Lanka"
 msgstr "Šri Lanka"
 
-#: mkt/constants/bango.py:231
+#: mkt/constants/bango.py:231 mkt/constants/regions.py:259
 msgid "Sudan"
 msgstr "Sudan"
 
-#: mkt/constants/bango.py:232
+#: mkt/constants/bango.py:232 mkt/constants/regions.py:274
 msgid "Suriname"
 msgstr "Surinam"
 
-#: mkt/constants/bango.py:233
+#: mkt/constants/bango.py:233 mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard i Jan Majen"
 
-#: mkt/constants/bango.py:234
+#: mkt/constants/bango.py:234 mkt/constants/regions.py:278
 msgid "Swaziland"
 msgstr "Svazilend"
 
-#: mkt/constants/bango.py:235
+#: mkt/constants/bango.py:235 mkt/constants/regions.py:277
 msgid "Sweden"
 msgstr "Švedska"
 
-#: mkt/constants/bango.py:236
+#: mkt/constants/bango.py:236 mkt/constants/regions.py:110
 msgid "Switzerland"
 msgstr "Švajcarska"
 
-#: mkt/constants/bango.py:237
+#: mkt/constants/bango.py:237 mkt/constants/regions.py:281
 msgid "Syrian Arab Republic"
 msgstr "Sirijska Arapska Republika"
 
@@ -1005,7 +1005,7 @@ msgstr "Sirijska Arapska Republika"
 msgid "Taiwan, Province of China"
 msgstr "Tajvan, provincija Kine"
 
-#: mkt/constants/bango.py:239
+#: mkt/constants/bango.py:239 mkt/constants/regions.py:286
 msgid "Tajikistan"
 msgstr "Tadžikistan"
 
@@ -1013,83 +1013,83 @@ msgstr "Tadžikistan"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzanija, Ujedinjena Republika"
 
-#: mkt/constants/bango.py:241
+#: mkt/constants/bango.py:241 mkt/constants/regions.py:285
 msgid "Thailand"
 msgstr "Tajland"
 
-#: mkt/constants/bango.py:242
+#: mkt/constants/bango.py:242 mkt/constants/regions.py:289
 msgid "Timor-Leste"
 msgstr "Istočni Timor"
 
-#: mkt/constants/bango.py:243
+#: mkt/constants/bango.py:243 mkt/constants/regions.py:284
 msgid "Togo"
 msgstr "Togo"
 
-#: mkt/constants/bango.py:244
+#: mkt/constants/bango.py:244 mkt/constants/regions.py:287
 msgid "Tokelau"
 msgstr "Tokelau"
 
-#: mkt/constants/bango.py:245
+#: mkt/constants/bango.py:245 mkt/constants/regions.py:290
 msgid "Tonga"
 msgstr "Tonga"
 
-#: mkt/constants/bango.py:246
+#: mkt/constants/bango.py:246 mkt/constants/regions.py:291
 msgid "Trinidad and Tobago"
 msgstr "Trinidad i Tobago"
 
-#: mkt/constants/bango.py:247 mkt/constants/regions.py:114
+#: mkt/constants/bango.py:247 mkt/constants/regions.py:292
 msgid "Tunisia"
 msgstr "Tunis"
 
-#: mkt/constants/bango.py:248
+#: mkt/constants/bango.py:248 mkt/constants/regions.py:293
 msgid "Turkey"
 msgstr "Turska"
 
-#: mkt/constants/bango.py:249
+#: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
 msgstr "Turkmenistan"
 
-#: mkt/constants/bango.py:250
+#: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
 msgstr "Ostrva Turks i Kaikos"
 
-#: mkt/constants/bango.py:251
+#: mkt/constants/bango.py:251 mkt/constants/regions.py:294
 msgid "Tuvalu"
 msgstr "Tuvalu"
 
-#: mkt/constants/bango.py:252
+#: mkt/constants/bango.py:252 mkt/constants/regions.py:297
 msgid "Uganda"
 msgstr "Uganda"
 
-#: mkt/constants/bango.py:253
+#: mkt/constants/bango.py:253 mkt/constants/regions.py:298
 msgid "Ukraine"
 msgstr "Ukrajina"
 
-#: mkt/constants/bango.py:254
+#: mkt/constants/bango.py:254 mkt/constants/regions.py:76
 msgid "United Arab Emirates"
 msgstr "Ujedinjeni Arapski Emirati"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:86
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:148
 msgid "United Kingdom"
 msgstr "Ujedinjeno Kraljevstvo"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:118
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:301
 msgid "United States"
 msgstr "Sjedinjene Američke države"
 
-#: mkt/constants/bango.py:257
+#: mkt/constants/bango.py:257 mkt/constants/regions.py:299
 msgid "United States Minor Outlying Islands"
 msgstr "Sjedinjene Države bez ostalih ostrva"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:117
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:300
 msgid "Uruguay"
 msgstr "Urugvaj"
 
-#: mkt/constants/bango.py:259
+#: mkt/constants/bango.py:259 mkt/constants/regions.py:302
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-#: mkt/constants/bango.py:260 mkt/constants/regions.py:120
+#: mkt/constants/bango.py:260 mkt/constants/regions.py:309
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
@@ -1097,39 +1097,39 @@ msgstr "Vanuatu"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venecuela, Bolivarska Republika"
 
-#: mkt/constants/bango.py:262
+#: mkt/constants/bango.py:262 mkt/constants/regions.py:308
 msgid "Viet Nam"
 msgstr "Vijetnam"
 
-#: mkt/constants/bango.py:263
+#: mkt/constants/bango.py:263 mkt/constants/regions.py:306
 msgid "Virgin Islands, British"
 msgstr "Britanska Devičanska Ostrva"
 
-#: mkt/constants/bango.py:264
+#: mkt/constants/bango.py:264 mkt/constants/regions.py:307
 msgid "Virgin Islands, U.S."
 msgstr "Američka Devičanska Ostrva"
 
-#: mkt/constants/bango.py:265
+#: mkt/constants/bango.py:265 mkt/constants/regions.py:310
 msgid "Wallis and Futuna"
 msgstr "Valis i Futuna"
 
-#: mkt/constants/bango.py:266
+#: mkt/constants/bango.py:266 mkt/constants/regions.py:137
 msgid "Western Sahara"
 msgstr "Zapadna Sahara"
 
-#: mkt/constants/bango.py:267
+#: mkt/constants/bango.py:267 mkt/constants/regions.py:312
 msgid "Yemen"
 msgstr "Jemen"
 
-#: mkt/constants/bango.py:268
+#: mkt/constants/bango.py:268 mkt/constants/regions.py:314
 msgid "Zambia"
 msgstr "Zambija"
 
-#: mkt/constants/bango.py:269
+#: mkt/constants/bango.py:269 mkt/constants/regions.py:315
 msgid "Zimbabwe"
 msgstr "Zimbabve"
 
-#: mkt/constants/base.py:26 mkt/lookup/views.py:177
+#: mkt/constants/base.py:26 mkt/lookup/views.py:179
 msgid "Incomplete"
 msgstr "Nedovršeno"
 
@@ -1151,7 +1151,7 @@ msgid "Deleted"
 msgstr "Obrisano"
 
 #: mkt/constants/base.py:31 mkt/constants/comm.py:45
-#: mkt/reviewers/helpers.py:184 mkt/site/log.py:178
+#: mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Odbijeno"
 
@@ -1177,18 +1177,18 @@ msgid "Approved"
 msgstr "Odobreno"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:108
+#: mkt/constants/base.py:132
 #: mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
 msgstr "Vlasnik"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:110
+#: mkt/constants/base.py:134
 #: mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
 msgstr "Pregledač"
 
-#: mkt/constants/base.py:111
+#: mkt/constants/base.py:135
 #: mkt/developers/templates/developers/skeleton_impala.html:60
 #: mkt/developers/templates/developers/apps/owner.html:96
 #: mkt/ecosystem/templates/ecosystem/support.html:5
@@ -1196,95 +1196,95 @@ msgstr "Pregledač"
 msgid "Support"
 msgstr "Podrška"
 
-#: mkt/constants/base.py:136 mkt/detail/templates/detail/includes/price.html:6
+#: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6
 #: mkt/developers/templates/developers/payments/premium.html:62
-#: mkt/search/forms.py:33 mkt/submit/templates/submit/manifest.html:30
+#: mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
 msgstr "Besplatno"
 
-#: mkt/constants/base.py:137 mkt/search/forms.py:35
+#: mkt/constants/base.py:161 mkt/search/forms.py:36
 msgid "Premium"
 msgstr "Premijum"
 
-#: mkt/constants/base.py:138
+#: mkt/constants/base.py:162
 msgid "Premium with in-app payments"
 msgstr "Premijum sa plaćanjem unutar aplikacije"
 
-#: mkt/constants/base.py:139
+#: mkt/constants/base.py:163
 msgid "Free with in-app payments"
 msgstr "Besplatno sa plaćanjem unutar aplikacije"
 
-#: mkt/constants/base.py:140
+#: mkt/constants/base.py:164
 msgid "I'll use my own system for in-app payments"
 msgstr "Koristiću moj sistem za plaćanja unutar aplikacije"
 
-#: mkt/constants/base.py:197
+#: mkt/constants/base.py:221
 msgid "Manual Reviewer Points"
 msgstr "Poeni samostalnog recenzenta"
 
-#: mkt/constants/base.py:198
+#: mkt/constants/base.py:222
 msgid "Web App Review"
 msgstr "Recenzija veb aplikacije"
 
-#: mkt/constants/base.py:199
+#: mkt/constants/base.py:223
 msgid "Packaged App Review"
 msgstr "Recenzija pakovane aplikacije"
 
-#: mkt/constants/base.py:200
+#: mkt/constants/base.py:224
 msgid "Privileged App Review"
 msgstr "Recenzija privilegovanih aplikacija"
 
-#: mkt/constants/base.py:201
+#: mkt/constants/base.py:225
 msgid "Web App Re-review"
 msgstr "Ponovna recenzija veb aplikacije"
 
-#: mkt/constants/base.py:202
+#: mkt/constants/base.py:226
 msgid "Updated Packaged App Review"
 msgstr "Ažurirana recenzija upakovane aplikacije"
 
-#: mkt/constants/base.py:203
+#: mkt/constants/base.py:227
 msgid "Updated Privileged App Review"
 msgstr "Recenzija privilegovanih aplikacija je ažurirana"
 
-#: mkt/constants/base.py:204
+#: mkt/constants/base.py:228
 msgid "Moderated App Review"
 msgstr "Recenzija uređene aplikacije"
 
-#: mkt/constants/base.py:205
+#: mkt/constants/base.py:229
 msgid "App Review Moderation Reverted"
 msgstr ""
 
-#: mkt/constants/base.py:206
+#: mkt/constants/base.py:230
 msgid "Tarako App Review"
 msgstr "Recenzija Tarako aplikacija"
 
-#: mkt/constants/base.py:236
+#: mkt/constants/base.py:260
 msgid "Level 1"
 msgstr "Nivo 1"
 
-#: mkt/constants/base.py:237
+#: mkt/constants/base.py:261
 msgid "Level 2"
 msgstr "Nivo 2"
 
-#: mkt/constants/base.py:238
+#: mkt/constants/base.py:262
 msgid "Level 3"
 msgstr "Nivo 3"
 
-#: mkt/constants/base.py:239
+#: mkt/constants/base.py:263
 msgid "Level 4"
 msgstr "Nivo 4"
 
-#: mkt/constants/base.py:240
+#: mkt/constants/base.py:264
 msgid "Level 5"
 msgstr "Nivo 5"
 
-#: mkt/constants/base.py:241
+#: mkt/constants/base.py:265
 msgid "Level 6"
 msgstr "Nivo 6"
 
 #: mkt/constants/categories.py:5
-msgid "Books"
-msgstr "Knjige"
+msgid "Books & Comics"
+msgstr ""
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1298,63 +1298,91 @@ msgstr "Obrazovanje"
 msgid "Entertainment"
 msgstr "Zabava"
 
-#: mkt/constants/categories.py:9 mkt/constants/categories.py:39
+#: mkt/constants/categories.py:9
+msgid "Food & Drink"
+msgstr ""
+
+#: mkt/constants/categories.py:10
+msgid "Kids"
+msgstr ""
+
+#: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
 msgstr "Igrice"
 
-#: mkt/constants/categories.py:10
+#: mkt/constants/categories.py:12
 msgid "Health & Fitness"
 msgstr "Zdravlje i fitnes"
 
-#: mkt/constants/categories.py:11 mkt/constants/categories.py:40
+#: mkt/constants/categories.py:13
+msgid "Humor"
+msgstr ""
+
+#: mkt/constants/categories.py:14
+msgid "Internet"
+msgstr ""
+
+#: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
 msgstr "Životni stil"
 
-#: mkt/constants/categories.py:12
+#: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
 msgstr "Mape i navigacija"
 
-#: mkt/constants/categories.py:13
+#: mkt/constants/categories.py:17
 msgid "Music"
 msgstr "Muzika"
 
-#: mkt/constants/categories.py:14
-msgid "News & Weather"
-msgstr "Vesti i vremenska prognoza"
+#: mkt/constants/categories.py:18
+msgid "News"
+msgstr ""
 
-#: mkt/constants/categories.py:15
+#: mkt/constants/categories.py:19
+msgid "Personalization"
+msgstr ""
+
+#: mkt/constants/categories.py:20
 msgid "Photo & Video"
 msgstr "Slike i video"
 
-#: mkt/constants/categories.py:16
+#: mkt/constants/categories.py:21
 msgid "Productivity"
 msgstr "Produktivnost"
 
-#: mkt/constants/categories.py:17
+#: mkt/constants/categories.py:22
 msgid "Reference"
 msgstr "Uputstva"
 
-#: mkt/constants/categories.py:18
+#: mkt/constants/categories.py:23
+msgid "Science & Tech"
+msgstr ""
+
+#: mkt/constants/categories.py:24
 msgid "Shopping"
 msgstr "Kupovina"
 
-#: mkt/constants/categories.py:19
+#: mkt/constants/categories.py:25
 msgid "Social"
 msgstr "Društvene"
 
-#: mkt/constants/categories.py:20
+#: mkt/constants/categories.py:26
 msgid "Sports"
 msgstr "Sportovi"
 
-#: mkt/constants/categories.py:21
+#: mkt/constants/categories.py:27
 msgid "Travel"
 msgstr "Putovanja"
 
-#: mkt/constants/categories.py:22
+#: mkt/constants/categories.py:28
 msgid "Utilities"
 msgstr "Uslužne aplikacije"
 
-#: mkt/constants/categories.py:38
+#: mkt/constants/categories.py:29
+msgid "Weather"
+msgstr ""
+
+#: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
 #: mkt/site/context_processors.py:48
 msgid "Tools"
@@ -1372,7 +1400,7 @@ msgstr "Banovan"
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:193 mkt/site/log.py:198
+#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Eskalirano"
 
@@ -2113,39 +2141,91 @@ msgstr "Panevropske informacije o igrici"
 msgid "Rest of World"
 msgstr "Ostatak sveta"
 
-#: mkt/constants/regions.py:87
+#: mkt/constants/regions.py:89
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr ""
+
+#: mkt/constants/regions.py:100
+msgid "Bolivia, Plurinational State of"
+msgstr ""
+
+#: mkt/constants/regions.py:115
+msgid "Congo, Democratic Republic of the"
+msgstr ""
+
+#: mkt/constants/regions.py:120
+msgid "Cabo Verde"
+msgstr ""
+
+#: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
 msgstr "Gvineja-Konakri"
 
-#: mkt/constants/regions.py:110
+#: mkt/constants/regions.py:166
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: mkt/constants/regions.py:192
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: mkt/constants/regions.py:195
+msgid "Libya"
+msgstr ""
+
+#: mkt/constants/regions.py:197
+msgid "Liechtenstein"
+msgstr ""
+
+#: mkt/constants/regions.py:204
+msgid "Saint Martin (French part)"
+msgstr ""
+
+#: mkt/constants/regions.py:212
+msgid "Macedonia, the former Yugoslav Republic of"
+msgstr ""
+
+#: mkt/constants/regions.py:251
+msgid "Palestine, State of"
+msgstr ""
+
+#: mkt/constants/regions.py:256
 msgid "Russia"
 msgstr "Rusija"
 
-#: mkt/constants/regions.py:111
+#: mkt/constants/regions.py:260
 msgid "Senegal"
 msgstr "Senegal"
 
-#: mkt/constants/regions.py:115
+#: mkt/constants/regions.py:263
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr ""
+
+#: mkt/constants/regions.py:295
 msgid "Taiwan"
 msgstr "Tajvan"
 
-#: mkt/constants/regions.py:116
+#: mkt/constants/regions.py:296
 msgid "Tanzania"
 msgstr "Tanzanija"
 
-#: mkt/constants/regions.py:119
+#: mkt/constants/regions.py:303
+msgid "Holy See"
+msgstr ""
+
+#: mkt/constants/regions.py:305
 msgid "Venezuela"
 msgstr "Venecuela"
 
 #: mkt/constants/reviewers.py:7
 #: mkt/developers/templates/developers/validate_app.html:16
-#: mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:49
+#: mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
 msgstr "Hostovana"
 
 #: mkt/constants/reviewers.py:8
 #: mkt/developers/templates/developers/validate_app.html:54
-#: mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:83
+#: mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
 msgstr "Upakovana"
 
@@ -2162,7 +2242,7 @@ msgstr "Podnesi"
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1416
 msgid "Details"
 msgstr "Informacije"
 
@@ -2182,32 +2262,32 @@ msgstr "Ne mogu se povezati na server za plaćanje."
 msgid "Cannot delete shared account"
 msgstr "Ne mogu izbrisati podeljeni nalog"
 
-#: mkt/developers/cron.py:126
+#: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
 msgstr "Ocena sadržaja promenjena na Odrasli."
 
-#: mkt/developers/forms.py:63
+#: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
 msgstr "Ne možete odabrati {region}."
 
-#: mkt/developers/forms.py:121
+#: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 "Svi članovi tima moraju pročitati i složiti se sa sporazumom o programerima."
 
-#: mkt/developers/forms.py:152
+#: mkt/developers/forms.py:153
 msgid "Must have at least one owner."
 msgstr "Mora imati najmanje jednog vlasnika."
 
-#: mkt/developers/forms.py:155
+#: mkt/developers/forms.py:156
 msgid "At least one team member must be listed."
 msgstr "Najmanje jedan član tima mora biti naveden."
 
-#: mkt/developers/forms.py:159
+#: mkt/developers/forms.py:160
 msgid "A team member can only be listed once."
 msgstr "Član tima može biti naveden samo jednom."
 
-#: mkt/developers/forms.py:186
+#: mkt/developers/forms.py:187
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently public. <a href=\"%s\">Edit app</a>"
@@ -2215,7 +2295,7 @@ msgstr ""
 "Ups, izgleda da je već poslat manifest za %s, koji je trenutno javan. <a "
 "href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:190
+#: mkt/developers/forms.py:191
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently pending. <a href=\"%s\">Edit app</a>"
@@ -2223,7 +2303,7 @@ msgstr ""
 "Ups, izgleda da je već poslat manifest za %s, koji je trenutno na čekanju. "
 "<a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:194
+#: mkt/developers/forms.py:195
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently incomplete. <a href=\"%s\">Resume app</a>"
@@ -2231,7 +2311,7 @@ msgstr ""
 "Ups, izgleda da je već poslat manifest za %s, koji je trenutno nepotpun. <a "
 "href=\"%s\">Nastavi sa aplikacijom</a>"
 
-#: mkt/developers/forms.py:198
+#: mkt/developers/forms.py:199
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently rejected. <a href=\"%s\">Edit app</a>"
@@ -2239,7 +2319,7 @@ msgstr ""
 "Ups, izgleda da je već poslat manifest za %s, koji je trenutno odbijen. <a "
 "href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:202
+#: mkt/developers/forms.py:203
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
@@ -2247,7 +2327,7 @@ msgstr ""
 "Ups, izgleda da ste već dostavili manifest za %s, koji je trenutno banovan "
 "na Marketplace-u. <a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:206
+#: mkt/developers/forms.py:207
 msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2255,69 +2335,69 @@ msgstr ""
 "Ups, izgleda da je već poslat manifest za %s, koji je trenutno isključen. <a "
 "href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:221
+#: mkt/developers/forms.py:222
 msgid ""
 "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
 "Aplikacija već postoji na ovom domenu; samo jedna aplikacija po domenu je "
 "dozvoljena."
 
-#: mkt/developers/forms.py:337
+#: mkt/developers/forms.py:338 mkt/websites/forms.py:71
 msgid "Invalid region(s) selected."
 msgstr "Nevažeći region(s) su izabrani."
 
-#: mkt/developers/forms.py:392 mkt/webapps/models.py:1332
+#: mkt/developers/forms.py:393 mkt/webapps/models.py:1325
 msgid "You must upload at least one screenshot or video."
 msgstr "Morate postaviti makar jedan video ili snimak ekrana."
 
-#: mkt/developers/forms.py:433
+#: mkt/developers/forms.py:434
 msgid ""
 "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 "Upakovana aplikcija je prevelika za podnošenje. Paketi moraju biti manji od "
 "%s."
 
-#: mkt/developers/forms.py:448
+#: mkt/developers/forms.py:449
 msgid "Error extracting manifest from zip file."
 msgstr "Greška pri ekstrakciji manifesta iz zip datoteke."
 
-#: mkt/developers/forms.py:517
+#: mkt/developers/forms.py:518
 msgid "Provide a detailed description of your app"
 msgstr "Dostavite detaljan opis Vaše aplikacije"
 
-#: mkt/developers/forms.py:518
+#: mkt/developers/forms.py:519
 msgid "This description will appear on the details page."
 msgstr "Opis će se pojaviti na stranici za detalje."
 
-#: mkt/developers/forms.py:521 mkt/submit/forms.py:287
+#: mkt/developers/forms.py:522 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr ""
 
-#: mkt/developers/forms.py:523
+#: mkt/developers/forms.py:524
 #: mkt/developers/templates/developers/apps/edit/basic.html:126
-#: mkt/submit/forms.py:289
+#: mkt/submit/forms.py:290
 msgid ""
 "The search keywords are used to return search results in the Firefox "
 "Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
 
-#: mkt/developers/forms.py:578 mkt/submit/forms.py:373
+#: mkt/developers/forms.py:579 mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
 msgstr "Naziv url adrese je u upotrebi. Molimo Vas izaberite drugi."
 
-#: mkt/developers/forms.py:581 mkt/submit/forms.py:377
+#: mkt/developers/forms.py:582 mkt/submit/forms.py:378
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
 
-#: mkt/developers/forms.py:609
+#: mkt/developers/forms.py:610
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "URL manifesta se promenio sa {before_url} na {after_url}"
 
-#: mkt/developers/forms.py:646
+#: mkt/developers/forms.py:647
 msgid "Please specify your app's Privacy Policy"
 msgstr "Molimo ukažite na polisu privatnosti Vaše aplikacije"
 
-#: mkt/developers/forms.py:667
+#: mkt/developers/forms.py:668
 msgid ""
 "Before changing your default locale you must have a name and description in "
 "that locale. You are missing %s."
@@ -2325,15 +2405,15 @@ msgstr ""
 "Pre zamene podrazumevanog lokala morate imati ime i opis u tom lokalu. "
 "Nedostaje Vam %s."
 
-#: mkt/developers/forms.py:726 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:727 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "Morate obezbediti veb sajt ili e-poštu ili oboje."
 
-#: mkt/developers/forms.py:751
+#: mkt/developers/forms.py:752
 msgid "Your comments"
 msgstr "Vaši komentari"
 
-#: mkt/developers/forms.py:778
+#: mkt/developers/forms.py:779
 msgid ""
 "<b>Published</b>: Visible to everyone in the Marketplace and included in "
 "search results and listing pages."
@@ -2341,7 +2421,7 @@ msgstr ""
 "<b>Objavljeno</b>: Vidljivo svima na Marketplace-u i uključeno je u "
 "rezultatima pretrage i u listing stranicama."
 
-#: mkt/developers/forms.py:782
+#: mkt/developers/forms.py:783
 msgid ""
 "<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
 "search results and listing pages."
@@ -2349,76 +2429,79 @@ msgstr ""
 "<b>Neraspoređeno</b>: Vidljivo samo osobama sa URL i ne pojavljuje se u "
 "rezultatima pretrage i u listing stranicama."
 
-#: mkt/developers/forms.py:798
+#: mkt/developers/forms.py:799
 msgid "App Visibility:"
 msgstr "Vidljivost aplikacije:"
 
-#: mkt/developers/forms.py:800
+#: mkt/developers/forms.py:801
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>Samo moj tim</b>: Vidljivo samo članovima tima."
 
-#: mkt/developers/forms.py:846
+#: mkt/developers/forms.py:847
 msgid "Choose the regions your app will be listed in:"
 msgstr "Izaberite regije u kojima će na listi biti Vaša aplikacija:"
 
-#: mkt/developers/forms.py:848 mkt/developers/forms.py:949
+#: mkt/developers/forms.py:849 mkt/developers/forms.py:950
 msgid "You must select at least one region."
 msgstr "Morate odabrati barem jedan region."
 
-#: mkt/developers/forms.py:853
+#: mkt/developers/forms.py:854
 msgid "Enable new regions"
 msgstr "Omogući nove regije"
 
-#: mkt/developers/forms.py:856
+#: mkt/developers/forms.py:857
 msgid "Make my app available in most regions"
 msgstr "Učini moju aplikaciju dostupnu u većini regija"
 
-#: mkt/developers/forms.py:857
+#: mkt/developers/forms.py:858
 msgid "Choose where my app is made available"
 msgstr "Izaberi gde će moja aplikacija biti dostupna"
 
-#: mkt/developers/forms.py:1010
+#: mkt/developers/forms.py:1011
 #: mkt/developers/templates/developers/apps/edit/basic.html:172
+#: mkt/lookup/templates/lookup/website_edit.html:76
+#: mkt/lookup/templates/lookup/website_summary.html:42
 #: mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
-#: mkt/search/forms.py:81
+#: mkt/search/forms.py:88 mkt/websites/forms.py:21
 msgid "Categories"
 msgstr "Kategorije"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1035 mkt/webapps/serializers.py:268
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271
+#: mkt/websites/forms.py:56
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Možete imati samo {0} kategoriju."
 msgstr[1] "Možete imati samo {0} kategorije."
 msgstr[2] "Možete imati samo {0} kategorija."
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1050
 msgid "Agree"
 msgstr "Prihvati"
 
-#: mkt/developers/forms.py:1066
+#: mkt/developers/forms.py:1067
 msgid "Please enter a valid email address."
 msgstr "Unesite validnu adresu e-pošte."
 
-#: mkt/developers/forms.py:1069
+#: mkt/developers/forms.py:1070
 msgid "Your email address"
 msgstr "Vaša adresa e-pošte"
 
-#: mkt/developers/forms.py:1072
+#: mkt/developers/forms.py:1073
 msgid "Text"
 msgstr "Tekst"
 
-#: mkt/developers/forms.py:1076
+#: mkt/developers/forms.py:1077
 msgid "You must agree to the Privacy Policy."
 msgstr "Morate se složiti sa polisom privatnosti."
 
-#: mkt/developers/forms.py:1077 mkt/developers/forms_payments.py:397
+#: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Država"
 
-#: mkt/developers/forms.py:1111
+#: mkt/developers/forms.py:1112
 #: mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:27
 #: mkt/operators/templates/operators/preloads.html:14
@@ -2430,33 +2513,33 @@ msgstr "Država"
 msgid "App"
 msgstr "Aplikacija"
 
-#: mkt/developers/forms.py:1113
+#: mkt/developers/forms.py:1114
 msgid "Transaction Type"
 msgstr "Tip transakcije"
 
-#: mkt/developers/forms.py:1116
+#: mkt/developers/forms.py:1117
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "ID transakcije"
 
-#: mkt/developers/forms.py:1122
+#: mkt/developers/forms.py:1123
 msgid "From"
 msgstr "Od"
 
-#: mkt/developers/forms.py:1125
+#: mkt/developers/forms.py:1126
 msgid "To"
 msgstr "Za"
 
-#: mkt/developers/forms.py:1136
+#: mkt/developers/forms.py:1137
 msgid "Web site"
 msgstr "Veb sajt"
 
-#: mkt/developers/forms.py:1137
+#: mkt/developers/forms.py:1138
 msgid "Command line"
 msgstr "Komandna linija"
 
-#: mkt/developers/forms.py:1158
+#: mkt/developers/forms.py:1159
 msgid ""
 "Make this the Active version of my app as soon as it has been reviewed and "
 "approved."
@@ -2464,7 +2547,7 @@ msgstr ""
 "Napravite da ova verzija Vaše aplikacije bude aktivna čim je pregledana i "
 "odobrena."
 
-#: mkt/developers/forms.py:1185
+#: mkt/developers/forms.py:1186
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS "
 "device. I agree to the terms and conditions outlined above. I understand "
@@ -2475,27 +2558,27 @@ msgstr ""
 "korišćenja. Razumem da ovaj dokument nije obaveza da se moja aplikacija "
 "unapred učita."
 
-#: mkt/developers/forms.py:1192
+#: mkt/developers/forms.py:1193
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Dostavite Vaš plan za testiranje (.pdf, .xls manje od 2.5MB)"
 
-#: mkt/developers/forms.py:1208
+#: mkt/developers/forms.py:1209
 msgid "Test plan required."
 msgstr "Plan testiranja je neophodan."
 
-#: mkt/developers/forms.py:1215
+#: mkt/developers/forms.py:1216
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "Datoteka je prevelika. Veličina mora biti ispod %s. Trenutno je %s."
 
-#: mkt/developers/forms.py:1221
+#: mkt/developers/forms.py:1222
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "Neispravan tip datoteke {0}. Samo su {1} datoteke podržane."
 
-#: mkt/developers/forms.py:1245
+#: mkt/developers/forms.py:1246
 msgid "Please enter a valid submission ID."
 msgstr "Molimo unesite validan ID za podnošenje."
 
-#: mkt/developers/forms.py:1261
+#: mkt/developers/forms.py:1262
 msgid ""
 "This IARC certificate is already being used for another app. Please create a "
 "new IARC Ratings Certificate."
@@ -2503,7 +2586,7 @@ msgstr ""
 "Ovaj IARC sertifikat je već upotrebljen za drugu aplikaciju. Molimo Vas "
 "napravite novi IARC Ratings sertifikat."
 
-#: mkt/developers/forms.py:1296 mkt/developers/forms.py:1308
+#: mkt/developers/forms.py:1297 mkt/developers/forms.py:1309
 msgid "Invalid submission ID or security code."
 msgstr "Neispravan ID za podnošenje ili sigurnosna lozinka."
 
@@ -2667,9 +2750,11 @@ msgstr "Ime naloga"
 #: mkt/developers/forms_payments.py:620
 #: mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/lookup/templates/lookup/website_edit.html:20
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24
-#: mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+#: mkt/websites/forms.py:27
 msgid "Name"
 msgstr "Ime"
 
@@ -2695,15 +2780,15 @@ msgid "My Submissions"
 msgstr "Moje dostave"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:137
+#: mkt/developers/models.py:138
 msgid "Donate to {0}"
 msgstr "Doniraj {0}"
 
-#: mkt/developers/models.py:480
+#: mkt/developers/models.py:482
 msgid "Review"
 msgstr "Komentar"
 
-#: mkt/developers/models.py:483
+#: mkt/developers/models.py:485
 #: mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Verzija {0}"
@@ -2712,12 +2797,12 @@ msgstr "Verzija {0}"
 msgid "Reference Implementation"
 msgstr "Referentna implementacija"
 
-#: mkt/developers/tasks.py:407
+#: mkt/developers/tasks.py:413
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
 "Nije pronađen manifest na ovoj adresi. Proverite adresu i pokušajte ponovo."
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:419
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x-"
 "web-app-manifest+json\". See %s for more information."
@@ -2725,15 +2810,15 @@ msgstr ""
 "Manifesti moraju da imaju HTTP zaglavlje \"Content-Type: application/x-web-"
 "app-manifest+json\". Pogledajte %s za više informacija."
 
-#: mkt/developers/tasks.py:422
+#: mkt/developers/tasks.py:428
 msgid "Your manifest must be less than %s bytes."
 msgstr "Manifest mora biti manji od %s bajtova."
 
-#: mkt/developers/tasks.py:430
+#: mkt/developers/tasks.py:436
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Vaša manifest datoteka nije enkodirana kao validan UTF-8."
 
-#: mkt/developers/tasks.py:441
+#: mkt/developers/tasks.py:447
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
@@ -2741,16 +2826,16 @@ msgstr ""
 "Kodiranje manifesta ne odgovara šemi kodiranja koja je obezbeđen u HTTP "
 "Content-Type."
 
-#: mkt/developers/tasks.py:471 mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:478 mkt/developers/tasks.py:484
 #: mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "i"
 
-#: mkt/developers/tasks.py:491
+#: mkt/developers/tasks.py:498
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} region je dodat na Firefox Marketplace"
 
-#: mkt/developers/tasks.py:495
+#: mkt/developers/tasks.py:502
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Novi regioni su dodati na Firefox Marketplace"
 
@@ -2823,7 +2908,7 @@ msgstr "Nova verzija je uspešno dodata."
 
 #: mkt/developers/views.py:308 mkt/developers/views.py:570
 #: mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437
-#: mkt/reviewers/views.py:685
+#: mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Izmene su uspešno sačuvane."
 
@@ -3068,7 +3153,7 @@ msgstr "Ažuriraj poruku dana"
 #: mkt/developers/templates/developers/motd.html:14
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:32
 #: mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:209
+#: mkt/reviewers/templates/reviewers/review.html:227
 msgid "Save"
 msgstr "Sačuvaj"
 
@@ -3361,6 +3446,7 @@ msgstr "Podnesi aplikaciju"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2
 #: mkt/lookup/templates/lookup/helpers/app_header.html:33
+#: mkt/lookup/templates/lookup/helpers/website_header.html:22
 #: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Edit Listing"
 msgstr "Izmeni spisak"
@@ -3407,6 +3493,7 @@ msgstr "O ulogama članova tima"
 #: mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286
 #: mkt/developers/templates/developers/payments/premium.html:325
+#: mkt/lookup/templates/lookup/website_edit.html:104
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Sačuvaj izmene"
@@ -3469,8 +3556,11 @@ msgstr "Status i verzija"
 #: mkt/developers/templates/developers/payments/in-app-products.html:60
 #: mkt/lookup/forms.py:59 mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/reviewers/forms.py:182
-#: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/lookup/templates/lookup/app_summary.html:152
+#: mkt/lookup/templates/lookup/website_edit.html:88
+#: mkt/lookup/templates/lookup/website_summary.html:46
+#: mkt/reviewers/forms.py:191 mkt/reviewers/forms.py:240
+#: mkt/reviewers/templates/reviewers/review.html:29
 #: mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3625,6 +3715,7 @@ msgstr "Datum podnošenja"
 
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
+#: mkt/lookup/templates/lookup/website_edit.html:95
 msgid "Disabled"
 msgstr "Onemogućen"
 
@@ -3864,6 +3955,7 @@ msgstr "Da li ste sigurni da želite da izbrišete sa liste Vašu aplikaciju?"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
+#: mkt/lookup/templates/lookup/website_edit.html:104
 #: mkt/submit/templates/submit/done.html:48
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -3890,6 +3982,7 @@ msgstr "ili"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30
 #: mkt/lookup/templates/lookup/user_summary.html:115
 #: mkt/lookup/templates/lookup/user_summary.html:118
+#: mkt/lookup/templates/lookup/website_edit.html:105
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -4108,7 +4201,7 @@ msgstr "Prikaži API dokumentaciju"
 #: mkt/developers/templates/developers/apps/edit/basic.html:77
 #: mkt/reviewers/templates/reviewers/includes/details.html:26
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:131
+#: mkt/search/forms.py:142
 msgid "Manifest URL"
 msgstr "URL manifesta"
 
@@ -4130,12 +4223,15 @@ msgstr ""
 "aplikacija</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102
+#: mkt/lookup/templates/lookup/website_edit.html:41
+#: mkt/lookup/templates/lookup/website_summary.html:22
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
+#: mkt/websites/forms.py:23
 msgid "Description"
 msgstr "Opis"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:104
-#: mkt/submit/forms.py:280
+#: mkt/submit/forms.py:281
 msgid ""
 "The app description is one of the fields used to return search results in "
 "the Firefox Marketplace. The app description also appears on the app's "
@@ -4569,7 +4665,7 @@ msgstr "Status &amp; verzije"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1423
 msgid "Content Ratings"
 msgstr "Ocene sadržaja"
 
@@ -4756,6 +4852,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
+#: mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Rezime"
 
@@ -4805,6 +4902,7 @@ msgstr "Ukloni ovu aplikaciju"
 
 #: mkt/developers/templates/developers/includes/macros.html:67
 #: mkt/developers/templates/developers/includes/macros.html:81
+#: mkt/lookup/templates/lookup/website_edit.html:79
 msgid "Pick one or two categories."
 msgstr "Izaberite jednu ili dve kategorije."
 
@@ -5078,7 +5176,7 @@ msgstr "Cene i države"
 #: mkt/reviewers/templates/reviewers/includes/details.html:79
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:9
-#: mkt/search/forms.py:16
+#: mkt/search/forms.py:17
 msgid "Price"
 msgstr "Cena"
 
@@ -5672,7 +5770,7 @@ msgstr "Razvoj igrica"
 #: mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1436
+#: mkt/webapps/models.py:1429
 msgid "Payments"
 msgstr "Plaćanja"
 
@@ -5986,11 +6084,11 @@ msgstr ""
 msgid "This file is a directory."
 msgstr "Datoteka je direktorijum."
 
-#: mkt/files/tasks.py:28
+#: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
 msgstr "Došlo do greške prilikom pristupa datoteci %s. %s."
 
-#: mkt/files/tasks.py:31
+#: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
 msgstr "Došlo do greške prilikom pristupa datoteci %s."
 
@@ -6220,25 +6318,29 @@ msgstr "Unesite detalje za povraćaj novca radi transakcije iste"
 msgid "Reason for Deletion"
 msgstr "Razlozi za brisanje"
 
-#: mkt/lookup/views.py:195
+#: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
 msgstr "Povraćaj novca je već obrađen."
 
-#: mkt/lookup/views.py:218
+#: mkt/lookup/views.py:219
 msgid "You cannot make a refund request for this transaction."
 msgstr "Ne možete tražiti povraćaj novca za ovu transakciju."
 
-#: mkt/lookup/views.py:242
+#: mkt/lookup/views.py:243
 msgid "Refund for this transaction now pending."
 msgstr "Povraćaj novca za ovu transakciju je u toku."
 
-#: mkt/lookup/views.py:250
+#: mkt/lookup/views.py:251
 msgid "Refund for this transaction successfully approved."
 msgstr "Povraćaj sredstava za ovu transakciju je uspešno odobren."
 
-#: mkt/lookup/views.py:255
+#: mkt/lookup/views.py:256
 msgid "Refund request for this transaction failed."
 msgstr "Povraćaj sredstava za ovu transakciju nije uspelo."
+
+#: mkt/lookup/views.py:333
+msgid "Website saved."
+msgstr ""
 
 #: mkt/lookup/templates/lookup/app_activity.html:10
 #: mkt/lookup/templates/lookup/helpers/app_header.html:22
@@ -6410,7 +6512,7 @@ msgstr "Ime datoteke (ID, veličina)"
 msgid "Lookup Tool"
 msgstr "Alat za pretragu"
 
-#: mkt/lookup/templates/lookup/base.html:10
+#: mkt/lookup/templates/lookup/base.html:14
 msgid "<small>Marketplace</small> Lookup Tool"
 msgstr "<small>Marketplace</small> alat za pretragu"
 
@@ -6588,6 +6690,47 @@ msgstr "Izbrisao je"
 msgid "Reason"
 msgstr "Razlog"
 
+#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
+msgid "Short Name"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:34
+#: mkt/lookup/templates/lookup/website_summary.html:14
+#: mkt/websites/forms.py:33
+msgid "Title"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:48
+#: mkt/lookup/templates/lookup/website_summary.html:26
+#: mkt/websites/forms.py:35
+msgid "URL"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:55
+#: mkt/lookup/templates/lookup/website_summary.html:30
+msgid "Mobile URL"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:62
+#: mkt/lookup/templates/lookup/website_summary.html:34
+#: mkt/websites/forms.py:25
+msgid "Keywords"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:69
+#: mkt/lookup/templates/lookup/website_summary.html:38
+#: mkt/websites/forms.py:29
+msgid "Preferred Regions"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_summary.html:18
+msgid "Name - Short Name"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_summary.html:50
+msgid "disabled"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
 msgstr "Rezultati pretrage aplikacije za"
@@ -6612,16 +6755,25 @@ msgstr "Pregled računa"
 msgid "Account Deleted"
 msgstr "Nalog je izbrisan"
 
+#: mkt/lookup/templates/lookup/helpers/website_header.html:3
+msgid "Website Summary for"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/helpers/website_header.html:5
+msgid "Edit Website"
+msgstr ""
+
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
 msgstr "Pregraga aplikacije"
 
-#: mkt/lookup/templates/lookup/includes/app_search.html:8
+#: mkt/lookup/templates/lookup/includes/app_search.html:9
 #: mkt/lookup/templates/lookup/includes/transaction_search.html:6
 #: mkt/lookup/templates/lookup/includes/user_search.html:6
+#: mkt/lookup/templates/lookup/includes/website_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:78 mkt/search/forms.py:80
+#: mkt/search/forms.py:83 mkt/search/forms.py:85
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13
 msgid "Search"
@@ -6634,6 +6786,10 @@ msgstr "Aplikacija: {0}"
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "Pretraga naloga"
+
+#: mkt/lookup/templates/lookup/includes/website_search.html:5
+msgid "Website Lookup"
+msgstr ""
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -6823,7 +6979,7 @@ msgstr "Prihvaćene recenzije"
 msgid "Deleted reviews"
 msgstr "Izbrisane recenzije"
 
-#: mkt/reviewers/forms.py:34 mkt/search/forms.py:42
+#: mkt/reviewers/forms.py:34 mkt/search/forms.py:43
 msgid "Any Device"
 msgstr "Bilo koji uređaj"
 
@@ -6854,25 +7010,27 @@ msgstr "kraj"
 msgid "app, reviewer, or comment"
 msgstr "aplikacija, recenzent ili komentar"
 
+#: mkt/reviewers/forms.py:104
+msgid "Device Type:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:105
+msgid "Device:"
+msgstr ""
+
 #: mkt/reviewers/forms.py:106
+msgid "Firefox Version:"
+msgstr ""
+
+#: mkt/reviewers/forms.py:118
 msgid "Comments:"
 msgstr "Komentari:"
 
-#: mkt/reviewers/forms.py:110
-#: mkt/reviewers/templates/reviewers/review.html:134
-msgid "Device Types:"
-msgstr "Tipovi uređaja:"
-
-#: mkt/reviewers/forms.py:112
-#: mkt/reviewers/templates/reviewers/review.html:138
-msgid "Browsers:"
-msgstr "Pregledači:"
-
-#: mkt/reviewers/forms.py:115
+#: mkt/reviewers/forms.py:123
 msgid "Device Type Override:"
 msgstr "Zanemarivanje tipa uređaja:"
 
-#: mkt/reviewers/forms.py:118
+#: mkt/reviewers/forms.py:126
 msgid ""
 "Notify me the next time the manifest is updated. (Subsequent updates will "
 "not generate an email)"
@@ -6880,32 +7038,32 @@ msgstr ""
 "Obavesti me kada se sledeći put manifest ažurira. (Naknadne ispravke neće "
 "generisati e-poštu)"
 
-#: mkt/reviewers/forms.py:122
+#: mkt/reviewers/forms.py:130
 msgid "This app works on Tarako devices."
 msgstr "Ova aplikacija radi na Tarako uređajima."
 
-#: mkt/reviewers/forms.py:129
+#: mkt/reviewers/forms.py:137
 msgid "Choose a canned response..."
 msgstr "Odaberite konzervirani odgovor..."
 
-#: mkt/reviewers/forms.py:185
+#: mkt/reviewers/forms.py:194
 msgid "Has Editor Comment"
 msgstr "Ima komentar urednika"
 
-#: mkt/reviewers/forms.py:189
+#: mkt/reviewers/forms.py:198
 msgid "More Info Requested"
 msgstr "Više informacija je zahtevano"
 
-#: mkt/reviewers/forms.py:197
+#: mkt/reviewers/forms.py:206
 msgid "Tarako-ready"
 msgstr "Tarako-ready"
 
-#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45
-#: mkt/search/forms.py:84
+#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45
+#: mkt/search/forms.py:91
 msgid "Device"
 msgstr "Uređaj"
 
-#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:67
+#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68
 #: mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
 msgstr "Alati recenzenta"
@@ -6926,86 +7084,95 @@ msgstr "Ažuriranja"
 msgid "Escalations"
 msgstr "Eskalacije"
 
-#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:151
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:159
 msgid "Moderated Reviews"
 msgstr "Uređene recenzije"
 
 #: mkt/reviewers/helpers.py:48
+msgid "Website Abuse Reports"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
 msgstr "Pregledavam"
 
-#: mkt/reviewers/helpers.py:50
+#: mkt/reviewers/helpers.py:51
 #: mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
 msgstr "Regionalni red za čekanje"
 
-#: mkt/reviewers/helpers.py:89
+#: mkt/reviewers/helpers.py:90
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr "Aplikacije ({0})"
 
-#: mkt/reviewers/helpers.py:92
+#: mkt/reviewers/helpers.py:93
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr "Ponovnih pregleda ({0})"
 
-#: mkt/reviewers/helpers.py:96
+#: mkt/reviewers/helpers.py:97
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr "Ažuriranja ({0})"
 
-#: mkt/reviewers/helpers.py:100
+#: mkt/reviewers/helpers.py:101
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr "Eskalacija ({0})"
 
-#: mkt/reviewers/helpers.py:104
+#: mkt/reviewers/helpers.py:105
 msgid "Reviewing ({0})"
 msgstr "Pregledavam ({0})"
 
-#: mkt/reviewers/helpers.py:110
+#: mkt/reviewers/helpers.py:111
 msgid "China ({0})"
 msgstr "Kina ({0})"
 
-#: mkt/reviewers/helpers.py:115
+#: mkt/reviewers/helpers.py:116
 msgid "Tarako ({0})"
 msgstr "Tarako ({0})"
 
-#: mkt/reviewers/helpers.py:122
+#: mkt/reviewers/helpers.py:123
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "Uređenih recenzija ({0})"
 
-#: mkt/reviewers/helpers.py:129
+#: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:146
+#: mkt/reviewers/helpers.py:137
+msgctxt "abusewebsites"
+msgid "Website Abuse Reports ({0})"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:154
 msgid "Reviews"
 msgstr "Komentara"
 
-#: mkt/reviewers/helpers.py:188
+#: mkt/reviewers/helpers.py:196
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nije pregledano"
 
-#: mkt/reviewers/utils.py:371
+#: mkt/reviewers/utils.py:390
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "Odobri"
 
-#: mkt/reviewers/utils.py:372
+#: mkt/reviewers/utils.py:391
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "Ovo će odobriti aplikaciju i omogućiti autoru da je objavi."
 
-#: mkt/reviewers/utils.py:376
+#: mkt/reviewers/utils.py:395
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Odbij"
 
-#: mkt/reviewers/utils.py:378
+#: mkt/reviewers/utils.py:397
 msgid ""
 "This will reject the app, remove it from the review queue and un-publish it "
 "if already published."
@@ -7013,21 +7180,21 @@ msgstr ""
 "Ovo će odbiti aplikaciju, ukloniti je iz reda razmatranje i povućiće je ako "
 "je već objavljena."
 
-#: mkt/reviewers/utils.py:383
+#: mkt/reviewers/utils.py:402
 msgid "Message developer"
 msgstr "Piši programeru"
 
-#: mkt/reviewers/utils.py:385
+#: mkt/reviewers/utils.py:404
 msgid ""
 "This will send the author(s) - and other thread subscribers - a message. "
 "This will not change the app's status."
 msgstr ""
 
-#: mkt/reviewers/utils.py:390
+#: mkt/reviewers/utils.py:409
 msgid "Escalate"
 msgstr "Eskaliraj"
 
-#: mkt/reviewers/utils.py:392
+#: mkt/reviewers/utils.py:411
 msgid ""
 "Flag this app for an admin to review. The comments are sent to the admins, "
 "not the author(s)."
@@ -7035,21 +7202,21 @@ msgstr ""
 "Obeleži ovu aplikaciju za pregled admina. Komentari se šalju "
 "administratorima, a ne autoru."
 
-#: mkt/reviewers/utils.py:397
+#: mkt/reviewers/utils.py:416
 msgid "Private comment"
 msgstr "Privatni komentar"
 
-#: mkt/reviewers/utils.py:399
+#: mkt/reviewers/utils.py:418
 msgid ""
 "Make a private reviewer comment on this app. The message won't be visible to "
 "the author(s), and no notification will be sent them."
 msgstr ""
 
-#: mkt/reviewers/utils.py:405
+#: mkt/reviewers/utils.py:424
 msgid "Clear Escalation"
 msgstr "Očisti eskalaciju"
 
-#: mkt/reviewers/utils.py:407
+#: mkt/reviewers/utils.py:426
 msgid ""
 "Clear this app from the escalation queue. The author(s) will get no email or "
 "see comments here."
@@ -7057,11 +7224,11 @@ msgstr ""
 "Očisti ovu aplikaciju iz reda za eskalaciju. Autor neće dobiti e-poštu ili "
 "videti komentare."
 
-#: mkt/reviewers/utils.py:412
+#: mkt/reviewers/utils.py:431
 msgid "Clear Re-review"
 msgstr "Očisti ponovni pregled"
 
-#: mkt/reviewers/utils.py:414
+#: mkt/reviewers/utils.py:433
 msgid ""
 "Clear this app from the re-review queue. The author(s) will get no email or "
 "see comments here."
@@ -7069,11 +7236,11 @@ msgstr ""
 "Očisti ovu aplikaciju iz reda za ponovo pregledanje. Autor neće dobiti e-"
 "poštu ili videti komentare."
 
-#: mkt/reviewers/utils.py:419
+#: mkt/reviewers/utils.py:438
 msgid "Ban app"
 msgstr "Banuj aplikaciju"
 
-#: mkt/reviewers/utils.py:421
+#: mkt/reviewers/utils.py:440
 msgid ""
 "Ban the app from Marketplace. Similar to Reject but the author(s) can't "
 "resubmit. To only be used in extreme cases."
@@ -7081,56 +7248,56 @@ msgstr ""
 "Banuj ovu aplikaciju sa Marketplace-a. Slično odbijanju samo autori ne mogu "
 "opet da podnesu aplikaciju. Ovo se koristi samo u ekstremnim slučajevima."
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:141
 msgid "New Apps (Under 5 days)"
 msgstr "Nove aplikacije (manje od 5 dana)"
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:142
 msgid "Passable (5 to 10 days)"
 msgstr "Prosečno (5 do 10 dana)"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:143
 msgid "Overdue (Over 10 days)"
 msgstr "Kasni (preko 10 dana)"
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:256
 msgid "Self-reviews are not allowed."
 msgstr "Ne možete pregledati svoj rad."
 
-#: mkt/reviewers/views.py:260
+#: mkt/reviewers/views.py:262
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Samo viši recenzenti mogu da pregledaju blokirane aplikacije."
 
-#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:335
-#: mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340
+#: mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "Dodato {0}"
 
-#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:336
-#: mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341
+#: mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "Uklonjeno {0}"
 
-#: mkt/reviewers/views.py:316
+#: mkt/reviewers/views.py:321
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Uređaj(e) je promenio recenzent: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:338
+#: mkt/reviewers/views.py:343
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Zahtevi izmenjeni od strane recezenta: {0}"
 
-#: mkt/reviewers/views.py:365
+#: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" uspešno obrađeno (+ {1} bodova, {2} ukupno)."
 
-#: mkt/reviewers/views.py:367
+#: mkt/reviewers/views.py:372
 msgid "Review successfully processed."
 msgstr "Predgled uspešno obrađen."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
-msgid "Abuse Reports for {addon} ({num})"
-msgstr "Izveštaji zloupotrebe za {addon} ({num})"
+msgid "Abuse Reports for {item} ({num})"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -7458,11 +7625,11 @@ msgstr "Istorija aplikacije"
 msgid "Resolution"
 msgstr "Rezolucija"
 
-#: mkt/reviewers/templates/reviewers/review.html:99
+#: mkt/reviewers/templates/reviewers/review.html:100
 msgid "App submission incomplete"
 msgstr "Podnošenje aplikacije je nepotpuno"
 
-#: mkt/reviewers/templates/reviewers/review.html:119
+#: mkt/reviewers/templates/reviewers/review.html:121
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
@@ -7470,31 +7637,35 @@ msgstr ""
 "Još uvek možete da pošaljete ovaj obrazac, međutim, samo učinite to ako "
 "znate da nije u konfliktu."
 
-#: mkt/reviewers/templates/reviewers/review.html:126
+#: mkt/reviewers/templates/reviewers/review.html:128
 msgid "Insert canned response..."
 msgstr "Ubacite unapred pripremljen odgovor..."
 
-#: mkt/reviewers/templates/reviewers/review.html:132
-msgid "Tested with:"
-msgstr "Testirano sa:"
+#: mkt/reviewers/templates/reviewers/review.html:133
+msgid "Tested on:"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:158
+#: mkt/reviewers/templates/reviewers/review.html:159
+msgid "Add device"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
 msgstr "Pregledaj"
 
-#: mkt/reviewers/templates/reviewers/review.html:170
+#: mkt/reviewers/templates/reviewers/review.html:188
 msgid "Attach another file"
 msgstr "Priloži drugu datoteku"
 
-#: mkt/reviewers/templates/reviewers/review.html:173
+#: mkt/reviewers/templates/reviewers/review.html:191
 msgid "Device Override:"
 msgstr "Zanemarivanje uređaja:"
 
-#: mkt/reviewers/templates/reviewers/review.html:186
+#: mkt/reviewers/templates/reviewers/review.html:204
 msgid "Minimum Requirements Override:"
 msgstr "Minimalni zahtevi za zanemarivanje:"
 
-#: mkt/reviewers/templates/reviewers/review.html:205
+#: mkt/reviewers/templates/reviewers/review.html:223
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -7622,38 +7793,41 @@ msgid "Newer versions"
 msgstr "Novije verzije"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
 msgid "Process"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Skip"
 msgstr "Preskoči"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:53
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Mark Read"
 msgstr "Označi kao pročitano"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
-msgid ""
-"[<a href=\"%(review_url)s\">Review page</a> | <a href=\"%(abuses_url)s\">All "
-"abuse reports (%(abuses_count)s)</a>]"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+msgid "Review page"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:32
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
-#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
-msgid "translate"
-msgstr "prevedi"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+msgid ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank"
+"\" href=\"%(translate_url)s\">translate</a>"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
 msgstr ""
 
@@ -7670,6 +7844,10 @@ msgstr "Akcije moderacije:"
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgstr "od %(user)s datuma %(date)s %(stars)s (%(locale)s)"
+
+#: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
+msgid "translate"
+msgstr "prevedi"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid ""
@@ -7791,111 +7969,111 @@ msgstr "Imate <span>{0}</span> poena."
 msgid "No results found"
 msgstr "Nema pronađenih rezultata"
 
-#: mkt/search/forms.py:12
+#: mkt/search/forms.py:13
 msgid "Relevance"
 msgstr "Relevantnost"
 
-#: mkt/search/forms.py:13
+#: mkt/search/forms.py:14
 msgid "Popularity"
 msgstr "Popularnost"
 
-#: mkt/search/forms.py:14
+#: mkt/search/forms.py:15
 msgid "Weekly Downloads"
 msgstr "Sedmična preuzimanja"
 
-#: mkt/search/forms.py:15
+#: mkt/search/forms.py:16
 msgid "Top Rated"
 msgstr "Najbolje ocenjeno"
 
-#: mkt/search/forms.py:17
+#: mkt/search/forms.py:18
 msgid "Newest"
 msgstr "Najnovije"
 
-#: mkt/search/forms.py:18
+#: mkt/search/forms.py:19
 msgid "Reviewed"
 msgstr "Pregledano"
 
-#: mkt/search/forms.py:20
+#: mkt/search/forms.py:21
 msgid "Trending"
 msgstr "U trendu"
 
-#: mkt/search/forms.py:26
+#: mkt/search/forms.py:27
 msgid "Any App Type"
 msgstr "Bilo koji tip aplikacije"
 
-#: mkt/search/forms.py:29
+#: mkt/search/forms.py:30
 msgid "Privileged packaged app"
 msgstr "Privilegovana upakovana aplikacija"
 
-#: mkt/search/forms.py:34
+#: mkt/search/forms.py:35
 msgid "Free with In-app"
 msgstr "Besplatno u okviru aplikacije"
 
-#: mkt/search/forms.py:36
+#: mkt/search/forms.py:37
 msgid "Premium with In-app"
 msgstr "Premijum u okviru aplikacije"
 
-#: mkt/search/forms.py:37
+#: mkt/search/forms.py:38
 msgid "Other System for In-App"
 msgstr "Drugi sistem u okviru aplikacije"
 
-#: mkt/search/forms.py:44
+#: mkt/search/forms.py:45
 msgid "Android"
 msgstr "Android"
 
-#: mkt/search/forms.py:51
+#: mkt/search/forms.py:52
 msgid "Any Device Type"
 msgstr "Bilo koji tip uređaja"
 
-#: mkt/search/forms.py:53
+#: mkt/search/forms.py:54
 msgid "Mobile"
 msgstr "Mobilni"
 
-#: mkt/search/forms.py:54
+#: mkt/search/forms.py:55
 msgid "Tablet"
 msgstr "Tablet"
 
-#: mkt/search/forms.py:57
+#: mkt/search/forms.py:62
 msgid "All Categories"
 msgstr "Sve kategorije"
 
-#: mkt/search/forms.py:72
+#: mkt/search/forms.py:77
 msgid "Search for apps"
 msgstr "Pretraži aplikacije"
 
-#: mkt/search/forms.py:86
+#: mkt/search/forms.py:93
 msgid "Device type"
 msgstr "Tip uređaja"
 
-#: mkt/search/forms.py:126
+#: mkt/search/forms.py:137
 msgid "Premium types"
 msgstr "Premijum tipovi"
 
-#: mkt/search/forms.py:130
+#: mkt/search/forms.py:141
 msgid "App type"
 msgstr "Tip aplikacije"
 
-#: mkt/search/forms.py:134
+#: mkt/search/forms.py:145
 msgid "Installs allowed from"
 msgstr "Instalacija je dozvoljena sa"
 
-#: mkt/search/forms.py:135
+#: mkt/search/forms.py:146
 msgid "Everywhere"
 msgstr "Bilo kog mesta"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:148
 msgid "Works offline"
 msgstr "Radi van mreže"
 
-#: mkt/search/forms.py:139
+#: mkt/search/forms.py:150
 msgid "Supported languages"
 msgstr "Podržani jezici"
 
-#: mkt/search/forms.py:140
+#: mkt/search/forms.py:151
 msgid "Author name"
 msgstr "Ime autora"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:152
 msgid "Tags"
 msgstr "Oznake"
 
@@ -8440,49 +8618,20 @@ msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} nije prošao {queue} pregled."
 
 #: mkt/site/log.py:689
-msgid "Abuse report {report} for {addon} deleted."
+msgid "Abuse report {report} for {addon} read."
 msgstr ""
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
 msgstr ""
 
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:683
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Neispravnih oznaka: {0}"
-msgstr[1] "Neispravnih oznaka: {0}"
-msgstr[2] "Neispravnih oznaka: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/site/utils.py:693
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" je rezervisane oznaka koja se ne može koristiti."
-msgstr[1] "\"{0}\" su rezervisane oznake koja se ne mogu koristiti."
-msgstr[2] "\"{0}\" su rezervisane oznake koja se ne mogu koristiti."
-
-#: mkt/site/utils.py:701
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Imate {0} previše oznaka."
-msgstr[1] "Imate {0} previše oznaka."
-msgstr[2] "Imate {0} previše oznaka."
-
-#: mkt/site/utils.py:707
-msgid ""
-"All tags must be %s characters or less after invalid characters are removed."
+#: mkt/site/log.py:698
+msgid "Abuse report {report} for {website} read."
 msgstr ""
-"Sve oznake moraju biti od %s kataktera ili manje nakon što su neispravni "
-"karakteri uklonjeni."
 
-#: mkt/site/utils.py:711
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Sve oznake moraju sadržati najmanje {0} karakter."
-msgstr[1] "Sve oznake moraju sadržati najmanje {0} karaktera."
-msgstr[2] "Sve oznake moraju sadržati najmanje {0} karaktera."
+#: mkt/site/log.py:699
+msgid "{user} marked read {report} for {website}."
+msgstr ""
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -8559,44 +8708,44 @@ msgstr "Sedmica"
 msgid "Quarter"
 msgstr "Kvartal"
 
-#: mkt/submit/forms.py:31
+#: mkt/submit/forms.py:32
 msgid "Device(s) changed: {0}"
 msgstr "Urađaj(a) promenjeno: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:41
+#: mkt/submit/forms.py:42
 msgid "Requirements changed: {0}"
 msgstr "Zahtevi izmenjeni: {0}"
 
-#: mkt/submit/forms.py:49
+#: mkt/submit/forms.py:50
 msgid "Cannot be free and paid."
 msgstr "Ne može da bude i besplatna i plaćena."
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:51
 msgid "Please select a device."
 msgstr "Izaberite uređaj."
 
-#: mkt/submit/forms.py:128
+#: mkt/submit/forms.py:129
 msgid "Agree and Continue"
 msgstr "Slažem se i nastavi"
 
-#: mkt/submit/forms.py:155 mkt/submit/forms.py:229
+#: mkt/submit/forms.py:156 mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
 msgstr "Došlo je do greške tokom otpremanja. Molimo Vas, pokušajte ponovo."
 
-#: mkt/submit/forms.py:190
+#: mkt/submit/forms.py:191
 msgid "Version %s already exists."
 msgstr "Verzija %s već postoji."
 
-#: mkt/submit/forms.py:201
+#: mkt/submit/forms.py:202
 msgid "Changes to \"origin\" are not allowed."
 msgstr "Promene na \"origin\" nisu dozvoljene."
 
-#: mkt/submit/forms.py:224
+#: mkt/submit/forms.py:225
 msgid "User submitting validation does not match."
 msgstr "Podnošenje validacije korisnika se ne poklapa."
 
-#: mkt/submit/forms.py:269
+#: mkt/submit/forms.py:270
 msgid ""
 "Publish my app and make it visible to everyone in the Marketplace and "
 "include it in search results."
@@ -8604,7 +8753,7 @@ msgstr ""
 "Objavi moju aplikaciju i neka bude vidljiva svima na Marketplace-u i neka "
 "bude uključena u rezultatima pretrage."
 
-#: mkt/submit/forms.py:272
+#: mkt/submit/forms.py:273
 msgid ""
 "Do not publish my app. Notify me and I will adjust app visibility after it "
 "is approved."
@@ -8612,11 +8761,11 @@ msgstr ""
 "Nemoj objaviti moju aplikaciju. Obavesti me i ja ću prilagoditi vidljivost "
 "aplikacije nakon njenog odobrenja."
 
-#: mkt/submit/forms.py:294
+#: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
 msgstr "Polisa o privatnosti:"
 
-#: mkt/submit/forms.py:296
+#: mkt/submit/forms.py:297
 msgid ""
 "A privacy policy explains how you handle data received through your app. For "
 "example: what data do you receive? How do you use it? Who do you share it "
@@ -8634,29 +8783,29 @@ msgstr ""
 "polisu privatnosti, <a href=\"{url}\" target=\"_blank\">saznajte kako da je "
 "napravite.</a>"
 
-#: mkt/submit/forms.py:307
+#: mkt/submit/forms.py:308
 msgid "Homepage:"
 msgstr "Početna stranica:"
 
-#: mkt/submit/forms.py:309
+#: mkt/submit/forms.py:310
 msgid "If your app has another homepage, enter its address here."
 msgstr ""
 "Ako aplikacija ima još jednu početnu stranicu, unesite njenu adresu ovde."
 
-#: mkt/submit/forms.py:312
+#: mkt/submit/forms.py:313
 msgid "Website:"
 msgstr "Veb sajta:"
 
-#: mkt/submit/forms.py:314
+#: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
 "Ako aplikacija ima podršku sajta ili foruma, unesite njihovu adresu ovde."
 
-#: mkt/submit/forms.py:318
+#: mkt/submit/forms.py:319
 msgid "Email:"
 msgstr "E-pošte:"
 
-#: mkt/submit/forms.py:320
+#: mkt/submit/forms.py:321
 msgid ""
 "This email address will be listed publicly on the Marketplace and used by "
 "end users to contact you with support issues. This email address will be "
@@ -8666,15 +8815,15 @@ msgstr ""
 "poslednji korisnici da Vas kontaktiraju sa podrškom za probleme. Ova adresa "
 "e-pošte će biti javno listirana na Vašoj stranici detalja aplikacije."
 
-#: mkt/submit/forms.py:326
+#: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
 msgstr "Da li Vaša aplikacija zahteva Flash podršku?"
 
-#: mkt/submit/forms.py:332
+#: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
 msgstr ""
 
-#: mkt/submit/forms.py:334
+#: mkt/submit/forms.py:335
 msgid ""
 "Your app will be reviewed by Mozilla before it becomes publicly listed on "
 "the Marketplace. Enter any special instructions for the app reviewers here."
@@ -8683,11 +8832,11 @@ msgstr ""
 "stavljena javno na listu na Marketplace-u. Unesite bilo kakve specijalne "
 "instrukcije za recezente aplikacije ovde."
 
-#: mkt/submit/forms.py:339
+#: mkt/submit/forms.py:340
 msgid "Once your app is approved, choose a publishing option:"
 msgstr "Jednom kada se aplikacija odobri, izaberite opciju za objavljivanje:"
 
-#: mkt/submit/forms.py:343
+#: mkt/submit/forms.py:344
 msgid "My app works without an Internet connection."
 msgstr "Moja aplikacija radi bez internet konekcije."
 
@@ -8932,6 +9081,43 @@ msgstr ""
 msgid "Héllo"
 msgstr "Pozdrav"
 
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:25
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Neispravnih oznaka: {0}"
+msgstr[1] "Neispravnih oznaka: {0}"
+msgstr[2] "Neispravnih oznaka: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+#: mkt/tags/utils.py:35
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" je rezervisane oznaka koja se ne može koristiti."
+msgstr[1] "\"{0}\" su rezervisane oznake koja se ne mogu koristiti."
+msgstr[2] "\"{0}\" su rezervisane oznake koja se ne mogu koristiti."
+
+#: mkt/tags/utils.py:43
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Imate {0} previše oznaka."
+msgstr[1] "Imate {0} previše oznaka."
+msgstr[2] "Imate {0} previše oznaka."
+
+#: mkt/tags/utils.py:49
+msgid ""
+"All tags must be %s characters or less after invalid characters are removed."
+msgstr ""
+"Sve oznake moraju biti od %s kataktera ili manje nakon što su neispravni "
+"karakteri uklonjeni."
+
+#: mkt/tags/utils.py:53
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Sve oznake moraju sadržati najmanje {0} karakter."
+msgstr[1] "Sve oznake moraju sadržati najmanje {0} karaktera."
+msgstr[2] "Sve oznake moraju sadržati najmanje {0} karaktera."
+
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
 msgstr "Izmeni postavke naloga"
@@ -9124,70 +9310,70 @@ msgid "Please use the verified email for this account."
 msgstr "Molimo Vas koristite verifikovanu e-poštu za ovaj nalog."
 
 # Column name in a table.
-#: mkt/webapps/models.py:208
+#: mkt/webapps/models.py:200
 msgid "Listed"
 msgstr "U listi"
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1316
 msgid "You must provide a support email or URL."
 msgstr "Morate obezbediti e-poštu podrške ili URL."
 
-#: mkt/webapps/models.py:1325
+#: mkt/webapps/models.py:1318
 msgid "You must provide an app name."
 msgstr "Morate da napišete ime aplikacije."
 
-#: mkt/webapps/models.py:1327
+#: mkt/webapps/models.py:1320
 msgid "You must provide at least one device type."
 msgstr "Morate obezbediti bar jedan tip uređaja."
 
-#: mkt/webapps/models.py:1330
+#: mkt/webapps/models.py:1323
 msgid "You must provide at least one category."
 msgstr "Morate da izaberete barem jednu kategoriju."
 
-#: mkt/webapps/models.py:1397
+#: mkt/webapps/models.py:1390
 msgid "You must set up content ratings."
 msgstr "Morate da podesite ocene sadržaja."
 
-#: mkt/webapps/models.py:1399
+#: mkt/webapps/models.py:1392
 msgid "You must set up a payment account."
 msgstr "Morate da podesite nalog za plaćanje."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1417
 msgid "This app's submission process has not been fully completed."
 msgstr "Proces podnošenja aplikacije nije u potpunosti završen."
 
-#: mkt/webapps/models.py:1431
+#: mkt/webapps/models.py:1424
 msgid "This app needs to get a content rating."
 msgstr "Ova aplikacija treba da dobije ocenu sadržaja."
 
-#: mkt/webapps/models.py:1437
+#: mkt/webapps/models.py:1430
 msgid "This app needs a payment account set up."
 msgstr "Ovoj aplikaciji je potreban podešen račun za plaćanje."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2696
+#: mkt/webapps/models.py:2689
 msgid "awaiting approval"
 msgstr "čekanje na odobrenje"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2698
+#: mkt/webapps/models.py:2691
 msgid "rejected"
 msgstr "odbijeno"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2700
+#: mkt/webapps/models.py:2693
 msgid "requires additional review"
 msgstr "zahteva dodatan pregled"
 
-#: mkt/webapps/models.py:2751
+#: mkt/webapps/models.py:2744
 msgid "{region} approval status"
 msgstr "{region} status odobrenja"
 
-#: mkt/webapps/models.py:2759
+#: mkt/webapps/models.py:2752
 msgid "{region} nomination date"
 msgstr "{region} datum nominacije"
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Greška sa Vašom aplikacijom \"{app}\" na Firefox Marketplace-u"
 
