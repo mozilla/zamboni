@@ -697,8 +697,7 @@ def make_validation_result(data):
     """Safe wrapper around JSON dict containing a validation result."""
     if not settings.EXPOSE_VALIDATOR_TRACEBACKS:
         if data['error']:
-            # Just expose the message, not the traceback.
-            data['error'] = data['error'].strip().split('\n')[-1].strip()
+            data['error'] = _('An error occurred validating the manifest.')
     if data['validation']:
         for msg in data['validation']['messages']:
             for k, v in msg.items():
