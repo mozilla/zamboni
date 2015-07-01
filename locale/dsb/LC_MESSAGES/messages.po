@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-20 19:52+0000\n"
+"PO-Revision-Date: 2015-07-01 21:21+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432151551.0\n"
+"X-POOTLE-MTIME: 1435785708.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1251,7 +1252,7 @@ msgstr "Schójźeńk 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Knigły a comici"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1267,11 +1268,11 @@ msgstr "Rozdrosćenje"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Jěza a piśe"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Źiśi"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1283,11 +1284,11 @@ msgstr "Strowje a fitnes"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humor"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1303,11 +1304,11 @@ msgstr "Muzika"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Nowosći"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Personalizacija"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1323,7 +1324,7 @@ msgstr "Pśirucnice"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Wědomnosć a technika"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1347,7 +1348,7 @@ msgstr "Rědy"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Wjedro"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2002,19 +2003,19 @@ msgstr "Zbytk swěta"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Sint Eustatius a Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Boliwiska, wěcejnarodny stat"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Kongo, Demokratiska republika"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Kapwerdy"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2022,31 +2023,31 @@ msgstr "Guineja-Conakry"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Kupy Heard a McDonald"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laos, Demokratiska ludowa republika"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Libyska"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin (francojski źěl)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Makedońska, bywša jugosłowjańska republika"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Palestina, stat"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2058,7 +2059,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "St. Helena, Ascension a Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2070,7 +2071,7 @@ msgstr "Tansanija"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Vatikańske město"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -5298,7 +5299,7 @@ msgstr "Zarownańske napšašowanje za toś tu transakciju njejo se raźiło."
 
 #: mkt/lookup/views.py:333
 msgid "Website saved."
-msgstr ""
+msgstr "Websedło jo se składowało."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5615,35 +5616,35 @@ msgstr "Pśicyna"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr ""
+msgstr "Krotke mě"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
 msgid "Mobile URL"
-msgstr ""
+msgstr "Mobilny URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
 msgid "Keywords"
-msgstr ""
+msgstr "Klucowe słowa"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Preferěrowane regiony"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Mě - krotke mě"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "znjemóžnjony"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5671,11 +5672,11 @@ msgstr "Konto wulašowane"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Websedłowe zespominanje za"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Websedło wobźěłaś"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5697,7 +5698,7 @@ msgstr "Kontowe pytanje"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Websedłowe pytanje"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5907,15 +5908,15 @@ msgstr "Nałoženje, pśeglědowaŕ abo komentar"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Rědowy typ:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Rěd:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Wersija Firefox:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -5979,7 +5980,7 @@ msgstr "Moderěrowane pśeglědanja"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Znjewužywańske powěźeńki wó websedłach"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6034,7 +6035,7 @@ msgstr "Znjewužywańske powěźeńki ({0})"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Znjewužywańske powěźeńki wó websedłach ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6155,7 +6156,7 @@ msgstr "Pśeglědanje jo wuspěšnje pśeźěłane."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Znjewužywańske powěźeńki za {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6477,11 +6478,11 @@ msgstr "Pśigótowane wótegrono zasajźiś…"
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "Testowany na:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Rěd pśidaś"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -6627,11 +6628,13 @@ msgstr "Ako pśecytany markěrowaś"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "Bok pśeglědaś"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Wšě znjewužywańske powěźeńki (%"
+"(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
@@ -6640,6 +6643,8 @@ msgstr "<span class=\"submitted-by\">Pśizjawjony wót %(user)s  %(date)s [%(ip_
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"<a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\""
+"%(translate_url)s\">pśełožyś</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -7410,7 +7415,7 @@ msgstr "Dodank {addon} je pśi pśeglědowanju {queue} pśepadnuł."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Znjewužywańska powěźeńka {report} za {addon} jo se pśecytała."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7418,11 +7423,11 @@ msgstr "{user} jo {report} za {addon} ako pśecytanu markěrował."
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Znjewužywańska powěźeńka {report} za {website} pśecytana."
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} jo {report} za {website} ako pśecyitanu markěrował."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
