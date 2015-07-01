@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-01 15:30+0000\n"
+"PO-Revision-Date: 2015-07-01 17:44+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430494205.0\n"
+"X-POOTLE-MTIME: 1435772655.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -445,7 +445,7 @@ msgstr "Quittung wurde nicht von App überprüft."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr ""
+msgstr "{name} hat diese App zuerst angesehen."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
