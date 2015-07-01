@@ -76,10 +76,9 @@ class TestQueryFilter(FilterTestsBase):
         self.req = RequestFactory().get('/', data={'q': 'something'})
         self.req.REGION = mkt.regions.FRA
         qs = self._filter(req=self.req)
-        should = (qs['query']['function_score']['query']['bool']['should'])
-        ok_({'term': {'preferred_regions': {'value': mkt.regions.FRA.id,
-                                            'boost': 4}}}
-            in should)
+        ok_({'boost_factor': 4,
+             'filter': {'term': {'preferred_regions': mkt.regions.FRA.id}}}
+            in qs['query']['function_score']['functions'])
 
     @override_settings(ES_USE_PLUGINS=True)
     def test_polish_analyzer(self):

@@ -1346,6 +1346,17 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[1]['title'], self.website.title)
         eq_(objs[1]['url'], self.website.url)
 
+    def test_search_preferred_region_match(self):
+        """
+        For websites, if the query string is something that will definitely not
+        match any websites we may still match on preferred_region. But we don't
+        want only preferred_region to find results.
+        """
+        res = self.anon.get(self.url, data={'q': 'qwertyuiop', 'region': 'uy'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
     def test_search_popularity(self):
         self.website.popularity.create(region=0, value=12.0)
         # Force reindex to get the new popularity, it's not done automatically.
