@@ -19,6 +19,7 @@ import mkt
 import mkt.site.tests
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_REFERENCE,
                                     SOLITUDE_REFUND_STATUSES)
@@ -1239,6 +1240,7 @@ class TestWebsiteEdit(mkt.site.tests.TestCase):
             'url': 'http://example.com/',
             'status': 4,
             'categories': ['kids', 'games'],
+            'devices': [DEVICE_GAIA.id],
         }
         resp = self.client.post(self.url, data)
         self.assert3xx(resp, reverse('lookup.website_summary',
