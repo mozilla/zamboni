@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-02-11 21:33+0000\n"
+"PO-Revision-Date: 2015-07-02 10:27+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423690394.0\n"
+"X-POOTLE-MTIME: 1435832827.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -436,7 +436,7 @@ msgstr "交易收据未经应用核实。"
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr ""
+msgstr "{name} 已先行查看此应用。"
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
