@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-20 17:23+0000\n"
+"PO-Revision-Date: 2015-07-02 10:19+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432142621.0\n"
+"X-POOTLE-MTIME: 1435832343.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1254,7 +1254,7 @@ msgstr "第6級"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "書籍與漫畫"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1270,11 +1270,11 @@ msgstr "娛樂"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "飲食"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "兒童"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1286,11 +1286,11 @@ msgstr "健康與健身"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "幽默"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "網際網路"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1306,11 +1306,11 @@ msgstr "音樂"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "新聞"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "個人化"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1326,7 +1326,7 @@ msgstr "參考"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "科技"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1350,7 +1350,7 @@ msgstr "小工具"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "氣候"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2004,19 +2004,19 @@ msgstr "世界其他地區"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "波奈、聖佑達修斯與沙巴"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "玻利維亞"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "剛果民主共和國"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "維德角"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2024,31 +2024,31 @@ msgstr "幾內亞"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "赫德島和麥當勞群島"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "寮國"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "利比亞"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "列支敦斯登"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "法屬聖馬丁"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "馬其頓"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "巴勒斯坦"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2060,7 +2060,7 @@ msgstr "塞內加爾"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "聖赫勒拿、亞森欣與垂斯坦昆哈"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2072,7 +2072,7 @@ msgstr "坦尚尼亞"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "教廷"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -5288,7 +5288,7 @@ msgstr "這個交易的退款要求失敗。"
 
 #: mkt/lookup/views.py:333
 msgid "Website saved."
-msgstr ""
+msgstr "網站已儲存。"
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5608,35 +5608,35 @@ msgstr "理由"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr ""
+msgstr "短名稱"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
 msgid "URL"
-msgstr ""
+msgstr "網址"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
 msgid "Mobile URL"
-msgstr ""
+msgstr "行動版網址"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
 msgid "Keywords"
-msgstr ""
+msgstr "關鍵字"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "偏好地區"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "名稱 - 短名稱"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "已停用"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5665,11 +5665,11 @@ msgstr "帳號已刪除"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "網站概要:"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "編輯網站"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5691,7 +5691,7 @@ msgstr "帳號查閱"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "尋找網站"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5901,15 +5901,15 @@ msgstr "應用程式，審核者或評論"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "裝置類型:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "裝置:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox 版本:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -5974,7 +5974,7 @@ msgstr "有問題的評論"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "網站濫用報告"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6031,7 +6031,7 @@ msgstr "濫用回報（{0}）"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "濫用報告 ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6154,7 +6154,7 @@ msgstr "審核流程已順利開始。"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "{item} 的濫用報告 ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6464,11 +6464,11 @@ msgstr "插入罐頭回覆…"
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "測試於:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "新增裝置"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -6614,11 +6614,11 @@ msgstr "標示為已讀"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "審核頁面"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
+msgstr "<a href=\"%(abuses_url)s\">所有濫用報告 (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
@@ -6627,6 +6627,8 @@ msgstr "<span class=\"submitted-by\">由 %(user)s 於 %(date)s [%(ip_address)s] 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" "
+"href=\"%(translate_url)s\">翻譯</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -7401,7 +7403,7 @@ msgstr "{addon} {version} 未通過 {queue} 審查。"
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "已閱讀 {addon} 的濫用回報 {report}。"
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7409,11 +7411,11 @@ msgstr "{user} 已將 {addon} 的 {report} 標示為已讀。"
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "已閱讀 {website} 的濫用回報 {report}。"
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} 已將 {website} 的報告 {report} 標示為已讀。"
 
 # 90%
 #: mkt/site/templates/site/403.html:4
