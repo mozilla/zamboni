@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-03 18:07+0000\n"
+"PO-Revision-Date: 2015-07-03 18:15+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435946837.0\n"
+"X-POOTLE-MTIME: 1435947326.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -194,7 +194,7 @@ msgstr "Jsou prováděny změny obrázku."
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Toto video vyžaduje webový prohlížeč s podporou otevřeného videa"
+msgstr "Toto video vyžaduje webový prohlížeč s podporou otevřeného videa "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
