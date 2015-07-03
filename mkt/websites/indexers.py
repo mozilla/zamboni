@@ -70,6 +70,9 @@ class WebsiteIndexer(BaseIndexer):
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
+                    # 'url' is already indexed, no need to also index the
+                    # mobile-specific URL.
+                    'mobile_url': cls.string_not_indexed(),
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
                     'name': {
                         'type': 'string',
@@ -130,7 +133,8 @@ class WebsiteIndexer(BaseIndexer):
         attach_tags([obj])
 
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
-                 'is_disabled', 'last_updated', 'modified', 'status', 'url')
+                 'is_disabled', 'last_updated', 'mobile_url', 'modified',
+                 'status', 'url')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['category'] = obj.categories or []

@@ -26,6 +26,7 @@ def website_factory(**kwargs):
         'status': STATUS_PUBLIC,
         'title': 'Title for %s' % text.capitalize(),
         'url': 'http://%s.example.com' % text,
+        'mobile_url': 'http://mobile.%s.example.com' % text,
     }
     data.update(kwargs)
     return Website.objects.create(**data)
