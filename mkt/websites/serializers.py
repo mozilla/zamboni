@@ -41,7 +41,8 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         obj = Website(id=data['id'])
 
         # Set basic attributes on the fake instance using the data from ES.
-        self._attach_fields(obj, data, ('default_locale', 'icon_hash', 'url'))
+        self._attach_fields(
+            obj, data, ('default_locale', 'icon_hash', 'mobile_url', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.
