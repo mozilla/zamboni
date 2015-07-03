@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-04-23 16:02+0000\n"
+"PO-Revision-Date: 2015-07-03 18:13+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429804938.0\n"
+"X-POOTLE-MTIME: 1435947198.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1483,7 +1483,9 @@ msgstr "Packaged Apps Install API"
 
 #: mkt/constants/features.py:25
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "Aplikace vyžaduje pro instalaci dalších zabalených aplikací API `navigator.mozApps.installPackage` "
+msgstr ""
+"Aplikace vyžaduje pro instalaci dalších zabalených aplikací API "
+"`navigator.mozApps.installPackage`."
 
 #: mkt/constants/features.py:31
 msgid "Web Payment"
@@ -1787,7 +1789,9 @@ msgstr "Upozornění"
 
 #: mkt/constants/features.py:283
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr "Aplikace vyžaduje platformu, která poskytne přístup k nastavení upozornění či události, které je možné naplánovat na konkrétní čas. "
+msgstr ""
+"Aplikace vyžaduje platformu, která poskytne přístup k nastavení upozornění "
+"či události, které je možné naplánovat na konkrétní čas."
 
 #: mkt/constants/features.py:290
 msgid "SystemXHR"
@@ -2146,19 +2150,27 @@ msgstr "Člen týmu smí být uveden pouze jednou."
 
 #: mkt/developers/forms.py:187
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně veřejná. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
+"Jejda, zdá se, že jste již přidali manifest pro %s, jenž je aktuálně "
+"veřejná. <a href=\"%s\">Upravit aplikaci</a>"
 
 #: mkt/developers/forms.py:191
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž aktuálně čeká na schválení. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
+"Jejda, zdá se, že jste již přidali manifest pro %s, jenž aktuálně čeká na "
+"schválení. <a href=\"%s\">Upravit aplikaci</a>"
 
 #: mkt/developers/forms.py:195
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž ještě není dokončena. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
+"Jejda, zdá se, že jste již přidali manifest pro %s, jenž ještě není "
+"dokončena. <a href=\"%s\">Upravit aplikaci</a>"
 
 #: mkt/developers/forms.py:199
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně zamítnutá. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
+"Jejda, zdá se, že jste již přidali manifest pro %s, jenž je aktuálně "
+"zamítnutá. <a href=\"%s\">Upravit aplikaci</a>"
 
 #: mkt/developers/forms.py:203
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
@@ -2166,7 +2178,9 @@ msgstr "Oops, zdá se, že přidávaný manifest pro %s je aktuálně na seznamu
 
 #: mkt/developers/forms.py:207
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "Oops. Zdá se, že jste již přidali manifest pro %s, jenž je aktuálně zakázána. <a href=\"%s\">Upravit aplikaci</a>"
+msgstr ""
+"Jejda, zdá se, že jste již přidali manifest pro %s, jenž je aktuálně "
+"zakázána. <a href=\"%s\">Upravit aplikaci</a>"
 
 #: mkt/developers/forms.py:222
 msgid "An app already exists on this domain; only one app per domain is allowed."
@@ -2672,7 +2686,9 @@ msgstr "Změny byly úspěšně uloženy."
 
 #: mkt/developers/views.py:315
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr "Gratulujeme. Odeslání vaší aplikace bylo dokončeno a brzy bude zkontrolována!"
+msgstr ""
+"Gratulujeme, odeslání vaší aplikace bylo dokončeno a brzy bude "
+"zkontrolována!"
 
 #: mkt/developers/views.py:317
 msgid "Content ratings successfully saved."
@@ -2784,9 +2800,12 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p>Existují dva typy použití Marketplace API. Z jiné webové stránky při použití tradičního QAuth nebo z nástrojů na příkazové řádce. Rozdíl je uveden v <a href=\"https://firefox-marketplace-api."
-"readthedocs.org/en/latest/topics/authentication.html#oauth\">dokumentaci</a>. Jakékoliv testování by mělo být prováděno na <a href=\"https://marketplace-dev.allizom.org\">vývojářském serveru</a> a "
-"nikoliv produkčním.</p>"
+"<p> Existují dva typy použití Marketplace API. Z jiné webové stránky při "
+"použití tradičního QAuth nebo z nástrojů na příkazové řádce. Rozdíl je "
+"uveden v <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/"
+"topics/authentication.html#oauth\">dokumentaci</a>. Jakékoliv testování by "
+"mělo být prováděno na <a href=\"https://marketplace-"
+"dev.allizom.org\">vývojářském serveru</a> a nikoliv produkčním. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -2905,7 +2924,7 @@ msgstr "Zakázat"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
-msgstr "Vývojáři Firefox Marketplace "
+msgstr "Vývojáři Firefox Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:59 templates/base.html:60
 msgid "API Reference"
@@ -3100,7 +3119,7 @@ msgstr "Členové týmu"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr "Pouze majitelé aplikace mohou editovat tuto stránku.                "
+msgstr "Pouze majitelé aplikace mohou editovat tuto stránku."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -3532,7 +3551,9 @@ msgstr "Kontakt na Mozillu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr "Na e-mailovou adresu (nebo více e-mailových adres oddělených čárkou) této aplikace bude Mozilla posílat libovolné e-maily související s kontrolou. "
+msgstr ""
+"Na e-mailovou adresu (nebo více e-mailových adres oddělených čárkou) této "
+"aplikace bude Mozilla posílat libovolné e-maily související s kontrolou."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -3631,7 +3652,7 @@ msgstr "Zobrazit dokumentaci k API"
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:142
 msgid "Manifest URL"
-msgstr "URl manifestu"
+msgstr "URL manifestu"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:85
 msgid "Refresh"
@@ -4107,7 +4128,9 @@ msgstr "Použitím certifikačního nástroje pro IARC hodnocení souhlasíte s 
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr "Proces hodnoceni dle IARC je dokončen. Budete přesměrován(a) na vaši <a href=\"%(ratings_url)s\">stránku s hodnocením obsahu</a>."
+msgstr ""
+"Proces hodnoceni dle IARC je dokončen, budete přesměrováni na vaši <a href=\""
+"%(ratings_url)s\">stránku s hodnocením obsahu</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
@@ -4493,7 +4516,7 @@ msgstr "Zobrazit transakce"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr "Přidat účet pro {provider} "
+msgstr "Přidat účet pro {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -4978,7 +5001,9 @@ msgstr "Když je banner použit spolu s odkazy na jiné obchody  (\"Get it on Go
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr "Banner by měl směřovat na stránku detailu o aplikaci na Firefox Marketplace. <br> Například: https://marketplace.firefox.com/app/twitter"
+msgstr ""
+"Banner by měl směřovat na stránku detailu o aplikaci na Firefox "
+"Marketplace<br> Například: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -6170,7 +6195,7 @@ msgstr "Další fronty"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr "Fronta {queue} "
+msgstr "Fronta {queue}"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
@@ -6909,7 +6934,7 @@ msgstr "Barva v hexadecimálním formátu"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr "Musí se jednat o barvu v hexa kódu. Např. #FF0035."
+msgstr "Musí se jednat o barvu v hexa kódu, např. #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
@@ -7532,7 +7557,9 @@ msgstr "Publikovat mou aplikaci a učinit ji viditelnou pro každého na Marketp
 
 #: mkt/submit/forms.py:273
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr "Nepublikovat mou aplikaci a upozornit mě na možnost upravit viditelnost po schválení."
+msgstr ""
+"Nepublikovat mou aplikaci. Upozornit mě na možnost upravit viditelnost po "
+"schválení."
 
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
@@ -8033,7 +8060,7 @@ msgstr "vyžaduje další kontrolu"
 
 #: mkt/webapps/models.py:2744
 msgid "{region} approval status"
-msgstr "Stav schválení regionu {region} "
+msgstr "Stav schválení regionu {region}"
 
 #: mkt/webapps/models.py:2752
 msgid "{region} nomination date"
