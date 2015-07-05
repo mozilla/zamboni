@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-01 09:54:58\n"
+"PO-Revision-Date: 2015-07-05 09:25:43.240706\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2162,7 +2162,7 @@ msgstr "Resto do Mundo"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Santo Eustáquio e Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
@@ -2182,27 +2182,27 @@ msgstr "Guiné-Conakry"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Ilhas Heard e McDonald"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "República Democrática Popular do Laos"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Líbia"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin (parte francesa)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Antiga República Jugoslava da Macedônia"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
@@ -2218,7 +2218,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Santa Helena, Ascensão e Tristão da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -6851,7 +6851,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Nome - nome curto"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
@@ -7785,7 +7785,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Adicionar dispositivo"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
