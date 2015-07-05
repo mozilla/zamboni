@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-05 14:15+0000\n"
+"PO-Revision-Date: 2015-07-05 14:44+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436105749.0\n"
+"X-POOTLE-MTIME: 1436107459.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2045,15 +2045,15 @@ msgstr ""
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Libye"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Lichtenštejnsko"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Svatý Martin (francouzská část)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
@@ -2061,7 +2061,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Palestina"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2077,7 +2077,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
-msgstr ""
+msgstr "Tchaj-wan"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
@@ -5657,7 +5657,7 @@ msgstr "Důvod"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr "Krátké jméno"
+msgstr "Krátký název"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
@@ -5681,11 +5681,11 @@ msgstr "Preferované regiony"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Název - Krátký název"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "zakázáno"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5717,7 +5717,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Upravit webovou stránku"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -6199,7 +6199,7 @@ msgstr "Kontrola úspěšně provedena."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Hlášení zneužití pro {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -7455,7 +7455,7 @@ msgstr "Doplněk {addon} {version} neprošel kontrolou ve frontě {queue}."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Hlášení zneužití {report} pro {addon} přečteno."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7467,7 +7467,7 @@ msgstr ""
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} označila(a) hlášení {report} pro {website} jako přečtené."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
