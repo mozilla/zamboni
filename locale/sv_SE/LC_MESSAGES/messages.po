@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-20 20:29+0000\n"
+"PO-Revision-Date: 2015-07-05 23:55+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432153790.0\n"
+"X-POOTLE-MTIME: 1436140501.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1253,7 +1253,7 @@ msgstr "Nivå 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Böcker & Serier"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1269,11 +1269,11 @@ msgstr "Underhållning"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Mat & Dryck"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Barn"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1285,11 +1285,11 @@ msgstr "Hälsa och fitness"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humor"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1305,11 +1305,11 @@ msgstr "Musik"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Nyheter"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Anpassning"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1325,7 +1325,7 @@ msgstr "Uppslagsverk"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Vetenskap & Teknik"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1349,7 +1349,7 @@ msgstr "Verktyg"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Väder"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2004,19 +2004,19 @@ msgstr "Övriga världen"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Sint Eustatius och Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Bolivia"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Kongo-Kinshasa"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Kap Verde"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2024,31 +2024,31 @@ msgstr "Guinea-Conakry"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Heard- och McDonaldöarna"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laos"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Libyen"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Makedonien"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Palestina"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2060,7 +2060,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Sankta Helena, Ascension och Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2072,7 +2072,7 @@ msgstr "Tanzania"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Vatikanstaten"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -5287,7 +5287,7 @@ msgstr "Begäran om återbetalning för transaktionen misslyckades."
 
 #: mkt/lookup/views.py:333
 msgid "Website saved."
-msgstr ""
+msgstr "Webbplats sparad."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5602,35 +5602,35 @@ msgstr "Orsak"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr ""
+msgstr "Kortnamn"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
 msgid "Mobile URL"
-msgstr ""
+msgstr "Mobil URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
 msgid "Keywords"
-msgstr ""
+msgstr "Nyckelord"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Föredragna regioner"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Namn - Kortnamn"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "inaktiverad"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5658,11 +5658,11 @@ msgstr "Konto borttaget"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Webbplatssammanfattning för"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Redigera webbplats"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5684,7 +5684,7 @@ msgstr "Sök konto"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Sök webbplats"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5894,15 +5894,15 @@ msgstr "app, granskare eller kommentar"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Enhetstyp:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Enhet:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox-version:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -5966,7 +5966,7 @@ msgstr "Modererad granskning"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Missbruksrapporter för webbplats"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6021,7 +6021,7 @@ msgstr "Missbruksrapporter ({0})"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Missbruksrapporter för webbplats ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6142,7 +6142,7 @@ msgstr "Granskning behandlad."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Missbruksrapporter för {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6454,11 +6454,11 @@ msgstr "Infoga standardsvar..."
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "Testad på:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Lägg till enhet"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -6604,11 +6604,12 @@ msgstr "Markera som läst"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "Granska sida"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Alla missbruksrapporter (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
@@ -6617,6 +6618,8 @@ msgstr "<span class=\"submitted-by\">Inskickad av %(user)s den %(date)s [%(ip_ad
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" "
+"href=\"%(translate_url)s\">översätt</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -7387,7 +7390,7 @@ msgstr "{addon} {version} misslyckades {queue}-granskning."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Missbruksrapport {report} för {addon} läst."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7395,11 +7398,11 @@ msgstr "{user} markerade {report} som läst för {addon}."
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Missbruksrapport {report} för {website} läst."
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} markerade {report} som läst för {website}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
