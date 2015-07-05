@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-05 13:55+0000\n"
+"PO-Revision-Date: 2015-07-05 14:01+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436104522.0\n"
+"X-POOTLE-MTIME: 1436104911.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -671,7 +671,7 @@ msgstr "Marshallovy ostrovy"
 
 #: mkt/constants/bango.py:159 mkt/constants/regions.py:222
 msgid "Martinique"
-msgstr "Martinique"
+msgstr "Martinik"
 
 #: mkt/constants/bango.py:160 mkt/constants/regions.py:220
 msgid "Mauritania"
@@ -851,7 +851,7 @@ msgstr "Rwanda"
 
 #: mkt/constants/bango.py:204 mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
-msgstr "Saint Barthélemy"
+msgstr "Svatý Bartoloměj"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
@@ -863,7 +863,7 @@ msgstr "Svatý Kryštof a Nevis"
 
 #: mkt/constants/bango.py:207 mkt/constants/regions.py:196
 msgid "Saint Lucia"
-msgstr "Saint Lucia"
+msgstr "Svatá Lucie"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
@@ -1071,7 +1071,7 @@ msgstr "Uruguay"
 
 #: mkt/constants/bango.py:259 mkt/constants/regions.py:302
 msgid "Uzbekistan"
-msgstr "Uzbekistan"
+msgstr "Uzbekistán"
 
 #: mkt/constants/bango.py:260 mkt/constants/regions.py:309
 msgid "Vanuatu"
@@ -1505,7 +1505,7 @@ msgstr "Aplikace vyžaduje Web Activities (`MozActivity` API)."
 
 #: mkt/constants/features.py:42
 msgid "Ambient Light Sensor"
-msgstr "Ambient Light Sensor"
+msgstr "Snímač okolního světla"
 
 #: mkt/constants/features.py:43
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
@@ -1585,7 +1585,7 @@ msgstr "Aplikace vyžaduje API `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:107
 msgid "Proximity"
-msgstr "Proximity"
+msgstr "Přiblížení"
 
 #: mkt/constants/features.py:108
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -3445,7 +3445,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
-msgstr "Blocklist"
+msgstr "Seznam blokovaných"
 
 #: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
@@ -4832,7 +4832,7 @@ msgstr "Face Value"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:73
 msgid "Podcasts"
-msgstr "Podcasts"
+msgstr "Podcasty"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:81
 msgid "Roller"
