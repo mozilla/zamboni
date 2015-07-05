@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-05 14:01+0000\n"
+"PO-Revision-Date: 2015-07-05 14:15+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436104911.0\n"
+"X-POOTLE-MTIME: 1436105749.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -919,7 +919,7 @@ msgstr "Singapore"
 
 #: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
-msgstr "int Maarten (holandská část)"
+msgstr "Svatý Martin (holandská část)"
 
 #: mkt/constants/bango.py:222 mkt/constants/regions.py:275
 msgid "Slovakia"
@@ -1557,7 +1557,8 @@ msgstr "Geolocation"
 
 #: mkt/constants/features.py:83
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr "Aplikace vyžaduje platformu, která podporuje API  `navigator.geolocation`."
+msgstr ""
+"Aplikace vyžaduje platformu, která podporuje API `navigator.geolocation`."
 
 #: mkt/constants/features.py:88
 msgid "Idle"
@@ -1693,7 +1694,9 @@ msgstr "Gamepad"
 
 #: mkt/constants/features.py:201
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr "Aplikace vyžaduje platformu s podporou Gamepad API  (`navigator.getGamepads`)."
+msgstr ""
+"Aplikace vyžaduje platformu s podporou Gamepad API "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:206
 msgid "Quota Management"
@@ -2260,7 +2263,7 @@ msgstr "Viditelnost aplikace:"
 
 #: mkt/developers/forms.py:801
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr "<b>Omezení pro můj tým</b>:  Viditelné pouze pro členy týmu"
+msgstr "<b>Omezení pro můj tým</b>: Viditelné pouze pro členy týmu."
 
 #: mkt/developers/forms.py:847
 msgid "Choose the regions your app will be listed in:"
@@ -2555,7 +2558,7 @@ msgstr "E-mail"
 
 #: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
-msgstr "Pro tuto aplikaci nebyl nastaven žádný účet pro platby."
+msgstr "Pro tuto aplikaci nebyl nastaven žádný účet pro platby"
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
@@ -2608,11 +2611,11 @@ msgstr "a"
 
 #: mkt/developers/tasks.py:498
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "Do Firefox Marketplace byl přidán region {region}."
+msgstr "Do Firefox Marketplace byl přidán region {region}"
 
 #: mkt/developers/tasks.py:502
 msgid "New regions added to the Firefox Marketplace"
-msgstr "Do Firefox Marketplace byly přidány nové regiony."
+msgstr "Do Firefox Marketplace byly přidány nové regiony"
 
 #: mkt/developers/utils.py:57
 msgid "Video support not enabled."
@@ -2658,7 +2661,7 @@ msgstr "Ikony musí být čtvercové."
 #. in px.
 #: mkt/developers/utils.py:121
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr "Náhledy aplikace musí být nejméně  {0}px na {1}px nebo {1}px na {0}px."
+msgstr "Náhledy aplikace musí být nejméně {0}px na {1}px nebo {1}px na {0}px."
 
 #: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -2960,7 +2963,9 @@ msgstr "Přihlaste se prosím"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr "Jednoduše se níže přihlaste nebo registrujte s pomocí <a href=\"%(url)s\">Účet Firefox</a>."
+msgstr ""
+"Jednoduše se níže přihlaste nebo registrujte pomocí účtu <a href=\"%"
+"(url)s\">Firefox Account</a>."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -2976,7 +2981,7 @@ msgstr "Další zásady Marketplace"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr "Pravidla pro vývojáře jste již odsouhlasil(a)."
+msgstr "Pravidla pro vývojáře jste již odsouhlasili."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
@@ -3059,7 +3064,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr "Výsledky kontroly pro  {0}"
+msgstr "Výsledky kontroly pro {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
@@ -3367,7 +3372,7 @@ msgstr "Pokud vaše aplikace funguje na zařízeních s malým množstvím pamě
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr "Dozvědět se více o zařízeních s malou pamětí"
+msgstr "Zjistěte více o zařízeních s malou pamětí."
 
 #: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
 msgid "Do not show my app on low-memory devices"
@@ -3429,7 +3434,9 @@ msgstr "Smazání aplikace"
 
 #: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
-msgstr "Smazáním vaší aplikace ji trvale odstraníte z tohoto webu.  <strong>Neexistuje cesta zpět.</strong>"
+msgstr ""
+"Smazáním vaší aplikace ji trvale odstraníte z tohoto webu. "
+"<strong>Neexistuje cesta zpět.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
@@ -3449,7 +3456,7 @@ msgstr "Seznam blokovaných"
 
 #: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
-msgstr "Jste si jist(a), že chcete odebrat vaši aplikaci z nabídky na tomto webu?"
+msgstr "Opravdu chcete odebrat vaši aplikaci z nabídky na tomto webu?"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
@@ -3505,7 +3512,7 @@ msgstr "Tyto změny nemohou bý vráceny zpět."
 
 #: mkt/developers/templates/developers/apps/status.html:498
 msgid "Are you sure you wish to delete this version?"
-msgstr "Jste si jist(a), že chcete smazat tuto verzi?"
+msgstr "Opravdu chcete smazat tuto verzi?"
 
 #: mkt/developers/templates/developers/apps/status.html:501
 msgid "Delete Version"
@@ -3513,7 +3520,9 @@ msgstr "Smazat verzi"
 
 #: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr "Jste si jist(a), že nechcete nabízet svou aplikaci pro zařízení s malým množstvím paměti?"
+msgstr ""
+"Opravdu nechcete nabízet svou aplikaci pro zařízení s malým množstvím "
+"paměti?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:57
 msgid "Version Notes"
@@ -3527,7 +3536,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Notes for Reviewers"
-msgstr "Poznámky pro redaktora."
+msgstr "Poznámky pro redaktora"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
@@ -3925,7 +3934,7 @@ msgstr "Další"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr "Jste si jist(a), že chcete smazat tuto aplikac?"
+msgstr "Opravdu chcete smazat tuto aplikaci?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
@@ -3937,7 +3946,7 @@ msgstr "Akce"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr "Pokračovat v procesu odeslání tohoto doplňku"
+msgstr "Pokračovat v procesu odeslání tohoto doplňku."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8 mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
 msgid "Resume"
@@ -3953,7 +3962,7 @@ msgstr "Upravení stránky s detaily doplňku."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr "Nahrání nové verze tohoto doplňku"
+msgstr "Nahrát novou verzi tohoto doplňku."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:30
 msgid "New Version"
@@ -4706,11 +4715,15 @@ msgstr "Vytvářejte pro otevřený obchod webové aplikace v HTML5."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Přečtěte si, jak navrhovat aplikace, které jsou z hlediska uživatelského komfortu optimalizovány pro Firefox OS a mobily."
+msgstr ""
+"Přečtěte si, jak navrhovat aplikace, které jsou z hlediska uživatelského "
+"komfortu optimalizovány pro Firefox OS a mobily"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr "Všechny nástroje, dokumentace a reference, které budete potřebovat pro vývoj a testování své aplikace."
+msgstr ""
+"Všechny nástroje, dokumentace a reference, které budete potřebovat pro vývoj "
+"a testování své aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
@@ -4997,7 +5010,10 @@ msgstr "Bannery byste neměli žádným způsobem měnit."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr "Když je banner použit spolu s odkazy na jiné obchody  (\"Get it on Google Play\", \"Download on the App Store\"), měla by být ikona Firefox Marketplace stejně velká (či větší)."
+msgstr ""
+"Když je banner použit spolu s odkazy na jiné obchody (\"Get it on Google "
+"Play\", \"Download on the App Store\"), měla by být ikona Firefox Marketplace "
+"stejně velká (či větší)"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -5031,7 +5047,7 @@ msgstr "Často kladené otázky"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr "Co bych měl(a) znát před vytvořením aplikace?"
+msgstr "Co byste měli znát před vytvořením aplikace?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
@@ -5100,7 +5116,7 @@ msgstr "Tento soubor již neexistuje."
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:161
 msgid "File size is over the limit of {0}."
-msgstr "Velikost souboru je větší než limit  {0}."
+msgstr "Velikost souboru je větší než limit {0}."
 
 #: mkt/files/helpers.py:175
 msgid "Problems decoding {0}."
@@ -5625,7 +5641,7 @@ msgstr "Smazáním tohoto uživatele <strong>trvale</strong> smažete tento uži
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr "Jste si jist(a), že si přejete smazat tohoto uživatele?"
+msgstr "Jste si jisti, že si přejete smazat tohoto uživatele?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
@@ -6171,7 +6187,7 @@ msgstr "Zařízení byla změněna redaktorem: {0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:343
 msgid "Requirements changed by reviewer: {0}"
-msgstr "Požadavky byly změněny redaktorem:  {0}"
+msgstr "Požadavky byly změněny redaktorem: {0}"
 
 #: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
@@ -6318,7 +6334,7 @@ msgstr "Nástěnka redaktorů"
 # 100%
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr "Dosud jste neobdržel(a) žádný bod."
+msgstr "Dosud jste neobdrželi žádný bod."
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
@@ -6768,7 +6784,7 @@ msgstr "Nedávno přidělené body"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr "Dosud jste neobdržel(a) žádný bod."
+msgstr "Dosud jste neobdrželi žádný bod."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -6785,7 +6801,7 @@ msgstr "Po celý čas"
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr "Obdržel(a) jste <span>{0}</span> bodů."
+msgstr "Obdrželi jste <span>{0}</span> bodů."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
@@ -7081,7 +7097,7 @@ msgstr "U doplňku {addon} {version} bylo požádáno o více informací."
 
 #: mkt/site/log.py:217
 msgid "More information requested"
-msgstr "Vyžádáno více informací."
+msgstr "Vyžádáno více informací"
 
 #: mkt/site/log.py:225
 msgid "{addon} {version} super review requested."
@@ -7189,7 +7205,7 @@ msgstr "Heslo bylo změněno."
 
 #: mkt/site/log.py:365
 msgid "{addon} changed to premium."
-msgstr "{addon} byl změně na placený"
+msgstr "{addon} byl změněn na placený."
 
 #: mkt/site/log.py:370
 msgid "{addon} manifest updated."
@@ -7209,7 +7225,7 @@ msgstr "Doplněk {addon} byl nainstalován."
 
 #: mkt/site/log.py:395
 msgid "Refund requested for {addon}"
-msgstr "U doplňku {addon} bylo požádáno o vrácení peněz."
+msgstr "U doplňku {addon} bylo požádáno o vrácení peněz"
 
 #: mkt/site/log.py:400
 msgid "Refund declined for {addon} for {0}."
@@ -7293,7 +7309,7 @@ msgstr "Video bylo od doplňku {addon} odebráno, protože se u tohoto videa vys
 
 #: mkt/site/log.py:492
 msgid "Video removed"
-msgstr "Video bylo odebráno."
+msgstr "Video bylo odebráno"
 
 #: mkt/site/log.py:497
 msgid "{addon} re-review because of new device(s) added."
@@ -7313,7 +7329,7 @@ msgstr "Zařízení byla změněna redaktorem"
 
 #: mkt/site/log.py:513
 msgid "{addon} resubmitted for review."
-msgstr "Doplněk {addon} byl opětovně poslán na kontrolu"
+msgstr "Doplněk {addon} byl opětovně poslán na kontrolu."
 
 #: mkt/site/log.py:514
 msgid "App Resubmission"
@@ -7463,7 +7479,7 @@ msgstr "Oops! Není povoleno."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr "Vyzkoušel(a) jste něco, co není povoleno."
+msgstr "Vyzkoušeli jste něco, co není povoleno."
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
@@ -7479,7 +7495,10 @@ msgstr "Omlouváme se, ale nemůžeme nalézt to, co hledáte."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr "Stránka či soubor, který požadujete, nebyl na našem serveru nalezen. Je možné, že jste klepl(a) na odkaz, který již není aktuální či jste zadal(a) chybnou adresu."
+msgstr ""
+"Stránka či soubor, který požadujete, nebyl na našem serveru nalezen. Je "
+"možné, že jste klepli na odkaz, který již není aktuální či jste zadali "
+"chybnou adresu."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
@@ -7588,7 +7607,7 @@ msgstr "Pokud má vaše aplikace další domovskou stránku, vložte zde její a
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr "Webová stránka"
+msgstr "Webová stránka:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
@@ -7688,8 +7707,10 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Uložili jsme vaši aplikaci a vše je hotovo! Vaše aplikace nyní čeká na kontrolu a  v kategoriích a vyhledávání se zobrazí jakmile bude zkontrolována. Do té doby můžete upravovat detaily vaší "
-"aplikace a její nastavení."
+"Uložili jsme vaši aplikaci a vše je hotovo! Vaše aplikace nyní čeká na "
+"kontrolu a v kategoriích a vyhledávání se zobrazí jakmile bude "
+"zkontrolována. Do té doby můžete upravovat detaily vaší aplikace a její "
+"nastavení."
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
@@ -7749,11 +7770,15 @@ msgstr "Pro zobrazení všech mých příspěvků zobrazte stránku <a href=\"%(
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr "Požádejte na stránce <a href=\"%(status_url)s\">Stav a verze</a>, aby vaše aplikace byla nabízena i pro zařízení s malým množstvím paměti."
+msgstr ""
+"Požádejte na stránce <a href=\"%(status_url)s\">Stav a verze</a>, aby vaše "
+"aplikace byla nabízena i pro zařízení s malým množstvím paměti"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr "Požádejte na stránce <a href=\"%(status_url)s\">Stav</a>, aby vaše aplikace byla nabízena i pro zařízení s malým množstvím paměti."
+msgstr ""
+"Požádejte na stránce <a href=\"%(status_url)s\">Stav</a>, aby vaše aplikace "
+"byla nabízena i pro zařízení s malým množstvím paměti"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
@@ -7975,7 +8000,9 @@ msgstr "Mozilla mě potřebuje kontaktovat ohledné mé aplikace"
 
 #: mkt/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr "Mozilla mě chce kontaktovat ohledně relevantních novinek a průzkumů týkajících se vývoje aplikací."
+msgstr ""
+"Mozilla mě chce kontaktovat ohledně relevantních novinek a průzkumů "
+"týkajících se vývoje aplikací"
 
 #: mkt/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"

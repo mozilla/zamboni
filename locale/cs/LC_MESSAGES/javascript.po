@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-03 18:15+0000\n"
+"PO-Revision-Date: 2015-07-05 14:13+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435947326.0\n"
+"X-POOTLE-MTIME: 1436105633.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Typ souboru, který jste nahrával(a), nebyl rozpoznán."
+msgstr "Typ souboru, který jste nahráli, nebyl rozpoznán."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr "Zrušil(a) jste nahrávání."
+msgstr "Zrušili jste nahrávání."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
@@ -28,7 +28,7 @@ msgstr "Obrázky musí být v PNG či JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Videa musí být ve formátu WebM"
+msgstr "Videa musí být ve formátu WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -190,7 +190,7 @@ msgstr "Příklad"
 
 #: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
-msgstr "Jsou prováděny změny obrázku."
+msgstr "Jsou prováděny změny obrázku"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -376,7 +376,7 @@ msgid "{0} character left."
 msgid_plural "{0} characters left."
 msgstr[0] "Zbývá {0} znak."
 msgstr[1] "Zbývají {0} znaky."
-msgstr[2] "Zbývá {0} znaků"
+msgstr[2] "Zbývá {0} znaků."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
@@ -426,7 +426,7 @@ msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr "Interní chyba serveru."
+msgstr "Interní chyba serveru"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
@@ -470,7 +470,7 @@ msgstr "Poznámky pro redaktory"
 
 #: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
-msgstr "Nebyla nalezena žádná verze poznámek."
+msgstr "Nebyla nalezena žádná verze poznámek"
 
 #: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
