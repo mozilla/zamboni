@@ -8,13 +8,13 @@ from mkt.site.utils import slugify
 from mkt.tags.models import Tag
 
 
-def clean_tags(request, tags):
+def clean_tags(request, tags, max_tags=None):
     target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
     target = set(filter(None, target))
 
     min_len = mkt.MIN_TAG_LENGTH
     max_len = Tag._meta.get_field('tag_text').max_length
-    max_tags = mkt.MAX_TAGS
+    max_tags = max_tags or mkt.MAX_TAGS
     total = len(target)
 
     blocked = (Tag.objects.values_list('tag_text', flat=True)
