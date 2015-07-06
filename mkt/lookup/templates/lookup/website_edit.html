@@ -85,6 +85,15 @@
               </td>
             </tr>
             <tr>
+              <th><label for="{{ form.devices.id_for_label }}">{{ _('Compatible Devices') }}</label></th>
+              <td>
+                <div class="checkbox-choices">
+                  {{ form.devices }}
+                  {{ form.devices.errors }}
+                </div>
+              </td>
+            </tr>
+            <tr>
               <th><label for="{{ form.status.id_for_label }}">{{ _('Status') }}</label></th>
               <td>
                 {{ form.status }}

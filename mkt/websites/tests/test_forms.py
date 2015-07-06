@@ -4,6 +4,7 @@ from django.test.client import RequestFactory
 from nose.tools import eq_
 
 import mkt
+from mkt.constants.applications import DEVICE_DESKTOP, DEVICE_GAIA
 from mkt.site.tests import TestCase
 from mkt.tags.models import Tag
 from mkt.websites.forms import WebsiteForm
@@ -25,6 +26,7 @@ class TestWebsiteForm(TestCase):
             'keywords': 'thing one, thing two',
             'preferred_regions': [1, 2],
             'categories': ['books-comics', 'reference'],
+            'devices': [DEVICE_GAIA.id],
             'status': mkt.STATUS_PUBLIC,
             'is_disabled': False,
             'url': self.website.url,
@@ -95,6 +97,19 @@ class TestWebsiteForm(TestCase):
         form.save()
         self.website.reload()
         self.assertSetEqual(self.website.preferred_regions, map(int, regions))
+
+    def test_devices(self):
+        data = self.data.copy()
+        devices = [str(DEVICE_DESKTOP.id), str(DEVICE_GAIA.id)]
+        data.update({
+            'devices': devices,
+        })
+        form = WebsiteForm(request=self.request, instance=self.website,
+                           data=data)
+        assert form.is_valid(), form.errors
+        form.save()
+        self.website.reload()
+        self.assertSetEqual(self.website.devices, map(int, devices))
 
     def test_l10n(self):
         data = self.data.copy()

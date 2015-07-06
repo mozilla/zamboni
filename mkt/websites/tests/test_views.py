@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.applications import DEVICE_DESKTOP
 from mkt.constants.base import CONTENT_ICON_SIZES, STATUS_PENDING
 from mkt.constants.regions import URY, USA
 from mkt.site.fixtures import fixture
@@ -21,9 +22,10 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
     def setUp(self):
         self.website = website_factory(**{
             'title': 'something',
-            'categories': json.dumps(['books-comics', 'sports']),
-            # Preferred_regions are stored as a json array of ids.
-            'preferred_regions': json.dumps([URY.id, USA.id]),
+            'categories': ['books-comics', 'sports'],
+            # Preferred_regions and devices are stored as a json array of ids.
+            'devices': [DEVICE_DESKTOP.id],
+            'preferred_regions': [URY.id, USA.id],
             'icon_type': 'image/png',
             'icon_hash': 'fakehash',
         })
@@ -55,9 +57,16 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['url'], self.website.url)
         eq_(data['mobile_url'], self.website.mobile_url)
         eq_(data['categories'], ['books-comics', 'sports'])
+        eq_(data['description'], {'en-US': self.website.description})
+        eq_(data['device_types'], ['desktop']),
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
         eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
+        eq_(data['mobile_url'], self.website.mobile_url)
+        eq_(data['name'], {'en-US': self.website.name})
+        eq_(data['short_name'], {'en-US': self.website.short_name})
+        eq_(data['title'], {'en-US': self.website.title})
+        eq_(data['url'], self.website.url)
 
     def test_list(self):
         self.website2 = website_factory(url='http://www.lol.com/')
@@ -137,11 +146,10 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(objs[1]['id'], self.website2.pk)
 
     def test_device_not_present(self):
-        # Websites are marked as compatible with every device.
         res = self.anon.get(
             self.url, data={'dev': 'android', 'device': 'tablet'})
         eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 1)
+        eq_(len(res.json['objects']), 0)
 
     def test_device_present(self):
         res = self.anon.get(self.url, data={'dev': 'desktop'})
@@ -166,9 +174,10 @@ class TestWebsiteView(RestOAuth, TestCase):
     def setUp(self):
         super(TestWebsiteView, self).setUp()
         self.website = website_factory(**{
-            'categories': json.dumps(['books-comics', 'sports']),
-            # Preferred_regions are stored as a json array of ids.
-            'preferred_regions': json.dumps([URY.id, USA.id]),
+            'categories': ['books-comics', 'sports'],
+            # Preferred_regions and devices are stored as a json array of ids.
+            'devices': [DEVICE_DESKTOP.id],
+            'preferred_regions': [URY.id, USA.id],
             'icon_type': 'image/png',
             'icon_hash': 'fakehash',
         })
@@ -192,9 +201,16 @@ class TestWebsiteView(RestOAuth, TestCase):
         eq_(data['url'], self.website.url)
         eq_(data['mobile_url'], self.website.mobile_url)
         eq_(data['categories'], ['books-comics', 'sports'])
+        eq_(data['description'], {'en-US': self.website.description})
+        eq_(data['device_types'], ['desktop']),
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
         eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
+        eq_(data['mobile_url'], self.website.mobile_url)
+        eq_(data['name'], {'en-US': self.website.name})
+        eq_(data['short_name'], {'en-US': self.website.short_name})
+        eq_(data['title'], {'en-US': self.website.title})
+        eq_(data['url'], self.website.url)
 
     def test_disabled(self):
         self.website.update(is_disabled=True)
