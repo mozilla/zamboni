@@ -10,6 +10,7 @@ from mkt.constants.applications import DEVICE_CHOICES
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.regions import REGIONS_CHOICES_NAME
 from mkt.tags.utils import clean_tags
+from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.fields import TransField
 from mkt.translations.widgets import TransInput, TransTextarea
 from mkt.websites.models import Website
@@ -17,7 +18,7 @@ from mkt.tags.models import Tag
 from mkt.site.utils import slugify
 
 
-class WebsiteForm(happyforms.ModelForm):
+class WebsiteForm(TranslationFormMixin, happyforms.ModelForm):
     categories = forms.MultipleChoiceField(
         label=_lazy(u'Categories'), choices=CATEGORY_CHOICES,
         widget=forms.CheckboxSelectMultiple)
@@ -65,7 +66,11 @@ class WebsiteForm(happyforms.ModelForm):
         return categories
 
     def clean_keywords(self):
-        return clean_tags(self.request, self.cleaned_data['keywords'])
+        # We set a high `max_tags` here b/c the keywords data is coming from
+        # the website meta data which can contain a higher number of tags than
+        # apps.
+        return clean_tags(self.request, self.cleaned_data['keywords'],
+                          max_tags=100)
 
     def clean_preferred_regions(self):
         try:
