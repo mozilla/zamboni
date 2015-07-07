@@ -85,6 +85,15 @@
               </td>
             </tr>
             <tr>
+              <th><label for="{{ form.devices.id_for_label }}">{{ _('Compatible Devices') }}</label></th>
+              <td>
+                <div class="checkbox-choices">
+                  {{ form.devices }}
+                  {{ form.devices.errors }}
+                </div>
+              </td>
+            </tr>
+            <tr>
               <th><label for="{{ form.status.id_for_label }}">{{ _('Status') }}</label></th>
               <td>
                 {{ form.status }}
@@ -102,7 +111,7 @@
         </table>
         <div class="listing-footer">
           <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-          <a href="{{ url('lookup.website_summary', website.id) }}" class="addon-edit-cancel">{{ _('Cancel') }}</a>
+          <a href="{{ url('lookup.website_summary', website.id) }}">{{ _('Cancel') }}</a>
         </div>
       </form>
     </section>

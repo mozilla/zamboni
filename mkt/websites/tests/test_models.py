@@ -1,10 +1,9 @@
-import json
-
 import mock
 from nose.tools import eq_
 
 from lib.utils import static_url
-from mkt.constants.applications import DEVICE_TYPE_LIST
+from mkt.constants.applications import (DEVICE_DESKTOP, DEVICE_GAIA,
+                                        DEVICE_TYPE_LIST)
 from mkt.constants.regions import URY, USA
 from mkt.site.tests import TestCase
 from mkt.websites.models import Website
@@ -13,9 +12,13 @@ from mkt.websites.utils import website_factory
 
 class TestWebsiteModel(TestCase):
     def test_devices(self):
-        website = Website()
+        website = Website(devices=[device.id for device in DEVICE_TYPE_LIST])
         eq_(sorted(website.devices),
             sorted([device.id for device in DEVICE_TYPE_LIST]))
+
+    def test_devices_names(self):
+        website = Website(devices=[DEVICE_DESKTOP.id, DEVICE_GAIA.id])
+        eq_(sorted(website.device_names), ['desktop', 'firefoxos'])
 
     def test_get_icon_url(self):
         website = Website(pk=1, icon_type='image/png')
@@ -54,7 +57,7 @@ class TestWebsiteModel(TestCase):
 
     def test_get_preferred_regions(self):
         website = Website()
-        website.preferred_regions = json.dumps([URY.id, USA.id])
+        website.preferred_regions = [URY.id, USA.id]
         eq_([r.slug for r in website.get_preferred_regions()],
             [USA.slug, URY.slug])
 

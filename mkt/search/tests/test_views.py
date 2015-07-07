@@ -1327,7 +1327,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
             title='title something something webcube',
             description={'en-US': 'desc something something webcube',
                          'fr': 'desc something something webcube fr'},
-            categories=json.dumps([self.shared_category, 'sports'])
+            categories=[self.shared_category, 'sports'],
         )
         self.refresh(('webapp', 'website'))
 

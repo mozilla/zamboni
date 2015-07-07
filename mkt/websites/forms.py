@@ -6,9 +6,11 @@ from tower import ungettext as ngettext
 from django import forms
 
 import mkt
+from mkt.constants.applications import DEVICE_CHOICES
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.regions import REGIONS_CHOICES_NAME
 from mkt.tags.utils import clean_tags
+from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.fields import TransField
 from mkt.translations.widgets import TransInput, TransTextarea
 from mkt.websites.models import Website
@@ -16,12 +18,15 @@ from mkt.tags.models import Tag
 from mkt.site.utils import slugify
 
 
-class WebsiteForm(happyforms.ModelForm):
+class WebsiteForm(TranslationFormMixin, happyforms.ModelForm):
     categories = forms.MultipleChoiceField(
         label=_lazy(u'Categories'), choices=CATEGORY_CHOICES,
         widget=forms.CheckboxSelectMultiple)
     description = TransField(label=_lazy(u'Description'),
                              widget=TransTextarea(attrs={'rows': 4}))
+    devices = forms.MultipleChoiceField(
+        label=_lazy(u'Compatible Devices'), choices=DEVICE_CHOICES,
+        widget=forms.SelectMultiple)
     keywords = forms.CharField(label=_lazy(u'Keywords'), required=False,
                                widget=forms.Textarea(attrs={'rows': 2}))
     name = TransField(label=_lazy(u'Name'), widget=TransInput())
@@ -36,9 +41,9 @@ class WebsiteForm(happyforms.ModelForm):
 
     class Meta(object):
         model = Website
-        fields = ('categories', 'description', 'is_disabled', 'keywords',
-                  'mobile_url', 'name', 'preferred_regions', 'short_name',
-                  'status', 'title', 'url')
+        fields = ('categories', 'description', 'devices', 'is_disabled',
+                  'keywords', 'mobile_url', 'name', 'preferred_regions',
+                  'short_name', 'status', 'title', 'url')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
@@ -61,7 +66,11 @@ class WebsiteForm(happyforms.ModelForm):
         return categories
 
     def clean_keywords(self):
-        return clean_tags(self.request, self.cleaned_data['keywords'])
+        # We set a high `max_tags` here b/c the keywords data is coming from
+        # the website meta data which can contain a higher number of tags than
+        # apps.
+        return clean_tags(self.request, self.cleaned_data['keywords'],
+                          max_tags=100)
 
     def clean_preferred_regions(self):
         try:
@@ -71,6 +80,15 @@ class WebsiteForm(happyforms.ModelForm):
             raise forms.ValidationError(_('Invalid region(s) selected.'))
 
         return list(regions)
+
+    def clean_devices(self):
+        try:
+            devices = map(int, self.cleaned_data.get('devices'))
+        except (TypeError, ValueError):
+            # Data is not a list or data contains non-integers.
+            raise forms.ValidationError(_('Invalid device(s) selected.'))
+
+        return list(devices)
 
     def save(self, commit=False):
         form = super(WebsiteForm, self).save(commit=False)

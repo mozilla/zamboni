@@ -47,6 +47,7 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Set attributes with names that don't exactly match the one on the
         # model.
         obj.categories = data['category']
+        obj.devices = data['device']
         obj.keywords_list = data['tags']
 
         if obj.icon_hash:

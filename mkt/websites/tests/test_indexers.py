@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 
+from mkt.constants.applications import DEVICE_DESKTOP, DEVICE_GAIA
 from mkt.constants.regions import URY, USA
 from mkt.search.utils import get_boost
 from mkt.site.tests import ESTestCase, TestCase
@@ -38,7 +39,8 @@ class TestWebsiteIndexer(TestCase):
     def test_extract(self):
         self.obj = website_factory(**{
             'categories': ['books', 'sports'],
-            # Preferred_regions are stored as a json array of ids.
+            # Preferred_regions and devices are stored as a json array of ids.
+            'devices': [DEVICE_GAIA.id, DEVICE_DESKTOP.id],
             'preferred_regions': [URY.id, USA.id],
             'icon_type': 'png',
             'icon_hash': 'f4k3h4sh',
@@ -54,27 +56,27 @@ class TestWebsiteIndexer(TestCase):
             'lang': u'en-US', 'string': unicode(self.obj.description)}])
         eq_(doc['description_l10n_english'], [unicode(self.obj.description)])
         eq_(doc['default_locale'], self.obj.default_locale)
+        eq_(doc['device'], self.obj.devices)
         eq_(doc['icon_hash'], self.obj.icon_hash)
         eq_(doc['icon_type'], self.obj.icon_type)
         eq_(doc['default_locale'], self.obj.default_locale)
         eq_(doc['created'], self.obj.created)
         eq_(doc['modified'], self.obj.modified)
-        eq_(doc['reviewed'], self.obj.last_updated)
-        eq_(doc['url'], self.obj.url)
-        eq_(doc['url_tokenized'],
-            unicode(self.indexer.strip_url(self.obj.url)))
         eq_(doc['name'], [unicode(self.obj.name)])
         eq_(doc['name_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.name)}])
+        eq_(doc['preferred_regions'], self.obj.preferred_regions)
+        eq_(doc['reviewed'], self.obj.last_updated)
         eq_(doc['short_name'], [unicode(self.obj.short_name)])
         eq_(doc['short_name_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.short_name)}])
+        eq_(sorted(doc['tags']), sorted(['hodor', 'radar']))
         eq_(doc['title'], [unicode(self.obj.title)])
         eq_(doc['title_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.title)}])
-        eq_(doc['device'], self.obj.devices)
-        eq_(sorted(doc['tags']), sorted(['hodor', 'radar']))
-        eq_(doc['preferred_regions'], self.obj.preferred_regions)
+        eq_(doc['url'], self.obj.url)
+        eq_(doc['url_tokenized'],
+            unicode(self.indexer.strip_url(self.obj.url)))
 
     def test_extract_with_translations(self):
         self.obj = website_factory()

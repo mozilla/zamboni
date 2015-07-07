@@ -43,6 +43,10 @@
         <dd>{{ website.categories|categories_names|join(', ') }}</dd>
       </dl>
       <dl>
+        <dt>{{ _('Compatible Devices') }}</dt>
+        <dd>{{ device_list(website) }}</dd>
+      </dl>
+      <dl>
         <dt>{{ _('Status') }}</dt>
         <dd>
           {{ mkt.STATUS_CHOICES[website.status] }}

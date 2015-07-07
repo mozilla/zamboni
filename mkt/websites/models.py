@@ -11,7 +11,7 @@ from django_extensions.db.fields.json import JSONField
 
 import mkt
 from lib.utils import static_url
-from mkt.constants.applications import DEVICE_TYPE_LIST
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.utils import get_icon_url
@@ -68,6 +68,9 @@ class Website(ModelBase):
     # Categories, similar to apps. Stored as a JSON list of names.
     categories = JSONField(default=None)
 
+    # Devices, similar to apps. Stored a JSON list of ids.
+    devices = JSONField(default=None)
+
     # Icon content-type.
     icon_type = models.CharField(max_length=25, blank=True)
 
@@ -102,16 +105,12 @@ class Website(ModelBase):
         return unicode(self.url or '(no url set)')
 
     @property
-    def devices(self):
-        # If the frontend wants to hide websites on desktop, it passes
-        # doc_type='webapp' to the search view. Since a dev/device parameter is
-        # sent anyway, we want ES to consider websites are compatible with all
-        # devices.
-        return [device.id for device in DEVICE_TYPE_LIST]
+    def device_names(self):
+        return [DEVICE_TYPES[device_id].api_name for device_id in self.devices]
 
     @property
-    def device_names(self):
-        return [device.api_name for device in DEVICE_TYPE_LIST]
+    def device_types(self):
+        return [DEVICE_TYPES[device_id] for device_id in self.devices]
 
     def is_dummy_content_for_qa(self):
         """
