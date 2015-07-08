@@ -93,22 +93,24 @@ class SearchQueryFilter(BaseFilterBackend):
         if ' ' not in q:
             should.append(query.Fuzzy(tags={'value': q, 'prefix_length': 1}))
 
+        # The list of functions applied to our `function_score` query.
+        functions = [
+            query.SF('field_value_factor', field='boost'),
+        ]
+
         # Add a boost for the preferred region, if it exists.
         region = get_region_from_request(request)
-        region_function = {
-            'filter': {'term': {'preferred_regions': region.id}},
-            # TODO: When we upgrade to Elasticsearch 1.4, change this to
-            # 'weight'
-            'boost_factor': 4,
-        }
+        if region:
+            functions.append({
+                'filter': {'term': {'preferred_regions': region.id}},
+                # TODO: When we upgrade to Elasticsearch 1.4, change this
+                # to 'weight'.
+                'boost_factor': 4,
+            })
 
-        return queryset.query(
-            'function_score',
-            query=query.Bool(should=should),
-            functions=[
-                query.SF('field_value_factor', field='boost'),
-                region_function,
-            ])
+        return queryset.query('function_score',
+                              query=query.Bool(should=should),
+                              functions=functions)
 
 
 class SearchFormFilter(BaseFilterBackend):
