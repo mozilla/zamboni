@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-06 15:30:22.799224\n"
+"PO-Revision-Date: 2015-07-08 04:20:53.381236\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6847,7 +6847,7 @@ msgstr "Palavras-chave"
 #: mkt/lookup/templates/lookup/website_summary.html:38
 #: mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Regiões preferidas"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -7221,7 +7221,7 @@ msgstr "Análises moderadas"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Denúncias de abuso"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -7280,7 +7280,7 @@ msgstr "Denúncias de abusos ({0})"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Denúncias de abuso ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -7439,7 +7439,7 @@ msgstr "Avaliação processada com sucesso."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Denúncias de abuso do {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -7953,6 +7953,8 @@ msgstr "Página da revisão"
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Todas as denúncias de abuso "
+"(%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid ""
@@ -8790,7 +8792,7 @@ msgstr "{addon} {version} falhou na revisão {queue}."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Denúncia de abuso {report} do {addon} lida."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -8798,11 +8800,11 @@ msgstr "{user} marcou  {report} como lido para {addon}."
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Denúncia de abuso {report} do {website} lida."
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} marcou {report} do {website} como lida."
 
 # 90%
 #: mkt/site/templates/site/403.html:4
