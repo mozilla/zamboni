@@ -13,7 +13,8 @@ from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import (MultiSearchView, NonPublicSearchView,
                               NoRegionSearchView, RocketbarViewV2)
-from mkt.websites.views import WebsiteSearchView, WebsiteView
+from mkt.websites.views import (WebsiteMetadataScraperView, WebsiteSearchView,
+                                WebsiteView)
 
 
 feed = SimpleRouter()
@@ -93,6 +94,8 @@ urlpatterns = patterns(
         name='website-search-api'),
     url(r'^websites/website/(?P<pk>[^/.]+)/', WebsiteView.as_view(),
         name='website-detail'),
+    url(r'^websites/scrape/', WebsiteMetadataScraperView.as_view(),
+        name='website-scrape'),
     url(r'^multi-search/', MultiSearchView.as_view(),
         name='multi-search-api'),
 ) + v1_urls
