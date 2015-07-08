@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-28 09:10+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2015-07-08 10:48:44.140912\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -519,7 +519,7 @@ msgstr "Aplikacija ni preverila prejema."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr ""
+msgstr "Prvi ogled aplikacije: {name}."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
