@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-07-07 18:49+0000\n"
+"PO-Revision-Date: 2015-07-08 17:38+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436294964.0\n"
+"X-POOTLE-MTIME: 1436377123.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2041,7 +2041,7 @@ msgstr "Heardův ostrov a McDonaldovy ostrovy"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laoská lidově demokratická republika"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
@@ -4336,6 +4336,8 @@ msgstr "Klíče pro platby v aplikacích vám umožní přijímat prostřednictv
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
 msgstr ""
+"Poznámka: Pokud chcete povolit produkty v aplikaci také pro uživatele "
+"Firefoxu pro desktop, použijte tedy prosím produkty v aplikaci."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -5713,7 +5715,7 @@ msgstr "Účet smazán"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Shrnutí na webové stránce pro"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
@@ -5739,7 +5741,7 @@ msgstr "Pohled na účet"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Vyhledání webové stránky"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -6109,6 +6111,8 @@ msgstr "Zpráva vývojáři"
 #: mkt/reviewers/utils.py:404
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
+"Tímto odešlete zprávu autorům a dalším přihlášeným k vláknu. Tím nedojde ke "
+"změně stavu aplikace."
 
 # 88%
 # 100%
@@ -6203,7 +6207,7 @@ msgstr "Hlášení zneužití pro {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s - %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6370,7 +6374,7 @@ msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Záznam moderovaných recenzí"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
@@ -6406,7 +6410,7 @@ msgstr "Text recenze"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Recenze byla označena ke kontrole a moderování."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
@@ -6414,11 +6418,11 @@ msgstr "Současný stav recenze"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Alive"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Undelete"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -6656,7 +6660,7 @@ msgstr "Novější verze"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
 msgid "Process"
-msgstr ""
+msgstr "Process"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
 msgid "Skip"
@@ -6668,7 +6672,7 @@ msgstr "Označit jako přečtené"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "Stránka recenzí"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
@@ -7459,11 +7463,11 @@ msgstr "Hlášení zneužití {report} pro {addon} přečteno."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} označil(a) hlášení {report} pro {addon} jako přečtené."
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Hlášení zneužití {report} pro {website} přečteno."
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
