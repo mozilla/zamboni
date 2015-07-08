@@ -1389,6 +1389,12 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         objs = res.json['objects']
         eq_(len(objs), 0)
 
+    def test_region_explicit_none(self):
+        res = self.anon.get(self.url, data={'region': 'None'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+
     def test_search_popularity(self):
         self.website.popularity.create(region=0, value=12.0)
         # Force reindex to get the new popularity, it's not done automatically.
