@@ -1458,3 +1458,34 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(res.json['meta']['total_count'], 1)
         eq_(objs[0]['doc_type'], 'webapp')
         eq_(objs[0]['id'], self.webapp.pk)
+
+
+class TestOpenMobileACLSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestOpenMobileACLSearchView, self).setUp()
+        self.url = reverse('api-v2:openmobile_acl-search-api')
+        self.refresh('webapp')
+        self.app1 = Webapp.objects.get(pk=337141)
+        # Add an app with openmobile_acl feature enabled. It's unlisted, but
+        # we still need it to appear here.
+        self.app2 = app_factory(name=u'Second âpp',
+                                description=u'Second dèsc' * 25,
+                                icon_type='image/png',
+                                created=self.days_ago(3),
+                                status=mkt.STATUS_UNLISTED)
+        self.app2.current_version.features.update(has_openmobileacl=True)
+        self.reindex(Webapp)
+
+    def tearDown(self):
+        # Cleanup to remove these from the index.
+        self.app1.delete()
+        self.app2.delete()
+        unindex_webapps([self.app1.id, self.app2.id])
+
+    def test_anonymous(self):
+        res = self.anon.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(res.json), 1)
+        eq_(res.json[0], self.app2.manifest_url)
