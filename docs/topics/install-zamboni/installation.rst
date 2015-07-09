@@ -25,7 +25,7 @@ The best solution for installing UNIX tools on OS X is Homebrew_.
 
 The following packages will get you set for zamboni::
 
-    brew install python libxml2 mysql openssl swig jpeg pngcrush redis
+    brew install python libxml2 mysql openssl swig304 jpeg pngcrush redis
 
 On Ubuntu
 ~~~~~~~~~
