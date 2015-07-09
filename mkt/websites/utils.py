@@ -1,5 +1,6 @@
 import random
 
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.websites.models import Website
 
@@ -27,6 +28,7 @@ def website_factory(**kwargs):
         'title': 'Title for %s' % text.capitalize(),
         'url': 'http://%s.example.com' % text,
         'mobile_url': 'http://mobile.%s.example.com' % text,
+        'devices': DEVICE_TYPES.keys(),
     }
     data.update(kwargs)
     return Website.objects.create(**data)
