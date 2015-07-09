@@ -1,8 +1,8 @@
 CREATE TABLE `websites_websitesubmission_keywords` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `website_id` integer UNIQUE,
+    `websitesubmission_id` integer UNIQUE,
     `tag_id` integer unsigned NOT NULL,
-    UNIQUE (`website_id`, `tag_id`)
+    UNIQUE (`websitesubmission_id`, `tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `websites_websitesubmission_keywords` ADD CONSTRAINT `websites_websitesubmission_keywords_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
