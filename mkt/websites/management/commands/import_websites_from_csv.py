@@ -12,6 +12,8 @@ from django.utils import translation
 
 from mpconstants.mozilla_languages import LANGUAGES
 
+from mkt.constants.applications import (DEVICE_GAIA, DEVICE_MOBILE,
+                                        DEVICE_TABLET)
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.constants.categories import CATEGORY_CHOICES_DICT
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT, REGIONS_DICT
@@ -278,6 +280,7 @@ class Command(BaseCommand):
 
     def create_instances(self, data):
         created_count = 0
+        devices = [DEVICE_GAIA.id, DEVICE_MOBILE.id, DEVICE_TABLET.id]
         for i, row in enumerate(data):
             if (i + 1) % 100 == 0:
                 print 'Processing row %d... (%d websites created)' % (
@@ -306,7 +309,8 @@ class Command(BaseCommand):
 
             with atomic():
                 try:
-                    website = Website(moz_id=id_, status=STATUS_PUBLIC)
+                    website = Website(moz_id=id_, status=STATUS_PUBLIC,
+                                      devices=devices)
                     self.set_default_locale(website, row)
                     self.set_automatic_properties(website, row)
                     self.set_categories(website, row)
