@@ -335,3 +335,13 @@ class SortingFilter(BaseFilterBackend):
             return queryset.sort(*order_by)
 
         return queryset
+
+
+class OpenMobileACLFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that finds apps using openmobile_acl
+    feature flag.
+    """
+    def filter_queryset(self, request, queryset, view):
+        return queryset.filter(
+            Bool(must=[F('term', **{'features.has_openmobileacl': True})]))

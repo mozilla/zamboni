@@ -12,7 +12,8 @@ from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import (MultiSearchView, NonPublicSearchView,
-                              NoRegionSearchView, RocketbarViewV2)
+                              NoRegionSearchView, OpenMobileACLSearchView,
+                              RocketbarViewV2)
 from mkt.websites.views import (WebsiteMetadataScraperView, WebsiteSearchView,
                                 WebsiteView)
 
@@ -64,6 +65,9 @@ urlpatterns = patterns(
     url(r'^apps/search/no-region/$',
         NoRegionSearchView.as_view(),
         name='no-region-search-api'),
+    url(r'^apps/search/openmobile_acl/$',
+        OpenMobileACLSearchView.as_view(),
+        name='openmobile_acl-search-api'),
 
     url(r'^comm/app/%s' % mkt.APP_SLUG,
         CommAppListView.as_view({'get': 'list'}), name='comm-app-list'),

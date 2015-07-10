@@ -11,9 +11,10 @@ from django.test.utils import override_settings
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
-from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
-                                PublicAppsFilter, PublicSearchFormFilter,
-                                RegionFilter, SearchQueryFilter, SortingFilter,
+from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
+                                ProfileFilter, PublicAppsFilter,
+                                PublicSearchFormFilter, RegionFilter,
+                                SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
 from mkt.search.forms import TARAKO_CATEGORIES_MAPPING
 from mkt.search.views import SearchView
@@ -403,3 +404,12 @@ class TestCombinedFilter(FilterTestsBase):
             in query['function_score']['functions'])
         ok_({'match': {'name_l10n_english': {'boost': 2.5, 'query': u'test'}}}
             in query['function_score']['query']['bool']['should'])
+
+
+class TestOpenMobileACLFilter(FilterTestsBase):
+    filter_classes = [OpenMobileACLFilter]
+
+    def test_feature_acl(self):
+        qs = self._filter(self.req)
+        eq_(qs['query']['filtered']['filter']['bool']['must'],
+            [{'term': {'features.has_openmobileacl': True}}])
