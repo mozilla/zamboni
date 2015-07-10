@@ -28,7 +28,7 @@ curling==0.4
 # defusedxml is required by djangorestframework
 defusedxml==0.4.1
 dennis==0.4.2
-Django==1.7.7
+Django==1.7.9
 dj-database-url==0.3.0
 django-aesfield==0.1.2
 django-cache-nuggets==0.1.1
@@ -116,7 +116,7 @@ tower==0.4.1
 urllib3==1.10.3
 
 ## Not on pypi.
--e git+https://github.com/mozilla/app-validator.git@0b6892b800302cbab558256191ad219a28daf990#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@7762a030a2a5a01cd70173d99167efc771239304#egg=app-validator
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
 ## Temporary fork.
