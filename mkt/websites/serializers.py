@@ -2,10 +2,11 @@ from drf_compound_fields.fields import ListField
 from rest_framework import serializers
 
 from mkt.constants.base import CONTENT_ICON_SIZES
-from mkt.api.fields import TranslationSerializerField
+from mkt.api.fields import (GuessLanguageTranslationField,
+                            TranslationSerializerField)
 from mkt.search.serializers import BaseESSerializer
 from mkt.tags.models import attach_tags
-from mkt.websites.models import Website
+from mkt.websites.models import Website, WebsiteSubmission
 
 
 class WebsiteSerializer(serializers.ModelSerializer):
@@ -70,3 +71,20 @@ class ReviewerESWebsiteSerializer(ESWebsiteSerializer):
     class Meta(ESWebsiteSerializer.Meta):
         model = Website
         fields = ESWebsiteSerializer.Meta.fields + ['status']
+
+
+class PublicWebsiteSubmissionSerializer(serializers.ModelSerializer):
+    categories = ListField(serializers.CharField())
+    description = GuessLanguageTranslationField()
+    id = serializers.IntegerField(source='pk', required=False)
+    keywords = ListField(serializers.CharField())
+    name = GuessLanguageTranslationField()
+    preferred_regions = ListField(serializers.CharField())
+    works_well = serializers.IntegerField()
+
+    class Meta:
+        model = WebsiteSubmission
+        fields = ['canonical_url', 'categories', 'description',
+                  'detected_icon', 'id', 'keywords', 'name',
+                  'preferred_regions', 'public_credit', 'url', 'why_relevant',
+                  'works_well']

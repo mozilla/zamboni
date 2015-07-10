@@ -4,8 +4,11 @@ import jinja2
 from jingo import register, env
 from langid import classify
 
+from django.conf import settings
+
 import mkt
 from mkt.submit.models import AppSubmissionChecklist
+from mkt.translations.utils import find_language
 
 
 def del_by_key(data, delete):
@@ -65,9 +68,11 @@ def string_to_translatedfield_value(text):
     """
     Passed a string, will return a dict mapping 'language': string, suitable to
     be assigned to the value of a TranslatedField. If the language can not be
-    determined with confidence, will assume en-US.
+    determined with confidence, will assume English.
     """
-    lang = guess_language(text)
-    if lang:
-        return {lang: text}
-    return {'en-us': text}
+    guess = guess_language(text)
+    if guess:
+        lang = find_language(guess).lower()
+        if lang:
+            return {lang: text}
+    return {settings.SHORTER_LANGUAGES['en'].lower(): text}

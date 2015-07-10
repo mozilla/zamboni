@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework import fields, serializers
 from rest_framework.compat import smart_text
 
+from mkt.submit.helpers import string_to_translatedfield_value
 from mkt.translations.utils import to_language
 
 
@@ -211,6 +212,12 @@ class ESTranslationSerializerField(TranslationSerializerField):
             field_name = '%s%s' % (field_name, self.suffix)
         return super(ESTranslationSerializerField, self).field_to_native(
             obj, field_name)
+
+
+class GuessLanguageTranslationField(TranslationSerializerField):
+    def field_from_native(self, data, files, field_name, into):
+        value = data.get(field_name)
+        into[field_name] = string_to_translatedfield_value(value)
 
 
 class SplitField(fields.Field):

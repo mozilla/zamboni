@@ -8,7 +8,8 @@ from rest_framework.request import Request
 from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
 
-from mkt.api.fields import (ESTranslationSerializerField, IntegerRangeField,
+from mkt.api.fields import (ESTranslationSerializerField,
+                            GuessLanguageTranslationField, IntegerRangeField,
                             SlugChoiceField, SlugOrPrimaryKeyRelatedField,
                             SplitField, TranslationSerializerField)
 from mkt.carriers import CARRIER_MAP
@@ -169,9 +170,22 @@ class _TestTranslationSerializerField(object):
         eq_(result, None)
 
 
-class TestTranslationSerializerField(_TestTranslationSerializerField,
-                                     TestCase):
-    fixtures = fixture('user_2519', 'webapp_337141')
+class TestGuessLanguageTranslationField(TestCase):
+    def guessed_value(self, input, expected_output):
+        field = GuessLanguageTranslationField()
+        FIELD_NAME = 'testfield'
+        into = {}
+        DATA = {FIELD_NAME: input}
+        field.field_from_native(DATA, None, FIELD_NAME, into)
+        eq_(expected_output, into[FIELD_NAME])
+
+    def test_english(self):
+        data = u'This is in English.'
+        self.guessed_value(data, {'en-us': data})
+
+    def test_french(self):
+        data = u'Ceci est écrit en français.'
+        self.guessed_value(data, {'fr': data})
 
 
 class TestESTranslationSerializerField(_TestTranslationSerializerField,

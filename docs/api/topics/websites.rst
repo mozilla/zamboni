@@ -84,3 +84,66 @@ Website
     :type title: string|object
     :param url: The site's URL.
     :type url: string
+
+
+Website Submission
+==================
+
+.. note:: Authentication and the 'Websites:Submit' permission are required.
+
+.. _website-submit:
+
+.. http:post:: /api/v2/websites/website/submit/
+
+    **Request**
+
+    .. code-block:: json
+
+      {
+        'canonical_url': 'https://www.bro.app',
+        'categories': ['lifestyle', 'music'],
+        'detected_icon': 'https://www.bro.app/apple-touch.png',
+        'description': 'We cannot tell you what a Bro is. But bros know.',
+        'keywords': ['social networking', 'Gilfoyle', 'Silicon Valley'],
+        'name': 'Bro',
+        'preferred_regions': ['us', 'ca', 'fr'],
+        'public_credit': False,
+        'url': 'https://m.bro.app',
+        'why_relevant': 'Ummm...bro. You know.',
+        'works_well': 3
+      }
+
+    :param canonical_url: the canonical URL to the website, if one can be
+        detected.
+    :type canonical_url: string
+    :param categories: slugs of categories to which the website belongs.
+    :type categories: array
+    :param detected_icon: the URL to an icon for the website.
+    :type detected_icon: string
+    :param description: a description of the website.
+    :type description: string
+    :param keywords: website keywords
+    :type keywords: array
+    :param name: the name of the website
+    :type name: string
+    :param preferred_regions: the regions in which the website is specifically
+        relevant.
+    :type preferred_regions: array
+    :param public_credit: whether or not the user wants public credit for
+        submitting the website.
+    :type public_credit: boolean
+    :param url: the url of the website
+    :type url: string
+    :param why_relevant: why the submitters believes the website belongs in
+        Marketplace.
+    :type why_relevant: string
+    :param works_well: how well the website works, on a scale of 1 (poorly) to
+        5 (very well).
+    :type works_well: integer
+
+    **Response**
+
+    :status 201: successfully created.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.

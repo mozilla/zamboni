@@ -4,7 +4,8 @@ from django.db.transaction import non_atomic_requests
 
 import requests
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import (CreateAPIView, ListAPIView,
+                                     RetrieveAPIView)
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -21,10 +22,11 @@ from mkt.search.filters import (PublicAppsFilter, WebsiteSearchFormFilter,
 from mkt.search.forms import SimpleSearchForm
 from mkt.websites.helpers import WebsiteMetadata
 from mkt.websites.indexers import WebsiteIndexer
-from mkt.websites.models import Website
+from mkt.websites.models import Website, WebsiteSubmission
 from mkt.websites.serializers import (ESWebsiteSerializer,
                                       ReviewerESWebsiteSerializer,
-                                      WebsiteSerializer)
+                                      WebsiteSerializer,
+                                      PublicWebsiteSubmissionSerializer)
 
 
 class WebsiteView(CORSMixin, MarketplaceView, RetrieveAPIView):
@@ -98,3 +100,15 @@ class WebsiteMetadataScraperView(CORSMixin, MarketplaceView, APIView):
         except XMLSyntaxError:
             return Response(self.errors['malformed_data'],
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class WebsiteSubmissionView(CORSMixin, MarketplaceView, CreateAPIView):
+    cors_allowed_methods = ['post']
+    authentication_classes = [RestSharedSecretAuthentication,
+                              RestOAuthAuthentication]
+    model = WebsiteSubmission
+    permission_classes = [GroupPermission('Websites', 'Submit')]
+    serializer_class = PublicWebsiteSubmissionSerializer
+
+    def pre_save(self, obj):
+        setattr(obj, 'submitter', self.request.user)
