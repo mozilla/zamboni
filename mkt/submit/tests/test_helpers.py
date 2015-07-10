@@ -2,6 +2,8 @@
 import mock
 from nose.tools import eq_
 
+from django.conf import settings
+
 import mkt.site.tests
 from mkt.submit.helpers import guess_language, string_to_translatedfield_value
 
@@ -47,3 +49,10 @@ class TestStringToTranslatedFieldValue(mkt.site.tests.TestCase):
         mock_guess_language.return_value = None
         val = string_to_translatedfield_value(strings['it'])
         eq_(val, {'en-us': strings['it']})
+
+    @mock.patch('mkt.submit.helpers.guess_language')
+    def test_short_language(self, mock_guess_language):
+        mock_guess_language.return_value = 'en'
+        val = string_to_translatedfield_value(strings['en'])
+        eq_(val, {
+            settings.SHORTER_LANGUAGES['en'].lower(): strings['en']})

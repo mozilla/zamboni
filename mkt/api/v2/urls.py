@@ -15,7 +15,7 @@ from mkt.search.views import (MultiSearchView, NonPublicSearchView,
                               NoRegionSearchView, OpenMobileACLSearchView,
                               RocketbarViewV2)
 from mkt.websites.views import (WebsiteMetadataScraperView, WebsiteSearchView,
-                                WebsiteView)
+                                WebsiteView, WebsiteSubmissionView)
 
 
 feed = SimpleRouter()
@@ -100,6 +100,8 @@ urlpatterns = patterns(
         name='website-detail'),
     url(r'^websites/scrape/', WebsiteMetadataScraperView.as_view(),
         name='website-scrape'),
+    url(r'^websites/submit/', WebsiteSubmissionView.as_view(),
+        name='website-submit'),
     url(r'^multi-search/', MultiSearchView.as_view(),
         name='multi-search-api'),
 ) + v1_urls
