@@ -52,21 +52,6 @@ class TestFileHelper(TestCase):
         self.viewer.extract()
         eq_(self.viewer.is_extracted(), True)
 
-    def test_recurse_extract(self):
-        self.viewer.src = get_file('recurse.xpi')
-        self.viewer.extract()
-        eq_(self.viewer.is_extracted(), True)
-
-    def test_recurse_contents(self):
-        self.viewer.src = get_file('recurse.xpi')
-        self.viewer.extract()
-        files = self.viewer.get_files()
-        nm = ['recurse/recurse.xpi/chrome/test-root.txt',
-              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
-              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
-        for name in nm:
-            eq_(name in files, True, 'File %r not extracted' % name)
-
     def test_cleanup(self):
         self.viewer.extract()
         self.viewer.cleanup()
