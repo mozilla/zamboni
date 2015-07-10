@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:32-0700\n"
-"PO-Revision-Date: 2015-05-23 23:45+0000\n"
+"PO-Revision-Date: 2015-07-10 00:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432424702.0\n"
+"X-POOTLE-MTIME: 1436489932.0\n"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1254,7 +1254,7 @@ msgstr "Nível 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Livros e banda desenhada"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1270,11 +1270,11 @@ msgstr "Diversão"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Comida e bebidas"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Crianças"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1286,11 +1286,11 @@ msgstr "Saúde e bem-estar"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humor"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1306,11 +1306,11 @@ msgstr "Música"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Notícias"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Personalização"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1326,7 +1326,7 @@ msgstr "Referência"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Ciência e tecnologia"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1350,7 +1350,7 @@ msgstr "Utilitários"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Meteorologia"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2007,19 +2007,19 @@ msgstr "Resto do Mundo"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Santo Eustáquio e Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Bolívia, Estado Plurinacional da"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Congo, República Democrática do"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Cabo Verde"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2027,31 +2027,31 @@ msgstr "Guiné-Conacri"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Ilha Heard e Ilhas McDonald"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laos, República Democrática"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Líbia"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin (parte francesa)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Macedónia, antiga República Jugoslava da"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Palestina, Estado da"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2063,7 +2063,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Santa Helena, Ascensão e Tristão da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2075,7 +2075,7 @@ msgstr "Tanzânia"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Santa Sé"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -2657,7 +2657,7 @@ msgstr "Aplicação eliminada."
 
 #: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
-msgstr "A senha estava incorreta. A aplicação não foi eliminada."
+msgstr "A palavra-passe não está correta. A aplicação não foi eliminada."
 
 #: mkt/developers/views.py:211
 msgid "App successfully resubmitted."
@@ -3281,7 +3281,7 @@ msgstr "Desativado"
 
 #: mkt/developers/templates/developers/apps/status.html:228 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/operators/templates/operators/preloads.html:47
 msgid "Download"
-msgstr "Transferir"
+msgstr "Descarregar"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
@@ -4076,7 +4076,7 @@ msgstr "Aplicação pré-carregada"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr "Transferir o plano de teste"
+msgstr "Descarregar o plano de teste"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
@@ -5019,7 +5019,9 @@ msgstr "Logótipo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
-msgstr "Para ver e transferir o logótipo do Firefox Marketplace, por favor visite o <a href=\"%(style_guide_url)s\">guia de estilo da Mozilla</a>."
+msgstr ""
+"Para ver e descarregar o logótipo do Firefox Marketplace, por favor visite o "
+"<a href=\"%(style_guide_url)s\">guia de estilo da Mozilla</a>."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -5081,7 +5083,7 @@ msgstr "URL %(url)s inválida"
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
-msgstr "Erro ao transferir a imagem de %(url)s"
+msgstr "Erro ao descarregar a imagem de %(url)s"
 
 #: mkt/feed/fields.py:199
 msgid "Image from %(url)s could not be parsed"
@@ -5106,7 +5108,9 @@ msgstr "Problemas ao decodificar {0}."
 
 #: mkt/files/helpers.py:213
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Este ficheiro não é vísivel online. Por favor, transfira o ficheiro para ver o conteúdo."
+msgstr ""
+"Este ficheiro não é visível online. Por favor, descarregue o ficheiro para "
+"ver o conteúdo."
 
 #: mkt/files/helpers.py:221
 msgid "This file is a directory."
@@ -5166,7 +5170,7 @@ msgstr "Voltar para a aplicação"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
-msgstr "Transferir {0}"
+msgstr "Descarregar {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
@@ -5322,7 +5326,7 @@ msgstr "O pedido de reembolso para esta transação falhou."
 
 #: mkt/lookup/views.py:333
 msgid "Website saved."
-msgstr ""
+msgstr "Sítio web guardado."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5639,35 +5643,35 @@ msgstr "Motivo"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
 msgid "Short Name"
-msgstr ""
+msgstr "Nome curto"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
 msgid "Mobile URL"
-msgstr ""
+msgstr "URL móvel"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
 msgid "Keywords"
-msgstr ""
+msgstr "Palavras-chave"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Regiões preferenciais"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Nome-nome curto"
 
 #: mkt/lookup/templates/lookup/website_summary.html:50
 msgid "disabled"
-msgstr ""
+msgstr "desativado"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5695,11 +5699,11 @@ msgstr "Conta eliminada"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Resumo do sítio web para"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Editar sítio web"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5721,7 +5725,7 @@ msgstr "Pesquisa de conta"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Pesquisa de sítio"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -5931,15 +5935,15 @@ msgstr "aplicação, revisor ou comentário"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Tipo de dispositivo:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Dispositivo:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Versão do Firefox:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -6004,7 +6008,7 @@ msgstr "Análises moderadas"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Relatórios de abuso de sítio web"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6055,12 +6059,12 @@ msgstr "Revisões moderadas ({0})"
 #: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr "Denúncias de abusos ({0})"
+msgstr "Denúncias de abuso de sítio web ({0})"
 
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Denúncias de abuso de sítio web ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6181,7 +6185,7 @@ msgstr "Análise processada com sucesso."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Denúncias de abuso para {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -6497,11 +6501,11 @@ msgstr "Inserir modelo de resposta ..."
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "Testado em:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Adicionar dispositivo"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -6649,11 +6653,12 @@ msgstr "Marcar como lido"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "Review page"
-msgstr ""
+msgstr "Rever página"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Todas as denúncias de abuso (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
@@ -6662,6 +6667,8 @@ msgstr "<span class=\"submitted-by\">Enviado por %(user)s a %(date)s [%(ip_addre
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" "
+"href=\"%(translate_url)s\">traduzir</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -6908,7 +6915,7 @@ msgstr "Definições da conta"
 
 #: mkt/site/context_processors.py:58
 msgid "Change Password"
-msgstr "Alterar senha"
+msgstr "Alterar palavra-passe"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
@@ -7180,7 +7187,7 @@ msgstr "Mensagem de correio eletrónico enviada ao autor sobre a compatibilidade
 
 #: mkt/site/log.py:360
 msgid "Password changed."
-msgstr "Senha alterada."
+msgstr "Palavra-passe alterada."
 
 #: mkt/site/log.py:365
 msgid "{addon} changed to premium."
@@ -7436,7 +7443,7 @@ msgstr "{addon} {version} falhou a {queue} de revisão."
 
 #: mkt/site/log.py:689
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Denúncia de abuso {report} para {addon} lida."
 
 #: mkt/site/log.py:690
 msgid "{user} marked read {report} for {addon}."
@@ -7444,11 +7451,11 @@ msgstr "{user} marcou como lido {report} para {addon}."
 
 #: mkt/site/log.py:698
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Denúncia de abuso {report} para {website} lida."
 
 #: mkt/site/log.py:699
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} marcou como lido {report} para {website}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
