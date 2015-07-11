@@ -3,9 +3,8 @@ from lxml.etree import XMLSyntaxError
 from django.db.transaction import non_atomic_requests
 
 import requests
-from rest_framework import status
-from rest_framework.generics import (CreateAPIView, ListAPIView,
-                                     RetrieveAPIView)
+from rest_framework import status, viewsets
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -102,11 +101,12 @@ class WebsiteMetadataScraperView(CORSMixin, MarketplaceView, APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-class WebsiteSubmissionView(CORSMixin, MarketplaceView, CreateAPIView):
-    cors_allowed_methods = ['post']
+class WebsiteSubmissionViewSet(CORSMixin, MarketplaceView,
+                               viewsets.ModelViewSet):
+    cors_allowed_methods = ['get', 'post']
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
-    model = WebsiteSubmission
+    queryset = WebsiteSubmission.objects.all()
     permission_classes = [GroupPermission('Websites', 'Submit')]
     serializer_class = PublicWebsiteSubmissionSerializer
 

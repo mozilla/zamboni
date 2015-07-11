@@ -321,7 +321,7 @@ class TestWebsiteScrape(RestOAuth, TestCase):
         self.assertCORS(self.client.get(self.url), 'get')
 
 
-class TestWebsiteSubmissionView(RestOAuth, TestCase):
+class TestWebsiteSubmissionViewSetCreate(RestOAuth, TestCase):
     def setUp(self):
         self.url = reverse('api-v2:website-submit')
         self.data = {
@@ -337,7 +337,7 @@ class TestWebsiteSubmissionView(RestOAuth, TestCase):
             'why_relevant': 'Ummm...bro. You know.',
             'works_well': 3
         }
-        super(TestWebsiteSubmissionView, self).setUp()
+        super(TestWebsiteSubmissionViewSetCreate, self).setUp()
 
     def go(self, anon=False):
         client = self.client
@@ -388,4 +388,36 @@ class TestWebsiteSubmissionView(RestOAuth, TestCase):
 
     def test_post_anon(self):
         response, content = self.go(anon=True)
+        eq_(response.status_code, 403)
+
+
+class TestWebsiteSubmissionViewSetList(RestOAuth, TestCase):
+    def setUp(self):
+        self.url = reverse('api-v2:website-submissions')
+        self.data = {
+            'canonical_url': 'https://www.bro.app',
+            'categories': ['lifestyle', 'music'],
+            'detected_icon': 'https://www.bro.app/apple-touch.png',
+            'description': 'We cannot tell you what a Bro is. But bros know.',
+            'keywords': ['social networking', 'Gilfoyle', 'Silicon Valley'],
+            'name': 'Bro',
+            'preferred_regions': ['us', 'ca', 'fr'],
+            'public_credit': False,
+            'url': 'https://m.bro.app',
+            'why_relevant': 'Ummm...bro. You know.',
+            'works_well': 3
+        }
+        super(TestWebsiteSubmissionViewSetList, self).setUp()
+
+    def test_list(self):
+        WebsiteSubmission.objects.create(**self.data)
+        WebsiteSubmission.objects.create(**self.data)
+        self.grant_permission(self.user, 'Websites:Submit')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(response.json['objects'][0]['url'], 'https://m.bro.app')
+        eq_(response.json['meta']['total_count'], 2)
+
+    def test_anon(self):
+        response = self.client.get(self.url)
         eq_(response.status_code, 403)
