@@ -79,7 +79,7 @@ class PublicWebsiteSubmissionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(source='pk', required=False)
     keywords = ListField(serializers.CharField())
     name = GuessLanguageTranslationField()
-    preferred_regions = ListField(serializers.CharField())
+    preferred_regions = ListField(serializers.CharField(), required=False)
     works_well = serializers.IntegerField()
 
     class Meta:
