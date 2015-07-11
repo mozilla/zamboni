@@ -89,7 +89,7 @@ class WebsiteSubmission(ModelBase):
 
     # If the submitter says the website is relevant worldwide,
     # preferred_regions should be set to [].
-    preferred_regions = JSONField(default=None)
+    preferred_regions = JSONField(default=None, blank=True, null=True)
 
     # Turn true when a reviewer has approved and published a submission.
     approved = models.BooleanField(default=False, db_index=True)

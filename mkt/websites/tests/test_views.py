@@ -390,6 +390,13 @@ class TestWebsiteSubmissionViewSetCreate(RestOAuth, TestCase):
         response, content = self.go(anon=True)
         eq_(response.status_code, 403)
 
+    def test_allow_empty_preferred_regions(self):
+        self.grant_permission(self.user, 'Websites:Submit')
+        self.data['preferred_regions'] = []
+        response, content = self.go()
+        eq_(response.status_code, 201)
+        eq_(content['preferred_regions'], [])
+
 
 class TestWebsiteSubmissionViewSetList(RestOAuth, TestCase):
     def setUp(self):
