@@ -52,18 +52,18 @@ class WebsiteSubmission(ModelBase):
     Website model, and approved=True will be set on the submission instance.
     """
     name = TranslatedField()
-    keywords = models.ManyToManyField(Tag)
+    keywords = JSONField(default=None)
     description = TranslatedField()
     categories = JSONField(default=None)
 
-    date_approved = models.DateTimeField(blank=True)
+    date_approved = models.DateTimeField(blank=True, null=True)
 
     # `detected_icon` is the URL of the icon we are able to gather from the
     # submitted site's metadata. In the reviewer tools, reviewers will be able
     # to accept that icon, or upload one of their own.
     detected_icon = models.URLField(max_length=255, blank=True)
-    icon_type = models.CharField(max_length=25, blank=True)
-    icon_hash = models.CharField(max_length=8, blank=True)
+    icon_type = models.CharField(max_length=25, blank=True, null=True)
+    icon_hash = models.CharField(max_length=8, blank=True, null=True)
 
     # The `url` field is the URL as entered by the submitter. The
     # `canonical_url` field is the URL that the site reports as the canonical
@@ -80,7 +80,7 @@ class WebsiteSubmission(ModelBase):
 
     # Who is submitting the website? Do they want public credit for their
     # submission?
-    submitter = models.ForeignKey(UserProfile,
+    submitter = models.ForeignKey(UserProfile, blank=True, null=True,
                                   related_name='websites_submitted')
     public_credit = models.BooleanField(default=False)
 
@@ -89,7 +89,7 @@ class WebsiteSubmission(ModelBase):
 
     # If the submitter says the website is relevant worldwide,
     # preferred_regions should be set to [].
-    preferred_regions = JSONField(default=None)
+    preferred_regions = JSONField(default=None, blank=True, null=True)
 
     # Turn true when a reviewer has approved and published a submission.
     approved = models.BooleanField(default=False, db_index=True)
@@ -262,3 +262,7 @@ def delete_search_index(sender, instance, **kw):
 # Save translations before saving Website instance with translated fields.
 models.signals.pre_save.connect(save_signal, sender=Website,
                                 dispatch_uid='website_translations')
+
+# Save translations before saving WebsiteSubmission instances.
+models.signals.pre_save.connect(save_signal, sender=WebsiteSubmission,
+                                dispatch_uid='websitesubmission_translations')

@@ -13,7 +13,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.websites.models import Website
+from mkt.websites.models import Website, WebsiteSubmission
 from mkt.websites.utils import website_factory
 from mkt.websites.views import WebsiteMetadataScraperView
 
@@ -319,3 +319,112 @@ class TestWebsiteScrape(RestOAuth, TestCase):
 
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.url), 'get')
+
+
+class TestWebsiteSubmissionViewSetCreate(RestOAuth, TestCase):
+    def setUp(self):
+        self.url = reverse('api-v2:website-submit')
+        self.data = {
+            'canonical_url': 'https://www.bro.app',
+            'categories': ['lifestyle', 'music'],
+            'detected_icon': 'https://www.bro.app/apple-touch.png',
+            'description': 'We cannot tell you what a Bro is. But bros know.',
+            'keywords': ['social networking', 'Gilfoyle', 'Silicon Valley'],
+            'name': 'Bro',
+            'preferred_regions': ['us', 'ca', 'fr'],
+            'public_credit': False,
+            'url': 'https://m.bro.app',
+            'why_relevant': 'Ummm...bro. You know.',
+            'works_well': 3
+        }
+        super(TestWebsiteSubmissionViewSetCreate, self).setUp()
+
+    def go(self, anon=False):
+        client = self.client
+        if anon:
+            client = self.anon
+        response = client.post(self.url, json.dumps(self.data))
+        return response, json.loads(response.content)
+
+    def compare_values(self, content):
+        ok_('id' in content)
+        eq_(content['canonical_url'], self.data['canonical_url'])
+        eq_(content['categories'], self.data['categories'])
+        eq_(content['detected_icon'], self.data['detected_icon'])
+        eq_(content['keywords'], self.data['keywords'])
+        eq_(content['preferred_regions'], self.data['preferred_regions'])
+        eq_(content['public_credit'], self.data['public_credit'])
+        eq_(content['url'], self.data['url'])
+        eq_(content['why_relevant'], self.data['why_relevant'])
+        eq_(content['works_well'], self.data['works_well'])
+        ok_(self.data['description'] in content['description'].values())
+        ok_(self.data['name'] in content['name'].values())
+
+    def missing_field(self, field_name, failure=True):
+        self.data[field_name] = None
+        response, content = self.go()
+        eq_(response.status_code, 400 if failure else 201)
+        return response, content
+
+    def test_get(self):
+        self.grant_permission(self.user, 'Websites:Submit')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 405)
+
+    def test_get_no_perms(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_post(self):
+        self.grant_permission(self.user, 'Websites:Submit')
+        response, content = self.go()
+        eq_(response.status_code, 201)
+        self.compare_values(content)
+        eq_(WebsiteSubmission.objects.all()[0].submitter, self.user)
+
+    def test_post_no_perms(self):
+        response, content = self.go()
+        eq_(response.status_code, 403)
+
+    def test_post_anon(self):
+        response, content = self.go(anon=True)
+        eq_(response.status_code, 403)
+
+    def test_allow_empty_preferred_regions(self):
+        self.grant_permission(self.user, 'Websites:Submit')
+        self.data['preferred_regions'] = []
+        response, content = self.go()
+        eq_(response.status_code, 201)
+        eq_(content['preferred_regions'], [])
+
+
+class TestWebsiteSubmissionViewSetList(RestOAuth, TestCase):
+    def setUp(self):
+        self.url = reverse('api-v2:website-submissions')
+        self.data = {
+            'canonical_url': 'https://www.bro.app',
+            'categories': ['lifestyle', 'music'],
+            'detected_icon': 'https://www.bro.app/apple-touch.png',
+            'description': 'We cannot tell you what a Bro is. But bros know.',
+            'keywords': ['social networking', 'Gilfoyle', 'Silicon Valley'],
+            'name': 'Bro',
+            'preferred_regions': ['us', 'ca', 'fr'],
+            'public_credit': False,
+            'url': 'https://m.bro.app',
+            'why_relevant': 'Ummm...bro. You know.',
+            'works_well': 3
+        }
+        super(TestWebsiteSubmissionViewSetList, self).setUp()
+
+    def test_list(self):
+        WebsiteSubmission.objects.create(**self.data)
+        WebsiteSubmission.objects.create(**self.data)
+        self.grant_permission(self.user, 'Websites:Submit')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(response.json['objects'][0]['url'], 'https://m.bro.app')
+        eq_(response.json['meta']['total_count'], 2)
+
+    def test_anon(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 403)

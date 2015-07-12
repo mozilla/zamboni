@@ -21,7 +21,7 @@ from appvalidator.testcases.packagelayout import (
     blacklisted_magic_numbers as blocked_magic_numbers)
 
 import mkt
-from mkt.files.utils import extract_xpi, get_md5
+from mkt.files.utils import copy_over, extract_zip, get_md5
 from mkt.site.utils import rm_local_tmp_dir
 
 
@@ -97,9 +97,9 @@ class FileViewer(object):
         except OSError, err:
             pass
 
-        # This is called `extract_xpi` but it unzips like a zip file.
         try:
-            extract_xpi(self.src, self.dest, expand=True)
+            tempdir = extract_zip(self.src)
+            copy_over(tempdir, self.dest)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
             raise

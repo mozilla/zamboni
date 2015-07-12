@@ -12,9 +12,10 @@ from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import (MultiSearchView, NonPublicSearchView,
-                              NoRegionSearchView, RocketbarViewV2)
+                              NoRegionSearchView, OpenMobileACLSearchView,
+                              RocketbarViewV2)
 from mkt.websites.views import (WebsiteMetadataScraperView, WebsiteSearchView,
-                                WebsiteView)
+                                WebsiteView, WebsiteSubmissionViewSet)
 
 
 feed = SimpleRouter()
@@ -64,6 +65,9 @@ urlpatterns = patterns(
     url(r'^apps/search/no-region/$',
         NoRegionSearchView.as_view(),
         name='no-region-search-api'),
+    url(r'^apps/search/openmobile_acl/$',
+        OpenMobileACLSearchView.as_view(),
+        name='openmobile_acl-search-api'),
 
     url(r'^comm/app/%s' % mkt.APP_SLUG,
         CommAppListView.as_view({'get': 'list'}), name='comm-app-list'),
@@ -96,6 +100,12 @@ urlpatterns = patterns(
         name='website-detail'),
     url(r'^websites/scrape/', WebsiteMetadataScraperView.as_view(),
         name='website-scrape'),
+    url(r'^websites/submit/',
+        WebsiteSubmissionViewSet.as_view({'post': 'create'}),
+        name='website-submit'),
+    url(r'^websites/submissions/',
+        WebsiteSubmissionViewSet.as_view({'get': 'list'}),
+        name='website-submissions'),
     url(r'^multi-search/', MultiSearchView.as_view(),
         name='multi-search-api'),
 ) + v1_urls

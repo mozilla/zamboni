@@ -5,7 +5,6 @@ import os
 import re
 import shutil
 import stat
-import StringIO
 import tempfile
 import zipfile
 
@@ -211,23 +210,6 @@ class SafeUnzip(object):
                     return True
                 finds.append((name, ext))
 
-    def extract_from_manifest(self, manifest):
-        """
-        Extracts a file given a manifest such as:
-            jar:chrome/de.jar!/locale/de/browser/
-        or
-            locale/de/browser
-        """
-        type, path = manifest.split(':')
-        jar = self
-        if type == 'jar':
-            parts = path.split('!')
-            for part in parts[:-1]:
-                jar = self.__class__(StringIO.StringIO(jar.zip.read(part)))
-                jar.is_valid(fatal=True)
-            path = parts[-1]
-        return jar.extract_path(path[1:] if path.startswith('/') else path)
-
     def extract_path(self, path):
         """Given a path, extracts the content at path."""
         return self.zip.read(path)
@@ -253,20 +235,18 @@ class SafeUnzip(object):
         self.zip.close()
 
 
-def extract_zip(source, remove=False, fatal=True):
-    """Extracts the zip file. If remove is given, removes the source file."""
+def extract_zip(source):
+    """Extracts the zip file."""
     tempdir = tempfile.mkdtemp()
 
     zip = SafeUnzip(source)
     try:
-        if zip.is_valid(fatal):
+        if zip.is_valid():
             zip.extract_to_dest(tempdir)
     except:
         rm_local_tmp_dir(tempdir)
         raise
 
-    if remove:
-        os.remove(source)
     return tempdir
 
 
@@ -283,37 +263,6 @@ def copy_over(source, dest):
     os.chmod(dest, stat.S_IRWXU | stat.S_IRGRP |
              stat.S_IXGRP | stat.S_IROTH | stat.S_IXOTH)
     shutil.rmtree(source)
-
-
-def extract_xpi(xpi, path, expand=False):
-    """
-    If expand is given, will look inside the expanded file
-    and find anything in the approved list and try and expand it as well.
-    It will do up to 10 iterations, after that you are on your own.
-
-    It will replace the expanded file with a directory and the expanded
-    contents. If you have 'foo.jar', that contains 'some-image.jpg', then
-    it will create a folder, foo.jar, with an image inside.
-    """
-    expand_filetypes = ['.jar', '.xpi']
-    tempdir = extract_zip(xpi)
-
-    if expand:
-        for x in xrange(0, 10):
-            flag = False
-            for root, dirs, files in os.walk(tempdir):
-                for name in files:
-                    if os.path.splitext(name)[1] in expand_filetypes:
-                        src = os.path.join(root, name)
-                        if not os.path.isdir(src):
-                            dest = extract_zip(src, remove=True, fatal=False)
-                            if dest:
-                                copy_over(dest, src)
-                                flag = True
-            if not flag:
-                break
-
-    copy_over(tempdir, path)
 
 
 def parse_addon(pkg, addon=None):

@@ -17,9 +17,10 @@ from mkt.api.paginator import ESPaginator
 from mkt.operators.authorization import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm
 from mkt.search.indexers import BaseIndexer
-from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
-                                PublicAppsFilter, PublicSearchFormFilter,
-                                RegionFilter, SearchQueryFilter, SortingFilter,
+from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
+                                ProfileFilter, PublicAppsFilter,
+                                PublicSearchFormFilter, RegionFilter,
+                                SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
 from mkt.search.serializers import DynamicSearchSerializer
 from mkt.search.utils import Search
@@ -220,3 +221,29 @@ class RocketbarView(SearchView):
 
 class RocketbarViewV2(RocketbarView):
     serializer_class = RocketbarESAppSerializerV2
+
+
+class OpenMobileACLSearchView(SearchView):
+    """
+    A search view designed to find all valid apps using the Openmobile ACL
+    feature flag. Region exclusions are ignored. The consumer pages will use
+    that to verify the user has at least one app installed that belongs to that
+    list before trying to install an ACL.
+
+    It returns a list of manifest URLs directly, without pagination.
+    """
+    filter_backends = [ValidAppsFilter, OpenMobileACLFilter]
+
+    def get_queryset(self):
+        qs = super(OpenMobileACLSearchView, self).get_queryset()
+        return qs.extra(_source={'include': ['manifest_url']})
+
+    def get(self, request, *args, **kwargs):
+        hits = self.filter_queryset(self.get_queryset()).execute().hits
+        data = [obj['manifest_url'] for obj in hits]
+
+        # This returns a JSON list. Usually this is a bad idea for security
+        # reasons, but we don't include any user-specific data, it's fully
+        # anonymous, so we're fine.
+        return HttpResponse(json.dumps(data),
+                            content_type='application/json')
