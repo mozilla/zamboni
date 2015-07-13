@@ -115,9 +115,10 @@ class PermissionsSerializer(serializers.Serializer):
                 allowed('Collections', 'Curate') or
                 allowed('Feed', 'Curate')
             ),
-            'reviewer': acl.action_allowed(request, 'Apps', 'Review'),
+            'reviewer': allowed('Apps', 'Review'),
             'webpay': (allowed('Transaction', 'NotifyFailure') and
                        allowed('ProductIcon', 'Create')),
+            'website_submitter': allowed('Websites', 'Submit'),
             'stats': allowed('Stats', 'View'),
             'revenue_stats': allowed('RevenueStats', 'View'),
         }

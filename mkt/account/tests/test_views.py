@@ -86,7 +86,8 @@ class TestPermission(RestOAuth):
         eq_(res.status_code, 200, res.content)
         self.assertSetEqual(
             ['admin', 'developer', 'localizer', 'lookup', 'curator',
-             'reviewer', 'webpay', 'stats', 'revenue_stats'],
+             'reviewer', 'webpay', 'website_submitter', 'stats',
+             'revenue_stats'],
             res.json['permissions'].keys()
         )
         ok_(not all(res.json['permissions'].values()))
@@ -134,6 +135,17 @@ class TestPermission(RestOAuth):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         ok_(res.json['permissions']['webpay'])
+
+    def test_website_submitter(self):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(not res.json['permissions']['website_submitter'])
+
+    def test_website_submitter_ok(self):
+        self.grant_permission(self.user, 'Websites:Submit')
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(res.json['permissions']['website_submitter'])
 
     def test_stats(self):
         res = self.client.get(self.get_url)
@@ -438,6 +450,7 @@ class TestLoginHandler(TestCase):
              'curator': False,
              'reviewer': True,
              'webpay': False,
+             'website_submitter': False,
              'stats': False,
              'revenue_stats': False})
         eq_(data['apps']['installed'], [])
@@ -548,6 +561,7 @@ class TestFxaLoginHandler(TestCase):
              'curator': False,
              'reviewer': True,
              'webpay': False,
+             'website_submitter': False,
              'stats': False,
              'revenue_stats': False})
         eq_(data['apps']['installed'], [])
