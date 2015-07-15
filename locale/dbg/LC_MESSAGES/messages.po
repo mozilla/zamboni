@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 08:32-0700\n"
+"POT-Creation-Date: 2015-07-15 11:14-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.12.0\n"
 
-#: mkt/api/fields.py:20
+#: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. %(value)s īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
 
-#: mkt/api/fields.py:87
+#: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
 msgstr "Ŧħḗ ƒīḗŀḓ ḿŭşŧ ħȧṽḗ ȧ ŀḗƞɠŧħ ǿƒ ȧŧ ŀḗȧşŧ {ƞŭḿ} ƈħȧřȧƈŧḗřş."
 
-#: mkt/api/fields.py:89
+#: mkt/api/fields.py:91
 msgid "The language code {lang_code} is invalid."
 msgstr "Ŧħḗ ŀȧƞɠŭȧɠḗ ƈǿḓḗ {ŀȧƞɠ_ƈǿḓḗ} īş īƞṽȧŀīḓ."
 
@@ -2601,7 +2601,7 @@ msgstr ""
 "Ȧƞ ȧƥƥ ȧŀřḗȧḓẏ ḗẋīşŧş ǿƞ ŧħīş ḓǿḿȧīƞ; ǿƞŀẏ ǿƞḗ ȧƥƥ ƥḗř ḓǿḿȧīƞ īş ȧŀŀǿẇḗḓ."
 
 #: mkt/developers/forms.py:338
-#: mkt/websites/forms.py:71
+#: mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
@@ -2730,14 +2730,14 @@ msgstr "Ƈħǿǿşḗ ẇħḗřḗ ḿẏ ȧƥƥ īş ḿȧḓḗ ȧṽȧīŀȧ
 #: mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
 #: mkt/search/forms.py:88
-#: mkt/websites/forms.py:21
+#: mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Ƈȧŧḗɠǿřīḗş"
 
 #. L10n: {0} is the number of categories.
 #: mkt/developers/forms.py:1036
 #: mkt/webapps/serializers.py:271
-#: mkt/websites/forms.py:56
+#: mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřẏ."
@@ -3021,7 +3021,7 @@ msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 #: mkt/search/forms.py:20
 #: mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5
-#: mkt/websites/forms.py:27
+#: mkt/websites/forms.py:32
 msgid "Name"
 msgstr "Ƞȧḿḗ"
 
@@ -3219,31 +3219,35 @@ msgstr "Ṽḗřşīǿƞ \"{0}\" ḓḗŀḗŧḗḓ."
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: mkt/developers/views.py:954
+#: mkt/developers/views.py:700
+msgid "An error occurred validating the manifest."
+msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ ṽȧŀīḓȧŧīƞɠ ŧħḗ ḿȧƞīƒḗşŧ."
+
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: mkt/developers/views.py:1005
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:1017
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:1026
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1032
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
@@ -3770,7 +3774,7 @@ msgstr "Ȧƀǿŭŧ ŧḗȧḿ ḿḗḿƀḗř řǿŀḗş"
 #: mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286
 #: mkt/developers/templates/developers/payments/premium.html:325
-#: mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
@@ -3833,8 +3837,8 @@ msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 #: mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152
-#: mkt/lookup/templates/lookup/website_edit.html:88
-#: mkt/lookup/templates/lookup/website_summary.html:46
+#: mkt/lookup/templates/lookup/website_edit.html:97
+#: mkt/lookup/templates/lookup/website_summary.html:50
 #: mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240
 #: mkt/reviewers/templates/reviewers/review.html:29
@@ -3995,7 +3999,7 @@ msgstr "Şŭƀḿīşşīǿƞ ḓȧŧḗ"
 
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
-#: mkt/lookup/templates/lookup/website_edit.html:95
+#: mkt/lookup/templates/lookup/website_edit.html:104
 msgid "Disabled"
 msgstr "Ḓīşȧƀŀḗḓ"
 
@@ -4231,7 +4235,7 @@ msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ḓḗŀīşŧ ẏǿŭ�
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/submit/templates/submit/done.html:48
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -4258,7 +4262,7 @@ msgstr "ǿř"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30
 #: mkt/lookup/templates/lookup/user_summary.html:115
 #: mkt/lookup/templates/lookup/user_summary.html:118
-#: mkt/lookup/templates/lookup/website_edit.html:105
+#: mkt/lookup/templates/lookup/website_edit.html:114
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
@@ -4499,7 +4503,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_edit.html:41
 #: mkt/lookup/templates/lookup/website_summary.html:22
 #: mkt/reviewers/templates/reviewers/includes/details.html:138
-#: mkt/websites/forms.py:23
+#: mkt/websites/forms.py:25
 msgid "Description"
 msgstr "Ḓḗşƈřīƥŧīǿƞ"
 
@@ -6366,7 +6370,7 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. 
 msgid "There was an error accessing file %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
-#: mkt/files/utils.py:75
+#: mkt/files/utils.py:74
 msgid ""
 "The file \"manifest.webapp\" was not found at the root of the packaged app "
 "archive."
@@ -6374,7 +6378,7 @@ msgstr ""
 "Ŧħḗ ƒīŀḗ \"ḿȧƞīƒḗşŧ.ẇḗƀȧƥƥ\" ẇȧş ƞǿŧ ƒǿŭƞḓ ȧŧ ŧħḗ řǿǿŧ ǿƒ ŧħḗ ƥȧƈķȧɠḗḓ ȧƥƥ "
 "ȧřƈħīṽḗ."
 
-#: mkt/files/utils.py:97
+#: mkt/files/utils.py:96
 msgid ""
 "Could not decode the webapp manifest file. Check your manifest file for "
 "special non-utf-8 characters."
@@ -6382,11 +6386,11 @@ msgstr ""
 "Ƈǿŭŀḓ ƞǿŧ ḓḗƈǿḓḗ ŧħḗ ẇḗƀȧƥƥ ḿȧƞīƒḗşŧ ƒīŀḗ. Ƈħḗƈķ ẏǿŭř ḿȧƞīƒḗşŧ ƒīŀḗ ƒǿř "
 "şƥḗƈīȧŀ ƞǿƞ-ŭŧƒ-8 ƈħȧřȧƈŧḗřş."
 
-#: mkt/files/utils.py:105
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "Ŧħḗ ẇḗƀȧƥƥ ḿȧƞīƒḗşŧ īş ƞǿŧ ṽȧŀīḓ ĴŞǾȠ."
 
-#: mkt/files/utils.py:112
+#: mkt/files/utils.py:111
 msgid ""
 "The \"langpack\" role is invalid for Web Apps. Please submit this app as a "
 "language pack instead."
@@ -6394,11 +6398,11 @@ msgstr ""
 "Ŧħḗ \"ŀȧƞɠƥȧƈķ\" řǿŀḗ īş īƞṽȧŀīḓ ƒǿř Ẇḗƀ Ȧƥƥş. Ƥŀḗȧşḗ şŭƀḿīŧ ŧħīş ȧƥƥ ȧş ȧ "
 "ŀȧƞɠŭȧɠḗ ƥȧƈķ īƞşŧḗȧḓ."
 
-#: mkt/files/utils.py:120
+#: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
 msgstr "Ẏǿŭř şƥḗƈīƒīḗḓ ȧƥƥ ŀǿƈȧŀḗş ȧřḗ ƞǿŧ īƞ ŧħḗ ƈǿřřḗƈŧ ƒǿřḿȧŧ."
 
-#: mkt/files/utils.py:137
+#: mkt/files/utils.py:136
 msgid ""
 "Developer name is required in the manifest in order to display it on the "
 "app's listing."
@@ -6406,15 +6410,15 @@ msgstr ""
 "Ḓḗṽḗŀǿƥḗř ƞȧḿḗ īş řḗɋŭīřḗḓ īƞ ŧħḗ ḿȧƞīƒḗşŧ īƞ ǿřḓḗř ŧǿ ḓīşƥŀȧẏ īŧ ǿƞ ŧħḗ "
 "ȧƥƥ'ş ŀīşŧīƞɠ."
 
-#: mkt/files/utils.py:187
+#: mkt/files/utils.py:186
 msgid "Invalid file name in archive: {0}"
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ: {0}"
 
-#: mkt/files/utils.py:195
+#: mkt/files/utils.py:194
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ƒīŀḗ ḗẋƈḗḗḓīƞɠ şīzḗ ŀīḿīŧ īƞ ȧřƈħīṽḗ: {0}"
 
-#: mkt/files/utils.py:245
+#: mkt/files/utils.py:227
 msgid "Invalid archive."
 msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 
@@ -6970,19 +6974,19 @@ msgid "Reason"
 msgstr "Řḗȧşǿƞ"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27
-#: mkt/websites/forms.py:31
+#: mkt/websites/forms.py:36
 msgid "Short Name"
 msgstr "Şħǿřŧ Ƞȧḿḗ"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34
 #: mkt/lookup/templates/lookup/website_summary.html:14
-#: mkt/websites/forms.py:33
+#: mkt/websites/forms.py:38
 msgid "Title"
 msgstr "Ŧīŧŀḗ"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48
 #: mkt/lookup/templates/lookup/website_summary.html:26
-#: mkt/websites/forms.py:35
+#: mkt/websites/forms.py:40
 msgid "URL"
 msgstr "ŬŘĿ"
 
@@ -6993,21 +6997,27 @@ msgstr "Ḿǿƀīŀḗ ŬŘĿ"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62
 #: mkt/lookup/templates/lookup/website_summary.html:34
-#: mkt/websites/forms.py:25
+#: mkt/websites/forms.py:30
 msgid "Keywords"
 msgstr "Ķḗẏẇǿřḓş"
 
 #: mkt/lookup/templates/lookup/website_edit.html:69
 #: mkt/lookup/templates/lookup/website_summary.html:38
-#: mkt/websites/forms.py:29
+#: mkt/websites/forms.py:34
 msgid "Preferred Regions"
 msgstr "Ƥřḗƒḗřřḗḓ Řḗɠīǿƞş"
+
+#: mkt/lookup/templates/lookup/website_edit.html:88
+#: mkt/lookup/templates/lookup/website_summary.html:46
+#: mkt/websites/forms.py:28
+msgid "Compatible Devices"
+msgstr "Ƈǿḿƥȧŧīƀŀḗ Ḓḗṽīƈḗş"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
 msgstr "Ƞȧḿḗ - Şħǿřŧ Ƞȧḿḗ"
 
-#: mkt/lookup/templates/lookup/website_summary.html:50
+#: mkt/lookup/templates/lookup/website_summary.html:54
 msgid "disabled"
 msgstr "ḓīşȧƀŀḗḓ"
 
@@ -9659,6 +9669,10 @@ msgstr "Şǿřŧ ƀẏ:"
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
+
+#: mkt/websites/forms.py:89
+msgid "Invalid device(s) selected."
+msgstr "Īƞṽȧŀīḓ ḓḗṽīƈḗ(ş) şḗŀḗƈŧḗḓ."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

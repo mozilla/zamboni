@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 08:32-0700\n"
+"POT-Creation-Date: 2015-07-15 11:14-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,28 +12,541 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.12.0\n"
 
+#: media/js/common-all.js:10462
+#: media/js/impala-all.js:1512
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/discovery-all.js:10429
+#: media/js/zamboni/mobile-all.js:10990
+#: media/js/zamboni/mobile-min.js:4
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ "
+"Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
+
+#: media/js/common-all.js:10879
+#: media/js/impala-all.js:1929
+#: media/js/zamboni/mobile-all.js:10726
+#: media/js/zamboni/mobile-min.js:4
+msgid "App installation not allowed."
+msgstr "‮∀dd ıusʇɐʅʅɐʇıou uoʇ ɐʅʅoʍǝp˙"
+
+#: media/js/common-all.js:10882
+#: media/js/impala-all.js:1932
+#: media/js/zamboni/mobile-all.js:10729
+#: media/js/zamboni/mobile-min.js:4
+msgid "App manifest is malformed."
+msgstr "‮∀dd ɯɐuıɟǝsʇ ıs ɯɐʅɟoɹɯǝp˙"
+
+#: media/js/common-all.js:10885
+#: media/js/impala-all.js:1935
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/mobile-all.js:10732
+#: media/js/zamboni/mobile-min.js:4
+msgid "App host could not be reached."
+msgstr "‮∀dd ɥosʇ ɔonʅp uoʇ qǝ ɹǝɐɔɥǝp˙"
+
+#: media/js/common-all.js:10888
+#: media/js/impala-all.js:1938
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/mobile-all.js:10735
+#: media/js/zamboni/mobile-min.js:4
+msgid "App manifest is unparsable."
+msgstr "‮∀dd ɯɐuıɟǝsʇ ıs nudɐɹsɐqʅǝ˙"
+
+#: media/js/common-all.js:10891
+#: media/js/impala-all.js:1941
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/mobile-all.js:10738
+#: media/js/zamboni/mobile-min.js:4
+msgid "App manifest is invalid."
+msgstr "‮∀dd ɯɐuıɟǝsʇ ıs ıuʌɐʅıp˙"
+
+#: media/js/common-all.js:10894
+#: media/js/impala-all.js:1944
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/mobile-all.js:10741
+#: media/js/zamboni/mobile-min.js:4
+msgid "Install failed. Please try again later."
+msgstr "‮Iusʇɐʅʅ ɟɐıʅǝp˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
+
+#: media/js/common-all.js:10905
+#: media/js/impala-all.js:1955
+#: media/js/zamboni/mobile-all.js:10752
+#: media/js/zamboni/mobile-min.js:4
+msgid "App installation failed."
+msgstr "‮∀dd ıusʇɐʅʅɐʇıou ɟɐıʅǝp˙"
+
+#: media/js/common-all.js:10906
+#: media/js/impala-all.js:1956
+#: media/js/zamboni/mobile-all.js:10753
+#: media/js/zamboni/mobile-min.js:4
+msgid "This system does not support installing apps."
+msgstr "‮⊥ɥıs sʎsʇǝɯ poǝs uoʇ snddoɹʇ ıusʇɐʅʅıuƃ ɐdds˙"
+
+#. L10n: {0} is an app name like Firefox.
+#: media/js/common-all.js:11054
+#: media/js/impala-all.js:2104
+#: media/js/zamboni/discovery-all.js:10996
+msgid "Accept and Install"
+msgstr "‮∀ɔɔǝdʇ ɐup Iusʇɐʅʅ"
+
+#: media/js/common-all.js:11054
+#: media/js/impala-all.js:2104
+#: media/js/zamboni/discovery-all.js:10996
+msgid "Add to {0}"
+msgstr "‮∀pp ʇo {0}"
+
+#: media/js/common-all.js:11059
+#: media/js/impala-all.js:2109
+#: media/js/zamboni/discovery-all.js:11001
+msgid "Download Now"
+msgstr "‮ᗡoʍuʅoɐp Noʍ"
+
+#: media/js/common-all.js:11100
+#: media/js/impala-all.js:2150
+#: media/js/zamboni/discovery-all.js:11042
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "‮∀pp-ou ɥɐs uoʇ qǝǝu ndpɐʇǝp ʇo snddoɹʇ pǝɟɐnʅʇ-ʇo-ɔoɯdɐʇıqʅǝ˙"
+
+#: media/js/common-all.js:11105
+#: media/js/impala-all.js:2155
+#: media/js/zamboni/discovery-all.js:11047
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "‮⅄on uǝǝp ʇo qǝ nsıuƃ Ⅎıɹǝɟox 10.0‮ oɹ ɥıƃɥǝɹ˙"
+
+#: media/js/common-all.js:11117
+#: media/js/impala-all.js:2167
+#: media/js/zamboni/discovery-all.js:11059
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"‮Wozıʅʅɐ ɥɐs ɯɐɹʞǝp ʇɥıs ʌǝɹsıou ɐs ıuɔoɯdɐʇıqʅǝ ʍıʇɥ ʎonɹ Ⅎıɹǝɟox ʌǝɹsıou˙"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: media/js/common-all.js:11195
+#: media/js/impala-all.js:2245
+#: media/js/zamboni/discovery-all.js:11137
+msgid "Install for {0} anyway"
+msgstr "‮Iusʇɐʅʅ ɟoɹ {0}‮ ɐuʎʍɐʎ"
+
+#: media/js/common-all.js:11195
+#: media/js/impala-all.js:2245
+#: media/js/zamboni/discovery-all.js:11137
+msgid "Download for {0} anyway"
+msgstr "‮ᗡoʍuʅoɐp ɟoɹ {0}‮ ɐuʎʍɐʎ"
+
+#: media/js/common-all.js:11252
+#: media/js/impala-all.js:2302
+#: media/js/zamboni/discovery-all.js:11194
+msgid "Not available for your platform"
+msgstr "‮Noʇ ɐʌɐıʅɐqʅǝ ɟoɹ ʎonɹ dʅɐʇɟoɹɯ"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: media/js/common-all.js:11263
+#: media/js/common-all.js:11300
+#: media/js/impala-all.js:2313
+#: media/js/impala-all.js:2350
+#: media/js/zamboni/discovery-all.js:11205
+#: media/js/zamboni/discovery-all.js:11242
+msgid "Not available for {0} {1}"
+msgstr "‮Noʇ ɐʌɐıʅɐqʅǝ ɟoɹ {0}‮ {1}"
+
+#: media/js/common-all.js:11326
+#: media/js/impala-all.js:2376
+#: media/js/zamboni/discovery-all.js:11268
+msgid "Works with {app} {min} - {max}"
+msgstr "‮Ｍoɹʞs ʍıʇɥ {ɐdd} {ɯıu} - {ɯɐx}"
+
+#: media/js/common-all.js:11328
+#: media/js/impala-all.js:2378
+#: media/js/zamboni/discovery-all.js:11270
+msgid "View other versions"
+msgstr "‮Ʌıǝʍ oʇɥǝɹ ʌǝɹsıous"
+
+#: media/js/common-all.js:11543
+#: media/js/impala-all.js:2593
+#: media/js/zamboni/discovery-all.js:11485
+#: media/js/zamboni/mobile-all.js:11222
+#: media/js/zamboni/mobile-min.js:4
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"‮Soɹɹʎ´ ʎon uǝǝp ɐ Wozıʅʅɐ-qɐsǝp qɹoʍsǝɹ (snɔɥ ɐs Ⅎıɹǝɟox) ʇo ıusʇɐʅʅ ɐ "
+"sǝɐɹɔɥ dʅnƃıu˙"
+
+#: media/js/common-all.js:16652
+#: media/js/common-min.js:7
+#: media/js/impala-all.js:8282
+#: media/js/impala-min.js:5
+msgid "Loading..."
+msgstr "‮⅂oɐpıuƃ˙˙˙"
+
+#. L10n: {0} is the number of characters left.
+#: media/js/common-all.js:16725
+#: media/js/common-min.js:7
+#: media/js/impala-all.js:8355
+#: media/js/impala-min.js:5
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b>‮ ɔɥɐɹɐɔʇǝɹ ʅǝɟʇ˙"
+msgstr[1] "<b>{0}</b>‮ ɔɥɐɹɐɔʇǝɹs ʅǝɟʇ˙"
+
+#: media/js/common-all.js:17162
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:8741
+#: media/js/impala-min.js:5
+#: media/js/zamboni/mobile-all.js:12231
+#: media/js/zamboni/mobile-min.js:5
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0}‮ sʇɐɹ"
+msgstr[1] "{0}‮ sʇɐɹs"
+
+#: media/js/common-all.js:17306
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:8885
+#: media/js/impala-min.js:5
+#: media/js/devreg/l10n.js:45
+msgid "Remove this localization"
+msgstr "‮ᴚǝɯoʌǝ ʇɥıs ʅoɔɐʅızɐʇıou"
+
+#: media/js/common-all.js:18266
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:9862
+#: media/js/impala-min.js:6
+msgid "Install App"
+msgstr "‮Iusʇɐʅʅ ∀dd"
+
+#: media/js/common-all.js:18506
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:10202
+#: media/js/impala-min.js:6
+msgid "Flagged for review"
+msgstr "‮Ⅎʅɐƃƃǝp ɟoɹ ɹǝʌıǝʍ"
+
+#: media/js/common-all.js:18522
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:10219
+#: media/js/impala-min.js:6
+msgid "Your input is required"
+msgstr "‮⅄onɹ ıudnʇ ıs ɹǝbnıɹǝp"
+
+#: media/js/common-all.js:18591
+#: media/js/common-min.js:8
+#: media/js/impala-all.js:10312
+#: media/js/impala-min.js:6
+msgid "Marked for deletion"
+msgstr "‮Wɐɹʞǝp ɟoɹ pǝʅǝʇıou"
+
+#: media/js/common-all.js:19177
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12078
+#: media/js/impala-min.js:7
+msgid "clear recently viewed"
+msgstr "‮ɔʅǝɐɹ ɹǝɔǝuʇʅʎ ʌıǝʍǝp"
+
+#: media/js/common-all.js:19349
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12250
+#: media/js/impala-min.js:7
+msgid "Adding to Favorites&hellip;"
+msgstr "‮∀ppıuƃ ʇo Ⅎɐʌoɹıʇǝs&hellip;"
+
+#: media/js/common-all.js:19352
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12253
+#: media/js/impala-min.js:7
+msgid "Removing Favorite&hellip;"
+msgstr "‮ᴚǝɯoʌıuƃ Ⅎɐʌoɹıʇǝ&hellip;"
+
+#: media/js/common-all.js:19355
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12256
+#: media/js/impala-min.js:7
+msgid "Add to Favorites"
+msgstr "‮∀pp ʇo Ⅎɐʌoɹıʇǝs"
+
+#: media/js/common-all.js:19358
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12259
+#: media/js/impala-min.js:7
+msgid "Remove from Favorites"
+msgstr "‮ᴚǝɯoʌǝ ɟɹoɯ Ⅎɐʌoɹıʇǝs"
+
+#: media/js/common-all.js:19421
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12322
+#: media/js/impala-min.js:7
+msgid "Pending"
+msgstr "‮Ԁǝupıuƃ"
+
+#: media/js/common-all.js:19422
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12323
+#: media/js/impala-min.js:7
+msgid "Add a comment"
+msgstr "‮∀pp ɐ ɔoɯɯǝuʇ"
+
+#: media/js/common-all.js:19422
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12323
+#: media/js/impala-min.js:7
+msgid "Comment"
+msgstr "‮Ↄoɯɯǝuʇ"
+
+#: media/js/common-all.js:19423
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12324
+#: media/js/impala-min.js:7
+msgid "Remove this add-on from the collection"
+msgstr "‮ᴚǝɯoʌǝ ʇɥıs ɐpp-ou ɟɹoɯ ʇɥǝ ɔoʅʅǝɔʇıou"
+
+#: media/js/common-all.js:19423
+#: media/js/common-all.js:19452
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12324
+#: media/js/impala-all.js:12353
+#: media/js/impala-min.js:7
+msgid "Remove"
+msgstr "‮ᴚǝɯoʌǝ"
+
+#: media/js/common-all.js:19452
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12353
+#: media/js/impala-min.js:7
+msgid "Remove this user as a contributor"
+msgstr "‮ᴚǝɯoʌǝ ʇɥıs nsǝɹ ɐs ɐ ɔouʇɹıqnʇoɹ"
+
+#: media/js/common-all.js:19464
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12365
+#: media/js/impala-min.js:7
+msgid "An email address is required."
+msgstr "‮∀u ǝɯɐıʅ ɐppɹǝss ıs ɹǝbnıɹǝp˙"
+
+#: media/js/common-all.js:19482
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12383
+#: media/js/impala-min.js:7
+msgid "You cannot add yourself as a contributor."
+msgstr "‮⅄on ɔɐuuoʇ ɐpp ʎonɹsǝʅɟ ɐs ɐ ɔouʇɹıqnʇoɹ˙"
+
+#: media/js/common-all.js:19484
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12385
+#: media/js/impala-min.js:7
+msgid "You have already added that user."
+msgstr "‮⅄on ɥɐʌǝ ɐʅɹǝɐpʎ ɐppǝp ʇɥɐʇ nsǝɹ˙"
+
+#: media/js/common-all.js:19687
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12588
+#: media/js/impala-min.js:7
+msgid "Add to favorites"
+msgstr "‮∀pp ʇo ɟɐʌoɹıʇǝs"
+
+#: media/js/common-all.js:19691
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12592
+#: media/js/impala-min.js:7
+msgid "Remove from favorites"
+msgstr "‮ᴚǝɯoʌǝ ɟɹoɯ ɟɐʌoɹıʇǝs"
+
+#: media/js/common-all.js:19709
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12610
+#: media/js/impala-all.js:12676
+#: media/js/impala-min.js:7
+msgid "Follow this Collection"
+msgstr "‮Ⅎoʅʅoʍ ʇɥıs Ↄoʅʅǝɔʇıou"
+
+#: media/js/common-all.js:19718
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12619
+#: media/js/impala-min.js:7
+msgid "Stop following"
+msgstr "‮Sʇod ɟoʅʅoʍıuƃ"
+
+#: media/js/common-all.js:19794
+#: media/js/common-all.js:19807
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:12727
+#: media/js/impala-all.js:12740
+#: media/js/impala-min.js:7
+msgid "All"
+msgstr "‮∀ʅʅ"
+
+#: media/js/common-all.js:19956
+#: media/js/common-min.js:9
+msgid "Password strength:"
+msgstr "‮Ԁɐssʍoɹp sʇɹǝuƃʇɥ:"
+
+#: media/js/common-all.js:19962
+#: media/js/common-min.js:9
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "‮∀ʇ ʅǝɐsʇ {0}‮ ɔɥɐɹɐɔʇǝɹ ʅǝɟʇ˙"
+msgstr[1] "‮∀ʇ ʅǝɐsʇ {0}‮ ɔɥɐɹɐɔʇǝɹs ʅǝɟʇ˙"
+
+#: media/js/common-all.js:20146
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:13122
+#: media/js/impala-min.js:7
+#: media/js/devreg/suggestions.js:66
+msgid "Search themes for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ʇɥǝɯǝs ɟoɹ <b>{0}</b>"
+
+#: media/js/common-all.js:20148
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:13124
+#: media/js/impala-min.js:7
+#: media/js/devreg/suggestions.js:68
+msgid "Search apps for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ɐdds ɟoɹ <b>{0}</b>"
+
+#: media/js/common-all.js:20150
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:13126
+#: media/js/impala-min.js:7
+#: media/js/devreg/suggestions.js:70
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "‮Sǝɐɹɔɥ ɐpp-ous ɟoɹ <b>{0}</b>"
+
+#: media/js/common-all.js:20381
+#: media/js/common-min.js:9
+#: media/js/impala-all.js:13357
+#: media/js/impala-min.js:7
+msgid "Category"
+msgstr "‮Ↄɐʇǝƃoɹʎ"
+
+#: media/js/impala-all.js:3042
+#: media/js/zamboni/mobile-all.js:12298
+#: media/js/zamboni/mobile-min.js:5
+msgid "Admins and editors must provide a password to log in."
+msgstr "‮∀pɯıus ɐup ǝpıʇoɹs ɯnsʇ dɹoʌıpǝ ɐ dɐssʍoɹp ʇo ʅoƃ ıu˙"
+
+#: media/js/impala-all.js:3047
+#: media/js/zamboni/mobile-all.js:12303
+#: media/js/zamboni/mobile-min.js:5
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"‮ԐɹoʍsǝɹIᗡ ʅoƃıu ɟɐıʅǝp˙ Wɐʎqǝ ʎon pou,ʇ ɥɐʌǝ ɐu ɐɔɔonuʇ nupǝɹ ʇɥɐʇ ǝɯɐıʅ "
+"ɐppɹǝss¿"
+
+#. L10n: {0} is an app name.
+#: media/js/impala-all.js:10340
+#: media/js/impala-min.js:6
+msgid "This theme is incompatible with your version of {0}"
+msgstr "‮⊥ɥıs ʇɥǝɯǝ ıs ıuɔoɯdɐʇıqʅǝ ʍıʇɥ ʎonɹ ʌǝɹsıou oɟ {0}"
+
+#: media/js/impala-all.js:10852
+#: media/js/impala-all.js:12856
+#: media/js/impala-min.js:6
+#: media/js/impala-min.js:7
+#: media/js/common/upload-image.js:98
+#: media/js/zamboni/devhub-all.js:715
+#: media/js/zamboni/devhub-min.js:1
+msgid "Images must be either PNG or JPG."
+msgstr "‮Iɯɐƃǝs ɯnsʇ qǝ ǝıʇɥǝɹ ԀN⅁ oɹ ſԀ⅁˙"
+
+#: media/js/impala-all.js:10856
+#: media/js/impala-min.js:6
+#: media/js/common/upload-image.js:102
+#: media/js/zamboni/devhub-all.js:719
+#: media/js/zamboni/devhub-min.js:1
+msgid "Videos must be in WebM."
+msgstr "‮Ʌıpǝos ɯnsʇ qǝ ıu ＭǝqW˙"
+
+#: media/js/impala-all.js:10883
+#: media/js/impala-min.js:6
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
+#: media/js/zamboni/devhub-all.js:275
+#: media/js/zamboni/devhub-all.js:746
+#: media/js/zamboni/devhub-min.js:1
+msgid "There was a problem contacting the server."
+msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ sǝɹʌǝɹ˙"
+
+#: media/js/impala-all.js:11602
+#: media/js/impala-min.js:6
+msgid "All Rights Reserved"
+msgstr "‮∀ʅʅ ᴚıƃɥʇs ᴚǝsǝɹʌǝp"
+
+#: media/js/impala-all.js:11606
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou 3.0"
+
+#: media/js/impala-all.js:11611
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou-NouↃoɯɯǝɹɔıɐʅ 3.0"
+
+#: media/js/impala-all.js:11616
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou-NouↃoɯɯǝɹɔıɐʅ-Noᗡǝɹıʌs 3.0"
+
+#: media/js/impala-all.js:11621
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou-NouↃoɯɯǝɹɔıɐʅ-Sɥɐɹǝ ∀ʅıʞǝ 3.0"
+
+#: media/js/impala-all.js:11626
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou-Noᗡǝɹıʌs 3.0"
+
+#: media/js/impala-all.js:11631
+#: media/js/impala-min.js:6
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "‮Ↄɹǝɐʇıʌǝ Ↄoɯɯous ∀ʇʇɹıqnʇıou-Sɥɐɹǝ∀ʅıʞǝ 3.0"
+
+#: media/js/impala-all.js:11838
+#: media/js/impala-min.js:6
+msgid "Your Theme's Name"
+msgstr "‮⅄onɹ ⊥ɥǝɯǝ,s Nɐɯǝ"
+
+#: media/js/impala-all.js:12685
+#: media/js/impala-min.js:7
+msgid "Stop Following"
+msgstr "‮Sʇod Ⅎoʅʅoʍıuƃ"
+
+#: media/js/impala-all.js:12686
+#: media/js/impala-min.js:7
+msgid "Following"
+msgstr "‮Ⅎoʅʅoʍıuƃ"
+
+#: media/js/impala-all.js:12838
+#: media/js/impala-min.js:7
+msgid "use original"
+msgstr "‮nsǝ oɹıƃıuɐʅ"
+
+#: media/js/impala-all.js:13013
+#: media/js/impala-min.js:7
+msgid "Updating results&hellip;"
+msgstr "‮∩dpɐʇıuƃ ɹǝsnʅʇs&hellip;"
+
 #: media/js/common/upload-base.js:61
+#: media/js/zamboni/devhub-all.js:197
+#: media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
 msgstr "‮⊥ɥǝ ɟıʅǝʇʎdǝ ʎon ndʅoɐpǝp ısu,ʇ ɹǝɔoƃuızǝp˙"
 
 #: media/js/common/upload-base.js:83
+#: media/js/zamboni/devhub-all.js:219
+#: media/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
 msgstr "‮⅄on ɔɐuɔǝʅʅǝp ʇɥǝ ndʅoɐp˙"
 
-#: media/js/common/upload-image.js:98
-msgid "Images must be either PNG or JPG."
-msgstr "‮Iɯɐƃǝs ɯnsʇ qǝ ǝıʇɥǝɹ ԀN⅁ oɹ ſԀ⅁˙"
-
-#: media/js/common/upload-image.js:102
-msgid "Videos must be in WebM."
-msgstr "‮Ʌıpǝos ɯnsʇ qǝ ıu ＭǝqW˙"
-
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
-msgid "There was a problem contacting the server."
-msgstr "‮⊥ɥǝɹǝ ʍɐs ɐ dɹoqʅǝɯ ɔouʇɐɔʇıuƃ ʇɥǝ sǝɹʌǝɹ˙"
-
 #: media/js/common/upload-packaged-app.js:52
+#: media/js/zamboni/devhub-all.js:293
+#: media/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
 msgstr "‮Sǝʅǝɔʇ ɐ ɟıʅǝ˙˙˙"
 
@@ -43,34 +556,48 @@ msgstr "‮⅄onɹ dɐɔʞɐƃǝp ɐdd sɥonʅp ǝup ʍıʇɥ <code>‮˙zıd</c
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
+#: media/js/zamboni/devhub-all.js:328
+#: media/js/zamboni/devhub-min.js:1
 msgid "{0}% complete"
 msgstr "{0}% c‮oɯdʅǝʇǝ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
+#: media/js/zamboni/devhub-all.js:331
+#: media/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
 msgstr "{0}‮ oɟ {1}"
 
 #: media/js/common/upload-packaged-app.js:120
+#: media/js/zamboni/devhub-all.js:361
+#: media/js/zamboni/devhub-min.js:1
 msgid "Cancel"
 msgstr "‮Ↄɐuɔǝʅ"
 
 #: media/js/common/upload-packaged-app.js:142
+#: media/js/zamboni/devhub-all.js:383
+#: media/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
 msgstr "‮∩dʅoɐpıuƃ {0}"
 
 #: media/js/common/upload-packaged-app.js:164
+#: media/js/zamboni/devhub-all.js:410
+#: media/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
 msgstr "‮Ǝɹɹoɹ ʍıʇɥ {0}"
 
 #: media/js/common/upload-packaged-app.js:169
 #: media/js/devreg/devhub.js:208
+#: media/js/zamboni/devhub-all.js:1151
+#: media/js/zamboni/devhub-min.js:1
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ˙"
 msgstr[1] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs˙"
 
 #: media/js/common/upload-packaged-app.js:184
+#: media/js/zamboni/devhub-all.js:429
+#: media/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
@@ -79,23 +606,35 @@ msgstr[1] "&hellip;‮ɐup {0}‮ ɯoɹǝ"
 #: media/js/common/upload-packaged-app.js:199
 #: media/js/common/upload-packaged-app.js:325
 #: media/js/devreg/devhub.js:170
+#: media/js/zamboni/devhub-all.js:443
+#: media/js/zamboni/devhub-all.js:570
+#: media/js/zamboni/devhub-all.js:1144
+#: media/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
 msgstr "‮Sǝǝ ɟnʅʅ ʌɐʅıpɐʇıou ɹǝdoɹʇ"
 
 #: media/js/common/upload-packaged-app.js:211
+#: media/js/zamboni/devhub-all.js:455
+#: media/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
 msgstr "‮Ʌɐʅıpɐʇıuƃ {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
+#: media/js/zamboni/devhub-all.js:493
+#: media/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
 msgstr "‮ᴚǝɔǝıʌǝp ɐu ǝɯdʇʎ ɹǝsdousǝ ɟɹoɯ ʇɥǝ sǝɹʌǝɹ; sʇɐʇns: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
+#: media/js/zamboni/devhub-all.js:504
+#: media/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
 msgstr "‮∩uǝxdǝɔʇǝp sǝɹʌǝɹ ǝɹɹoɹ ʍɥıʅǝ ʌɐʅıpɐʇıuƃ˙"
 
 #: media/js/common/upload-packaged-app.js:294
+#: media/js/zamboni/devhub-all.js:542
+#: media/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
 msgstr "‮Ⅎıuısɥǝp ʌɐʅıpɐʇıuƃ {0}"
 
@@ -113,18 +652,6 @@ msgstr "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ʍ
 msgid "The manifest could not be found at the given location."
 msgstr "‮⊥ɥǝ ɯɐuıɟǝsʇ ɔonʅp uoʇ qǝ ɟonup ɐʇ ʇɥǝ ƃıʌǝu ʅoɔɐʇıou˙"
 
-#: media/js/devreg/apps.js:87
-msgid "App host could not be reached."
-msgstr "‮∀dd ɥosʇ ɔonʅp uoʇ qǝ ɹǝɐɔɥǝp˙"
-
-#: media/js/devreg/apps.js:90
-msgid "App manifest is unparsable."
-msgstr "‮∀dd ɯɐuıɟǝsʇ ıs nudɐɹsɐqʅǝ˙"
-
-#: media/js/devreg/apps.js:93
-msgid "App manifest is invalid."
-msgstr "‮∀dd ɯɐuıɟǝsʇ ıs ıuʌɐʅıp˙"
-
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
 msgstr "‮∀dd ıs ɐʅɹǝɐpʎ ıusʇɐʅʅǝp˙"
@@ -137,10 +664,6 @@ msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ˙"
 msgid "Internal server error on app installation."
 msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ ou ɐdd ıusʇɐʅʅɐʇıou˙"
 
-#: media/js/devreg/apps.js:106
-msgid "Install failed. Please try again later."
-msgstr "‮Iusʇɐʅʅ ɟɐıʅǝp˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
-
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
@@ -148,16 +671,22 @@ msgstr[0] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹo
 msgstr[1] "‮⅄onɹ ɐdd ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs ɐup {1}‮ ɯǝssɐƃǝ(s)˙"
 
 #: media/js/devreg/devhub.js:227
+#: media/js/zamboni/devhub-all.js:1165
+#: media/js/zamboni/devhub-min.js:1
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝ˙"
 msgstr[1] "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝs˙"
 
 #: media/js/devreg/devhub.js:232
+#: media/js/zamboni/devhub-all.js:1170
+#: media/js/zamboni/devhub-min.js:1
 msgid "Your app passed validation with no errors or messages."
 msgstr "‮⅄onɹ ɐdd dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ɯǝssɐƃǝs˙"
 
 #: media/js/devreg/devhub.js:447
+#: media/js/zamboni/devhub-all.js:1469
+#: media/js/zamboni/devhub-min.js:1
 msgid "Changes Saved"
 msgstr "‮Ↄɥɐuƃǝs Sɐʌǝp"
 
@@ -174,18 +703,26 @@ msgid "Could not refresh manifest. Try again later."
 msgstr "‮Ↄonʅp uoʇ ɹǝɟɹǝsɥ ɯɐuıɟǝsʇ˙ ⊥ɹʎ ɐƃɐıu ʅɐʇǝɹ˙"
 
 #: media/js/devreg/devhub.js:662
+#: media/js/zamboni/devhub-all.js:1632
+#: media/js/zamboni/devhub-min.js:1
 msgid "There was an error uploading your file."
 msgstr "‮⊥ɥǝɹǝ ʍɐs ɐu ǝɹɹoɹ ndʅoɐpıuƃ ʎonɹ ɟıʅǝ˙"
 
 #: media/js/devreg/devhub.js:945
+#: media/js/zamboni/devhub-all.js:1907
+#: media/js/zamboni/devhub-min.js:1
 msgid "Learn more"
 msgstr "‮⅂ǝɐɹu ɯoɹǝ"
 
 #: media/js/devreg/devhub.js:949
+#: media/js/zamboni/devhub-all.js:1911
+#: media/js/zamboni/devhub-min.js:2
 msgid "Example"
 msgstr "‮Ǝxɐɯdʅǝ"
 
 #: media/js/devreg/devhub.js:1218
+#: media/js/zamboni/devhub-all.js:2267
+#: media/js/zamboni/devhub-min.js:2
 msgid "Image changes being processed"
 msgstr "‮Iɯɐƃǝ ɔɥɐuƃǝs qǝıuƃ dɹoɔǝssǝp"
 
@@ -208,18 +745,6 @@ msgstr "‮Ǝuɐqʅǝp"
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr "‮ᗡısɐqʅǝp"
-
-#: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"‮⊥ɥıs ɟǝɐʇnɹǝ ıs ʇǝɯdoɹɐɹıʅʎ pısɐqʅǝp ʍɥıʅǝ ʍǝ dǝɹɟoɹɯ ʍǝqsıʇǝ ɯɐıuʇǝuɐuɔǝ˙ "
-"Ԁʅǝɐsǝ ɔɥǝɔʞ qɐɔʞ ɐ ʅıʇʇʅǝ ʅɐʇǝɹ˙"
-
-#: media/js/devreg/l10n.js:45
-msgid "Remove this localization"
-msgstr "‮ᴚǝɯoʌǝ ʇɥıs ʅoɔɐʅızɐʇıou"
 
 #: media/js/devreg/login.js:126
 msgid ""
@@ -360,6 +885,10 @@ msgstr "‮{ɐddNɐɯǝ} dɐʎɯǝuʇ ɐɔɔonuʇs:"
 #: media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85
 #: media/js/devreg/reviewers/buttons.js:94
+#: media/js/zamboni/devhub-all.js:2765
+#: media/js/zamboni/devhub-all.js:3020
+#: media/js/zamboni/devhub-all.js:3039
+#: media/js/zamboni/devhub-min.js:2
 msgid "Error"
 msgstr "‮Ǝɹɹoɹ"
 
@@ -376,18 +905,6 @@ msgstr "‮∀nʇɥǝuʇıɔɐʇıou ǝɹɹoɹ"
 msgid "You do not currently have any payment accounts."
 msgstr "‮⅄on po uoʇ ɔnɹɹǝuʇʅʎ ɥɐʌǝ ɐuʎ dɐʎɯǝuʇ ɐɔɔonuʇs˙"
 
-#: media/js/devreg/suggestions.js:66
-msgid "Search themes for <b>{0}</b>"
-msgstr "‮Sǝɐɹɔɥ ʇɥǝɯǝs ɟoɹ <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "‮Sǝɐɹɔɥ ɐdds ɟoɹ <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "‮Sǝɐɹɔɥ ɐpp-ous ɟoɹ <b>{0}</b>"
-
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
 msgstr "‮Soɯǝʇɥıuƃ ʍǝuʇ ʍɹouƃ˙ Ԁʅǝɐsǝ ʇɹʎ ɐƃɐıu˙"
@@ -400,52 +917,76 @@ msgstr[0] "{0}‮ ɔɥɐɹɐɔʇǝɹ ʅǝɟʇ˙"
 msgstr[1] "{0}‮ ɔɥɐɹɐɔʇǝɹs ʅǝɟʇ˙"
 
 #: media/js/devreg/validator.js:71
+#: media/js/zamboni/devhub-all.js:2642
+#: media/js/zamboni/devhub-min.js:2
 msgid "All tests passed successfully."
 msgstr "‮∀ʅʅ ʇǝsʇs dɐssǝp snɔɔǝssɟnʅʅʎ˙"
 
 #: media/js/devreg/validator.js:74
 #: media/js/devreg/validator.js:356
+#: media/js/zamboni/devhub-all.js:2645
+#: media/js/zamboni/devhub-all.js:2938
+#: media/js/zamboni/devhub-min.js:2
 msgid "These tests were not run."
 msgstr "‮⊥ɥǝsǝ ʇǝsʇs ʍǝɹǝ uoʇ ɹnu˙"
 
 #: media/js/devreg/validator.js:117
 #: media/js/devreg/validator.js:130
+#: media/js/zamboni/devhub-all.js:2691
+#: media/js/zamboni/devhub-all.js:2704
+#: media/js/zamboni/devhub-min.js:2
 msgid "Tests"
 msgstr "‮⊥ǝsʇs"
 
 #: media/js/devreg/validator.js:192
+#: media/js/zamboni/devhub-all.js:2766
+#: media/js/zamboni/devhub-min.js:2
 msgid "Warning"
 msgstr "‮Ｍɐɹuıuƃ"
 
 #: media/js/devreg/validator.js:279
+#: media/js/zamboni/devhub-all.js:2853
+#: media/js/zamboni/devhub-min.js:2
 msgid "Compatibility Tests"
 msgstr "‮Ↄoɯdɐʇıqıʅıʇʎ ⊥ǝsʇs"
 
 #: media/js/devreg/validator.js:327
+#: media/js/zamboni/devhub-all.js:2902
+#: media/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
 msgstr "‮∀dd ɟɐıʅǝp ʌɐʅıpɐʇıou˙"
 
 #: media/js/devreg/validator.js:329
+#: media/js/zamboni/devhub-all.js:2904
+#: media/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
 msgstr "‮∀dd dɐssǝp ʌɐʅıpɐʇıou˙"
 
 #: media/js/devreg/validator.js:359
+#: media/js/zamboni/devhub-all.js:2941
+#: media/js/zamboni/devhub-min.js:2
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0}‮ ǝɹɹoɹ"
 msgstr[1] "{0}‮ ǝɹɹoɹs"
 
 #: media/js/devreg/validator.js:361
+#: media/js/zamboni/devhub-all.js:2943
+#: media/js/zamboni/devhub-min.js:2
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0}‮ ʍɐɹuıuƃ"
 msgstr[1] "{0}‮ ʍɐɹuıuƃs"
 
 #: media/js/devreg/validator.js:439
+#: media/js/zamboni/devhub-all.js:3022
+#: media/js/zamboni/devhub-min.js:2
 msgid "Validation task could not complete or completed with errors"
 msgstr "‮Ʌɐʅıpɐʇıou ʇɐsʞ ɔonʅp uoʇ ɔoɯdʅǝʇǝ oɹ ɔoɯdʅǝʇǝp ʍıʇɥ ǝɹɹoɹs"
 
 #: media/js/devreg/validator.js:457
+#: media/js/zamboni/devhub-all.js:3040
+#: media/js/zamboni/devhub-min.js:2
 msgid "Internal server error"
 msgstr "‮Iuʇǝɹuɐʅ sǝɹʌǝɹ ǝɹɹoɹ"
 
@@ -462,14 +1003,20 @@ msgid "Launch"
 msgstr "‮⅂ɐnuɔɥ"
 
 #: media/js/devreg/reviewers/editors.js:138
+#: media/js/zamboni/editors-all.js:15443
+#: media/js/zamboni/editors-min.js:5
 msgid "{name} was viewing this page first."
 msgstr "‮{uɐɯǝ} ʍɐs ʌıǝʍıuƃ ʇɥıs dɐƃǝ ɟıɹsʇ˙"
 
 #: media/js/devreg/reviewers/editors.js:188
+#: media/js/zamboni/editors-all.js:15493
+#: media/js/zamboni/editors-min.js:5
 msgid "Receipt checked by app."
 msgstr "‮ᴚǝɔǝıdʇ ɔɥǝɔʞǝp qʎ ɐdd˙"
 
 #: media/js/devreg/reviewers/editors.js:190
+#: media/js/zamboni/editors-all.js:15495
+#: media/js/zamboni/editors-min.js:5
 msgid "Receipt was not checked by app."
 msgstr "‮ᴚǝɔǝıdʇ ʍɐs uoʇ ɔɥǝɔʞǝp qʎ ɐdd˙"
 
@@ -478,26 +1025,42 @@ msgid "{name} was viewing this app first."
 msgstr "‮{uɐɯǝ} ʍɐs ʌıǝʍıuƃ ʇɥıs ɐdd ɟıɹsʇ˙"
 
 #: media/js/devreg/reviewers/editors.js:252
+#: media/js/zamboni/editors-all.js:15577
+#: media/js/zamboni/editors-min.js:5
 msgid "Loading&hellip;"
 msgstr "‮⅂oɐpıuƃ&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:257
+#: media/js/zamboni/editors-all.js:15582
+#: media/js/zamboni/editors-min.js:5
 msgid "Version Notes"
 msgstr "‮Ʌǝɹsıou Noʇǝs"
 
 #: media/js/devreg/reviewers/editors.js:262
+#: media/js/zamboni/editors-all.js:15587
+#: media/js/zamboni/editors-min.js:5
 msgid "Notes for Reviewers"
 msgstr "‮Noʇǝs ɟoɹ ᴚǝʌıǝʍǝɹs"
 
 #: media/js/devreg/reviewers/editors.js:267
+#: media/js/zamboni/editors-all.js:15592
+#: media/js/zamboni/editors-min.js:5
 msgid "No version notes found"
 msgstr "‮No ʌǝɹsıou uoʇǝs ɟonup"
 
 #: media/js/devreg/reviewers/editors.js:292
+#: media/js/zamboni/admin-all.js:180
+#: media/js/zamboni/admin-min.js:1
+#: media/js/zamboni/devhub-all.js:2420
+#: media/js/zamboni/devhub-min.js:2
+#: media/js/zamboni/editors-all.js:15617
+#: media/js/zamboni/editors-min.js:5
 msgid "Select an application first"
 msgstr "‮Sǝʅǝɔʇ ɐu ɐddʅıɔɐʇıou ɟıɹsʇ"
 
 #: media/js/devreg/reviewers/editors.js:356
+#: media/js/zamboni/editors-all.js:15767
+#: media/js/zamboni/editors-min.js:5
 msgid "Error loading translation"
 msgstr "‮Ǝɹɹoɹ ʅoɐpıuƃ ʇɹɐusʅɐʇıou"
 
@@ -595,3 +1158,905 @@ msgstr ""
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "‮Ԑʎ {0}‮ ou {1}"
+
+#: media/js/zamboni/admin-all.js:208
+#: media/js/zamboni/admin-min.js:1
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "‮Sǝʇ {0}‮ ɐpp-ou ʇo ɐ ɯɐx ʌǝɹsıou oɟ {1}‮ ɐup ǝɯɐıʅ ʇɥǝ ɐnʇɥoɹ˙"
+msgstr[1] "‮Sǝʇ {0}‮ ɐpp-ous ʇo ɐ ɯɐx ʌǝɹsıou oɟ {1}‮ ɐup ǝɯɐıʅ ʇɥǝ ɐnʇɥoɹs˙"
+
+#: media/js/zamboni/admin-all.js:211
+#: media/js/zamboni/admin-min.js:1
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "‮Ǝɯɐıʅ ɐnʇɥoɹ oɟ {2}‮ ɐpp-ou ʍɥıɔɥ ɟɐıʅǝp ʌɐʅıpɐʇıou˙"
+msgstr[1] "‮Ǝɯɐıʅ ɐnʇɥoɹs oɟ {2}‮ ɐpp-ous ʍɥıɔɥ ɟɐıʅǝp ʌɐʅıpɐʇıou˙"
+
+#: media/js/zamboni/devhub-all.js:294
+#: media/js/zamboni/devhub-min.js:1
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "‮⅄onɹ ɐpp-ou sɥonʅp ǝup ʍıʇɥ ˙xdı´ ˙ɾɐɹ oɹ ˙xɯʅ"
+
+#: media/js/zamboni/devhub-all.js:415
+#: media/js/zamboni/devhub-min.js:1
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "‮⅄onɹ ɐpp-ou ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹ˙"
+msgstr[1] "‮⅄onɹ ɐpp-ou ɟɐıʅǝp ʌɐʅıpɐʇıou ʍıʇɥ {0}‮ ǝɹɹoɹs˙"
+
+#: media/js/zamboni/devhub-all.js:548
+#: media/js/zamboni/devhub-min.js:1
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] "‮⅄onɹ ɐpp-ou dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝ˙"
+msgstr[1] "‮⅄onɹ ɐpp-ou dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs ɐup {0}‮ ɯǝssɐƃǝs˙"
+
+#: media/js/zamboni/devhub-all.js:553
+#: media/js/zamboni/devhub-min.js:1
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "‮⅄onɹ ɐpp-ou dɐssǝp ʌɐʅıpɐʇıou ʍıʇɥ uo ǝɹɹoɹs oɹ ʍɐɹuıuƃs˙"
+
+#: media/js/zamboni/devhub-all.js:604
+#: media/js/zamboni/devhub-min.js:1
+msgid "Some platforms are not available for this type of add-on."
+msgstr "‮Soɯǝ dʅɐʇɟoɹɯs ɐɹǝ uoʇ ɐʌɐıʅɐqʅǝ ɟoɹ ʇɥıs ʇʎdǝ oɟ ɐpp-ou˙"
+
+#: media/js/zamboni/devhub-all.js:1224
+#: media/js/zamboni/devhub-min.js:1
+msgid "Your browser does not support the video tag"
+msgstr "‮⅄onɹ qɹoʍsǝɹ poǝs uoʇ snddoɹʇ ʇɥǝ ʌıpǝo ʇɐƃ"
+
+#: media/js/zamboni/devhub-all.js:1485
+#: media/js/zamboni/devhub-min.js:1
+msgid "Enter a new author's email address"
+msgstr "‮Ǝuʇǝɹ ɐ uǝʍ ɐnʇɥoɹ,s ǝɯɐıʅ ɐppɹǝss"
+
+#: media/js/zamboni/devhub-all.js:1775
+#: media/js/zamboni/devhub-min.js:1
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "‮{ɟıʅǝs} ɟıʅǝ"
+msgstr[1] "‮{ɟıʅǝs} ɟıʅǝs"
+
+#: media/js/zamboni/devhub-all.js:1778
+#: media/js/zamboni/devhub-min.js:1
+msgid "{reviews} review"
+msgid_plural "{reviews} reviews"
+msgstr[0] "‮{ɹǝʌıǝʍs} ɹǝʌıǝʍ"
+msgstr[1] "‮{ɹǝʌıǝʍs} ɹǝʌıǝʍs"
+
+#: media/js/zamboni/devhub-all.js:2448
+#: media/js/zamboni/devhub-min.js:2
+msgid "Starting tests..."
+msgstr "‮Sʇɐɹʇıuƃ ʇǝsʇs˙˙˙"
+
+#: media/js/zamboni/devhub-all.js:2455
+#: media/js/zamboni/devhub-min.js:2
+msgid "Waiting for test results..."
+msgstr "‮Ｍɐıʇıuƃ ɟoɹ ʇǝsʇ ɹǝsnʅʇs˙˙˙"
+
+#: media/js/zamboni/devhub-all.js:2457
+#: media/js/zamboni/devhub-all.js:2462
+#: media/js/zamboni/devhub-min.js:2
+msgid "Internal Server Error"
+msgstr "‮Iuʇǝɹuɐʅ Sǝɹʌǝɹ Ǝɹɹoɹ"
+
+#: media/js/zamboni/devhub-all.js:2497
+#: media/js/zamboni/devhub-min.js:2
+msgid "Must be a valid e-mail address."
+msgstr "‮Wnsʇ qǝ ɐ ʌɐʅıp ǝ-ɯɐıʅ ɐppɹǝss˙"
+
+#: media/js/zamboni/devhub-all.js:2908
+#: media/js/zamboni/devhub-min.js:2
+msgid "Add-on failed validation."
+msgstr "‮∀pp-ou ɟɐıʅǝp ʌɐʅıpɐʇıou˙"
+
+#: media/js/zamboni/devhub-all.js:2910
+#: media/js/zamboni/devhub-min.js:2
+msgid "Add-on passed validation."
+msgstr "‮∀pp-ou dɐssǝp ʌɐʅıpɐʇıou˙"
+
+#: media/js/zamboni/devhub-all.js:2945
+#: media/js/zamboni/devhub-min.js:2
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0}‮ uoʇıɔǝ"
+msgstr[1] "{0}‮ uoʇıɔǝs"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: media/js/zamboni/devhub-all.js:3086
+#: media/js/zamboni/devhub-min.js:2
+msgid "Download {0}"
+msgstr "‮ᗡoʍuʅoɐp {0}"
+
+#: media/js/zamboni/discovery-all.js:12783
+#: media/js/zamboni/discovery-min.js:5
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"‮Soɹɹʎ´ ʍǝ ɔonʅpu,ʇ ɟıup ɐuʎ ɹǝɔoɯɯǝupɐʇıous ɟoɹ ʎon˙<br>‮Ԁʅǝɐsǝ ʌısıʇ ʇɥǝ <"
+"a href=\"{0}\">‮ɐpp-ous sıʇǝ</a>‮ ʇo ɟıup ɐu ɐpp-ou ʇɥɐʇ,s ɹıƃɥʇ ɟoɹ ʎon˙"
+
+#: media/js/zamboni/discovery-all.js:12813
+#: media/js/zamboni/discovery-min.js:5
+msgid "Finding recommendations&hellip;"
+msgstr "‮Ⅎıupıuƃ ɹǝɔoɯɯǝupɐʇıous&hellip;"
+
+#: media/js/zamboni/discovery-all.js:12815
+#: media/js/zamboni/discovery-min.js:5
+msgid "Updating recommendations&hellip;"
+msgstr "‮∩dpɐʇıuƃ ɹǝɔoɯɯǝupɐʇıous&hellip;"
+
+#: media/js/zamboni/editors-all.js:15566
+#: media/js/zamboni/editors-min.js:5
+msgid "{name} was viewing this add-on first."
+msgstr "‮{uɐɯǝ} ʍɐs ʌıǝʍıuƃ ʇɥıs ɐpp-ou ɟıɹsʇ˙"
+
+#: media/js/zamboni/editors-all.js:15652
+#: media/js/zamboni/editors-min.js:5
+msgid "Average Reviews"
+msgstr "‮∀ʌǝɹɐƃǝ ᴚǝʌıǝʍs"
+
+#: media/js/zamboni/editors-all.js:15708
+#: media/js/zamboni/editors-min.js:5
+msgid "Number of Reviews"
+msgstr "‮Nnɯqǝɹ oɟ ᴚǝʌıǝʍs"
+
+#: media/js/zamboni/editors-all.js:16161
+#: media/js/zamboni/editors-min.js:5
+msgid "Requested Info"
+msgstr "‮ᴚǝbnǝsʇǝp Iuɟo"
+
+#: media/js/zamboni/editors-all.js:16162
+#: media/js/zamboni/editors-min.js:5
+msgid "Flagged"
+msgstr "‮Ⅎʅɐƃƃǝp"
+
+#: media/js/zamboni/editors-all.js:16163
+#: media/js/zamboni/editors-min.js:5
+msgid "Duplicate"
+msgstr "‮ᗡndʅıɔɐʇǝ"
+
+#: media/js/zamboni/editors-all.js:16164
+#: media/js/zamboni/editors-min.js:5
+msgid "Rejected"
+msgstr "‮ᴚǝɾǝɔʇǝp"
+
+#: media/js/zamboni/editors-all.js:16165
+#: media/js/zamboni/editors-min.js:5
+msgid "Approved"
+msgstr "‮∀ddɹoʌǝp"
+
+#: media/js/zamboni/mobile-all.js:11258
+#: media/js/zamboni/mobile-min.js:4
+msgid "Not Updated for {0} {1}"
+msgstr "‮Noʇ ∩dpɐʇǝp ɟoɹ {0}‮ {1}"
+
+#: media/js/zamboni/mobile-all.js:11259
+#: media/js/zamboni/mobile-min.js:4
+msgid "Requires Newer Version of {0}"
+msgstr "‮ᴚǝbnıɹǝs Nǝʍǝɹ Ʌǝɹsıou oɟ {0}"
+
+#: media/js/zamboni/mobile-all.js:11260
+#: media/js/zamboni/mobile-min.js:4
+msgid "Unreviewed"
+msgstr "‮∩uɹǝʌıǝʍǝp"
+
+#: media/js/zamboni/mobile-all.js:11261
+#: media/js/zamboni/mobile-min.js:4
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "‮Ǝxdǝɹıɯǝuʇɐʅ <span>‮(⅂ǝɐɹu Woɹǝ)</span>"
+
+#: media/js/zamboni/mobile-all.js:11262
+#: media/js/zamboni/mobile-all.js:11263
+#: media/js/zamboni/mobile-min.js:4
+msgid "Not Available for {0}"
+msgstr "‮Noʇ ∀ʌɐıʅɐqʅǝ ɟoɹ {0}"
+
+#: media/js/zamboni/mobile-all.js:11264
+#: media/js/zamboni/mobile-min.js:4
+msgid "Experimental"
+msgstr "‮Ǝxdǝɹıɯǝuʇɐʅ"
+
+#: media/js/zamboni/mobile-all.js:11265
+#: media/js/zamboni/mobile-min.js:4
+msgid "Themes Require Newer Version of {0}"
+msgstr "‮⊥ɥǝɯǝs ᴚǝbnıɹǝ Nǝʍǝɹ Ʌǝɹsıou oɟ {0}"
+
+#: media/js/zamboni/mobile-all.js:11266
+#: media/js/zamboni/mobile-min.js:4
+msgid "Themes Require {0}"
+msgstr "‮⊥ɥǝɯǝs ᴚǝbnıɹǝ {0}"
+
+#: media/js/zamboni/mobile-all.js:11311
+#: media/js/zamboni/mobile-min.js:4
+msgid "Installing..."
+msgstr "‮Iusʇɐʅʅıuƃ˙˙˙"
+
+#: media/js/zamboni/mobile-all.js:11319
+#: media/js/zamboni/mobile-min.js:4
+msgid "Purchasing..."
+msgstr "‮Ԁnɹɔɥɐsıuƃ˙˙˙"
+
+#: media/js/zamboni/mobile-all.js:11348
+#: media/js/zamboni/mobile-min.js:4
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "‮⊥ɥıs ɐpp-ou ɥɐs qǝǝu dɹǝʅıɯıuɐɹıʅʎ ɹǝʌıǝʍǝp qʎ Wozıʅʅɐ˙"
+
+#: media/js/zamboni/mobile-all.js:11482
+#: media/js/zamboni/mobile-min.js:4
+msgid "Keep it"
+msgstr "‮Ӽǝǝd ıʇ"
+
+#: media/js/zamboni/mobile-all.js:12157
+#: media/js/zamboni/mobile-min.js:5
+msgid "You're trying it on!"
+msgstr "‮⅄on,ɹǝ ʇɹʎıuƃ ıʇ ou¡"
+
+#: media/js/zamboni/mobile-all.js:12169
+#: media/js/zamboni/mobile-min.js:5
+msgid "Added to Firefox"
+msgstr "‮∀ppǝp ʇo Ⅎıɹǝɟox"
+
+#: media/js/zamboni/stats-all.js:15379
+#: media/js/zamboni/stats-all.js:15478
+#: media/js/zamboni/stats-all.js:17102
+#: media/js/zamboni/stats-min.js:6
+msgid "Downloads"
+msgstr "‮ᗡoʍuʅoɐps"
+
+#: media/js/zamboni/stats-all.js:15382
+#: media/js/zamboni/stats-all.js:15479
+#: media/js/zamboni/stats-all.js:17112
+#: media/js/zamboni/stats-min.js:6
+msgid "Daily Users"
+msgstr "‮ᗡɐıʅʎ ∩sǝɹs"
+
+#: media/js/zamboni/stats-all.js:15385
+#: media/js/zamboni/stats-min.js:6
+msgid "Collections Created"
+msgstr "‮Ↄoʅʅǝɔʇıous Ↄɹǝɐʇǝp"
+
+#: media/js/zamboni/stats-all.js:15388
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons in Use"
+msgstr "‮∀pp-ous ıu ∩sǝ"
+
+#: media/js/zamboni/stats-all.js:15391
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Created"
+msgstr "‮∀pp-ous Ↄɹǝɐʇǝp"
+
+#: media/js/zamboni/stats-all.js:15394
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Downloaded"
+msgstr "‮∀pp-ous ᗡoʍuʅoɐpǝp"
+
+#: media/js/zamboni/stats-all.js:15397
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Updated"
+msgstr "‮∀pp-ous ∩dpɐʇǝp"
+
+#: media/js/zamboni/stats-all.js:15400
+#: media/js/zamboni/stats-min.js:6
+msgid "Reviews Written"
+msgstr "‮ᴚǝʌıǝʍs Ｍɹıʇʇǝu"
+
+#: media/js/zamboni/stats-all.js:15403
+#: media/js/zamboni/stats-min.js:6
+msgid "User Signups"
+msgstr "‮∩sǝɹ Sıƃunds"
+
+#: media/js/zamboni/stats-all.js:15406
+#: media/js/zamboni/stats-min.js:6
+msgid "Subscribers"
+msgstr "‮Snqsɔɹıqǝɹs"
+
+#: media/js/zamboni/stats-all.js:15409
+#: media/js/zamboni/stats-min.js:6
+msgid "Ratings"
+msgstr "‮ᴚɐʇıuƃs"
+
+#: media/js/zamboni/stats-all.js:15412
+#: media/js/zamboni/stats-all.js:15483
+#: media/js/zamboni/stats-min.js:6
+msgid "Sales"
+msgstr "‮Sɐʅǝs"
+
+#: media/js/zamboni/stats-all.js:15415
+#: media/js/zamboni/stats-all.js:15482
+#: media/js/zamboni/stats-min.js:6
+msgid "Installs"
+msgstr "‮Iusʇɐʅʅs"
+
+#: media/js/zamboni/stats-all.js:15418
+#: media/js/zamboni/stats-min.js:6
+msgid "Unknown"
+msgstr "‮∩uʞuoʍu"
+
+#: media/js/zamboni/stats-all.js:15419
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Manager"
+msgstr "‮∀pp-ous Wɐuɐƃǝɹ"
+
+#: media/js/zamboni/stats-all.js:15420
+#: media/js/zamboni/stats-min.js:6
+msgid "Search Results"
+msgstr "‮Sǝɐɹɔɥ ᴚǝsnʅʇs"
+
+#: media/js/zamboni/stats-all.js:15421
+#: media/js/zamboni/stats-all.js:15422
+#: media/js/zamboni/stats-all.js:15423
+#: media/js/zamboni/stats-min.js:6
+msgid "Homepage Promo"
+msgstr "‮Hoɯǝdɐƃǝ Ԁɹoɯo"
+
+#: media/js/zamboni/stats-all.js:15424
+#: media/js/zamboni/stats-all.js:15425
+#: media/js/zamboni/stats-min.js:6
+msgid "Homepage Featured"
+msgstr "‮Hoɯǝdɐƃǝ Ⅎǝɐʇnɹǝp"
+
+#: media/js/zamboni/stats-all.js:15426
+#: media/js/zamboni/stats-all.js:15427
+#: media/js/zamboni/stats-min.js:6
+msgid "Homepage Up and Coming"
+msgstr "‮Hoɯǝdɐƃǝ ∩d ɐup Ↄoɯıuƃ"
+
+#: media/js/zamboni/stats-all.js:15428
+#: media/js/zamboni/stats-min.js:6
+msgid "Homepage Most Popular"
+msgstr "‮Hoɯǝdɐƃǝ Wosʇ Ԁodnʅɐɹ"
+
+#: media/js/zamboni/stats-all.js:15429
+#: media/js/zamboni/stats-all.js:15431
+#: media/js/zamboni/stats-min.js:6
+msgid "Detail Page"
+msgstr "‮ᗡǝʇɐıʅ Ԁɐƃǝ"
+
+#: media/js/zamboni/stats-all.js:15430
+#: media/js/zamboni/stats-all.js:15432
+#: media/js/zamboni/stats-min.js:6
+msgid "Detail Page (bottom)"
+msgstr "‮ᗡǝʇɐıʅ Ԁɐƃǝ (qoʇʇoɯ)"
+
+#: media/js/zamboni/stats-all.js:15433
+#: media/js/zamboni/stats-min.js:6
+msgid "Detail Page (Development Channel)"
+msgstr "‮ᗡǝʇɐıʅ Ԁɐƃǝ (ᗡǝʌǝʅodɯǝuʇ Ↄɥɐuuǝʅ)"
+
+#: media/js/zamboni/stats-all.js:15434
+#: media/js/zamboni/stats-all.js:15435
+#: media/js/zamboni/stats-all.js:15436
+#: media/js/zamboni/stats-min.js:6
+msgid "Often Used With"
+msgstr "‮Oɟʇǝu ∩sǝp Ｍıʇɥ"
+
+#: media/js/zamboni/stats-all.js:15437
+#: media/js/zamboni/stats-all.js:15438
+#: media/js/zamboni/stats-min.js:6
+msgid "Others By Author"
+msgstr "‮Oʇɥǝɹs Ԑʎ ∀nʇɥoɹ"
+
+#: media/js/zamboni/stats-all.js:15439
+#: media/js/zamboni/stats-all.js:15440
+#: media/js/zamboni/stats-min.js:6
+msgid "Dependencies"
+msgstr "‮ᗡǝdǝupǝuɔıǝs"
+
+#: media/js/zamboni/stats-all.js:15441
+#: media/js/zamboni/stats-all.js:15442
+#: media/js/zamboni/stats-min.js:6
+msgid "Upsell"
+msgstr "‮∩dsǝʅʅ"
+
+#: media/js/zamboni/stats-all.js:15444
+#: media/js/zamboni/stats-min.js:6
+msgid "Sharing"
+msgstr "‮Sɥɐɹıuƃ"
+
+#: media/js/zamboni/stats-all.js:15445
+#: media/js/zamboni/stats-min.js:6
+msgid "Category Pages"
+msgstr "‮Ↄɐʇǝƃoɹʎ Ԁɐƃǝs"
+
+#: media/js/zamboni/stats-all.js:15446
+#: media/js/zamboni/stats-min.js:6
+msgid "Collections"
+msgstr "‮Ↄoʅʅǝɔʇıous"
+
+#: media/js/zamboni/stats-all.js:15447
+#: media/js/zamboni/stats-all.js:15448
+#: media/js/zamboni/stats-min.js:6
+msgid "Category Landing Featured Carousel"
+msgstr "‮Ↄɐʇǝƃoɹʎ ⅂ɐupıuƃ Ⅎǝɐʇnɹǝp Ↄɐɹonsǝʅ"
+
+#: media/js/zamboni/stats-all.js:15449
+#: media/js/zamboni/stats-all.js:15450
+#: media/js/zamboni/stats-min.js:6
+msgid "Category Landing Top Rated"
+msgstr "‮Ↄɐʇǝƃoɹʎ ⅂ɐupıuƃ ⊥od ᴚɐʇǝp"
+
+#: media/js/zamboni/stats-all.js:15451
+#: media/js/zamboni/stats-all.js:15452
+#: media/js/zamboni/stats-min.js:6
+msgid "Category Landing Most Popular"
+msgstr "‮Ↄɐʇǝƃoɹʎ ⅂ɐupıuƃ Wosʇ Ԁodnʅɐɹ"
+
+#: media/js/zamboni/stats-all.js:15453
+#: media/js/zamboni/stats-all.js:15454
+#: media/js/zamboni/stats-min.js:6
+msgid "Category Landing Recently Added"
+msgstr "‮Ↄɐʇǝƃoɹʎ ⅂ɐupıuƃ ᴚǝɔǝuʇʅʎ ∀ppǝp"
+
+#: media/js/zamboni/stats-all.js:15455
+#: media/js/zamboni/stats-all.js:15456
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Featured Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ Ⅎǝɐʇnɹǝp Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15457
+#: media/js/zamboni/stats-all.js:15458
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Users Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ ∩sǝɹs Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15459
+#: media/js/zamboni/stats-all.js:15460
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Rating Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ ᴚɐʇıuƃ Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15461
+#: media/js/zamboni/stats-all.js:15462
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Created Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ Ↄɹǝɐʇǝp Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15463
+#: media/js/zamboni/stats-all.js:15464
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Name Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ Nɐɯǝ Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15465
+#: media/js/zamboni/stats-all.js:15466
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Popular Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ Ԁodnʅɐɹ Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15467
+#: media/js/zamboni/stats-all.js:15468
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Updated Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ ∩dpɐʇǝp Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15469
+#: media/js/zamboni/stats-all.js:15470
+#: media/js/zamboni/stats-min.js:6
+msgid "Browse Listing Up and Coming Sort"
+msgstr "‮Ԑɹoʍsǝ ⅂ısʇıuƃ ∩d ɐup Ↄoɯıuƃ Soɹʇ"
+
+#: media/js/zamboni/stats-all.js:15473
+#: media/js/zamboni/stats-all.js:17154
+#: media/js/zamboni/stats-min.js:6
+msgid "Number of Contributions"
+msgstr "‮Nnɯqǝɹ oɟ Ↄouʇɹıqnʇıous"
+
+#: media/js/zamboni/stats-all.js:15474
+#: media/js/zamboni/stats-min.js:6
+msgid "Total Amount Contributed"
+msgstr "‮⊥oʇɐʅ ∀ɯonuʇ Ↄouʇɹıqnʇǝp"
+
+#: media/js/zamboni/stats-all.js:15475
+#: media/js/zamboni/stats-min.js:6
+msgid "Average Contribution"
+msgstr "‮∀ʌǝɹɐƃǝ Ↄouʇɹıqnʇıou"
+
+#: media/js/zamboni/stats-all.js:15484
+#: media/js/zamboni/stats-min.js:6
+msgid "Usage"
+msgstr "‮∩sɐƃǝ"
+
+#: media/js/zamboni/stats-all.js:15487
+#: media/js/zamboni/stats-min.js:6
+msgid "Firefox"
+msgstr "‮Ⅎıɹǝɟox"
+
+#: media/js/zamboni/stats-all.js:15488
+#: media/js/zamboni/stats-min.js:6
+msgid "Mozilla"
+msgstr "‮Wozıʅʅɐ"
+
+#: media/js/zamboni/stats-all.js:15489
+#: media/js/zamboni/stats-min.js:6
+msgid "Thunderbird"
+msgstr "‮⊥ɥnupǝɹqıɹp"
+
+#: media/js/zamboni/stats-all.js:15490
+#: media/js/zamboni/stats-min.js:6
+msgid "Sunbird"
+msgstr "‮Snuqıɹp"
+
+#: media/js/zamboni/stats-all.js:15491
+#: media/js/zamboni/stats-min.js:6
+msgid "SeaMonkey"
+msgstr "‮SǝɐWouʞǝʎ"
+
+#: media/js/zamboni/stats-all.js:15492
+#: media/js/zamboni/stats-min.js:6
+msgid "Fennec"
+msgstr "‮Ⅎǝuuǝɔ"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15497
+#: media/js/zamboni/stats-min.js:6
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "‮ᗡoʍuʅoɐps ɐup ᗡɐıʅʎ ∩sǝɹs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15499
+#: media/js/zamboni/stats-min.js:6
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "‮ᗡoʍuʅoɐps ɐup ᗡɐıʅʎ ∩sǝɹs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15503
+#: media/js/zamboni/stats-min.js:6
+msgid "Installs and Daily Users, last {0} days"
+msgstr "‮Iusʇɐʅʅs ɐup ᗡɐıʅʎ ∩sǝɹs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15505
+#: media/js/zamboni/stats-min.js:6
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "‮Iusʇɐʅʅs ɐup ᗡɐıʅʎ ∩sǝɹs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15509
+#: media/js/zamboni/stats-min.js:6
+msgid "Downloads, last {0} days"
+msgstr "‮ᗡoʍuʅoɐps´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15511
+#: media/js/zamboni/stats-min.js:6
+msgid "Downloads from {0} to {1}"
+msgstr "‮ᗡoʍuʅoɐps ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15515
+#: media/js/zamboni/stats-min.js:6
+msgid "Daily Users, last {0} days"
+msgstr "‮ᗡɐıʅʎ ∩sǝɹs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15517
+#: media/js/zamboni/stats-min.js:6
+msgid "Daily Users from {0} to {1}"
+msgstr "‮ᗡɐıʅʎ ∩sǝɹs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15521
+#: media/js/zamboni/stats-min.js:6
+msgid "Applications, last {0} days"
+msgstr "‮∀ddʅıɔɐʇıous´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15523
+#: media/js/zamboni/stats-min.js:6
+msgid "Applications from {0} to {1}"
+msgstr "‮∀ddʅıɔɐʇıous ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15527
+#: media/js/zamboni/stats-min.js:6
+msgid "Platforms, last {0} days"
+msgstr "‮Ԁʅɐʇɟoɹɯs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15529
+#: media/js/zamboni/stats-min.js:6
+msgid "Platforms from {0} to {1}"
+msgstr "‮Ԁʅɐʇɟoɹɯs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15533
+#: media/js/zamboni/stats-min.js:6
+msgid "Languages, last {0} days"
+msgstr "‮⅂ɐuƃnɐƃǝs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15535
+#: media/js/zamboni/stats-min.js:6
+msgid "Languages from {0} to {1}"
+msgstr "‮⅂ɐuƃnɐƃǝs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15539
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-on Versions, last {0} days"
+msgstr "‮∀pp-ou Ʌǝɹsıous´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15541
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-on Versions from {0} to {1}"
+msgstr "‮∀pp-ou Ʌǝɹsıous ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15545
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-on Status, last {0} days"
+msgstr "‮∀pp-ou Sʇɐʇns´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15547
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-on Status from {0} to {1}"
+msgstr "‮∀pp-ou Sʇɐʇns ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15551
+#: media/js/zamboni/stats-min.js:6
+msgid "Download Sources, last {0} days"
+msgstr "‮ᗡoʍuʅoɐp Sonɹɔǝs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15553
+#: media/js/zamboni/stats-min.js:6
+msgid "Download Sources from {0} to {1}"
+msgstr "‮ᗡoʍuʅoɐp Sonɹɔǝs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15557
+#: media/js/zamboni/stats-min.js:6
+msgid "Contributions, last {0} days"
+msgstr "‮Ↄouʇɹıqnʇıous´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15559
+#: media/js/zamboni/stats-min.js:6
+msgid "Contributions from {0} to {1}"
+msgstr "‮Ↄouʇɹıqnʇıous ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15563
+#: media/js/zamboni/stats-min.js:6
+msgid "Site Metrics, last {0} days"
+msgstr "‮Sıʇǝ Wǝʇɹıɔs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15565
+#: media/js/zamboni/stats-min.js:6
+msgid "Site Metrics from {0} to {1}"
+msgstr "‮Sıʇǝ Wǝʇɹıɔs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15569
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons in Use, last {0} days"
+msgstr "‮∀pp-ous ıu ∩sǝ´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15571
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "‮∀pp-ous ıu ∩sǝ ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15575
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "‮∀pp-ous ᗡoʍuʅoɐpǝp´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15577
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "‮∀pp-ous ᗡoʍuʅoɐpǝp ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15581
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Created, last {0} days"
+msgstr "‮∀pp-ous Ↄɹǝɐʇǝp´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15583
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Created from {0} to {1}"
+msgstr "‮∀pp-ous Ↄɹǝɐʇǝp ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15587
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Updated, last {0} days"
+msgstr "‮∀pp-ous ∩dpɐʇǝp´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15589
+#: media/js/zamboni/stats-min.js:6
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "‮∀pp-ous ∩dpɐʇǝp ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15593
+#: media/js/zamboni/stats-min.js:6
+msgid "Reviews Written, last {0} days"
+msgstr "‮ᴚǝʌıǝʍs Ｍɹıʇʇǝu´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15595
+#: media/js/zamboni/stats-min.js:6
+msgid "Reviews Written from {0} to {1}"
+msgstr "‮ᴚǝʌıǝʍs Ｍɹıʇʇǝu ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15599
+#: media/js/zamboni/stats-min.js:6
+msgid "User Signups, last {0} days"
+msgstr "‮∩sǝɹ Sıƃunds´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15601
+#: media/js/zamboni/stats-min.js:6
+msgid "User Signups from {0} to {1}"
+msgstr "‮∩sǝɹ Sıƃunds ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15605
+#: media/js/zamboni/stats-min.js:6
+msgid "Collections Created, last {0} days"
+msgstr "‮Ↄoʅʅǝɔʇıous Ↄɹǝɐʇǝp´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15607
+#: media/js/zamboni/stats-min.js:6
+msgid "Collections Created from {0} to {1}"
+msgstr "‮Ↄoʅʅǝɔʇıous Ↄɹǝɐʇǝp ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15611
+#: media/js/zamboni/stats-min.js:6
+msgid "Subscribers, last {0} days"
+msgstr "‮Snqsɔɹıqǝɹs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15613
+#: media/js/zamboni/stats-min.js:6
+msgid "Subscribers from {0} to {1}"
+msgstr "‮Snqsɔɹıqǝɹs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15617
+#: media/js/zamboni/stats-min.js:6
+msgid "Ratings, last {0} days"
+msgstr "‮ᴚɐʇıuƃs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15619
+#: media/js/zamboni/stats-min.js:6
+msgid "Ratings from {0} to {1}"
+msgstr "‮ᴚɐʇıuƃs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15623
+#: media/js/zamboni/stats-min.js:6
+msgid "Sales, last {0} days"
+msgstr "‮Sɐʅǝs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15625
+#: media/js/zamboni/stats-min.js:6
+msgid "Sales from {0} to {1}"
+msgstr "‮Sɐʅǝs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} is an integer.
+#: media/js/zamboni/stats-all.js:15629
+#: media/js/zamboni/stats-min.js:6
+msgid "Installs, last {0} days"
+msgstr "‮Iusʇɐʅʅs´ ʅɐsʇ {0}‮ pɐʎs"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15631
+#: media/js/zamboni/stats-min.js:6
+msgid "Installs from {0} to {1}"
+msgstr "‮Iusʇɐʅʅs ɟɹoɯ {0}‮ ʇo {1}"
+
+#. L10n: {0} and {1} are integers.
+#: media/js/zamboni/stats-all.js:15637
+#: media/js/zamboni/stats-min.js:6
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b>‮ ıu ʅɐsʇ {1}‮ pɐʎs"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: media/js/zamboni/stats-all.js:15639
+#: media/js/zamboni/stats-all.js:15645
+#: media/js/zamboni/stats-min.js:6
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b>‮ ɟɹoɯ {1}‮ ʇo {2}"
+
+#. L10n: {0} and {1} are integers.
+#: media/js/zamboni/stats-all.js:15643
+#: media/js/zamboni/stats-min.js:6
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b>‮ ɐʌǝɹɐƃǝ ıu ʅɐsʇ {1}‮ pɐʎs"
+
+#: media/js/zamboni/stats-all.js:16571
+#: media/js/zamboni/stats-min.js:6
+msgid "No data available."
+msgstr "‮No pɐʇɐ ɐʌɐıʅɐqʅǝ˙"
+
+#: media/js/zamboni/stats-all.js:16702
+#: media/js/zamboni/stats-min.js:6
+msgid "Other"
+msgstr "‮Oʇɥǝɹ"
+
+#: media/js/zamboni/stats-all.js:17000
+#: media/js/zamboni/stats-min.js:6
+msgid "Week of {0}"
+msgstr "‮Ｍǝǝʞ oɟ {0}"
+
+#: media/js/zamboni/stats-all.js:17002
+#: media/js/zamboni/stats-min.js:6
+msgid "downloads"
+msgstr "‮poʍuʅoɐps"
+
+#: media/js/zamboni/stats-all.js:17003
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} users"
+msgstr "{0}‮ nsǝɹs"
+
+#: media/js/zamboni/stats-all.js:17004
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} add-ons"
+msgstr "{0}‮ ɐpp-ous"
+
+#: media/js/zamboni/stats-all.js:17005
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} collections"
+msgstr "{0}‮ ɔoʅʅǝɔʇıous"
+
+#: media/js/zamboni/stats-all.js:17006
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} reviews"
+msgstr "{0}‮ ɹǝʌıǝʍs"
+
+#: media/js/zamboni/stats-all.js:17008
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} sales"
+msgstr "{0}‮ sɐʅǝs"
+
+#: media/js/zamboni/stats-all.js:17009
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} refunds"
+msgstr "{0}‮ ɹǝɟnups"
+
+#: media/js/zamboni/stats-all.js:17010
+#: media/js/zamboni/stats-min.js:6
+msgid "{0} installs"
+msgstr "{0}‮ ıusʇɐʅʅs"
+
+#: media/js/zamboni/stats-all.js:17143
+#: media/js/zamboni/stats-min.js:6
+msgid "Amount, in USD"
+msgstr "‮∀ɯonuʇ´ ıu ∩Sᗡ"
+
+#: media/js/zamboni/stats-all.js:17180
+#: media/js/zamboni/stats-min.js:6
+msgid "More Info..."
+msgstr "‮Woɹǝ Iuɟo˙˙˙"
+
+#. L10n: {0} is an ISO-formatted date.
+#: media/js/zamboni/stats-all.js:17184
+#: media/js/zamboni/stats-min.js:6
+msgid "Details for {0}"
+msgstr "‮ᗡǝʇɐıʅs ɟoɹ {0}"
+
+#: media/js/zamboni/stats-all.js:17311
+#: media/js/zamboni/stats-min.js:6
+msgid "Date"
+msgstr "‮ᗡɐʇǝ"
