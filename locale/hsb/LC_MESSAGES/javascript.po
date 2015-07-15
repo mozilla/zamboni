@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-01 16:49+0000\n"
+"PO-Revision-Date: 2015-07-15 21:38+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435769356.0\n"
+"X-POOTLE-MTIME: 1436996334.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +21,11 @@ msgstr "Tuta funkcija je so nachwilu znjemóžnjena, mjeztym zo wothladowanske d
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Instalowanje nałoženja njeje dowolene."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifest nałoženja derje sformowany njeje."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,70 +45,76 @@ msgstr "Instalacija je so nimokuliła. Prošu spytajće pozdźišo hišće raz."
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "Instalowanje nałoženja je so nimokuliło."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Tutón system instalowanje nałoženjow njepodpěruje."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Akceptować a instalować"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "K {0} přidać"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Nětko sćahnyć"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"Přidatk hišće njeje so zaktualizował, zo by funkciju „po standardźe "
+"kompatibelny“ podpěrował."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Dyrbiće Firefox 10.0 abo nowši wužiwać."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla je tutu wersiju jako inkompatibelnu z tutej wersiju Firefox "
+"markěrował."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Najebać toho za {0} instalować"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Najebać toho za {0} sćahnyć"
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Njeje za wašu platformu k dispoziciji"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Njeje za {0} {1} k dispoziciji"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Funguje z {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Druhe wersije sej wobhladać"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski "
+"tykač instalował."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Začituje so..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
@@ -164,39 +171,39 @@ msgstr ""
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Z faworitow wotstronić"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Njesčinjeny"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Komentar přidać"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Tutón přidatk ze zběrki wotstronić"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Wotstronić"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Tutoho wužiwarja jako sobuskutkowaceho wotstronić"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mejlowa adresa je trěbna."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Njemóžeće so jako sobuskutkowaceho přidać."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
@@ -252,16 +259,18 @@ msgstr ""
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Administratorojo a wobdźěłarjo dyrbja za přizjewjenje hesło zapodać."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Přizjewjenje BrowserID je so nimokuliło. Nimaće snano konto pod tutej "
+"e-mejlowej adresu?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Tuta drasta je inkompatibelna z wašej wersiju {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
 #: media/js/zamboni/devhub-min.js:1
@@ -279,27 +288,27 @@ msgstr "Při kontaktowanju serwera je problem wustupił."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Wšě prawa wuměnjene"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
@@ -867,54 +876,54 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Waš přidatk je při přepruwowanju z {0} zmylkom přepadnył."
+msgstr[1] "Waš přidatk je při přepruwowanju z {0} zmylkomaj přepadnył."
+msgstr[2] "Waš přidatk je při přepruwowanju z {0} zmylkami přepadnył."
+msgstr[3] "Waš přidatk je při přepruwowanju z {0} zmylkami přepadnył."
 
 #: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Waš přidatk je přepruwowanje bjez zmylkow a z {0} powěsću wobstał."
+msgstr[1] "Waš přidatk je přepruwowanje bjez zmylkow a z {0} powěsćomaj wobstał."
+msgstr[2] "Waš přidatk je přepruwowanje bjez zmylkow a z {0} powěsćemi wobstał."
+msgstr[3] "Waš přidatk je přepruwowanje bjez zmylkow a z {0} powěsćemi wobstał."
 
 #: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Waš přidatk je přepruwowanje bjez zmylkow abo warnowanjow wobstał."
 
 #: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Někotre platformy za tutón přidatkowy typ k dispoziciji njeje."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Waš wobhladowak element video njepodpěruje"
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Nowu e-mejlowu adresu za awtora zapodać"
 
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{files} dataja"
+msgstr[1] "{files} dataji"
+msgstr[2] "{files} dataje"
+msgstr[3] "{files} datajow"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{reviews} pohódnoćenje"
+msgstr[1] "{reviews} pohódnoćeni"
+msgstr[2] "{reviews} pohódnoćenja"
+msgstr[3] "{reviews} pohódnoćenjow"
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
-msgstr ""
+msgstr "Testy so startuja…"
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
@@ -959,39 +968,39 @@ msgstr ""
 
 #: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Doporučenja so aktualizuja&hellip;"
 
 #: media/js/zamboni/editors-all.js:15566 media/js/zamboni/editors-min.js:5
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} je sej tutón přidatk jako prěni wobhladał."
 
 #: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
 msgid "Average Reviews"
-msgstr ""
+msgstr "Přerězne pohódnoćenja"
 
 #: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Ličba pohódnoćenjow"
 
 #: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
 msgid "Requested Info"
-msgstr ""
+msgstr "Požadane informacije"
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
-msgstr ""
+msgstr "Markěrowany"
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Dwójny"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Wotpokazany"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Schwaleny"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
@@ -1031,39 +1040,39 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "Kupuje so…"
 
 #: media/js/zamboni/mobile-all.js:11348 media/js/zamboni/mobile-min.js:4
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Tutón přidatk je so nachwilu wot Mozilla přepruwował."
 
 #: media/js/zamboni/mobile-all.js:11482 media/js/zamboni/mobile-min.js:4
 msgid "Keep it"
-msgstr ""
+msgstr "Wobchować"
 
 #: media/js/zamboni/mobile-all.js:12157 media/js/zamboni/mobile-min.js:5
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Wy sej to přiměrjeće!"
 
 #: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Je so Firefox přdał"
 
 #: media/js/zamboni/stats-all.js:15379 media/js/zamboni/stats-all.js:15478 media/js/zamboni/stats-all.js:17102 media/js/zamboni/stats-min.js:6
 msgid "Downloads"
-msgstr ""
+msgstr "Sćehnjenja"
 
 #: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479 media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
 msgid "Daily Users"
-msgstr ""
+msgstr "Wužiwarjo na dźeń"
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Zběrki wutworjene"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Přidatki, kotrež so wužiwaja"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
@@ -1103,39 +1112,39 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznaty"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Zrjadowak přidatkow"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Pytanske wuslědki"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422 media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Předstajenje na startowej stronje"
 
 #: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425 media/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Na startowej stronje předstajeny"
 
 #: media/js/zamboni/stats-all.js:15426 media/js/zamboni/stats-all.js:15427 media/js/zamboni/stats-min.js:6
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Na startowej stronje rozkćěwacy"
 
 #: media/js/zamboni/stats-all.js:15428 media/js/zamboni/stats-min.js:6
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Na startowej stronje najbóle woblubowany"
 
 #: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431 media/js/zamboni/stats-min.js:6
 msgid "Detail Page"
-msgstr ""
+msgstr "Strona podrobnosćow"
 
 #: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Strona podrobnosćow (deleka)"
 
 #: media/js/zamboni/stats-all.js:15433 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (Development Channel)"
@@ -1175,39 +1184,39 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15449 media/js/zamboni/stats-all.js:15450 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Startowa strona kategorijow: Najwyše pohódnoćene"
 
 #: media/js/zamboni/stats-all.js:15451 media/js/zamboni/stats-all.js:15452 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Startowa strona kategorijow: Najbóle woblubowane"
 
 #: media/js/zamboni/stats-all.js:15453 media/js/zamboni/stats-all.js:15454 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Startowa strona kategorijow: Jako poslednje přidate"
 
 #: media/js/zamboni/stats-all.js:15455 media/js/zamboni/stats-all.js:15456 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Lisćinu po \"předstajene\" sortěrowany přepytać"
 
 #: media/js/zamboni/stats-all.js:15457 media/js/zamboni/stats-all.js:15458 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Lisćinu po wužiwarjemi sortěrowane přepytać"
 
 #: media/js/zamboni/stats-all.js:15459 media/js/zamboni/stats-all.js:15460 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Lisćinu po pohódnoćenju sortěrowane přepytać"
 
 #: media/js/zamboni/stats-all.js:15461 media/js/zamboni/stats-all.js:15462 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Lisćinu po datum wutworjenja sortěrowane přepytać"
 
 #: media/js/zamboni/stats-all.js:15463 media/js/zamboni/stats-all.js:15464 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Lisćinu po mjenje sortěrowane přepytać"
 
 #: media/js/zamboni/stats-all.js:15465 media/js/zamboni/stats-all.js:15466 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Lisćinu po woblubowanosći sortěrowane přepytać"
 
 #: media/js/zamboni/stats-all.js:15467 media/js/zamboni/stats-all.js:15468 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Updated Sort"
@@ -1247,45 +1256,45 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Sćehnjenja a wšědni wužiwarjo, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenja a wšědni wužiwarjo wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalacije a wšědni wužiwarjo, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15505 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalacije a wšědni wužiwarjo wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Sćehnjenja, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenja wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
@@ -1335,47 +1344,47 @@ msgstr ""
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15541 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Přidate wersije wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15545 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Status přidatka, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15547 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Status přidatka wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15551 media/js/zamboni/stats-min.js:6
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Sćehnjenske žórła, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15553 media/js/zamboni/stats-min.js:6
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenske žórła wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Přinoški, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Přinoški wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Sydłowa metrika, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Sydłowa metrika wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
@@ -1425,47 +1434,47 @@ msgstr ""
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Napisane pohódnoćenja, wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Wužiwarske registrowanja, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Wužiwarske registrowanja wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Zběrki wutworjene, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Zběrki wutworjene, wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonenća, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonenća, wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Pohódnoćenja, zańdźenych {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Pohódnoćenja, wot {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
@@ -1508,57 +1517,57 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Druhe"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Tydźeń wot {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "sćehnjenja"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} wužiwarjow"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} přidatkow"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} zběrkow"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} pohódnoćenjow"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} předanjow"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} zarunanjow"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalacijow"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Suma, w USD"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Dalše informacije…"
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Podrobnosće za {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Datum"
