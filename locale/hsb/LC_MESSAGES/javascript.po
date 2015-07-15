@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-15 21:38+0000\n"
+"PO-Revision-Date: 2015-07-15 21:56+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436996334.0\n"
+"X-POOTLE-MTIME: 1436997388.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -120,18 +120,18 @@ msgstr "Začituje so..."
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> znamješko wyše."
+msgstr[1] "<b>{0}</b> znamješce wyše."
+msgstr[2] "<b>{0}</b> znamješka wyše."
+msgstr[3] "<b>{0}</b> znamješkow wyše."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} hwěžka"
+msgstr[1] "{0} hwěžce"
+msgstr[2] "{0} hwěžki"
+msgstr[3] "{0} hwěžkow"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -139,35 +139,35 @@ msgstr "Tutón přełožk wotstronić"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Nałoženje instalować"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
-msgstr ""
+msgstr "Za přepruwowanje markěrowany"
 
 #: media/js/common-all.js:18522 media/js/common-min.js:8 media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "Waše zapodaće je trěbne"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8 media/js/impala-all.js:10312 media/js/impala-min.js:6
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Za zhašenje markěrowany"
 
 #: media/js/common-all.js:19177 media/js/common-min.js:9 media/js/impala-all.js:12078 media/js/impala-min.js:7
 msgid "clear recently viewed"
-msgstr ""
+msgstr "njedawno pokazane zhašeć"
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Přidawa so faworitam&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Faworit so wotstronja&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Faworitam přidać"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
@@ -207,39 +207,39 @@ msgstr "Njemóžeće so jako sobuskutkowaceho přidać."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
-msgstr ""
+msgstr "Sće tutoho wužiwarja hižo přidał."
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Faworitam přidać"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Z faworitow wotstronić"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Tutej zběrce slědować"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Hižo njeslědować"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Wšě"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Mócnosć hesła:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Znajmjeńša {0} znamješko wyše."
+msgstr[1] "Znajmjeńša {0} znamješce wyše."
+msgstr[2] "Znajmjeńša {0} znamješka wyše."
+msgstr[3] "Znajmjeńša {0} znamješkow wyše."
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9 media/js/impala-all.js:13122 media/js/impala-min.js:7 media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -927,44 +927,47 @@ msgstr "Testy so startuja…"
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Čaka so na testowe wuslědki…"
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462 media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Nutřkowny serwerowy zmylk"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Dyrbi płaćiwa e-mejlowa adresa być."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Přidatk njeje přepruwowanje wobstał."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Přidatk je přepruwowanje wobstał."
 
 #: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} pokaz"
+msgstr[1] "{0} pokazaj"
+msgstr[2] "{0} pokazy"
+msgstr[3] "{0} pokazow"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} sćahnyć"
 
 #: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Bohužel njemóžachmy doporučenja za was namakać.<br>Prošu wopytajće <a "
+"href=\"{0}\">sydło přidatkow</a>, zo byšće přidatk namakał, kotryž wašim "
+"přećam wotpowěduje."
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Doporučenja so pytaja&hellip;"
 
 #: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
 msgid "Updating recommendations&hellip;"
@@ -1076,39 +1079,39 @@ msgstr "Přidatki, kotrež so wužiwaja"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Přidatki wutworjene"
 
 #: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Přidatki sćehnjene"
 
 #: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Přidatki zaktualizowane"
 
 #: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
-msgstr ""
+msgstr "Pohódnoćenja napisane"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
-msgstr ""
+msgstr "Wužiwarske registrowanja"
 
 #: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonenća"
 
 #: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
 msgid "Ratings"
-msgstr ""
+msgstr "Pohódnoćenja"
 
 #: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483 media/js/zamboni/stats-min.js:6
 msgid "Sales"
-msgstr ""
+msgstr "Předanje"
 
 #: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482 media/js/zamboni/stats-min.js:6
 msgid "Installs"
-msgstr ""
+msgstr "Instalacije"
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
