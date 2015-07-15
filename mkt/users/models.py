@@ -92,6 +92,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
 
+    def get_full_name(self):
+        return self.display_name
+
     @property
     def is_superuser(self):
         return self.groups.filter(rules='*:*').exists()
