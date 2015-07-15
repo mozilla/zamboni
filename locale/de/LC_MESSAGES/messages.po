@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-15 20:14+0000\n"
+"PO-Revision-Date: 2015-07-15 20:15+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436991249.0\n"
+"X-POOTLE-MTIME: 1436991301.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -7531,7 +7531,7 @@ msgstr "Version %s existiert bereits."
 
 #: mkt/submit/forms.py:202
 msgid "Changes to \"origin\" are not allowed."
-msgstr "Änderungen an „Herkunft“  sind nicht erlaubt."
+msgstr "Änderungen an „Herkunft“ sind nicht erlaubt."
 
 #: mkt/submit/forms.py:225
 msgid "User submitting validation does not match."
