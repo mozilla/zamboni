@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 08:32-0700\n"
+"POT-Creation-Date: 2015-07-15 11:17-0700\n"
 "PO-Revision-Date: 2015-07-02 10:19+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -14,15 +14,15 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1435832343.0\n"
 
-#: mkt/api/fields.py:20
+#: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr "請選擇一個有效的選項。%(value)s 不是合理的選項。"
 
-#: mkt/api/fields.py:87
+#: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
 msgstr "此欄位內容必須至少超過 {num} 字元。"
 
-#: mkt/api/fields.py:89
+#: mkt/api/fields.py:91
 msgid "The language code {lang_code} is invalid."
 msgstr "語言代碼 {lang_code} 無效。"
 
@@ -2167,7 +2167,7 @@ msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被停用了�
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "此網域已有一 App 存在；一個網域只能對應一個 App。"
 
-#: mkt/developers/forms.py:338 mkt/websites/forms.py:71
+#: mkt/developers/forms.py:338 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "選擇了無效的區域。"
 
@@ -2266,12 +2266,12 @@ msgid "Choose where my app is made available"
 msgstr "選擇我的應用程式可以在哪些地方取得"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:21
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "類別"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:56
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
@@ -2524,7 +2524,7 @@ msgstr "帳號名稱"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
-#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:27
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
 msgstr "名稱"
 
@@ -2699,31 +2699,35 @@ msgstr "已刪除版本 \"{0}\"。"
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: mkt/developers/views.py:954
+#: mkt/developers/views.py:700
+msgid "An error occurred validating the manifest."
+msgstr ""
+
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: mkt/developers/views.py:1005
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "已接受服務條款。"
 
-#: mkt/developers/views.py:1017
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "擁有管理員資格的使用者不能使用這個 API。"
 
-#: mkt/developers/views.py:1026
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "沒有此 API 金錀。"
 
-#: mkt/developers/views.py:1032
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "已產生新的 API 金鑰。"
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "封鎖的版本已建立。"
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "應用程式已被封鎖。"
 
@@ -3104,7 +3108,7 @@ msgstr "關於團隊成員角色"
 #: mkt/developers/templates/developers/apps/edit/basic.html:194 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
-#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "儲存變更"
@@ -3147,7 +3151,7 @@ msgstr "狀態 & 版本"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/reviewers/forms.py:191
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3269,7 +3273,7 @@ msgstr "已封裝版本"
 msgid "Submission date"
 msgstr "提交日期"
 
-#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:95
+#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:104
 msgid "Disabled"
 msgstr "已停用"
 
@@ -3436,7 +3440,7 @@ msgstr "您確定要下架這個應用程式嗎?"
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/lookup/templates/lookup/website_edit.html:104 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:113 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "或"
@@ -3449,7 +3453,7 @@ msgstr "或"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
-#: mkt/lookup/templates/lookup/website_edit.html:105 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:114 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "取消"
@@ -3637,7 +3641,7 @@ msgid ""
 msgstr "請不要太常修改您的安裝資訊網址。若您變更了安裝資訊網址，現有的使用者將無法升級使用新的安裝資訊網址。若需更多資訊，請參考 <a href=\"%(doc_url)s\" target=\"_blank\">更新應用程式相關文件</a>。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:22
-#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "敘述"
 
@@ -5079,39 +5083,39 @@ msgstr "在存取檔案 %s 時發生錯誤。%s。"
 msgid "There was an error accessing file %s."
 msgstr "存取檔案 %s 時發生錯誤。"
 
-#: mkt/files/utils.py:75
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "在包裝好的應用程式壓縮檔的根目錄中找不到 \"manifest.webapp\"。"
 
-#: mkt/files/utils.py:97
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "無法解碼 .webapp 安裝資訊檔。請檢查您的安裝資訊檔中是否有非 UTF-8 字元。"
 
-#: mkt/files/utils.py:105
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "這個 webapp 的安裝資訊檔不是有效的 JSON。"
 
-#: mkt/files/utils.py:112
+#: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr "網頁應用程式沒有「langpack」的角色，請將此程式改用語言包的方式上架。"
 
-#: mkt/files/utils.py:120
+#: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
 msgstr "您所指定的應用程式語系格式不正確。"
 
-#: mkt/files/utils.py:137
+#: mkt/files/utils.py:136
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "安裝資訊檔中必須包含開發者名稱以顯示在應用程式清單中。"
 
-#: mkt/files/utils.py:187
+#: mkt/files/utils.py:186
 msgid "Invalid file name in archive: {0}"
 msgstr "壓縮檔中有無效檔名: {0}"
 
-#: mkt/files/utils.py:195
+#: mkt/files/utils.py:194
 msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
-#: mkt/files/utils.py:245
+#: mkt/files/utils.py:227
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
@@ -5606,15 +5610,15 @@ msgstr "刪除者"
 msgid "Reason"
 msgstr "理由"
 
-#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
+#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
 msgstr "短名稱"
 
-#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
+#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:38
 msgid "Title"
 msgstr "標題"
 
-#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
+#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:40
 msgid "URL"
 msgstr "網址"
 
@@ -5622,19 +5626,23 @@ msgstr "網址"
 msgid "Mobile URL"
 msgstr "行動版網址"
 
-#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
+#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:30
 msgid "Keywords"
 msgstr "關鍵字"
 
-#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
+#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:34
 msgid "Preferred Regions"
 msgstr "偏好地區"
+
+#: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
+msgid "Compatible Devices"
+msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
 msgstr "名稱 - 短名稱"
 
-#: mkt/lookup/templates/lookup/website_summary.html:50
+#: mkt/lookup/templates/lookup/website_summary.html:54
 msgid "disabled"
 msgstr "已停用"
 
@@ -6626,9 +6634,7 @@ msgstr "<span class=\"submitted-by\">由 %(user)s 於 %(date)s [%(ip_address)s] 
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
-msgstr ""
-"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" "
-"href=\"%(translate_url)s\">翻譯</a>"
+msgstr "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">翻譯</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "All abuse reports read. Good work!"
@@ -8022,6 +8028,10 @@ msgstr "排列依照："
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
 msgstr "建立日期"
+
+#: mkt/websites/forms.py:89
+msgid "Invalid device(s) selected."
+msgstr ""
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

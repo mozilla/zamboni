@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 08:32-0700\n"
+"POT-Creation-Date: 2015-07-15 11:17-0700\n"
 "PO-Revision-Date: 2015-05-06 02:54+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: none\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1430880868.0\n"
 
-#: mkt/api/fields.py:20
+#: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr "유효한 선택을 해주세요. %(value)s는 가능한 선택이 아닙니다."
 
-#: mkt/api/fields.py:87
+#: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
 msgstr "적어도 {num}자 이상 되어야 합니다."
 
-#: mkt/api/fields.py:89
+#: mkt/api/fields.py:91
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
@@ -2168,7 +2168,7 @@ msgstr "이런, 현재 사용 중단 상태인 %s의 설치 선언문은 이미 
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "이 도메인에 대한 앱이 이미 있습니다. 하나의 도메인엔 하나의 앱만 허용됩니다."
 
-#: mkt/developers/forms.py:338 mkt/websites/forms.py:71
+#: mkt/developers/forms.py:338 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "유효하지 않은 지역을 선택하였습니다."
 
@@ -2265,12 +2265,12 @@ msgid "Choose where my app is made available"
 msgstr ""
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:21
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "분류"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:56
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "{0}개의 분류만 사용할 수 있습니다."
@@ -2523,7 +2523,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
-#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:27
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
 msgstr "이름"
 
@@ -2696,31 +2696,35 @@ msgstr "\"{0}\" 버전이 삭제되었습니다."
 msgid "There was an error with the submission."
 msgstr "등록 과정에서 오류가 발생했습니다."
 
-#: mkt/developers/views.py:954
+#: mkt/developers/views.py:700
+msgid "An error occurred validating the manifest."
+msgstr ""
+
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
-#: mkt/developers/views.py:1005
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "이용 약관에 동의했습니다."
 
-#: mkt/developers/views.py:1017
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr "관리자 역할을 맡고 있는 사용자는 API를 사용할 수 없습니다."
 
-#: mkt/developers/views.py:1026
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "API 키가 없습니다."
 
-#: mkt/developers/views.py:1032
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "새 API 키가 생성됐습니다."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "생성된 블록리스트 버전입니다."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "앱이 이미 블록리스트됐습니다."
 
@@ -3097,7 +3101,7 @@ msgstr "팀 멤버 역할 안내"
 #: mkt/developers/templates/developers/apps/edit/basic.html:194 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
-#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "변경사항 저장"
@@ -3140,7 +3144,7 @@ msgstr "상태 및 버전"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/reviewers/forms.py:191
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3261,7 +3265,7 @@ msgstr "패키지 버전"
 msgid "Submission date"
 msgstr "제출일"
 
-#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:95
+#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:104
 msgid "Disabled"
 msgstr "사용 안함"
 
@@ -3430,7 +3434,7 @@ msgstr "정말 앱을 목록에서 삭제하시겠습니까?"
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/lookup/templates/lookup/website_edit.html:104 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:113 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "또는"
@@ -3443,7 +3447,7 @@ msgstr "또는"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
-#: mkt/lookup/templates/lookup/website_edit.html:105 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:114 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "취소"
@@ -3629,7 +3633,7 @@ msgid ""
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:22
-#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "설명"
 
@@ -5070,39 +5074,39 @@ msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다. %s.
 msgid "There was an error accessing file %s."
 msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
 
-#: mkt/files/utils.py:75
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "패키징된 앱 압축파일의 루트에 \"manifest.webapp\" 파일이 없습니다."
 
-#: mkt/files/utils.py:97
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
 
-#: mkt/files/utils.py:105
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "webapp manifest가 올바른 JSON 형식이 아닙니다."
 
-#: mkt/files/utils.py:112
+#: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
 
-#: mkt/files/utils.py:120
+#: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
 msgstr "명시한 앱의 화면 크기가 알맞은 형식이 아닙니다."
 
-#: mkt/files/utils.py:137
+#: mkt/files/utils.py:136
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "앱 나열시 노출될 개발자 이름이 설치 선언문에 들어가야 합니다."
 
-#: mkt/files/utils.py:187
+#: mkt/files/utils.py:186
 msgid "Invalid file name in archive: {0}"
 msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
-#: mkt/files/utils.py:195
+#: mkt/files/utils.py:194
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
-#: mkt/files/utils.py:245
+#: mkt/files/utils.py:227
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
 
@@ -5596,15 +5600,15 @@ msgstr ""
 msgid "Reason"
 msgstr "사유"
 
-#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
+#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
+#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:38
 msgid "Title"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
+#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:40
 msgid "URL"
 msgstr ""
 
@@ -5612,19 +5616,23 @@ msgstr ""
 msgid "Mobile URL"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
+#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:30
 msgid "Keywords"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
+#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:34
 msgid "Preferred Regions"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
+msgid "Compatible Devices"
 msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_summary.html:50
+#: mkt/lookup/templates/lookup/website_summary.html:54
 msgid "disabled"
 msgstr ""
 
@@ -8007,6 +8015,10 @@ msgstr "정렬 방식:"
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
 msgstr "신규 등록"
+
+#: mkt/websites/forms.py:89
+msgid "Invalid device(s) selected."
+msgstr ""
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

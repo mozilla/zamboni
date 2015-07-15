@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01 08:32-0700\n"
+"POT-Creation-Date: 2015-07-15 11:17-0700\n"
 "PO-Revision-Date: 2014-10-08 05:49+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 "X-Generator: Poedit 1.6.9\n"
 "X-POOTLE-MTIME: 1411223873.0\n"
 
-#: mkt/api/fields.py:20
+#: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr "Сделайте корректный выбор. %(value)s не является одним из доступных выборов."
 
-#: mkt/api/fields.py:87
+#: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
 msgstr "Поле должно иметь длину не менее {num} символов."
 
-#: mkt/api/fields.py:89
+#: mkt/api/fields.py:91
 #, fuzzy
 msgid "The language code {lang_code} is invalid."
 msgstr "Неверный код подтверждения"
@@ -2203,7 +2203,7 @@ msgstr ""
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "На этом домене уже существует приложение; допускается только одно приложение на домен."
 
-#: mkt/developers/forms.py:338 mkt/websites/forms.py:71
+#: mkt/developers/forms.py:338 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "Выбран некорректный регион(ы)."
 
@@ -2301,12 +2301,12 @@ msgid "Choose where my app is made available"
 msgstr ""
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:21
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Категории"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:56
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "У вас может быть только {0} категория."
@@ -2564,7 +2564,7 @@ msgstr "Имя счёта"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
 #: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
-#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:27
+#: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
 msgstr "Имя"
 
@@ -2740,31 +2740,35 @@ msgstr "Версия \"{0}\" удалена."
 msgid "There was an error with the submission."
 msgstr "В процессе представления произошла ошибка."
 
-#: mkt/developers/views.py:954
+#: mkt/developers/views.py:700
+msgid "An error occurred validating the manifest."
+msgstr ""
+
+#: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
 
-#: mkt/developers/views.py:1005
+#: mkt/developers/views.py:1004
 msgid "Terms of service accepted."
 msgstr "Условия службы приняты."
 
-#: mkt/developers/views.py:1017
+#: mkt/developers/views.py:1016
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:1026
+#: mkt/developers/views.py:1025
 msgid "No such API key."
 msgstr "Нет такого ключа API."
 
-#: mkt/developers/views.py:1032
+#: mkt/developers/views.py:1031
 msgid "New API key generated."
 msgstr "Сгенерирован новый ключ API."
 
-#: mkt/developers/views.py:1050
+#: mkt/developers/views.py:1049
 msgid "Created blocklisted version."
 msgstr "Создана заблокированная версия."
 
-#: mkt/developers/views.py:1052
+#: mkt/developers/views.py:1051
 msgid "App already blocklisted."
 msgstr "Приложение уже в черном списке."
 
@@ -3150,7 +3154,7 @@ msgstr "О ролях члена команды"
 #: mkt/developers/templates/developers/apps/edit/basic.html:194 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
-#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:104
+#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Сохранить изменения"
@@ -3194,7 +3198,7 @@ msgstr "Статус и версии"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/reviewers/forms.py:191
+#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3317,7 +3321,7 @@ msgstr "Упакованные версии"
 msgid "Submission date"
 msgstr "Дата представления"
 
-#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:95
+#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24 mkt/lookup/templates/lookup/website_edit.html:104
 msgid "Disabled"
 msgstr "Отключено"
 
@@ -3489,7 +3493,7 @@ msgstr "Вы уверены, что хотите убрать ваше прил�
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/lookup/templates/lookup/website_edit.html:104 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:113 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "или"
@@ -3502,7 +3506,7 @@ msgstr "или"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
-#: mkt/lookup/templates/lookup/website_edit.html:105 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
+#: mkt/lookup/templates/lookup/website_edit.html:114 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "Отменить"
@@ -3695,7 +3699,7 @@ msgid ""
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:22
-#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "Описание"
 
@@ -5174,42 +5178,42 @@ msgstr "Ошибка при доступе к файлу %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Ошибка при доступе к файлу %s."
 
-#: mkt/files/utils.py:75
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr ""
 
-#: mkt/files/utils.py:97
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
 
-#: mkt/files/utils.py:105
+#: mkt/files/utils.py:104
 #, fuzzy
 msgid "The webapp manifest is not valid JSON."
 msgstr "Не удалось распарсить файл манифеста веб-приложения."
 
-#: mkt/files/utils.py:112
+#: mkt/files/utils.py:111
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
 
-#: mkt/files/utils.py:120
+#: mkt/files/utils.py:119
 msgid "Your specified app locales are not in the correct format."
 msgstr "Указанные вами локали приложения имеют некорректный формат."
 
-#: mkt/files/utils.py:137
+#: mkt/files/utils.py:136
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
 
-#: mkt/files/utils.py:187
+#: mkt/files/utils.py:186
 #, fuzzy
 msgid "Invalid file name in archive: {0}"
 msgstr "Недопустимое имя файла в архиве: {0}"
 
-#: mkt/files/utils.py:195
+#: mkt/files/utils.py:194
 #, fuzzy
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Размер файла в архиве превышает лимит: {0}"
 
-#: mkt/files/utils.py:245
+#: mkt/files/utils.py:227
 msgid "Invalid archive."
 msgstr "Некорректный архив."
 
@@ -5711,15 +5715,15 @@ msgstr "Удалено"
 msgid "Reason"
 msgstr "Причина"
 
-#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:31
+#: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:33
+#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:38
 msgid "Title"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:35
+#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:40
 msgid "URL"
 msgstr ""
 
@@ -5727,19 +5731,23 @@ msgstr ""
 msgid "Mobile URL"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:25
+#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:30
 msgid "Keywords"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:29
+#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:34
 msgid "Preferred Regions"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
+msgid "Compatible Devices"
 msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/website_summary.html:50
+#: mkt/lookup/templates/lookup/website_summary.html:54
 msgid "disabled"
 msgstr ""
 
@@ -8205,6 +8213,10 @@ msgstr "Сортировать по:"
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
 msgid "Created"
 msgstr "Создано"
+
+#: mkt/websites/forms.py:89
+msgid "Invalid device(s) selected."
+msgstr ""
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
