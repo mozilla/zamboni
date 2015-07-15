@@ -13,7 +13,7 @@ class MonolithRecord(models.Model):
     as a JSON object).
     """
     key = models.CharField(max_length=255)
-    recorded = models.DateTimeField()
+    recorded = models.DateTimeField(db_index=True)
     user_hash = models.CharField(max_length=255, blank=True)
     value = models.TextField()
 

@@ -419,6 +419,8 @@ class FeedItem(ModelBase):
     class Meta:
         db_table = 'mkt_feed_item'
         ordering = ('order',)
+        index_together = (('region', 'carrier'),
+                          ('category', 'region', 'carrier'))
 
     @classmethod
     def get_indexer(cls):

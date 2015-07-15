@@ -146,10 +146,9 @@ def clean_slug(instance, slug_field='app_slug'):
 
 
 class AddonDeviceType(ModelBase):
-    addon = models.ForeignKey('Webapp', db_constraint=False)
+    addon = models.ForeignKey('Webapp')
     device_type = models.PositiveIntegerField(
-        default=mkt.DEVICE_DESKTOP, choices=do_dictsort(mkt.DEVICE_TYPES),
-        db_index=True)
+        default=mkt.DEVICE_DESKTOP, choices=do_dictsort(mkt.DEVICE_TYPES))
 
     class Meta:
         db_table = 'addons_devicetypes'
@@ -195,8 +194,8 @@ def attach_translations(addons):
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
-    role = models.SmallIntegerField(default=mkt.AUTHOR_ROLE_OWNER,
-                                    choices=mkt.AUTHOR_CHOICES)
+    role = models.PositiveSmallIntegerField(default=mkt.AUTHOR_ROLE_OWNER,
+                                            choices=mkt.AUTHOR_CHOICES)
     listed = models.BooleanField(_lazy(u'Listed'), default=True)
     position = models.IntegerField(default=0)
 
@@ -209,7 +208,9 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
-        unique_together = (('addon', 'user'), )
+        unique_together = ('addon', 'user')
+        index_together = (('addon', 'user', 'listed'),
+                          ('addon', 'listed'))
 
 
 class Preview(ModelBase):
@@ -224,6 +225,7 @@ class Preview(ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
+        index_together = ('addon', 'position', 'created')
 
     def _image_url(self, url_template):
         if self.modified is not None:
@@ -420,9 +422,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
-    status = models.PositiveIntegerField(
+    status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
-    highest_status = models.PositiveIntegerField(
+    highest_status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES, default=0,
         help_text='An upper limit for what an author can change.',
         db_column='higheststatus')
@@ -434,10 +436,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     support_url = TranslatedField(db_column='supporturl')
     description = PurifiedField(short=False)
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    average_rating = models.FloatField(max_length=255, default=0, null=True,
-                                       db_column='averagerating')
-    bayesian_rating = models.FloatField(default=0, db_index=True,
-                                        db_column='bayesianrating')
+    average_rating = models.FloatField(default=0, db_column='averagerating')
+    bayesian_rating = models.FloatField(default=0, db_column='bayesianrating',
+                                        db_index=True)
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
     last_updated = models.DateTimeField(
@@ -449,7 +450,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = JSONField(default=None)
-    premium_type = models.PositiveIntegerField(
+    premium_type = models.PositiveSmallIntegerField(
         choices=mkt.ADDON_PREMIUM_TYPES.items(), default=mkt.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
@@ -460,7 +461,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    publish_type = models.PositiveIntegerField(default=0)
+    publish_type = models.PositiveSmallIntegerField(default=0)
     mozilla_contact = models.EmailField(blank=True)
     vip_app = models.BooleanField(default=False)
     priority_review = models.BooleanField(default=False)
@@ -2333,7 +2334,7 @@ class AddonExcludedRegion(ModelBase):
     """
     addon = models.ForeignKey(Webapp, related_name='addonexcludedregion')
     region = models.PositiveIntegerField(
-        choices=mkt.regions.REGIONS_CHOICES_ID)
+        choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
 
     class Meta:
         db_table = 'addons_excluded_regions'

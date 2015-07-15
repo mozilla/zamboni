@@ -14,7 +14,7 @@ class TagManager(ManagerBase):
 
 
 class Tag(ModelBase):
-    tag_text = models.CharField(max_length=128)
+    tag_text = models.CharField(max_length=128, unique=True)
     blocked = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
 
