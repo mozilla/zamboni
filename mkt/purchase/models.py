@@ -50,7 +50,8 @@ class Contribution(ModelBase):
     # TODO(andym): figure out what to do when we delete the user.
     user = models.ForeignKey('users.UserProfile', blank=True, null=True)
     type = models.PositiveIntegerField(default=mkt.CONTRIB_TYPE_DEFAULT,
-                                       choices=do_dictsort(mkt.CONTRIB_TYPES))
+                                       choices=do_dictsort(mkt.CONTRIB_TYPES),
+                                       db_index=True)
     price_tier = models.ForeignKey('prices.Price', blank=True, null=True,
                                    on_delete=models.PROTECT)
     # If this is a refund or a chargeback, which charge did it relate to.

@@ -80,6 +80,11 @@ class Review(ModelBase):
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
+        unique_together = ('version', 'user', 'reply_to')
+        index_together = (
+            ('addon', 'reply_to', 'is_latest', 'created'),
+            ('addon', 'reply_to', 'lang'),
+        )
 
     def get_url_path(self):
         return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
@@ -157,7 +162,10 @@ class ReviewFlag(ModelBase):
 
     class Meta:
         db_table = 'reviews_moderation_flags'
-        unique_together = (('review', 'user'),)
+        unique_together = ('review', 'user')
+
+
+ReviewFlag._meta.get_field('modified').db_index = True
 
 
 class Spam(object):

@@ -361,12 +361,16 @@ class TestAdditionalReviewManager(mkt.site.tests.TestCase):
     def setUp(self):
         self.unreviewed = AdditionalReview.objects.create(
             app=Webapp.objects.create(), queue='queue-one')
+        self.unreviewed.update(created=self.days_ago(1))
         self.unreviewed_too = AdditionalReview.objects.create(
             app=Webapp.objects.create(), queue='queue-one')
+        self.unreviewed_too.update(created=self.days_ago(2))
         self.passed = AdditionalReview.objects.create(
             app=Webapp.objects.create(), queue='queue-one', passed=True)
+        self.passed.update(created=self.days_ago(3))
         self.other_queue = AdditionalReview.objects.create(
             app=Webapp.objects.create(), queue='queue-two')
+        self.other_queue.update(created=self.days_ago(1))
 
     def test_unreviewed_none_approved_allow_unapproved(self):
         eq_(set([self.unreviewed, self.unreviewed_too]),
