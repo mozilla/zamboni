@@ -32,6 +32,7 @@ class GroupUser(models.Model):
 
     class Meta:
         db_table = 'groups_users'
+        unique_together = ('group', 'user')
 
 
 @dispatch.receiver(signals.post_save, sender=GroupUser,

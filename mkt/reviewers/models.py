@@ -363,6 +363,9 @@ class ReviewerScore(ModelBase):
         return scores
 
 
+ReviewerScore._meta.get_field('created').db_index = True
+
+
 class EscalationQueue(ModelBase):
     addon = models.ForeignKey(Webapp)
 
@@ -390,6 +393,9 @@ class RereviewQueue(ModelBase):
         # ACTION_MAP.
         create_comm_note(addon, version, None, message,
                          note_type=comm.ACTION_MAP(event))
+
+
+RereviewQueue._meta.get_field('created').db_index = True
 
 
 def tarako_passed(review):
@@ -442,6 +448,7 @@ class AdditionalReview(ModelBase):
 
     class Meta:
         db_table = 'additional_review'
+        unique_together = ('queue', 'created')
         get_latest_by = 'created'
 
     @property

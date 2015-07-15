@@ -86,6 +86,10 @@ class AbuseReport(ModelBase):
         return list(cls.objects.raw(''.join(abuse_sql), params))
 
 
+# Add index on `created`.
+AbuseReport._meta.get_field('created').db_index = True
+
+
 def send_abuse_report(request, obj, message):
     report = AbuseReport(ip_address=request.META.get('REMOTE_ADDR'),
                          message=message)

@@ -38,7 +38,8 @@ class File(OnChangeMixin, ModelBase):
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
-                                              default=mkt.STATUS_PENDING)
+                                              default=mkt.STATUS_PENDING,
+                                              db_index=True)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     reviewed = models.DateTimeField(null=True)
     # Whether a webapp uses flash or not.
@@ -46,6 +47,8 @@ class File(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
+        index_together = (('datestatuschanged', 'version'),
+                          ('created', 'version'))
 
     def __unicode__(self):
         return unicode(self.id)
