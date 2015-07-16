@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-16 08:48+0000\n"
+"PO-Revision-Date: 2015-07-16 09:14+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437036520.0\n"
+"X-POOTLE-MTIME: 1437038098.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -882,7 +882,7 @@ msgstr[3] ""
 
 #: media/js/zamboni/devhub-all.js:294 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Waš přidatk měł so na  .xpi, .jar abo .xml kónčić."
+msgstr "Waš přidatk měł so na .xpi, .jar abo .xml kónčić"
 
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
