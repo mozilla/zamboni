@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-15 21:51+0000\n"
+"PO-Revision-Date: 2015-07-16 11:49+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436997099.0\n"
+"X-POOTLE-MTIME: 1437047342.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -909,7 +909,7 @@ msgstr "Moet een geldig e-mailadres zijn."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr "Validatie van add-mislukt."
+msgstr "Validatie van add-on mislukt."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
