@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-16 14:47+0000\n"
+"PO-Revision-Date: 2015-07-16 15:03+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437058029.0\n"
+"X-POOTLE-MTIME: 1437058981.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -21,7 +21,7 @@ msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr "Instalěrowanje nałoženja njejo dowólone,"
+msgstr "Instalěrowanje nałoženja njejo dowólone."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
@@ -619,10 +619,22 @@ msgstr "Spóznaty: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[1] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[2] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujuceju nałoženjowu. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[3] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucego nałoženja Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
+msgstr[0] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych "
+"nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
+msgstr[1] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych "
+"nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
+msgstr[2] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujuceju "
+"nałoženjowu. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
+msgstr[3] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucego "
+"nałoženja. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -904,7 +916,7 @@ msgstr "Někotare platformy njejsu za toś ten dodankowy typ k dispoziciji."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr "Waš wobglědowak njepódpěra element video."
+msgstr "Waš wobglědowak njepódpěra element video"
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
@@ -1297,52 +1309,52 @@ msgstr "Instalacije a wšedne wužywarje, wót {0} do {1}"
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Ześěgnjenja, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Ześěgnjenja, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Wšedne wužywarje, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15517 media/js/zamboni/stats-min.js:6
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Wšedne wužywarje, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15521 media/js/zamboni/stats-min.js:6
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Nałoženja, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15523 media/js/zamboni/stats-min.js:6
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Nałoženja, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15527 media/js/zamboni/stats-min.js:6
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platformy, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15529 media/js/zamboni/stats-min.js:6
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platformy, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15533 media/js/zamboni/stats-min.js:6
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Rěcy, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15535 media/js/zamboni/stats-min.js:6
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Rěcy, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15539 media/js/zamboni/stats-min.js:6
@@ -1392,47 +1404,47 @@ msgstr "Sedłowa metrika, zachadne {0} dnjow"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Sedłowa metrika, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Dodanki, kótarež se wužywaju, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15571 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Dodanki, kótarež se wužywaju, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15575 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Dodanki ześěgnjone, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15577 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Dodanki ześěgnjone, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15581 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Dodanki napórane, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15583 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Dodanki napórane, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Dodanki zaktualizěrowane, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Dodanki zaktualizěrowane, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
@@ -1482,42 +1494,42 @@ msgstr "Pógódnośenja, zachadne {0} dnjow"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Pógódnośenja, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Pśedanki, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Pśedanki, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalacije, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Instalacije, wót {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> w zachadnych {1} dnjach"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b>, wót {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> pśerěznje w zachadnych {1} dnjach"
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."

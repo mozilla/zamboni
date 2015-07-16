@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-16 11:45+0000\n"
+"PO-Revision-Date: 2015-07-16 15:04+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437047129.0\n"
+"X-POOTLE-MTIME: 1437059046.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2059,7 +2059,7 @@ msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr "St. Helena, Ascension a Tristan da Cunha"
+msgstr "Saint Helena, Ascension a Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2782,9 +2782,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p>Stej dwa głownej nałožowańskej zaměra za API Marketplace. Z drugego websedła z pomocu tradicionelnego OAuth-woóběga abo z rěda pśikazoweje smužki. Rozdźěl se w <a href=\"https://firefox-"
-"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> diskutěrujo. Testowanje by měło se na <a href=\"https://marketplace-dev.allizom.org"
-"\">wuwijańskem serwerje</a> wótměwaś a nic na produkciskem serwerje.</p>"
+"<p>Stej dwa głownej nałožowańskej zaměra za API Marketplace. Z drugego "
+"websedła z pomocu tradicionelnego OAuth-wobběga abo z rěda pśikazoweje "
+"smužki. Rozdźěl se w <a href=\"https://firefox-marketplace-api.readthedocs.or"
+"g/en/latest/topics/authentication.html#oauth\">dokumentaciji Marketplace</a> "
+"diskutěrujo. Testowanje by měło se na <a href=\"https://marketplace-"
+"dev.allizom.org\">wuwijańskem serwerje</a> wótměwaś a nic na produkciskem "
+"serwerje.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -4610,7 +4614,9 @@ msgstr "Wašo nałoženje zwobraznjujo se na kuždem regionalnem Wikowanišću, 
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point or \"Rest of World\" being selected as a payment option)."
-msgstr "(Pód wuměnjenim, až płaśenja su k dispoziciji w tós tom regionje za wubrany płaśiznowy dypk abo \"zbytk swěta\" jo ako płaśeńska opcija wubrany.)"
+msgstr ""
+"(Pód wuměnjenim, až płaśenja su k dispoziciji w tós tom regionje za wubrany "
+"płaśiznowy dypk abo \"zbytk swěta\" jo ako płaśeńska opcija wubrany)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -6644,7 +6650,9 @@ msgstr "<a href=\"%(abuses_url)s\">Wšě znjewužywańske powěźeńki (%(abuses
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
-msgstr "<span class=\"submitted-by\">Pśizjawjony wót %(user)s  %(date)s [%(ip_address)s]</span>"
+msgstr ""
+"<span class=\"submitted-by\">Pśizjawjony wót %(user)s %(date)s [%"
+"(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
