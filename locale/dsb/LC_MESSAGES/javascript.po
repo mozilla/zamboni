@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-01 21:08+0000\n"
+"PO-Revision-Date: 2015-07-16 12:06+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435784907.0\n"
+"X-POOTLE-MTIME: 1437048374.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +21,11 @@ msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Instalěrowanje nałoženja njejo dowólone,"
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifest nałoženja njejo derje wuformowany."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,70 +45,76 @@ msgstr "Instalacija njejo se raźiła. Pšosym wopytajśo pózdźej hyšći raz.
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "Instalěrowanje nałoženja njejo se raźiło."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Toś ten system njepódpěra instalěrowanje nałoženjow."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Akceptěrowaś a instalěrowaś"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "K {0} pśidaś"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Něnto ześěgnuś"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"Dodank njejo se zaktualizěrował, aby funkciju \"pó standarźe kompatibenlny\" "
+"pódpěrał."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Musyśo Firefox 10.0 abo nowšy wužywaś."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla jo toś tu wersiju ako inkompatibelnu z toś teju wersiju Firefox "
+"markěrował."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Weto za {0} instalěrowaś"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Weto za {0} ześěgnuś"
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Njejo za wašu platformu k dispoziciji"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Njejo za {0} {1} k dispoziciji"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Funkcioněrujo z {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Druge wersije se woglědaś"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Bóžko trjebaśo wobglědowak Mozilla (na pśikład Firefox), aby pytański tykac "
+"instalěrował."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Zacytujo se…"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
@@ -164,39 +171,39 @@ msgstr ""
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Z faworitow wótpóraś"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Njedocynjony"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Komentar pśidaś"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Toś den dodank ze zběrki wótpóraś"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Wótpóraś"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Toś togo wužywarja ako sobustatkujucego wótpóraś"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mailowa adresa jo trěbna."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Njamóžośo se ako sobustatkujucego pśidaś."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
@@ -252,16 +259,18 @@ msgstr ""
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Amdinistratory a wobźěłarje muse za pśizjawjenje gronidło zapódaś."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Pśizjawjenje BrowserID njejo se raźiło. Njamaśo snaź konto pód toś teju "
+"e-mailoweju adresu?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Toś ta drastwa jo inkompatibelna z wašeju wersiju {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
 #: media/js/zamboni/devhub-min.js:1
@@ -279,27 +288,27 @@ msgstr "Pśi kontaktěrowanju serwera jo problem nastał."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Wšykne pšawa wuměnjone"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
@@ -867,26 +876,26 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Waš dodank jo pśi pśeglědowanju z {0} zmólku pśepadnuł."
+msgstr[1] "Waš dodank jo pśi pśeglědowanju z {0} zmólkoma pśepadnuł."
+msgstr[2] "Waš dodank jo pśi pśeglědowanju z {0} zmólkami pśepadnuł."
+msgstr[3] "Waš dodank jo pśi pśeglědowanju z {0} zmólkami pśepadnuł."
 
 #: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Waš dodank jo pśeglědowanje bźez zmólkow a z {0} powěsću wobstał."
+msgstr[1] "Waš dodank jo pśeglědowanje bźez zmólkow a z {0} powěsćoma wobstał."
+msgstr[2] "Waš dodank jo pśeglědowanje bźez zmólkow a z {0} powěsćami wobstał."
+msgstr[3] "Waš dodank jo pśeglědowanje bźez zmólkow a z {0} powěsćami wobstał."
 
 #: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Waš dodank jo pśeglědowanje bźez zmólkow abo warnowanjow wobstał."
 
 #: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Někotare platformy njejsu za toś ten dodankowy typ k dispoziciji."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
