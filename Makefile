@@ -56,7 +56,7 @@ update_deps:
 	npm install
 
 update_db:
-	schematic migrations
+	$(DJANGO) migrate
 
 full_update: update_code update_deps update_db
 

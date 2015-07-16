@@ -9,11 +9,9 @@ if [ $? -ne 0 ]; then
     echo "Zamboni database doesn't exist. Let's create it"
     mysql -u root --host mysql_1 -e 'create database zamboni default character set=utf8 collate=utf8_general_ci;'
     echo "Syncing db..."
-    python manage.py syncdb --noinput
+    python manage.py migrate --noinput
     echo "Initialising data..."
     python manage.py loaddata init
-    echo "Jumping migrations forward to the most recent."
-    schematic migrations/ --fake
     echo "Creating the initial index"
     python manage.py reindex
     echo "Creating fake apps."

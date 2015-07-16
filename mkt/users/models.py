@@ -34,8 +34,8 @@ class UserForeignKey(models.ForeignKey):
     instead of the primary key id.  We also hook up autocomplete automatically.
     """
 
-    def __init__(self, *args, **kw):
-        super(UserForeignKey, self).__init__(UserProfile, *args, **kw)
+    def __init__(self, to=None, **kwargs):
+        super(UserForeignKey, self).__init__(UserProfile, **kwargs)
 
     def value_from_object(self, obj):
         return getattr(obj, self.name).email

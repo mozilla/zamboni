@@ -1,1 +1,0 @@
-update users set password = '';
