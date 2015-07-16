@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-16 13:27+0000\n"
+"PO-Revision-Date: 2015-07-16 14:47+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437053239.0\n"
+"X-POOTLE-MTIME: 1437058029.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1060,7 +1060,7 @@ msgstr "Wobchowaś"
 
 #: media/js/zamboni/mobile-all.js:12157 media/js/zamboni/mobile-min.js:5
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Wy se to pśiměrjujośo!"
 
 #: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
 msgid "Added to Firefox"
@@ -1100,39 +1100,39 @@ msgstr "Pógódnośenja napisane"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
-msgstr ""
+msgstr "Wužywarske registrěrowanja"
 
 #: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonenty"
 
 #: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
 msgid "Ratings"
-msgstr ""
+msgstr "Pógódnośenja"
 
 #: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483 media/js/zamboni/stats-min.js:6
 msgid "Sales"
-msgstr ""
+msgstr "Pśedanki"
 
 #: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482 media/js/zamboni/stats-min.js:6
 msgid "Installs"
-msgstr ""
+msgstr "Instalacije"
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznaty"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Zastojnik dodankow"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Pytańske wuslědki"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422 media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Pśedstajenje na startowem boku"
 
 #: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425 media/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
@@ -1192,15 +1192,15 @@ msgstr "Startowy bok kategorijow: Pśeglěd pśedstajonych dodankow"
 
 #: media/js/zamboni/stats-all.js:15449 media/js/zamboni/stats-all.js:15450 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Startowy bok kategorijow: Nejwušej pógódnośone"
 
 #: media/js/zamboni/stats-all.js:15451 media/js/zamboni/stats-all.js:15452 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Startowy bok kategorijow: Nejwěcej woblubowane"
 
 #: media/js/zamboni/stats-all.js:15453 media/js/zamboni/stats-all.js:15454 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Startowy bok kategorjow: Ako slědne pśidane"
 
 #: media/js/zamboni/stats-all.js:15455 media/js/zamboni/stats-all.js:15456 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Featured Sort"
@@ -1212,87 +1212,87 @@ msgstr "Lisćinu pó wužywarjach sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15459 media/js/zamboni/stats-all.js:15460 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Lisćinu pó pógódnośenju sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15461 media/js/zamboni/stats-all.js:15462 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Lisćinu pó datumje napóranja sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15463 media/js/zamboni/stats-all.js:15464 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Lisćinu pó mjenju sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15465 media/js/zamboni/stats-all.js:15466 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Lisćinu pó woblubowanosći sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15467 media/js/zamboni/stats-all.js:15468 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Lisćinu pó aktualizěrowańskem datumje sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15469 media/js/zamboni/stats-all.js:15470 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Lisćinu pó \"rozmógujucy\" sortěrowane pśepytaś"
 
 #: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154 media/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Licba pśinoskow"
 
 #: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Cełkowna licba pśinoskow"
 
 #: media/js/zamboni/stats-all.js:15475 media/js/zamboni/stats-min.js:6
 msgid "Average Contribution"
-msgstr ""
+msgstr "Pśerězna licba pśinoskow"
 
 #: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
 msgid "Usage"
-msgstr ""
+msgstr "Wužywanje"
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Ześěgnjenja a wšedne wužywarje, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Ześěgnjenja a wšedne wužywarje, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalacije a wšedne wužywarje, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15505 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalacije a wšedne wužywarje, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
@@ -1347,47 +1347,47 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15539 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Wersije dodankow, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15541 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Wersije dodankow, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15545 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Status dodanka, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15547 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Status dodanka, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15551 media/js/zamboni/stats-min.js:6
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Ześěgnjeńske žrědła, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15553 media/js/zamboni/stats-min.js:6
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Ześěgnjeńske žrědła, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Pśinoski, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Pśinoski, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Sedłowa metrika, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
@@ -1437,47 +1437,47 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Napisane pógódnośenja, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Napisane pógódnośenja, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Wužywarske registrěrowanja, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Wužywarske registrěrowanja, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Zběrki napórane, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Zběrki napórane, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonenty, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonenty, wót {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Pógódnośenja, zachadne {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
@@ -1521,61 +1521,61 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Žedne daty k dispoziciji."
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Druge"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Tyźeń wót {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "ześěgnjenja"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} wužywarjow"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} dodankow"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} zběrkow"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} pógódnośenjow"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} pśedankow"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} zarownanja"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalacijow"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Suma, w USD"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Dalšne informacije…"
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Drobnostki za {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Datum"
