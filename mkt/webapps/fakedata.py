@@ -20,7 +20,8 @@ import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
-from mkt.developers.models import AddonPaymentAccount, PaymentAccount
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   UserInappKey)
 from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.prices.models import AddonPremium, Price
@@ -427,8 +428,11 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
                                            account_uri=acct.uri,
                                            product_uri=product_uri)
-        price = get_or_create_price(spec.get('price', '0.99'))
-        AddonPremium.objects.create(addon=app, price=price)
+        if premium_type in (mkt.ADDON_PREMIUM, mkt.ADDON_PREMIUM_INAPP):
+            price = get_or_create_price(spec.get('price', '0.99'))
+            AddonPremium.objects.create(addon=app, price=price)
+        if premium_type in (mkt.ADDON_FREE_INAPP or mkt.ADDON_PREMIUM_INAPP):
+            UserInappKey.create(acct.user, secret='fake data secret key')
 
     for optField in ('support_url', 'homepage', 'is_offline'):
         if optField in spec:

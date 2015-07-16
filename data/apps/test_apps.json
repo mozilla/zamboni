@@ -262,4 +262,11 @@
  {"type": "packaged", "status": "public", "premium_type": "premium",
   "device_types": ["firefoxos"], "price": "24.99"},
  {"type": "packaged", "status": "public", "premium_type": "premium",
-  "device_types": ["firefoxos"], "price": "29.99"}]
+  "device_types": ["firefoxos"], "price": "29.99"},
+ {"type": "hosted", "status": "public",  "premium_type": "free-inapp",
+  "device_types": ["desktop", "mobile", "tabiet", "firefoxos"],
+  "name": "Inapp Payment Tester"},
+ {"type": "hosted", "status": "public",  "premium_type": "premium-inapp",
+  "device_types": ["desktop", "mobile", "tablet", "firefoxos"],
+  "name": "Premium Inapp Payment Tester"},
+ ]
