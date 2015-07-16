@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-01 17:10+0000\n"
+"PO-Revision-Date: 2015-07-15 19:39+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435770609.0\n"
+"X-POOTLE-MTIME: 1436989182.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2697,7 +2698,7 @@ msgstr "Při přenošowanju je zmylk wustupił."
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "Zmylk je při přepruwowanju manifesta wustupił."
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -5643,7 +5644,7 @@ msgstr "Preferowane regiony"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Kompatibelne graty"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -8063,7 +8064,7 @@ msgstr "Wutworjeny"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Njepłaćiwy grat wubrany."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
