@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-02 10:39+0000\n"
+"PO-Revision-Date: 2015-07-16 17:43+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435833592.0\n"
+"X-POOTLE-MTIME: 1437068580.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1565,7 +1565,7 @@ msgstr "网络信息"
 
 #: mkt/constants/features.py:95
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr "该应用请求获取有关网络连接信息的权限（使用  `navigator.mozConnection` API）。"
+msgstr "此应用需要取得有关网络连接信息的权限（使用 `navigator.mozConnection` API）。"
 
 #: mkt/constants/features.py:101
 msgid "Network Stats"
@@ -1659,7 +1659,7 @@ msgstr "网络音频"
 
 #: mkt/constants/features.py:176
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr "该应用需要支持  Web Audio API（`window.AudioContext`）的平台。"
+msgstr "此应用需要支持 Web Audio API（`window.AudioContext`）的平台。"
 
 #: mkt/constants/features.py:182
 msgid "The app requires that the platform can decode and play H.264 video files."
@@ -2692,7 +2692,7 @@ msgstr "提交时发生错误。"
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "验证清单时发生错误。"
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -2970,7 +2970,7 @@ msgstr "过滤交易"
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] "找到{num}个交易"
+msgstr[0] "找到 {num} 笔交易"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -3692,7 +3692,7 @@ msgstr "国家与语言"
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr "{0} 有关国家与语言的详情"
+msgstr "{0} 的国家与语言详细信息"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
@@ -4412,7 +4412,7 @@ msgstr "添加支付账户以使您的应用可在更多地区销售"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr "选择“其他地区”代表您的应用将仅在“其他地区”上架。"
+msgstr "选择“其他地区”代表您的应用将仅在“<a href=\"#regions-other\">其他地区</a>”上架。"
 
 #: mkt/developers/templates/developers/payments/premium.html:256
 msgid "Other regions"
@@ -5065,7 +5065,7 @@ msgstr "访问文件 %s 时遇到错误。"
 
 #: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr "文件\"manifest.webapp\"在获取应用包根目录中未发现。 "
+msgstr "未在应用包的根目录中找到“manifest.webapp”文件。"
 
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
@@ -5389,17 +5389,17 @@ msgstr "{0} 个申请（占总销量的 {1}）"
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:133
 msgid "{0} auto-approved"
-msgstr "已自动审核 {0} 个"
+msgstr "已自动批准 {0} 笔"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:135
 msgid "{0} approved"
-msgstr "已审核 {0} 个"
+msgstr "已批准 {0} 笔"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:137
 msgid "{0} rejected"
-msgstr "已拒绝 {0} 个"
+msgstr "已拒绝 {0} 笔"
 
 #: mkt/lookup/templates/lookup/app_summary.html:145
 msgid "Version History"
@@ -5604,7 +5604,7 @@ msgstr "偏好地区"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "兼容设备"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -5704,7 +5704,7 @@ msgstr "没有候选的预装项目"
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:87
 msgid "Tier %s"
-msgstr "%s 等级"
+msgstr "等级 %s"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:29
@@ -6099,7 +6099,7 @@ msgstr "只有资深审核者可以审核封锁的应用。"
 
 #: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340 mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
-msgstr "{0} 添加"
+msgstr "已添加 {0}"
 
 #: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341 mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
@@ -6116,7 +6116,7 @@ msgstr "审核者修改了需求：{0}"
 
 #: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr "已成功处理 \"{0}\" （+{1} 点，共 {2} ）。"
+msgstr "“{0}”处理成功（+{1} 点，总 {2} 点）。"
 
 #: mkt/reviewers/views.py:372
 msgid "Review successfully processed."
@@ -6955,7 +6955,7 @@ msgstr "{addon} 的版本 {version} 已编辑。"
 #. L10n: {0} is the version number
 #: mkt/site/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr "{addon} 已删除版本 {0}。"
+msgstr "{addon} 的版本 {0} 已删除。"
 
 #: mkt/site/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
@@ -7019,7 +7019,7 @@ msgstr "已要求高级审核"
 
 #: mkt/site/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr "{addon} {version} 的评论。"
+msgstr "对 {addon} {version} 的评论。"
 
 #: mkt/site/log.py:234
 msgid "Comment"
@@ -7087,7 +7087,7 @@ msgstr "{addon} 的 {review} 已通过审核。"
 
 #: mkt/site/log.py:328
 msgid "{user} approved {review} for {addon}."
-msgstr "{user} 核准了 {addon}  的 {review}。"
+msgstr "{user} 核准了 {addon} 的 {review}。"
 
 #: mkt/site/log.py:337
 msgid "Review {review} for {addon} deleted."
@@ -7127,11 +7127,11 @@ msgstr "{addon} {version} 已通过审核，但处于隐藏状态。"
 
 #: mkt/site/log.py:385
 msgid "{addon} purchased."
-msgstr "已订购 {addon} 。"
+msgstr "{addon} 已购买。"
 
 #: mkt/site/log.py:390
 msgid "{addon} installed."
-msgstr "已安装 {addon} 。"
+msgstr "{addon} 已安装。"
 
 #: mkt/site/log.py:395
 msgid "Refund requested for {addon}"
@@ -7303,7 +7303,7 @@ msgstr "{addon} 的 {review} 已更新。"
 
 #: mkt/site/log.py:604
 msgid "{addon} reviewed."
-msgstr "已审核 {addon} 。"
+msgstr "{addon} 已审核。"
 
 #: mkt/site/log.py:610
 msgid "User {0.name} added to {group}."
@@ -7799,7 +7799,7 @@ msgstr "新语言"
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr "<b>{0}</b> 区域有未保存的更改。切换区域之前您是否希望保存您的更改。"
+msgstr "您在 <b>{0}</b> 区域有未保存的更改。在切换区域之前，您是否要保存您的更改？"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -7988,7 +7988,7 @@ msgstr "创建日期"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "选择的设备无效。"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
