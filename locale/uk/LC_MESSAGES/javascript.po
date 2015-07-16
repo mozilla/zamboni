@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-02 14:55+0000\n"
+"PO-Revision-Date: 2015-07-16 12:27+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435848922.0\n"
+"X-POOTLE-MTIME: 1437049620.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +21,11 @@ msgstr "Дану функцію тимчасово вимкнено, поки м
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Встановлення програми не дозволено."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Маніфест програми пошкоджений."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,85 +45,87 @@ msgstr "Встановлення невдале. Спробуйте ще раз 
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "Встановлення програми невдале."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ця система не підтримує встановлення програм."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Погодитись і встановити"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Додати до {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Завантажити"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Додаток не був оновлений для підтримки типово сумісного."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Ви повинні використовувати Firefox 10.0 чи новіший."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla позначила цю версію як несумісну з вашою версією Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Все одно встановити {0}"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Все одно завантажити {0}"
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Недоступно для вашої платформи"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Недоступно для {0} {1}"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Працює з {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Переглянути інші версії"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Шкода, але для встановлення пошукового плагіна вам потрібен браузер на "
+"основі Mozilla (такий як Firefox)."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Залишився <b>{0}</b> символ."
+msgstr[1] "Залишилось <b>{0}</b> символи."
+msgstr[2] "Залишилось <b>{0}</b> символів."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} зірка"
+msgstr[1] "{0} зірки"
+msgstr[2] "{0} зірок"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -130,11 +133,11 @@ msgstr "Вилучити цю локалізацію"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Встановити програму"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
-msgstr ""
+msgstr "Відмічено для перегляду"
 
 #: media/js/common-all.js:18522 media/js/common-min.js:8 media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
@@ -142,94 +145,94 @@ msgstr ""
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8 media/js/impala-all.js:10312 media/js/impala-min.js:6
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Відмічено для вилучення"
 
 #: media/js/common-all.js:19177 media/js/common-min.js:9 media/js/impala-all.js:12078 media/js/impala-min.js:7
 msgid "clear recently viewed"
-msgstr ""
+msgstr "стерти недавно переглянуті"
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Додавання до обраного&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Вилучення обраного&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Додати до обраного"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Прибрати з обраного"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Очікування"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Додати коментар"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Прибрати цей додаток зі збірки"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Прибрати"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Прибрати цього користувача як помічника"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "Потрібна адреса електронної пошти."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ви не можете додати себе як помічника."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
-msgstr ""
+msgstr "Ви вже додали цього користувача."
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Додати до обраного"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Прибрати з обраного"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Слідкувати за цією збіркою"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Припинити стеження"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Надійність пароля:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Залишився щонайменше {0} символ."
+msgstr[1] "Залишилось щонайменше {0} символи."
+msgstr[2] "Залишилось щонайменше {0} символів."
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9 media/js/impala-all.js:13122 media/js/impala-min.js:7 media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -245,15 +248,17 @@ msgstr "Шукати додатки для <b>{0}</b>"
 
 #: media/js/common-all.js:20381 media/js/common-min.js:9 media/js/impala-all.js:13357 media/js/impala-min.js:7
 msgid "Category"
-msgstr ""
+msgstr "Категорія"
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Адміністратори та редактори повинні надати пароль для входу."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Збій входу з використанням BrowserID. Можливо ви не маєте облікового запису "
+"для цієї адреси ел. пошти?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
@@ -304,15 +309,15 @@ msgstr ""
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Назва вашої теми"
 
 #: media/js/impala-all.js:12685 media/js/impala-min.js:7
 msgid "Stop Following"
-msgstr ""
+msgstr "Припинити стеження"
 
 #: media/js/impala-all.js:12686 media/js/impala-min.js:7
 msgid "Following"
-msgstr ""
+msgstr "Стеження"
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
@@ -320,7 +325,7 @@ msgstr ""
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Оновлення результатів&hellip;"
 
 #: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
@@ -883,9 +888,9 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{files} файл"
+msgstr[1] "{files} файла"
+msgstr[2] "{files} файлів"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
