@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-02 10:19+0000\n"
+"PO-Revision-Date: 2015-07-16 06:24+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435832343.0\n"
+"X-POOTLE-MTIME: 1437027860.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2701,7 +2701,7 @@ msgstr "提交時發生錯誤。"
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "驗證安裝資訊時發生錯誤。"
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -5636,7 +5636,7 @@ msgstr "偏好地區"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "相容裝置"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -8031,7 +8031,7 @@ msgstr "建立日期"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "選擇了無效裝置。"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
