@@ -431,8 +431,9 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         if premium_type in (mkt.ADDON_PREMIUM, mkt.ADDON_PREMIUM_INAPP):
             price = get_or_create_price(spec.get('price', '0.99'))
             AddonPremium.objects.create(addon=app, price=price)
-        if premium_type in (mkt.ADDON_FREE_INAPP or mkt.ADDON_PREMIUM_INAPP):
-            UserInappKey.create(acct.user, secret='fake data secret key')
+        if premium_type in (mkt.ADDON_FREE_INAPP, mkt.ADDON_PREMIUM_INAPP):
+            UserInappKey.create(acct.user, secret='fake data secret key',
+                                public_id='fake data public ID')
 
     for optField in ('support_url', 'homepage', 'is_offline'):
         if optField in spec:

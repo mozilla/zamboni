@@ -6,6 +6,7 @@ import zipfile
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 
 from mock import Mock, patch
@@ -73,7 +74,7 @@ class TestFileHelper(TestCase):
     def test_get_files_size(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        eq_(len(files), 14)
+        eq_(len(files), 15)
 
     def test_get_files_directory(self):
         self.viewer.extract()
@@ -118,10 +119,12 @@ class TestFileHelper(TestCase):
     def test_file_order(self):
         self.viewer.extract()
         dest = self.viewer.dest
-        open(os.path.join(dest, 'chrome.manifest'), 'w')
+        storage.open(os.path.join(dest, 'manifest.webapp'), 'w').close()
         subdir = os.path.join(dest, 'chrome')
-        os.mkdir(subdir)
-        open(os.path.join(subdir, 'foo'), 'w')
+        storage.open(os.path.join(subdir, 'foo'), 'w').close()
+        if not storage.exists(subdir):
+            # might be on S3, which doesn't have directories
+            storage.open(subdir, 'w').close()
         cache.clear()
         files = self.viewer.get_files().keys()
         rt = files.index(u'chrome')
