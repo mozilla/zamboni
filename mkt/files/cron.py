@@ -1,16 +1,17 @@
 import hashlib
 import os
-import shutil
 import stat
 import time
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import cronjobs
 
 from mkt.files.models import FileValidation
+from mkt.site.storage_utils import walk_storage
 
 
 log = commonware.log.getLogger('z.cron')
@@ -20,13 +21,15 @@ log = commonware.log.getLogger('z.cron')
 def cleanup_extracted_file():
     log.info('Removing extracted files for file viewer.')
     root = os.path.join(settings.TMP_PATH, 'file_viewer')
-    for path in os.listdir(root):
+    for path in storage.listdir(root):
         full = os.path.join(root, path)
         age = time.time() - os.stat(full)[stat.ST_ATIME]
         if (age) > (60 * 60):
             log.debug('Removing extracted files: %s, %dsecs old.' %
                       (full, age))
-            shutil.rmtree(full)
+            for subroot, dirs, files in walk_storage(full):
+                for f in files:
+                    storage.delete(os.path.join(subroot, files))
             # Nuke out the file and diff caches when the file gets removed.
             id = os.path.basename(path)
             try:

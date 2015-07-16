@@ -21,8 +21,8 @@ from appvalidator.testcases.packagelayout import (
     blacklisted_magic_numbers as blocked_magic_numbers)
 
 import mkt
-from mkt.files.utils import copy_over, extract_zip, get_md5
-from mkt.site.utils import rm_local_tmp_dir
+from mkt.files.utils import extract_zip, get_md5
+from mkt.site.storage_utils import walk_storage
 
 
 # Allow files with a shebang through.
@@ -93,25 +93,28 @@ class FileViewer(object):
         Raises error on nasty files.
         """
         try:
-            os.makedirs(os.path.dirname(self.dest))
-        except OSError, err:
-            pass
-
-        try:
             tempdir = extract_zip(self.src)
-            copy_over(tempdir, self.dest)
+            # Move extracted files into persistent storage.
+            for root, subdirs, files in os.walk(tempdir):
+                storage_root = root.replace(tempdir, self.dest, 1)
+                for fname in files:
+                    file_src = os.path.join(root, fname)
+                    file_dest = os.path.join(storage_root, fname)
+                    copyfileobj(open(file_src), storage.open(file_dest, 'w'))
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
             raise
 
     def cleanup(self):
-        if os.path.exists(self.dest):
-            rm_local_tmp_dir(self.dest)
+        if storage.exists(self.dest):
+            for root, dirs, files in walk_storage(self.dest):
+                for fname in files:
+                    storage.delete(os.path.join(root, fname))
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return (os.path.exists(self.dest) and not
-                Message(self._extraction_cache_key()).get())
+        return (storage.exists(os.path.join(self.dest, 'manifest.webapp')) and
+                not Message(self._extraction_cache_key()).get())
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""

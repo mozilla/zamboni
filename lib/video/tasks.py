@@ -3,12 +3,14 @@ import os
 import shutil
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import waffle
 from celery import task
 
 import mkt
 from lib.video import library
+from mkt.files.helpers import copyfileobj
 from mkt.site.decorators import set_modified_on
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview
@@ -26,6 +28,13 @@ def resize_video(src, pk, user_pk=None, **kw):
     instance = Preview.objects.get(pk=pk)
     user = UserProfile.objects.get(pk=user_pk) if user_pk else None
     try:
+        if not os.path.exists(src):
+            # We're probably using S3 in this case.
+            try:
+                os.makedirs(os.path.dirname(src))
+            except OSError:  # already exists
+                pass
+            copyfileobj(storage.open(src), open(src, 'w'))
         result = _resize_video(src, instance, **kw)
     except Exception, err:
         log.error('Error on processing video: %s' % err)

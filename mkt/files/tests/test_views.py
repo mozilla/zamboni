@@ -24,7 +24,7 @@ from mkt.webapps.models import Webapp
 
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'
-not_binary = 'manifest.webapp'
+not_binary = 'script.js'
 binary = 'icons/256.png'
 
 
@@ -412,7 +412,7 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def test_view_one_missing(self):
         self.file_viewer.extract()
-        os.remove(os.path.join(self.file_viewer.right.dest, 'manifest.webapp'))
+        os.remove(os.path.join(self.file_viewer.right.dest, 'script.js'))
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         eq_(len(doc('pre')), 3)
@@ -420,14 +420,14 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def test_view_left_binary(self):
         self.file_viewer.extract()
-        filename = os.path.join(self.file_viewer.left.dest, 'manifest.webapp')
+        filename = os.path.join(self.file_viewer.left.dest, 'script.js')
         open(filename, 'w').write('MZ')
         res = self.client.get(self.file_url(not_binary))
         assert 'This file is not viewable online' in res.content
 
     def test_view_right_binary(self):
         self.file_viewer.extract()
-        filename = os.path.join(self.file_viewer.right.dest, 'manifest.webapp')
+        filename = os.path.join(self.file_viewer.right.dest, 'script.js')
         open(filename, 'w').write('MZ')
         assert not self.file_viewer.is_diffable()
         res = self.client.get(self.file_url(not_binary))
