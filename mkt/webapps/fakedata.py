@@ -382,6 +382,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
                            uses_flash=False, special_regions={},
+                           inapp_id=None, inapp_secret=None,
                            popularity=0, tarako=False, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
@@ -432,8 +433,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
             price = get_or_create_price(spec.get('price', '0.99'))
             AddonPremium.objects.create(addon=app, price=price)
         if premium_type in (mkt.ADDON_FREE_INAPP, mkt.ADDON_PREMIUM_INAPP):
-            UserInappKey.create(acct.user, secret='fake data secret key',
-                                public_id='fake data public ID')
+            UserInappKey.create(acct.user, secret=inapp_secret,
+                                public_id=inapp_id)
 
     for optField in ('support_url', 'homepage', 'is_offline'):
         if optField in spec:

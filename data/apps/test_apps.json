@@ -265,8 +265,10 @@
   "device_types": ["firefoxos"], "price": "29.99"},
  {"type": "hosted", "status": "public",  "premium_type": "free-inapp",
   "device_types": ["desktop", "mobile", "tablet", "firefoxos"],
+  "inapp_id": "fake inapp id", "inapp_secret": "fake inapp secret",
   "name": "Inapp Payment Tester"},
  {"type": "hosted", "status": "public",  "premium_type": "premium-inapp",
   "device_types": ["desktop", "mobile", "tablet", "firefoxos"],
-  "name": "Premium Inapp Payment Tester"},
+  "name": "Premium Inapp Payment Tester", "inapp_id": "fake premium inapp id",
+  "inapp_secret": "fake premium inapp secret"},
  ]
