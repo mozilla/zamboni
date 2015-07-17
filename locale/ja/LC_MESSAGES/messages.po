@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-01 15:58-0400\n"
+"PO-Revision-Date: 2015-07-17 12:16-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2698,7 +2698,7 @@ msgstr "送信内容にエラーがありました。"
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "マニフェストの検証中に問題が発生しました。"
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -5628,7 +5628,7 @@ msgstr "推奨地域"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "対応端末"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -8021,7 +8021,7 @@ msgstr "新着"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "無効な端末が選択されました。"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
