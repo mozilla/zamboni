@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-17 08:15+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-07-17 03:40:30.183744\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1139,23 +1139,23 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
-msgstr ""
+msgstr "Відмічено"
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублікат"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Відхилено"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Схвалено"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Не оновлено для {0} {1}"
 
 #: media/js/zamboni/mobile-all.js:11259 media/js/zamboni/mobile-min.js:4
 msgid "Requires Newer Version of {0}"
@@ -1163,153 +1163,153 @@ msgstr "Потребує новішої версії {0}"
 
 #: media/js/zamboni/mobile-all.js:11260 media/js/zamboni/mobile-min.js:4
 msgid "Unreviewed"
-msgstr ""
+msgstr "Не переглянуто"
 
 #: media/js/zamboni/mobile-all.js:11261 media/js/zamboni/mobile-min.js:4
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Експериментальний <span>(Докладніше)</span>"
 
 #: media/js/zamboni/mobile-all.js:11262 media/js/zamboni/mobile-all.js:11263
 #: media/js/zamboni/mobile-min.js:4
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Недоступно для {0}"
 
 #: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
 msgid "Experimental"
-msgstr ""
+msgstr "Експериментальний"
 
 #: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Для тем потрібна новіша версія {0}"
 
 #: media/js/zamboni/mobile-all.js:11266 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Для тем потрібно {0}"
 
 #: media/js/zamboni/mobile-all.js:11311 media/js/zamboni/mobile-min.js:4
 msgid "Installing..."
-msgstr ""
+msgstr "Встановлення..."
 
 #: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "Придбання..."
 
 #: media/js/zamboni/mobile-all.js:11348 media/js/zamboni/mobile-min.js:4
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Цей додаток було попередньо розглянуто Mozilla."
 
 #: media/js/zamboni/mobile-all.js:11482 media/js/zamboni/mobile-min.js:4
 msgid "Keep it"
-msgstr ""
+msgstr "Залишити їх"
 
 #: media/js/zamboni/mobile-all.js:12157 media/js/zamboni/mobile-min.js:5
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Зараз ви це спробуєте!"
 
 #: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Додано у Firefox"
 
 #: media/js/zamboni/stats-all.js:15379 media/js/zamboni/stats-all.js:15478
 #: media/js/zamboni/stats-all.js:17102 media/js/zamboni/stats-min.js:6
 msgid "Downloads"
-msgstr ""
+msgstr "Завантажень"
 
 #: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479
 #: media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
 msgid "Daily Users"
-msgstr ""
+msgstr "Щоденних користувачів"
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Створено збірок"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Використовується додатків"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Створено додатків"
 
 #: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Завантажено додатків"
 
 #: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Оновлено додатків"
 
 #: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
-msgstr ""
+msgstr "Написано відгуків"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
-msgstr ""
+msgstr "Реєстрації користувачів"
 
 #: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Підписники"
 
 #: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
 msgid "Ratings"
-msgstr ""
+msgstr "Рейтинги"
 
 #: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483
 #: media/js/zamboni/stats-min.js:6
 msgid "Sales"
-msgstr ""
+msgstr "Продажі"
 
 #: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482
 #: media/js/zamboni/stats-min.js:6
 msgid "Installs"
-msgstr ""
+msgstr "Встановлення"
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Менеджер додатків"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Результати пошуку"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422
 #: media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Промо"
 
 #: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425
 #: media/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Відібрані"
 
 #: media/js/zamboni/stats-all.js:15426 media/js/zamboni/stats-all.js:15427
 #: media/js/zamboni/stats-min.js:6
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Незабаром з'являться"
 
 #: media/js/zamboni/stats-all.js:15428 media/js/zamboni/stats-min.js:6
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Найпопулярніші"
 
 #: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431
 #: media/js/zamboni/stats-min.js:6
 msgid "Detail Page"
-msgstr ""
+msgstr "Сторінка з подробицями"
 
 #: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432
 #: media/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Сторінка з подробицями (низ)"
 
 #: media/js/zamboni/stats-all.js:15433 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Сторінка з подробицями (Канал розробки)"
 
 #: media/js/zamboni/stats-all.js:15434 media/js/zamboni/stats-all.js:15435
 #: media/js/zamboni/stats-all.js:15436 media/js/zamboni/stats-min.js:6
