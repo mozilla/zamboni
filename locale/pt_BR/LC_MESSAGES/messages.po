@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-08 04:20:53.381236\n"
+"PO-Revision-Date: 2015-07-17 03:02:29.461916\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2619,7 +2619,7 @@ msgstr "Preço do aplicativo"
 
 #: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
-msgstr "Gratuito (com pagamentos dentro do aplicativo)"
+msgstr "Gratuito (com pagamentos pelo aplicativo)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
@@ -2978,7 +2978,7 @@ msgstr "Ocorreu um erro no envio."
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "Ocorreu um erro ao validar o manifesto."
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -6857,7 +6857,7 @@ msgstr "Regiões preferidas"
 #: mkt/lookup/templates/lookup/website_summary.html:46
 #: mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Dispositivos compatíveis"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -9572,7 +9572,7 @@ msgstr "Criação"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Dispositivo(s) selecionado(s) invalido(s)."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
