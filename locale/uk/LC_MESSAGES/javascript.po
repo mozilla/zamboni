@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-17 03:40:30.183744\n"
+"PO-Revision-Date: 2015-07-17 06:59:01.160697\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -1072,40 +1072,40 @@ msgstr[2] ""
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
-msgstr ""
+msgstr "Початок тестів..."
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Очікування результатів тестів..."
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462
 #: media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Внутрішня помилка сервера"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Повинна бути дійсна адреса електронної пошти."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Додаток не пройшов перевірку."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Додаток пройшов перевірку."
 
 #: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} сповіщення"
+msgstr[1] "{0} сповіщення"
+msgstr[2] "{0} сповіщень"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Завантажити {0}"
 
 #: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
 msgid ""
@@ -1115,27 +1115,27 @@ msgstr ""
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Пошук рекомендацій&hellip;"
 
 #: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Оновлення рекомендацій&hellip;"
 
 #: media/js/zamboni/editors-all.js:15566 media/js/zamboni/editors-min.js:5
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} переглядав цю сторінку першим."
 
 #: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
 msgid "Average Reviews"
-msgstr ""
+msgstr "В середньому відгуків"
 
 #: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Кількість відгуків"
 
 #: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
 msgid "Requested Info"
-msgstr ""
+msgstr "Запитана інформація"
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
@@ -1314,17 +1314,17 @@ msgstr "Сторінка з подробицями (Канал розробки)
 #: media/js/zamboni/stats-all.js:15434 media/js/zamboni/stats-all.js:15435
 #: media/js/zamboni/stats-all.js:15436 media/js/zamboni/stats-min.js:6
 msgid "Often Used With"
-msgstr ""
+msgstr "Часто використовується з"
 
 #: media/js/zamboni/stats-all.js:15437 media/js/zamboni/stats-all.js:15438
 #: media/js/zamboni/stats-min.js:6
 msgid "Others By Author"
-msgstr ""
+msgstr "Інше від автора"
 
 #: media/js/zamboni/stats-all.js:15439 media/js/zamboni/stats-all.js:15440
 #: media/js/zamboni/stats-min.js:6
 msgid "Dependencies"
-msgstr ""
+msgstr "Залежності"
 
 #: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442
 #: media/js/zamboni/stats-min.js:6
@@ -1333,15 +1333,15 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15444 media/js/zamboni/stats-min.js:6
 msgid "Sharing"
-msgstr ""
+msgstr "Поширення"
 
 #: media/js/zamboni/stats-all.js:15445 media/js/zamboni/stats-min.js:6
 msgid "Category Pages"
-msgstr ""
+msgstr "Сторінки категорій"
 
 #: media/js/zamboni/stats-all.js:15446 media/js/zamboni/stats-min.js:6
 msgid "Collections"
-msgstr ""
+msgstr "Збірки"
 
 #: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448
 #: media/js/zamboni/stats-min.js:6
