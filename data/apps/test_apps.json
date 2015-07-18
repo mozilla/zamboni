@@ -270,5 +270,5 @@
  {"type": "hosted", "status": "public",  "premium_type": "premium-inapp",
   "device_types": ["desktop", "mobile", "tablet", "firefoxos"],
   "name": "Premium Inapp Payment Tester", "inapp_id": "fake premium inapp id",
-  "inapp_secret": "fake premium inapp secret"},
+  "inapp_secret": "fake premium inapp secret"}
  ]
