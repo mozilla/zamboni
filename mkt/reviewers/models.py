@@ -16,6 +16,7 @@ from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
+from mkt.websites.models import Website
 
 
 user_log = commonware.log.getLogger('z.users')
@@ -49,6 +50,8 @@ class EditorSubscription(ModelBase):
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
+    website = models.ForeignKey(Website, blank=True, null=True,
+                                related_name='+')
     score = models.SmallIntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=mkt.REVIEWED_CHOICES.items(),
@@ -163,6 +166,25 @@ class ReviewerScore(ModelBase):
         user_log.info(
             u'Awarding %s points to user %s for "%s" for addon %s' %
             (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
+
+    @classmethod
+    def award_mark_abuse_points(cls, user, addon=None, website=None):
+        """Awards points to user based on reading abuse reports."""
+        if addon:
+            event = mkt.REVIEWED_APP_ABUSE_REPORT
+        elif website:
+            event = mkt.REVIEWED_WEBSITE_ABUSE_REPORT
+        else:
+            # Nothing to do here.
+            return
+        score = mkt.REVIEWED_SCORES.get(event)
+
+        cls.objects.create(user=user, addon=addon, website=website,
+                           score=score, note_key=event)
+        cls.get_key(invalidate=True)
+        user_log.info(
+            u'Awarding %s points to user %s for "%s"' %
+            (score, user, mkt.REVIEWED_CHOICES[event]))
 
     @classmethod
     def get_total(cls, user):

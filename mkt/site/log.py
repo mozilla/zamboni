@@ -540,6 +540,14 @@ class ESCALATION_PRERELEASE_APP(_LOG):
     review_queue = True
 
 
+class REREVIEW_ABUSE_APP(_LOG):
+    id = 81
+    format = _(u'{addon} re-reviewed because abuse reports need invesigation.')
+    short = _(u'Abuse reports investigation')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'
