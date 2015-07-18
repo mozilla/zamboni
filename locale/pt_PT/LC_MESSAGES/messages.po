@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-10 00:58+0000\n"
+"PO-Revision-Date: 2015-07-18 00:35+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436489932.0\n"
+"X-POOTLE-MTIME: 1437179741.0\n"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -2706,7 +2706,7 @@ msgstr "Ocorreu um erro com a submissão."
 
 #: mkt/developers/views.py:700
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "Ocorreu um erro ao validar o manifesto."
 
 #: mkt/developers/views.py:953
 msgid "There was an error uploading your preview."
@@ -5667,7 +5667,7 @@ msgstr "Regiões preferenciais"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Dispositivos compatíveis"
 
 #: mkt/lookup/templates/lookup/website_summary.html:18
 msgid "Name - Short Name"
@@ -8087,7 +8087,7 @@ msgstr "Criado"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Dispositivo(s) inválido(s) selecionado(s)."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

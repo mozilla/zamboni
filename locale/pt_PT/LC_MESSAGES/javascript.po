@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-10 00:35+0000\n"
+"PO-Revision-Date: 2015-07-18 00:43+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436488533.0\n"
+"X-POOTLE-MTIME: 1437180237.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +20,11 @@ msgstr "Esta funcionalidade está temporariamente desativada enquanto procedemos
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Instalação de aplicação não permitida."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifesto da aplicação com um formato inválido."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,83 +44,87 @@ msgstr "A instalação falhou. Por favor tente novamente mais tarde."
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "A instalação da aplicação falhou."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Este sistema não suporta a instalação de aplicações."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Aceitar e instalar"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adicionar a {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Descarregar agora"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"O extra não foi atualizado para suportar pré-definir-para-compatibilidade."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Precisa de estar a utilizar o Firefox 10.0 ou mais recente."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Instalar para {0} ainda assim"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Descarregar para {0} ainda assim"
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Não disponível para a sua plataforma"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Não disponível para {0} {1}"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Funcionar com {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Ver outras versões"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Lamentamos, mas precisa de um navegador baseado em tecnologias da Mozilla "
+"(como o Firefox) para instalar um plugin de pesquisa."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "A carregar..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falta <b>{0}</b> caratere."
+msgstr[1] "Faltam <b>{0}</b> carateres."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} estrela"
+msgstr[1] "{0} estrelas"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -128,105 +132,105 @@ msgstr "Remover esta tradução"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Instalar aplicação"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
-msgstr ""
+msgstr "Marcado para revisão"
 
 #: media/js/common-all.js:18522 media/js/common-min.js:8 media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "É necessária informação"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8 media/js/impala-all.js:10312 media/js/impala-min.js:6
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Marcado para remoção"
 
 #: media/js/common-all.js:19177 media/js/common-min.js:9 media/js/impala-all.js:12078 media/js/impala-min.js:7
 msgid "clear recently viewed"
-msgstr ""
+msgstr "limpar vistos recentemente"
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "A adicionar aos Favoritos&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "A remover Favorito&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Adicionar aos Favoritos"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Remover dos Favoritos"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Em espera"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Adicionar um comentário"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Remover este extra da coleção"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Remover este utilizador dos colaboradores"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "É necessário um endereço de email."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Não pode adicionar-se a si próprio como um colaborador."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
-msgstr ""
+msgstr "Já adicionou esse utilizador."
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adicionar aos favoritos"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Remover dos favoritos"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Seguir esta Coleção"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Parar de seguir"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Tudo"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Força da palavra-passe:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falta, pelo menos, {0} caratere."
+msgstr[1] "Faltam, pelo menos, {0} carateres."
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9 media/js/impala-all.js:13122 media/js/impala-min.js:7 media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -242,20 +246,24 @@ msgstr "Procurar extras para <b>{0}</b>"
 
 #: media/js/common-all.js:20381 media/js/common-min.js:9 media/js/impala-all.js:13357 media/js/impala-min.js:7
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
 msgstr ""
+"Administradores e editores devem fornecer uma palavra-passe para iniciar "
+"sessão."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Falhou a autenticação com BrowserID. Talvez não tenha uma conta com esse "
+"endereço de email?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Este tema não é compatível com a sua versão de {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
 #: media/js/zamboni/devhub-min.js:1
@@ -273,51 +281,51 @@ msgstr "Houve um problema ao contactar o servidor."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Todos os direitos reservados"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição-NãoComercial 3.0"
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição-NãoComercial-SemDerivações 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição-NãoComercial-CompartilhaIgual 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição-SemDerivações 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuição-CompartilhaIgual 3.0"
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "O nome do seu tema"
 
 #: media/js/impala-all.js:12685 media/js/impala-min.js:7
 msgid "Stop Following"
-msgstr ""
+msgstr "Parar de seguir"
 
 #: media/js/impala-all.js:12686 media/js/impala-min.js:7
 msgid "Following"
-msgstr ""
+msgstr "A seguir"
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
-msgstr ""
+msgstr "utilizar original"
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "A atualizar resultados&hellip;"
 
 #: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
@@ -824,703 +832,713 @@ msgstr "Por {0} em {1}"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"Definir {0} extra a uma versão máxima de {1} e enviar uma mensagem de email "
+"ao autor."
 msgstr[1] ""
+"Definir {0} extras a uma versão máxima de {1} e enviar uma mensagem de email "
+"aos autores."
 
 #: media/js/zamboni/admin-all.js:211 media/js/zamboni/admin-min.js:1
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
+"Enviar uma mensagem de email ao autor de {2} extra que falhou a validação."
 msgstr[1] ""
+"Enviar uma mensagem de email aos autores de {2} extras que falharam a "
+"validação."
 
 #: media/js/zamboni/devhub-all.js:294 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "O seu extra deve terminar com xpi, .jar ou .xml"
 
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra falhou a validação com {0} erro."
+msgstr[1] "O seu extra falhou a validação com {0} erros."
 
 #: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra passou a validação sem erros e {0} mensagem."
+msgstr[1] "O seu extra passou a validação sem erros e {0} mensagens."
 
 #: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "O seu extra passou a validação sem erros ou avisos."
 
 #: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Algumas plataformas não estão disponíveis para este tipo de extra."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "O seu navegador não suporta a tag vídeo"
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Introduza o endereço de email do novo autor"
 
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} ficheiro"
+msgstr[1] "{files} ficheiros"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} revisão"
+msgstr[1] "{reviews} revisões"
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
-msgstr ""
+msgstr "A iniciar os testes..."
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "A aguardar pelo resultado dos testes..."
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462 media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Erro interno do servidor"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Deve ser um endereço de email válido."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "A extra falhou a validação."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "O extra passou a validação."
 
 #: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aviso"
+msgstr[1] "{0} avisos"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Descarregar {0}"
 
 #: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Lamentamos, mas não conseguimos encontrar quaisquer recomendações para "
+"si.<br>Por favor, visite o <a href=\"{0}\">sítio dos extras</a> para encontrar "
+"um extra para si."
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "À procura de recomendações&hellip;"
 
 #: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "A atualizar recomendações&hellip;"
 
 #: media/js/zamboni/editors-all.js:15566 media/js/zamboni/editors-min.js:5
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} viu este extra primeiro."
 
 #: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
 msgid "Average Reviews"
-msgstr ""
+msgstr "Classificação média"
 
 #: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Número de classificações"
 
 #: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
 msgid "Requested Info"
-msgstr ""
+msgstr "Informação solicitada"
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
-msgstr ""
+msgstr "Etiquetado"
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicado"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeitado"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Aprovado"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Não atualizado para {0} {1}"
 
 #: media/js/zamboni/mobile-all.js:11259 media/js/zamboni/mobile-min.js:4
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Requer uma nova versão de {0}"
 
 #: media/js/zamboni/mobile-all.js:11260 media/js/zamboni/mobile-min.js:4
 msgid "Unreviewed"
-msgstr ""
+msgstr "Não revisto"
 
 #: media/js/zamboni/mobile-all.js:11261 media/js/zamboni/mobile-min.js:4
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Experimental <span>(Saber mais)</span>"
 
 #: media/js/zamboni/mobile-all.js:11262 media/js/zamboni/mobile-all.js:11263 media/js/zamboni/mobile-min.js:4
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Não disponível para {0}"
 
 #: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 #: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "O temas necessitam de uma nova versão de {0}"
 
 #: media/js/zamboni/mobile-all.js:11266 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Os temas necessitam de {0}"
 
 #: media/js/zamboni/mobile-all.js:11311 media/js/zamboni/mobile-min.js:4
 msgid "Installing..."
-msgstr ""
+msgstr "A instalar..."
 
 #: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "A comprar..."
 
 #: media/js/zamboni/mobile-all.js:11348 media/js/zamboni/mobile-min.js:4
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Este extra foi revisto de forma preliminar pela Mozilla."
 
 #: media/js/zamboni/mobile-all.js:11482 media/js/zamboni/mobile-min.js:4
 msgid "Keep it"
-msgstr ""
+msgstr "Manter"
 
 #: media/js/zamboni/mobile-all.js:12157 media/js/zamboni/mobile-min.js:5
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Está a experimentá-lo!"
 
 #: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Adicionado ao Firefox"
 
 #: media/js/zamboni/stats-all.js:15379 media/js/zamboni/stats-all.js:15478 media/js/zamboni/stats-all.js:17102 media/js/zamboni/stats-min.js:6
 msgid "Downloads"
-msgstr ""
+msgstr "Descargas"
 
 #: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479 media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
 msgid "Daily Users"
-msgstr ""
+msgstr "Utilizadores diários"
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Coleções criadas"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Extras em uso"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Extras criados"
 
 #: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Extras descarregados"
 
 #: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Extras atualizados"
 
 #: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
-msgstr ""
+msgstr "Análises escritas"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
-msgstr ""
+msgstr "Registos de utilizadores"
 
 #: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Subscritores"
 
 #: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
 msgid "Ratings"
-msgstr ""
+msgstr "Classificações"
 
 #: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483 media/js/zamboni/stats-min.js:6
 msgid "Sales"
-msgstr ""
+msgstr "Vendas"
 
 #: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482 media/js/zamboni/stats-min.js:6
 msgid "Installs"
-msgstr ""
+msgstr "Instalações"
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Gestor de extras"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Resultados da pesquisa"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422 media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promoção na página inicial"
 
 #: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425 media/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Destacado na página inicial"
 
 #: media/js/zamboni/stats-all.js:15426 media/js/zamboni/stats-all.js:15427 media/js/zamboni/stats-min.js:6
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Página inicial novidades"
 
 #: media/js/zamboni/stats-all.js:15428 media/js/zamboni/stats-min.js:6
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Página inicial mais populares"
 
 #: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431 media/js/zamboni/stats-min.js:6
 msgid "Detail Page"
-msgstr ""
+msgstr "Página de detalhe"
 
 #: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Página de detalhe (inferior)"
 
 #: media/js/zamboni/stats-all.js:15433 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Página de detalhe (canal de desenvolvimento)"
 
 #: media/js/zamboni/stats-all.js:15434 media/js/zamboni/stats-all.js:15435 media/js/zamboni/stats-all.js:15436 media/js/zamboni/stats-min.js:6
 msgid "Often Used With"
-msgstr ""
+msgstr "Mais utilizado com"
 
 #: media/js/zamboni/stats-all.js:15437 media/js/zamboni/stats-all.js:15438 media/js/zamboni/stats-min.js:6
 msgid "Others By Author"
-msgstr ""
+msgstr "Outros por autor"
 
 #: media/js/zamboni/stats-all.js:15439 media/js/zamboni/stats-all.js:15440 media/js/zamboni/stats-min.js:6
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependências"
 
 #: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442 media/js/zamboni/stats-min.js:6
 msgid "Upsell"
-msgstr ""
+msgstr "Oferta"
 
 #: media/js/zamboni/stats-all.js:15444 media/js/zamboni/stats-min.js:6
 msgid "Sharing"
-msgstr ""
+msgstr "A partilhar"
 
 #: media/js/zamboni/stats-all.js:15445 media/js/zamboni/stats-min.js:6
 msgid "Category Pages"
-msgstr ""
+msgstr "Páginas de categorias"
 
 #: media/js/zamboni/stats-all.js:15446 media/js/zamboni/stats-min.js:6
 msgid "Collections"
-msgstr ""
+msgstr "Coleções"
 
 #: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Início da categoria destaques em carrossel "
 
 #: media/js/zamboni/stats-all.js:15449 media/js/zamboni/stats-all.js:15450 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Início da categoria melhores classificados"
 
 #: media/js/zamboni/stats-all.js:15451 media/js/zamboni/stats-all.js:15452 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Início da categoria mais populares"
 
 #: media/js/zamboni/stats-all.js:15453 media/js/zamboni/stats-all.js:15454 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Início da categoria adicionados recentemente"
 
 #: media/js/zamboni/stats-all.js:15455 media/js/zamboni/stats-all.js:15456 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de destaques"
 
 #: media/js/zamboni/stats-all.js:15457 media/js/zamboni/stats-all.js:15458 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de utilizadores"
 
 #: media/js/zamboni/stats-all.js:15459 media/js/zamboni/stats-all.js:15460 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de classificações"
 
 #: media/js/zamboni/stats-all.js:15461 media/js/zamboni/stats-all.js:15462 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de criados"
 
 #: media/js/zamboni/stats-all.js:15463 media/js/zamboni/stats-all.js:15464 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de nomes"
 
 #: media/js/zamboni/stats-all.js:15465 media/js/zamboni/stats-all.js:15466 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de populares"
 
 #: media/js/zamboni/stats-all.js:15467 media/js/zamboni/stats-all.js:15468 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de atualizados"
 
 #: media/js/zamboni/stats-all.js:15469 media/js/zamboni/stats-all.js:15470 media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Navegar na listagem ordenada de novidades"
 
 #: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154 media/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Número de contribuições"
 
 #: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Valor total contribuído"
 
 #: media/js/zamboni/stats-all.js:15475 media/js/zamboni/stats-min.js:6
 msgid "Average Contribution"
-msgstr ""
+msgstr "Contribuição média"
 
 #: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
 msgid "Usage"
-msgstr ""
+msgstr "Utilização"
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Descargas e utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Descargas e utilizadores diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalações e utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15505 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalações e utilizadores diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Descargas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Descargas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15517 media/js/zamboni/stats-min.js:6
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Utilizadores diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15521 media/js/zamboni/stats-min.js:6
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Aplicações, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15523 media/js/zamboni/stats-min.js:6
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Aplicações de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15527 media/js/zamboni/stats-min.js:6
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plataformas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15529 media/js/zamboni/stats-min.js:6
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Plataformas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15533 media/js/zamboni/stats-min.js:6
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Idiomas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15535 media/js/zamboni/stats-min.js:6
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Idiomas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15539 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versões de extras, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15541 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versões de extras de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15545 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Estado de extras, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15547 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Estado de extras de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15551 media/js/zamboni/stats-min.js:6
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Descarregar fontes, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15553 media/js/zamboni/stats-min.js:6
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Descarregar fontes de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Contribuições, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Contribuições de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Métricas do sítio, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Métricas do sítio de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Extras em uso, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15571 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Extras em uso de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15575 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Extras transferidos, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15577 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Extras transferidos de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15581 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Extras criados, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15583 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Extras criados de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Extras atualizados, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Extras atualizados de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Análises escritas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Análises escritas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Registos de utilizadores, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Registos de utilizadores de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Coleções criadas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Coleções criadas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Subscritores, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Subscritores de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Classificações, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Classificações de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Vendas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Vendas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalações, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Instalações de {0} a {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> nos últimos {1} dias"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> de {1} a {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> média nos últimos {1} dias"
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Sem dados disponíveis."
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Semana de {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "descargas"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} utilizadores"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} extras"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} coleções"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} comentários"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} vendas"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} devoluções"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalações"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Valor, em dólares americanos"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Mais informação..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detalhes para {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Data"
