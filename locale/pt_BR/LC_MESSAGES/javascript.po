@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-19 10:05:12.271233\n"
+"PO-Revision-Date: 2015-07-19 10:15:38.504721\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -89,23 +89,26 @@ msgstr "Baixar agora"
 #: media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"O complemento não foi atualizado para suportar a compatibilidade por padrão."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155
 #: media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Você precisa usar o Firefox 10.0 ou superior."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167
 #: media/js/zamboni/discovery-all.js:11059
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"A Mozilla marcou essa versão como sendo incompatível com a sua versão do "
+"Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245
 #: media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Instalar no {0} mesmo assim"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245
 #: media/js/zamboni/discovery-all.js:11137
@@ -115,7 +118,7 @@ msgstr ""
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302
 #: media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Indisponível para a sua plataforma"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300
@@ -123,17 +126,17 @@ msgstr ""
 #: media/js/zamboni/discovery-all.js:11205
 #: media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Indisponível para o {0} {1}"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376
 #: media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Funciona com o {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378
 #: media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Ver outras versões"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593
 #: media/js/zamboni/discovery-all.js:11485
@@ -142,19 +145,21 @@ msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
 "search plugin."
 msgstr ""
+"Sentimos, mas você precisa de um navegador baseado no Mozilla (como o "
+"Firefox) para instalar um plug-in de pesquisa."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7
 #: media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Carregando..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7
 #: media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> caractere restante."
+msgstr[1] "<b>{0}</b> caracteres restantes."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8
 #: media/js/impala-all.js:8741 media/js/impala-min.js:5
@@ -296,7 +301,7 @@ msgstr "Qualidade da senha:"
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Pelo menos {0} caractere restante."
-msgstr[1] ""
+msgstr[1] "Pelo menos {0} caracteres restantes."
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9
 #: media/js/impala-all.js:13122 media/js/impala-min.js:7
@@ -401,11 +406,11 @@ msgstr ""
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
-msgstr ""
+msgstr "usar original"
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Atualizando resultados&hellip;"
 
 #: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197
 #: media/js/zamboni/devhub-min.js:1
@@ -1032,8 +1037,8 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} arquivo"
+msgstr[1] "{files} arquivos"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
@@ -1043,28 +1048,28 @@ msgstr[1] ""
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
-msgstr ""
+msgstr "Iniciando testes..."
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Aguardando os resultados dos testes..."
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462
 #: media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Erro interno do servidor"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Deve ser um endereço de e-mail válido."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "A validação do complemento falhou."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "O complemento passou na validação."
 
 #: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
 msgid "{0} notice"
@@ -1113,27 +1118,27 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicado"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeitado"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Aprovado"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Não atualizado para {0} {1}"
 
 #: media/js/zamboni/mobile-all.js:11259 media/js/zamboni/mobile-min.js:4
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Requer uma versão mais recente de {0}"
 
 #: media/js/zamboni/mobile-all.js:11260 media/js/zamboni/mobile-min.js:4
 msgid "Unreviewed"
-msgstr ""
+msgstr "Não revisado"
 
 #: media/js/zamboni/mobile-all.js:11261 media/js/zamboni/mobile-min.js:4
 msgid "Experimental <span>(Learn More)</span>"
@@ -1146,7 +1151,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 #: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require Newer Version of {0}"
@@ -1158,7 +1163,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11311 media/js/zamboni/mobile-min.js:4
 msgid "Installing..."
-msgstr ""
+msgstr "Instalando..."
 
 #: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
@@ -1196,7 +1201,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Complementos em uso"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
@@ -1662,15 +1667,15 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Nenhum dado disponível."
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Semana de {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
@@ -1678,45 +1683,45 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} usuários"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} complementos"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} coleções"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} análises"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} vendas"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} reembolsos"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalações"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Quantia, em Dólares Estadunidenses"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Mais informações..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detalhes de {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Data"
