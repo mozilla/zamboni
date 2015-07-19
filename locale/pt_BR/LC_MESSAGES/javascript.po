@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-01 09:56:05\n"
+"PO-Revision-Date: 2015-07-19 10:05:12.271233\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -28,12 +28,12 @@ msgstr ""
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929
 #: media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Instalação do aplicativo não permitida."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932
 #: media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "O manifesto do aplicativo está mal formado."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935
 #: media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732
@@ -62,28 +62,28 @@ msgstr "A instalação falhou. Por favor, tente mais tarde."
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955
 #: media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "A instalação do aplicativo falhou."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956
 #: media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "O seu sistema não suporta a instalação de aplicativos."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104
 #: media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Aceitar e Instalar"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104
 #: media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adicionar ao {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109
 #: media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Baixar agora"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150
 #: media/js/zamboni/discovery-all.js:11042
@@ -161,8 +161,8 @@ msgstr[1] ""
 #: media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} estrela"
+msgstr[1] "{0} estrelas"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8
 #: media/js/impala-all.js:8885 media/js/impala-min.js:5
@@ -173,129 +173,129 @@ msgstr "Remover essa tradução"
 #: media/js/common-all.js:18266 media/js/common-min.js:8
 #: media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Instalar aplicativo"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8
 #: media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
-msgstr ""
+msgstr "Marcado para avaliação"
 
 #: media/js/common-all.js:18522 media/js/common-min.js:8
 #: media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "Sua entrada é necessária"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8
 #: media/js/impala-all.js:10312 media/js/impala-min.js:6
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Marcado para exclusão"
 
 #: media/js/common-all.js:19177 media/js/common-min.js:9
 #: media/js/impala-all.js:12078 media/js/impala-min.js:7
 msgid "clear recently viewed"
-msgstr ""
+msgstr "limpar visualizados recentemente"
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9
 #: media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Adicionando aos favoritos&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9
 #: media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Removendo favorito&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9
 #: media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Adicionar aos favoritos"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9
 #: media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Remover dos favoritos"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9
 #: media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Pendente"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9
 #: media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Adicionar um comentário"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9
 #: media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9
 #: media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Remover este complemento da coleção"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452
 #: media/js/common-min.js:9 media/js/impala-all.js:12324
 #: media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9
 #: media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Remover esse usuário dos contribuidores"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9
 #: media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "Um endereço de e-mail é requerido."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9
 #: media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Você não pode adicionar a si mesmo como um contribuidor."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9
 #: media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
-msgstr ""
+msgstr "Você já adicionou este usuário."
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9
 #: media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adicionar aos favoritos"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9
 #: media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Remover dos favoritos"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9
 #: media/js/impala-all.js:12610 media/js/impala-all.js:12676
 #: media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Seguir esta coleção"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9
 #: media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Deixar de seguir"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807
 #: media/js/common-min.js:9 media/js/impala-all.js:12727
 #: media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Tudo"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Qualidade da senha:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
+msgstr[0] "Pelo menos {0} caractere restante."
 msgstr[1] ""
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9
