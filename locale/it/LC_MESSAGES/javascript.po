@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-20 21:23+0000\n"
+"PO-Revision-Date: 2015-07-20 21:25+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437427380.0\n"
+"X-POOTLE-MTIME: 1437427521.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -29,7 +29,7 @@ msgstr "Il formato del file manifesto dell’app non è valido."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
-msgstr "L’host dell’app non può essere raggiunto."
+msgstr "L'host dell’app non è raggiungibile"
 
 #: media/js/common-all.js:10888 media/js/impala-all.js:1938 media/js/devreg/apps.js:90 media/js/zamboni/mobile-all.js:10735 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is unparsable."
@@ -131,7 +131,7 @@ msgstr[1] "{0} stelle"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr "Rimuovi questa localizzazione"
+msgstr "Elimina questa localizzazione"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
@@ -370,8 +370,8 @@ msgstr "Errore con {0}"
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208 media/js/zamboni/devhub-all.js:1151 media/js/zamboni/devhub-min.js:1
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "L’app non ha superato i controlli con {0} errore."
-msgstr[1] "L’app non ha superato i controlli con {0} errori."
+msgstr[0] "L’app non ha superato il processo di validazione con {0} errore."
+msgstr[1] "L’app non ha superato il processo di validazione con {0} errori."
 
 #: media/js/common/upload-packaged-app.js:184 media/js/zamboni/devhub-all.js:429 media/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
@@ -382,11 +382,11 @@ msgstr[1] "&hellip;e altri {0}"
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170 media/js/zamboni/devhub-all.js:443 media/js/zamboni/devhub-all.js:570
 #: media/js/zamboni/devhub-all.js:1144 media/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
-msgstr "Visualizza il risultato completo dei controlli"
+msgstr "Visualizza rapporto completo della validazione"
 
 #: media/js/common/upload-packaged-app.js:211 media/js/zamboni/devhub-all.js:455 media/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
-msgstr "Controllo in corso di {0}"
+msgstr "Validazione in corso di {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247 media/js/zamboni/devhub-all.js:493 media/js/zamboni/devhub-min.js:1
@@ -395,7 +395,7 @@ msgstr "Ricevuta una risposta vuota dal server; status: {0}"
 
 #: media/js/common/upload-packaged-app.js:257 media/js/zamboni/devhub-all.js:504 media/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
-msgstr "Errore inatteso del server durante il controllo."
+msgstr "Errore inatteso del server durante la validazione."
 
 #: media/js/common/upload-packaged-app.js:294 media/js/zamboni/devhub-all.js:542 media/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
@@ -436,12 +436,17 @@ msgstr[1] "È fallito il processo di validazione dell’app con {0} errori e {1}
 #: media/js/devreg/devhub.js:227 media/js/zamboni/devhub-all.js:1165 media/js/zamboni/devhub-min.js:1
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "L’app ha superato i controlli senza errori e con {0} messaggio."
-msgstr[1] "L’app ha superato i controlli senza errori e con {0} messaggi."
+msgstr[0] ""
+"L’app ha superato il processo di validazione senza errori e con {0} "
+"messaggio."
+msgstr[1] ""
+"L’app ha superato il processo di validazione senza errori e con {0} "
+"messaggi."
 
 #: media/js/devreg/devhub.js:232 media/js/zamboni/devhub-all.js:1170 media/js/zamboni/devhub-min.js:1
 msgid "Your app passed validation with no errors or messages."
-msgstr "L’app ha superato i controlli senza errori e senza avvisi."
+msgstr ""
+"L’app ha superato il processo di validazione senza errori e senza avvisi."
 
 #: media/js/devreg/devhub.js:447 media/js/zamboni/devhub-all.js:1469 media/js/zamboni/devhub-min.js:1
 msgid "Changes Saved"
@@ -473,7 +478,7 @@ msgstr "Esempio"
 
 #: media/js/devreg/devhub.js:1218 media/js/zamboni/devhub-all.js:2267 media/js/zamboni/devhub-min.js:2
 msgid "Image changes being processed"
-msgstr "Elaborazione in corso delle modifiche alle immagini"
+msgstr "Elaborazione delle modifiche alle immagini in corso"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -517,7 +522,7 @@ msgstr "Visualizza tutti i risultati"
 
 #: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
-msgstr "Trovati oltre {0} risultati. Considera la possibilità di restringere la ricerca."
+msgstr "Trovati oltre {0} risultati. Prova a restringere la ricerca."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -537,7 +542,7 @@ msgstr "Senza privilegi"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr "Nessun motivo fornito"
+msgstr "Nessuna motivazione fornita"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
@@ -598,7 +603,7 @@ msgstr "Codice bancario iracheno"
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr "Rilevati: {0}"
+msgstr "Rilevata: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
@@ -668,11 +673,11 @@ msgstr "Test di compatibilità"
 
 #: media/js/devreg/validator.js:327 media/js/zamboni/devhub-all.js:2902 media/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr "L’app non ha superato la convalida."
+msgstr "L’app non ha superato il processo di validazione."
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/devhub-all.js:2904 media/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr "L’App è stata convalidata con successo."
+msgstr "L’app ha superato il processo di validazione."
 
 #: media/js/devreg/validator.js:359 media/js/zamboni/devhub-all.js:2941 media/js/zamboni/devhub-min.js:2
 msgid "{0} error"
@@ -700,7 +705,7 @@ msgstr "Acquisto in corso…"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr "Comprate"
+msgstr "Acquistata"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
@@ -712,11 +717,11 @@ msgstr "{name} stava visualizzando questa pagina per primo."
 
 #: media/js/devreg/reviewers/editors.js:188 media/js/zamboni/editors-all.js:15493 media/js/zamboni/editors-min.js:5
 msgid "Receipt checked by app."
-msgstr "Ricevuta verificata dalla App."
+msgstr "Ricevuta verificata dall’app."
 
 #: media/js/devreg/reviewers/editors.js:190 media/js/zamboni/editors-all.js:15495 media/js/zamboni/editors-min.js:5
 msgid "Receipt was not checked by app."
-msgstr "La ricevuta non è stata verificata dalla App."
+msgstr "La ricevuta non è stata verificata dall’app."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
