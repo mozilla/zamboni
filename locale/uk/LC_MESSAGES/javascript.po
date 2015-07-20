@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-17 06:59:01.160697\n"
+"PO-Revision-Date: 2015-07-19 23:13:57.146967\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -187,7 +187,7 @@ msgstr "Відмічено для перегляду"
 #: media/js/common-all.js:18522 media/js/common-min.js:8
 #: media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "Потрібен ваш відгук"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8
 #: media/js/impala-all.js:10312 media/js/impala-min.js:6
@@ -343,7 +343,7 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Ця тема несумісна з вашою версією {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856
 #: media/js/impala-min.js:6 media/js/impala-min.js:7
@@ -368,11 +368,11 @@ msgstr "Виникла проблема при спробі зв'язатись 
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Всі права захищені"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
