@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-17 06:59:01.160697\n"
+"PO-Revision-Date: 2015-07-20 02:07:26.693887\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -187,7 +187,7 @@ msgstr "Відмічено для перегляду"
 #: media/js/common-all.js:18522 media/js/common-min.js:8
 #: media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "Потрібен ваш відгук"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8
 #: media/js/impala-all.js:10312 media/js/impala-min.js:6
@@ -343,7 +343,7 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Ця тема несумісна з вашою версією {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856
 #: media/js/impala-min.js:6 media/js/impala-min.js:7
@@ -368,31 +368,31 @@ msgstr "Виникла проблема при спробі зв'язатись 
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Всі права захищені"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-Некомерційне 3.0"
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-Некомерційне-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-Некомерційне-Зі збереженням умов 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-Зі збереженням умов 3.0"
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
@@ -408,7 +408,7 @@ msgstr "Стеження"
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
-msgstr ""
+msgstr "використовувати оригінал"
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
@@ -1012,15 +1012,18 @@ msgstr "По {0} на {1}"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист автору."
 msgstr[1] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
 msgstr[2] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
 
 #: media/js/zamboni/admin-all.js:211 media/js/zamboni/admin-min.js:1
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Надіслати лист автору додатку {2}, який не пройшов перевірку."
+msgstr[1] "Надіслати лист авторам додатку {2}, який не пройшов перевірку."
+msgstr[2] "Надіслати лист авторам додатку {2}, який не пройшов перевірку."
 
 #: media/js/zamboni/devhub-all.js:294 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -1029,32 +1032,35 @@ msgstr "Розширення файлу вашого додатка повинн
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваш додаток не пройшов перевірку з {0} помилкою."
+msgstr[1] "Ваш додаток не пройшов перевірку з {0} помилками."
+msgstr[2] "Ваш додаток не пройшов перевірку з {0} помилками."
 
 #: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленням."
 msgstr[1] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленнями."
 msgstr[2] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленнями."
 
 #: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Ваш додаток пройшов затвердження без помилок чи попереджень."
 
 #: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Деякі платформи недоступні для цього типу додатків."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Ваш браузер не підтримує мітку відео"
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Введіть нову адресу електронної пошти автора"
 
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
@@ -1066,9 +1072,9 @@ msgstr[2] "{files} файлів"
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} відгук"
+msgstr[1] "{reviews} відгуки"
+msgstr[2] "{reviews} відгуків"
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
@@ -1112,6 +1118,9 @@ msgid ""
 "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
 "href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"На жаль, ми не можемо знайти для вас будь-яких рекомендацій.<br>Щоб знайти "
+"додатки, які вам підходять, відвідайте будь ласка <a href=\"{0}\">сайт "
+"додатків</a>."
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
@@ -1329,7 +1338,7 @@ msgstr "Залежності"
 #: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442
 #: media/js/zamboni/stats-min.js:6
 msgid "Upsell"
-msgstr ""
+msgstr "Збільшення продаж"
 
 #: media/js/zamboni/stats-all.js:15444 media/js/zamboni/stats-min.js:6
 msgid "Sharing"
@@ -1346,407 +1355,407 @@ msgstr "Збірки"
 #: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448
 #: media/js/zamboni/stats-min.js:6
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Розміщення в категорії Карусель обраного"
 
 #: media/js/zamboni/stats-all.js:15449 media/js/zamboni/stats-all.js:15450
 #: media/js/zamboni/stats-min.js:6
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Розміщення в категорії Найвище оцінені"
 
 #: media/js/zamboni/stats-all.js:15451 media/js/zamboni/stats-all.js:15452
 #: media/js/zamboni/stats-min.js:6
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Розміщення в категорії Найпопулярніші"
 
 #: media/js/zamboni/stats-all.js:15453 media/js/zamboni/stats-all.js:15454
 #: media/js/zamboni/stats-min.js:6
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Розміщення в категорії Нещодавно додані"
 
 #: media/js/zamboni/stats-all.js:15455 media/js/zamboni/stats-all.js:15456
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за обраними"
 
 #: media/js/zamboni/stats-all.js:15457 media/js/zamboni/stats-all.js:15458
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за користувачами"
 
 #: media/js/zamboni/stats-all.js:15459 media/js/zamboni/stats-all.js:15460
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за рейтингом"
 
 #: media/js/zamboni/stats-all.js:15461 media/js/zamboni/stats-all.js:15462
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за датою створення"
 
 #: media/js/zamboni/stats-all.js:15463 media/js/zamboni/stats-all.js:15464
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за назвою"
 
 #: media/js/zamboni/stats-all.js:15465 media/js/zamboni/stats-all.js:15466
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за популярністю"
 
 #: media/js/zamboni/stats-all.js:15467 media/js/zamboni/stats-all.js:15468
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за датою оновлення"
 
 #: media/js/zamboni/stats-all.js:15469 media/js/zamboni/stats-all.js:15470
 #: media/js/zamboni/stats-min.js:6
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за очікуванням виходу"
 
 #: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154
 #: media/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Кількість внесків"
 
 #: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Загальна кількість внесків"
 
 #: media/js/zamboni/stats-all.js:15475 media/js/zamboni/stats-min.js:6
 msgid "Average Contribution"
-msgstr ""
+msgstr "Середній внесок"
 
 #: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
 msgid "Usage"
-msgstr ""
+msgstr "Використання"
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Завантажень та щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Завантажень та щоденних користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Встановлень та щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15505 media/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Встановлень та щоденних користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Завантажень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15517 media/js/zamboni/stats-min.js:6
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Щоденних користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15521 media/js/zamboni/stats-min.js:6
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Застосунків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15523 media/js/zamboni/stats-min.js:6
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Застосунків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15527 media/js/zamboni/stats-min.js:6
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Платформ за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15529 media/js/zamboni/stats-min.js:6
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Платформ з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15533 media/js/zamboni/stats-min.js:6
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Мови за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15535 media/js/zamboni/stats-min.js:6
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Мови з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15539 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Версій додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15541 media/js/zamboni/stats-min.js:6
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Версій додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15545 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Стан додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15547 media/js/zamboni/stats-min.js:6
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Стан додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15551 media/js/zamboni/stats-min.js:6
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Джерел завантажень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15553 media/js/zamboni/stats-min.js:6
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Джерел завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Внесків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Внесків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Статистика сайту за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Статистика сайту з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Додатків у використанні за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15571 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Додатків у використанні з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15575 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Завантажено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15577 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Завантажено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15581 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Створено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15583 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Створено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Оновлено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Оновлено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Написано відгуків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Написано відгуків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Зареєстровано користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Зареєстровано користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Створено збірок за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Створено збірок з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Читачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Читачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Рейтинги за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Рейтинги з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Продажі за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Продажі з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Встановлення за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Встановлення з {0} по {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> за останні {1} днів"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645
 #: media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> з {1} по {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> в середньому за останні {1} днів"
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Немає доступних даних."
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Інше"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Тиждень {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "завантажень"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} користувачів"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} додатків"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} збірок"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} відгуків"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} продаж"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} повернень"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} встановлень"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Сума, в USD"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Докладніше..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Докладніше за {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Дата"

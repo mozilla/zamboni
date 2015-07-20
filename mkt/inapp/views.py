@@ -52,9 +52,13 @@ class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         return InAppProduct.objects.filter(webapp=self.get_app())
 
     def get_app(self):
+        origin = self.kwargs['origin']
         if not hasattr(self, 'app'):
-            self.app = get_object_or_404(Webapp,
-                                         app_domain=self.kwargs['origin'])
+            if origin.startswith('marketplace:'):
+                lookup = dict(guid=origin.replace('marketplace:', '', 1))
+            else:
+                lookup = dict(app_domain=origin)
+            self.app = get_object_or_404(Webapp, **lookup)
         return self.app
 
     def get_authors(self):

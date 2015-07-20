@@ -204,7 +204,7 @@ app_payments.register(r'payments/debug', PaymentDebugViewSet,
 payments_api_patterns = patterns(
     '',
     url(r'^payments/', include(api_payments.urls)),
-    url(r'^payments/(?P<origin>(app|https?)://[^/]+)/',
+    url(r'^payments/(?P<origin>(app://|https?://|marketplace:)[^/]+)/',
         include(in_app_products.urls)),
     url(r'^apps/app/', include(app_payments.urls)),
 )

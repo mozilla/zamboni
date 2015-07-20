@@ -93,13 +93,16 @@ class BaseInAppProductViewSetTests(mkt.site.tests.TestCase):
         return self.client.delete(url)
 
 
-class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
+class AuthenticatedInAppProductTest(BaseInAppProductViewSetTests):
 
     def setUp(self):
-        super(TestInAppProductViewSetAuthorized, self).setUp()
+        super(AuthenticatedInAppProductTest, self).setUp()
         self.mock_logo_url()
         user = self.webapp.authors.all()[0]
         self.client = self.setup_client(user)
+
+
+class TestInAppProductViewSetAuthorized(AuthenticatedInAppProductTest):
 
     def all_locales(self, prod, attr):
         names = {}
@@ -199,6 +202,38 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
         response = self.get(self.list_url() + '?active=0')
         eq_(response.json['meta']['total_count'], 1)
         eq_(response.json['objects'][0]['guid'], inactive.guid)
+
+
+class TestInAppProductsWithPackagedWebApp(AuthenticatedInAppProductTest):
+
+    def setUp(self):
+        super(TestInAppProductsWithPackagedWebApp, self).setUp()
+        # Set up a packaged web app, i.e. one without a declared domain.
+        self.webapp.update(app_domain=None, is_packaged=True,
+                           guid='some-app-guid')
+        self.product = self.create_product()
+
+    def marketplace_origin(self):
+        return 'marketplace:{}'.format(self.webapp.guid)
+
+    def list_url(self):
+        return reverse('in-app-products-list',
+                       kwargs={'origin': self.marketplace_origin()})
+
+    def detail_url(self, guid):
+        return reverse('in-app-products-detail',
+                       kwargs={'origin': self.marketplace_origin(),
+                               'guid': guid})
+
+    def test_listing(self):
+        response = self.get(self.list_url())
+        eq_(response.status_code, status.HTTP_200_OK)
+        eq_(response.json['meta']['total_count'], 1)
+
+    def test_details(self):
+        res = self.get(self.detail_url(self.product.guid))
+        eq_(res.status_code, status.HTTP_200_OK)
+        eq_(res.json['app'], self.webapp.app_slug)
 
 
 class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
