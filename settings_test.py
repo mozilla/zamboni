@@ -37,6 +37,7 @@ WEBSITE_ICONS_PATH = _polite_tmpdir()
 GUARDED_ADDONS_PATH = _polite_tmpdir()
 SIGNED_APPS_PATH = _polite_tmpdir()
 SIGNED_APPS_REVIEWER_PATH = _polite_tmpdir()
+SIGNING_SERVER_ACTIVE = False
 UPLOADS_PATH = _polite_tmpdir()
 TMP_PATH = _polite_tmpdir()
 REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()

@@ -25,58 +25,49 @@
 
   <section class="primary manage" role="main">
     <h2>{{ title }}</h2>
-    {% if not addon.origin %}
-      <div id="origin-notification" class="island notification-box">
-        {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}
-          In-app products are only supported for hosted apps or packaged apps that define an <a href="{{ origin }}">origin</a> in the manifest.
-          Your app does not define an origin.
+    <div id="buglink-notification" class="island notification-box">
+      <p>
+        {% trans doc_link='https://developer.mozilla.org/en-US/Marketplace/Monetization/In-app_payments_section/Introduction_In-app_Payments' %}
+          This feature is under active development. Please refer to the <a target="_blank" href="{{ doc_link }}">documentation</a> for more information.
         {% endtrans %}
-      </div>
-    {% else %}
-      <div id="buglink-notification" class="island notification-box">
-        <p>
-          {% trans doc_link='https://developer.mozilla.org/en-US/Marketplace/Monetization/In-app_payments_section/Introduction_In-app_Payments' %}
-            This feature is under active development. Please refer to the <a target="_blank" href="{{ doc_link }}">documentation</a> for more information.
-          {% endtrans %}
-        </p>
-        <p>
-          {% trans bug_link='https://bugzilla.mozilla.org/enter_bug.cgi?product=Marketplace&component=Payments/Refunds' %}
-            If you find a problem please <a target="_blank" href="{{ bug_link }}">report a bug</a>.
-          {% endtrans %}
-        </p>
-      </div>
-      <div id="in-app-products"
-           class="devhub-form island{% if not products %} empty{% endif %}"
-           data-list-url="{{ list_url }}"
-           data-active-lang="{{ active_lang }}"
-           data-detail-url-format="{{ detail_url }}">
-        <table id="version-list">
-          <thead>
-            <tr>
-              <th>{{ _('Icon') }}</th>
-              <th>{{ _('Name') }}</th>
-              <th>{{ _('Price Point') }}</th>
-              <th>{{ _('Product ID') }}</th>
-              <th>{{ _('Status') }}</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for product in products %}
-              {% include "developers/payments/in-app-product-row.html" %}
-            {% endfor %}
-          </tbody>
-        </table>
-        <p class="listing-footer">
-          <button id="add-in-app-product">{{ _('Add a product') }}</button>
-        </p>
-      </div>
-      <script id="in-app-product-row-template" type="x-template">
-        {% with product=new_product %}
-          {% include "developers/payments/in-app-product-row.html" %}
-        {% endwith %}
-      </script>
-    {% endif %}
+      </p>
+      <p>
+        {% trans bug_link='https://bugzilla.mozilla.org/enter_bug.cgi?product=Marketplace&component=Payments/Refunds' %}
+          If you find a problem please <a target="_blank" href="{{ bug_link }}">report a bug</a>.
+        {% endtrans %}
+      </p>
+    </div>
+    <div id="in-app-products"
+         class="devhub-form island{% if not products %} empty{% endif %}"
+         data-list-url="{{ list_url }}"
+         data-active-lang="{{ active_lang }}"
+         data-detail-url-format="{{ detail_url }}">
+      <table id="version-list">
+        <thead>
+          <tr>
+            <th>{{ _('Icon') }}</th>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Price Point') }}</th>
+            <th>{{ _('Product ID') }}</th>
+            <th>{{ _('Status') }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            {% include "developers/payments/in-app-product-row.html" %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="listing-footer">
+        <button id="add-in-app-product">{{ _('Add a product') }}</button>
+      </p>
+    </div>
+    <script id="in-app-product-row-template" type="x-template">
+      {% with product=new_product %}
+        {% include "developers/payments/in-app-product-row.html" %}
+      {% endwith %}
+    </script>
   </section>
 
   {% include "developers/includes/addons_edit_nav.html" %}

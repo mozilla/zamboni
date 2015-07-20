@@ -391,15 +391,27 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
     products = addon.inappproduct_set.all()
     new_product = InAppProduct(webapp=addon)
     form = InAppProductForm()
-    list_url = None
-    detail_url = None
+
     if addon.origin:
-        list_url = _fix_origin_link(reverse('in-app-products-list',
-                                            kwargs={'origin': addon.origin}))
-        detail_url = _fix_origin_link(reverse('in-app-products-detail',
-                                              # {guid} is replaced in JS.
-                                              kwargs={'origin': addon.origin,
-                                                      'guid': "{guid}"}))
+        inapp_origin = addon.origin
+    elif addon.guid:
+        # Derive a marketplace specific origin out of the GUID.
+        # This is for apps that do not specify a custom origin.
+        inapp_origin = 'marketplace:{}'.format(addon.guid)
+    else:
+        # Theoretically this is highly unlikely. A hosted app will
+        # always have a domain and a packaged app will always have
+        # a generated GUID.
+        raise TypeError(
+            'Cannot derive origin: no declared origin, no GUID')
+
+    list_url = _fix_origin_link(reverse('in-app-products-list',
+                                        kwargs={'origin': inapp_origin}))
+    detail_url = _fix_origin_link(reverse('in-app-products-detail',
+                                          # {guid} is replaced in JS.
+                                          kwargs={'origin': inapp_origin,
+                                                  'guid': "{guid}"}))
+
     return render(request, 'developers/payments/in-app-products.html',
                   {'addon': addon, 'form': form, 'new_product': new_product,
                    'owner': owner, 'products': products, 'form': form,
