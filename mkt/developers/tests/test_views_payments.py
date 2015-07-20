@@ -224,7 +224,6 @@ class TestInAppProductsView(InappTest):
     def test_origin(self):
         self.app.update(is_packaged=True, app_domain='http://f.c')
         doc = pq(self.get().content)
-        ok_(not doc('section.primary div#origin-notification'))
         ok_(doc('section.primary div#buglink-notification'))
         div = doc('#in-app-products')
 
@@ -236,10 +235,19 @@ class TestInAppProductsView(InappTest):
         assert url.endswith('http%3A%2F%2Ff.c/in-app/%7Bguid%7D/'), (
             'Unexpected URL: {u}'.format(u=url))
 
-    def test_no_origin(self):
+    def test_no_declared_origin(self):
         self.app.update(is_packaged=True, app_domain=None)
         doc = pq(self.get().content)
-        ok_(doc('section.primary div#origin-notification'))
+        div = doc('#in-app-products')
+
+        mkt_origin = 'marketplace%3A{}'.format(self.app.guid)
+        url = div.attr('data-list-url')
+        assert url.endswith('{}/in-app/'.format(mkt_origin)), (
+            'Unexpected URL: {u}'.format(u=url))
+
+        url = div.attr('data-detail-url-format')
+        assert url.endswith('{}/in-app/%7Bguid%7D/'.format(mkt_origin)), (
+            'Unexpected URL: {u}'.format(u=url))
 
     def test_hosted(self):
         self.app.update(is_packaged=False, app_domain='http://f.c')
