@@ -66,6 +66,11 @@ CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 # allow to search for specific, allowed ones.
 TAG_CHOICES = [
     ('tarako', 'tarako'),
+    ('featured-game', 'featured-game'),
+    ('featured-game-action', 'featured-game-action'),
+    ('featured-game-adventure', 'featured-game-adventure'),
+    ('featured-game-puzzle', 'featured-game-puzzle'),
+    ('featured-game-strategy', 'featured-game-strategy'),
 ]
 
 # "Relevance" doesn't make sense for Category listing pages.
