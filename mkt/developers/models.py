@@ -170,17 +170,19 @@ class UserInappKey(ModelBase):
         self._product().patch(data={'secret': generate_key(48)})
 
     @classmethod
-    def create(cls, user, public_id=None, secret=None):
+    def create(cls, user, public_id=None, secret=None, access_type=None):
         if public_id is None:
             public_id = str(uuid.uuid4())
         if secret is None:
             secret = generate_key(48)
+        if access_type is None:
+            access_type = ACCESS_SIMULATE
+
         sel = SolitudeSeller.create(user)
-        # Create a product key that can only be used for simulated purchases.
         prod = client.api.generic.product.post(data={
             'seller': sel.resource_uri, 'secret': secret,
             'external_id': str(uuid.uuid4()), 'public_id': public_id,
-            'access': ACCESS_SIMULATE,
+            'access': access_type,
         })
         log.info(u'User %s created an in-app payments dev key product=%s '
                  u'with %s' % (unicode(user), prod['resource_pk'], sel))
