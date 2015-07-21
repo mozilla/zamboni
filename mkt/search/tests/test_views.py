@@ -836,6 +836,28 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         self.assertSetEqual(obj['tags'], ['tagtagtag', 'tarako'])
 
+    def test_tag_with_query(self):
+        tag1 = Tag.objects.create(tag_text='featured-games')
+        tag2 = Tag.objects.create(tag_text='dummy')
+        self.webapp.tags.add(tag1)
+        self.webapp.tags.add(tag2)
+        self.reindex(Webapp)
+        res = self.anon.get(self.url, {'q': 'featured-games'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        self.assertSetEqual(obj['tags'], ['featured-games', 'dummy'])
+
+    def test_tag_fuzzy_with_query(self):
+        tag1 = Tag.objects.create(tag_text='hairy')
+        tag2 = Tag.objects.create(tag_text='dummy')
+        self.webapp.tags.add(tag1)
+        self.webapp.tags.add(tag2)
+        self.reindex(Webapp)
+        res = self.anon.get(self.url, {'q': 'hary'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        self.assertSetEqual(obj['tags'], ['hairy', 'dummy'])
+
     def test_guid(self):
         res = self.anon.get(self.url, {'guid': self.webapp.guid})
         eq_(res.status_code, 200)
@@ -1458,6 +1480,22 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(res.json['meta']['total_count'], 1)
         eq_(objs[0]['doc_type'], 'webapp')
         eq_(objs[0]['id'], self.webapp.pk)
+
+    def test_tag_filter_empty(self):
+        res = self.anon.get(self.url, data={'tag': 'featured-game'})
+        ok_(not res.json['objects'])
+
+    def test_tag_filter_ok(self):
+        tag = Tag.objects.create(tag_text='featured-game')
+        self.webapp.tags.add(tag)
+        self.website.keywords.add(tag)
+        self.reindex(Webapp)
+        self.reindex(Website)
+        self.refresh(('webapp', 'website'))
+
+        res = self.anon.get(self.url, data={'tag': 'featured-game'})
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 2)
 
 
 class TestOpenMobileACLSearchView(RestOAuth, ESTestCase):

@@ -89,7 +89,7 @@ class SearchQueryFilter(BaseFilterBackend):
                                     'analyzer': desc_analyzer}}))
 
         # Add searches on tag field.
-        should.append(query.Match(tags={'query': q}))
+        should.append(query.Term(tags={'value': q}))
         if ' ' not in q:
             should.append(query.Fuzzy(tags={'value': q, 'prefix_length': 1}))
 

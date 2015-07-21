@@ -92,7 +92,7 @@ class WebsiteIndexer(BaseIndexer):
                     'short_name': {'type': 'string',
                                    'analyzer': 'default_icu'},
                     'status': {'type': 'byte'},
-                    'tags': {'type': 'string', 'analyzer': 'simple'},
+                    'tags': cls.string_not_analyzed(),
                     'title': {
                         'type': 'string',
                         'analyzer': 'default_icu',

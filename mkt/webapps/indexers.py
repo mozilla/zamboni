@@ -191,7 +191,7 @@ class WebappIndexer(BaseIndexer):
                                       'type': 'date', 'doc_values': True},
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
-                    'tags': {'type': 'string', 'analyzer': 'simple'},
+                    'tags': cls.string_not_analyzed(),
                     'upsell': {
                         'type': 'object',
                         'properties': {
