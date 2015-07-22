@@ -43,7 +43,7 @@ from mkt.site.fields import SeparatedValuesField
 from mkt.site.forms import AddonChoiceField
 from mkt.site.utils import remove_icons, slug_validator, slugify
 from mkt.tags.models import Tag
-from mkt.tags.utils import clean_tags
+from mkt.tags.utils import can_edit_restricted_tags, clean_tags
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
@@ -549,7 +549,7 @@ class AppFormBasic(AddonFormBase):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Apps', 'Edit'):
+        if can_edit_restricted_tags(self.request):
             return list(addon.tags.values_list('tag_text', flat=True))
         else:
             return list(addon.tags.filter(restricted=False)

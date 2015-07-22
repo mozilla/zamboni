@@ -9,6 +9,10 @@ from mkt.tags.models import Tag
 
 
 def clean_tags(request, tags, max_tags=None):
+    """
+    Blocked tags are not allowed.
+    Restricted tags can only be edited by Reviewers and Curators.
+    """
     target = [slugify(t, spaces=True, lower=True) for t in tags.split(',')]
     target = set(filter(None, target))
 
@@ -27,13 +31,12 @@ def clean_tags(request, tags, max_tags=None):
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)
                      .filter(tag_text__in=target, restricted=True))
-    if not acl.action_allowed(request, 'Apps', 'Edit'):
-        if restricted:
-            # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext(u'"{0}" is a reserved tag and cannot be used.',
-                           u'"{0}" are reserved tags and cannot be used.',
-                           len(restricted)).format('", "'.join(restricted))
-            raise forms.ValidationError(msg)
+    if restricted and not can_edit_restricted_tags(request):
+        # L10n: {0} is a single tag or a comma-separated list of tags.
+        msg = ngettext(u'"{0}" is a reserved tag and cannot be used.',
+                       u'"{0}" are reserved tags and cannot be used.',
+                       len(restricted)).format('", "'.join(restricted))
+        raise forms.ValidationError(msg)
     else:
         # Admin's restricted tags don't count towards the limit.
         total = len(target - set(restricted))
@@ -56,3 +59,8 @@ def clean_tags(request, tags, max_tags=None):
         raise forms.ValidationError(msg)
 
     return target
+
+
+def can_edit_restricted_tags(request):
+    return (acl.action_allowed(request, 'Apps', 'Edit') or
+            acl.action_allowed(request, 'Feed', 'Curate'))
