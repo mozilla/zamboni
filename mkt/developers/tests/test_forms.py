@@ -514,8 +514,8 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
             'manifest_url': 'https://omg.org/yes.webapp',
             'description': 'You Only Live Once'
         }
-        self.request = mock.Mock()
-        self.request.groups = ()
+        self.user = mkt.site.tests.user_factory()
+        self.request = mkt.site.tests.req_factory_factory(user=self.user)
         self.app = app_factory(name='YOLO',
                                manifest_url='https://omg.org/yes.webapp')
 
@@ -572,6 +572,54 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
         eq_(self.app.tags.count(), 0)
         self.assertSetEqual(
             self.app.tags.values_list('tag_text', flat=True), [])
+
+    def test_add_restricted_tag_no_perm(self):
+        Tag.objects.create(tag_text='restricted', restricted=True)
+        self.data.update({'tags': 'restricted'})
+
+        self.post()
+        ok_(not self.form.is_valid())
+
+    def test_add_restricted_tag_ok(self):
+        Tag.objects.create(tag_text='restricted', restricted=True)
+        self.data.update({'tags': 'restricted'})
+
+        self.grant_permission(self.user, 'Apps:Edit')
+        self.request = mkt.site.tests.req_factory_factory(user=self.user)
+
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+
+        self.form.save(self.app)
+        self.assertSetEqual(self.app.tags.values_list('tag_text', flat=True),
+                            ['restricted'])
+
+    def test_restricted_tag_not_removed(self):
+        t = Tag.objects.create(tag_text='restricted', restricted=True)
+        self.app.tags.add(t)
+        self.data.update({'tags': 'hey'})
+
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+
+        ok_(self.app.tags.filter(tag_text='restricted'))
+        ok_(self.app.tags.filter(tag_text='hey'))
+
+    def test_remove_restricted_tag_with_perms(self):
+        t = Tag.objects.create(tag_text='restricted', restricted=True)
+        self.app.tags.add(t)
+        self.data.update({'tags': 'hey'})
+
+        self.grant_permission(self.user, 'Apps:Edit')
+        self.request = mkt.site.tests.req_factory_factory(user=self.user)
+
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+        self.form.save(self.app)
+
+        ok_(not self.app.tags.filter(tag_text='restricted'))
+        ok_(self.app.tags.filter(tag_text='hey'))
 
     @mock.patch('mkt.developers.forms.update_manifests')
     def test_manifest_url_change(self, mock):
