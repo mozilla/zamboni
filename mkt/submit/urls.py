@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from lib.misc.urlconf_decorator import decorate
 
 import mkt
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from . import views
 
 
@@ -18,8 +18,7 @@ submit_apps_patterns = patterns(
 )
 
 
-# Decorate all the views as @write so as to bypass cache.
-urlpatterns = decorate(write, patterns(
+urlpatterns = decorate(use_master, patterns(
     '',
     # Legacy redirects for app submission.
     ('^app', lambda r: redirect('submit.app')),

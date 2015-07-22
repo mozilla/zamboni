@@ -253,7 +253,7 @@ class TestFeedBrand(mkt.site.tests.TestCase):
         self.test_add_app_sort_order_respected()
         new_apps = [app.pk for app in self.apps][::-1]
         self.brand.set_apps(new_apps)
-        eq_(new_apps, [app.pk for app in self.brand.apps().no_cache()])
+        eq_(new_apps, [app.pk for app in self.brand.apps()])
 
     def test_set_apps_nonexistant(self):
         self.test_add_app_sort_order_respected()

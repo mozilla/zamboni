@@ -199,7 +199,7 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter, RegionCarrierFilter)
-    queryset = FeedItem.objects.no_cache().all()
+    queryset = FeedItem.objects.all()
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedItemSerializer
 
@@ -379,7 +379,7 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
         Return all shelves a user can administer. Anonymous users will always
         receive an empty list.
         """
-        qs = self.queryset.no_cache()
+        qs = self.queryset
         if request.user.is_anonymous():
             qs = self.queryset.none()
         elif not self.is_admin(request.user):

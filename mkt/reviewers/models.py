@@ -9,7 +9,7 @@ import commonware.log
 import mkt
 import mkt.constants.comm as comm
 from mkt.comm.utils import create_comm_note
-from mkt.site.models import ManagerBase, ModelBase, skip_cache
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.utils import cache_ns_key
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
@@ -194,7 +194,7 @@ class ReviewerScore(ModelBase):
         if val is not None:
             return val
 
-        val = (ReviewerScore.objects.no_cache().filter(user=user)
+        val = (ReviewerScore.objects.filter(user=user)
                                     .aggregate(total=Sum('score'))
                                     .values())[0]
         if val is None:
@@ -211,7 +211,7 @@ class ReviewerScore(ModelBase):
         if val is not None:
             return val
 
-        val = ReviewerScore.objects.no_cache().filter(user=user)
+        val = ReviewerScore.objects.filter(user=user)
 
         val = list(val[:limit])
         cache.set(key, val, None)
@@ -233,8 +233,7 @@ class ReviewerScore(ModelBase):
              WHERE `reviewer_scores`.`user_id` = %s
              ORDER BY `total` DESC
         """
-        with skip_cache():
-            val = list(ReviewerScore.objects.raw(sql, [user.id]))
+        val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, None)
         return val
 
@@ -258,8 +257,7 @@ class ReviewerScore(ModelBase):
                    `reviewer_scores`.`created` >= %s
              ORDER BY `total` DESC
         """
-        with skip_cache():
-            val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
+        val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
 
@@ -447,7 +445,6 @@ class AdditionalReviewManager(ManagerBase):
         else:
             created_order = 'created'
         return (self.get_queryset()
-                    .no_cache()
                     .filter(**query)
                     .order_by('-app__priority_review', created_order))
 

@@ -74,9 +74,6 @@ loggers = {
         'level': 'ERROR',
         'propagate': True,
     },
-    'caching': {
-        'level': 'ERROR',
-    },
     'newrelic': {
         'level': 'WARNING',
     },

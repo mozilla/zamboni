@@ -1,10 +1,8 @@
 from django.db import models
 from django.db.models.sql import compiler
 
-import caching.base as caching
 
-
-class IndexQuerySet(caching.CachingQuerySet):
+class IndexQuerySet(models.query.QuerySet):
 
     def with_index(self, **kw):
         """

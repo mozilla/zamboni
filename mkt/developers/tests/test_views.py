@@ -411,10 +411,10 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         self.login('steamcube@mozilla.com')
 
     def get_webapp(self):
-        return Webapp.objects.no_cache().get(pk=337141)
+        return Webapp.objects.get(pk=337141)
 
     def get_latest_version_status(self):
-        v = Version.objects.no_cache().get(pk=self.app.latest_version.pk)
+        v = Version.objects.get(pk=self.app.latest_version.pk)
         return v.all_files[0].status
 
     def post(self, pk=None):
@@ -679,7 +679,7 @@ class TestResumeStep(mkt.site.tests.TestCase):
         self.login('steamcube@mozilla.com')
 
     def get_addon(self):
-        return Webapp.objects.no_cache().get(pk=337141)
+        return Webapp.objects.get(pk=337141)
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
@@ -1124,7 +1124,7 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.webapp = Webapp.objects.no_cache().get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('remove-locale')
         self.login('steamcube@mozilla.com')
 

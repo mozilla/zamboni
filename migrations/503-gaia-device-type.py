@@ -8,11 +8,11 @@ from django.db.models import Count
 import mkt
 from addons.models import AddonDeviceType as ADT
 from mkt.site.utils import chunked
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 
 
 @task
-@write
+@use_master
 def _task(**kw):
     # Remove any dupes. `UNIQUE` constraint introduced in migration 504.
     dupes = (ADT.objects.values_list('addon', 'device_type')

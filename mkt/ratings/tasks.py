@@ -2,7 +2,6 @@ import logging
 
 from django.db.models import Count, Avg, F
 
-import caching.base as caching
 from celery import task
 
 from lib.post_request_task.task import task as post_request_task
@@ -24,7 +23,7 @@ def update_denorm(*pairs, **kw):
              (len(pairs), update_denorm.rate_limit))
     using = kw.get('using')
     for addon, user in pairs:
-        reviews = list(Review.objects.valid().no_cache().using(using)
+        reviews = list(Review.objects.valid().using(using)
                        .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
@@ -45,7 +44,7 @@ def addon_review_aggregates(*addons, **kw):
     using = kw.get('using')
     addon_objs = list(Webapp.objects.filter(pk__in=addons))
     stats = dict((x[0], x[1:]) for x in
-                 Review.objects.valid().no_cache().using(using)
+                 Review.objects.valid().using(using)
                  .filter(addon__in=addons, is_latest=True)
                  .values_list('addon')
                  .annotate(Avg('rating'), Count('addon')))
@@ -62,16 +61,13 @@ def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
 
-    def qs():
-        return Webapp.objects.aggregate(rating=Avg('average_rating'),
-                                        reviews=Avg('total_reviews'))
-
-    avg = caching.cached(qs, 'task.bayes.avg', 60 * 60 * 60)
+    avg = Webapp.objects.aggregate(rating=Avg('average_rating'),
+                                   reviews=Avg('total_reviews'))
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return
     mc = avg['reviews'] * avg['rating']
-    for addon in Webapp.objects.no_cache().filter(id__in=addons):
+    for addon in Webapp.objects.filter(id__in=addons):
         if addon.average_rating is None:
             # Ignoring addons with no average rating.
             continue

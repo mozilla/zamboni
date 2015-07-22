@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 
 import mkt
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.site.storage_utils import walk_storage
 from mkt.site.utils import chunked, resize_image
 from mkt.webapps.models import Webapp
@@ -17,7 +17,7 @@ sizes = mkt.CONTENT_ICON_SIZES
 size_suffixes = ['-%s' % s for s in sizes]
 
 
-@write
+@use_master
 def convert(directory, delete=False):
     print 'Converting icons in %s' % directory
 

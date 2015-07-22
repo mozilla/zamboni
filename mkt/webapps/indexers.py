@@ -240,7 +240,7 @@ class WebappIndexer(BaseIndexer):
                                         RatingDescriptors, RatingInteractives)
 
         if obj is None:
-            obj = cls.get_model().objects.no_cache().get(pk=pk)
+            obj = cls.get_model().objects.get(pk=pk)
 
         # Attach everything we need to index apps.
         for transform in (attach_devices, attach_prices, attach_tags,
@@ -422,7 +422,7 @@ class WebappIndexer(BaseIndexer):
 
         log.info('Indexing %s webapps' % len(ids))
 
-        qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
+        qs = Webapp.with_deleted.filter(id__in=ids)
         ES = ES or cls.get_es()
 
         docs = []

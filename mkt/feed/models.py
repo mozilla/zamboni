@@ -111,10 +111,6 @@ class BaseFeedCollection(ModelBase):
 
         rval = self.membership_class.objects.create(obj=self, app=app,
                                                     order=order)
-
-        # Help django-cache-machine: it doesn't like many 2 many relations,
-        # the cache is never invalidated properly when adding a new object.
-        self.membership_class.objects.invalidate(*qs)
         index_webapps.delay([app.pk])
         return rval
 
@@ -174,10 +170,6 @@ class GroupedAppsMixin(object):
 
         rval = self.membership_class.objects.create(obj_id=self.id, app_id=app,
                                                     group=group, order=order)
-
-        # Help django-cache-machine: it doesn't like many 2 many relations,
-        # the cache is never invalidated properly when adding a new object.
-        self.membership_class.objects.invalidate(*qs)
         index_webapps.delay([app])
         return rval
 

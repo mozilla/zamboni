@@ -74,7 +74,7 @@ class TestEdit(mkt.site.tests.TestCase):
         self.login(self.user.email)
 
     def get_webapp(self):
-        return Webapp.objects.no_cache().get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     def get_url(self, section, edit=False):
         return get_section_url(self.webapp, section, edit)
@@ -1483,7 +1483,7 @@ class TestEditVersion(TestEdit):
         data.update(kwargs)
         req = self.client.post(self.url, data)
         eq_(req.status_code, 302)
-        version = Version.objects.no_cache().get(pk=self.version_pk)
+        version = Version.objects.get(pk=self.version_pk)
         eq_(version.releasenotes, data['releasenotes_en-us'])
         eq_(version.approvalnotes, data['approvalnotes'])
         return version

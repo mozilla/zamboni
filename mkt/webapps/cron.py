@@ -17,7 +17,7 @@ from lib.metrics import get_monolith_client
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.site.utils import chunked, days_ago, walkfiles
 
 from .indexers import WebappIndexer
@@ -47,14 +47,14 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    qs = Webapp.objects.no_cache().filter(id__in=changes).no_transforms()
+    qs = Webapp.objects.filter(id__in=changes).no_transforms()
     for addon in qs:
         addon.last_updated = changes[addon.id]
         addon.save()
 
 
 @cronjobs.register
-@write
+@use_master
 def addon_last_updated():
     next = {}
     qs = Webapp._last_updated_queries().values()
@@ -64,7 +64,7 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Webapp.objects.no_cache().filter(last_updated__isnull=True)
+    other = (Webapp.objects.filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
 
@@ -83,7 +83,7 @@ def hide_disabled_files():
                    Q(version__addon__disabled_by_user=True))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        qs = File.objects.no_cache().filter(id__in=chunk)
+        qs = File.objects.filter(id__in=chunk)
         qs = qs.select_related('version')
         for f in qs:
             f.hide_disabled_file()
@@ -207,7 +207,7 @@ def _get_installs(app_id):
 
 
 @cronjobs.register
-@write
+@use_master
 def update_app_installs():
     """
     Update app install counts for all published apps.
@@ -423,7 +423,7 @@ def _get_trending(app_id):
 
 
 @cronjobs.register
-@write
+@use_master
 def update_app_trending():
     """
     Update trending for all published apps.

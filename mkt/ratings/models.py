@@ -5,7 +5,6 @@ from django.core.cache import cache
 from django.db import models
 
 import bleach
-from caching.base import CachingQuerySet
 from celery import task
 
 from tower import ugettext_lazy as _
@@ -36,7 +35,7 @@ class ReviewManager(ManagerBase):
         return self.filter(reply_to__isnull=True)
 
 
-class ReviewQuerySet(CachingQuerySet):
+class ReviewQuerySet(models.query.QuerySet):
     """
     A queryset modified for soft deletion.
     """
@@ -130,7 +129,7 @@ class Review(ModelBase):
     @staticmethod
     def transformer(reviews):
         user_ids = dict((r.user_id, r) for r in reviews)
-        for user in UserProfile.objects.no_cache().filter(id__in=user_ids):
+        for user in UserProfile.objects.filter(id__in=user_ids):
             user_ids[user.id].user = user
 
 
@@ -201,7 +200,7 @@ def check_spam(review_id, **kw):
         return
 
     thirty_days = datetime.now() - timedelta(days=30)
-    others = (Review.objects.no_cache().exclude(id=review.id)
+    others = (Review.objects.exclude(id=review.id)
               .filter(user=review.user, created__gte=thirty_days))
     if len(others) > 10:
         spam.add(review, 'numbers')

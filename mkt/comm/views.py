@@ -33,7 +33,6 @@ from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
 from mkt.comm.models import user_has_perm_app
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
-from mkt.site.decorators import skip_cache
 from mkt.site.utils import HttpResponseSendFile
 
 
@@ -70,7 +69,6 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
     filter_backends = (OrderingFilter,)
     cors_allowed_methods = ['get', 'post', 'patch']
 
-    @skip_cache
     def list(self, request):
         """Deprecated by CommAppViewSet and ThreadViewSetV2."""
         self.serializer_class = ThreadSerializer
@@ -290,7 +288,6 @@ class CommAppListView(SilentListModelMixin, CommViewSet):
     permission_classes = (ThreadPermission,)  # On self.queryset.
     cors_allowed_methods = ['get']
 
-    @skip_cache
     def list(self, request, app_slug):
         """Return list of threads for the app."""
         form = forms.AppSlugForm({'app': app_slug})
@@ -316,7 +313,6 @@ class CommAppListView(SilentListModelMixin, CommViewSet):
 class ThreadViewSetV2(ThreadViewSet):
     serializer_class = ThreadSerializerV2
 
-    @skip_cache
     def list(self, request):
         """List all the threads where the user has been CC'd."""
         cc = list(request.user.comm_thread_cc.values_list('thread', flat=True))

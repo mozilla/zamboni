@@ -30,7 +30,7 @@ from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
 from mkt.developers.utils import escalate_prerelease_permissions
 from mkt.files.models import FileUpload
-from mkt.site.decorators import login_required, write
+from mkt.site.decorators import login_required, use_master
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
@@ -258,7 +258,7 @@ class ValidationViewSet(CORSMixin, mixins.CreateModelMixin,
     model = FileUpload
     serializer_class = FileUploadSerializer
 
-    @write
+    @use_master
     def create(self, request, *args, **kwargs):
         """
         Custom create method allowing us to re-use form logic and distinguish

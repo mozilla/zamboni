@@ -1,16 +1,13 @@
 import contextlib
 import threading
 
-from django.conf import settings
 from django.db import models, transaction
-from django.utils import encoding, translation
+from django.utils import translation
 
-import caching.base
 import multidb.pinning
 
 
 _locals = threading.local()
-_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
 
 class TransformQuerySet(models.query.QuerySet):
@@ -25,9 +22,7 @@ class TransformQuerySet(models.query.QuerySet):
         return c
 
     def transform(self, fn):
-        from mkt.site import decorators
-        f = decorators.skip_cache(fn)
-        self._transform_fns.append(f)
+        self._transform_fns.append(fn)
         return self
 
     def iterator(self):
@@ -73,17 +68,6 @@ def use_master():
         multidb.pinning._locals.pinned = old
 
 
-@contextlib.contextmanager
-def skip_cache():
-    """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
-    _locals.skip_cache = True
-    try:
-        yield
-    finally:
-        _locals.skip_cache = old
-
-
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
 
@@ -100,21 +84,14 @@ class RawQuerySet(models.query.RawQuerySet):
         return len(list(self.__iter__()))
 
 
-class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
-    """A RawQuerySet with __len__ and caching."""
-
-
-# Make TransformQuerySet one of CachingQuerySet's parents so that we can do
-# transforms on objects and then get them cached.
-CachingQuerySet = caching.base.CachingQuerySet
-CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
-
-
-class UncachedManagerBase(models.Manager):
+class ManagerBase(models.Manager):
+    # FIXME: remove this, let django use a plain manager for related fields.
+    # The issue is, it breaks transforms and in particular, translations. See
+    # bug 952550.
+    use_for_related_fields = True
 
     def get_queryset(self):
-        qs = self._with_translations(TransformQuerySet(self.model))
-        return qs
+        return self._with_translations(TransformQuerySet(self.model))
 
     def _with_translations(self, qs):
         from mkt.translations import transformer
@@ -122,8 +99,8 @@ class UncachedManagerBase(models.Manager):
         # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
             lang = translation.get_language()
-            qs = qs.transform(transformer.get_trans)
-            qs = qs.extra(where=['"%s"="%s"' % (lang, lang)])
+            qs = (qs.transform(transformer.get_trans)
+                    .extra(where=['"%s"="%s"' % (lang, lang)]))
         return qs
 
     def transform(self, fn):
@@ -146,27 +123,6 @@ class UncachedManagerBase(models.Manager):
                 if defaults is not None:
                     kw.update(defaults)
                 return self.create(**kw), True
-
-
-class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
-    """
-    Base for all managers in zamboni.
-
-    Returns TransformQuerySets from the queryset_transform project.
-
-    If a model has translated fields, they'll be attached through a transform
-    function.
-    """
-
-    def get_queryset(self):
-        qs = super(ManagerBase, self).get_queryset()
-        if getattr(_locals, 'skip_cache', False):
-            qs = qs.no_cache()
-        return self._with_translations(qs)
-
-    def raw(self, raw_query, params=None, *args, **kwargs):
-        return CachingRawQuerySet(raw_query, self.model, params=params,
-                                  using=self._db, *args, **kwargs)
 
 
 class _NoChangeInstance(object):
@@ -283,7 +239,7 @@ class OnChangeMixin(object):
         return result
 
 
-class ModelBase(caching.base.CachingMixin, models.Model):
+class ModelBase(models.Model):
     """
     Base class for zamboni models to abstract some common features.
 
@@ -302,16 +258,6 @@ class ModelBase(caching.base.CachingMixin, models.Model):
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
-
-    @classmethod
-    def _cache_key(cls, pk, db):
-        """
-        Custom django-cache-machine cache key implementation that avoids having
-        the real db in the key, since we are only using master-slaves we don't
-        need it and it avoids invalidation bugs with FETCH_BY_ID.
-        """
-        key_parts = ('o', cls._meta, pk, 'default')
-        return ':'.join(map(encoding.smart_unicode, key_parts))
 
     def reload(self):
         """Reloads the instance from the database."""

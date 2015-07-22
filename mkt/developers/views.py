@@ -54,7 +54,7 @@ from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (
-    json_view, login_required, permission_required, skip_cache, write)
+    json_view, login_required, permission_required, use_master)
 from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.translations.query import order_by_translation
@@ -630,7 +630,7 @@ def refresh_manifest(request, addon_id, addon):
 
 @require_POST
 @json_view
-@write
+@use_master
 def _upload_manifest(request, is_standalone=False):
     form = forms.NewManifestForm(request.POST, is_standalone=is_standalone)
     if (not is_standalone and
@@ -1104,7 +1104,6 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 
-    @skip_cache
     def get(self, request, *args, **kwargs):
         app = self.get_object()
 

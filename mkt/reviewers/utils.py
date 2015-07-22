@@ -644,7 +644,7 @@ class ReviewersQueuesHelper(object):
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
-        return EscalationQueue.objects.no_cache().filter(
+        return EscalationQueue.objects.filter(
             addon__disabled_by_user=False)
 
     def get_pending_queue(self):
@@ -658,7 +658,7 @@ class ReviewersQueuesHelper(object):
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
-        return (Version.objects.no_cache().filter(
+        return (Version.objects.filter(
             files__status=mkt.STATUS_PENDING,
             addon__disabled_by_user=False,
             addon__status=mkt.STATUS_PENDING)
@@ -675,7 +675,7 @@ class ReviewersQueuesHelper(object):
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
-        return (RereviewQueue.objects.no_cache().
+        return (RereviewQueue.objects.
                 filter(addon__disabled_by_user=False).
                 exclude(addon__in=self.excluded_ids))
 
@@ -692,7 +692,7 @@ class ReviewersQueuesHelper(object):
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
-        return (Version.objects.no_cache().filter(
+        return (Version.objects.filter(
             # Note: this will work as long as we disable files of existing
             # unreviewed versions when a new version is uploaded.
             files__status=mkt.STATUS_PENDING,
@@ -704,14 +704,14 @@ class ReviewersQueuesHelper(object):
             .select_related('addon', 'files').no_transforms())
 
     def get_moderated_queue(self):
-        return (Review.objects.no_cache()
+        return (Review.objects
                 .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
                 .exclude(addon__status=mkt.STATUS_DELETED)
                 .filter(editorreview=True)
                 .order_by('reviewflag__created'))
 
     def get_abuse_queue(self):
-        report_ids = (AbuseReport.objects.no_cache()
+        report_ids = (AbuseReport.objects
                       .exclude(addon__isnull=True)
                       .exclude(addon__status=mkt.STATUS_DELETED)
                       .filter(read=False)
@@ -721,7 +721,7 @@ class ReviewersQueuesHelper(object):
         return Webapp.objects.filter(id__in=report_ids).order_by('created')
 
     def get_abuse_queue_websites(self):
-        report_ids = (AbuseReport.objects.no_cache()
+        report_ids = (AbuseReport.objects
                       .exclude(website__isnull=True)
                       .exclude(website__status=mkt.STATUS_DELETED)
                       .filter(read=False)

@@ -288,7 +288,7 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     def test_addon(self):
         f = File.objects.get()
         addon_id = f.version.addon_id
-        addon = Webapp.objects.no_cache().get(pk=addon_id)
+        addon = Webapp.objects.get(pk=addon_id)
         addon.update(status=mkt.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
 

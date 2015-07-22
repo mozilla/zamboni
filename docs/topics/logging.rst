@@ -41,7 +41,7 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
 
         LOGGING = {
             'loggers': {
-                'caching': {'handlers': ['null']},
+                'foobar': {'handlers': ['null']},
             },
         }
 
@@ -65,14 +65,14 @@ The ``logging`` package uses global objects to make the same logging
 configuration available to all code loaded in the interpreter.  Loggers are
 created in a pseudo-namespace structure, so app-level loggers can inherit
 settings from a root logger.  zamboni's root namespace is just ``"z"``, in the
-interest of brevity.  In the caching package, we create a logger that inherits
-the configuration by naming it ``"z.caching"``::
+interest of brevity.  In the foobar package, we create a logger that inherits
+the configuration by naming it ``"z.foobar"``::
 
     import commonware.log
 
-    log = commonware.log.getLogger('z.caching')
+    log = commonware.log.getLogger('z.foobar')
 
-    log.debug("I'm in the caching package.")
+    log.debug("I'm in the foobar package.")
 
 Logs can be nested as much as you want.  Maintaining log namespaces is useful
 because we can turn up the logging output for a particular section of zamboni

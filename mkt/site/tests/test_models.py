@@ -1,8 +1,6 @@
-from django.conf import settings
-
 import multidb.pinning
 from mock import Mock
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 from mkt.site import models
 from mkt.site.models import manual_order
@@ -20,19 +18,6 @@ def test_ordering():
     semi_arbitrary_order = [app2id, app3id, app1id]
     addons = manual_order(Webapp.objects.all(), semi_arbitrary_order)
     eq_(semi_arbitrary_order, [addon.id for addon in addons])
-
-
-def test_skip_cache():
-    ok_(hasattr(models._locals, 'skip_cache'))
-    eq_(getattr(models._locals, 'skip_cache'),
-        not settings.CACHE_MACHINE_ENABLED)
-    models._locals.skip_cache = False
-    with models.skip_cache():
-        eq_(models._locals.skip_cache, True)
-        with models.skip_cache():
-            eq_(models._locals.skip_cache, True)
-        eq_(models._locals.skip_cache, True)
-    eq_(models._locals.skip_cache, False)
 
 
 def test_use_master():
@@ -134,9 +119,3 @@ class TestModelBase(TestCase):
         addon.delete()
         addon.update(public_stats=False)
         assert not addon.public_stats, 'addon.public_stats should be False'
-
-
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    eq_(Webapp._cache_key(1, 'default'), Webapp._cache_key(1, 'slave'))

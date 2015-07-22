@@ -31,7 +31,7 @@ from mkt.developers.providers import get_provider, get_providers
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.prices.models import Price
-from mkt.site.decorators import json_view, login_required, write
+from mkt.site.decorators import json_view, login_required, use_master
 from mkt.webapps.models import Webapp
 
 
@@ -252,7 +252,7 @@ def payment_accounts_form(request):
                   {'account_list_form': account_list_form})
 
 
-@write
+@use_master
 @require_POST
 @login_required
 @json_view
@@ -272,7 +272,7 @@ def payments_accounts_add(request):
     return {'pk': obj.pk, 'agreement-url': obj.get_agreement_url()}
 
 
-@write
+@use_master
 @login_required
 @json_view
 def payments_account(request, id):
@@ -288,7 +288,7 @@ def payments_account(request, id):
     return provider.account_retrieve(account)
 
 
-@write
+@use_master
 @require_POST
 @login_required
 def payments_accounts_delete(request, id):
@@ -310,7 +310,7 @@ def in_app_keys(request):
 
     This key cannot be used for real payments.
     """
-    keys = UserInappKey.objects.no_cache().filter(
+    keys = UserInappKey.objects.filter(
         solitude_seller__user=request.user
     )
 
@@ -346,7 +346,7 @@ def in_app_keys(request):
 
 @login_required
 def in_app_key_secret(request, pk):
-    key = (UserInappKey.objects.no_cache()
+    key = (UserInappKey.objects
            .filter(solitude_seller__user=request.user, pk=pk))
     if not key.count():
         # Either the record does not exist or it's not owned by the

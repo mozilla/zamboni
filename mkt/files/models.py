@@ -20,7 +20,7 @@ import mkt
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
-from mkt.site.models import ModelBase, OnChangeMixin, UncachedManagerBase
+from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.site.utils import smart_path
 
 log = commonware.log.getLogger('z.files')
@@ -259,8 +259,6 @@ class FileUpload(ModelBase):
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
-
-    objects = UncachedManagerBase()
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
