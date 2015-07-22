@@ -12,6 +12,7 @@ from django import http
 from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
@@ -928,9 +929,10 @@ def image_status(request, addon_id, addon, icon_size=64):
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
     else:
-        icons = os.path.exists(os.path.join(addon.get_icon_dir(), '%s-%s.png' %
-                                            (addon.id, icon_size)))
-    previews = all(os.path.exists(p.thumbnail_path)
+        icons = storage.exists(
+            os.path.join(addon.get_icon_dir(), '%s-%s.png' % (
+                addon.id, icon_size)))
+    previews = all(storage.exists(p.thumbnail_path)
                    for p in addon.get_previews())
     return {'overall': icons and previews,
             'icons': icons,

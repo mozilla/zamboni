@@ -1,6 +1,8 @@
 import os
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
@@ -33,7 +35,6 @@ from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
 from mkt.comm.models import user_has_perm_app
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
-from mkt.site.utils import HttpResponseSendFile
 
 
 class NoAuthentication(BaseAuthentication):
@@ -197,11 +198,7 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
         full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
                                  attach.filepath)
 
-        content_type = 'application/force-download'
-        if attach.is_image():
-            content_type = 'image'
-        return HttpResponseSendFile(
-            request, full_path, content_type=content_type)
+        return HttpResponseRedirect(storage.url(full_path))
 
     def create(self, request, note_id, *args, **kwargs):
         note = get_object_or_404(CommunicationNote, id=note_id)
