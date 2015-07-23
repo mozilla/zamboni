@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-19 10:15:38.504721\n"
+"PO-Revision-Date: 2015-07-22 16:49:42.554925\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -324,12 +324,12 @@ msgstr "Pesquisar complementos com <b>{0}</b>"
 #: media/js/common-all.js:20381 media/js/common-min.js:9
 #: media/js/impala-all.js:13357 media/js/impala-min.js:7
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298
 #: media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Administradores e editores devem fornecer uma senha para entrar."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303
 #: media/js/zamboni/mobile-min.js:5
@@ -366,7 +366,7 @@ msgstr "Houve um problema ao contatar o servidor."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Todos os direitos reservados"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
@@ -394,15 +394,15 @@ msgstr ""
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nome do seu tema"
 
 #: media/js/impala-all.js:12685 media/js/impala-min.js:7
 msgid "Stop Following"
-msgstr ""
+msgstr "Deixar de seguir"
 
 #: media/js/impala-all.js:12686 media/js/impala-min.js:7
 msgid "Following"
-msgstr ""
+msgstr "Seguindo"
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
@@ -1193,11 +1193,11 @@ msgstr ""
 #: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479
 #: media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
 msgid "Daily Users"
-msgstr ""
+msgstr "Usuários diários"
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Coleções criadas"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
@@ -1205,106 +1205,106 @@ msgstr "Complementos em uso"
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Complementos criados"
 
 #: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Complementos baixados"
 
 #: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Complementos atualizados"
 
 #: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
-msgstr ""
+msgstr "Análises escritas"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
-msgstr ""
+msgstr "Cadastros de usuários"
 
 #: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Assinantes"
 
 #: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
 msgid "Ratings"
-msgstr ""
+msgstr "Avaliações"
 
 #: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483
 #: media/js/zamboni/stats-min.js:6
 msgid "Sales"
-msgstr ""
+msgstr "Vendas"
 
 #: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482
 #: media/js/zamboni/stats-min.js:6
 msgid "Installs"
-msgstr ""
+msgstr "Instalações"
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Gerenciador de complementos"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Resultados da pesquisa"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422
 #: media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promoção na página inicial"
 
 #: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425
 #: media/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Em destaque na página inicial"
 
 #: media/js/zamboni/stats-all.js:15426 media/js/zamboni/stats-all.js:15427
 #: media/js/zamboni/stats-min.js:6
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Complementos em ascensão na página inicial"
 
 #: media/js/zamboni/stats-all.js:15428 media/js/zamboni/stats-min.js:6
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Mais populares na página inicial"
 
 #: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431
 #: media/js/zamboni/stats-min.js:6
 msgid "Detail Page"
-msgstr ""
+msgstr "Página de detalhes"
 
 #: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432
 #: media/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Página de detalhe (parte inferior)"
 
 #: media/js/zamboni/stats-all.js:15433 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Página de detalhes (Canal de Desenvolvimento)"
 
 #: media/js/zamboni/stats-all.js:15434 media/js/zamboni/stats-all.js:15435
 #: media/js/zamboni/stats-all.js:15436 media/js/zamboni/stats-min.js:6
 msgid "Often Used With"
-msgstr ""
+msgstr "Usado frequentemente com"
 
 #: media/js/zamboni/stats-all.js:15437 media/js/zamboni/stats-all.js:15438
 #: media/js/zamboni/stats-min.js:6
 msgid "Others By Author"
-msgstr ""
+msgstr "Outros desse autor"
 
 #: media/js/zamboni/stats-all.js:15439 media/js/zamboni/stats-all.js:15440
 #: media/js/zamboni/stats-min.js:6
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependências"
 
 #: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442
 #: media/js/zamboni/stats-min.js:6
 msgid "Upsell"
-msgstr ""
+msgstr "Divulgação"
 
 #: media/js/zamboni/stats-all.js:15444 media/js/zamboni/stats-min.js:6
 msgid "Sharing"
@@ -1312,11 +1312,11 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15445 media/js/zamboni/stats-min.js:6
 msgid "Category Pages"
-msgstr ""
+msgstr "Páginas de Categorias"
 
 #: media/js/zamboni/stats-all.js:15446 media/js/zamboni/stats-min.js:6
 msgid "Collections"
-msgstr ""
+msgstr "Coleções"
 
 #: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448
 #: media/js/zamboni/stats-min.js:6
@@ -1381,7 +1381,7 @@ msgstr ""
 #: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154
 #: media/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Número de contribuições"
 
 #: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
@@ -1393,31 +1393,31 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
 msgid "Usage"
-msgstr ""
+msgstr "Uso"
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
@@ -1622,27 +1622,27 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Avaliações nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Avaliações de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Vendas nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Vendas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalações nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
