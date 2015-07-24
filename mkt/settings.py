@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_nose',
     'raven.contrib.django',
+    'storages',
     'waffle',
 
     # Django contrib apps
