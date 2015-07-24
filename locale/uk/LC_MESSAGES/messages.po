@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-24 04:01:51.483617\n"
+"PO-Revision-Date: 2015-07-24 04:06:14.127166\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2551,7 +2551,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
-msgstr ""
+msgstr "Назва компанії"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
@@ -2571,11 +2571,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:385
 msgid "Address"
-msgstr ""
+msgstr "Адреса"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address 2"
-msgstr ""
+msgstr "Адреса 2"
 
 #: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
@@ -2591,7 +2591,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:395
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
@@ -2599,20 +2599,20 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
-msgstr ""
+msgstr "Номер платника ПДВ"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Номер банківського рахунку"
 
 #. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
 #: mkt/developers/forms_payments.py:409
 msgid "SWIFT code"
-msgstr ""
+msgstr "Код SWIFT"
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
-msgstr ""
+msgstr "Назва банку"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
@@ -2684,7 +2684,7 @@ msgstr ""
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
-msgstr ""
+msgstr "Розробники"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66
 #: templates/base.html:65
@@ -2898,7 +2898,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
-msgstr ""
+msgstr "Оператор"
 
 #: mkt/developers/views_payments.py:329
 msgid "A server error occurred when retrieving the application key."
@@ -2923,7 +2923,7 @@ msgstr ""
 #: mkt/developers/templates/developers/api.html:2
 #: mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid ""
@@ -2950,12 +2950,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Тип клієнта"
 
 #: mkt/developers/templates/developers/api.html:40
 #: mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Назва програми"
 
 #: mkt/developers/templates/developers/api.html:43
 #: mkt/developers/templates/developers/api.html:71
@@ -2964,15 +2964,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr ""
+msgstr "Створити"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Ключі OAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Ключ"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
