@@ -901,10 +901,11 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Pick a few common device features.
-        self.features = FeatureProfile(apps=True, audio=True, fullscreen=True,
-                                       geolocation=True, indexeddb=True,
-                                       sms=True).to_signature()
-        self.qs = {'q': 'something', 'pro': self.features, 'dev': 'firefoxos'}
+        self.features = FeatureProfile(
+            apps=True, audio=True, fullscreen=True, geolocation=True,
+            indexeddb=True, sms=True)
+        self.profile = self.features.to_signature()
+        self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
 
     def test_no_features(self):
         # Base test to make sure we find the app.
@@ -927,6 +928,11 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         obj = json.loads(res.content)['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_one_good_feature_base64(self):
+        self.profile = self.features.to_base64_signature()
+        self.qs['pro'] = self.profile
+        self.test_one_good_feature()
+
     def test_one_bad_feature(self):
         # Enable an app feature that doesn't match one in our profile.
         self.webapp.current_version.features.update(has_pay=True)
@@ -940,9 +946,8 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
 
     def test_all_good_features(self):
         # Enable app features so they exactly match our device profile.
-        fp = FeatureProfile.from_signature(self.features)
         self.webapp.current_version.features.update(
-            **dict(('has_%s' % k, v) for k, v in fp.items()))
+            **dict(('has_%s' % k, v) for k, v in self.features.items()))
         self.webapp.save()
         self.refresh('webapp')
 

@@ -7,7 +7,8 @@ import mock
 from nose.tools import eq_, ok_
 
 import mkt.site.tests
-from mkt.constants.features import APP_FEATURES, FeatureProfile
+from mkt.constants.features import (APP_FEATURES, FeaturesBitField,
+                                    FeatureProfile)
 
 
 MOCK_APP_FEATURES_LIMIT = 45
@@ -20,6 +21,8 @@ class TestFeaturesMixin(object):
     signature = '110022000000.%d.%d' % (
         MOCK_APP_FEATURES_LIMIT, settings.APP_FEATURES_VERSION)
     expected_features = ['apps', 'proximity', 'light_events', 'vibrate']
+    base64_signature = '=EYAIAAAA.%d.%d' % (
+        MOCK_APP_FEATURES_LIMIT, settings.APP_FEATURES_VERSION)
 
     def _test_profile_values(self, profile):
         for k, v in profile.iteritems():
@@ -55,8 +58,21 @@ class TestFeatureProfileFixed(TestFeaturesMixin, mkt.site.tests.TestCase):
         self.expected_features = []
         self.test_from_int()
 
+    def test_from_list(self):
+        bools = [False] * MOCK_APP_FEATURES_LIMIT
+        bools[0] = True  # apps
+        bools[4] = True  # light events
+        bools[15] = True  # proximity
+        bools[19] = True  # vibrate
+        profile = FeatureProfile.from_list(bools)
+        self._test_profile(profile)
+
     def test_from_signature(self):
         profile = FeatureProfile.from_signature(self.signature)
+        self._test_profile(profile)
+
+    def test_from_base64(self):
+        profile = FeatureProfile.from_signature(self.base64_signature)
         self._test_profile(profile)
 
     def _test_kwargs(self, prefix):
@@ -72,6 +88,11 @@ class TestFeatureProfileFixed(TestFeaturesMixin, mkt.site.tests.TestCase):
         self._test_kwargs('')
         self._test_kwargs('prefix_')
 
+    def test_to_base64(self):
+        profile = FeatureProfile.from_int(self.features)
+        signature = profile.to_base64_signature()
+        eq_(signature, self.base64_signature)
+
 
 class TestFeatureProfileDynamic(TestFeaturesMixin, mkt.site.tests.TestCase):
     def test_from_int_limit(self):
@@ -86,3 +107,61 @@ class TestFeatureProfileDynamic(TestFeaturesMixin, mkt.site.tests.TestCase):
         ok_(new_signature != self.signature)
         profile = FeatureProfile.from_signature(new_signature)
         self._test_profile_values(profile)
+
+
+class TestFeaturesBitField(mkt.site.tests.TestCase):
+    test_data = [True, False, False, False, False, False, False, True, True]
+
+    def test_basic(self):
+        bitfield = FeaturesBitField(8)
+        eq_(bitfield.values, [0])
+        bitfield = FeaturesBitField(9)
+        eq_(bitfield.values, [0, 0])
+        bitfield = FeaturesBitField(16)
+        eq_(bitfield.values, [0, 0])
+        bitfield = FeaturesBitField(53)
+        eq_(bitfield.values, [0, 0, 0, 0, 0, 0, 0])
+
+    def test_basic_values(self):
+        bitfield = FeaturesBitField(8, values=[0, 1, 3])
+        eq_(bitfield.values, [0, 1, 3])
+
+    def test_set(self):
+        bitfield = FeaturesBitField(9)
+        bitfield.set(0, True)
+        eq_(bitfield.values, [1, 0])
+        bitfield.set(1, True)
+        eq_(bitfield.values, [3, 0])
+        bitfield.set(8, True)
+        eq_(bitfield.values, [3, 1])
+
+    def test_get(self):
+        bitfield = FeaturesBitField(9)
+        eq_(bitfield.get(0), False)
+        bitfield.set(0, True)
+        eq_(bitfield.get(0), True)
+
+        eq_(bitfield.get(8), False)
+        bitfield.set(8, True)
+        eq_(bitfield.get(8), True)
+
+    def test_to_list(self):
+        bitfield = FeaturesBitField(9)
+        bitfield.set(0, True)
+        bitfield.set(7, True)
+        bitfield.set(8, True)
+        eq_(bitfield.to_list(), self.test_data)
+
+    def test_from_list(self):
+        bitfield = FeaturesBitField.from_list(self.test_data)
+        eq_(bitfield.values, [129, 1])
+        eq_(bitfield.to_list(), self.test_data)
+
+    def test_to_base64(self):
+        bitfield = FeaturesBitField.from_list(self.test_data)
+        eq_(bitfield.to_base64(), 'gQE=')
+
+    def test_from_base64(self):
+        bitfield = FeaturesBitField.from_base64('gQE=', len(self.test_data))
+        eq_(bitfield.to_list(), self.test_data)
+        eq_(bitfield.to_base64(), 'gQE=')
