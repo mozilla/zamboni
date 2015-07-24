@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-06-27 20:16+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-07-24 04:01:51.483617\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Некоректний тип джерела."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
@@ -75,7 +75,7 @@ msgstr "Опис:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Вкладення перевищує максимальний розмір %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
@@ -847,7 +847,7 @@ msgstr "Португалія"
 
 #: mkt/constants/bango.py:198 mkt/constants/regions.py:248
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Пуерто-Ріко"
 
 #: mkt/constants/bango.py:199 mkt/constants/regions.py:253
 msgid "Qatar"
@@ -855,7 +855,7 @@ msgstr "Катар"
 
 #: mkt/constants/bango.py:200 mkt/constants/regions.py:254
 msgid "Réunion"
-msgstr ""
+msgstr "Реюньйон"
 
 #: mkt/constants/bango.py:201 mkt/constants/regions.py:255
 msgid "Romania"
@@ -987,11 +987,11 @@ msgstr "Суринам"
 
 #: mkt/constants/bango.py:233 mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "Свальбард і Ян-Маєн"
 
 #: mkt/constants/bango.py:234 mkt/constants/regions.py:278
 msgid "Swaziland"
-msgstr ""
+msgstr "Свазіленд"
 
 #: mkt/constants/bango.py:235 mkt/constants/regions.py:277
 msgid "Sweden"
@@ -1278,51 +1278,51 @@ msgstr "Рівень 4"
 
 #: mkt/constants/base.py:264
 msgid "Level 5"
-msgstr ""
+msgstr "Рівень 5"
 
 #: mkt/constants/base.py:265
 msgid "Level 6"
-msgstr ""
+msgstr "Рівень 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Книги і Комікси"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Бізнес"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Навчання"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Розваги"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Продукти і Напої"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Діти"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
-msgstr ""
+msgstr "Ігри"
 
 #: mkt/constants/categories.py:12
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Здоров'я і Фітнес"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Гумор"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Інтернет"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1338,11 +1338,11 @@ msgstr "Музика"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Новини"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Персоналізація"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1358,7 +1358,7 @@ msgstr "Посилання"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Наука і Техніка"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1374,15 +1374,15 @@ msgstr "Спорт"
 
 #: mkt/constants/categories.py:27
 msgid "Travel"
-msgstr ""
+msgstr "Подорожі"
 
 #: mkt/constants/categories.py:28
 msgid "Utilities"
-msgstr ""
+msgstr "Утиліти"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Погода"
 
 #: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
@@ -1392,27 +1392,27 @@ msgstr "Інструменти"
 
 #: mkt/constants/comm.py:43
 msgid "No action"
-msgstr ""
+msgstr "Немає дії"
 
 #: mkt/constants/comm.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Заборонено"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Коментар рецензента"
 
 #: mkt/constants/comm.py:48 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
-msgstr ""
+msgstr "Передано вище"
 
 #: mkt/constants/comm.py:49
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Особистий коментар рецензента"
 
 #: mkt/constants/comm.py:50
 msgid "App resubmission"
-msgstr ""
+msgstr "Повторне представлення програми"
 
 #: mkt/constants/comm.py:52 mkt/site/log.py:426
 msgid "Escalation cleared"
@@ -1930,7 +1930,7 @@ msgstr ""
 
 #: mkt/constants/features.py:340
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:341
 msgid "The app requires access to the Near Field Communication (NFC) API."
@@ -1966,7 +1966,7 @@ msgstr ""
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Відхилено"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
@@ -1991,12 +1991,12 @@ msgstr ""
 
 #: mkt/constants/payments.py:120
 msgid "Completed"
-msgstr ""
+msgstr "Завершено"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27
 #: mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Настільний Firefox"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
@@ -2004,7 +2004,7 @@ msgstr ""
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:46
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac і Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
@@ -2013,11 +2013,11 @@ msgstr ""
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
-msgstr ""
+msgstr "Планшети"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Для всіх вікових груп"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
@@ -2076,7 +2076,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Європа"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2116,43 +2116,43 @@ msgstr ""
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Лівія"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Ліхтенштейн"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Сен-Мартен (французька частина)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Македонія, колишня югославська республіка"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Палестина, Держава"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
-msgstr ""
+msgstr "Росія"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
-msgstr ""
+msgstr "Сенегал"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Острів Святої Єлени, острів Вознесіння та острови Трістан-да-Кунья"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
-msgstr ""
+msgstr "Тайвань"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
-msgstr ""
+msgstr "Танзанія"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
@@ -2160,7 +2160,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
-msgstr ""
+msgstr "Венесуела"
 
 #: mkt/constants/reviewers.py:7
 #: mkt/developers/templates/developers/validate_app.html:16
@@ -2421,7 +2421,7 @@ msgstr ""
 #: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Країна"
 
 #: mkt/developers/forms.py:1112
 #: mkt/developers/templates/developers/transactions.html:41
@@ -2433,17 +2433,17 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Програма"
 
 #: mkt/developers/forms.py:1114
 msgid "Transaction Type"
-msgstr ""
+msgstr "Тип транзакції"
 
 #: mkt/developers/forms.py:1117
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
-msgstr ""
+msgstr "ID транзакції"
 
 #: mkt/developers/forms.py:1123
 msgid "From"
@@ -2455,11 +2455,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1137
 msgid "Web site"
-msgstr ""
+msgstr "Веб-сайт"
 
 #: mkt/developers/forms.py:1138
 msgid "Command line"
-msgstr ""
+msgstr "Командний рядок"
 
 #: mkt/developers/forms.py:1159
 msgid ""
