@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import traceback
 import urlparse
 import uuid
@@ -61,8 +62,17 @@ def validator(upload_id, **kw):
         log.info(u'[FileUpload:%s] Does not exist.' % upload_id)
         return
 
+    temp_path = None
+    # Make a copy of the file if it's a packaged app since we can't assume the
+    # uploaded file is on the local filesystem.
+    if upload.name.endswith('.zip'):
+        temp_path = tempfile.mktemp()
+        with open(temp_path, 'w') as fd:
+            fd.write(storage.open(upload.path, 'r').read())
+
     try:
-        validation_result = run_validator(upload.path, url=kw.get('url'))
+        validation_result = run_validator(temp_path or upload.path,
+                                          url=kw.get('url'))
         if upload.validation:
             # If there's any preliminary validation result, merge it with the
             # actual validation result.
@@ -92,6 +102,10 @@ def validator(upload_id, **kw):
         # Don't raise if we're being eager, setting the error is enough.
         if not settings.CELERY_ALWAYS_EAGER:
             raise
+
+    # Clean up any copied files if we made them.
+    if temp_path:
+        os.unlink(temp_path)
 
 
 @task
