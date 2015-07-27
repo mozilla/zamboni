@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2014-09-06 11:46+0200\n"
-"Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
+"PO-Revision-Date: 2015-07-27 17:37+0000\n"
+"Last-Translator: Nicofiguei <nico.figueira.mahe@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
-"X-POOTLE-MTIME: 1404691562.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1438018656.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -54,20 +54,20 @@ msgstr ""
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ce système n'accepte pas l'installation d'applications."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Accepter et installer"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Ajouter à {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Télécharger maintenant"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -75,7 +75,7 @@ msgstr ""
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Vous avez besoin d'utiliser Firefox 10.0 ou supérieur."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
@@ -113,20 +113,20 @@ msgstr ""
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement…"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> caractère restant."
+msgstr[1] "<b>{0}</b> caractères restants."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} étoile"
+msgstr[1] "{0} étoiles"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
@@ -248,7 +248,7 @@ msgstr "Recherche de modules pour <b>{0}</b>"
 
 #: media/js/common-all.js:20381 media/js/common-min.js:9 media/js/impala-all.js:13357 media/js/impala-min.js:7
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
@@ -335,7 +335,7 @@ msgstr "Vous avez annulé l'envoi."
 
 #: media/js/common/upload-packaged-app.js:52 media/js/zamboni/devhub-all.js:293 media/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
-msgstr "Sélectionnez un fichier ..."
+msgstr "Sélectionnez un fichier..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
