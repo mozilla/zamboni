@@ -21,6 +21,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.operators.models import OperatorPermission
+from mkt.prices.models import Price
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.filters import SortingFilter
 from mkt.search.views import SearchView
@@ -631,6 +632,11 @@ class TestSearchView(RestOAuth, ESTestCase):
         self.make_premium(self.webapp)
         self.user = UserProfile.objects.get(pk=2519)
 
+        # Prices stuff. This should have happened once before during the life
+        # of the worker thread. make_premium() erases that cache so we need to
+        # rebuild it to avoid those queries being counted later in the test.
+        Price.transformer([])
+
         # Payment account stuff. We need to create one to avoid useless queries
         # made when we can't find the payment account in Webapp model.
         self.seller = SolitudeSeller.objects.create(
@@ -652,6 +658,8 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['price'], '1.00')
+        eq_(obj['price_locale'], '$1.00')
 
     def test_premium_types_empty(self):
         with self.assertNumQueries(0):

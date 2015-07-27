@@ -40,7 +40,7 @@ from mkt.constants.payments import PROVIDER_CHOICES
 from mkt.constants.regions import RESTOFWORLD
 from mkt.files.models import File, nfd_str
 from mkt.files.utils import parse_addon, WebAppParser
-from mkt.prices.models import AddonPremium, Price
+from mkt.prices.models import AddonPremium
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
 from mkt.site.decorators import skip_cache, use_master, write
@@ -637,16 +637,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # FIXME: set all_previews to empty list on addons without previews.
 
     @staticmethod
-    def attach_prices(addons, addon_dict=None):
-        # FIXME: merge with attach_prices transformer below.
+    def attach_premiums(addons, addon_dict=None):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        # There's a constrained amount of price tiers, may as well load
-        # them all and let cache machine keep them cached.
-        prices = dict((p.id, p) for p in Price.objects.all())
         # Attach premium addons.
-        qs = AddonPremium.objects.filter(addon__in=addons)
+        qs = (AddonPremium.objects.select_related('price')
+                                  .filter(addon__in=addons))
+
         premium_dict = dict((ap.addon_id, ap) for ap in qs)
 
         # Attach premiums to addons, making sure to attach None to free addons
@@ -655,9 +653,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             if addon.is_premium():
                 addon_p = premium_dict.get(addon.id)
                 if addon_p:
-                    price = prices.get(addon_p.price_id)
-                    if price:
-                        addon_p.price = price
                     addon_p.addon = addon
                 addon._premium = addon_p
             else:
@@ -978,8 +973,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # therefore don't have translations.
         Webapp.attach_previews(apps, apps_dict, no_transforms=True)
 
-        # Attach prices.
-        Webapp.attach_prices(apps, apps_dict)
+        # Attach AddonPremium instances.
+        Webapp.attach_premiums(apps, apps_dict)
 
         # FIXME: re-use attach_devices instead ?
         for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
