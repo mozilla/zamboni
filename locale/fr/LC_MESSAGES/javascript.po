@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-27 17:37+0000\n"
-"Last-Translator: Nicofiguei <nico.figueira.mahe@gmail.com>\n"
+"PO-Revision-Date: 2015-07-27 21:19+0000\n"
+"Last-Translator: Porkepix <porkepix@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438018656.0\n"
+"X-POOTLE-MTIME: 1438031951.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -275,7 +275,7 @@ msgstr "La vidéo doit être au format WebM."
 #: media/js/impala-all.js:10883 media/js/impala-min.js:6 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34 media/js/zamboni/devhub-all.js:275
 #: media/js/zamboni/devhub-all.js:746 media/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
-msgstr "Une erreur est survenue pendant le contact du serveur."
+msgstr "Une erreur est survenue durant la connexion au serveur."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
@@ -605,7 +605,7 @@ msgstr[1] "Supprimer le compte de paiement « {0} » retirera le moyen de paieme
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr "{appName} comptes de paiement :"
+msgstr "Comptes de paiement de {appName} :"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/devhub-all.js:2765 media/js/zamboni/devhub-all.js:3020 media/js/zamboni/devhub-all.js:3039
@@ -873,8 +873,8 @@ msgstr ""
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} fichier"
+msgstr[1] "{files} fichiers"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
@@ -955,11 +955,11 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeté"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Approuvé"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
@@ -983,7 +983,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
 msgid "Experimental"
-msgstr ""
+msgstr "Expérimental"
 
 #: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require Newer Version of {0}"
@@ -1027,7 +1027,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Collections créées"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
@@ -1203,23 +1203,23 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
@@ -1476,7 +1476,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
@@ -1520,7 +1520,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Plus d'informations…"
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
@@ -1529,4 +1529,4 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Date"
