@@ -27,17 +27,11 @@ CACHE_PREFIX = 'dev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-CACHE_MACHINE_ENABLED = False
-
 SYSLOG_TAG = "http_app_mkt_dev"
 SYSLOG_TAG2 = "http_app_mkt_dev_timer"
 SYSLOG_CSP = "http_app_mkt_dev_csp"
 
 STATSD_PREFIX = 'marketplace-dev'
-
-# Redis
-REDIS_BACKEND = getattr(
-    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
 
 # Celery
 BROKER_URL = private_mkt.BROKER_URL

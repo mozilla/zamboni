@@ -77,7 +77,7 @@ class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
                               RestSharedSecretAuthentication]
 
     def get_queryset(self):
-        return Webapp.objects.no_cache().filter(
+        return Webapp.objects.filter(
             installed__user=self.request.user,
             installed__install_type=INSTALL_TYPE_USER).order_by(
                 '-installed__created')

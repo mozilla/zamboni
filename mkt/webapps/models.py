@@ -19,7 +19,6 @@ from django.db.models import signals as dbsignals, Max, Q
 from django.dispatch import receiver
 from django.utils.translation import trans_real as translation
 
-import caching.base as caching
 import commonware.log
 from cache_nuggets.lib import memoize, memoize_key
 from django_extensions.db.fields.json import JSONField
@@ -43,7 +42,7 @@ from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
-from mkt.site.decorators import skip_cache, use_master, write
+from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
@@ -191,15 +190,13 @@ def attach_translations(addons):
     attach_trans_dict(Webapp, addons)
 
 
-class AddonUser(caching.CachingMixin, models.Model):
+class AddonUser(models.Model):
     addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
     role = models.PositiveSmallIntegerField(default=mkt.AUTHOR_ROLE_OWNER,
                                             choices=mkt.AUTHOR_CHOICES)
     listed = models.BooleanField(_lazy(u'Listed'), default=True)
     position = models.IntegerField(default=0)
-
-    objects = caching.CachingManager()
 
     def __init__(self, *args, **kwargs):
         super(AddonUser, self).__init__(*args, **kwargs)
@@ -343,7 +340,6 @@ class WebappManager(ManagerBase):
         return self.filter(status__in=mkt.LISTED_STATUSES,
                            disabled_by_user=False)
 
-    @skip_cache
     def pending_in_region(self, region):
         """
         Apps that have been approved by reviewers but unapproved by
@@ -748,7 +744,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         Get the queries used to calculate addon.last_updated.
         """
-        return (Webapp.objects.no_cache()
+        return (Webapp.objects
                 .filter(status=mkt.STATUS_PUBLIC,
                         versions__files__status=mkt.STATUS_PUBLIC)
                 .values('id')
@@ -995,10 +991,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return apps
 
         ids = set(app.id for app in apps)
-        versions = (Version.objects.no_cache().filter(addon__in=ids)
+        versions = (Version.objects.filter(addon__in=ids)
                     .select_related('addon'))
         vids = [v.id for v in versions]
-        files = (File.objects.no_cache().filter(version__in=vids)
+        files = (File.objects.filter(version__in=vids)
                              .select_related('version'))
 
         # Attach the files to the versions.
@@ -1021,7 +1017,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return None
 
         try:
-            return (self.versions.no_cache()
+            return (self.versions
                     .filter(files__status=mkt.STATUS_PUBLIC)
                     .extra(where=[
                         """
@@ -1034,7 +1030,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    @write
+    @use_master
     def update_version(self, ignore=None, _signal=True):
         """
         Returns true if we updated the field.
@@ -1969,7 +1965,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         if not created:
             info.update(**data)
 
-    @write
+    @use_master
     def set_content_ratings(self, data):
         """
         Central method for setting content ratings.
@@ -2024,7 +2020,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         tasks.index_webapps.delay([self.id])
 
-    @write
+    @use_master
     def set_descriptors(self, data):
         """
         Sets IARC rating descriptors on this app.
@@ -2042,7 +2038,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             rd.update(modified=datetime.datetime.now(),
                       **create_kwargs)
 
-    @write
+    @use_master
     def set_interactives(self, data):
         """
         Sets IARC interactive elements on this app.

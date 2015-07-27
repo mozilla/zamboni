@@ -160,7 +160,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.file_path.startswith(langpack.path_prefix))
         ok_(os.path.exists(langpack.file_path))
         eq_(langpack.get_manifest_json(), self.expected_manifest)
-        ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
+        ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         return langpack
 
@@ -189,7 +189,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.file_path != original_file_path)
         ok_(langpack.file_version > original_file_version)
         ok_(os.path.exists(langpack.file_path))
-        ok_(LangPack.objects.no_cache().get(pk=langpack.uuid))
+        ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         ok_(langpack.manifest != original_manifest)
         # We're supposed to have busted the old minifest cache.

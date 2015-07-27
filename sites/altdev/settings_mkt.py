@@ -32,10 +32,6 @@ SYSLOG_CSP = "http_app_mkt_altdev_csp"
 
 STATSD_PREFIX = 'marketplace-dev'
 
-# Redis
-REDIS_BACKEND = getattr(
-    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
-
 # Celery
 BROKER_URL = private_mkt.BROKER_URL
 

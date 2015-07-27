@@ -1221,7 +1221,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         self.mock_browser_id()
 
     def get_app(self):
-        return Webapp.objects.no_cache().get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
@@ -3796,7 +3796,7 @@ class TestQueueSort(AppReviewerTest):
         Test that apps are sorted in order specified in GET params.
         """
         rf = RequestFactory()
-        qs = Webapp.objects.no_cache().all()
+        qs = Webapp.objects.all()
 
         # Test apps are sorted by created/asc by default.
         req = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
@@ -3901,7 +3901,7 @@ class TestQueueSort(AppReviewerTest):
 
         # And check it also comes out top of waiting time with Webapp model.
         rf = RequestFactory()
-        qs = Webapp.objects.no_cache().all()
+        qs = Webapp.objects.all()
 
         # Test apps are sorted by created/asc by default.
         req = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
@@ -3919,7 +3919,7 @@ class TestQueueSort(AppReviewerTest):
         version_1 = self.apps[1].versions.get()
         version_1.update(nomination=days_ago(2))
 
-        qs = (Version.objects.no_cache().filter(
+        qs = (Version.objects.filter(
               files__status=mkt.STATUS_PENDING,
               addon__disabled_by_user=False,
               addon__status=mkt.STATUS_PENDING)

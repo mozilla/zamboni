@@ -3,12 +3,12 @@
 from celery import task
 
 from mkt.site.utils import chunked
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.webapps.models import Webapp
 
 
 @task
-@write
+@use_master
 def reindex_reviews(addon_id, **kw):
     try:
         # Emit post-save signals so ES gets the correct bayesian ratings.

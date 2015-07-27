@@ -162,25 +162,6 @@ def path():
     return status, filepath_results
 
 
-def redis():
-    # Check Redis
-    redis_results = [None, 'REDIS_BACKEND is not set']
-    status = 'REDIS_BACKEND is not set'
-    if getattr(settings, 'REDIS_BACKEND', False):
-        from caching.invalidation import get_redis_backend
-        status = ''
-
-        try:
-            redis = get_redis_backend()
-            redis_results = redis.info()
-        except Exception, e:
-            redis_results = None
-            status = ('Failed to chat with redis')
-            monitor_log.critical('Failed to chat with redis: (%s)' % e)
-
-    return status, redis_results
-
-
 # The signer check actually asks the signing server to sign something. Do this
 # once per nagios check, once per web head might be a bit much. The memoize
 # slows it down a bit, by caching the result for 15 seconds.

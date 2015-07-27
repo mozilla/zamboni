@@ -188,7 +188,7 @@ class TestCacheNamespaces(unittest.TestCase):
 
     def setUp(self):
         cache.clear()
-        self.namespace = 'redis-is-dead'
+        self.namespace = 'my-test-namespace'
 
     @mock.patch('mkt.site.utils.epoch')
     def test_no_preexisting_key(self, epoch_mock):

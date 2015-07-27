@@ -32,7 +32,6 @@ import chardet
 import commonware.log
 import jinja2
 import pytz
-from caching.base import CachingQuerySet
 from cef import log_cef as _log_cef
 from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
@@ -519,12 +518,6 @@ class CachedProperty(object):
         value = obj.__dict__.get(self.__name__, _missing)
         if value is _missing:
             value = self.func(obj)
-            if isinstance(value, CachingQuerySet):
-                # Work around a bug in django-cache-machine that
-                # causes deadlock or infinite recursion if
-                # CachingQuerySets are cached before they run their
-                # query.
-                value._fetch_all()
             obj.__dict__[self.__name__] = value
         return value
 

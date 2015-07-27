@@ -18,7 +18,7 @@ from lib.pay_server import client as solitude
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.decorators import can_be_purchased
 from mkt.purchase.models import Contribution
-from mkt.site.decorators import json_view, login_required, write
+from mkt.site.decorators import json_view, login_required, use_master
 from mkt.site.utils import log_cef
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
@@ -33,7 +33,7 @@ app_view = app_view_factory(qs=Webapp.objects.valid)
 
 @login_required
 @app_view
-@write
+@use_master
 @require_POST
 @json_view
 @can_be_purchased
@@ -70,7 +70,7 @@ def _prepare_pay(request, addon):
 
 @login_required
 @app_view
-@write
+@use_master
 @json_view
 def pay_status(request, addon, contrib_uuid):
     """
@@ -108,7 +108,7 @@ def _get_user_profile(request, buyer_email):
 
 
 @csrf_exempt
-@write
+@use_master
 @require_POST
 def postback(request):
     """Verify signature and set contribution to paid."""
@@ -241,7 +241,7 @@ def free_postback(request, contrib, trans_id, user_profile):
 
 
 @csrf_exempt
-@write
+@use_master
 @require_POST
 def chargeback(request):
     """
