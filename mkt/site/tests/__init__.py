@@ -20,7 +20,6 @@ from django.test.client import Client, RequestFactory
 from django.utils import translation
 from django.utils.translation import trans_real
 
-import caching
 import elasticsearch
 import mock
 import tower
@@ -298,10 +297,6 @@ class MockBrowserIdMixin(object):
 
     def mock_browser_id(self):
         cache.clear()
-        # Override django-cache-machine caching.base.TIMEOUT because it's
-        # computed too early, before settings_test.py is imported.
-        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
-
         real_login = self.client.login
 
         def fake_login(email, password=None):

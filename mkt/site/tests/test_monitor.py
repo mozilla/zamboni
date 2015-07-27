@@ -20,7 +20,8 @@ class TestMonitor(mkt.site.tests.TestCase):
     def test_memcache(self, mock_socket):
         mocked_caches = {
             'default': {
-                'BACKEND': 'caching.backends.memcached.MemcachedCache',
+                'BACKEND': 'django.core.cache.backends.memcached'
+                           '.MemcachedCache',
                 'LOCATION': '127.0.0.1:6666'
             }
         }
@@ -57,11 +58,6 @@ class TestMonitor(mkt.site.tests.TestCase):
 
     def test_path(self):
         status, path_result = monitors.path()
-        eq_(status, '')
-
-    @patch('caching.invalidation.get_redis_backend')
-    def test_redis(self, get_redis_backend):
-        status, redis_result = monitors.redis()
         eq_(status, '')
 
     def test_settings_check(self):

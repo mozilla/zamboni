@@ -29,7 +29,7 @@ class TestOwnership(mkt.site.tests.TestCase):
         return formset(*args, **kw)
 
     def get_webapp(self):
-        return Webapp.objects.no_cache().get(id=337141)
+        return Webapp.objects.get(id=337141)
 
 
 class TestEditAuthor(TestOwnership):
@@ -59,7 +59,7 @@ class TestEditAuthor(TestOwnership):
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
-        q = (AddonUser.objects.no_cache().filter(addon=self.webapp.id)
+        q = (AddonUser.objects.filter(addon=self.webapp.id)
              .values_list('user', flat=True))
         eq_(list(q.all()), [31337])
 

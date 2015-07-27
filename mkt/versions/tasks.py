@@ -2,14 +2,14 @@ import logging
 
 from celery import task
 
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 
 
 log = logging.getLogger('z.task')
 
 
 @task
-@write
+@use_master
 def update_supported_locales_single(id, latest=False, **kw):
     """
     Update supported_locales for an individual app. Set latest=True to use the

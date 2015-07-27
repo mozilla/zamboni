@@ -163,7 +163,7 @@ class Version(ModelBase):
     def all_activity(self):
         from mkt.developers.models import VersionLog
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
         return al
 
     @cached_property(writable=True)
@@ -205,14 +205,11 @@ class Version(ModelBase):
         if not versions:
             return
 
-        # FIXME: find out why we have no_cache() here and try to remove it.
-        files = File.objects.filter(version__in=ids).no_cache()
-
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
-        file_dict = rollup(files)
+        file_dict = rollup(File.objects.filter(version__in=ids))
 
         for version in versions:
             v_id = version.id
@@ -230,7 +227,7 @@ class Version(ModelBase):
             return
 
         al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')

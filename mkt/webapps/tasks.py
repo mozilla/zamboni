@@ -32,7 +32,7 @@ from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
-from mkt.site.decorators import set_task_user, use_master, write
+from mkt.site.decorators import set_task_user, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import chunked, JSONEncoder
@@ -47,7 +47,7 @@ task_log = logging.getLogger('z.task')
 
 
 @task
-@write
+@use_master
 def version_changed(addon_id, **kw):
     update_last_updated(addon_id)
 
@@ -94,7 +94,7 @@ def _log(webapp, message, rereview=False, exc_info=False):
 
 
 @task
-@write
+@use_master
 def update_manifests(ids, **kw):
     retry_secs = 3600
     task_log.info('[%s@%s] Update manifests.' %
@@ -287,7 +287,7 @@ def _update_manifest(id, check_hash, failed_fetches):
 
 
 @post_request_task
-@write
+@use_master
 def update_cached_manifests(id, **kw):
     try:
         webapp = Webapp.objects.get(pk=id)
@@ -304,7 +304,7 @@ def update_cached_manifests(id, **kw):
 
 
 @task
-@write
+@use_master
 def add_uuids(ids, **kw):
     for chunk in chunked(ids, 50):
         for app in Webapp.objects.filter(id__in=chunk):
@@ -314,7 +314,7 @@ def add_uuids(ids, **kw):
 
 
 @task
-@write
+@use_master
 def update_supported_locales(ids, **kw):
     """
     Task intended to run via command line to update all apps' supported locales
@@ -330,14 +330,14 @@ def update_supported_locales(ids, **kw):
 
 
 @post_request_task(acks_late=True)
-@write
+@use_master
 def index_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.index_ids directly.
     WebappIndexer.index_ids(ids, no_delay=True)
 
 
 @post_request_task(acks_late=True)
-@write
+@use_master
 def unindex_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.unindexer directly.
     WebappIndexer.unindexer(ids)
@@ -561,7 +561,7 @@ def _fix_missing_icons(id):
 
 
 @task
-@write
+@use_master
 def fix_missing_icons(ids, **kw):
     for id in ids:
         _fix_missing_icons(id)
@@ -589,14 +589,14 @@ def _regenerate_icons_and_thumbnails(pk):
 
 
 @task
-@write
+@use_master
 def regenerate_icons_and_thumbnails(ids, **kw):
     for pk in ids:
         _regenerate_icons_and_thumbnails(pk)
 
 
 @task
-@write
+@use_master
 def import_manifests(ids, **kw):
     for app in Webapp.objects.filter(id__in=ids):
         for version in app.versions.all():
@@ -671,7 +671,7 @@ def set_storefront_data(app_id, disable=False, **kw):
 
 
 @task
-@write
+@use_master
 def fix_excluded_regions(ids, **kw):
     """
     Task to fix an app's excluded_region set.
@@ -741,7 +741,7 @@ def find_abuse_escalations(addon_id, **kw):
 
 
 @task
-@write
+@use_master
 def populate_is_offline(ids, **kw):
     for webapp in Webapp.objects.filter(pk__in=ids).iterator():
         if webapp.guess_is_offline():
@@ -749,7 +749,7 @@ def populate_is_offline(ids, **kw):
 
 
 @task
-@write
+@use_master
 def adjust_categories(ids, **kw):
     NEW_APP_CATEGORIES = {
         425986: ['weather'],

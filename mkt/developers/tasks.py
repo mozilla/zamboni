@@ -29,7 +29,7 @@ from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
-from mkt.site.decorators import set_modified_on, write
+from mkt.site.decorators import set_modified_on, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import remove_icons, resize_image, strip_bom
@@ -50,7 +50,7 @@ REQUESTS_HEADERS = {
 
 
 @post_request_task
-@write
+@use_master
 def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
@@ -95,7 +95,7 @@ def validator(upload_id, **kw):
 
 
 @task
-@write
+@use_master
 def file_validator(file_id, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
@@ -309,7 +309,7 @@ def save_icon(obj, icon_content):
 
 
 @post_request_task
-@write
+@use_master
 def fetch_icon(pk, file_pk=None, **kw):
     """
     Downloads a webapp icon from the location specified in the manifest.
@@ -453,7 +453,7 @@ def _fetch_manifest(url, upload=None):
 
 
 @post_request_task
-@write
+@use_master
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -513,7 +513,7 @@ def region_email(ids, region_ids, **kw):
 
 
 @task
-@write
+@use_master
 def region_exclude(ids, region_ids, **kw):
     regions = [REGIONS_CHOICES_ID_DICT[id] for id in region_ids]
     region_names = ', '.join(sorted([unicode(r.name) for r in regions]))
@@ -540,7 +540,7 @@ def save_test_plan(f, filename, addon):
 
 
 @task
-@write
+@use_master
 def refresh_iarc_ratings(ids, **kw):
     """
     Refresh old or corrupt IARC ratings by re-fetching the certificate.

@@ -2,12 +2,12 @@
 
 from celery import task
 
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.webapps.models import AddonExcludedRegion
 
 
 @task
-@write
+@use_master
 def _task(**kw):
     # 3 - Canada
     # 5 - Australia

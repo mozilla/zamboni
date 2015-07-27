@@ -232,7 +232,7 @@ class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
             raise PermissionDenied('Not allowed to alter that object.')
 
         if self.request.method != 'POST':
-            addon = obj.__class__.objects.no_cache().get(pk=obj.pk).addon
+            addon = obj.__class__.objects.get(pk=obj.pk).addon
             if not obj.addon == addon:
                 # This should be a 400 error.
                 raise PermissionDenied('Cannot change the add-on.')

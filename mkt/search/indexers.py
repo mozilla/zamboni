@@ -13,7 +13,7 @@ from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants.regions import MATURE_REGION_IDS
 from mkt.search.utils import get_boost
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.translations.utils import to_language
 
 
@@ -501,7 +501,7 @@ class BaseIndexer(object):
 
 
 @post_request_task(acks_late=True)
-@write
+@use_master
 def index(ids, indexer, **kw):
     """
     Given a list of IDs and an indexer, index into ES.

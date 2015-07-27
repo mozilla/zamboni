@@ -7,7 +7,7 @@ from celery import task
 import mkt
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.ratings.models import Review
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.users.models import UserProfile
@@ -17,7 +17,7 @@ log = logging.getLogger('z.stats')
 
 
 @task
-@write
+@use_master
 def update_monolith_stats(metric, date, **kw):
     log.info('Updating monolith statistics (%s) for (%s)' % (metric, date))
 

@@ -554,8 +554,7 @@ class TestUpdateNames(mkt.site.tests.TestCase):
         self.addon.save()
 
     def get_name(self, app, locale='en-US'):
-        return Translation.objects.no_cache().get(id=app.name_id,
-                                                  locale=locale)
+        return Translation.objects.get(id=app.name_id, locale=locale)
 
     def check_names(self, names):
         """`names` in {locale: name} format."""

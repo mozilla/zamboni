@@ -55,9 +55,6 @@ AUTHENTICATION_BACKENDS = ('django_browserid.auth.BrowserIDBackend',)
 
 CACHE_MIDDLEWARE_SECONDS = 60 * 3
 
-# A Django cache machine setting, that hasn't been updated to use the
-# new PREFIX in the CACHE settings.
-#
 # A non-standard setting, but moved up here so it can be accessed by
 # the CACHES settings.
 CACHE_PREFIX = 'marketplace:%s' % build_id
@@ -70,7 +67,7 @@ CACHE_PREFIX = 'marketplace:%s' % build_id
 # Caching is required for CSRF to work, please do not use the dummy cache.
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'zamboni',
     }
 }
@@ -79,14 +76,12 @@ if os.environ.get('MEMCACHE_URL'):
     # If MEMCACHE_URL is specified, eg: in Docker, let's use that instead.
     CACHES = {
         'default': {
-            'BACKEND': 'caching.backends.memcached.MemcachedCache',
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
             'LOCATION': os.environ['MEMCACHE_URL'],
             'TIMEOUT': 500,
             'KEY_PREFIX': CACHE_PREFIX,
         },
     }
-
-CACHE_MACHINE_ENABLED = False
 
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
@@ -220,8 +215,6 @@ LOGOUT_REDIRECT_URL = '/developers/'
 LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
-        'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.WARNING},
         'elasticsearch': {'level': logging.DEBUG},
         # Set to DEBUG if you want pretty printed ES queries and responses.
         'elasticsearch.trace': {'handlers': ['null']},
@@ -571,10 +564,6 @@ BROWSERID_CREATE_USER = False
 NATIVE_FXA_VERIFICATION_URL = 'https://verifier.accounts.firefox.com/v2'
 NATIVE_FXA_ISSUER = 'api.accounts.firefox.com'
 
-# Number of seconds a count() query should be cached.  Keep it short because
-# it's not possible to invalidate these queries.
-CACHE_COUNT_TIMEOUT = 60
-
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
@@ -696,9 +685,6 @@ ES_TIMEOUT = 30
 
 # When True include full tracebacks in JSON. This is useful for QA on preview.
 EXPOSE_VALIDATOR_TRACEBACKS = True
-
-# Django cache machine settings.
-FETCH_BY_ID = True
 
 # The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576
@@ -853,9 +839,9 @@ def JINJA_CONFIG():
     from django.conf import settings
     from django.core.cache import cache
     config = {'extensions': ['tower.template.i18n',
-                             'caching.ext.FragmentCacheExtension',
                              'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
+                             'jinja2.ext.with_',
+                             'jinja2.ext.loopcontrols'],
               'finalize': lambda x: x if x is not None else ''}
     if False and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
@@ -984,9 +970,6 @@ QA_APP_ID = 0
 
 # Read-only mode setup.
 READ_ONLY = False
-
-REDIS_BACKEND = 'redis://{0}:6379?socket_timeout=0.1'.format(
-                os.environ.get('REDIS_HOST', 'localhost'))
 
 REST_FRAMEWORK = {
     'DEFAULT_MODEL_SERIALIZER_CLASS':

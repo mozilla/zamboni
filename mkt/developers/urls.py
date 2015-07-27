@@ -13,7 +13,7 @@ from mkt.developers.api_payments import (
 from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
 from mkt.receipts.urls import test_patterns
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 
 from . import views
 from . import views_payments
@@ -127,7 +127,7 @@ ajax_patterns = patterns(
         name='mkt.developers.apps.ajax.image.status'),
 )
 
-urlpatterns = decorate(write, patterns(
+urlpatterns = decorate(use_master, patterns(
     '',
     # Redirect people who have /apps/ instead of /app/.
     ('^apps/\d+/.*',

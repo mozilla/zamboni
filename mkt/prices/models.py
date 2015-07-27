@@ -22,7 +22,7 @@ from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.utils import get_locale_from_lang
 from mkt.users.models import UserProfile
@@ -320,7 +320,7 @@ def add_uuid(sender, **kw):
             record.save()
 
 
-@write
+@use_master
 @receiver(models.signals.post_save, sender=Contribution,
           dispatch_uid='create_addon_purchase')
 def create_addon_purchase(sender, instance, **kw):

@@ -31,7 +31,7 @@ from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.reviewers.views import reviewer_required
-from mkt.site.decorators import json_view, write
+from mkt.site.decorators import json_view, use_master
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Installed, Webapp
@@ -104,7 +104,7 @@ def _record(request, addon):
 @json_view
 @app_all_view
 @require_POST
-@write
+@use_master
 def record_anon(request, addon):
     return _record(request, addon)
 
@@ -112,7 +112,7 @@ def record_anon(request, addon):
 @json_view
 @app_all_view
 @require_POST
-@write
+@use_master
 def record(request, addon):
     return _record(request, addon)
 

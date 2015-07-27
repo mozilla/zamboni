@@ -5,7 +5,7 @@ from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.comm.utils_mail import save_from_email_reply
 from mkt.constants import comm
 from mkt.developers.models import ActivityLog
-from mkt.site.decorators import write
+from mkt.site.decorators import use_master
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -22,7 +22,7 @@ def consume_email(email_text, **kwargs):
 
 
 @task
-@write
+@use_master
 def _migrate_activity_log(ids, **kwargs):
     """For migrate_activity_log.py script."""
     for log in ActivityLog.objects.filter(pk__in=ids):
@@ -69,7 +69,7 @@ def _migrate_activity_log(ids, **kwargs):
 
 
 @task
-@write
+@use_master
 def _migrate_approval_notes(ids):
     """
     Port Version.approvalnotes to
@@ -101,7 +101,7 @@ def _migrate_approval_notes(ids):
 
 
 @task
-@write
+@use_master
 def _fix_developer_version_notes(ids):
     """
     Fix developer version notes that were logged as reviewer comments.

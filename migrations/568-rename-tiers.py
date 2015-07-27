@@ -6,7 +6,7 @@ from market.models import Price
 @transaction.atomic
 def run():
     print 'Renaming tiers'
-    for k, tier in enumerate(Price.objects.no_cache().filter(active=True)
+    for k, tier in enumerate(Price.objects.filter(active=True)
                                   .order_by('price')):
         new = 'Tier %s' % k
         print 'Renaming %s to %s' % (tier.name, new)

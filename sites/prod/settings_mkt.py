@@ -29,11 +29,6 @@ SYSLOG_TAG = "http_app_mkt_prod"
 SYSLOG_TAG2 = "http_app_mkt_prod_timer"
 SYSLOG_CSP = "http_app_mkt_prod_csp"
 
-# Redis
-REDIS_BACKEND = getattr(
-    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
-CACHE_MACHINE_ENABLED = False
-
 # Celery
 BROKER_URL = private_mkt.BROKER_URL
 
@@ -42,10 +37,8 @@ CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.receipt': {'level': logging.ERROR},
     'elasticsearch': {'level': logging.INFO},
-    'caching': {'level': logging.ERROR},
 })
 
 STATSD_PREFIX = 'marketplace'

@@ -46,9 +46,6 @@ DUMPED_APPS_PATH = _polite_tmpdir()
 
 ALLOW_SELF_REVIEWS = True
 BROWSERID_AUDIENCES = [SITE_URL]
-# COUNT() caching can't be invalidated, it just expires after x seconds. This
-# is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
 CELERY_ROUTES = {}
 CELERY_ALWAYS_EAGER = True
 DEBUG = False
