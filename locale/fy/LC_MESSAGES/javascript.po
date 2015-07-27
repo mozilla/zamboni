@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-03 08:37+0000\n"
+"PO-Revision-Date: 2015-07-27 13:47+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435912673.0\n"
+"X-POOTLE-MTIME: 1438004832.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +20,11 @@ msgstr "Dizze funksje is tydlik útskeakele fanwege ûnderhâld oan de website. 
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Ynstallaasje fan apps net tastien."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "App-manifest is net jildich."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,83 +44,86 @@ msgstr "Ynstallaasje mislearre. Probearje it letter nochris."
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "App-ynstallaasje mislearre."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Dit systeem stipet gjin ynstallaasje fan apps."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Akseptearje en ynstallearje"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tafoegje oan {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "No downloade"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Add-on is net bywurke foar stipe fan default-to-compatible."
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Jo moatte Firefox 10.0 of heger brûke."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla hat dizze ferzje markearre as net kompatibel mei jo Firefox-ferzje."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Doch ynstallearje foar {0}"
 
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Doch downloade foar {0}"
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Net beskikber foar jo platfoarm"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Net beskikber foar {0} {1}"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Wurket mei {app} {min} - {max}"
 
 #: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
 msgid "View other versions"
-msgstr ""
+msgstr "Oare ferzjes werjaan"
 
 #: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Sorry, jo hawwe in op Mozilla basearre browser (lykas Firefox) nedich om in "
+"sykynstekker te ynstallearjen."
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Lade..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> teken restearjend."
+msgstr[1] "<b>{0}</b> tekens restearjend."
 
 #: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} stjer"
+msgstr[1] "{0} stjerren"
 
 #: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -128,105 +131,105 @@ msgstr "Dizze oersetting fuortsmite"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "App ynstallearje"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
-msgstr ""
+msgstr "Markearre foar beoardieling"
 
 #: media/js/common-all.js:18522 media/js/common-min.js:8 media/js/impala-all.js:10219 media/js/impala-min.js:6
 msgid "Your input is required"
-msgstr ""
+msgstr "Jo bydrage is fereaske"
 
 #: media/js/common-all.js:18591 media/js/common-min.js:8 media/js/impala-all.js:10312 media/js/impala-min.js:6
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Markearre foar fuortsmiten"
 
 #: media/js/common-all.js:19177 media/js/common-min.js:9 media/js/impala-all.js:12078 media/js/impala-min.js:7
 msgid "clear recently viewed"
-msgstr ""
+msgstr "koartlyn besjoen wiskje"
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Tafoegje oan Favoriten&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Favoryt fuortsmite&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Tafoegje oan Favoriten"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Fuortsmite út Favoriten"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
-msgstr ""
+msgstr "Yn wachtrige"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Opmerking tafoegje"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
-msgstr ""
+msgstr "Opmerking"
 
 #: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Dizze add-on út de kolleksje fuortsmite"
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Fuortsmite"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Dizze brûker as meiwurker fuortsmite"
 
 #: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
 msgid "An email address is required."
-msgstr ""
+msgstr "In e-mailadres is ferplicht."
 
 #: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Jo kinne josels net tafoegje as meiwurker."
 
 #: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
 msgid "You have already added that user."
-msgstr ""
+msgstr "Jo hawwe dy brûker al tafoege."
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tafoegje oan favoriten"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Fuortsmite út favoriten"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Dizze kolleksje folgje"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Folgjen stopje"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Wachtwurdsterkte:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Op syn minst {0} teken restearjend."
+msgstr[1] "Op syn minst {0} tekens restearjend."
 
 #: media/js/common-all.js:20146 media/js/common-min.js:9 media/js/impala-all.js:13122 media/js/impala-min.js:7 media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -242,20 +245,23 @@ msgstr "Add-ons trochsykje op <b>{0}</b>"
 
 #: media/js/common-all.js:20381 media/js/common-min.js:9 media/js/impala-all.js:13357 media/js/impala-min.js:7
 msgid "Category"
-msgstr ""
+msgstr "Kategory"
 
 #: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
 msgstr ""
+"Behearders en editors moatte in wachtwurd opjaan om harren oan te melden."
 
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"BrowserID-oanmelding mislearre. Miskien hawwe jo gjin account mei dat "
+"e-mailadres?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Dit tema is net kompatibel mei jo ferzje fan {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
 #: media/js/zamboni/devhub-min.js:1
@@ -273,51 +279,51 @@ msgstr "Der is in probleem bard by it ferbinen mei de server."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Alle rjochten foarbehâlden"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Namme fan jo tema"
 
 #: media/js/impala-all.js:12685 media/js/impala-min.js:7
 msgid "Stop Following"
-msgstr ""
+msgstr "Folgjen stopje"
 
 #: media/js/impala-all.js:12686 media/js/impala-min.js:7
 msgid "Following"
-msgstr ""
+msgstr "Folgje"
 
 #: media/js/impala-all.js:12838 media/js/impala-min.js:7
 msgid "use original"
-msgstr ""
+msgstr "oarspronklike brûke"
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Resultaten bywurkje&hellip;"
 
 #: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
@@ -824,136 +830,147 @@ msgstr "Troch {0} op {1}"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"{0} add-on ynstelle op in maksimumferzje fan {1} en in e-mailberjocht nei de "
+"skriuwer stjoere."
 msgstr[1] ""
+"{0} add-ons ynstelle op in maksimumferzje fan {1} en in e-mailberjocht nei "
+"de skriuwer stjoere."
 
 #: media/js/zamboni/admin-all.js:211 media/js/zamboni/admin-min.js:1
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
+"E-mailberjocht stjoere nei skriuwer fan {2} add-on wêrfan falidaasje "
+"mislearre is."
 msgstr[1] ""
+"E-mailberjocht stjoere nei skriuwer fan {2} add-ons wêrfan falidaasje "
+"mislearre is."
 
 #: media/js/zamboni/devhub-all.js:294 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Jo add-on moat op .xpi, .jar of .xml einigje"
 
 #: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falidaasje fan jo add-on is mislearre mei {0} flater."
+msgstr[1] "Falidaasje fan jo add-on is mislearre mei {0} flaters."
 
 #: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Falidaasje fan jo add-on is slagge sûnder flaters en mei {0} berjocht."
 msgstr[1] ""
+"Falidaasje fan jo add-on is slagge sûnder flaters en mei {0} berjochten."
 
 #: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Falidaasje fan jo add-on is slagge sûnder flaters of warskôgingen."
 
 #: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Guon platfoarmen binne net beskikber foar dit type add-on."
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Jo browser stipet it fideolabel net"
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Fier it e-mailadres fan in nije skriuwer yn"
 
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} bestân"
+msgstr[1] "{files} bestannen"
 
 #: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} beoardieling"
+msgstr[1] "{reviews} beoardielingen"
 
 #: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
 msgid "Starting tests..."
-msgstr ""
+msgstr "Tests starte..."
 
 #: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Wachtsje op testresultaten..."
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462 media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Ynterne serverflater"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Moat in jildich e-mailadres wêze."
 
 #: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Falidaasje fan add-on mislearre."
 
 #: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Falidaasje fan add-on slagge."
 
 #: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} berjocht"
+msgstr[1] "{0} berjochten"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} downloade"
 
 #: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Sorry, wy koenen gjin oanrikkemandaasjes foar jo fine.<br>Besykje de <a "
+"href=\"{0}\">add-onswebsite</a> om in geskikte add-on te finen."
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Oanbefellingen sykje&hellip;"
 
 #: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Oanbefellingen bywurkje&hellip;"
 
 #: media/js/zamboni/editors-all.js:15566 media/js/zamboni/editors-min.js:5
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} hat dizze add-on earst besjoen."
 
 #: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
 msgid "Average Reviews"
-msgstr ""
+msgstr "Gemiddeld oantal beoardielingen"
 
 #: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Oantal beoardielingen"
 
 #: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
 msgid "Requested Info"
-msgstr ""
+msgstr "Oanfrege ynformaasje"
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
-msgstr ""
+msgstr "Markearre"
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikaat"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Ofwezen"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Goedkard"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
