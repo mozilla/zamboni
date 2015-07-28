@@ -594,6 +594,20 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
         self.assertSetEqual(self.app.tags.values_list('tag_text', flat=True),
                             ['restricted'])
 
+    def test_add_restricted_tag_curator(self):
+        Tag.objects.create(tag_text='restricted', restricted=True)
+        self.data.update({'tags': 'restricted'})
+
+        self.grant_permission(self.user, 'Feed:Curate')
+        self.request = mkt.site.tests.req_factory_factory(user=self.user)
+
+        self.post()
+        assert self.form.is_valid(), self.form.errors
+
+        self.form.save(self.app)
+        self.assertSetEqual(self.app.tags.values_list('tag_text', flat=True),
+                            ['restricted'])
+
     def test_restricted_tag_not_removed(self):
         t = Tag.objects.create(tag_text='restricted', restricted=True)
         self.app.tags.add(t)
