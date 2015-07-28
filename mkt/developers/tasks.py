@@ -66,9 +66,10 @@ def validator(upload_id, **kw):
     # Make a copy of the file if it's a packaged app since we can't assume the
     # uploaded file is on the local filesystem.
     if upload.name.endswith('.zip'):
+        # TODO: Chunk in case of very large files.
         temp_path = tempfile.mktemp()
-        with open(temp_path, 'w') as fd:
-            fd.write(storage.open(upload.path, 'r').read())
+        with open(temp_path, 'wb') as fd:
+            fd.write(storage.open(upload.path, 'rb').read())
 
     try:
         validation_result = run_validator(temp_path or upload.path,
