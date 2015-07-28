@@ -63,9 +63,9 @@ class WebAppParser(object):
         return ex
 
     def get_json_data(self, fileorpath):
-        path = get_filepath(fileorpath)
-        if zipfile.is_zipfile(path):
-            zf = SafeUnzip(path)
+        fp = get_file(fileorpath)
+        if zipfile.is_zipfile(fp):
+            zf = SafeUnzip(fp)
             zf.is_valid()  # Raises forms.ValidationError if problems.
             try:
                 data = zf.extract_path('manifest.webapp')
