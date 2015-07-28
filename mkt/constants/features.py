@@ -1,4 +1,6 @@
+import base64
 import itertools
+import math
 from collections import OrderedDict
 
 from django.conf import settings
@@ -361,6 +363,56 @@ PRERELEASE_PERMISSIONS = [
 ]
 
 
+class FeaturesBitField(object):
+    """
+    BitField class that stores the bits into several integers, and can
+    import/export from/to base64. Designed that way to be compatible with the
+    way we export the features signature in JavaScript.
+    """
+
+    def __init__(self, size, values=None):
+        """
+        Instantiate a FeaturesBitField of size `size`. Optional parameter
+        `values` allows you to override the initial list of integers used to
+        store the values.
+        """
+        self.size = size
+        if values is not None:
+            self.values = values
+        else:
+            self.values = [0] * int(math.ceil(self.size / 8.0))
+
+    def get(self, i):
+        index = int(math.ceil(i / 8))
+        bit = i % 8
+        return (self.values[index] & (1 << bit)) != 0
+
+    def set(self, i, value):
+        index = int(math.ceil(i / 8))
+        bit = i % 8
+        if value:
+            self.values[index] |= 1 << bit
+        else:
+            self.values[index] &= ~(1 << bit)
+
+    def to_base64(self):
+        return base64.b64encode(''.join([chr(i) for i in self.values]))
+
+    def to_list(self):
+        return [self.get(i) for i in range(0, self.size)]
+
+    @classmethod
+    def from_list(cls, data):
+        instance = cls(len(data))
+        for i, v in enumerate(data):
+            instance.set(i, v)
+        return instance
+
+    @classmethod
+    def from_base64(cls, string, size):
+        return cls(size, values=[ord(c) for c in base64.b64decode(string)])
+
+
 class FeatureProfile(OrderedDict):
     """
     Convenience class for performing conversion operations on feature profile
@@ -403,7 +455,24 @@ class FeatureProfile(OrderedDict):
         return instance
 
     @classmethod
-    def from_signature(cls, signature):
+    def from_list(cls, features, limit=None):
+        """
+        Construct a FeatureProfile object from a list of boolean values.
+
+        >>> FeatureProfile.from_list([True, False, ...])
+        FeatureProfile([('apps', True), ('packaged_apps', False), ...)
+        """
+        instance = cls()  # Defaults to everything set to False.
+        if limit is None:
+            limit = len(APP_FEATURES)
+        app_features_to_consider = OrderedDict(
+            itertools.islice(APP_FEATURES.iteritems(), limit))
+        for i, k in enumerate(app_features_to_consider):
+            instance[k.lower()] = bool(features[i])
+        return instance
+
+    @classmethod
+    def from_decimal_signature(cls, signature):
         """
         Construct a FeatureProfile object from a decimal signature.
 
@@ -414,6 +483,41 @@ class FeatureProfile(OrderedDict):
         # the caller to decide what to do with it.
         number, limit, version = signature.split('.')
         return cls.from_int(int(number, 16), limit=int(limit))
+
+    @classmethod
+    def from_base64_signature(cls, signature):
+        """
+        Construct a FeatureProfile object from a base64 signature.
+
+        >>> FeatureProfile.from_signature('=////////Hw==.53.9')
+        FeatureProfile([('apps', True), ('packaged_apps', True), ...)
+        """
+        # If the signature is invalid, let the ValueError be raised, it's up to
+        # the caller to decide what to do with it.
+        string, limit, version = signature.split('.')
+        limit = int(limit)
+
+        # Decode base64 string (ignoring the leading '=' that is used to
+        # indicate we are dealing with a base64 signature) using our bit field.
+        bitfield = FeaturesBitField.from_base64(string[1:], limit)
+        # Build the FeatureProfile from our list of boolean values.
+        return cls.from_list(bitfield.to_list(), limit=limit)
+
+    @classmethod
+    def from_signature(cls, signature):
+        """
+        Construct a FeatureProfile object from a signature, base64
+        (starting with '=') or decimal (everything else).
+
+        >>> FeatureProfile.from_signature('40000000.32.1')
+        FeatureProfile([('apps', False), ('packaged_apps', True), ...)
+
+        >>> FeatureProfile.from_signature('=////////Hw==.53.9')
+        FeatureProfile([('apps', True), ('packaged_apps', True), ...)
+        """
+        if signature.startswith('='):
+            return cls.from_base64_signature(signature)
+        return cls.from_decimal_signature(signature)
 
     def to_int(self):
         """
@@ -436,6 +540,17 @@ class FeatureProfile(OrderedDict):
         """
         return '%x.%s.%s' % (self.to_int(), len(self),
                              settings.APP_FEATURES_VERSION)
+
+    def to_base64_signature(self):
+        """
+        Convert a FeatureProfile object to its base64 signature.
+
+        >>> profile.to_signature()
+        '=////////Hw==.53.9'
+        """
+        self.bitfield = FeaturesBitField.from_list(self.values())
+        return '=%s.%s.%s' % (self.bitfield.to_base64(), len(self),
+                              settings.APP_FEATURES_VERSION)
 
     def to_list(self):
         """
