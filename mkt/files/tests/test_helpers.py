@@ -2,6 +2,7 @@
 import os
 import re
 import zipfile
+from shutil import copyfileobj
 
 from django import forms
 from django.conf import settings
@@ -14,6 +15,7 @@ from nose.tools import eq_
 
 from mkt.files.helpers import FileViewer, DiffHelper
 from mkt.files.utils import SafeUnzip
+from mkt.site.storage_utils import storage_is_remote
 from mkt.site.tests import MktPaths, TestCase
 
 
@@ -41,7 +43,12 @@ def make_file(pk, file_path, **kwargs):
 class TestFileHelper(TestCase):
 
     def setUp(self):
-        self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
+        fn = get_file('dictionary-test.xpi')
+        if storage_is_remote():
+            with open(fn) as local_f:
+                with storage.open(fn, 'w') as remote_f:
+                    copyfileobj(local_f, remote_f)
+        self.viewer = FileViewer(make_file(1, fn))
 
     def tearDown(self):
         self.viewer.cleanup()
@@ -98,11 +105,12 @@ class TestFileHelper(TestCase):
 
     def test_bom(self):
         dest = os.path.join(settings.TMP_PATH, 'test_bom')
-        open(dest, 'w').write('foo'.encode('utf-16'))
+        with storage.open(dest, 'w') as f:
+            f.write('foo'.encode('utf-16'))
         self.viewer.select('foo')
         self.viewer.selected = {'full': dest, 'size': 1}
         eq_(self.viewer.read_file(), u'foo')
-        os.remove(dest)
+        storage.delete(dest)
 
     def test_syntax(self):
         for filename, syntax in [('foo.rdf', 'xml'),
@@ -121,10 +129,13 @@ class TestFileHelper(TestCase):
         dest = self.viewer.dest
         storage.open(os.path.join(dest, 'manifest.webapp'), 'w').close()
         subdir = os.path.join(dest, 'chrome')
-        storage.open(os.path.join(subdir, 'foo'), 'w').close()
+        with storage.open(os.path.join(subdir, 'foo'), 'w') as f:
+            f.write('.')
         if not storage.exists(subdir):
-            # might be on S3, which doesn't have directories
-            storage.open(subdir, 'w').close()
+            # Might be on S3, which doesn't have directories (and
+            # django-storages doesn't support empty files).
+            with storage.open(subdir, 'w') as f:
+                f.write('.')
         cache.clear()
         files = self.viewer.get_files().keys()
         rt = files.index(u'chrome')
@@ -159,7 +170,7 @@ class TestFileHelper(TestCase):
     def test_delete_mid_read(self):
         self.viewer.extract()
         self.viewer.select('install.js')
-        os.remove(os.path.join(self.viewer.dest, 'install.js'))
+        storage.delete(os.path.join(self.viewer.dest, 'install.js'))
         res = self.viewer.read_file()
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('That file no')
@@ -198,7 +209,7 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def test_diffable_one_missing(self):
         self.helper.extract()
-        os.remove(os.path.join(self.helper.right.dest, 'index.html'))
+        storage.delete(os.path.join(self.helper.right.dest, 'index.html'))
         self.helper.select('index.html')
         assert self.helper.is_diffable()
 
@@ -214,7 +225,7 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def test_diffable_deleted_files(self):
         self.helper.extract()
-        os.remove(os.path.join(self.helper.left.dest, 'index.html'))
+        storage.delete(os.path.join(self.helper.left.dest, 'index.html'))
         eq_('index.html' in self.helper.get_deleted_files(), True)
 
     def test_diffable_one_binary_same(self):
@@ -259,9 +270,10 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def change(self, file, text, filename='main.js'):
         path = os.path.join(file, filename)
-        data = open(path, 'r').read()
+        data = storage.open(path, 'r').read()
         data += text
-        open(path, 'w').write(data)
+        with storage.open(path, 'w') as f:
+            f.write(data)
 
 
 class TestSafeUnzipFile(TestCase, MktPaths):

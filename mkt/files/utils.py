@@ -275,7 +275,7 @@ def parse_addon(pkg, addon=None):
 
 def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
     """Returns an MD5 hash for a filename."""
-    f = open(filename, 'rb')
+    f = storage.open(filename, 'rb')
     hash_ = hash()
     while True:
         data = f.read(block_size)

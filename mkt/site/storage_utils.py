@@ -6,10 +6,15 @@ require leading directories to exist. The default Django file system storage
 *will* sometimes require leading directories to exist.
 """
 
+from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.encoding import smart_str
 
 DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
+
+
+def storage_is_remote():
+    return settings.DEFAULT_FILE_STORAGE != 'mkt.site.utils.LocalFileStorage'
 
 
 def walk_storage(path, topdown=True, onerror=None, followlinks=False,

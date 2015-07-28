@@ -200,7 +200,7 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         present."""
         f = File.objects.get()
         filename = f.file_path
-        assert not os.path.exists(filename), 'File exists at: %s' % filename
+        assert not storage.exists(filename), 'File exists at: %s' % filename
         f.delete()
 
     def test_delete_signal(self):
