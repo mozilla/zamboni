@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-29 11:59+0000\n"
+"PO-Revision-Date: 2015-07-29 12:20+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438171154.0\n"
+"X-POOTLE-MTIME: 1438172411.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1349,194 +1349,194 @@ msgstr "Bydragen fan {0} oant en mei {1}"
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Metryske gegevens fan website, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Metryske gegevens fan website fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Add-ons yn gebrûk, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15571 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Brûkte add-ons fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15575 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Downloade add-ons, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15577 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Downloade add-ons fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15581 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Makke add-ons, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15583 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Makke add-ons fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Bywurke add-ons, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Bywurke add-ons fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Skreaune beoardielingen, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Skreaune beoardielingen fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Brûkersregistraasjes, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Brûkersregistraasjes fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Makke kolleksjes, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Makke kolleksjes fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonnees, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonnees fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Wurdearringen, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Wurdearringen fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Ferkeapen, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Ferkeapen fan {0} oant en mei {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Ynstallaasjes, ôfrûne {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Ynstallaasjes fan {0} oant en mei {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> yn de ôfrûne {1} dagen"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> fan {1} oant en mei {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> gemiddeld yn de ôfrûne {1} dagen"
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Gjin gegevens beskikber."
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Oars"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Wike fan {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "downloads"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} brûkers"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-ons"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} kolleksjes"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} beoardielingen"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} ferkeapen"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} restitúsjes"
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} ynstallaasjes"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Bedrach, yn US$"
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Mear ynfo..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Details foar {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
