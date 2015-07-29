@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:17-0700\n"
+"POT-Creation-Date: 2015-07-29 13:02-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -12,329 +12,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? 3 : 4\n"
 
-#: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an suíomh.  Tar ar ais chugainn ar ball."
-
-#: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
-msgid "App installation not allowed."
-msgstr ""
-
-#: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
-msgid "App manifest is malformed."
-msgstr ""
-
-#: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
-msgid "App host could not be reached."
-msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire na haipe."
-
-#: media/js/common-all.js:10888 media/js/impala-all.js:1938 media/js/devreg/apps.js:90 media/js/zamboni/mobile-all.js:10735 media/js/zamboni/mobile-min.js:4
-msgid "App manifest is unparsable."
-msgstr "Ní féidir lastliosta na haipe a pharsáil."
-
-#: media/js/common-all.js:10891 media/js/impala-all.js:1941 media/js/devreg/apps.js:93 media/js/zamboni/mobile-all.js:10738 media/js/zamboni/mobile-min.js:4
-msgid "App manifest is invalid."
-msgstr "Tá lastliosta na haipe neamhbhailí."
-
-#: media/js/common-all.js:10894 media/js/impala-all.js:1944 media/js/devreg/apps.js:106 media/js/zamboni/mobile-all.js:10741 media/js/zamboni/mobile-min.js:4
-msgid "Install failed. Please try again later."
-msgstr "Theip ar shuiteáil. Bain triail eile as ar ball."
-
-#: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
-msgid "App installation failed."
-msgstr ""
-
-#: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
-msgid "This system does not support installing apps."
-msgstr ""
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
-msgid "Accept and Install"
-msgstr ""
-
-#: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
-msgid "Add to {0}"
-msgstr ""
-
-#: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
-msgid "Download Now"
-msgstr ""
-
-#: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-#: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-#: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
-msgid "Install for {0} anyway"
-msgstr ""
-
-#: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
-msgid "Download for {0} anyway"
-msgstr ""
-
-#: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
-msgid "Not available for your platform"
-msgstr ""
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
-msgid "Not available for {0} {1}"
-msgstr ""
-
-#: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-#: media/js/common-all.js:11328 media/js/impala-all.js:2378 media/js/zamboni/discovery-all.js:11270
-msgid "View other versions"
-msgstr ""
-
-#: media/js/common-all.js:11543 media/js/impala-all.js:2593 media/js/zamboni/discovery-all.js:11485 media/js/zamboni/mobile-all.js:11222 media/js/zamboni/mobile-min.js:4
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
-#: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
-msgid "Loading..."
-msgstr ""
-
-#. L10n: {0} is the number of characters left.
-#: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/common-all.js:17162 media/js/common-min.js:8 media/js/impala-all.js:8741 media/js/impala-min.js:5 media/js/zamboni/mobile-all.js:12231 media/js/zamboni/mobile-min.js:5
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/common-all.js:17306 media/js/common-min.js:8 media/js/impala-all.js:8885 media/js/impala-min.js:5 media/js/devreg/l10n.js:45
-msgid "Remove this localization"
-msgstr "Bain an t-aistriúchán seo"
-
-#: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
-msgid "Install App"
-msgstr ""
-
-#: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
-msgid "Flagged for review"
-msgstr ""
-
-#: media/js/common-all.js:18522 media/js/common-min.js:8 media/js/impala-all.js:10219 media/js/impala-min.js:6
-msgid "Your input is required"
-msgstr ""
-
-#: media/js/common-all.js:18591 media/js/common-min.js:8 media/js/impala-all.js:10312 media/js/impala-min.js:6
-msgid "Marked for deletion"
-msgstr ""
-
-#: media/js/common-all.js:19177 media/js/common-min.js:9 media/js/impala-all.js:12078 media/js/impala-min.js:7
-msgid "clear recently viewed"
-msgstr ""
-
-#: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-#: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-#: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
-msgid "Add to Favorites"
-msgstr ""
-
-#: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
-msgid "Remove from Favorites"
-msgstr ""
-
-#: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
-msgid "Pending"
-msgstr ""
-
-#: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
-msgid "Add a comment"
-msgstr ""
-
-#: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
-msgid "Comment"
-msgstr ""
-
-#: media/js/common-all.js:19423 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-min.js:7
-msgid "Remove this add-on from the collection"
-msgstr ""
-
-#: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
-msgid "Remove"
-msgstr ""
-
-#: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
-msgid "Remove this user as a contributor"
-msgstr ""
-
-#: media/js/common-all.js:19464 media/js/common-min.js:9 media/js/impala-all.js:12365 media/js/impala-min.js:7
-msgid "An email address is required."
-msgstr ""
-
-#: media/js/common-all.js:19482 media/js/common-min.js:9 media/js/impala-all.js:12383 media/js/impala-min.js:7
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-#: media/js/common-all.js:19484 media/js/common-min.js:9 media/js/impala-all.js:12385 media/js/impala-min.js:7
-msgid "You have already added that user."
-msgstr ""
-
-#: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
-msgid "Add to favorites"
-msgstr ""
-
-#: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
-msgid "Remove from favorites"
-msgstr ""
-
-#: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
-msgid "Follow this Collection"
-msgstr ""
-
-#: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
-msgid "Stop following"
-msgstr ""
-
-#: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
-msgid "All"
-msgstr ""
-
-#: media/js/common-all.js:19956 media/js/common-min.js:9
-msgid "Password strength:"
-msgstr ""
-
-#: media/js/common-all.js:19962 media/js/common-min.js:9
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/common-all.js:20146 media/js/common-min.js:9 media/js/impala-all.js:13122 media/js/impala-min.js:7 media/js/devreg/suggestions.js:66
-msgid "Search themes for <b>{0}</b>"
-msgstr "Déan cuardach ar <b>{0}</b> sna téamaí"
-
-#: media/js/common-all.js:20148 media/js/common-min.js:9 media/js/impala-all.js:13124 media/js/impala-min.js:7 media/js/devreg/suggestions.js:68
-msgid "Search apps for <b>{0}</b>"
-msgstr "Déan cuardach ar <b>{0}</b> sna haipeanna"
-
-#: media/js/common-all.js:20150 media/js/common-min.js:9 media/js/impala-all.js:13126 media/js/impala-min.js:7 media/js/devreg/suggestions.js:70
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Déan cuardach ar <b>{0}</b> sna breiseáin"
-
-#: media/js/common-all.js:20381 media/js/common-min.js:9 media/js/impala-all.js:13357 media/js/impala-min.js:7
-msgid "Category"
-msgstr ""
-
-#: media/js/impala-all.js:3042 media/js/zamboni/mobile-all.js:12298 media/js/zamboni/mobile-min.js:5
-msgid "Admins and editors must provide a password to log in."
-msgstr ""
-
-#: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-
-#. L10n: {0} is an app name.
-#: media/js/impala-all.js:10340 media/js/impala-min.js:6
-msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-#: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
-#: media/js/zamboni/devhub-min.js:1
-msgid "Images must be either PNG or JPG."
-msgstr "Níl cead agat ach íomhá PNG nó JPG a úsáid."
-
-#: media/js/impala-all.js:10856 media/js/impala-min.js:6 media/js/common/upload-image.js:102 media/js/zamboni/devhub-all.js:719 media/js/zamboni/devhub-min.js:1
-msgid "Videos must be in WebM."
-msgstr "Níl cead agat ach físeán WebM a úsáid."
-
-#: media/js/impala-all.js:10883 media/js/impala-min.js:6 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34 media/js/zamboni/devhub-all.js:275
-#: media/js/zamboni/devhub-all.js:746 media/js/zamboni/devhub-min.js:1
-msgid "There was a problem contacting the server."
-msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
-
-#: media/js/impala-all.js:11602 media/js/impala-min.js:6
-msgid "All Rights Reserved"
-msgstr ""
-
-#: media/js/impala-all.js:11606 media/js/impala-min.js:6
-msgid "Creative Commons Attribution 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11611 media/js/impala-min.js:6
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11616 media/js/impala-min.js:6
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11621 media/js/impala-min.js:6
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11626 media/js/impala-min.js:6
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11631 media/js/impala-min.js:6
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-#: media/js/impala-all.js:11838 media/js/impala-min.js:6
-msgid "Your Theme's Name"
-msgstr ""
-
-#: media/js/impala-all.js:12685 media/js/impala-min.js:7
-msgid "Stop Following"
-msgstr ""
-
-#: media/js/impala-all.js:12686 media/js/impala-min.js:7
-msgid "Following"
-msgstr ""
-
-#: media/js/impala-all.js:12838 media/js/impala-min.js:7
-msgid "use original"
-msgstr ""
-
-#: media/js/impala-all.js:13013 media/js/impala-min.js:7
-msgid "Updating results&hellip;"
-msgstr ""
-
-#: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Ní aithnítear cineál an comhaid a d'uasluchtaigh tú."
 
-#: media/js/common/upload-base.js:83 media/js/zamboni/devhub-all.js:219 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
 msgstr "Chealaigh tú an t-uasluchtú."
 
-#: media/js/common/upload-packaged-app.js:52 media/js/zamboni/devhub-all.js:293 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-image.js:98
+msgid "Images must be either PNG or JPG."
+msgstr "Níl cead agat ach íomhá PNG nó JPG a úsáid."
+
+#: media/js/common/upload-image.js:102
+msgid "Videos must be in WebM."
+msgstr "Níl cead agat ach físeán WebM a úsáid."
+
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+msgid "There was a problem contacting the server."
+msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
+
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Roghnaigh comhad..."
 
@@ -343,28 +41,28 @@ msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ba chóir duit d'aip phacáistithe a chur i gcomhad <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-packaged-app.js:89 media/js/zamboni/devhub-all.js:328 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% críochnaithe"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-packaged-app.js:92 media/js/zamboni/devhub-all.js:331 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} as {1}"
 
-#: media/js/common/upload-packaged-app.js:120 media/js/zamboni/devhub-all.js:361 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Cealaigh"
 
-#: media/js/common/upload-packaged-app.js:142 media/js/zamboni/devhub-all.js:383 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "{0} á uasluchtú"
 
-#: media/js/common/upload-packaged-app.js:164 media/js/zamboni/devhub-all.js:410 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Earráid le {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208 media/js/zamboni/devhub-all.js:1151 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
@@ -373,7 +71,7 @@ msgstr[2] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
 msgstr[3] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} n-earráid ann."
 msgstr[4] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
 
-#: media/js/common/upload-packaged-app.js:184 media/js/zamboni/devhub-all.js:429 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;agus ceann amháin eile"
@@ -382,25 +80,24 @@ msgstr[2] "&hellip;agus {0} cinn eile"
 msgstr[3] "&hellip;agus {0} gcinn eile"
 msgstr[4] "&hellip;agus {0} ceann eile"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170 media/js/zamboni/devhub-all.js:443 media/js/zamboni/devhub-all.js:570
-#: media/js/zamboni/devhub-all.js:1144 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Tuairisc iomlán ón bhailíochtóir"
 
-#: media/js/common/upload-packaged-app.js:211 media/js/zamboni/devhub-all.js:455 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
 msgstr "{0} á bhailíochtú"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-packaged-app.js:247 media/js/zamboni/devhub-all.js:493 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fuarthas freagra folamh ón bhfreastalaí; stádas: {0}"
 
-#: media/js/common/upload-packaged-app.js:257 media/js/zamboni/devhub-all.js:504 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
 msgstr "Earráid fhreastalaí gan súil leis le linn bailíochtaithe."
 
-#: media/js/common/upload-packaged-app.js:294 media/js/zamboni/devhub-all.js:542 media/js/zamboni/devhub-min.js:1
+#: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
 msgstr "Bailíochtú {0} críochnaithe"
 
@@ -421,6 +118,18 @@ msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh.
 msgid "The manifest could not be found at the given location."
 msgstr "Níorbh fhéidir an lastliosta a aimsiú san áit sin."
 
+#: media/js/devreg/apps.js:87
+msgid "App host could not be reached."
+msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire na haipe."
+
+#: media/js/devreg/apps.js:90
+msgid "App manifest is unparsable."
+msgstr "Ní féidir lastliosta na haipe a pharsáil."
+
+#: media/js/devreg/apps.js:93
+msgid "App manifest is invalid."
+msgstr "Tá lastliosta na haipe neamhbhailí."
+
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
 msgstr "Tá an aip suiteáilte cheana."
@@ -433,6 +142,10 @@ msgstr "Earráid inmheánach fhreastalaí."
 msgid "Internal server error on app installation."
 msgstr "Earráid inmheánach fhreastalaí agus an aip á suiteáil."
 
+#: media/js/devreg/apps.js:106
+msgid "Install failed. Please try again later."
+msgstr "Theip ar shuiteáil. Bain triail eile as ar ball."
+
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
@@ -442,7 +155,7 @@ msgstr[2] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireac
 msgstr[3] "Theip ar d'aip sa bhailíochtú le {0} n-earráid agus {1} teachtaireacht."
 msgstr[4] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
 
-#: media/js/devreg/devhub.js:227 media/js/zamboni/devhub-all.js:1165 media/js/zamboni/devhub-min.js:1
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
@@ -451,11 +164,11 @@ msgstr[2] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} theacht
 msgstr[3] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} dteachtaireacht."
 msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
 
-#: media/js/devreg/devhub.js:232 media/js/zamboni/devhub-all.js:1170 media/js/zamboni/devhub-min.js:1
+#: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
 msgstr "D'éirigh le d'aip sa bhailíochtú gan earráidí gan rabhaidh."
 
-#: media/js/devreg/devhub.js:447 media/js/zamboni/devhub-all.js:1469 media/js/zamboni/devhub-min.js:1
+#: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
@@ -471,19 +184,19 @@ msgstr "Nuashonraíodh an lastliosta"
 msgid "Could not refresh manifest. Try again later."
 msgstr "Níorbh fhéidir an lastliosta a nuashonrú. Bain triail eile as ar ball."
 
-#: media/js/devreg/devhub.js:662 media/js/zamboni/devhub-all.js:1632 media/js/zamboni/devhub-min.js:1
+#: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:945 media/js/zamboni/devhub-all.js:1907 media/js/zamboni/devhub-min.js:1
+#: media/js/devreg/devhub.js:945
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: media/js/devreg/devhub.js:949 media/js/zamboni/devhub-all.js:1911 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/devhub.js:949
 msgid "Example"
 msgstr "Sampla"
 
-#: media/js/devreg/devhub.js:1218 media/js/zamboni/devhub-all.js:2267 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
 msgstr "Athruithe san íomhá á bpróiseáil"
 
@@ -506,6 +219,14 @@ msgstr "Cumasaithe"
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr "Díchumasaithe"
+
+#: media/js/devreg/init.js:35
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an suíomh.  Tar ar ais chugainn ar ball."
+
+#: media/js/devreg/l10n.js:45
+msgid "Remove this localization"
+msgstr "Bain an t-aistriúchán seo"
 
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
@@ -627,8 +348,7 @@ msgid "{appName} payment accounts:"
 msgstr "Cuntais íocaíochta {appName}:"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/devhub-all.js:2765 media/js/zamboni/devhub-all.js:3020 media/js/zamboni/devhub-all.js:3039
-#: media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Earráid"
 
@@ -644,6 +364,18 @@ msgstr "Earráid fíordheimhnithe"
 msgid "You do not currently have any payment accounts."
 msgstr "Níl aon chuntais íocaíochta agat faoi láthair."
 
+#: media/js/devreg/suggestions.js:66
+msgid "Search themes for <b>{0}</b>"
+msgstr "Déan cuardach ar <b>{0}</b> sna téamaí"
+
+#: media/js/devreg/suggestions.js:68
+msgid "Search apps for <b>{0}</b>"
+msgstr "Déan cuardach ar <b>{0}</b> sna haipeanna"
+
+#: media/js/devreg/suggestions.js:70
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Déan cuardach ar <b>{0}</b> sna breiseáin"
+
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
 msgstr "Tharla earráid. Déan iarracht eile."
@@ -658,35 +390,35 @@ msgstr[2] "{0} charachtar fágtha."
 msgstr[3] "{0} gcarachtar fágtha."
 msgstr[4] "{0} carachtar fágtha."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/devhub-all.js:2642 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
 msgstr "D'éirigh le gach tástáil."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/devhub-all.js:2645 media/js/zamboni/devhub-all.js:2938 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Níor ritheadh na tástálacha seo."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/devhub-all.js:2691 media/js/zamboni/devhub-all.js:2704 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Tástálacha"
 
-#: media/js/devreg/validator.js:192 media/js/zamboni/devhub-all.js:2766 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:192
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: media/js/devreg/validator.js:279 media/js/zamboni/devhub-all.js:2853 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
 msgstr "Tástálacha Comhoiriúnachta"
 
-#: media/js/devreg/validator.js:327 media/js/zamboni/devhub-all.js:2902 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:327
 msgid "App failed validation."
 msgstr "Níor éirigh le bailíochtú d'aip."
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/devhub-all.js:2904 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:329
 msgid "App passed validation."
 msgstr "D'éirigh le bailíochtú d'aip."
 
-#: media/js/devreg/validator.js:359 media/js/zamboni/devhub-all.js:2941 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} earráid"
@@ -695,7 +427,7 @@ msgstr[2] "{0} earráid"
 msgstr[3] "{0} n-earráid"
 msgstr[4] "{0} earráid"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/devhub-all.js:2943 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} rabhadh"
@@ -704,11 +436,11 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-#: media/js/devreg/validator.js:439 media/js/zamboni/devhub-all.js:3022 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
 msgstr "Níorbh fhéidir an bailíochtú a chur i gcrích, nó chríochnaigh sé le hearráidí"
 
-#: media/js/devreg/validator.js:457 media/js/zamboni/devhub-all.js:3040 media/js/zamboni/devhub-min.js:2
+#: media/js/devreg/validator.js:457
 msgid "Internal server error"
 msgstr "Earráid inmheánach leis an bhfreastalaí"
 
@@ -724,15 +456,15 @@ msgstr "Ceannaithe"
 msgid "Launch"
 msgstr "Tosaigh"
 
-#: media/js/devreg/reviewers/editors.js:138 media/js/zamboni/editors-all.js:15443 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
 msgstr "Bhí {name} ag féachaint ar an leathanach seo ar dtús."
 
-#: media/js/devreg/reviewers/editors.js:188 media/js/zamboni/editors-all.js:15493 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
 msgstr "Sheiceáil an aip an admháil."
 
-#: media/js/devreg/reviewers/editors.js:190 media/js/zamboni/editors-all.js:15495 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
 msgstr "Níor sheiceáil an aip an admháil."
 
@@ -740,28 +472,27 @@ msgstr "Níor sheiceáil an aip an admháil."
 msgid "{name} was viewing this app first."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:252 media/js/zamboni/editors-all.js:15577 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
 msgstr "Á luchtú&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:257 media/js/zamboni/editors-all.js:15582 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
 
-#: media/js/devreg/reviewers/editors.js:262 media/js/zamboni/editors-all.js:15587 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
 msgstr "Nótaí d'Eagarthóirí"
 
-#: media/js/devreg/reviewers/editors.js:267 media/js/zamboni/editors-all.js:15592 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
 msgstr "Níor aimsíodh aon nótaí eisiúna"
 
-#: media/js/devreg/reviewers/editors.js:292 media/js/zamboni/admin-all.js:180 media/js/zamboni/admin-min.js:1 media/js/zamboni/devhub-all.js:2420 media/js/zamboni/devhub-min.js:2
-#: media/js/zamboni/editors-all.js:15617 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
 msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
-#: media/js/devreg/reviewers/editors.js:356 media/js/zamboni/editors-all.js:15767 media/js/zamboni/editors-min.js:5
+#: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
 msgstr "Earráid agus aistriúchán á luchtú"
 
@@ -853,729 +584,3 @@ msgstr "Ár leithscéal! Tharla earráid agus stair na léirmheasanna á fáil. 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Le {0} ar {1}"
-
-#: media/js/zamboni/admin-all.js:208 media/js/zamboni/admin-min.js:1
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/admin-all.js:211 media/js/zamboni/admin-min.js:1
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/devhub-all.js:294 media/js/zamboni/devhub-min.js:1
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:415 media/js/zamboni/devhub-min.js:1
-msgid "Your add-on failed validation with {0} error."
-msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/devhub-all.js:548 media/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors and {0} message."
-msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/devhub-all.js:553 media/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:604 media/js/zamboni/devhub-min.js:1
-msgid "Some platforms are not available for this type of add-on."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
-msgid "Your browser does not support the video tag"
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
-msgid "Enter a new author's email address"
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
-msgid "{files} file"
-msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/devhub-all.js:1778 media/js/zamboni/devhub-min.js:1
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: media/js/zamboni/devhub-all.js:2448 media/js/zamboni/devhub-min.js:2
-msgid "Starting tests..."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2455 media/js/zamboni/devhub-min.js:2
-msgid "Waiting for test results..."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462 media/js/zamboni/devhub-min.js:2
-msgid "Internal Server Error"
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
-msgid "Must be a valid e-mail address."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2908 media/js/zamboni/devhub-min.js:2
-msgid "Add-on failed validation."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2910 media/js/zamboni/devhub-min.js:2
-msgid "Add-on passed validation."
-msgstr ""
-
-#: media/js/zamboni/devhub-all.js:2945 media/js/zamboni/devhub-min.js:2
-msgid "{0} notice"
-msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
-msgid "Download {0}"
-msgstr ""
-
-#: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-
-#: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
-msgid "Finding recommendations&hellip;"
-msgstr ""
-
-#: media/js/zamboni/discovery-all.js:12815 media/js/zamboni/discovery-min.js:5
-msgid "Updating recommendations&hellip;"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:15566 media/js/zamboni/editors-min.js:5
-msgid "{name} was viewing this add-on first."
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
-msgid "Average Reviews"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
-msgid "Number of Reviews"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
-msgid "Requested Info"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
-msgid "Flagged"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
-msgid "Duplicate"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
-msgid "Rejected"
-msgstr ""
-
-#: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
-msgid "Approved"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
-msgid "Not Updated for {0} {1}"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11259 media/js/zamboni/mobile-min.js:4
-msgid "Requires Newer Version of {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11260 media/js/zamboni/mobile-min.js:4
-msgid "Unreviewed"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11261 media/js/zamboni/mobile-min.js:4
-msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11262 media/js/zamboni/mobile-all.js:11263 media/js/zamboni/mobile-min.js:4
-msgid "Not Available for {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
-msgid "Experimental"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
-msgid "Themes Require Newer Version of {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11266 media/js/zamboni/mobile-min.js:4
-msgid "Themes Require {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11311 media/js/zamboni/mobile-min.js:4
-msgid "Installing..."
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
-msgid "Purchasing..."
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11348 media/js/zamboni/mobile-min.js:4
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:11482 media/js/zamboni/mobile-min.js:4
-msgid "Keep it"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:12157 media/js/zamboni/mobile-min.js:5
-msgid "You're trying it on!"
-msgstr ""
-
-#: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
-msgid "Added to Firefox"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15379 media/js/zamboni/stats-all.js:15478 media/js/zamboni/stats-all.js:17102 media/js/zamboni/stats-min.js:6
-msgid "Downloads"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479 media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
-msgid "Daily Users"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
-msgid "Collections Created"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
-msgid "Add-ons in Use"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Created"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Downloaded"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Updated"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
-msgid "Reviews Written"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
-msgid "User Signups"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15406 media/js/zamboni/stats-min.js:6
-msgid "Subscribers"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15409 media/js/zamboni/stats-min.js:6
-msgid "Ratings"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15412 media/js/zamboni/stats-all.js:15483 media/js/zamboni/stats-min.js:6
-msgid "Sales"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15415 media/js/zamboni/stats-all.js:15482 media/js/zamboni/stats-min.js:6
-msgid "Installs"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
-msgid "Unknown"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Manager"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
-msgid "Search Results"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422 media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
-msgid "Homepage Promo"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15424 media/js/zamboni/stats-all.js:15425 media/js/zamboni/stats-min.js:6
-msgid "Homepage Featured"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15426 media/js/zamboni/stats-all.js:15427 media/js/zamboni/stats-min.js:6
-msgid "Homepage Up and Coming"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15428 media/js/zamboni/stats-min.js:6
-msgid "Homepage Most Popular"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431 media/js/zamboni/stats-min.js:6
-msgid "Detail Page"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432 media/js/zamboni/stats-min.js:6
-msgid "Detail Page (bottom)"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15433 media/js/zamboni/stats-min.js:6
-msgid "Detail Page (Development Channel)"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15434 media/js/zamboni/stats-all.js:15435 media/js/zamboni/stats-all.js:15436 media/js/zamboni/stats-min.js:6
-msgid "Often Used With"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15437 media/js/zamboni/stats-all.js:15438 media/js/zamboni/stats-min.js:6
-msgid "Others By Author"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15439 media/js/zamboni/stats-all.js:15440 media/js/zamboni/stats-min.js:6
-msgid "Dependencies"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442 media/js/zamboni/stats-min.js:6
-msgid "Upsell"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15444 media/js/zamboni/stats-min.js:6
-msgid "Sharing"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15445 media/js/zamboni/stats-min.js:6
-msgid "Category Pages"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15446 media/js/zamboni/stats-min.js:6
-msgid "Collections"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448 media/js/zamboni/stats-min.js:6
-msgid "Category Landing Featured Carousel"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15449 media/js/zamboni/stats-all.js:15450 media/js/zamboni/stats-min.js:6
-msgid "Category Landing Top Rated"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15451 media/js/zamboni/stats-all.js:15452 media/js/zamboni/stats-min.js:6
-msgid "Category Landing Most Popular"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15453 media/js/zamboni/stats-all.js:15454 media/js/zamboni/stats-min.js:6
-msgid "Category Landing Recently Added"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15455 media/js/zamboni/stats-all.js:15456 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Featured Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15457 media/js/zamboni/stats-all.js:15458 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Users Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15459 media/js/zamboni/stats-all.js:15460 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Rating Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15461 media/js/zamboni/stats-all.js:15462 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Created Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15463 media/js/zamboni/stats-all.js:15464 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Name Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15465 media/js/zamboni/stats-all.js:15466 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Popular Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15467 media/js/zamboni/stats-all.js:15468 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Updated Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15469 media/js/zamboni/stats-all.js:15470 media/js/zamboni/stats-min.js:6
-msgid "Browse Listing Up and Coming Sort"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154 media/js/zamboni/stats-min.js:6
-msgid "Number of Contributions"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
-msgid "Total Amount Contributed"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15475 media/js/zamboni/stats-min.js:6
-msgid "Average Contribution"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
-msgid "Usage"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
-msgid "Firefox"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
-msgid "Mozilla"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
-msgid "Thunderbird"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
-msgid "Sunbird"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
-msgid "SeaMonkey"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
-msgid "Fennec"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
-msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
-msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
-msgid "Installs and Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15505 media/js/zamboni/stats-min.js:6
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
-msgid "Downloads, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
-msgid "Downloads from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
-msgid "Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15517 media/js/zamboni/stats-min.js:6
-msgid "Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15521 media/js/zamboni/stats-min.js:6
-msgid "Applications, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15523 media/js/zamboni/stats-min.js:6
-msgid "Applications from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15527 media/js/zamboni/stats-min.js:6
-msgid "Platforms, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15529 media/js/zamboni/stats-min.js:6
-msgid "Platforms from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15533 media/js/zamboni/stats-min.js:6
-msgid "Languages, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15535 media/js/zamboni/stats-min.js:6
-msgid "Languages from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15539 media/js/zamboni/stats-min.js:6
-msgid "Add-on Versions, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15541 media/js/zamboni/stats-min.js:6
-msgid "Add-on Versions from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15545 media/js/zamboni/stats-min.js:6
-msgid "Add-on Status, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15547 media/js/zamboni/stats-min.js:6
-msgid "Add-on Status from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15551 media/js/zamboni/stats-min.js:6
-msgid "Download Sources, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15553 media/js/zamboni/stats-min.js:6
-msgid "Download Sources from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
-msgid "Contributions, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
-msgid "Contributions from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
-msgid "Site Metrics, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15565 media/js/zamboni/stats-min.js:6
-msgid "Site Metrics from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15569 media/js/zamboni/stats-min.js:6
-msgid "Add-ons in Use, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15571 media/js/zamboni/stats-min.js:6
-msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15575 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15577 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15581 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Created, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15583 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Created from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Updated, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
-msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
-msgid "Reviews Written, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
-msgid "Reviews Written from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15599 media/js/zamboni/stats-min.js:6
-msgid "User Signups, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15601 media/js/zamboni/stats-min.js:6
-msgid "User Signups from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
-msgid "Collections Created, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
-msgid "Collections Created from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
-msgid "Subscribers, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15613 media/js/zamboni/stats-min.js:6
-msgid "Subscribers from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15617 media/js/zamboni/stats-min.js:6
-msgid "Ratings, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15619 media/js/zamboni/stats-min.js:6
-msgid "Ratings from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
-msgid "Sales, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
-msgid "Sales from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
-msgid "Installs, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15631 media/js/zamboni/stats-min.js:6
-msgid "Installs from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} and {1} are integers.
-#: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
-msgid "<b>{0}</b> in last {1} days"
-msgstr ""
-
-#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645 media/js/zamboni/stats-min.js:6
-msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
-
-#. L10n: {0} and {1} are integers.
-#: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
-msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
-msgid "No data available."
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
-msgid "Other"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
-msgid "Week of {0}"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
-msgid "downloads"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
-msgid "{0} users"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
-msgid "{0} add-ons"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
-msgid "{0} collections"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
-msgid "{0} reviews"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
-msgid "{0} sales"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
-msgid "{0} refunds"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
-msgid "{0} installs"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
-msgid "Amount, in USD"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
-msgid "More Info..."
-msgstr ""
-
-#. L10n: {0} is an ISO-formatted date.
-#: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
-msgid "Details for {0}"
-msgstr ""
-
-#: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
-msgid "Date"
-msgstr ""

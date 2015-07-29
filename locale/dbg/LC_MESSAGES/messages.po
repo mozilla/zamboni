@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:17-0700\n"
+"POT-Creation-Date: 2015-07-29 13:02-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.12.0\n"
+
+#: mkt/abuse/forms.py:70
+msgid "Abuse reports needing investigation: %s"
+msgstr "Ȧƀŭşḗ řḗƥǿřŧş ƞḗḗḓīƞɠ īƞṽḗşŧīɠȧŧīǿƞ: %s"
+
+#: mkt/abuse/forms.py:78
+#: mkt/abuse/forms.py:92
+#: mkt/ratings/forms.py:67
+msgid "Skip for now"
+msgstr "Şķīƥ ƒǿř ƞǿẇ"
+
+#: mkt/abuse/forms.py:79
+#: mkt/abuse/forms.py:93
+msgid "Mark all reports Read"
+msgstr "Ḿȧřķ ȧŀŀ řḗƥǿřŧş Řḗȧḓ"
+
+#: mkt/abuse/forms.py:80
+msgid "Flag for re-review"
+msgstr "Ƒŀȧɠ ƒǿř řḗ-řḗṽīḗẇ"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1392,14 +1411,14 @@ msgid "Deleted"
 msgstr "Ḓḗŀḗŧḗḓ"
 
 #: mkt/constants/base.py:31
-#: mkt/constants/comm.py:45
+#: mkt/constants/comm.py:46
 #: mkt/reviewers/helpers.py:192
 #: mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
 
 #: mkt/constants/base.py:34
-#: mkt/constants/comm.py:51
+#: mkt/constants/comm.py:52
 #: mkt/site/log.py:377
 msgid "Approved but private"
 msgstr "Ȧƥƥřǿṽḗḓ ƀŭŧ ƥřīṽȧŧḗ"
@@ -1417,7 +1436,7 @@ msgid "Obsolete"
 msgstr "Ǿƀşǿŀḗŧḗ"
 
 #: mkt/constants/base.py:43
-#: mkt/constants/comm.py:44
+#: mkt/constants/comm.py:45
 #: mkt/constants/payments.py:66
 #: mkt/site/log.py:157
 msgid "Approved"
@@ -1467,67 +1486,75 @@ msgstr "Ƒřḗḗ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 msgid "I'll use my own system for in-app payments"
 msgstr "Ī'ŀŀ ŭşḗ ḿẏ ǿẇƞ şẏşŧḗḿ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:221
+#: mkt/constants/base.py:223
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: mkt/constants/base.py:222
+#: mkt/constants/base.py:224
 msgid "Web App Review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:223
+#: mkt/constants/base.py:225
 msgid "Packaged App Review"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:224
+#: mkt/constants/base.py:226
 msgid "Privileged App Review"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:225
+#: mkt/constants/base.py:227
 msgid "Web App Re-review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗ-řḗṽīḗẇ"
 
-#: mkt/constants/base.py:226
+#: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:227
+#: mkt/constants/base.py:229
 msgid "Updated Privileged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:230
 msgid "Moderated App Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:231
 msgid "App Review Moderation Reverted"
 msgstr "Ȧƥƥ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:232
 msgid "Tarako App Review"
 msgstr "Ŧȧřȧķǿ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:260
+#: mkt/constants/base.py:233
+msgid "App Abuse Report Read"
+msgstr "Ȧƥƥ Ȧƀŭşḗ Řḗƥǿřŧ Řḗȧḓ"
+
+#: mkt/constants/base.py:234
+msgid "Website Abuse Report Read"
+msgstr "Ẇḗƀşīŧḗ Ȧƀŭşḗ Řḗƥǿřŧ Řḗȧḓ"
+
+#: mkt/constants/base.py:268
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: mkt/constants/base.py:261
+#: mkt/constants/base.py:269
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: mkt/constants/base.py:262
+#: mkt/constants/base.py:270
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: mkt/constants/base.py:263
+#: mkt/constants/base.py:271
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: mkt/constants/base.py:264
+#: mkt/constants/base.py:272
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: mkt/constants/base.py:265
+#: mkt/constants/base.py:273
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
@@ -1639,123 +1666,128 @@ msgstr "Ẇḗȧŧħḗř"
 msgid "Tools"
 msgstr "Ŧǿǿŀş"
 
-#: mkt/constants/comm.py:43
+#: mkt/constants/comm.py:44
 msgid "No action"
 msgstr "Ƞǿ ȧƈŧīǿƞ"
 
-#: mkt/constants/comm.py:46
+#: mkt/constants/comm.py:47
 msgid "Banned"
 msgstr "Ɓȧƞƞḗḓ"
 
-#: mkt/constants/comm.py:47
+#: mkt/constants/comm.py:48
 msgid "Reviewer comment"
 msgstr "Řḗṽīḗẇḗř ƈǿḿḿḗƞŧ"
 
-#: mkt/constants/comm.py:48
+#: mkt/constants/comm.py:49
 #: mkt/reviewers/forms.py:202
 #: mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Ḗşƈȧŀȧŧḗḓ"
 
-#: mkt/constants/comm.py:49
+#: mkt/constants/comm.py:50
 msgid "Private reviewer comment"
 msgstr "Ƥřīṽȧŧḗ řḗṽīḗẇḗř ƈǿḿḿḗƞŧ"
 
-#: mkt/constants/comm.py:50
+#: mkt/constants/comm.py:51
 msgid "App resubmission"
 msgstr "Ȧƥƥ řḗşŭƀḿīşşīǿƞ"
 
-#: mkt/constants/comm.py:52
+#: mkt/constants/comm.py:53
 #: mkt/site/log.py:426
 msgid "Escalation cleared"
 msgstr "Ḗşƈȧŀȧŧīǿƞ ƈŀḗȧřḗḓ"
 
-#: mkt/constants/comm.py:53
+#: mkt/constants/comm.py:54
 msgid "Escalated due to High Abuse Reports"
 msgstr "Ḗşƈȧŀȧŧḗḓ ḓŭḗ ŧǿ Ħīɠħ Ȧƀŭşḗ Řḗƥǿřŧş"
 
-#: mkt/constants/comm.py:54
+#: mkt/constants/comm.py:55
 msgid "Escalated due to High Refund Requests"
 msgstr "Ḗşƈȧŀȧŧḗḓ ḓŭḗ ŧǿ Ħīɠħ Řḗƒŭƞḓ Řḗɋŭḗşŧş"
 
-#: mkt/constants/comm.py:55
+#: mkt/constants/comm.py:56
 #: mkt/site/log.py:474
 msgid "Re-review cleared"
 msgstr "Řḗ-řḗṽīḗẇ ƈŀḗȧřḗḓ"
 
-#: mkt/constants/comm.py:56
+#: mkt/constants/comm.py:57
 msgid "App submission notes"
 msgstr "Ȧƥƥ şŭƀḿīşşīǿƞ ƞǿŧḗş"
 
-#: mkt/constants/comm.py:57
+#: mkt/constants/comm.py:58
 msgid "Developer comment"
 msgstr "Ḓḗṽḗŀǿƥḗř ƈǿḿḿḗƞŧ"
 
-#: mkt/constants/comm.py:58
+#: mkt/constants/comm.py:59
 msgid "Device(s) changed by reviewer"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř"
 
-#: mkt/constants/comm.py:59
+#: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
 msgstr "Řḗɋŭīřḗḿḗƞŧ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř"
 
-#: mkt/constants/comm.py:60
+#: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Ḿȧƞīƒḗşŧ Ƈħȧƞɠḗ"
 
-#: mkt/constants/comm.py:61
+#: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest URL Change"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Ḿȧƞīƒḗşŧ ŬŘĿ Ƈħȧƞɠḗ"
 
-#: mkt/constants/comm.py:62
+#: mkt/constants/comm.py:63
 msgid "Rereview due to Premium Type Upgrade"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Ƥřḗḿīŭḿ Ŧẏƥḗ Ŭƥɠřȧḓḗ"
 
-#: mkt/constants/comm.py:63
+#: mkt/constants/comm.py:64
 msgid "Rereview due to Devices Added"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Ḓḗṽīƈḗş Ȧḓḓḗḓ"
 
-#: mkt/constants/comm.py:64
+#: mkt/constants/comm.py:65
 msgid "Rereview due to Requirements Change"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Řḗɋŭīřḗḿḗƞŧş Ƈħȧƞɠḗ"
 
-#: mkt/constants/comm.py:65
+#: mkt/constants/comm.py:66
 msgid "Rereview due to Adult Content Rating"
 msgstr "Řḗřḗṽīḗẇ ḓŭḗ ŧǿ Ȧḓŭŀŧ Ƈǿƞŧḗƞŧ Řȧŧīƞɠ"
 
-#: mkt/constants/comm.py:66
+#: mkt/constants/comm.py:67
 msgid "Escalation due to VIP App"
 msgstr "Ḗşƈȧŀȧŧīǿƞ ḓŭḗ ŧǿ ṼĪƤ Ȧƥƥ"
 
-#: mkt/constants/comm.py:67
+#: mkt/constants/comm.py:68
 msgid "Escalation due to Prelease App"
 msgstr "Ḗşƈȧŀȧŧīǿƞ ḓŭḗ ŧǿ Ƥřḗŀḗȧşḗ Ȧƥƥ"
 
-#: mkt/constants/comm.py:68
+#: mkt/constants/comm.py:69
 msgid "Priority review requested"
 msgstr "Ƥřīǿřīŧẏ řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
 
-#: mkt/constants/comm.py:69
+#: mkt/constants/comm.py:70
 msgid "Additional review passed"
 msgstr "Ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ ƥȧşşḗḓ"
 
-#: mkt/constants/comm.py:70
+#: mkt/constants/comm.py:71
 msgid "Additional review failed"
 msgstr "Ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ ƒȧīŀḗḓ"
 
-#: mkt/constants/comm.py:71
+#: mkt/constants/comm.py:72
 msgid "Version notes for reviewer"
 msgstr "Ṽḗřşīǿƞ ƞǿŧḗş ƒǿř řḗṽīḗẇḗř"
 
-#: mkt/constants/comm.py:72
+#: mkt/constants/comm.py:73
 msgid "Public reviewer comment"
 msgstr "Ƥŭƀŀīƈ řḗṽīḗẇḗř ƈǿḿḿḗƞŧ"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/comm.py:74
+#: mkt/site/log.py:546
+msgid "Abuse reports investigation"
+msgstr "Ȧƀŭşḗ řḗƥǿřŧş īƞṽḗşŧīɠȧŧīǿƞ"
+
+#: mkt/constants/features.py:20
 msgid "App Management API"
 msgstr "Ȧƥƥ Ḿȧƞȧɠḗḿḗƞŧ ȦƤĪ"
 
-#: mkt/constants/features.py:19
+#: mkt/constants/features.py:21
 msgid ""
 "The app requires the `navigator.mozApps` API to install and manage other "
 "apps."
@@ -1763,11 +1795,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzȦƥƥş` ȦƤĪ ŧǿ īƞşŧȧŀŀ ȧƞḓ ḿȧƞȧɠḗ ǿŧħḗř "
 "ȧƥƥş."
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:26
 msgid "Packaged Apps Install API"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥş Īƞşŧȧŀŀ ȦƤĪ"
 
-#: mkt/constants/features.py:25
+#: mkt/constants/features.py:27
 msgid ""
 "The app requires the `navigator.mozApps.installPackage` API to install other "
 "packaged apps."
@@ -1775,95 +1807,95 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzȦƥƥş.īƞşŧȧŀŀƤȧƈķȧɠḗ` ȦƤĪ ŧǿ īƞşŧȧŀŀ ǿŧħḗř "
 "ƥȧƈķȧɠḗḓ ȧƥƥş."
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:33
 msgid "Web Payment"
 msgstr "Ẇḗƀ Ƥȧẏḿḗƞŧ"
 
-#: mkt/constants/features.py:32
+#: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzȦƥƥş` ȦƤĪ."
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:38
 msgid "Web Activities"
 msgstr "Ẇḗƀ Ȧƈŧīṽīŧīḗş"
 
-#: mkt/constants/features.py:37
+#: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş Ẇḗƀ Ȧƈŧīṽīŧīḗş (ŧħḗ `ḾǿzȦƈŧīṽīŧẏ` ȦƤĪ)."
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
 msgstr "Ȧḿƀīḗƞŧ Ŀīɠħŧ Şḗƞşǿř"
 
-#: mkt/constants/features.py:43
+#: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ȧƞ ȧḿƀīḗƞŧ ŀīɠħŧ şḗƞşǿř (ŧħḗ `ǿƞḓḗṽīƈḗŀīɠħŧ` ȦƤĪ)."
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:50
 msgid "Archive"
 msgstr "Ȧřƈħīṽḗ"
 
-#: mkt/constants/features.py:49
+#: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ȦřƈħīṽḗŘḗȧḓḗř` ȦƤĪ."
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:55
 msgid "Battery"
 msgstr "Ɓȧŧŧḗřẏ"
 
-#: mkt/constants/features.py:54
+#: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ƀȧŧŧḗřẏ` ȦƤĪ."
 
-#: mkt/constants/features.py:59
+#: mkt/constants/features.py:61
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzƁŀŭḗŧǿǿŧħ` ȦƤĪ."
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:66
 msgid "Contacts"
 msgstr "Ƈǿƞŧȧƈŧş"
 
-#: mkt/constants/features.py:65
+#: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzƇǿƞŧȧƈŧş` ȦƤĪ."
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:72
 msgid "Device Storage"
 msgstr "Ḓḗṽīƈḗ Şŧǿřȧɠḗ"
 
-#: mkt/constants/features.py:71
+#: mkt/constants/features.py:73
 msgid ""
 "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ Ḓḗṽīƈḗ Şŧǿřȧɠḗ ȦƤĪ ŧǿ ȧƈƈḗşş ƒīŀḗş ǿƞ ŧħḗ ƒīŀḗşẏşŧḗḿ."
 
-#: mkt/constants/features.py:77
+#: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ĪƞḓḗẋḗḓḒƁ."
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:84
 msgid "Geolocation"
 msgstr "Ɠḗǿŀǿƈȧŧīǿƞ"
 
-#: mkt/constants/features.py:83
+#: mkt/constants/features.py:85
 msgid ""
 "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧħḗ `ƞȧṽīɠȧŧǿř.ɠḗǿŀǿƈȧŧīǿƞ` ȦƤĪ."
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:90
 msgid "Idle"
 msgstr "Īḓŀḗ"
 
-#: mkt/constants/features.py:89
+#: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧħḗ `ȧḓḓĪḓŀḗǾƀşḗřṽḗř` ȦƤĪ."
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:96
 msgid "Network Information"
 msgstr "Ƞḗŧẇǿřķ Īƞƒǿřḿȧŧīǿƞ"
 
-#: mkt/constants/features.py:95
+#: mkt/constants/features.py:97
 msgid ""
 "The app requires the ability to get information about the network connection "
 "(the `navigator.mozConnection` API)."
@@ -1871,51 +1903,51 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ȧƀīŀīŧẏ ŧǿ ɠḗŧ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ŧħḗ ƞḗŧẇǿřķ ƈǿƞƞḗƈŧīǿƞ "
 "(ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzƇǿƞƞḗƈŧīǿƞ` ȦƤĪ)."
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:103
 msgid "Network Stats"
 msgstr "Ƞḗŧẇǿřķ Şŧȧŧş"
 
-#: mkt/constants/features.py:102
+#: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzȠḗŧẇǿřķŞŧȧŧş` ȦƤĪ."
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:109
 msgid "Proximity"
 msgstr "Ƥřǿẋīḿīŧẏ"
 
-#: mkt/constants/features.py:108
+#: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ȧ ƥřǿẋīḿīŧẏ şḗƞşǿř (ŧħḗ `ǿƞḓḗṽīƈḗƥřǿẋīḿīŧẏ` ȦƤĪ)."
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:115
 msgid "Simple Push"
 msgstr "Şīḿƥŀḗ Ƥŭşħ"
 
-#: mkt/constants/features.py:114
+#: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzƤŭşħ` ȦƤĪ."
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:120
 msgid "Screen Orientation"
 msgstr "Şƈřḗḗƞ Ǿřīḗƞŧȧŧīǿƞ"
 
-#: mkt/constants/features.py:119
+#: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧħḗ `ǿƞḓḗṽīƈḗǿřīḗƞŧȧŧīǿƞ` ȦƤĪ."
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:126
 msgid "Time/Clock"
 msgstr "Ŧīḿḗ/Clock"
 
-#: mkt/constants/features.py:125
+#: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzŦīḿḗ` ȦƤĪ."
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:131
 msgid "Vibration"
 msgstr "Ṽīƀřȧŧīǿƞ"
 
-#: mkt/constants/features.py:130
+#: mkt/constants/features.py:132
 msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
@@ -1923,19 +1955,19 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ḓḗṽīƈḗ ŧǿ şŭƥƥǿřŧ ṽīƀřȧŧīǿƞ (ŧħḗ `ƞȧṽīɠȧŧǿř.ṽīƀřȧŧḗ` "
 "ȦƤĪ)."
 
-#: mkt/constants/features.py:136
+#: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzƑḾ` ǿř `ƞȧṽīɠȧŧǿř.ḿǿzƑḾŘȧḓīǿ` ȦƤĪş."
 
-#: mkt/constants/features.py:142
+#: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ `ƞȧṽīɠȧŧǿř.ḿǿzŞḿş` ȦƤĪ."
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:148
 msgid "Touch"
 msgstr "Ŧǿŭƈħ"
 
-#: mkt/constants/features.py:147
+#: mkt/constants/features.py:149
 msgid ""
 "The app requires the platform to support touch events. This option indicates "
 "that the app will not function when used with a mouse."
@@ -1943,11 +1975,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧǿŭƈħ ḗṽḗƞŧş. Ŧħīş ǿƥŧīǿƞ īƞḓīƈȧŧḗş "
 "ŧħȧŧ ŧħḗ ȧƥƥ ẇīŀŀ ƞǿŧ ƒŭƞƈŧīǿƞ ẇħḗƞ ŭşḗḓ ẇīŧħ ȧ ḿǿŭşḗ."
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "Şḿȧřŧƥħǿƞḗ-Şīzḗḓ Ḓīşƥŀȧẏş (ɋĦḒ)"
 
-#: mkt/constants/features.py:154
+#: mkt/constants/features.py:156
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD "
 "resolution). This option indicates that the app will be unusable on larger "
@@ -1957,23 +1989,23 @@ msgstr ""
 "řḗşǿŀŭŧīǿƞ). Ŧħīş ǿƥŧīǿƞ īƞḓīƈȧŧḗş ŧħȧŧ ŧħḗ ȧƥƥ ẇīŀŀ ƀḗ ŭƞŭşȧƀŀḗ ǿƞ ŀȧřɠḗř "
 "ḓīşƥŀȧẏş (ḗ.ɠ., ŧȧƀŀḗŧş, ḓḗşķŧǿƥ, ŀȧřɠḗ ǿř ħīɠħ-ḒƤĪ ƥħǿƞḗş)."
 
-#: mkt/constants/features.py:164
+#: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħȧŧ ŧħḗ ƥŀȧŧƒǿřḿ ƈȧƞ ḓḗƈǿḓḗ ȧƞḓ ƥŀȧẏ ḾƤ3 ƒīŀḗş."
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:171
 msgid "Audio"
 msgstr "Ȧŭḓīǿ"
 
-#: mkt/constants/features.py:170
+#: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħȧŧ ŧħḗ ƥŀȧŧƒǿřḿ şŭƥƥǿřŧş ŧħḗ ĦŦḾĿ5 ȧŭḓīǿ ȦƤĪ."
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:177
 msgid "Web Audio"
 msgstr "Ẇḗƀ Ȧŭḓīǿ"
 
-#: mkt/constants/features.py:176
+#: mkt/constants/features.py:178
 msgid ""
 "The app requires that the platform supports the Web Audio API "
 "(`window.AudioContext`)."
@@ -1981,13 +2013,13 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħȧŧ ŧħḗ ƥŀȧŧƒǿřḿ şŭƥƥǿřŧş ŧħḗ Ẇḗƀ Ȧŭḓīǿ ȦƤĪ "
 "(`ẇīƞḓǿẇ.ȦŭḓīǿƇǿƞŧḗẋŧ`)."
 
-#: mkt/constants/features.py:182
+#: mkt/constants/features.py:184
 msgid ""
 "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħȧŧ ŧħḗ ƥŀȧŧƒǿřḿ ƈȧƞ ḓḗƈǿḓḗ ȧƞḓ ƥŀȧẏ Ħ.264 ṽīḓḗǿ ƒīŀḗş."
 
-#: mkt/constants/features.py:188
+#: mkt/constants/features.py:190
 msgid ""
 "The app requires that the platform can decode and play WebM video files "
 "(VP8)."
@@ -1995,11 +2027,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħȧŧ ŧħḗ ƥŀȧŧƒǿřḿ ƈȧƞ ḓḗƈǿḓḗ ȧƞḓ ƥŀȧẏ ẆḗƀḾ ṽīḓḗǿ ƒīŀḗş "
 "(ṼƤ8)."
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:195
 msgid "Full Screen"
 msgstr "Ƒŭŀŀ Şƈřḗḗƞ"
 
-#: mkt/constants/features.py:194
+#: mkt/constants/features.py:196
 msgid ""
 "The app requires the Full Screen API (`requestFullScreen` or "
 "`mozRequestFullScreen`)."
@@ -2007,11 +2039,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ Ƒŭŀŀ Şƈřḗḗƞ ȦƤĪ (`řḗɋŭḗşŧƑŭŀŀŞƈřḗḗƞ` ǿř "
 "`ḿǿzŘḗɋŭḗşŧƑŭŀŀŞƈřḗḗƞ`)."
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:202
 msgid "Gamepad"
 msgstr "Ɠȧḿḗƥȧḓ"
 
-#: mkt/constants/features.py:201
+#: mkt/constants/features.py:203
 msgid ""
 "The app requires the platform to support the gamepad API "
 "(`navigator.getGamepads`)."
@@ -2019,11 +2051,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧħḗ ɠȧḿḗƥȧḓ ȦƤĪ "
 "(`ƞȧṽīɠȧŧǿř.ɠḗŧƓȧḿḗƥȧḓş`)."
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:208
 msgid "Quota Management"
 msgstr "Ɋŭǿŧȧ Ḿȧƞȧɠḗḿḗƞŧ"
 
-#: mkt/constants/features.py:207
+#: mkt/constants/features.py:209
 msgid ""
 "The app requires the platform to allow persistent storage limit increases "
 "above the normally allowed limits for an app (`window.StorageInfo` or "
@@ -2033,11 +2065,11 @@ msgstr ""
 "ȧƀǿṽḗ ŧħḗ ƞǿřḿȧŀŀẏ ȧŀŀǿẇḗḓ ŀīḿīŧş ƒǿř ȧƞ ȧƥƥ (`ẇīƞḓǿẇ.ŞŧǿřȧɠḗĪƞƒǿ` ǿř "
 "`ẇīƞḓǿẇ.ƥḗřşīşŧḗƞŧŞŧǿřȧɠḗ`)."
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:217
 msgid "Camera"
 msgstr "Ƈȧḿḗřȧ"
 
-#: mkt/constants/features.py:216
+#: mkt/constants/features.py:218
 msgid ""
 "The app requires the platform to allow access to video from the device "
 "camera via a LocalMediaStream object."
@@ -2045,11 +2077,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ȧƈƈḗşş ŧǿ ṽīḓḗǿ ƒřǿḿ ŧħḗ ḓḗṽīƈḗ "
 "ƈȧḿḗřȧ ṽīȧ ȧ ĿǿƈȧŀḾḗḓīȧŞŧřḗȧḿ ǿƀĵḗƈŧ."
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:224
 msgid "Microphone"
 msgstr "Ḿīƈřǿƥħǿƞḗ"
 
-#: mkt/constants/features.py:223
+#: mkt/constants/features.py:225
 msgid ""
 "The app requires the platform to allow access to audio from the device "
 "microphone."
@@ -2057,11 +2089,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ȧƈƈḗşş ŧǿ ȧŭḓīǿ ƒřǿḿ ŧħḗ ḓḗṽīƈḗ "
 "ḿīƈřǿƥħǿƞḗ."
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:230
 msgid "Screen Capture"
 msgstr "Şƈřḗḗƞ Ƈȧƥŧŭřḗ"
 
-#: mkt/constants/features.py:229
+#: mkt/constants/features.py:231
 msgid ""
 "The app requires the platform to allow access to the device screen for "
 "capture."
@@ -2069,11 +2101,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ȧƈƈḗşş ŧǿ ŧħḗ ḓḗṽīƈḗ şƈřḗḗƞ ƒǿř "
 "ƈȧƥŧŭřḗ."
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
 msgstr "ẆḗƀŘŦƇ ḾḗḓīȧŞŧřḗȧḿ"
 
-#: mkt/constants/features.py:236
+#: mkt/constants/features.py:238
 msgid ""
 "The app requires the platform to allow web real-time communication browser-"
 "to-browser inbound media streams."
@@ -2081,11 +2113,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ẇḗƀ řḗȧŀ-ŧīḿḗ ƈǿḿḿŭƞīƈȧŧīǿƞ "
 "ƀřǿẇşḗř-ŧǿ-ƀřǿẇşḗř īƞƀǿŭƞḓ ḿḗḓīȧ şŧřḗȧḿş."
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
 msgstr "ẆḗƀŘŦƇ ḒȧŧȧƇħȧƞƞḗŀ"
 
-#: mkt/constants/features.py:243
+#: mkt/constants/features.py:245
 msgid ""
 "The app requires the platform to allow peer-to-peer exchange of data other "
 "than audio and video."
@@ -2093,11 +2125,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ƥḗḗř-ŧǿ-ƥḗḗř ḗẋƈħȧƞɠḗ ǿƒ ḓȧŧȧ ǿŧħḗř "
 "ŧħȧƞ ȧŭḓīǿ ȧƞḓ ṽīḓḗǿ."
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
 msgstr "ẆḗƀŘŦƇ ƤḗḗřƇǿƞƞḗƈŧīǿƞ"
 
-#: mkt/constants/features.py:250
+#: mkt/constants/features.py:252
 msgid ""
 "The app requires the platform to allow communication of streaming data "
 "between peers."
@@ -2105,27 +2137,27 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ƈǿḿḿŭƞīƈȧŧīǿƞ ǿƒ şŧřḗȧḿīƞɠ ḓȧŧȧ "
 "ƀḗŧẇḗḗƞ ƥḗḗřş."
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
 msgstr "Ẇḗƀ Şƥḗḗƈħ Şẏƞŧħḗşīş"
 
-#: mkt/constants/features.py:257
+#: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ŧħḗ ŭşḗ ǿƒ ŧḗẋŧ-ŧǿ-şƥḗḗƈħ."
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
 msgstr "Ẇḗƀ Şƥḗḗƈħ Řḗƈǿɠƞīŧīǿƞ"
 
-#: mkt/constants/features.py:263
+#: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ŧħḗ ŭşḗ ǿƒ şƥḗḗƈħ-ŧǿ-ŧḗẋŧ."
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:270
 msgid "Pointer Lock"
 msgstr "Ƥǿīƞŧḗř Ŀǿƈķ"
 
-#: mkt/constants/features.py:269
+#: mkt/constants/features.py:271
 msgid ""
 "The app requires the platform to provide additional information and control "
 "about the pointer."
@@ -2133,11 +2165,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ƥřǿṽīḓḗ ȧḓḓīŧīǿƞȧŀ īƞƒǿřḿȧŧīǿƞ ȧƞḓ ƈǿƞŧřǿŀ "
 "ȧƀǿŭŧ ŧħḗ ƥǿīƞŧḗř."
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:277
 msgid "Notifications"
 msgstr "Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: mkt/constants/features.py:276
+#: mkt/constants/features.py:278
 msgid ""
 "The app requires the platform to allow the displaying phone and desktop "
 "notifications to the user."
@@ -2145,11 +2177,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ŧħḗ ḓīşƥŀȧẏīƞɠ ƥħǿƞḗ ȧƞḓ ḓḗşķŧǿƥ "
 "ƞǿŧīƒīƈȧŧīǿƞş ŧǿ ŧħḗ ŭşḗř."
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:284
 msgid "Alarms"
 msgstr "Ȧŀȧřḿş"
 
-#: mkt/constants/features.py:283
+#: mkt/constants/features.py:285
 msgid ""
 "The app requires the platform to provide access to the device alarm settings "
 "to schedule notifications and events at specific time."
@@ -2157,11 +2189,11 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ƥřǿṽīḓḗ ȧƈƈḗşş ŧǿ ŧħḗ ḓḗṽīƈḗ ȧŀȧřḿ şḗŧŧīƞɠş "
 "ŧǿ şƈħḗḓŭŀḗ ƞǿŧīƒīƈȧŧīǿƞş ȧƞḓ ḗṽḗƞŧş ȧŧ şƥḗƈīƒīƈ ŧīḿḗ."
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:292
 msgid "SystemXHR"
 msgstr "ŞẏşŧḗḿẊĦŘ"
 
-#: mkt/constants/features.py:291
+#: mkt/constants/features.py:293
 msgid ""
 "The app requires the platform to allow the sending of asynchronous HTTP "
 "requests without the restrictions of the same-origin policy."
@@ -2169,27 +2201,27 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ŧħḗ şḗƞḓīƞɠ ǿƒ ȧşẏƞƈħřǿƞǿŭş ĦŦŦƤ "
 "řḗɋŭḗşŧş ẇīŧħǿŭŧ ŧħḗ řḗşŧřīƈŧīǿƞş ǿƒ ŧħḗ şȧḿḗ-ǿřīɠīƞ ƥǿŀīƈẏ."
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:299
 msgid "TCP Sockets"
 msgstr "ŦƇƤ Şǿƈķḗŧş"
 
-#: mkt/constants/features.py:298
+#: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ ȧŀŀǿẇ ǿƥḗƞīƞɠ řȧẇ ŦƇƤ şǿƈķḗŧş."
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
 msgstr "Ŧħīřḓ-Ƥȧřŧẏ Ķḗẏƀǿȧřḓ Şŭƥƥǿřŧ"
 
-#: mkt/constants/features.py:304
+#: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ƥŀȧŧƒǿřḿ ŧǿ şŭƥƥǿřŧ ŧħīřḓ-ƥȧřŧẏ ķḗẏƀǿȧřḓş."
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:311
 msgid "Multiple Network Information"
 msgstr "Ḿŭŀŧīƥŀḗ Ƞḗŧẇǿřķ Īƞƒǿřḿȧŧīǿƞ"
 
-#: mkt/constants/features.py:310
+#: mkt/constants/features.py:312
 msgid ""
 "The app requires the ability to get information about multiple network "
 "connections."
@@ -2197,43 +2229,43 @@ msgstr ""
 "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ȧƀīŀīŧẏ ŧǿ ɠḗŧ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ḿŭŀŧīƥŀḗ ƞḗŧẇǿřķ "
 "ƈǿƞƞḗƈŧīǿƞş."
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:318
 msgid "Mobile ID"
 msgstr "Ḿǿƀīŀḗ ĪḒ"
 
-#: mkt/constants/features.py:317
+#: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ȧƈƈḗşş ŧǿ ŧħḗ `ƞȧṽīɠȧŧǿř.ɠḗŧḾǿƀīŀḗĪḓȦşşḗřŧīǿƞ` ȦƤĪ."
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:324
 msgid "Asm.js Precompilation"
 msgstr "Ȧşḿ.ĵş Ƥřḗƈǿḿƥīŀȧŧīǿƞ"
 
-#: mkt/constants/features.py:323
+#: mkt/constants/features.py:325
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ḓḗṽīƈḗ ŧǿ şŭƥƥǿřŧ ƥřḗƈǿḿƥīŀȧŧīǿƞ ǿƒ ȧşḿ.ĵş ƈǿḓḗ."
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:330
 msgid "512MB RAM Device"
 msgstr "512ḾƁ ŘȦḾ Ḓḗṽīƈḗ"
 
-#: mkt/constants/features.py:329
+#: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ḓḗṽīƈḗ ŧǿ ħȧṽḗ ȧŧ ŀḗȧşŧ 512ḾƁ ŘȦḾ."
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:336
 msgid "1GB RAM Device"
 msgstr "1ƓƁ ŘȦḾ Ḓḗṽīƈḗ"
 
-#: mkt/constants/features.py:335
+#: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ŧħḗ ḓḗṽīƈḗ ŧǿ ħȧṽḗ ȧŧ ŀḗȧşŧ 1ƓƁ ŘȦḾ."
 
-#: mkt/constants/features.py:340
+#: mkt/constants/features.py:342
 msgid "NFC"
 msgstr "ȠƑƇ"
 
-#: mkt/constants/features.py:341
+#: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr "Ŧħḗ ȧƥƥ řḗɋŭīřḗş ȧƈƈḗşş ŧǿ ŧħḗ Ƞḗȧř Ƒīḗŀḓ Ƈǿḿḿŭƞīƈȧŧīǿƞ (ȠƑƇ) ȦƤĪ."
 
@@ -2501,7 +2533,7 @@ msgstr "Şŭƀḿīŧ"
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1416
+#: mkt/webapps/models.py:1408
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -2606,7 +2638,7 @@ msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
 #: mkt/developers/forms.py:393
-#: mkt/webapps/models.py:1325
+#: mkt/webapps/models.py:1317
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
@@ -2729,7 +2761,7 @@ msgstr "Ƈħǿǿşḗ ẇħḗřḗ ḿẏ ȧƥƥ īş ḿȧḓḗ ȧṽȧīŀȧ
 #: mkt/lookup/templates/lookup/website_summary.html:42
 #: mkt/reviewers/templates/reviewers/includes/details.html:125
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
-#: mkt/search/forms.py:88
+#: mkt/search/forms.py:93
 #: mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Ƈȧŧḗɠǿřīḗş"
@@ -3015,7 +3047,7 @@ msgstr "Ȧƈƈǿŭƞŧ ƞȧḿḗ"
 
 #: mkt/developers/forms_payments.py:620
 #: mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/templates/developers/payments/in-app-products.html:49
 #: mkt/lookup/templates/lookup/website_edit.html:20
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24
 #: mkt/search/forms.py:20
@@ -3053,11 +3085,11 @@ msgstr "Ḿẏ Şŭƀḿīşşīǿƞş"
 msgid "Donate to {0}"
 msgstr "Ḓǿƞȧŧḗ ŧǿ {0}"
 
-#: mkt/developers/models.py:482
+#: mkt/developers/models.py:488
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: mkt/developers/models.py:485
+#: mkt/developers/models.py:491
 #: mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
@@ -3066,11 +3098,11 @@ msgstr "Ṽḗřşīǿƞ {0}"
 msgid "Reference Implementation"
 msgstr "Řḗƒḗřḗƞƈḗ Īḿƥŀḗḿḗƞŧȧŧīǿƞ"
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Ƞǿ ḿȧƞīƒḗşŧ ẇȧş ƒǿŭƞḓ ȧŧ ŧħȧŧ ŬŘĿ. Ƈħḗƈķ ŧħḗ ȧḓḓřḗşş ȧƞḓ ŧřẏ ȧɠȧīƞ."
 
-#: mkt/developers/tasks.py:419
+#: mkt/developers/tasks.py:434
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x"
 "-web-app-manifest+json\". See %s for more information."
@@ -3078,15 +3110,15 @@ msgstr ""
 "Ḿȧƞīƒḗşŧş ḿŭşŧ ƀḗ şḗřṽḗḓ ẇīŧħ ŧħḗ ĦŦŦƤ ħḗȧḓḗř \"Ƈǿƞŧḗƞŧ-Ŧẏƥḗ: ȧƥƥŀīƈȧŧīǿƞ/x"
 "-web-app-manifest+json\". Şḗḗ %s ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
-#: mkt/developers/tasks.py:428
+#: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ %s ƀẏŧḗş."
 
-#: mkt/developers/tasks.py:436
+#: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ƒīŀḗ ẇȧş ƞǿŧ ḗƞƈǿḓḗḓ ȧş ṽȧŀīḓ ŬŦƑ-8."
 
-#: mkt/developers/tasks.py:447
+#: mkt/developers/tasks.py:462
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
@@ -3094,18 +3126,18 @@ msgstr ""
 "Ŧħḗ ḿȧƞīƒḗşŧ'ş ḗƞƈǿḓīƞɠ ḓǿḗş ƞǿŧ ḿȧŧƈħ ŧħḗ ƈħȧřşḗŧ ƥřǿṽīḓḗḓ īƞ ŧħḗ ĦŦŦƤ "
 "Ƈǿƞŧḗƞŧ-Ŧẏƥḗ."
 
-#: mkt/developers/tasks.py:478
-#: mkt/developers/tasks.py:484
+#: mkt/developers/tasks.py:493
+#: mkt/developers/tasks.py:499
 #: mkt/reviewers/forms.py:42
 #: mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "ȧƞḓ"
 
-#: mkt/developers/tasks.py:498
+#: mkt/developers/tasks.py:513
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{řḗɠīǿƞ} řḗɠīǿƞ ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: mkt/developers/tasks.py:502
+#: mkt/developers/tasks.py:517
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Ƞḗẇ řḗɠīǿƞş ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
@@ -3155,35 +3187,35 @@ msgstr "Īƈǿƞş ḿŭşŧ ƀḗ şɋŭȧřḗ."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Ȧƥƥ ƥřḗṽīḗẇş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0}ƥẋ ƀẏ {1}ƥẋ ǿř {1}ƥẋ ƀẏ {0}ƥẋ."
 
-#: mkt/developers/views.py:152
+#: mkt/developers/views.py:153
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Ƥȧīḓ ȧƥƥş ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧƥƥ īƞşŧḗȧḓ."
 
-#: mkt/developers/views.py:162
+#: mkt/developers/views.py:163
 msgid "App deleted."
 msgstr "Ȧƥƥ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:168
 msgid "Password was incorrect. App was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧƥƥ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:211
+#: mkt/developers/views.py:212
 msgid "App successfully resubmitted."
 msgstr "Ȧƥƥ şŭƈƈḗşşƒŭŀŀẏ řḗşŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:244
+#: mkt/developers/views.py:245
 msgid "New version successfully added."
 msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 
-#: mkt/developers/views.py:308
-#: mkt/developers/views.py:570
+#: mkt/developers/views.py:309
+#: mkt/developers/views.py:571
 #: mkt/developers/views_payments.py:113
-#: mkt/developers/views_payments.py:437
+#: mkt/developers/views_payments.py:449
 #: mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:315
+#: mkt/developers/views.py:316
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
@@ -3191,63 +3223,63 @@ msgstr ""
 "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş, ẏǿŭř ȧƥƥ şŭƀḿīşşīǿƞ īş ƞǿẇ ƈǿḿƥŀḗŧḗ ȧƞḓ ẇīŀŀ ƀḗ řḗṽīḗẇḗḓ "
 "şħǿřŧŀẏ!"
 
-#: mkt/developers/views.py:317
+#: mkt/developers/views.py:318
 msgid "Content ratings successfully saved."
 msgstr "Ƈǿƞŧḗƞŧ řȧŧīƞɠş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:441
+#: mkt/developers/views.py:442
 msgid "Application for preload successfully submitted."
 msgstr "Ȧƥƥŀīƈȧŧīǿƞ ƒǿř ƥřḗŀǿȧḓ şŭƈƈḗşşƒŭŀŀẏ şŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:444
+#: mkt/developers/views.py:445
 msgid "There was an error with the form."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ ƒǿřḿ."
 
-#: mkt/developers/views.py:474
+#: mkt/developers/views.py:475
 msgid "Version successfully edited."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḗḓīŧḗḓ."
 
-#: mkt/developers/views.py:509
+#: mkt/developers/views.py:510
 msgid "Version successfully made active."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḿȧḓḗ ȧƈŧīṽḗ."
 
-#: mkt/developers/views.py:523
+#: mkt/developers/views.py:524
 msgid "Version \"{0}\" deleted."
 msgstr "Ṽḗřşīǿƞ \"{0}\" ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:658
+#: mkt/developers/views.py:659
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: mkt/developers/views.py:700
+#: mkt/developers/views.py:701
 msgid "An error occurred validating the manifest."
 msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ ṽȧŀīḓȧŧīƞɠ ŧħḗ ḿȧƞīƒḗşŧ."
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:955
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1006
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1018
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1027
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1033
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1051
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1053
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
@@ -3832,7 +3864,7 @@ msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/preload/home.html:3
 #: mkt/developers/templates/developers/apps/preload/submit.html:3
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:60
+#: mkt/developers/templates/developers/payments/in-app-products.html:52
 #: mkt/lookup/forms.py:59
 #: mkt/lookup/forms.py:64
 #: mkt/lookup/templates/lookup/app_summary.html:59
@@ -4479,7 +4511,7 @@ msgstr "Ṽīḗẇ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ"
 #: mkt/developers/templates/developers/apps/edit/basic.html:77
 #: mkt/reviewers/templates/reviewers/includes/details.html:26
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:142
+#: mkt/search/forms.py:147
 msgid "Manifest URL"
 msgstr "Ḿȧƞīƒḗşŧ ŬŘĿ"
 
@@ -4941,7 +4973,7 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1415
 msgid "Content Ratings"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠş"
 
@@ -5354,23 +5386,13 @@ msgstr "Ḗƞȧƀŀḗ"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid ""
-"In-app products are only supported for hosted apps or packaged apps that "
-"define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does "
-"not define an origin."
-msgstr ""
-"Īƞ-ȧƥƥ ƥřǿḓŭƈŧş ȧřḗ ǿƞŀẏ şŭƥƥǿřŧḗḓ ƒǿř ħǿşŧḗḓ ȧƥƥş ǿř ƥȧƈķȧɠḗḓ ȧƥƥş ŧħȧŧ "
-"ḓḗƒīƞḗ ȧƞ <a href=\"%(origin)s\">ǿřīɠīƞ</a> īƞ ŧħḗ ḿȧƞīƒḗşŧ. Ẏǿŭř ȧƥƥ ḓǿḗş "
-"ƞǿŧ ḓḗƒīƞḗ ȧƞ ǿřīɠīƞ."
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:38
-msgid ""
 "This feature is under active development. Please refer to the <a target=\""
 "_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
 "Ŧħīş ƒḗȧŧŭřḗ īş ŭƞḓḗř ȧƈŧīṽḗ ḓḗṽḗŀǿƥḿḗƞŧ. Ƥŀḗȧşḗ řḗƒḗř ŧǿ ŧħḗ <a target=\""
 "_blank\" href=\"%(doc_link)s\">ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:43
+#: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid ""
 "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">"
 "report a bug</a>."
@@ -5378,19 +5400,19 @@ msgstr ""
 "Īƒ ẏǿŭ ƒīƞḓ ȧ ƥřǿƀŀḗḿ ƥŀḗȧşḗ <a target=\"_blank\" href=\"%(bug_link)s\">"
 "řḗƥǿřŧ ȧ ƀŭɠ</a>."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:56
+#: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Icon"
 msgstr "Īƈǿƞ"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:58
+#: mkt/developers/templates/developers/payments/in-app-products.html:50
 msgid "Price Point"
 msgstr "Ƥřīƈḗ Ƥǿīƞŧ"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:51
 msgid "Product ID"
 msgstr "Ƥřǿḓŭƈŧ ĪḒ"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:71
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Add a product"
 msgstr "Ȧḓḓ ȧ ƥřǿḓŭƈŧ"
 
@@ -6048,7 +6070,7 @@ msgstr "Ḓḗṽḗŀǿƥīƞɠ Ɠȧḿḗ Ȧƥƥş"
 #: mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1429
+#: mkt/webapps/models.py:1421
 msgid "Payments"
 msgstr "Ƥȧẏḿḗƞŧş"
 
@@ -6337,20 +6359,20 @@ msgstr "Īḿȧɠḗ ƒřǿḿ %(url)s ƈǿŭŀḓ ƞǿŧ ƀḗ ƥȧřşḗḓ"
 msgid "Cannot diff a version against itself"
 msgstr "Ƈȧƞƞǿŧ ḓīƒƒ ȧ ṽḗřşīǿƞ ȧɠȧīƞşŧ īŧşḗŀƒ"
 
-#: mkt/files/helpers.py:152
+#: mkt/files/helpers.py:155
 msgid "That file no longer exists."
 msgstr "Ŧħȧŧ ƒīŀḗ ƞǿ ŀǿƞɠḗř ḗẋīşŧş."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:161
+#: mkt/files/helpers.py:164
 msgid "File size is over the limit of {0}."
 msgstr "Ƒīŀḗ şīzḗ īş ǿṽḗř ŧħḗ ŀīḿīŧ ǿƒ {0}."
 
-#: mkt/files/helpers.py:175
+#: mkt/files/helpers.py:178
 msgid "Problems decoding {0}."
 msgstr "Ƥřǿƀŀḗḿş ḓḗƈǿḓīƞɠ {0}."
 
-#: mkt/files/helpers.py:213
+#: mkt/files/helpers.py:216
 msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
@@ -6358,7 +6380,7 @@ msgstr ""
 "Ŧħīş ƒīŀḗ īş ƞǿŧ ṽīḗẇȧƀŀḗ ǿƞŀīƞḗ. Ƥŀḗȧşḗ ḓǿẇƞŀǿȧḓ ŧħḗ ƒīŀḗ ŧǿ ṽīḗẇ ŧħḗ "
 "ƈǿƞŧḗƞŧş."
 
-#: mkt/files/helpers.py:221
+#: mkt/files/helpers.py:224
 msgid "This file is a directory."
 msgstr "Ŧħīş ƒīŀḗ īş ȧ ḓīřḗƈŧǿřẏ."
 
@@ -7063,8 +7085,8 @@ msgstr "Ȧƥƥ Ŀǿǿķŭƥ"
 #: mkt/lookup/templates/lookup/includes/website_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:83
-#: mkt/search/forms.py:85
+#: mkt/search/forms.py:88
+#: mkt/search/forms.py:90
 #: mkt/templates/mkt/header.html:9
 #: mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13
@@ -7167,10 +7189,6 @@ msgstr "Ẏǿŭř ƥŭřƈħȧşḗ ħīşŧǿřẏ:"
 msgid "Keep review; remove flags"
 msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 
-#: mkt/ratings/forms.py:67
-msgid "Skip for now"
-msgstr "Şķīƥ ƒǿř ƞǿẇ"
-
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
@@ -7184,19 +7202,19 @@ msgstr "Ƞǿŧ ẏḗŧ řḗṽīḗẇḗḓ"
 msgid "Reviewed %s out of 5 stars"
 msgstr "Řḗṽīḗẇḗḓ %s ǿŭŧ ǿƒ 5 şŧȧřş"
 
-#: mkt/ratings/models.py:145
+#: mkt/ratings/models.py:149
 msgid "Spam or otherwise non-review content"
 msgstr "Şƥȧḿ ǿř ǿŧħḗřẇīşḗ ƞǿƞ-řḗṽīḗẇ ƈǿƞŧḗƞŧ"
 
-#: mkt/ratings/models.py:146
+#: mkt/ratings/models.py:150
 msgid "Inappropriate language/dialog"
 msgstr "Īƞȧƥƥřǿƥřīȧŧḗ ŀȧƞɠŭȧɠḗ/dialog"
 
-#: mkt/ratings/models.py:147
+#: mkt/ratings/models.py:151
 msgid "Misplaced bug report or support request"
 msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭḗşŧ"
 
-#: mkt/ratings/models.py:148
+#: mkt/ratings/models.py:152
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
@@ -7355,7 +7373,7 @@ msgstr "Ŧȧřȧķǿ-řḗȧḓẏ"
 
 #: mkt/reviewers/forms.py:210
 #: mkt/reviewers/helpers.py:45
-#: mkt/search/forms.py:91
+#: mkt/search/forms.py:96
 msgid "Device"
 msgstr "Ḓḗṽīƈḗ"
 
@@ -8095,29 +8113,24 @@ msgid "Newer versions"
 msgstr "Ƞḗẇḗř ṽḗřşīǿƞş"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
 msgstr "Ƥřǿƈḗşş"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Skip"
-msgstr "Şķīƥ"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
+msgid "Actions:"
+msgstr "Ȧƈŧīǿƞş:"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Mark Read"
-msgstr "Ḿȧřķ Řḗȧḓ"
-
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
 msgstr "Řḗṽīḗẇ ƥȧɠḗ"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr "<a href=\"%(abuses_url)s\">Ȧŀŀ ȧƀŭşḗ řḗƥǿřŧş (%(abuses_count)s)</a>]"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
@@ -8125,7 +8138,7 @@ msgstr ""
 "<span class=\"submitted-by\">Şŭƀḿīŧŧḗḓ ƀẏ %(user)s ǿƞ %(date)s "
 "[%(ip_address)s]</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\""
 " href=\"%(translate_url)s\">translate</a>"
@@ -8133,7 +8146,7 @@ msgstr ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\""
 " href=\"%(translate_url)s\">ŧřȧƞşŀȧŧḗ</a>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
 msgstr "Ȧŀŀ ȧƀŭşḗ řḗƥǿřŧş řḗȧḓ. Ɠǿǿḓ ẇǿřķ!"
 
@@ -8343,43 +8356,43 @@ msgstr "Ŧȧƀŀḗŧ"
 msgid "All Categories"
 msgstr "Ȧŀŀ Ƈȧŧḗɠǿřīḗş"
 
-#: mkt/search/forms.py:77
+#: mkt/search/forms.py:82
 msgid "Search for apps"
 msgstr "Şḗȧřƈħ ƒǿř ȧƥƥş"
 
-#: mkt/search/forms.py:93
+#: mkt/search/forms.py:98
 msgid "Device type"
 msgstr "Ḓḗṽīƈḗ ŧẏƥḗ"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:142
 msgid "Premium types"
 msgstr "Ƥřḗḿīŭḿ ŧẏƥḗş"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:146
 msgid "App type"
 msgstr "Ȧƥƥ ŧẏƥḗ"
 
-#: mkt/search/forms.py:145
+#: mkt/search/forms.py:150
 msgid "Installs allowed from"
 msgstr "Īƞşŧȧŀŀş ȧŀŀǿẇḗḓ ƒřǿḿ"
 
-#: mkt/search/forms.py:146
+#: mkt/search/forms.py:151
 msgid "Everywhere"
 msgstr "Ḗṽḗřẏẇħḗřḗ"
 
-#: mkt/search/forms.py:148
+#: mkt/search/forms.py:153
 msgid "Works offline"
 msgstr "Ẇǿřķş ǿƒƒŀīƞḗ"
 
-#: mkt/search/forms.py:150
+#: mkt/search/forms.py:155
 msgid "Supported languages"
 msgstr "Şŭƥƥǿřŧḗḓ ŀȧƞɠŭȧɠḗş"
 
-#: mkt/search/forms.py:151
+#: mkt/search/forms.py:156
 msgid "Author name"
 msgstr "Ȧŭŧħǿř ƞȧḿḗ"
 
-#: mkt/search/forms.py:152
+#: mkt/search/forms.py:157
 msgid "Tags"
 msgstr "Ŧȧɠş"
 
@@ -8827,113 +8840,117 @@ msgstr "{ȧḓḓǿƞ} ȧŭŧǿ-ḗşƈȧŀȧŧḗḓ ƀḗƈȧŭşḗ īŧş ȧ
 msgid "Prerelease auto-escalation"
 msgstr "Ƥřḗřḗŀḗȧşḗ ȧŭŧǿ-ḗşƈȧŀȧŧīǿƞ"
 
-#: mkt/site/log.py:555
+#: mkt/site/log.py:545
+msgid "{addon} re-reviewed because abuse reports need invesigation."
+msgstr "{ȧḓḓǿƞ} řḗ-řḗṽīḗẇḗḓ ƀḗƈȧŭşḗ ȧƀŭşḗ řḗƥǿřŧş ƞḗḗḓ īƞṽḗşīɠȧŧīǿƞ."
+
+#: mkt/site/log.py:563
 msgid "Created: {0}."
 msgstr "Ƈřḗȧŧḗḓ: {0}."
 
-#: mkt/site/log.py:561
+#: mkt/site/log.py:569
 msgid "Edited field: {2} set to: {0}."
 msgstr "Ḗḓīŧḗḓ ƒīḗŀḓ: {2} şḗŧ ŧǿ: {0}."
 
-#: mkt/site/log.py:567
+#: mkt/site/log.py:575
 msgid "Deleted: {1}."
 msgstr "Ḓḗŀḗŧḗḓ: {1}."
 
-#: mkt/site/log.py:573
+#: mkt/site/log.py:581
 msgid "User {user} edited, reason: {1}"
 msgstr "Ŭşḗř {ŭşḗř} ḗḓīŧḗḓ, řḗȧşǿƞ: {1}"
 
-#: mkt/site/log.py:579
+#: mkt/site/log.py:587
 msgid "User {user} anonymized."
 msgstr "Ŭşḗř {ŭşḗř} ȧƞǿƞẏḿīzḗḓ."
 
-#: mkt/site/log.py:585
+#: mkt/site/log.py:593
 msgid "User {user} restricted."
 msgstr "Ŭşḗř {ŭşḗř} řḗşŧřīƈŧḗḓ."
 
-#: mkt/site/log.py:591
+#: mkt/site/log.py:599
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Ȧḓḿīƞ {0} ṽīḗẇḗḓ ȧƈŧīṽīŧẏ ŀǿɠ ƒǿř {ŭşḗř}."
 
-#: mkt/site/log.py:598
+#: mkt/site/log.py:606
 msgid "{review} for {addon} updated."
 msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ŭƥḓȧŧḗḓ."
 
-#: mkt/site/log.py:604
+#: mkt/site/log.py:612
 msgid "{addon} reviewed."
 msgstr "{ȧḓḓǿƞ} řḗṽīḗẇḗḓ."
 
-#: mkt/site/log.py:610
+#: mkt/site/log.py:618
 msgid "User {0.name} added to {group}."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ɠřǿŭƥ}."
 
-#: mkt/site/log.py:618
+#: mkt/site/log.py:626
 msgid "User {0.name} removed from {group}."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} řḗḿǿṽḗḓ ƒřǿḿ {ɠřǿŭƥ}."
 
-#: mkt/site/log.py:625
+#: mkt/site/log.py:633
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{ȧḓḓǿƞ} ḿīƞīḿŭḿ řḗɋŭīřḗḿḗƞŧş ḿȧƞŭȧŀŀẏ ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř."
 
-#: mkt/site/log.py:626
+#: mkt/site/log.py:634
 msgid "Requirements Changed by Reviewer"
 msgstr "Řḗɋŭīřḗḿḗƞŧş Ƈħȧƞɠḗḓ ƀẏ Řḗṽīḗẇḗř"
 
-#: mkt/site/log.py:633
+#: mkt/site/log.py:641
 msgid "{addon} minimum requirements manually changed."
 msgstr "{ȧḓḓǿƞ} ḿīƞīḿŭḿ řḗɋŭīřḗḿḗƞŧş ḿȧƞŭȧŀŀẏ ƈħȧƞɠḗḓ."
 
-#: mkt/site/log.py:634
+#: mkt/site/log.py:642
 msgid "Requirements Changed"
 msgstr "Řḗɋŭīřḗḿḗƞŧş Ƈħȧƞɠḗḓ"
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:642
+#: mkt/site/log.py:650
 msgid "{version} status changed to {0}."
 msgstr "{ṽḗřşīǿƞ} şŧȧŧŭş ƈħȧƞɠḗḓ ŧǿ {0}."
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:649
+#: mkt/site/log.py:657
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} {0.īḓ} ḓḗŀḗŧḗḓ ṽīȧ ŀǿǿķŭƥ ŧǿǿŀ."
 
-#: mkt/site/log.py:655
+#: mkt/site/log.py:663
 msgid "{addon} content rating changed to Adult."
 msgstr "{ȧḓḓǿƞ} ƈǿƞŧḗƞŧ řȧŧīƞɠ ƈħȧƞɠḗḓ ŧǿ Ȧḓŭŀŧ."
 
-#: mkt/site/log.py:661
+#: mkt/site/log.py:669
 msgid "{addon} content rating changed."
 msgstr "{ȧḓḓǿƞ} ƈǿƞŧḗƞŧ řȧŧīƞɠ ƈħȧƞɠḗḓ."
 
-#: mkt/site/log.py:666
+#: mkt/site/log.py:674
 msgid "Priority review requested for {addon}."
 msgstr "Ƥřīǿřīŧẏ řḗṽīḗẇ řḗɋŭḗşŧḗḓ ƒǿř {ȧḓḓǿƞ}."
 
-#: mkt/site/log.py:667
+#: mkt/site/log.py:675
 msgid "Priority Review"
 msgstr "Ƥřīǿřīŧẏ Řḗṽīḗẇ"
 
-#: mkt/site/log.py:675
+#: mkt/site/log.py:683
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ƥȧşşḗḓ ŧħḗ {ɋŭḗŭḗ} řḗṽīḗẇ."
 
-#: mkt/site/log.py:682
+#: mkt/site/log.py:690
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ƒȧīŀḗḓ ŧħḗ {ɋŭḗŭḗ} řḗṽīḗẇ."
 
-#: mkt/site/log.py:689
+#: mkt/site/log.py:697
 msgid "Abuse report {report} for {addon} read."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ} řḗȧḓ."
 
-#: mkt/site/log.py:690
+#: mkt/site/log.py:698
 msgid "{user} marked read {report} for {addon}."
 msgstr "{ŭşḗř} ḿȧřķḗḓ řḗȧḓ {řḗƥǿřŧ} ƒǿř {ȧḓḓǿƞ}."
 
-#: mkt/site/log.py:698
+#: mkt/site/log.py:706
 msgid "Abuse report {report} for {website} read."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧ {řḗƥǿřŧ} ƒǿř {ẇḗƀşīŧḗ} řḗȧḓ."
 
-#: mkt/site/log.py:699
+#: mkt/site/log.py:707
 msgid "{user} marked read {report} for {website}."
 msgstr "{ŭşḗř} ḿȧřķḗḓ řḗȧḓ {řḗƥǿřŧ} ƒǿř {ẇḗƀşīŧḗ}."
 
@@ -9376,32 +9393,32 @@ msgid "Héllo"
 msgstr "Ħéŀŀǿ"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:25
+#: mkt/tags/utils.py:29
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Īƞṽȧŀīḓ ŧȧɠ: {0}"
 msgstr[1] "Īƞṽȧŀīḓ ŧȧɠş: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:35
+#: mkt/tags/utils.py:38
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" īş ȧ řḗşḗřṽḗḓ ŧȧɠ ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 msgstr[1] "\"{0}\" ȧřḗ řḗşḗřṽḗḓ ŧȧɠş ȧƞḓ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: mkt/tags/utils.py:43
+#: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 msgstr[1] "Ẏǿŭ ħȧṽḗ {0} ŧǿǿ ḿȧƞẏ ŧȧɠş."
 
-#: mkt/tags/utils.py:49
+#: mkt/tags/utils.py:52
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
 "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ŀḗşş ȧƒŧḗř īƞṽȧŀīḓ ƈħȧřȧƈŧḗřş ȧřḗ řḗḿǿṽḗḓ."
 
-#: mkt/tags/utils.py:53
+#: mkt/tags/utils.py:56
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
@@ -9595,66 +9612,66 @@ msgstr "Ƞȧŧīṽḗ ƑẋȦ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:200
+#: mkt/webapps/models.py:198
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: mkt/webapps/models.py:1316
+#: mkt/webapps/models.py:1308
 msgid "You must provide a support email or URL."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧ şŭƥƥǿřŧ ḗḿȧīŀ ǿř ŬŘĿ."
 
-#: mkt/webapps/models.py:1318
+#: mkt/webapps/models.py:1310
 msgid "You must provide an app name."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ȧƥƥ ƞȧḿḗ."
 
-#: mkt/webapps/models.py:1320
+#: mkt/webapps/models.py:1312
 msgid "You must provide at least one device type."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ḓḗṽīƈḗ ŧẏƥḗ."
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1315
 msgid "You must provide at least one category."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ƈȧŧḗɠǿřẏ."
 
-#: mkt/webapps/models.py:1390
+#: mkt/webapps/models.py:1382
 msgid "You must set up content ratings."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ƈǿƞŧḗƞŧ řȧŧīƞɠş."
 
-#: mkt/webapps/models.py:1392
+#: mkt/webapps/models.py:1384
 msgid "You must set up a payment account."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:1417
+#: mkt/webapps/models.py:1409
 msgid "This app's submission process has not been fully completed."
 msgstr "Ŧħīş ȧƥƥ'ş şŭƀḿīşşīǿƞ ƥřǿƈḗşş ħȧş ƞǿŧ ƀḗḗƞ ƒŭŀŀẏ ƈǿḿƥŀḗŧḗḓ."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1416
 msgid "This app needs to get a content rating."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ŧǿ ɠḗŧ ȧ ƈǿƞŧḗƞŧ řȧŧīƞɠ."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1422
 msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2689
+#: mkt/webapps/models.py:2681
 msgid "awaiting approval"
 msgstr "ȧẇȧīŧīƞɠ ȧƥƥřǿṽȧŀ"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2691
+#: mkt/webapps/models.py:2683
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2693
+#: mkt/webapps/models.py:2685
 msgid "requires additional review"
 msgstr "řḗɋŭīřḗş ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ"
 
-#: mkt/webapps/models.py:2744
+#: mkt/webapps/models.py:2736
 msgid "{region} approval status"
 msgstr "{řḗɠīǿƞ} ȧƥƥřǿṽȧŀ şŧȧŧŭş"
 
-#: mkt/webapps/models.py:2752
+#: mkt/webapps/models.py:2744
 msgid "{region} nomination date"
 msgstr "{řḗɠīǿƞ} ƞǿḿīƞȧŧīǿƞ ḓȧŧḗ"
 

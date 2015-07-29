@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:17-0700\n"
+"POT-Creation-Date: 2015-07-29 13:02-0700\n"
 "PO-Revision-Date: 2015-07-16 11:35+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1437046537.0\n"
+
+#: mkt/abuse/forms.py:70
+msgid "Abuse reports needing investigation: %s"
+msgstr ""
+
+#: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
+msgid "Skip for now"
+msgstr "Voorlopig overslaan"
+
+#: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
+msgid "Mark all reports Read"
+msgstr ""
+
+#: mkt/abuse/forms.py:80
+msgid "Flag for re-review"
+msgstr ""
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1132,11 +1148,11 @@ msgstr "Geblokkeerd op Marketplace"
 msgid "Deleted"
 msgstr "Verwijderd"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:46 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Afgewezen"
 
-#: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
+#: mkt/constants/base.py:34 mkt/constants/comm.py:52 mkt/site/log.py:377
 msgid "Approved but private"
 msgstr "Goedgekeurd maar privé"
 
@@ -1152,7 +1168,7 @@ msgstr "Niet vermeld"
 msgid "Obsolete"
 msgstr "Verouderd"
 
-#: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
+#: mkt/constants/base.py:43 mkt/constants/comm.py:45 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
 msgstr "Goedgekeurd"
 
@@ -1192,67 +1208,75 @@ msgstr "Gratis met betalingen in de app"
 msgid "I'll use my own system for in-app payments"
 msgstr "Ik gebruik mijn eigen systeem voor in-app-betalingen"
 
-#: mkt/constants/base.py:221
+#: mkt/constants/base.py:223
 msgid "Manual Reviewer Points"
 msgstr "Handmatige beoordelaarspunten"
 
-#: mkt/constants/base.py:222
+#: mkt/constants/base.py:224
 msgid "Web App Review"
 msgstr "Webapp-beoordeling"
 
-#: mkt/constants/base.py:223
+#: mkt/constants/base.py:225
 msgid "Packaged App Review"
 msgstr "Beoordeling van verpakte app"
 
-#: mkt/constants/base.py:224
+#: mkt/constants/base.py:226
 msgid "Privileged App Review"
 msgstr "Beoordeling van voorkeursapp"
 
-#: mkt/constants/base.py:225
+#: mkt/constants/base.py:227
 msgid "Web App Re-review"
 msgstr "Webapp-herbeoordeling"
 
-#: mkt/constants/base.py:226
+#: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
 msgstr "Herbeoordeling van verpakte app"
 
-#: mkt/constants/base.py:227
+#: mkt/constants/base.py:229
 msgid "Updated Privileged App Review"
 msgstr "Herbeoordeling van voorkeursapp"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:230
 msgid "Moderated App Review"
 msgstr "Beoordeling van gemodereerde app"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:231
 msgid "App Review Moderation Reverted"
 msgstr "App-beoordelingsmoderatie ongedaan gemaakt"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:232
 msgid "Tarako App Review"
 msgstr "Tarako-app-beoordeling"
 
-#: mkt/constants/base.py:260
+#: mkt/constants/base.py:233
+msgid "App Abuse Report Read"
+msgstr ""
+
+#: mkt/constants/base.py:234
+msgid "Website Abuse Report Read"
+msgstr ""
+
+#: mkt/constants/base.py:268
 msgid "Level 1"
 msgstr "Niveau 1"
 
-#: mkt/constants/base.py:261
+#: mkt/constants/base.py:269
 msgid "Level 2"
 msgstr "Niveau 2"
 
-#: mkt/constants/base.py:262
+#: mkt/constants/base.py:270
 msgid "Level 3"
 msgstr "Niveau 3"
 
-#: mkt/constants/base.py:263
+#: mkt/constants/base.py:271
 msgid "Level 4"
 msgstr "Niveau 4"
 
-#: mkt/constants/base.py:264
+#: mkt/constants/base.py:272
 msgid "Level 5"
 msgstr "Niveau 5"
 
-#: mkt/constants/base.py:265
+#: mkt/constants/base.py:273
 msgid "Level 6"
 msgstr "Niveau 6"
 
@@ -1360,287 +1384,291 @@ msgstr "Weer"
 msgid "Tools"
 msgstr "Hulpmiddelen"
 
-#: mkt/constants/comm.py:43
+#: mkt/constants/comm.py:44
 msgid "No action"
 msgstr "Geen actie"
 
-#: mkt/constants/comm.py:46
+#: mkt/constants/comm.py:47
 msgid "Banned"
 msgstr "Geblokkeerd"
 
-#: mkt/constants/comm.py:47
+#: mkt/constants/comm.py:48
 msgid "Reviewer comment"
 msgstr "Reactie van beoordelaar"
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:49 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Geëscaleerd"
 
-#: mkt/constants/comm.py:49
+#: mkt/constants/comm.py:50
 msgid "Private reviewer comment"
 msgstr "Privéreactie van beoordelaar"
 
-#: mkt/constants/comm.py:50
+#: mkt/constants/comm.py:51
 msgid "App resubmission"
 msgstr "App-herindiening"
 
-#: mkt/constants/comm.py:52 mkt/site/log.py:426
+#: mkt/constants/comm.py:53 mkt/site/log.py:426
 msgid "Escalation cleared"
 msgstr "Escalatie verwijderd"
 
-#: mkt/constants/comm.py:53
+#: mkt/constants/comm.py:54
 msgid "Escalated due to High Abuse Reports"
 msgstr "Geëscaleerd vanwege hoeveelheid misbruikmeldingen"
 
-#: mkt/constants/comm.py:54
+#: mkt/constants/comm.py:55
 msgid "Escalated due to High Refund Requests"
 msgstr "Geëscaleerd vanwege hoeveelheid restitutieaanvragen"
 
-#: mkt/constants/comm.py:55 mkt/site/log.py:474
+#: mkt/constants/comm.py:56 mkt/site/log.py:474
 msgid "Re-review cleared"
 msgstr "Herbeoordeling gewist"
 
-#: mkt/constants/comm.py:56
+#: mkt/constants/comm.py:57
 msgid "App submission notes"
 msgstr "App-indieningsopmerkingen"
 
-#: mkt/constants/comm.py:57
+#: mkt/constants/comm.py:58
 msgid "Developer comment"
 msgstr "Ontwikkelaarsopmerking"
 
-#: mkt/constants/comm.py:58
+#: mkt/constants/comm.py:59
 msgid "Device(s) changed by reviewer"
 msgstr "Apparaten gewijzigd door beoordelaar"
 
-#: mkt/constants/comm.py:59
+#: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
 msgstr "Vereiste(n) gewijzigd door beoordelaar"
 
-#: mkt/constants/comm.py:60
+#: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
 msgstr "Herbeoordeling vanwege van manifest"
 
-#: mkt/constants/comm.py:61
+#: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest URL Change"
 msgstr "Herbeoordeling vanwege wijziging van manifest-URL"
 
-#: mkt/constants/comm.py:62
+#: mkt/constants/comm.py:63
 msgid "Rereview due to Premium Type Upgrade"
 msgstr "Herbeoordeling vanwege upgrade van premium-type"
 
-#: mkt/constants/comm.py:63
+#: mkt/constants/comm.py:64
 msgid "Rereview due to Devices Added"
 msgstr "Herbeoordeling vanwege toegevoegde apparaten"
 
-#: mkt/constants/comm.py:64
+#: mkt/constants/comm.py:65
 msgid "Rereview due to Requirements Change"
 msgstr "Herbeoordeling vanwege wijziging in vereisten"
 
-#: mkt/constants/comm.py:65
+#: mkt/constants/comm.py:66
 msgid "Rereview due to Adult Content Rating"
 msgstr "Herbeoordeling vanwege inhoudsbeoordeling voor volwassenen"
 
-#: mkt/constants/comm.py:66
+#: mkt/constants/comm.py:67
 msgid "Escalation due to VIP App"
 msgstr "Escalatie vanwege VIP-app"
 
-#: mkt/constants/comm.py:67
+#: mkt/constants/comm.py:68
 msgid "Escalation due to Prelease App"
 msgstr "Escalatie vanwege prerelease-app"
 
-#: mkt/constants/comm.py:68
+#: mkt/constants/comm.py:69
 msgid "Priority review requested"
 msgstr "Prioriteitsbeoordeling gevraagd"
 
-#: mkt/constants/comm.py:69
+#: mkt/constants/comm.py:70
 msgid "Additional review passed"
 msgstr "Aanvullende beoordeling geslaagd"
 
-#: mkt/constants/comm.py:70
+#: mkt/constants/comm.py:71
 msgid "Additional review failed"
 msgstr "Aanvullende beoordeling mislukt"
 
-#: mkt/constants/comm.py:71
+#: mkt/constants/comm.py:72
 msgid "Version notes for reviewer"
 msgstr "Versieopmerkingen voor beoordelaar"
 
-#: mkt/constants/comm.py:72
+#: mkt/constants/comm.py:73
 msgid "Public reviewer comment"
 msgstr "Openbare reactie van beoordelaar"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/comm.py:74 mkt/site/log.py:546
+msgid "Abuse reports investigation"
+msgstr ""
+
+#: mkt/constants/features.py:20
 msgid "App Management API"
 msgstr "App-beheer-API"
 
-#: mkt/constants/features.py:19
+#: mkt/constants/features.py:21
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr "De app vereist de ‘navigator.mozApps’-API om andere apps te kunnen installeren en beheren."
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:26
 msgid "Packaged Apps Install API"
 msgstr "Installatie-API voor verpakte apps"
 
-#: mkt/constants/features.py:25
+#: mkt/constants/features.py:27
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr "De app vereist de ‘navigator.mozApps.installPackage’-API om andere verpakte apps te kunnen installeren."
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:33
 msgid "Web Payment"
 msgstr "Internetbetaling"
 
-#: mkt/constants/features.py:32
+#: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "De app vereist de ‘navigator.mozApps’-API."
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:38
 msgid "Web Activities"
 msgstr "Internetactiviteiten"
 
-#: mkt/constants/features.py:37
+#: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "De app vereist Webactiviteiten (de ‘MozActivity’-API)."
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
 msgstr "Omgevingslichtsensor"
 
-#: mkt/constants/features.py:43
+#: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "De app vereist een omgevingslichtsensor (de ‘ondevicelight’-API)."
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:50
 msgid "Archive"
 msgstr "Archief"
 
-#: mkt/constants/features.py:49
+#: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
 msgstr "De app vereist de ’ArchiveReader’-API."
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:55
 msgid "Battery"
 msgstr "Batterij"
 
-#: mkt/constants/features.py:54
+#: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
 msgstr "De app vereist de ‘navigator.battery’-API."
 
-#: mkt/constants/features.py:59
+#: mkt/constants/features.py:61
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "De app vereist de ‘navigator.mozBluetooth’-API."
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:66
 msgid "Contacts"
 msgstr "Contactpersonen"
 
-#: mkt/constants/features.py:65
+#: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "De app vereist de ‘navigator.mozContacts’-API."
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:72
 msgid "Device Storage"
 msgstr "Apparaatopslag"
 
-#: mkt/constants/features.py:71
+#: mkt/constants/features.py:73
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr "De app vereist de Apparaatopslag-API voor toegang tot systeembestanden."
 
-#: mkt/constants/features.py:77
+#: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
 msgstr "De app vereist dat het platform IndexedDB ondersteunt."
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:84
 msgid "Geolocation"
 msgstr "Geolocatie"
 
-#: mkt/constants/features.py:83
+#: mkt/constants/features.py:85
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr "De app vereist dat het platform de ‘navigator.geolocation’-API ondersteunt."
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:90
 msgid "Idle"
 msgstr "Inactief"
 
-#: mkt/constants/features.py:89
+#: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr "De app vereist dat het platform de ‘addIdleObserver’-API ondersteunt."
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:96
 msgid "Network Information"
 msgstr "Netwerkinformatie"
 
-#: mkt/constants/features.py:95
+#: mkt/constants/features.py:97
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr "De app vereist dat informatie over de netwerkverbinding kan worden opgehaald (de ‘navigator.mozConnection’-API)."
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:103
 msgid "Network Stats"
 msgstr "Netwerkstatistieken"
 
-#: mkt/constants/features.py:102
+#: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "De app vereist de ‘navigator.mozNetworkStats’-API."
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:109
 msgid "Proximity"
 msgstr "Nabijheid"
 
-#: mkt/constants/features.py:108
+#: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "De app vereist een nabijheidssensor (de ‘ondeviceproximity’-API)."
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:115
 msgid "Simple Push"
 msgstr "Eenvoudige push"
 
-#: mkt/constants/features.py:114
+#: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "De app vereist de ‘navigator.mozPush’-API."
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:120
 msgid "Screen Orientation"
 msgstr "Schermoriëntatie"
 
-#: mkt/constants/features.py:119
+#: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "De app vereist dat het platform de ‘ondeviceorientation’-API ondersteunt."
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:126
 msgid "Time/Clock"
 msgstr "Tijd/Klok"
 
-#: mkt/constants/features.py:125
+#: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "De app vereist de ‘navigator-mozTime’-API."
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:131
 msgid "Vibration"
 msgstr "Trilling"
 
-#: mkt/constants/features.py:130
+#: mkt/constants/features.py:132
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr "De app vereist dat het apparaat trillen ondersteunt (de ‘navigator.vibrate’-API)."
 
-#: mkt/constants/features.py:136
+#: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "De app vereist de ‘navigator.mozFM’- of de ‘navigator.mozFMRadio’-API."
 
-#: mkt/constants/features.py:142
+#: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "De app vereist de ‘navigator.mozSms’-API."
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:148
 msgid "Touch"
 msgstr "Aanraking"
 
-#: mkt/constants/features.py:147
+#: mkt/constants/features.py:149
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr "De app vereist dat het platform aanraakgebeurtenissen ondersteunt. Deze optie geeft aan dat de app niet werkt met een muis."
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "Smartphone-schermafmetingen (qHD)"
 
-#: mkt/constants/features.py:154
+#: mkt/constants/features.py:156
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
@@ -1648,215 +1676,215 @@ msgstr ""
 "De app vereist dat het platform een scherm met smartphone-afmetingen (met qHD-resolutie) heeft. Deze optie geeft aan dat de app niet kan worden gebruikt op grotere schermen (zoals tablets, "
 "desktops, grote telefoons of telefoons met een hoge resolutie)."
 
-#: mkt/constants/features.py:164
+#: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "De app vereist dat het platform MP3-bestanden kan decoderen en afspelen."
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:171
 msgid "Audio"
 msgstr "Audio"
 
-#: mkt/constants/features.py:170
+#: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "De app vereist dat het platform de HTML5-audio-API ondersteunt."
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:177
 msgid "Web Audio"
 msgstr "Internetaudio"
 
-#: mkt/constants/features.py:176
+#: mkt/constants/features.py:178
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr "De app vereist dat het platform de Web Audio-API (‘window.AudioContext’) ondersteunt."
 
-#: mkt/constants/features.py:182
+#: mkt/constants/features.py:184
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr "De app vereist dat het platform H.264-videobestanden kan decoderen en afspelen."
 
-#: mkt/constants/features.py:188
+#: mkt/constants/features.py:190
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr "De app vereist dat het platform WebM-videobestanden (VP8) kan decoderen en afspelen."
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:195
 msgid "Full Screen"
 msgstr "Volledig scherm"
 
-#: mkt/constants/features.py:194
+#: mkt/constants/features.py:196
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr "De app vereist de Volledig scherm-API (‘requestFullScreen’ of ‘mozRequestFullScreen’)."
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:202
 msgid "Gamepad"
 msgstr "Gamepad"
 
-#: mkt/constants/features.py:201
+#: mkt/constants/features.py:203
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr "De app vereist dat het platform de gamepad-API (‘navigator.getGamepads’) ondersteunt."
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:208
 msgid "Quota Management"
 msgstr "Quotabeheer"
 
-#: mkt/constants/features.py:207
+#: mkt/constants/features.py:209
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr "De app vereist dat het platform blijvende opslaglimietverhogingen boven de normale grenzen voor een app (‘window.StorageInfo’ of ‘window.persistentStorage’) toestaat."
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:217
 msgid "Camera"
 msgstr "Camera"
 
-#: mkt/constants/features.py:216
+#: mkt/constants/features.py:218
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr "De app vereist dat het platform toegang geeft tot video vanaf de apparaatcamera via een LocalMediaStream-object."
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:224
 msgid "Microphone"
 msgstr "Microfoon"
 
-#: mkt/constants/features.py:223
+#: mkt/constants/features.py:225
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr "De app vereist dat het platform toegang geeft tot audio vanaf de apparaatmicrofoon."
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:230
 msgid "Screen Capture"
 msgstr "Schermafdruk"
 
-#: mkt/constants/features.py:229
+#: mkt/constants/features.py:231
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr "De app vereist dat het platform toegang geeft tot het apparaatscherm voor een afdruk."
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
 msgstr "WebRTC MediaStream"
 
-#: mkt/constants/features.py:236
+#: mkt/constants/features.py:238
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr "De app vereist dat het platform web-realtime communicatie van browser tot browser voor inkomende mediastreams toestaat."
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
-#: mkt/constants/features.py:243
+#: mkt/constants/features.py:245
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr "De app vereist dat het platform peer-to-peer-uitwisseling van gegevens (niet zijnde audio en video) toestaat."
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
-#: mkt/constants/features.py:250
+#: mkt/constants/features.py:252
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr "De app vereist dat het platform communicatie van streaming gegevens tussen peers toestaat."
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
 msgstr "Web Speech Synthesis"
 
-#: mkt/constants/features.py:257
+#: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "De app vereist dat het platform gebruik van tekst-naar-spraak toestaat."
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
 msgstr "Web Speech Recognition"
 
-#: mkt/constants/features.py:263
+#: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "De app vereist dat het platform het gebruik van spraak-naar-tekst toestaat."
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:270
 msgid "Pointer Lock"
 msgstr "Pointer Lock"
 
-#: mkt/constants/features.py:269
+#: mkt/constants/features.py:271
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr "De app vereist dat het platform aanvullende informatie en beheer over de pointer geeft."
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:277
 msgid "Notifications"
 msgstr "Notificaties"
 
-#: mkt/constants/features.py:276
+#: mkt/constants/features.py:278
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr "De app vereist dat het platform weergave van telefoon- en desktopnotificaties voor de gebruiker toestaat."
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:284
 msgid "Alarms"
 msgstr "Alarmen"
 
-#: mkt/constants/features.py:283
+#: mkt/constants/features.py:285
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr "De app vereist dat het platform toegang geeft tot de alarminstellingen van het apparaat om notificaties en gebeurtenissen op specifieke momenten in te roosteren."
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:292
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
-#: mkt/constants/features.py:291
+#: mkt/constants/features.py:293
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr "De app vereist dat het platform het verzenden van asynchrone HTTP-aanvragen toestaat zonder de beperkingen van de same-origin policy."
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:299
 msgid "TCP Sockets"
 msgstr "TCP Sockets"
 
-#: mkt/constants/features.py:298
+#: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "De app vereist dat het platform het openen van raw TCP-sockets toestaat."
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
 msgstr "Ondersteuning extern toetsenbord"
 
-#: mkt/constants/features.py:304
+#: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "De app vereist dat het platform externe toetsenborden ondersteunt."
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:311
 msgid "Multiple Network Information"
 msgstr "Informatie meerdere netwerken"
 
-#: mkt/constants/features.py:310
+#: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "De app vereist de mogelijkheid om informatie over meerdere netwerkverbindingen op te halen."
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:318
 msgid "Mobile ID"
 msgstr "Mobiele ID"
 
-#: mkt/constants/features.py:317
+#: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr "De app vereist toegang tot de ’navigator.getMobileIdAssertion’- API."
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:324
 msgid "Asm.js Precompilation"
 msgstr "Asm.js-precompilatie"
 
-#: mkt/constants/features.py:323
+#: mkt/constants/features.py:325
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr "De app vereist dat het apparaat precompilatie van asm.js-code ondersteunt."
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:330
 msgid "512MB RAM Device"
 msgstr "512MB RAM-apparaat"
 
-#: mkt/constants/features.py:329
+#: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "De app vereist dat het apparaat minstens 512MB RAM heeft."
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:336
 msgid "1GB RAM Device"
 msgstr "1GB RAM-apparaat"
 
-#: mkt/constants/features.py:335
+#: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr "De app vereist dat het apparaat minstens 1GB RAM heeft."
 
-#: mkt/constants/features.py:340
+#: mkt/constants/features.py:342
 msgid "NFC"
 msgstr "NFC"
 
-#: mkt/constants/features.py:341
+#: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr "De app vereist toegang tot de Near Field Communication (NFC)-API."
 
@@ -2099,7 +2127,7 @@ msgstr "Overeenkomst"
 msgid "Submit"
 msgstr "Indienen"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1416
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1408
 msgid "Details"
 msgstr "Details"
 
@@ -2175,7 +2203,7 @@ msgstr "Er bestaat al een app op dat domein; slechts één app per domein is toe
 msgid "Invalid region(s) selected."
 msgstr "Ongeldige regio(’s) geselecteerd."
 
-#: mkt/developers/forms.py:393 mkt/webapps/models.py:1325
+#: mkt/developers/forms.py:393 mkt/webapps/models.py:1317
 msgid "You must upload at least one screenshot or video."
 msgstr "U moet minstens één schermafdruk of video uploaden."
 
@@ -2268,7 +2296,7 @@ msgid "Choose where my app is made available"
 msgstr "Kiezen waar mijn app beschikbaar wordt gesteld"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:93 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Categorieën"
 
@@ -2526,7 +2554,7 @@ msgstr "U mag betalingsaccounts niet wijzigen."
 msgid "Account name"
 msgstr "Accountnaam"
 
-#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:49
 #: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
@@ -2554,11 +2582,11 @@ msgstr "Mijn bijdragen"
 msgid "Donate to {0}"
 msgstr "Doneren aan {0}"
 
-#: mkt/developers/models.py:482
+#: mkt/developers/models.py:488
 msgid "Review"
 msgstr "Beoordeling"
 
-#: mkt/developers/models.py:485 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:491 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Versie {0}"
 
@@ -2566,35 +2594,35 @@ msgstr "Versie {0}"
 msgid "Reference Implementation"
 msgstr "Referentie-implementatie"
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Er is geen manifest aangetroffen op die URL. Controleer het adres en probeer het opnieuw."
 
-#: mkt/developers/tasks.py:419
+#: mkt/developers/tasks.py:434
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifests moeten worden aangeleverd met de HTTP-header ‘Content-Type: application/x-web-app-manifest+json’. Zie %s voor meer informatie."
 
-#: mkt/developers/tasks.py:428
+#: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
 msgstr "Uw manifest moet kleiner dan %s bytes zijn."
 
-#: mkt/developers/tasks.py:436
+#: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Uw manifest is niet gecodeerd als geldig UTF-8."
 
-#: mkt/developers/tasks.py:447
+#: mkt/developers/tasks.py:462
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "De codering van het manifest komt niet overeen met de tekenset in het HTTP Content-Type."
 
-#: mkt/developers/tasks.py:478 mkt/developers/tasks.py:484 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:493 mkt/developers/tasks.py:499 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "en"
 
-#: mkt/developers/tasks.py:498
+#: mkt/developers/tasks.py:513
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Regio {region} toegevoegd aan de Firefox Marketplace"
 
-#: mkt/developers/tasks.py:502
+#: mkt/developers/tasks.py:517
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Nieuwe regio’s toegevoegd aan de Firefox Marketplace"
 
@@ -2644,91 +2672,91 @@ msgstr "Pictogrammen moeten vierkant zijn."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "App-voorbeelden moeten minstens {0}px bij {1}px of {1}px bij {0}px zijn."
 
-#: mkt/developers/views.py:152
+#: mkt/developers/views.py:153
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Betaalde apps kunnen niet worden verwijderd. U kunt uw app wel uitschakelen."
 
-#: mkt/developers/views.py:162
+#: mkt/developers/views.py:163
 msgid "App deleted."
 msgstr "App verwijderd."
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:168
 msgid "Password was incorrect. App was not deleted."
 msgstr "Wachtwoord onjuist. App is niet verwijderd."
 
-#: mkt/developers/views.py:211
+#: mkt/developers/views.py:212
 msgid "App successfully resubmitted."
 msgstr "App met succes opnieuw ingediend."
 
-#: mkt/developers/views.py:244
+#: mkt/developers/views.py:245
 msgid "New version successfully added."
 msgstr "Nieuwe versie met succes toegevoegd."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."
 
-#: mkt/developers/views.py:315
+#: mkt/developers/views.py:316
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "Gefeliciteerd, uw app is nu ingediend en zal binnenkort worden beoordeeld!"
 
-#: mkt/developers/views.py:317
+#: mkt/developers/views.py:318
 msgid "Content ratings successfully saved."
 msgstr "Inhoudsbeoordelingen met succes opgeslagen."
 
-#: mkt/developers/views.py:441
+#: mkt/developers/views.py:442
 msgid "Application for preload successfully submitted."
 msgstr "Aanvraag voor vooraf laden met succes ingediend."
 
-#: mkt/developers/views.py:444
+#: mkt/developers/views.py:445
 msgid "There was an error with the form."
 msgstr "Er is een fout in het formulier."
 
-#: mkt/developers/views.py:474
+#: mkt/developers/views.py:475
 msgid "Version successfully edited."
 msgstr "Versie met succes bewerkt."
 
-#: mkt/developers/views.py:509
+#: mkt/developers/views.py:510
 msgid "Version successfully made active."
 msgstr "Versie met succes actief gemaakt."
 
-#: mkt/developers/views.py:523
+#: mkt/developers/views.py:524
 msgid "Version \"{0}\" deleted."
 msgstr "Versie ‘{0}’ verwijderd."
 
-#: mkt/developers/views.py:658
+#: mkt/developers/views.py:659
 msgid "There was an error with the submission."
 msgstr "Er is een fout opgetreden bij het indienen."
 
-#: mkt/developers/views.py:700
+#: mkt/developers/views.py:701
 msgid "An error occurred validating the manifest."
 msgstr "Er is een fout opgetreden bij het valideren van het manifest."
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:955
 msgid "There was an error uploading your preview."
 msgstr "Er is een fout opgetreden bij het uploaden van uw voorbeeld."
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1006
 msgid "Terms of service accepted."
 msgstr "Servicevoorwaarden geaccepteerd."
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1018
 msgid "Users with the admin role cannot use the API."
 msgstr "Gebruikers met de beheerdersrol kunnen de API niet gebruiken."
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1027
 msgid "No such API key."
 msgstr "API-sleutel niet gevonden."
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1033
 msgid "New API key generated."
 msgstr "Nieuwe API-sleutel aangemaakt."
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1051
 msgid "Created blocklisted version."
 msgstr "Versie met blokkeringslijst gemaakt."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1053
 msgid "App already blocklisted."
 msgstr "App wordt al geblokkeerd."
 
@@ -3155,7 +3183,7 @@ msgstr "Status en versies"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
@@ -3633,7 +3661,7 @@ msgid "View API documentation"
 msgstr "API-documentatie lezen"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:142
+#: mkt/search/forms.py:147
 msgid "Manifest URL"
 msgstr "Manifest-URL"
 
@@ -3874,9 +3902,7 @@ msgstr "Schermafdruk of video toevoegen…"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
-msgstr ""
-"Schermafdrukken en video’s moeten minstens 320px bij 480px zijn. Media in "
-"deze verhouding zijn optimaal. Video moet zijn gecodeerd als WebM."
+msgstr "Schermafdrukken en video’s moeten minstens 320px bij 480px zijn. Media in deze verhouding zijn optimaal. Video moet zijn gecodeerd als WebM."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
@@ -4003,7 +4029,7 @@ msgstr "Status en versies"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1423
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1415
 msgid "Content Ratings"
 msgstr "Inhoudsbeoordelingen"
 
@@ -4321,30 +4347,26 @@ msgid "Enable"
 msgstr "Inschakelen"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
-msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr "In-app-producten worden alleen ondersteund voor gehoste apps or verpakte apps die een <a href=\"%(origin)s\">bron</a> in het manifest vermelden. Uw app vermeldt geen bron."
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr "Deze functie is in actieve ontwikkeling. Wend u tot de <a target=\"_blank\" href=\"%(doc_link)s\">documentatie</a> voor meer informatie."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:43
+#: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "Als u een probleem vindt, <a target=\"_blank\" href=\"%(bug_link)s\">meld dan een bug</a>."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:56
+#: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Icon"
 msgstr "Pictogram"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:58
+#: mkt/developers/templates/developers/payments/in-app-products.html:50
 msgid "Price Point"
 msgstr "Prijspunt"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:51
 msgid "Product ID"
 msgstr "Product-ID"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:71
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Add a product"
 msgstr "Een product toevoegen"
 
@@ -4854,7 +4876,7 @@ msgid "Developing Game Apps"
 msgstr "Spelapps ontwikkelen"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1429
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1421
 msgid "Payments"
 msgstr "Betalingen"
 
@@ -5078,24 +5100,24 @@ msgstr "Afbeelding van %(url)s kon niet worden geparset"
 msgid "Cannot diff a version against itself"
 msgstr "Kan geen diff van een versie tegen zichzelf maken"
 
-#: mkt/files/helpers.py:152
+#: mkt/files/helpers.py:155
 msgid "That file no longer exists."
 msgstr "Dat bestand bestaat niet meer."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:161
+#: mkt/files/helpers.py:164
 msgid "File size is over the limit of {0}."
 msgstr "Bestandsgrootte is boven de grens van {0}."
 
-#: mkt/files/helpers.py:175
+#: mkt/files/helpers.py:178
 msgid "Problems decoding {0}."
 msgstr "Problemen bij decoderen van {0}."
 
-#: mkt/files/helpers.py:213
+#: mkt/files/helpers.py:216
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Dit bestand kan niet online worden bekeken. Download het bestand om de inhoud te bekijken."
 
-#: mkt/files/helpers.py:221
+#: mkt/files/helpers.py:224
 msgid "This file is a directory."
 msgstr "Dit bestand is een map."
 
@@ -5699,7 +5721,7 @@ msgstr "App opzoeken"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:9 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/lookup/templates/lookup/includes/website_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
+#: mkt/search/forms.py:88 mkt/search/forms.py:90 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Zoeken"
 
@@ -5798,10 +5820,6 @@ msgstr "Uw aankoopgeschiedenis:"
 msgid "Keep review; remove flags"
 msgstr "Beoordeling bewaren; markeringen verwijderen"
 
-#: mkt/ratings/forms.py:67
-msgid "Skip for now"
-msgstr "Voorlopig overslaan"
-
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Beoordeling verwijderen"
@@ -5814,19 +5832,19 @@ msgstr "Nog niet beoordeeld"
 msgid "Reviewed %s out of 5 stars"
 msgstr "Beoordeeld: %s van 5 sterren"
 
-#: mkt/ratings/models.py:145
+#: mkt/ratings/models.py:149
 msgid "Spam or otherwise non-review content"
 msgstr "Spam of andere tekst niet zijnde beoordeling"
 
-#: mkt/ratings/models.py:146
+#: mkt/ratings/models.py:150
 msgid "Inappropriate language/dialog"
 msgstr "Ongepast taalgebruik"
 
-#: mkt/ratings/models.py:147
+#: mkt/ratings/models.py:151
 msgid "Misplaced bug report or support request"
 msgstr "Misplaatst bugrapport of ondersteuningsverzoek"
 
-#: mkt/ratings/models.py:148
+#: mkt/ratings/models.py:152
 msgid "Other (please specify)"
 msgstr "Overig (specificeer deze)"
 
@@ -5965,7 +5983,7 @@ msgstr "Meer informatie gevraagd"
 msgid "Tarako-ready"
 msgstr "Klaar voor Tarako"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:91
+#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:96
 msgid "Device"
 msgstr "Apparaat"
 
@@ -6619,35 +6637,31 @@ msgstr "Oudere versies"
 msgid "Newer versions"
 msgstr "Nieuwere versies"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
 msgstr "Verwerken"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Skip"
-msgstr "Overslaan"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
+msgid "Actions:"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Mark Read"
-msgstr "Markeren als gelezen"
-
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
 msgstr "Beoordelingspagina"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr "<a href=\"%(abuses_url)s\">Alle misbruikmeldingen (%(abuses_count)s)</a>]"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr "<span class=\"submitted-by\">Ingediend door %(user)s op %(date)s [%(ip_address)s]</span>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">vertalen</a>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
 msgstr "Alle misbruikmeldingen gelezen. Goed werk!"
 
@@ -6837,43 +6851,43 @@ msgstr "Tablet"
 msgid "All Categories"
 msgstr "Alle categorieën"
 
-#: mkt/search/forms.py:77
+#: mkt/search/forms.py:82
 msgid "Search for apps"
 msgstr "Zoeken naar apps"
 
-#: mkt/search/forms.py:93
+#: mkt/search/forms.py:98
 msgid "Device type"
 msgstr "Apparaattype"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:142
 msgid "Premium types"
 msgstr "Premium-typen"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:146
 msgid "App type"
 msgstr "App-type"
 
-#: mkt/search/forms.py:145
+#: mkt/search/forms.py:150
 msgid "Installs allowed from"
 msgstr "Installaties toegestaan vanaf"
 
-#: mkt/search/forms.py:146
+#: mkt/search/forms.py:151
 msgid "Everywhere"
 msgstr "Overal"
 
-#: mkt/search/forms.py:148
+#: mkt/search/forms.py:153
 msgid "Works offline"
 msgstr "Werkt offline"
 
-#: mkt/search/forms.py:150
+#: mkt/search/forms.py:155
 msgid "Supported languages"
 msgstr "Ondersteunde talen"
 
-#: mkt/search/forms.py:151
+#: mkt/search/forms.py:156
 msgid "Author name"
 msgstr "Naam van schrijver"
 
-#: mkt/search/forms.py:152
+#: mkt/search/forms.py:157
 msgid "Tags"
 msgstr "Labels"
 
@@ -7323,113 +7337,117 @@ msgstr "{addon} automatisch geëscaleerd omdat het een prerelease-app is."
 msgid "Prerelease auto-escalation"
 msgstr "Automatische escalatie van prerelease"
 
-#: mkt/site/log.py:555
+#: mkt/site/log.py:545
+msgid "{addon} re-reviewed because abuse reports need invesigation."
+msgstr ""
+
+#: mkt/site/log.py:563
 msgid "Created: {0}."
 msgstr "Gemaakt: {0}."
 
-#: mkt/site/log.py:561
+#: mkt/site/log.py:569
 msgid "Edited field: {2} set to: {0}."
 msgstr "Veld bewerkt: {2} ingesteld op: {0}."
 
-#: mkt/site/log.py:567
+#: mkt/site/log.py:575
 msgid "Deleted: {1}."
 msgstr "Verwijderd: {1}."
 
-#: mkt/site/log.py:573
+#: mkt/site/log.py:581
 msgid "User {user} edited, reason: {1}"
 msgstr "Gebruiker {user} bewerkt, reden: {1}"
 
-#: mkt/site/log.py:579
+#: mkt/site/log.py:587
 msgid "User {user} anonymized."
 msgstr "Gebruiker {user} geanonimiseerd."
 
-#: mkt/site/log.py:585
+#: mkt/site/log.py:593
 msgid "User {user} restricted."
 msgstr "Gebruiker {user} beperkt."
 
-#: mkt/site/log.py:591
+#: mkt/site/log.py:599
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Beheerder {0} heeft activiteitenlogboek voor {user} bekeken."
 
-#: mkt/site/log.py:598
+#: mkt/site/log.py:606
 msgid "{review} for {addon} updated."
 msgstr "{review} voor {addon} bijgewerkt."
 
-#: mkt/site/log.py:604
+#: mkt/site/log.py:612
 msgid "{addon} reviewed."
 msgstr "{addon} beoordeeld."
 
-#: mkt/site/log.py:610
+#: mkt/site/log.py:618
 msgid "User {0.name} added to {group}."
 msgstr "Gebruiker {0.name} toegevoegd aan {group}."
 
-#: mkt/site/log.py:618
+#: mkt/site/log.py:626
 msgid "User {0.name} removed from {group}."
 msgstr "Gebruiker {0.name} verwijderd uit {group}."
 
-#: mkt/site/log.py:625
+#: mkt/site/log.py:633
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "Minimumvereisten voor {addon} handmatig gewijzigd door beoordelaar."
 
-#: mkt/site/log.py:626
+#: mkt/site/log.py:634
 msgid "Requirements Changed by Reviewer"
 msgstr "Vereisten gewijzigd door beoordelaar"
 
-#: mkt/site/log.py:633
+#: mkt/site/log.py:641
 msgid "{addon} minimum requirements manually changed."
 msgstr "Minimumvereisten {addon} handmatig gewijzigd."
 
-#: mkt/site/log.py:634
+#: mkt/site/log.py:642
 msgid "Requirements Changed"
 msgstr "Vereisten gewijzigd"
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:642
+#: mkt/site/log.py:650
 msgid "{version} status changed to {0}."
 msgstr "Status van {version} gewijzigd naar {0}."
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:649
+#: mkt/site/log.py:657
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "Gebruiker {0.name} {0.id} verwijderd via zoekhulpmiddel."
 
-#: mkt/site/log.py:655
+#: mkt/site/log.py:663
 msgid "{addon} content rating changed to Adult."
 msgstr "Inhoudsbeoordeling van {addon} gewijzigd naar Volwassen."
 
-#: mkt/site/log.py:661
+#: mkt/site/log.py:669
 msgid "{addon} content rating changed."
 msgstr "Inhoudsbeoordeling van {addon} gewijzigd."
 
-#: mkt/site/log.py:666
+#: mkt/site/log.py:674
 msgid "Priority review requested for {addon}."
 msgstr "Prioriteitsbeoordeling gevraagd voor {addon}."
 
-#: mkt/site/log.py:667
+#: mkt/site/log.py:675
 msgid "Priority Review"
 msgstr "Prioriteitsbeoordeling"
 
-#: mkt/site/log.py:675
+#: mkt/site/log.py:683
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} heeft de {queue}-beoordeling doorstaan."
 
-#: mkt/site/log.py:682
+#: mkt/site/log.py:690
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} heeft de {queue}-beoordeling niet doorstaan."
 
-#: mkt/site/log.py:689
+#: mkt/site/log.py:697
 msgid "Abuse report {report} for {addon} read."
 msgstr "Misbruikmelding {report} voor {addon} gelezen."
 
-#: mkt/site/log.py:690
+#: mkt/site/log.py:698
 msgid "{user} marked read {report} for {addon}."
 msgstr "{user} heeft {report} voor {addon} gemarkeerd als gelezen."
 
-#: mkt/site/log.py:698
+#: mkt/site/log.py:706
 msgid "Abuse report {report} for {website} read."
 msgstr "Misbruikmelding {report} voor {website} gelezen."
 
-#: mkt/site/log.py:699
+#: mkt/site/log.py:707
 msgid "{user} marked read {report} for {website}."
 msgstr "{user} heeft {report} voor {website} gemarkeerd als gelezen."
 
@@ -7779,30 +7797,30 @@ msgid "Héllo"
 msgstr "Hállo"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:25
+#: mkt/tags/utils.py:29
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Ongeldig label: {0}"
 msgstr[1] "Ongeldige labels: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:35
+#: mkt/tags/utils.py:38
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "‘{0}’ is een gereserveerd label en kan niet worden gebruikt."
 msgstr[1] "‘{0}’ zijn gereserveerde labels en kunnen niet worden gebruikt."
 
-#: mkt/tags/utils.py:43
+#: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "U hebt {0} label te veel."
 msgstr[1] "U hebt {0} labels te veel."
 
-#: mkt/tags/utils.py:49
+#: mkt/tags/utils.py:52
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Alle labels moeten na verwijdering van ongeldige tekens %s of minder tekens bevatten."
 
-#: mkt/tags/utils.py:53
+#: mkt/tags/utils.py:56
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle labels moeten uit minstens {0} teken bestaan."
@@ -7980,66 +7998,66 @@ msgid "Please use the verified email for this account."
 msgstr "Gebruik het geverifieerde e-mailadres voor deze account."
 
 # Column name in a table.
-#: mkt/webapps/models.py:200
+#: mkt/webapps/models.py:198
 msgid "Listed"
 msgstr "Vermeld"
 
-#: mkt/webapps/models.py:1316
+#: mkt/webapps/models.py:1308
 msgid "You must provide a support email or URL."
 msgstr "U moet een e-mailadres of URL voor ondersteuning opgeven."
 
-#: mkt/webapps/models.py:1318
+#: mkt/webapps/models.py:1310
 msgid "You must provide an app name."
 msgstr "U moet een naam voor de app opgeven."
 
-#: mkt/webapps/models.py:1320
+#: mkt/webapps/models.py:1312
 msgid "You must provide at least one device type."
 msgstr "U moet minstens één apparaattype opgeven."
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1315
 msgid "You must provide at least one category."
 msgstr "U moet minstens één categorie opgeven."
 
-#: mkt/webapps/models.py:1390
+#: mkt/webapps/models.py:1382
 msgid "You must set up content ratings."
 msgstr "U moet inhoudsbeoordelingen instellen."
 
-#: mkt/webapps/models.py:1392
+#: mkt/webapps/models.py:1384
 msgid "You must set up a payment account."
 msgstr "U moet een betalingsaccount instellen."
 
-#: mkt/webapps/models.py:1417
+#: mkt/webapps/models.py:1409
 msgid "This app's submission process has not been fully completed."
 msgstr "Het indieningsproces van deze app is niet volledig afgerond."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1416
 msgid "This app needs to get a content rating."
 msgstr "Deze app moet een inhoudsbeoordeling krijgen."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1422
 msgid "This app needs a payment account set up."
 msgstr "Deze app heeft een ingestelde betalingsaccount nodig."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2689
+#: mkt/webapps/models.py:2681
 msgid "awaiting approval"
 msgstr "wacht op goedkeuring"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2691
+#: mkt/webapps/models.py:2683
 msgid "rejected"
 msgstr "is afgewezen"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2693
+#: mkt/webapps/models.py:2685
 msgid "requires additional review"
 msgstr "vereist aanvullende beoordeling"
 
-#: mkt/webapps/models.py:2744
+#: mkt/webapps/models.py:2736
 msgid "{region} approval status"
 msgstr "goedkeuringsstatus {region}"
 
-#: mkt/webapps/models.py:2752
+#: mkt/webapps/models.py:2744
 msgid "{region} nomination date"
 msgstr "nominatiedatum {region}"
 

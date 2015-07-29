@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:17-0700\n"
+"POT-Creation-Date: 2015-07-29 13:02-0700\n"
 "PO-Revision-Date: 2015-07-12 14:01+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -13,10 +13,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1436709673.0\n"
+
+#: mkt/abuse/forms.py:70
+msgid "Abuse reports needing investigation: %s"
+msgstr ""
+
+#: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
+msgid "Skip for now"
+msgstr "Прескочи за сад"
+
+#: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
+msgid "Mark all reports Read"
+msgstr ""
+
+#: mkt/abuse/forms.py:80
+msgid "Flag for re-review"
+msgstr ""
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1131,11 +1146,11 @@ msgstr "Банован са Marketplace-а"
 msgid "Deleted"
 msgstr "Обрисано"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:45 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:46 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "Одбијено"
 
-#: mkt/constants/base.py:34 mkt/constants/comm.py:51 mkt/site/log.py:377
+#: mkt/constants/base.py:34 mkt/constants/comm.py:52 mkt/site/log.py:377
 msgid "Approved but private"
 msgstr "Одобрено али приватно"
 
@@ -1151,7 +1166,7 @@ msgstr "Није на листи"
 msgid "Obsolete"
 msgstr "Застарело"
 
-#: mkt/constants/base.py:43 mkt/constants/comm.py:44 mkt/constants/payments.py:66 mkt/site/log.py:157
+#: mkt/constants/base.py:43 mkt/constants/comm.py:45 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
 msgstr "Одобрено"
 
@@ -1191,67 +1206,75 @@ msgstr "Бесплатно са плаћањем унутар апликациј
 msgid "I'll use my own system for in-app payments"
 msgstr "Користићу мој систем за плаћања унутар апликације"
 
-#: mkt/constants/base.py:221
+#: mkt/constants/base.py:223
 msgid "Manual Reviewer Points"
 msgstr "Поени самосталног рецензента"
 
-#: mkt/constants/base.py:222
+#: mkt/constants/base.py:224
 msgid "Web App Review"
 msgstr "Рецензија веб апликације"
 
-#: mkt/constants/base.py:223
+#: mkt/constants/base.py:225
 msgid "Packaged App Review"
 msgstr "Рецензија паковане апликације"
 
-#: mkt/constants/base.py:224
+#: mkt/constants/base.py:226
 msgid "Privileged App Review"
 msgstr "Рецензија привилегованих апликација"
 
-#: mkt/constants/base.py:225
+#: mkt/constants/base.py:227
 msgid "Web App Re-review"
 msgstr "Поновна рецензија веб апликације"
 
-#: mkt/constants/base.py:226
+#: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
 msgstr "Ажурирана рецензија упаковане апликације"
 
-#: mkt/constants/base.py:227
+#: mkt/constants/base.py:229
 msgid "Updated Privileged App Review"
 msgstr "Рецензија привилегованих апликација је ажурирана"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:230
 msgid "Moderated App Review"
 msgstr "Рецензија уређене апликације"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:231
 msgid "App Review Moderation Reverted"
 msgstr ""
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:232
 msgid "Tarako App Review"
 msgstr "Рецензија Tarako апликација"
 
-#: mkt/constants/base.py:260
+#: mkt/constants/base.py:233
+msgid "App Abuse Report Read"
+msgstr ""
+
+#: mkt/constants/base.py:234
+msgid "Website Abuse Report Read"
+msgstr ""
+
+#: mkt/constants/base.py:268
 msgid "Level 1"
 msgstr "Ниво 1"
 
-#: mkt/constants/base.py:261
+#: mkt/constants/base.py:269
 msgid "Level 2"
 msgstr "Ниво 2"
 
-#: mkt/constants/base.py:262
+#: mkt/constants/base.py:270
 msgid "Level 3"
 msgstr "Ниво 3"
 
-#: mkt/constants/base.py:263
+#: mkt/constants/base.py:271
 msgid "Level 4"
 msgstr "Ниво 4"
 
-#: mkt/constants/base.py:264
+#: mkt/constants/base.py:272
 msgid "Level 5"
 msgstr "Ниво 5"
 
-#: mkt/constants/base.py:265
+#: mkt/constants/base.py:273
 msgid "Level 6"
 msgstr "Ниво 6"
 
@@ -1359,287 +1382,291 @@ msgstr "Временска прогноза"
 msgid "Tools"
 msgstr "Алати"
 
-#: mkt/constants/comm.py:43
+#: mkt/constants/comm.py:44
 msgid "No action"
 msgstr "Без акције"
 
-#: mkt/constants/comm.py:46
+#: mkt/constants/comm.py:47
 msgid "Banned"
 msgstr "Банован"
 
-#: mkt/constants/comm.py:47
+#: mkt/constants/comm.py:48
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:48 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:49 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Ескалирано"
 
-#: mkt/constants/comm.py:49
+#: mkt/constants/comm.py:50
 msgid "Private reviewer comment"
 msgstr "Приватан коментар рецезента"
 
-#: mkt/constants/comm.py:50
+#: mkt/constants/comm.py:51
 msgid "App resubmission"
 msgstr "Поновно слање апликације"
 
-#: mkt/constants/comm.py:52 mkt/site/log.py:426
+#: mkt/constants/comm.py:53 mkt/site/log.py:426
 msgid "Escalation cleared"
 msgstr "Ескалација очишћена"
 
-#: mkt/constants/comm.py:53
+#: mkt/constants/comm.py:54
 msgid "Escalated due to High Abuse Reports"
 msgstr "Ескалирано због високог броја извештаја о злоупотреби"
 
-#: mkt/constants/comm.py:54
+#: mkt/constants/comm.py:55
 msgid "Escalated due to High Refund Requests"
 msgstr "Ескалирано због високог броја захтева о повраћају новца"
 
-#: mkt/constants/comm.py:55 mkt/site/log.py:474
+#: mkt/constants/comm.py:56 mkt/site/log.py:474
 msgid "Re-review cleared"
 msgstr "Понавна рецензија уклоњена"
 
-#: mkt/constants/comm.py:56
+#: mkt/constants/comm.py:57
 msgid "App submission notes"
 msgstr "Белешке о подношењу апликације"
 
-#: mkt/constants/comm.py:57
+#: mkt/constants/comm.py:58
 msgid "Developer comment"
 msgstr "Коментар програмера"
 
-#: mkt/constants/comm.py:58
+#: mkt/constants/comm.py:59
 msgid "Device(s) changed by reviewer"
 msgstr "Уређај(и) промењен/и од стране рецезента"
 
-#: mkt/constants/comm.py:59
+#: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
 msgstr "Услов(и) промењен/и од стране рецезента"
 
-#: mkt/constants/comm.py:60
+#: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
 msgstr "Поновни преглед због промене манифеста"
 
-#: mkt/constants/comm.py:61
+#: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest URL Change"
 msgstr "Поновни преглед због промене URL адресе манифеста"
 
-#: mkt/constants/comm.py:62
+#: mkt/constants/comm.py:63
 msgid "Rereview due to Premium Type Upgrade"
 msgstr "Рецензија за премиум надоградњу"
 
-#: mkt/constants/comm.py:63
+#: mkt/constants/comm.py:64
 msgid "Rereview due to Devices Added"
 msgstr "Поновни преглед због додавања уређаја"
 
-#: mkt/constants/comm.py:64
+#: mkt/constants/comm.py:65
 msgid "Rereview due to Requirements Change"
 msgstr "Поновни преглед због промене захтева"
 
-#: mkt/constants/comm.py:65
+#: mkt/constants/comm.py:66
 msgid "Rereview due to Adult Content Rating"
 msgstr "Поновни преглед због оцена садржаја за одрасле"
 
-#: mkt/constants/comm.py:66
+#: mkt/constants/comm.py:67
 msgid "Escalation due to VIP App"
 msgstr "Ескалација због VIP апликација"
 
-#: mkt/constants/comm.py:67
+#: mkt/constants/comm.py:68
 msgid "Escalation due to Prelease App"
 msgstr "Ескалација због апликације која још није изашла"
 
-#: mkt/constants/comm.py:68
+#: mkt/constants/comm.py:69
 msgid "Priority review requested"
 msgstr "Приоритет прегледа је затражен"
 
-#: mkt/constants/comm.py:69
+#: mkt/constants/comm.py:70
 msgid "Additional review passed"
 msgstr "Прошао додатни преглед"
 
-#: mkt/constants/comm.py:70
+#: mkt/constants/comm.py:71
 msgid "Additional review failed"
 msgstr "Пао додатни преглед"
 
-#: mkt/constants/comm.py:71
+#: mkt/constants/comm.py:72
 msgid "Version notes for reviewer"
 msgstr "Забелешке верзије за рецезента"
 
-#: mkt/constants/comm.py:72
+#: mkt/constants/comm.py:73
 msgid "Public reviewer comment"
 msgstr "Јавни коментар рецезента"
 
-#: mkt/constants/features.py:18
+#: mkt/constants/comm.py:74 mkt/site/log.py:546
+msgid "Abuse reports investigation"
+msgstr ""
+
+#: mkt/constants/features.py:20
 msgid "App Management API"
 msgstr "API за управљање апликацијом"
 
-#: mkt/constants/features.py:19
+#: mkt/constants/features.py:21
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr "Апликација захтева `navigator.mozApps` API да би се инсталирало и управљало другим апликацијама."
 
-#: mkt/constants/features.py:24
+#: mkt/constants/features.py:26
 msgid "Packaged Apps Install API"
 msgstr "API за запаковане апликације"
 
-#: mkt/constants/features.py:25
+#: mkt/constants/features.py:27
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr "Апликација захтева `navigator.mozApps.installPackage` API да би се инсталирале друге апликације у пакету."
 
-#: mkt/constants/features.py:31
+#: mkt/constants/features.py:33
 msgid "Web Payment"
 msgstr "Веб плаћање"
 
-#: mkt/constants/features.py:32
+#: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
 msgstr "Апликација захтева `navigator.mozApps` API."
 
-#: mkt/constants/features.py:36
+#: mkt/constants/features.py:38
 msgid "Web Activities"
 msgstr "Веб активности"
 
-#: mkt/constants/features.py:37
+#: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
 msgstr "Апликација захтева Web Activities (`MozActivity` API)."
 
-#: mkt/constants/features.py:42
+#: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
 msgstr "Сензор осветљења околине"
 
-#: mkt/constants/features.py:43
+#: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr "Апликација захтева сензорско осветљење околине (the `ondevicelight` API)."
 
-#: mkt/constants/features.py:48
+#: mkt/constants/features.py:50
 msgid "Archive"
 msgstr "Архива"
 
-#: mkt/constants/features.py:49
+#: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
 msgstr "Апликација захтева `ArchiveReader` API."
 
-#: mkt/constants/features.py:53
+#: mkt/constants/features.py:55
 msgid "Battery"
 msgstr "Батерија"
 
-#: mkt/constants/features.py:54
+#: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
 msgstr "Апликација захтева `navigator.battery` API."
 
-#: mkt/constants/features.py:59
+#: mkt/constants/features.py:61
 msgid "The app requires the `navigator.mozBluetooth` API."
 msgstr "Апликација захтева `navigator.mozBluetooth` API."
 
-#: mkt/constants/features.py:64
+#: mkt/constants/features.py:66
 msgid "Contacts"
 msgstr "Контакти"
 
-#: mkt/constants/features.py:65
+#: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
 msgstr "Апликација захтева `navigator.mozContacts` API."
 
-#: mkt/constants/features.py:70
+#: mkt/constants/features.py:72
 msgid "Device Storage"
 msgstr "Складиште уређаја"
 
-#: mkt/constants/features.py:71
+#: mkt/constants/features.py:73
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr "Апликација захтева Device Storage API за приступ датотекама у систему датотека."
 
-#: mkt/constants/features.py:77
+#: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
 msgstr "Апликација захтева платформу за подршку IndexedDB."
 
-#: mkt/constants/features.py:82
+#: mkt/constants/features.py:84
 msgid "Geolocation"
 msgstr "Геолокација"
 
-#: mkt/constants/features.py:83
+#: mkt/constants/features.py:85
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr "Апликација захтева платформу за подршку `navigator.geolocation` API."
 
-#: mkt/constants/features.py:88
+#: mkt/constants/features.py:90
 msgid "Idle"
 msgstr "Неактиван"
 
-#: mkt/constants/features.py:89
+#: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr "Апликација захтева платформу која подржава `addIdleObserver` API."
 
-#: mkt/constants/features.py:94
+#: mkt/constants/features.py:96
 msgid "Network Information"
 msgstr "Информације о мрежи"
 
-#: mkt/constants/features.py:95
+#: mkt/constants/features.py:97
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr "Апликација захтева способност прикупљања информација о мрежној вези (`navigator.mozConnection` API)."
 
-#: mkt/constants/features.py:101
+#: mkt/constants/features.py:103
 msgid "Network Stats"
 msgstr "Мрежни статус"
 
-#: mkt/constants/features.py:102
+#: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
 msgstr "Ова апликација захтева `navigator.mozNetworkStats` API."
 
-#: mkt/constants/features.py:107
+#: mkt/constants/features.py:109
 msgid "Proximity"
 msgstr "Близина"
 
-#: mkt/constants/features.py:108
+#: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr "Апликације захтева сензор за близину (`ondeviceproximity` API)."
 
-#: mkt/constants/features.py:113
+#: mkt/constants/features.py:115
 msgid "Simple Push"
 msgstr "Једноставан Push"
 
-#: mkt/constants/features.py:114
+#: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
 msgstr "Апликација захтева `navigator.mozPush` API."
 
-#: mkt/constants/features.py:118
+#: mkt/constants/features.py:120
 msgid "Screen Orientation"
 msgstr "Оријентација екрана"
 
-#: mkt/constants/features.py:119
+#: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr "Апликација захтева платформу да би подржала `ondeviceorientation` API."
 
-#: mkt/constants/features.py:124
+#: mkt/constants/features.py:126
 msgid "Time/Clock"
 msgstr "Време/сат"
 
-#: mkt/constants/features.py:125
+#: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
 msgstr "Апликација захтева `navigator.mozTime` API."
 
-#: mkt/constants/features.py:129
+#: mkt/constants/features.py:131
 msgid "Vibration"
 msgstr "Вибрација"
 
-#: mkt/constants/features.py:130
+#: mkt/constants/features.py:132
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr "Апликација захтева да уређај подржава вибрацију (the `navigator.vibrate` API)."
 
-#: mkt/constants/features.py:136
+#: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr "Апликација захтева `navigator.mozFM` или `navigator.mozFMRadio` APIs."
 
-#: mkt/constants/features.py:142
+#: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
 msgstr "Апликација захтева `navigator.mozSms` API."
 
-#: mkt/constants/features.py:146
+#: mkt/constants/features.py:148
 msgid "Touch"
 msgstr "Додир"
 
-#: mkt/constants/features.py:147
+#: mkt/constants/features.py:149
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr "Aпликацији је потребна платформа да би подржала случајеве где се користи додир. Ова опција указује да апликација неће функционисати када је употребљена у комбинацији са мишем."
 
-#: mkt/constants/features.py:153
+#: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
 msgstr "Smartphone-Sized Displays (qHD)"
 
-#: mkt/constants/features.py:154
+#: mkt/constants/features.py:156
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
@@ -1647,215 +1674,215 @@ msgstr ""
 "Апликација захтева да платформа има смартфон екран (са HD резолуцијом). Ова опција значи да ће апликација бити неупотребљива на већим екранима (нпр. таблет, десктоп рачунарима или телефонима велике "
 "резолуције)."
 
-#: mkt/constants/features.py:164
+#: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr "Апликација захтева да платформа има могућност декодирање и пуштања MP3 фајлова."
 
-#: mkt/constants/features.py:169
+#: mkt/constants/features.py:171
 msgid "Audio"
 msgstr "Аудио"
 
-#: mkt/constants/features.py:170
+#: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
 msgstr "Апликација захтева да платформа подржава HTML5 audio API."
 
-#: mkt/constants/features.py:175
+#: mkt/constants/features.py:177
 msgid "Web Audio"
 msgstr "Веб аудио"
 
-#: mkt/constants/features.py:176
+#: mkt/constants/features.py:178
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr "Апликација захтева да платформа подржава Web Audio API (`window.AudioContext`)."
 
-#: mkt/constants/features.py:182
+#: mkt/constants/features.py:184
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr "Апликација захтева да платформа може да декодира и репродукује H.264 видео датотеке."
 
-#: mkt/constants/features.py:188
+#: mkt/constants/features.py:190
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr "Апликација захтева да платформа може да декодира и репродукује WebM видео датотеке (VP8)."
 
-#: mkt/constants/features.py:193
+#: mkt/constants/features.py:195
 msgid "Full Screen"
 msgstr "Цео екран"
 
-#: mkt/constants/features.py:194
+#: mkt/constants/features.py:196
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr "Апликација захтева API за приказ преко целог екрана (`requestFullScreen` или `mozRequestFullScreen`)."
 
-#: mkt/constants/features.py:200
+#: mkt/constants/features.py:202
 msgid "Gamepad"
 msgstr "Џојстик"
 
-#: mkt/constants/features.py:201
+#: mkt/constants/features.py:203
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr "Апликација захтева да платформа подржава gamepad API (`navigator.getGamepads`)."
 
-#: mkt/constants/features.py:206
+#: mkt/constants/features.py:208
 msgid "Quota Management"
 msgstr "Квота за управљање"
 
-#: mkt/constants/features.py:207
+#: mkt/constants/features.py:209
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr "Апликација захтева да платформа дозвољава стално повећање ограничења складишта изнад оног које је уобичајено дозвољено за апликацију (`window.StorageInfo` или `window.persistentStorage`)."
 
-#: mkt/constants/features.py:215
+#: mkt/constants/features.py:217
 msgid "Camera"
 msgstr "Камера"
 
-#: mkt/constants/features.py:216
+#: mkt/constants/features.py:218
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr "Апликација захтева да платформа одобрава приступ видео клиповима са камере уређаја уз помоћ LocalMediaStream објекта."
 
-#: mkt/constants/features.py:222
+#: mkt/constants/features.py:224
 msgid "Microphone"
 msgstr "Микрофон"
 
-#: mkt/constants/features.py:223
+#: mkt/constants/features.py:225
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr "Апликација захтева да платформа дозвољава приступ звуку са микрофона уређаја."
 
-#: mkt/constants/features.py:228
+#: mkt/constants/features.py:230
 msgid "Screen Capture"
 msgstr "Снимак екрана"
 
-#: mkt/constants/features.py:229
+#: mkt/constants/features.py:231
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr "Апликација захтева да платформа дозвољава приступ екрану уређаја ради сликања екрана."
 
-#: mkt/constants/features.py:235
+#: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
 msgstr "WebRTC MediaStream"
 
-#: mkt/constants/features.py:236
+#: mkt/constants/features.py:238
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr "Апликација захтева платформу да дозволи у реалном времену комуникацију прегледача-и-прегледача преко долазећих медија стримова."
 
-#: mkt/constants/features.py:242
+#: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
 msgstr "WebRTC DataChannel"
 
-#: mkt/constants/features.py:243
+#: mkt/constants/features.py:245
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr "Апликација захтева да платформа дозвољава размену података у мрежи равноправних рачунара, не само видео и аудио формата."
 
-#: mkt/constants/features.py:249
+#: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
 msgstr "WebRTC PeerConnection"
 
-#: mkt/constants/features.py:250
+#: mkt/constants/features.py:252
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr "Апликација захтева да платформа дозволи комуникацију стриминг података између колега."
 
-#: mkt/constants/features.py:256
+#: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
 msgstr "Web Speech Synthesis"
 
-#: mkt/constants/features.py:257
+#: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr "Апликација захтева да платформа дозвољава употребу текст-у-говор алата."
 
-#: mkt/constants/features.py:262
+#: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
 msgstr "Препознавање говора на мрежи"
 
-#: mkt/constants/features.py:263
+#: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr "Апликација захтева да платформа дозвољава употребу говор-у-текст алата."
 
-#: mkt/constants/features.py:268
+#: mkt/constants/features.py:270
 msgid "Pointer Lock"
 msgstr "Закључавање курсора"
 
-#: mkt/constants/features.py:269
+#: mkt/constants/features.py:271
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr "Апликација захтева да платформа обезбеди додатне информације и контролу курсора."
 
-#: mkt/constants/features.py:275
+#: mkt/constants/features.py:277
 msgid "Notifications"
 msgstr "Обавештења"
 
-#: mkt/constants/features.py:276
+#: mkt/constants/features.py:278
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr "Апликација захтева да платформа дозвољава приказивање телефонских и десктоп обавештења кориснику."
 
-#: mkt/constants/features.py:282
+#: mkt/constants/features.py:284
 msgid "Alarms"
 msgstr "Аларми"
 
-#: mkt/constants/features.py:283
+#: mkt/constants/features.py:285
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr "Апликација захтева да платформа омогући приступ подешавањима аларма уређаја да би се заказала обавештења и догађаји у одређено време."
 
-#: mkt/constants/features.py:290
+#: mkt/constants/features.py:292
 msgid "SystemXHR"
 msgstr "SystemXHR"
 
-#: mkt/constants/features.py:291
+#: mkt/constants/features.py:293
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr "Апликација захтева да платформа дозвољава слање асинхроних HTTP захтева без рестрикција због полисе истог извора."
 
-#: mkt/constants/features.py:297
+#: mkt/constants/features.py:299
 msgid "TCP Sockets"
 msgstr "TCP сокети"
 
-#: mkt/constants/features.py:298
+#: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr "Апликација захтева да платформа дозвољава отварање основних TCP сокета."
 
-#: mkt/constants/features.py:303
+#: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
 msgstr "Подршка тастатура трећих лица"
 
-#: mkt/constants/features.py:304
+#: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
 msgstr "Апликација захтева од платформе подршку за тастатуре трећих лица."
 
-#: mkt/constants/features.py:309
+#: mkt/constants/features.py:311
 msgid "Multiple Network Information"
 msgstr "Вишеструке информације мреже"
 
-#: mkt/constants/features.py:310
+#: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "Апликација захтева способност да добије информације о вишеструким мрежним везама."
 
-#: mkt/constants/features.py:316
+#: mkt/constants/features.py:318
 msgid "Mobile ID"
 msgstr "Mobile ID"
 
-#: mkt/constants/features.py:317
+#: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
 msgstr "Апликација захтева приступ `navigator.getMobileIdAssertion` API."
 
-#: mkt/constants/features.py:322
+#: mkt/constants/features.py:324
 msgid "Asm.js Precompilation"
 msgstr "Asm.js прекомпилација"
 
-#: mkt/constants/features.py:323
+#: mkt/constants/features.py:325
 msgid "The app requires the device to support precompilation of asm.js code."
 msgstr "Ова апликација захтева уређај који подржава прекомпилацију од `addIdleObserver` API-ја."
 
-#: mkt/constants/features.py:328
+#: mkt/constants/features.py:330
 msgid "512MB RAM Device"
 msgstr "Уређај са 512MB RAM"
 
-#: mkt/constants/features.py:329
+#: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
 msgstr "Апликација захтева уређај који има барем 512MB RAM."
 
-#: mkt/constants/features.py:334
+#: mkt/constants/features.py:336
 msgid "1GB RAM Device"
 msgstr "Уређај са 1GB RAM меморије"
 
-#: mkt/constants/features.py:335
+#: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr "Апликација захтева да уређај има барем 1GB RAM меморије."
 
-#: mkt/constants/features.py:340
+#: mkt/constants/features.py:342
 msgid "NFC"
 msgstr "NFC"
 
-#: mkt/constants/features.py:341
+#: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr "Ова апликација захтева Near Field Communication (NFC) API приступ."
 
@@ -2098,7 +2125,7 @@ msgstr "Уговор"
 msgid "Submit"
 msgstr "Поднеси"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1416
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1408
 msgid "Details"
 msgstr "Информације"
 
@@ -2174,7 +2201,7 @@ msgstr "Апликација већ постоји на овом домену; �
 msgid "Invalid region(s) selected."
 msgstr "Неважећи регион(s) су изабрани."
 
-#: mkt/developers/forms.py:393 mkt/webapps/models.py:1325
+#: mkt/developers/forms.py:393 mkt/webapps/models.py:1317
 msgid "You must upload at least one screenshot or video."
 msgstr "Морате поставити макар један видео или снимак екрана."
 
@@ -2267,7 +2294,7 @@ msgid "Choose where my app is made available"
 msgstr "Изабери где ће моја апликација бити доступна"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:88 mkt/websites/forms.py:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:93 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Категорије"
 
@@ -2526,7 +2553,7 @@ msgstr "Није дозвољено да промените рачуне за п
 msgid "Account name"
 msgstr "Име налога"
 
-#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:57
+#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:49
 #: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
@@ -2554,11 +2581,11 @@ msgstr "Моје доставе"
 msgid "Donate to {0}"
 msgstr "Донирај {0}"
 
-#: mkt/developers/models.py:482
+#: mkt/developers/models.py:488
 msgid "Review"
 msgstr "Коментар"
 
-#: mkt/developers/models.py:485 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:491 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "Верзија {0}"
 
@@ -2566,35 +2593,35 @@ msgstr "Верзија {0}"
 msgid "Reference Implementation"
 msgstr "Референтна имплементација"
 
-#: mkt/developers/tasks.py:413
+#: mkt/developers/tasks.py:428
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Није пронађен манифест на овој адреси. Проверите адресу и покушајте поново."
 
-#: mkt/developers/tasks.py:419
+#: mkt/developers/tasks.py:434
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Манифести морају да имају HTTP заглавље \"Content-Type: application/x-web-app-manifest+json\". Погледајте %s за више информација."
 
-#: mkt/developers/tasks.py:428
+#: mkt/developers/tasks.py:443
 msgid "Your manifest must be less than %s bytes."
 msgstr "Манифест мора бити мањи од %s бајтова."
 
-#: mkt/developers/tasks.py:436
+#: mkt/developers/tasks.py:451
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Ваша манифест датотека није енкодирана као валидан UTF-8."
 
-#: mkt/developers/tasks.py:447
+#: mkt/developers/tasks.py:462
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Кодирање манифеста не одговара шеми кодирања која је обезбеђен у HTTP Content-Type."
 
-#: mkt/developers/tasks.py:478 mkt/developers/tasks.py:484 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:493 mkt/developers/tasks.py:499 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "и"
 
-#: mkt/developers/tasks.py:498
+#: mkt/developers/tasks.py:513
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} регион је додат на Firefox Marketplace"
 
-#: mkt/developers/tasks.py:502
+#: mkt/developers/tasks.py:517
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Нови региони су додати на Firefox Marketplace"
 
@@ -2644,91 +2671,91 @@ msgstr "Иконице морају бити коцкасте."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Приказ апликације мора бити барем {0}px пута {1}px или {1}px пута {0}px."
 
-#: mkt/developers/views.py:152
+#: mkt/developers/views.py:153
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Плаћене апликације не могу бити обрисане. Онемогућите их."
 
-#: mkt/developers/views.py:162
+#: mkt/developers/views.py:163
 msgid "App deleted."
 msgstr "Апликација је избрисана."
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:168
 msgid "Password was incorrect. App was not deleted."
 msgstr "Лозинка је нетачна. Апликација није обрисана."
 
-#: mkt/developers/views.py:211
+#: mkt/developers/views.py:212
 msgid "App successfully resubmitted."
 msgstr "Апликација је успешно поново послата."
 
-#: mkt/developers/views.py:244
+#: mkt/developers/views.py:245
 msgid "New version successfully added."
 msgstr "Нова верзија је успешно додата."
 
-#: mkt/developers/views.py:308 mkt/developers/views.py:570 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:437 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
 msgid "Changes successfully saved."
 msgstr "Измене су успешно сачуване."
 
-#: mkt/developers/views.py:315
+#: mkt/developers/views.py:316
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "Честитамо, Ваше подношење апликације је завршено и убрзо ће бити прегледана!"
 
-#: mkt/developers/views.py:317
+#: mkt/developers/views.py:318
 msgid "Content ratings successfully saved."
 msgstr "Оцене садржаја су успешно снимљене."
 
-#: mkt/developers/views.py:441
+#: mkt/developers/views.py:442
 msgid "Application for preload successfully submitted."
 msgstr "Апликација је успешно послата за напредно учитавање."
 
-#: mkt/developers/views.py:444
+#: mkt/developers/views.py:445
 msgid "There was an error with the form."
 msgstr "Дошло је до грешке са формом."
 
-#: mkt/developers/views.py:474
+#: mkt/developers/views.py:475
 msgid "Version successfully edited."
 msgstr "Верзија је успешно измењена."
 
-#: mkt/developers/views.py:509
+#: mkt/developers/views.py:510
 msgid "Version successfully made active."
 msgstr "Активна верзија је успешно направљена."
 
-#: mkt/developers/views.py:523
+#: mkt/developers/views.py:524
 msgid "Version \"{0}\" deleted."
 msgstr "Верзија \"{0}\" је избрисана."
 
-#: mkt/developers/views.py:658
+#: mkt/developers/views.py:659
 msgid "There was an error with the submission."
 msgstr "Дошло је до грешке са доставом."
 
-#: mkt/developers/views.py:700
+#: mkt/developers/views.py:701
 msgid "An error occurred validating the manifest."
 msgstr ""
 
-#: mkt/developers/views.py:953
+#: mkt/developers/views.py:955
 msgid "There was an error uploading your preview."
 msgstr "Дошло је до грешке приликом отпремања Вашег прегледа."
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1006
 msgid "Terms of service accepted."
 msgstr "Услови коришћења су прихваћени."
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1018
 msgid "Users with the admin role cannot use the API."
 msgstr "Корисници са улогом админа не могу да користе API-је."
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1027
 msgid "No such API key."
 msgstr "Не постоји такав API кључ."
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:1033
 msgid "New API key generated."
 msgstr "Нови API кључ је генерисан."
 
-#: mkt/developers/views.py:1049
+#: mkt/developers/views.py:1051
 msgid "Created blocklisted version."
 msgstr "Направљена је блокирана верзија."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1053
 msgid "App already blocklisted."
 msgstr "Апликација је већ блокирана."
 
@@ -3154,7 +3181,7 @@ msgstr "Статус и верзија"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
@@ -3630,7 +3657,7 @@ msgid "View API documentation"
 msgstr "Прикажи API документацију"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:142
+#: mkt/search/forms.py:147
 msgid "Manifest URL"
 msgstr "URL манифеста"
 
@@ -3995,7 +4022,7 @@ msgstr "Статус &amp; верзије"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1423
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1415
 msgid "Content Ratings"
 msgstr "Оцене садржаја"
 
@@ -4310,30 +4337,26 @@ msgid "Enable"
 msgstr "Омогући"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
-msgid "In-app products are only supported for hosted apps or packaged apps that define an <a href=\"%(origin)s\">origin</a> in the manifest. Your app does not define an origin."
-msgstr "Производи унутар апликације су подржани само за хостоване или упаковане апликације које дефинишу <a href=\"%(origin)s\">порекло</a> у манифесту. Ваша апликација не дефинише порекло."
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:38
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr "Ова могућност се и даље развија. Молимо погледајте <a target=\"_blank\" href=\"%(doc_link)s\">документацију</a> за више информација."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:43
+#: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "Ако наиђете на проблем, молимо <a target=\"_blank\" href=\"%(bug_link)s\">пријавите грешку</a>."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:56
+#: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Icon"
 msgstr "Иконица"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:58
+#: mkt/developers/templates/developers/payments/in-app-products.html:50
 msgid "Price Point"
 msgstr "Цена"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:51
 msgid "Product ID"
 msgstr "ID производа"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:71
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Add a product"
 msgstr "Додај производ"
 
@@ -4846,7 +4869,7 @@ msgid "Developing Game Apps"
 msgstr "Развој игрица"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1429
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1421
 msgid "Payments"
 msgstr "Плаћања"
 
@@ -5070,24 +5093,24 @@ msgstr "Слике са %(url)s нису могле бити рашчлањен�
 msgid "Cannot diff a version against itself"
 msgstr "Не може се урадити diff са истом верзијом"
 
-#: mkt/files/helpers.py:152
+#: mkt/files/helpers.py:155
 msgid "That file no longer exists."
 msgstr "Ова датотека више не постоји."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:161
+#: mkt/files/helpers.py:164
 msgid "File size is over the limit of {0}."
 msgstr "Величина датотеке је прекорачила границу од {0}."
 
-#: mkt/files/helpers.py:175
+#: mkt/files/helpers.py:178
 msgid "Problems decoding {0}."
 msgstr "Преблеми при кодирању {0}."
 
-#: mkt/files/helpers.py:213
+#: mkt/files/helpers.py:216
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Датотека се не може прегледати на онлајн. Молимо преузмите датотеку да бисте прегледали њен садржај."
 
-#: mkt/files/helpers.py:221
+#: mkt/files/helpers.py:224
 msgid "This file is a directory."
 msgstr "Датотека је директоријум."
 
@@ -5688,7 +5711,7 @@ msgstr "Преграга апликације"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:9 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/lookup/templates/lookup/includes/website_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:83 mkt/search/forms.py:85 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
+#: mkt/search/forms.py:88 mkt/search/forms.py:90 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Претражи"
 
@@ -5787,10 +5810,6 @@ msgstr "Ваша историја куповине:"
 msgid "Keep review; remove flags"
 msgstr "Задржи преглед; уклони заставе"
 
-#: mkt/ratings/forms.py:67
-msgid "Skip for now"
-msgstr "Прескочи за сад"
-
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
 msgstr "Обрисана критика"
@@ -5803,19 +5822,19 @@ msgstr "Није још прегледано"
 msgid "Reviewed %s out of 5 stars"
 msgstr "Прегледано %s од 5 звездица"
 
-#: mkt/ratings/models.py:145
+#: mkt/ratings/models.py:149
 msgid "Spam or otherwise non-review content"
 msgstr "Спам или други садржај који се не може прегледат"
 
-#: mkt/ratings/models.py:146
+#: mkt/ratings/models.py:150
 msgid "Inappropriate language/dialog"
 msgstr "Неприкладан језик/дијалог"
 
-#: mkt/ratings/models.py:147
+#: mkt/ratings/models.py:151
 msgid "Misplaced bug report or support request"
 msgstr "Погрешно постављен извештај о грешци или захтев за подршку"
 
-#: mkt/ratings/models.py:148
+#: mkt/ratings/models.py:152
 msgid "Other (please specify)"
 msgstr "Друго (наведите)"
 
@@ -5954,7 +5973,7 @@ msgstr "Више информација је захтевано"
 msgid "Tarako-ready"
 msgstr "Tarako-ready"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:91
+#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:96
 msgid "Device"
 msgstr "Уређај"
 
@@ -6614,37 +6633,31 @@ msgstr "Старије верзије"
 msgid "Newer versions"
 msgstr "Новије верзије"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:68
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Skip"
-msgstr "Прескочи"
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
+msgid "Actions:"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:17 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:59
-msgid "Mark Read"
-msgstr "Означи као прочитано"
-
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:27
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:35
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:41
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
-msgstr ""
-"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" "
-"href=\"%(translate_url)s\">преведи</a>"
+msgstr "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">преведи</a>"
 
-#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
+#: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
 msgstr ""
 
@@ -6833,43 +6846,43 @@ msgstr "Таблет"
 msgid "All Categories"
 msgstr "Све категорије"
 
-#: mkt/search/forms.py:77
+#: mkt/search/forms.py:82
 msgid "Search for apps"
 msgstr "Претражи апликације"
 
-#: mkt/search/forms.py:93
+#: mkt/search/forms.py:98
 msgid "Device type"
 msgstr "Тип уређаја"
 
-#: mkt/search/forms.py:137
+#: mkt/search/forms.py:142
 msgid "Premium types"
 msgstr "Премијум типови"
 
-#: mkt/search/forms.py:141
+#: mkt/search/forms.py:146
 msgid "App type"
 msgstr "Тип апликације"
 
-#: mkt/search/forms.py:145
+#: mkt/search/forms.py:150
 msgid "Installs allowed from"
 msgstr "Инсталација је дозвољена са"
 
-#: mkt/search/forms.py:146
+#: mkt/search/forms.py:151
 msgid "Everywhere"
 msgstr "Било ког места"
 
-#: mkt/search/forms.py:148
+#: mkt/search/forms.py:153
 msgid "Works offline"
 msgstr "Ради ван мреже"
 
-#: mkt/search/forms.py:150
+#: mkt/search/forms.py:155
 msgid "Supported languages"
 msgstr "Подржани језици"
 
-#: mkt/search/forms.py:151
+#: mkt/search/forms.py:156
 msgid "Author name"
 msgstr "Име аутора"
 
-#: mkt/search/forms.py:152
+#: mkt/search/forms.py:157
 msgid "Tags"
 msgstr "Ознаке"
 
@@ -7317,113 +7330,117 @@ msgstr "{addon} је аутоматски ескалирао зато што ј�
 msgid "Prerelease auto-escalation"
 msgstr "Ауто-ескалација пре излажења"
 
-#: mkt/site/log.py:555
+#: mkt/site/log.py:545
+msgid "{addon} re-reviewed because abuse reports need invesigation."
+msgstr ""
+
+#: mkt/site/log.py:563
 msgid "Created: {0}."
 msgstr "Креирано: {0}."
 
-#: mkt/site/log.py:561
+#: mkt/site/log.py:569
 msgid "Edited field: {2} set to: {0}."
 msgstr "Измењено поље: {2} подешено на: {0}."
 
-#: mkt/site/log.py:567
+#: mkt/site/log.py:575
 msgid "Deleted: {1}."
 msgstr "Избрисано: {1}."
 
-#: mkt/site/log.py:573
+#: mkt/site/log.py:581
 msgid "User {user} edited, reason: {1}"
 msgstr "Корисник {user} измењен, разлог: {1}"
 
-#: mkt/site/log.py:579
+#: mkt/site/log.py:587
 msgid "User {user} anonymized."
 msgstr "Корисник {user} промењен у анонимног."
 
-#: mkt/site/log.py:585
+#: mkt/site/log.py:593
 msgid "User {user} restricted."
 msgstr "Корисник {user} је ограничен."
 
-#: mkt/site/log.py:591
+#: mkt/site/log.py:599
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Администратор {0} је прегледао дневник активности за {user}."
 
-#: mkt/site/log.py:598
+#: mkt/site/log.py:606
 msgid "{review} for {addon} updated."
 msgstr "{review} за {addon} је ажуриран."
 
-#: mkt/site/log.py:604
+#: mkt/site/log.py:612
 msgid "{addon} reviewed."
 msgstr "{addon} је прегледан."
 
-#: mkt/site/log.py:610
+#: mkt/site/log.py:618
 msgid "User {0.name} added to {group}."
 msgstr "Корисник {0.name} је додат у {group}."
 
-#: mkt/site/log.py:618
+#: mkt/site/log.py:626
 msgid "User {0.name} removed from {group}."
 msgstr "Корисник {0.name} је уклоњен из {group}."
 
-#: mkt/site/log.py:625
+#: mkt/site/log.py:633
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} минимални захтеви су ручно измењени од стране рецезента."
 
-#: mkt/site/log.py:626
+#: mkt/site/log.py:634
 msgid "Requirements Changed by Reviewer"
 msgstr "Захтеви измењени од стране рецезента"
 
-#: mkt/site/log.py:633
+#: mkt/site/log.py:641
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} минимални захтеви су ручно измењени."
 
-#: mkt/site/log.py:634
+#: mkt/site/log.py:642
 msgid "Requirements Changed"
 msgstr "Захтеви измењени"
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:642
+#: mkt/site/log.py:650
 msgid "{version} status changed to {0}."
 msgstr "{version} статус је промењен на {0}."
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:649
+#: mkt/site/log.py:657
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "Корисник {0.name} {0.id} је избрисан преко алата за проналажење."
 
-#: mkt/site/log.py:655
+#: mkt/site/log.py:663
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} оцена садржаја је промењена на Одрасли."
 
-#: mkt/site/log.py:661
+#: mkt/site/log.py:669
 msgid "{addon} content rating changed."
 msgstr "{addon} оцена садржаја промењена."
 
-#: mkt/site/log.py:666
+#: mkt/site/log.py:674
 msgid "Priority review requested for {addon}."
 msgstr "Приоритетна рецензија захтевана за {addon}."
 
-#: mkt/site/log.py:667
+#: mkt/site/log.py:675
 msgid "Priority Review"
 msgstr "Приоритетна рецензија"
 
-#: mkt/site/log.py:675
+#: mkt/site/log.py:683
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} је прошао {queue} преглед."
 
-#: mkt/site/log.py:682
+#: mkt/site/log.py:690
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} није прошао {queue} преглед."
 
-#: mkt/site/log.py:689
+#: mkt/site/log.py:697
 msgid "Abuse report {report} for {addon} read."
 msgstr ""
 
-#: mkt/site/log.py:690
+#: mkt/site/log.py:698
 msgid "{user} marked read {report} for {addon}."
 msgstr ""
 
-#: mkt/site/log.py:698
+#: mkt/site/log.py:706
 msgid "Abuse report {report} for {website} read."
 msgstr ""
 
-#: mkt/site/log.py:699
+#: mkt/site/log.py:707
 msgid "{user} marked read {report} for {website}."
 msgstr ""
 
@@ -7773,7 +7790,7 @@ msgid "Héllo"
 msgstr "Поздрав"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:25
+#: mkt/tags/utils.py:29
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Неисправних ознака: {0}"
@@ -7781,25 +7798,25 @@ msgstr[1] "Неисправних ознака: {0}"
 msgstr[2] "Неисправних ознака: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: mkt/tags/utils.py:35
+#: mkt/tags/utils.py:38
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" је резервисане ознака која се не може користити."
 msgstr[1] "\"{0}\" су резервисане ознаке која се не могу користити."
 msgstr[2] "\"{0}\" су резервисане ознаке која се не могу користити."
 
-#: mkt/tags/utils.py:43
+#: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Имате {0} превише ознака."
 msgstr[1] "Имате {0} превише ознака."
 msgstr[2] "Имате {0} превише ознака."
 
-#: mkt/tags/utils.py:49
+#: mkt/tags/utils.py:52
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Све ознаке морају бити од %s катактера или мање након што су неисправни карактери уклоњени."
 
-#: mkt/tags/utils.py:53
+#: mkt/tags/utils.py:56
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Све ознаке морају садржати најмање {0} карактер."
@@ -7978,66 +7995,66 @@ msgid "Please use the verified email for this account."
 msgstr "Молимо Вас користите верификовану е-пошту за овај налог."
 
 # Column name in a table.
-#: mkt/webapps/models.py:200
+#: mkt/webapps/models.py:198
 msgid "Listed"
 msgstr "У листи"
 
-#: mkt/webapps/models.py:1316
+#: mkt/webapps/models.py:1308
 msgid "You must provide a support email or URL."
 msgstr "Морате обезбедити е-пошту подршке или URL."
 
-#: mkt/webapps/models.py:1318
+#: mkt/webapps/models.py:1310
 msgid "You must provide an app name."
 msgstr "Морате да напишете име апликације."
 
-#: mkt/webapps/models.py:1320
+#: mkt/webapps/models.py:1312
 msgid "You must provide at least one device type."
 msgstr "Морате обезбедити бар један тип уређаја."
 
-#: mkt/webapps/models.py:1323
+#: mkt/webapps/models.py:1315
 msgid "You must provide at least one category."
 msgstr "Морате да изаберете барем једну категорију."
 
-#: mkt/webapps/models.py:1390
+#: mkt/webapps/models.py:1382
 msgid "You must set up content ratings."
 msgstr "Морате да подесите оцене садржаја."
 
-#: mkt/webapps/models.py:1392
+#: mkt/webapps/models.py:1384
 msgid "You must set up a payment account."
 msgstr "Морате да подесите налог за плаћање."
 
-#: mkt/webapps/models.py:1417
+#: mkt/webapps/models.py:1409
 msgid "This app's submission process has not been fully completed."
 msgstr "Процес подношења апликације није у потпуности завршен."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1416
 msgid "This app needs to get a content rating."
 msgstr "Ова апликација треба да добије оцену садржаја."
 
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1422
 msgid "This app needs a payment account set up."
 msgstr "Овој апликацији је потребан подешен рачун за плаћање."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2689
+#: mkt/webapps/models.py:2681
 msgid "awaiting approval"
 msgstr "чекање на одобрење"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2691
+#: mkt/webapps/models.py:2683
 msgid "rejected"
 msgstr "одбијено"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2693
+#: mkt/webapps/models.py:2685
 msgid "requires additional review"
 msgstr "захтева додатан преглед"
 
-#: mkt/webapps/models.py:2744
+#: mkt/webapps/models.py:2736
 msgid "{region} approval status"
 msgstr "{region} статус одобрења"
 
-#: mkt/webapps/models.py:2752
+#: mkt/webapps/models.py:2744
 msgid "{region} nomination date"
 msgstr "{region} датум номинације"
 
