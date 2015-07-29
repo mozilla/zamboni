@@ -156,6 +156,7 @@ class TestValidator(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.upload = FileUpload.objects.create()
+        self.upload.add_file(['test data'], 'example.txt', 9)
         assert not self.upload.valid
 
     def get_upload(self):
@@ -185,7 +186,7 @@ class TestValidator(mkt.site.tests.TestCase):
     @mock.patch('mkt.developers.tasks.validate_app')
     @mock.patch('mkt.developers.tasks.storage.open')
     def test_validate_manifest(self, _open, _mock):
-        _open.return_value = StringIO('')
+        _open.return_value = tempfile.TemporaryFile()
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
         assert _mock.called
