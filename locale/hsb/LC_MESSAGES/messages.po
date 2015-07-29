@@ -3,20 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-16 09:18+0000\n"
+"PO-Revision-Date: 2015-07-29 22:24+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437038299.0\n"
+"X-POOTLE-MTIME: 1438208656.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Znjewužiwanske zdźělenja, kotrež přepytowanje trjebaja: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -24,11 +25,11 @@ msgstr "Tuchwilu přeskočić"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Wšě zdźělenki jako přečitane markěrować"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Za nowe přepruwowanje markěrować"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1243,11 +1244,11 @@ msgstr "Přepruwowanje Tarako-nałoženja"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Znjewužiwanska zdźělenka wo nałoženju přečitana"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Znjewužiwanska zdźělenka wo websydle přečitana"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1487,7 +1488,7 @@ msgstr "Zjawny přepruwowarski komentar"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Přepytowanje znjewužiwanskich zdźělenkow"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6647,7 +6648,7 @@ msgstr "Předźěłać"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Akcije:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7341,6 +7342,8 @@ msgstr "Awtomatiske daledaće přichodnemu wyšemu městnu za předwozjewjenje"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
 msgstr ""
+"Přidatk {addon} je so znowa přepruwował, dokelž sej znjewužiwanske zdźělenki "
+"přepytowanje wužaduja."
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
