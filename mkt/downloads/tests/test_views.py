@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import mkt
@@ -21,11 +21,24 @@ class TestDownload(BasePackagedAppTest):
         super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
 
+    @override_settings(XSENDFILE=True)
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
-        if not settings.XSENDFILE:
-            raise SkipTest
         res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        assert settings.XSENDFILE_HEADER in res
+
+    @override_settings(XSENDFILE=True)
+    def test_download_already_signed(self):
+        self.client.logout()
+
+        with mock.patch.object(packaged, 'sign', mock_sign):
+            # Sign the app before downloading, like it would normally happen.
+            self.app.sign_if_packaged(self.file.version_id)
+
+        # Now download and look at the number of queries.
+        with self.assertNumQueries(2):
+            res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert settings.XSENDFILE_HEADER in res
 
@@ -60,10 +73,9 @@ class TestDownload(BasePackagedAppTest):
         self.login('admin@mozilla.com')
         eq_(self.client.get(self.url).status_code, 200)
 
+    @override_settings(XSENDFILE=True)
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_file_blocklisted(self):
-        if not settings.XSENDFILE:
-            raise SkipTest
         self.file.update(status=mkt.STATUS_BLOCKED)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
