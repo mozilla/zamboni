@@ -265,11 +265,11 @@ class HttpResponseSendFile(http.HttpResponse):
             return iter([])
 
         chunk = 4096
-        fp = open(self.path, 'rb')
+        fp = storage.open(self.path, 'rb')
         if 'wsgi.file_wrapper' in self.request.META:
             return self.request.META['wsgi.file_wrapper'](fp, chunk)
         else:
-            self['Content-Length'] = os.path.getsize(self.path)
+            self['Content-Length'] = storage.size(self.path)
 
             def wrapper():
                 while 1:
