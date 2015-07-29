@@ -28,7 +28,7 @@ from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
-from mkt.developers.utils import escalate_prerelease_permissions
+from mkt.developers.utils import escalate_reserved_permissions
 from mkt.files.models import FileUpload
 from mkt.site.decorators import login_required, use_master
 from mkt.submit.forms import AppDetailsBasicForm
@@ -107,7 +107,7 @@ def manifest(request):
 
         if form.is_packaged():
             validation = json.loads(upload.validation)
-            escalate_prerelease_permissions(
+            escalate_reserved_permissions(
                 addon, validation, addon.latest_version)
 
         # Set the device type.
