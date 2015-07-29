@@ -310,6 +310,16 @@ class ReviewApp(ReviewBase):
         self.version.update(has_editor_comment=True)
         self.create_note(mkt.LOG.COMMENT_VERSION)
 
+    def process_manual_rereview(self):
+        """
+        Adds the app to the rereview queue.
+        Doesn't change status.
+        Creates Reviewer Comment note.
+        """
+        RereviewQueue.objects.get_or_create(addon=self.addon)
+        self.create_note(mkt.LOG.REREVIEW_MANUAL)
+        log.info(u'Re-review manually requested for %s' % self.addon)
+
     def process_clear_escalation(self):
         """
         Clear app from escalation queue.
@@ -419,6 +429,14 @@ class ReviewHelper(object):
                              u'The message won\'t be visible to the '
                              u'author(s), and no notification will be sent '
                              u'them.')}
+        manual_rereview = {
+            'method': self.handler.process_manual_rereview,
+            'label': _lazy(u'Request Re-review'),
+            'minimal': True,
+            'details': _lazy(u'Add this app to the re-review queue. Any '
+                             u'comments here won\'t be visible to the '
+                             u'author(s), and no notification will be sent to'
+                             u'them.')}
         clear_escalation = {
             'method': self.handler.process_clear_escalation,
             'label': _lazy(u'Clear Escalation'),
@@ -487,16 +505,18 @@ class ReviewHelper(object):
                 mkt.STATUS_DISABLED not in file_status)):
             actions['disable'] = disable
 
-        # Clear escalation.
-        if self.handler.in_escalate:
-            actions['clear_escalation'] = clear_escalation
-
         # Clear re-review.
         if self.handler.in_rereview:
             actions['clear_rereview'] = clear_rereview
+        else:
+            # Manual re-review.
+            actions['manual_rereview'] = manual_rereview
 
-        # Escalate.
-        if not self.handler.in_escalate:
+        # Clear escalation.
+        if self.handler.in_escalate:
+            actions['clear_escalation'] = clear_escalation
+        else:
+            # Escalate.
             actions['escalate'] = escalate
 
         # Request info and comment are always shown.
