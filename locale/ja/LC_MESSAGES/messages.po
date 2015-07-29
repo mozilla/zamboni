@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-17 12:16-0400\n"
+"PO-Revision-Date: 2015-07-29 17:01-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "調査が必要な不正報告: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -28,11 +28,11 @@ msgstr "今はスキップ"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "すべての報告を既読にする"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "再審査を依頼"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1249,11 +1249,11 @@ msgstr "Tarako アプリの審査"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "アプリの不正報告が既読にされました"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Web サイトの不正報告が既読にされました"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1493,7 +1493,7 @@ msgstr "審査担当者の公開コメント"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "不正報告調査"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6617,7 +6617,7 @@ msgstr "処理を実行"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "アクション:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7311,7 +7311,7 @@ msgstr "プレリリース自動管理者審査依頼"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
-msgstr ""
+msgstr "{addon} は、不正報告が調査を必要とするため再審査を受けました。"
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
