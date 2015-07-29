@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-29 07:26+0000\n"
+"PO-Revision-Date: 2015-07-29 07:51+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438154775.0\n"
+"X-POOTLE-MTIME: 1438156271.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -182,7 +182,7 @@ msgstr ""
 
 #: media/js/common-all.js:19423 media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12324 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove"
-msgstr ""
+msgstr "Odebrat"
 
 #: media/js/common-all.js:19452 media/js/common-min.js:9 media/js/impala-all.js:12353 media/js/impala-min.js:7
 msgid "Remove this user as a contributor"
@@ -202,27 +202,27 @@ msgstr ""
 
 #: media/js/common-all.js:19687 media/js/common-min.js:9 media/js/impala-all.js:12588 media/js/impala-min.js:7
 msgid "Add to favorites"
-msgstr ""
+msgstr "Přidat k oblíbeným"
 
 #: media/js/common-all.js:19691 media/js/common-min.js:9 media/js/impala-all.js:12592 media/js/impala-min.js:7
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Odebrat z oblíbených"
 
 #: media/js/common-all.js:19709 media/js/common-min.js:9 media/js/impala-all.js:12610 media/js/impala-all.js:12676 media/js/impala-min.js:7
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Sledovat tuto sbírku"
 
 #: media/js/common-all.js:19718 media/js/common-min.js:9 media/js/impala-all.js:12619 media/js/impala-min.js:7
 msgid "Stop following"
-msgstr ""
+msgstr "Přestat sledovat"
 
 #: media/js/common-all.js:19794 media/js/common-all.js:19807 media/js/common-min.js:9 media/js/impala-all.js:12727 media/js/impala-all.js:12740 media/js/impala-min.js:7
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 #: media/js/common-all.js:19956 media/js/common-min.js:9
 msgid "Password strength:"
-msgstr ""
+msgstr "Síla hesla:"
 
 #: media/js/common-all.js:19962 media/js/common-min.js:9
 msgid "At least {0} character left."
@@ -254,6 +254,8 @@ msgstr ""
 #: media/js/impala-all.js:3047 media/js/zamboni/mobile-all.js:12303 media/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Přihlášení přes BrowserID selhalo. Možná máte účet s jinou e-mailovou "
+"adresou?"
 
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
@@ -320,7 +322,7 @@ msgstr ""
 
 #: media/js/impala-all.js:13013 media/js/impala-min.js:7
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Aktualizace výsledků&hellip;"
 
 #: media/js/common/upload-base.js:61 media/js/zamboni/devhub-all.js:197 media/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
@@ -874,11 +876,11 @@ msgstr ""
 
 #: media/js/zamboni/devhub-all.js:1224 media/js/zamboni/devhub-min.js:1
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Váš prohlížeč nepodporuje tag video."
 
 #: media/js/zamboni/devhub-all.js:1485 media/js/zamboni/devhub-min.js:1
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Zadejte e-mail nového autora"
 
 #: media/js/zamboni/devhub-all.js:1775 media/js/zamboni/devhub-min.js:1
 msgid "{files} file"
@@ -904,7 +906,7 @@ msgstr ""
 
 #: media/js/zamboni/devhub-all.js:2457 media/js/zamboni/devhub-all.js:2462 media/js/zamboni/devhub-min.js:2
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Vnitřní chyba serveru"
 
 #: media/js/zamboni/devhub-all.js:2497 media/js/zamboni/devhub-min.js:2
 msgid "Must be a valid e-mail address."
@@ -928,11 +930,13 @@ msgstr[2] ""
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/devhub-all.js:3086 media/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Stáhnout {0}"
 
 #: media/js/zamboni/discovery-all.js:12783 media/js/zamboni/discovery-min.js:5
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Omlouváme se, ale nemáme pro vás žádná doporučení. <br>Navštivte prosím <a "
+"href=\"{0}\">stránku s doplňky</a>, kde můžete najít doplňky přesně pro vás."
 
 #: media/js/zamboni/discovery-all.js:12813 media/js/zamboni/discovery-min.js:5
 msgid "Finding recommendations&hellip;"
@@ -948,7 +952,7 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:15652 media/js/zamboni/editors-min.js:5
 msgid "Average Reviews"
-msgstr ""
+msgstr "Průměrné hodnocení"
 
 #: media/js/zamboni/editors-all.js:15708 media/js/zamboni/editors-min.js:5
 msgid "Number of Reviews"
@@ -956,7 +960,7 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:16161 media/js/zamboni/editors-min.js:5
 msgid "Requested Info"
-msgstr ""
+msgstr "Požadované informace"
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
@@ -1008,7 +1012,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11311 media/js/zamboni/mobile-min.js:4
 msgid "Installing..."
-msgstr ""
+msgstr "Instalace..."
 
 #: media/js/zamboni/mobile-all.js:11319 media/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
@@ -1028,19 +1032,19 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:12169 media/js/zamboni/mobile-min.js:5
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Přidáno do Firefoxu"
 
 #: media/js/zamboni/stats-all.js:15379 media/js/zamboni/stats-all.js:15478 media/js/zamboni/stats-all.js:17102 media/js/zamboni/stats-min.js:6
 msgid "Downloads"
-msgstr ""
+msgstr "Stažení"
 
 #: media/js/zamboni/stats-all.js:15382 media/js/zamboni/stats-all.js:15479 media/js/zamboni/stats-all.js:17112 media/js/zamboni/stats-min.js:6
 msgid "Daily Users"
-msgstr ""
+msgstr "Uživatelů denně"
 
 #: media/js/zamboni/stats-all.js:15385 media/js/zamboni/stats-min.js:6
 msgid "Collections Created"
-msgstr ""
+msgstr "Vytvořeno sbírek"
 
 #: media/js/zamboni/stats-all.js:15388 media/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
@@ -1048,11 +1052,11 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15391 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Vytvořeno doplňků"
 
 #: media/js/zamboni/stats-all.js:15394 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Staženo doplňků"
 
 #: media/js/zamboni/stats-all.js:15397 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
@@ -1060,7 +1064,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15400 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
-msgstr ""
+msgstr "Napsáno recenzí"
 
 #: media/js/zamboni/stats-all.js:15403 media/js/zamboni/stats-min.js:6
 msgid "User Signups"
@@ -1084,7 +1088,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15418 media/js/zamboni/stats-min.js:6
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámo"
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
@@ -1200,15 +1204,15 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15473 media/js/zamboni/stats-all.js:17154 media/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Počet přispěvatelů"
 
 #: media/js/zamboni/stats-all.js:15474 media/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Celkem přispěno"
 
 #: media/js/zamboni/stats-all.js:15475 media/js/zamboni/stats-min.js:6
 msgid "Average Contribution"
-msgstr ""
+msgstr "Průměrný příspěvek"
 
 #: media/js/zamboni/stats-all.js:15484 media/js/zamboni/stats-min.js:6
 msgid "Usage"
@@ -1216,37 +1220,37 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15487 media/js/zamboni/stats-min.js:6
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: media/js/zamboni/stats-all.js:15488 media/js/zamboni/stats-min.js:6
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: media/js/zamboni/stats-all.js:15489 media/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: media/js/zamboni/stats-all.js:15490 media/js/zamboni/stats-min.js:6
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: media/js/zamboni/stats-all.js:15491 media/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: media/js/zamboni/stats-all.js:15492 media/js/zamboni/stats-min.js:6
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15497 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Stažení a uživatelů denně za posledních {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15499 media/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Stažení a uživatelů denně od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15503 media/js/zamboni/stats-min.js:6
@@ -1261,12 +1265,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15509 media/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Počet stažení za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15511 media/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Stažení od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15515 media/js/zamboni/stats-min.js:6
@@ -1341,12 +1345,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15557 media/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Příspěvky za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15559 media/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Příspěvky od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15563 media/js/zamboni/stats-min.js:6
@@ -1391,7 +1395,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15587 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Doplňků staženo za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15589 media/js/zamboni/stats-min.js:6
@@ -1401,7 +1405,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15593 media/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Recenzí napsáno za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15595 media/js/zamboni/stats-min.js:6
@@ -1421,12 +1425,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15605 media/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Sbírek vytvořeno za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15607 media/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Sbírek vytvořeno od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15611 media/js/zamboni/stats-min.js:6
@@ -1451,12 +1455,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15623 media/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Prodeje za posledních {0} dnů"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15625 media/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Prodeje od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/zamboni/stats-all.js:15629 media/js/zamboni/stats-min.js:6
@@ -1471,53 +1475,53 @@ msgstr ""
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15637 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> v posledních {1} dnech"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/zamboni/stats-all.js:15639 media/js/zamboni/stats-all.js:15645 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> od {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/zamboni/stats-all.js:15643 media/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "Průměrně <b>{0}</b> v posledních {1} dnech"
 
 #: media/js/zamboni/stats-all.js:16571 media/js/zamboni/stats-min.js:6
 msgid "No data available."
-msgstr ""
+msgstr "Data nejsou dostupná"
 
 #: media/js/zamboni/stats-all.js:16702 media/js/zamboni/stats-min.js:6
 msgid "Other"
-msgstr ""
+msgstr "Jiné"
 
 #: media/js/zamboni/stats-all.js:17000 media/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
-msgstr ""
+msgstr "Týden od {0}"
 
 #: media/js/zamboni/stats-all.js:17002 media/js/zamboni/stats-min.js:6
 msgid "downloads"
-msgstr ""
+msgstr "stažení"
 
 #: media/js/zamboni/stats-all.js:17003 media/js/zamboni/stats-min.js:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} uživatelů"
 
 #: media/js/zamboni/stats-all.js:17004 media/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} doplňků"
 
 #: media/js/zamboni/stats-all.js:17005 media/js/zamboni/stats-min.js:6
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} sbírek"
 
 #: media/js/zamboni/stats-all.js:17006 media/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} recenzí"
 
 #: media/js/zamboni/stats-all.js:17008 media/js/zamboni/stats-min.js:6
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} prodejů"
 
 #: media/js/zamboni/stats-all.js:17009 media/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
@@ -1525,7 +1529,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:17010 media/js/zamboni/stats-min.js:6
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalací"
 
 #: media/js/zamboni/stats-all.js:17143 media/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
@@ -1533,13 +1537,13 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:17180 media/js/zamboni/stats-min.js:6
 msgid "More Info..."
-msgstr ""
+msgstr "Více informací..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: media/js/zamboni/stats-all.js:17184 media/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
-msgstr ""
+msgstr "Podrobnosti k {0}"
 
 #: media/js/zamboni/stats-all.js:17311 media/js/zamboni/stats-min.js:6
 msgid "Date"
-msgstr ""
+msgstr "Datum"
