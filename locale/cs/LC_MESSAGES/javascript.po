@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:17-0700\n"
-"PO-Revision-Date: 2015-07-07 18:45+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-07-29 07:26+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436294751.0\n"
+"X-POOTLE-MTIME: 1438154775.0\n"
 
 #: media/js/common-all.js:10462 media/js/impala-all.js:1512 media/js/devreg/init.js:35 media/js/zamboni/discovery-all.js:10429 media/js/zamboni/mobile-all.js:10990 media/js/zamboni/mobile-min.js:4
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -20,11 +20,11 @@ msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu.
 
 #: media/js/common-all.js:10879 media/js/impala-all.js:1929 media/js/zamboni/mobile-all.js:10726 media/js/zamboni/mobile-min.js:4
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Instalace aplikace není povolena."
 
 #: media/js/common-all.js:10882 media/js/impala-all.js:1932 media/js/zamboni/mobile-all.js:10729 media/js/zamboni/mobile-min.js:4
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifest aplikace není platný."
 
 #: media/js/common-all.js:10885 media/js/impala-all.js:1935 media/js/devreg/apps.js:87 media/js/zamboni/mobile-all.js:10732 media/js/zamboni/mobile-min.js:4
 msgid "App host could not be reached."
@@ -44,24 +44,24 @@ msgstr "Instalace selhala. Zkuste to prosím později."
 
 #: media/js/common-all.js:10905 media/js/impala-all.js:1955 media/js/zamboni/mobile-all.js:10752 media/js/zamboni/mobile-min.js:4
 msgid "App installation failed."
-msgstr ""
+msgstr "Instalace aplikace selhala."
 
 #: media/js/common-all.js:10906 media/js/impala-all.js:1956 media/js/zamboni/mobile-all.js:10753 media/js/zamboni/mobile-min.js:4
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Váš systém nepodporuje instalaci aplikací."
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Accept and Install"
-msgstr ""
+msgstr "Přijmout a nainstalovat"
 
 #: media/js/common-all.js:11054 media/js/impala-all.js:2104 media/js/zamboni/discovery-all.js:10996
 msgid "Add to {0}"
-msgstr ""
+msgstr "Přidat do {0}"
 
 #: media/js/common-all.js:11059 media/js/impala-all.js:2109 media/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr ""
+msgstr "Stáhnout"
 
 #: media/js/common-all.js:11100 media/js/impala-all.js:2150 media/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -69,11 +69,11 @@ msgstr ""
 
 #: media/js/common-all.js:11105 media/js/impala-all.js:2155 media/js/zamboni/discovery-all.js:11047
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Potřebujete Firefox 10.0 a vyšší."
 
 #: media/js/common-all.js:11117 media/js/impala-all.js:2167 media/js/zamboni/discovery-all.js:11059
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla označila tuto verzi jako nekompatibilní s vaší verzí Firefoxu."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/common-all.js:11195 media/js/impala-all.js:2245 media/js/zamboni/discovery-all.js:11137
@@ -86,12 +86,12 @@ msgstr ""
 
 #: media/js/common-all.js:11252 media/js/impala-all.js:2302 media/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Nedostupné pro vaší platformu"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: media/js/common-all.js:11263 media/js/common-all.js:11300 media/js/impala-all.js:2313 media/js/impala-all.js:2350 media/js/zamboni/discovery-all.js:11205 media/js/zamboni/discovery-all.js:11242
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Nedostupné pro {0} {1}"
 
 #: media/js/common-all.js:11326 media/js/impala-all.js:2376 media/js/zamboni/discovery-all.js:11268
 msgid "Works with {app} {min} - {max}"
@@ -107,7 +107,7 @@ msgstr ""
 
 #: media/js/common-all.js:16652 media/js/common-min.js:7 media/js/impala-all.js:8282 media/js/impala-min.js:5
 msgid "Loading..."
-msgstr ""
+msgstr "Načítání..."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/common-all.js:16725 media/js/common-min.js:7 media/js/impala-all.js:8355 media/js/impala-min.js:5
@@ -130,7 +130,7 @@ msgstr "Odebrat lokalizaci"
 
 #: media/js/common-all.js:18266 media/js/common-min.js:8 media/js/impala-all.js:9862 media/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Nainstalovat aplikaci"
 
 #: media/js/common-all.js:18506 media/js/common-min.js:8 media/js/impala-all.js:10202 media/js/impala-min.js:6
 msgid "Flagged for review"
@@ -150,19 +150,19 @@ msgstr ""
 
 #: media/js/common-all.js:19349 media/js/common-min.js:9 media/js/impala-all.js:12250 media/js/impala-min.js:7
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Přidávání k oblíbeným&hellip;"
 
 #: media/js/common-all.js:19352 media/js/common-min.js:9 media/js/impala-all.js:12253 media/js/impala-min.js:7
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Odebírání z oblíbených&hellip;"
 
 #: media/js/common-all.js:19355 media/js/common-min.js:9 media/js/impala-all.js:12256 media/js/impala-min.js:7
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Přidat k oblíbeným"
 
 #: media/js/common-all.js:19358 media/js/common-min.js:9 media/js/impala-all.js:12259 media/js/impala-min.js:7
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Odebrat z oblíbených"
 
 #: media/js/common-all.js:19421 media/js/common-min.js:9 media/js/impala-all.js:12322 media/js/impala-min.js:7
 msgid "Pending"
@@ -170,7 +170,7 @@ msgstr ""
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Add a comment"
-msgstr ""
+msgstr "Přidat komentář"
 
 #: media/js/common-all.js:19422 media/js/common-min.js:9 media/js/impala-all.js:12323 media/js/impala-min.js:7
 msgid "Comment"
@@ -258,7 +258,7 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: media/js/impala-all.js:10340 media/js/impala-min.js:6
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Tento vzhled není kompatibilní s vaší verzí aplikace {0}"
 
 #: media/js/impala-all.js:10852 media/js/impala-all.js:12856 media/js/impala-min.js:6 media/js/impala-min.js:7 media/js/common/upload-image.js:98 media/js/zamboni/devhub-all.js:715
 #: media/js/zamboni/devhub-min.js:1
@@ -276,11 +276,11 @@ msgstr "Vyskytl se problém při kontaktování serveru."
 
 #: media/js/impala-all.js:11602 media/js/impala-min.js:6
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Všechna práva vyhrazena"
 
 #: media/js/impala-all.js:11606 media/js/impala-min.js:6
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: media/js/impala-all.js:11611 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial 3.0"
@@ -288,27 +288,27 @@ msgstr ""
 
 #: media/js/impala-all.js:11616 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11621 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: media/js/impala-all.js:11626 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: media/js/impala-all.js:11631 media/js/impala-min.js:6
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala-all.js:11838 media/js/impala-min.js:6
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Název vašeho vzhledu"
 
 #: media/js/impala-all.js:12685 media/js/impala-min.js:7
 msgid "Stop Following"
-msgstr ""
+msgstr "Přestat sledovat"
 
 #: media/js/impala-all.js:12686 media/js/impala-min.js:7
 msgid "Following"
@@ -960,19 +960,19 @@ msgstr ""
 
 #: media/js/zamboni/editors-all.js:16162 media/js/zamboni/editors-min.js:5
 msgid "Flagged"
-msgstr ""
+msgstr "Označeno"
 
 #: media/js/zamboni/editors-all.js:16163 media/js/zamboni/editors-min.js:5
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikát"
 
 #: media/js/zamboni/editors-all.js:16164 media/js/zamboni/editors-min.js:5
 msgid "Rejected"
-msgstr ""
+msgstr "Zamítnuto"
 
 #: media/js/zamboni/editors-all.js:16165 media/js/zamboni/editors-min.js:5
 msgid "Approved"
-msgstr ""
+msgstr "Schváleno"
 
 #: media/js/zamboni/mobile-all.js:11258 media/js/zamboni/mobile-min.js:4
 msgid "Not Updated for {0} {1}"
@@ -980,7 +980,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11259 media/js/zamboni/mobile-min.js:4
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Vyžaduje novější verzi {0}"
 
 #: media/js/zamboni/mobile-all.js:11260 media/js/zamboni/mobile-min.js:4
 msgid "Unreviewed"
@@ -988,19 +988,19 @@ msgstr ""
 
 #: media/js/zamboni/mobile-all.js:11261 media/js/zamboni/mobile-min.js:4
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Experimentální <span>(Zjistit více)</span>"
 
 #: media/js/zamboni/mobile-all.js:11262 media/js/zamboni/mobile-all.js:11263 media/js/zamboni/mobile-min.js:4
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Nedostupné pro {0}"
 
 #: media/js/zamboni/mobile-all.js:11264 media/js/zamboni/mobile-min.js:4
 msgid "Experimental"
-msgstr ""
+msgstr "Experimentální"
 
 #: media/js/zamboni/mobile-all.js:11265 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Vzhled vyžaduje novější verzi aplikace {0}"
 
 #: media/js/zamboni/mobile-all.js:11266 media/js/zamboni/mobile-min.js:4
 msgid "Themes Require {0}"
@@ -1088,11 +1088,11 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15419 media/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Správce doplňků"
 
 #: media/js/zamboni/stats-all.js:15420 media/js/zamboni/stats-min.js:6
 msgid "Search Results"
-msgstr ""
+msgstr "Výsledky vyhledávání"
 
 #: media/js/zamboni/stats-all.js:15421 media/js/zamboni/stats-all.js:15422 media/js/zamboni/stats-all.js:15423 media/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
@@ -1112,7 +1112,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15429 media/js/zamboni/stats-all.js:15431 media/js/zamboni/stats-min.js:6
 msgid "Detail Page"
-msgstr ""
+msgstr "Stránka s detaily"
 
 #: media/js/zamboni/stats-all.js:15430 media/js/zamboni/stats-all.js:15432 media/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
@@ -1128,11 +1128,11 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15437 media/js/zamboni/stats-all.js:15438 media/js/zamboni/stats-min.js:6
 msgid "Others By Author"
-msgstr ""
+msgstr "Další od autora"
 
 #: media/js/zamboni/stats-all.js:15439 media/js/zamboni/stats-all.js:15440 media/js/zamboni/stats-min.js:6
 msgid "Dependencies"
-msgstr ""
+msgstr "Závislosti"
 
 #: media/js/zamboni/stats-all.js:15441 media/js/zamboni/stats-all.js:15442 media/js/zamboni/stats-min.js:6
 msgid "Upsell"
@@ -1148,7 +1148,7 @@ msgstr ""
 
 #: media/js/zamboni/stats-all.js:15446 media/js/zamboni/stats-min.js:6
 msgid "Collections"
-msgstr ""
+msgstr "Sbírky"
 
 #: media/js/zamboni/stats-all.js:15447 media/js/zamboni/stats-all.js:15448 media/js/zamboni/stats-min.js:6
 msgid "Category Landing Featured Carousel"
