@@ -548,6 +548,14 @@ class REREVIEW_ABUSE_APP(_LOG):
     review_queue = True
 
 
+class REREVIEW_MANUAL(_LOG):
+    id = 82
+    format = _(u'{addon} manually flagged for re-review.')
+    short = _(u'Manual re-review')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

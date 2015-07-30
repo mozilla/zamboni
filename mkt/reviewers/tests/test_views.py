@@ -479,6 +479,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Approve', 'public'),
             (u'Reject', 'reject'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -494,6 +495,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Approve', 'public'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -508,6 +510,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -526,6 +529,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             (u'Approve', 'public'),
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -885,6 +889,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -899,6 +904,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -913,6 +919,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Approve', 'public'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Escalate', 'escalate'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -1157,6 +1164,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         expected = [
             (u'Reject', 'reject'),
             (u'Ban app', 'disable'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -1172,6 +1180,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         expected = [
             (u'Approve', 'public'),
             (u'Ban app', 'disable'),
+            (u'Request Re-review', 'manual_rereview'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Message developer', 'info'),
             (u'Private comment', 'comment'),
@@ -1733,6 +1742,22 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 1)
         eq_(len(mail.outbox), 0)
+
+    def test_manual_rereview(self):
+        self.app.update(status=mkt.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
+        data = {'action': 'manual_rereview', 'comments': 'man dem'}
+        data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
+        self.post(data)
+        # The app status shouldn't change.
+        eq_(self.get_app().status, mkt.STATUS_PUBLIC)
+        eq_(RereviewQueue.objects.count(), 1)
+        self._check_log(mkt.LOG.REREVIEW_MANUAL)
+
+        # Ensure we don't send email to developer on manual rereviews.
+        eq_(len(mail.outbox), 1)
+        self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
 
     def test_clear_rereview(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
