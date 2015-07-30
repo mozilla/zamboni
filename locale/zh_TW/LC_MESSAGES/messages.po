@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-16 06:24+0000\n"
+"PO-Revision-Date: 2015-07-30 16:50+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437027860.0\n"
+"X-POOTLE-MTIME: 1438275042.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "需要調查的濫用報告: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -24,11 +24,11 @@ msgstr "馬上跳過"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "將所有報告標示為已讀"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "標示為重新審查"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1246,11 +1246,11 @@ msgstr "Tarako 應用程式審核"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "已將應用程式濫用報告標示為已讀"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "已將網站濫用報告標示為已讀"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1490,7 +1490,7 @@ msgstr "審核者公開留言"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "濫用報告調查"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6634,7 +6634,7 @@ msgstr "處理"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "動作:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7331,7 +7331,7 @@ msgstr "提升審核預先發行程式"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
-msgstr ""
+msgstr "因為需要調查濫用回報，已重新審查 {addon}。"
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
