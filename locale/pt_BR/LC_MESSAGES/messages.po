@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-17 03:02:29.461916\n"
+"PO-Revision-Date: 2015-07-30 05:53:07.081760\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1526,7 +1526,7 @@ msgstr "Comentário público do revisor"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Investigação de relatos de abuso"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -7963,7 +7963,7 @@ msgstr "Processar"
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Ações:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
