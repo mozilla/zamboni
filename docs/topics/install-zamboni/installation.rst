@@ -202,11 +202,18 @@ After logging in, run this management command::
 
     ./manage.py addusertogroup <your email> 1
 
-9. Setting up the consumer pages
---------------------------------
+9. Setting up the pages
+-----------------------
 
-You will not have any consumer pages you will need to install
-`Marketplace consumer`_ pages.
+To set up the assets for the developer hub, reviewer tools, or admin pages::
+
+    npm install
+    python manage.py compress_assets
+
+For local development, it would also be good to set::
+
+    TEMPLATE_DEBUG = True
+
 
 Post installation
 -----------------
