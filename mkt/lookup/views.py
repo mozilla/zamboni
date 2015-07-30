@@ -31,7 +31,8 @@ from mkt.developers.providers import get_provider
 from mkt.developers.utils import prioritize_app
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
-                              TransactionRefundForm, TransactionSearchForm)
+                              TransactionRefundForm, TransactionSearchForm,
+                              PromoImgForm)
 from mkt.lookup.serializers import AppLookupSerializer, WebsiteLookupSerializer
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
@@ -261,6 +262,15 @@ def transaction_refund(request, tx_uuid):
 def app_summary(request, addon_id):
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
 
+    if request.FILES:
+        promo_img_form = PromoImgForm(request.POST, request.FILES)
+    else:
+        promo_img_form = PromoImgForm()
+    if 'promo_img' in request.FILES and promo_img_form.is_valid():
+        promo_img_form.save(app)
+        messages.success(request, 'Promo image successfully uploaded.')
+        return redirect(reverse('lookup.app_summary', args=[app.pk]))
+
     if 'prioritize' in request.POST and not app.priority_review:
         prioritize_app(app, request.user)
 
@@ -302,17 +312,29 @@ def app_summary(request, addon_id):
             app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
         'version_status_forms': version_status_forms,
         'permissions': permissions,
+        'promo_img_form': promo_img_form,
     })
 
 
 @permission_required([('WebsiteLookup', 'View')])
 def website_summary(request, addon_id):
     website = get_object_or_404(Website, pk=addon_id)
+
+    if request.FILES:
+        promo_img_form = PromoImgForm(request.POST, request.FILES)
+    else:
+        promo_img_form = PromoImgForm()
+    if 'promo_img' in request.FILES and promo_img_form.is_valid():
+        promo_img_form.save(website)
+        messages.success(request, 'Promo image successfully uploaded.')
+        return redirect(reverse('lookup.website_summary', args=[website.pk]))
+
     if not hasattr(website, 'keywords_list'):
         attach_tags([website])
 
     return render(request, 'lookup/website_summary.html', {
         'website': website,
+        'promo_img_form': promo_img_form,
     })
 
 

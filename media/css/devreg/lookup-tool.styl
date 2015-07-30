@@ -463,3 +463,32 @@ a:not([href]) {
         margin: 10px 0px 5px;
     }
 }
+
+.promo-img-form {
+    .helptext {
+        margin-right: 5px;
+    }
+}
+
+#promo-img-preview {
+    display: block;
+    margin-top: 6px;
+    max-width: 320px;
+}
+
+#id_promo_img {
+    background: $blue;
+    border-radius: 5px;
+    color: $white;
+    cursor: pointer;
+    display: block;
+    margin: 3px 0 5px;
+    padding: 10px;
+
+    &:hover {
+        background: lighten($blue, 10%);
+    }
+    + br {
+        display: none;
+    }
+}

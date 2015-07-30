@@ -1,6 +1,7 @@
 from drf_compound_fields.fields import ListField
 from rest_framework import serializers
 
+import mkt
 from mkt.constants.base import CONTENT_ICON_SIZES
 from mkt.api.fields import (GuessLanguageTranslationField,
                             TranslationSerializerField)
@@ -13,18 +14,19 @@ class WebsiteSerializer(serializers.ModelSerializer):
     categories = ListField(serializers.CharField())
     description = TranslationSerializerField()
     device_types = ListField(serializers.CharField(), source='device_names')
+    icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk')
-    short_name = TranslationSerializerField()
     keywords = serializers.SerializerMethodField('get_keywords')
     name = TranslationSerializerField()
+    promo_imgs = serializers.SerializerMethodField('get_promo_imgs')
+    short_name = TranslationSerializerField()
     title = TranslationSerializerField()
-    icons = serializers.SerializerMethodField('get_icons')
 
     class Meta:
         model = Website
         fields = ['categories', 'description', 'device_types', 'icons', 'id',
-                  'keywords', 'mobile_url', 'name', 'short_name', 'title',
-                  'url']
+                  'keywords', 'mobile_url', 'name', 'promo_imgs', 'short_name',
+                  'title', 'url']
 
     def get_icons(self, obj):
         return {icon_size: obj.get_icon_url(icon_size)
@@ -35,6 +37,10 @@ class WebsiteSerializer(serializers.ModelSerializer):
             attach_tags([obj])
         return getattr(obj, 'keywords_list', [])
 
+    def get_promo_imgs(self, obj):
+        return dict([(promo_img_size, obj.get_promo_img_url(promo_img_size))
+                     for promo_img_size in mkt.PROMO_IMG_SIZES])
+
 
 class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
     def fake_object(self, data):
@@ -43,7 +49,8 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
 
         # Set basic attributes on the fake instance using the data from ES.
         self._attach_fields(
-            obj, data, ('default_locale', 'icon_hash', 'mobile_url', 'url'))
+            obj, data, ('default_locale', 'icon_hash', 'mobile_url',
+                        'promo_img_hash', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.

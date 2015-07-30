@@ -189,6 +189,11 @@ MAX_CATEGORIES = 2
 # Icon sizes we want to generate and expose in the API.
 CONTENT_ICON_SIZES = [32, 48, 64, 128]
 
+# Promo img sizes we want to generate and expose in the API.
+PROMO_IMG_SIZES = [640, 1920]
+
+PROMO_IMG_MINIMUMS = (1920, 300)
+
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 

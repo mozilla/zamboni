@@ -96,6 +96,17 @@ class TestWebapp(WebappTestCase):
         app.icon_type = None
         assert app.get_icon_url(32).endswith('hub/default-32.png')
 
+    def test_get_promo_img_url(self):
+        app = self.get_app()
+        eq_(app.get_promo_img_url('640'), '')
+        eq_(app.get_promo_img_url('1920'), '')
+
+        app.promo_img_hash = 'chicken'
+        ok_('webapp_promo_imgs/337/337141-640.png?modified=chicken' in
+            app.get_promo_img_url('640'))
+        ok_('webapp_promo_imgs/337/337141-1920.png?modified=chicken' in
+            app.get_promo_img_url('1920'))
+
     def test_has_payment_account(self):
         app = self.get_app()
         assert not app.has_payment_account()

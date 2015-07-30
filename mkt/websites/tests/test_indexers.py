@@ -66,6 +66,7 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['name_translations'], [{
             'lang': u'en-US', 'string': unicode(self.obj.name)}])
         eq_(doc['preferred_regions'], self.obj.preferred_regions)
+        eq_(doc['promo_img_hash'], self.obj.promo_img_hash)
         eq_(doc['reviewed'], self.obj.last_updated)
         eq_(doc['short_name'], [unicode(self.obj.short_name)])
         eq_(doc['short_name_translations'], [{

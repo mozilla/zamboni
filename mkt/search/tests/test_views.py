@@ -1412,6 +1412,8 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[1]['id'], self.website.pk)
         eq_(objs[1]['title'], self.website.title)
         eq_(objs[1]['url'], self.website.url)
+        eq_(objs[1]['promo_imgs']['1920'], '')
+        eq_(objs[1]['promo_imgs']['640'], '')
 
     def test_search_preferred_region_match(self):
         """

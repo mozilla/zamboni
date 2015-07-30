@@ -176,6 +176,7 @@ class WebappIndexer(BaseIndexer):
                         'dynamic': 'true',
                     },
                     'price_tier': cls.string_not_indexed(),
+                    'promo_img_hash': cls.string_not_indexed(),
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -261,7 +262,7 @@ class WebappIndexer(BaseIndexer):
         attrs = ('app_slug', 'bayesian_rating', 'created', 'default_locale',
                  'guid', 'icon_hash', 'id', 'is_disabled', 'is_offline',
                  'file_size', 'last_updated', 'modified', 'premium_type',
-                 'status', 'uses_flash')
+                 'promo_img_hash', 'status', 'uses_flash')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id
