@@ -162,3 +162,7 @@ DEV_PAY_PROVIDERS = {
 
 # Bug 1145338
 IAF_OVERRIDE_APPS = private_mkt.IAF_OVERRIDE_APPS
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_QUERYSTRING_AUTH = False
