@@ -27,17 +27,11 @@ CACHE_PREFIX = 's3dev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-CACHE_MACHINE_ENABLED = False
-
 SYSLOG_TAG = "http_app_mkt_s3dev"
 SYSLOG_TAG2 = "http_app_mkt_s3dev_timer"
 SYSLOG_CSP = "http_app_mkt_s3dev_csp"
 
 STATSD_PREFIX = 'marketplace-s3dev'
-
-# Redis
-REDIS_BACKEND = getattr(
-    private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
 
 # Celery
 BROKER_URL = private_mkt.BROKER_URL
@@ -71,7 +65,7 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 # Override the limited marketplace ones with these ones from AMO. Because
 # the base gets overridden in the mkt.settings file, we'll set them back again.
 # Note the addition of the testing locales dbg and rtl here.
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ar', 'ln', 'sw', 'tl')
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbg', 'rtl', 'ln', 'tl')
 LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
