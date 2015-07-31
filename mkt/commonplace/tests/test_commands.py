@@ -34,3 +34,14 @@ class TestSetBuildId(mkt.site.tests.TestCase):
         call_command('deploy_build_id', 'transonic')
         eq_(DeployBuildId.objects.get(repo='transonic').build_id, '0118999')
         eq_(DeployBuildId.objects.get(repo='fireplace').build_id, '67890')
+
+    @mock.patch('mkt.commonplace.management.commands.deploy_build_id.storage')
+    def test_multiple_repo_build_id_passed_as_argument(self, storage_mock):
+        DeployBuildId.objects.create(repo='transonic', build_id='12345')
+        DeployBuildId.objects.create(repo='fireplace', build_id='666')
+        storage_mock.open = mock.mock_open(read_data='0118999')
+
+        call_command('deploy_build_id', 'transonic', '4815162342')
+        eq_(DeployBuildId.objects.get(repo='transonic').build_id, '4815162342')
+        eq_(DeployBuildId.objects.get(repo='fireplace').build_id, '666')
+        ok_(not storage_mock.open.called)
