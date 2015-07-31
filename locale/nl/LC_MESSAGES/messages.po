@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-16 11:35+0000\n"
+"PO-Revision-Date: 2015-07-31 10:26+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437046537.0\n"
+"X-POOTLE-MTIME: 1438338412.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Te onderzoeken misbruikmeldingen: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -28,11 +28,11 @@ msgstr "Voorlopig overslaan"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Alle meldingen als gelezen markeren"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Markeren voor herbeoordeling"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1250,11 +1250,11 @@ msgstr "Tarako-app-beoordeling"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "App-misbruikmelding gelezen"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Websitemisbruikmelding gelezen"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1494,7 +1494,7 @@ msgstr "Openbare reactie van beoordelaar"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Onderzoek naar misbruikmeldingen"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6643,7 +6643,7 @@ msgstr "Verwerken"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Acties:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7340,6 +7340,7 @@ msgstr "Automatische escalatie van prerelease"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
 msgstr ""
+"{addon} is herbeoordeeld, omdat onderzoek naar misbruikmeldingen nodig is."
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
