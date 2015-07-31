@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-31 10:26+0000\n"
+"PO-Revision-Date: 2015-07-31 12:25+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438338412.0\n"
+"X-POOTLE-MTIME: 1438345514.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -105,7 +105,7 @@ msgstr "Firefox Mobiel"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr "Firefox Tablet"
+msgstr "Firefox-tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:46 mkt/search/forms.py:53
@@ -314,7 +314,7 @@ msgstr "Kersteiland"
 
 #: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
-msgstr "Cocos- (Keeling-)eiland"
+msgstr "Cocos- (Keeling-)eilanden"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
@@ -610,7 +610,7 @@ msgstr "Koeweit"
 
 #: mkt/constants/bango.py:140 mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
-msgstr "Kyrgyzstan"
+msgstr "Kirgizië"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
@@ -866,7 +866,7 @@ msgstr "Rwanda"
 
 #: mkt/constants/bango.py:204 mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
-msgstr "Saint Barthélemy"
+msgstr "Saint-Barthélemy"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
@@ -1462,7 +1462,7 @@ msgstr "Herbeoordeling vanwege wijziging in vereisten"
 
 #: mkt/constants/comm.py:66
 msgid "Rereview due to Adult Content Rating"
-msgstr "Herbeoordeling vanwege inhoudsbeoordeling voor volwassenen"
+msgstr "Herbeoordeling vanwege inhoudsclassificatie Volwassen"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to VIP App"
@@ -1826,7 +1826,7 @@ msgstr "De app vereist dat het platform het verzenden van asynchrone HTTP-aanvra
 
 #: mkt/constants/features.py:299
 msgid "TCP Sockets"
-msgstr "TCP Sockets"
+msgstr "TCP-sockets"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -1942,7 +1942,7 @@ msgstr "De betaling is ontvangen, maar niet voltooid, en wacht op verwerking."
 
 #: mkt/constants/payments.py:120
 msgid "Completed"
-msgstr "Afgerond"
+msgstr "Voltooid"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
@@ -2149,7 +2149,7 @@ msgstr "Kan gedeelde account niet verwijderen"
 
 #: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
-msgstr "Inhoudsbeoordeling gewijzigd naar Volwassen."
+msgstr "Inhoudsclassificatie gewijzigd naar Volwassen."
 
 #: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
@@ -2702,7 +2702,7 @@ msgstr "Gefeliciteerd, uw app is nu ingediend en zal binnenkort worden beoordeel
 
 #: mkt/developers/views.py:318
 msgid "Content ratings successfully saved."
-msgstr "Inhoudsbeoordelingen met succes opgeslagen."
+msgstr "Inhoudsclassificaties met succes opgeslagen."
 
 #: mkt/developers/views.py:442
 msgid "Application for preload successfully submitted."
@@ -2828,7 +2828,7 @@ msgstr "Toepassingsnaam"
 
 #: mkt/developers/templates/developers/api.html:43 mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
-msgstr "Doorgeleidings-URI"
+msgstr "Omleidings-URI"
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
@@ -3208,7 +3208,10 @@ msgstr "Deze app is <b>uitgeschakeld door Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
-msgstr "Uw app is uitgeschakeld, omdat de inhoudsbeoordeling ontbreekt. De app wordt automatisch weer ingeschakeld na <a href=\"%(ratings_url)s\">verkrijgen van inhoudsbeoordeling</a>."
+msgstr ""
+"Uw app is uitgeschakeld, omdat de inhoudsclassificaties ontbreken. De app "
+"wordt automatisch weer ingeschakeld na het <a href=\"%"
+"(ratings_url)s\">verkrijgen van inhoudsclassificaties</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
@@ -3246,7 +3249,7 @@ msgstr "Deze app <b>wacht op beoordeling</b> door een Firefox Marketplace-beoord
 
 #: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
-msgstr "U ontvangt een e-mailbericht wanneer de beoordeling is afgerond."
+msgstr "U ontvangt een e-mailbericht als de beoordeling is voltooid."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
@@ -3294,7 +3297,9 @@ msgstr "App opnieuw indienen"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
-msgstr "U moet <a href=\"%(ratings_url)s\">een inhoudsbeoordeling verkrijgen</a> voordat u uw app opnieuw indient."
+msgstr ""
+"U moet <a href=\"%(ratings_url)s\">inhoudsclassificaties verkrijgen</a> "
+"voordat u uw app opnieuw indient."
 
 #: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
@@ -3326,7 +3331,9 @@ msgstr "Een nieuwe versie van deze verpakte app uploaden. Nieuwe versies moeten 
 
 #: mkt/developers/templates/developers/apps/status.html:259
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
-msgstr "Vergeet niet de <a href=\"%(ratings_url)s\">inhoudsbeoordelingen</a> van de app bij te werken als een groot gedeelte van de inhoud is gewijzigd."
+msgstr ""
+"Vergeet niet de <a href=\"%(ratings_url)s\">inhoudsclassificaties</a> van de "
+"app bij te werken als een groot gedeelte van de inhoud is gewijzigd."
 
 #: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:189
 #: mkt/submit/templates/submit/manifest.html:110 mkt/submit/templates/submit/next_steps.html:110
@@ -3815,7 +3822,7 @@ msgstr "Als uw app zonder een internetverbinding werkt, vermelden we ‘Werkt of
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
-msgstr "Publieke statistieken?"
+msgstr "Openbare statistieken?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:53
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
@@ -3992,11 +3999,11 @@ msgstr "Het indieningsproces voor deze app hervatten."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
 msgid "Get content ratings for the app."
-msgstr "Verkrijg inhoudsbeoordelingen voor de app."
+msgstr "Verkrijg inhoudsclassificaties voor de app."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
-msgstr "Inhoudsbeoordelingen instellen"
+msgstr "Inhoudsclassificaties instellen"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
@@ -4031,7 +4038,7 @@ msgstr "Status en versies"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1415
 msgid "Content Ratings"
-msgstr "Inhoudsbeoordelingen"
+msgstr "Inhoudsclassificaties"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
 #: mkt/developers/templates/developers/payments/in-app-config.html:14 mkt/developers/templates/developers/payments/in-app-payments.html:4
@@ -4084,7 +4091,7 @@ msgstr "Apparaten wijzigen"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr "<a href=\"%(rating_url)s\">Inhoudsbeoordelingen instellen</a>"
+msgstr "<a href=\"%(rating_url)s\">Inhoudsclassificaties instellen</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4141,11 +4148,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr "IARC-inhoudsbeoordelingsproces voltooid, u wordt doorgeleid naar de <a href=\"%(ratings_url)s\">inhoudsbeoordelingspagina</a> van uw app."
+msgstr ""
+"IARC-inhoudsclassificatieproces voltooid, u wordt omgeleid naar de <a href=\""
+"%(ratings_url)s\">inhoudsclassificatiepagina</a> van uw app."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr "Sorry, er is een fout aan onze kant opgetreden tijdens het verwerken van de inhoudsbeoordeling. U kunt het blijven proberen of het later nog eens proberen."
+msgstr ""
+"Sorry, er is een fout aan onze kant opgetreden tijdens het verwerken van de "
+"inhoudsclassificatie. U kunt het blijven proberen of het later nog eens "
+"proberen."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -4303,8 +4315,11 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
-"Met de volgende sleutel/geheimcombinatie kunt u alleen in-app-betalingen simuleren tijdens de ontwikkeling van uw app. Om een sleutel voor echte in-app-betalingen aan te maken moet u uw app <a href="
-"\"%(submit)s\">indienen</a>, uw betalingsgegevens instellen en een nieuwe sleutel die specifiek is voor die app aanmaken."
+"Met de volgende sleutel / het volgende geheim kunt u alleen in-app-"
+"betalingen simuleren tijdens de ontwikkeling van uw app. Om een sleutel voor "
+"echte in-app-betalingen aan te maken moet u uw app <a href=\"%"
+"(submit)s\">indienen</a>, uw betalingsgegevens instellen en een nieuwe "
+"sleutel die specifiek is voor die app aanmaken."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -5743,7 +5758,7 @@ msgstr "Operatordashboard"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr "<small>Operator</small>dashboard"
+msgstr "<small>Operator</small>-dashboard"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
@@ -5981,7 +5996,7 @@ msgstr "Meer informatie gevraagd"
 
 #: mkt/reviewers/forms.py:206
 msgid "Tarako-ready"
-msgstr "Klaar voor Tarako"
+msgstr "Gereed voor Tarako"
 
 #: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:96
 msgid "Device"
@@ -6449,7 +6464,7 @@ msgstr "Beoordelingsrichtlijnen"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:11
 msgid "{region} Review Queue"
-msgstr "Beoordelingswachtrij {region}"
+msgstr "Beoordelingswachtrij voor {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
@@ -6987,7 +7002,7 @@ msgstr "{addon} ingeschakeld."
 
 #: mkt/site/log.py:78
 msgid "Stats set public for {addon}."
-msgstr "Statistieken voor {addon} zijn publiek."
+msgstr "Statistieken voor {addon} zijn openbaar."
 
 #: mkt/site/log.py:85
 msgid "{addon} stats set to private."
@@ -7137,11 +7152,11 @@ msgstr "{0} {1} toegevoegd."
 #. L10n: {0} is a user, {1} is their role
 #: mkt/site/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "rol van {0.name} gewijzigd naar {1} voor {addon}."
+msgstr "Rol van {0.name} gewijzigd naar {1} voor {addon}."
 
 #: mkt/site/log.py:315
 msgid "{addon} policy changed."
-msgstr "beleid van {addon} gewijzigd."
+msgstr "Beleid van {addon} gewijzigd."
 
 #: mkt/site/log.py:321
 msgid "{addon} icon changed."
@@ -7396,7 +7411,7 @@ msgstr "Vereisten gewijzigd door beoordelaar"
 
 #: mkt/site/log.py:641
 msgid "{addon} minimum requirements manually changed."
-msgstr "Minimumvereisten {addon} handmatig gewijzigd."
+msgstr "Minimumvereisten voor {addon} handmatig gewijzigd."
 
 #: mkt/site/log.py:642
 msgid "Requirements Changed"
@@ -7414,11 +7429,11 @@ msgstr "Gebruiker {0.name} {0.id} verwijderd via zoekhulpmiddel."
 
 #: mkt/site/log.py:663
 msgid "{addon} content rating changed to Adult."
-msgstr "Inhoudsbeoordeling van {addon} gewijzigd naar Volwassen."
+msgstr "Inhoudsclassificatie van {addon} gewijzigd naar Volwassen."
 
 #: mkt/site/log.py:669
 msgid "{addon} content rating changed."
-msgstr "Inhoudsbeoordeling van {addon} gewijzigd."
+msgstr "Inhoudsclassificatie van {addon} gewijzigd."
 
 #: mkt/site/log.py:674
 msgid "Priority review requested for {addon}."
@@ -7720,7 +7735,8 @@ msgstr "Voer app-details in"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr "<span><a href=\"%(rating_url)s\">Inhoudsbeoordelingen</a> instellen</span>"
+msgstr ""
+"<span><a href=\"%(rating_url)s\">Inhoudsclassificaties</a> instellen</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
@@ -8021,7 +8037,7 @@ msgstr "U moet minstens één categorie opgeven."
 
 #: mkt/webapps/models.py:1382
 msgid "You must set up content ratings."
-msgstr "U moet inhoudsbeoordelingen instellen."
+msgstr "U moet inhoudsclassificaties instellen."
 
 #: mkt/webapps/models.py:1384
 msgid "You must set up a payment account."
@@ -8029,11 +8045,11 @@ msgstr "U moet een betalingsaccount instellen."
 
 #: mkt/webapps/models.py:1409
 msgid "This app's submission process has not been fully completed."
-msgstr "Het indieningsproces van deze app is niet volledig afgerond."
+msgstr "Het indieningsproces van deze app is nog niet voltooid."
 
 #: mkt/webapps/models.py:1416
 msgid "This app needs to get a content rating."
-msgstr "Deze app moet een inhoudsbeoordeling krijgen."
+msgstr "Deze app moet een inhoudsclassificatie krijgen."
 
 #: mkt/webapps/models.py:1422
 msgid "This app needs a payment account set up."
@@ -8056,11 +8072,11 @@ msgstr "vereist aanvullende beoordeling"
 
 #: mkt/webapps/models.py:2736
 msgid "{region} approval status"
-msgstr "goedkeuringsstatus {region}"
+msgstr "Goedkeuringsstatus voor {region}"
 
 #: mkt/webapps/models.py:2744
 msgid "{region} nomination date"
-msgstr "nominatiedatum {region}"
+msgstr "Nominatiedatum voor {region}"
 
 #: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
