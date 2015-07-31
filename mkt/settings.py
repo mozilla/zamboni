@@ -216,6 +216,7 @@ LOGOUT_REDIRECT_URL = '/developers/'
 LOGGING = {
     'loggers': {
         'amqplib': {'handlers': ['null']},
+        'boto': {'handlers': ['null']},
         'elasticsearch': {'level': logging.DEBUG},
         # Set to DEBUG if you want pretty printed ES queries and responses.
         'elasticsearch.trace': {'handlers': ['null']},

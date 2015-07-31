@@ -29,6 +29,7 @@ from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
+from mkt.files.helpers import copyfileobj
 from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, use_master
 from mkt.site.helpers import absolutify
@@ -63,17 +64,15 @@ def validator(upload_id, **kw):
         return
 
     temp_path = None
-    # Make a copy of the file if it's a packaged app since we can't assume the
+    # Make a copy of the file since we can't assume the
     # uploaded file is on the local filesystem.
-    if upload.name.endswith('.zip'):
-        # TODO: Chunk in case of very large files.
-        temp_path = tempfile.mktemp()
-        with open(temp_path, 'wb') as fd:
-            fd.write(storage.open(upload.path, 'rb').read())
+    temp_path = tempfile.mktemp()
+    with open(temp_path, 'wb') as local_f:
+        with storage.open(upload.path) as remote_f:
+            copyfileobj(remote_f, local_f)
 
     try:
-        validation_result = run_validator(temp_path or upload.path,
-                                          url=kw.get('url'))
+        validation_result = run_validator(temp_path, url=kw.get('url'))
         if upload.validation:
             # If there's any preliminary validation result, merge it with the
             # actual validation result.
@@ -104,9 +103,8 @@ def validator(upload_id, **kw):
         if not settings.CELERY_ALWAYS_EAGER:
             raise
 
-    # Clean up any copied files if we made them.
-    if temp_path:
-        os.unlink(temp_path)
+    # Clean up copied files.
+    os.unlink(temp_path)
 
 
 @task
@@ -143,7 +141,7 @@ def run_validator(file_path, url=None):
         else:
             log.info(u'Running `validate_app` for path: %s' % (file_path))
             with statsd.timer('mkt.developers.validate_app'):
-                return validate_app(storage.open(file_path).read(),
+                return validate_app(open(file_path).read(),
                                     market_urls=settings.VALIDATOR_IAF_URLS,
                                     url=url)
 

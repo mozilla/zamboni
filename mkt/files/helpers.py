@@ -2,7 +2,7 @@ import codecs
 import json
 import mimetypes
 import os
-import stat
+import time
 from collections import OrderedDict
 
 from django.conf import settings
@@ -22,7 +22,7 @@ from appvalidator.testcases.packagelayout import (
 
 import mkt
 from mkt.files.utils import extract_zip, get_md5
-from mkt.site.storage_utils import walk_storage
+from mkt.site.storage_utils import storage_is_remote, walk_storage
 
 
 # Allow files with a shebang through.
@@ -100,16 +100,23 @@ class FileViewer(object):
                 for fname in files:
                     file_src = os.path.join(root, fname)
                     file_dest = os.path.join(storage_root, fname)
-                    copyfileobj(open(file_src), storage.open(file_dest, 'w'))
+                    with open(file_src) as local_f:
+                        with storage.open(file_dest, 'w') as remote_f:
+                            copyfileobj(local_f, remote_f)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
             raise
 
     def cleanup(self):
-        if storage.exists(self.dest):
+        try:
             for root, dirs, files in walk_storage(self.dest):
                 for fname in files:
                     storage.delete(os.path.join(root, fname))
+        except OSError as e:
+            if e.errno == 2:
+                # Directory doesn't exist, nothing to clean up.
+                return
+            raise
 
     def is_extracted(self):
         """If the file has been extracted or not."""
@@ -123,7 +130,9 @@ class FileViewer(object):
         if ext in blocked_extensions:
             return True
 
-        if os.path.exists(path) and not os.path.isdir(path):
+        # S3 will return false for storage.exists() for directory paths, so
+        # os.path call is safe here.
+        if storage.exists(path) and not os.path.isdir(path):
             with storage.open(path, 'r') as rfile:
                 bytes = tuple(map(ord, rfile.read(4)))
             if any(bytes[:len(x)] == x for x in blocked_magic_numbers):
@@ -290,8 +299,8 @@ class FileViewer(object):
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self):
         all_files, res = [], OrderedDict()
-        # Not using os.path.walk so we get just the right order.
 
+        # Not using os.path.walk so we get just the right order.
         def iterate(path):
             path_dirs, path_files = storage.listdir(path)
             for dirname in sorted(path_dirs):
@@ -311,7 +320,13 @@ class FileViewer(object):
             mime, encoding = mimetypes.guess_type(filename)
             if not mime and filename == 'manifest.webapp':
                 mime = 'application/x-web-app-manifest+json'
-            directory = os.path.isdir(path)
+            if storage_is_remote():
+                # S3 doesn't have directories, so we check for names with this
+                # prefix and call it a directory if there are some.
+                subdirs, subfiles = storage.listdir(path)
+                directory = bool(subdirs or subfiles)
+            else:
+                directory = os.path.isdir(path)
 
             res[short] = {
                 'binary': self._is_binary(mime, path),
@@ -322,9 +337,11 @@ class FileViewer(object):
                 'md5': get_md5(path) if not directory else '',
                 'mimetype': mime or 'application/octet-stream',
                 'syntax': self.get_syntax(filename),
-                'modified': os.stat(path)[stat.ST_MTIME],
+                'modified': (
+                    time.mktime(storage.modified_time(path).timetuple())
+                    if not directory else 0),
                 'short': short,
-                'size': os.stat(path)[stat.ST_SIZE],
+                'size': storage.size(path) if not directory else 0,
                 'truncated': self.truncate(filename),
                 'url': reverse('mkt.files.list',
                                args=[self.file.id, 'file', short]),

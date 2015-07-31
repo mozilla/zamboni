@@ -133,7 +133,12 @@ class DynamicSearchSerializer(serializers.Serializer):
         Dynamically serialize obj using serializers passed through the context,
         depending on the doc_type of the obj.
         """
-        doc_type = obj._meta['doc_type']
+        if hasattr(obj, '_meta'):
+            doc_type = obj._meta['doc_type']
+        else:
+            # For aggregated queries (mkt.games.ESGameAggregationPaginator).
+            doc_type = obj['_type']
+
         serializer = self.serializers.get(doc_type)
         if serializer is None:
             return super(DynamicSearchSerializer, self).to_native(obj)

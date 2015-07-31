@@ -47,7 +47,6 @@ django-waffle==0.10
 drf-compound-fields==0.2.2
 easy-thumbnails==2.2
 elasticsearch==1.4.0
-elasticsearch-dsl==0.0.3
 email-reply-parser==0.2.0
 # enum34 is required by cryptography
 enum34==1.0.4
@@ -123,6 +122,7 @@ urllib3==1.10.3
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
+-e git+https://github.com/ngokevin/elasticsearch-dsl-py.git@886c4e77655ded24e6a208fed28e984d3ad51218#egg=elasticsearch-dsl
 
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
