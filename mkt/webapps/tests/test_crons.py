@@ -126,12 +126,14 @@ class TestCleanup(mkt.site.tests.TestCase):
                                  '1', 'x.z')
 
     def test_not_cleaned(self):
-        storage.open(self.file, 'w')
+        with storage.open(self.file, 'w') as f:
+            f.write('.')
         clean_old_signed()
         assert storage.exists(self.file)
 
     def test_cleaned(self):
-        storage.open(self.file, 'w')
+        with storage.open(self.file, 'w') as f:
+            f.write('.')
         clean_old_signed(-60)
         assert not storage.exists(self.file)
 

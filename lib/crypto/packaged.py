@@ -116,10 +116,8 @@ def _no_sign(src, dest):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
-    dest_dir = os.path.dirname(dest)
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir)
-    shutil.copy(src, dest)
+    with storage.open(dest, 'w') as destf:
+        shutil.copyfileobj(open(src), destf)
 
 
 @task

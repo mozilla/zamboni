@@ -815,8 +815,9 @@ class TestDetails(TestSubmit):
         eq_(ad.icon_type, 'image/png')
         for size in mkt.CONTENT_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
-            assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
-                'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
+            assert storage.exists(os.path.join(ad.get_icon_dir(), fn)), (
+                'Expected %s in %s' % (
+                    fn, storage.listdir(ad.get_icon_dir())[1]))
 
     def test_screenshot_or_video_required(self):
         self._step()

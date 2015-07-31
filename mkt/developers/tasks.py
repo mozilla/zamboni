@@ -63,16 +63,8 @@ def validator(upload_id, **kw):
         log.info(u'[FileUpload:%s] Does not exist.' % upload_id)
         return
 
-    temp_path = None
-    # Make a copy of the file since we can't assume the
-    # uploaded file is on the local filesystem.
-    temp_path = tempfile.mktemp()
-    with open(temp_path, 'wb') as local_f:
-        with storage.open(upload.path) as remote_f:
-            copyfileobj(remote_f, local_f)
-
     try:
-        validation_result = run_validator(temp_path, url=kw.get('url'))
+        validation_result = run_validator(upload.path, url=kw.get('url'))
         if upload.validation:
             # If there's any preliminary validation result, merge it with the
             # actual validation result.
@@ -103,9 +95,6 @@ def validator(upload_id, **kw):
         if not settings.CELERY_ALWAYS_EAGER:
             raise
 
-    # Clean up copied files.
-    os.unlink(temp_path)
-
 
 @task
 @use_master
@@ -127,23 +116,34 @@ def file_validator(file_id, **kw):
 def run_validator(file_path, url=None):
     """A pre-configured wrapper around the app validator."""
 
+    temp_path = None
+    # Make a copy of the file since we can't assume the
+    # uploaded file is on the local filesystem.
+    temp_path = tempfile.mktemp()
+    with open(temp_path, 'wb') as local_f:
+        with storage.open(file_path) as remote_f:
+            copyfileobj(remote_f, local_f)
+
     with statsd.timer('mkt.developers.validator'):
-        is_packaged = zipfile.is_zipfile(file_path)
+        is_packaged = zipfile.is_zipfile(temp_path)
         if is_packaged:
             log.info(u'Running `validate_packaged_app` for path: %s'
                      % (file_path))
             with statsd.timer('mkt.developers.validate_packaged_app'):
                 return validate_packaged_app(
-                    file_path,
+                    temp_path,
                     market_urls=settings.VALIDATOR_IAF_URLS,
                     timeout=settings.VALIDATOR_TIMEOUT,
                     spidermonkey=settings.SPIDERMONKEY)
         else:
             log.info(u'Running `validate_app` for path: %s' % (file_path))
             with statsd.timer('mkt.developers.validate_app'):
-                return validate_app(open(file_path).read(),
+                return validate_app(open(temp_path).read(),
                                     market_urls=settings.VALIDATOR_IAF_URLS,
                                     url=url)
+
+    # Clean up copied files.
+    os.unlink(temp_path)
 
 
 def _hash_file(fd):
@@ -362,7 +362,7 @@ def fetch_icon(pk, file_pk=None, **kw):
             if icon_url.startswith('/'):
                 icon_url = icon_url[1:]
             try:
-                zf = SafeUnzip(file_obj.file_path)
+                zf = SafeUnzip(storage.open(file_obj.file_path))
                 zf.is_valid()
                 content = zf.extract_path(icon_url)
             except (KeyError, forms.ValidationError):  # Not found in archive.

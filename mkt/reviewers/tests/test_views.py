@@ -9,7 +9,6 @@ from os import path
 from django import test
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -1895,8 +1894,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_encoding(self, mock_get):
         m = mock.Mock()
-        with storage.open(self.manifest_path('non-utf8.webapp')) as fp:
-            m.content = fp.read()
+        m.content = open(self.manifest_path('non-utf8.webapp')).read()
         m.headers = CaseInsensitiveDict({})
         mock_get.return_value = m
 
@@ -1994,7 +1992,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(save_mock.called, False, save_mock.call_args_list)
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
+    @mock.patch(settings.DEFAULT_FILE_STORAGE + '.save')
     def test_attachment(self, save_mock):
         """ Test addition of an attachment """
         """

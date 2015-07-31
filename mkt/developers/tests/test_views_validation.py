@@ -19,6 +19,7 @@ from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import storage_is_remote
 from mkt.site.tests import MktPaths, TestCase
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.tests.test_views import BaseWebAppTest
@@ -63,7 +64,12 @@ class TestWebApps(TestCase, MktPaths):
         eq_(wp['default_locale'], 'en-US')
 
     def test_parse_packaged(self):
-        wp = WebAppParser().parse(self.packaged_app_path('mozball.zip'))
+        path = self.packaged_app_path('mozball.zip')
+        if storage_is_remote():
+            with open(path) as local_f:
+                with storage.open(path, 'w') as remote_f:
+                    copyfileobj(local_f, remote_f)
+        wp = WebAppParser().parse(path)
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
         eq_(wp['description']['en-US'],
@@ -76,7 +82,12 @@ class TestWebApps(TestCase, MktPaths):
         eq_(wp['default_locale'], 'en-US')
 
     def test_parse_packaged_BOM(self):
-        wp = WebAppParser().parse(self.packaged_app_path('mozBOM.zip'))
+        path = self.packaged_app_path('mozBOM.zip')
+        if storage_is_remote():
+            with open(path) as local_f:
+                with storage.open(path, 'w') as remote_f:
+                    copyfileobj(local_f, remote_f)
+        wp = WebAppParser().parse(path)
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
         eq_(wp['description']['en-US'], u'Exciting BOM action!')
@@ -86,9 +97,13 @@ class TestWebApps(TestCase, MktPaths):
         eq_(wp['default_locale'], 'en-US')
 
     def test_no_manifest_at_root(self):
+        path = self.packaged_app_path('no-manifest-at-root.zip')
+        if storage_is_remote():
+            with open(path) as local_f:
+                with storage.open(path, 'w') as remote_f:
+                    copyfileobj(local_f, remote_f)
         with self.assertRaises(forms.ValidationError) as exc:
-            WebAppParser().parse(
-                self.packaged_app_path('no-manifest-at-root.zip'))
+            WebAppParser().parse(path)
         m = exc.exception.messages[0]
         assert m.startswith('The file "manifest.webapp" was not found'), (
             'Unexpected: %s' % m)

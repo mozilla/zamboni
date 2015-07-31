@@ -124,7 +124,7 @@ class TestMonolithStats(mkt.site.tests.TestCase):
 
     def test_app_reviews(self):
         addon = Webapp.objects.create()
-        Review.objects.create(addon=addon, user=user_factory())
+        Review.objects.create(addon=addon, user=user_factory(), rating=5)
         eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
             1)
 
