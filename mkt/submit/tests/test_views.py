@@ -505,13 +505,13 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
                             self.file.signed_file_path)
 
 
-class TestEscalatePrereleaseWebApp(BasePackagedAppTest):
+class TestEscalateReservedPermissionsWebApp(BasePackagedAppTest):
     def setUp(self):
-        super(TestEscalatePrereleaseWebApp, self).setUp()
+        super(TestEscalateReservedPermissionsWebApp, self).setUp()
         user_factory(email=settings.NOBODY_EMAIL_ADDRESS)
 
     def post(self):
-        super(TestEscalatePrereleaseWebApp, self).post(data={
+        super(TestEscalateReservedPermissionsWebApp, self).post(data={
             'free_platforms': ['free-firefoxos'],
             'packaged': True,
         })
@@ -519,6 +519,14 @@ class TestEscalatePrereleaseWebApp(BasePackagedAppTest):
     def test_prerelease_permissions_get_escalated(self):
         validation = json.loads(self.upload.validation)
         validation['permissions'] = ['moz-attention']
+        self.upload.update(validation=json.dumps(validation))
+        eq_(EscalationQueue.objects.count(), 0)
+        self.post()
+        eq_(EscalationQueue.objects.count(), 1)
+
+    def test_reserved_permissions_get_escalated(self):
+        validation = json.loads(self.upload.validation)
+        validation['permissions'] = ['external-app']
         self.upload.update(validation=json.dumps(validation))
         eq_(EscalationQueue.objects.count(), 0)
         self.post()
