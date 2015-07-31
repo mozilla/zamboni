@@ -8,6 +8,7 @@ from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.comm.views import CommAppListView, ThreadViewSetV2
+from mkt.games.views import DailyGamesView
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
@@ -92,6 +93,8 @@ urlpatterns = patterns(
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
+
+    url(r'^games/daily/$', DailyGamesView.as_view(), name='games.daily'),
 
     url(r'^langpacks', include(langpacks.urls)),
     url(r'^websites/search/', WebsiteSearchView.as_view(),
