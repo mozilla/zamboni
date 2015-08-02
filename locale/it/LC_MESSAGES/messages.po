@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-20 18:56+0000\n"
+"PO-Revision-Date: 2015-08-02 10:44+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437418575.0\n"
+"X-POOTLE-MTIME: 1438512249.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Segnalazioni di abuso da esaminare: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -29,11 +29,11 @@ msgstr "Ignora per il momento"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Contrassegna tutte le segnalazioni d’abuso come lette"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Contrassegna per nuova revisione"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1226,7 +1226,7 @@ msgstr "Revisione app con privilegi"
 
 #: mkt/constants/base.py:227
 msgid "Web App Re-review"
-msgstr "Riesame dell’app web"
+msgstr "Nuova revisione dell’app web"
 
 #: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
@@ -1250,11 +1250,11 @@ msgstr "Revisione app Tarako"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Questa segnalazione d’abuso per un’app è stata letta"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Questa segnalazione d’abuso sito è stata letta"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1422,7 +1422,7 @@ msgstr "In escalation a causa dell’alto numero di richieste di rimborso"
 
 #: mkt/constants/comm.py:56 mkt/site/log.py:474
 msgid "Re-review cleared"
-msgstr "Riesame cancellato"
+msgstr "Nuova revisione non più necessaria"
 
 #: mkt/constants/comm.py:57
 msgid "App submission notes"
@@ -1450,7 +1450,7 @@ msgstr "Sottoposta a nuova revisione per modifica all’URL del manifesto"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Premium Type Upgrade"
-msgstr "Revisione per aggiornamento a Premium"
+msgstr "Nuova revisione per aggiornamento a Premium"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Devices Added"
@@ -1494,7 +1494,7 @@ msgstr "Commento pubblico del revisore"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Indagine sulla segnalazione d’abuso"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6144,11 +6144,13 @@ msgstr "Elimina l’app dalla coda di escalation. L’autore non riceverà notif
 
 #: mkt/reviewers/utils.py:431
 msgid "Clear Re-review"
-msgstr "Elimina riesame"
+msgstr "Annulla richiesta di nuova revisione"
 
 #: mkt/reviewers/utils.py:433
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr "Elimina l’app dalla coda di riesame. L’autore non riceverà notifiche via email né sarà in grado di leggere i commenti."
+msgstr ""
+"Rimuovi l’app dalla coda in attesa di nuova revisione. L’autore non riceverà "
+"notifiche via email né sarà in grado di leggere i commenti."
 
 #: mkt/reviewers/utils.py:438
 msgid "Ban app"
@@ -6475,7 +6477,7 @@ msgstr "di"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "Nella coda di riesame"
+msgstr "Nella coda per nuova revisione"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -6661,7 +6663,7 @@ msgstr "Elabora"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Azioni:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7271,7 +7273,8 @@ msgstr "Alto numero di richieste di rimborso"
 
 #: mkt/site/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "{addon} riesaminati a causa della modifica del manifesto."
+msgstr ""
+"{addon} sottoposto a nuova revisione a causa della modifica del manifesto."
 
 #: mkt/site/log.py:458
 msgid "Manifest Change"
@@ -7287,7 +7290,7 @@ msgstr "Passaggio a Premium"
 
 #: mkt/site/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr "Riesame cancellato per {addon}."
+msgstr "Richiesta di nuova revisione annullata per {addon}."
 
 #: mkt/site/log.py:481
 msgid "{addon} escalated by reviewer."
@@ -7307,7 +7310,9 @@ msgstr "Video rimosso"
 
 #: mkt/site/log.py:497
 msgid "{addon} re-review because of new device(s) added."
-msgstr "È necessario revisionare nuovamente {addon} perché sono stati aggiunti uno o più dispositivi."
+msgstr ""
+"{addon} sottoposto a nuova revisione a causa di uno o più dispositivi "
+"aggiunti."
 
 #: mkt/site/log.py:498
 msgid "Device(s) Added"
@@ -7339,7 +7344,9 @@ msgstr "Procedimento automatico di escalation per app VIP"
 
 #: mkt/site/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr "{addon} riesaminato a causa della modifica dell’url del manifesto."
+msgstr ""
+"{addon} sottoposto a nuova revisione a causa della modifica dell’url del "
+"manifesto."
 
 #: mkt/site/log.py:530
 msgid "Manifest URL Change"
@@ -7356,6 +7363,8 @@ msgstr "Escalation automatica versione provvisoria"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
 msgstr ""
+"{addon} sottoposto a nuova revisione a causa di segnalazioni d’abuso sotto "
+"indagine."
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
