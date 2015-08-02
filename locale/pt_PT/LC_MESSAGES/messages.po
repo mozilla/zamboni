@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-07-18 00:35+0000\n"
+"PO-Revision-Date: 2015-08-02 04:19+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437179741.0\n"
+"X-POOTLE-MTIME: 1438489183.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Denúncias de abuso que necessitam de investigação: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -24,11 +24,11 @@ msgstr "Ignorar por agora"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Marcar todas as denúncias como Lidas"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Marcar para nova revisão"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1246,11 +1246,11 @@ msgstr "Análise tarako da aplicação"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Denúncia de abuso de aplicação lido"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Denúncia de abuso de sítio web lido"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1490,7 +1490,7 @@ msgstr "Comentário público do revisor"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Investigação de denúncias de abuso"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6668,7 +6668,7 @@ msgstr "Processar"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Ações:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
@@ -7364,7 +7364,7 @@ msgstr "Auto-escalamento de pré-lançamento"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
-msgstr ""
+msgstr "{addon} reanalizado pois denúncias de abuso requerem investigação."
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
