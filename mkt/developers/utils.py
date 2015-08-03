@@ -154,3 +154,13 @@ def escalate_reserved_permissions(app, validation, version):
         escalate_app(
             app, version, nobody, 'App uses reserved permissions',
             mkt.LOG.ESCALATION_RESERVED_PERMS_APP)
+
+
+def prioritize_app(app, user):
+    app.update(priority_review=True)
+    msg = u'Priority Review Requested'
+    # Create notes and log entries.
+    create_comm_note(app, app.latest_version, user, msg,
+                     note_type=comm.PRIORITY_REVIEW_REQUESTED)
+    mkt.log(mkt.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
+            created=datetime.now(), details={'comments': msg})

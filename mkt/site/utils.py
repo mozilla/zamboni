@@ -41,6 +41,7 @@ import mkt
 from lib.utils import static_url
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
+from mkt.site.storage_utils import storage_is_remote
 from mkt.translations.models import Translation
 
 
@@ -660,8 +661,8 @@ def get_icon_url(base_url_format, obj, size,
                  default_format='default-{size}.png'):
     """
     Returns either the icon URL for a given (`obj`, `size`). base_url_format`
-    is a string that will be used for url formatting, see ADDON_ICON_URL for an
-    example.
+    is a string that will be used for url formatting if we are not using a
+    remote storage, see ADDON_ICON_URL for an example.
 
     If no icon type if set on the `obj`, then the url for the
     appropriate default icon for the given `size` will be returned.
@@ -677,9 +678,16 @@ def get_icon_url(base_url_format, obj, size,
         return '{path}/{name}'.format(path=static_url('ICONS_DEFAULT_URL'),
                                       name=default_format.format(size=size))
     else:
-        # [1] is the whole ID, [2] is the directory.
-        split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
         # If we don't have the icon_hash set to a dummy string ("never"),
         # when the icon is eventually changed, icon_hash will be updated.
         suffix = obj.icon_hash or 'never'
+
+        if storage_is_remote():
+            # We don't care about base_url_format, the storage provides the url
+            # for a given path. We assume AWS_QUERYSTRING_AUTH is False atm.
+            path = '%s/%s-%s.png' % (obj.get_icon_dir(), obj.pk, size)
+            return '%s?modified=%s' % (storage.url(path), suffix)
+
+        # [1] is the whole ID, [2] is the directory.
+        split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
         return base_url_format % (split_id.group(2) or 0, obj.pk, size, suffix)
