@@ -22,19 +22,15 @@ class DailyGamesFilter(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         daily_seed = int(datetime.datetime.now().strftime('%Y%m%d'))
 
-        # For each game category, create a query that matches the tag, orders
-        # randomly based on the day.
-        generate_game_category_query = (lambda cat: query.Q(
-            'function_score',
-            # Consistently random based on the day.
-            functions=[SF('random_score', seed=daily_seed)],
-            filter=es_filter.Bool(must=[es_filter.Term(tags=cat)]),
-        ))
-
         # Map over the game categories to create a function score query for one
         # and dump it into a Bool should.
-        game_query = query.Bool(should=map(generate_game_category_query,
-                                           GAME_CATEGORIES))
+        game_query = query.Q(
+            'function_score',
+            filter=es_filter.Bool(should=[es_filter.Term(tags=cat)
+                                          for cat in GAME_CATEGORIES]),
+            # Consistently random based on the day.
+            functions=[SF('random_score', seed=daily_seed)],
+        )
 
         # Run a size=1 TopHits aggregation to only select one game from each
         # tag. Results will have to be pulled out of S.execute().aggregations

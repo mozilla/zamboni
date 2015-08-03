@@ -80,8 +80,6 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 4)
 
         for game in res.json['objects']:
-            print game.get('tags')
-            print game.get('keywords')
             ok_(game.get('tags') or game.get('keywords'))
 
     def test_limit(self):
@@ -124,3 +122,24 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
         set2 = map(get_id, res.json['objects'])
 
         eq_(set1, set2)
+
+    @patch('mkt.games.filters.datetime')
+    def test_randomization(self, datetime_mock):
+        datetime_mock.datetime.now.return_value = datetime.datetime.now()
+
+        for x in range(4):
+            self._create_group_of_games()
+
+        def get_id(game):
+            return game['id']
+
+        res1 = self.anon.get(self.url)
+        set1 = map(get_id, res1.json['objects'])
+
+        # Change the date.
+        datetime_mock.datetime.now.return_value = (
+            datetime.datetime.now() - datetime.timedelta(days=30))
+        res2 = self.anon.get(self.url)
+        set2 = map(get_id, res2.json['objects'])
+
+        ok_(set1 != set2)
