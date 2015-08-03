@@ -22,7 +22,7 @@ from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
 from mkt.constants import comm
-from mkt.developers.models import ActivityLog
+from mkt.developers.models import ActivityLog, AppLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -1348,6 +1348,11 @@ class TestAdminSettings(TestAdmin):
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
         self.compare({'priority_review': True})
+        log_action = mkt.LOG.PRIORITY_REVIEW_REQUESTED
+        assert AppLog.objects.filter(
+            addon=self.get_webapp(),
+            activity_log__action=log_action.id).exists(), (
+                "Didn't find `%s` action in logs." % log_action.short)
 
         # And off.
         data = {'position': 1}

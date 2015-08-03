@@ -24,12 +24,11 @@ from lib.pay_server import client
 from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.api.authorization import GroupPermission
-from mkt.comm.utils import create_comm_note
-from mkt.constants import comm
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_LOOKUP, SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
+from mkt.developers.utils import prioritize_app
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
@@ -263,13 +262,7 @@ def app_summary(request, addon_id):
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
 
     if 'prioritize' in request.POST and not app.priority_review:
-        app.update(priority_review=True)
-        msg = u'Priority Review Requested'
-        # Create notes and log entries.
-        create_comm_note(app, app.latest_version, request.user, msg,
-                         note_type=comm.PRIORITY_REVIEW_REQUESTED)
-        mkt.log(mkt.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
-                created=datetime.now(), details={'comments': msg})
+        prioritize_app(app, request.user)
 
     authors = (app.authors.filter(addonuser__role__in=(mkt.AUTHOR_ROLE_DEV,
                                                        mkt.AUTHOR_ROLE_OWNER))
