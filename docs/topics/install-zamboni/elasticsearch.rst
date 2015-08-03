@@ -16,17 +16,17 @@ from this folder. This makes it easy to upgrade or test new versions as
 needed. Optionally you can install Elasticsearch using your preferred
 system package manager.
 
-We are currently using Elasticsearch version 1.3.8. You can install by
+We are currently using Elasticsearch version 1.6.2. You can install by
 doing the following::
 
-    curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.8.tar.gz
-    tar -xvzf elasticsearch-1.3.8.tar.gz
-    cd elasticsearch-1.3.8
+    curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.6.2.tar.gz
+    tar -xvzf elasticsearch-1.6.2.tar.gz
+    cd elasticsearch-1.6.2
 
 For running Marketplace you must install the
 `ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_::
 
-    ./bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.3.0
+    ./bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.6.0
 
 For more about the ICU plugin, see the
 `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_.
