@@ -34,6 +34,7 @@ from mkt.access import acl
 from mkt.api.models import Access
 from mkt.constants import (CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE,
                            ratingsbodies)
+from mkt.developers.utils import prioritize_app
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
@@ -356,11 +357,17 @@ class AdminSettingsForm(PreviewForm):
 
         updates = {
             'vip_app': self.cleaned_data.get('vip_app'),
-            'priority_review': self.cleaned_data.get('priority_review'),
         }
         contact = self.cleaned_data.get('mozilla_contact')
         if contact is not None:
             updates['mozilla_contact'] = contact
+        if (self.cleaned_data.get('priority_review') and
+                not addon.priority_review):
+            # addon.priority_review gets updated within prioritize_app().
+            prioritize_app(addon, self.request.user)
+        else:
+            updates['priority_review'] = self.cleaned_data.get(
+                'priority_review')
         addon.update(**updates)
 
         geodata = addon.geodata
