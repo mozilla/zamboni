@@ -17,14 +17,13 @@ class TestDailyGamesFilter(FilterTestsBase):
 
     def test_filter(self):
         qs = self._filter(self.req)
-        shoulds = qs['query']['bool']['should']
+        functions = qs['query']['function_score']['functions']
+        shoulds = qs['query']['function_score']['filter']['bool']['should']
+
+        # Test function.
+        eq_(functions[0]['random_score']['seed'],
+            int(datetime.datetime.now().strftime('%Y%m%d')))
 
         for i, cat in enumerate(GAME_CATEGORIES):
-            # Test function.
-            function_score = shoulds[i]['function_score']
-            eq_(function_score['functions'][0]['random_score']['seed'],
-                int(datetime.datetime.now().strftime('%Y%m%d')))
-
             # Test tags.
-            must = function_score['filter']['bool']['must'][0]
-            eq_(must['term']['tags'], cat)
+            eq_(shoulds[i]['term']['tags'], cat)
