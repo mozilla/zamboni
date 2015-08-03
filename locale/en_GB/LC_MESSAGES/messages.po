@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-03 14:22:19.404110\n"
+"PO-Revision-Date: 2015-08-03 14:42:29.947135\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -379,825 +379,825 @@ msgstr "Czech Republic"
 
 #: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
-msgstr ""
+msgstr "Denmark"
 
 #: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
-msgstr ""
+msgstr "Djibouti"
 
 #: mkt/constants/bango.py:81 mkt/constants/regions.py:130
 msgid "Dominica"
-msgstr ""
+msgstr "Dominica"
 
 #: mkt/constants/bango.py:82 mkt/constants/regions.py:132
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominican Republic"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:134
 msgid "Ecuador"
-msgstr ""
+msgstr "Ecuador"
 
 #: mkt/constants/bango.py:84 mkt/constants/regions.py:135
 msgid "Egypt"
-msgstr ""
+msgstr "Egypt"
 
 #: mkt/constants/bango.py:85 mkt/constants/regions.py:267
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: mkt/constants/bango.py:86 mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Equatorial Guinea"
 
 #: mkt/constants/bango.py:87 mkt/constants/regions.py:136
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: mkt/constants/bango.py:88 mkt/constants/regions.py:139
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: mkt/constants/bango.py:89 mkt/constants/regions.py:140
 msgid "Ethiopia"
-msgstr ""
+msgstr "Ethiopia"
 
 #: mkt/constants/bango.py:90 mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Falkland Islands"
 
 #: mkt/constants/bango.py:91 mkt/constants/regions.py:145
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Faroe Islands"
 
 #: mkt/constants/bango.py:92 mkt/constants/regions.py:142
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: mkt/constants/bango.py:93 mkt/constants/regions.py:141
 msgid "Finland"
-msgstr ""
+msgstr "Finland"
 
 #: mkt/constants/bango.py:94 mkt/constants/regions.py:144
 msgid "France"
-msgstr ""
+msgstr "France"
 
 #: mkt/constants/bango.py:95 mkt/constants/regions.py:162
 msgid "French Guiana"
-msgstr ""
+msgstr "French Guiana"
 
 #: mkt/constants/bango.py:96 mkt/constants/regions.py:252
 msgid "French Polynesia"
-msgstr ""
+msgstr "French Polynesia"
 
 #: mkt/constants/bango.py:97 mkt/constants/regions.py:81
 msgid "French Southern Territories"
-msgstr ""
+msgstr "French Southern Territories"
 
 #: mkt/constants/bango.py:98 mkt/constants/regions.py:147
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 #: mkt/constants/bango.py:99 mkt/constants/regions.py:155
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 #: mkt/constants/bango.py:100 mkt/constants/regions.py:149
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197
 #: mkt/constants/regions.py:128
 msgid "Germany"
-msgstr ""
+msgstr "Germany"
 
 #: mkt/constants/bango.py:102 mkt/constants/regions.py:151
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: mkt/constants/bango.py:103 mkt/constants/regions.py:152
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 #: mkt/constants/bango.py:104 mkt/constants/regions.py:158
 msgid "Greece"
-msgstr ""
+msgstr "Greece"
 
 #: mkt/constants/bango.py:105 mkt/constants/regions.py:160
 msgid "Greenland"
-msgstr ""
+msgstr "Greenland"
 
 #: mkt/constants/bango.py:106 mkt/constants/regions.py:159
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:154
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadeloupe"
 
 #: mkt/constants/bango.py:108 mkt/constants/regions.py:163
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:109 mkt/constants/regions.py:161
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:110 mkt/constants/regions.py:150
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: mkt/constants/bango.py:111
 msgid "Guinea"
-msgstr ""
+msgstr "Guinea"
 
 #: mkt/constants/bango.py:112 mkt/constants/regions.py:156
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guinea-Bissau"
 
 #: mkt/constants/bango.py:113 mkt/constants/regions.py:164
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 #: mkt/constants/bango.py:114 mkt/constants/regions.py:169
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Heard and McDonald Islands"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Holy See (Vatican City State)"
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: mkt/constants/bango.py:118 mkt/constants/regions.py:165
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:170
 msgid "Hungary"
-msgstr ""
+msgstr "Hungary"
 
 #: mkt/constants/bango.py:120 mkt/constants/regions.py:177
 msgid "Iceland"
-msgstr ""
+msgstr "Iceland"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:173
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: mkt/constants/bango.py:122 mkt/constants/regions.py:171
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 #: mkt/constants/bango.py:123
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "Iran, Islamic Republic of"
 
 #: mkt/constants/bango.py:124 mkt/constants/regions.py:176
 msgid "Iraq"
-msgstr ""
+msgstr "Iraq"
 
 #: mkt/constants/bango.py:125 mkt/constants/regions.py:175
 msgid "Ireland"
-msgstr ""
+msgstr "Ireland"
 
 #: mkt/constants/bango.py:126 mkt/constants/regions.py:172
 msgid "Isle of Man"
-msgstr ""
+msgstr "Isle of Man"
 
 #: mkt/constants/bango.py:127 mkt/constants/regions.py:178
 msgid "Israel"
-msgstr ""
+msgstr "Israel"
 
 #: mkt/constants/bango.py:128 mkt/constants/regions.py:179
 msgid "Italy"
-msgstr ""
+msgstr "Italy"
 
 #: mkt/constants/bango.py:129 mkt/constants/regions.py:180
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 #: mkt/constants/bango.py:130 mkt/constants/regions.py:183
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: mkt/constants/bango.py:131 mkt/constants/regions.py:181
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: mkt/constants/bango.py:132 mkt/constants/regions.py:182
 msgid "Jordan"
-msgstr ""
+msgstr "Jordan"
 
 #: mkt/constants/bango.py:133 mkt/constants/regions.py:184
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazakhstan"
 
 #: mkt/constants/bango.py:134 mkt/constants/regions.py:185
 msgid "Kenya"
-msgstr ""
+msgstr "Kenya"
 
 #: mkt/constants/bango.py:135 mkt/constants/regions.py:188
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "Korea, Democratic People's Rep"
 
 #: mkt/constants/bango.py:137 mkt/constants/regions.py:190
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Korea, Republic of"
 
 #: mkt/constants/bango.py:138
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #: mkt/constants/bango.py:139 mkt/constants/regions.py:191
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: mkt/constants/bango.py:140 mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kyrgyzstan"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "Lao People's Democratic Rep"
 
 #: mkt/constants/bango.py:142 mkt/constants/regions.py:202
 msgid "Latvia"
-msgstr ""
+msgstr "Latvia"
 
 #: mkt/constants/bango.py:143 mkt/constants/regions.py:193
 msgid "Lebanon"
-msgstr ""
+msgstr "Lebanon"
 
 #: mkt/constants/bango.py:144 mkt/constants/regions.py:199
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: mkt/constants/bango.py:145 mkt/constants/regions.py:194
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Libyan Arab Jamahiriya"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Liechtenstei"
 
 #: mkt/constants/bango.py:148 mkt/constants/regions.py:200
 msgid "Lithuania"
-msgstr ""
+msgstr "Lithuania"
 
 #: mkt/constants/bango.py:149 mkt/constants/regions.py:201
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxembourg"
 
 #: mkt/constants/bango.py:150 mkt/constants/regions.py:203
 msgid "Macao"
-msgstr ""
+msgstr "Macao"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "Macedonia, Former Yugoslav Rep"
 
 #: mkt/constants/bango.py:152 mkt/constants/regions.py:208
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 #: mkt/constants/bango.py:153 mkt/constants/regions.py:224
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: mkt/constants/bango.py:154 mkt/constants/regions.py:225
 msgid "Malaysia"
-msgstr ""
+msgstr "Malaysia"
 
 #: mkt/constants/bango.py:155 mkt/constants/regions.py:209
 msgid "Maldives"
-msgstr ""
+msgstr "Maldives"
 
 #: mkt/constants/bango.py:156 mkt/constants/regions.py:213
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: mkt/constants/bango.py:157 mkt/constants/regions.py:214
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: mkt/constants/bango.py:158 mkt/constants/regions.py:211
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Marshall Islands"
 
 #: mkt/constants/bango.py:159 mkt/constants/regions.py:222
 msgid "Martinique"
-msgstr ""
+msgstr "Martinique"
 
 #: mkt/constants/bango.py:160 mkt/constants/regions.py:220
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:223
 msgid "Mauritius"
-msgstr ""
+msgstr "Mauritius"
 
 #: mkt/constants/bango.py:162 mkt/constants/regions.py:226
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 #: mkt/constants/bango.py:163 mkt/constants/regions.py:210
 msgid "Mexico"
-msgstr ""
+msgstr "Mexico"
 
 #: mkt/constants/bango.py:164 mkt/constants/regions.py:146
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Micronesia, Federated States of"
 
 #: mkt/constants/bango.py:165 mkt/constants/regions.py:207
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldova, Republic of"
 
 #: mkt/constants/bango.py:166 mkt/constants/regions.py:206
 msgid "Monaco"
-msgstr ""
+msgstr "Monaco"
 
 #: mkt/constants/bango.py:167 mkt/constants/regions.py:217
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: mkt/constants/bango.py:168 mkt/constants/regions.py:216
 msgid "Montenegro"
-msgstr ""
+msgstr "Montenegro"
 
 #: mkt/constants/bango.py:169 mkt/constants/regions.py:221
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: mkt/constants/bango.py:170 mkt/constants/regions.py:205
 msgid "Morocco"
-msgstr ""
+msgstr "Morocco"
 
 #: mkt/constants/bango.py:171 mkt/constants/regions.py:219
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambique"
 
 #: mkt/constants/bango.py:172 mkt/constants/regions.py:215
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: mkt/constants/bango.py:173 mkt/constants/regions.py:227
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: mkt/constants/bango.py:174 mkt/constants/regions.py:237
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: mkt/constants/bango.py:175 mkt/constants/regions.py:236
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: mkt/constants/bango.py:176 mkt/constants/regions.py:234
 msgid "Netherlands"
-msgstr ""
+msgstr "Netherlands"
 
 #: mkt/constants/bango.py:177 mkt/constants/regions.py:228
 msgid "New Caledonia"
-msgstr ""
+msgstr "New Caledonia"
 
 #: mkt/constants/bango.py:178 mkt/constants/regions.py:238
 msgid "New Zealand"
-msgstr ""
+msgstr "New Zealand"
 
 #: mkt/constants/bango.py:179 mkt/constants/regions.py:232
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: mkt/constants/bango.py:180 mkt/constants/regions.py:229
 msgid "Niger"
-msgstr ""
+msgstr "Niger"
 
 #: mkt/constants/bango.py:181 mkt/constants/regions.py:231
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
 #: mkt/constants/bango.py:182 mkt/constants/regions.py:233
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: mkt/constants/bango.py:183 mkt/constants/regions.py:230
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Norfolk Island"
 
 #: mkt/constants/bango.py:184 mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "Northern Mariana Islands"
 
 #: mkt/constants/bango.py:185 mkt/constants/regions.py:235
 msgid "Norway"
-msgstr ""
+msgstr "Norway"
 
 #: mkt/constants/bango.py:186 mkt/constants/regions.py:239
 msgid "Oman"
-msgstr ""
+msgstr "Oman"
 
 #: mkt/constants/bango.py:187 mkt/constants/regions.py:240
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: mkt/constants/bango.py:188 mkt/constants/regions.py:245
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Palestinian Territory, Occupied"
 
 #: mkt/constants/bango.py:190 mkt/constants/regions.py:241
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: mkt/constants/bango.py:191 mkt/constants/regions.py:246
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua New Guinea"
 
 #: mkt/constants/bango.py:192 mkt/constants/regions.py:250
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:243
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:244
 msgid "Philippines"
-msgstr ""
+msgstr "Philippines"
 
 #: mkt/constants/bango.py:195 mkt/constants/regions.py:242
 msgid "Pitcairn"
-msgstr ""
+msgstr "Pitcairn"
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
-msgstr ""
+msgstr "Poland"
 
 #: mkt/constants/bango.py:197 mkt/constants/regions.py:249
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: mkt/constants/bango.py:198 mkt/constants/regions.py:248
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: mkt/constants/bango.py:199 mkt/constants/regions.py:253
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: mkt/constants/bango.py:200 mkt/constants/regions.py:254
 msgid "Réunion"
-msgstr ""
+msgstr "Réunion"
 
 #: mkt/constants/bango.py:201 mkt/constants/regions.py:255
 msgid "Romania"
-msgstr ""
+msgstr "Romania"
 
 #: mkt/constants/bango.py:202
 msgid "Russian Federation"
-msgstr ""
+msgstr "Russian Federation"
 
 #: mkt/constants/bango.py:203 mkt/constants/regions.py:257
 msgid "Rwanda"
-msgstr ""
+msgstr "Rwanda"
 
 #: mkt/constants/bango.py:204 mkt/constants/regions.py:96
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "Saint Barthélemy"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Helena"
-msgstr ""
+msgstr "Saint Helena"
 
 #: mkt/constants/bango.py:206 mkt/constants/regions.py:189
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "Saint Kitts and Nevis"
 
 #: mkt/constants/bango.py:207 mkt/constants/regions.py:196
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Saint Lucia"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr ""
+msgstr "Saint Martin"
 
 #: mkt/constants/bango.py:209 mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Saint Pierre and Miquelon"
 
 #: mkt/constants/bango.py:210 mkt/constants/regions.py:304
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "Saint Vincent and the Grenadines"
 
 #: mkt/constants/bango.py:211 mkt/constants/regions.py:311
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: mkt/constants/bango.py:212 mkt/constants/regions.py:268
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: mkt/constants/bango.py:213 mkt/constants/regions.py:273
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Sao Tome and Principe"
 
 #: mkt/constants/bango.py:214 mkt/constants/regions.py:258
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Saudi Arabia"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "Senega"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:271
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Serbia and Montenegro"
 
 #: mkt/constants/bango.py:218 mkt/constants/regions.py:280
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelles"
 
 #: mkt/constants/bango.py:219 mkt/constants/regions.py:266
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leone"
 
 #: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
-msgstr ""
+msgstr "Singapore"
 
 #: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "Sint Maarten (Dutch part)"
 
 #: mkt/constants/bango.py:222 mkt/constants/regions.py:275
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovakia"
 
 #: mkt/constants/bango.py:223 mkt/constants/regions.py:276
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovenia"
 
 #: mkt/constants/bango.py:224 mkt/constants/regions.py:265
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Solomon Islands"
 
 #: mkt/constants/bango.py:225 mkt/constants/regions.py:269
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:313
 msgid "South Africa"
-msgstr ""
+msgstr "South Africa"
 
 #: mkt/constants/bango.py:227 mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "South Georgia and the South Sandwich Islands"
 
 #: mkt/constants/bango.py:228 mkt/constants/regions.py:272
 msgid "South Sudan"
-msgstr ""
+msgstr "South Sudan"
 
 #: mkt/constants/bango.py:229 mkt/constants/regions.py:138
 msgid "Spain"
-msgstr ""
+msgstr "Spain"
 
 #: mkt/constants/bango.py:230 mkt/constants/regions.py:198
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: mkt/constants/bango.py:231 mkt/constants/regions.py:259
 msgid "Sudan"
-msgstr ""
+msgstr "Sudan"
 
 #: mkt/constants/bango.py:232 mkt/constants/regions.py:274
 msgid "Suriname"
-msgstr ""
+msgstr "Suriname"
 
 #: mkt/constants/bango.py:233 mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "Svalbard and Jan Mayen"
 
 #: mkt/constants/bango.py:234 mkt/constants/regions.py:278
 msgid "Swaziland"
-msgstr ""
+msgstr "Swaziland"
 
 #: mkt/constants/bango.py:235 mkt/constants/regions.py:277
 msgid "Sweden"
-msgstr ""
+msgstr "Sweden"
 
 #: mkt/constants/bango.py:236 mkt/constants/regions.py:110
 msgid "Switzerland"
-msgstr ""
+msgstr "Switzerland"
 
 #: mkt/constants/bango.py:237 mkt/constants/regions.py:281
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Syrian Arab Republic"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Taiwan, Province of China"
 
 #: mkt/constants/bango.py:239 mkt/constants/regions.py:286
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tajikistan"
 
 #: mkt/constants/bango.py:240
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tanzania, United Republic of"
 
 #: mkt/constants/bango.py:241 mkt/constants/regions.py:285
 msgid "Thailand"
-msgstr ""
+msgstr "Thailand"
 
 #: mkt/constants/bango.py:242 mkt/constants/regions.py:289
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Timor-Leste"
 
 #: mkt/constants/bango.py:243 mkt/constants/regions.py:284
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: mkt/constants/bango.py:244 mkt/constants/regions.py:287
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: mkt/constants/bango.py:245 mkt/constants/regions.py:290
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: mkt/constants/bango.py:246 mkt/constants/regions.py:291
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad and Tobago"
 
 #: mkt/constants/bango.py:247 mkt/constants/regions.py:292
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunisia"
 
 #: mkt/constants/bango.py:248 mkt/constants/regions.py:293
 msgid "Turkey"
-msgstr ""
+msgstr "Turkey"
 
 #: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Turks and Caicos Islands"
 
 #: mkt/constants/bango.py:251 mkt/constants/regions.py:294
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: mkt/constants/bango.py:252 mkt/constants/regions.py:297
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: mkt/constants/bango.py:253 mkt/constants/regions.py:298
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraine"
 
 #: mkt/constants/bango.py:254 mkt/constants/regions.py:76
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "United Arab Emirates"
 
 #: mkt/constants/bango.py:255 mkt/constants/regions.py:148
 msgid "United Kingdom"
-msgstr ""
+msgstr "United Kingdom"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:301
 msgid "United States"
-msgstr ""
+msgstr "United States"
 
 #: mkt/constants/bango.py:257 mkt/constants/regions.py:299
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "United States Minor Outlying Islands"
 
 #: mkt/constants/bango.py:258 mkt/constants/regions.py:300
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: mkt/constants/bango.py:259 mkt/constants/regions.py:302
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekistan"
 
 #: mkt/constants/bango.py:260 mkt/constants/regions.py:309
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: mkt/constants/bango.py:261
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Venezuela, Bolivarian Republic of"
 
 #: mkt/constants/bango.py:262 mkt/constants/regions.py:308
 msgid "Viet Nam"
-msgstr ""
+msgstr "Viet Nam"
 
 #: mkt/constants/bango.py:263 mkt/constants/regions.py:306
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Virgin Islands, British"
 
 #: mkt/constants/bango.py:264 mkt/constants/regions.py:307
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "Virgin Islands, U.S."
 
 #: mkt/constants/bango.py:265 mkt/constants/regions.py:310
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "Wallis and Futuna"
 
 #: mkt/constants/bango.py:266 mkt/constants/regions.py:137
 msgid "Western Sahara"
-msgstr ""
+msgstr "Western Sahara"
 
 #: mkt/constants/bango.py:267 mkt/constants/regions.py:312
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: mkt/constants/bango.py:268 mkt/constants/regions.py:314
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: mkt/constants/bango.py:269 mkt/constants/regions.py:315
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:179
 msgid "Incomplete"
-msgstr ""
+msgstr "Incomplete"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
-msgstr ""
+msgstr "Pending approval"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Published"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Banned from Marketplace"
 
 #: mkt/constants/base.py:30
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
-msgstr ""
+msgstr "Deleted"
 
 #: mkt/constants/base.py:31 mkt/constants/comm.py:46
 #: mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
-msgstr ""
+msgstr "Rejected"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:52 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Approved but private"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
-msgstr ""
+msgstr "Blocked"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Unlisted"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
-msgstr ""
+msgstr "Obsolete"
 
 #: mkt/constants/base.py:43 mkt/constants/comm.py:45
 #: mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
-msgstr ""
+msgstr "Approved"
 
 #: mkt/constants/base.py:132
 #: mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
-msgstr ""
+msgstr "Owner"
 
 #: mkt/constants/base.py:134
 #: mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
-msgstr ""
+msgstr "Viewer"
 
 #: mkt/constants/base.py:135
 #: mkt/developers/templates/developers/skeleton_impala.html:60
@@ -1205,504 +1205,518 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
-msgstr ""
+msgstr "Support"
 
 #: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6
 #: mkt/developers/templates/developers/payments/premium.html:62
 #: mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
-msgstr ""
+msgstr "Free"
 
 #: mkt/constants/base.py:161 mkt/search/forms.py:36
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: mkt/constants/base.py:162
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium with in-app payments"
 
 #: mkt/constants/base.py:163
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Free with in-app payments"
 
 #: mkt/constants/base.py:164
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "I'll use my own system for in-app payments"
 
 #: mkt/constants/base.py:223
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Manual Reviewer Points"
 
 #: mkt/constants/base.py:224
 msgid "Web App Review"
-msgstr ""
+msgstr "Web App Review"
 
 #: mkt/constants/base.py:225
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Packaged App Review"
 
 #: mkt/constants/base.py:226
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Privileged App Review"
 
 #: mkt/constants/base.py:227
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Web App Re-review"
 
 #: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Updated Packaged App Review"
 
 #: mkt/constants/base.py:229
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Updated Privileged App Review"
 
 #: mkt/constants/base.py:230
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Moderated App Review"
 
 #: mkt/constants/base.py:231
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "App Review Moderation Reverted"
 
 #: mkt/constants/base.py:232
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Tarako App Review"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "App Abuse Report Read"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Web Site Abuse Report Read"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
-msgstr ""
+msgstr "Level 1"
 
 #: mkt/constants/base.py:269
 msgid "Level 2"
-msgstr ""
+msgstr "Level 2"
 
 #: mkt/constants/base.py:270
 msgid "Level 3"
-msgstr ""
+msgstr "Level 3"
 
 #: mkt/constants/base.py:271
 msgid "Level 4"
-msgstr ""
+msgstr "Level 4"
 
 #: mkt/constants/base.py:272
 msgid "Level 5"
-msgstr ""
+msgstr "Level 5"
 
 #: mkt/constants/base.py:273
 msgid "Level 6"
-msgstr ""
+msgstr "Level 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Books & Comics"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Business"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Education"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Entertainment"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Food & Drink"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Kids"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
-msgstr ""
+msgstr "Games"
 
 #: mkt/constants/categories.py:12
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Health & Fitness"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humour"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
-msgstr ""
+msgstr "Lifestyle"
 
 #: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Maps & Navigation"
 
 #: mkt/constants/categories.py:17
 msgid "Music"
-msgstr ""
+msgstr "Music"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "News"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Personalisation"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
-msgstr ""
+msgstr "Photo & Video"
 
 #: mkt/constants/categories.py:21
 msgid "Productivity"
-msgstr ""
+msgstr "Productivity"
 
 #: mkt/constants/categories.py:22
 msgid "Reference"
-msgstr ""
+msgstr "Reference"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Science & Tech"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
-msgstr ""
+msgstr "Shopping"
 
 #: mkt/constants/categories.py:25
 msgid "Social"
-msgstr ""
+msgstr "Social"
 
 #: mkt/constants/categories.py:26
 msgid "Sports"
-msgstr ""
+msgstr "Sports"
 
 #: mkt/constants/categories.py:27
 msgid "Travel"
-msgstr ""
+msgstr "Travel"
 
 #: mkt/constants/categories.py:28
 msgid "Utilities"
-msgstr ""
+msgstr "Utilities"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Weather"
 
 #: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
 #: mkt/site/context_processors.py:48
 msgid "Tools"
-msgstr ""
+msgstr "Tools"
 
 #: mkt/constants/comm.py:44
 msgid "No action"
-msgstr ""
+msgstr "No action"
 
 #: mkt/constants/comm.py:47
 msgid "Banned"
-msgstr ""
+msgstr "Banned"
 
 #: mkt/constants/comm.py:48
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Reviewer comment"
 
 #: mkt/constants/comm.py:49 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
-msgstr ""
+msgstr "Escalated"
 
 #: mkt/constants/comm.py:50
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Private reviewer comment"
 
 #: mkt/constants/comm.py:51
 msgid "App resubmission"
-msgstr ""
+msgstr "App resubmission"
 
 #: mkt/constants/comm.py:53 mkt/site/log.py:426
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Escalation cleared"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Escalated due to High Abuse Reports"
 
 #: mkt/constants/comm.py:55
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Escalated due to High Refund Requests"
 
 #: mkt/constants/comm.py:56 mkt/site/log.py:474
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Re-review cleared"
 
 #: mkt/constants/comm.py:57
 msgid "App submission notes"
-msgstr ""
+msgstr "App submission notes"
 
 #: mkt/constants/comm.py:58
 msgid "Developer comment"
-msgstr ""
+msgstr "Developer comment"
 
 #: mkt/constants/comm.py:59
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Device(s) changed by reviewer"
 
 #: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Requirement(s) changed by reviewer"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Rereview due to Manifest Change"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Rereview due to Manifest URL Change"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Rereview due to Premium Type Upgrade"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Rereview due to Devices Added"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Rereview due to Requirements Change"
 
 #: mkt/constants/comm.py:66
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Rereview due to Adult Content Rating"
 
 #: mkt/constants/comm.py:67
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Escalation due to VIP App"
 
 #: mkt/constants/comm.py:68
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Escalation due to Prelease App"
 
 #: mkt/constants/comm.py:69
 msgid "Priority review requested"
-msgstr ""
+msgstr "Priority review requested"
 
 #: mkt/constants/comm.py:70
 msgid "Additional review passed"
-msgstr ""
+msgstr "Additional review passed"
 
 #: mkt/constants/comm.py:71
 msgid "Additional review failed"
-msgstr ""
+msgstr "Additional review failed"
 
 #: mkt/constants/comm.py:72
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Version notes for reviewer"
 
 #: mkt/constants/comm.py:73
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Public reviewer comment"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Abuse reports investigation"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
-msgstr ""
+msgstr "App Management API"
 
 #: mkt/constants/features.py:21
 msgid ""
 "The app requires the `navigator.mozApps` API to install and manage other "
 "apps."
 msgstr ""
+"The app requires the `navigator.mozApps` API to install and manage other "
+"apps."
 
 #: mkt/constants/features.py:26
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "Packaged Apps Install API"
 
 #: mkt/constants/features.py:27
 msgid ""
 "The app requires the `navigator.mozApps.installPackage` API to install other"
 " packaged apps."
 msgstr ""
+"The app requires the `navigator.mozApps.installPackage` API to install other"
+" packaged apps."
 
 #: mkt/constants/features.py:33
 msgid "Web Payment"
-msgstr ""
+msgstr "Web Payment"
 
 #: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozApps` API."
 
 #: mkt/constants/features.py:38
 msgid "Web Activities"
-msgstr ""
+msgstr "Web Activities"
 
 #: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "The app requires Web Activities (the `MozActivity` API)."
 
 #: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Ambient Light Sensor"
 
 #: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "The app requires an ambient light sensor (the `ondevicelight` API)."
 
 #: mkt/constants/features.py:50
 msgid "Archive"
-msgstr ""
+msgstr "Archive"
 
 #: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "The app requires the `ArchiveReader` API."
 
 #: mkt/constants/features.py:55
 msgid "Battery"
-msgstr ""
+msgstr "Battery"
 
 #: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "The app requires the `navigator.battery` API."
 
 #: mkt/constants/features.py:61
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozBluetooth` API."
 
 #: mkt/constants/features.py:66
 msgid "Contacts"
-msgstr ""
+msgstr "Contacts"
 
 #: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozContacts` API."
 
 #: mkt/constants/features.py:72
 msgid "Device Storage"
-msgstr ""
+msgstr "Device Storage"
 
 #: mkt/constants/features.py:73
 msgid ""
 "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"The app requires the Device Storage API to access files on the filesystem."
 
 #: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "The app requires the platform to support IndexedDB."
 
 #: mkt/constants/features.py:84
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolocation"
 
 #: mkt/constants/features.py:85
 msgid ""
 "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"The app requires the platform to support the `navigator.geolocation` API."
 
 #: mkt/constants/features.py:90
 msgid "Idle"
-msgstr ""
+msgstr "Idle"
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "The app requires the platform to support the `addIdleObserver` API."
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
-msgstr ""
+msgstr "Network Information"
 
 #: mkt/constants/features.py:97
 msgid ""
 "The app requires the ability to get information about the network connection"
 " (the `navigator.mozConnection` API)."
 msgstr ""
+"The app requires the ability to get information about the network connection"
+" (the `navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
-msgstr ""
+msgstr "Network Stats"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
-msgstr ""
+msgstr "Proximity"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "The app requires a proximity sensor (the `ondeviceproximity` API)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
-msgstr ""
+msgstr "Simple Push"
 
 #: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozPush` API."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Screen Orientation"
 
 #: mkt/constants/features.py:121
 msgid ""
 "The app requires the platform to support the `ondeviceorientation` API."
 msgstr ""
+"The app requires the platform to support the `ondeviceorientation` API."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
-msgstr ""
+msgstr "Time/Clock"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozTime` API."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr ""
+msgstr "Vibration"
 
 #: mkt/constants/features.py:132
 msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
 msgstr ""
+"The app requires the device to support vibration (the `navigator.vibrate` "
+"API)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr ""
+"The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 
 #: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "The app requires the `navigator.mozSms` API."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
-msgstr ""
+msgstr "Touch"
 
 #: mkt/constants/features.py:149
 msgid ""
 "The app requires the platform to support touch events. This option indicates"
 " that the app will not function when used with a mouse."
 msgstr ""
+"The app requires the platform to support touch events. This option indicates"
+" that the app will not function when used with a mouse."
 
 #: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Smartphone-Sized Displays (qHD)"
 
 #: mkt/constants/features.py:156
 msgid ""
@@ -1710,63 +1724,75 @@ msgid ""
 " resolution). This option indicates that the app will be unusable on larger "
 "displays (e.g., tablets, desktop, large or high-DPI phones)."
 msgstr ""
+"The app requires the platform to have a smartphone-sized display (having qHD"
+" resolution). This option indicates that the app will be unusable on larger "
+"displays (e.g., tablets, desktop, large or high-DPI phones)."
 
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "The app requires that the platform can decode and play MP3 files."
 
 #: mkt/constants/features.py:171
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "The app requires that the platform supports the HTML5 audio API."
 
 #: mkt/constants/features.py:177
 msgid "Web Audio"
-msgstr ""
+msgstr "Web Audio"
 
 #: mkt/constants/features.py:178
 msgid ""
 "The app requires that the platform supports the Web Audio API "
 "(`window.AudioContext`)."
 msgstr ""
+"The app requires that the platform supports the Web Audio API "
+"(`window.AudioContext`)."
 
 #: mkt/constants/features.py:184
 msgid ""
 "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"The app requires that the platform can decode and play H.264 video files."
 
 #: mkt/constants/features.py:190
 msgid ""
 "The app requires that the platform can decode and play WebM video files "
 "(VP8)."
 msgstr ""
+"The app requires that the platform can decode and play WebM video files "
+"(VP8)."
 
 #: mkt/constants/features.py:195
 msgid "Full Screen"
-msgstr ""
+msgstr "Full Screen"
 
 #: mkt/constants/features.py:196
 msgid ""
 "The app requires the Full Screen API (`requestFullScreen` or "
 "`mozRequestFullScreen`)."
 msgstr ""
+"The app requires the Full Screen API (`requestFullScreen` or "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:202
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: mkt/constants/features.py:203
 msgid ""
 "The app requires the platform to support the gamepad API "
 "(`navigator.getGamepads`)."
 msgstr ""
+"The app requires the platform to support the gamepad API "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
-msgstr ""
+msgstr "Quota Management"
 
 #: mkt/constants/features.py:209
 msgid ""
@@ -1774,316 +1800,342 @@ msgid ""
 "above the normally allowed limits for an app (`window.StorageInfo` or "
 "`window.persistentStorage`)."
 msgstr ""
+"The app requires the platform to allow persistent storage limit increases "
+"above the normally allowed limits for an app (`window.StorageInfo` or "
+"`window.persistentStorage`)."
 
 #: mkt/constants/features.py:217
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: mkt/constants/features.py:218
 msgid ""
 "The app requires the platform to allow access to video from the device "
 "camera via a LocalMediaStream object."
 msgstr ""
+"The app requires the platform to allow access to video from the device "
+"camera via a LocalMediaStream object."
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
-msgstr ""
+msgstr "Microphone"
 
 #: mkt/constants/features.py:225
 msgid ""
 "The app requires the platform to allow access to audio from the device "
 "microphone."
 msgstr ""
+"The app requires the platform to allow access to audio from the device "
+"microphone."
 
 #: mkt/constants/features.py:230
 msgid "Screen Capture"
-msgstr ""
+msgstr "Screen Capture"
 
 #: mkt/constants/features.py:231
 msgid ""
 "The app requires the platform to allow access to the device screen for "
 "capture."
 msgstr ""
+"The app requires the platform to allow access to the device screen for "
+"capture."
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:238
 msgid ""
 "The app requires the platform to allow web real-time communication browser-"
 "to-browser inbound media streams."
 msgstr ""
+"The app requires the platform to allow web real-time communication browser-"
+"to-browser inbound media streams."
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:245
 msgid ""
 "The app requires the platform to allow peer-to-peer exchange of data other "
 "than audio and video."
 msgstr ""
+"The app requires the platform to allow peer-to-peer exchange of data other "
+"than audio and video."
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:252
 msgid ""
 "The app requires the platform to allow communication of streaming data "
 "between peers."
 msgstr ""
+"The app requires the platform to allow communication of streaming data "
+"between peers."
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Web Speech Synthesis"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "The app requires the platform to allow the use of text-to-speech."
 
 #: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Web Speech Recognition"
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "The app requires the platform to allow the use of speech-to-text."
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Pointer Lock"
 
 #: mkt/constants/features.py:271
 msgid ""
 "The app requires the platform to provide additional information and control "
 "about the pointer."
 msgstr ""
+"The app requires the platform to provide additional information and control "
+"about the pointer."
 
 #: mkt/constants/features.py:277
 msgid "Notifications"
-msgstr ""
+msgstr "Notifications"
 
 #: mkt/constants/features.py:278
 msgid ""
 "The app requires the platform to allow the displaying phone and desktop "
 "notifications to the user."
 msgstr ""
+"The app requires the platform to allow the displaying phone and desktop "
+"notifications to the user."
 
 #: mkt/constants/features.py:284
 msgid "Alarms"
-msgstr ""
+msgstr "Alarms"
 
 #: mkt/constants/features.py:285
 msgid ""
 "The app requires the platform to provide access to the device alarm settings"
 " to schedule notifications and events at specific time."
 msgstr ""
+"The app requires the platform to provide access to the device alarm settings"
+" to schedule notifications and events at specific time."
 
 #: mkt/constants/features.py:292
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:293
 msgid ""
 "The app requires the platform to allow the sending of asynchronous HTTP "
 "requests without the restrictions of the same-origin policy."
 msgstr ""
+"The app requires the platform to allow the sending of asynchronous HTTP "
+"requests without the restrictions of the same-origin policy."
 
 #: mkt/constants/features.py:299
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP Sockets"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "The app requires the platform to allow opening raw TCP sockets."
 
 #: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Third-Party Keyboard Support"
 
 #: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "The app requires the platform to support third-party keyboards."
 
 #: mkt/constants/features.py:311
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Multiple Network Information"
 
 #: mkt/constants/features.py:312
 msgid ""
 "The app requires the ability to get information about multiple network "
 "connections."
 msgstr ""
+"The app requires the ability to get information about multiple network "
+"connections."
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobile ID"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "The app requires access to the `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:324
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Asm.js Precompilation"
 
 #: mkt/constants/features.py:325
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "The app requires the device to support precompilation of asm.js code."
 
 #: mkt/constants/features.py:330
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM Device"
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "The app requires the device to have at least 512MB RAM."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM Device"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "The app requires the device to have at least 1GB RAM."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "The app requires access to the Near Field Communication (NFC) API."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Chargeback"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
-msgstr ""
+msgstr "Other"
 
 #: mkt/constants/payments.py:42 mkt/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Purchase"
 
 #: mkt/constants/payments.py:43 mkt/constants/payments.py:50
 msgid "Refund"
-msgstr ""
+msgstr "Refund"
 
 #: mkt/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Voluntary"
 
 #: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
-msgstr ""
+msgstr "Pending"
 
 #: mkt/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Approved Instantly"
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Declined"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "The payment was received, but not completed."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "The payment failed."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "The reversal failed."
 
 #: mkt/constants/payments.py:83
 msgid ""
 "The payment was received, but not completed and is awaiting processing."
 msgstr ""
+"The payment was received, but not completed and is awaiting processing."
 
 #: mkt/constants/payments.py:120
 msgid "Completed"
-msgstr ""
+msgstr "Completed"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27
 #: mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox for Desktop"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Fully open mobile ecosystem"
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:46
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac and Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android smartphones"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
-msgstr ""
+msgstr "Tablets"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "For all ages"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "For ages %d+"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Rating Rejected"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Rating Pending"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Department of Justice, Rating, Titles and Qualification"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
-msgstr ""
+msgstr "Generic"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Entertainment Software Self-Regulation Body"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Everyone"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Everyone 10+"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Teen"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Mature 17+"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Adults Only 18+"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
