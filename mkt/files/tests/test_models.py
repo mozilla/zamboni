@@ -141,8 +141,13 @@ class TestFileFromUpload(UploadTest):
     def test_file_hash(self):
         upload = self.upload('mozball')
         f = File.from_upload(upload, self.version)
-        assert f.hash.startswith('sha256:')
-        assert len(f.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
+        # Hash should have been stolen from the fileupload.
+        eq_(f.hash, 'sha256:mozball.zip')
+
+        upload = self.upload('mozball')
+        f = File.from_upload(upload, self.version)
+        # Hash should have been stolen from the fileupload again.
+        eq_(f.hash, 'sha256:mozball.zip')
 
     def test_utf8(self):
         upload = self.upload(u'mozball')
@@ -154,11 +159,6 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('mozball')
         f = File.from_upload(upload, self.version)
         eq_(f.size, 93594)
-
-    def test_file_hash_paranoia(self):
-        upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version)
-        assert f.hash.startswith('sha256:ad85d6316166d46')
 
 
 class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):

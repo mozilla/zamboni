@@ -47,6 +47,7 @@ from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.storage_utils import storage_is_remote
 from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase, MktPaths,
                             TestCase, WebappTestCase, user_factory)
 from mkt.site.utils import app_factory, version_factory
@@ -81,8 +82,12 @@ class TestWebapp(WebappTestCase):
 
     def test_get_icon_url(self):
         app = self.get_app()
-        expected = (static_url('ADDON_ICON_URL')
-                    % (str(app.id)[0:3], app.id, 32, 'never'))
+        if storage_is_remote():
+            path = '%s/%s-%s.png' % (app.get_icon_dir(), app.pk, 32)
+            expected = '%s?modified=never' % storage.url(path)
+        else:
+            expected = (static_url('ADDON_ICON_URL')
+                        % (str(app.id)[0:3], app.id, 32, 'never'))
         assert app.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, app.icon_url))
 

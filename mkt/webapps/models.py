@@ -47,7 +47,7 @@ from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
-from mkt.site.storage_utils import copy_stored_file
+from mkt.site.storage_utils import copy_stored_file, storage_is_remote
 from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
                             sorted_groupby)
 from mkt.tags.models import Tag
@@ -224,7 +224,7 @@ class Preview(ModelBase):
         ordering = ('position', 'created')
         index_together = ('addon', 'position', 'created')
 
-    def _image_url(self, url_template):
+    def _image_url(self, is_thumbnail=False):
         if self.modified is not None:
             if isinstance(self.modified, unicode):
                 self.modified = datetime.datetime.strptime(self.modified,
@@ -232,16 +232,29 @@ class Preview(ModelBase):
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0
-        args = [self.id / 1000, self.id, modified]
-        if '.png' not in url_template:
-            args.insert(2, self.file_extension)
-        return url_template % tuple(args)
+        if storage_is_remote():
+            path = self._image_path(is_thumbnail=is_thumbnail)
+            # Assumes AWS_QUERYSTRING_AUTH is False.
+            return '%s?modified=%s' % (storage.url(path), modified)
+        else:
+            if is_thumbnail:
+                url_template = static_url('PREVIEW_THUMBNAIL_URL')
+            else:
+                url_template = static_url('PREVIEW_FULL_URL')
+            args = [self.id / 1000, self.id, modified]
+            if '.png' not in url_template:
+                args.insert(2, self.file_extension)
+            return url_template % tuple(args)
 
-    def _image_path(self, url_template):
+    def _image_path(self, is_thumbnail=False):
+        if is_thumbnail:
+            path_template = settings.PREVIEW_THUMBNAIL_PATH
+        else:
+            path_template = settings.PREVIEW_FULL_PATH
         args = [self.id / 1000, self.id]
-        if '.png' not in url_template:
+        if '.png' not in path_template:
             args.append(self.file_extension)
-        return url_template % tuple(args)
+        return path_template % tuple(args)
 
     def as_dict(self, src=None):
         d = {'full': urlparams(self.image_url, src=src),
@@ -265,19 +278,19 @@ class Preview(ModelBase):
 
     @property
     def thumbnail_url(self):
-        return self._image_url(static_url('PREVIEW_THUMBNAIL_URL'))
+        return self._image_url(is_thumbnail=True)
 
     @property
     def image_url(self):
-        return self._image_url(static_url('PREVIEW_FULL_URL'))
+        return self._image_url()
 
     @property
     def thumbnail_path(self):
-        return self._image_path(settings.PREVIEW_THUMBNAIL_PATH)
+        return self._image_path(is_thumbnail=True)
 
     @property
     def image_path(self):
-        return self._image_path(settings.PREVIEW_FULL_PATH)
+        return self._image_path()
 
     @property
     def thumbnail_size(self):

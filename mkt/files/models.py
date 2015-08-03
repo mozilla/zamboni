@@ -77,7 +77,9 @@ class File(OnChangeMixin, ModelBase):
         f.filename = f.generate_filename(extension=ext or '.zip')
         f.size = storage.size(upload.path)  # Size in bytes.
         f.status = mkt.STATUS_PENDING
-        f.hash = f.generate_hash(upload.path)
+        # Re-use the file-upload hash if we can, no need to regenerate a new
+        # one if we can avoid that.
+        f.hash = upload.hash or f.generate_hash(upload.path)
         f.save()
 
         log.debug('New file: %r from %r' % (f, upload))
