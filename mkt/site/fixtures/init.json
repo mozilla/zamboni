@@ -35,17 +35,6 @@
     {
         "fields": {
             "active": false,
-            "created": "2013-09-13T12:54:58",
-            "modified": "2013-09-13T12:54:58",
-            "name": "comm-dashboard",
-            "note": "Communication dashboard for reviewer tools."
-        },
-        "model": "waffle.switch",
-        "pk": 45
-    },
-    {
-        "fields": {
-            "active": false,
             "created": "2014-04-04T15:43:05",
             "modified": "2014-04-04T15:43:05",
             "name": "preload-apps",
