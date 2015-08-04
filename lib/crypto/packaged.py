@@ -50,7 +50,7 @@ def _sign_app(src, dest, ids, reviewer, tempname):
     # Extract necessary info from the archive
     try:
         jar = JarExtractor(
-            storage.open(src, 'r'), tempname,
+            src, tempname,
             ids,
             omit_signature_sections=settings.SIGNED_APPS_OMIT_PER_FILE_SIGS)
     except:
@@ -111,12 +111,12 @@ def _get_endpoint(reviewer=False):
         return server + '/1.0/sign_app'
 
 
-def _no_sign(src, dest):
+def _no_sign(src, dest_path):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
-    with storage.open(src) as src_f, storage.open(dest, 'w') as dest_f:
-        shutil.copyfileobj(src_f, dest_f)
+    with storage.open(dest_path, 'w') as dest_f:
+        shutil.copyfileobj(src, dest_f)
 
 
 @task
@@ -160,7 +160,7 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         })
     with statsd.timer('services.sign.app'):
         try:
-            sign_app(file_obj.file_path, path, ids, reviewer)
+            sign_app(storage.open(file_obj.file_path), path, ids, reviewer)
         except SigningError:
             log.info('[Webapp:%s] Signing failed' % app.id)
             if storage.exists(path):

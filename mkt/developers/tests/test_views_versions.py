@@ -16,6 +16,7 @@ from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import copy_to_storage, storage_is_remote
 from mkt.site.tests import req_factory_factory, user_factory
 from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -561,6 +562,10 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
     def test_admin_can_blocklist(self):
+        blocklist_zip_path = os.path.join(settings.MEDIA_ROOT,
+                                          'packaged-apps', 'blocklisted.zip')
+        if storage_is_remote():
+            copy_to_storage(blocklist_zip_path, blocklist_zip_path)
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'),
             'Apps:Configure')

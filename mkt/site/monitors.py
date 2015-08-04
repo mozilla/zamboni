@@ -234,7 +234,7 @@ def package_signer():
                             'nagios_check_packaged_app.zip')
     signed_path = tempfile.mktemp()
     try:
-        packaged.sign_app(app_path, signed_path, None, False)
+        packaged.sign_app(open(app_path), signed_path, None, False)
         return '', 'Package signer working'
     except PackageSigningError, e:
         msg = 'Error on package signing (%s): %s' % (destination, e)

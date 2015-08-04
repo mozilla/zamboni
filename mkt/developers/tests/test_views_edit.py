@@ -658,7 +658,7 @@ class TestEditMedia(TestEdit):
 
         # Unfortunate hardcoding of URL.
         url = webapp.get_icon_url(64)
-        assert ('addon_icons/%s/%s' % (webapp.id / 1000, webapp.id)) in url, (
+        assert ('/%s/%s' % (webapp.id / 1000, webapp.id)) in url, (
             'Unexpected path: %r' % url)
 
         eq_(data['icon_type'], 'image/png')
@@ -700,7 +700,7 @@ class TestEditMedia(TestEdit):
 
         # Unfortunate hardcoding of URL.
         addon_url = webapp.get_icon_url(64).split('?')[0]
-        end = 'addon_icons/%s/%s-64.png' % (webapp.id / 1000, webapp.id)
+        end = '/%s/%s-64.png' % (webapp.id / 1000, webapp.id)
         assert addon_url.endswith(end), 'Unexpected path: %r' % addon_url
 
         eq_(data['icon_type'], 'image/png')

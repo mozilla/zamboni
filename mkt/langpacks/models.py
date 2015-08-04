@@ -150,7 +150,7 @@ class LangPack(ModelBase):
             try:
                 # This will read the upload.path file, generate a signature
                 # and write the signed file to self.file_path.
-                sign_app(upload.path, self.file_path, ids)
+                sign_app(storage.open(upload.path), self.file_path, ids)
             except SigningError:
                 log.info('[LangPack:%s] Signing failed' % self.pk)
                 if storage.exists(self.file_path):
