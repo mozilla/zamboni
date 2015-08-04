@@ -6,6 +6,8 @@ require leading directories to exist. The default Django file system storage
 *will* sometimes require leading directories to exist.
 """
 
+import shutil
+
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.encoding import smart_str
@@ -45,6 +47,14 @@ def walk_storage(path, topdown=True, onerror=None, followlinks=False,
             for dn in dirs:
                 new_roots.append('%s/%s' % (root, dn))
         roots[:] = new_roots
+
+
+def copy_to_storage(src_path, dest_path, storage=default_storage):
+    """
+    Copy a local path (src_path) to a store path (dest_path).
+    """
+    with open(src_path) as src_f, storage.open(dest_path, 'w') as dest_f:
+        shutil.copyfileobj(src_f, dest_f)
 
 
 def copy_stored_file(src_path, dest_path, storage=default_storage,

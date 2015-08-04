@@ -47,13 +47,12 @@ from mkt.site.helpers import absolutify, isotime
 from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
 from mkt.site.utils import app_factory, make_game, paginate, version_factory
-from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
-from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.websites.utils import website_factory
 from mkt.zadmin.models import get_config, set_config
 
@@ -1348,8 +1347,8 @@ class TestReviewMixin(object):
         eq_(scores[0].note_key, reviewed_type)
 
 
-class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
-                    AttachmentManagementMixin, PackagedFilesMixin,
+class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
+                    AccessMixin, AttachmentManagementMixin,
                     TestedonManagementMixin):
     fixtures = fixture('webapp_337141')
 

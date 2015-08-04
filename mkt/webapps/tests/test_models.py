@@ -3,7 +3,6 @@ import functools
 import hashlib
 import json
 import os
-import shutil
 import tempfile
 import unittest
 import uuid
@@ -48,7 +47,7 @@ from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.storage_utils import storage_is_remote
-from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase, MktPaths,
+from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase,
                             TestCase, WebappTestCase, user_factory)
 from mkt.site.utils import app_factory, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
@@ -1618,23 +1617,6 @@ class TestManifest(BaseWebAppTest):
                 manifest_json)
 
 
-class PackagedFilesMixin(MktPaths):
-
-    def setUp(self):
-        self.package = self.packaged_app_path('mozball.zip')
-
-    def setup_files(self, filename='mozball.zip'):
-        # This assumes self.file exists.
-        if not storage.exists(self.file.file_path):
-            try:
-                # We don't care if these dirs exist.
-                os.makedirs(os.path.dirname(self.file.file_path))
-            except OSError:
-                pass
-            shutil.copyfile(self.packaged_app_path(filename),
-                            self.file.file_path)
-
-
 class TestPackagedModel(mkt.site.tests.TestCase):
 
     @override_settings(SITE_URL='http://hy.fr')
@@ -1797,6 +1779,7 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     def test_packaged_with_BOM(self):
         # Exercise separate code paths to loading the packaged app manifest.
+        self.file.filename = 'mozBOM.zip'
         self.setup_files('mozBOM.zip')
         assert WebAppParser().parse(self.file.file_path)
         self.assertTrue(self.app.has_icon_in_manifest())
