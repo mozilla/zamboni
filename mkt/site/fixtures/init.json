@@ -78,6 +78,17 @@
     },
     {
         "fields": {
+            "active": false,
+            "created": "2014-11-14T17:18:31",
+            "modified": "2014-11-14T17:18:31",
+            "name": "reviewer-tools-elasticsearch",
+            "note": "If enabled, uses Elasticsearch to query the reviewer tool queues"
+        },
+        "model": "waffle.switch",
+        "pk": 63
+    },
+    {
+        "fields": {
             "created": "2012-10-17T15:51:18",
             "modified": "2012-10-17T15:51:18",
             "name": "csp-store-reports",
