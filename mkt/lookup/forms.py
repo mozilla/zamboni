@@ -8,6 +8,7 @@ import happyforms
 from tower import ugettext_lazy as _lazy
 
 import mkt
+from mkt.access.models import Group
 from mkt.constants.base import PROMO_IMG_MINIMUMS
 from mkt.developers.tasks import resize_promo_imgs
 from mkt.developers.utils import check_upload
@@ -109,3 +110,12 @@ class PromoImgForm(happyforms.Form):
                               mkt.PROMO_IMG_SIZES, set_modified_on=[obj])
 
             log.info('Finished processing promo img for %s' % obj.id)
+
+
+class APIGroupMembershipForm(happyforms.Form):
+    group = forms.ModelChoiceField(
+        required=False,
+        queryset=Group.objects.filter(restricted=False).order_by('name'))
+
+APIGroupMembershipFormSet = forms.formsets.formset_factory(
+    APIGroupMembershipForm)

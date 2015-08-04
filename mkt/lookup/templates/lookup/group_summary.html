@@ -1,0 +1,41 @@
+{% extends 'lookup/base.html' %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block content %}
+  {% include 'lookup/includes/group_search.html' %}
+
+  <section class="island c">
+    <h1>
+        {{ _('Group Lookup results for') }}
+        <a href="{{ url('lookup.group_summary', group.id) }}"
+            title="{{ _('Group Summary') }}">{{ group.name }}</a>
+        ({{ group.pk }})
+    </h1>
+
+    <section id="prose">
+      <h2>{{ _('Group Details') }}</h2>
+      <dl>
+        <dt>{{ _('Name') }}</dt>
+        <dd>{{ group.name }}</dd>
+        <dt>{{ _('Rules') }}</dt>
+        <dd>{{ group.rules }}</dd>
+        <dt>{{ _('Notes') }}</dt>
+        <dd>{{ group.notes }}</dd>
+        <dt>{{ _('Restricted (no API changes possible)') }}</dt>
+        <dd>{{ group.restricted }}</dd>
+      </dl>
+
+      <h2>{{ _('Group Members') }}</h2>
+      <dl class="group-memberships">
+        {% for user in group.users.all() %}
+          <dd>
+            <a href="{{ url('lookup.user_summary', user.pk) }}">{{ user.name }}</a>
+          </dd>
+        {% endfor %}
+      </dl>
+    </section>
+
+  </section>
+{% endblock %}

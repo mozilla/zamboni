@@ -5,6 +5,7 @@
         "fields": {
             "rules": "*:*",
             "name": "Admins",
+            "restricted": true,
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-05 16:06:55"
         }

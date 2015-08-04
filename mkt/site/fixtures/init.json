@@ -1333,7 +1333,8 @@
             "modified": "2013-03-13T09:28:57",
             "name": "Admins",
             "notes": "",
-            "rules": "*:*"
+            "rules": "*:*",
+            "restricted": true
         },
         "model": "access.group",
         "pk": 1
@@ -1344,7 +1345,8 @@
             "modified": "2012-04-19T18:43:22",
             "name": "Staff",
             "notes": "",
-            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,WebsiteLookup:View,Lookup:View,Stats:View,Websites:*"
+            "rules": "Apps:*,Users:Edit,Stats:View,AdminTools:View,AccountLookup:View,AppLookup:View,WebsiteLookup:View,Lookup:View,Stats:View,Websites:*",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50000
@@ -1355,7 +1357,8 @@
             "modified": "2012-04-04T17:17:55",
             "name": "Statistic Viewers",
             "notes": "",
-            "rules": "Stats:View"
+            "rules": "Stats:View",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50001
@@ -1366,7 +1369,8 @@
             "modified": "2012-04-04T17:17:55",
             "name": "App Reviewers",
             "notes": "",
-            "rules": "Apps:Review"
+            "rules": "Apps:Review",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50003
@@ -1377,7 +1381,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "Senior Localizers",
             "notes": "",
-            "rules": "Locales:Edit"
+            "rules": "Locales:Edit",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50006
@@ -1388,7 +1393,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "Developers Credits",
             "notes": "",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50046
@@ -1399,7 +1405,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "Past Developers Credits",
             "notes": "",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50047
@@ -1410,7 +1417,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "Other Contributors Credits",
             "notes": "",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50048
@@ -1421,7 +1429,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "QA",
             "notes": "",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50049
@@ -1432,7 +1441,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "Revenue Stats Viewers",
             "notes": "",
-            "rules": "RevenueStats:View"
+            "rules": "RevenueStats:View",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50050
@@ -1443,7 +1453,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "System Administrators",
             "notes": "Preserved through permissions migration for future use.",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50051
@@ -1454,7 +1465,8 @@
             "modified": "2012-04-04T17:17:58",
             "name": "App Reviewer MOTD",
             "notes": "",
-            "rules": "AppReviewerMOTD:Edit"
+            "rules": "AppReviewerMOTD:Edit",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50053
@@ -1465,7 +1477,8 @@
             "modified": "2012-05-01T08:47:38",
             "name": "Developers",
             "notes": "",
-            "rules": "AdminTools:View,Apps:ViewConfiguration"
+            "rules": "AdminTools:View,Apps:ViewConfiguration",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50055
@@ -1476,7 +1489,8 @@
             "modified": "2012-05-22T17:12:04",
             "name": "Support Staff",
             "notes": "",
-            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View,WebsiteLookup:View"
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View,WebsiteLookup:View",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50057
@@ -1487,7 +1501,8 @@
             "modified": "2012-08-08T14:40:39",
             "name": "Restricted Users",
             "notes": "",
-            "rules": "Restricted:UGC"
+            "rules": "Restricted:UGC",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50058
@@ -1498,7 +1513,8 @@
             "modified": "2012-08-08T14:40:41",
             "name": "Senior App Reviewers",
             "notes": "",
-            "rules": "Apps:Review,Apps:Edit,ReviewerAdminTools:View,Apps:ReviewEscalated,Apps:ReviewPrivileged,Apps:ReviewRegionCN"
+            "rules": "Apps:Review,Apps:Edit,ReviewerAdminTools:View,Apps:ReviewEscalated,Apps:ReviewPrivileged,Apps:ReviewRegionCN",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50059
@@ -1509,7 +1525,8 @@
             "modified": "2012-10-18T09:03:16",
             "name": "Feature Managers",
             "notes": "For users to manage only featured apps.",
-            "rules": "FeaturedApps:View,FeaturedApps:Edit"
+            "rules": "FeaturedApps:View,FeaturedApps:Edit",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50060
@@ -1520,7 +1537,8 @@
             "modified": "2012-11-02T09:58:47",
             "name": "Engagement",
             "notes": "",
-            "rules": "MailingLists:View"
+            "rules": "MailingLists:View",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50061
@@ -1531,7 +1549,8 @@
             "modified": "2013-04-26T09:53:58",
             "name": "No Reviewer Incentives",
             "notes": "Reviewers who should not be included in incentives tables",
-            "rules": "None:None"
+            "rules": "None:None",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50066
@@ -1542,7 +1561,8 @@
             "modified": "2013-04-26T09:54:00",
             "name": "Payment transactions clients",
             "notes": "Clients that can notify of failures in payments",
-            "rules": "Transaction:NotifyFailure"
+            "rules": "Transaction:NotifyFailure",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50067
@@ -1553,7 +1573,8 @@
             "modified": "2013-04-26T09:54:00",
             "name": "Payment product icon clients",
             "notes": "Clients that can create cached product icon URLs",
-            "rules": "ProductIcon:Create"
+            "rules": "ProductIcon:Create",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50068
@@ -1564,7 +1585,8 @@
             "modified": "2013-09-13T12:54:58",
             "name": "Operators",
             "notes": "For operators to perform app lookups",
-            "rules": "Lookup:View,AppLookup:View,WebsiteLookup:View,Operators:*"
+            "rules": "Lookup:View,AppLookup:View,WebsiteLookup:View,Operators:*",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50070
@@ -1575,7 +1597,8 @@
             "modified": "2013-09-13T12:56:33",
             "name": "Marketplace Publishers",
             "notes": "Publishers are able to log in to the Marketplace Publishing tool.",
-            "rules": "Collections:Curate,Regions:BypassFilters"
+            "rules": "Collections:Curate,Regions:BypassFilters",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50072
@@ -1586,7 +1609,8 @@
             "modified": "2014-04-04T15:43:10",
             "name": "Price currency manipulation",
             "notes": "Clients that can modify prices",
-            "rules": "Prices:Edit"
+            "rules": "Prices:Edit",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50074
@@ -1597,7 +1621,8 @@
             "modified": "2014-04-04T15:43:10",
             "name": "China Reviewers",
             "notes": "Reviewers in China are able to approve/reject apps in China.",
-            "rules": "Apps:ReviewRegionCN"
+            "rules": "Apps:ReviewRegionCN",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50076
@@ -1608,7 +1633,8 @@
             "modified": "2014-06-20T10:24:09",
             "name": "Feed Curators",
             "notes": "Curators for the Marketplace Feed",
-            "rules": "Feed:Curate"
+            "rules": "Feed:Curate",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50078
@@ -1619,7 +1645,8 @@
             "modified": "2014-04-04T17:17:55",
             "name": "Review Moderators",
             "notes": "Users who can moderate flagged user reviews",
-            "rules": "Apps:ModerateReview"
+            "rules": "Apps:ModerateReview",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50079
@@ -1630,7 +1657,8 @@
             "modified": "2012-05-14T17:17:55",
             "name": "Website Reviewers",
             "notes": "Users who can review websites",
-            "rules": "Websites:Review"
+            "rules": "Websites:Review",
+            "restricted": false
         },
         "model": "access.group",
         "pk": 50080

@@ -240,6 +240,58 @@ class TestAcctSummary(SummaryTest):
         doc = pq(r.content)
         eq_(doc('#delete-user dd:eq(1)').text(), 'basketball reasons')
 
+    def test_group_list_normal(self):
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
+        GroupUser.objects.create(
+            group=Group.objects.get(name='Operators'), user=self.user)
+        req = req_factory_factory(self.summary_url, user=staff)
+        doc = pq(user_summary(req, self.user.id).content)
+        # Test group membership is there.
+        eq_(doc('.remove-group td:eq(0)').text(), 'Operators')
+        # But no button as support-staff doesn't have admin privs.
+        eq_(doc('.remove-group:eq(0)').children().length, 1)
+
+    def test_group_list_admin(self):
+        staff = UserProfile.objects.get(email='support-staff@mozilla.com')
+        self.grant_permission(staff, 'Admin:%')
+        # The existing Operators group will be the first group in the list.
+        group = Group.objects.get(name='Operators')
+        # Update the name so extra groups don't break the test.
+        group.update(name='AA Operators')
+        GroupUser.objects.create(group=group, user=self.user)
+        # Create a new restricted group that will be second.
+        res_group = Group.objects.create(name='AB Restricted', restricted=True)
+        GroupUser.objects.create(group=res_group, user=self.user)
+        # Update the name so extra groups don't break the test.
+        Group.objects.get(name='Support Staff').update(name='AC Support')
+
+        req = req_factory_factory(self.summary_url, user=staff)
+        doc = pq(user_summary(req, self.user.id).content)
+
+        # Test normal group membership is there.
+        eq_(doc('.remove-group td:eq(0) a').html(), 'AA Operators')
+        # Check the remove button is there.
+        remove_button = doc('.remove-group td:eq(1) button.remove.button')
+        eq_(remove_button.attr('data-api-method'), 'DELETE')
+        eq_(remove_button.attr('data-api-group'), str(group.pk))
+        eq_(remove_button.attr('data-api-url'),
+            reverse('account-groups', kwargs={'pk': self.user.id}))
+
+        # Test restricted group membership is there.
+        eq_(doc('.remove-group td').eq(2).text(), 'AB Restricted')
+        # Check the remove button is there, but disabled.
+        remove_button = doc('.remove-group td:eq(1) button.button.disabled')
+
+        # Test there is a group select - the list is alphabetical.
+        eq_(doc('.add-group option').eq(1).text(), 'AA Operators')
+        # The restricted group shouldn't be here.
+        eq_(doc('.add-group option').eq(2).text(), 'AC Support')
+        # And the add button too.
+        add_button = doc('.add-group td:eq(1) button.add.button')
+        eq_(add_button.attr('data-api-method'), 'POST')
+        eq_(add_button.attr('data-api-url'),
+            reverse('account-groups', kwargs={'pk': self.user.id}))
+
 
 class TestBangoRedirect(TestCase):
     fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
@@ -1253,3 +1305,91 @@ class TestWebsiteEdit(mkt.site.tests.TestCase):
         eq_(unicode(self.website.name), data['name_en-us'])
         eq_(unicode(self.website.description), data['description_en-us'])
         eq_(self.website.url, data['url'])
+
+
+class TestGroupSearch(TestCase, SearchTestMixin):
+    fixtures = fixture('user_support_staff', 'user_operator', 'group_admin')
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.url = reverse('lookup.group_search')
+
+    def setUp(self):
+        super(TestGroupSearch, self).setUp()
+        self.group = Group.objects.get(name='Operators')
+        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
+
+    def verify_result(self, data):
+        eq_(data['objects'][0]['name'], self.group.name)
+        eq_(data['objects'][0]['rules'], self.group.rules)
+        eq_(data['objects'][0]['id'], self.group.pk)
+        eq_(data['objects'][0]['url'], reverse('lookup.group_summary',
+                                               args=[self.group.pk]))
+
+    def test_by_name(self):
+        self.group.update(name='Red Leicester')
+        data = self.search(q='leices')
+        self.verify_result(data)
+
+    def test_by_id(self):
+        data = self.search(q=self.group.pk)
+        self.verify_result(data)
+
+    def test_by_rules(self):
+        self.group.update(rules='holes:many')
+        data = self.search(q='many')
+        self.verify_result(data)
+
+    @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
+    @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
+    def test_all_results(self):
+        for x in range(4):
+            name = 'chr' + str(x)
+            Group.objects.create(name=name, rules="%s:%s" % (x, x))
+
+        # Test not at search limit.
+        data = self.search(q='operators')
+        eq_(len(data['objects']), 1)
+
+        # Test search limit.
+        data = self.search(q='chr')
+        eq_(len(data['objects']), 2)
+
+        # Test maximum search result.
+        data = self.search(q='chr', limit='max')
+        eq_(len(data['objects']), 3)
+
+
+class TestGroupSummary(TestCase):
+    fixtures = fixture('user_support_staff', 'user_operator')
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.group = Group.objects.get(name='Operators')
+        cls.reg_user = user_factory(email='regular@mozilla.com')
+        cls.opr_user = UserProfile.objects.get(email='operator@mozilla.com')
+        cls.summary_url = reverse('lookup.group_summary', args=[cls.group.pk])
+
+    def setUp(self):
+        super(TestGroupSummary, self).setUp()
+        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
+
+    def test_group_details(self):
+        self.group.update(name='Unique-Group-Name', rules='Thing:Do',
+                          notes='Much blah blah')
+        res = self.client.get(self.summary_url)
+        eq_(res.status_code, 200)
+        text = pq(res.content)('#prose').eq(0).text()
+        ok_(self.group.name in text)
+        ok_(self.group.rules in text)
+        ok_(self.group.notes in text)
+
+    def test_group_members(self):
+        GroupUser.objects.create(
+            group=Group.objects.get(name='Operators'), user=self.reg_user)
+        res = self.client.get(self.summary_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)
+        # Test both users (operator@ and regular@) are there
+        eq_(doc('dl.group-memberships dd a').eq(0).text(), self.opr_user.name)
+        eq_(doc('dl.group-memberships dd a').eq(1).text(), self.reg_user.name)

@@ -17,6 +17,9 @@ class Group(ModelBase):
     users = models.ManyToManyField('users.UserProfile', through='GroupUser',
                                    related_name='groups')
     notes = models.TextField(blank=True)
+    # Restricted groups are too risky to be settable via the website.
+    # E.g. Admins.
+    restricted = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'groups'

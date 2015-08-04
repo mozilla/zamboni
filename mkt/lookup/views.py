@@ -22,6 +22,7 @@ import mkt
 import mkt.constants.lookup as lkp
 from lib.pay_server import client
 from mkt.access import acl
+from mkt.access.models import Group
 from mkt.account.utils import purchase_list
 from mkt.api.permissions import GroupPermission
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
@@ -30,7 +31,8 @@ from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import prioritize_app
 from mkt.developers.views_payments import _redirect_to_bango_portal
-from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
+from mkt.lookup.forms import (APIFileStatusForm, APIGroupMembershipFormSet,
+                              APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm,
                               PromoImgForm)
 from mkt.lookup.serializers import AppLookupSerializer, WebsiteLookupSerializer
@@ -84,13 +86,16 @@ def user_summary(request, user_id):
     except IndexError:
         delete_log = None
 
+    group_membership_formset = APIGroupMembershipFormSet()
+
     provider_portals = get_payment_provider_portals(user=user)
     return render(request, 'lookup/user_summary.html',
                   {'account': user, 'app_summary': app_summary,
                    'delete_form': DeleteUserForm(), 'delete_log': delete_log,
                    'is_admin': is_admin, 'refund_summary': refund_summary,
                    'user_addons': user_addons, 'payment_data': payment_data,
-                   'provider_portals': provider_portals})
+                   'provider_portals': provider_portals,
+                   'group_membership_formset': group_membership_formset})
 
 
 @permission_required([('AccountLookup', 'View')])
@@ -601,3 +606,36 @@ def get_payment_provider_portals(app=None, user=None):
                 'payment_account': acct.payment_account
             })
     return provider_portals
+
+
+@permission_required([('AccountLookup', 'View')])
+def group_summary(request, group_id):
+    group = get_object_or_404(Group, pk=group_id)
+
+    return render(request, 'lookup/group_summary.html',
+                  {'group': group})
+
+
+@permission_required([('AccountLookup', 'View')])
+@json_view
+def group_search(request):
+    results = []
+    q = request.GET.get('q', u'').lower().strip()
+    search_fields = ('name', 'rules')
+    fields = ('id',) + search_fields
+
+    if q.isnumeric():
+        # id is added implictly by the ES filter. Add it explicitly:
+        qs = Group.objects.filter(pk=q).values(*fields)
+    else:
+        qs = Group.objects.all()
+        filters = Q()
+        for field in search_fields:
+            filters = filters | Q(**{'%s__icontains' % field: q})
+        qs = qs.filter(filters)
+        qs = qs.values(*fields)
+        qs = _slice_results(request, qs)
+    for user in qs:
+        user['url'] = reverse('lookup.group_summary', args=[user['id']])
+        results.append(user)
+    return {'objects': results}
