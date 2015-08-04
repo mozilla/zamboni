@@ -1652,6 +1652,26 @@
             "groups": [],
             "languages": "",
             "modified": "2013-09-13T12:56:36",
+            "name": "desktop-payments",
+            "note": "ON: paid apps for Desktop can be submitted and show up in search results; OFF: paid apps for Desktop are disallowed and show up nowhere",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-09-13T12:56:36",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-09-13T12:56:36",
             "name": "android-payments",
             "note": "ON: paid apps for Android can be submitted and show up in search results; OFF: paid apps for Android are disallowed and show up nowhere",
             "percent": null,
