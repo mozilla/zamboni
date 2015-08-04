@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-04 07:02:46.965343\n"
+"PO-Revision-Date: 2015-08-04 08:04:03.017739\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -6537,453 +6537,473 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "For the Firefox Marketplace Terms of Service please visit:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "For support please visit:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Your purchase history:"
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Keep review; remove flags"
 
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
-msgstr ""
+msgstr "Delete review"
 
 #: mkt/ratings/helpers.py:12
 #: mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Not yet reviewed"
 
 #: mkt/ratings/helpers.py:15
 msgid "Reviewed %s out of 5 stars"
-msgstr ""
+msgstr "Reviewed %s out of 5 stars"
 
 #: mkt/ratings/models.py:149
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam or otherwise non-review content"
 
 #: mkt/ratings/models.py:150
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Inappropriate language/dialogue"
 
 #: mkt/ratings/models.py:151
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Misplaced bug report or support request"
 
 #: mkt/ratings/models.py:152
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Other (please specify)"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
-msgstr ""
+msgstr "No receipt"
 
 #: mkt/receipts/forms.py:19
 msgid "Test receipt"
-msgstr ""
+msgstr "Test receipt"
 
 #: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Expired test receipt"
 
 #: mkt/receipts/forms.py:21
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Invalid test receipt"
 
 #: mkt/receipts/forms.py:22
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Refunded test receipt"
 
 #: mkt/receipts/views.py:86 mkt/receipts/views.py:177
 msgid "There was a problem installing the app."
-msgstr ""
+msgstr "There was a problem installing the app."
 
 #: mkt/receipts/templates/receipts/test_details.html:3
 #: mkt/receipts/templates/receipts/test_details.html:8
 #: mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Test receipt details"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid ""
 "This is a placeholder page for the receipt details. If you'd installed a "
 "real app from the Marketplace, this page would show more details."
 msgstr ""
+"This is a placeholder page for the receipt details. If you'd installed a "
+"real app from the Marketplace, this page would show more details."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid ""
 "Test installation of your app before uploading to the marketplace. You can "
 "choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Test installation of your app before uploading to the marketplace. You can "
+"choose different kinds of receipts to test your receipt handling."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Receipt type"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Manifest location"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:36
 #: mkt/site/helpers.py:91
 msgid "Install"
-msgstr ""
+msgstr "Install"
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
-msgstr ""
+msgstr "Any Status"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr ""
+msgstr "Approved reviews"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Deleted reviews"
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:43
 msgid "Any Device"
-msgstr ""
+msgstr "Any Device"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
-msgstr ""
+msgstr "View entries between"
 
 #: mkt/reviewers/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filter by type/action"
 
 #: mkt/reviewers/forms.py:67
 msgid "containing"
-msgstr ""
+msgstr "containing"
 
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:73
 msgid "start"
-msgstr ""
+msgstr "start"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:77
 msgid "end"
-msgstr ""
+msgstr "end"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:81
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "app, reviewer, or comment"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Device Type:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Device:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox Version:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
-msgstr ""
+msgstr "Comments:"
 
 #: mkt/reviewers/forms.py:123
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Device Type Override:"
 
 #: mkt/reviewers/forms.py:126
 msgid ""
 "Notify me the next time the manifest is updated. (Subsequent updates will "
 "not generate an email)"
 msgstr ""
+"Notify me the next time the manifest is updated. (Subsequent updates will "
+"not generate an email)"
 
 #: mkt/reviewers/forms.py:130
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "This app works on Tarako devices."
 
 #: mkt/reviewers/forms.py:137
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Choose a canned response..."
 
 #: mkt/reviewers/forms.py:194
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Has Editor Comment"
 
 #: mkt/reviewers/forms.py:198
 msgid "More Info Requested"
-msgstr ""
+msgstr "More Info Requested"
 
 #: mkt/reviewers/forms.py:206
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Tarako-ready"
 
 #: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45
 #: mkt/search/forms.py:96
 msgid "Device"
-msgstr ""
+msgstr "Device"
 
 #: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68
 #: mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Reviewer Tools"
 
 #: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:170
 msgid "Apps"
-msgstr ""
+msgstr "Apps"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Re-reviews"
-msgstr ""
+msgstr "Re-reviews"
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
-msgstr ""
+msgstr "Updates"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
-msgstr ""
+msgstr "Escalations"
 
 #: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:159
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Moderated Reviews"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Web Site Abuse Reports"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
-msgstr ""
+msgstr "Reviewing"
 
 #: mkt/reviewers/helpers.py:51
 #: mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
-msgstr ""
+msgstr "Regional Queues"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Apps ({0})"
 
 #: mkt/reviewers/helpers.py:93
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Re-reviews ({0})"
 
 #: mkt/reviewers/helpers.py:97
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Updates ({0})"
 
 #: mkt/reviewers/helpers.py:101
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Escalations ({0})"
 
 #: mkt/reviewers/helpers.py:105
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Reviewing ({0})"
 
 #: mkt/reviewers/helpers.py:111
 msgid "China ({0})"
-msgstr ""
+msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:116
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:123
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Moderated Reviews ({0})"
 
 #: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Abuse Reports ({0})"
 
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Web Site Abuse Reports ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
-msgstr ""
+msgstr "Reviews"
 
 #: mkt/reviewers/helpers.py:196
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Rejected or Unreviewed"
 
 #: mkt/reviewers/utils.py:390
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Approve"
 
 #: mkt/reviewers/utils.py:391
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "This will approve the app and allow the author(s) to publish it."
 
 #: mkt/reviewers/utils.py:395
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
-msgstr ""
+msgstr "Reject"
 
 #: mkt/reviewers/utils.py:397
 msgid ""
 "This will reject the app, remove it from the review queue and un-publish it "
 "if already published."
 msgstr ""
+"This will reject the app, remove it from the review queue and un-publish it "
+"if already published."
 
 #: mkt/reviewers/utils.py:402
 msgid "Message developer"
-msgstr ""
+msgstr "Message developer"
 
 #: mkt/reviewers/utils.py:404
 msgid ""
 "This will send the author(s) - and other thread subscribers - a message. "
 "This will not change the app's status."
 msgstr ""
+"This will send the author(s) - and other thread subscribers - a message. "
+"This will not change the app's status."
 
 #: mkt/reviewers/utils.py:409
 msgid "Escalate"
-msgstr ""
+msgstr "Escalate"
 
 #: mkt/reviewers/utils.py:411
 msgid ""
 "Flag this app for an admin to review. The comments are sent to the admins, "
 "not the author(s)."
 msgstr ""
+"Flag this app for an admin to review. The comments are sent to the admins, "
+"not the author(s)."
 
 #: mkt/reviewers/utils.py:416
 msgid "Private comment"
-msgstr ""
+msgstr "Private comment"
 
 #: mkt/reviewers/utils.py:418
 msgid ""
 "Make a private reviewer comment on this app. The message won't be visible to"
 " the author(s), and no notification will be sent them."
 msgstr ""
+"Make a private reviewer comment on this app. The message won't be visible to"
+" the author(s), and no notification will be sent them."
 
 #: mkt/reviewers/utils.py:424
 msgid "Clear Escalation"
-msgstr ""
+msgstr "Clear Escalation"
 
 #: mkt/reviewers/utils.py:426
 msgid ""
 "Clear this app from the escalation queue. The author(s) will get no email or"
 " see comments here."
 msgstr ""
+"Clear this app from the escalation queue. The author(s) will get no email or"
+" see comments here."
 
 #: mkt/reviewers/utils.py:431
 msgid "Clear Re-review"
-msgstr ""
+msgstr "Clear Re-review"
 
 #: mkt/reviewers/utils.py:433
 msgid ""
 "Clear this app from the re-review queue. The author(s) will get no email or "
 "see comments here."
 msgstr ""
+"Clear this app from the re-review queue. The author(s) will get no email or "
+"see comments here."
 
 #: mkt/reviewers/utils.py:438
 msgid "Ban app"
-msgstr ""
+msgstr "Ban app"
 
 #: mkt/reviewers/utils.py:440
 msgid ""
 "Ban the app from Marketplace. Similar to Reject but the author(s) can't "
 "resubmit. To only be used in extreme cases."
 msgstr ""
+"Ban the app from Marketplace. Similar to Reject but the author(s) can't "
+"resubmit. To only be used in extreme cases."
 
 #: mkt/reviewers/views.py:141
 msgid "New Apps (Under 5 days)"
-msgstr ""
+msgstr "New Apps (Under 5 days)"
 
 #: mkt/reviewers/views.py:142
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Passable (5 to 10 days)"
 
 #: mkt/reviewers/views.py:143
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Overdue (Over 10 days)"
 
 #: mkt/reviewers/views.py:256
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Self-reviews are not allowed."
 
 #: mkt/reviewers/views.py:262
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
+msgstr "Only senior reviewers can review blocklisted apps."
 
 #: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340
 #: mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
-msgstr ""
+msgstr "Added {0}"
 
 #: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341
 #: mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
-msgstr ""
+msgstr "Removed {0}"
 
 #: mkt/reviewers/views.py:321
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Device(s) changed by reviewer: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:343
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "Requirements changed by reviewer: {0}"
 
 #: mkt/reviewers/views.py:370
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" successfully processed (+{1} points, {2} total)."
 
 #: mkt/reviewers/views.py:372
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Review successfully processed."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Abuse Reports for {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s on %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Additional Queues"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} Review Queue"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
-msgstr ""
+msgstr "Pass"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Fail"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:32
 #: mkt/reviewers/templates/reviewers/queue.html:88
 #: mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
-msgstr ""
+msgstr "There are currently no items of this type to review."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "You are currently not reviewing any apps."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/queue.html:32
@@ -6992,571 +7012,583 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:138
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
-msgstr ""
+msgstr "Flags"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23
 #: mkt/reviewers/templates/reviewers/queue.html:34
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Devices"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34
 #: mkt/reviewers/templates/reviewers/includes/macros.html:87
 msgid "Packaged App"
-msgstr ""
+msgstr "Packaged App"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37
 #: mkt/reviewers/templates/reviewers/includes/macros.html:93
 msgid "Blocklisted App"
-msgstr ""
+msgstr "Blocklisted App"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40
 #: mkt/reviewers/templates/reviewers/includes/macros.html:101
 msgid "Premium App"
-msgstr ""
+msgstr "Premium App"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43
 #: mkt/reviewers/templates/reviewers/includes/macros.html:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "More Information Requested"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:46
 #: mkt/reviewers/templates/reviewers/includes/macros.html:108
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Contains Editor Comment"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
-msgstr ""
+msgstr "<small>Marketplace</small> Reviewer Tools"
 
 #: mkt/reviewers/templates/reviewers/base.html:29
 #: mkt/reviewers/templates/reviewers/base.html:69
 msgid "Queues"
-msgstr ""
+msgstr "Queues"
 
 #: mkt/reviewers/templates/reviewers/base.html:34
 #: mkt/reviewers/templates/reviewers/base.html:73
 msgid "Logs"
-msgstr ""
+msgstr "Logs"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Back to Reviewer Tools"
 
 #: mkt/reviewers/templates/reviewers/home.html:18
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Pending App Review"
+msgstr[1] "{num} Pending App Reviews"
 
 #: mkt/reviewers/templates/reviewers/home.html:25
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Re-review"
+msgstr[1] "{num} Re-reviews"
 
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Update Review"
+msgstr[1] "{num} Update Reviews"
 
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{c} unreviewed app submission this week."
+msgstr[1] "{c} unreviewed app submissions this week."
 
 #: mkt/reviewers/templates/reviewers/home.html:46
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Current waiting times:"
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} app"
+msgstr[1] "{0} apps"
 
 #: mkt/reviewers/templates/reviewers/home.html:55
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: mkt/reviewers/templates/reviewers/home.html:70
 msgid "Total Reviews"
-msgstr ""
+msgstr "Total Reviews"
 
 #: mkt/reviewers/templates/reviewers/home.html:71
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Reviews This Month"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:3
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Reviewer Leaderboard"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18
 #: mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "No review points awarded yet."
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
-msgstr ""
+msgstr "Rank"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
-msgstr ""
+msgstr "App Review Log"
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
 #: mkt/reviewers/templates/reviewers/moderatelog.html:17
 msgid "Event"
-msgstr ""
+msgstr "Event"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "App has been deleted."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
-msgstr ""
+msgstr "Show Comments"
 
 #: mkt/reviewers/templates/reviewers/logs.html:45
 msgid "Hide Comments"
-msgstr ""
+msgstr "Hide Comments"
 
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "No reviews found for this period."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Moderated Review Log"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "More details."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "No events found for this period."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Log Details"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Log details"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Moderation date"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "App title"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Review title"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Review text"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Review was flagged prior to moderation."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Current review status"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Alive"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Undelete"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Update message of the day"
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
-msgstr ""
+msgstr "Reviewer Scores for {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "All-time Point Breakdown"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Points"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Month"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
-msgstr ""
+msgstr "All-Time"
 
 #: mkt/reviewers/templates/reviewers/queue.html:33
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
 msgid "Waiting Time"
-msgstr ""
+msgstr "Waiting Time"
 
 #: mkt/reviewers/templates/reviewers/queue.html:52
 #: mkt/reviewers/templates/reviewers/queue.html:73
 msgid "Payment Category:"
-msgstr ""
+msgstr "Payment Category:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:103
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Helpful Links:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:104
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Reviewers' Guide"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:11
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "{region} Review Queue"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
-msgstr ""
+msgstr "by"
 
 #: mkt/reviewers/templates/reviewers/review.html:31
 #: mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "In re-review queue"
 
 #: mkt/reviewers/templates/reviewers/review.html:34
 #: mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
-msgstr ""
+msgstr "In escalation queue"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "In Tarako queue"
 
 #: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
-msgstr ""
+msgstr "In China queue"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Review This App"
-msgstr ""
+msgstr "Review This App"
 
 #: mkt/reviewers/templates/reviewers/review.html:66
 msgid "More Information"
-msgstr ""
+msgstr "More Information"
 
 #: mkt/reviewers/templates/reviewers/review.html:67
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
-msgstr ""
+msgstr "App History"
 
 #: mkt/reviewers/templates/reviewers/review.html:68
 msgid "Resolution"
-msgstr ""
+msgstr "Resolution"
 
 #: mkt/reviewers/templates/reviewers/review.html:100
 msgid "App submission incomplete"
-msgstr ""
+msgstr "App submission incomplete"
 
 #: mkt/reviewers/templates/reviewers/review.html:121
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"You can still submit this form, however only do so if you know it won't "
+"conflict."
 
 #: mkt/reviewers/templates/reviewers/review.html:128
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Insert canned response..."
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "Tested on:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Add device"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
-msgstr ""
+msgstr "Browse"
 
 #: mkt/reviewers/templates/reviewers/review.html:188
 msgid "Attach another file"
-msgstr ""
+msgstr "Attach another file"
 
 #: mkt/reviewers/templates/reviewers/review.html:191
 msgid "Device Override:"
-msgstr ""
+msgstr "Device Override:"
 
 #: mkt/reviewers/templates/reviewers/review.html:204
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Minimum Requirements Override:"
 
 #: mkt/reviewers/templates/reviewers/review.html:223
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Warning!</strong> Another user was viewing this page before you."
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Attachments"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "This version has not been reviewed"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr ""
+msgstr "Device Types"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "View Privacy Policy"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:61
 msgid "Requirements"
-msgstr ""
+msgstr "Requirements"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:67
 msgid "Show more"
-msgstr ""
+msgstr "Show more"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:74
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:61
 msgid "Signed Zip"
-msgstr ""
+msgstr "Signed Zip"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:87
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Ratings"
-msgstr ""
+msgstr "Ratings"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "This app has not yet been rated"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Updated"
-msgstr ""
+msgstr "Updated"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:110
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
 msgid "Rating"
-msgstr ""
+msgstr "Rating"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:129
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:141
 msgid "Region Availability"
-msgstr ""
+msgstr "Region Availability"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:132
 msgid "Show less"
-msgstr ""
+msgstr "Show less"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:142
 msgid "Images"
-msgstr ""
+msgstr "Images"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:152
 msgid "More about this app"
-msgstr ""
+msgstr "More about this app"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:155
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Nothing to see here! The developer did not include any details."
 
 #. "Filter" is a button label (verb)
 #: mkt/reviewers/templates/reviewers/includes/macros.html:61
 #: mkt/templates/mkt/header.html:18
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "App origin"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 msgstr ""
+"<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Priority Review Needed"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:89
 msgid "Privileged App"
-msgstr ""
+msgstr "Privileged App"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:97
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium with In-App"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:99
 msgid "Free with In-App"
-msgstr ""
+msgstr "Free with In-App"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145
 msgid "more..."
-msgstr ""
+msgstr "more..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Older versions"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Newer versions"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "Process"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Actions:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
-msgstr ""
+msgstr "Review page"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
+msgstr "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
+"[%(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
 "target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
+"target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "All abuse reports read. Good work!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
-msgstr ""
+msgstr "Process Reviews"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Moderation actions:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
-msgstr ""
+msgstr "translate"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid ""
 "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
 "%(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
+"%(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "All reviews have been moderated. Good work!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
-msgstr ""
+msgstr "Advanced Search"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Clear Search"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:17
 msgid ""
 "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
 "class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28
 msgid "Files in this version:"
-msgstr ""
+msgstr "Files in this version:"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:35
 msgid "Validation"
-msgstr ""
+msgstr "Validation"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:37
 msgid "Contents"
-msgstr ""
+msgstr "Contents"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:40
 msgid "Compare"
-msgstr ""
+msgstr "Compare"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Loading App History &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Next Comments"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Previous Comments"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 #: mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
-msgstr ""
+msgstr "Jump to first page"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:12
 #: mkt/site/templates/site/impala_paginator.html:22
 msgid "Previous"
-msgstr ""
+msgstr "Previous"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26
@@ -7565,6 +7597,8 @@ msgid ""
 "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a "
 "href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a "
+"href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.              third argument is the number of total results (e.g., 1,000).
@@ -7572,218 +7606,218 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38
 #: mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Recent Points"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "No points awarded yet."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Top Reviewers (past 7 days)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "No top reviewers yet."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "All Time"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "You have <span>{0}</span> points."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "No results found"
 
 #: mkt/search/forms.py:13
 msgid "Relevance"
-msgstr ""
+msgstr "Relevance"
 
 #: mkt/search/forms.py:14
 msgid "Popularity"
-msgstr ""
+msgstr "Popularity"
 
 #: mkt/search/forms.py:15
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Weekly Downloads"
 
 #: mkt/search/forms.py:16
 msgid "Top Rated"
-msgstr ""
+msgstr "Top Rated"
 
 #: mkt/search/forms.py:18
 msgid "Newest"
-msgstr ""
+msgstr "Newest"
 
 #: mkt/search/forms.py:19
 msgid "Reviewed"
-msgstr ""
+msgstr "Reviewed"
 
 #: mkt/search/forms.py:21
 msgid "Trending"
-msgstr ""
+msgstr "Trending"
 
 #: mkt/search/forms.py:27
 msgid "Any App Type"
-msgstr ""
+msgstr "Any App Type"
 
 #: mkt/search/forms.py:30
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Privileged packaged app"
 
 #: mkt/search/forms.py:35
 msgid "Free with In-app"
-msgstr ""
+msgstr "Free with In-app"
 
 #: mkt/search/forms.py:37
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium with In-app"
 
 #: mkt/search/forms.py:38
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Other System for In-App"
 
 #: mkt/search/forms.py:45
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:52
 msgid "Any Device Type"
-msgstr ""
+msgstr "Any Device Type"
 
 #: mkt/search/forms.py:54
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 #: mkt/search/forms.py:55
 msgid "Tablet"
-msgstr ""
+msgstr "Tablet"
 
 #: mkt/search/forms.py:62
 msgid "All Categories"
-msgstr ""
+msgstr "All Categories"
 
 #: mkt/search/forms.py:82
 msgid "Search for apps"
-msgstr ""
+msgstr "Search for apps"
 
 #: mkt/search/forms.py:98
 msgid "Device type"
-msgstr ""
+msgstr "Device type"
 
 #: mkt/search/forms.py:142
 msgid "Premium types"
-msgstr ""
+msgstr "Premium types"
 
 #: mkt/search/forms.py:146
 msgid "App type"
-msgstr ""
+msgstr "App type"
 
 #: mkt/search/forms.py:150
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Installs allowed from"
 
 #: mkt/search/forms.py:151
 msgid "Everywhere"
-msgstr ""
+msgstr "Everywhere"
 
 #: mkt/search/forms.py:153
 msgid "Works offline"
-msgstr ""
+msgstr "Works offline"
 
 #: mkt/search/forms.py:155
 msgid "Supported languages"
-msgstr ""
+msgstr "Supported languages"
 
 #: mkt/search/forms.py:156
 msgid "Author name"
-msgstr ""
+msgstr "Author name"
 
 #: mkt/search/forms.py:157
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Search Unavailable"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Search is temporarily unavailable. Please try again in a few minutes."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
-msgstr ""
+msgstr "Account Settings"
 
 #: mkt/site/context_processors.py:58
 msgid "Change Password"
-msgstr ""
+msgstr "Change Password"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Sign out"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
-msgstr ""
+msgstr "Developer Hub"
 
 #: mkt/site/context_processors.py:77
 msgid "Admin Tools"
-msgstr ""
+msgstr "Admin Tools"
 
 #: mkt/site/fields.py:32
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Enter at least one value."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Hexadecimal colour"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Must be a valid hex colour code, e.g. #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "As soon as it is approved."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Not until I manually make it public."
 
 #: mkt/site/helpers.py:160
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:315
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} ago"
 
 #: mkt/site/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} was created."
 
 #: mkt/site/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} properties edited."
 
 #: mkt/site/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} description edited."
 
 #: mkt/site/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Categories edited for {addon}."
 
 #: mkt/site/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
