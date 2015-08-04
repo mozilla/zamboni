@@ -1,8 +1,6 @@
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
