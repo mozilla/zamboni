@@ -47,7 +47,8 @@ from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
-from mkt.site.storage_utils import copy_stored_file, storage_is_remote
+from mkt.site.storage_utils import (copy_stored_file, copy_to_storage,
+                                    storage_is_remote)
 from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
                             sorted_groupby)
 from mkt.tags.models import Tag
@@ -1796,7 +1797,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         v = Version.objects.create(addon=self, version='blocklisted')
         f = File(version=v, status=mkt.STATUS_BLOCKED)
         f.filename = f.generate_filename()
-        copy_stored_file(blocklisted_path, f.file_path)
+        copy_to_storage(blocklisted_path, f.file_path)
         log.info(u'[Webapp:%s] Copied blocklisted app from %s to %s' % (
             self.id, blocklisted_path, f.file_path))
         f.size = storage.size(f.file_path)
