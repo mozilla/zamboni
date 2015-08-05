@@ -27,3 +27,8 @@ class TestDailyGamesFilter(FilterTestsBase):
         for i, cat in enumerate(GAME_CATEGORIES):
             # Test tags.
             eq_(shoulds[i]['term']['tags'], cat)
+
+        # Test buckets.
+        eq_(qs['aggs']['top_hits']['terms']['size'], 4)
+        eq_(qs['aggs']['top_hits']['aggs']['first_game']['top_hits']['size'],
+            1)
