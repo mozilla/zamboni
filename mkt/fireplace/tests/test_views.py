@@ -23,8 +23,7 @@ from mkt.websites.utils import website_factory
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
 FIREPLACE_APP_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
-    'regions', 'resource_uri', 'supported_locales', 'tags', 'upsold',
-    'versions')
+    'regions', 'resource_uri', 'supported_locales', 'upsold', 'versions')
 
 FIREPLACE_WEBSITE_EXCLUDED_FIELDS = ('title', )
 
