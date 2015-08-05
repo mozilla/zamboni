@@ -30,11 +30,8 @@ def mock_sign(version_id, reviewer=False):
     file_obj = version.all_files[0]
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
-    try:
-        os.makedirs(os.path.dirname(path))
-    except OSError:
-        pass
-    shutil.copyfile(file_obj.file_path, path)
+    with storage.open(path, 'w') as dest_f:
+        shutil.copyfileobj(storage.open(file_obj.file_path), dest_f)
     return path
 
 

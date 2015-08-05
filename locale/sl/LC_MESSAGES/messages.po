@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-03-06 14:35+0000\n"
-"Last-Translator: Miha <miha.kosi@amis.net>\n"
+"PO-Revision-Date: 2015-08-03 13:29:55.237596\n"
+"Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Priloga presega omejitev velikosti %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid ""
@@ -147,7 +147,7 @@ msgstr "Alandski otoki"
 
 #: mkt/constants/bango.py:21 mkt/constants/regions.py:74
 msgid "Albania"
-msgstr "Angvila"
+msgstr "Albanija"
 
 #: mkt/constants/bango.py:22 mkt/constants/regions.py:133
 msgid "Algeria"
@@ -159,7 +159,7 @@ msgstr "Ameriška Samoa"
 
 #: mkt/constants/bango.py:24 mkt/constants/regions.py:75
 msgid "Andorra"
-msgstr "Andorra"
+msgstr "Andora"
 
 #: mkt/constants/bango.py:25 mkt/constants/regions.py:71
 msgid "Angola"
@@ -308,7 +308,7 @@ msgstr "Kajmanski otoki"
 
 #: mkt/constants/bango.py:61 mkt/constants/regions.py:107
 msgid "Central African Republic"
-msgstr "Centralnoafriška republika"
+msgstr "Srednjeafriška republika"
 
 #: mkt/constants/bango.py:62 mkt/constants/regions.py:283
 msgid "Chad"
@@ -344,7 +344,7 @@ msgstr "Kongo"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr "Kongo, Demokratčna republika"
+msgstr "Kongo, Demokratična republika"
 
 #: mkt/constants/bango.py:71 mkt/constants/regions.py:117
 msgid "Cook Islands"
@@ -380,7 +380,7 @@ msgstr "Češka republika"
 
 #: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
-msgstr ""
+msgstr "Danska"
 
 #: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"

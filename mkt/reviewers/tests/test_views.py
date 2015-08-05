@@ -9,7 +9,6 @@ from os import path
 from django import test
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -48,13 +47,12 @@ from mkt.site.helpers import absolutify, isotime
 from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
 from mkt.site.utils import app_factory, make_game, paginate, version_factory
-from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
-from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.websites.utils import website_factory
 from mkt.zadmin.models import get_config, set_config
 
@@ -1349,8 +1347,8 @@ class TestReviewMixin(object):
         eq_(scores[0].note_key, reviewed_type)
 
 
-class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
-                    AttachmentManagementMixin, PackagedFilesMixin,
+class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
+                    AccessMixin, AttachmentManagementMixin,
                     TestedonManagementMixin):
     fixtures = fixture('webapp_337141')
 
@@ -1895,8 +1893,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_encoding(self, mock_get):
         m = mock.Mock()
-        with storage.open(self.manifest_path('non-utf8.webapp')) as fp:
-            m.content = fp.read()
+        m.content = open(self.manifest_path('non-utf8.webapp')).read()
         m.headers = CaseInsensitiveDict({})
         mock_get.return_value = m
 
@@ -1994,7 +1991,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(save_mock.called, False, save_mock.call_args_list)
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
+    @mock.patch(settings.DEFAULT_FILE_STORAGE + '.save')
     def test_attachment(self, save_mock):
         """ Test addition of an attachment """
         """

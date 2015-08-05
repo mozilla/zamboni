@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 
+from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 
 from mock import patch
@@ -482,7 +483,8 @@ class TestIconUpdate(RestOAuth, MktPaths):
         self.client.put(self.url, data=json.dumps(self.data))
         icon_dir = self.app.get_icon_dir()
         icon_path = os.path.join(icon_dir, '%s-128.png' % str(self.app.id))
-        eq_(self.images_are_equal(self.mozball_image(), icon_path), True)
+        eq_(self.images_are_equal(self.mozball_image(),
+                                  storage.open(icon_path)), True)
 
     def test_invalid_owner_permissions(self):
         self.app.authors.clear()

@@ -29,7 +29,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
             test_package = zipfile.ZipFile(package, 'w')
             test_package.writestr('manifest.webapp', 'foobar')
             test_package.close()
-            self.latest_file.update(hash=self.latest_file.generate_hash())
+        self.latest_file.update(hash=self.latest_file.generate_hash())
 
         self.url = self.app.get_manifest_url()
 

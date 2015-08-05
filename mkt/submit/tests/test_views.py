@@ -2,7 +2,6 @@
 import datetime
 import json
 import os
-import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -17,7 +16,8 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.tests import formset, initial, TestCase, user_factory
+from mkt.site.storage_utils import copy_to_storage
+from mkt.site.tests import formset, initial, MktPaths, TestCase, user_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -456,7 +456,25 @@ class TestCreateWebAppFromManifest(BaseWebAppTest):
         eq_(rs.status_code, 302)
 
 
-class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
+class SetupFilesMixin(MktPaths):
+    def setup_files(self, filename='mozball.zip'):
+        # Local source filename must exist.
+        assert os.path.exists(self.packaged_app_path(filename))
+
+        # Remote filename must not be empty.
+        assert self.file.filename
+
+        # Original packaged file.
+        copy_to_storage(self.packaged_app_path(filename),
+                        self.file.file_path)
+
+        # Signed packaged file.
+        copy_to_storage(self.packaged_app_path(filename),
+                        self.file.signed_file_path)
+
+
+class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadAddon,
+                          TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
@@ -482,27 +500,6 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, TestCase):
         eq_(Webapp.objects.count(), 1)
         self.post(data=data)
         return Webapp.objects.order_by('-id')[0]
-
-    def setup_files(self, filename='mozball.zip'):
-        # Make sure the source file is there.
-        # Original packaged file.
-        if not storage.exists(self.file.file_path):
-            try:
-                # We don't care if these dirs exist.
-                os.makedirs(os.path.dirname(self.file.file_path))
-            except OSError:
-                pass
-            shutil.copyfile(self.packaged_app_path(filename),
-                            self.file.file_path)
-        # Signed packaged file.
-        if not storage.exists(self.file.signed_file_path):
-            try:
-                # We don't care if these dirs exist.
-                os.makedirs(os.path.dirname(self.file.signed_file_path))
-            except OSError:
-                pass
-            shutil.copyfile(self.packaged_app_path(filename),
-                            self.file.signed_file_path)
 
 
 class TestEscalateReservedPermissionsWebApp(BasePackagedAppTest):
@@ -815,8 +812,9 @@ class TestDetails(TestSubmit):
         eq_(ad.icon_type, 'image/png')
         for size in mkt.CONTENT_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
-            assert os.path.exists(os.path.join(ad.get_icon_dir(), fn)), (
-                'Expected %s in %s' % (fn, os.listdir(ad.get_icon_dir())))
+            assert storage.exists(os.path.join(ad.get_icon_dir(), fn)), (
+                'Expected %s in %s' % (
+                    fn, storage.listdir(ad.get_icon_dir())[1]))
 
     def test_screenshot_or_video_required(self):
         self._step()

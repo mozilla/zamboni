@@ -6,6 +6,7 @@ import time
 import traceback
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import elasticsearch
@@ -239,7 +240,7 @@ def package_signer():
         msg = 'Error on package signing (%s): %s' % (destination, e)
         return msg, msg
     finally:
-        os.unlink(signed_path)
+        storage.delete(signed_path)
 
 
 # Not called settings to avoid conflict with django.conf.settings.

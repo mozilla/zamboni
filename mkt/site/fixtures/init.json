@@ -35,17 +35,6 @@
     {
         "fields": {
             "active": false,
-            "created": "2013-09-13T12:54:58",
-            "modified": "2013-09-13T12:54:58",
-            "name": "comm-dashboard",
-            "note": "Communication dashboard for reviewer tools."
-        },
-        "model": "waffle.switch",
-        "pk": 45
-    },
-    {
-        "fields": {
-            "active": false,
             "created": "2014-04-04T15:43:05",
             "modified": "2014-04-04T15:43:05",
             "name": "preload-apps",
@@ -86,6 +75,17 @@
         },
         "model": "waffle.switch",
         "pk": 62
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-11-14T17:18:31",
+            "modified": "2014-11-14T17:18:31",
+            "name": "reviewer-tools-elasticsearch",
+            "note": "If enabled, uses Elasticsearch to query the reviewer tool queues"
+        },
+        "model": "waffle.switch",
+        "pk": 63
     },
     {
         "fields": {
@@ -1654,6 +1654,26 @@
         },
         "model": "waffle.flag",
         "pk": 9
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-09-13T12:56:36",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-09-13T12:56:36",
+            "name": "desktop-payments",
+            "note": "ON: paid apps for Desktop can be submitted and show up in search results; OFF: paid apps for Desktop are disallowed and show up nowhere",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 15
     },
     {
         "fields": {

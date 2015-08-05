@@ -77,16 +77,20 @@ def _uploader(resize_size, final_size):
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
-        shutil.copyfile(img, src.name)
+        with storage.open(src.name, 'w') as fp:
+            shutil.copyfileobj(open(img), fp)
+
         # Sanity check.
         with storage.open(src.name) as fp:
             src_image = Image.open(fp)
             src_image.load()
         eq_(src_image.size, original_size)
 
-        val = tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
+        val = tasks.resize_icon(src.name, dest_name, resize_size,
+                                locally=False)
         eq_(val, {'icon_hash': 'bb362450'})
-        with storage.open('%s-%s.png' % (dest_name, rsize)) as fp:
+        dest_image_filename = '%s-%s.png' % (dest_name, rsize)
+        with storage.open(dest_image_filename) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
 
@@ -97,11 +101,11 @@ def _uploader(resize_size, final_size):
             'Got width %d, expected %d' % (
                 fsize[1], dest_image.size[1]))
 
-        if os.path.exists(dest_image.filename):
-            os.remove(dest_image.filename)
-        assert not os.path.exists(dest_image.filename)
+        if storage.exists(dest_image_filename):
+            storage.delete(dest_image_filename)
+        assert not storage.exists(dest_image_filename)
 
-    assert not os.path.exists(src.name)
+    assert not storage.exists(src.name)
 
 
 class TestPngcrushImage(mkt.site.tests.TestCase):
@@ -233,7 +237,9 @@ class TestResizePreview(mkt.site.tests.TestCase):
         """
         src = get_image_path(filename)
         dst = os.path.join(settings.TMP_PATH, 'preview', filename)
-        shutil.copy(src, dst)
+        with open(src) as local_f:
+            with storage.open(dst, 'w') as remote_f:
+                shutil.copyfileobj(local_f, remote_f)
         return dst
 
     def test_preview(self):
@@ -510,7 +516,7 @@ class TestFetchIcon(BaseWebAppTest):
                 continue
             icon_path = os.path.join(icon_dir, '%s-%s.png'
                                      % (str(webapp.id), size))
-            with open(icon_path, 'r') as img:
+            with storage.open(icon_path, 'r') as img:
                 checker = ImageCheck(img)
                 assert checker.is_image()
                 eq_(checker.img.size, (size, size))
@@ -561,6 +567,8 @@ class TestFetchIcon(BaseWebAppTest):
         file_obj = webapp.latest_version.all_files[0]
         url = '/path/to/icon.png'
         json.return_value = {'icons': {'128': url}}
+        with storage.open(file_obj.file_path, 'w') as f:
+            f.write("fake zip file")
         tasks.fetch_icon(webapp.pk, file_obj.pk)
         assert url[1:] in zf.extract_path.call_args[0][0]
 

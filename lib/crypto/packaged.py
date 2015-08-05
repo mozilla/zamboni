@@ -88,9 +88,8 @@ def _sign_app(src, dest, ids, reviewer, tempname):
     except:
         log.error('App signing failed', exc_info=True)
         raise SigningError('App signing failed')
-    with storage.open(dest, 'w') as destf:
-        tempf = open(tempname)
-        shutil.copyfileobj(tempf, destf)
+    with open(tempname) as temp_f, storage.open(dest, 'w') as dest_f:
+        shutil.copyfileobj(temp_f, dest_f)
 
 
 def _get_endpoint(reviewer=False):
@@ -116,10 +115,8 @@ def _no_sign(src, dest):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
-    dest_dir = os.path.dirname(dest)
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir)
-    shutil.copy(src, dest)
+    with storage.open(src) as src_f, storage.open(dest, 'w') as dest_f:
+        shutil.copyfileobj(src_f, dest_f)
 
 
 @task

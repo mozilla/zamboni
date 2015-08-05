@@ -279,11 +279,14 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
             with storage.open(f.file_path, 'w') as fp:
                 fp.write('sample data\n')
 
-    def test_generate_hash(self):
+    @mock.patch('mkt.files.models.storage')
+    def test_generate_hash(self, storage_mock):
         f = File()
-        f.version = Version.objects.get()
-        fn = self.packaged_app_path('mozball.zip')
-        assert f.generate_hash(fn).startswith('sha256:ad85d6316166d4')
+        f.version = Version()
+        # Mock remote storage to use a local file instead of a remote one.
+        storage_mock.open = open
+        filename = self.packaged_app_path('mozball.zip')
+        assert f.generate_hash(filename).startswith('sha256:ad85d6316166d4')
 
     def test_addon(self):
         f = File.objects.get()

@@ -542,7 +542,8 @@ class ESCALATION_RESERVED_PERMS_APP(_LOG):
 
 class REREVIEW_ABUSE_APP(_LOG):
     id = 81
-    format = _(u'{addon} re-reviewed because abuse reports need invesigation.')
+    format = _(
+        u'{addon} re-reviewed because abuse reports need investigation.')
     short = _(u'Abuse reports investigation')
     keep = True
     review_queue = True

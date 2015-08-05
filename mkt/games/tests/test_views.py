@@ -80,8 +80,6 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 4)
 
         for game in res.json['objects']:
-            print game.get('tags')
-            print game.get('keywords')
             ok_(game.get('tags') or game.get('keywords'))
 
     def test_limit(self):
@@ -135,13 +133,13 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
         def get_id(game):
             return game['id']
 
-        res = self.anon.get(self.url)
-        set1 = map(get_id, res.json['objects'])
+        res1 = self.anon.get(self.url)
+        set1 = map(get_id, res1.json['objects'])
 
         # Change the date.
         datetime_mock.datetime.now.return_value = (
-            datetime.datetime.now() - datetime.timedelta(days=15))
-        res = self.anon.get(self.url)
-        set2 = map(get_id, res.json['objects'])
+            datetime.datetime.now() - datetime.timedelta(days=30))
+        res2 = self.anon.get(self.url)
+        set2 = map(get_id, res2.json['objects'])
 
         ok_(set1 != set2)

@@ -158,7 +158,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         eq_(langpack.filename, '%s-%s.zip' % (langpack.uuid, langpack.version))
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path.startswith(langpack.path_prefix))
-        ok_(os.path.exists(langpack.file_path))
+        ok_(storage.exists(langpack.file_path))
         eq_(langpack.get_manifest_json(), self.expected_manifest)
         ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
@@ -175,7 +175,6 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
             # created a real file for this langpack yet.
             storage_mock.size.return_value = 666
             original_minifest = langpack.get_minifest_contents()
-
         upload = self.upload('langpack')
         langpack = LangPack.from_upload(upload, instance=langpack)
         eq_(langpack.uuid, original_uuid)
@@ -188,7 +187,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path != original_file_path)
         ok_(langpack.file_version > original_file_version)
-        ok_(os.path.exists(langpack.file_path))
+        ok_(storage.exists(langpack.file_path))
         ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         ok_(langpack.manifest != original_manifest)
@@ -226,13 +225,11 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
     def test_upload_existing_same_version(self):
         langpack = self.create_langpack()
         upload = self.upload('langpack')
-
         # Works once.
         ok_(LangPack.from_upload(upload, instance=langpack))
-
         # Doesn't work twice, since we are re-uploading the same version.
-        expected = [u'Your language pack version must be different to the one '
-                    u'you are replacing.']
+        expected = [u'Your language pack version must be different to the '
+                    u'one you are replacing.']
         with self.assertRaises(ValidationError) as e:
             LangPack.from_upload(upload, instance=langpack)
         eq_(e.exception.messages, expected)
@@ -292,8 +289,8 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         original_file_version = langpack.file_version
         original_version = langpack.version
         # create_langpack() doesn't create a fake file, let's add one.
-        storage.open(langpack.file_path, 'w').close()
-
+        with storage.open(langpack.file_path, 'w') as f:
+            f.write('.')
         upload = self.upload('langpack')
         with self.assertRaises(SigningError):
             LangPack.from_upload(upload, instance=langpack)
@@ -334,7 +331,7 @@ class TestLangPackDeletion(TestCase):
         being present."""
         langpack = LangPack.objects.create(version='0.1')
         filename = langpack.file_path
-        assert not os.path.exists(filename), 'File exists at: %s' % filename
+        assert not storage.exists(filename), 'File exists at: %s' % filename
         langpack.delete()
 
     def test_delete_signal(self):

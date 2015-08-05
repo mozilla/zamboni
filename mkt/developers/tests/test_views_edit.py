@@ -752,13 +752,13 @@ class TestEditMedia(TestEdit):
     def setup_image_status(self):
         self.icon_dest = os.path.join(self.webapp.get_icon_dir(),
                                       '%s-64.png' % self.webapp.id)
-        os.makedirs(os.path.dirname(self.icon_dest))
-        open(self.icon_dest, 'w')
+        with storage.open(self.icon_dest, 'w') as f:
+            f.write('.')
 
         self.preview = self.webapp.previews.create()
         self.preview.save()
-        os.makedirs(os.path.dirname(self.preview.thumbnail_path))
-        open(self.preview.thumbnail_path, 'w')
+        with storage.open(self.preview.thumbnail_path, 'w') as f:
+            f.write('.')
 
         self.url = self.webapp.get_dev_url('ajax.image.status')
 
@@ -780,7 +780,7 @@ class TestEditMedia(TestEdit):
 
     def test_icon_status_fails(self):
         self.setup_image_status()
-        os.remove(self.icon_dest)
+        storage.delete(self.icon_dest)
         result = json.loads(self.client.get(self.url).content)
         assert not result['icons']
 
@@ -796,13 +796,13 @@ class TestEditMedia(TestEdit):
 
     def test_preview_status_fails(self):
         self.setup_image_status()
-        os.remove(self.preview.thumbnail_path)
+        storage.delete(self.preview.thumbnail_path)
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
     def test_image_status_default(self):
         self.setup_image_status()
-        os.remove(self.icon_dest)
+        storage.delete(self.icon_dest)
         self.webapp.update(icon_type='icon/photos')
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']

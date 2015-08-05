@@ -179,19 +179,22 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                                           app=self.app.pk)
 
     def test_is_flagged_false(self):
-        Review.objects.create(addon=self.app, user=self.user2, body='yes')
+        Review.objects.create(addon=self.app, user=self.user2, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.pk)
         eq_(data['objects'][0]['is_author'], False)
         eq_(data['objects'][0]['has_flagged'], False)
 
     def test_is_flagged_is_author(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.pk)
         eq_(data['objects'][0]['is_author'], True)
         eq_(data['objects'][0]['has_flagged'], False)
 
     def test_is_flagged_true(self):
-        rat = Review.objects.create(addon=self.app, user=self.user2, body='ah')
+        rat = Review.objects.create(addon=self.app, user=self.user2, body='ah',
+                                    rating=5)
         ReviewFlag.objects.create(review=rat, user=self.user,
                                   flag=ReviewFlag.SPAM)
         res, data = self._get_url(self.list_url, app=self.app.pk)
@@ -200,8 +203,10 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_get_detail(self):
         fmt = '%Y-%m-%dT%H:%M:%S'
-        Review.objects.create(addon=self.app, user=self.user2, body='no')
-        rev = Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user2, body='no',
+                              rating=5)
+        rev = Review.objects.create(addon=self.app, user=self.user, body='yes',
+                                    rating=5)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res, data = self._get_url(url)
         self.assertCloseToNow(datetime.strptime(data['modified'], fmt))
@@ -209,43 +214,54 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(data['body'], 'yes')
 
     def test_filter_self(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
-        Review.objects.create(addon=self.app, user=self.user2, body='no')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
+        Review.objects.create(addon=self.app, user=self.user2, body='no',
+                              rating=5)
         self._get_filter(user=self.user.pk)
 
     def test_filter_mine(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
-        Review.objects.create(addon=self.app, user=self.user2, body='no')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
+        Review.objects.create(addon=self.app, user=self.user2, body='no',
+                              rating=5)
         self._get_filter(user='mine')
 
     def test_filter_mine_anonymous(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         self._get_filter(user='mine', client=self.anon, expected_status=403)
 
     def test_filter_by_app_slug(self):
         self.app2 = app_factory()
-        Review.objects.create(addon=self.app2, user=self.user, body='no')
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app2, user=self.user, body='no',
+                              rating=5)
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_filter(app=self.app.app_slug)
         eq_(data['info']['slug'], self.app.app_slug)
         eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_filter_by_app_pk(self):
         self.app2 = app_factory()
-        Review.objects.create(addon=self.app2, user=self.user, body='no')
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app2, user=self.user, body='no',
+                              rating=5)
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_filter(app=self.app.pk)
         eq_(data['info']['slug'], self.app.app_slug)
         eq_(data['info']['current_version'], self.app.current_version.version)
 
     def test_filter_by_invalid_app(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         self._get_filter(app='wrongslug', expected_status=404)
         self._get_filter(app=2465478, expected_status=404)
 
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_nonpublic_app(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         self.app.update(status=mkt.STATUS_PENDING)
         get_region_mock.return_value = mkt.regions.USA
         res, data = self._get_filter(
@@ -254,20 +270,23 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                             'in region "us".')
 
     def test_filter_by_nonpublic_app_admin(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         self.grant_permission(self.user, 'Apps:Edit')
         self.app.update(status=mkt.STATUS_PENDING)
         self._get_filter(app=self.app.app_slug)
 
     def test_filter_by_nonpublic_app_owner(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.app.update(status=mkt.STATUS_PENDING)
         self._get_filter(app=self.app.app_slug)
 
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_app_excluded_in_region(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BRA.id)
         get_region_mock.return_value = mkt.regions.BRA
@@ -278,7 +297,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_app_excluded_in_region_admin(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         self.grant_permission(self.user, 'Apps:Edit')
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BRA.id)
@@ -287,7 +307,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_app_excluded_in_region_owner(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         AddonUser.objects.create(user=self.user, addon=self.app)
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BRA.id)
@@ -295,7 +316,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         self._get_filter(app=self.app.app_slug)
 
     def test_anonymous_get_list_without_app(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, client=self.anon)
         eq_(res.status_code, 200)
         assert 'user' not in data
@@ -329,26 +351,30 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         assert res.json['user']['can_rate']
 
     def test_isowner_true(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         data = json.loads(res.content)
         eq_(data['objects'][0]['is_author'], True)
 
     def test_isowner_false(self):
-        Review.objects.create(addon=self.app, user=self.user2, body='yes')
+        Review.objects.create(addon=self.app, user=self.user2, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         data = json.loads(res.content)
         eq_(data['objects'][0]['is_author'], False)
 
     def test_isowner_anonymous(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug,
                                   client=self.anon)
         data = json.loads(res.content)
         self.assertNotIn('is_author', data['objects'][0])
 
     def test_already_rated(self):
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
         data = json.loads(res.content)
         assert data['user']['can_rate']
@@ -356,7 +382,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_already_rated_version(self):
         self.app.update(is_packaged=True)
-        Review.objects.create(addon=self.app, user=self.user, body='yes')
+        Review.objects.create(addon=self.app, user=self.user, body='yes',
+                              rating=4)
         version_factory(addon=self.app, version='3.0')
         self.app.update_version()
         res, data = self._get_url(self.list_url, app=self.app.app_slug)
@@ -366,10 +393,10 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_no_lang_filter(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              lang='en')
+                              lang='en', rating=5)
         other_user = UserProfile.objects.exclude(pk=self.user.pk)[0]
         Review.objects.create(addon=self.app, user=other_user, body='yes',
-                              lang='pt')
+                              lang='pt', rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug,
                                   client=self.anon, lang='pt')
         eq_(res.status_code, 200)
@@ -378,10 +405,10 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_lang_filter(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              lang='en')
+                              lang='en', rating=5)
         other_user = UserProfile.objects.exclude(pk=self.user.pk)[0]
         Review.objects.create(addon=self.app, user=other_user, body='yes',
-                              lang='pt')
+                              lang='pt', rating=5)
         res, data = self._get_url(self.list_url, app=self.app.app_slug,
                                   client=self.anon, lang='pt',
                                   match_lang='1')
@@ -541,7 +568,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_update(self):
         rev = Review.objects.create(addon=self.app, user=self.user,
-                                    body='abcd', ip_address='1.2.3.4')
+                                    body='abcd', ip_address='1.2.3.4',
+                                    rating=5)
         new_data = {
             'body': 'Totally rocking the free web.',
             'rating': 4,
@@ -562,7 +590,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_update_admin(self):
         self.grant_permission(self.user, 'Apps:Edit')
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='abcd', ip_address='1.2.3.4')
+                                    body='abcd', ip_address='1.2.3.4',
+                                    rating=5)
         new_data = {
             'body': 'Edited by admin',
             'rating': 1,
@@ -603,7 +632,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_update_comment_not_mine(self):
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='yes')
+                                    body='yes', rating=4)
         res = self.client.put(reverse('ratings-detail', kwargs={'pk': rev.pk}),
                               json.dumps({'body': 'no', 'rating': 1}))
         eq_(res.status_code, 403)
@@ -613,7 +642,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_delete_app_mine(self):
         AddonUser.objects.filter(addon=self.app).update(user=self.user)
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='yes')
+                                    body='yes', rating=5)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res = self.client.delete(url)
         eq_(res.status_code, 204)
@@ -622,7 +651,8 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(ActivityLog.objects.filter(action=log_review_id).count(), 1)
 
     def test_delete_comment_mine(self):
-        rev = Review.objects.create(addon=self.app, user=self.user, body='yes')
+        rev = Review.objects.create(addon=self.app, user=self.user, body='yes',
+                                    rating=1)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res = self.client.delete(url)
         eq_(res.status_code, 204)
@@ -633,7 +663,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_delete_addons_admin(self):
         self.grant_permission(self.user, 'Apps:Edit')
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='yes')
+                                    body='yes', rating=1)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res = self.client.delete(url)
         eq_(res.status_code, 204)
@@ -644,7 +674,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
     def test_delete_users_admin(self):
         self.grant_permission(self.user, 'Users:Edit')
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='yes')
+                                    body='yes', rating=5)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res = self.client.delete(url)
         eq_(res.status_code, 204)
@@ -654,7 +684,7 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
 
     def test_delete_not_mine(self):
         rev = Review.objects.create(addon=self.app, user=self.user2,
-                                    body='yes')
+                                    body='yes', rating=3)
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         self.app.authors.clear()
         res = self.client.delete(url)
@@ -761,7 +791,7 @@ class TestReviewFlagResource(RestOAuth, mkt.site.tests.MktPaths):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=31337)
-        self.rating = Review.objects.create(addon=self.app,
+        self.rating = Review.objects.create(addon=self.app, rating=5,
                                             user=self.user2, body='yes')
         self.flag_url = reverse('ratings-flag', kwargs={'pk': self.rating.pk})
 
