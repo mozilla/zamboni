@@ -36,8 +36,9 @@ class DailyGamesFilter(BaseFilterBackend):
         # tag. Results will have to be pulled out of S.execute().aggregations
         # rather than S.execute().hits.
         top_hits = aggs.TopHits(size=1)
-        a = aggs.A('terms', field='tags', aggs={'first_game': top_hits})
+        a = aggs.A('terms', field='tags', size=4,
+                   aggs={'first_game': top_hits})
 
-        queryset = queryset.query(game_query)
+        queryset = queryset.query(game_query)[0:4]
         queryset.aggs.bucket('top_hits', a)  # Not chainable.
         return queryset
