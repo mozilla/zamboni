@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
@@ -10,7 +12,7 @@ import commonware
 from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
-from elasticsearch_dsl import query, Search
+from elasticsearch_dsl import query, Search, SF
 from PIL import Image
 from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError, PermissionDenied
@@ -38,6 +40,8 @@ from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
 from mkt.site.utils import HttpResponseSendFile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
+from mkt.websites.indexers import WebsiteIndexer
+from mkt.websites.serializers import ESWebsiteSerializer
 
 from .authorization import FeedAuthorization
 from .fields import DataURLImageField, ImageURLField
@@ -811,6 +815,36 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
 
         return sq.filter(es_filter.Bool(should=filters))[0:len(feed_items)]
 
+    def _get_daily_seed(self):
+        """
+        Returns an integer used as a changes-daily random seed for ES search
+        results that should change daily.
+
+        Split out to make it mockable.
+        """
+        return int(datetime.now().strftime('%Y%m%d'))
+
+    def get_featured_websites(self):
+        """
+        Get up to 11 featured MOWs for the request's region. If less than 11
+        are available, make up the difference with globally-featured MOWs.
+        """
+        REGION_TAG = 'featured-website-%s' % self.request.REGION.slug
+        region_filter = es_filter.Term(tags=REGION_TAG)
+        GLOBAL_TAG = 'featured-website'
+        global_filter = es_filter.Term(tags=GLOBAL_TAG)
+        mow_query = query.Q(
+            'function_score',
+            filter=es_filter.Bool(should=[region_filter, global_filter]),
+            functions=[
+                SF('random_score', seed=self._get_daily_seed()),
+                es_function.BoostFactor(value=100.0, filter=region_filter)
+            ],
+        )
+        es = Search(using=WebsiteIndexer.get_es())[:11]
+        results = es.query(mow_query).execute().hits
+        return ESWebsiteSerializer(results, many=True).data
+
     def _check_empty_feed(self, items, rest_of_world):
         """
         Return -1 if feed is empty and we are already falling back to RoW.
@@ -912,8 +946,14 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             return self._handle_empty_feed(feed_ok, region, request, args,
                                            kwargs)
 
-        return response.Response({'meta': meta, 'objects': feed_items},
-                                 status=status.HTTP_200_OK)
+        with statsd.timer('mkt.feed.view.feed_website_query'):
+            websites = self.get_featured_websites()
+
+        return response.Response({
+            'meta': meta,
+            'objects': feed_items,
+            'websites': websites
+        }, status=status.HTTP_200_OK)
 
     def get(self, request, *args, **kwargs):
         with statsd.timer('mkt.feed.view'):
