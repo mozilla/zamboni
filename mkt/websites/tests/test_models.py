@@ -1,7 +1,6 @@
 import mock
 from nose.tools import eq_
 
-from lib.utils import static_url
 from mkt.constants.applications import (DEVICE_DESKTOP, DEVICE_GAIA,
                                         DEVICE_TYPE_LIST)
 from mkt.constants.regions import URY, USA
@@ -22,22 +21,21 @@ class TestWebsiteModel(TestCase):
 
     def test_get_icon_url(self):
         website = Website(pk=1, icon_type='image/png')
-        expected = (static_url('WEBSITE_ICON_URL')
-                    % ('0', website.pk, 32, 'never'))
+        expected = ('/0/%d-32.png?modified=never' % (website.pk,))
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 
     def test_get_icon_url_big_pk(self):
         website = Website(pk=9876, icon_type='image/png')
-        expected = (static_url('WEBSITE_ICON_URL')
-                    % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        expected = ('/%s/%d-32.png?modified=never' % (str(website.pk)[:-3],
+                                                      website.pk))
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 
     def test_get_icon_url_bigger_pk(self):
         website = Website(pk=98765432, icon_type='image/png')
-        expected = (static_url('WEBSITE_ICON_URL')
-                    % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        expected = ('/%s/%d-32.png?modified=never' % (str(website.pk)[:-3],
+                                                      website.pk))
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 

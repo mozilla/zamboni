@@ -165,14 +165,20 @@ class TestSignApps(mkt.site.tests.TestCase):
     def test_all(self, sign_mock):
         v1 = self.app.current_version
         v2 = self.app2.current_version
-        call_command('sign_apps')
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]
+        with storage.open(file1.file_path, 'w') as f:
+            f.write('.')
+        with storage.open(file2.file_path, 'w') as f:
+            f.write('.')
+        call_command('sign_apps')
         eq_(len(sign_mock.mock_calls), 2)
-        eq_(sign_mock.mock_calls[0][1][:2],
-            (file1.file_path, file1.signed_file_path))
-        eq_(sign_mock.mock_calls[1][1][:2],
-            (file2.file_path, file2.signed_file_path))
+        eq_(os.path.join('/', sign_mock.mock_calls[0][1][0].name),
+            file1.file_path)
+        eq_(sign_mock.mock_calls[0][1][1], file1.signed_file_path)
+        eq_(os.path.join('/', sign_mock.mock_calls[1][1][0].name),
+            file2.file_path)
+        eq_(sign_mock.mock_calls[1][1][1], file2.signed_file_path)
 
 
 @mock.patch('os.stat')

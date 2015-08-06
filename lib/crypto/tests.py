@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 import shutil
 import zipfile
 
@@ -15,6 +14,7 @@ from requests import Timeout
 import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
+from mkt.site.storage_utils import copy_to_storage
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
@@ -100,12 +100,7 @@ class PackagedApp(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
         # Make sure the source file is there.
         if not storage.exists(self.file.file_path):
-            try:
-                # We don't care if these dirs exist.
-                os.makedirs(os.path.dirname(self.file.file_path))
-            except OSError:
-                pass
-            shutil.copyfile(self.packaged_app_path('mozball.zip'),
+            copy_to_storage(self.packaged_app_path('mozball.zip'),
                             self.file.file_path)
 
 
@@ -128,7 +123,8 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_already_exists(self, sign_app):
-        storage.open(self.file.signed_file_path, 'w')
+        with storage.open(self.file.signed_file_path, 'w') as f:
+            f.write('.')
         assert packaged.sign(self.version.pk)
         assert not sign_app.called
 
@@ -199,6 +195,7 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
         post().status_code = 200
         post().content = '{"zigbert.rsa": ""}'
         packaged.sign(self.version.pk)
-        zf = zipfile.ZipFile(self.file.signed_file_path, mode='r')
+        zf = zipfile.ZipFile(storage.open(self.file.signed_file_path),
+                             mode='r')
         ids_data = zf.read('META-INF/ids.json')
         eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])

@@ -245,11 +245,11 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.file_path)
         eq_(LangPack.objects.count(), 1)
         expected_args = (
-            upload.path,
             langpack.file_path,
             json.dumps({'id': langpack.pk, 'version': langpack.file_version})
         )
-        sign_app_mock.assert_called_once_with(*expected_args)
+        eq_(os.path.join('/', sign_app_mock.call_args[0][0].name), upload.path)
+        eq_(sign_app_mock.call_args[0][1:], expected_args)
 
     @patch('mkt.langpacks.models.get_cached_minifest')
     @patch('mkt.langpacks.models.sign_app')
@@ -263,11 +263,11 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         ok_(langpack.file_path)
         eq_(LangPack.objects.count(), 1)
         expected_args = (
-            upload.path,
             langpack.file_path,
             json.dumps({'id': langpack.pk, 'version': langpack.file_version})
         )
-        sign_app_mock.assert_called_once_with(*expected_args)
+        eq_(os.path.join('/', sign_app_mock.call_args[0][0].name), upload.path)
+        eq_(sign_app_mock.call_args[0][1:], expected_args)
 
     @patch('mkt.langpacks.models.sign_app')
     def test_upload_sign_error(self, sign_app_mock):

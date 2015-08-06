@@ -32,7 +32,7 @@ class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
                   'name', 'payment_required', 'premium_type', 'previews',
                   'price', 'price_locale', 'privacy_policy', 'public_stats',
                   'release_notes', 'ratings', 'slug', 'status',
-                  'support_email', 'support_url', 'upsell', 'user']
+                  'support_email', 'support_url', 'tags', 'upsell', 'user']
         exclude = []
 
 
@@ -79,7 +79,8 @@ class FireplaceWebsiteSerializer(BaseFireplaceWebsiteSerializer,
                                  WebsiteSerializer):
     class Meta(WebsiteSerializer.Meta):
         fields = ['categories', 'description', 'device_types', 'icons', 'id',
-                  'mobile_url', 'name', 'short_name', 'slug', 'url']
+                  'keywords', 'mobile_url', 'name', 'short_name', 'slug',
+                  'url']
 
 
 class FireplaceESWebsiteSerializer(BaseFireplaceWebsiteSerializer,

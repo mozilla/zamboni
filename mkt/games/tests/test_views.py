@@ -106,6 +106,7 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
                 return (Website.objects.get(id=game['id'])
                                        .keywords.all()[0].tag_text)
 
+        eq_(len(res.json['objects']), 4)
         self.assertSetEqual(map(get_tag, res.json['objects']), GAME_CATEGORIES)
 
     def test_consistent_randomization(self):
