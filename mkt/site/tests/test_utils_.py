@@ -11,10 +11,11 @@ from django.core.validators import ValidationError
 import mock
 from nose.tools import assert_raises, eq_, raises
 
+from mkt.site.storage_utils import LocalFileStorage
 from mkt.site.tests import TestCase
-from mkt.site.utils import (cache_ns_key, escape_all, ImageCheck,
-                            LocalFileStorage, resize_image, rm_local_tmp_dir,
-                            slug_validator, slugify, walkfiles)
+from mkt.site.utils import (ImageCheck, cache_ns_key, escape_all, resize_image,
+                            rm_local_tmp_dir, slug_validator, slugify,
+                            walkfiles)
 
 
 def get_image_path(name):
