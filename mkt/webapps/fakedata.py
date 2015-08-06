@@ -9,6 +9,7 @@ import random
 import tempfile
 from zipfile import ZipFile, ZIP_DEFLATED
 
+from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
 import pydenticon
@@ -252,7 +253,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
         pass
     if package_file:
         return app
-    with open(fp, 'w') as out:
+    with storage.open(fp, 'w') as out:
         generate_app_package(app, out, apptype,
                              permissions, namedict,
                              version=app.latest_version)

@@ -239,7 +239,7 @@ def extract_zip(source):
     """Extracts the zip file."""
     tempdir = tempfile.mkdtemp()
 
-    zip = SafeUnzip(source)
+    zip = SafeUnzip(storage.open(source))
     try:
         if zip.is_valid():
             zip.extract_to_dest(tempdir)
