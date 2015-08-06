@@ -605,7 +605,7 @@ CSS_MEDIA_DEFAULT = 'all'
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'mkt.site.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'mkt.site.storage_utils.LocalFileStorage'
 
 # If you need to get a payment provider, which one will be the default?
 DEFAULT_PAYMENT_PROVIDER = 'reference'

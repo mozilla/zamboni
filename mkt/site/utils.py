@@ -1,6 +1,5 @@
 import codecs
 import datetime
-import errno
 import itertools
 import operator
 import os
@@ -17,7 +16,6 @@ from django.conf import settings
 from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
-from django.core.files.storage import FileSystemStorage
 from django.core.serializers import json
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
@@ -371,58 +369,6 @@ def escape_all(v, linkify=True):
     elif isinstance(v, Translation):
         v = jinja2.escape(smart_unicode(v.localized_string))
     return v
-
-
-class LocalFileStorage(FileSystemStorage):
-    """Local storage to an unregulated absolute file path.
-
-    Unregulated means that, unlike the default file storage, you can write to
-    any path on the system if you have access.
-
-    Unlike Django's default FileSystemStorage, this class behaves more like a
-    "cloud" storage system. Specifically, you never have to write defensive
-    code that prepares for leading directory paths to exist.
-    """
-
-    def __init__(self, base_url=None):
-        super(LocalFileStorage, self).__init__(location='/', base_url=base_url)
-
-    def delete(self, name):
-        """Delete a file or empty directory path.
-
-        Unlike the default file system storage this will also delete an empty
-        directory path. This behavior is more in line with other storage
-        systems like S3.
-        """
-        full_path = self.path(name)
-        if os.path.isdir(full_path):
-            os.rmdir(full_path)
-        else:
-            return super(LocalFileStorage, self).delete(name)
-
-    def _open(self, name, mode='rb'):
-        # Create directories if the file is opened for writing.
-        if any([flag in mode for flag in ['+', 'a', 'w', 'x']]):
-            parent = os.path.dirname(self.path(name))
-            try:
-                # Try/except to prevent race condition raising "File exists".
-                os.makedirs(parent)
-            except OSError as e:
-                if e.errno == errno.EEXIST and os.path.isdir(parent):
-                    pass
-                else:
-                    raise
-        return super(LocalFileStorage, self)._open(name, mode=mode)
-
-    def path(self, name):
-        """Actual file system path to name without any safety checks."""
-        return os.path.normpath(os.path.join(self.location,
-                                             self._smart_path(name)))
-
-    def _smart_path(self, string):
-        if os.path.supports_unicode_filenames:
-            return smart_unicode(string)
-        return smart_str(string)
 
 
 def strip_bom(data):

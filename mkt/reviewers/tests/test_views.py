@@ -1982,7 +1982,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         return data
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.site.utils.LocalFileStorage.save')
+    @mock.patch('mkt.site.storage_utils.LocalFileStorage.save')
     def test_no_attachments(self, save_mock):
         """ Test addition of no attachment """
         data = self._attachment_form_data(num=0, action='public')
