@@ -101,6 +101,13 @@ def manifest(request):
     return _inner_view(request)
 
 
+def serve_contribute(request):
+    filename = os.path.join(settings.ROOT, 'contribute.json')
+    with open(filename) as fd:
+        content = fd.read()
+    return HttpResponse(content, content_type='application/json')
+
+
 def package_minifest(request):
     """Serve mini manifest ("minifest") for Yulelog's packaged `.zip`."""
     if not settings.MARKETPLACE_GUID:

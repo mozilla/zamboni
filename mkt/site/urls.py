@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.views.decorators.cache import never_cache
 
@@ -23,8 +22,7 @@ services_patterns = patterns(
 urlpatterns = patterns(
     '',
     url('^robots.txt$', views.robots, name='robots.txt'),
-    url(r'^(?P<path>contribute\.json)$', 'django.views.static.serve',
-        {'document_root': settings.ROOT}),
+    url(r'^contribute\.json$', views.serve_contribute),
 
     # Replace opensearch.xml from amo with a specific one
     # for Marketplace.

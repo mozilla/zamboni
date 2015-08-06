@@ -1,9 +1,13 @@
 import mock
 from nose.tools import eq_
 
+from django.core.files.storage import default_storage as storage
+
+from lib.utils import static_url
 from mkt.constants.applications import (DEVICE_DESKTOP, DEVICE_GAIA,
                                         DEVICE_TYPE_LIST)
 from mkt.constants.regions import URY, USA
+from mkt.site.storage_utils import storage_is_remote
 from mkt.site.tests import TestCase
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -21,21 +25,34 @@ class TestWebsiteModel(TestCase):
 
     def test_get_icon_url(self):
         website = Website(pk=1, icon_type='image/png')
-        expected = ('/0/%d-32.png?modified=never' % (website.pk,))
+        if not storage_is_remote():
+            expected = (static_url('WEBSITE_ICON_URL')
+                        % ('0', website.pk, 32, 'never'))
+        else:
+            path = '%s/%s-%s.png' % (website.get_icon_dir(), website.pk, 32)
+            expected = '%s?modified=never' % storage.url(path)
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 
     def test_get_icon_url_big_pk(self):
         website = Website(pk=9876, icon_type='image/png')
-        expected = ('/%s/%d-32.png?modified=never' % (str(website.pk)[:-3],
-                                                      website.pk))
+        if not storage_is_remote():
+            expected = (static_url('WEBSITE_ICON_URL')
+                        % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        else:
+            path = '%s/%s-%s.png' % (website.get_icon_dir(), website.pk, 32)
+            expected = '%s?modified=never' % storage.url(path)
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 
     def test_get_icon_url_bigger_pk(self):
         website = Website(pk=98765432, icon_type='image/png')
-        expected = ('/%s/%d-32.png?modified=never' % (str(website.pk)[:-3],
-                                                      website.pk))
+        if not storage_is_remote():
+            expected = (static_url('WEBSITE_ICON_URL')
+                        % (str(website.pk)[:-3], website.pk, 32, 'never'))
+        else:
+            path = '%s/%s-%s.png' % (website.get_icon_dir(), website.pk, 32)
+            expected = '%s?modified=never' % storage.url(path)
         assert website.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, website.get_icon_url(32)))
 
