@@ -740,7 +740,7 @@ class TestUpload(BaseUploadTest):
 
     def test_fileupload_ascii_post(self):
         path = self.packaged_app_path('mozball.zip')
-        data = storage.open(os.path.join(settings.ROOT, path))
+        data = open(os.path.join(settings.ROOT, path))
         replaced = path.replace('o', u'ö')
         r = self.client.post(self.url, {'upload':
                                         SimpleUploadedFile(replaced,
