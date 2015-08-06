@@ -38,11 +38,14 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
         content = [app_factory(), website_factory(), app_factory(),
                    website_factory()]
         # Add tags.
+        game_tag = Tag.objects.get_or_create(tag_text='featured-game')[0]
         for i, cat in enumerate(GAME_CATEGORIES):
             tag = Tag.objects.get_or_create(tag_text=GAME_CATEGORIES[i])[0]
             if hasattr(content[i], 'tags'):
+                content[i].tags.add(game_tag)
                 content[i].tags.add(tag)
             else:
+                content[i].keywords.add(game_tag)
                 content[i].keywords.add(tag)
 
         self.reindex(Webapp)
@@ -100,11 +103,13 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
 
         def get_tag(game):
             if game['doc_type'] == 'webapp':
-                return (Webapp.objects.get(id=game['id'])
-                                      .tags.all()[0].tag_text)
+                return (Webapp.objects.get(id=game['id']).tags
+                              .filter(tag_text__in=GAME_CATEGORIES)[0]
+                              .tag_text)
             elif game['doc_type'] == 'website':
-                return (Website.objects.get(id=game['id'])
-                                       .keywords.all()[0].tag_text)
+                return (Website.objects.get(id=game['id']).keywords
+                               .filter(tag_text__in=GAME_CATEGORIES)[0]
+                               .tag_text)
 
         eq_(len(res.json['objects']), 4)
         self.assertSetEqual(map(get_tag, res.json['objects']), GAME_CATEGORIES)

@@ -1,6 +1,7 @@
 from django.core.paginator import Page
 
 from mkt.api.paginator import ESPaginator
+from mkt.games.constants import GAME_CATEGORIES
 
 
 class ESGameAggregationPaginator(ESPaginator):
@@ -22,6 +23,8 @@ class ESGameAggregationPaginator(ESPaginator):
         """
         Returns a page object.
         """
+        # Don't fetch hits, only care about aggregations.
+        self.object_list._params['search_type'] = 'count'
         result = self.object_list.execute()
 
         # Pull the results from the aggregations.
@@ -29,7 +32,11 @@ class ESGameAggregationPaginator(ESPaginator):
         aggs = result.aggregations
         buckets = aggs['top_hits']['buckets']
         for bucket in buckets:
-            hits.append(bucket['first_game']['hits']['hits'][0])
+            # Have to check the bucket key since other tags could get
+            # aggregated (e.g., `featured-game`) when we only care about game
+            # categories.
+            if bucket['key'] in GAME_CATEGORIES:
+                hits.append(bucket['first_game']['hits']['hits'][0])
 
         page = Page(hits, number, self)
 
