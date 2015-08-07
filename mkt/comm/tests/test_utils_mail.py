@@ -98,15 +98,15 @@ class TestSendMailComm(TestCase, CommTestMixin):
                              'escalation_vip')
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
-    def test_escalation_reserved_perms_app(self, email):
-        self._create(comm.ESCALATION_RESERVED_PERMS_APP)
+    def test_escalation_prerelease_app(self, email):
+        self._create(comm.ESCALATION_PRERELEASE_APP)
         eq_(email.call_count, 1)
 
         recipients = self._recipients(email)
         assert self.senior_reviewer.email in recipients
 
         self._check_template(email.call_args,
-                             'escalation_reserved_perms_app')
+                             'escalation_prerelease_app')
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
     def test_reviewer_comment(self, email):

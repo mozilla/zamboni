@@ -13,7 +13,7 @@ from tower import ugettext as _
 import mkt
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
-from mkt.constants import APP_PREVIEW_MINIMUMS, comm, RESERVED_PERMISSIONS
+from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.utils import ImageCheck
 from mkt.users.models import UserProfile
@@ -144,16 +144,16 @@ def handle_vip(addon, version, user):
         mkt.LOG.ESCALATION_VIP_APP)
 
 
-def escalate_reserved_permissions(app, validation, version):
-    """Escalate the app if it uses reserved permissions."""
+def escalate_prerelease_permissions(app, validation, version):
+    """Escalate the app if it uses prerelease permissions."""
     # When there are no permissions `validation['permissions']` will be
     # `False` so we should default to an empty list if `get` is falsey.
     app_permissions = validation.get('permissions') or []
-    if any(perm in RESERVED_PERMISSIONS for perm in app_permissions):
+    if any(perm in PRERELEASE_PERMISSIONS for perm in app_permissions):
         nobody = UserProfile.objects.get(email=settings.NOBODY_EMAIL_ADDRESS)
         escalate_app(
-            app, version, nobody, 'App uses reserved permissions',
-            mkt.LOG.ESCALATION_RESERVED_PERMS_APP)
+            app, version, nobody, 'App uses prerelease permissions',
+            mkt.LOG.ESCALATION_PRERELEASE_APP)
 
 
 def prioritize_app(app, user):
