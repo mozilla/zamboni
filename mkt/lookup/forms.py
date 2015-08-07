@@ -82,10 +82,10 @@ class PromoImgForm(happyforms.Form):
     def save(self, obj, commit=True):
         upload_type = 'promo_img'
 
-        if upload_type in self.data:
+        if upload_type in self.cleaned_data:
             errors, upload_hash = check_upload(
-                self.data[upload_type], upload_type,
-                self.data[upload_type].content_type)
+                self.cleaned_data[upload_type], upload_type,
+                self.cleaned_data[upload_type].content_type)
 
             if errors:
                 raise forms.ValidationError(errors)
