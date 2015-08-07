@@ -5,11 +5,14 @@ import unittest
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 from nose.tools import eq_
 
-from mkt.site.storage_utils import (walk_storage, copy_stored_file,
-                                    move_stored_file)
+from mkt.site.storage_utils import (copy_stored_file, get_private_storage,
+                                    get_public_storage, move_stored_file,
+                                    storage_is_remote, walk_storage)
+from mkt.site.tests import TestCase
 from mkt.site.utils import rm_local_tmp_dir
 
 
@@ -108,3 +111,29 @@ class TestFileOps(unittest.TestCase):
         move_stored_file(src, dest, chunk_size=1)
         eq_(self.contents(dest), '<contents>')
         eq_(storage.exists(src), False)
+
+
+class TestStorageClasses(TestCase):
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    def test_get_storage_remote(self):
+        assert storage_is_remote()
+        eq_(get_private_storage().__class__.__name__, 'S3BotoPrivateStorage')
+        eq_(get_public_storage().__class__.__name__, 'S3BotoPublicStorage')
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_get_storage_local(self):
+        assert not storage_is_remote()
+        eq_(get_private_storage().__class__.__name__, 'LocalFileStorage')
+        eq_(get_public_storage().__class__.__name__, 'LocalFileStorage')
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_simple_lazy_object(self):
+        from mkt.site.storage_utils import private_storage, public_storage
+
+        assert not storage_is_remote()
+        eq_(private_storage.__class__.__name__, 'LocalFileStorage')
+        eq_(public_storage.__class__.__name__, 'LocalFileStorage')

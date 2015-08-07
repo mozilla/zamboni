@@ -1,6 +1,6 @@
 import mkt.site.tests
 from mkt.developers.utils import check_upload
-from mkt.site.utils import LocalFileStorage
+from mkt.site.storage_utils import LocalFileStorage
 from mkt.site.tests.test_utils_ import get_image_path
 
 
