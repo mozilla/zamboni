@@ -49,8 +49,8 @@ from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import (copy_stored_file, copy_to_storage,
                                     storage_is_remote)
-from mkt.site.utils import (cached_property, get_icon_url, slugify, smart_path,
-                            sorted_groupby)
+from mkt.site.utils import (cached_property, get_icon_url, get_promo_img_url,
+                            slugify, smart_path, sorted_groupby)
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)
@@ -441,6 +441,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
     icon_hash = models.CharField(max_length=8, blank=True, null=True)
+    promo_img_hash = models.CharField(max_length=8, blank=True, null=True)
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
@@ -968,6 +969,17 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def get_icon_url(self, size):
         return get_icon_url(static_url('ADDON_ICON_URL'), self, size)
+
+    def get_promo_img_dir(self):
+        return os.path.join(settings.WEBAPP_PROMO_IMG_PATH,
+                            str(self.id / 1000))
+
+    def get_promo_img_url(self, size):
+        if not self.promo_img_hash:
+            return ''
+        return get_promo_img_url(static_url('WEBAPP_PROMO_IMG_URL'), self,
+                                 size,
+                                 default_format='webapp-promo-img-{size}.png')
 
     @staticmethod
     def transformer(apps):

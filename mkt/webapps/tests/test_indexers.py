@@ -72,6 +72,7 @@ class TestWebappIndexer(TestCase):
         eq_(doc['name_translations'],
             [{'lang': to_language(l), 'string': s}
              for l, s in obj.translations[obj.name_id]])
+        eq_(doc['promo_img_hash'], obj.promo_img_hash)
         eq_(doc['status'], obj.status)
         eq_(doc['trending'], 0)
         eq_(doc['is_escalated'], False)

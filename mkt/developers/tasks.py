@@ -176,6 +176,34 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
         log.error("Error resizing icon: %s; %s" % (e, dst))
 
 
+@post_request_task
+@set_modified_on
+def resize_promo_imgs(src, dst, sizes, locally=False, **kw):
+    """Resizes webapp/website promo imgs."""
+    log.info('[1@None] Resizing promo imgs: %s' % dst)
+    try:
+        for s in sizes:
+            size_dst = '%s-%s.png' % (dst, s)
+            # Crop only to the width, keeping the aspect ratio.
+            resize_image(src, size_dst, (s, 0),
+                         remove_src=False, locally=locally)
+            pngcrush_image.delay(size_dst, **kw)
+
+        if locally:
+            with open(src) as fd:
+                promo_img_hash = _hash_file(fd)
+            os.remove(src)
+        else:
+            with storage.open(src) as fd:
+                promo_img_hash = _hash_file(fd)
+            storage.delete(src)
+
+        log.info('Promo img hash resizing completed for: %s' % dst)
+        return {'promo_img_hash': promo_img_hash}
+    except Exception, e:
+        log.error("Error resizing promo img hash: %s; %s" % (e, dst))
+
+
 @task
 @set_modified_on
 def pngcrush_image(src, hash_field='image_hash', **kw):

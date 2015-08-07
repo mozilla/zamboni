@@ -321,6 +321,9 @@ PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 
+WEBAPP_PROMO_IMG_PATH = UPLOADS_PATH + '/webapp_promo_imgs'
+WEBSITE_PROMO_IMG_PATH = UPLOADS_PATH + '/website_promo_imgs'
+
 #  File path for storing XPI/JAR files (or any files associated with an
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
@@ -373,6 +376,11 @@ ICONS_DEFAULT_URL = 'img/hub'
 # Directory must match ADDON_ICONS_PATH and WEBSITE_ICONS_PATH, respectively.
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 WEBSITE_ICON_URL = 'img/uploads/website_icons/%s/%s-%s.png?modified=%s'
+
+WEBAPP_PROMO_IMG_URL = (
+    'img/uploads/webapp_promo_imgs/%s/%s-%s.png?modified=%s')
+WEBSITE_PROMO_IMG_URL = (
+    'img/uploads/website_promo_imgs/%s/%s-%s.png?modified=%s')
 
 LOCAL_MIRROR_URL = 'https://marketplace.cdn.mozilla.net/_files'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'

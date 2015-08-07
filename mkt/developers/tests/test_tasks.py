@@ -108,6 +108,51 @@ def _uploader(resize_size, final_size):
     assert not storage.exists(src.name)
 
 
+def test_resize_promo_img():
+    """Resize promo image."""
+    resize_size = [1920]
+    final_size = [(1920, 1080), (640, 360)]
+
+    _promo_img_uploader(resize_size, final_size)
+
+
+def _promo_img_uploader(resize_size, final_size):
+    img = get_image_path('game_1920.jpg')
+    original_size = (1920, 1080)
+
+    for rsize, fsize in zip(resize_size, final_size):
+        dest_name = os.path.join(settings.WEBAPP_PROMO_IMG_PATH, '1234')
+        src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.jpg',
+                                          delete=False)
+        # resize_icon removes the original, copy it to a tempfile and use that.
+        shutil.copyfile(img, src.name)
+        # Sanity check.
+        with storage.open(src.name) as fp:
+            src_image = Image.open(fp)
+            src_image.load()
+        eq_(src_image.size, original_size)
+
+        val = tasks.resize_promo_imgs(src.name, dest_name, resize_size,
+                                      locally=True)
+        eq_(val, {'promo_img_hash': '33759cf2'})
+        with storage.open('%s-%s.png' % (dest_name, rsize)) as fp:
+            dest_image = Image.open(fp)
+            dest_image.load()
+
+        # Assert that the width is always identical.
+        eq_(dest_image.size[0], fsize[0])
+        # Assert that the height can be a wee bit fuzzy.
+        assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
+            'Got width %d, expected %d' % (
+                fsize[1], dest_image.size[1]))
+
+        if os.path.exists(dest_image.filename):
+            os.remove(dest_image.filename)
+        assert not os.path.exists(dest_image.filename)
+
+    assert not os.path.exists(src.name)
+
+
 class TestPngcrushImage(mkt.site.tests.TestCase):
 
     def setUp(self):

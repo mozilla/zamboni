@@ -207,6 +207,13 @@ def remove_icons(destination):
             storage.delete(filename)
 
 
+def remove_promo_imgs(destination):
+    for size in mkt.PROMO_IMG_SIZES:
+        filename = '%s-%s.png' % (destination, size)
+        if storage.exists(filename):
+            storage.delete(filename)
+
+
 class ImageCheck(object):
 
     def __init__(self, image):
@@ -576,6 +583,25 @@ def file_factory(**kw):
     return f
 
 
+def website_factory(**kw):
+    from mkt.websites.models import Website
+
+    name = kw.pop('name',
+                  u'Website %s' % unicode(uuid.uuid4()).replace('-', ''))
+    when = _get_created(kw.pop('created', None))
+
+    kwargs = {
+        'name': name,
+        'short_name': name[0:10],
+        'created': when,
+        'last_updated': when,
+        'url': 'ngokevin.com',
+    }
+    kwargs.update(kw)
+
+    return Website.objects.create(**kwargs)
+
+
 def version_factory(file_kw={}, **kw):
     from mkt.versions.models import Version
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
@@ -637,3 +663,24 @@ def get_icon_url(base_url_format, obj, size,
         # [1] is the whole ID, [2] is the directory.
         split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
         return base_url_format % (split_id.group(2) or 0, obj.pk, size, suffix)
+
+
+def get_promo_img_url(base_url_format, obj, size,
+                      default_format='default-{size}.png'):
+    """
+    Returns either the promo img URL for a given (`obj`, `size`).
+    base_url_format` is a string that will be used for url formatting, see
+    WEBAPP_PROMO_IMG_URL for an example.
+
+    If no promo img type if set on the `obj`, then the url for the
+    appropriate default icon for the given `size` will be returned.
+
+    `obj` needs to implement `promo_img_hash` properties for this function to
+    work.
+    """
+    # [1] is the whole ID, [2] is the directory.
+    split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))
+    # If we don't have the promo_img_hash set to a dummy string ("never"),
+    # when the promo_img is eventually changed, promo_img_hash will be updated.
+    suffix = obj.promo_img_hash or 'never'
+    return base_url_format % (split_id.group(2) or 0, obj.pk, size, suffix)

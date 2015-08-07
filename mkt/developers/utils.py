@@ -15,6 +15,7 @@ import mkt
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm
+from mkt.constants.base import PROMO_IMG_MINIMUMS
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.utils import ImageCheck
 from mkt.users.models import UserProfile
@@ -35,9 +36,10 @@ def check_upload(file_obj, upload_type, content_type):
     upload_hash = ''
     is_icon = upload_type == 'icon'
     is_preview = upload_type == 'preview'
+    is_promo_img = upload_type == 'promo_img'
     is_video = content_type in mkt.VIDEO_TYPES
 
-    if not any([is_icon, is_preview, is_video]):
+    if not any([is_icon, is_preview, is_promo_img, is_video]):
         raise ValueError('Unknown upload type.')
 
     # By pushing the type onto the instance hash, we can easily see what
@@ -90,7 +92,8 @@ def check_upload(file_obj, upload_type, content_type):
                 _('Please use files smaller than %s.') %
                 filesizeformat(max_size))
 
-    if (is_icon or is_preview) and not is_video and not do_not_open:
+    if ((is_icon or is_preview or is_promo_img) and not
+            is_video and not do_not_open):
         file_obj.seek(0)
         try:
             im = Image.open(file_obj)
@@ -100,6 +103,8 @@ def check_upload(file_obj, upload_type, content_type):
                 errors.append(_('Icon could not be opened.'))
             elif is_preview:
                 errors.append(_('Preview could not be opened.'))
+            elif is_promo_img:
+                errors.append(_('Promo image could not be opened.'))
         else:
             size_x, size_y = im.size
             if is_icon:
@@ -121,6 +126,14 @@ def check_upload(file_obj, upload_type, content_type):
                         # in px.
                         _('App previews must be at least {0}px by {1}px or '
                           '{1}px by {0}px.').format(*APP_PREVIEW_MINIMUMS))
+
+            elif is_promo_img:
+                if (size_x < PROMO_IMG_MINIMUMS[0] or
+                        size_y < PROMO_IMG_MINIMUMS[1]):
+                    # Currently, not l10n'ed because for curator eyes only.
+                    errors.append(
+                        'Promo images must be at least {0}px by {1}px'
+                        .format(*PROMO_IMG_MINIMUMS))
 
     return errors, upload_hash
 

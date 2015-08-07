@@ -64,6 +64,8 @@ def static_url(url):
         'PRODUCT_ICON_URL': settings.MEDIA_URL,
         'WEBAPPS_RECEIPT_URL': settings.SITE_URL,
         'WEBSITE_ICON_URL': settings.STATIC_URL,
+        'WEBAPP_PROMO_IMG_URL': settings.STATIC_URL,
+        'WEBSITE_PROMO_IMG_URL': settings.STATIC_URL,
     }
 
     value = getattr(settings, url)

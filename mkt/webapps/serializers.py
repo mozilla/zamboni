@@ -102,6 +102,7 @@ class AppSerializer(serializers.ModelSerializer):
     price_locale = serializers.SerializerMethodField('get_price_locale')
     privacy_policy = LargeTextField(view_name='app-privacy-policy-detail',
                                     required=False)
+    promo_imgs = serializers.SerializerMethodField('get_promo_imgs')
     public_stats = serializers.BooleanField(read_only=True)
     ratings = serializers.SerializerMethodField('get_ratings_aggregates')
     regions = RegionSerializer(read_only=True, source='get_regions', many=True)
@@ -133,10 +134,10 @@ class AppSerializer(serializers.ModelSerializer):
             'is_packaged', 'last_updated', 'manifest_url', 'name',
             'package_path', 'payment_account', 'payment_required',
             'premium_type', 'previews', 'price', 'price_locale',
-            'privacy_policy', 'public_stats', 'release_notes', 'ratings',
-            'regions', 'resource_uri', 'slug', 'status', 'support_email',
-            'support_url', 'supported_locales', 'tags', 'upsell', 'upsold',
-            'user', 'versions'
+            'privacy_policy', 'promo_imgs', 'public_stats', 'release_notes',
+            'ratings', 'regions', 'resource_uri', 'slug', 'status',
+            'support_email', 'support_url', 'supported_locales', 'tags',
+            'upsell', 'upsold', 'user', 'versions'
         ]
 
     def _get_region_id(self):
@@ -205,6 +206,10 @@ class AppSerializer(serializers.ModelSerializer):
         if app.has_premium():
             return app.get_price_locale(region=self._get_region_id())
         return None
+
+    def get_promo_imgs(self, obj):
+        return dict([(promo_img_size, obj.get_promo_img_url(promo_img_size))
+                     for promo_img_size in mkt.PROMO_IMG_SIZES])
 
     def get_ratings_aggregates(self, app):
         return {'average': app.average_rating,
@@ -429,8 +434,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         self._attach_fields(
             obj, data, ('created', 'default_locale', 'guid', 'icon_hash',
                         'is_escalated', 'is_offline', 'last_updated',
-                        'manifest_url', 'modified', 'premium_type', 'regions',
-                        'reviewed', 'status'))
+                        'manifest_url', 'modified', 'premium_type',
+                        'promo_img_hash', 'regions', 'reviewed', 'status'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(
