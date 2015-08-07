@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-07 19:52+0000\n"
+"PO-Revision-Date: 2015-08-07 20:11+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438977148.0\n"
+"X-POOTLE-MTIME: 1438978274.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -2551,31 +2551,31 @@ msgstr "E-mail de suport"
 
 #: mkt/developers/forms_payments.py:385
 msgid "Address"
-msgstr ""
+msgstr "Adresă"
 
 #: mkt/developers/forms_payments.py:387
 msgid "Address 2"
-msgstr ""
+msgstr "Adresă 2"
 
 #: mkt/developers/forms_payments.py:389
 msgid "City/Municipality"
-msgstr ""
+msgstr "Oraș/Localitate"
 
 #: mkt/developers/forms_payments.py:391
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Stat/Provincie/Regiune"
 
 #: mkt/developers/forms_payments.py:393
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "Cod poșțal"
 
 #: mkt/developers/forms_payments.py:395
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Prefer să fiu plătit în"
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
