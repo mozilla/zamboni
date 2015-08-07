@@ -49,7 +49,7 @@ from mkt.developers.tasks import (
     fetch_manifest, file_validator, run_validator,
     save_test_plan, validator)
 from mkt.developers.utils import (
-    check_upload, escalate_reserved_permissions, handle_vip)
+    check_upload, escalate_prerelease_permissions, handle_vip)
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
@@ -222,8 +222,8 @@ def status(request, addon_id, addon):
             res = run_validator(ver.all_files[0].file_path)
             validation_result = json.loads(res)
 
-            # Escalate the version if it uses reserved permissions.
-            escalate_reserved_permissions(addon, validation_result, ver)
+            # Escalate the version if it uses prerelease permissions.
+            escalate_prerelease_permissions(addon, validation_result, ver)
 
             # Set all detected features as True and save them.
             keys = ['has_%s' % feature.lower()
