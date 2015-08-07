@@ -376,6 +376,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'device_types': [],
             'file_size': self.app.file_size,
             'homepage': None,
+            'hosted_url': 'http://ngokevin.com',
             'icons': dict((size, self.app.get_icon_url(size))
                           for size in (32, 48, 64, 128)),
             'id': 337141,
