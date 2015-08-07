@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-06-17 03:22+0000\n"
-"Last-Translator: Siddharth <sid_shanker@hotmail.com>\n"
+"PO-Revision-Date: 2015-08-07 08:16+0000\n"
+"Last-Translator: umesh <umeshsnwl@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,23 +12,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434511353.0\n"
+"X-POOTLE-MTIME: 1438935375.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "दुरुपयोग की रिपोर्ट जिनमें छानबीन की ज़रूरत है: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
-msgstr ""
+msgstr "अभी के लिए छोड़ें"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "सभी रिपोर्ट्स को पढ़ा हुआ मार्क कर दो"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "पुनः समीक्षा के लिए चिह्नित करें"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -308,9 +308,8 @@ msgid "Christmas Island"
 msgstr "क्रिसमस द्वीप"
 
 #: mkt/constants/bango.py:66 mkt/constants/regions.py:109
-#, fuzzy
 msgid "Cocos (Keeling) Islands"
-msgstr "कोकोस (कीलिंग) द्वीप"
+msgstr "कोकोस (कीलिंग) द्वीपसमूह"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
@@ -686,7 +685,7 @@ msgstr "मारटीनीक्यू"
 
 #: mkt/constants/bango.py:160 mkt/constants/regions.py:220
 msgid "Mauritania"
-msgstr ""
+msgstr "मॉरीतानिया"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:223
 msgid "Mauritius"
@@ -826,7 +825,7 @@ msgstr "फिलीपिन्स्"
 
 #: mkt/constants/bango.py:195 mkt/constants/regions.py:242
 msgid "Pitcairn"
-msgstr ""
+msgstr "पिटकैरन"
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
@@ -870,7 +869,7 @@ msgstr "सेंट हेलेना"
 
 #: mkt/constants/bango.py:206 mkt/constants/regions.py:189
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "सन्त किट्स और नेविस"
 
 #: mkt/constants/bango.py:207 mkt/constants/regions.py:196
 msgid "Saint Lucia"
@@ -966,15 +965,15 @@ msgstr "स्पेन"
 
 #: mkt/constants/bango.py:230 mkt/constants/regions.py:198
 msgid "Sri Lanka"
-msgstr ""
+msgstr "श्री लंका"
 
 #: mkt/constants/bango.py:231 mkt/constants/regions.py:259
 msgid "Sudan"
-msgstr ""
+msgstr "सूडान"
 
 #: mkt/constants/bango.py:232 mkt/constants/regions.py:274
 msgid "Suriname"
-msgstr ""
+msgstr "सूरीनाम"
 
 #: mkt/constants/bango.py:233 mkt/constants/regions.py:264
 msgid "Svalbard and Jan Mayen"
@@ -1014,7 +1013,7 @@ msgstr "थाईलैंड"
 
 #: mkt/constants/bango.py:242 mkt/constants/regions.py:289
 msgid "Timor-Leste"
-msgstr ""
+msgstr "तिमोर-लेस्त"
 
 #: mkt/constants/bango.py:243 mkt/constants/regions.py:284
 msgid "Togo"
@@ -1090,11 +1089,11 @@ msgstr "वानुअतु"
 
 #: mkt/constants/bango.py:261
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "वेनेज़ुएला, बोलिवारीयन गणराज्य "
 
 #: mkt/constants/bango.py:262 mkt/constants/regions.py:308
 msgid "Viet Nam"
-msgstr ""
+msgstr "वियतनाम"
 
 #: mkt/constants/bango.py:263 mkt/constants/regions.py:306
 msgid "Virgin Islands, British"
@@ -1161,7 +1160,6 @@ msgid "Unlisted"
 msgstr "असूचीबद्ध"
 
 #: mkt/constants/base.py:42
-#, fuzzy
 msgid "Obsolete"
 msgstr "अप्रचलित"
 
@@ -1180,7 +1178,7 @@ msgstr "दर्शक"
 #: mkt/constants/base.py:135 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
-msgstr ""
+msgstr "समर्थन"
 
 #: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:34
 #: mkt/submit/templates/submit/manifest.html:30
@@ -1189,7 +1187,7 @@ msgstr "मुक्त"
 
 #: mkt/constants/base.py:161 mkt/search/forms.py:36
 msgid "Premium"
-msgstr ""
+msgstr "प्रिमियम"
 
 #: mkt/constants/base.py:162
 msgid "Premium with in-app payments"
@@ -1197,59 +1195,59 @@ msgstr "प्रीमियम-एप्प भुगतान में"
 
 #: mkt/constants/base.py:163
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "एप्प-में भुगतानों के साथ मुफ्त"
 
 #: mkt/constants/base.py:164
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "मैं इन-एप्प भुगतान के लिए में अपना सीस्टम उपयोग करूँगा."
 
 #: mkt/constants/base.py:223
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "मैनुअल समीक्षक अंक"
 
 #: mkt/constants/base.py:224
 msgid "Web App Review"
-msgstr ""
+msgstr "वेब एप्प समीक्षा"
 
 #: mkt/constants/base.py:225
 msgid "Packaged App Review"
-msgstr ""
+msgstr "पैकेज्ड एप्प की समीक्षा"
 
 #: mkt/constants/base.py:226
 msgid "Privileged App Review"
-msgstr ""
+msgstr "विशेषाधिकृत एप्प की समीक्षा"
 
 #: mkt/constants/base.py:227
 msgid "Web App Re-review"
-msgstr ""
+msgstr "वेब एप्प की समीक्षा"
 
 #: mkt/constants/base.py:228
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "अपडेटेड पैकेज्ड एप्प की समीक्षा"
 
 #: mkt/constants/base.py:229
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "अपडेटेड विशेषाधिकृत एप्प की समीक्षा"
 
 #: mkt/constants/base.py:230
 msgid "Moderated App Review"
-msgstr ""
+msgstr "संचालित एप्प की समीक्षा"
 
 #: mkt/constants/base.py:231
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "App का समीक्षा मॉडरेशन वापस किया गया है"
 
 #: mkt/constants/base.py:232
 msgid "Tarako App Review"
-msgstr ""
+msgstr "टराको एप्प की समीक्षा"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "अनुप्रयोग दुर्व्यवहार रिपोर्ट पढ़ें"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "वेबसाइट दुर्व्यवहार रिपोर्ट पढ़ें"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1277,7 +1275,7 @@ msgstr "स्तर 6"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "किताबें तथा काॅमिक्स"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1293,11 +1291,11 @@ msgstr "मनोरंजन"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "खाना तथा पीना"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "बच्चे"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1309,18 +1307,17 @@ msgstr "स्वास्थ्य और फिटनेस"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "हास्य"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "इंटरनेट"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
 msgstr "लाइफस्टाइल"
 
 #: mkt/constants/categories.py:16
-#, fuzzy
 msgid "Maps & Navigation"
 msgstr "मैप्स और नेविगेशन"
 
@@ -1330,11 +1327,11 @@ msgstr "म्यूज़िक"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "समाचार"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "निजीकरण"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1350,7 +1347,7 @@ msgstr "संदर्भ"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "विज्ञान और प्रौद्योगिकी"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1370,11 +1367,11 @@ msgstr "यात्रा"
 
 #: mkt/constants/categories.py:28
 msgid "Utilities"
-msgstr ""
+msgstr "यूटिलिटीज"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "मौसम"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -1402,11 +1399,11 @@ msgstr "निजी समीक्षक टिप्पणी"
 
 #: mkt/constants/comm.py:51
 msgid "App resubmission"
-msgstr ""
+msgstr "एप्प पुनः प्रस्तुतीकरण"
 
 #: mkt/constants/comm.py:53 mkt/site/log.py:426
 msgid "Escalation cleared"
-msgstr ""
+msgstr "संवर्धित को मंजूरी दे दी"
 
 #: mkt/constants/comm.py:54
 msgid "Escalated due to High Abuse Reports"
@@ -1418,11 +1415,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:56 mkt/site/log.py:474
 msgid "Re-review cleared"
-msgstr ""
+msgstr "पुनः समीक्षा को मंजूरी दे दी"
 
 #: mkt/constants/comm.py:57
 msgid "App submission notes"
-msgstr ""
+msgstr "एप्प प्रस्तुतीकरण नोट्स"
 
 #: mkt/constants/comm.py:58
 msgid "Developer comment"
@@ -1434,7 +1431,7 @@ msgstr "समीक्षक द्वारा डिवाइस (s) बद�
 
 #: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "आवश्यकता (ऒ) को समीक्षक द्वारा बदला गया है"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
@@ -1486,11 +1483,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:73
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "लोक समीक्षक की टिप्पणी"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "दुरुपयोग की गई रिपोर्ट की जांच"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -1510,7 +1507,7 @@ msgstr ""
 
 #: mkt/constants/features.py:33
 msgid "Web Payment"
-msgstr ""
+msgstr "वेब भुगतान"
 
 #: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
@@ -1518,7 +1515,7 @@ msgstr ""
 
 #: mkt/constants/features.py:38
 msgid "Web Activities"
-msgstr ""
+msgstr "वेब गतिविधिया"
 
 #: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
@@ -1562,7 +1559,7 @@ msgstr ""
 
 #: mkt/constants/features.py:72
 msgid "Device Storage"
-msgstr ""
+msgstr "डिवाइस स्टोरेज"
 
 #: mkt/constants/features.py:73
 msgid "The app requires the Device Storage API to access files on the filesystem."
@@ -1582,7 +1579,7 @@ msgstr ""
 
 #: mkt/constants/features.py:90
 msgid "Idle"
-msgstr ""
+msgstr "बेकार"
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
@@ -1590,7 +1587,7 @@ msgstr ""
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
-msgstr ""
+msgstr "नेटवर्क सूचना"
 
 #: mkt/constants/features.py:97
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
@@ -1598,7 +1595,7 @@ msgstr ""
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
-msgstr ""
+msgstr "नेटवर्क आँकड़े"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
@@ -1606,7 +1603,7 @@ msgstr ""
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
-msgstr ""
+msgstr "निकटता"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -1622,7 +1619,7 @@ msgstr ""
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "स्क्रीन अनुकूलन"
 
 #: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
@@ -1630,7 +1627,7 @@ msgstr ""
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
-msgstr ""
+msgstr "समय/घड़ी"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
@@ -1804,7 +1801,7 @@ msgstr ""
 
 #: mkt/constants/features.py:284
 msgid "Alarms"
-msgstr ""
+msgstr "एलार्म"
 
 #: mkt/constants/features.py:285
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -1812,7 +1809,7 @@ msgstr ""
 
 #: mkt/constants/features.py:292
 msgid "SystemXHR"
-msgstr ""
+msgstr "सिस्टमXHR"
 
 #: mkt/constants/features.py:293
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -1820,7 +1817,7 @@ msgstr ""
 
 #: mkt/constants/features.py:299
 msgid "TCP Sockets"
-msgstr ""
+msgstr " TCP साकेट"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -1828,15 +1825,15 @@ msgstr ""
 
 #: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "तीसरी पार्टी कीबोर्ड समर्थन"
 
 #: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "एप्प को तीसरी पार्टी कीबोर्ड समर्थन के लिेेेए मंच की आवश्यकता हैं"
 
 #: mkt/constants/features.py:311
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "विभिन्न नेटवर्क सूचना"
 
 #: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
@@ -1844,7 +1841,7 @@ msgstr ""
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "मोबाइल ID"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
@@ -1860,23 +1857,23 @@ msgstr ""
 
 #: mkt/constants/features.py:330
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM डिवाइस"
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "एप्प को कम से कम 512MB RAM हैं आवश्यकता हैं."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM डिवाइस"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "एप्प को कम से कम 1GB RAM की आवश्यकता हैं."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
@@ -1888,7 +1885,7 @@ msgstr ""
 
 #: mkt/constants/payments.py:41
 msgid "Other"
-msgstr ""
+msgstr " दूसरा"
 
 #: mkt/constants/payments.py:42 mkt/constants/payments.py:49
 msgid "Purchase"
@@ -2239,7 +2236,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:647
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "कृपया अपनी गोपनीयता नीति का वर्णन करें"
 
 #: mkt/developers/forms.py:668
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
@@ -2251,11 +2248,13 @@ msgstr ""
 
 #: mkt/developers/forms.py:752
 msgid "Your comments"
-msgstr ""
+msgstr "आपकी टिप्पणियाँ"
 
 #: mkt/developers/forms.py:779
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>प्रकाशित</b>: बाज़ार में सभी को दृश्य और खोज परीणामों तथा सूची पृष्ठों "
+"में शामिल"
 
 #: mkt/developers/forms.py:783
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
@@ -2263,7 +2262,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:799
 msgid "App Visibility:"
-msgstr ""
+msgstr "एप्प दृश्यता :"
 
 #: mkt/developers/forms.py:801
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -4178,7 +4177,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:9
 msgid "Some HTML supported."
-msgstr ""
+msgstr "कुछ HTML समर्थित।"
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
@@ -4186,11 +4185,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81 mkt/lookup/templates/lookup/website_edit.html:79
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "एक या दो श्रेणियाँ चुनें।"
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr ""
+msgstr "श्रेणियाँ:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -5052,7 +5051,7 @@ msgstr ""
 
 #: mkt/files/helpers.py:155
 msgid "That file no longer exists."
-msgstr ""
+msgstr "वह फाइल अब मौजूद नहीं है।"
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:164
