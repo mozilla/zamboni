@@ -77,6 +77,8 @@ REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.png'
+WEBAPP_PROMO_IMG_PATH = UPLOADS_PATH + '/webapp_promo_imgs'
+WEBSITE_PROMO_IMG_PATH = UPLOADS_PATH + '/website_promo_imgs'
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 

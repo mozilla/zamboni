@@ -3,6 +3,7 @@ import os
 from django import forms
 from django.conf import settings
 
+import commonware.log
 import happyforms
 from tower import ugettext_lazy as _lazy
 
@@ -12,6 +13,9 @@ from mkt.developers.tasks import resize_promo_imgs
 from mkt.developers.utils import check_upload
 from mkt.site.utils import remove_promo_imgs
 from mkt.webapps.models import Webapp
+
+
+log = commonware.log.getLogger('z.lookup')
 
 
 STATUS_CHOICES = []
@@ -83,11 +87,13 @@ class PromoImgForm(happyforms.Form):
         upload_type = 'promo_img'
 
         if upload_type in self.cleaned_data:
+            log.info('Got promo img for %s' % obj.id)
             errors, upload_hash = check_upload(
                 self.cleaned_data[upload_type], upload_type,
                 self.cleaned_data[upload_type].content_type)
 
             if errors:
+                log.info('Promo img errors for %s: %s' % (obj.id, errors))
                 raise forms.ValidationError(errors)
 
             upload_path = os.path.join(settings.TMP_PATH, upload_type,
@@ -99,3 +105,5 @@ class PromoImgForm(happyforms.Form):
             remove_promo_imgs(destination)
             resize_promo_imgs(upload_path, destination,
                               mkt.PROMO_IMG_SIZES, set_modified_on=[obj])
+
+            log.info('Finished processing promo img for %s' % obj.id)
