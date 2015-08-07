@@ -97,5 +97,5 @@ class PromoImgForm(happyforms.Form):
             destination = os.path.join(dirname, '%s' % obj.id)
 
             remove_promo_imgs(destination)
-            resize_promo_imgs.delay(upload_path, destination,
-                                    mkt.PROMO_IMG_SIZES, set_modified_on=[obj])
+            resize_promo_imgs(upload_path, destination,
+                              mkt.PROMO_IMG_SIZES, set_modified_on=[obj])
