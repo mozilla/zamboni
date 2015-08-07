@@ -1,5 +1,7 @@
 {% extends 'lookup/base.html' %}
 
+{% from 'lookup/includes/promo_img_form.html' import promo_img_upload %}
+
 {% block breadcrumbs %}
 {% endblock %}
 
@@ -109,6 +111,8 @@
           </ul>
         </dd>
       </dl>
+
+      {{ promo_img_upload(app, promo_img_form, csrf()) }}
     </section>
 
     <section class="column-c">
@@ -176,6 +180,5 @@
         </table>
       </section>
     {% endif %}
-
   </section>
 {% endblock %}

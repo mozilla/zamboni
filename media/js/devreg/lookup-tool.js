@@ -4,6 +4,21 @@ require(['prefetchManifest']);
 (function() {
     var notification = require('notification');
 
+    $('#id_promo_img').on('change', function() {
+        var preview = document.querySelector('#promo-img-preview');
+        var file = this.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = '';
+        }
+    });
+
     $('.change-status button').click(_pd(function() {
         var button = $(this);
         var select = button.prev('select');

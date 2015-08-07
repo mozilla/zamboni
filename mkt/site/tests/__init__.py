@@ -42,7 +42,7 @@ from mkt.files.helpers import copyfileobj
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
-from mkt.site.utils import app_factory
+from mkt.site.utils import app_factory, website_factory  # NOQA
 from mkt.translations.hold import clean_translations
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile

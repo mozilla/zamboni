@@ -355,16 +355,6 @@ APP_FEATURES = OrderedDict([
     })
 ])
 
-RESERVED_PERMISSIONS = [
-    # These permissions are either mozilla-specific or intended to only be used
-    # by a very limited set of apps.
-    'moz-attention',
-    'moz-firefox-accounts',
-    'moz-audio-channel-telephony',
-    'moz-audio-channel-ringer',
-    'external-app',
-]
-
 
 class FeaturesBitField(object):
     """

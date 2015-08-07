@@ -87,6 +87,7 @@ class WebsiteIndexer(BaseIndexer):
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
                     'preferred_regions': {'type': 'short'},
+                    'promo_img_hash': cls.string_not_indexed(),
                     'reviewed': {'format': 'dateOptionalTime', 'type': 'date',
                                  'doc_values': True},
                     'short_name': {'type': 'string',
@@ -134,7 +135,7 @@ class WebsiteIndexer(BaseIndexer):
 
         attrs = ('created', 'default_locale', 'id', 'icon_hash', 'icon_type',
                  'is_disabled', 'last_updated', 'mobile_url', 'modified',
-                 'status', 'url')
+                 'promo_img_hash', 'status', 'url')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['category'] = obj.categories or []

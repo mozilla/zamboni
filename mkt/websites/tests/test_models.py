@@ -1,5 +1,5 @@
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 from django.core.files.storage import default_storage as storage
 
@@ -75,6 +75,17 @@ class TestWebsiteModel(TestCase):
         website.preferred_regions = [URY.id, USA.id]
         eq_([r.slug for r in website.get_preferred_regions()],
             [USA.slug, URY.slug])
+
+    def test_get_promo_img_url(self):
+        website = Website(pk=337141)
+        eq_(website.get_promo_img_url('640'), '')
+        eq_(website.get_promo_img_url('1920'), '')
+
+        website.promo_img_hash = 'chicken'
+        ok_('website_promo_imgs/337/337141-640.png?modified=chicken' in
+            website.get_promo_img_url('640'))
+        ok_('website_promo_imgs/337/337141-1920.png?modified=chicken' in
+            website.get_promo_img_url('1920'))
 
 
 class TestWebsiteESIndexation(TestCase):

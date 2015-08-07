@@ -1,7 +1,6 @@
 import hashlib
 import os
-import stat
-import time
+from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
@@ -11,7 +10,7 @@ import commonware.log
 import cronjobs
 
 from mkt.files.models import FileValidation
-from mkt.site.storage_utils import walk_storage
+from mkt.site.storage_utils import storage_is_remote, walk_storage
 
 
 log = commonware.log.getLogger('z.cron')
@@ -21,15 +20,17 @@ log = commonware.log.getLogger('z.cron')
 def cleanup_extracted_file():
     log.info('Removing extracted files for file viewer.')
     root = os.path.join(settings.TMP_PATH, 'file_viewer')
-    for path in storage.listdir(root):
+    # Local storage uses local time for file modification. S3 uses UTC time.
+    now = datetime.utcnow if storage_is_remote() else datetime.now
+    for path in storage.listdir(root)[0]:
         full = os.path.join(root, path)
-        age = time.time() - os.stat(full)[stat.ST_ATIME]
-        if (age) > (60 * 60):
+        age = now() - storage.modified_time(os.path.join(full, 'manifest.webapp'))
+        if age.total_seconds() > (60 * 60):
             log.debug('Removing extracted files: %s, %dsecs old.' %
-                      (full, age))
+                      (full, age.total_seconds()))
             for subroot, dirs, files in walk_storage(full):
                 for f in files:
-                    storage.delete(os.path.join(subroot, files))
+                    storage.delete(os.path.join(subroot, f))
             # Nuke out the file and diff caches when the file gets removed.
             id = os.path.basename(path)
             try:

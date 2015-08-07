@@ -15,7 +15,7 @@ from mkt.api.fields import IntegerRangeField
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.base import LISTED_STATUSES, STATUS_CHOICES, STATUS_NULL
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.site.utils import get_icon_url
+from mkt.site.utils import get_icon_url, get_promo_img_url
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
@@ -156,6 +156,9 @@ class Website(ModelBase):
     # Icon cache-busting hash.
     icon_hash = models.CharField(max_length=8, blank=True)
 
+    # Promo image cache-busting hash.
+    promo_img_hash = models.CharField(max_length=8, blank=True, null=True)
+
     # Date & time the entry was last updated.
     last_updated = models.DateTimeField(db_index=True, auto_now_add=True)
 
@@ -207,6 +210,17 @@ class Website(ModelBase):
             icon=DEFAULT_ICONS[self.pk % len(DEFAULT_ICONS)])
         return get_icon_url(static_url('WEBSITE_ICON_URL'), self, size,
                             default_format=icon_name)
+
+    def get_promo_img_dir(self):
+        return os.path.join(settings.WEBSITE_PROMO_IMG_PATH,
+                            str(self.id / 1000))
+
+    def get_promo_img_url(self, size):
+        if not self.promo_img_hash:
+            return ''
+        return get_promo_img_url(static_url('WEBSITE_PROMO_IMG_URL'), self,
+                                 size,
+                                 default_format='website-promo-{size}.png')
 
     def get_url_path(self):
         return reverse('website.detail', kwargs={'pk': self.pk})
