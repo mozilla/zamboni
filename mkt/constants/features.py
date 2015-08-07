@@ -355,13 +355,6 @@ APP_FEATURES = OrderedDict([
     })
 ])
 
-PRERELEASE_PERMISSIONS = [
-    'moz-attention',
-    'moz-firefox-accounts',
-    'moz-audio-channel-telephony',
-    'moz-audio-channel-ringer',
-]
-
 
 class FeaturesBitField(object):
     """

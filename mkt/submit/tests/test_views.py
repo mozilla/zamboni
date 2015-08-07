@@ -521,6 +521,14 @@ class TestEscalatePrereleaseWebApp(BasePackagedAppTest):
         self.post()
         eq_(EscalationQueue.objects.count(), 1)
 
+    def test_prerelease_permissions_get_escalated_external_app(self):
+        validation = json.loads(self.upload.validation)
+        validation['permissions'] = ['moz-external-app']
+        self.upload.update(validation=json.dumps(validation))
+        eq_(EscalationQueue.objects.count(), 0)
+        self.post()
+        eq_(EscalationQueue.objects.count(), 1)
+
     def test_normal_permissions_dont_get_escalated(self):
         validation = json.loads(self.upload.validation)
         validation['permissions'] = ['contacts']
