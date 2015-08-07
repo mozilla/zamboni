@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-07 20:11+0000\n"
+"PO-Revision-Date: 2015-08-07 20:14+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438978274.0\n"
+"X-POOTLE-MTIME: 1438978483.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -69,7 +69,7 @@ msgstr "Tip de notă invalid."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr "Versiunea % nu există"
+msgstr "Versiunea %s nu există"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
