@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-08 19:09+0000\n"
+"PO-Revision-Date: 2015-08-08 19:46+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439060996.0\n"
+"X-POOTLE-MTIME: 1439063192.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1433,11 +1433,11 @@ msgstr "Comentariu dezvoltator"
 
 #: mkt/constants/comm.py:59
 msgid "Device(s) changed by reviewer"
-msgstr "Dispozitiv(ele) schimbate de recenzent"
+msgstr "Dispozitive schimbate de recenzent"
 
 #: mkt/constants/comm.py:60
 msgid "Requirement(s) changed by reviewer"
-msgstr "Cerința(ele) schimbate de recenzent"
+msgstr "Cerințe schimbate de recenzent"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Manifest Change"
@@ -1541,7 +1541,7 @@ msgstr "Senzor lumină ambientală"
 #: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr ""
-"Aplicația necesită un senzor de lumină ambientală (API `ondevicelight`)"
+"Aplicația necesită un senzor de lumină ambientală (API `ondevicelight`)."
 
 #: mkt/constants/features.py:50
 msgid "Archive"
@@ -1776,7 +1776,7 @@ msgid ""
 "`window.persistentStorage`)."
 msgstr ""
 "Aplicația necesită platforma pentru a permite creșterea limitelor de stocare "
-"persistentă peste cele permise în mod normal unei aplicații  "
+"persistentă peste cele permise în mod normal unei aplicații "
 "(`window.StorageInfo` sau `window.persistentStorage`)."
 
 #: mkt/constants/features.py:217
@@ -2329,7 +2329,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:338 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
-msgstr "Regiune(i) invalide selectate."
+msgstr "Regiuni invalide selectate."
 
 #: mkt/developers/forms.py:393 mkt/webapps/models.py:1317
 msgid "You must upload at least one screenshot or video."
@@ -2440,7 +2440,7 @@ msgstr "Faceți aplicația disponibilă în majoritatea regiunilor"
 
 #: mkt/developers/forms.py:858
 msgid "Choose where my app is made available"
-msgstr "Alegeți unde doriți să să fie disponibilă aplicația"
+msgstr "Alegeți unde doriți să fie disponibilă aplicația"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:93 mkt/websites/forms.py:23
@@ -2524,10 +2524,10 @@ msgid ""
 "this document is not a commitment to pre-load my "
 "app."
 msgstr ""
-"Vă rog să considerați aplicația aplicația drept candidat care să fie "
-"pre-încărcată pe un dispozitiv Firefox OS. Sunt de acord cu termenii și "
-"condițiile de mai sus. De asemenea, înțeleg că acest document nu este un "
-"angajament ca aplicația mea fie pre-încărcată."
+"Vă rog să considerați aplicația drept candidat care să fie pre-încărcată pe "
+"un dispozitiv Firefox OS. Sunt de acord cu termenii și condițiile de mai "
+"sus. De asemenea, înțeleg că acest document nu este un angajament ca "
+"aplicația mea fie pre-încărcată."
 
 #: mkt/developers/forms.py:1193
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -3365,7 +3365,7 @@ msgstr "Membrii echipei"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr "Doar proprietarul aplicației poate edita pagina."
+msgstr "Doar proprietarii aplicației pot edita pagina."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4115,8 +4115,8 @@ msgid ""
 "added."
 msgstr ""
 "Dacă aplicația are o altă pagină web, scrieți adresa aici. Dacă saitul este "
-"localizat în alte limbi, puteți adăuga mai multe adrese adrese specifice "
-"pentru fiecare traducere."
+"localizat în alte limbi, puteți adăuga mai multe adrese specifice pentru "
+"fiecare traducere."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
@@ -5741,7 +5741,7 @@ msgstr "Am nevoie de ajutor cu manifestul aplicației."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr "Cum pot să creez o aplicație instalabilă? "
+msgstr "Cum pot să creez o aplicație instalabilă?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
@@ -5828,7 +5828,7 @@ msgstr "Fișierul este un director."
 
 #: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
-msgstr "S-a produs o eroare în accesare fișierului %s. %s."
+msgstr "S-a produs o eroare în accesarea fișierului %s. %s."
 
 #: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
@@ -6882,8 +6882,8 @@ msgid ""
 "This will send the author(s) - and other thread subscribers - a message. This "
 "will not change the app's status."
 msgstr ""
-"Aceasta va trimite autorilor și persoanelor abonate un mesaj. Aceasta nu va "
-"schimba starea aplicației."
+"Va trimite autorilor și persoanelor abonate un mesaj. Aceasta nu va schimba "
+"starea aplicației."
 
 #: mkt/reviewers/utils.py:409
 msgid "Escalate"
@@ -6943,7 +6943,7 @@ msgid ""
 "resubmit. To only be used in extreme cases."
 msgstr ""
 "Interziceți aplicația pe Marketplace. Asemănător cu butonul Respingere, dar "
-"autorul(ii) nu pot să o repropună. Folosiți doar în cazuri extreme."
+"autorii o pot repropune. Folosiți doar în cazuri extreme."
 
 #: mkt/reviewers/views.py:141
 msgid "New Apps (Under 5 days)"
@@ -8131,7 +8131,7 @@ msgstr "{addon} re-recenzat din cauza noilor dispozitive adăugate."
 
 #: mkt/site/log.py:498
 msgid "Device(s) Added"
-msgstr "Dispozitiv(e) adăugate."
+msgstr "Dispozitive adăugate"
 
 #: mkt/site/log.py:505
 msgid "{addon} device support manually changed by reviewer."
@@ -8139,7 +8139,7 @@ msgstr "{addon} suport dispozitiv schimbat manual de recenzent."
 
 #: mkt/site/log.py:506
 msgid "Device(s) Changed by Reviewer"
-msgstr "Dispozitiv(e) schimbate de recenzent"
+msgstr "Dispozitive schimbate de recenzent"
 
 #: mkt/site/log.py:513
 msgid "{addon} resubmitted for review."
@@ -8365,7 +8365,7 @@ msgstr "Trimestru"
 
 #: mkt/submit/forms.py:32
 msgid "Device(s) changed: {0}"
-msgstr "Dispozitiv(e) schimbate: {0}"
+msgstr "Dispozitive schimbate: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:42
