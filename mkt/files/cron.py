@@ -24,7 +24,8 @@ def cleanup_extracted_file():
     now = datetime.utcnow if storage_is_remote() else datetime.now
     for path in storage.listdir(root)[0]:
         full = os.path.join(root, path)
-        age = now() - storage.modified_time(os.path.join(full, 'manifest.webapp'))
+        age = now() - storage.modified_time(os.path.join(full,
+                                                         'manifest.webapp'))
         if age.total_seconds() > (60 * 60):
             log.debug('Removing extracted files: %s, %dsecs old.' %
                       (full, age.total_seconds()))

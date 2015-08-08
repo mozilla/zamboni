@@ -141,22 +141,16 @@ they affect zamboni.
 
 Django provides commands to create the database and tables needed, and load essential data::
 
-    ./manage.py syncdb
+    ./manage.py migrate
     ./manage.py loaddata init
-    # As we're initializing the db with syncdb we should fake
-    # the running of all the current migrations on first run.
-    schematic migrations/ --fake
 
 Database Migrations
 ~~~~~~~~~~~~~~~~~~
 
-Each incremental change we add to the database is done with a versioned SQL
-(and sometimes Python) file. To keep your local DB fresh and up to date, run
-migrations like this::
+Each incremental change we add to the database is done with Django migrations.
+To keep your local DB fresh and up to date, run migrations like this::
 
-    make update_db
-
-More info on schematic: https://github.com/mozilla/schematic
+    ./manage.py migrate
 
 Loading Test Apps
 ~~~~~~~~~~~~~~~~~~

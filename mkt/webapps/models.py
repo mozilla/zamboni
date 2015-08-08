@@ -148,7 +148,7 @@ def clean_slug(instance, slug_field='app_slug'):
 class AddonDeviceType(ModelBase):
     addon = models.ForeignKey('Webapp')
     device_type = models.PositiveIntegerField(
-        default=mkt.DEVICE_DESKTOP, choices=do_dictsort(mkt.DEVICE_TYPES))
+        default=mkt.DEVICE_DESKTOP.id, choices=do_dictsort(mkt.DEVICE_TYPES))
 
     class Meta:
         db_table = 'addons_devicetypes'
@@ -2759,7 +2759,8 @@ class Geodata(ModelBase):
 # (2) Add a dynamic nominated field to keep track of timestamp for when
 # the developer requested approval for each region.
 for region in mkt.regions.SPECIAL_REGIONS:
-    help_text = _('{region} approval status').format(region=region.name)
+    help_text = _('{region} approval status').format(
+        region=unicode(region.name))
     field = models.PositiveIntegerField(
         help_text=help_text,
         choices=mkt.STATUS_CHOICES.items(),
@@ -2767,7 +2768,8 @@ for region in mkt.regions.SPECIAL_REGIONS:
         default=mkt.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 
-    help_text = _('{region} nomination date').format(region=region.name)
+    help_text = _('{region} nomination date').format(
+        region=unicode(region.name))
     field = models.DateTimeField(help_text=help_text, null=True)
     field.contribute_to_class(Geodata, 'region_%s_nominated' % region.slug)
 

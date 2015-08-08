@@ -57,12 +57,6 @@ def compress_assets(arg=''):
 
 
 @task
-def schematic(run_dir=ZAMBONI):
-    with lcd(run_dir):
-        local("../venv/bin/python ../venv/bin/schematic migrations")
-
-
-@task
 def update_info(ref='origin/master'):
     helpers.git_info(ZAMBONI)
     with lcd(ZAMBONI):
@@ -164,7 +158,7 @@ def deploy_jenkins():
     rpm.local_install()
 
     install_path = os.path.join(rpm.install_to, 'zamboni')
-    execute(schematic, install_path)
+    managecmd('migrate')
 
     rpm.remote_install(['web', 'celery'])
 
@@ -182,7 +176,7 @@ def update():
     execute(create_virtualenv, getattr(settings, 'DEV', False))
     execute(update_locales)
     execute(compress_assets, arg='--settings=settings_local_mkt')
-    execute(schematic)
+    managecmd('migrate')
     managecmd('statsd_ping --key=update')
 
 
