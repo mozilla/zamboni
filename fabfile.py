@@ -157,7 +157,6 @@ def deploy_jenkins():
 
     rpm.local_install()
 
-    install_path = os.path.join(rpm.install_to, 'zamboni')
     managecmd('migrate')
 
     rpm.remote_install(['web', 'celery'])
