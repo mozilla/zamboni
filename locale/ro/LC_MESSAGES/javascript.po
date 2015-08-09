@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-08 19:08+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"PO-Revision-Date: 2015-08-09 15:44+0000\n"
+"Last-Translator: CristianSilaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439060909.0\n"
+"X-POOTLE-MTIME: 1439135058.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -21,19 +21,19 @@ msgstr "Tipul de fișier încărcat nu este recunoscut."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr "Ați anulat încărcarea."
+msgstr "Ai anulat încărcarea."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr "Imaginile trebuie să fie PNG sau JPG."
+msgstr "Imaginile trebuie să fie PNG, fie JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Formatul video trebuie să fie WebM."
+msgstr "Videoclipurile trebuie să fie în format WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr "S-a produs o eroare în contactarea serverului."
+msgstr "S-a produs o eroare la contactarea serverului."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -55,7 +55,7 @@ msgstr "{0} din {1}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr "Anulare"
+msgstr "Renunță"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
@@ -75,17 +75,17 @@ msgstr[2] "Aplicația a eșuat validarea cu {0} de erori."
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;și {0} în plus"
-msgstr[1] "&hellip;și {0} în plus"
-msgstr[2] "&hellip;și {0} în plus"
+msgstr[0] "&hellip;și încă {0}"
+msgstr[1] "&hellip;și încă {0}"
+msgstr[2] "&hellip;și încă {0}"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
-msgstr "Vedeți raportul complet de validare"
+msgstr "Vezi raportul complet de validare"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr "În validare {0}"
+msgstr "Se validează {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
@@ -98,14 +98,15 @@ msgstr "Eroare de server neașteptată în timpul validării."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr "Validare terminată {0}"
+msgstr "Validare încheiată {0}"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Aplicația a trecut validările fără nicio eroare și cu {0} avertizare."
 msgstr[1] "Aplicația a trecut validările fără nicio eroare și cu {0} avertizări."
-msgstr[2] "Aplicația a trecut validările fără nicio eroare și cu {0} avertizări."
+msgstr[2] ""
+"Aplicația a trecut validările fără nicio eroare și cu {0} de avertizări."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -117,11 +118,11 @@ msgstr "Nu s-a găsit manifestul la locația specificată."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "Gazda aplicației nu a putut fi găsită."
+msgstr "Gazda aplicației nu a putut fi accesată."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr "Manifestul aplicației nu este parsabil."
+msgstr "Manifestul aplicației nu se poate analiza."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
@@ -133,15 +134,15 @@ msgstr "Aplicația este deja instalată."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr "Eroare internă de server."
+msgstr "Eroare internă a serverului."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Eroare internă de server la instalarea aplicației."
+msgstr "Eroare internă a serverului la instalarea aplicației."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr "Instalare eșuată. Încercați din nou mai târziu."
+msgstr "Instalare eșuată. Te rugăm să reîncerci mai târziu."
 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
@@ -163,11 +164,11 @@ msgstr "Aplicația a trecut validarea fără erori sau mesaje."
 
 #: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
-msgstr "Schimbările au fost salvate"
+msgstr "Schimbări salvate"
 
 #: media/js/devreg/devhub.js:463
 msgid "Enter a new team member's email address"
-msgstr "Introduceți o nouă adresă e-mail pentru membru echipă"
+msgstr "Introduceți o nouă adresă e-mail pentru membrul echipei"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
@@ -175,7 +176,7 @@ msgstr "Manifest reîmprospătat"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr "Nu s-a putut reîmprospăta manifestul. Încercați din nou mai târziu."
+msgstr "Nu s-a putut reîmprospăta manifestul. Te rugăm să reîncerci mai târziu."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -183,7 +184,7 @@ msgstr "A intervenit o eroare la încărcarea fișierului."
 
 #: media/js/devreg/devhub.js:945
 msgid "Learn more"
-msgstr "Aflați mai multe"
+msgstr "Află mai multe"
 
 #: media/js/devreg/devhub.js:949
 msgid "Example"
@@ -191,11 +192,12 @@ msgstr "Exemplu"
 
 #: media/js/devreg/devhub.js:1218
 msgid "Image changes being processed"
-msgstr "Schimbările de imagini în procesare"
+msgstr "Schimbările de imagini în curs de procesare"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Acest videoclip necesită un navigator cu suport pentru open video "
+msgstr ""
+"Acest videoclip necesită un navigator cu suport pentru formate video libere "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -207,7 +209,7 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr "Pornit"
+msgstr "Activat"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
@@ -217,7 +219,7 @@ msgstr "Dezactivat"
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
 "Această funcție este temporar dezactivată în timp ce saitul este în "
-"întreținere. Vă rugăm să reîncercați puțin mai târziu."
+"întreținere. Te rugăm să reîncerci puțin mai târziu."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -226,11 +228,12 @@ msgstr "Elimină această localizare"
 #: media/js/devreg/login.js:126
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
-"Login Persona eșuat. Poate nu aveți un cont sub această adresă de e-mail?"
+"Autentificare Persona eșuată. Poate nu aveți un cont sub această adresă de "
+"e-mail?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Login Persona eșuat. S-a produs o eroare pe server."
+msgstr "Autentificare Persona eșuată. S-a produs o eroare cu serverul."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
@@ -247,7 +250,8 @@ msgstr "Arată toate rezultatele"
 #: media/js/devreg/lookup-tool.js:100
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
-"Peste {0} rezultate găsite, considerați criterii de căutare mai precise."
+"Peste {0} rezultate găsite, ia în considerare criterii de căutare mai "
+"precise."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -271,7 +275,7 @@ msgstr "Fără niciun motiv"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr "OK"
+msgstr "Ok"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -279,11 +283,11 @@ msgstr "Cod bancar Spania"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "Cod sortare Irlanda"
+msgstr "Cod bancar Irlanda"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr "Cod sortare Belgia"
+msgstr "Cod bancar Belgia"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
@@ -291,15 +295,15 @@ msgstr "Cod bancar Spania/Franța/Italia/Olanda"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr "Cod sortare Olanda/SUA"
+msgstr "Cod bancar Olanda/SUA"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr "Cod tranzit Canada/Cod rutare Germania"
+msgstr "Cod bancar canadian (număr de tranzit) sau german (cod de rutare)"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Filială bancară Coreea/Cod bancar Indonezia"
+msgstr "Cod bancar Coreea (codul sucursalei)/Cod bancar Indonezia"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
@@ -307,7 +311,7 @@ msgstr "HEBIC Grecia/Cod bancar Indonezia"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Cod sortare UK/Irlanda sau prefix cont NZ sau cod BSB Australia"
+msgstr "Cod bancar UK/Irlanda sau prefixul contului NZ sau cod BSB Australia"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -347,7 +351,7 @@ msgstr[2] ""
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr "conturi de plăți {appName}:"
+msgstr "Conturi de plată {appName}:"
 
 #: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
@@ -356,7 +360,7 @@ msgstr "Eroare"
 
 #: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr "S-a produs o problemă în contactarea serverului de plăți."
+msgstr "S-a produs o problemă la contactarea serverului de plată."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
@@ -364,23 +368,23 @@ msgstr "Eroare la autentificare"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
-msgstr "Nu aveți momentan un cont de plăți."
+msgstr "Nu ai în prezent niciun cont de plată."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr "Căutare teme pentru <b>{0}</b>"
+msgstr "Caută teme pentru <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "Căutare aplicații pentru <b>{0}</b>"
+msgstr "Caută aplicații pentru <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Căutare suplimente pentru <b>{0}</b>"
+msgstr "Caută suplimente pentru <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr "Ceva nu a funcționat. Vă rugăm reîncercați."
+msgstr "Ceva a mers prost. Te rugăm să reîncerci."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -434,11 +438,11 @@ msgstr[2] "{0} de avertizări"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr "Nu s-a putut completa validarea sau aceasta s-a produs cu erori"
+msgstr "Sarcina de validare nu s-a putut încheia sau s-a încheiat cu erori"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr "Eroare internă de server"
+msgstr "Eroare internă a serverului"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
@@ -450,11 +454,11 @@ msgstr "Achiziționat"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr "Lansare"
+msgstr "Lansează"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr "{name} a vizualizat această pagină mai întâi."
+msgstr "{name} a văzut această pagină primul."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
@@ -466,7 +470,7 @@ msgstr "Chitanța nu a fost verificată de aplicație."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr "{name} a vizualizat această aplicație mai întâi."
+msgstr "{name} a văzut această aplicație primul."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
@@ -482,11 +486,11 @@ msgstr "Note pentru recenzenți"
 
 #: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
-msgstr "Nu s-au găsit note de versiune"
+msgstr "Nu s-au găsit note privind versiunea"
 
 #: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
-msgstr "Selectați o aplicație mai întâi"
+msgstr "Selectează o aplicație mai întâi"
 
 #: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
@@ -502,7 +506,7 @@ msgstr "mai puțin..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr "Menține recenzia / Elimină marcaje"
+msgstr "Păstrează recenzia / Elimină marcaje"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -510,11 +514,11 @@ msgstr "Șterge recenzia"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr "Sari peste asta"
+msgstr "Omite pentru moment"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr "Plată eșuată. Încercați din nou mai târziu."
+msgstr "Plată eșuată. Reîncearcă mai târziu."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
