@@ -22,6 +22,8 @@ from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.site.utils import smart_path
+from mkt.site.storage_utils import private_storage, public_storage
+
 
 log = commonware.log.getLogger('z.files')
 
@@ -75,7 +77,7 @@ class File(OnChangeMixin, ModelBase):
 
         f = cls(version=version)
         f.filename = f.generate_filename(extension=ext or '.zip')
-        f.size = storage.size(upload.path)  # Size in bytes.
+        f.size = private_storage.size(upload.path)  # Size in bytes.
         f.status = mkt.STATUS_PENDING
         # Re-use the file-upload hash if we can, no need to regenerate a new
         # one if we can avoid that.
@@ -103,7 +105,7 @@ class File(OnChangeMixin, ModelBase):
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
         hash = hashlib.sha256()
-        with storage.open(filename or self.file_path, 'rb') as obj:
+        with private_storage.open(filename or self.file_path, 'rb') as obj:
             for chunk in iter(lambda: obj.read(1024), ''):
                 hash.update(chunk)
         return 'sha256:%s' % hash.hexdigest()
@@ -162,12 +164,13 @@ class File(OnChangeMixin, ModelBase):
         return os.path.splitext(self.filename)[-1]
 
     @classmethod
-    def mv(cls, src, dst, msg):
+    def mv(cls, src, dst, msg, src_storage, dest_storage):
         """Move a file from src to dst."""
         try:
-            if storage.exists(src):
+            if src_storage.exists(src):
                 log.info(msg % (src, dst))
-                move_stored_file(src, dst)
+                move_stored_file(src, dst, src_storage=src_storage,
+                                 dest_storage=dest_storage)
         except UnicodeEncodeError:
             log.error('Move Failure: %s %s' % (smart_str(src), smart_str(dst)))
 
@@ -176,13 +179,16 @@ class File(OnChangeMixin, ModelBase):
         if not self.filename:
             return
         src, dst = self.approved_file_path, self.guarded_file_path
-        self.mv(src, dst, 'Moving disabled file: %s => %s')
+        self.mv(src, dst, 'Moving disabled file: %s => %s',
+                src_storage=public_storage, dest_storage=private_storage)
 
     def unhide_disabled_file(self):
+        """Move a public file from the guarded file path."""
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.approved_file_path
-        self.mv(src, dst, 'Moving undisabled file: %s => %s')
+        self.mv(src, dst, 'Moving undisabled file: %s => %s',
+                src_storage=private_storage, dest_storage=public_storage)
 
 
 @use_master
@@ -223,6 +229,8 @@ def cleanup_file(sender, instance, **kw):
             filename = getattr(instance, path, None)
         except models.ObjectDoesNotExist:
             return
+        # FIXME: This needs to check if the file is public or not and choose
+        # the appropriate storage backend.
         if filename and storage.exists(filename):
             log.info('Removing filename: %s for file: %s'
                      % (filename, instance.pk))
@@ -288,7 +296,7 @@ class FileUpload(ModelBase):
         # The buffer might have been read before, so rewind back at the start.
         if hasattr(chunks, 'seek'):
             chunks.seek(0)
-        with storage.open(loc, 'wb') as fd:
+        with private_storage.open(loc, 'wb') as fd:
             for chunk in chunks:
                 hash.update(chunk)
                 fd.write(chunk)

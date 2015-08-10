@@ -11,7 +11,7 @@ import os
 import shutil
 
 from django.conf import settings
-from django.core.files.storage import default_storage, FileSystemStorage
+from django.core.files.storage import FileSystemStorage
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import SimpleLazyObject
 
@@ -20,83 +20,6 @@ from storages.utils import setting
 
 
 DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
-
-
-def storage_is_remote():
-    return (settings.DEFAULT_FILE_STORAGE !=
-            'mkt.site.storage_utils.LocalFileStorage')
-
-
-def walk_storage(path, topdown=True, onerror=None, followlinks=False,
-                 storage=default_storage):
-    """
-    Generate the file names in a stored directory tree by walking the tree
-    top-down.
-
-    For each directory in the tree rooted at the directory top (including top
-    itself), it yields a 3-tuple (dirpath, dirnames, filenames).
-
-    This is intended for use with an implementation of the Django storage API.
-    You can specify something other than the default storage instance with
-    the storage keyword argument.
-    """
-    if not topdown:
-        raise NotImplementedError
-    if onerror:
-        raise NotImplementedError
-    roots = [path]
-    while len(roots):
-        new_roots = []
-        for root in roots:
-            dirs, files = storage.listdir(root)
-            files = [smart_str(f) for f in files]
-            dirs = [smart_str(d) for d in dirs]
-            yield root, dirs, files
-            for dn in dirs:
-                new_roots.append('%s/%s' % (root, dn))
-        roots[:] = new_roots
-
-
-def copy_to_storage(src_path, dest_path, storage=default_storage):
-    """
-    Copy a local path (src_path) to a store path (dest_path).
-    """
-    with open(src_path) as src_f, storage.open(dest_path, 'w') as dest_f:
-        shutil.copyfileobj(src_f, dest_f)
-
-
-def copy_stored_file(src_path, dest_path, storage=default_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
-    """
-    Copy one storage path to another storage path.
-
-    Each path will be managed by the same storage implementation.
-    """
-    if src_path == dest_path:
-        return
-    with storage.open(src_path, 'rb') as src:
-        with storage.open(dest_path, 'wb') as dest:
-            done = False
-            while not done:
-                chunk = src.read(chunk_size)
-                if chunk != '':
-                    dest.write(chunk)
-                else:
-                    done = True
-
-
-def move_stored_file(src_path, dest_path, storage=default_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
-    """
-    Move a storage path to another storage path.
-
-    The source file will be copied to the new path then deleted.
-    This attempts to be compatible with a wide range of storage backends
-    rather than attempt to be optimized for each individual one.
-    """
-    copy_stored_file(src_path, dest_path, storage=storage,
-                     chunk_size=chunk_size)
-    storage.delete(src_path)
 
 
 class LocalFileStorage(FileSystemStorage):
@@ -184,3 +107,84 @@ def get_private_storage():
 local_storage = LocalFileStorage()
 public_storage = SimpleLazyObject(get_public_storage)
 private_storage = SimpleLazyObject(get_private_storage)
+
+
+def storage_is_remote():
+    return (settings.DEFAULT_FILE_STORAGE !=
+            'mkt.site.storage_utils.LocalFileStorage')
+
+
+def walk_storage(path, topdown=True, onerror=None, followlinks=False,
+                 storage=private_storage):
+    """
+    Generate the file names in a stored directory tree by walking the tree
+    top-down.
+
+    For each directory in the tree rooted at the directory top (including top
+    itself), it yields a 3-tuple (dirpath, dirnames, filenames).
+
+    This is intended for use with an implementation of the Django storage API.
+    You can specify something other than the private storage instance with
+    the storage keyword argument.
+
+    """
+    if not topdown:
+        raise NotImplementedError
+    if onerror:
+        raise NotImplementedError
+    roots = [path]
+    while len(roots):
+        new_roots = []
+        for root in roots:
+            dirs, files = storage.listdir(root)
+            files = [smart_str(f) for f in files]
+            dirs = [smart_str(d) for d in dirs]
+            yield root, dirs, files
+            for dn in dirs:
+                new_roots.append('%s/%s' % (root, dn))
+        roots[:] = new_roots
+
+
+def copy_to_storage(src_path, dest_path, storage=private_storage):
+    """
+    Copy a local path (src_path) to a store path (dest_path).
+    """
+    with open(src_path) as src_f, storage.open(dest_path, 'w') as dest_f:
+        shutil.copyfileobj(src_f, dest_f)
+
+
+def copy_stored_file(src_path, dest_path,
+                     src_storage=private_storage, dest_storage=private_storage,
+                     chunk_size=DEFAULT_CHUNK_SIZE):
+    """
+    Copy one storage path to another storage path.
+
+    Each path will be managed by the same storage implementation.
+    """
+    if src_path == dest_path:
+        return
+    with src_storage.open(src_path, 'rb') as src:
+        with dest_storage.open(dest_path, 'wb') as dest:
+            done = False
+            while not done:
+                chunk = src.read(chunk_size)
+                if chunk != '':
+                    dest.write(chunk)
+                else:
+                    done = True
+
+
+def move_stored_file(src_path, dest_path,
+                     src_storage=private_storage, dest_storage=private_storage,
+                     chunk_size=DEFAULT_CHUNK_SIZE):
+    """
+    Move a storage path to another storage path.
+
+    The source file will be copied to the new path then deleted.
+    This attempts to be compatible with a wide range of storage backends
+    rather than attempt to be optimized for each individual one.
+    """
+    copy_stored_file(src_path, dest_path,
+                     src_storage=src_storage, dest_storage=dest_storage,
+                     chunk_size=chunk_size)
+    src_storage.delete(src_path)

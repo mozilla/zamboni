@@ -5,7 +5,6 @@ import time
 from datetime import datetime
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 
 import commonware.log
@@ -18,7 +17,8 @@ from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import use_master
-from mkt.site.storage_utils import storage_is_remote, walk_storage
+from mkt.site.storage_utils import (private_storage, storage_is_remote,
+                                    walk_storage)
 from mkt.site.utils import chunked, days_ago, walkfiles
 
 from .indexers import WebappIndexer
@@ -124,11 +124,11 @@ def clean_old_signed(seconds=60 * 60):
     for nextroot, dirs, files in walk_storage(root):
         for fn in files:
             full = os.path.join(nextroot, fn)
-            age = now() - storage.modified_time(full)
+            age = now() - private_storage.modified_time(full)
             if age.total_seconds() > seconds:
                 log.debug('Removing signed app: %s, %dsecs old.' % (
                     full, age.total_seconds()))
-                storage.delete(full)
+                private_storage.delete(full)
 
 
 def _get_installs(app_id):

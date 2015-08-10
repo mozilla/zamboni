@@ -17,6 +17,7 @@ from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.search.utils import get_popularity, get_trending
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import cron
@@ -76,7 +77,9 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
 
         # Check that f1 was moved.
         mv_mock.assert_called_with(self.f1.file_path,
-                                   self.f1.guarded_file_path, self.msg)
+                                   self.f1.guarded_file_path, self.msg,
+                                   src_storage=public_storage,
+                                   dest_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
@@ -89,7 +92,9 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         cron.hide_disabled_files()
         # Check that f1 was moved.
         mv_mock.assert_called_with(self.f1.file_path,
-                                   self.f1.guarded_file_path, self.msg)
+                                   self.f1.guarded_file_path, self.msg,
+                                   src_storage=public_storage,
+                                   dest_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
@@ -102,7 +107,9 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         cron.hide_disabled_files()
         # f1 should have been moved.
         mv_mock.assert_called_with(self.f1.file_path,
-                                   self.f1.guarded_file_path, self.msg)
+                                   self.f1.guarded_file_path, self.msg,
+                                   src_storage=public_storage,
+                                   dest_storage=private_storage)
         eq_(mv_mock.call_count, 1)
 
     @mock.patch('mkt.files.models.File.mv')

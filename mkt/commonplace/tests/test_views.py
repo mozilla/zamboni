@@ -272,7 +272,7 @@ class TestBuildId(CommonplaceTestMixin):
             if 'fireplace' in src:
                 ok_(src.endswith('?b=0118999'))
 
-    @mock.patch('mkt.commonplace.views.storage')
+    @mock.patch('mkt.commonplace.views.local_storage')
     def test_fallback_to_build_id_txt(self, storage_mock):
         storage_mock.open = mock.mock_open(read_data='0118999')
 

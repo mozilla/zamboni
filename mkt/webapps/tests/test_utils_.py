@@ -48,7 +48,7 @@ class TestCachedMinifest(TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
 
-    @patch('mkt.webapps.utils.storage')
+    @patch('mkt.webapps.utils.public_storage')
     def test_etag(self, storage_mock):
         storage_mock.size.return_value = 999
         manifest, etag = get_cached_minifest(self.webapp)
@@ -58,7 +58,7 @@ class TestCachedMinifest(TestCase):
         expected_etag.update(self.webapp.get_latest_file().hash)
         eq_(etag, expected_etag.hexdigest())
 
-    @patch('mkt.webapps.utils.storage')
+    @patch('mkt.webapps.utils.public_storage')
     def test_get_cached_minifest_caching_force(self, storage_mock):
         storage_mock.size.return_value = 999
         minifest = json.loads(get_cached_minifest(self.webapp)[0])
@@ -72,7 +72,7 @@ class TestCachedMinifest(TestCase):
         ok_(new_minifest != minifest)
         eq_(new_minifest['size'], 666)
 
-    @patch('mkt.webapps.utils.storage')
+    @patch('mkt.webapps.utils.public_storage')
     def test_get_cached_minifest_caching(self, storage_mock):
         storage_mock.size.return_value = 999
         minifest = json.loads(get_cached_minifest(self.webapp)[0])
@@ -83,7 +83,7 @@ class TestCachedMinifest(TestCase):
         new_minifest = json.loads(get_cached_minifest(self.webapp)[0])
         eq_(new_minifest, minifest)
 
-    @patch('mkt.webapps.utils.storage')
+    @patch('mkt.webapps.utils.public_storage')
     def test_caching_key_differs_between_models(self, storage_mock):
         storage_mock.size.return_value = 999
 

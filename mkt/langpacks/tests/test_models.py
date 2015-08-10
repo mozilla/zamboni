@@ -36,7 +36,7 @@ class TestLangPackBasic(TestCase):
         ok_(langpack.manifest_url.endswith(
             '/12345678-1234-5678-1234-567812345678/manifest.webapp'))
 
-    @patch('mkt.webapps.utils.storage')
+    @patch('mkt.webapps.utils.public_storage')
     def test_get_minifest_contents(self, storage_mock):
         fake_manifest = {
             'name': u'Fake LangPäck',
@@ -170,7 +170,7 @@ class TestLangPackUpload(UploadTest, UploadCreationMixin):
         original_file_path = langpack.file_path
         original_file_version = langpack.file_version
         original_manifest = langpack.manifest
-        with patch('mkt.webapps.utils.storage') as storage_mock:
+        with patch('mkt.webapps.utils.public_storage') as storage_mock:
             # mock storage size before building minifest since we haven't
             # created a real file for this langpack yet.
             storage_mock.size.return_value = 666

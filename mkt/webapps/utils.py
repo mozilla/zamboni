@@ -3,12 +3,12 @@ import hashlib
 import json
 
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 
 import commonware.log
 
 import lib.iarc
 import mkt
+from mkt.site.storage_utils import public_storage
 from mkt.site.utils import JSONEncoder
 from mkt.translations.utils import find_language
 
@@ -126,7 +126,7 @@ def get_cached_minifest(app_or_langpack, force=False):
     package_path = app_or_langpack.get_package_path()
 
     data = {
-        'size': storage.size(signed_file_path),
+        'size': public_storage.size(signed_file_path),
         'package_path': package_path,
     }
     if hasattr(app_or_langpack, 'current_version'):
