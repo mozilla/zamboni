@@ -27,8 +27,9 @@ class TestWebsiteSerializer(mkt.site.tests.TestCase):
 
     def test_promo_imgs(self):
         res = self.serialize(self.obj)
+        ok_(res['promo_imgs'][320].endswith('abc'))
         ok_(res['promo_imgs'][640].endswith('abc'))
-        ok_(res['promo_imgs'][1920].endswith('abc'))
+        ok_(res['promo_imgs'][1050].endswith('abc'))
 
 
 class TestESWebsiteSerializer(mkt.site.tests.ESTestCase):
@@ -53,5 +54,6 @@ class TestESWebsiteSerializer(mkt.site.tests.ESTestCase):
 
     def test_promo_img(self):
         res = self.serialize()
+        ok_(res['promo_imgs'][320].endswith('abc'))
         ok_(res['promo_imgs'][640].endswith('abc'))
-        ok_(res['promo_imgs'][1920].endswith('abc'))
+        ok_(res['promo_imgs'][1050].endswith('abc'))

@@ -36,8 +36,8 @@ class TestPromoImgForm(mkt.site.tests.TestCase):
     def test_ok(self):
         app = mkt.site.tests.app_factory()
 
-        with local_storage.open(get_image_path('game_1920.jpg')) as f:
-            img_file = SimpleUploadedFile('game_1920.jpg', f.read(),
+        with local_storage.open(get_image_path('game_1050.jpg')) as f:
+            img_file = SimpleUploadedFile('game_1050.jpg', f.read(),
                                           content_type='image/jpg')
             form = PromoImgForm({}, {'promo_img': img_file})
 
