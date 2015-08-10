@@ -396,7 +396,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'privacy_policy': reverse('app-privacy-policy-detail',
                                       kwargs={'pk': self.app.id}),
             'promo_imgs': dict((size, self.app.get_promo_img_url(size))
-                               for size in (640, 1920)),
+                               for size in (320, 640, 1050)),
             'public_stats': False,
             'ratings': {
                 'average': 0.0,
