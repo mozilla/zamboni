@@ -55,8 +55,7 @@ from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm, TestedOnFormSet)
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  EditorSubscription, QUEUE_TARAKO,
-                                  ReviewerScore)
+                                  QUEUE_TARAKO, ReviewerScore)
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
@@ -346,11 +345,6 @@ def _review(request, addon, version):
                                     mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
-
-        if form.cleaned_data.get('notify'):
-            # TODO: bug 741679 for implementing notifications in Marketplace.
-            EditorSubscription.objects.get_or_create(user=request.user,
-                                                     addon=addon)
 
         is_tarako = form.cleaned_data.get('is_tarako', False)
         if is_tarako:

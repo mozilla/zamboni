@@ -14,7 +14,7 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
 from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
-from mkt.reviewers.models import EditorSubscription, EscalationQueue
+from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.site.storage_utils import copy_to_storage, storage_is_remote
 from mkt.site.tests import req_factory_factory, user_factory
@@ -187,17 +187,6 @@ class TestAddVersion(BaseAddVersionTest):
                                         created=self.days_ago(1))
 
     def test_post(self):
-        self._post(302)
-        version = self.app.versions.latest()
-        eq_(version.version, '1.0')
-        eq_(version.all_files[0].status, mkt.STATUS_PENDING)
-
-    def test_post_subscribers(self):
-        # Same test as above, but add a suscriber. We only want to make sure
-        # we are not causing a traceback because of that.
-        reviewer = user_factory(email='foo@example.com')
-        self.grant_permission(reviewer, 'Apps:Review')
-        EditorSubscription.objects.create(addon=self.app, user=reviewer)
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')

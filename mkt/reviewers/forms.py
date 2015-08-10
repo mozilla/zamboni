@@ -122,10 +122,6 @@ class ReviewAppForm(happyforms.Form):
         choices=[(k, v.name) for k, v in mkt.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
-    notify = forms.BooleanField(
-        required=False, label=_lazy(u'Notify me the next time the manifest is '
-                                    u'updated. (Subsequent updates will not '
-                                    u'generate an email)'))
     is_tarako = forms.BooleanField(
         required=False, label=_lazy(u'This app works on Tarako devices.'))
 
