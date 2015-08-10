@@ -96,6 +96,23 @@
             {% endif %}
           </td>
         </tr>
+        {% if addon.is_packaged %}
+          <tr id="hosted-url">
+            <th class="label">{{ _('Hosted URL') }}</th>
+            <td>
+              {% if editable %}
+                <input type="text" name="hosted_url" value="{{ addon.hosted_url }}">
+                {{ form.hosted_url.errors }}
+                <p class="note">
+                  {{ _('If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it.') }}
+                </p>
+              {% else %}
+                <a href="{{ addon.hosted_url }}" target="_blank">
+                  {{ addon.hosted_url }}</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endif %}
         <tr>
           <th>
             <label data-for="description">
