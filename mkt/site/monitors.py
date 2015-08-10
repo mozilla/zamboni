@@ -6,7 +6,6 @@ import time
 import traceback
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import elasticsearch
@@ -18,6 +17,8 @@ from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError
 from lib.crypto.receipt import SigningError
 from lib.pay_server import client
+from mkt.site.storage_utils import local_storage
+
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -234,13 +235,14 @@ def package_signer():
                             'nagios_check_packaged_app.zip')
     signed_path = tempfile.mktemp()
     try:
-        packaged.sign_app(open(app_path), signed_path, None, False)
+        packaged.sign_app(local_storage.open(app_path), signed_path, None,
+                          False, local=True)
         return '', 'Package signer working'
     except PackageSigningError, e:
         msg = 'Error on package signing (%s): %s' % (destination, e)
         return msg, msg
     finally:
-        storage.delete(signed_path)
+        local_storage.delete(signed_path)
 
 
 # Not called settings to avoid conflict with django.conf.settings.

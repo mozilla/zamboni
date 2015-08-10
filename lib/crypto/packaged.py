@@ -5,7 +5,6 @@ import tempfile
 from base64 import b64decode
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import requests
@@ -14,6 +13,8 @@ from django_statsd.clients import statsd
 from signing_clients.apps import JarExtractor
 
 from mkt.versions.models import Version
+from mkt.site.storage_utils import (local_storage, private_storage,
+                                    public_storage)
 
 
 log = commonware.log.getLogger('z.crypto')
@@ -23,10 +24,16 @@ class SigningError(Exception):
     pass
 
 
-def sign_app(src, dest, ids, reviewer=False):
+def sign_app(src, dest, ids, reviewer=False, local=False):
+    """
+    Sign a packaged app.
+
+    If `local` is True, we never copy the signed package to remote storage.
+
+    """
     tempname = tempfile.mktemp()
     try:
-        return _sign_app(src, dest, ids, reviewer, tempname)
+        return _sign_app(src, dest, ids, reviewer, tempname, local)
     finally:
         try:
             os.unlink(tempname)
@@ -35,7 +42,7 @@ def sign_app(src, dest, ids, reviewer=False):
             pass
 
 
-def _sign_app(src, dest, ids, reviewer, tempname):
+def _sign_app(src, dest, ids, reviewer, tempname, local=False):
     """
     Generate a manifest and signature and send signature to signing server to
     be signed.
@@ -88,7 +95,15 @@ def _sign_app(src, dest, ids, reviewer, tempname):
     except:
         log.error('App signing failed', exc_info=True)
         raise SigningError('App signing failed')
-    with open(tempname) as temp_f, storage.open(dest, 'w') as dest_f:
+
+    storage = public_storage  # By default signed packages are public.
+    if reviewer:
+        storage = private_storage
+    elif local:
+        storage = local_storage
+
+    with local_storage.open(tempname) as temp_f, \
+            storage.open(dest, 'w') as dest_f:
         shutil.copyfileobj(temp_f, dest_f)
 
 
@@ -115,7 +130,7 @@ def _no_sign(src, dest_path):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
-    with storage.open(dest_path, 'w') as dest_f:
+    with local_storage.open(dest_path, 'w') as dest_f:
         shutil.copyfileobj(src, dest_f)
 
 
@@ -140,6 +155,8 @@ def sign(version_id, reviewer=False, resign=False, **kw):
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
 
+    storage = private_storage if reviewer else public_storage
+
     if storage.exists(path) and not resign:
         log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
@@ -160,7 +177,10 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         })
     with statsd.timer('services.sign.app'):
         try:
-            sign_app(storage.open(file_obj.file_path), path, ids, reviewer)
+            # Signing starts with the original packaged app file which is
+            # always on private storage.
+            sign_app(private_storage.open(file_obj.file_path), path, ids,
+                     reviewer)
         except SigningError:
             log.info('[Webapp:%s] Signing failed' % app.id)
             if storage.exists(path):

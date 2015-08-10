@@ -12,7 +12,6 @@ import uuid
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.db.models import signals as dbsignals, Max, Q
@@ -48,6 +47,7 @@ from mkt.site.mail import send_mail
 from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
                              OnChangeMixin)
 from mkt.site.storage_utils import (copy_stored_file, copy_to_storage,
+                                    private_storage, public_storage,
                                     storage_is_remote)
 from mkt.site.utils import (cached_property, get_icon_url, get_promo_img_url,
                             slugify, smart_path, sorted_groupby)
@@ -235,8 +235,7 @@ class Preview(ModelBase):
             modified = 0
         if storage_is_remote():
             path = self._image_path(is_thumbnail=is_thumbnail)
-            # Assumes AWS_QUERYSTRING_AUTH is False.
-            return '%s?modified=%s' % (storage.url(path), modified)
+            return '%s?modified=%s' % (public_storage.url(path), modified)
         else:
             if is_thumbnail:
                 url_template = static_url('PREVIEW_THUMBNAIL_URL')
@@ -1307,7 +1306,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         path = smart_path(nfd_str(upload.path))
         file = version.files.latest()
         file.filename = file.generate_filename(extension='.webapp')
-        file.size = storage.size(path)
+        file.size = private_storage.size(path)
         file.hash = file.generate_hash(path)
         log.info('Updated file hash to %s' % file.hash)
         file.save()
@@ -1812,7 +1811,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         copy_to_storage(blocklisted_path, f.file_path)
         log.info(u'[Webapp:%s] Copied blocklisted app from %s to %s' % (
             self.id, blocklisted_path, f.file_path))
-        f.size = storage.size(f.file_path)
+        f.size = private_storage.size(f.file_path)
         f.hash = f.generate_hash(f.file_path)
         f.save()
         mf = WebAppParser().get_json_data(f.file_path)

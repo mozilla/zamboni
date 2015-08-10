@@ -3,10 +3,10 @@ import os
 import sys
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
 from mkt.commonplace.models import DeployBuildId
+from mkt.site.storage_utils import local_storage
 
 
 log = logging.getLogger('commonplace')
@@ -30,7 +30,7 @@ class Command(BaseCommand):
             # Read the build ID from build_id.txt in the repository's root.
             build_id_path = os.path.join(
                 settings.MEDIA_ROOT, repo, 'build_id.txt')
-            with storage.open(build_id_path) as f:
+            with local_storage.open(build_id_path) as f:
                 repo_build_id.build_id = f.read()
 
         # Save it.

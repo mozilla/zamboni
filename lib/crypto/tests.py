@@ -4,7 +4,6 @@ import shutil
 import zipfile
 
 from django.conf import settings  # For mocking.
-from django.core.files.storage import default_storage as storage
 
 import jwt
 import mock
@@ -16,6 +15,7 @@ from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.site.storage_utils import copy_to_storage
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import private_storage
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -30,8 +30,8 @@ def mock_sign(version_id, reviewer=False):
     file_obj = version.all_files[0]
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
-    with storage.open(path, 'w') as dest_f:
-        shutil.copyfileobj(storage.open(file_obj.file_path), dest_f)
+    with private_storage.open(path, 'w') as dest_f:
+        shutil.copyfileobj(private_storage.open(file_obj.file_path), dest_f)
     return path
 
 
@@ -95,11 +95,11 @@ class PackagedApp(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
     def setup_files(self):
         # Clean out any left over stuff.
-        storage.delete(self.file.signed_file_path)
-        storage.delete(self.file.signed_reviewer_file_path)
+        private_storage.delete(self.file.signed_file_path)
+        private_storage.delete(self.file.signed_reviewer_file_path)
 
         # Make sure the source file is there.
-        if not storage.exists(self.file.file_path):
+        if not private_storage.exists(self.file.file_path):
             copy_to_storage(self.packaged_app_path('mozball.zip'),
                             self.file.file_path)
 
@@ -123,14 +123,14 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_already_exists(self, sign_app):
-        with storage.open(self.file.signed_file_path, 'w') as f:
+        with private_storage.open(self.file.signed_file_path, 'w') as f:
             f.write('.')
         assert packaged.sign(self.version.pk)
         assert not sign_app.called
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_resign_already_exists(self, sign_app):
-        storage.open(self.file.signed_file_path, 'w')
+        private_storage.open(self.file.signed_file_path, 'w')
         packaged.sign(self.version.pk, resign=True)
         assert sign_app.called
 
@@ -195,7 +195,7 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
         post().status_code = 200
         post().content = '{"zigbert.rsa": ""}'
         packaged.sign(self.version.pk)
-        zf = zipfile.ZipFile(storage.open(self.file.signed_file_path),
+        zf = zipfile.ZipFile(private_storage.open(self.file.signed_file_path),
                              mode='r')
         ids_data = zf.read('META-INF/ids.json')
         eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])

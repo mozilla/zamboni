@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.utils.datastructures import MultiValueDictKeyError
@@ -35,6 +34,7 @@ from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.models import OperatorPermission
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
                                 PublicAppsFilter, RegionFilter)
+from mkt.site.storage_utils import public_storage
 from mkt.site.utils import HttpResponseSendFile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
@@ -90,7 +90,7 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
             if image:
                 i = Image.open(image)
                 path = obj.image_path(suffix)
-                with storage.open(path, 'wb') as f:
+                with public_storage.open(path, 'wb') as f:
                     i.save(f, 'png')
                 pngcrush_image.delay(path, set_modified_on=[obj])
 
@@ -529,7 +529,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         i = Image.open(img)
-        with storage.open(obj.image_path(self.image_suffix), 'wb') as f:
+        with public_storage.open(obj.image_path(self.image_suffix), 'wb') as f:
             i.save(f, 'png')
         # Store the hash of the original image data sent.
         obj.update(**{self.hash_field: hash_})
@@ -540,7 +540,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
         if getattr(obj, 'image_hash', None):
-            storage.delete(obj.image_path(self.image_suffix))
+            public_storage.delete(obj.image_path(self.image_suffix))
             obj.update(**{self.hash_field: None})
         return Response(status=status.HTTP_204_NO_CONTENT)
 

@@ -642,7 +642,7 @@ class TestFixMissingIcons(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.webapps.tasks.fetch_icon')
     @mock.patch('mkt.webapps.tasks._log')
-    @mock.patch('mkt.webapps.tasks.storage.exists')
+    @mock.patch('mkt.webapps.tasks.public_storage.exists')
     def test_for_missing_size(self, exists, _log, fetch_icon):
         exists.return_value = False
         call_command('process_addons', task='fix_missing_icons')

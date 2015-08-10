@@ -28,12 +28,13 @@ import mkt
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
-from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.helpers import copyfileobj
+from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
+from mkt.site.storage_utils import private_storage
 from mkt.site.utils import remove_icons, resize_image, strip_bom
 from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
 from mkt.webapps.utils import iarc_get_app_info
@@ -121,7 +122,7 @@ def run_validator(file_path, url=None):
     # uploaded file is on the local filesystem.
     temp_path = tempfile.mktemp()
     with open(temp_path, 'wb') as local_f:
-        with storage.open(file_path) as remote_f:
+        with private_storage.open(file_path) as remote_f:
             copyfileobj(remote_f, local_f)
 
     with statsd.timer('mkt.developers.validator'):

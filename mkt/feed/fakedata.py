@@ -1,17 +1,17 @@
 import hashlib
 import random
 
-from django.core.files.storage import default_storage as storage
-
-from mpconstants.collection_colors import COLLECTION_COLORS
 import pydenticon
-from mkt.constants.regions import REGIONS_DICT
+
 from mkt.constants.carriers import CARRIER_CHOICE_DICT
-from mkt.webapps.fakedata import foreground, generate_apps
-from mkt.feed.models import (FeedApp, FeedBrand,
-                             FeedBrandMembership,
+from mkt.constants.regions import REGIONS_DICT
+from mkt.feed.models import (FeedApp, FeedBrand, FeedBrandMembership,
                              FeedCollection, FeedCollectionMembership,
-                             FeedShelf, FeedShelfMembership, FeedItem)
+                             FeedItem, FeedShelf, FeedShelfMembership)
+from mkt.site.storage_utils import public_storage
+from mkt.webapps.fakedata import foreground, generate_apps
+from mpconstants.collection_colors import COLLECTION_COLORS
+
 
 dummy_text = 'foo bar baz blee zip zap cvan fizz buzz something'.split()
 
@@ -32,9 +32,9 @@ def shelf(apps, **kw):
     gen = pydenticon.Generator(8, 8, foreground=foreground)
     img = gen.generate(unicode(sh.name).encode('utf8'), 128, 128,
                        output_format='png')
-    with storage.open(sh.image_path(''), 'wb') as f:
+    with public_storage.open(sh.image_path(''), 'wb') as f:
         f.write(img)
-    with storage.open(sh.image_path('_landing'), 'wb') as f:
+    with public_storage.open(sh.image_path('_landing'), 'wb') as f:
         f.write(img)
     image_hash = hashlib.md5(img).hexdigest()[:8]
     sh.update(slug=kw.get('slug', 'shelf-%d' % sh.pk),
@@ -74,7 +74,7 @@ def collection(apps, slug, background_image=True, **kw):
         gen = pydenticon.Generator(8, 8, foreground=foreground)
         img = gen.generate(name, 128, 128,
                            output_format='png')
-        with storage.open(co.image_path(''), 'wb') as f:
+        with public_storage.open(co.image_path(''), 'wb') as f:
             f.write(img)
         image_hash = hashlib.md5(img).hexdigest()[:8]
     else:
@@ -106,7 +106,7 @@ def app_item(a, type, **kw):
         pullquote_text=kw.get('pullquote_text', None),
         background_color=COLLECTION_COLORS[colorname],
         slug=kw.get('slug', 'feed-app-%d' % a.pk))
-    with storage.open(ap.image_path(''), 'wb') as f:
+    with public_storage.open(ap.image_path(''), 'wb') as f:
         f.write(img)
         image_hash = hashlib.md5(img).hexdigest()[:8]
     ap.update(image_hash=image_hash)
