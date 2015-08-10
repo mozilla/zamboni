@@ -44,6 +44,20 @@ class TestPromoImgForm(mkt.site.tests.TestCase):
             ok_(form.is_valid())
             form.save(app)
 
-    def test_not_ok(self):
+    def test_not_image_not_ok(self):
         form = PromoImgForm({}, {'promo_img': 'lol'})
         ok_(not form.is_valid())
+
+    def test_too_small_not_ok(self):
+        with local_storage.open(get_image_path('mkt_icon_72.png')) as f:
+            img_file = SimpleUploadedFile('mkt_icon_72.png', f.read(),
+                                          content_type='image/png')
+            form = PromoImgForm({}, {'promo_img': img_file})
+            ok_(not form.is_valid())
+
+    def test_animated_not_ok(self):
+        with local_storage.open(get_image_path('animated.gif')) as f:
+            img_file = SimpleUploadedFile('animated.gif', f.read(),
+                                          content_type='image/gif')
+            form = PromoImgForm({}, {'promo_img': img_file})
+            ok_(not form.is_valid())
