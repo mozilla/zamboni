@@ -157,6 +157,11 @@ DEV_PAY_PROVIDERS = {
 # Bug 1145338
 IAF_OVERRIDE_APPS = private_mkt.IAF_OVERRIDE_APPS
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'mkt.site.storage_utils.S3BotoPrivateStorage'
+
+# Bucket name used for S3BotoPublicStorage.
+AWS_STORAGE_PUBLIC_BUCKET_NAME = 'marketplace-s3dev-public'
+# Bucket name used for S3BotoPrivateStorage.
+AWS_STORAGE_PRIVATE_BUCKET_NAME = 'marketplace-s3dev-private'
 
 AWS_QUERYSTRING_AUTH = False
