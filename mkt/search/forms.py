@@ -7,6 +7,7 @@ from mkt.constants import (CATEGORY_CHOICES, CATEGORY_CHOICES_DICT,
                            CATEGORY_REDIRECTS, TARAKO_CATEGORIES_MAPPING,
                            TARAKO_CATEGORY_CHOICES)
 from mkt.constants.applications import DEVICE_LOOKUP
+from mkt.constants.regions import REGIONS_CHOICES
 
 
 SORT_CHOICES = [
@@ -71,7 +72,10 @@ TAG_CHOICES = [
     ('featured-game-adventure', 'featured-game-adventure'),
     ('featured-game-puzzle', 'featured-game-puzzle'),
     ('featured-game-strategy', 'featured-game-strategy'),
+    ('featured-website', 'featured-website'),
 ]
+TAG_CHOICES += [('featured-website-%s' % r, 'featured-website-%s' % r) for
+                r in dict(REGIONS_CHOICES).keys()]
 
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
