@@ -110,15 +110,15 @@ def _uploader(resize_size, final_size):
 
 def test_resize_promo_img():
     """Resize promo image."""
-    resize_size = [1920]
-    final_size = [(1920, 1080), (640, 360)]
+    resize_size = [1050]
+    final_size = [(1050, 591), (640, 360), (320, 180)]
 
     _promo_img_uploader(resize_size, final_size)
 
 
 def _promo_img_uploader(resize_size, final_size):
-    img = get_image_path('game_1920.jpg')
-    original_size = (1920, 1080)
+    img = get_image_path('game_1050.jpg')
+    original_size = (1050, 591)
 
     for rsize, fsize in zip(resize_size, final_size):
         dest_name = os.path.join(settings.WEBAPP_PROMO_IMG_PATH, '1234')
@@ -134,7 +134,7 @@ def _promo_img_uploader(resize_size, final_size):
 
         val = tasks.resize_promo_imgs(src.name, dest_name, resize_size,
                                       locally=True)
-        eq_(val, {'promo_img_hash': '33759cf2'})
+        eq_(val, {'promo_img_hash': '215dd2a2'})
         with storage.open('%s-%s.png' % (dest_name, rsize)) as fp:
             dest_image = Image.open(fp)
             dest_image.load()

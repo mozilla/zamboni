@@ -56,7 +56,7 @@ class TestCheckUpload(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
             ok_(os.path.isfile(tmp_img_path))
 
     def test_promo_img_ok(self):
-        with local_storage.open(get_image_path('game_1920.jpg')) as f:
+        with local_storage.open(get_image_path('game_1050.jpg')) as f:
             errors, upload_hash = check_upload(f, 'promo_img', 'image/png')
             ok_(not errors)
             ok_(upload_hash)
