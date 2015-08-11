@@ -79,13 +79,13 @@ class TestWebsiteModel(TestCase):
     def test_get_promo_img_url(self):
         website = Website(pk=337141)
         eq_(website.get_promo_img_url('640'), '')
-        eq_(website.get_promo_img_url('1920'), '')
+        eq_(website.get_promo_img_url('1050'), '')
 
         website.promo_img_hash = 'chicken'
         ok_('website_promo_imgs/337/337141-640.png?modified=chicken' in
             website.get_promo_img_url('640'))
-        ok_('website_promo_imgs/337/337141-1920.png?modified=chicken' in
-            website.get_promo_img_url('1920'))
+        ok_('website_promo_imgs/337/337141-1050.png?modified=chicken' in
+            website.get_promo_img_url('1050'))
 
 
 class TestWebsiteESIndexation(TestCase):
