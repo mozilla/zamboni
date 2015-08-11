@@ -774,6 +774,10 @@ class TestAppSummary(AppSummaryTest):
         super(TestAppSummary, self).setUp()
         self._setUp()
 
+    def test_slug(self):
+        self.url = reverse('lookup.app_summary', args=[self.app.app_slug])
+        self.summary()
+
     def test_app_deleted(self):
         self.app.delete()
         self.summary()

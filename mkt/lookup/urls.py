@@ -6,7 +6,7 @@ from . import views
 # These views all start with user ID.
 user_patterns = patterns(
     '',
-    url(r'^summary$', views.user_summary,
+    url(r'^$', views.user_summary,
         name='lookup.user_summary'),
     url(r'^purchases$', views.user_purchases,
         name='lookup.user_purchases'),
@@ -20,7 +20,7 @@ user_patterns = patterns(
 # These views all start with app/addon ID.
 app_patterns = patterns(
     '',
-    url(r'^summary$', views.app_summary,
+    url(r'^$', views.app_summary,
         name='lookup.app_summary'),
     url(r'^activity$', views.app_activity,
         name='lookup.app_activity'),
@@ -30,7 +30,7 @@ app_patterns = patterns(
 # These views all start with website/<ID>.
 website_patterns = patterns(
     '',
-    url(r'^summary$', views.website_summary,
+    url(r'^$', views.website_summary,
         name='lookup.website_summary'),
     url(r'^edit$', views.website_edit,
         name='lookup.website_edit'),
@@ -40,10 +40,10 @@ website_patterns = patterns(
 # These views all start with transaction ID.
 transaction_patterns = patterns(
     '',
+    url(r'^$', views.transaction_summary,
+        name='lookup.transaction_summary'),
     url(r'^refund$', views.transaction_refund,
         name='lookup.transaction_refund'),
-    url(r'^summary$', views.transaction_summary,
-        name='lookup.transaction_summary'),
 )
 
 
