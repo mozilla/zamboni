@@ -500,7 +500,7 @@ AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'bn-IN', 'ca', 'cs', 'cy', 'da', 'de', 'dsb',
     'ee', 'el', 'en-US', 'es', 'eu', 'ff', 'fr', 'fy', 'ga-IE', 'ha', 'hsb',
     'hu', 'id', 'ig', 'it', 'ja', 'ko', 'nb-NO', 'nl', 'pl',
-    'pt-BR', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'sv-SE', 'sw', 'tr',
+    'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'sv-SE', 'sw', 'tr',
     'uk', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu',
 )
 

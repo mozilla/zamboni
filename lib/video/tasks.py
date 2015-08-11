@@ -3,7 +3,6 @@ import os
 import shutil
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import waffle
 from celery import task
@@ -14,6 +13,7 @@ from mkt.files.helpers import copyfileobj
 from mkt.site.decorators import set_modified_on
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview
+from mkt.site.storage_utils import public_storage
 
 
 log = logging.getLogger('z.devhub.task')
@@ -34,7 +34,7 @@ def resize_video(src, pk, user_pk=None, **kw):
                 os.makedirs(os.path.dirname(src))
             except OSError:  # already exists
                 pass
-            copyfileobj(storage.open(src), open(src, 'w'))
+            copyfileobj(public_storage.open(src), open(src, 'w'))
         result = _resize_video(src, instance, **kw)
     except Exception, err:
         log.error('Error on processing video: %s' % err)

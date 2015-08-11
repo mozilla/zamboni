@@ -80,24 +80,26 @@ class PromoImgForm(happyforms.Form):
         label=_lazy(u'Promo Image'),
         help_text=_lazy(u'Minimum size: {0}x{1}').format(*PROMO_IMG_MINIMUMS))
 
+    upload_type = 'promo_img'
+
     class Meta:
         model = Webapp
 
+    def clean_promo_img(self):
+        image = self.cleaned_data[self.upload_type]
+        errors, upload_hash = check_upload(image, self.upload_type,
+                                           image.content_type)
+        if errors:
+            log.info('Promo img errors: %s' % errors)
+            raise forms.ValidationError(errors)
+
+        self.upload_hash = upload_hash
+        return image
+
     def save(self, obj, commit=True):
-        upload_type = 'promo_img'
-
-        if upload_type in self.cleaned_data:
-            log.info('Got promo img for %s' % obj.id)
-            errors, upload_hash = check_upload(
-                self.cleaned_data[upload_type], upload_type,
-                self.cleaned_data[upload_type].content_type)
-
-            if errors:
-                log.info('Promo img errors for %s: %s' % (obj.id, errors))
-                raise forms.ValidationError(errors)
-
-            upload_path = os.path.join(settings.TMP_PATH, upload_type,
-                                       upload_hash)
+        if self.upload_type in self.cleaned_data:
+            upload_path = os.path.join(settings.TMP_PATH, self.upload_type,
+                                       self.upload_hash)
 
             dirname = obj.get_promo_img_dir()
             destination = os.path.join(dirname, '%s' % obj.id)

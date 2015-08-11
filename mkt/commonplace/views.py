@@ -3,7 +3,6 @@ import os
 from urlparse import urlparse
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import resolve
 from django.http import Http404
 from django.shortcuts import render
@@ -14,9 +13,10 @@ from django.views.decorators.gzip import gzip_page
 import newrelic.agent
 import waffle
 
+from mkt.account.helpers import fxa_auth_info
 from mkt.commonplace.models import DeployBuildId
 from mkt.regions.middleware import RegionMiddleware
-from mkt.account.helpers import fxa_auth_info
+from mkt.site.storage_utils import local_storage
 from mkt.webapps.models import Webapp
 
 
@@ -141,7 +141,7 @@ def get_build_id(repo):
         try:
             build_id_path = os.path.join(settings.MEDIA_ROOT, repo,
                                          'build_id.txt')
-            with storage.open(build_id_path) as f:
+            with local_storage.open(build_id_path) as f:
                 return f.read()
         except:
             return 'dev'

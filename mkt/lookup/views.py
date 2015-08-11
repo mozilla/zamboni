@@ -268,7 +268,9 @@ def app_summary(request, addon_id):
         promo_img_form = PromoImgForm()
     if 'promo_img' in request.FILES and promo_img_form.is_valid():
         promo_img_form.save(app)
-        messages.success(request, 'Promo image successfully uploaded.')
+        messages.success(
+            request, 'Promo image successfully uploaded.'
+            ' You may have to refresh the page again to see it below.')
         return redirect(reverse('lookup.app_summary', args=[app.pk]))
 
     if 'prioritize' in request.POST and not app.priority_review:

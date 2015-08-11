@@ -130,9 +130,9 @@ class AppSerializer(serializers.ModelSerializer):
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'file_size',
-            'homepage', 'icons', 'id', 'is_disabled', 'is_offline',
-            'is_packaged', 'last_updated', 'manifest_url', 'name',
-            'package_path', 'payment_account', 'payment_required',
+            'homepage', 'hosted_url', 'icons', 'id', 'is_disabled',
+            'is_offline', 'is_packaged', 'last_updated', 'manifest_url',
+            'name', 'package_path', 'payment_account', 'payment_required',
             'premium_type', 'previews', 'price', 'price_locale',
             'privacy_policy', 'promo_imgs', 'public_stats', 'release_notes',
             'ratings', 'regions', 'resource_uri', 'slug', 'status',
@@ -434,8 +434,9 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         self._attach_fields(
             obj, data, ('created', 'default_locale', 'guid', 'icon_hash',
                         'is_escalated', 'is_offline', 'last_updated',
-                        'manifest_url', 'modified', 'premium_type',
-                        'promo_img_hash', 'regions', 'reviewed', 'status'))
+                        'hosted_url', 'manifest_url', 'modified',
+                        'premium_type', 'promo_img_hash', 'regions',
+                        'reviewed', 'status'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(

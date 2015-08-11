@@ -24,8 +24,11 @@ from mkt.fireplace.tests.test_views import assert_fireplace_app
 from mkt.operators.models import OperatorPermission
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview, Webapp
+from mkt.websites.models import Website
+from mkt.websites.utils import website_factory
 
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -1320,6 +1323,27 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self.carrier = 'telefonica'
         self.region = 'restofworld'
 
+    def _make_website(self, tag=None):
+        new_site = website_factory(**{
+            'title': 'something',
+            'categories': [],
+        })
+        if tag:
+            new_site.keywords.add(tag)
+        return new_site
+
+    def featured_mow_factory(self, n_row=0, n_www=0):
+        websites = []
+        www = Tag.objects.get_or_create(tag_text='featured-website')[0]
+        for n in xrange(n_www):
+            websites.append(self._make_website(tag=www.pk))
+        row = Tag.objects.get_or_create(
+            tag_text='featured-website-restofworld')[0]
+        for n in xrange(n_row):
+            websites.append(self._make_website(tag=row.pk))
+        self.reindex(Website)
+        return websites
+
     def _get(self, client=None, **kwargs):
         self._refresh()
         client = client or self.anon
@@ -1341,7 +1365,9 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get()
         eq_(res.status_code, 200)
         eq_(len(data['objects']), len(feed_items))
+        eq_(len(data['websites']), 0)
         ok_(statsd_mock.called)
+        return res, data
 
     def test_200_authed(self):
         feed_items = self.feed_factory()
@@ -1373,6 +1399,53 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get()
         eq_(data['objects'][0]['item_type'],
             feed.FEED_TYPE_SHELF)
+
+    def test_websites(self):
+        self.feed_factory()
+        self.featured_mow_factory(n_row=6, n_www=5)
+        res, data = self._get()
+        tags = [mow['keywords'][0] for mow in data['websites']]
+        eq_(len(data['websites']), 11)
+        eq_(tags.count('featured-website-restofworld'), 6)
+        eq_(tags.count('featured-website'), 5)
+
+    def test_websites_prefer_regional(self):
+        """
+        Ensure that all regionally featured websites are returned before any
+        globally-featured websites are considered.
+        """
+        self.feed_factory()
+        self.featured_mow_factory(n_row=11, n_www=1)
+        res, data = self._get()
+        tags = [mow['keywords'][0] for mow in data['websites']]
+        eq_(len(data['websites']), 11)
+        eq_(tags.count('featured-website-restofworld'), 11)
+        eq_(tags.count('featured-website'), 0)
+
+    def test_websites_random_seed(self):
+        """
+        Ensure that consecutive queries don't return different random
+        selections.
+        """
+        self.feed_factory()
+        self.featured_mow_factory(n_row=5, n_www=10)
+        res1, data1 = self._get()
+        res2, data2 = self._get()
+        eq_(data1['websites'], data2['websites'])
+
+    @mock.patch('mkt.feed.views.FeedView._get_daily_seed')
+    def test_websites_daily_change(self, mock_daily_seed):
+        """
+        Ensure that queries from different days return different random
+        selections.
+        """
+        self.feed_factory()
+        self.featured_mow_factory(n_row=5, n_www=10)
+        mock_daily_seed.return_value = 20150101
+        res1, data1 = self._get()
+        mock_daily_seed.return_value = 20150102
+        res2, data2 = self._get()
+        ok_(data1['websites'] != data2['websites'])
 
     @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
     def test_limit_honored(self, mock_paginate_by):

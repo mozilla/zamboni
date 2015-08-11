@@ -8,7 +8,6 @@ import subprocess
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template import Context, loader
 from django.test.client import RequestFactory
@@ -35,7 +34,8 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.site.utils import chunked, JSONEncoder
+from mkt.site.storage_utils import public_storage
+from mkt.site.utils import JSONEncoder, chunked
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
@@ -77,7 +77,7 @@ def delete_preview_files(id, **kw):
     p = Preview(id=id)
     for f in (p.thumbnail_path, p.image_path):
         try:
-            storage.delete(f)
+            public_storage.delete(f)
         except Exception, e:
             task_log.error('Error deleting preview file (%s): %s' % (f, e))
 
@@ -555,7 +555,7 @@ def _fix_missing_icons(id):
     destination = os.path.join(dirname, '%s' % webapp.id)
     for size in (64, 128):
         filename = '%s-%s.png' % (destination, size)
-        if not storage.exists(filename):
+        if not public_storage.exists(filename):
             _log(id, u'Webapp is missing icon size %d' % (size, ))
             return fetch_icon(webapp.pk)
 
