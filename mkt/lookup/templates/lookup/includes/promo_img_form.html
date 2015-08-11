@@ -4,7 +4,7 @@
     {{ csrf }}
     <button type="submit">{{ _('Save Promo Image') }}</button>
     <img id="promo-img-preview"
-         {% if obj.promo_img_hash %}src="{{ obj.get_promo_img_url(1920) }}"
+         {% if obj.promo_img_hash %}src="{{ obj.get_promo_img_url(1050) }}"
          {% endif %}>
   </form>
 {% endmacro %}
