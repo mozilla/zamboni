@@ -17,9 +17,9 @@ class RatingSerializer(serializers.ModelSerializer):
     app = SplitField(
         SlugOrPrimaryKeyRelatedField(slug_field='app_slug',
                                      queryset=Webapp.objects.all(),
-                                     source='addon'),
+                                     source='webapp'),
         serializers.HyperlinkedRelatedField(view_name='app-detail',
-                                            read_only=True, source='addon'))
+                                            read_only=True, source='webapp'))
     body = serializers.CharField()
     user = UserSerializer(read_only=True)
     report_spam = serializers.SerializerMethodField('get_report_spam_link')
@@ -57,10 +57,11 @@ class RatingSerializer(serializers.ModelSerializer):
     def to_native(self, obj):
         # When we have an `app` set on the serializer, we know it's because the
         # view was filtering on this app, so we can safely overwrite the
-        # `addon` property on the instance with it, saving some costly queries.
+        # `webapp` property on the instance with it, saving some costly
+        # queries.
         app = getattr(self, 'app', None)
         if app is not None:
-            obj.addon = app
+            obj.webapp = app
         return super(RatingSerializer, self).to_native(obj)
 
     def get_report_spam_link(self, obj):
@@ -97,12 +98,12 @@ class RatingSerializer(serializers.ModelSerializer):
                 attrs['lang'] = guessed_lang
 
             # If the app is packaged, add in the current version.
-            if attrs['addon'].is_packaged:
-                attrs['version'] = attrs['addon'].current_version
+            if attrs['webapp'].is_packaged:
+                attrs['version'] = attrs['webapp'].current_version
 
             # Return 409 if the user has already reviewed this app.
-            app = attrs['addon']
-            qs = self.context['view'].queryset.filter(addon=app, user=user)
+            app = attrs['webapp']
+            qs = self.context['view'].queryset.filter(webapp=app, user=user)
             if app.is_packaged:
                 qs = qs.filter(version=attrs['version'])
             if qs.exists():
@@ -132,7 +133,7 @@ class RatingSerializer(serializers.ModelSerializer):
     def validate_app(self, attrs, source):
         # Don't allow users to change the app on an existing rating.
         if getattr(self, 'object'):
-            attrs[source] = self.object.addon
+            attrs[source] = self.object.webapp
         return attrs
 
     def validate_rating(self, attrs, source):

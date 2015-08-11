@@ -42,7 +42,7 @@ class TestFeedAppESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         self.feedapp = self.feed_app_factory(
             app_type=feed.FEEDAPP_DESC, description={'en-US': 'test'})
         self.feedapp.update(preview=Preview.objects.create(
-            addon=self.feedapp.app, sizes={'thumbnail': [50, 50]}))
+            webapp=self.feedapp.app, sizes={'thumbnail': [50, 50]}))
 
         self.data_es = self.feedapp.get_indexer().extract_document(
             None, obj=self.feedapp)

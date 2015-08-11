@@ -68,7 +68,7 @@ def _resize_video(src, instance, lib=None, **kw):
     if waffle.switch_is_active('video-encode'):
         # Do the video encoding.
         try:
-            video_file = video.get_encoded(mkt.ADDON_PREVIEW_SIZES[1])
+            video_file = video.get_encoded(mkt.WEBAPP_PREVIEW_SIZES[1])
         except Exception:
             log.info('Error encoding video for %s, %s' %
                      (instance.pk, video.meta), exc_info=True)
@@ -77,7 +77,7 @@ def _resize_video(src, instance, lib=None, **kw):
     # Do the thumbnail next, this will be the signal that the
     # encoding has finished.
     try:
-        thumbnail_file = video.get_screenshot(mkt.ADDON_PREVIEW_SIZES[0])
+        thumbnail_file = video.get_screenshot(mkt.WEBAPP_PREVIEW_SIZES[0])
     except Exception:
         # We'll have this file floating around because the video
         # encoded successfully, or something has gone wrong in which case
@@ -105,8 +105,8 @@ def _resize_video(src, instance, lib=None, **kw):
         local_storage.delete(video_file)
 
     # Ensure everyone has read permission on the file.
-    instance.sizes = {'thumbnail': mkt.ADDON_PREVIEW_SIZES[0],
-                      'image': mkt.ADDON_PREVIEW_SIZES[1]}
+    instance.sizes = {'thumbnail': mkt.WEBAPP_PREVIEW_SIZES[0],
+                      'image': mkt.WEBAPP_PREVIEW_SIZES[1]}
     instance.save()
     log.info('Completed encoding video: %s' % instance.pk)
     return True

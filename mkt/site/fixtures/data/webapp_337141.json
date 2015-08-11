@@ -56,10 +56,10 @@
     },
     {
         "pk": 2818,
-        "model": "webapps.addonuser",
+        "model": "webapps.webappuser",
         "fields": {
             "position": 0,
-            "addon": 337141,
+            "webapp": 337141,
             "role": 5,
             "listed": true,
             "user": 31337
@@ -78,7 +78,7 @@
             "version": "1.0",
             "reviewed": "2011-10-18T16:28:24",
             "nomination": null,
-            "addon": 337141,
+            "webapp": 337141,
             "supported_locales": "en-US,es,pt-BR",
             "deleted": false,
             "_developer_name": "Mozilla Tester"

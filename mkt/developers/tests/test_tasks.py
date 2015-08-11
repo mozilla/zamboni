@@ -29,7 +29,7 @@ from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage)
 from mkt.site.utils import app_factory, ImageCheck
 from mkt.submit.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import WebappExcludedRegion as AER
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -74,7 +74,7 @@ def _uploader(resize_size, final_size):
     original_size = (339, 128)
 
     for rsize, fsize in zip(resize_size, final_size):
-        dst_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
+        dst_name = os.path.join(settings.WEBAPP_ICONS_PATH, '1234')
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
@@ -306,8 +306,8 @@ class TestResizePreview(mkt.site.tests.TestCase):
         return dst
 
     def test_preview(self):
-        addon = Webapp.objects.get(pk=337141)
-        preview = Preview.objects.create(addon=addon)
+        webapp = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(webapp=webapp)
         src = self.get_image('preview.jpg')
         tasks.resize_preview(src, preview.pk)
         preview = preview.reload()
@@ -322,8 +322,8 @@ class TestResizePreview(mkt.site.tests.TestCase):
             eq_(list(im.size), [400, 533])
 
     def test_preview_rotated(self):
-        addon = Webapp.objects.get(pk=337141)
-        preview = Preview.objects.create(addon=addon)
+        webapp = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(webapp=webapp)
         src = self.get_image('preview_landscape.jpg')
         tasks.resize_preview(src, preview.pk)
         preview = preview.reload()
@@ -338,8 +338,8 @@ class TestResizePreview(mkt.site.tests.TestCase):
             eq_(list(im.size), [533, 400])
 
     def test_preview_dont_generate_image(self):
-        addon = Webapp.objects.get(pk=337141)
-        preview = Preview.objects.create(addon=addon)
+        webapp = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(webapp=webapp)
         src = self.get_image('preview.jpg')
         tasks.resize_preview(src, preview.pk, generate_image=False)
         preview = preview.reload()
@@ -366,7 +366,7 @@ class TestFetchManifest(mkt.site.tests.TestCase):
         return FileUpload.objects.get(pk=self.upload.pk)
 
     def file(self, name):
-        return os.path.join(os.path.dirname(__file__), 'addons', name)
+        return os.path.join(os.path.dirname(__file__), 'webapps', name)
 
     @contextmanager
     def patch_requests(self):
@@ -538,7 +538,7 @@ class TestFetchIcon(BaseWebAppTest):
         super(TestFetchIcon, self).setUp()
         self.content_type = 'image/png'
         self.apps_path = os.path.join(settings.ROOT, 'mkt', 'developers',
-                                      'tests', 'addons')
+                                      'tests', 'webapps')
         patcher = mock.patch('mkt.developers.tasks.requests.get')
         self.requests_mock = patcher.start()
         self.requests_mock.return_value = StringIO('mozballin')
@@ -549,7 +549,7 @@ class TestFetchIcon(BaseWebAppTest):
                                       user=UserProfile.objects.get(pk=999))
         self.url = reverse('submit.app')
         self.login('regular@mozilla.com')
-        return self.post_addon()
+        return self.post_webapp()
 
     def test_no_version(self):
         app = app_factory()
@@ -698,13 +698,13 @@ class TestRegionExclude(mkt.site.tests.WebappTestCase):
 
     def test_exclude_one_new_region(self):
         tasks.region_exclude([self.app.id], [mkt.regions.GBR.id])
-        excluded = list(AER.objects.filter(addon=self.app)
+        excluded = list(AER.objects.filter(webapp=self.app)
                         .values_list('region', flat=True))
         eq_(excluded, [mkt.regions.GBR.id])
 
     def test_exclude_several_new_regions(self):
         tasks.region_exclude([self.app.id], [mkt.regions.USA.id,
                                              mkt.regions.GBR.id])
-        excluded = sorted(AER.objects.filter(addon=self.app)
+        excluded = sorted(AER.objects.filter(webapp=self.app)
                           .values_list('region', flat=True))
         eq_(excluded, sorted([mkt.regions.USA.id, mkt.regions.GBR.id]))

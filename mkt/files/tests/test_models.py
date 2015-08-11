@@ -123,8 +123,8 @@ class TestFileFromUpload(UploadCreationMixin, UploadTest):
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        self.addon = Webapp.objects.create(name='app name')
-        self.version = Version.objects.create(addon=self.addon)
+        self.webapp = Webapp.objects.create(name='app name')
+        self.version = Version.objects.create(webapp=self.webapp)
 
     def test_filename_hosted(self):
         upload = self.upload('mozball')
@@ -132,7 +132,7 @@ class TestFileFromUpload(UploadCreationMixin, UploadTest):
         eq_(f.filename, 'app-name-0.1.webapp')
 
     def test_filename_packaged(self):
-        self.addon.is_packaged = True
+        self.webapp.is_packaged = True
         upload = self.upload('mozball')
         f = File.from_upload(upload, self.version)
         eq_(f.filename, 'app-name-0.1.zip')
@@ -160,7 +160,7 @@ class TestFileFromUpload(UploadCreationMixin, UploadTest):
 
     def test_utf8(self):
         upload = self.upload(u'mozball')
-        self.version.addon.name = u'mözball'
+        self.version.webapp.name = u'mözball'
         f = File.from_upload(upload, self.version)
         eq_(f.filename, u'app-name-0.1.webapp')
 
@@ -262,26 +262,26 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
     def test_generate_filename_packaged_app(self):
         f = File.objects.get()
-        f.version.addon.app_slug = 'testing-123'
-        f.version.addon.is_packaged = True
+        f.version.webapp.app_slug = 'testing-123'
+        f.version.webapp.is_packaged = True
         eq_(f.generate_filename(), 'testing-123-1.0.zip')
 
     def test_generate_webapp_fn_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Webapp(app_slug=u' フォクすけ  といっしょ')
+        f.version.webapp = Webapp(app_slug=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'app-0.1.7.webapp')
 
     def test_generate_webapp_fn_partial_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Webapp(app_slug=u'myapp フォクすけ  といっしょ')
+        f.version.webapp = Webapp(app_slug=u'myapp フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'myapp-0.1.7.webapp')
 
     def test_generate_filename_ja(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Webapp(name=u' フォクすけ  といっしょ')
+        f.version.webapp = Webapp(name=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'none-0.1.7.webapp')
 
     def clean_files(self, f):
@@ -298,18 +298,18 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         filename = self.packaged_app_path('mozball.zip')
         assert f.generate_hash(filename).startswith('sha256:ad85d6316166d4')
 
-    def test_addon(self):
+    def test_webapp(self):
         f = File.objects.get()
-        addon_id = f.version.addon_id
-        addon = Webapp.objects.get(pk=addon_id)
-        addon.update(status=mkt.STATUS_DELETED)
-        eq_(f.addon.id, addon_id)
+        webapp_id = f.version.webapp_id
+        webapp = Webapp.objects.get(pk=webapp_id)
+        webapp.update(status=mkt.STATUS_DELETED)
+        eq_(f.webapp.id, webapp_id)
 
     def test_disabled_file_uses_guarded_path(self):
         f = File.objects.get()
         f.update(status=mkt.STATUS_DISABLED)
-        ok_(settings.GUARDED_ADDONS_PATH in f.file_path)
-        ok_(settings.ADDONS_PATH not in f.file_path)
+        ok_(settings.GUARDED_WEBAPPS_PATH in f.file_path)
+        ok_(settings.WEBAPPS_PATH not in f.file_path)
 
 
 class TestSignedPath(mkt.site.tests.TestCase):
@@ -321,12 +321,12 @@ class TestSignedPath(mkt.site.tests.TestCase):
     def test_path(self):
         path = (self.file_.file_path
                     .replace('.webapp', '.signed.webapp')
-                    .replace(settings.ADDONS_PATH, settings.SIGNED_APPS_PATH))
+                    .replace(settings.WEBAPPS_PATH, settings.SIGNED_APPS_PATH))
         eq_(self.file_.signed_file_path, path)
 
     def test_reviewer_path(self):
         path = (self.file_.file_path
                     .replace('.webapp', '.signed.webapp')
-                    .replace(settings.ADDONS_PATH,
+                    .replace(settings.WEBAPPS_PATH,
                              settings.SIGNED_APPS_REVIEWER_PATH))
         eq_(self.file_.signed_reviewer_file_path, path)

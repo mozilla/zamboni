@@ -9,8 +9,8 @@
 
 {% block content %}
 <div id="metadata" class="js-hidden"
-     data-name="{{ addon.name }}"
-     data-slug="{{ addon.app_slug }}"
+     data-name="{{ webapp.name }}"
+     data-slug="{{ webapp.app_slug }}"
      data-version="{{ version }}"
      data-validation-failed="{{ _('Validation failed:') }}"></div>
 
@@ -21,7 +21,7 @@
     <input type="submit" value="{{ _('Go') }}">
   </form>
   <h3>
-    <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
+    <a href="{{ file_link['url'] }}">{{ webapp.name }} {{ version }}</a>
   </h3>
 </div>
 <div id="file-viewer" class="featured">

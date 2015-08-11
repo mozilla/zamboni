@@ -171,7 +171,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
 
         The queries we are expecting are:
           * 2 savepoints
-          * 2 addons - 1 for the addon, and 1 for the translations
+          * 2 webapps - 1 for the webapp, and 1 for the translations
 
         """
         _mock.return_value = (self._mocked_json(), 'fake_etag')

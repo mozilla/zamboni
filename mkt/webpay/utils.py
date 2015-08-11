@@ -11,7 +11,7 @@ def strip_tags(text):
 
 def make_external_id(product):
     """
-    Generates a webpay/solitude external ID given an addon's primary key.
+    Generates a webpay/solitude external ID given an webapp's primary key.
     """
     # This namespace is currently necessary because app products
     # are mixed into an application's own in-app products.

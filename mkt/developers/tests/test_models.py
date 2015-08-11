@@ -8,7 +8,7 @@ from nose.tools import eq_, ok_
 import mkt
 import mkt.site.tests
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
-from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
+from mkt.developers.models import (ActivityLog, WebappPaymentAccount,
                                    CantCancel, PaymentAccount, PreloadTestPlan,
                                    SolitudeSeller)
 from mkt.developers.providers import get_provider
@@ -134,25 +134,25 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
             name='asdf', user=self.user, uri='foo', seller_uri='uri1',
             solitude_seller=self.seller)
 
-        addon = Webapp.objects.get()
-        AddonPaymentAccount.objects.create(
-            addon=addon, account_uri='foo',
+        webapp = Webapp.objects.get()
+        WebappPaymentAccount.objects.create(
+            webapp=webapp, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
-        assert addon.reload().status != mkt.STATUS_NULL
+        assert webapp.reload().status != mkt.STATUS_NULL
         res.cancel(disable_refs=True)
         assert res.inactive
-        assert addon.reload().status == mkt.STATUS_NULL
-        assert not AddonPaymentAccount.objects.exists()
+        assert webapp.reload().status == mkt.STATUS_NULL
+        assert not WebappPaymentAccount.objects.exists()
 
     def test_cancel_shared(self):
         res = PaymentAccount.objects.create(
             name='asdf', user=self.user, uri='foo',
             solitude_seller=self.seller, shared=True)
 
-        addon = Webapp.objects.get()
-        AddonPaymentAccount.objects.create(
-            addon=addon, account_uri='foo',
+        webapp = Webapp.objects.get()
+        WebappPaymentAccount.objects.create(
+            webapp=webapp, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
         with self.assertRaises(CantCancel):
@@ -166,19 +166,19 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
             name='fdsa', user=self.user, uri='bar', seller_uri='uri2',
             solitude_seller=self.seller, provider=PROVIDER_REFERENCE)
 
-        addon = Webapp.objects.get(pk=337141)
-        AddonPaymentAccount.objects.create(
-            addon=addon, account_uri='foo',
+        webapp = Webapp.objects.get(pk=337141)
+        WebappPaymentAccount.objects.create(
+            webapp=webapp, account_uri='foo',
             payment_account=acct1, product_uri='bpruri')
-        still_around = AddonPaymentAccount.objects.create(
-            addon=addon, account_uri='bar',
+        still_around = WebappPaymentAccount.objects.create(
+            webapp=webapp, account_uri='bar',
             payment_account=acct2, product_uri='asiuri')
 
-        ok_(addon.reload().status != mkt.STATUS_NULL)
+        ok_(webapp.reload().status != mkt.STATUS_NULL)
         acct1.cancel(disable_refs=True)
         ok_(acct1.inactive)
-        ok_(addon.reload().status != mkt.STATUS_NULL)
-        pks = AddonPaymentAccount.objects.values_list('pk', flat=True)
+        ok_(webapp.reload().status != mkt.STATUS_NULL)
+        pks = WebappPaymentAccount.objects.values_list('pk', flat=True)
         eq_(len(pks), 1)
         eq_(pks[0], still_around.pk)
 
@@ -223,6 +223,6 @@ class TestPreloadTestPlan(mkt.site.tests.TestCase):
         self.preload = self.app.preloadtestplan_set.create(filename='test.pdf')
 
     def test_delete_cascade(self):
-        eq_(self.preload.addon, self.app)
+        eq_(self.preload.webapp, self.app)
         self.app.delete()
         eq_(PreloadTestPlan.objects.count(), 0)

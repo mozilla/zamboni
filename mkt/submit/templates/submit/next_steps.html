@@ -4,13 +4,13 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{% set public = addon.is_public() %}
+{% set public = webapp.is_public() %}
 
 {% block content %}
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
   <header class="submit-header c">
     <h1>{{ title }}</h1>
-    {{ progress(request, addon=addon, step=step) }}
+    {{ progress(request, webapp=webapp, step=step) }}
   </header>
 
   <section id="submit-next-steps" class="primary">
@@ -26,26 +26,26 @@
         </h2>
         <li class="done"><span>{{ _('Submit App Manifest') }}</span></li>
         <li class="done"><span>{{ _('Enter App Details') }}</span></li>
-        <li{% if addon.is_rated() %} class="done"{% endif %}>
-          {%- trans rating_url=addon.get_dev_url('ratings') %}
+        <li{% if webapp.is_rated() %} class="done"{% endif %}>
+          {%- trans rating_url=webapp.get_dev_url('ratings') %}
             <span>Set up <a href="{{ rating_url }}">Content Ratings</a></span>
           {% endtrans -%}
         </li>
-        {% if addon.is_premium() %}
-          <li{% if addon.payments_complete() %} class="done"{% endif %}>
-            {%- trans pay_url=addon.get_dev_url('payments') %}
+        {% if webapp.is_premium() %}
+          <li{% if webapp.payments_complete() %} class="done"{% endif %}>
+            {%- trans pay_url=webapp.get_dev_url('payments') %}
               <span>Set up <a href="{{ pay_url }}">Payments</a></span>
             {% endtrans %}
           </li>
         {% endif %}
-        <li{% if public or addon.is_approved() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
+        <li{% if public or webapp.is_approved() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
         <li{% if public %} class="done"{% endif %}><span>{{ _('Publish') }}</span></li>
       </ol>
 
       <h2>{{ _('At any point, you can') }}</h2>
       <ul class="other-options">
         <li>
-          {% trans url=addon.get_dev_url() %}
+          {% trans url=webapp.get_dev_url() %}
             Revise your app details on <a href="{{ url }}">Edit Listing</a>
           {% endtrans %}
         </li>
@@ -55,8 +55,8 @@
           {% endtrans %}
         </li>
         <li>
-          {% set status_url = addon.get_dev_url('versions') + '#low-memory-devices' %}
-          {% if addon.is_packaged %}
+          {% set status_url = webapp.get_dev_url('versions') + '#low-memory-devices' %}
+          {% if webapp.is_packaged %}
             {% trans %}
               Request that your app be shown on low-memory devices on <a href="{{ status_url }}">Status &amp; Versions</a>
             {% endtrans %}
@@ -70,8 +70,8 @@
 
       <p>
         {# Tell the developer what happens after review based on publish_type. #}
-        {% if addon.publish_type != mkt.PUBLISH_IMMEDIATE %}
-          {% trans url=addon.get_dev_url('versions') %}
+        {% if webapp.publish_type != mkt.PUBLISH_IMMEDIATE %}
+          {% trans url=webapp.get_dev_url('versions') %}
             Once your app is reviewed, you will have to manually
             publish your app from <a href="{{ url }}">Manage Status</a>.
             It would then show up on listing pages and in search for others to
@@ -91,7 +91,7 @@
       </p>
 
       <div class="listing-footer footer">
-        {% set continue_url = addon.get_dev_url('versions') %}
+        {% set continue_url = webapp.get_dev_url('versions') %}
         {% if next_step %}
           {% set continue_url = next_step['url'] %}
           <span>
@@ -100,7 +100,7 @@
               <strong>What's next:</strong> Set up {{ next_step_name }}
             {% endtrans %}
           </span>
-        {% elif addon.is_approved() %}
+        {% elif webapp.is_approved() %}
           <span>
             {% trans %}
               <strong>What's next:</strong> Publish Your App

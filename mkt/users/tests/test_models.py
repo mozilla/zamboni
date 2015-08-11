@@ -11,7 +11,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.ratings.models import Review
 from mkt.users.models import UserEmailField, UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 
 
 class TestUserProfile(TestCase):
@@ -62,14 +62,14 @@ class TestUserProfile(TestCase):
         Make sure that developer replies are not returned as if they were
         original reviews.
         """
-        addon = Webapp.objects.get(id=337141)
+        webapp = Webapp.objects.get(id=337141)
         u = UserProfile.objects.get(pk=999)
-        version = addon.current_version
+        version = webapp.current_version
         new_review = Review(version=version, user=u, rating=2, body='hello',
-                            addon=addon)
+                            webapp=webapp)
         new_review.save()
         new_reply = Review(version=version, user=u, reply_to=new_review,
-                           addon=addon, body='my reply')
+                           webapp=webapp, body='my reply')
         new_reply.save()
 
         review_list = [r.pk for r in u.reviews]
@@ -82,14 +82,16 @@ class TestUserProfile(TestCase):
 
     def test_my_apps(self):
         """Test helper method to get N apps."""
-        addon1 = Webapp.objects.create(name='test-1')
-        AddonUser.objects.create(addon_id=addon1.id, user_id=999, listed=True)
-        addon2 = Webapp.objects.create(name='test-2')
-        AddonUser.objects.create(addon_id=addon2.id, user_id=999, listed=True)
+        webapp1 = Webapp.objects.create(name='test-1')
+        WebappUser.objects.create(webapp_id=webapp1.id, user_id=999,
+                                  listed=True)
+        webapp2 = Webapp.objects.create(name='test-2')
+        WebappUser.objects.create(webapp_id=webapp2.id, user_id=999,
+                                  listed=True)
         u = UserProfile.objects.get(id=999)
-        addons = u.my_apps()
-        self.assertTrue(sorted([a.name for a in addons]) == [addon1.name,
-                                                             addon2.name])
+        webapps = u.my_apps()
+        self.assertTrue(sorted([a.name for a in webapps]) == [webapp1.name,
+                                                              webapp2.name])
 
     @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
     def test_activate_locale(self):

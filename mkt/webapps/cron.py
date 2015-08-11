@@ -35,10 +35,10 @@ def _change_last_updated(next):
     current = dict(Webapp.objects.values_list('id', 'last_updated'))
     changes = {}
 
-    for addon, last_updated in next.items():
+    for webapp, last_updated in next.items():
         try:
-            if current[addon] != last_updated:
-                changes[addon] = last_updated
+            if current[webapp] != last_updated:
+                changes[webapp] = last_updated
         except KeyError:
             pass
 
@@ -48,18 +48,18 @@ def _change_last_updated(next):
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
     qs = Webapp.objects.filter(id__in=changes).no_transforms()
-    for addon in qs:
-        addon.last_updated = changes[addon.id]
-        addon.save()
+    for webapp in qs:
+        webapp.last_updated = changes[webapp.id]
+        webapp.save()
 
 
 @cronjobs.register
 @use_master
-def addon_last_updated():
+def webapp_last_updated():
     next = {}
     qs = Webapp._last_updated_queries().values()
-    for addon, last_updated in qs.values_list('id', 'last_updated'):
-        next[addon] = last_updated
+    for webapp, last_updated in qs.values_list('id', 'last_updated'):
+        next[webapp] = last_updated
 
     _change_last_updated(next)
 
@@ -72,15 +72,15 @@ def addon_last_updated():
 @cronjobs.register
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
-    # GUARDED_ADDONS_PATH so it's not publicly visible.
+    # GUARDED_WEBAPPS_PATH so it's not publicly visible.
     #
     # We ignore deleted versions since we hide those files when deleted and
     # also due to bug 980916.
     ids = (File.objects
            .filter(version__deleted=False)
            .filter(Q(status=mkt.STATUS_DISABLED) |
-                   Q(version__addon__status=mkt.STATUS_DISABLED) |
-                   Q(version__addon__disabled_by_user=True))
+                   Q(version__webapp__status=mkt.STATUS_DISABLED) |
+                   Q(version__webapp__disabled_by_user=True))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
         qs = File.objects.filter(id__in=chunk)
@@ -264,7 +264,7 @@ def update_app_installs():
 
     qs = Installs.objects.filter(modified__lte=midnight)
     # First get the IDs so we know what to reindex.
-    purged_ids = qs.values_list('addon', flat=True).distinct()
+    purged_ids = qs.values_list('webapp', flat=True).distinct()
     # Then delete them.
     qs.delete()
 
@@ -482,7 +482,7 @@ def update_app_trending():
 
     qs = Trending.objects.filter(modified__lte=midnight)
     # First get the IDs so we know what to reindex.
-    purged_ids = qs.values_list('addon', flat=True).distinct()
+    purged_ids = qs.values_list('webapp', flat=True).distinct()
     # Then delete them.
     qs.delete()
 

@@ -91,7 +91,7 @@ class AllowRelatedAppOwner(BasePermission):
         return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        return AllowAppOwner().has_object_permission(request, view, obj.addon)
+        return AllowAppOwner().has_object_permission(request, view, obj.webapp)
 
 
 class AllowReviewerReadOnly(BasePermission):

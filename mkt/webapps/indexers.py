@@ -10,14 +10,14 @@ from elasticsearch_dsl.filter import Bool
 import mkt
 from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
-from mkt.prices.models import AddonPremium
+from mkt.prices.models import WebappPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
 from mkt.tags.models import attach_tags
 from mkt.translations.models import attach_trans_dict
 
 
-log = commonware.log.getLogger('z.addons')
+log = commonware.log.getLogger('z.webapps')
 
 
 class WebappIndexer(BaseIndexer):
@@ -60,8 +60,6 @@ class WebappIndexer(BaseIndexer):
         """
         Returns mapping type name which is used as the key in ES_INDEXES to
         determine which index to use.
-
-        We override this because Webapp is a proxy model to Addon.
         """
         return 'webapp'
 
@@ -320,15 +318,15 @@ class WebappIndexer(BaseIndexer):
         d['package_path'] = obj.get_package_path()
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
-                       obj.addonuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
+                       obj.webappuser_set.filter(role=mkt.AUTHOR_ROLE_OWNER)]
 
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
                          for p in obj.previews.all()]
         try:
-            p = obj.addonpremium.price
+            p = obj.webapppremium.price
             d['price_tier'] = p.name
-        except AddonPremium.DoesNotExist:
+        except WebappPremium.DoesNotExist:
             d['price_tier'] = None
 
         d['ratings'] = {

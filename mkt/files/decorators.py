@@ -15,22 +15,22 @@ from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
 
 
-log = commonware.log.getLogger('z.addons')
+log = commonware.log.getLogger('z.webapps')
 
 
 def allowed(request, file):
     allowed = acl.check_reviewer(request)
     if not allowed:
         try:
-            addon = file.version.addon
+            webapp = file.version.webapp
         except ObjectDoesNotExist:
             raise http.Http404
 
-        if addon.status in mkt.REVIEWED_STATUSES:
+        if webapp.status in mkt.REVIEWED_STATUSES:
             allowed = True
         else:
-            allowed = acl.check_addon_ownership(request, addon, viewer=True,
-                                                dev=True)
+            allowed = acl.check_webapp_ownership(request, webapp, viewer=True,
+                                                 dev=True)
     if not allowed:
         raise PermissionDenied
     return True

@@ -27,12 +27,12 @@ class PermissionTestMixin(object):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Webapp.objects.get()
-        self.version = self.addon.current_version
+        self.webapp = Webapp.objects.get()
+        self.version = self.webapp.current_version
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
         self.thread = CommunicationThread.objects.create(
-            _addon=self.addon, _version=self.version)
+            _webapp=self.webapp, _version=self.version)
         self.author = user_factory(email='lol')
         self.note = CommunicationNote.objects.create(
             thread=self.thread, author=self.author, note_type=0, body='xyz')
@@ -53,7 +53,7 @@ class PermissionTestMixin(object):
 
     def test_has_perm_dev(self):
         self.obj.update(read_permission_developer=True)
-        self.addon.addonuser_set.create(user=self.user)
+        self.webapp.webappuser_set.create(user=self.user)
         self._eq_obj_perm(True)
 
     def test_has_perm_rev(self):
@@ -68,7 +68,7 @@ class PermissionTestMixin(object):
 
     def test_has_perm_moz_contact(self):
         self.obj.update(read_permission_mozilla_contact=True)
-        self.addon.update(
+        self.webapp.update(
             mozilla_contact=','.join([self.user.email, 'lol@lol.com']))
         self._eq_obj_perm(True)
 
@@ -110,9 +110,9 @@ class TestCommunicationThread(PermissionTestMixin, TestCase):
         self.type = 'thread'
         self.obj = self.thread
 
-    def test_addon_deleted(self):
-        self.thread.addon.update(status=mkt.STATUS_DELETED)
-        eq_(self.thread.addon, self.addon)
+    def test_webapp_deleted(self):
+        self.thread.webapp.update(status=mkt.STATUS_DELETED)
+        eq_(self.thread.webapp, self.webapp)
 
     def test_version_deleted(self):
         self.version.update(deleted=True)
@@ -127,22 +127,22 @@ class TestCommunicationThread(PermissionTestMixin, TestCase):
         self._eq_obj_perm(True)
 
     def test_has_perm_app_reviewer(self):
-        ok_(not user_has_perm_app(self.user, self.addon))
+        ok_(not user_has_perm_app(self.user, self.webapp))
         self.grant_permission(self.user, 'Apps:Review')
-        ok_(user_has_perm_app(self.user, self.addon))
+        ok_(user_has_perm_app(self.user, self.webapp))
 
     def test_has_perm_app_developer(self):
-        ok_(not user_has_perm_app(self.user, self.addon))
-        self.addon.addonuser_set.create(user=self.user)
-        ok_(user_has_perm_app(self.user, self.addon))
+        ok_(not user_has_perm_app(self.user, self.webapp))
+        self.webapp.webappuser_set.create(user=self.user)
+        ok_(user_has_perm_app(self.user, self.webapp))
 
 
 class TestThreadTokenModel(TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        addon = Webapp.objects.get(pk=337141)
-        self.thread = CommunicationThread(_addon=addon)
+        webapp = Webapp.objects.get(pk=337141)
+        self.thread = CommunicationThread(_webapp=webapp)
         user = UserProfile.objects.all()[0]
         self.token = CommunicationThreadToken(thread=self.thread, user=user)
         self.token.modified = datetime.now()
@@ -197,8 +197,8 @@ class TestCommAttachment(TestCase, CommTestMixin):
         self.user = user_factory(email='porkbelly')
         mkt.set_user(self.user)
         self.profile = self.user
-        self.addon = Webapp.objects.get()
-        self.version = self.addon.latest_version
+        self.webapp = Webapp.objects.get()
+        self.version = self.webapp.latest_version
         self.thread = self._thread_factory()
         self.note = self._note_factory(self.thread)
         self.attachment1, self.attachment2 = self._attachments(self.note)

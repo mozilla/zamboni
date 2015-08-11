@@ -74,7 +74,7 @@ def market_button(context, product, receipt_type=None, classes=None):
 
     if request.user.is_authenticated():
         installed_set = request.user.installed_set
-        installed = installed_set.filter(addon=product).exists()
+        installed = installed_set.filter(webapp=product).exists()
 
     # Handle premium apps.
     if product.has_premium():
@@ -207,7 +207,7 @@ def timelabel(context, time):
 @register.function
 def mkt_admin_site_links():
     return {
-        'addons': [
+        'webapps': [
             ('Fake mail', reverse('zadmin.mail')),
         ],
         'settings': [

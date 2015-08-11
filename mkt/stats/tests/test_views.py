@@ -141,7 +141,7 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
     def setUp(self):
         super(TestAppStatsResource, self).setUp()
         self.app = app_factory(status=mkt.STATUS_PUBLIC)
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         self.data = {'start': '2013-04-01', 'end': '2013-04-15',
                      'interval': 'day'}
 
@@ -160,20 +160,20 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
         eq_(res.status_code, 200)
 
     def test_perms(self):
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_public_anonymous(self):
         self.app.update(public_stats=True)
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_non_public_anonymous(self):
         self.app.update(public_stats=False)
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 403)
 
@@ -215,7 +215,7 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
     def setUp(self):
         super(TestAppStatsTotalResource, self).setUp()
         self.app = app_factory(status=mkt.STATUS_PUBLIC)
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         self.data = None  # For the mixin tests.
 
     def url(self, pk=None, metric=None):
@@ -232,20 +232,20 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
         eq_(res.status_code, 200)
 
     def test_perms(self):
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url())
         eq_(res.status_code, 200)
 
     def test_public_anonymous(self):
         self.app.update(public_stats=True)
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_non_public_anonymous(self):
         self.app.update(public_stats=False)
-        self.app.addonuser_set.all().delete()
+        self.app.webappuser_set.all().delete()
         res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 403)
 
@@ -260,7 +260,7 @@ class TestTransactionResource(RestOAuth):
     def setUp(self):
         super(TestTransactionResource, self).setUp()
         Contribution.objects.create(
-            addon_id=337141,
+            webapp_id=337141,
             amount='1.89',
             currency='EUR',
             price_tier_id=2,

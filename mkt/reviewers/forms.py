@@ -13,7 +13,7 @@ from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.models import CannedResponse, SHOWCASE_TAG
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm, SimpleSearchForm
-from mkt.webapps.models import AddonDeviceType
+from mkt.webapps.models import WebappDeviceType
 
 
 log = logging.getLogger('z.reviewers.forms')
@@ -151,12 +151,12 @@ class ReviewAppForm(happyforms.Form):
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [(k, v['label']) for k, v
                                          in self.helper.actions.items()]
-        device_types = AddonDeviceType.objects.filter(
-            addon=self.helper.addon).values_list('device_type', flat=True)
+        device_types = WebappDeviceType.objects.filter(
+            webapp=self.helper.webapp).values_list('device_type', flat=True)
         if device_types:
             self.initial['device_override'] = device_types
         self.initial['is_showcase'] = (
-            self.helper.addon.tags.filter(tag_text=SHOWCASE_TAG).exists())
+            self.helper.webapp.tags.filter(tag_text=SHOWCASE_TAG).exists())
 
     def is_valid(self):
         result = super(ReviewAppForm, self).is_valid()
@@ -165,9 +165,9 @@ class ReviewAppForm(happyforms.Form):
         return result
 
 
-def get_review_form(data, files, request=None, addon=None, version=None,
+def get_review_form(data, files, request=None, webapp=None, version=None,
                     attachment_formset=None, testedon_formset=None):
-    helper = ReviewHelper(request=request, addon=addon, version=version,
+    helper = ReviewHelper(request=request, webapp=webapp, version=version,
                           attachment_formset=attachment_formset,
                           testedon_formset=testedon_formset)
     return ReviewAppForm(data=data, files=files, helper=helper)
@@ -253,7 +253,7 @@ class ApproveRegionForm(happyforms.Form):
         if approved:
             status = mkt.STATUS_PUBLIC
             # Make it public in the previously excluded region.
-            self.app.addonexcludedregion.filter(
+            self.app.webappexcludedregion.filter(
                 region=self.region.id).delete()
         else:
             status = mkt.STATUS_REJECTED

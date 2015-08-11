@@ -8,14 +8,14 @@
   {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
   <header class="submit-header c">
     <h1>{{ title }}</h1>
-    {{ progress(request, addon=addon, step=step) }}
+    {{ progress(request, webapp=webapp, step=step) }}
   </header>
-  <section id="submit-done" class="primary{{ ' payments' if addon.is_premium() }}">
+  <section id="submit-done" class="primary{{ ' payments' if webapp.is_premium() }}">
     <h2>{{ _('Success! What happens now?') }}</h2>
     <div class="island devhub-form c">
-      {% if addon.publish_type != mkt.PUBLISH_IMMEDIATE %}
+      {% if webapp.publish_type != mkt.PUBLISH_IMMEDIATE %}
         <p>
-          {%- trans url=addon.get_dev_url('versions') -%}
+          {%- trans url=webapp.get_dev_url('versions') -%}
             We've got your app saved and ready to go! Your app is currently
             awaiting review, and once it is reviewed you will need to manually
             enable your app from the <a href="{{ url }}">Manage Status page</a>
@@ -25,7 +25,7 @@
         </p>
       {% else %}
         <p>
-          {% if addon.is_premium() %}
+          {% if webapp.is_premium() %}
             {%- trans %}
               Before your app can go live, you need to provide payment
               information. Once you've added a payment account and price,
@@ -42,14 +42,14 @@
         </p>
       {% endif %}
       <div class="listing-footer footer button-wrapper">
-        {%- if addon.is_premium() -%}
-          <a href="{{ addon.get_dev_url('payments') }}" class="button prominent">
+        {%- if webapp.is_premium() -%}
+          <a href="{{ webapp.get_dev_url('payments') }}" class="button prominent">
             {{- _('Set Up Payments') }}</a>
           <span class="or">{{ _('or') }}</span>
         {%- endif %}
-        <a href="{{ addon.get_dev_url('edit') }}" class="button prominent">
+        <a href="{{ webapp.get_dev_url('edit') }}" class="button prominent">
           {{- _('Manage My App') }}</a>
-        {%- if not addon.is_premium() -%}
+        {%- if not webapp.is_premium() -%}
           <a href="{{ url('submit.app') }}" class="button prominent">
             {{- _('Submit Another App') }}</a>
         {%- endif -%}

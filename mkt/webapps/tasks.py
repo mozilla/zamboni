@@ -48,21 +48,21 @@ task_log = logging.getLogger('z.task')
 
 @task
 @use_master
-def version_changed(addon_id, **kw):
-    update_last_updated(addon_id)
+def version_changed(webapp_id, **kw):
+    update_last_updated(webapp_id)
 
 
-def update_last_updated(addon_id):
+def update_last_updated(webapp_id):
     qs = Webapp._last_updated_queries()
-    if not Webapp.objects.filter(pk=addon_id).exists():
+    if not Webapp.objects.filter(pk=webapp_id).exists():
         task_log.info(
-            '[1@None] Updating last updated for %s failed, no addon found'
-            % addon_id)
+            '[1@None] Updating last updated for %s failed, no webapp found'
+            % webapp_id)
         return
 
-    task_log.info('[1@None] Updating last updated for %s.' % addon_id)
+    task_log.info('[1@None] Updating last updated for %s.' % webapp_id)
 
-    res = (qs.filter(pk=addon_id)
+    res = (qs.filter(pk=webapp_id)
              .using('default')
              .values_list('id', 'last_updated'))
     if res:
@@ -123,7 +123,7 @@ def update_manifests(ids, **kw):
 
 def notify_developers_of_failure(app, error_message, has_link=False):
     if (app.status not in mkt.WEBAPPS_APPROVED_STATUSES or
-            RereviewQueue.objects.filter(addon=app).exists()):
+            RereviewQueue.objects.filter(webapp=app).exists()):
         # If the app isn't public, or has already been reviewed, we don't
         # want to send the mail.
         return
@@ -488,7 +488,7 @@ def dump_user_installs(ids, **kw):
         zone = pytz.timezone(settings.TIME_ZONE)
         for install in user.installed_set.all():
             try:
-                app = install.addon
+                app = install.webapp
             except Webapp.DoesNotExist:
                 continue
 
@@ -635,35 +635,35 @@ def delete_logs(items, **kw):
 
 @task
 @set_task_user
-def find_abuse_escalations(addon_id, **kw):
+def find_abuse_escalations(webapp_id, **kw):
     weekago = datetime.date.today() - datetime.timedelta(days=7)
     add_to_queue = True
 
-    for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, addon_id):
-        if EscalationQueue.objects.filter(addon=abuse.addon).exists():
+    for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, webapp_id):
+        if EscalationQueue.objects.filter(webapp=abuse.webapp).exists():
             # App is already in the queue, no need to re-add it.
             task_log.info(u'[app:%s] High abuse reports, but already '
-                          u'escalated' % abuse.addon)
+                          u'escalated' % abuse.webapp)
             add_to_queue = False
 
         # We have an abuse report... has it been detected and dealt with?
         logs = (AppLog.objects.filter(
             activity_log__action=mkt.LOG.ESCALATED_HIGH_ABUSE.id,
-            addon=abuse.addon).order_by('-created'))
+            webapp=abuse.webapp).order_by('-created'))
         if logs:
             abuse_since_log = AbuseReport.recent_high_abuse_reports(
-                1, logs[0].created, addon_id)
+                1, logs[0].created, webapp_id)
             # If no abuse reports have happened since the last logged abuse
             # report, do not add to queue.
             if not abuse_since_log:
                 task_log.info(u'[app:%s] High abuse reports, but none since '
-                              u'last escalation' % abuse.addon)
+                              u'last escalation' % abuse.webapp)
                 continue
 
         # If we haven't bailed out yet, escalate this app.
         msg = u'High number of abuse reports detected'
         if add_to_queue:
-            EscalationQueue.objects.create(addon=abuse.addon)
-        mkt.log(mkt.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
-                abuse.addon.current_version, details={'comments': msg})
-        task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
+            EscalationQueue.objects.create(webapp=abuse.webapp)
+        mkt.log(mkt.LOG.ESCALATED_HIGH_ABUSE, abuse.webapp,
+                abuse.webapp.current_version, details={'comments': msg})
+        task_log.info(u'[app:%s] %s' % (abuse.webapp, msg))

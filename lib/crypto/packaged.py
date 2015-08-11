@@ -138,7 +138,7 @@ def _no_sign(src, dst_path):
 @task
 def sign(version_id, reviewer=False, resign=False, **kw):
     version = Version.objects.get(pk=version_id)
-    app = version.addon
+    app = version.webapp
     log.info('Signing version: %s of app: %s' % (version_id, app))
 
     if not app.is_packaged:

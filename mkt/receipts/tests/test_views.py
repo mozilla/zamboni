@@ -20,7 +20,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import app_factory, MktPaths, TestCase
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 from services.verify import settings as verify_settings
 from services.verify import decode_receipt
 
@@ -30,71 +30,71 @@ class TestInstall(TestCase):
                        'group_editor')
 
     def setUp(self):
-        self.addon = app_factory(manifest_url='http://cbc.ca/man')
-        self.url = self.addon.get_detail_url('record')
+        self.webapp = app_factory(manifest_url='http://cbc.ca/man')
+        self.url = self.webapp.get_detail_url('record')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.login(self.user.email)
 
     def test_pending_free_for_reviewer(self):
-        self.addon.update(status=mkt.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.login('editor@mozilla.com')
         eq_(self.client.post(self.url).status_code, 200)
 
     def test_pending_free_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.user)
-        self.addon.update(status=mkt.STATUS_PENDING)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         eq_(self.client.post(self.url).status_code, 200)
 
     def test_pending_free_for_anonymous(self):
-        self.addon.update(status=mkt.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         eq_(self.client.post(self.url).status_code, 404)
 
     def test_pending_paid_for_reviewer(self):
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         self.login('editor@mozilla.com')
         eq_(self.client.post(self.url).status_code, 200)
         # Because they aren't using reviewer tools, they'll get a normal
         # install record and receipt.
-        eq_(self.addon.installed.all()[0].install_type,
+        eq_(self.webapp.installed.all()[0].install_type,
             apps.INSTALL_TYPE_USER)
 
     def test_pending_paid_for_admin(self):
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         self.grant_permission(self.user, '*:*')
         eq_(self.client.post(self.url).status_code, 200)
         # Check ownership ignores admin users.
-        eq_(self.addon.installed.all()[0].install_type,
+        eq_(self.webapp.installed.all()[0].install_type,
             apps.INSTALL_TYPE_USER)
 
     def test_pending_paid_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.user)
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.client.post(self.url).status_code, 200)
         eq_(self.user.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_DEVELOPER)
 
     def test_pending_paid_for_anonymous(self):
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.client.post(self.url).status_code, 404)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.client.post(self.url).status_code, 200)
 
     def test_own_payments(self):
-        self.addon.update(premium_type=mkt.ADDON_OTHER_INAPP)
+        self.webapp.update(premium_type=mkt.WEBAPP_OTHER_INAPP)
         eq_(self.client.post(self.url).status_code, 200)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):
         has_purchased.return_value = False
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.client.post(self.url).status_code, 403)
 
     def test_record_logged_out(self):
@@ -106,9 +106,9 @@ class TestInstall(TestCase):
     def test_log_metrics(self, cef):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
-        logs = AppLog.objects.filter(addon=self.addon)
+        logs = AppLog.objects.filter(webapp=self.webapp)
         eq_(logs.count(), 1)
-        eq_(logs[0].activity_log.action, mkt.LOG.INSTALL_ADDON.id)
+        eq_(logs[0].activity_log.action, mkt.LOG.INSTALL_WEBAPP.id)
 
     @mock.patch('mkt.receipts.views.record_action')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
@@ -117,21 +117,21 @@ class TestInstall(TestCase):
         eq_(res.status_code, 200)
         eq_(record_action.call_args[0][0], 'install')
         eq_(record_action.call_args[0][2], {'app-domain': u'http://cbc.ca',
-                                            'app-id': self.addon.pk,
+                                            'app-id': self.webapp.pk,
                                             'anonymous': False})
 
     @mock.patch('mkt.receipts.views.record_action')
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.
-        self.addon.update(is_packaged=True, manifest_url=None,
-                          app_domain='app://f.c')
+        self.webapp.update(is_packaged=True, manifest_url=None,
+                           app_domain='app://f.c')
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(record_action.call_args[0][0], 'install')
         eq_(record_action.call_args[0][2], {
             'app-domain': 'app://f.c',
-            'app-id': self.addon.pk,
+            'app-id': self.webapp.pk,
             'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
@@ -172,7 +172,7 @@ class TestReceiptVerify(TestCase):
         self.app = Webapp.objects.create(app_slug='foo', guid=uuid.uuid4())
         self.url = reverse('receipt.verify',
                            args=[self.app.guid])
-        self.log = AppLog.objects.filter(addon=self.app)
+        self.log = AppLog.objects.filter(webapp=self.app)
         self.reviewer = UserProfile.objects.get(pk=5497308)
 
     def get_mock(self, user=None, **kwargs):
@@ -235,7 +235,7 @@ class TestReceiptVerify(TestCase):
     @mock.patch('mkt.receipts.views.Verify')
     def test_logs_developer(self, verify):
         developer = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=self.app, user=developer)
+        WebappUser.objects.create(webapp=self.app, user=developer)
         verify.return_value = self.get_mock(user=developer, status='ok')
         res = self.client.post(self.url)
         eq_(res['Access-Control-Allow-Origin'], '*')
@@ -281,7 +281,7 @@ class TestReceiptIssue(TestCase):
     @mock.patch('mkt.receipts.views.create_receipt')
     def test_issued_developer(self, create_receipt):
         create_receipt.return_value = 'foo'
-        AddonUser.objects.create(user=self.user, addon=self.app)
+        WebappUser.objects.create(user=self.user, webapp=self.app)
         self.login(self.user.email)
         res = self.client.post(self.url)
         eq_(res.status_code, 200)

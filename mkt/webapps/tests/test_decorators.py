@@ -57,8 +57,8 @@ class TestWebappDecorators(TestCase):
         app.update(app_slug=str(app.id))
         r = self.view(self.request, app.app_slug)
         eq_(r, mock.sentinel.OK)
-        request, addon = self.func.call_args[0]
-        eq_(addon, app)
+        request, webapp = self.func.call_args[0]
+        eq_(webapp, app)
 
     def test_app(self):
         app = app_factory(name='xxxx')
@@ -70,7 +70,7 @@ class TestWebappDecorators(TestCase):
 class TestPremiumDecorators(TestCase):
 
     def setUp(self):
-        self.addon = mock.Mock(pk=1)
+        self.webapp = mock.Mock(pk=1)
         self.func = mock.Mock()
         self.func.return_value = True
         self.func.__name__ = 'mock_function'
@@ -78,25 +78,25 @@ class TestPremiumDecorators(TestCase):
         self.request.user = mock.Mock()
 
     def test_cant_become_premium(self):
-        self.addon.can_become_premium.return_value = False
+        self.webapp.can_become_premium.return_value = False
         view = dec.can_become_premium(self.func)
         with self.assertRaises(PermissionDenied):
-            view(self.request, self.addon.pk, self.addon)
+            view(self.request, self.webapp.pk, self.webapp)
 
     def test_can_become_premium(self):
-        self.addon.can_become_premium.return_value = True
+        self.webapp.can_become_premium.return_value = True
         view = dec.can_become_premium(self.func)
-        eq_(view(self.request, self.addon.pk, self.addon), True)
+        eq_(view(self.request, self.webapp.pk, self.webapp), True)
 
     def test_has_purchased(self):
         view = dec.has_purchased(self.func)
-        self.addon.is_premium.return_value = True
-        self.addon.has_purchased.return_value = True
-        eq_(view(self.request, self.addon), True)
+        self.webapp.is_premium.return_value = True
+        self.webapp.has_purchased.return_value = True
+        eq_(view(self.request, self.webapp), True)
 
     def test_has_purchased_failure(self):
         view = dec.has_purchased(self.func)
-        self.addon.is_premium.return_value = True
-        self.addon.has_purchased.return_value = False
+        self.webapp.is_premium.return_value = True
+        self.webapp.has_purchased.return_value = False
         with self.assertRaises(PermissionDenied):
-            view(self.request, self.addon)
+            view(self.request, self.webapp)

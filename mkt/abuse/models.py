@@ -18,9 +18,9 @@ class AbuseReport(ModelBase):
     reporter = models.ForeignKey(UserProfile, null=True,
                                  blank=True, related_name='abuse_reported')
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
-    # An abuse report can be for an addon, a user, or a website. Only one of
+    # An abuse report can be for an webapp, a user, or a website. Only one of
     # these should be set.
-    addon = models.ForeignKey(Webapp, null=True, related_name='abuse_reports')
+    webapp = models.ForeignKey(Webapp, null=True, related_name='abuse_reports')
     user = models.ForeignKey(UserProfile, null=True,
                              related_name='abuse_reports')
     website = models.ForeignKey(Website, null=True,
@@ -33,7 +33,7 @@ class AbuseReport(ModelBase):
 
     @property
     def object(self):
-        return self.addon or self.user or self.website
+        return self.webapp or self.user or self.website
 
     def send(self):
         obj = self.object
@@ -50,7 +50,7 @@ class AbuseReport(ModelBase):
             subject = u'[%s] Issue Report for %s' % (type_, obj.name)
             recipient_list = (settings.MKT_FEEDBACK_EMAIL,)
         else:
-            if self.addon:
+            if self.webapp:
                 type_ = 'App'
             elif self.user:
                 type_ = 'User'
@@ -63,24 +63,24 @@ class AbuseReport(ModelBase):
         send_mail(subject, msg, recipient_list=recipient_list)
 
     @classmethod
-    def recent_high_abuse_reports(cls, threshold, period, addon_id=None):
+    def recent_high_abuse_reports(cls, threshold, period, webapp_id=None):
         """
         Returns AbuseReport objects for the given threshold over the given time
-        period (in days). Filters by addon_id if provided.
+        period (in days). Filters by webapp_id if provided.
 
         E.g. Greater than 5 abuse reports for all webapps in the past 7 days.
         """
         abuse_sql = ['''
             SELECT `abuse_reports`.*,
-                   COUNT(`abuse_reports`.`addon_id`) AS `num_reports`
+                   COUNT(`abuse_reports`.`webapp_id`) AS `num_reports`
             FROM `abuse_reports`
-            INNER JOIN `addons` ON (`abuse_reports`.`addon_id` = `addons`.`id`)
+            INNER JOIN webapps ON (abuse_reports.webapp_id=webapps.id)
             WHERE `abuse_reports`.`created` >= %s ''']
         params = [period]
-        if addon_id:
-            abuse_sql.append('AND `addons`.`id` = %s ')
-            params.append(addon_id)
-        abuse_sql.append('GROUP BY addon_id HAVING num_reports > %s')
+        if webapp_id:
+            abuse_sql.append('AND `webapps`.`id` = %s ')
+            params.append(webapp_id)
+        abuse_sql.append('GROUP BY webapp_id HAVING num_reports > %s')
         params.append(threshold)
 
         return list(cls.objects.raw(''.join(abuse_sql), params))
@@ -96,7 +96,7 @@ def send_abuse_report(request, obj, message):
     if request.user.is_authenticated():
         report.reporter = request.user
     if isinstance(obj, Webapp):
-        report.addon = obj
+        report.webapp = obj
     elif isinstance(obj, UserProfile):
         report.user = obj
     elif isinstance(obj, Website):
@@ -104,7 +104,7 @@ def send_abuse_report(request, obj, message):
     report.save()
     report.send()
 
-    # Trigger addon high abuse report detection task.
+    # Trigger webapp high abuse report detection task.
     if isinstance(obj, Webapp):
         from mkt.webapps.tasks import find_abuse_escalations
         find_abuse_escalations.delay(obj.id)

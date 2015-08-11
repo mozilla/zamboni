@@ -87,7 +87,7 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         self.url = reverse('reviewers-search-api')
 
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
+        self.webapp.webappdevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.webapp.update(status=mkt.STATUS_PENDING)
         self.refresh('webapp')
 
@@ -231,7 +231,7 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_region_filtering(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.webapp.webappexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -268,7 +268,7 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
-        self.webapp.addondevicetype_set.create(
+        self.webapp.webappdevicetype_set.create(
             device_type=mkt.DEVICE_TABLET.id)
         self.webapp.save()
         self.refresh('webapp')
@@ -276,7 +276,7 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
-        self.webapp.addondevicetype_set.create(
+        self.webapp.webappdevicetype_set.create(
             device_type=mkt.DEVICE_MOBILE.id)
         self.webapp.save()
         self.refresh('webapp')
@@ -293,9 +293,9 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 1)
 
     def test_no_premium_filtering(self):
-        self.webapp.addondevicetype_set.create(
+        self.webapp.webappdevicetype_set.create(
             device_type=mkt.DEVICE_MOBILE.id)
-        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         self.refresh('webapp')
         res = self.client.get(self.url, {'dev': 'android', 'device': 'mobile'})
         eq_(res.status_code, 200)
@@ -551,7 +551,7 @@ class TestCreateAdditionalReview(RestOAuth):
     def setUp(self):
         super(TestCreateAdditionalReview, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
-        self.addon_user = self.app.addonuser_set.create(user=self.profile)
+        self.webapp_user = self.app.webappuser_set.create(user=self.profile)
 
     def post(self, data):
         return self.client.post(
@@ -578,7 +578,7 @@ class TestCreateAdditionalReview(RestOAuth):
         ok_(not self.review_exists())
 
     def test_a_non_author_does_not_have_access(self):
-        self.addon_user.delete()
+        self.webapp_user.delete()
         ok_(not self.review_exists())
         response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
         eq_(response.status_code, 403)
@@ -586,7 +586,7 @@ class TestCreateAdditionalReview(RestOAuth):
 
     def test_admin_has_access(self):
         self.grant_permission(self.profile, 'Apps:Edit')
-        self.addon_user.delete()
+        self.webapp_user.delete()
         ok_(not self.review_exists())
         response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
         eq_(response.status_code, 201)
@@ -1019,17 +1019,17 @@ class TestReviewerActions(RestOAuth):
         self.app.status = mkt.STATUS_PENDING
         res = self.postit('escalate')
         eq_(res.status_code, 200)
-        ok_(EscalationQueue.objects.filter(addon=self.app).exists())
+        ok_(EscalationQueue.objects.filter(webapp=self.app).exists())
         self.check_note()
 
     def test_clear_escalation(self):
         self.grant_permission(self.user, 'Apps:Edit')
         self.app.status = mkt.STATUS_PENDING
-        EscalationQueue.objects.create(addon=self.app)
+        EscalationQueue.objects.create(webapp=self.app)
         url = reverse('app-escalate', kwargs={'pk': '337141'})
         res = self.client.delete(url, {'comments': self.comment})
         eq_(res.status_code, 200)
-        ok_(not EscalationQueue.objects.filter(addon=self.app).exists())
+        ok_(not EscalationQueue.objects.filter(webapp=self.app).exists())
         self.check_note()
 
     def test_disable(self):
@@ -1042,11 +1042,11 @@ class TestReviewerActions(RestOAuth):
 
     def test_rereview(self):
         self.app.status = mkt.STATUS_PENDING
-        RereviewQueue.objects.create(addon=self.app)
+        RereviewQueue.objects.create(webapp=self.app)
         url = reverse('app-rereview', kwargs={'pk': '337141'})
         res = self.client.delete(url, {'comments': self.comment})
         eq_(res.status_code, 200)
-        ok_(not RereviewQueue.objects.filter(addon=self.app).exists())
+        ok_(not RereviewQueue.objects.filter(webapp=self.app).exists())
         self.check_note()
 
     def test_comment(self):

@@ -80,10 +80,10 @@ class FileCompareForm(happyforms.Form):
                                    widget=FileSelectWidget, required=False)
 
     def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
+        self.webapp = kw.pop('webapp')
         super(FileCompareForm, self).__init__(*args, **kw)
 
-        queryset = File.objects.filter(version__addon=self.addon)
+        queryset = File.objects.filter(version__webapp=self.webapp)
         self.fields['left'].queryset = queryset
         self.fields['right'].queryset = queryset
 

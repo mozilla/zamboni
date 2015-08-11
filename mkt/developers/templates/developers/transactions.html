@@ -6,7 +6,7 @@
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 
@@ -49,7 +49,7 @@
         <tbody>
           {% for transaction in transactions.object_list %}
             <tr>
-              <td>{{ transaction.addon.name }}</td>
+              <td>{{ transaction.webapp.name }}</td>
               <td>{{ transaction.created|datetime }}</td>
               <td>{{ CONTRIB_TYPES[transaction.type] }}</td>
               <td>{{ transaction.uuid }}</td>

@@ -99,11 +99,11 @@
         </dd>
         <dt>{{ _('Submissions') }}:</dt>
         <dd class="product-lookup-list">
-          {% for addon in user_addons %}
+          {% for webapp in user_webapps %}
             <div>
-              <a href="{{ addon.get_url_path() }}">
-                {% if addon.name %}
-                  {{ addon.name }}
+              <a href="{{ webapp.get_url_path() }}">
+                {% if webapp.name %}
+                  {{ webapp.name }}
                 {% else %}
                   {{ _('Unnamed') }}
                 {% endif %}
@@ -112,7 +112,7 @@
           {% endfor %}
         </dd>
       </dl>
-      {{ user_addons|impala_paginator }}
+      {{ user_webapps|impala_paginator }}
     </section>
 
     <section id="delete-user">

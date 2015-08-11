@@ -74,7 +74,7 @@ class TestContentRating(TestCase):
 
     def test_get_content_ratings(self):
         for body in (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.ESRB):
-            ContentRating.objects.create(addon=self.app, ratings_body=body.id,
+            ContentRating.objects.create(webapp=self.app, ratings_body=body.id,
                                          rating=0)
         res = self.client.get(reverse('content-ratings-list',
                                       args=[self.app.app_slug]))
@@ -87,7 +87,7 @@ class TestContentRating(TestCase):
         eq_(rating['rating'], '0')
 
     def test_get_content_ratings_since(self):
-        cr = ContentRating.objects.create(addon=self.app, ratings_body=0,
+        cr = ContentRating.objects.create(webapp=self.app, ratings_body=0,
                                           rating=0)
         cr.update(modified=self.days_ago(100))
 
@@ -300,7 +300,7 @@ class TestContentRatingPingback(RestOAuth):
         self.anon.post(self.url, data=json.dumps(self.data))
 
         # Verify things were saved to the database.
-        geodata = Geodata.objects.get(addon=self.app)
+        geodata = Geodata.objects.get(webapp=self.app)
         assert not geodata.region_br_iarc_exclude
         assert not geodata.region_de_iarc_exclude
 
