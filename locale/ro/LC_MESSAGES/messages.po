@@ -7091,7 +7091,7 @@ msgstr "Aprobat în mod preliminar"
 
 #: mkt/site/log.py:177
 msgid "{addon} {version} rejected."
-msgstr "{addon} {versiune} respins."
+msgstr "{addon} {version} respins."
 
 #: mkt/site/log.py:187
 msgid "{addon} {version} retained."
