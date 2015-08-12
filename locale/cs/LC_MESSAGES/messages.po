@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-12 08:48+0000\n"
+"PO-Revision-Date: 2015-08-12 08:49+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439369319.0\n"
+"X-POOTLE-MTIME: 1439369372.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -6419,7 +6419,7 @@ msgstr "Skóre redaktora pro {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "All-time Point Breakdown"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
