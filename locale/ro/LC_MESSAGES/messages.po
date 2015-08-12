@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-08-09 17:56+0000\n"
-"Last-Translator: CristianSilaghi <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2015-08-12 22:57+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439143000.0\n"
+"X-POOTLE-MTIME: 1439420225.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -650,7 +651,7 @@ msgstr "Macao"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr "Macedonia (fosta Republică Iugoslavă)"
+msgstr "Macedonia, Fosta Rep Iugoslavă"
 
 #: mkt/constants/bango.py:152 mkt/constants/regions.py:208
 msgid "Madagascar"
@@ -1462,7 +1463,7 @@ msgstr "Re-recenzie din cauza unei evaluări de conținut adult"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Rerecenzie manuală solicitată"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2077,7 +2078,7 @@ msgstr "Saint Martin (partea franceză)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr "Macedonia"
+msgstr "Macedonia, Fosta Republică Iugoslavă"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
@@ -2215,13 +2216,16 @@ msgstr "Aplicația împachetată este prea mare pentru a fi admisă. Pachetele t
 msgid "Error extracting manifest from zip file."
 msgstr "Eroare la extragerea manifestului din fișierul zip."
 
+# Posibil să fie „URL gazdă”
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "URL găzduit:"
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr ""
+"Un URL cu locația în care este găzduită aplicația pe web, dacă există. Asta "
+"permite utilizatorilor să încerce aplicația înainte de a o instala."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2670,7 +2674,7 @@ msgstr "Previzualizarea s-a putut deschide."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "Imaginea promoțională nu a putut fi deschisă."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3690,13 +3694,16 @@ msgstr ""
 "Încercați să nu schimbați URL-ul manifestului prea des. Dacă schimbați URL-ul manifestului, utilizatorii existenți nu vor putea fi actualizați pentru a folosi noul URL de manifest. Mai multe "
 "informații la <a href=\"%(doc_url)s\" target=\"_blank\">documentația pentru actualizare aplicații</a>."
 
+# Poate fi și „URL gazdă”
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "URL găzduit"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
 msgstr ""
+"Dacă aplicația are un URL unde este găzduită, puteți să setați pentru a "
+"permite utilizatorului să testeze aplicația înainte de a o instala."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5333,11 +5340,11 @@ msgstr "Motive pentru ștergere"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "Imagine promoțională"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Mărime minimă: {0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5756,7 +5763,7 @@ msgstr "Caută"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Salvează imaginea promoțională"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6153,11 +6160,13 @@ msgstr "Faceți un comentariu privat pentru aplicație. Mesajul nu va fi vizibil
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "Solicită rerecenzie"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
 msgstr ""
+"Adăugați aplicația în coada de rerecenzie. Orice comentarii de aici nu vor "
+"fi vizibile pentru autor(i) și ei nu vor primi notificări în acest sens."
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -7384,14 +7393,15 @@ msgstr "Auto-escaladare prerelease"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
 msgstr ""
+"{addon} rerecenzat din cauza unor rapoarte de abuz care trebuie investigate."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} marcat manual pentru rerecenzie."
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "Rerecenzie manuală"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."
