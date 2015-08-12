@@ -75,6 +75,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='additionalreview',
-            unique_together=set([('created', 'queue')]),
+            unique_together=set([('queue', 'created')]),
         ),
     ]
