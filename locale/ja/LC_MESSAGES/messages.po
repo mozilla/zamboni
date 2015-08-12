@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-07-29 17:01-0400\n"
+"PO-Revision-Date: 2015-08-12 11:52-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1465,7 +1465,7 @@ msgstr "成人向けコンテンツレーティングによる再審査"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "手作業による再審査がリクエストされています"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2220,11 +2220,11 @@ msgstr "ZIP ファイルからマニフェストを展開する際にエラー�
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "ホスト URL:"
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
-msgstr ""
+msgstr "Web 上でこのアプリがホストされている URL (公開している場合)。ユーザがインストール前にアプリを試せるようにしたい場合は入力してください。"
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2668,7 +2668,7 @@ msgstr "プレビューを開けませんでした。"
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "プロモ画像を開けませんでした。"
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3686,11 +3686,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "ホスト URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
-msgstr ""
+msgstr "このアプリがホストされている URL がある場合、それを設定することで、ユーザにインストール前に試してもらえるようになります。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5316,11 +5316,11 @@ msgstr "削除理由"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "プロモ画像"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "最小サイズ: {0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5738,7 +5738,7 @@ msgstr "検索"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "プロモ画像を保存"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6135,11 +6135,11 @@ msgstr "このアプリに非公開の審査担当者コメントを付けます
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "再審査をリクエスト"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
-msgstr ""
+msgstr "このアプリを再審査待ちに追加します。作者はここで書かれたコメントを見ることはできず、通知も送られません。"
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -7355,15 +7355,15 @@ msgstr "プレリリース自動管理者審査依頼"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
+msgstr "{addon} は、調査が必要な不正報告のために再審査を受けました。"
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} の再審査が手作業によってリクエストされました。"
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "手作業による再審査"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."
