@@ -376,12 +376,12 @@ class FeaturesBitField(object):
             self.values = [0] * int(math.ceil(self.size / 8.0))
 
     def get(self, i):
-        index = int(math.ceil(i / 8))
+        index = int(math.floor(i / 8.0))
         bit = i % 8
         return (self.values[index] & (1 << bit)) != 0
 
     def set(self, i, value):
-        index = int(math.ceil(i / 8))
+        index = int(math.floor(i / 8.0))
         bit = i % 8
         if value:
             self.values[index] |= 1 << bit

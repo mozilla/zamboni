@@ -165,3 +165,15 @@ class TestFeaturesBitField(mkt.site.tests.TestCase):
         bitfield = FeaturesBitField.from_base64('gQE=', len(self.test_data))
         eq_(bitfield.to_list(), self.test_data)
         eq_(bitfield.to_base64(), 'gQE=')
+
+    def test_from_base64_full_of_truth(self):
+        bitfield = FeaturesBitField.from_base64('/wE=', len(self.test_data))
+        eq_(bitfield.to_list(), [True] * 9)
+        eq_(bitfield.values, [255, 1])
+        eq_(bitfield.to_base64(), '/wE=')
+
+    def test_from_base64_full_of_lies(self):
+        bitfield = FeaturesBitField.from_base64('AAA=', len(self.test_data))
+        eq_(bitfield.to_list(), [False] * 9)
+        eq_(bitfield.values, [0, 0])
+        eq_(bitfield.to_base64(), 'AAA=')
