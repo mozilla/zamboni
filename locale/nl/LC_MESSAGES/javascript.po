@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-07-31 10:46+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -223,19 +223,19 @@ msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mail
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Status met succes gewijzigd naar ‘{0}’"
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Kon status niet wijzigen naar ‘{0}’"
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Alle resultaten weergeven"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 

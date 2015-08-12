@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,19 +233,19 @@ msgstr ""
 msgid "Persona login failed. A server error was encountered."
 msgstr "‮Ԁǝɹsouɐ ʅoƃıu ɟɐıʅǝp˙ ∀ sǝɹʌǝɹ ǝɹɹoɹ ʍɐs ǝuɔonuʇǝɹǝp˙"
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "‮Sʇɐʇns snɔɔǝssɟnʅʅʎ ɔɥɐuƃǝp ʇo „{0}‮„"
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "‮Ↄonʅp uoʇ ɔɥɐuƃǝ sʇɐʇns ʇo „{0}‮„"
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "‮Sɥoʍ ∀ʅʅ ᴚǝsnʅʇs"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "‮Oʌǝɹ {0}‮ ɹǝsnʅʇs ɟonup´ ɔousıpǝɹ ɹǝɟıuıuƃ ʎonɹ sǝɐɹɔɥ˙"
 

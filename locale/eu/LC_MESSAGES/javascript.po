@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-05-11 21:54+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: librezale@librezale.org\n"
@@ -225,19 +225,19 @@ msgstr "Persona-rekin saioa hasteak huts egin du. Agian ez duzu konturik helbide
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-rekin saioa hasteak huts egin du. Zerbitzariaren errore bat gertatu da."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Egoera behar bezala aldatu da \"{0}\"(e)ra"
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Ezin izan da egoera \"{0}\"(e)ra aldatu"
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Erakutsi emaitza guztiak"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} emaitzatik gora aurkitu dira, saiatu bilaketa zehazten."
 

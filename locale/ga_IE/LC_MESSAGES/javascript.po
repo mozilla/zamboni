@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -236,19 +236,19 @@ msgstr "Níorbh fhéidir logáil isteach i bPersona. B'fhéidir nach bhfuil do c
 msgid "Persona login failed. A server error was encountered."
 msgstr "Níorbh fhéidir logáil isteach i bPersona. Tharla fadhb leis an bhfreastalaí."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "D'athraigh an stádas: \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Níorbh fhéidir an stádas a athrú go \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Taispeáin na torthaí go léir"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "Aimsíodh níos mó ná {0} toradh; ba chóir duit cuardach níos cúinge a dhéanamh."
 

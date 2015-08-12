@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-07-21 13:13+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -227,19 +227,19 @@ msgstr "Hyrja me Persona-n dështoi. Ndoshta nuk keni llogari nën këtë adres�
 msgid "Persona login failed. A server error was encountered."
 msgstr "Hyrja me Persona-n dështoi. U has një gabim shërbyesi."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Gjendja u ndryshua me sukses si \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Nuk u ndryshua dot gjendja si \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Shfaqi Krejt Përfundimet"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "U gjetën mbi {0} përfundime, shihni ta përimtësoni kërkimin tuaj."
 

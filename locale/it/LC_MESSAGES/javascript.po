@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-08-02 10:41+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Mozilla Italia\n"
@@ -224,19 +224,19 @@ msgstr "Identificazione con Persona non riuscita. Sei sicuro di aver registrato 
 msgid "Persona login failed. A server error was encountered."
 msgstr "Identificazione con Persona non riuscita. Si è verificato un errore col server."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Lo stato è stato correttamente modificato in \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Impossibile modificare lo stato in \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Visualizza tutti i risultati"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "Trovati oltre {0} risultati. Prova a restringere la ricerca."
 
@@ -554,9 +554,7 @@ msgstr "Errore durante il rifiuto dell’app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Spiacenti, si è verificato un errore durante il recupero dello storico "
-"revisioni. Riprova effettuando nuovamente l’accesso.<p>"
+msgstr "Spiacenti, si è verificato un errore durante il recupero dello storico revisioni. Riprova effettuando nuovamente l’accesso.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86

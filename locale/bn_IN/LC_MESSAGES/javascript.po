@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2014-11-19 21:12+0000\n"
 "Last-Translator: SreeMegha21 <s.guha21@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -223,19 +223,19 @@ msgstr "পারসনা লগইন ব্যর্থ হয়েছে।
 msgid "Persona login failed. A server error was encountered."
 msgstr "পারসোনা লগইন ব্যর্থ হয়েছে। একটি সার্ভার ত্রুটি ঘটেছে।"
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "স্থিতি সফলভাবে পরিবর্তিত \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "অবস্থা পরিবর্তন করা যায়নি \"{0}\"                "
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "সব ফলাফল দেখান"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} টির বেশি ফলাফল পাওয়া গিয়েছে, আরও নিখুঁত ভাবে খুঁজতে পারেন।"
 

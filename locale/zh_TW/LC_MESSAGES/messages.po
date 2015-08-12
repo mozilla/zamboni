@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-07-30 16:50+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "Mozilla"
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr "Firefox Marketplace 是網頁平台的官方應用程式商城。"
 
-#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:44
+#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:45
 msgid "Desktop"
 msgstr "桌面"
 
@@ -103,7 +103,7 @@ msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
-#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:46 mkt/search/forms.py:53
+#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:47 mkt/search/forms.py:54
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -1144,11 +1144,11 @@ msgstr "已於 Marketplace 封鎖"
 msgid "Deleted"
 msgstr "已刪除"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:46 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
+#: mkt/constants/base.py:31 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:192 mkt/site/log.py:178
 msgid "Rejected"
 msgstr "已被退回"
 
-#: mkt/constants/base.py:34 mkt/constants/comm.py:52 mkt/site/log.py:377
+#: mkt/constants/base.py:34 mkt/constants/comm.py:53 mkt/site/log.py:377
 msgid "Approved but private"
 msgstr "已通過審核但被隱藏"
 
@@ -1164,7 +1164,7 @@ msgstr "未上架"
 msgid "Obsolete"
 msgstr "已過時"
 
-#: mkt/constants/base.py:43 mkt/constants/comm.py:45 mkt/constants/payments.py:66 mkt/site/log.py:157
+#: mkt/constants/base.py:43 mkt/constants/comm.py:46 mkt/constants/payments.py:66 mkt/site/log.py:157
 msgid "Approved"
 msgstr "已審查通過"
 
@@ -1183,12 +1183,12 @@ msgstr "檢視者"
 msgid "Support"
 msgstr "支援"
 
-#: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:34
+#: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:35
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
 msgstr "免費版"
 
-#: mkt/constants/base.py:161 mkt/search/forms.py:36
+#: mkt/constants/base.py:161 mkt/search/forms.py:37
 msgid "Premium"
 msgstr "付費版"
 
@@ -1204,75 +1204,75 @@ msgstr "免費版，啟用應用程式內付款"
 msgid "I'll use my own system for in-app payments"
 msgstr "我會使用自己的應用程式內付款"
 
-#: mkt/constants/base.py:223
+#: mkt/constants/base.py:228
 msgid "Manual Reviewer Points"
 msgstr "手動審核點數"
 
-#: mkt/constants/base.py:224
+#: mkt/constants/base.py:229
 msgid "Web App Review"
 msgstr "遠端應用程式審核"
 
-#: mkt/constants/base.py:225
+#: mkt/constants/base.py:230
 msgid "Packaged App Review"
 msgstr "封裝應用程式審核"
 
-#: mkt/constants/base.py:226
+#: mkt/constants/base.py:231
 msgid "Privileged App Review"
 msgstr "有權限的應用程式審核"
 
-#: mkt/constants/base.py:227
+#: mkt/constants/base.py:232
 msgid "Web App Re-review"
 msgstr "遠端應用程式再審核"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:233
 msgid "Updated Packaged App Review"
 msgstr "更新封裝應用程式審核"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:234
 msgid "Updated Privileged App Review"
 msgstr "有權限的應用程式更新審核"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:235
 msgid "Moderated App Review"
 msgstr "有問題的應用程式評論"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:236
 msgid "App Review Moderation Reverted"
 msgstr "已還原應用程式評論管理"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:237
 msgid "Tarako App Review"
 msgstr "Tarako 應用程式審核"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:238
 msgid "App Abuse Report Read"
 msgstr "已將應用程式濫用報告標示為已讀"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:239
 msgid "Website Abuse Report Read"
 msgstr "已將網站濫用報告標示為已讀"
 
-#: mkt/constants/base.py:268
+#: mkt/constants/base.py:273
 msgid "Level 1"
 msgstr "第1級"
 
-#: mkt/constants/base.py:269
+#: mkt/constants/base.py:274
 msgid "Level 2"
 msgstr "第2級"
 
-#: mkt/constants/base.py:270
+#: mkt/constants/base.py:275
 msgid "Level 3"
 msgstr "第3級"
 
-#: mkt/constants/base.py:271
+#: mkt/constants/base.py:276
 msgid "Level 4"
 msgstr "第4級"
 
-#: mkt/constants/base.py:272
+#: mkt/constants/base.py:277
 msgid "Level 5"
 msgstr "第5級"
 
-#: mkt/constants/base.py:273
+#: mkt/constants/base.py:278
 msgid "Level 6"
 msgstr "第6級"
 
@@ -1380,115 +1380,119 @@ msgstr "氣候"
 msgid "Tools"
 msgstr "工具"
 
-#: mkt/constants/comm.py:44
+#: mkt/constants/comm.py:45
 msgid "No action"
 msgstr "無行為"
 
-#: mkt/constants/comm.py:47
+#: mkt/constants/comm.py:48
 msgid "Banned"
 msgstr "已封鎖"
 
-#: mkt/constants/comm.py:48
+#: mkt/constants/comm.py:49
 msgid "Reviewer comment"
 msgstr "審查者留言"
 
-#: mkt/constants/comm.py:49 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:202 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "已向上呈報"
 
-#: mkt/constants/comm.py:50
+#: mkt/constants/comm.py:51
 msgid "Private reviewer comment"
 msgstr "審核者私人留言"
 
-#: mkt/constants/comm.py:51
+#: mkt/constants/comm.py:52
 msgid "App resubmission"
 msgstr "重新送出應用程式"
 
-#: mkt/constants/comm.py:53 mkt/site/log.py:426
+#: mkt/constants/comm.py:54 mkt/site/log.py:426
 msgid "Escalation cleared"
 msgstr "向上呈報已清除"
 
-#: mkt/constants/comm.py:54
+#: mkt/constants/comm.py:55
 msgid "Escalated due to High Abuse Reports"
 msgstr "有大量濫用投訴報告，被送交至上一層審核"
 
-#: mkt/constants/comm.py:55
+#: mkt/constants/comm.py:56
 msgid "Escalated due to High Refund Requests"
 msgstr "有大量退費請求，被送交至上一層審核"
 
-#: mkt/constants/comm.py:56 mkt/site/log.py:474
+#: mkt/constants/comm.py:57 mkt/site/log.py:474
 msgid "Re-review cleared"
 msgstr "清除重新審核"
 
-#: mkt/constants/comm.py:57
+#: mkt/constants/comm.py:58
 msgid "App submission notes"
 msgstr "應用程式提交註記"
 
-#: mkt/constants/comm.py:58
+#: mkt/constants/comm.py:59
 msgid "Developer comment"
 msgstr "開發者留言"
 
-#: mkt/constants/comm.py:59
+#: mkt/constants/comm.py:60
 msgid "Device(s) changed by reviewer"
 msgstr "審核者變更了支援裝置"
 
-#: mkt/constants/comm.py:60
+#: mkt/constants/comm.py:61
 msgid "Requirement(s) changed by reviewer"
 msgstr "審核者變更了要求"
 
-#: mkt/constants/comm.py:61
+#: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest Change"
 msgstr "因為安裝資訊檔變更而重新審核"
 
-#: mkt/constants/comm.py:62
+#: mkt/constants/comm.py:63
 msgid "Rereview due to Manifest URL Change"
 msgstr "因為安裝資訊網址變更而重新審核"
 
-#: mkt/constants/comm.py:63
+#: mkt/constants/comm.py:64
 msgid "Rereview due to Premium Type Upgrade"
 msgstr "因為收費類型升級，進行重新審核"
 
-#: mkt/constants/comm.py:64
+#: mkt/constants/comm.py:65
 msgid "Rereview due to Devices Added"
 msgstr "因為新增支援裝置而重新審核"
 
-#: mkt/constants/comm.py:65
+#: mkt/constants/comm.py:66
 msgid "Rereview due to Requirements Change"
 msgstr "因為需求變更而重新審核"
 
-#: mkt/constants/comm.py:66
+#: mkt/constants/comm.py:67
 msgid "Rereview due to Adult Content Rating"
 msgstr "因為有成人內容評等而重新審核"
 
-#: mkt/constants/comm.py:67
+#: mkt/constants/comm.py:68
+msgid "Manual re-review requested"
+msgstr ""
+
+#: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
 msgstr "因為成為 VIP 應用程式而提高審核等級"
 
-#: mkt/constants/comm.py:68
+#: mkt/constants/comm.py:70
 msgid "Escalation due to Prelease App"
 msgstr "因為是預先發行應用程式而提高審核等級"
 
-#: mkt/constants/comm.py:69
+#: mkt/constants/comm.py:71
 msgid "Priority review requested"
 msgstr "已請求優先審核"
 
-#: mkt/constants/comm.py:70
+#: mkt/constants/comm.py:72
 msgid "Additional review passed"
 msgstr "通過附加審查"
 
-#: mkt/constants/comm.py:71
+#: mkt/constants/comm.py:73
 msgid "Additional review failed"
 msgstr "未通過附加審查"
 
-#: mkt/constants/comm.py:72
+#: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
 msgstr "給審核者的版本更新紀錄"
 
-#: mkt/constants/comm.py:73
+#: mkt/constants/comm.py:75
 msgid "Public reviewer comment"
 msgstr "審核者公開留言"
 
-#: mkt/constants/comm.py:74 mkt/site/log.py:546
+#: mkt/constants/comm.py:76 mkt/site/log.py:547
 msgid "Abuse reports investigation"
 msgstr "濫用報告調查"
 
@@ -2106,12 +2110,12 @@ msgstr "教廷"
 msgid "Venezuela"
 msgstr "委內瑞拉"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:49
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
 msgstr "架設"
 
 # 動詞或名詞?
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:83
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:30 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
 msgstr "封裝"
 
@@ -2123,7 +2127,7 @@ msgstr "同意"
 msgid "Submit"
 msgstr "提交"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1408
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1436
 msgid "Details"
 msgstr "詳細資訊"
 
@@ -2147,252 +2151,260 @@ msgstr "無法刪除已共享的帳戶"
 msgid "Content rating changed to Adult."
 msgstr "內容分級已改為成人。"
 
-#: mkt/developers/forms.py:64
+#: mkt/developers/forms.py:65
 msgid "You cannot select {region}."
 msgstr "您無法選擇 {region}。"
 
-#: mkt/developers/forms.py:122
+#: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "全體團隊成員必須閱讀與同意開發者合約。"
 
-#: mkt/developers/forms.py:153
+#: mkt/developers/forms.py:154
 msgid "Must have at least one owner."
 msgstr "至少需要一位擁有者。"
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:157
 msgid "At least one team member must be listed."
 msgstr "必須至少列出一名團隊成員。"
 
-#: mkt/developers/forms.py:160
+#: mkt/developers/forms.py:161
 msgid "A team member can only be listed once."
 msgstr "每一名團隊成員只能列出一次。"
 
-#: mkt/developers/forms.py:187
+#: mkt/developers/forms.py:188
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且已經公開了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:191
+#: mkt/developers/forms.py:192
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且正在等待確認。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:195
+#: mkt/developers/forms.py:196
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是目前不完整。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:199
+#: mkt/developers/forms.py:200
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被退回了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:203
+#: mkt/developers/forms.py:204
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "喔喔，看來您已經送出了 %s 的安裝資訊，但這套程式目前被 Marketplace 封鎖。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:207
+#: mkt/developers/forms.py:208
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被停用了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:222
+#: mkt/developers/forms.py:223
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "此網域已有一 App 存在；一個網域只能對應一個 App。"
 
-#: mkt/developers/forms.py:338 mkt/websites/forms.py:80
+#: mkt/developers/forms.py:339 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "選擇了無效的區域。"
 
-#: mkt/developers/forms.py:393 mkt/webapps/models.py:1317
+#: mkt/developers/forms.py:400 mkt/webapps/models.py:1345
 msgid "You must upload at least one screenshot or video."
 msgstr "您必須至少上傳一個螢幕截圖或影片。"
 
-#: mkt/developers/forms.py:434
+#: mkt/developers/forms.py:441
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "封裝應用程式過大，安裝需小於 %s。"
 
-#: mkt/developers/forms.py:449
+#: mkt/developers/forms.py:456
 msgid "Error extracting manifest from zip file."
 msgstr "從 zip 檔案抽取 manifest 時發生錯誤。"
 
-#: mkt/developers/forms.py:518
+#: mkt/developers/forms.py:524
+msgid "Hosted URL:"
+msgstr ""
+
+#: mkt/developers/forms.py:525
+msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
+msgstr ""
+
+#: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
 msgstr "請提供您應用程式詳細的說明"
 
 # 93%
-#: mkt/developers/forms.py:519
+#: mkt/developers/forms.py:531
 msgid "This description will appear on the details page."
 msgstr "這個敘述會顯示在詳細資訊頁面。"
 
-#: mkt/developers/forms.py:522 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:534 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr "搜尋關鍵字:"
 
-#: mkt/developers/forms.py:524 mkt/developers/templates/developers/apps/edit/basic.html:126 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:536 mkt/developers/templates/developers/apps/edit/basic.html:143 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "搜尋關鍵字用來在 Firefox Marketplace 回傳搜尋結果，請確定您輸入能準確描述您的應用程式的關鍵字。"
 
-#: mkt/developers/forms.py:579 mkt/submit/forms.py:374
+#: mkt/developers/forms.py:591 mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
-#: mkt/developers/forms.py:582 mkt/submit/forms.py:378
+#: mkt/developers/forms.py:594 mkt/submit/forms.py:378
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
-#: mkt/developers/forms.py:610
+#: mkt/developers/forms.py:622
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "安裝資訊網址已自 {before_url} 變更為 {after_url}"
 
 # 86%
-#: mkt/developers/forms.py:647
+#: mkt/developers/forms.py:659
 msgid "Please specify your app's Privacy Policy"
 msgstr "請註明您附加元件的隱私權保護政策："
 
-#: mkt/developers/forms.py:668
+#: mkt/developers/forms.py:680
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "在您修改預設語言之前，您必須有該語言的名稱和說明。您目前沒有 %s 。"
 
-#: mkt/developers/forms.py:727 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:739 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "您必須至少提供網站、電子郵件地址，或兩者都提供。"
 
-#: mkt/developers/forms.py:752
+#: mkt/developers/forms.py:764
 msgid "Your comments"
 msgstr "您的留言"
 
-#: mkt/developers/forms.py:779
+#: mkt/developers/forms.py:791
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>已發布</b>: 任何人都可以在 Marketplace 中看到，並會列出於搜尋結果與清單頁面。"
 
-#: mkt/developers/forms.py:783
+#: mkt/developers/forms.py:795
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>未上架</b>: 僅有得到網址的能看到，且不會出現於搜尋結果與清單頁面。"
 
-#: mkt/developers/forms.py:799
+#: mkt/developers/forms.py:811
 msgid "App Visibility:"
 msgstr "應用程式可見度:"
 
-#: mkt/developers/forms.py:801
+#: mkt/developers/forms.py:813
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>僅限於我的團隊</b>: 只有團隊成員看的到。"
 
-#: mkt/developers/forms.py:847
+#: mkt/developers/forms.py:859
 msgid "Choose the regions your app will be listed in:"
 msgstr "選擇您 App 要上架的地區："
 
-#: mkt/developers/forms.py:849 mkt/developers/forms.py:950
+#: mkt/developers/forms.py:861 mkt/developers/forms.py:962
 msgid "You must select at least one region."
 msgstr "您必須至少選取一個地區。"
 
-#: mkt/developers/forms.py:854
+#: mkt/developers/forms.py:866
 msgid "Enable new regions"
 msgstr "啟用新區域"
 
-#: mkt/developers/forms.py:857
+#: mkt/developers/forms.py:869
 msgid "Make my app available in most regions"
 msgstr "讓我的應用程式可以在大部分的地區取得"
 
-#: mkt/developers/forms.py:858
+#: mkt/developers/forms.py:870
 msgid "Choose where my app is made available"
 msgstr "選擇我的應用程式可以在哪些地方取得"
 
-#: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:172 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:42
-#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:93 mkt/websites/forms.py:23
+#: mkt/developers/forms.py:1023 mkt/developers/templates/developers/apps/edit/basic.html:189 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:44
+#: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:97 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "類別"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:271 mkt/websites/forms.py:61
+#: mkt/developers/forms.py:1048 mkt/webapps/serializers.py:276 mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
 
-#: mkt/developers/forms.py:1050
+#: mkt/developers/forms.py:1062
 msgid "Agree"
 msgstr "同意"
 
-#: mkt/developers/forms.py:1067
+#: mkt/developers/forms.py:1079
 msgid "Please enter a valid email address."
 msgstr "請輸入一個有效的電子郵件地址。"
 
-#: mkt/developers/forms.py:1070
+#: mkt/developers/forms.py:1082
 msgid "Your email address"
 msgstr "您的電子郵件地址"
 
-#: mkt/developers/forms.py:1073
+#: mkt/developers/forms.py:1085
 msgid "Text"
 msgstr "文字"
 
-#: mkt/developers/forms.py:1077
+#: mkt/developers/forms.py:1089
 msgid "You must agree to the Privacy Policy."
 msgstr "您必須同意隱私權政策。"
 
-#: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1090 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "國家"
 
-#: mkt/developers/forms.py:1112 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
+#: mkt/developers/forms.py:1124 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
-#: mkt/developers/forms.py:1114
+#: mkt/developers/forms.py:1126
 msgid "Transaction Type"
 msgstr "交易類型"
 
-#: mkt/developers/forms.py:1117 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1129 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "交易 ID"
 
-#: mkt/developers/forms.py:1123
+#: mkt/developers/forms.py:1135
 msgid "From"
 msgstr "從"
 
-#: mkt/developers/forms.py:1126
+#: mkt/developers/forms.py:1138
 msgid "To"
 msgstr "至"
 
-#: mkt/developers/forms.py:1137
+#: mkt/developers/forms.py:1149
 msgid "Web site"
 msgstr "網站"
 
-#: mkt/developers/forms.py:1138
+#: mkt/developers/forms.py:1150
 msgid "Command line"
 msgstr "命令列"
 
-#: mkt/developers/forms.py:1159
+#: mkt/developers/forms.py:1171
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "當這個版本通過審查時將這個版本設為公開的版本。"
 
-#: mkt/developers/forms.py:1186
+#: mkt/developers/forms.py:1198
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr "請考慮將我的應用程式加入為 Firefox OS 裝置的預載軟體。我同意上述的條款。我理解同意此文件並不一定代表我的應用程式將會被預載。"
 
-#: mkt/developers/forms.py:1193
+#: mkt/developers/forms.py:1205
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "上傳您的測試計劃（.pdf, .xls 小於 2.5MB）"
 
-#: mkt/developers/forms.py:1209
+#: mkt/developers/forms.py:1221
 msgid "Test plan required."
 msgstr "需要測試計畫。"
 
-#: mkt/developers/forms.py:1216
+#: mkt/developers/forms.py:1228
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "檔案過大。請保持小於 %s，現在大小 %s。"
 
-#: mkt/developers/forms.py:1222
+#: mkt/developers/forms.py:1234
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "無效檔案類型 {0}，僅支援 {1}。"
 
-#: mkt/developers/forms.py:1246
+#: mkt/developers/forms.py:1258
 msgid "Please enter a valid submission ID."
 msgstr "請輸入一個有效的識別碼。"
 
-#: mkt/developers/forms.py:1262
+#: mkt/developers/forms.py:1274
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "此 IARC 證明已被其他應用程式使用，請建立新的 IARC 分級證明。"
 
-#: mkt/developers/forms.py:1297 mkt/developers/forms.py:1309
+#: mkt/developers/forms.py:1309 mkt/developers/forms.py:1321
 msgid "Invalid submission ID or security code."
 msgstr "無效的提交 ID 或安全代碼。"
 
@@ -2551,7 +2563,7 @@ msgid "Account name"
 msgstr "帳號名稱"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:49
-#: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:20 mkt/submit/templates/submit/details.html:57
+#: mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
 msgid "Name"
 msgstr "名稱"
@@ -2590,82 +2602,86 @@ msgstr "版本 {0}"
 msgid "Reference Implementation"
 msgstr "參照工具"
 
-#: mkt/developers/tasks.py:428
+#: mkt/developers/tasks.py:454
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "在該網址沒有找到安裝資訊檔。請確定網址並再試一次。"
 
-#: mkt/developers/tasks.py:434
+#: mkt/developers/tasks.py:460
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifest 並需包含 HTTP 標頭 \"Content-Type: application/x-web-app-manifest+json\"。詳情請參考 %s 。"
 
-#: mkt/developers/tasks.py:443
+#: mkt/developers/tasks.py:469
 msgid "Your manifest must be less than %s bytes."
 msgstr "您的安裝資訊必須小於 %s 位元組。"
 
-#: mkt/developers/tasks.py:451
+#: mkt/developers/tasks.py:477
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "您的 manifest 沒有使用 UTF-8 編碼。"
 
-#: mkt/developers/tasks.py:462
+#: mkt/developers/tasks.py:488
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Manifest 的編碼與傳入的 HTTP Content-Type 不符。"
 
-#: mkt/developers/tasks.py:493 mkt/developers/tasks.py:499 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:519 mkt/developers/tasks.py:525 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "至"
 
-#: mkt/developers/tasks.py:513
+#: mkt/developers/tasks.py:539
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} 區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/tasks.py:517
+#: mkt/developers/tasks.py:543
 msgid "New regions added to the Firefox Marketplace"
 msgstr "新區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/utils.py:57
+#: mkt/developers/utils.py:60
 msgid "Video support not enabled."
 msgstr "未啟用視訊支援。"
 
-#: mkt/developers/utils.py:70
+#: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: mkt/developers/utils.py:72
+#: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: mkt/developers/utils.py:77
+#: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: mkt/developers/utils.py:79
+#: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
 # 80%
-#: mkt/developers/utils.py:89
+#: mkt/developers/utils.py:92
 msgid "Please use files smaller than %s."
 msgstr "請使用小於 %s MB 的圖片。"
 
-#: mkt/developers/utils.py:99
+#: mkt/developers/utils.py:103
 msgid "Icon could not be opened."
 msgstr "無法開啟圖示。"
 
-#: mkt/developers/utils.py:101
+#: mkt/developers/utils.py:105
 msgid "Preview could not be opened."
 msgstr "無法開啟預覽圖。"
 
-#: mkt/developers/utils.py:108
+#: mkt/developers/utils.py:107
+msgid "Promo image could not be opened."
+msgstr ""
+
+#: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
 msgstr "圖示大小至少要為 128px 長 128px 寬。"
 
-#: mkt/developers/utils.py:111
+#: mkt/developers/utils.py:117
 msgid "Icons must be square."
 msgstr "圖示必須為正方形。"
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
-#: mkt/developers/utils.py:121
+#: mkt/developers/utils.py:127
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "應用程式預覽圖應至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
@@ -3013,12 +3029,12 @@ msgstr[0] "找到 {num} 筆交易"
 msgid "Your apps currently have no transactions."
 msgstr "您的應用程式目前沒有任何交易。"
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:149 mkt/lookup/templates/lookup/transaction_summary.html:21
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:153 mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/moderatelog.html:16
 msgid "Date"
 msgstr "日期"
 
-#: mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:41 mkt/lookup/templates/lookup/transaction_summary.html:22
+#: mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43 mkt/lookup/templates/lookup/transaction_summary.html:22
 #: mkt/reviewers/templates/reviewers/includes/details.html:9 mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
 msgid "Type"
 msgstr "類型"
@@ -3114,7 +3130,7 @@ msgid "Edit Listing"
 msgstr "編輯資訊"
 
 #: mkt/developers/templates/developers/apps/edit.html:13 mkt/developers/templates/developers/includes/macros.html:17 mkt/developers/templates/developers/payments/includes/regions_toggle.html:7
-#: mkt/lookup/templates/lookup/app_summary.html:30 mkt/lookup/templates/lookup/user_summary.html:75 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:46
+#: mkt/lookup/templates/lookup/app_summary.html:32 mkt/lookup/templates/lookup/user_summary.html:75 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:46
 #: mkt/translations/templates/translations/all-locales.html:6
 msgid "None"
 msgstr "無"
@@ -3133,7 +3149,7 @@ msgid "About team member roles"
 msgstr "關於團隊成員角色"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170
-#: mkt/developers/templates/developers/apps/edit/basic.html:194 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
+#: mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:113
@@ -3178,8 +3194,8 @@ msgstr "狀態 & 版本"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:152 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:50 mkt/reviewers/forms.py:191
+#: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:70 mkt/lookup/forms.py:75 mkt/lookup/templates/lookup/app_summary.html:61
+#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:191
 #: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3462,7 +3478,7 @@ msgstr "您確定要下架這個應用程式嗎?"
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
 #: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
-#: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:194
+#: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:211
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
@@ -3474,7 +3490,7 @@ msgid "or"
 msgstr "或"
 
 #: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
-#: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:196
+#: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:213
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
@@ -3551,7 +3567,7 @@ msgstr "這個應用程式需要裝置支援某些功能才能運作。"
 msgid "Add a Promo"
 msgstr "新增一份宣傳廣告"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:25
+#: mkt/developers/templates/developers/apps/edit/admin.html:71 mkt/lookup/templates/lookup/app_summary.html:27
 msgid "Mozilla Contact"
 msgstr "Mozilla 聯絡人"
 
@@ -3654,7 +3670,7 @@ msgid "View API documentation"
 msgstr "檢視 API 文件"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
-#: mkt/search/forms.py:147
+#: mkt/search/forms.py:151
 msgid "Manifest URL"
 msgstr "安裝資訊網址"
 
@@ -3668,30 +3684,38 @@ msgid ""
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr "請不要太常修改您的安裝資訊網址。若您變更了安裝資訊網址，現有的使用者將無法升級使用新的安裝資訊網址。若需更多資訊，請參考 <a href=\"%(doc_url)s\" target=\"_blank\">更新應用程式相關文件</a>。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:102 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:22
+#: mkt/developers/templates/developers/apps/edit/basic.html:101
+msgid "Hosted URL"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/basic.html:107
+msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "敘述"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/submit/forms.py:281
+#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/submit/forms.py:281
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr "應用程式描述是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:124 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
+#: mkt/developers/templates/developers/apps/edit/basic.html:141 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
 msgstr "搜尋關鍵字"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:151
+#: mkt/developers/templates/developers/apps/edit/basic.html:168
 msgid "Release Notes"
 msgstr "新鮮事"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:152
+#: mkt/developers/templates/developers/apps/edit/basic.html:169
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr "您的最新發行版本中有什麼新鮮事、已知問題、或其他與此次發行有關的資訊。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:173
+#: mkt/developers/templates/developers/apps/edit/basic.html:190
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
 msgstr "分類類別是使用者主要瀏覽應用程式的方式。選擇符合您應用程式功能的類別，嶄露頭角吧！"
 
@@ -4025,7 +4049,7 @@ msgstr "狀態 &amp; 版本"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1415
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1443
 msgid "Content Ratings"
 msgstr "內容分級"
 
@@ -4405,7 +4429,7 @@ msgid "Prices and Countries"
 msgstr "價格與國家"
 
 #: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:17
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
 msgid "Price"
 msgstr "價格"
 
@@ -4852,8 +4876,8 @@ msgstr "離線使用應用程式"
 msgid "Developing Game Apps"
 msgstr "開發遊戲應用程式"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1421
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1449
 msgid "Payments"
 msgstr "付款"
 
@@ -5078,24 +5102,24 @@ msgstr "無法剖析來自 %(url)s 的圖片"
 msgid "Cannot diff a version against itself"
 msgstr "無法判斷一個版本與其自身的差異"
 
-#: mkt/files/helpers.py:155
+#: mkt/files/helpers.py:164
 msgid "That file no longer exists."
 msgstr "此檔案已經不存在了。"
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:164
+#: mkt/files/helpers.py:173
 msgid "File size is over the limit of {0}."
 msgstr "檔案大小超過 {0} 的限制。"
 
-#: mkt/files/helpers.py:178
+#: mkt/files/helpers.py:187
 msgid "Problems decoding {0}."
 msgstr "解碼 {0} 時遇到問題。"
 
-#: mkt/files/helpers.py:216
+#: mkt/files/helpers.py:225
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "您無法線上檢視此檔案。請下載此檔案後檢視其內容。"
 
-#: mkt/files/helpers.py:224
+#: mkt/files/helpers.py:233
 msgid "This file is a directory."
 msgstr "此檔案是一個目錄。"
 
@@ -5278,21 +5302,29 @@ msgstr "您的語言包應該要有版本。"
 msgid "Your language pack version must be different to the one you are replacing."
 msgstr "您的語言包版本應該與您正要取代的版本不同。"
 
-#: mkt/lookup/forms.py:29 mkt/lookup/templates/lookup/transaction_summary.html:11
+#: mkt/lookup/forms.py:40 mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup"
 msgstr "交易查閱"
 
-#: mkt/lookup/forms.py:37
+#: mkt/lookup/forms.py:48
 msgid "Process a manual refund"
 msgstr "處理手動退款"
 
-#: mkt/lookup/forms.py:40
+#: mkt/lookup/forms.py:51
 msgid "Enter refund details to refund transaction"
 msgstr "請輸入退款詳細資訊以便進行退款交易"
 
-#: mkt/lookup/forms.py:53
+#: mkt/lookup/forms.py:64
 msgid "Reason for Deletion"
 msgstr "刪除原因"
+
+#: mkt/lookup/forms.py:80
+msgid "Promo Image"
+msgstr ""
+
+#: mkt/lookup/forms.py:81
+msgid "Minimum size: {0}x{1}"
+msgstr ""
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5314,7 +5346,7 @@ msgstr "這個交易的退款已經核准通過。"
 msgid "Refund request for this transaction failed."
 msgstr "這個交易的退款要求失敗。"
 
-#: mkt/lookup/views.py:333
+#: mkt/lookup/views.py:354
 msgid "Website saved."
 msgstr "網站已儲存。"
 
@@ -5331,140 +5363,140 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> 由 %(use
 msgid "Administrative Actions"
 msgstr "管理動作"
 
-#: mkt/lookup/templates/lookup/app_summary.html:8
+#: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "last 24 hours"
 msgstr "24 小時以內"
 
-#: mkt/lookup/templates/lookup/app_summary.html:9
+#: mkt/lookup/templates/lookup/app_summary.html:11
 msgid "last 7 days"
 msgstr "7 天內"
 
 # 75%
-#: mkt/lookup/templates/lookup/app_summary.html:10
+#: mkt/lookup/templates/lookup/app_summary.html:12
 msgid "all time"
 msgstr "全部"
 
-#: mkt/lookup/templates/lookup/app_summary.html:17
+#: mkt/lookup/templates/lookup/app_summary.html:19
 msgid "Authors"
 msgstr "作者"
 
-#: mkt/lookup/templates/lookup/app_summary.html:33
+#: mkt/lookup/templates/lookup/app_summary.html:35
 msgid "Manifest"
 msgstr "安裝資訊"
 
-#: mkt/lookup/templates/lookup/app_summary.html:39 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
+#: mkt/lookup/templates/lookup/app_summary.html:41 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
 msgstr "檢視"
 
-#: mkt/lookup/templates/lookup/app_summary.html:45 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
+#: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
 msgid "Privileged Packaged app"
 msgstr "有權限的封裝應用程式"
 
-#: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
+#: mkt/lookup/templates/lookup/app_summary.html:49 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
 msgstr "已封存的應用程式"
 
-#: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
+#: mkt/lookup/templates/lookup/app_summary.html:52 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
 msgid "Hosted app"
 msgstr "架設應用程式"
 
-#: mkt/lookup/templates/lookup/app_summary.html:57
+#: mkt/lookup/templates/lookup/app_summary.html:59
 msgid "Submitted"
 msgstr "提交日期"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:167
+#: mkt/lookup/templates/lookup/app_summary.html:71 mkt/lookup/templates/lookup/app_summary.html:171
 msgid "OK"
 msgstr "確定"
 
-#: mkt/lookup/templates/lookup/app_summary.html:76
+#: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Review Prioritized"
 msgstr "已將優先權提高"
 
-#: mkt/lookup/templates/lookup/app_summary.html:78
+#: mkt/lookup/templates/lookup/app_summary.html:80
 msgid "Prioritize Review?"
 msgstr "是否要優先審查？"
 
-#: mkt/lookup/templates/lookup/app_summary.html:82
+#: mkt/lookup/templates/lookup/app_summary.html:84
 msgid "Tarako Status"
 msgstr "Tarako 狀態"
 
-#: mkt/lookup/templates/lookup/app_summary.html:85
+#: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako enabled"
 msgstr "已啟用 Tarako"
 
-#: mkt/lookup/templates/lookup/app_summary.html:87
+#: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Tarako not enabled"
 msgstr "未啟用 Tarako"
 
-#: mkt/lookup/templates/lookup/app_summary.html:89
+#: mkt/lookup/templates/lookup/app_summary.html:91
 msgid "Review not requested"
 msgstr "未請求審查"
 
-#: mkt/lookup/templates/lookup/app_summary.html:92
+#: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review pending"
 msgstr "正在進行審查"
 
-#: mkt/lookup/templates/lookup/app_summary.html:94
+#: mkt/lookup/templates/lookup/app_summary.html:96
 msgid "Review failed"
 msgstr "審查失敗"
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/helpers.py:47 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
+#: mkt/lookup/templates/lookup/app_summary.html:101 mkt/reviewers/helpers.py:47 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Abuse Reports"
 msgstr "濫用回報"
 
-#: mkt/lookup/templates/lookup/app_summary.html:101
+#: mkt/lookup/templates/lookup/app_summary.html:103
 msgid "Permissions"
 msgstr "權限"
 
-#: mkt/lookup/templates/lookup/app_summary.html:105
+#: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No reason given"
 msgstr "未提供原因"
 
-#: mkt/lookup/templates/lookup/app_summary.html:107
+#: mkt/lookup/templates/lookup/app_summary.html:109
 msgid "No permissions requested"
 msgstr "未請求權限"
 
 # 88%
-#: mkt/lookup/templates/lookup/app_summary.html:117 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "已購買的"
 
 # 85%
-#: mkt/lookup/templates/lookup/app_summary.html:127 mkt/lookup/templates/lookup/user_summary.html:42
+#: mkt/lookup/templates/lookup/app_summary.html:131 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
 msgstr "退款"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:130
+#: mkt/lookup/templates/lookup/app_summary.html:134
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} 已請求（{1} 付款）"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:133
+#: mkt/lookup/templates/lookup/app_summary.html:137
 msgid "{0} auto-approved"
 msgstr "{0} 自動同意"
 
 # 75%
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:135
+#: mkt/lookup/templates/lookup/app_summary.html:139
 msgid "{0} approved"
 msgstr "{0} 退費申請已審核通過"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:137
+#: mkt/lookup/templates/lookup/app_summary.html:141
 msgid "{0} rejected"
 msgstr "乙拒絕{0}個退費申請"
 
-#: mkt/lookup/templates/lookup/app_summary.html:145
+#: mkt/lookup/templates/lookup/app_summary.html:149
 msgid "Version History"
 msgstr "版本歷史"
 
-#: mkt/lookup/templates/lookup/app_summary.html:150
+#: mkt/lookup/templates/lookup/app_summary.html:154
 msgid "Version (ID)"
 msgstr "版本 (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:151
+#: mkt/lookup/templates/lookup/app_summary.html:155
 msgid "Filename (ID, Size)"
 msgstr "檔案名 (ID, 大小)"
 
@@ -5638,35 +5670,35 @@ msgstr "理由"
 msgid "Short Name"
 msgstr "短名稱"
 
-#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:14 mkt/websites/forms.py:38
+#: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:16 mkt/websites/forms.py:38
 msgid "Title"
 msgstr "標題"
 
-#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:26 mkt/websites/forms.py:40
+#: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:28 mkt/websites/forms.py:40
 msgid "URL"
 msgstr "網址"
 
-#: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:30
+#: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:32
 msgid "Mobile URL"
 msgstr "行動版網址"
 
-#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:34 mkt/websites/forms.py:30
+#: mkt/lookup/templates/lookup/website_edit.html:62 mkt/lookup/templates/lookup/website_summary.html:36 mkt/websites/forms.py:30
 msgid "Keywords"
 msgstr "關鍵字"
 
-#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:38 mkt/websites/forms.py:34
+#: mkt/lookup/templates/lookup/website_edit.html:69 mkt/lookup/templates/lookup/website_summary.html:40 mkt/websites/forms.py:34
 msgid "Preferred Regions"
 msgstr "偏好地區"
 
-#: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:46 mkt/websites/forms.py:28
+#: mkt/lookup/templates/lookup/website_edit.html:88 mkt/lookup/templates/lookup/website_summary.html:48 mkt/websites/forms.py:28
 msgid "Compatible Devices"
 msgstr "相容裝置"
 
-#: mkt/lookup/templates/lookup/website_summary.html:18
+#: mkt/lookup/templates/lookup/website_summary.html:20
 msgid "Name - Short Name"
 msgstr "名稱 - 短名稱"
 
-#: mkt/lookup/templates/lookup/website_summary.html:54
+#: mkt/lookup/templates/lookup/website_summary.html:56
 msgid "disabled"
 msgstr "已停用"
 
@@ -5709,9 +5741,13 @@ msgstr "找尋應用程式"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:9 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
 #: mkt/lookup/templates/lookup/includes/website_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
-#: mkt/search/forms.py:88 mkt/search/forms.py:90 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
+#: mkt/search/forms.py:92 mkt/search/forms.py:94 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "搜尋"
+
+#: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
+msgid "Save Promo Image"
+msgstr ""
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -5896,7 +5932,7 @@ msgstr "通過審核的評論"
 msgid "Deleted reviews"
 msgstr "已刪除的評論"
 
-#: mkt/reviewers/forms.py:34 mkt/search/forms.py:43
+#: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
 msgid "Any Device"
 msgstr "任何裝置"
 
@@ -5971,7 +6007,7 @@ msgstr "需要更多資訊"
 msgid "Tarako-ready"
 msgstr "Tarako 可用"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:96
+#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
 msgid "Device"
 msgstr "裝置"
 
@@ -6069,68 +6105,76 @@ msgstr "評論"
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
 
-#: mkt/reviewers/utils.py:390 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:400 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "同意"
 
-#: mkt/reviewers/utils.py:391
+#: mkt/reviewers/utils.py:401
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "將會通過此應用程式並允許作者發布。"
 
-#: mkt/reviewers/utils.py:395 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:405 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "退回"
 
-#: mkt/reviewers/utils.py:397
+#: mkt/reviewers/utils.py:407
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "將會退回應用程式、自審核佇列中移除、若已發布也將會下架。"
 
-#: mkt/reviewers/utils.py:402
+#: mkt/reviewers/utils.py:412
 msgid "Message developer"
 msgstr "訊息開發者"
 
-#: mkt/reviewers/utils.py:404
+#: mkt/reviewers/utils.py:414
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr "將會傳送訊息給作者與其他討論串訂閱者。將不會變更應用程式狀態。"
 
 # 88%
-#: mkt/reviewers/utils.py:409
+#: mkt/reviewers/utils.py:419
 msgid "Escalate"
 msgstr "向上呈報"
 
-#: mkt/reviewers/utils.py:411
+#: mkt/reviewers/utils.py:421
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "標示此應用程式交由管理員審查。留言將傳送給管理員，而非程式作者。"
 
-#: mkt/reviewers/utils.py:416
+#: mkt/reviewers/utils.py:426
 msgid "Private comment"
 msgstr "私人留言"
 
-#: mkt/reviewers/utils.py:418
+#: mkt/reviewers/utils.py:428
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr "為此應用程式留下審查者的私人留言，作者將無法看到此訊息，也不會發送通知給他們。"
 
-#: mkt/reviewers/utils.py:424
+#: mkt/reviewers/utils.py:434
+msgid "Request Re-review"
+msgstr ""
+
+#: mkt/reviewers/utils.py:436
+msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
+msgstr ""
+
+#: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
 msgstr "清除向上呈報"
 
-#: mkt/reviewers/utils.py:426
+#: mkt/reviewers/utils.py:444
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自提升審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:431
+#: mkt/reviewers/utils.py:449
 msgid "Clear Re-review"
 msgstr "清除再次審核"
 
-#: mkt/reviewers/utils.py:433
+#: mkt/reviewers/utils.py:451
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自重新審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:438
+#: mkt/reviewers/utils.py:456
 msgid "Ban app"
 msgstr "封鎖應用程式"
 
-#: mkt/reviewers/utils.py:440
+#: mkt/reviewers/utils.py:458
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "自 Marketplace 封鎖應用程式，與退回審查相同，但作者無法重新送出審查，僅在特殊案例使用。"
 
@@ -6774,111 +6818,111 @@ msgstr "您有 <span>{0}</span> 點。"
 msgid "No results found"
 msgstr "搜尋沒有結果"
 
-#: mkt/search/forms.py:13
+#: mkt/search/forms.py:14
 msgid "Relevance"
 msgstr "相關性"
 
-#: mkt/search/forms.py:14
+#: mkt/search/forms.py:15
 msgid "Popularity"
 msgstr "熱門度"
 
-#: mkt/search/forms.py:15
+#: mkt/search/forms.py:16
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
-#: mkt/search/forms.py:16
+#: mkt/search/forms.py:17
 msgid "Top Rated"
 msgstr "評分最高"
 
-#: mkt/search/forms.py:18
+#: mkt/search/forms.py:19
 msgid "Newest"
 msgstr "最新的"
 
-#: mkt/search/forms.py:19
+#: mkt/search/forms.py:20
 msgid "Reviewed"
 msgstr "已審核"
 
-#: mkt/search/forms.py:21
+#: mkt/search/forms.py:22
 msgid "Trending"
 msgstr "趨勢"
 
-#: mkt/search/forms.py:27
+#: mkt/search/forms.py:28
 msgid "Any App Type"
 msgstr "任何應用程式類型"
 
-#: mkt/search/forms.py:30
+#: mkt/search/forms.py:31
 msgid "Privileged packaged app"
 msgstr "有權限的封裝應用程式"
 
-#: mkt/search/forms.py:35
+#: mkt/search/forms.py:36
 msgid "Free with In-app"
 msgstr "免費版 (啟用應用程式內付費)"
 
-#: mkt/search/forms.py:37
+#: mkt/search/forms.py:38
 msgid "Premium with In-app"
 msgstr "付費版 (啟用應用程式內付費)"
 
-#: mkt/search/forms.py:38
+#: mkt/search/forms.py:39
 msgid "Other System for In-App"
 msgstr "其他應用內付款系統"
 
-#: mkt/search/forms.py:45
+#: mkt/search/forms.py:46
 msgid "Android"
 msgstr "Android"
 
-#: mkt/search/forms.py:52
+#: mkt/search/forms.py:53
 msgid "Any Device Type"
 msgstr "任何裝置類型"
 
-#: mkt/search/forms.py:54
+#: mkt/search/forms.py:55
 msgid "Mobile"
 msgstr "Mobile"
 
-#: mkt/search/forms.py:55
+#: mkt/search/forms.py:56
 msgid "Tablet"
 msgstr "平板"
 
-#: mkt/search/forms.py:62
+#: mkt/search/forms.py:63
 msgid "All Categories"
 msgstr "所有分類"
 
-#: mkt/search/forms.py:82
+#: mkt/search/forms.py:86
 msgid "Search for apps"
 msgstr "搜尋應用程式"
 
-#: mkt/search/forms.py:98
+#: mkt/search/forms.py:102
 msgid "Device type"
 msgstr "裝置類型"
 
-#: mkt/search/forms.py:142
+#: mkt/search/forms.py:146
 msgid "Premium types"
 msgstr "付費版類型"
 
-#: mkt/search/forms.py:146
+#: mkt/search/forms.py:150
 msgid "App type"
 msgstr "應用程式類型"
 
-#: mkt/search/forms.py:150
+#: mkt/search/forms.py:154
 msgid "Installs allowed from"
 msgstr "允許安裝自"
 
-#: mkt/search/forms.py:151
+#: mkt/search/forms.py:155
 msgid "Everywhere"
 msgstr "所有地方"
 
-#: mkt/search/forms.py:153
+#: mkt/search/forms.py:157
 msgid "Works offline"
 msgstr "能夠離線運作"
 
-#: mkt/search/forms.py:155
+#: mkt/search/forms.py:159
 msgid "Supported languages"
 msgstr "支援的語言"
 
-#: mkt/search/forms.py:156
+#: mkt/search/forms.py:160
 msgid "Author name"
 msgstr "作者名稱"
 
-#: mkt/search/forms.py:157
+#: mkt/search/forms.py:161
 msgid "Tags"
 msgstr "標籤"
 
@@ -7330,116 +7374,124 @@ msgid "Prerelease auto-escalation"
 msgstr "提升審核預先發行程式"
 
 #: mkt/site/log.py:545
-msgid "{addon} re-reviewed because abuse reports need invesigation."
-msgstr "因為需要調查濫用回報，已重新審查 {addon}。"
+msgid "{addon} re-reviewed because abuse reports need investigation."
+msgstr ""
 
-#: mkt/site/log.py:563
+#: mkt/site/log.py:554
+msgid "{addon} manually flagged for re-review."
+msgstr ""
+
+#: mkt/site/log.py:555
+msgid "Manual re-review"
+msgstr ""
+
+#: mkt/site/log.py:572
 msgid "Created: {0}."
 msgstr "已建立： {0}。"
 
-#: mkt/site/log.py:569
+#: mkt/site/log.py:578
 msgid "Edited field: {2} set to: {0}."
 msgstr "已編輯欄位：設定 {2} 到 {0}。"
 
-#: mkt/site/log.py:575
+#: mkt/site/log.py:584
 msgid "Deleted: {1}."
 msgstr "已刪除: {1}。"
 
-#: mkt/site/log.py:581
+#: mkt/site/log.py:590
 msgid "User {user} edited, reason: {1}"
 msgstr "使用者 {user} 已編輯，原因： {1}"
 
-#: mkt/site/log.py:587
+#: mkt/site/log.py:596
 msgid "User {user} anonymized."
 msgstr "使用者 {user} 已匿名。"
 
-#: mkt/site/log.py:593
+#: mkt/site/log.py:602
 msgid "User {user} restricted."
 msgstr "使用者 {user} 已禁止。"
 
-#: mkt/site/log.py:599
+#: mkt/site/log.py:608
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理員 {0} 觀看了 {user} 的活動紀錄。"
 
-#: mkt/site/log.py:606
+#: mkt/site/log.py:615
 msgid "{review} for {addon} updated."
 msgstr "{addon} 的 {review} 已更新。"
 
-#: mkt/site/log.py:612
+#: mkt/site/log.py:621
 msgid "{addon} reviewed."
 msgstr "{addon} 已審核。"
 
-#: mkt/site/log.py:618
+#: mkt/site/log.py:627
 msgid "User {0.name} added to {group}."
 msgstr "使用者 {0.name} 已新增至 {group}。"
 
-#: mkt/site/log.py:626
+#: mkt/site/log.py:635
 msgid "User {0.name} removed from {group}."
 msgstr "使用者 {0.name} 從 {group} 移除。"
 
-#: mkt/site/log.py:633
+#: mkt/site/log.py:642
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} 的最低需求已被審核者手動更改。"
 
-#: mkt/site/log.py:634
+#: mkt/site/log.py:643
 msgid "Requirements Changed by Reviewer"
 msgstr "需求已被審核者更改。"
 
-#: mkt/site/log.py:641
+#: mkt/site/log.py:650
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} 的最低需求已被手動更改。"
 
-#: mkt/site/log.py:642
+#: mkt/site/log.py:651
 msgid "Requirements Changed"
 msgstr "需求已更改"
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:650
+#: mkt/site/log.py:659
 msgid "{version} status changed to {0}."
 msgstr "{version} 狀態已變更為 {0}。"
 
 #. L10n: {0} is the status
-#: mkt/site/log.py:657
+#: mkt/site/log.py:666
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "使用者 {0.name} {0.id} 已透過搜尋工具刪除。"
 
-#: mkt/site/log.py:663
+#: mkt/site/log.py:672
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} 內容評分已更改為成人內容。"
 
-#: mkt/site/log.py:669
+#: mkt/site/log.py:678
 msgid "{addon} content rating changed."
 msgstr "{addon} 內容分級已改變。"
 
-#: mkt/site/log.py:674
+#: mkt/site/log.py:683
 msgid "Priority review requested for {addon}."
 msgstr "已為 {addon} 請求優先審查。"
 
-#: mkt/site/log.py:675
+#: mkt/site/log.py:684
 msgid "Priority Review"
 msgstr "優先審查"
 
-#: mkt/site/log.py:683
+#: mkt/site/log.py:692
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} 通過了 {queue} 審查。"
 
-#: mkt/site/log.py:690
+#: mkt/site/log.py:699
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} 未通過 {queue} 審查。"
 
-#: mkt/site/log.py:697
+#: mkt/site/log.py:706
 msgid "Abuse report {report} for {addon} read."
 msgstr "已閱讀 {addon} 的濫用回報 {report}。"
 
-#: mkt/site/log.py:698
+#: mkt/site/log.py:707
 msgid "{user} marked read {report} for {addon}."
 msgstr "{user} 已將 {addon} 的 {report} 標示為已讀。"
 
-#: mkt/site/log.py:706
+#: mkt/site/log.py:715
 msgid "Abuse report {report} for {website} read."
 msgstr "已閱讀 {website} 的濫用回報 {report}。"
 
-#: mkt/site/log.py:707
+#: mkt/site/log.py:716
 msgid "{user} marked read {report} for {website}."
 msgstr "{user} 已將 {website} 的報告 {report} 標示為已讀。"
 
@@ -7974,66 +8026,66 @@ msgid "Please use the verified email for this account."
 msgstr "請為此帳號使用已驗證過的電子郵件地址。"
 
 # Column name in a table.
-#: mkt/webapps/models.py:198
+#: mkt/webapps/models.py:199
 msgid "Listed"
 msgstr "顯示"
 
-#: mkt/webapps/models.py:1308
+#: mkt/webapps/models.py:1336
 msgid "You must provide a support email or URL."
 msgstr "您必須提供技術支援信箱或網址。"
 
-#: mkt/webapps/models.py:1310
+#: mkt/webapps/models.py:1338
 msgid "You must provide an app name."
 msgstr "您必須提供一個應用程式名稱。"
 
-#: mkt/webapps/models.py:1312
+#: mkt/webapps/models.py:1340
 msgid "You must provide at least one device type."
 msgstr "您必須指定至少一種裝置。"
 
-#: mkt/webapps/models.py:1315
+#: mkt/webapps/models.py:1343
 msgid "You must provide at least one category."
 msgstr "您必須至少提供一種類別。"
 
-#: mkt/webapps/models.py:1382
+#: mkt/webapps/models.py:1410
 msgid "You must set up content ratings."
 msgstr "您必須設定內容分級。"
 
-#: mkt/webapps/models.py:1384
+#: mkt/webapps/models.py:1412
 msgid "You must set up a payment account."
 msgstr "您必須設定付款帳號。"
 
-#: mkt/webapps/models.py:1409
+#: mkt/webapps/models.py:1437
 msgid "This app's submission process has not been fully completed."
 msgstr "此應用程式的送出過程尚未完成。"
 
-#: mkt/webapps/models.py:1416
+#: mkt/webapps/models.py:1444
 msgid "This app needs to get a content rating."
 msgstr "此應用程式需要取得內容分級。"
 
-#: mkt/webapps/models.py:1422
+#: mkt/webapps/models.py:1450
 msgid "This app needs a payment account set up."
 msgstr "此應用程式需要設定付費帳號。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2681
+#: mkt/webapps/models.py:2709
 msgid "awaiting approval"
 msgstr "等待審核通過"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2683
+#: mkt/webapps/models.py:2711
 msgid "rejected"
 msgstr "已退回"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2685
+#: mkt/webapps/models.py:2713
 msgid "requires additional review"
 msgstr "需要額外審核"
 
-#: mkt/webapps/models.py:2736
+#: mkt/webapps/models.py:2764
 msgid "{region} approval status"
 msgstr "{region} 審核狀態"
 
-#: mkt/webapps/models.py:2744
+#: mkt/webapps/models.py:2773
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 

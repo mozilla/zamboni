@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-07-19 23:37+0200\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
@@ -31,8 +31,7 @@ msgstr "Bilder måste vara antingen PNG eller JPG."
 msgid "Videos must be in WebM."
 msgstr "Videor måste ha formatet WebM."
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Det gick inte att kontakta servern."
 
@@ -78,8 +77,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;och {0} mer"
 msgstr[1] "&hellip;och {0} fler"
 
-#: media/js/common/upload-packaged-app.js:199
-#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Se fullständig valideringsrapport"
 
@@ -211,42 +209,34 @@ msgid "Disabled"
 msgstr "Inaktivera"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll"
-" på webbplatsen. Vänligen kom tillbaka lite senare."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Ta bort denna översättning"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Persona-inloggning misslyckades. Du kanske inte har ett konto med den "
-"e-postadressen registrerad?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Persona-inloggning misslyckades. Du kanske inte har ett konto med den e-postadressen registrerad?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-inloggning misslyckades. Ett serverfel uppstod."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Status har ändrats till \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Kunde inte ändra status till \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Visa alla träffar"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "Över {0} träffar hittades, överväg att förfina din sökning."
 
@@ -308,9 +298,7 @@ msgstr "Grekisk HEBIC/indonesisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Brittisk/irländsk clearingnummer eller nyzeeländsk kontoprefix eller "
-"australisk bank, delstat och kontor"
+msgstr "Brittisk/irländsk clearingnummer eller nyzeeländsk kontoprefix eller australisk bank, delstat och kontor"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -335,37 +323,21 @@ msgstr "Identifierade: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[0] ""
-"Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från "
-"följande appar. Applikationer utan ett betalkonto kommer inte längre att "
-"vara till salu."
-msgstr[1] ""
-"Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från "
-"följande app. Applikationer utan ett betalkonto kommer inte längre att vara "
-"till salu."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] "Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande appar. Applikationer utan ett betalkonto kommer inte längre att vara till salu."
+msgstr[1] "Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande app. Applikationer utan ett betalkonto kommer inte längre att vara till salu."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} betalkonton:"
 
-#: media/js/devreg/payments-manage.js:112
-#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fel"
 
-#: media/js/devreg/payments-manage.js:113
-#: media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Det gick inte att kontakta betalningsservern."
 
@@ -556,13 +528,11 @@ msgstr "Gratis"
 msgid "Any"
 msgstr "Någon"
 
-#: media/js/devreg/reviewers/reviewers.js:246
-#: media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Godkänd app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249
-#: media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Ej godkänd app: {app}"
 
@@ -583,15 +553,10 @@ msgid "Error failing app: {app}"
 msgstr "Fel vid underkännande av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
-msgstr ""
-"Tyvärr! Vi hade ett fel vid hämtning av granskningshistorik. Försök att "
-"logga in igen.<p>"
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr "Tyvärr! Vi hade ett fel vid hämtning av granskningshistorik. Försök att logga in igen.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
-#. Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Av {0} den {1}"

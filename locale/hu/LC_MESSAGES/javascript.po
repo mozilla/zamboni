@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:02-0700\n"
+"POT-Creation-Date: 2015-08-12 08:25-0700\n"
 "PO-Revision-Date: 2015-05-09 13:01+0000\n"
 "Last-Translator: Kroszki <kroszki@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -225,19 +225,19 @@ msgstr "Sikertelen Persona bejelentkezés. Lehet, hogy nem rendelkezik felhaszn�
 msgid "Persona login failed. A server error was encountered."
 msgstr "Nem sikerült bejelentkezni a Personába. Hiba történt a szerveren."
 
-#: media/js/devreg/lookup-tool.js:24
+#: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
 msgstr "Az állapot sikeresen módosítva a következőre: „{0}”"
 
-#: media/js/devreg/lookup-tool.js:29
+#: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
 msgstr "Nem sikerült az állapot módosítása a következőre: „{0}”"
 
-#: media/js/devreg/lookup-tool.js:97
+#: media/js/devreg/lookup-tool.js:112
 msgid "Show All Results"
 msgstr "Minden találat megjelenítése"
 
-#: media/js/devreg/lookup-tool.js:100
+#: media/js/devreg/lookup-tool.js:115
 msgid "Over {0} results found, consider refining your search."
 msgstr "Több mint {0} találat, finomítsa keresését."
 
