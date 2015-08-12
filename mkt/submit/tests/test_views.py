@@ -391,7 +391,7 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(addon.versions.latest().supported_locales, 'es')
 
     def test_unsupported_detail_locale(self):
-        # This manifest has a locale code of "en-GB" which is unsupported, so
+        # This manifest has a locale code of "en-CA" which is unsupported, so
         # we default to "en-US".
         self.manifest = self.manifest_path('unsupported-default-locale.webapp')
         self.upload = self.get_upload(abspath=self.manifest,
