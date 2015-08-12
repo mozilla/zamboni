@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:02-0700\n"
-"PO-Revision-Date: 2015-08-11 12:06+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-08-12 08:48+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439294803.0\n"
+"X-POOTLE-MTIME: 1439369319.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Hlášení o zneužití ke kontrole: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -1251,11 +1251,11 @@ msgstr "Kontrola aplikace pro Tarako"
 
 #: mkt/constants/base.py:233
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Hlášení o zneužití aplikace přečteno"
 
 #: mkt/constants/base.py:234
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Hlášení o zneužití webové stránky přečteno"
 
 #: mkt/constants/base.py:268
 msgid "Level 1"
@@ -1495,7 +1495,7 @@ msgstr "Veřejný komentář redaktora"
 
 #: mkt/constants/comm.py:74 mkt/site/log.py:546
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Kontrola hlášení o zneužití"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -6114,6 +6114,8 @@ msgstr "Soukromá zpráva"
 #: mkt/reviewers/utils.py:418
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
+"Napsat soukromou poznámku o kontrolu pro tuto aplikaci. Tato zpráva nebude "
+"pro autory viditelná a nebude jim o ní zasláno ani žádné upozornění."
 
 #: mkt/reviewers/utils.py:424
 msgid "Clear Escalation"
@@ -7342,6 +7344,7 @@ msgstr "Automatické zvýšení priority"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need invesigation."
 msgstr ""
+"Doplněk {addon} byl odeslán k opětovné kontrole kvůli hlášení o zneužití."
 
 #: mkt/site/log.py:563
 msgid "Created: {0}."
@@ -8081,7 +8084,7 @@ msgstr "Vytvořeno"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Vybráno neplatné zařízení."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
