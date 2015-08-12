@@ -8,7 +8,7 @@ import mkt
 from mkt.access import acl
 from mkt.files.models import File
 from mkt.site.decorators import allow_cross_site_request
-from mkt.site.utils import HttpResponseSendFile
+from mkt.site.utils import get_file_response
 from mkt.webapps.models import Webapp
 
 
@@ -43,5 +43,5 @@ def download_file(request, file_id, type=None):
         path = file_.file_path
 
     log.info('Downloading package: %s from %s' % (webapp.id, path))
-    return HttpResponseSendFile(request, path, content_type='application/zip',
-                                etag=file_.hash.split(':')[-1])
+    return get_file_response(request, path, content_type='application/zip',
+                             etag=file_.hash.split(':')[-1])

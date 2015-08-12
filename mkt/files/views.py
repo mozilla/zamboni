@@ -20,7 +20,8 @@ from mkt.files.decorators import (compare_webapp_file_view, etag,
                                   webapp_file_view_token)
 from mkt.files.tasks import extract_file
 from mkt.site.decorators import json_view
-from mkt.site.utils import HttpResponseSendFile
+from mkt.site.utils import get_file_response
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -190,5 +191,5 @@ def serve(request, viewer, key):
         log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %
                   (key, files.keys()[:10], len(files.keys()), viewer.file.id))
         raise http.Http404()
-    return HttpResponseSendFile(request, obj['full'],
-                                content_type=obj['mimetype'])
+    return get_file_response(request, obj['full'],
+                             content_type=obj['mimetype'])

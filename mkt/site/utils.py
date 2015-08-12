@@ -247,6 +247,19 @@ class ImageCheck(object):
             return 'duration' in img.info or 'loop' in img.info
 
 
+def get_file_response(request, path, content=None, status=None,
+                      content_type='application/octet-stream', etag=None,
+                      public=True):
+    if storage_is_remote():
+        storage = public_storage if public else private_storage
+        # Note: The `content_type` and `etag` will have no effect here. It
+        # should be set when saving the item to S3.
+        return http.HttpResonseRedirect(storage.url(path))
+    else:
+        return HttpResponseSendFile(request, path, content_type=content_type,
+                                    etag=etag)
+
+
 class HttpResponseSendFile(http.HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,

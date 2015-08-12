@@ -29,8 +29,8 @@ from cache_nuggets.lib import Token
 from jingo.helpers import urlparams
 from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
-from rest_framework.generics import (CreateAPIView, ListAPIView, UpdateAPIView,
-                                     DestroyAPIView)
+from rest_framework.generics import (CreateAPIView, DestroyAPIView,
+                                     ListAPIView, UpdateAPIView)
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from tower import ugettext as _
@@ -54,23 +54,23 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm, TestedOnFormSet)
-from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  QUEUE_TARAKO, ReviewerScore)
+from mkt.reviewers.models import (QUEUE_TARAKO, AdditionalReview,
+                                  CannedResponse, ReviewerScore)
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
                                        ReviewerScoreSerializer,
                                        ReviewersESAppSerializer,
                                        ReviewingSerializer)
-from mkt.reviewers.utils import (AppsReviewing, log_reviewer_action,
-                                 ReviewApp, ReviewersQueuesHelper)
+from mkt.reviewers.utils import (AppsReviewing, ReviewApp,
+                                 ReviewersQueuesHelper, log_reviewer_action)
 from mkt.search.filters import (ReviewerSearchFormFilter, SearchQueryFilter,
                                 SortingFilter)
 from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
-from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
-                            JSONEncoder, paginate, redirect_for_login,
+from mkt.site.utils import (JSONEncoder, days_ago, escape_all,
+                            get_file_response, paginate, redirect_for_login,
                             smart_decode)
 from mkt.submit.forms import AppFeaturesForm
 from mkt.users.models import UserProfile
@@ -876,8 +876,8 @@ def get_signed_packaged(request, addon, version_id):
         raise http.Http404
     log.info('Returning signed package addon: %s, version: %s, path: %s' %
              (addon.pk, version_id, path))
-    return HttpResponseSendFile(request, path, content_type='application/zip',
-                                etag=file.hash.split(':')[-1])
+    return get_file_response(request, path, content_type='application/zip',
+                             etag=file.hash.split(':')[-1])
 
 
 @reviewer_required(moderator=True)
