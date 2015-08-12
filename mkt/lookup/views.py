@@ -260,7 +260,11 @@ def transaction_refund(request, tx_uuid):
 
 @permission_required([('AppLookup', 'View')])
 def app_summary(request, addon_id):
-    app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
+    if unicode(addon_id).isdigit():
+        query = {'pk': addon_id}
+    else:
+        query = {'app_slug': addon_id}
+    app = get_object_or_404(Webapp.with_deleted, **query)
 
     if request.FILES:
         promo_img_form = PromoImgForm(request.POST, request.FILES)

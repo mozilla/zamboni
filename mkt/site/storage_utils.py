@@ -80,6 +80,11 @@ class S3BotoPublicStorage(S3BotoStorage):
     default_acl = bucket_acl = 'public-read'
     querystring_auth = False
     querystring_expire = 0
+    # Cache all public files for a very long time, we'll change their path or
+    # add a query string when we want to bust the cache.
+    headers = {
+        'Cache-Control': 'max-age=31536000',
+    }
 
 
 class S3BotoPrivateStorage(S3BotoStorage):
