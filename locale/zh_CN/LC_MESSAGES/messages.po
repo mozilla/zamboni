@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-07-30 16:28+0000\n"
+"PO-Revision-Date: 2015-08-13 09:31+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438273699.0\n"
+"X-POOTLE-MTIME: 1439458291.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1461,7 +1461,7 @@ msgstr "因成人内容评级而重新审核"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "已请求人工重新审核"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2214,11 +2214,11 @@ msgstr "从 zip 文件中解压缩资源配置时出错。"
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "托管网址："
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
-msgstr ""
+msgstr "指明您的应用托管在网络上的哪个位置的地址（如有）。这使用户在安装之前可以先试用您的应用。"
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2662,7 +2662,7 @@ msgstr "无法打开预览。"
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "无法打开促销图像。"
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3674,11 +3674,11 @@ msgstr "请不要频繁更换您的清单 URL。如果您更改了您的清单 U
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "托管网址"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
-msgstr ""
+msgstr "如果您的应用有一个托管网址，您可以在这里设置，以使用户在安装之前可以先试用您的应用。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5293,11 +5293,11 @@ msgstr "删除原因"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "促销图像"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "最小尺寸：{0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5714,7 +5714,7 @@ msgstr "搜索"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "保存促销图像"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6111,11 +6111,11 @@ msgstr "在此应用上留下一条审核者的私人留言。作者不能看到
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "请求重新审核"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
-msgstr ""
+msgstr "添加此应用到重新审核队列。这里的评论不会被作者看到，也不会通知给他们。"
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -7331,15 +7331,15 @@ msgstr "预发布应用自动提升审核等级"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
+msgstr "因为滥用报告需要调查，{addon} 已重新审核。"
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "已手动标记 {addon} 需要重新审核。"
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "人工重新审核"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."
