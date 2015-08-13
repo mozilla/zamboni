@@ -39,14 +39,6 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
 
 
-class EditorSubscription(ModelBase):
-    user = models.ForeignKey(UserProfile)
-    addon = models.ForeignKey(Webapp)
-
-    class Meta:
-        db_table = 'editor_subscriptions'
-
-
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')

@@ -192,13 +192,6 @@
         {{ form.device_override }}
         {{ form.device_override.errors}}
       </div>
-      <div class="review-actions-section">
-        {{ form.is_tarako }}
-        <label for="id_is_tarako">
-          {{ form.is_tarako.label }}
-        </label>
-        {{ form.is_tarako.errors }}
-      </div>
       {% if appfeatures_form %}
       <div class="review-actions-section review-actions-options review-actions-features-override data-toggle" data-value="public">
         <strong>{{ _('Minimum Requirements Override:') }}</strong>
@@ -209,15 +202,6 @@
         </ul>
       </div>
       {% endif %}
-      {# Hiding this checkbox until bug 741679 is implemented.
-      <div class="review-actions-section">
-        {{ form.notify }}
-        <label for="id_notify">
-          {{ form.notify.label }}
-        </label>
-        {{ form.notify.errors }}
-      </div>
-      #}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

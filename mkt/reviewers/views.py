@@ -55,8 +55,7 @@ from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm, TestedOnFormSet)
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  EditorSubscription, QUEUE_TARAKO,
-                                  ReviewerScore)
+                                  QUEUE_TARAKO, ReviewerScore)
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
@@ -74,7 +73,6 @@ from mkt.site.utils import (days_ago, escape_all, HttpResponseSendFile,
                             JSONEncoder, paginate, redirect_for_login,
                             smart_decode)
 from mkt.submit.forms import AppFeaturesForm
-from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
@@ -346,17 +344,6 @@ def _review(request, addon, version):
                                     mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
-
-        if form.cleaned_data.get('notify'):
-            # TODO: bug 741679 for implementing notifications in Marketplace.
-            EditorSubscription.objects.get_or_create(user=request.user,
-                                                     addon=addon)
-
-        is_tarako = form.cleaned_data.get('is_tarako', False)
-        if is_tarako:
-            Tag(tag_text='tarako').save_tag(addon)
-        else:
-            Tag(tag_text='tarako').remove_tag(addon)
 
         # Success message.
         if score:

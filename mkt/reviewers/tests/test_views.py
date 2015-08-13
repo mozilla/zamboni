@@ -48,7 +48,6 @@ from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
 from mkt.site.utils import app_factory, make_game, paginate, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
-from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
@@ -2042,33 +2041,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         data.update(self._testedon_management_form())
         self.post(data)
         eq_(self.get_app().priority_review, True)
-
-    def test_is_tarako_checkbox(self):
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#id_is_tarako:checked').length, 0)
-        app = self.get_app()
-        Tag(tag_text='tarako').save_tag(app)
-        res = self.client.get(self.url)
-        eq_(pq(res.content)('#id_is_tarako:checked').length, 1)
-
-    def test_is_tarako_on(self):
-        # Note: Using action=comment b/c it does less and keeps test faster.
-        data = {'action': 'comment', 'comments': 'blah', 'is_tarako': 'on'}
-        data.update(self._attachment_management_form(num=0))
-        data.update(self._testedon_management_form())
-        self.post(data)
-        tags = self.get_app().tags.values_list('tag_text', flat=True)
-        assert 'tarako' in tags
-
-    def test_is_tarako_off(self):
-        # Note: Using action=comment b/c it does less and keeps test faster.
-        # Note: `is_tarako` isn't passed b/c checkboxes.
-        data = {'action': 'comment', 'comments': 'blah'}
-        data.update(self._attachment_management_form(num=0))
-        data.update(self._testedon_management_form())
-        self.post(data)
-        tags = self.get_app().tags.values_list('tag_text', flat=True)
-        assert 'tarako' not in tags
 
     def test_versions_history_pagination(self):
         self.app.update(is_packaged=True)
