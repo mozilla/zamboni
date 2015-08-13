@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-07-29 22:24+0000\n"
+"PO-Revision-Date: 2015-08-13 12:27+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438208656.0\n"
+"X-POOTLE-MTIME: 1439468874.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1459,7 +1460,7 @@ msgstr "Nowopřepruwowanje zastupnjowanja za dorosćenych dla"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Manuelne nowe přepruwowanje požadane"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2214,11 +2215,13 @@ msgstr "Zmylk při wubalowanju manifesta ze ZIP-dataje."
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "Hospodowany URL:"
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr ""
+"URL, hdźež so waše nałoženje we webje hospoduje, jeli eksistuje. To zmóžnja "
+"wužiwarjam, waše nałoženje wupruwować, prjedy hač jo instaluja."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2667,7 +2670,7 @@ msgstr "Přehlad njeda so wočinić."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "Promografika njeda so wočinić."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3688,11 +3691,13 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "Hospodowany URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
 msgstr ""
+"Jeli waše nakoženje ma URL, hdźe so hospoduje, móžeće jón wužiwarjam podać, "
+"kotřiž chcedźa waše nałoženje před instalaciju wupruwować."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5330,11 +5335,11 @@ msgstr "Přičina za zhašenje"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "Promografika"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Minimalna wulkosć: {0} x {1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5753,7 +5758,7 @@ msgstr "Pytać"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Promografiku składować"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6150,11 +6155,13 @@ msgstr "Pósćelće priwatny přepruwowarski komentar k tutomu nałoženju. Tuta
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "Nowe přepruwowanje požadać"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
 msgstr ""
+"Tute nałoženje čakanskemu rynkej za nowopřepruwowanja přidać. Wšě komentary "
+"tu za awtorow widźomne njejsu, a zdźělenki so jim ani njesćelu. "
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -7385,14 +7392,16 @@ msgstr "Awtomatiske daledaće přichodnemu wyšemu městnu za předwozjewjenje"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
 msgstr ""
+"{addon} je so znowa přepruwował, dokelž sej znjewužiwanske zdźělenki to "
+"wužadachu."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} manuelnje za nowe přepruwowanje woznamjenjeny."
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "Manuelne nowe přepruwowanje"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."
