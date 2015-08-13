@@ -122,12 +122,6 @@ class ReviewAppForm(happyforms.Form):
         choices=[(k, v.name) for k, v in mkt.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
-    notify = forms.BooleanField(
-        required=False, label=_lazy(u'Notify me the next time the manifest is '
-                                    u'updated. (Subsequent updates will not '
-                                    u'generate an email)'))
-    is_tarako = forms.BooleanField(
-        required=False, label=_lazy(u'This app works on Tarako devices.'))
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
@@ -159,9 +153,6 @@ class ReviewAppForm(happyforms.Form):
             addon=self.helper.addon).values_list('device_type', flat=True)
         if device_types:
             self.initial['device_override'] = device_types
-
-        self.initial['is_tarako'] = (
-            self.helper.addon.tags.filter(tag_text='tarako').exists())
 
     def is_valid(self):
         result = super(ReviewAppForm, self).is_valid()

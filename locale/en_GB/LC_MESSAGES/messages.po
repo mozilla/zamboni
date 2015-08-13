@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-08-04 09:30:11.635436\n"
+"PO-Revision-Date: 2015-08-13 07:26:24.670673\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1489,7 +1489,7 @@ msgstr "Rereview due to Adult Content Rating"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Manual re-review requested"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2383,13 +2383,15 @@ msgstr "Error extracting manifest from zip file."
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "Hosted URL:"
 
 #: mkt/developers/forms.py:525
 msgid ""
 "A URL to where your app is hosted on the web, if it exists. This allows "
 "users to try out your app before installing it."
 msgstr ""
+"A URL to where your app is hosted on the web, if it exists. This allows "
+"users to try out your app before installing it."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2900,7 +2902,7 @@ msgstr "Preview could not be opened."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "Promo image could not be opened."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -4254,13 +4256,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "Hosted URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
 "If your app has a URL where it is hosted, you can set it for users that want"
 " to try your app before installing it."
 msgstr ""
+"If your app has a URL where it is hosted, you can set it for users that want"
+" to try your app before installing it."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119
 #: mkt/lookup/templates/lookup/website_edit.html:41
@@ -6355,11 +6359,11 @@ msgstr "Reason for Deletion"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "Promo Image"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Minimum size: {0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -6834,7 +6838,7 @@ msgstr "Search"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Save Promo Image"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -7271,13 +7275,15 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "Request Re-review"
 
 #: mkt/reviewers/utils.py:436
 msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent tothem."
 msgstr ""
+"Add this app to the re-review queue. Any comments here won't be visible to "
+"the author(s), and no notification will be sent to them."
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -8583,15 +8589,15 @@ msgstr "Prerelease auto-escalation"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
+msgstr "{addon} re-reviewed because abuse reports need investigation."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} manually flagged for re-review."
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "Manual re-review"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."

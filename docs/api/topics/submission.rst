@@ -38,6 +38,8 @@ Validate
 
     **Request**
 
+    For an `Hosted App <https://developer.mozilla.org/en-US/Marketplace/Options/Hosted_apps>`_:
+
     :param manifest: URL to the manifest.
     :type manifest: string
 
@@ -47,22 +49,22 @@ Validate
 
         {"manifest": "http://test.app.com/manifest.webapp"}
 
-    Or for a *packaged app*
+    Or for a `Packaged App <https://developer.mozilla.org/en-US/Marketplace/Options/Packaged_apps>`_:
 
-    :param upload: a dictionary containing the appropriate file data in the upload field.
+    :param upload: an object containing the appropriate file data in the upload field. It has the following properties:
     :type upload: object
-    :param upload.type: the content type.
+    :param upload.type: the content type for the file. In this case, the only valid type is `application/zip`.
     :type upload.type: string
+    :param upload.data: the zip file for your app, encoded in base 64.
+    :type upload.data: string
     :param upload.name: the file name.
     :type upload.name: string
-    :param upload.data: the base 64 encoded data.
-    :type upload.data: string
 
     Example:
 
     .. code-block:: json
 
-        {"upload": {"type": "application/foo",
+        {"upload": {"type": "application/zip",
                     "data": "UEsDBAo...gAAAAA=",
                     "name": "mozball.zip"}}
 

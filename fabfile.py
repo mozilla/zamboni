@@ -157,7 +157,7 @@ def deploy_jenkins():
 
     rpm.local_install()
 
-    managecmd('migrate')
+    managecmd('migrate --noinput')
 
     rpm.remote_install(['web', 'celery'])
 
@@ -175,7 +175,7 @@ def update():
     execute(create_virtualenv, getattr(settings, 'DEV', False))
     execute(update_locales)
     execute(compress_assets, arg='--settings=settings_local_mkt')
-    managecmd('migrate')
+    managecmd('migrate --noinput')
     managecmd('statsd_ping --key=update')
 
 
