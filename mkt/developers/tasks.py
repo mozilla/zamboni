@@ -35,7 +35,8 @@ from mkt.site.decorators import set_modified_on, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.site.storage_utils import private_storage
-from mkt.site.utils import remove_icons, resize_image, strip_bom
+from mkt.site.utils import (remove_icons, remove_promo_imgs, resize_image,
+                            strip_bom)
 from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 
@@ -338,15 +339,32 @@ def save_icon(obj, icon_content):
     dirname = obj.get_icon_dir()
     destination = os.path.join(dirname, '%s' % obj.pk)
     remove_icons(destination)
-    resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
-                set_modified_on=[obj])
+    icon_hash = resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
+                            set_modified_on=[obj])
 
-    # Need to set the icon type so .get_icon_url() works
-    # normally submit step 4 does it through AppFormMedia,
-    # but we want to beat them to the punch.
-    # resize_icon outputs pngs, so we know it's 'image/png'
+    # Need to set icon type so .get_icon_url() works normally
+    # submit step 4 does it through AppFormMedia, but we want to beat them to
+    # the punch. resize_icon outputs pngs so we know it's 'image/png'.
+    obj.icon_hash = icon_hash['icon_hash']  # In case, we're running not async.
     obj.icon_type = 'image/png'
     obj.save()
+
+
+def save_promo_imgs(obj, img_content):
+    """
+    Saves the promo image for `obj` to its final destination.
+    `obj` can be an app or a website.
+    """
+    tmp_dst = os.path.join(settings.TMP_PATH, 'promo_imgs', uuid.uuid4().hex)
+    with storage.open(tmp_dst, 'wb') as fd:
+        fd.write(img_content)
+
+    dirname = obj.get_promo_img_dir()
+    destination = os.path.join(dirname, '%s' % obj.pk)
+    remove_promo_imgs(destination)
+    resize_promo_imgs(
+        tmp_dst, destination, mkt.PROMO_IMG_SIZES,
+        set_modified_on=[obj])
 
 
 @post_request_task
