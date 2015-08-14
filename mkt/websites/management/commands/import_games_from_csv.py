@@ -10,6 +10,7 @@ from django.db.transaction import atomic
 from mkt.constants.applications import DEVICE_DESKTOP
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.tags.models import Tag
+from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.models import Website
 from mkt.websites.tasks import fetch_icon, fetch_promo_imgs
 
@@ -116,14 +117,18 @@ class Command(BaseCommand):
                     # Keywords use a M2M, so do that once the website is saved.
                     self.set_tags(website, row)
 
+                    WebsiteIndexer.index([website.id], no_delay=True)
+
                     # Launch task to fetch imgs once we know everything is OK.
                     try:
                         self.set_icon(website, row)
                         self.set_promo_imgs(website, row)
                     except Exception as e:
-                        website.delete()
                         print e
+                        website.delete()
                         raise e
+
+                    WebsiteIndexer.index([website.id], no_delay=True)
 
                     created_count += 1
                 except ParsingError as e:
