@@ -117,18 +117,16 @@ class Command(BaseCommand):
                     # Keywords use a M2M, so do that once the website is saved.
                     self.set_tags(website, row)
 
-                    WebsiteIndexer.index([website.id], no_delay=True)
-
                     # Launch task to fetch imgs once we know everything is OK.
                     try:
                         self.set_icon(website, row)
                         self.set_promo_imgs(website, row)
+                        WebsiteIndexer.index_ids([website.id], no_delay=True)
                     except Exception as e:
                         print e
+                        WebsiteIndexer.refresh_index()
                         website.delete()
                         raise e
-
-                    WebsiteIndexer.index([website.id], no_delay=True)
 
                     created_count += 1
                 except ParsingError as e:

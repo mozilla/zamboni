@@ -65,3 +65,10 @@ class TestImportGamesFromCSV(TestCase):
         call_command('import_games_from_csv', self.filename)
         call_command('import_games_from_csv', self.filename)
         eq_(Website.objects.count(), 2)
+
+    @mock.patch('mkt.developers.tasks.requests.get')
+    def test_failed_image_fetch(self, requests_mock):
+        requests_mock.return_value = {'status_code': 404}
+        with self.assertRaises(Exception):
+            call_command('import_games_from_csv', self.filename)
+            eq_(Website.objects.count(), 0)
