@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-08-12 22:57+0000\n"
+"PO-Revision-Date: 2015-08-14 12:45+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439420225.0\n"
+"X-POOTLE-MTIME: 1439556336.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -98,11 +98,11 @@ msgstr "Desktop"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr "Firefox Mobile"
+msgstr "Firefox mobil"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr "Firefox Tablet"
+msgstr "Firefox tabletă"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:47 mkt/search/forms.py:54
@@ -605,9 +605,10 @@ msgstr "Kosovo"
 msgid "Kuwait"
 msgstr "Kuweit"
 
+# Numele de țări sau localități neromânești nu se scriu cu â-din-a în mijlocul cuvintelor (de ex. Cernobîl). De asemenea, Kîrgîzstan există în DEX, în vreme ce Kârgâzstan nu (wikipedia greșește aici).
 #: mkt/constants/bango.py:140 mkt/constants/regions.py:186
 msgid "Kyrgyzstan"
-msgstr "Kârgâzstan"
+msgstr "Kîrgîzstan"
 
 #: mkt/constants/bango.py:141
 msgid "Lao People's Democratic Rep"
@@ -629,9 +630,10 @@ msgstr "Leshoto"
 msgid "Liberia"
 msgstr "Liberia"
 
+# Libia nu mai e jamahirie și acum se numește doar „Libia”
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
-msgstr "Libia (Marea Jamahirie Arabă Libiană)"
+msgstr "Libia"
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
@@ -913,6 +915,7 @@ msgstr "Senegal"
 msgid "Serbia"
 msgstr "Serbia"
 
+# Apropo, nu mai există această țară.
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
 msgstr "Serbia și Muntenegru"
@@ -1043,7 +1046,7 @@ msgstr "Turcia"
 
 #: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
-msgstr "Turkenistan"
+msgstr "Turkmenistan"
 
 #: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
@@ -1207,7 +1210,7 @@ msgstr "Voi folosi sistemul propriu pentru plăți în aplicație"
 
 #: mkt/constants/base.py:228
 msgid "Manual Reviewer Points"
-msgstr "Note ale recenzentului uman"
+msgstr "Note manuale ale recenzentului"
 
 #: mkt/constants/base.py:229
 msgid "Web App Review"
@@ -1443,7 +1446,7 @@ msgstr "Re-recenzie din cauza schimbării manifestului"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Manifest URL Change"
-msgstr "Re-recenzie din cauza schimbării URL"
+msgstr "Re-recenzie din cauza schimbării URL-ului manifestului"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Premium Type Upgrade"
@@ -1487,7 +1490,7 @@ msgstr "Recenzie suplimentară eșuată"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
-msgstr "Note versiune pentru recenzent"
+msgstr "Notele versiunii pentru recenzent"
 
 #: mkt/constants/comm.py:75
 msgid "Public reviewer comment"
@@ -2289,7 +2292,7 @@ msgstr "<b>Limitează la echipa mea</b>: Vizibil doar membrilor echipei."
 
 #: mkt/developers/forms.py:859
 msgid "Choose the regions your app will be listed in:"
-msgstr "Alegeți regiunile unde va fi listată aplicația:"
+msgstr "Alege regiunile unde va fi listată aplicația:"
 
 #: mkt/developers/forms.py:861 mkt/developers/forms.py:962
 msgid "You must select at least one region."
@@ -2342,7 +2345,7 @@ msgstr "Trebuie să fii de acord cu politica de confidențialitate."
 
 #: mkt/developers/forms.py:1090 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr "Țară"
+msgstr "Țara"
 
 #: mkt/developers/forms.py:1124 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
@@ -2440,7 +2443,7 @@ msgstr "Suportă toate metodele de taxare"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr "Dacă aplicația e gratuită, trebuie activate plăți în aplicație"
+msgstr "Dacă aplicația e gratuită, trebuie activate plățile în aplicație"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -2696,7 +2699,7 @@ msgstr "Aplicațiile plătite nu pot fi șterse. Dezactivați aplicația în loc
 
 #: mkt/developers/views.py:163
 msgid "App deleted."
-msgstr "Aplicație șterasă."
+msgstr "Aplicație ștearsă."
 
 #: mkt/developers/views.py:168
 msgid "Password was incorrect. App was not deleted."
@@ -2880,7 +2883,9 @@ msgstr "Exemplu OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr "<p>Exemplu folosind o bibliotecă Python pentru linia de comandă pe Mac OS X folosind coordonatele OAuth ale dumneavoastră:</p>"
+msgstr ""
+"<p>Exemplu folosind o bibliotecă Python pentru linia de comandă pe Mac OS X "
+"folosind coordonatele OAuth ale tale:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -2904,7 +2909,7 @@ msgstr "Autentificare"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr "Trebuie să fiți autentificat pentru a continua."
+msgstr "Trebuie să fii autentificat pentru a continua."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:133 templates/base.html:139
 msgid "Sign in / Sign up"
@@ -2985,7 +2990,7 @@ msgstr "Termenii serviciului s-au schimbat față de ultima dată când v-ați d
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
-msgstr "Vă rugăm să vă autentificați"
+msgstr "Te rugăm să te autentifici"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
@@ -3005,7 +3010,7 @@ msgstr "Politici suplimentare Marketplace"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr "V-ați dat deja acordul pentru acest acord de dezvoltare."
+msgstr "Ți-ai dat deja acordul pentru acest acord de dezvoltare."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
@@ -3059,7 +3064,7 @@ msgstr "Testare validitate aplicație"
 
 #: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:50
 msgid "Submit your app manifest URL"
-msgstr "Încărcați URL-ul de manifest pentru aplicație"
+msgstr "Încarcă URL-ul de manifest pentru aplicație"
 
 #: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:59
 msgid "Validate"
@@ -3108,7 +3113,7 @@ msgstr "Anunț"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:12 mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
-msgstr "Îndepărtați acest anunț"
+msgstr "Îndepărtează acest anunț"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
@@ -3307,7 +3312,7 @@ msgstr "După ce ați rezolvat aceste probleme, puteți să repropuneți aplica�
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
-msgstr "Repropunere aplicație"
+msgstr "Repropune aplicația"
 
 #: mkt/developers/templates/developers/apps/status.html:180
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
@@ -3331,11 +3336,11 @@ msgstr "Descărcare"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
-msgstr "Activați"
+msgstr "Activează"
 
 #: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
-msgstr "Încărcați noua versiune"
+msgstr "Încarcă noua versiune"
 
 #: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
@@ -3445,7 +3450,9 @@ msgstr "Delistare aplicație"
 
 #: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "Listarea aplicației este dezactivată și nu va apărea pe Firefox Marketplace. O puteți relista în orice moment."
+msgstr ""
+"Listarea aplicației este dezactivată și aceasta nu va apărea pe Firefox "
+"Marketplace. O puteți relista în orice moment."
 
 #: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
@@ -3462,7 +3469,7 @@ msgstr "Ștergerea aplicației o va șterge permanent de pe sait. <strong>Acțiu
 
 #: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
-msgstr "Blocklistează aplicație"
+msgstr "Blocklistează aplicația"
 
 #: mkt/developers/templates/developers/apps/status.html:446
 msgid ""
@@ -3783,7 +3790,7 @@ msgstr "Limba"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr "implicit"
+msgstr "implicită"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
@@ -4010,7 +4017,7 @@ msgstr "Compatibilitate și plăți"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:55
 msgid "View Add-on Listing"
-msgstr "Vedeți listarea suplimentului"
+msgstr "Vezi listarea suplimentului"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:9
 msgid "Resume the submission process for this app."
@@ -4030,11 +4037,11 @@ msgstr "Furnizați informații de plată pentru aplicație."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:47
 msgid "Set Up Payments"
-msgstr "Setare plăți"
+msgstr "Setează plăți"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr "Ștergeți aplicația."
+msgstr "Șterge aplicația."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -4122,7 +4129,7 @@ msgstr "Aplicație preîncărcată"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr "Descărcare plan de testare"
+msgstr "Descarcă planul de testare"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
@@ -4130,7 +4137,7 @@ msgstr "Testare completă?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr "Propuneți o aplicație pentru preîncărcare"
+msgstr "Propune aplicația pentru preîncărcare"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -4149,7 +4156,7 @@ msgstr "Termeni și condiții pentru aplicația preîncărcată"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr "Cereți recenzie pentru aplicație"
+msgstr "Cere o recenzie pentru aplicație"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
@@ -4245,11 +4252,11 @@ msgstr "HTML parțial suportat."
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
-msgstr "Ștergeți aplicația"
+msgstr "Șterge aplicația"
 
 #: mkt/developers/templates/developers/includes/macros.html:67 mkt/developers/templates/developers/includes/macros.html:81 mkt/lookup/templates/lookup/website_edit.html:79
 msgid "Pick one or two categories."
-msgstr "Alegeți o categorie sau două."
+msgstr "Alege o categorie sau două."
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
@@ -4394,7 +4401,7 @@ msgstr "ID produs"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Add a product"
-msgstr "Adăugare produs"
+msgstr "Adaugă un produs"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -4402,11 +4409,11 @@ msgstr "Compatibilitate aplicație"
 
 #: mkt/developers/templates/developers/payments/premium.html:71
 msgid "Change to Free"
-msgstr "Schimbați în gratuit"
+msgstr "Schimbă în „gratuit”"
 
 #: mkt/developers/templates/developers/payments/premium.html:87
 msgid "Paid mode requires that your app only supports:"
-msgstr "Modul plătit necesită suport doar pentru:"
+msgstr "Modul „plătit” necesită suport doar pentru:"
 
 #: mkt/developers/templates/developers/payments/premium.html:88 mkt/developers/templates/developers/payments/premium.html:90 mkt/submit/templates/submit/manifest.html:38
 msgid "Paid / In-app"
@@ -4414,7 +4421,7 @@ msgstr "Plătit / Cu plata în aplicație"
 
 #: mkt/developers/templates/developers/payments/premium.html:99
 msgid "Change to Paid"
-msgstr "Schimbă în plătit"
+msgstr "Schimbă în „plătit”"
 
 #: mkt/developers/templates/developers/payments/premium.html:100
 msgid "Changing to Paid will put your app back into review."
