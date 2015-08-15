@@ -41,7 +41,7 @@ class TestImportGamesFromCSV(TestCase):
         eq_(Website.objects.count(), 2)
 
         cycleblob = Website.objects.get(name__localized_string='Cycleblob')
-        eq_(cycleblob.url, 'http://cycleblob.com/')
+        eq_(cycleblob.url, 'http://cycleBLOB.com/')
         eq_(cycleblob.keywords.count(), 2)
         ok_(cycleblob.keywords.get(tag_text='featured-game'))
         ok_(cycleblob.keywords.get(tag_text='featured-game-strategy'))
@@ -65,3 +65,10 @@ class TestImportGamesFromCSV(TestCase):
         call_command('import_games_from_csv', self.filename)
         call_command('import_games_from_csv', self.filename)
         eq_(Website.objects.count(), 2)
+
+    @mock.patch('mkt.developers.tasks.requests.get')
+    def test_failed_image_fetch(self, requests_mock):
+        requests_mock.return_value = {'status_code': 404}
+        with self.assertRaises(Exception):
+            call_command('import_games_from_csv', self.filename)
+            eq_(Website.objects.count(), 0)
