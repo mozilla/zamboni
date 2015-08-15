@@ -52,7 +52,7 @@ class Command(BaseCommand):
             instance.keywords.add(tag)
 
     def set_url(self, instance, row):
-        url = self.clean_string(row['URL']).lower()
+        url = self.clean_string(row['URL'])
         try:
             self.validate_url(url)
         except ValidationError:
