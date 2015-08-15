@@ -41,7 +41,7 @@ class TestImportGamesFromCSV(TestCase):
         eq_(Website.objects.count(), 2)
 
         cycleblob = Website.objects.get(name__localized_string='Cycleblob')
-        eq_(cycleblob.url, 'http://cycleblob.com/')
+        eq_(cycleblob.url, 'http://cycleBLOB.com/')
         eq_(cycleblob.keywords.count(), 2)
         ok_(cycleblob.keywords.get(tag_text='featured-game'))
         ok_(cycleblob.keywords.get(tag_text='featured-game-strategy'))
