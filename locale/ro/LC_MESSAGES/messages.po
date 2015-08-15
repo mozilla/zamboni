@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-08-15 16:19+0000\n"
+"PO-Revision-Date: 2015-08-15 16:25+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439655561.0\n"
+"X-POOTLE-MTIME: 1439655954.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -7344,7 +7344,7 @@ msgstr "Număr mare de cereri de rambursare"
 
 #: mkt/site/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
-msgstr "{addon} re-recenzat din cauza unei schimbări a manifestului."
+msgstr "{addon} rerecenzat din cauza unei schimbări a manifestului."
 
 #: mkt/site/log.py:458
 msgid "Manifest Change"
@@ -7352,7 +7352,7 @@ msgstr "Schimbare manifest"
 
 #: mkt/site/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "{addon} re-recenzat din cauza actualizării premium."
+msgstr "{addon} rerecenzat din cauza actualizării premium."
 
 #: mkt/site/log.py:466
 msgid "Premium Type Upgrade"
@@ -7360,7 +7360,7 @@ msgstr "Actualizare tip premium"
 
 #: mkt/site/log.py:473
 msgid "Re-review cleared for {addon}."
-msgstr "Re-recenzie ridicată pentru {addon}."
+msgstr "Rerecenzie ridicată pentru {addon}."
 
 #: mkt/site/log.py:481
 msgid "{addon} escalated by reviewer."
@@ -7380,7 +7380,7 @@ msgstr "Videoclip șters"
 
 #: mkt/site/log.py:497
 msgid "{addon} re-review because of new device(s) added."
-msgstr "{addon} re-recenzat din cauza noilor dispozitive adăugate."
+msgstr "{addon} rerecenzat din cauza noilor dispozitive adăugate."
 
 #: mkt/site/log.py:498
 msgid "Device(s) Added"
@@ -7412,7 +7412,7 @@ msgstr "Auto-escaladare VIP"
 
 #: mkt/site/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr "{addon} re-recenzat din cauza unei schimbări a URL-ului manifestului."
+msgstr "{addon} rerecenzat din cauza unei schimbări a URL-ului manifestului."
 
 #: mkt/site/log.py:530
 msgid "Manifest URL Change"
