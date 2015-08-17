@@ -3,7 +3,6 @@ import datetime
 import hashlib
 import json
 import os
-import stat
 import tarfile
 from copy import deepcopy
 from tempfile import mkdtemp
@@ -28,12 +27,10 @@ from mkt.site.helpers import absolutify
 from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonUser, Preview, Webapp
-from mkt.webapps.tasks import (adjust_categories, dump_app, dump_user_installs,
-                               export_data, fix_excluded_regions,
+from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
                                notify_developers_of_failure, pre_generate_apk,
-                               PreGenAPKError, rm_directory, update_manifests,
-                               zip_apps)
+                               PreGenAPKError, rm_directory, update_manifests)
 
 
 original = {
@@ -523,42 +520,6 @@ class TestDumpApps(mkt.site.tests.TestCase):
         result = json.load(open(fn, 'r'))
         eq_(result['id'], 337141)
 
-    def test_zip_apps(self):
-        dump_app(337141)
-        fn = zip_apps()
-        for f in ['license.txt', 'readme.txt']:
-            ok_(os.path.exists(os.path.join(settings.DUMPED_APPS_PATH, f)))
-        ok_(os.stat(fn)[stat.ST_SIZE])
-
-        latest_tgz = os.path.join(os.path.dirname(fn), 'latest.tgz')
-        ok_(os.readlink(latest_tgz) == os.path.basename(fn))
-
-    @mock.patch('mkt.webapps.tasks.dump_app')
-    def test_not_public(self, dump_app):
-        app = Webapp.objects.get(pk=337141)
-        app.update(status=mkt.STATUS_PENDING)
-        call_command('process_addons', task='dump_apps')
-        assert not dump_app.called
-
-    def test_removed(self):
-        # At least one public app must exist for dump_apps to run.
-        app_factory(name='second app', status=mkt.STATUS_PUBLIC)
-        app_path = os.path.join(settings.DUMPED_APPS_PATH, 'apps', '337',
-                                '337141.json')
-        app = Webapp.objects.get(pk=337141)
-        app.update(status=mkt.STATUS_PUBLIC)
-        call_command('process_addons', task='dump_apps')
-        assert os.path.exists(app_path)
-
-        app.update(status=mkt.STATUS_PENDING)
-        call_command('process_addons', task='dump_apps')
-        assert not os.path.exists(app_path)
-
-    @mock.patch('mkt.webapps.tasks.dump_app')
-    def test_public(self, dump_app):
-        call_command('process_addons', task='dump_apps')
-        assert dump_app.called
-
 
 class TestDumpUserInstalls(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
@@ -614,58 +575,6 @@ class TestDumpUserInstalls(mkt.site.tests.TestCase):
         with self.assertRaises(IOError):
             # File shouldn't exist b/c we didn't write it.
             self.dump_and_load()
-
-
-class TestFixMissingIcons(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.app = Webapp.objects.get(pk=337141)
-
-    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
-    def test_pending(self, mock_):
-        self.app.update(status=mkt.STATUS_PENDING)
-        call_command('process_addons', task='fix_missing_icons')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
-    def test_approved(self, mock_):
-        self.app.update(status=mkt.STATUS_APPROVED)
-        call_command('process_addons', task='fix_missing_icons')
-        assert mock_.called
-
-    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
-    def test_ignore_disabled(self, mock_):
-        self.app.update(status=mkt.STATUS_DISABLED)
-        call_command('process_addons', task='fix_missing_icons')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks.fetch_icon')
-    @mock.patch('mkt.webapps.tasks._log')
-    @mock.patch('mkt.webapps.tasks.public_storage.exists')
-    def test_for_missing_size(self, exists, _log, fetch_icon):
-        exists.return_value = False
-        call_command('process_addons', task='fix_missing_icons')
-
-        # We are checking two sizes, but since the 64 has already failed for
-        # this app, we should only have called exists() once, and we should
-        # never have logged that the 128 icon is missing.
-        eq_(exists.call_count, 1)
-        assert _log.any_call(337141, 'Webapp is missing icon size 64')
-        assert _log.any_call(337141, 'Webapp is missing icon size 128')
-        assert fetch_icon.called
-
-
-class TestRegenerateIconsAndThumbnails(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    @mock.patch('mkt.webapps.tasks.resize_preview.delay')
-    def test_command(self, resize_preview):
-        preview = Preview.objects.create(filetype='image/png', addon_id=337141)
-        call_command('process_addons', task='regenerate_icons_and_thumbnails')
-
-        resize_preview.assert_called_once_with(preview.image_path, preview.pk,
-                                               generate_image=False)
 
 
 @mock.patch('mkt.webapps.tasks.requests')
@@ -731,91 +640,27 @@ class TestExportData(mkt.site.tests.TestCase):
         for expected_file in expected_files:
             assert expected_file in actual_files, expected_file
 
+    @mock.patch('mkt.webapps.tasks.dump_app')
+    def test_not_public(self, dump_app):
+        app = Webapp.objects.get(pk=337141)
+        app.update(status=mkt.STATUS_PENDING)
+        self.create_export('tarball-name')
+        assert not dump_app.called
 
-class TestFixExcludedRegions(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
+    def test_removed(self):
+        # At least one public app must exist for dump_apps to run.
+        app_factory(name='second app', status=mkt.STATUS_PUBLIC)
+        app_path = os.path.join(self.export_directory, self.app_path)
+        app = Webapp.objects.get(pk=337141)
+        app.update(status=mkt.STATUS_PUBLIC)
+        self.create_export('tarball-name')
+        assert os.path.exists(app_path)
 
-    def setUp(self):
-        self.app = Webapp.objects.get(pk=337141)
+        app.update(status=mkt.STATUS_PENDING)
+        self.create_export('tarball-name')
+        assert not os.path.exists(app_path)
 
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_ignore_restricted(self, _mock):
-        """Set up exclusions and verify they still exist after the call."""
-        self.app.geodata.update(restricted=True)
-        self.app.addonexcludedregion.create(region=mkt.regions.PER.id)
-        self.app.addonexcludedregion.create(region=mkt.regions.FRA.id)
-        fix_excluded_regions([self.app.pk])
-        self.assertSetEqual(self.app.get_excluded_region_ids(),
-                            [mkt.regions.PER.id, mkt.regions.FRA.id])
-        eq_(self.app.addonexcludedregion.count(), 2)
-
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_free_iarc_excluded(self, _mock):
-        # Set a few exclusions that shouldn't survive.
-        self.app.addonexcludedregion.create(region=mkt.regions.PER.id)
-        self.app.addonexcludedregion.create(region=mkt.regions.FRA.id)
-        # Set IARC settings to influence region exclusions.
-        self.app.geodata.update(region_de_iarc_exclude=True,
-                                region_br_iarc_exclude=True)
-        fix_excluded_regions([self.app.pk])
-        self.assertSetEqual(self.app.get_excluded_region_ids(),
-                            [mkt.regions.DEU.id, mkt.regions.BRA.id])
-        eq_(self.app.addonexcludedregion.count(), 0)
-
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_paid(self, _mock):
-        self.make_premium(self.app)
-        fix_excluded_regions([self.app.pk])
-        # There are no exclusions at all, because the payments fall back
-        # to rest of the world.
-        self.assertSetEqual(self.app.get_excluded_region_ids(), [])
-        eq_(self.app.addonexcludedregion.count(), 0)
-
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_paid_and_worldwide(self, _mock):
-        self.make_premium(self.app)
-        fix_excluded_regions([self.app.pk])
-        self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
-        # All the other countries are excluded, but not the US because they
-        # choose to exclude the rest of the world.
-        excluded = set(mkt.regions.ALL_REGION_IDS) - set([mkt.regions.USA.id])
-        self.assertSetEqual(self.app.get_excluded_region_ids(), excluded)
-        eq_(self.app.addonexcludedregion.count(), 1)
-
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    def test_free_special_excluded(self, _mock):
-        for region in mkt.regions.SPECIAL_REGION_IDS:
-            self.app.addonexcludedregion.create(region=region)
-        fix_excluded_regions([self.app.pk])
-        self.assertSetEqual(self.app.get_excluded_region_ids(),
-                            mkt.regions.SPECIAL_REGION_IDS)
-        eq_(self.app.addonexcludedregion.count(),
-            len(mkt.regions.SPECIAL_REGION_IDS))
-
-
-class TestAdjustCategories(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.app = Webapp.objects.get(pk=337141)
-
-    def test_adjust_single_category(self):
-        self.app.categories = ['news-weather']
-        self.app.save()
-        adjust_categories([self.app.pk])
-        eq_(self.app.reload().categories, ['news'])
-
-    def test_adjust_double_category(self):
-        self.app.categories = ['news-weather', 'social']
-        self.app.save()
-        adjust_categories([self.app.pk])
-        self.assertSetEqual(self.app.reload().categories, ['news', 'social'])
-
-    def test_new_category(self):
-        app_id = 424184
-        # `complete=True` adds the 'utilities' category.
-        app = app_factory(id=app_id, name='second', status=mkt.STATUS_PUBLIC,
-                          complete=True)
-        adjust_categories([app_id])
-        self.assertSetEqual(app.reload().categories,
-                            ['food-drink', 'health-fitness'])
+    @mock.patch('mkt.webapps.tasks.dump_app')
+    def test_public(self, dump_app):
+        self.create_export('tarball-name')
+        assert dump_app.called

@@ -8,12 +8,7 @@ from celery import chord, group
 import mkt
 from mkt.site.utils import chunked
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import (add_uuids, adjust_categories, clean_apps,
-                               dump_apps, fix_missing_icons, import_manifests,
-                               populate_is_offline,
-                               regenerate_icons_and_thumbnails,
-                               update_manifests, update_supported_locales,
-                               zip_apps)
+from mkt.webapps.tasks import update_manifests, update_supported_locales
 
 
 tasks = {
@@ -23,41 +18,11 @@ tasks = {
                                               mkt.STATUS_PUBLIC,
                                               mkt.STATUS_APPROVED],
                                   disabled_by_user=False)]},
-    'add_uuids': {'method': add_uuids,
-                  'qs': [Q(guid=None), ~Q(status=mkt.STATUS_DELETED)]},
     'update_supported_locales': {
         'method': update_supported_locales,
         'qs': [Q(disabled_by_user=False,
                  status__in=[mkt.STATUS_PENDING, mkt.STATUS_PUBLIC,
                              mkt.STATUS_APPROVED])]},
-    'dump_apps': {'method': dump_apps,
-                  'qs': [Q(status=mkt.STATUS_PUBLIC, disabled_by_user=False)],
-                  'pre': clean_apps,
-                  'post': zip_apps},
-    'fix_missing_icons': {'method': fix_missing_icons,
-                          'qs': [Q(status__in=[mkt.STATUS_PENDING,
-                                               mkt.STATUS_PUBLIC,
-                                               mkt.STATUS_APPROVED],
-                                   disabled_by_user=False)]},
-    'populate_is_offline': {
-        'method': populate_is_offline,
-        'qs': [Q(status__in=[mkt.STATUS_NULL,
-                             mkt.STATUS_PENDING,
-                             mkt.STATUS_PUBLIC,
-                             mkt.STATUS_REJECTED,
-                             mkt.STATUS_APPROVED,
-                             mkt.STATUS_UNLISTED],
-                 disabled_by_user=False)]
-    },
-    'regenerate_icons_and_thumbnails':
-    {'method': regenerate_icons_and_thumbnails,
-     'qs': [Q(status__in=[mkt.STATUS_PENDING,
-                          mkt.STATUS_PUBLIC,
-                          mkt.STATUS_APPROVED],
-              disabled_by_user=False)]},
-    'import_manifests': {'method': import_manifests,
-                         'qs': [Q(disabled_by_user=False)]},
-    'adjust_categories': {'method': adjust_categories},
 }
 
 
