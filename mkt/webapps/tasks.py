@@ -23,13 +23,10 @@ from tower import ugettext as _
 import mkt
 from lib.post_request_task.task import task as post_request_task
 from mkt.abuse.models import AbuseReport
-from mkt.constants.categories import CATEGORY_REDIRECTS
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import ActivityLog, AppLog
-from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
-                                  resize_preview, validator)
+from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.files.models import FileUpload
-from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master
 from mkt.site.helpers import absolutify
@@ -39,7 +36,7 @@ from mkt.site.utils import JSONEncoder, chunked
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AppManifest, Preview, Webapp
+from mkt.webapps.models import Preview, Webapp
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -305,16 +302,6 @@ def update_cached_manifests(id, **kw):
 
 @task
 @use_master
-def add_uuids(ids, **kw):
-    for chunk in chunked(ids, 50):
-        for app in Webapp.objects.filter(id__in=chunk):
-            # Save triggers the creation of a guid if the app doesn't currently
-            # have one.
-            app.save()
-
-
-@task
-@use_master
 def update_supported_locales(ids, **kw):
     """
     Task intended to run via command line to update all apps' supported locales
@@ -371,46 +358,12 @@ def dump_app(id, **kw):
     return target_file
 
 
-@task
-def clean_apps(pks, **kw):
-    app_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
-    rm_directory(app_dir)
-    return pks
-
-
 @task(ignore_result=False)
 def dump_apps(ids, **kw):
     task_log.info(u'Dumping apps {0} to {1}. [{2}]'
                   .format(ids[0], ids[-1], len(ids)))
     for id in ids:
         dump_app(id)
-
-
-@task
-def zip_apps(*args, **kw):
-    today = datetime.datetime.today().strftime('%Y-%m-%d')
-    files = ['apps'] + compile_extra_files(date=today)
-    tarball = compress_export(filename=today, files=files)
-    link_latest_export(tarball)
-    return tarball
-
-
-def link_latest_export(tarball):
-    """
-    Atomically links basename(tarball) to
-    DUMPED_APPS_PATH/tarballs/latest.tgz.
-    """
-    tarball_name = os.path.basename(tarball)
-    target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'tarballs')
-    target_file = os.path.join(target_dir, 'latest.tgz')
-    tmp_file = os.path.join(target_dir, '.latest.tgz')
-    if os.path.lexists(tmp_file):
-        os.unlink(tmp_file)
-
-    os.symlink(tarball_name, tmp_file)
-    os.rename(tmp_file, target_file)
-
-    return target_file
 
 
 def rm_directory(path):
@@ -542,86 +495,6 @@ def zip_users(*args, **kw):
     return target_file
 
 
-def _fix_missing_icons(id):
-    try:
-        webapp = Webapp.objects.get(pk=id)
-    except Webapp.DoesNotExist:
-        _log(id, u'Webapp does not exist')
-        return
-
-    # Check for missing icons. If we find one important size missing, call
-    # fetch_icon for this app.
-    dirname = webapp.get_icon_dir()
-    destination = os.path.join(dirname, '%s' % webapp.id)
-    for size in (64, 128):
-        filename = '%s-%s.png' % (destination, size)
-        if not public_storage.exists(filename):
-            _log(id, u'Webapp is missing icon size %d' % (size, ))
-            return fetch_icon(webapp.pk)
-
-
-@task
-@use_master
-def fix_missing_icons(ids, **kw):
-    for id in ids:
-        _fix_missing_icons(id)
-
-
-def _regenerate_icons_and_thumbnails(pk):
-    try:
-        webapp = Webapp.objects.get(pk=pk)
-    except Webapp.DoesNotExist:
-        _log(id, u'Webapp does not exist')
-        return
-
-    # Previews.
-    for preview in webapp.all_previews:
-        # Re-resize each preview by calling the task with the image that we
-        # have and asking the task to only deal with the thumbnail. We no
-        # longer have the original, but it's fine, the image should be large
-        # enough for us to generate a thumbnail.
-        resize_preview.delay(preview.image_path, preview.pk,
-                             generate_image=False)
-
-    # Icons. The only thing we need to do is crush the 64x64 icon.
-    icon_path = os.path.join(webapp.get_icon_dir(), '%s-64.png' % webapp.id)
-    pngcrush_image.delay(icon_path)
-
-
-@task
-@use_master
-def regenerate_icons_and_thumbnails(ids, **kw):
-    for pk in ids:
-        _regenerate_icons_and_thumbnails(pk)
-
-
-@task
-@use_master
-def import_manifests(ids, **kw):
-    for app in Webapp.objects.filter(id__in=ids):
-        for version in app.versions.all():
-            try:
-                file_ = version.files.latest()
-                if file_.status == mkt.STATUS_DISABLED:
-                    file_path = file_.guarded_file_path
-                else:
-                    file_path = file_.file_path
-                manifest = WebAppParser().get_json_data(file_path)
-                m, c = AppManifest.objects.get_or_create(
-                    version=version, manifest=json.dumps(manifest))
-                if c:
-                    task_log.info(
-                        '[Webapp:%s] Imported manifest for version %s' % (
-                            app.id, version.id))
-                else:
-                    task_log.info(
-                        '[Webapp:%s] App manifest exists for version %s' % (
-                            app.id, version.id))
-            except Exception as e:
-                task_log.info('[Webapp:%s] Error loading manifest for version '
-                              '%s: %s' % (app.id, version.id, e))
-
-
 class PreGenAPKError(Exception):
     """
     An error encountered while trying to pre-generate an APK.
@@ -671,32 +544,6 @@ def set_storefront_data(app_id, disable=False, **kw):
 
 
 @task
-@use_master
-def fix_excluded_regions(ids, **kw):
-    """
-    Task to fix an app's excluded_region set.
-
-    This will remove all excluded regions (minus special regions).
-
-    Note: We only do this on apps with `_geodata__restricted` as false because
-    restricted apps have user defined region exclusions.
-
-    """
-    apps = Webapp.objects.filter(id__in=ids).filter(_geodata__restricted=False)
-    for app in apps:
-        # Delete all excluded regions, except special regions.
-        #
-        # TODO: Add special region logic to `get_excluded_region_ids`?
-        app.addonexcludedregion.exclude(
-            region__in=mkt.regions.SPECIAL_REGION_IDS).delete()
-
-        task_log.info(u'[Webapp:%s] Excluded Regions cleared.' % app.pk)
-
-    # Trigger a re-index to update `region_exclusions` in ES.
-    index_webapps([app.pk for app in apps])
-
-
-@task
 def delete_logs(items, **kw):
     task_log.info('[%s@%s] Deleting logs'
                   % (len(items), delete_logs.rate_limit))
@@ -738,197 +585,3 @@ def find_abuse_escalations(addon_id, **kw):
         mkt.log(mkt.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
                 abuse.addon.current_version, details={'comments': msg})
         task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
-
-
-@task
-@use_master
-def populate_is_offline(ids, **kw):
-    for webapp in Webapp.objects.filter(pk__in=ids).iterator():
-        if webapp.guess_is_offline():
-            webapp.update(is_offline=True)
-
-
-@task
-@use_master
-def adjust_categories(ids, **kw):
-    NEW_APP_CATEGORIES = {
-        425986: ['weather'],
-        444314: ['travel', 'weather'],
-        445008: ['travel', 'weather'],
-        450602: ['weather'],
-        455256: ['weather'],
-        455660: ['travel', 'weather'],
-        459364: ['weather'],
-        461279: ['social', 'weather'],
-        461371: ['lifestyle', 'weather'],
-        462257: ['utilities', 'weather'],
-        463108: ['weather'],
-        466698: ['utilities', 'weather'],
-        468173: ['weather'],
-        470946: ['travel', 'weather'],
-        482869: ['utilities', 'weather'],
-        482961: ['weather'],
-        496946: ['weather'],
-        499699: ['weather'],
-        501553: ['weather'],
-        501581: ['lifestyle', 'weather'],
-        501583: ['social', 'weather'],
-        502171: ['weather', 'photo-video'],
-        502173: ['weather', 'photo-video'],
-        502685: ['weather'],
-        503765: ['weather'],
-        505437: ['weather'],
-        506317: ['weather'],
-        506543: ['weather'],
-        506553: ['weather'],
-        506623: ['weather', 'travel'],
-        507091: ['weather'],
-        507139: ['weather'],
-        509150: ['weather'],
-        510118: ['weather', 'utilities'],
-        510334: ['weather', 'travel'],
-        510726: ['weather'],
-        511364: ['weather', 'utilities'],
-        424184: ['food-drink', 'health-fitness'],
-        439994: ['food-drink'],
-        442842: ['maps-navigation', 'food-drink'],
-        444056: ['lifestyle', 'food-drink'],
-        444070: ['lifestyle', 'food-drink'],
-        444222: ['food-drink', 'health-fitness'],
-        444694: ['lifestyle', 'food-drink'],
-        454558: ['food-drink', 'travel'],
-        455620: ['food-drink', 'entertainment'],
-        459304: ['food-drink', 'health-fitness'],
-        465445: ['shopping', 'food-drink'],
-        465700: ['food-drink', 'books-comics'],
-        467828: ['food-drink', 'education'],
-        469104: ['food-drink'],
-        470145: ['food-drink', 'health-fitness'],
-        471349: ['lifestyle', 'food-drink'],
-        476155: ['lifestyle', 'food-drink'],
-        477015: ['food-drink', 'travel'],
-        497282: ['food-drink', 'health-fitness'],
-        500359: ['food-drink', 'books-comics'],
-        501249: ['food-drink'],
-        501573: ['food-drink', 'entertainment'],
-        504143: ['health-fitness', 'food-drink'],
-        506111: ['health-fitness', 'food-drink'],
-        506691: ['health-fitness', 'food-drink'],
-        507921: ['books-comics', 'food-drink'],
-        508211: ['food-drink', 'lifestyle'],
-        508215: ['food-drink', 'lifestyle'],
-        508990: ['food-drink', 'games'],
-        506369: ['books-comics', 'humor'],
-        509746: ['entertainment', 'humor'],
-        509848: ['entertainment', 'humor'],
-        511390: ['entertainment', 'humor'],
-        511504: ['entertainment', 'humor'],
-        488424: ['internet', 'reference'],
-        489052: ['social', 'internet'],
-        499644: ['internet', 'utilities'],
-        500651: ['reference', 'internet'],
-        505043: ['utilities', 'internet'],
-        505407: ['utilities', 'internet'],
-        505949: ['internet', 'reference'],
-        508828: ['utilities', 'internet'],
-        508830: ['utilities', 'internet'],
-        509160: ['productivity', 'internet'],
-        509606: ['productivity', 'internet'],
-        509722: ['productivity', 'internet'],
-        510114: ['news', 'internet'],
-        364752: ['games', 'kids'],
-        364941: ['games', 'kids'],
-        449560: ['entertainment', 'kids'],
-        466557: ['education', 'kids'],
-        466811: ['photo-video', 'kids'],
-        473532: ['education', 'kids'],
-        473620: ['education', 'kids'],
-        473865: ['education', 'kids'],
-        500527: ['games', 'kids'],
-        502263: ['photo-video', 'kids'],
-        507497: ['education', 'kids'],
-        508089: ['education', 'kids'],
-        508229: ['education', 'kids'],
-        508239: ['education', 'kids'],
-        508247: ['education', 'kids'],
-        509404: ['education', 'kids'],
-        509464: ['education', 'kids'],
-        509468: ['education', 'kids'],
-        509470: ['education', 'kids'],
-        509472: ['education', 'kids'],
-        509474: ['education', 'kids'],
-        509476: ['education', 'kids'],
-        509478: ['education', 'kids'],
-        509484: ['education', 'kids'],
-        509486: ['education', 'kids'],
-        509488: ['education', 'kids'],
-        509490: ['education', 'kids'],
-        509492: ['education', 'kids'],
-        509494: ['education', 'kids'],
-        509496: ['education', 'kids'],
-        509498: ['education', 'kids'],
-        509500: ['education', 'kids'],
-        509502: ['education', 'kids'],
-        509504: ['education', 'kids'],
-        509508: ['education', 'kids'],
-        509512: ['education', 'kids'],
-        509538: ['education', 'kids'],
-        509540: ['education', 'kids'],
-        511502: ['games', 'kids'],
-        367693: ['utilities', 'science-tech'],
-        424272: ['science-tech', 'news'],
-        460891: ['science-tech', 'news'],
-        468278: ['science-tech', 'education'],
-        468406: ['science-tech', 'education'],
-        469765: ['science-tech', 'productivity'],
-        480750: ['science-tech', 'education'],
-        502187: ['science-tech', 'education'],
-        504637: ['science-tech', 'reference'],
-        506187: ['science-tech', 'utilities'],
-        508672: ['news', 'science-tech'],
-        510050: ['science-tech', 'education'],
-        511370: ['science-tech', 'reference'],
-        511376: ['science-tech', 'games'],
-        512174: ['education', 'science-tech'],
-        512194: ['utilities', 'science-tech'],
-        377564: ['lifestyle', 'personalization'],
-        451302: ['entertainment', 'personalization'],
-        452888: ['personalization', 'photo-video'],
-        466637: ['personalization', 'photo-video'],
-        477186: ['photo-video', 'personalization'],
-        477304: ['photo-video', 'personalization'],
-        477314: ['photo-video', 'personalization'],
-        480489: ['photo-video', 'personalization'],
-        480495: ['photo-video', 'personalization'],
-        481512: ['photo-video', 'personalization'],
-        482162: ['music', 'personalization'],
-        488892: ['social', 'personalization'],
-        500037: ['entertainment', 'personalization'],
-        500041: ['entertainment', 'personalization'],
-        506495: ['personalization', 'music'],
-        506581: ['entertainment', 'personalization'],
-    }
-
-    # Adjust apps whose categories have changed.
-    for chunk in chunked(ids, 100):
-        for app in Webapp.objects.filter(pk__in=chunk):
-            save = False
-            for k, v in CATEGORY_REDIRECTS.items():
-                if k in app.categories:
-                    save = True
-                    app.categories.remove(k)
-                    app.categories.append(v)
-            if save:
-                task_log.info(u'[app:{0}] Adjusted categories: {1}'
-                              .format(app, app.categories))
-                app.save()
-    # Add apps to new categories.
-    for pk, categories in NEW_APP_CATEGORIES.items():
-        try:
-            app = Webapp.objects.get(pk=pk)
-        except Webapp.DoesNotExist:
-            continue
-        app.categories = categories
-        app.save()
-        task_log.info(u'[app:{0}] Updated app categories: {1}'
-                      .format(app, categories))
