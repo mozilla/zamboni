@@ -150,12 +150,17 @@ def walk_storage(path, topdown=True, onerror=None, followlinks=False,
         roots[:] = new_roots
 
 
-def copy_to_storage(src_path, dest_path, storage=private_storage):
+def copy_to_storage(src_path, dst_path, src_storage=local_storage,
+                    dst_storage=private_storage):
     """
-    Copy a local path (src_path) to a store path (dest_path).
+    Copy a path (src_path) from a storage (src_storage) to a path (dst_path)
+    on a different storage (dst_storage).
+
+    Defaults to copying from the local storage to the private storage.
     """
-    with open(src_path) as src_f, storage.open(dest_path, 'w') as dest_f:
-        shutil.copyfileobj(src_f, dest_f)
+    with src_storage.open(src_path) as src_f, \
+            dst_storage.open(dst_path, 'w') as dst_f:
+        shutil.copyfileobj(src_f, dst_f)
 
 
 def copy_stored_file(src_path, dest_path,

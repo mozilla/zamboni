@@ -24,6 +24,7 @@ from mkt.files.models import File, FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -617,9 +618,15 @@ class TestExportData(mkt.site.tests.TestCase):
     def setUp(self):
         self.export_directory = mkdtemp()
         self.app_path = 'apps/337/337141.json'
+        self.tarfile_file = None
+        self.tarfile = None
 
     def tearDown(self):
         rm_directory(self.export_directory)
+        if self.tarfile:
+            self.tarfile.close()
+        if self.tarfile_file:
+            self.tarfile_file.close()
 
     def create_export(self, name):
         with self.settings(DUMPED_APPS_PATH=self.export_directory):
@@ -627,7 +634,9 @@ class TestExportData(mkt.site.tests.TestCase):
         tarball_path = os.path.join(self.export_directory,
                                     'tarballs',
                                     name + '.tgz')
-        return tarfile.open(tarball_path)
+        self.tarfile_file = public_storage.open(tarball_path)
+        self.tarfile = tarfile.open(fileobj=self.tarfile_file)
+        return self.tarfile
 
     def test_export_is_created(self):
         expected_files = [
@@ -654,11 +663,11 @@ class TestExportData(mkt.site.tests.TestCase):
         app = Webapp.objects.get(pk=337141)
         app.update(status=mkt.STATUS_PUBLIC)
         self.create_export('tarball-name')
-        assert os.path.exists(app_path)
+        assert private_storage.exists(app_path)
 
         app.update(status=mkt.STATUS_PENDING)
         self.create_export('tarball-name')
-        assert not os.path.exists(app_path)
+        assert not private_storage.exists(app_path)
 
     @mock.patch('mkt.webapps.tasks.dump_app')
     def test_public(self, dump_app):
