@@ -115,13 +115,20 @@ class TestPrice(mkt.site.tests.TestCase):
         price = self.make_price('0.00')
         eq_(price.get_price_locale(regions=[USA.id]), '$0.00')
 
-    def test_euro_placement(self):
+    def test_euro_placement_en(self):
         with self.activate('en-us'):
             eq_(Price.objects.get(pk=2).get_price_locale(regions=[ESP.id]),
                 u'\u20ac0.50')
+
+    def test_euro_placement_es(self):
         with self.activate('es'):
             eq_(Price.objects.get(pk=2).get_price_locale(regions=[ESP.id]),
                 u'0,50\xa0\u20ac')
+
+    def test_euro_placement_nl(self):
+        with self.activate('nl'):
+            eq_(Price.objects.get(pk=2).get_price_locale(regions=[ESP.id]),
+                u'\u20ac\xa00,50')
 
     def test_prices(self):
         currencies = Price.objects.get(pk=1).prices()
