@@ -99,19 +99,6 @@ class TestFileOps(unittest.TestCase):
         copy_stored_file(src, dest)
         eq_(self.contents(dest), 'ivan kristi\xc4\x87')
 
-    def test_copy_chunking(self):
-        src = self.newfile('src.txt', '<contents>')
-        dest = self.path('somedir/dest.txt')
-        copy_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
-
-    def test_move_chunking(self):
-        src = self.newfile('src.txt', '<contents>')
-        dest = self.path('somedir/dest.txt')
-        move_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
-        eq_(storage.exists(src), False)
-
 
 class TestStorageClasses(TestCase):
 

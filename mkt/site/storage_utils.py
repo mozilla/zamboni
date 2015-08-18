@@ -158,35 +158,26 @@ def copy_to_storage(src_path, dst_path, src_storage=local_storage,
 
     Defaults to copying from the local storage to the private storage.
     """
-    with src_storage.open(src_path) as src_f, \
-            dst_storage.open(dst_path, 'w') as dst_f:
-        shutil.copyfileobj(src_f, dst_f)
+    copy_stored_file(src_path, dst_path, src_storage=src_storage,
+                     dest_storage=dst_storage)
 
 
-def copy_stored_file(src_path, dest_path,
-                     src_storage=private_storage, dest_storage=private_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
+def copy_stored_file(src_path, dest_path, src_storage=private_storage,
+                     dest_storage=private_storage):
     """
     Copy one storage path to another storage path.
 
     Each path will be managed by the same storage implementation.
     """
-    if src_path == dest_path:
+    if src_path == dest_path and src_storage == dest_storage:
         return
-    with src_storage.open(src_path, 'rb') as src:
-        with dest_storage.open(dest_path, 'wb') as dest:
-            done = False
-            while not done:
-                chunk = src.read(chunk_size)
-                if chunk != '':
-                    dest.write(chunk)
-                else:
-                    done = True
+    with src_storage.open(src_path, 'rb') as src, \
+            dest_storage.open(dest_path, 'wb') as dest:
+        shutil.copyfileobj(src, dest)
 
 
-def move_stored_file(src_path, dest_path,
-                     src_storage=private_storage, dest_storage=private_storage,
-                     chunk_size=DEFAULT_CHUNK_SIZE):
+def move_stored_file(src_path, dest_path, src_storage=private_storage,
+                     dest_storage=private_storage):
     """
     Move a storage path to another storage path.
 
@@ -195,6 +186,5 @@ def move_stored_file(src_path, dest_path,
     rather than attempt to be optimized for each individual one.
     """
     copy_stored_file(src_path, dest_path,
-                     src_storage=src_storage, dest_storage=dest_storage,
-                     chunk_size=chunk_size)
+                     src_storage=src_storage, dest_storage=dest_storage)
     src_storage.delete(src_path)
