@@ -10,9 +10,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 from lib.crypto.packaged import SigningError
-from mkt.files.helpers import copyfileobj
-from mkt.files.models import FileUpload, nfd_str
-from mkt.files.tests.test_models import UploadTest
+from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.langpacks.models import LangPack
 from mkt.site.tests import TestCase
 
@@ -81,27 +79,7 @@ class TestLangPackBasic(TestCase):
             [langpack_de, langpack_fr, langpack_it])
 
 
-class UploadCreationMixin(object):
-    def upload(self, name, **kwargs):
-        if os.path.splitext(name)[-1] not in ['.webapp', '.zip']:
-            name = name + '.zip'
-
-        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
-        fname = nfd_str(self.packaged_app_path(name))
-        if not storage.exists(fname):
-            with storage.open(fname, 'w') as fs:
-                copyfileobj(open(fname), fs)
-        data = {
-            'path': fname,
-            'name': name,
-            'hash': 'sha256:%s' % name,
-            'validation': v
-        }
-        data.update(**kwargs)
-        return FileUpload.objects.create(**data)
-
-
-class TestLangPackUpload(UploadTest, UploadCreationMixin):
+class TestLangPackUpload(UploadCreationMixin, UploadTest):
     # Expected manifest, to test zip file parsing.
     expected_manifest = {
         'languages-target': {

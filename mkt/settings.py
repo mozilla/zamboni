@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     'mkt.detail',
     'mkt.developers',
     'mkt.ecosystem',
+    'mkt.extensions',
     'mkt.feed',
     'mkt.files',
     'mkt.fireplace',

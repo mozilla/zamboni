@@ -11,12 +11,34 @@ from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
-from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import (copy_to_storage, local_storage,
+                                    private_storage)
 from mkt.site.utils import chunked
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
+
+
+class UploadCreationMixin(object):
+    def upload(self, name, **kwargs):
+        if os.path.splitext(name)[-1] not in ['.webapp', '.zip']:
+            name = name + '.zip'
+
+        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
+        fname = nfd_str(self.packaged_app_path(name))
+        if not local_storage.exists(fname):
+            raise ValueError('The file %s does not exist :(', fname)
+        if not private_storage.exists(fname):
+            copy_to_storage(fname)
+        data = {
+            'path': fname,
+            'name': name,
+            'hash': 'sha256:%s' % name,
+            'validation': v
+        }
+        data.update(**kwargs)
+        return FileUpload.objects.create(**data)
 
 
 class UploadTest(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
@@ -97,25 +119,12 @@ class TestFileUpload(UploadTest):
         assert 'zip' in fu.name
 
 
-class TestFileFromUpload(UploadTest):
+class TestFileFromUpload(UploadCreationMixin, UploadTest):
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
         self.addon = Webapp.objects.create(name='app name')
         self.version = Version.objects.create(addon=self.addon)
-
-    def upload(self, name):
-        if os.path.splitext(name)[-1] not in ['.webapp', '.zip']:
-            name = name + '.zip'
-
-        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
-        fname = nfd_str(self.packaged_app_path(name))
-        if not storage.exists(fname):
-            with storage.open(fname, 'w') as fs:
-                copyfileobj(open(fname), fs)
-        d = dict(path=fname, name=name,
-                 hash='sha256:%s' % name, validation=v)
-        return FileUpload.objects.create(**d)
 
     def test_filename_hosted(self):
         upload = self.upload('mozball')
