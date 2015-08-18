@@ -2,7 +2,6 @@
 import os
 import re
 import zipfile
-from shutil import copyfileobj
 
 from django import forms
 from django.conf import settings
@@ -15,7 +14,8 @@ from nose.tools import eq_
 
 from mkt.files.helpers import FileViewer, DiffHelper
 from mkt.files.utils import SafeUnzip
-from mkt.site.storage_utils import storage_is_remote
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, storage_is_remote)
 from mkt.site.tests import MktPaths, TestCase
 
 
@@ -45,9 +45,7 @@ class TestFileHelper(TestCase):
     def setUp(self):
         fn = get_file('dictionary-test.xpi')
         if storage_is_remote():
-            with open(fn) as local_f:
-                with storage.open(fn, 'w') as remote_f:
-                    copyfileobj(local_f, remote_f)
+            copy_stored_file(fn, fn, src_storage=local_storage)
         self.viewer = FileViewer(make_file(1, fn))
 
     def tearDown(self):
@@ -186,10 +184,14 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def setUp(self):
         src = self.packaged_app_path('signed.zip')
+        if storage_is_remote():
+            copy_stored_file(src, src, src_storage=local_storage)
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
         self.helper.cleanup()
+        if storage_is_remote():
+            private_storage.delete(self.packaged_app_path('signed.zip'))
 
     def test_files_not_extracted(self):
         eq_(self.helper.is_extracted(), False)
