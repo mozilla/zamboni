@@ -10,4 +10,6 @@ class Migration(migrations.Migration):
         ('reviewers', '0003_auto_20150727_1017'),
     ]
 
+    # An incorrect constraint was added in this migration, and was removed due
+    # to bug 1195292.
     operations = []
