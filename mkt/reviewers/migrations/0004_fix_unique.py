@@ -10,9 +10,4 @@ class Migration(migrations.Migration):
         ('reviewers', '0003_auto_20150727_1017'),
     ]
 
-    operations = [
-        migrations.AlterUniqueTogether(
-            name='additionalreview',
-            unique_together=set([('app', 'queue')]),
-        ),
-    ]
+    operations = []
