@@ -5,6 +5,7 @@ import logging
 import os
 import shutil
 import subprocess
+import tempfile
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -31,7 +32,9 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.site.storage_utils import public_storage
+from mkt.site.storage_utils import (copy_to_storage, local_storage,
+                                    private_storage, public_storage,
+                                    walk_storage)
 from mkt.site.utils import JSONEncoder, chunked
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
@@ -333,8 +336,6 @@ def unindex_webapps(ids, **kw):
 @task
 def dump_app(id, **kw):
     from mkt.webapps.serializers import AppSerializer
-    # Because @robhudson told me to.
-    # Note: not using storage because all these operations should be local.
     target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps',
                               str(id / 1000))
     target_file = os.path.join(target_dir, str(id) + '.json')
@@ -349,12 +350,10 @@ def dump_app(id, **kw):
     req.user = AnonymousUser()
     req.REGION = RESTOFWORLD
 
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
-
     task_log.info('Dumping app {0} to {1}'.format(id, target_file))
     res = AppSerializer(obj, context={'request': req}).data
-    json.dump(res, open(target_file, 'w'), cls=JSONEncoder)
+    with private_storage.open(target_file, 'w') as fileobj:
+        json.dump(res, fileobj, cls=JSONEncoder)
     return target_file
 
 
@@ -383,45 +382,88 @@ def export_data(name=None):
     today = datetime.datetime.today().strftime('%Y-%m-%d')
     if name is None:
         name = today
-    root = settings.DUMPED_APPS_PATH
-    directories = ['apps']
-    for directory in directories:
-        rm_directory(os.path.join(root, directory))
-    files = directories + compile_extra_files(date=today)
+
+    # Clean up the path where we'll store the individual json files from each
+    # app dump.
+    for dirpath, dirnames, filenames in walk_storage(
+            settings.DUMPED_APPS_PATH, storage=private_storage):
+        for filename in filenames:
+            private_storage.delete(os.path.join(dirpath, filename))
+    task_log.info('Cleaning up path {0}'.format(settings.DUMPED_APPS_PATH))
+
+    # Run all dump_apps task in parallel, and once it's done, add extra files
+    # and run compression.
     chord(dump_all_apps_tasks(),
-          compress_export.si(filename=name, files=files)).apply_async()
+          compress_export.si(tarball_name=name, date=today)).apply_async()
 
 
-def compile_extra_files(date):
-    # Put some .txt files in place.
+def compile_extra_files(target_directory, date):
+    # Put some .txt files in place. This is done locally only, it's only useful
+    # before the tar command is run.
     context = Context({'date': date, 'url': settings.SITE_URL})
     files = ['license.txt', 'readme.txt']
-    if not os.path.exists(settings.DUMPED_APPS_PATH):
-        os.makedirs(settings.DUMPED_APPS_PATH)
     created_files = []
-    for f in files:
-        template = loader.get_template('webapps/dump/apps/' + f)
-        dest = os.path.join(settings.DUMPED_APPS_PATH, f)
-        open(dest, 'w').write(template.render(context))
-        created_files.append(f)
+    for filename in files:
+        template = loader.get_template('webapps/dump/apps/%s' % filename)
+        dest = os.path.join(target_directory, filename)
+        local_storage.open(dest, 'w').write(template.render(context))
+        created_files.append(filename)
     return created_files
 
 
 @task
-def compress_export(filename, files):
-    # Note: not using storage because all these operations should be local.
-    target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'tarballs')
-    target_file = os.path.join(target_dir, filename + '.tgz')
+def compress_export(tarball_name, date):
+    # We need a temporary directory on the local filesystem that will contain
+    # all files in order to call `tar`.
+    local_source_dir = tempfile.mkdtemp()
 
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
+    apps_dirpath = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
 
-    # Put some .txt files in place.
-    cmd = ['tar', 'czf', target_file, '-C',
-           settings.DUMPED_APPS_PATH] + files
-    task_log.info(u'Creating dump {0}'.format(target_file))
+    # In case there are no 'apps' directory, add a dummy file to make the apps
+    # directory in the tar archive non-empty It should not happen in prod, but
+    # it's nice to have it to prevent the task from failing entirely.
+    with private_storage.open(
+            os.path.join(apps_dirpath, '0', '.keep'), 'w') as fd:
+        fd.write('.')
+
+    # Now, copy content from private_storage to that temp directory. We don't
+    # need to worry about creating the directories locally, the storage class
+    # does that for us.
+    for dirpath, dirnames, filenames in walk_storage(
+            apps_dirpath, storage=private_storage):
+        for filename in filenames:
+            src_path = os.path.join(dirpath, filename)
+            dst_path = os.path.join(
+                local_source_dir, 'apps', os.path.basename(dirpath), filename)
+            copy_to_storage(
+                src_path, dst_path, src_storage=private_storage,
+                dst_storage=local_storage)
+
+    # Also add extra files to the temp directory.
+    extra_filenames = compile_extra_files(local_source_dir, date)
+
+    # All our files are now present locally, let's generate a local filename
+    # that will contain the final '.tar.gz' before it's copied over to
+    # public storage.
+    local_target_file = tempfile.NamedTemporaryFile(
+        suffix='.tgz', prefix='dumped-apps-')
+
+    # tar ALL the things!
+    cmd = ['tar', 'czf', local_target_file.name, '-C',
+           local_source_dir] + ['apps'] + extra_filenames
+    task_log.info(u'Creating dump {0}'.format(local_target_file.name))
     subprocess.call(cmd)
-    return target_file
+
+    # Now copy the local tgz to the public storage.
+    remote_target_filename = os.path.join(
+        settings.DUMPED_APPS_PATH, 'tarballs', '%s.tgz' % tarball_name)
+    copy_to_storage(local_target_file.name, remote_target_filename,
+                    dst_storage=public_storage)
+
+    # Clean-up.
+    local_target_file.close()
+    rm_directory(local_source_dir)
+    return remote_target_filename
 
 
 @task(ignore_result=False)
