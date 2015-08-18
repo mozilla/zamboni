@@ -175,12 +175,8 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
 
 def resize_image(src, dst, size=None, remove_src=True,
                  storage=private_storage):
-    """Resizes and image from src, to dst. Returns width and height.
-
-    When locally is True, src and dst are assumed to reside
-    on the local disk (not in the default storage). When dealing
-    with local files it's up to you to ensure that all directories
-    exist leading up to the dst filename.
+    """
+    Resizes and image from src, to dst. Returns width and height.
     """
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
@@ -195,22 +191,21 @@ def resize_image(src, dst, size=None, remove_src=True,
 
     if remove_src:
         storage.delete(src)
-
     return im.size
 
 
 def remove_icons(destination):
     for size in mkt.CONTENT_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
-        if storage.exists(filename):
-            storage.delete(filename)
+        if public_storage.exists(filename):
+            public_storage.delete(filename)
 
 
 def remove_promo_imgs(destination):
     for size in mkt.PROMO_IMG_SIZES:
         filename = '%s-%s.png' % (destination, size)
-        if storage.exists(filename):
-            storage.delete(filename)
+        if public_storage.exists(filename):
+            public_storage.delete(filename)
 
 
 class ImageCheck(object):
@@ -657,7 +652,7 @@ def get_icon_url(base_url_format, obj, size,
             # We don't care about base_url_format, the storage provides the url
             # for a given path. We assume AWS_QUERYSTRING_AUTH is False atm.
             path = '%s/%s-%s.png' % (obj.get_icon_dir(), obj.pk, size)
-            return '%s?modified=%s' % (storage.url(path), suffix)
+            return '%s?modified=%s' % (public_storage.url(path), suffix)
 
         # [1] is the whole ID, [2] is the directory.
         split_id = re.match(r'((\d*?)\d{1,3})$', str(obj.pk))

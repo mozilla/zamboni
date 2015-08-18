@@ -12,7 +12,6 @@ from django import http
 from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
@@ -56,6 +55,7 @@ from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (
     json_view, login_required, permission_required, use_master)
+from mkt.site.storage_utils import public_storage
 from mkt.site.utils import escape_all, paginate
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.translations.query import order_by_translation
@@ -929,10 +929,10 @@ def image_status(request, addon_id, addon, icon_size=64):
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
     else:
-        icons = storage.exists(
+        icons = public_storage.exists(
             os.path.join(addon.get_icon_dir(), '%s-%s.png' % (
                 addon.id, icon_size)))
-    previews = all(storage.exists(p.thumbnail_path)
+    previews = all(public_storage.exists(p.thumbnail_path)
                    for p in addon.get_previews())
     return {'overall': icons and previews,
             'icons': icons,

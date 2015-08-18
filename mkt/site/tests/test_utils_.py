@@ -11,7 +11,6 @@ from django.core.validators import ValidationError
 import mock
 from nose.tools import assert_raises, eq_, raises
 
-
 from mkt.site.storage_utils import (LocalFileStorage, copy_to_storage,
                                     local_storage, public_storage,
                                     storage_is_remote)
@@ -105,13 +104,13 @@ def test_resize_transparency():
     if storage_is_remote():
         copy_to_storage(src, src, src_storage=local_storage)
     try:
-        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
-        with open(dest) as dfh:
+        resize_image(src, dest, (32, 32), remove_src=False)
+        with public_storage.open(dest) as dfh:
             with open(expected) as efh:
                 assert dfh.read() == efh.read()
     finally:
-        if os.path.exists(dest):
-            os.remove(dest)
+        if public_storage.exists(dest):
+            public_storage.delete(dest)
 
 
 class TestLocalFileStorage(unittest.TestCase):
