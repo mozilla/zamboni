@@ -459,7 +459,7 @@ class AdditionalReview(ModelBase):
 
     class Meta:
         db_table = 'additional_review'
-        unique_together = ('app', 'queue')
+        unique_together = ('queue', 'created')
         get_latest_by = 'created'
 
     @property

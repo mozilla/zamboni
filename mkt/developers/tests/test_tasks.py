@@ -26,7 +26,10 @@ from mkt.developers import tasks
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    public_storage)
 from mkt.site.utils import app_factory, ImageCheck
+
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import Preview, Webapp
@@ -156,11 +159,11 @@ def _promo_img_uploader(resize_size, final_size):
 class TestPngcrushImage(mkt.site.tests.TestCase):
 
     def setUp(self):
-        img = get_image_path('mozilla.png')
-        self.src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                               delete=False)
-        shutil.copyfile(img, self.src.name)
-
+        self.img_path = tempfile.mktemp()
+        copy_stored_file(get_image_path('mozilla.png'),
+                         self.img_path,
+                         src_storage=local_storage,
+                         dest_storage=public_storage)
         patcher = mock.patch('subprocess.Popen')
         self.mock_popen = patcher.start()
         attrs = {
@@ -171,31 +174,46 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         self.addCleanup(patcher.stop)
 
     def tearDown(self):
-        os.remove(self.src.name)
+        public_storage.delete(self.img_path)
 
-    @mock.patch('shutil.move')
+    @mock.patch('mkt.developers.tasks.copy_stored_file')
     def test_pngcrush_image_is_called(self, mock_move):
-        name = self.src.name
         expected_suffix = '.opti.png'
-        expected_cmd = ['pngcrush', '-q', '-rem', 'alla', '-brute', '-reduce',
-                        '-e', expected_suffix, name]
+        tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
+        tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
+        open(tmp_dest, 'w').write(open(self.img_path).read())
+        with mock.patch('tempfile.NamedTemporaryFile',
+                        lambda *a, **k: tmp_src):
+            rval = tasks.pngcrush_image(self.img_path)
+            # pngcrush_image copies the stored file to a local tempfile.
+            eq_(open(tmp_src.name).read(), open(self.img_path).read())
 
-        rval = tasks.pngcrush_image(name)
+        expected_cmd = ['pngcrush', '-q', '-rem', 'alla', '-brute', '-reduce',
+                        '-e', expected_suffix, tmp_src.name]
+        # pngcrush_image incokes pngcrush with the tempfile name and writes to
+        # another tempfile.
         self.mock_popen.assert_called_once_with(
             expected_cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE,
             stdout=subprocess.PIPE)
-        mock_move.assert_called_once_with(
-            '%s%s' % (os.path.splitext(name)[0], expected_suffix), name)
+        # The output file is then copied back to storage.
+        mock_move.assert_called_once_with(tmp_dest, self.img_path,
+                                          dest_storage=public_storage,
+                                          src_storage=local_storage)
         eq_(rval, {'image_hash': 'bb362450'})
 
     @mock.patch('mkt.webapps.models.Webapp.update')
-    @mock.patch('shutil.move')
+    @mock.patch('mkt.developers.tasks.copy_stored_file')
     def test_set_modified(self, mock_move, update_mock):
         """Test passed instance is updated with the hash."""
-        name = self.src.name
-        obj = app_factory()
-
-        ret = tasks.pngcrush_image(name, 'some_hash', set_modified_on=[obj])
+        expected_suffix = '.opti.png'
+        tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
+        tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
+        open(tmp_dest, 'w').write(open(self.img_path).read())
+        with mock.patch('tempfile.NamedTemporaryFile',
+                        lambda *a, **k: tmp_src):
+            obj = app_factory()
+            ret = tasks.pngcrush_image(self.img_path, 'some_hash',
+                                       set_modified_on=[obj])
         ok_('some_hash' in ret)
         eq_(update_mock.call_args_list[-1][1]['some_hash'], ret['some_hash'])
         ok_('modified' in update_mock.call_args_list[-1][1])
