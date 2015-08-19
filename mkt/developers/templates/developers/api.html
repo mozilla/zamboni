@@ -90,13 +90,18 @@
       <h3>{{ _('OAuth Example') }}</h3>
       <div class="island devhub-form">
         {% trans %}
-          <p>Example using a Python library for the command-line on Mac OS X using
+          <p>Example using a Python library for the command-line on Mac OS X/Linux using
           your OAuth credentials:</p>
         {% endtrans %}
         <pre>
 pip install curling
-echo '{"{{ settings.DOMAIN }}": {"key": "{{ consumers[0].key }}", "secret": "{{ consumers[0].secret }}"}}' > .curling
+echo '{"{{ settings.DOMAIN }}": {"key": "{{ consumers[0].key }}", "secret": "{{ consumers[0].secret }}"}}' > ~/.curling
+
+# This makes a GET request to retrieve your settings:
 curling {{ settings.SITE_URL }}/api/v2/account/settings/mine/
+
+# This makes a POST to validate an hosted app:
+curling -d '{"manifest": "http://myapp.testmanifest.com/manifest.webapp"}' {{ settings.SITE_URL }}/api/v2/apps/validation/
         </pre>
       </div>
     {% endif %}
