@@ -11,6 +11,7 @@ from celery import task
 import requests
 
 from mkt.site.utils import ImageCheck, resize_image
+from mkt.storage_utils import copy_stored_file, public_storage, local_storage
 
 from .models import ProductIcon
 
@@ -83,7 +84,9 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
             else:
                 cached_im = ProductIcon.objects.create(**attr)
             log.info('saving image from URL %s' % url)
-            _store_image(tmp_dest, cached_im, read_size)
+            copy_stored_file(tmp_dest.name, cached_im.storage_path(),
+                             src_storage=local_storage,
+                             dest_storage=public_storage)
     finally:
         os.unlink(tmp_dest.name)
 
@@ -105,18 +108,6 @@ def _check_image(im_path, abs_url):
 
 
 def _resize_image(old_im, size):
-    new_dest = tempfile.NamedTemporaryFile()
-    new_dest.close()
-    resize_image(old_im.name, new_dest.name, locally=True)
+    new_dest = tempfile.mktemp()
+    resize_image(old_im.name, new_dest, storage=local_storage)
     return new_dest
-
-
-def _store_image(im_src, product_icon, read_size):
-    with open(im_src.name, 'rb') as src:
-        with storage.open(product_icon.storage_path(), 'wb') as fp:
-            while True:
-                chunk = src.read(read_size)
-                if not chunk:
-                    break
-                else:
-                    fp.write(chunk)

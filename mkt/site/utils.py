@@ -39,7 +39,7 @@ import mkt
 from lib.utils import static_url
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.site.storage_utils import storage_is_remote
+from mkt.site.storage_utils import private_storage, storage_is_remote
 from mkt.translations.models import Translation
 
 
@@ -172,7 +172,8 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
         raise ValidationError(message, code=code)
 
 
-def resize_image(src, dst, size=None, remove_src=True, locally=False):
+def resize_image(src, dst, size=None, remove_src=True,
+                 storage=private_storage):
     """Resizes and image from src, to dst. Returns width and height.
 
     When locally is True, src and dst are assumed to reside
@@ -183,19 +184,16 @@ def resize_image(src, dst, size=None, remove_src=True, locally=False):
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
 
-    open_ = open if locally else storage.open
-    delete = os.unlink if locally else storage.delete
-
-    with open_(src, 'rb') as fp:
+    with storage.open(src, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
         if size:
             im = processors.scale_and_crop(im, size)
-    with open_(dst, 'wb') as fp:
+    with storage.open(dst, 'wb') as fp:
         im.save(fp, 'png')
 
     if remove_src:
-        delete(src)
+        storage.delete(src)
 
     return im.size
 

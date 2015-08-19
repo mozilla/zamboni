@@ -155,23 +155,20 @@ def _hash_file(fd):
 
 @post_request_task
 @set_modified_on
-def resize_icon(src, dst, sizes, locally=False, **kw):
+def resize_icon(src, dst, sizes, storage=private_storage, **kw):
     """Resizes addon/websites icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
-
-    open_ = open if locally else storage.open
-    delete = os.unlink if locally else storage.delete
 
     try:
         for s in sizes:
             size_dst = '%s-%s.png' % (dst, s)
             resize_image(src, size_dst, (s, s),
-                         remove_src=False, locally=locally)
+                         remove_src=False, storage=storage)
             pngcrush_image.delay(size_dst, **kw)
 
-        with open_(src) as fd:
+        with storage.open(src) as fd:
             icon_hash = _hash_file(fd)
-        delete(src)
+        storage.delete(src)
 
         log.info('Icon resizing completed for: %s' % dst)
         return {'icon_hash': icon_hash}
