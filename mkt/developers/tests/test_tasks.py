@@ -10,7 +10,6 @@ from cStringIO import StringIO
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
@@ -27,9 +26,8 @@ from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
-                                    public_storage)
+                                    private_storage, public_storage)
 from mkt.site.utils import app_factory, ImageCheck
-
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import Preview, Webapp
@@ -80,20 +78,19 @@ def _uploader(resize_size, final_size):
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
-        with storage.open(src.name, 'w') as fp:
-            shutil.copyfileobj(open(img), fp)
+        copy_stored_file(img, src.name, src_storage=local_storage,
+                         dest_storage=private_storage)
 
         # Sanity check.
-        with storage.open(src.name) as fp:
+        with private_storage.open(src.name) as fp:
             src_image = Image.open(fp)
             src_image.load()
         eq_(src_image.size, original_size)
 
-        val = tasks.resize_icon(src.name, dest_name, resize_size,
-                                locally=False)
+        val = tasks.resize_icon(src.name, dest_name, resize_size)
         eq_(val, {'icon_hash': 'bb362450'})
         dest_image_filename = '%s-%s.png' % (dest_name, rsize)
-        with storage.open(dest_image_filename) as fp:
+        with public_storage.open(dest_image_filename) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
 
@@ -104,11 +101,11 @@ def _uploader(resize_size, final_size):
             'Got width %d, expected %d' % (
                 fsize[1], dest_image.size[1]))
 
-        if storage.exists(dest_image_filename):
-            storage.delete(dest_image_filename)
-        assert not storage.exists(dest_image_filename)
+        if public_storage.exists(dest_image_filename):
+            public_storage.delete(dest_image_filename)
+        assert not public_storage.exists(dest_image_filename)
 
-    assert not storage.exists(src.name)
+    assert not private_storage.exists(src.name)
 
 
 def test_resize_promo_img():
@@ -128,17 +125,18 @@ def _promo_img_uploader(resize_size, final_size):
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.jpg',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
-        shutil.copyfile(img, src.name)
+        copy_stored_file(img, src.name, src_storage=local_storage,
+                         dest_storage=private_storage)
         # Sanity check.
-        with storage.open(src.name) as fp:
+        with private_storage.open(src.name) as fp:
             src_image = Image.open(fp)
             src_image.load()
         eq_(src_image.size, original_size)
 
-        val = tasks.resize_promo_imgs(src.name, dest_name, resize_size,
-                                      locally=True)
+        val = tasks.resize_promo_imgs(src.name, dest_name, resize_size)
         eq_(val, {'promo_img_hash': '215dd2a2'})
-        with storage.open('%s-%s.png' % (dest_name, rsize)) as fp:
+        dest_img_name = '%s-%s.png' % (dest_name, rsize)
+        with public_storage.open(dest_img_name) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
 
@@ -149,11 +147,11 @@ def _promo_img_uploader(resize_size, final_size):
             'Got width %d, expected %d' % (
                 fsize[1], dest_image.size[1]))
 
-        if os.path.exists(dest_image.filename):
-            os.remove(dest_image.filename)
-        assert not os.path.exists(dest_image.filename)
+        if public_storage.exists(dest_img_name):
+            public_storage.delete(dest_img_name)
+        assert not public_storage.exists(dest_img_name)
 
-    assert not os.path.exists(src.name)
+    assert not private_storage.exists(src.name)
 
 
 class TestPngcrushImage(mkt.site.tests.TestCase):
@@ -251,7 +249,7 @@ class TestValidator(mkt.site.tests.TestCase):
         assert error.startswith('Traceback (most recent call last)'), error
 
     @mock.patch('mkt.developers.tasks.validate_app')
-    @mock.patch('mkt.developers.tasks.storage.open')
+    @mock.patch('mkt.developers.tasks.private_storage.open')
     def test_validate_manifest(self, _open, _mock):
         _open.return_value = tempfile.TemporaryFile()
         _mock.return_value = '{"errors": 0}'
@@ -267,7 +265,7 @@ class TestValidator(mkt.site.tests.TestCase):
         assert _mock.called
 
 
-storage_open = storage.open
+storage_open = public_storage.open
 
 
 def _mock_hide_64px_icon(path, *args, **kwargs):
@@ -301,7 +299,7 @@ class TestResizePreview(mkt.site.tests.TestCase):
         src = get_image_path(filename)
         dst = os.path.join(settings.TMP_PATH, 'preview', filename)
         with open(src) as local_f:
-            with storage.open(dst, 'w') as remote_f:
+            with private_storage.open(dst, 'w') as remote_f:
                 shutil.copyfileobj(local_f, remote_f)
         return dst
 
@@ -314,10 +312,10 @@ class TestResizePreview(mkt.site.tests.TestCase):
         eq_(preview.image_size, [400, 533])
         eq_(preview.thumbnail_size, [100, 133])
         eq_(preview.is_landscape, False)
-        with storage.open(preview.thumbnail_path) as fp:
+        with public_storage.open(preview.thumbnail_path) as fp:
             im = Image.open(fp)
             eq_(list(im.size), [100, 133])
-        with storage.open(preview.image_path) as fp:
+        with public_storage.open(preview.image_path) as fp:
             im = Image.open(fp)
             eq_(list(im.size), [400, 533])
 
@@ -330,10 +328,10 @@ class TestResizePreview(mkt.site.tests.TestCase):
         eq_(preview.image_size, [533, 400])
         eq_(preview.thumbnail_size, [133, 100])
         eq_(preview.is_landscape, True)
-        with storage.open(preview.thumbnail_path) as fp:
+        with public_storage.open(preview.thumbnail_path) as fp:
             im = Image.open(fp)
             eq_(list(im.size), [133, 100])
-        with storage.open(preview.image_path) as fp:
+        with public_storage.open(preview.image_path) as fp:
             im = Image.open(fp)
             eq_(list(im.size), [533, 400])
 
@@ -346,7 +344,7 @@ class TestResizePreview(mkt.site.tests.TestCase):
         eq_(preview.image_size, [])
         eq_(preview.thumbnail_size, [100, 133])
         eq_(preview.sizes, {u'thumbnail': [100, 133]})
-        with storage.open(preview.thumbnail_path) as fp:
+        with public_storage.open(preview.thumbnail_path) as fp:
             im = Image.open(fp)
             eq_(list(im.size), [100, 133])
         assert not os.path.exists(preview.image_path), preview.image_path
@@ -385,7 +383,7 @@ class TestFetchManifest(mkt.site.tests.TestCase):
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
         eq_(upload.name, 'http://xx.com/manifest.json')
-        eq_(storage.open(upload.path).read(), 'woo')
+        eq_(private_storage.open(upload.path).read(), 'woo')
 
     @mock.patch('mkt.developers.tasks.validator')
     def test_success_call_validator(self, validator_mock):
@@ -516,7 +514,7 @@ class TestFetchManifest(mkt.site.tests.TestCase):
             chunk_size=settings.MAX_WEBAPP_UPLOAD_SIZE + 1)
 
         upload = self.get_upload()
-        with storage.open(upload.path, 'rb') as fp:
+        with private_storage.open(upload.path, 'rb') as fp:
             manifest = fp.read()
             json.loads(manifest)  # No parse error.
             assert not manifest.startswith(codecs.BOM_UTF8)
@@ -579,7 +577,7 @@ class TestFetchIcon(BaseWebAppTest):
                 continue
             icon_path = os.path.join(icon_dir, '%s-%s.png'
                                      % (str(webapp.id), size))
-            with storage.open(icon_path, 'r') as img:
+            with public_storage.open(icon_path, 'r') as img:
                 checker = ImageCheck(img)
                 assert checker.is_image()
                 eq_(checker.img.size, (size, size))
@@ -630,7 +628,7 @@ class TestFetchIcon(BaseWebAppTest):
         file_obj = webapp.latest_version.all_files[0]
         url = '/path/to/icon.png'
         json.return_value = {'icons': {'128': url}}
-        with storage.open(file_obj.file_path, 'w') as f:
+        with private_storage.open(file_obj.file_path, 'w') as f:
             f.write("fake zip file")
         tasks.fetch_icon(webapp.pk, file_obj.pk)
         assert url[1:] in zf.extract_path.call_args[0][0]
