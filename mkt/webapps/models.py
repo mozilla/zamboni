@@ -1817,7 +1817,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         f.size = private_storage.size(f.file_path)
         f.hash = f.generate_hash(f.file_path)
         f.save()
-        mf = WebAppParser().get_json_data(f.file_path)
+        mf = WebAppParser().get_json_data(private_storage.open(f.file_path))
         AppManifest.objects.create(version=v, manifest=json.dumps(mf))
         self.sign_if_packaged(v.pk)
         self.status = mkt.STATUS_BLOCKED

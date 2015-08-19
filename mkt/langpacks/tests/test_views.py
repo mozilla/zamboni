@@ -3,7 +3,6 @@ import hashlib
 import json
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
@@ -18,6 +17,7 @@ from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.files.models import FileUpload
 from mkt.langpacks.models import LangPack
 from mkt.langpacks.tests.test_models import UploadCreationMixin, UploadTest
+from mkt.site.storage_utils import public_storage
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
@@ -505,7 +505,7 @@ class TestLangPackNonAPIViews(TestCase):
             version='0.1', active=True,
             manifest=json.dumps(self.fake_manifest))
         self.user = UserProfile.objects.get(pk=2519)
-        with storage.open(self.langpack.file_path, 'w') as f:
+        with public_storage.open(self.langpack.file_path, 'w') as f:
             f.write('sample data\n')
 
     def _expected_etag(self):

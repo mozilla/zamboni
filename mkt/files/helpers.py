@@ -6,7 +6,6 @@ import time
 from collections import OrderedDict
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import smart_unicode
@@ -22,7 +21,8 @@ from appvalidator.testcases.packagelayout import (
 
 import mkt
 from mkt.files.utils import extract_zip, get_md5
-from mkt.site.storage_utils import storage_is_remote, walk_storage
+from mkt.site.storage_utils import (private_storage, public_storage,
+                                    storage_is_remote, walk_storage)
 
 
 # Allow files with a shebang through.
@@ -92,8 +92,12 @@ class FileViewer(object):
         Will make all the directories and expand the files.
         Raises error on nasty files.
         """
+        if self.file.status in mkt.LISTED_STATUSES:
+            storage = public_storage
+        else:
+            storage = private_storage
         try:
-            tempdir = extract_zip(self.src)
+            tempdir = extract_zip(storage.open(self.src))
             # Move extracted files into persistent storage.
             for root, subdirs, files in os.walk(tempdir):
                 storage_root = root.replace(tempdir, self.dest, 1)
@@ -101,7 +105,7 @@ class FileViewer(object):
                     file_src = os.path.join(root, fname)
                     file_dest = os.path.join(storage_root, fname)
                     with open(file_src) as local_f:
-                        with storage.open(file_dest, 'w') as remote_f:
+                        with private_storage.open(file_dest, 'w') as remote_f:
                             copyfileobj(local_f, remote_f)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
@@ -111,7 +115,7 @@ class FileViewer(object):
         try:
             for root, dirs, files in walk_storage(self.dest):
                 for fname in files:
-                    storage.delete(os.path.join(root, fname))
+                    private_storage.delete(os.path.join(root, fname))
         except OSError as e:
             if e.errno == 2:
                 # Directory doesn't exist, nothing to clean up.
@@ -120,8 +124,9 @@ class FileViewer(object):
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return (storage.exists(os.path.join(self.dest, 'manifest.webapp')) and
-                not Message(self._extraction_cache_key()).get())
+        return (private_storage.exists(
+            os.path.join(self.dest, 'manifest.webapp')) and
+            not Message(self._extraction_cache_key()).get())
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
@@ -132,8 +137,8 @@ class FileViewer(object):
 
         # S3 will return false for storage.exists() for directory paths, so
         # os.path call is safe here.
-        if storage.exists(path) and not os.path.isdir(path):
-            with storage.open(path, 'r') as rfile:
+        if private_storage.exists(path) and not os.path.isdir(path):
+            with private_storage.open(path, 'r') as rfile:
                 bytes = tuple(map(ord, rfile.read(4)))
             if any(bytes[:len(x)] == x for x in blocked_magic_numbers):
                 return True
@@ -175,7 +180,7 @@ class FileViewer(object):
             self.selected['msg'] = msg
             return ''
 
-        with storage.open(self.selected['full'], 'r') as opened:
+        with private_storage.open(self.selected['full'], 'r') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
             try:
@@ -302,7 +307,7 @@ class FileViewer(object):
 
         # Not using os.path.walk so we get just the right order.
         def iterate(path):
-            path_dirs, path_files = storage.listdir(path)
+            path_dirs, path_files = private_storage.listdir(path)
             for dirname in sorted(path_dirs):
                 full = os.path.join(path, dirname)
                 all_files.append(full)
@@ -323,7 +328,7 @@ class FileViewer(object):
             if storage_is_remote():
                 # S3 doesn't have directories, so we check for names with this
                 # prefix and call it a directory if there are some.
-                subdirs, subfiles = storage.listdir(path)
+                subdirs, subfiles = private_storage.listdir(path)
                 directory = bool(subdirs or subfiles)
             else:
                 directory = os.path.isdir(path)
@@ -338,10 +343,11 @@ class FileViewer(object):
                 'mimetype': mime or 'application/octet-stream',
                 'syntax': self.get_syntax(filename),
                 'modified': (
-                    time.mktime(storage.modified_time(path).timetuple())
+                    time.mktime(
+                        private_storage.modified_time(path).timetuple())
                     if not directory else 0),
                 'short': short,
-                'size': storage.size(path) if not directory else 0,
+                'size': private_storage.size(path) if not directory else 0,
                 'truncated': self.truncate(filename),
                 'url': reverse('mkt.files.list',
                                args=[self.file.id, 'file', short]),
@@ -464,9 +470,9 @@ def copyfileobj(fsrc, fdst, length=64 * 1024):
 
 
 def rmtree(prefix):
-    dirs, files = storage.listdir(prefix)
+    dirs, files = private_storage.listdir(prefix)
     for fname in files:
-        storage.delete(os.path.join(prefix, fname))
+        private_storage.delete(os.path.join(prefix, fname))
     for d in dirs:
         rmtree(os.path.join(prefix, d))
-    storage.delete(prefix)
+    private_storage.delete(prefix)

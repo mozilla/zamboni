@@ -10,11 +10,11 @@ import zipfile
 
 from django import forms
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.utils.translation import trans_real as translation
 
 from tower import ugettext as _
 
+from mkt.site.storage_utils import private_storage
 from mkt.site.utils import rm_local_tmp_dir, strip_bom
 from mkt.translations.utils import to_language
 
@@ -33,12 +33,15 @@ def get_filepath(fileorpath):
 
 
 def get_file(fileorpath):
-    """Get a file-like object, whether given a FileUpload object or a path."""
+    """
+    Get a file-like object, whether given a FileUpload object or an
+    UploadedFile.
+    """
     if hasattr(fileorpath, 'path'):  # FileUpload
-        return storage.open(fileorpath.path)
+        return private_storage.open(fileorpath.path)
     if hasattr(fileorpath, 'name'):
         return fileorpath
-    return storage.open(fileorpath)
+    raise ValueError("not a file or upload")
 
 
 class WebAppParser(object):
@@ -75,6 +78,7 @@ class WebAppParser(object):
                       'of the packaged app archive.'))
         else:
             file_ = get_file(fileorpath)
+            file_.seek(0)
             data = file_.read()
             file_.close()
 
@@ -239,7 +243,7 @@ def extract_zip(source):
     """Extracts the zip file."""
     tempdir = tempfile.mkdtemp()
 
-    zip = SafeUnzip(storage.open(source))
+    zip = SafeUnzip(source)
     try:
         if zip.is_valid():
             zip.extract_to_dest(tempdir)
@@ -275,7 +279,7 @@ def parse_addon(pkg, addon=None):
 
 def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
     """Returns an MD5 hash for a filename."""
-    f = storage.open(filename, 'rb')
+    f = private_storage.open(filename, 'rb')
     hash_ = hash()
     while True:
         data = f.read(block_size)
