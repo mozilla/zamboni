@@ -34,7 +34,8 @@ from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 from mkt.site.utils import (remove_icons, remove_promo_imgs, resize_image,
                             strip_bom)
 from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
@@ -217,35 +218,41 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
                   instance through set_modified_on
     """
     log.info('[1@None] Optimizing image: %s' % src)
+    tmp_src = tempfile.NamedTemporaryFile(suffix='.png')
+    with public_storage.open(src) as srcf:
+        shutil.copyfileobj(srcf, tmp_src)
+        tmp_src.seek(0)
     try:
         # pngcrush -ow has some issues, use a temporary file and do the final
         # renaming ourselves.
         suffix = '.opti.png'
-        tmp_path = '%s%s' % (os.path.splitext(src)[0], suffix)
+        tmp_path = '%s%s' % (os.path.splitext(tmp_src.name)[0], suffix)
         cmd = [settings.PNGCRUSH_BIN, '-q', '-rem', 'alla', '-brute',
-               '-reduce', '-e', suffix, src]
+               '-reduce', '-e', suffix, tmp_src.name]
         sp = subprocess.Popen(cmd, stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = sp.communicate()
-
         if sp.returncode != 0:
             log.error('Error optimizing image: %s; %s' % (src, stderr.strip()))
             pngcrush_image.retry(args=[src], kwargs=kw, max_retries=3)
             return False
 
-        shutil.move(tmp_path, src)
-        log.info('Image optimization completed for: %s' % src)
-
         # Return hash for set_modified_on.
-        with open(src) as fd:
+        with open(tmp_path) as fd:
             image_hash = _hash_file(fd)
 
+        copy_stored_file(tmp_path, src, src_storage=local_storage,
+                         dest_storage=public_storage)
+        log.info('Image optimization completed for: %s' % src)
+        os.remove(tmp_path)
+        tmp_src.close()
         return {
             hash_field: image_hash
         }
 
     except Exception, e:
         log.error('Error optimizing image: %s; %s' % (src, e))
+    return {}
 
 
 @post_request_task
