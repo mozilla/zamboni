@@ -80,8 +80,9 @@ def _uploader(resize_size, final_size):
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
-        with storage.open(src.name, 'w') as fp:
-            shutil.copyfileobj(open(img), fp)
+        copy_stored_file(img, src.name, src_storage=local_storage,
+                         dest_storage=private_storage)
+
 
         # Sanity check.
         with storage.open(src.name) as fp:
@@ -128,7 +129,8 @@ def _promo_img_uploader(resize_size, final_size):
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.jpg',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
-        shutil.copyfile(img, src.name)
+        copy_stored_file(img, src.name, src_storage=local_storage,
+                         dest_storage=private_storage)
         # Sanity check.
         with storage.open(src.name) as fp:
             src_image = Image.open(fp)

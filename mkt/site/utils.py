@@ -39,7 +39,8 @@ import mkt
 from lib.utils import static_url
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.site.storage_utils import private_storage, storage_is_remote
+from mkt.site.storage_utils import (private_storage, public_storage,
+                                    storage_is_remote)
 from mkt.translations.models import Translation
 
 

@@ -4,14 +4,14 @@ import os
 import tempfile
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
 from celery import task
 import requests
 
 from mkt.site.utils import ImageCheck, resize_image
-from mkt.storage_utils import copy_stored_file, public_storage, local_storage
+from mkt.site.storage_utils import (copy_stored_file, public_storage,
+                                    local_storage)
 
 from .models import ProductIcon
 
@@ -54,6 +54,7 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
         return
 
     tmp_dest = tempfile.NamedTemporaryFile(delete=False)
+    tmp_dest_path = tmp_dest.name
     try:
         res = requests.get(url, timeout=5)
         res.raise_for_status()
@@ -74,7 +75,7 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
         if valid:
             if resize:
                 log.info('resizing in-app image for URL %s' % url)
-                tmp_dest = _resize_image(tmp_dest, size)
+                tmp_dest_path = _resize_image(tmp_dest, size)
 
             # Save the image to the db.
             attr = dict(ext_size=ext_size, size=size, ext_url=url,
@@ -84,11 +85,11 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
             else:
                 cached_im = ProductIcon.objects.create(**attr)
             log.info('saving image from URL %s' % url)
-            copy_stored_file(tmp_dest.name, cached_im.storage_path(),
+            copy_stored_file(tmp_dest_path, cached_im.storage_path(),
                              src_storage=local_storage,
                              dest_storage=public_storage)
     finally:
-        os.unlink(tmp_dest.name)
+        os.unlink(tmp_dest_path)
 
 
 def _check_image(im_path, abs_url):
