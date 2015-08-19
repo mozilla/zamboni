@@ -28,7 +28,6 @@ urlpatterns = patterns(
     url('^env$', views.env, name='mkt.env'),
     url('^memcache$', views.memcache, name='zadmin.memcache'),
     url('^settings', views.show_settings, name='zadmin.settings'),
-    url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
 
