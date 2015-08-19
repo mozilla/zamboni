@@ -136,6 +136,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/owner.html:91
 #: mkt/operators/templates/operators/preloads.html:15
 #: mkt/users/notifications.py:157
+#, fuzzy
 msgid "Developer"
 msgstr "Developer"
 
@@ -1195,12 +1196,14 @@ msgstr ""
 # <option> text in a <select> for Author role in an add-on.
 #: mkt/constants/base.py:132
 #: mkt/developers/templates/developers/apps/owner.html:88
+#, fuzzy
 msgid "Owner"
 msgstr "Owner"
 
 # <option> text in a <select> for Author role in an add-on.
 #: mkt/constants/base.py:134
 #: mkt/developers/templates/developers/apps/owner.html:94
+#, fuzzy
 msgid "Viewer"
 msgstr "Viewer"
 
@@ -1409,6 +1412,7 @@ msgstr ""
 #: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
 #: mkt/site/context_processors.py:48
+#, fuzzy
 msgid "Tools"
 msgstr "Tools"
 
@@ -1871,6 +1875,7 @@ msgid ""
 msgstr ""
 
 #: mkt/constants/features.py:277
+#, fuzzy
 msgid "Notifications"
 msgstr "Notifications"
 
@@ -1971,6 +1976,7 @@ msgid "Chargeback"
 msgstr ""
 
 #: mkt/constants/payments.py:41
+#, fuzzy
 msgid "Other"
 msgstr "Other"
 
@@ -2218,6 +2224,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
 #: mkt/webapps/models.py:1436
+#, fuzzy
 msgid "Details"
 msgstr "Details"
 
@@ -2436,8 +2443,6 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/developers/forms.py:1062
 msgid "Agree"
@@ -2738,6 +2743,7 @@ msgid "Donate to {0}"
 msgstr ""
 
 #: mkt/developers/models.py:488
+#, fuzzy
 msgid "Review"
 msgstr "Review"
 
@@ -3233,8 +3239,6 @@ msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
@@ -3351,6 +3355,7 @@ msgid "Edit"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:27
+#, fuzzy
 msgid "Welcome to the Developer Dashboard"
 msgstr "Welcome to the Developer Dashboard"
 
@@ -3618,6 +3623,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:213
 #: mkt/developers/templates/developers/apps/listing/items.html:24
 #: mkt/lookup/templates/lookup/website_edit.html:104
+#, fuzzy
 msgid "Disabled"
 msgstr "Disabled"
 
@@ -3652,6 +3658,7 @@ msgstr ""
 #: mkt/submit/templates/submit/details.html:189
 #: mkt/submit/templates/submit/manifest.html:110
 #: mkt/submit/templates/submit/next_steps.html:110
+#, fuzzy
 msgid "Continue"
 msgstr "Contribute"
 
@@ -3834,6 +3841,7 @@ msgstr ""
 #: mkt/submit/templates/submit/done.html:48
 #: mkt/translations/templates/translations/trans-menu.html:50
 #: mkt/translations/templates/translations/trans-menu.html:62
+#, fuzzy
 msgid "or"
 msgstr "or"
 
@@ -4039,6 +4047,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29
 #: mkt/reviewers/templates/reviewers/review.html:58
+#, fuzzy
 msgid "View Listing"
 msgstr "View Listing"
 
@@ -4130,6 +4139,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:66
 #: mkt/translations/templates/translations/trans-menu.html:13
+#, fuzzy
 msgid "Default Locale"
 msgstr "Default Locale"
 
@@ -4368,6 +4378,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:41
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
+#, fuzzy
 msgid "Prev"
 msgstr "Prev"
 
@@ -4382,6 +4393,7 @@ msgstr "Brig"
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:56
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:16
 #: mkt/site/templates/site/impala_paginator.html:26
+#, fuzzy
 msgid "Next"
 msgstr "Next"
 
@@ -4420,6 +4432,7 @@ msgid "Upload a new version of this add-on."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:30
+#, fuzzy
 msgid "New Version"
 msgstr "New Version"
 
@@ -4515,6 +4528,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:103
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:34
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
+#, fuzzy
 msgid "Statistics"
 msgstr "Statistics"
 
@@ -4730,8 +4744,6 @@ msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid ""
@@ -4877,6 +4889,7 @@ msgid ""
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
+#, fuzzy
 msgid "Icon"
 msgstr "Icon"
 
@@ -6046,6 +6059,7 @@ msgid "all time"
 msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:19
+#, fuzzy
 msgid "Authors"
 msgstr "Authors"
 
@@ -6449,6 +6463,7 @@ msgstr ""
 #: mkt/search/forms.py:92 mkt/search/forms.py:94
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13
+#, fuzzy
 msgid "Search"
 msgstr "Search"
 
@@ -6482,6 +6497,7 @@ msgid "Preload Candidates"
 msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:16
+#, fuzzy
 msgid "Category"
 msgstr "Category"
 
@@ -6553,6 +6569,7 @@ msgid "Keep review; remove flags"
 msgstr ""
 
 #: mkt/ratings/forms.py:68
+#, fuzzy
 msgid "Delete review"
 msgstr "Delete review"
 
@@ -6566,18 +6583,22 @@ msgid "Reviewed %s out of 5 stars"
 msgstr ""
 
 #: mkt/ratings/models.py:149
+#, fuzzy
 msgid "Spam or otherwise non-review content"
 msgstr "Spam or otherwise non-review content"
 
 #: mkt/ratings/models.py:150
+#, fuzzy
 msgid "Inappropriate language/dialog"
 msgstr "Inappropriate language/dialog"
 
 #: mkt/ratings/models.py:151
+#, fuzzy
 msgid "Misplaced bug report or support request"
 msgstr "Misplaced bug report or support request"
 
 #: mkt/ratings/models.py:152
+#, fuzzy
 msgid "Other (please specify)"
 msgstr "Other (please specify)"
 
@@ -7060,32 +7081,24 @@ msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:25
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:46
 msgid "Current waiting times:"
@@ -7096,8 +7109,6 @@ msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:55
 msgid "{0}%"
@@ -7386,6 +7397,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
+#, fuzzy
 msgid "Updated"
 msgstr "Updated"
 
@@ -7547,6 +7559,7 @@ msgstr ""
 
 # Header for a column in a table
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:35
+#, fuzzy
 msgid "Validation"
 msgstr "Validation"
 
@@ -7639,6 +7652,7 @@ msgid "Weekly Downloads"
 msgstr ""
 
 #: mkt/search/forms.py:17
+#, fuzzy
 msgid "Top Rated"
 msgstr "Top Rated"
 
@@ -8690,8 +8704,6 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/tags/utils.py:38
@@ -8699,16 +8711,12 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/tags/utils.py:52
 msgid ""
@@ -8720,8 +8728,6 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
@@ -8903,6 +8909,7 @@ msgstr ""
 
 # Column name in a table.
 #: mkt/webapps/models.py:199
+#, fuzzy
 msgid "Listed"
 msgstr "Listed"
 
@@ -8974,6 +8981,7 @@ msgid "Sort by:"
 msgstr "Trefnu yn ôl"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:8
+#, fuzzy
 msgid "Created"
 msgstr "Created"
 
