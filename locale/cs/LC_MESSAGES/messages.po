@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-08-12 08:49+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-08-19 07:42+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439369372.0\n"
+"X-POOTLE-MTIME: 1439970162.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1467,7 +1467,7 @@ msgstr "Opětovná kontrola z důvodu hodnocení obsahu"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Požadavek na opětovnou ruční  kontrolu podán"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -2227,6 +2227,8 @@ msgstr ""
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr ""
+"Adresa URL, kde je bude vaše aplikace hostována, existuje-li. Umožňuje "
+"uživatelům vyzkoušet si vaši aplikaci ještě před instalací."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2674,7 +2676,7 @@ msgstr "Náhled nemohl být otevřen."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "Propagační obrázek nemohl být načten."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3700,6 +3702,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
 msgstr ""
+"Má-li vaše aplikace URL adresu, na které je hostována, můžete ji vyplnit pro "
+"uživatele, kteří si chtějí vaši aplikaci vyzkoušet ještě před instalací."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5331,11 +5335,11 @@ msgstr "Důvod smazání"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "Propagační obrázek"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Minimální velikost: {0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -5754,7 +5758,7 @@ msgstr "Hledat"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Uložit propagační obrázek"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6153,11 +6157,13 @@ msgstr "Napsat soukromou poznámku o kontrolu pro tuto aplikaci. Tato zpráva ne
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "Požádat o opětovnou kontrolu"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
 msgstr ""
+"Přidat aplikaci do fronty opětovné kontroly. Žádné komentáře nebudou pro "
+"autora(y) viditelné a nebude jim zasláno žádné upozornění."
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -7386,14 +7392,16 @@ msgstr "Automatické zvýšení priority"
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
 msgstr ""
+"{addon} byl znovu zkontrolován, protože bylo třeba zkontrolovat hlášení o "
+"zneužití."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} ručně označen k opětovné kontrole."
 
 #: mkt/site/log.py:555
 msgid "Manual re-review"
-msgstr ""
+msgstr "Ruční opětovná kontrola"
 
 #: mkt/site/log.py:572
 msgid "Created: {0}."
