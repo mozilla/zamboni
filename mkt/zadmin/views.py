@@ -4,12 +4,10 @@ from django import http
 from django.conf import settings
 from django.contrib import admin, messages
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.views import debug
-from django.views.decorators.http import require_POST
 
 import commonware.log
 import elasticsearch
@@ -17,9 +15,8 @@ import jinja2
 
 import mkt
 from mkt.developers.models import ActivityLog
-from mkt.files.models import File
 from mkt.prices.utils import update_from_csv
-from mkt.site.decorators import json_view, permission_required
+from mkt.site.decorators import permission_required
 from mkt.site.mail import FakeEmailBackend
 from mkt.site.utils import chunked
 from mkt.users.models import UserProfile
@@ -52,19 +49,6 @@ def show_settings(request):
 @admin_required
 def env(request):
     return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
-
-
-@admin.site.admin_view
-def fix_disabled_file(request):
-    file_ = None
-    if request.method == 'POST' and 'file' in request.POST:
-        file_ = get_object_or_404(File, id=request.POST['file'])
-        if 'confirm' in request.POST:
-            file_.unhide_disabled_file()
-            messages.success(request, 'We have done a great thing.')
-            return redirect('zadmin.fix-disabled')
-    return render(request, 'zadmin/fix-disabled.html',
-                  {'file': file_, 'file_id': request.POST.get('file', '')})
 
 
 @admin_required
@@ -155,22 +139,6 @@ def email_devs(request):
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
-
-
-@admin.site.admin_view
-@require_POST
-@json_view
-def recalc_hash(request, file_id):
-
-    file = get_object_or_404(File, pk=file_id)
-    file.size = storage.size(file.file_path)
-    file.hash = file.generate_hash()
-    file.save()
-
-    log.info('Recalculated hash for file ID %d' % file.id)
-    messages.success(request,
-                     'File hash and size recalculated for file %d.' % file.id)
-    return {'success': 1}
 
 
 @admin.site.admin_view
