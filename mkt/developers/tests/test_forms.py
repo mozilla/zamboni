@@ -5,7 +5,6 @@ import shutil
 
 from django import forms as django_forms
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 
@@ -19,6 +18,7 @@ from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import private_storage
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
@@ -50,9 +50,8 @@ class TestPreviewForm(mkt.site.tests.TestCase):
 
     def test_preview_size(self):
         name = 'non-animated.gif'
-        form = forms.PreviewForm({'upload_hash': name,
-                                  'position': 1})
-        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+        form = forms.PreviewForm({'upload_hash': name, 'position': 1})
+        with private_storage.open(os.path.join(self.dest, name), 'wb') as f:
             copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid(), form.errors
         form.save(self.addon)

@@ -7,7 +7,6 @@ from contextlib import contextmanager
 
 from django.conf import settings
 from django.contrib.messages.storage import default_storage
-from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
@@ -23,7 +22,6 @@ from pyquery import PyQuery as pq
 
 import mkt
 import mkt.site.tests
-import mkt
 from lib.iarc.utils import get_iarc_app_title
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
@@ -36,9 +34,10 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.storage_utils import private_storage
 from mkt.site.tests import assert_no_validation_errors
-from mkt.site.utils import app_factory, version_factory
 from mkt.site.tests.test_utils_ import get_image_path
+from mkt.site.utils import app_factory, version_factory
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
@@ -730,7 +729,7 @@ class TestUpload(BaseUploadTest):
         eq_(upload.name, 'mozball.zip')
         eq_(upload.user.pk, 999)
         data = open(self.package, 'rb').read()
-        eq_(storage.open(upload.path).read(), data)
+        eq_(private_storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
         self.login('regular@mozilla.com')
@@ -821,7 +820,7 @@ class TestStandaloneUpload(BaseUploadTest):
         eq_(upload.name, 'mozball.zip')
         eq_(upload.user, None)
         data = open(self.package, 'rb').read()
-        eq_(storage.open(upload.path).read(), data)
+        eq_(private_storage.open(upload.path).read(), data)
 
     def test_create_packaged_user(self):
         self.login('regular@mozilla.com')
@@ -830,7 +829,7 @@ class TestStandaloneUpload(BaseUploadTest):
         eq_(upload.name, 'mozball.zip')
         eq_(upload.user.pk, 999)
         data = open(self.package, 'rb').read()
-        eq_(storage.open(upload.path).read(), data)
+        eq_(private_storage.open(upload.path).read(), data)
 
     def test_create_hosted(self):
         response = self.post_hosted()

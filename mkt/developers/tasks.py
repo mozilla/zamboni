@@ -15,7 +15,6 @@ import zipfile
 
 from django import forms
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
@@ -155,23 +154,20 @@ def _hash_file(fd):
 
 @post_request_task
 @set_modified_on
-def resize_icon(src, dst, sizes, locally=False, **kw):
+def resize_icon(src, dst, sizes, storage=private_storage, **kw):
     """Resizes addon/websites icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
-
-    open_ = open if locally else storage.open
-    delete = os.unlink if locally else storage.delete
 
     try:
         for s in sizes:
             size_dst = '%s-%s.png' % (dst, s)
-            resize_image(src, size_dst, (s, s),
-                         remove_src=False, locally=locally)
+            resize_image(src, size_dst, (s, s), remove_src=False,
+                         storage=storage)
             pngcrush_image.delay(size_dst, **kw)
 
-        with open_(src) as fd:
+        with storage.open(src) as fd:
             icon_hash = _hash_file(fd)
-        delete(src)
+        storage.delete(src)
 
         log.info('Icon resizing completed for: %s' % dst)
         return {'icon_hash': icon_hash}
@@ -181,25 +177,19 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
 
 @post_request_task
 @set_modified_on
-def resize_promo_imgs(src, dst, sizes, locally=False, **kw):
+def resize_promo_imgs(src, dst, sizes, **kw):
     """Resizes webapp/website promo imgs."""
     log.info('[1@None] Resizing promo imgs: %s' % dst)
     try:
         for s in sizes:
             size_dst = '%s-%s.png' % (dst, s)
             # Crop only to the width, keeping the aspect ratio.
-            resize_image(src, size_dst, (s, 0),
-                         remove_src=False, locally=locally)
+            resize_image(src, size_dst, (s, 0), remove_src=False)
             pngcrush_image.delay(size_dst, **kw)
 
-        if locally:
-            with open(src) as fd:
-                promo_img_hash = _hash_file(fd)
-            os.remove(src)
-        else:
-            with storage.open(src) as fd:
-                promo_img_hash = _hash_file(fd)
-            storage.delete(src)
+        with private_storage.open(src) as fd:
+            promo_img_hash = _hash_file(fd)
+        private_storage.delete(src)
 
         log.info('Promo img hash resizing completed for: %s' % dst)
         return {'promo_img_hash': promo_img_hash}
@@ -266,7 +256,7 @@ def resize_preview(src, pk, **kw):
     try:
         thumbnail_size = APP_PREVIEW_SIZES[0][:2]
         image_size = APP_PREVIEW_SIZES[1][:2]
-        with storage.open(src, 'rb') as fp:
+        with private_storage.open(src, 'rb') as fp:
             size = Image.open(fp).size
         if size[0] > size[1]:
             # If the image is wider than tall, then reverse the wanted size
@@ -288,10 +278,7 @@ def resize_preview(src, pk, **kw):
         log.info('Preview resized to: %s' % thumb_dst)
 
         # Remove src file now that it has been processed.
-        try:
-            os.remove(src)
-        except OSError:
-            pass
+        private_storage.delete(src)
 
         return True
 
@@ -340,7 +327,7 @@ def save_icon(obj, icon_content):
     website.
     """
     tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
-    with storage.open(tmp_dst, 'wb') as fd:
+    with private_storage.open(tmp_dst, 'wb') as fd:
         fd.write(icon_content)
 
     dirname = obj.get_icon_dir()
@@ -363,7 +350,7 @@ def save_promo_imgs(obj, img_content):
     `obj` can be an app or a website.
     """
     tmp_dst = os.path.join(settings.TMP_PATH, 'promo_imgs', uuid.uuid4().hex)
-    with storage.open(tmp_dst, 'wb') as fd:
+    with private_storage.open(tmp_dst, 'wb') as fd:
         fd.write(img_content)
 
     dirname = obj.get_promo_img_dir()
@@ -416,7 +403,7 @@ def fetch_icon(pk, file_pk=None, **kw):
             if icon_url.startswith('/'):
                 icon_url = icon_url[1:]
             try:
-                zf = SafeUnzip(storage.open(file_obj.file_path))
+                zf = SafeUnzip(private_storage.open(file_obj.file_path))
                 zf.is_valid()
                 content = zf.extract_path(icon_url)
             except (KeyError, forms.ValidationError):  # Not found in archive.
