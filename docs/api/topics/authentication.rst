@@ -195,6 +195,6 @@ Example clients
 
 * The `Marketplace.Python <https://github.com/mozilla/Marketplace.Python/>`_ library uses 2-legged OAuth to authenticate requests.
 
-* Curling is a command library to do requests using `Python <https://github.com/mozilla/Marketplace.Python/>`_.
+* `Curling <http://curling.readthedocs.org/>`_ is a command library to do requests using `Python <https://github.com/mozilla/Marketplace.Python/>`_.
 
 .. _`example marketplace client`: https://github.com/mozilla/Marketplace.Python
