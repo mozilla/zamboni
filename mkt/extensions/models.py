@@ -62,7 +62,7 @@ class Extension(ModelBase):
         return os.path.join(self.path_prefix, nfd_str(self.filename))
 
     @classmethod
-    def from_upload(cls, upload, instance=None):
+    def from_upload(cls, upload, user=None, instance=None):
         """Handle creating/editing the Extension instance and saving it to db,
         as well as file operations, from a FileUpload instance. Can throw
         a ValidationError or SigningError, so should always be called within a
@@ -93,8 +93,9 @@ class Extension(ModelBase):
         instance.clean_slug()
         instance.save()
 
-        # Now that the instance has been saved, we can generate a file path,
-        # move the file and set it to PENDING.
+        # Now that the instance has been saved, we can add the author,
+        # generate a file path, move the file and set it to PENDING.
+        instance.authors.add(user)
         instance.handle_file_operations(upload)
         instance.update(status=STATUS_PENDING)
         return instance

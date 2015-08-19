@@ -557,6 +557,15 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
         app = Webapp.objects.get(app_slug=content['slug'])
         eq_(app.is_packaged, True)
 
+    def test_create_extension_is_refused(self):
+        self.packaged_copy_over(self.file, 'extension.zip')
+        obj = self.create()
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': obj.uuid}))
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': obj.uuid}))
+        eq_(res.status_code, 400)
+
 
 class TestListHandler(CreateHandler, MktPaths):
     fixtures = fixture('user_2519', 'user_999')

@@ -101,7 +101,7 @@ echo '{"{{ settings.DOMAIN }}": {"key": "{{ consumers[0].key }}", "secret": "{{ 
 curling {{ settings.SITE_URL }}/api/v2/account/settings/mine/
 
 # This makes a POST to validate an hosted app:
-curling -d '{"manifest": "http://myapp.testmanifest.com/manifest.webapp"}' {{ settings.SITE_URL }}/api/v2/apps/validation/
+curling -d '{"manifest": "http://myapp.testmanifest.com/manifest.webapp"}' -X POST {{ settings.SITE_URL }}/api/v2/apps/validation/
         </pre>
       </div>
     {% endif %}

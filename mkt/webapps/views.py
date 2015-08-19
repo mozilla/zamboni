@@ -75,7 +75,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             uuid = request.DATA.get('manifest', '')
             is_packaged = False
         if not uuid:
-            raise serializers.ValidationError(
+            raise exceptions.ParseError(
                 'No upload or manifest specified.')
 
         try:
@@ -93,7 +93,10 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             raise exceptions.PermissionDenied('You do not own that app.')
 
         # Create app, user and fetch the icon.
-        obj = Webapp.from_upload(upload, is_packaged=is_packaged)
+        try:
+            obj = Webapp.from_upload(upload, is_packaged=is_packaged)
+        except serializers.ValidationError as e:
+            raise exceptions.ParseError(unicode(e))
         AddonUser(addon=obj, user=request.user).save()
         tasks.fetch_icon.delay(obj.pk, obj.latest_version.all_files[0].pk)
         record_action('app-submitted', request, {'app-id': obj.pk})

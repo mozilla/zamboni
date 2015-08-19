@@ -10,7 +10,7 @@ How to submit an app
 Submitting an app involves a few steps. The client must be logged in for all
 these steps and the user submitting the app must have accepted the `terms of use`_.
 
-1. :ref:`Validate your app <validation-post-label>`. The validation will return
+1. :ref:`Validate your app <app_validation-post-label>`. The validation will return
    a validation id.
 2. :ref:`Post your app <app-post-label>` using the validation id.
    This will create an app and populate the data with the
