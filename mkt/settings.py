@@ -328,7 +328,7 @@ WEBSITE_PROMO_IMG_PATH = UPLOADS_PATH + '/website_promo_imgs'
 #  File path for storing XPI/JAR files (or any files associated with an
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
-CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'mkt/site/certificates/roots.pem')
+CA_CERT_BUNDLE_PATH = path('mkt/site/certificates/roots.pem')
 
 # Where dumped apps will be written too.
 DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
@@ -489,7 +489,7 @@ RECOMMENDATIONS_ENABLED = False
 #
 # This is a sample AES_KEY, we will override this on each server.
 AES_KEYS = {
-    'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
+    'api:access:secret': path('mkt/api/sample-aes.key'),
 }
 
 # If you want to allow self-reviews for apps, then enable this.
@@ -1172,7 +1172,7 @@ WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 
 # The key we'll use to sign webapp receipts.
 # The file contains a PEM-encoded RSA private key.
-WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
+WEBAPPS_RECEIPT_KEY = path('mkt/webapps/tests/sample.key')
 
 WEBAPPS_UNIQUE_BY_DOMAIN = False
 
