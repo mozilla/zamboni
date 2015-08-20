@@ -474,6 +474,11 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         eq_(400, res.status_code)
         assert 'body' in data
 
+    def test_create_bad_rating(self):
+        res, data = self._create({'rating': 0})
+        eq_(400, res.status_code)
+        assert 'rating' in data
+
     def test_create_nonexistent_app(self):
         res, data = self._create({'app': -1})
         eq_(400, res.status_code)
