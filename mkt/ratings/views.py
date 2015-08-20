@@ -19,7 +19,6 @@ from mkt.api.authorization import (AllowOwner, AllowRelatedAppOwner, AnyOf,
                                    ByHttpMethod, GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
-from mkt.regions import get_region
 from mkt.webapps.models import Webapp
 from mkt.ratings.models import Review, ReviewFlag
 
@@ -99,16 +98,12 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
             app = Webapp.objects.by_identifier(ident)
         except Webapp.DoesNotExist:
             raise Http404
-        current_region = get_region()
-        if ((not app.is_public() or
-             not app.listed_in(region=current_region)) and
-                not check_addon_ownership(self.request, app)):
-            # App owners and admin can see the app even if it's not public
-            # or not available in the current region. Regular users or
-            # anonymous users can't.
-            raise PermissionDenied(
-                'The app requested is not public or not available in region '
-                '"%s".' % current_region.slug)
+
+        if not app.is_public() and not check_addon_ownership(
+                self.request, app):
+            # App owners and admin can see the app even if it's not public.
+            # Regular users or anonymous users can't.
+            raise PermissionDenied('The app requested is not public')
         return app
 
     def list(self, request, *args, **kwargs):
