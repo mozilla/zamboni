@@ -16,8 +16,8 @@ from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import use_master
-from mkt.site.storage_utils import (private_storage, storage_is_remote,
-                                    walk_storage)
+from mkt.site.storage_utils import (private_storage, public_storage,
+                                    storage_is_remote, walk_storage)
 from mkt.site.utils import chunked, days_ago, walkfiles
 
 from .indexers import WebappIndexer
@@ -541,12 +541,17 @@ def dump_user_installs_cron():
     ts.apply_async()
 
 
-def _remove_stale_files(path, age, msg):
-    for file_name in os.listdir(path):
+def _remove_stale_files(path, max_age_seconds, msg, storage):
+    # Local storage uses local time for file modification. S3 uses UTC time.
+    now = datetime.utcnow if storage_is_remote() else datetime.now
+
+    # Look for files (ignore directories) to delete in the path.
+    for file_name in storage.listdir(path)[1]:
         file_path = os.path.join(path, file_name)
-        if (os.stat(file_path).st_mtime < time.time() - age):
+        age = now() - storage.modified_time(file_path)
+        if age.total_seconds() > max_age_seconds:
             log.debug(msg.format(file_path))
-            os.remove(file_path)
+            storage.remove(file_path)
 
 
 @cronjobs.register
@@ -566,22 +571,26 @@ def mkt_gc(**kw):
     Nonce.objects.filter(created__lt=days_ago(1)).delete()
 
     # Delete the dump apps over 30 days.
-    _remove_stale_files(settings.DUMPED_APPS_PATH,
+    _remove_stale_files(os.path.join(settings.DUMPED_APPS_PATH, 'tarballs'),
                         settings.DUMPED_APPS_DAYS_DELETE,
-                        'Deleting old tarball: {0}')
+                        'Deleting old tarball: {0}',
+                        storage=public_storage)
 
     # Delete the dumped user installs over 30 days.
-    _remove_stale_files(settings.DUMPED_USERS_PATH,
+    _remove_stale_files(os.path.join(settings.DUMPED_USERS_PATH, 'tarballs'),
                         settings.DUMPED_USERS_DAYS_DELETE,
-                        'Deleting old tarball: {0}')
+                        'Deleting old tarball: {0}',
+                        storage=public_storage)
 
     # Delete old files in select directories under TMP_PATH.
     _remove_stale_files(os.path.join(settings.TMP_PATH, 'preview'),
                         settings.TMP_PATH_DAYS_DELETE,
-                        'Deleting TMP_PATH file: {0}')
+                        'Deleting TMP_PATH file: {0}',
+                        storage=private_storage)
     _remove_stale_files(os.path.join(settings.TMP_PATH, 'icon'),
                         settings.TMP_PATH_DAYS_DELETE,
-                        'Deleting TMP_PATH file: {0}')
+                        'Deleting TMP_PATH file: {0}',
+                        storage=private_storage)
 
     # Delete stale FileUploads.
     for fu in FileUpload.objects.filter(created__lte=days_ago(90)):
@@ -589,7 +598,7 @@ def mkt_gc(**kw):
                   .format(uuid=fu.uuid, path=fu.path))
         if fu.path:
             try:
-                os.remove(fu.path)
+                private_storage.remove(fu.path)
             except OSError:
                 pass
         fu.delete()
