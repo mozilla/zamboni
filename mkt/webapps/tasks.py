@@ -401,14 +401,13 @@ def compile_extra_files(target_directory, date):
     # Put some .txt files in place. This is done locally only, it's only useful
     # before the tar command is run.
     context = Context({'date': date, 'url': settings.SITE_URL})
-    files = ['license.txt', 'readme.txt']
-    created_files = []
-    for filename in files:
-        template = loader.get_template('webapps/dump/apps/%s' % filename)
-        dest = os.path.join(target_directory, filename)
-        local_storage.open(dest, 'w').write(template.render(context))
-        created_files.append(filename)
-    return created_files
+    extra_filenames = ['license.txt', 'readme.txt']
+    for extra_filename in extra_filenames:
+        template = loader.get_template('webapps/dump/apps/%s' % extra_filename)
+        dst = os.path.join(target_directory, extra_filename)
+        with local_storage.open(dst, 'w') as fd:
+            fd.write(template.render(context))
+    return extra_filenames
 
 
 @task
@@ -419,8 +418,8 @@ def compress_export(tarball_name, date):
 
     apps_dirpath = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
 
-    # In case there are no 'apps' directory, add a dummy file to make the apps
-    # directory in the tar archive non-empty It should not happen in prod, but
+    # In case apps_dirpath is empty, add a dummy file to make the apps
+    # directory in the tar archive non-empty. It should not happen in prod, but
     # it's nice to have it to prevent the task from failing entirely.
     with private_storage.open(
             os.path.join(apps_dirpath, '0', '.keep'), 'w') as fd:
@@ -478,12 +477,6 @@ def dump_user_installs(ids, **kw):
         target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users', hash[0])
         target_file = os.path.join(target_dir, '%s.json' % hash)
 
-        if not os.path.exists(target_dir):
-            try:
-                os.makedirs(target_dir)
-            except OSError:
-                pass  # Catch race condition if file exists now.
-
         # Gather data about user.
         installed = []
         zone = pytz.timezone(settings.TIME_ZONE)
@@ -509,32 +502,72 @@ def dump_user_installs(ids, **kw):
         }
 
         task_log.info('Dumping user {0} to {1}'.format(user.id, target_file))
-        json.dump(data, open(target_file, 'w'), cls=JSONEncoder)
+        with private_storage.open(target_file, 'w') as fileobj:
+            json.dump(data, fileobj, cls=JSONEncoder)
 
 
 @task
 def zip_users(*args, **kw):
-    # Note: not using storage because all these operations should be local.
-    today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
-    target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'tarballs')
-    target_file = os.path.join(target_dir, '{0}.tgz'.format(today))
+    date = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+    tarball_name = date
 
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
+    # We need a temporary directory on the local filesystem that will contain
+    # all files in order to call `tar`.
+    local_source_dir = tempfile.mkdtemp()
 
-    # Put some .txt files in place.
-    context = Context({'date': today, 'url': settings.SITE_URL})
-    files = ['license.txt', 'readme.txt']
-    for f in files:
-        template = loader.get_template('webapps/dump/users/' + f)
-        dest = os.path.join(settings.DUMPED_USERS_PATH, 'users', f)
-        open(dest, 'w').write(template.render(context))
+    users_dirpath = os.path.join(settings.DUMPED_USERS_PATH, 'users')
 
-    cmd = ['tar', 'czf', target_file, '-C',
-           settings.DUMPED_USERS_PATH, 'users']
-    task_log.info(u'Creating user dump {0}'.format(target_file))
+    # In case users_dirpath is empty, add a dummy file to make the users
+    # directory in the tar archive non-empty. It should not happen in prod, but
+    # it's nice to have it to prevent the task from failing entirely.
+    with private_storage.open(
+            os.path.join(users_dirpath, '0', '.keep'), 'w') as fd:
+        fd.write('.')
+
+    # Now, copy content from private_storage to that temp directory. We don't
+    # need to worry about creating the directories locally, the storage class
+    # does that for us.
+    for dirpath, dirnames, filenames in walk_storage(
+            users_dirpath, storage=private_storage):
+        for filename in filenames:
+            src_path = os.path.join(dirpath, filename)
+            dst_path = os.path.join(
+                local_source_dir, 'users', os.path.basename(dirpath), filename)
+            copy_to_storage(
+                src_path, dst_path, src_storage=private_storage,
+                dst_storage=local_storage)
+
+    # Put some .txt files in place locally.
+    context = Context({'date': date, 'url': settings.SITE_URL})
+    extra_filenames = ['license.txt', 'readme.txt']
+    for extra_filename in extra_filenames:
+        template = loader.get_template('webapps/dump/users/' + extra_filename)
+        dst = os.path.join(local_source_dir, extra_filename)
+        with local_storage.open(dst, 'w') as fd:
+            fd.write(template.render(context))
+
+    # All our files are now present locally, let's generate a local filename
+    # that will contain the final '.tar.gz' before it's copied over to
+    # public storage.
+    local_target_file = tempfile.NamedTemporaryFile(
+        suffix='.tgz', prefix='dumped-users-')
+
+    # tar ALL the things!
+    cmd = ['tar', 'czf', local_target_file.name, '-C',
+           local_source_dir] + ['users'] + extra_filenames
+    task_log.info(u'Creating user dump {0}'.format(local_target_file.name))
     subprocess.call(cmd)
-    return target_file
+
+    # Now copy the local tgz to the public storage.
+    remote_target_filename = os.path.join(
+        settings.DUMPED_USERS_PATH, 'tarballs', '%s.tgz' % tarball_name)
+    copy_to_storage(local_target_file.name, remote_target_filename,
+                    dst_storage=public_storage)
+
+    # Clean-up.
+    local_target_file.close()
+    rm_directory(local_source_dir)
+    return remote_target_filename
 
 
 class PreGenAPKError(Exception):
