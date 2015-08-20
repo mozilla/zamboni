@@ -135,6 +135,23 @@ class RatingSerializer(serializers.ModelSerializer):
             attrs[source] = self.object.addon
         return attrs
 
+    def validate_rating(self, attrs, source):
+        # Don't allow user to submit rating outside the range
+        valid_ratings = [1, 2, 3, 4, 5]
+
+        # ensure rating key is present
+        if source not in attrs:
+            raise serializers.ValidationError("Rating key is required")
+
+        value = attrs[source]
+        rating = int(value) if value else value
+
+        # ensure rating is in desired range
+        if rating not in valid_ratings:
+            raise serializers.ValidationError("Rating must be between 1-5")
+
+        return attrs
+
 
 class RatingFlagSerializer(serializers.ModelSerializer):
     user = serializers.Field()
