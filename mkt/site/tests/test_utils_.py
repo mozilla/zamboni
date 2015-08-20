@@ -16,8 +16,7 @@ from mkt.site.storage_utils import (LocalFileStorage, copy_to_storage,
                                     storage_is_remote)
 from mkt.site.tests import TestCase
 from mkt.site.utils import (ImageCheck, cache_ns_key, escape_all, resize_image,
-                            rm_local_tmp_dir, slug_validator, slugify,
-                            walkfiles)
+                            rm_local_tmp_dir, slug_validator, slugify)
 
 
 def get_image_path(name):
@@ -42,18 +41,6 @@ class TestAnimatedImages(TestCase):
         assert not img.is_image()
         img = ImageCheck(open(get_image_path('non-animated.gif')))
         assert img.is_image()
-
-
-def test_walkfiles():
-    basedir = tempfile.mkdtemp()
-    subdir = tempfile.mkdtemp(dir=basedir)
-    file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
-    file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
-    file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
-
-    eq_(sorted(walkfiles(basedir, suffix='_foo')),
-        sorted([file1path, file2path]))
-    eq_(sorted(walkfiles(basedir)), sorted([file1path, file3path, file2path]))
 
 
 u = u'Ελληνικά'

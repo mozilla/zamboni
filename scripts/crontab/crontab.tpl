@@ -13,10 +13,6 @@ HOME=/tmp
 20 * * * * %(z_cron)s addon_last_updated
 50 * * * * %(z_cron)s cleanup_extracted_file
 
-# 2014-06-23: Disabled to stop sending 2MB emails for old AMO files.
-# TODO: Determine if we need this. If not, remove. If so, re-enable after removing AMO files.
-# 55 * * * * %(z_cron)s unhide_disabled_files
-
 # Twice per day.
 25 17,5 * * * %(z_cron)s hide_disabled_files
 

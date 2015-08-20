@@ -419,14 +419,6 @@ def timestamp_index(index):
     return '%s-%s' % (index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
 
 
-def walkfiles(folder, suffix=''):
-    """Iterator over files in folder, recursively."""
-    return (os.path.join(basename, filename)
-            for basename, dirnames, filenames in os.walk(folder)
-            for filename in filenames
-            if filename.endswith(suffix))
-
-
 def cached_property(*args, **kw):
     # Handles invocation as a direct decorator or
     # with intermediate keyword arguments.
