@@ -563,7 +563,7 @@ class TestDumpUserInstalls(mkt.site.tests.TestCase):
         tarball_path = os.path.join(self.export_directory,
                                     'tarballs',
                                     date + '.tgz')
-        self.tarfile_file = public_storage.open(tarball_path)
+        self.tarfile_file = private_storage.open(tarball_path)
         self.tarfile = tarfile.open(fileobj=self.tarfile_file)
         return self.tarfile
 
