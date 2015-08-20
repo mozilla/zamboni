@@ -2,7 +2,6 @@
 import json
 import zipfile
 
-from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
@@ -13,6 +12,7 @@ import mkt.site.tests
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.webapps.models import Webapp
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import public_storage
 
 
 class TestPackagedManifest(mkt.site.tests.TestCase):
@@ -24,8 +24,8 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         self.app.update(is_packaged=True)
         # Create a fake package to go along with the app.
         self.latest_file = self.app.get_latest_file()
-        with storage.open(self.latest_file.file_path,
-                          mode='w') as package:
+        with public_storage.open(self.latest_file.file_path,
+                                 mode='w') as package:
             test_package = zipfile.ZipFile(package, 'w')
             test_package.writestr('manifest.webapp', 'foobar')
             test_package.close()
@@ -34,7 +34,7 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         self.url = self.app.get_manifest_url()
 
     def tearDown(self):
-        storage.delete(self.latest_file.file_path)
+        public_storage.delete(self.latest_file.file_path)
 
     def _mocked_json(self):
         data = {

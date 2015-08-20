@@ -4,7 +4,6 @@ import os
 import tempfile
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.forms.fields import Field
 from django.utils.encoding import smart_unicode
@@ -26,6 +25,7 @@ from mkt.developers.models import ActivityLog, AppLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
+from mkt.site.storage_utils import public_storage
 from mkt.site.tests import formset, initial
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory
@@ -668,9 +668,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % webapp.id)
 
-        eq_(storage.exists(dest), True)
+        eq_(public_storage.exists(dest), True)
 
-        eq_(Image.open(storage.open(dest)).size, (32, 32))
+        eq_(Image.open(public_storage.open(dest)).size, (32, 32))
 
     def test_edit_icon_log(self):
         self.test_edit_uploadedicon()
@@ -710,9 +710,9 @@ class TestEditMedia(TestEdit):
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % webapp.id)
 
-        assert storage.exists(dest), dest
+        assert public_storage.exists(dest), dest
 
-        eq_(Image.open(storage.open(dest)).size, (64, 64))
+        eq_(Image.open(public_storage.open(dest)).size, (64, 64))
 
     def test_media_types(self):
         res = self.client.get(self.get_url('media', edit=True))
@@ -752,12 +752,12 @@ class TestEditMedia(TestEdit):
     def setup_image_status(self):
         self.icon_dest = os.path.join(self.webapp.get_icon_dir(),
                                       '%s-64.png' % self.webapp.id)
-        with storage.open(self.icon_dest, 'w') as f:
+        with public_storage.open(self.icon_dest, 'w') as f:
             f.write('.')
 
         self.preview = self.webapp.previews.create()
         self.preview.save()
-        with storage.open(self.preview.thumbnail_path, 'w') as f:
+        with public_storage.open(self.preview.thumbnail_path, 'w') as f:
             f.write('.')
 
         self.url = self.webapp.get_dev_url('ajax.image.status')
@@ -780,7 +780,7 @@ class TestEditMedia(TestEdit):
 
     def test_icon_status_fails(self):
         self.setup_image_status()
-        storage.delete(self.icon_dest)
+        public_storage.delete(self.icon_dest)
         result = json.loads(self.client.get(self.url).content)
         assert not result['icons']
 
@@ -796,13 +796,13 @@ class TestEditMedia(TestEdit):
 
     def test_preview_status_fails(self):
         self.setup_image_status()
-        storage.delete(self.preview.thumbnail_path)
+        public_storage.delete(self.preview.thumbnail_path)
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
     def test_image_status_default(self):
         self.setup_image_status()
-        storage.delete(self.icon_dest)
+        public_storage.delete(self.icon_dest)
         self.webapp.update(icon_type='icon/photos')
         result = json.loads(self.client.get(self.url).content)
         assert result['icons']

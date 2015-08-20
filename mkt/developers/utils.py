@@ -3,7 +3,6 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
 
 from appvalidator.constants import PRERELEASE_PERMISSIONS
@@ -17,6 +16,7 @@ from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm
 from mkt.constants.base import PROMO_IMG_MINIMUMS
 from mkt.reviewers.models import EscalationQueue
+from mkt.site.storage_utils import private_storage
 from mkt.site.utils import ImageCheck
 from mkt.users.models import UserProfile
 
@@ -48,7 +48,7 @@ def check_upload(file_obj, upload_type, content_type):
     upload_hash = '%s.%s' % (uuid.uuid4().hex, ext)
     loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
 
-    with storage.open(loc, 'wb') as fd:
+    with private_storage.open(loc, 'wb') as fd:
         for chunk in file_obj:
             fd.write(chunk)
 

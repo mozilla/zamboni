@@ -9,7 +9,6 @@ from tempfile import mkdtemp
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
 
@@ -120,7 +119,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
 
         self.addon.addonuser_set.create(user_id=999)
 
-        with storage.open(self.file.file_path, 'w') as fh:
+        with public_storage.open(self.file.file_path, 'w') as fh:
             fh.write(json.dumps(original))
 
         # This is the hash to set the get_content_hash to, for showing

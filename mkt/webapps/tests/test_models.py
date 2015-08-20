@@ -15,7 +15,6 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db.models.signals import post_delete, post_save
 from django.test.utils import override_settings
@@ -46,7 +45,8 @@ from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.storage_utils import private_storage, storage_is_remote
+from mkt.site.storage_utils import (public_storage, private_storage,
+                                    storage_is_remote)
 from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase,
                             TestCase, WebappTestCase, user_factory)
 from mkt.site.utils import app_factory, version_factory
@@ -83,7 +83,7 @@ class TestWebapp(WebappTestCase):
         app = self.get_app()
         if storage_is_remote():
             path = '%s/%s-%s.png' % (app.get_icon_dir(), app.pk, 32)
-            expected = '%s?modified=never' % storage.url(path)
+            expected = '%s?modified=never' % public_storage.url(path)
         else:
             expected = (static_url('ADDON_ICON_URL')
                         % (str(app.id)[0:3], app.id, 32, 'never'))

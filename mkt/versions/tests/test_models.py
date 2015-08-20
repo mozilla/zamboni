@@ -109,7 +109,7 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         v.all_files[0].status = status
         return v
 
-    @mock.patch('mkt.versions.models.storage')
+    @mock.patch('mkt.versions.models.public_storage')
     def test_version_delete(self, storage_mock):
         self.version.delete()
         addon = Webapp.objects.get(pk=337141)
@@ -120,7 +120,7 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
 
         assert not storage_mock.delete.called
 
-    @mock.patch('mkt.versions.models.storage')
+    @mock.patch('mkt.versions.models.public_storage')
     def test_packaged_version_delete(self, storage_mock):
         addon = Webapp.objects.get(pk=337141)
         addon.update(is_packaged=True)

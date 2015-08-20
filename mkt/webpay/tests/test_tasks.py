@@ -2,13 +2,13 @@ from datetime import datetime, timedelta
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import fudge
 from fudge.inspector import arg
 from nose.tools import eq_
 from requests.exceptions import RequestException
 
+from mkt.site.storage_utils import public_storage
 from mkt.site.tests import TestCase
 from mkt.webpay import tasks
 from mkt.webpay.models import ProductIcon
@@ -90,7 +90,7 @@ class TestFetchProductIcon(TestCase):
         prod = ProductIcon.objects.get()
         eq_(prod.ext_size, ext_size)
         eq_(prod.size, size)
-        assert storage.exists(prod.storage_path()), 'Image not created'
+        assert public_storage.exists(prod.storage_path()), 'Image not created'
 
     @fudge.patch('mkt.webpay.tasks.requests')
     @fudge.patch('mkt.webpay.tasks._resize_image')
@@ -105,7 +105,7 @@ class TestFetchProductIcon(TestCase):
         self.fetch(url=url, ext_size=size, size=size)
         prod = ProductIcon.objects.get()
         eq_(prod.size, size)
-        assert storage.exists(prod.storage_path()), 'Image not created'
+        assert public_storage.exists(prod.storage_path()), 'Image not created'
 
     @fudge.patch('mkt.webpay.tasks.requests')
     @fudge.patch('mkt.webpay.tasks._resize_image')
@@ -122,4 +122,4 @@ class TestFetchProductIcon(TestCase):
         prod = ProductIcon.objects.get()
         eq_(prod.size, size)
         eq_(prod.ext_size, size)
-        assert storage.exists(prod.storage_path()), 'Image not created'
+        assert public_storage.exists(prod.storage_path()), 'Image not created'

@@ -4,7 +4,6 @@ import json
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 
 import mock
@@ -16,7 +15,7 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import copy_to_storage
+from mkt.site.storage_utils import copy_to_storage, public_storage
 from mkt.site.tests import formset, initial, MktPaths, TestCase, user_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.decorators import read_dev_agreement_required
@@ -812,9 +811,9 @@ class TestDetails(TestSubmit):
         eq_(ad.icon_type, 'image/png')
         for size in mkt.CONTENT_ICON_SIZES:
             fn = '%s-%s.png' % (ad.id, size)
-            assert storage.exists(os.path.join(ad.get_icon_dir(), fn)), (
-                'Expected %s in %s' % (
-                    fn, storage.listdir(ad.get_icon_dir())[1]))
+            assert public_storage.exists(
+                os.path.join(ad.get_icon_dir(), fn)), ('Expected %s in %s' % (
+                    fn, public_storage.listdir(ad.get_icon_dir())[1]))
 
     def test_screenshot_or_video_required(self):
         self._step()

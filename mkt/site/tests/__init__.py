@@ -13,7 +13,6 @@ from django.db import connections, transaction, DEFAULT_DB_ALIAS
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
@@ -42,6 +41,7 @@ from mkt.files.helpers import copyfileobj
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import private_storage
 from mkt.site.utils import app_factory, website_factory  # NOQA
 from mkt.translations.hold import clean_translations
 from mkt.translations.models import Translation
@@ -741,7 +741,7 @@ class MktPaths(object):
                             'mkt/submit/tests/webapps/%s' % name)
 
     def manifest_copy_over(self, dest, name):
-        with storage.open(dest, 'wb') as f:
+        with private_storage.open(dest, 'wb') as f:
             copyfileobj(open(self.manifest_path(name)), f)
 
     @staticmethod
@@ -762,7 +762,7 @@ class MktPaths(object):
             settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)
 
     def packaged_copy_over(self, dest, name):
-        with storage.open(dest, 'wb') as f:
+        with private_storage.open(dest, 'wb') as f:
             copyfileobj(open(self.packaged_app_path(name)), f)
 
 

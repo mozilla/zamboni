@@ -15,7 +15,6 @@ from django import http
 from django.conf import settings
 from django.core import paginator
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.core.serializers import json
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
@@ -39,8 +38,8 @@ import mkt
 from lib.utils import static_url
 from mkt.api.paginator import ESPaginator
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.site.storage_utils import (private_storage, public_storage,
-                                    storage_is_remote)
+from mkt.site.storage_utils import (local_storage, private_storage,
+                                    public_storage, storage_is_remote)
 from mkt.translations.models import Translation
 
 
@@ -278,11 +277,11 @@ class HttpResponseSendFile(http.HttpResponse):
             return iter([])
 
         chunk = 4096
-        fp = storage.open(self.path, 'rb')
+        fp = local_storage.open(self.path, 'rb')
         if 'wsgi.file_wrapper' in self.request.META:
             return self.request.META['wsgi.file_wrapper'](fp, chunk)
         else:
-            self['Content-Length'] = storage.size(self.path)
+            self['Content-Length'] = local_storage.size(self.path)
 
             def wrapper():
                 while 1:
