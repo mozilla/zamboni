@@ -4,7 +4,6 @@ import json
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_, ok_
@@ -13,8 +12,8 @@ import mkt
 import mkt.site.tests
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import (copy_to_storage, local_storage,
-                                    private_storage)
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 from mkt.site.utils import chunked
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
@@ -30,7 +29,8 @@ class UploadCreationMixin(object):
         if not local_storage.exists(fname):
             raise ValueError('The file %s does not exist :(', fname)
         if not private_storage.exists(fname):
-            copy_to_storage(fname)
+            copy_stored_file(fname, fname, src_storage=local_storage,
+                             dest_storage=private_storage)
         data = {
             'path': fname,
             'name': name,
@@ -73,7 +73,7 @@ class TestFileUpload(UploadTest):
         return FileUpload.from_post(data, 'filename.zip', len(self.data))
 
     def test_from_post_write_file(self):
-        eq_(storage.open(self.upload().path).read(), self.data)
+        eq_(private_storage.open(self.upload().path).read(), self.data)
 
     def test_from_post_filename(self):
         eq_(self.upload().name, 'filename.zip')
@@ -186,14 +186,14 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
         try:
-            with storage.open(filename, 'w') as f:
+            with public_storage.open(filename, 'w') as f:
                 f.write('sample data\n')
-            assert storage.exists(filename)
+            assert public_storage.exists(filename)
             file_.delete()
-            assert not storage.exists(filename)
+            assert not public_storage.exists(filename)
         finally:
-            if storage.exists(filename):
-                storage.delete(filename)
+            if public_storage.exists(filename):
+                public_storage.delete(filename)
 
     def test_delete_by_version(self):
         f = File.objects.get()
@@ -209,7 +209,8 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         present."""
         f = File.objects.get()
         filename = f.file_path
-        assert not storage.exists(filename), 'File exists at: %s' % filename
+        assert not public_storage.exists(filename), ('File exists at: %s' %
+                                                     filename)
         f.delete()
 
     def test_delete_signal(self):
@@ -249,11 +250,11 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
     def test_unhide_disabled_files(self):
         f = File.objects.get()
         f.status = mkt.STATUS_PUBLIC
-        with storage.open(f.guarded_file_path, 'wb') as fp:
+        with private_storage.open(f.guarded_file_path, 'wb') as fp:
             fp.write('some data\n')
         f.unhide_disabled_file()
-        assert storage.exists(f.file_path)
-        assert storage.open(f.file_path).size
+        assert public_storage.exists(f.file_path)
+        assert public_storage.open(f.file_path).size
 
     def test_generate_filename(self):
         f = File.objects.get()
@@ -284,11 +285,11 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         eq_(f.generate_filename(), 'none-0.1.7.webapp')
 
     def clean_files(self, f):
-        if not storage.exists(f.file_path):
-            with storage.open(f.file_path, 'w') as fp:
+        if not public_storage.exists(f.file_path):
+            with public_storage.open(f.file_path, 'w') as fp:
                 fp.write('sample data\n')
 
-    @mock.patch('mkt.files.models.storage')
+    @mock.patch('mkt.files.models.private_storage')
     def test_generate_hash(self, storage_mock):
         f = File()
         f.version = Version()

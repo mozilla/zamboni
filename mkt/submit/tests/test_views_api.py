@@ -3,7 +3,6 @@ import hashlib
 import json
 import os
 
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 
 from mock import patch
@@ -14,6 +13,7 @@ import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import public_storage
 from mkt.site.tests import MktPaths
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
@@ -484,7 +484,7 @@ class TestIconUpdate(RestOAuth, MktPaths):
         icon_dir = self.app.get_icon_dir()
         icon_path = os.path.join(icon_dir, '%s-128.png' % str(self.app.id))
         eq_(self.images_are_equal(self.mozball_image(),
-                                  storage.open(icon_path)), True)
+                                  public_storage.open(icon_path)), True)
 
     def test_invalid_owner_permissions(self):
         self.app.authors.clear()

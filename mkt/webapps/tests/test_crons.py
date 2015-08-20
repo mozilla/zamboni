@@ -3,7 +3,6 @@ import os
 from datetime import datetime
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
 import mock
@@ -66,7 +65,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
     @mock.patch('mkt.files.models.File.mv')
-    @mock.patch('mkt.files.models.storage')
+    @mock.patch('mkt.files.models.public_storage')
     def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Webapp.objects.update so the signal handler isn't called.
         Webapp.objects.filter(id=self.addon.id).update(
@@ -77,13 +76,13 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         # Check that f1 was moved.
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
-                                   src_storage=public_storage,
+                                   src_storage=m_storage,
                                    dest_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
     @mock.patch('mkt.files.models.File.mv')
-    @mock.patch('mkt.files.models.storage')
+    @mock.patch('mkt.files.models.public_storage')
     def test_move_admin_disabled_addon(self, m_storage, mv_mock):
         Webapp.objects.filter(id=self.addon.id).update(
             status=mkt.STATUS_DISABLED)
@@ -92,13 +91,13 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         # Check that f1 was moved.
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
-                                   src_storage=public_storage,
+                                   src_storage=m_storage,
                                    dest_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
     @mock.patch('mkt.files.models.File.mv')
-    @mock.patch('mkt.files.models.storage')
+    @mock.patch('mkt.files.models.private_storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
         Webapp.objects.filter(id=self.addon.id).update(
             status=mkt.STATUS_REJECTED)
@@ -108,11 +107,11 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
                                    src_storage=public_storage,
-                                   dest_storage=private_storage)
+                                   dest_storage=m_storage)
         eq_(mv_mock.call_count, 1)
 
     @mock.patch('mkt.files.models.File.mv')
-    @mock.patch('mkt.files.models.storage')
+    @mock.patch('mkt.files.models.public_storage')
     def test_ignore_deleted_versions(self, m_storage, mv_mock):
         # Apps only have 1 file and version delete only deletes one.
         self.version.delete()
@@ -132,16 +131,16 @@ class TestCleanup(mkt.site.tests.TestCase):
                                  '1', 'x.z')
 
     def test_not_cleaned(self):
-        with storage.open(self.file, 'w') as f:
+        with private_storage.open(self.file, 'w') as f:
             f.write('.')
         clean_old_signed()
-        assert storage.exists(self.file)
+        assert private_storage.exists(self.file)
 
     def test_cleaned(self):
-        with storage.open(self.file, 'w') as f:
+        with private_storage.open(self.file, 'w') as f:
             f.write('.')
         clean_old_signed(-60)
-        assert not storage.exists(self.file)
+        assert not private_storage.exists(self.file)
 
 
 @mock.patch('lib.crypto.packaged.sign_app')
@@ -173,9 +172,9 @@ class TestSignApps(mkt.site.tests.TestCase):
         v2 = self.app2.current_version
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]
-        with storage.open(file1.file_path, 'w') as f:
+        with public_storage.open(file1.file_path, 'w') as f:
             f.write('.')
-        with storage.open(file2.file_path, 'w') as f:
+        with public_storage.open(file2.file_path, 'w') as f:
             f.write('.')
         call_command('sign_apps')
         eq_(len(sign_mock.mock_calls), 2)

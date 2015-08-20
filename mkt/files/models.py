@@ -5,7 +5,6 @@ import unicodedata
 import uuid
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.dispatch import receiver
@@ -17,12 +16,12 @@ from jingo.helpers import urlparams
 from uuidfield.fields import UUIDField
 
 import mkt
-from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase, OnChangeMixin
+from mkt.site.storage_utils import (copy_stored_file, move_stored_file,
+                                    private_storage, public_storage)
 from mkt.site.utils import smart_path
-from mkt.site.storage_utils import private_storage, public_storage
 
 
 log = commonware.log.getLogger('z.files')
@@ -229,12 +228,12 @@ def cleanup_file(sender, instance, **kw):
             filename = getattr(instance, path, None)
         except models.ObjectDoesNotExist:
             return
-        # FIXME: This needs to check if the file is public or not and choose
-        # the appropriate storage backend.
-        if filename and storage.exists(filename):
+        if filename and (public_storage.exists(filename) or
+                         private_storage.exists(filename)):
             log.info('Removing filename: %s for file: %s'
                      % (filename, instance.pk))
-            storage.delete(filename)
+            public_storage.delete(filename)
+            private_storage.delete(filename)
 
 
 @File.on_change

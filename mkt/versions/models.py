@@ -6,7 +6,6 @@ import os
 import django.dispatch
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.files.storage import default_storage as storage
 from django.db import models
 
 import commonware.log
@@ -17,6 +16,7 @@ from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.utils import cached_property, sorted_groupby
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.versions.tasks import update_supported_locales_single
@@ -110,7 +110,7 @@ class Version(ModelBase):
 
         v.disable_old_files()
         # After the upload has been copied, remove the upload.
-        storage.delete(upload.path)
+        private_storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
 
@@ -152,9 +152,9 @@ class Version(ModelBase):
 
         if self.addon.is_packaged:
             # Unlink signed packages if packaged app.
-            storage.delete(f.signed_file_path)
+            public_storage.delete(f.signed_file_path)
             log.info(u'Unlinked file: %s' % f.signed_file_path)
-            storage.delete(f.signed_reviewer_file_path)
+            private_storage.delete(f.signed_reviewer_file_path)
             log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
 
         models.signals.post_delete.send(sender=Version, instance=self)

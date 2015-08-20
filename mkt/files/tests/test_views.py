@@ -5,7 +5,6 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.utils.http import http_date
 
@@ -20,6 +19,7 @@ import mkt.site.tests
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import private_storage
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -236,7 +236,7 @@ class TestFileViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def add_file(self, name, contents):
         dest = os.path.join(self.file_viewer.dest, name)
-        with storage.open(dest, 'w') as f:
+        with private_storage.open(dest, 'w') as f:
             f.write(contents)
 
     def test_files_xss(self):
@@ -371,7 +371,7 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def add_file(self, file_obj, name, contents):
         dest = os.path.join(file_obj.dest, name)
-        with storage.open(dest, 'w') as f:
+        with private_storage.open(dest, 'w') as f:
             f.write(contents)
 
     def file_url(self, file=None):
@@ -415,7 +415,8 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def test_view_one_missing(self):
         self.file_viewer.extract()
-        storage.delete(os.path.join(self.file_viewer.right.dest, 'script.js'))
+        private_storage.delete(os.path.join(self.file_viewer.right.dest,
+                                            'script.js'))
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         eq_(len(doc('pre')), 3)
@@ -424,7 +425,7 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
     def test_view_left_binary(self):
         self.file_viewer.extract()
         filename = os.path.join(self.file_viewer.left.dest, 'script.js')
-        with storage.open(filename, 'w') as f:
+        with private_storage.open(filename, 'w') as f:
             f.write('MZ')
         res = self.client.get(self.file_url(not_binary))
         assert 'This file is not viewable online' in res.content
@@ -432,7 +433,7 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
     def test_view_right_binary(self):
         self.file_viewer.extract()
         filename = os.path.join(self.file_viewer.right.dest, 'script.js')
-        with storage.open(filename, 'w') as f:
+        with private_storage.open(filename, 'w') as f:
             f.write('MZ')
         assert not self.file_viewer.is_diffable()
         res = self.client.get(self.file_url(not_binary))
@@ -440,7 +441,8 @@ class TestDiffViewer(FilesBase, mkt.site.tests.WebappTestCase):
 
     def test_different_tree(self):
         self.file_viewer.extract()
-        storage.delete(os.path.join(self.file_viewer.left.dest, not_binary))
+        private_storage.delete(os.path.join(self.file_viewer.left.dest,
+                                            not_binary))
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         eq_(doc('h4:last').text(), 'Deleted files:')

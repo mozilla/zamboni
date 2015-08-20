@@ -6,7 +6,6 @@ import zipfile
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 
 from mock import Mock, patch
@@ -103,12 +102,12 @@ class TestFileHelper(TestCase):
 
     def test_bom(self):
         dest = os.path.join(settings.TMP_PATH, 'test_bom')
-        with storage.open(dest, 'w') as f:
+        with private_storage.open(dest, 'w') as f:
             f.write('foo'.encode('utf-16'))
         self.viewer.select('foo')
         self.viewer.selected = {'full': dest, 'size': 1}
         eq_(self.viewer.read_file(), u'foo')
-        storage.delete(dest)
+        private_storage.delete(dest)
 
     def test_syntax(self):
         for filename, syntax in [('foo.rdf', 'xml'),
@@ -125,14 +124,15 @@ class TestFileHelper(TestCase):
     def test_file_order(self):
         self.viewer.extract()
         dest = self.viewer.dest
-        storage.open(os.path.join(dest, 'manifest.webapp'), 'w').close()
+        private_storage.open(os.path.join(dest, 'manifest.webapp'),
+                             'w').close()
         subdir = os.path.join(dest, 'chrome')
-        with storage.open(os.path.join(subdir, 'foo'), 'w') as f:
+        with private_storage.open(os.path.join(subdir, 'foo'), 'w') as f:
             f.write('.')
-        if not storage.exists(subdir):
+        if not private_storage.exists(subdir):
             # Might be on S3, which doesn't have directories (and
             # django-storages doesn't support empty files).
-            with storage.open(subdir, 'w') as f:
+            with private_storage.open(subdir, 'w') as f:
                 f.write('.')
         cache.clear()
         files = self.viewer.get_files().keys()
@@ -168,7 +168,7 @@ class TestFileHelper(TestCase):
     def test_delete_mid_read(self):
         self.viewer.extract()
         self.viewer.select('install.js')
-        storage.delete(os.path.join(self.viewer.dest, 'install.js'))
+        private_storage.delete(os.path.join(self.viewer.dest, 'install.js'))
         res = self.viewer.read_file()
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('That file no')
@@ -211,7 +211,8 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def test_diffable_one_missing(self):
         self.helper.extract()
-        storage.delete(os.path.join(self.helper.right.dest, 'index.html'))
+        private_storage.delete(os.path.join(self.helper.right.dest,
+                                            'index.html'))
         self.helper.select('index.html')
         assert self.helper.is_diffable()
 
@@ -227,7 +228,8 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def test_diffable_deleted_files(self):
         self.helper.extract()
-        storage.delete(os.path.join(self.helper.left.dest, 'index.html'))
+        private_storage.delete(os.path.join(self.helper.left.dest,
+                                            'index.html'))
         eq_('index.html' in self.helper.get_deleted_files(), True)
 
     def test_diffable_one_binary_same(self):
@@ -272,9 +274,9 @@ class TestDiffHelper(TestCase, MktPaths):
 
     def change(self, file, text, filename='main.js'):
         path = os.path.join(file, filename)
-        data = storage.open(path, 'r').read()
+        data = private_storage.open(path, 'r').read()
         data += text
-        with storage.open(path, 'w') as f:
+        with private_storage.open(path, 'w') as f:
             f.write(data)
 
 
