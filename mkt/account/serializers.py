@@ -66,6 +66,13 @@ class FeedbackSerializer(PotatoCaptchaSerializer):
 
         return attrs
 
+    def validate_feedback(self, attrs, source):
+
+        # ensure feedback is not submitted with only white spaces
+        if not attrs[source].strip():
+            raise serializers.ValidationError('Feedback can\'t be blank')
+        return attrs
+
 
 class LoginSerializer(serializers.Serializer):
     assertion = fields.CharField(required=True)

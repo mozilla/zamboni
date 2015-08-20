@@ -740,6 +740,12 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
         eq_(400, res.status_code)
         assert 'feedback' in data
 
+    def test_bad_feedback_data(self):
+        # test to ensure feedback with only white spaces are not submitted
+        res, data = self._call(data={'feedback': '    '})
+        eq_(400, res.status_code)
+        assert 'feedback' in data
+
 
 class TestNewsletter(RestOAuth):
     VALID_EMAIL = 'bob@example.com'
