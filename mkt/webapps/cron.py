@@ -1,6 +1,5 @@
 import logging
 import os
-import shutil
 import time
 from datetime import datetime
 
@@ -525,10 +524,13 @@ def dump_user_installs_cron():
     user_ids = set(Installed.objects.filter(user__enable_recommendations=True)
                    .values_list('user', flat=True))
 
-    # Remove old dump data before running.
-    user_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users')
-    if os.path.exists(user_dir):
-        shutil.rmtree(user_dir)
+    # Clean up the path where we'll store the individual json files from each
+    # user installs dump.
+    for dirpath, dirnames, filenames in walk_storage(
+            settings.DUMPED_USERS_PATH, storage=private_storage):
+        for filename in filenames:
+            private_storage.delete(os.path.join(dirpath, filename))
+    task_log.info('Cleaning up path {0}'.format(settings.DUMPED_USERS_PATH))
 
     grouping = []
     for chunk in chunked(user_ids, chunk_size):

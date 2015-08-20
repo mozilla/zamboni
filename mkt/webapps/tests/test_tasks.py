@@ -28,8 +28,9 @@ from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
+from mkt.webapps.cron import dump_user_installs_cron
 from mkt.webapps.models import AddonUser, Webapp
-from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
+from mkt.webapps.tasks import (dump_app, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests)
 
@@ -531,21 +532,45 @@ class TestDumpUserInstalls(mkt.site.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
         self.app.installed.create(user=self.user)
+        self.export_directory = mkdtemp()
         self.hash = hashlib.sha256('%s%s' % (str(self.user.pk),
                                              settings.SECRET_KEY)).hexdigest()
-        self.path = os.path.join(settings.DUMPED_USERS_PATH, 'users',
-                                 self.hash[0], '%s.json' % self.hash)
+        self.path = os.path.join('users', self.hash[0], '%s.json' % self.hash)
+        self.tarfile = None
+        self.tarfile_file = None
 
     def tearDown(self):
-        try:
-            os.unlink(self.path)
-        except OSError:
-            pass
+        rm_directory(self.export_directory)
+        if self.tarfile:
+            self.tarfile.close()
+        if self.tarfile_file:
+            self.tarfile_file.close()
         super(TestDumpUserInstalls, self).tearDown()
 
+    def _test_export_is_created(self):
+        expected_files = [
+            'license.txt',
+            'readme.txt',
+        ]
+        actual_files = self.tarfile.getnames()
+        for expected_file in expected_files:
+            assert expected_file in actual_files, expected_file
+
+    def create_export(self):
+        date = datetime.datetime.today().strftime('%Y-%m-%d')
+        with self.settings(DUMPED_USERS_PATH=self.export_directory):
+            dump_user_installs_cron()
+        tarball_path = os.path.join(self.export_directory,
+                                    'tarballs',
+                                    date + '.tgz')
+        self.tarfile_file = public_storage.open(tarball_path)
+        self.tarfile = tarfile.open(fileobj=self.tarfile_file)
+        return self.tarfile
+
     def dump_and_load(self):
-        dump_user_installs([self.user.pk])
-        return json.load(open(self.path, 'r'))
+        self.create_export()
+        self._test_export_is_created()
+        return json.load(self.tarfile.extractfile(self.path))
 
     def test_dump_user_installs(self):
         data = self.dump_and_load()
@@ -573,7 +598,7 @@ class TestDumpUserInstalls(mkt.site.tests.TestCase):
 
     def test_dump_recommendation_opt_out(self):
         self.user.update(enable_recommendations=False)
-        with self.assertRaises(IOError):
+        with self.assertRaises(KeyError):
             # File shouldn't exist b/c we didn't write it.
             self.dump_and_load()
 
@@ -627,6 +652,7 @@ class TestExportData(mkt.site.tests.TestCase):
             self.tarfile.close()
         if self.tarfile_file:
             self.tarfile_file.close()
+        super(TestExportData, self).tearDown()
 
     def create_export(self, name):
         with self.settings(DUMPED_APPS_PATH=self.export_directory):
