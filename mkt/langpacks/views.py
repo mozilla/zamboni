@@ -13,15 +13,14 @@ from mkt.access.acl import action_allowed
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowReadOnlyIfPublic, AnyOf,
-                                   GroupPermission)
+from mkt.api.authorization import AllowReadOnlyIfPublic, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.langpacks.models import LangPack
 from mkt.langpacks.serializers import (LangPackSerializer,
                                        LangPackUploadSerializer)
 from mkt.site.decorators import allow_cross_site_request
-from mkt.site.utils import HttpResponseSendFile
+from mkt.site.utils import get_file_response
 
 
 log = commonware.log.getLogger('z.api')
@@ -111,8 +110,8 @@ def download(request, langpack_id, **kwargs):
         langpack_etag = hashlib.sha256()
         langpack_etag.update(langpack.pk)
         langpack_etag.update(unicode(langpack.file_version))
-        return HttpResponseSendFile(request, langpack.file_path,
-                                    content_type='application/zip',
-                                    etag=langpack_etag.hexdigest())
+        return get_file_response(request, langpack.file_path,
+                                 content_type='application/zip',
+                                 etag=langpack_etag.hexdigest(), public=True)
     else:
         raise Http404

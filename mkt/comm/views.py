@@ -33,7 +33,7 @@ from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
                                   ThreadSerializerV2, ThreadSimpleSerializer)
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
-from mkt.site.utils import HttpResponseSendFile
+from mkt.site.utils import get_file_response
 
 
 class NoAuthentication(BaseAuthentication):
@@ -200,8 +200,7 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
         content_type = 'application/force-download'
         if attach.is_image():
             content_type = 'image'
-        return HttpResponseSendFile(
-            request, full_path, content_type=content_type)
+        return get_file_response(request, full_path, content_type=content_type)
 
     def create(self, request, note_id, *args, **kwargs):
         note = get_object_or_404(CommunicationNote, id=note_id)

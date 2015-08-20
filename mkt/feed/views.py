@@ -37,7 +37,7 @@ from mkt.operators.models import OperatorPermission
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
                                 PublicAppsFilter, RegionFilter)
 from mkt.site.storage_utils import public_storage
-from mkt.site.utils import HttpResponseSendFile
+from mkt.site.utils import get_file_response
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 from mkt.websites.indexers import WebsiteIndexer
@@ -523,8 +523,8 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         obj = self.get_object()
         if not getattr(obj, 'image_hash', None):
             raise Http404
-        return HttpResponseSendFile(request, obj.image_path(self.image_suffix),
-                                    content_type='image/png')
+        return get_file_response(request, obj.image_path(self.image_suffix),
+                                 content_type='image/png', public=True)
 
     def update(self, request, *args, **kwargs):
         obj = self.get_object()
