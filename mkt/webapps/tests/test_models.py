@@ -46,7 +46,7 @@ from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
-from mkt.site.storage_utils import storage_is_remote
+from mkt.site.storage_utils import private_storage, storage_is_remote
 from mkt.site.tests import (DynamicBoolFieldsTestMixin, ESTestCase,
                             TestCase, WebappTestCase, user_factory)
 from mkt.site.utils import app_factory, version_factory
@@ -1792,7 +1792,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         # Exercise separate code paths to loading the packaged app manifest.
         self.file.filename = 'mozBOM.zip'
         self.setup_files('mozBOM.zip')
-        assert WebAppParser().parse(self.file.file_path)
+        assert WebAppParser().parse(private_storage.open(self.file.file_path))
         self.assertTrue(self.app.has_icon_in_manifest())
 
 

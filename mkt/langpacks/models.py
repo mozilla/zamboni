@@ -4,7 +4,6 @@ import os.path
 from uuid import UUID
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import lazy
@@ -19,6 +18,7 @@ from mkt.langpacks.utils import LanguagePackParser
 from mkt.translations.utils import to_language
 from mkt.site.helpers import absolutify
 from mkt.site.models import ModelBase
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.utils import smart_path
 from mkt.webapps.models import get_cached_minifest
 
@@ -121,7 +121,7 @@ class LangPack(ModelBase):
         upload.path = smart_path(nfd_str(upload.path))
         if not self.uuid:
             self.reset_uuid()
-        if storage.exists(self.filename):
+        if public_storage.exists(self.file_path):
             # The filename should not exist. If it does, it means we are trying
             # to re-upload the same version. This should have been caught
             # before, so just raise an exception.
@@ -150,11 +150,12 @@ class LangPack(ModelBase):
             try:
                 # This will read the upload.path file, generate a signature
                 # and write the signed file to self.file_path.
-                sign_app(storage.open(upload.path), self.file_path, ids)
+                sign_app(private_storage.open(upload.path),
+                         self.file_path, ids)
             except SigningError:
                 log.info('[LangPack:%s] Signing failed' % self.pk)
-                if storage.exists(self.file_path):
-                    storage.delete(self.file_path)
+                if public_storage.exists(self.file_path):
+                    public_storage.delete(self.file_path)
                 raise
 
     @classmethod

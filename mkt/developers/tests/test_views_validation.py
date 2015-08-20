@@ -5,7 +5,6 @@ import os
 import tempfile
 
 from django import forms
-from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 
@@ -19,7 +18,8 @@ from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import storage_is_remote
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, storage_is_remote)
 from mkt.site.tests import MktPaths, TestCase
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.tests.test_views import BaseWebAppTest
@@ -30,7 +30,7 @@ class TestWebApps(TestCase, MktPaths):
 
     def setUp(self):
         self.webapp_path = tempfile.mktemp(suffix='.webapp')
-        with storage.open(self.webapp_path, 'wb') as f:
+        with private_storage.open(self.webapp_path, 'wb') as f:
             copyfileobj(open(os.path.join(os.path.dirname(__file__),
                                           'addons', 'mozball.webapp')),
                         f)
@@ -41,17 +41,17 @@ class TestWebApps(TestCase, MktPaths):
 
     def tearDown(self):
         for tmp in self.tmp_files:
-            storage.delete(tmp)
+            private_storage.delete(tmp)
 
     def webapp(self, data=None, contents='', suffix='.webapp'):
         tmp = tempfile.mktemp(suffix=suffix)
         self.tmp_files.append(tmp)
-        with storage.open(tmp, 'wb') as f:
+        with private_storage.open(tmp, 'wb') as f:
             f.write(json.dumps(data) if data else contents)
-        return tmp
+        return private_storage.open(tmp)
 
     def test_parse(self):
-        wp = WebAppParser().parse(self.webapp_path)
+        wp = WebAppParser().parse(private_storage.open(self.webapp_path))
         eq_(wp['guid'], None)
         eq_(wp['description']['en-US'],
             u'Exciting Open Web development action!')
@@ -66,10 +66,9 @@ class TestWebApps(TestCase, MktPaths):
     def test_parse_packaged(self):
         path = self.packaged_app_path('mozball.zip')
         if storage_is_remote():
-            with open(path) as local_f:
-                with storage.open(path, 'w') as remote_f:
-                    copyfileobj(local_f, remote_f)
-        wp = WebAppParser().parse(path)
+            copy_stored_file(path, path, src_storage=local_storage,
+                             dest_storage=private_storage)
+        wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
         eq_(wp['description']['en-US'],
@@ -84,10 +83,9 @@ class TestWebApps(TestCase, MktPaths):
     def test_parse_packaged_BOM(self):
         path = self.packaged_app_path('mozBOM.zip')
         if storage_is_remote():
-            with open(path) as local_f:
-                with storage.open(path, 'w') as remote_f:
-                    copyfileobj(local_f, remote_f)
-        wp = WebAppParser().parse(path)
+            copy_stored_file(path, path, src_storage=local_storage,
+                             dest_storage=private_storage)
+        wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
         eq_(wp['description']['en-US'], u'Exciting BOM action!')
@@ -99,11 +97,10 @@ class TestWebApps(TestCase, MktPaths):
     def test_no_manifest_at_root(self):
         path = self.packaged_app_path('no-manifest-at-root.zip')
         if storage_is_remote():
-            with open(path) as local_f:
-                with storage.open(path, 'w') as remote_f:
-                    copyfileobj(local_f, remote_f)
+            copy_stored_file(path, path, src_storage=local_storage,
+                             dest_storage=private_storage)
         with self.assertRaises(forms.ValidationError) as exc:
-            WebAppParser().parse(path)
+            WebAppParser().parse(private_storage.open(path))
         m = exc.exception.messages[0]
         assert m.startswith('The file "manifest.webapp" was not found'), (
             'Unexpected: %s' % m)

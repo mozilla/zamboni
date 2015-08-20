@@ -3,7 +3,6 @@ import json
 import os
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.forms import ValidationError
 
 from mock import patch
@@ -13,6 +12,7 @@ from lib.crypto.packaged import SigningError
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.langpacks.models import LangPack
 from mkt.site.tests import TestCase
+from mkt.site.storage_utils import private_storage, public_storage
 
 
 class TestLangPackBasic(TestCase):
@@ -136,7 +136,7 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         eq_(langpack.filename, '%s-%s.zip' % (langpack.uuid, langpack.version))
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path.startswith(langpack.path_prefix))
-        ok_(storage.exists(langpack.file_path))
+        ok_(public_storage.exists(langpack.file_path))
         eq_(langpack.get_manifest_json(), self.expected_manifest)
         ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
@@ -165,7 +165,7 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         ok_(langpack.filename in langpack.file_path)
         ok_(langpack.file_path != original_file_path)
         ok_(langpack.file_version > original_file_version)
-        ok_(storage.exists(langpack.file_path))
+        ok_(public_storage.exists(langpack.file_path))
         ok_(LangPack.objects.get(pk=langpack.uuid))
         eq_(LangPack.objects.count(), 1)
         ok_(langpack.manifest != original_manifest)
@@ -255,7 +255,7 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         with self.assertRaises(SigningError):
             LangPack.from_upload(upload)
         # Test that we didn't delete the upload file
-        ok_(storage.exists(upload.path))
+        ok_(private_storage.exists(upload.path))
 
     @patch('mkt.langpacks.models.sign_app')
     def test_upload_sign_error_existing(self, sign_app_mock):
@@ -267,13 +267,13 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         original_file_version = langpack.file_version
         original_version = langpack.version
         # create_langpack() doesn't create a fake file, let's add one.
-        with storage.open(langpack.file_path, 'w') as f:
+        with public_storage.open(langpack.file_path, 'w') as f:
             f.write('.')
         upload = self.upload('langpack')
         with self.assertRaises(SigningError):
             LangPack.from_upload(upload, instance=langpack)
         # Test that we didn't delete the upload file
-        ok_(storage.exists(upload.path))
+        ok_(private_storage.exists(upload.path))
         # Test that we didn't delete the existing filename or alter the
         # existing langpack in the database.
         eq_(LangPack.objects.count(), 1)
@@ -282,10 +282,10 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         eq_(langpack.file_path, original_file_path)
         eq_(original_file_version, langpack.file_version)
         eq_(original_version, langpack.version)
-        ok_(storage.exists(langpack.file_path))
+        ok_(public_storage.exists(langpack.file_path))
 
         # Cleanup
-        storage.delete(langpack.file_path)
+        public_storage.delete(langpack.file_path)
 
 
 class TestLangPackDeletion(TestCase):
@@ -294,22 +294,23 @@ class TestLangPackDeletion(TestCase):
         file on the filesystem is also deleted."""
         langpack = LangPack.objects.create(version='0.1')
         file_path = langpack.file_path
-        with storage.open(file_path, 'w') as f:
+        with public_storage.open(file_path, 'w') as f:
             f.write('sample data\n')
-        assert storage.exists(file_path)
+        assert public_storage.exists(file_path)
         try:
             langpack.delete()
-            assert not storage.exists(file_path)
+            assert not public_storage.exists(file_path)
         finally:
-            if storage.exists(file_path):
-                storage.delete(file_path)
+            if public_storage.exists(file_path):
+                public_storage.delete(file_path)
 
     def test_delete_no_file(self):
         """Test that the LangPack instance can be deleted without the file
         being present."""
         langpack = LangPack.objects.create(version='0.1')
         filename = langpack.file_path
-        assert not storage.exists(filename), 'File exists at: %s' % filename
+        x = public_storage.exists(filename)
+        assert not x, 'File exists at: %s' % filename
         langpack.delete()
 
     def test_delete_signal(self):
