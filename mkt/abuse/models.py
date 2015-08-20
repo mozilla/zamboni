@@ -40,7 +40,7 @@ class AbuseReport(ModelBase):
         if self.reporter:
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
-            user_name = 'An anonymous coward'
+            user_name = 'An anonymous user'
 
         if self.website:
             # For Websites, it's not just abuse, the scope is broader, it could
