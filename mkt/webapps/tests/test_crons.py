@@ -218,6 +218,15 @@ class TestGarbage(mkt.site.tests.TestCase):
         assert not private_mock.remove.called
         assert public_mock.remove.call_args_list[0][0][0].endswith('lol')
 
+    def test_dump_delete_private(self, public_mock, private_mock):
+        private_mock.listdir.return_value = (['dirlol'], ['lol'])
+        private_mock.modified_time.return_value = self.days_ago(1000)
+
+        mkt_gc()
+        assert private_mock.remove.called
+        assert not public_mock.remove.called
+        assert private_mock.remove.call_args_list[0][0][0].endswith('lol')
+
     def test_new_no_delete(self, public_mock, private_mock):
         public_mock.listdir.return_value = (['dirlol'], ['lol'])
         public_mock.modified_time.return_value = self.days_ago(1)

@@ -576,11 +576,12 @@ def mkt_gc(**kw):
                         'Deleting old tarball: {0}',
                         storage=public_storage)
 
-    # Delete the dumped user installs over 30 days.
+    # Delete the dumped user installs over 30 days. Those are using private
+    # storage.
     _remove_stale_files(os.path.join(settings.DUMPED_USERS_PATH, 'tarballs'),
                         settings.DUMPED_USERS_DAYS_DELETE,
                         'Deleting old tarball: {0}',
-                        storage=public_storage)
+                        storage=private_storage)
 
     # Delete old files in select directories under TMP_PATH.
     _remove_stale_files(os.path.join(settings.TMP_PATH, 'preview'),

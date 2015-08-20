@@ -562,7 +562,7 @@ def zip_users(*args, **kw):
     remote_target_filename = os.path.join(
         settings.DUMPED_USERS_PATH, 'tarballs', '%s.tgz' % tarball_name)
     copy_to_storage(local_target_file.name, remote_target_filename,
-                    dst_storage=public_storage)
+                    dst_storage=private_storage)
 
     # Clean-up.
     local_target_file.close()
