@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-import time
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -188,9 +187,8 @@ class TestSignApps(mkt.site.tests.TestCase):
         eq_(sign_mock.mock_calls[1][1][1], file2.signed_file_path)
 
 
-@mock.patch('os.stat')
-@mock.patch('os.listdir')
-@mock.patch('os.remove')
+@mock.patch('mkt.webapps.cron.private_storage')
+@mock.patch('mkt.webapps.cron.public_storage')
 class TestGarbage(mkt.site.tests.TestCase):
 
     def setUp(self):
@@ -199,33 +197,36 @@ class TestGarbage(mkt.site.tests.TestCase):
         mkt.log(mkt.LOG.CUSTOM_TEXT, 'testing', user=self.user,
                 created=datetime(2001, 1, 1))
 
-    def test_garbage_collection(self, rm_mock, ls_mock, stat_mock):
+    def test_garbage_collection(self, public_mock, private_mock):
         eq_(ActivityLog.objects.all().count(), 1)
         mkt_gc()
         eq_(ActivityLog.objects.all().count(), 0)
 
-    def test_nonce(self, rm_mock, ls_mock, stat_mock):
+    def test_nonce(self, public_mock, private_mock):
         nonce = Nonce.objects.create(nonce='a', timestamp=1, client_key='b')
         nonce.update(created=self.days_ago(2))
         eq_(Nonce.objects.count(), 1)
         mkt_gc()
         eq_(Nonce.objects.count(), 0)
 
-    def test_dump_delete(self, rm_mock, ls_mock, stat_mock):
-        ls_mock.return_value = ['lol']
-        stat_mock.return_value = StatMock(days_ago=1000)
+    def test_dump_delete(self, public_mock, private_mock):
+        public_mock.listdir.return_value = (['dirlol'], ['lol'])
+        public_mock.modified_time.return_value = self.days_ago(1000)
 
         mkt_gc()
-        assert rm_mock.call_args_list[0][0][0].endswith('lol')
+        assert public_mock.remove.called
+        assert not private_mock.remove.called
+        assert public_mock.remove.call_args_list[0][0][0].endswith('lol')
 
-    def test_new_no_delete(self, rm_mock, ls_mock, stat_mock):
-        ls_mock.return_value = ['lol']
-        stat_mock.return_value = StatMock(days_ago=1)
+    def test_new_no_delete(self, public_mock, private_mock):
+        public_mock.listdir.return_value = (['dirlol'], ['lol'])
+        public_mock.modified_time.return_value = self.days_ago(1)
 
         mkt_gc()
-        assert not rm_mock.called
+        assert not public_mock.remove.called
+        assert not private_mock.remove.called
 
-    def test_old_and_new(self, rm_mock, ls_mock, stat_mock):
+    def test_old_and_new(self, public_mock, private_mock):
         fu_new = FileUpload.objects.create(path='/tmp/bar', name='bar')
         fu_new.created = self.days_ago(5)
         fu_old = FileUpload.objects.create(path='/tmp/foo', name='foo')
@@ -234,24 +235,19 @@ class TestGarbage(mkt.site.tests.TestCase):
         mkt_gc()
 
         eq_(FileUpload.objects.count(), 1)
-        assert rm_mock.called
-        eq_(rm_mock.call_args[0][0], fu_old.path)
+        assert private_mock.remove.called
+        assert not public_mock.remove.called
+        eq_(private_mock.remove.call_args[0][0], fu_old.path)
 
-    def test_old_no_path(self, rm_mock, ls_mock, stat_mock):
+    def test_old_no_path(self, public_mock, private_mock):
         fu_old = FileUpload.objects.create(path='', name='foo')
         fu_old.update(created=self.days_ago(91))
 
         mkt_gc()
 
         eq_(FileUpload.objects.count(), 0)
-        assert not rm_mock.called
-
-
-class StatMock(object):
-    def __init__(self, days_ago):
-        self.st_mtime = time.mktime(
-            (datetime.now() - timedelta(days_ago)).timetuple())
-        self.st_size = 100
+        assert not private_mock.remove.called
+        assert not public_mock.remove.called
 
 
 class TestUpdateInstalls(mkt.site.tests.TestCase):
