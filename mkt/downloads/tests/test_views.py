@@ -22,6 +22,9 @@ class TestDownload(BasePackagedAppTest):
         super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
+    )
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
         res = self.client.get(self.url)
@@ -65,6 +68,9 @@ class TestDownload(BasePackagedAppTest):
         self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 404)
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
+    )
     @mock.patch('lib.crypto.packaged.sign')
     def test_not_public_but_owner(self, sign):
         self.login('steamcube@mozilla.com')
@@ -80,6 +86,9 @@ class TestDownload(BasePackagedAppTest):
         self.file.update(status=mkt.STATUS_PENDING)
         eq_(self.client.get(self.url).status_code, 404)
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
+    )
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_owner(self):
         self.login('steamcube@mozilla.com')
@@ -88,6 +97,9 @@ class TestDownload(BasePackagedAppTest):
         res = self.client.get(self.url)
         self.assert3xx(res, path)
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
+    )
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_admin(self):
         self.login('admin@mozilla.com')
