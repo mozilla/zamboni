@@ -34,6 +34,7 @@ def download_file(request, file_id, type=None):
     # We treat blocked files like public files so users get the update.
     if file_.status in [mkt.STATUS_PUBLIC, mkt.STATUS_BLOCKED]:
         path = file_.signed_file_path
+        public = True
 
     else:
         # This is someone asking for an unsigned packaged app.
@@ -41,7 +42,8 @@ def download_file(request, file_id, type=None):
             raise http.Http404()
 
         path = file_.file_path
+        public = False
 
     log.info('Downloading package: %s from %s' % (webapp.id, path))
     return get_file_response(request, path, content_type='application/zip',
-                             etag=file_.hash.split(':')[-1])
+                             etag=file_.hash.split(':')[-1], public=public)
