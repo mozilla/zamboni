@@ -30,10 +30,18 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         super(TestExtensionUpload, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
 
-    def create_extension(self):
+    def create_extension(self, **kwargs):
         extension = Extension.objects.create(
-            default_language='fr', version='0.9', manifest={})
+            default_language='fr', version='0.9', manifest={}, **kwargs)
         return extension
+
+    def test_auto_create_slug(self):
+        extension = self.create_extension()
+        eq_(extension.slug, 'extension')
+        extension = self.create_extension()
+        eq_(extension.slug, 'extension-1')
+        extension = self.create_extension(name=u'Mŷ Ëxtension')
+        eq_(extension.slug, u'mŷ-ëxtension')
 
     def test_upload_new(self):
         eq_(Extension.objects.count(), 0)

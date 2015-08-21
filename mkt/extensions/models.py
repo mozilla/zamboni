@@ -90,7 +90,6 @@ class Extension(ModelBase):
         # Build a new instance.
         instance = cls(**data)
         instance.manifest = parser.manifest_contents
-        instance.clean_slug()
         instance.save()
 
         # Now that the instance has been saved, we can add the author,
@@ -140,6 +139,11 @@ class Extension(ModelBase):
     @property
     def path_prefix(self):
         return os.path.join(settings.ADDONS_PATH, 'extensions', str(self.pk))
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.clean_slug()
+        return super(Extension, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
