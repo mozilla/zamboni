@@ -1,6 +1,5 @@
 import json
 import os
-import shutil
 import urlparse
 
 from django.conf import settings
@@ -19,7 +18,8 @@ import mkt.site.tests
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.files.models import File
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -54,11 +54,13 @@ class FilesBase(object):
 
         for file_obj in self.files:
             src = os.path.join(settings.ROOT, packaged_app)
-            try:
-                os.makedirs(os.path.dirname(file_obj.file_path))
-            except OSError:
-                pass
-            shutil.copyfile(src, file_obj.file_path)
+            if file_obj.status in mkt.LISTED_STATUSES:
+                target = public_storage
+            else:
+                target = private_storage
+            copy_stored_file(src, file_obj.file_path,
+                             src_storage=local_storage,
+                             dest_storage=target)
 
         self.file_viewer = FileViewer(self.file)
 
