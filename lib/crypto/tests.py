@@ -15,7 +15,7 @@ from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
 from mkt.site.storage_utils import copy_to_storage
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import public_storage, private_storage
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -95,7 +95,7 @@ class PackagedApp(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
     def setup_files(self):
         # Clean out any left over stuff.
-        private_storage.delete(self.file.signed_file_path)
+        public_storage.delete(self.file.signed_file_path)
         private_storage.delete(self.file.signed_reviewer_file_path)
 
         # Make sure the source file is there.
@@ -123,7 +123,7 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
 
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_already_exists(self, sign_app):
-        with private_storage.open(self.file.signed_file_path, 'w') as f:
+        with public_storage.open(self.file.signed_file_path, 'w') as f:
             f.write('.')
         assert packaged.sign(self.version.pk)
         assert not sign_app.called
@@ -195,7 +195,7 @@ class TestPackaged(PackagedApp, mkt.site.tests.TestCase):
         post().status_code = 200
         post().content = '{"zigbert.rsa": ""}'
         packaged.sign(self.version.pk)
-        zf = zipfile.ZipFile(private_storage.open(self.file.signed_file_path),
+        zf = zipfile.ZipFile(public_storage.open(self.file.signed_file_path),
                              mode='r')
         ids_data = zf.read('META-INF/ids.json')
         eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
