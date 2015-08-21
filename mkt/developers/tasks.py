@@ -162,7 +162,7 @@ def resize_icon(src, dst, sizes, storage=private_storage, **kw):
         for s in sizes:
             size_dst = '%s-%s.png' % (dst, s)
             resize_image(src, size_dst, (s, s), remove_src=False,
-                         storage=storage)
+                         src_storage=storage)
             pngcrush_image.delay(size_dst, **kw)
 
         with storage.open(src) as fd:
