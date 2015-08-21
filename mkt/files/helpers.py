@@ -21,7 +21,8 @@ from appvalidator.testcases.packagelayout import (
 
 import mkt
 from mkt.files.utils import extract_zip, get_md5
-from mkt.site.storage_utils import (private_storage, public_storage,
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage,
                                     storage_is_remote, walk_storage)
 
 
@@ -104,9 +105,9 @@ class FileViewer(object):
                 for fname in files:
                     file_src = os.path.join(root, fname)
                     file_dest = os.path.join(storage_root, fname)
-                    with open(file_src) as local_f:
-                        with private_storage.open(file_dest, 'w') as remote_f:
-                            copyfileobj(local_f, remote_f)
+                    copy_stored_file(file_src, file_dest,
+                                     src_storage=local_storage,
+                                     dest_storage=private_storage)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
             raise
