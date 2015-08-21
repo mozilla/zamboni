@@ -8,6 +8,7 @@ from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.comm.views import CommAppListView, ThreadViewSetV2
+from mkt.extensions.urls import extensions
 from mkt.games.views import DailyGamesView
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
@@ -73,6 +74,8 @@ urlpatterns = patterns(
     url(r'^comm/app/%s' % mkt.APP_SLUG,
         CommAppListView.as_view({'get': 'list'}), name='comm-app-list'),
     url(r'^comm/thread', include(comm_thread.urls)),
+
+    url(r'^extensions/', include(extensions.urls)),
 
     url(r'^feed/builder/$', views.FeedBuilderView.as_view(),
         name='feed.builder'),

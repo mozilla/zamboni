@@ -1,13 +1,13 @@
-.. _validation:
+.. _app_validation:
 
-Validation
-==========
+App Validation
+==============
 
 .. note:: The validation does not require you to be authenticated, however you
     cannot create apps from those validations. To validate and then submit an
     app you must be authenticated with the same account for both steps.
 
-.. _validation-post-label:
+.. _app_validation-post-label:
 
 .. http:post:: /api/v2/apps/validation/
 
@@ -45,19 +45,18 @@ Validation
 
     **Response**
 
-    Returns a :ref:`validation <validation-response-label>` result.
+    Returns a :ref:`validation <app_validation-response-label>` result.
 
     :status 201: successfully created, processed.
     :status 202: successfully created, still processing.
 
-.. _validation-response-label:
+.. _app_validation-response-label:
 
 .. http:get:: /api/v2/apps/validation/(string:id)/
 
     **Response**
 
-    Returns a particular validation. You should poll this API to it returns
-    a processed result before moving on with the submission process.
+    Returns a particular validation.
 
     :param id: the id of the validation.
     :type id: string

@@ -7,10 +7,13 @@ from django.forms import ValidationError
 from mkt.extensions.models import Extension
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.storage_utils import private_storage
-from mkt.site.tests import TestCase
+from mkt.site.tests import fixture, TestCase
+from mkt.users.models import UserProfile
 
 
 class TestExtensionUpload(UploadCreationMixin, UploadTest):
+    fixtures = fixture('user_2519')
+
     # Expected manifest, to test zip file parsing.
     expected_manifest = {
         'description': u'A Dummÿ Extension',
@@ -23,6 +26,10 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         'name': u'My Lîttle Extension'
     }
 
+    def setUp(self):
+        super(TestExtensionUpload, self).setUp()
+        self.user = UserProfile.objects.get(pk=2519)
+
     def create_extension(self):
         extension = Extension.objects.create(
             default_language='fr', version='0.9', manifest={})
@@ -31,8 +38,9 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
     def test_upload_new(self):
         eq_(Extension.objects.count(), 0)
         upload = self.upload('extension')
-        extension = Extension.from_upload(upload)
+        extension = Extension.from_upload(upload, user=self.user)
         eq_(extension.version, '0.1')
+        eq_(list(extension.authors.all()), [self.user])
         eq_(extension.name, u'My Lîttle Extension')
         eq_(extension.default_language, 'en-GB')
         eq_(extension.slug, u'my-lîttle-extension')
