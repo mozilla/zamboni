@@ -10,6 +10,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.site.storage_utils import private_storage, public_storage
 
 
 class TestDownload(BasePackagedAppTest):
@@ -21,14 +22,28 @@ class TestDownload(BasePackagedAppTest):
         super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
 
-    @override_settings(XSENDFILE=True)
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_download(self):
         res = self.client.get(self.url)
+        path = public_storage.url(self.file.signed_file_path)
+        self.assert3xx(res, path)
+        assert settings.XSENDFILE_HEADER not in res
+
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage'
+    )
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_download_local_storage(self):
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert settings.XSENDFILE_HEADER in res
+        eq_(res['X-Accel-Redirect'], self.file.signed_file_path)
 
-    @override_settings(XSENDFILE=True)
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage'
+    )
     def test_download_already_signed(self):
         self.client.logout()
 
@@ -54,7 +69,9 @@ class TestDownload(BasePackagedAppTest):
     def test_not_public_but_owner(self, sign):
         self.login('steamcube@mozilla.com')
         self.file.update(status=mkt.STATUS_PENDING)
-        eq_(self.client.get(self.url).status_code, 200)
+        path = private_storage.url(self.file.file_path)
+        res = self.client.get(self.url)
+        self.assert3xx(res, path)
         assert not sign.called
 
     @mock.patch('lib.crypto.packaged.sign')
@@ -66,14 +83,23 @@ class TestDownload(BasePackagedAppTest):
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_owner(self):
         self.login('steamcube@mozilla.com')
-        eq_(self.client.get(self.url).status_code, 200)
+        self.file.update(status=mkt.STATUS_DISABLED)
+        path = private_storage.url(self.file.file_path)
+        res = self.client.get(self.url)
+        self.assert3xx(res, path)
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_admin(self):
         self.login('admin@mozilla.com')
-        eq_(self.client.get(self.url).status_code, 200)
+        self.file.update(status=mkt.STATUS_DISABLED)
+        path = private_storage.url(self.file.file_path)
+        res = self.client.get(self.url)
+        self.assert3xx(res, path)
 
-    @override_settings(XSENDFILE=True)
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage'
+    )
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_file_blocklisted(self):
         self.file.update(status=mkt.STATUS_BLOCKED)

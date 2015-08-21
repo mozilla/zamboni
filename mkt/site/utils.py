@@ -251,6 +251,8 @@ def get_file_response(request, path, content=None, status=None,
                       public=True):
     if storage_is_remote():
         storage = public_storage if public else private_storage
+        if not storage.exists(path):
+            raise http.Http404
         # Note: The `content_type` and `etag` will have no effect here. It
         # should be set when saving the item to S3.
         return http.HttpResponseRedirect(storage.url(path))
