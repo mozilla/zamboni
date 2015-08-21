@@ -253,7 +253,7 @@ def get_file_response(request, path, content=None, status=None,
         storage = public_storage if public else private_storage
         # Note: The `content_type` and `etag` will have no effect here. It
         # should be set when saving the item to S3.
-        return http.HttpResonseRedirect(storage.url(path))
+        return http.HttpResponseRedirect(storage.url(path))
     else:
         return HttpResponseSendFile(request, path, content_type=content_type,
                                     etag=etag)
