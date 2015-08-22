@@ -163,8 +163,7 @@ def resize_icon(src, dst, sizes, storage=private_storage, **kw):
             size_dst = '%s-%s.png' % (dst, s)
             resize_image(src, size_dst, (s, s), remove_src=False,
                          src_storage=storage)
-            pngcrush_image.delay(size_dst, **kw)
-
+            pngcrush_image.delay(size_dst, storage=storage, **kw)
         with storage.open(src) as fd:
             icon_hash = _hash_file(fd)
         storage.delete(src)
@@ -199,7 +198,7 @@ def resize_promo_imgs(src, dst, sizes, **kw):
 
 @task
 @set_modified_on
-def pngcrush_image(src, hash_field='image_hash', **kw):
+def pngcrush_image(src, hash_field='image_hash', storage=public_storage, **kw):
     """
     Optimizes a PNG image by running it through Pngcrush. Returns hash.
 
@@ -209,7 +208,7 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
     """
     log.info('[1@None] Optimizing image: %s' % src)
     tmp_src = tempfile.NamedTemporaryFile(suffix='.png')
-    with public_storage.open(src) as srcf:
+    with storage.open(src) as srcf:
         shutil.copyfileobj(srcf, tmp_src)
         tmp_src.seek(0)
     try:
@@ -224,6 +223,7 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
         stdout, stderr = sp.communicate()
         if sp.returncode != 0:
             log.error('Error optimizing image: %s; %s' % (src, stderr.strip()))
+            kw['storage'] = storage
             pngcrush_image.retry(args=[src], kwargs=kw, max_retries=3)
             return False
 
@@ -232,7 +232,7 @@ def pngcrush_image(src, hash_field='image_hash', **kw):
             image_hash = _hash_file(fd)
 
         copy_stored_file(tmp_path, src, src_storage=local_storage,
-                         dest_storage=public_storage)
+                         dest_storage=storage)
         log.info('Image optimization completed for: %s' % src)
         os.remove(tmp_path)
         tmp_src.close()
@@ -327,14 +327,14 @@ def save_icon(obj, icon_content):
     website.
     """
     tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
-    with private_storage.open(tmp_dst, 'wb') as fd:
+    with public_storage.open(tmp_dst, 'wb') as fd:
         fd.write(icon_content)
 
     dirname = obj.get_icon_dir()
     destination = os.path.join(dirname, '%s' % obj.pk)
     remove_icons(destination)
     icon_hash = resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
-                            set_modified_on=[obj])
+                            set_modified_on=[obj], storage=public_storage)
 
     # Need to set icon type so .get_icon_url() works normally
     # submit step 4 does it through AppFormMedia, but we want to beat them to

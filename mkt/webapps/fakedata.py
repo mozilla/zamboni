@@ -249,11 +249,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
     fp = os.path.join(app.latest_version.path_prefix, f.filename)
     if package_file:
         return app
-    if status in mkt.LISTED_STATUSES:
-        storage = public_storage
-    else:
-        storage = private_storage
-    with storage.open(fp, 'w') as out:
+    with private_storage.open(fp, 'w') as out:
         generate_app_package(app, out, apptype,
                              permissions, namedict,
                              version=app.latest_version)
