@@ -173,23 +173,24 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
 
 
 def resize_image(src, dst, size=None, remove_src=True,
-                 storage=private_storage):
+                 src_storage=private_storage, dst_storage=public_storage):
     """
     Resizes and image from src, to dst. Returns width and height.
     """
     if src == dst:
         raise Exception("src and dst can't be the same: %s" % src)
 
-    with storage.open(src, 'rb') as fp:
+    with src_storage.open(src, 'rb') as fp:
         im = Image.open(fp)
         im = im.convert('RGBA')
         if size:
             im = processors.scale_and_crop(im, size)
-    with storage.open(dst, 'wb') as fp:
+    with dst_storage.open(dst, 'wb') as fp:
         im.save(fp, 'png')
 
     if remove_src:
-        storage.delete(src)
+        src_storage.delete(src)
+
     return im.size
 
 

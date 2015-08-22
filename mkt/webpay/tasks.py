@@ -110,5 +110,6 @@ def _check_image(im_path, abs_url):
 
 def _resize_image(old_im, size):
     new_dest = tempfile.mktemp()
-    resize_image(old_im.name, new_dest, storage=local_storage)
+    resize_image(old_im.name, new_dest, src_storage=local_storage,
+                 dst_storage=local_storage)
     return new_dest
