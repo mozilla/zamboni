@@ -258,16 +258,13 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         self._get_filter(app='wrongslug', expected_status=404)
         self._get_filter(app=2465478, expected_status=404)
 
-    @patch('mkt.ratings.views.get_region')
-    def test_filter_by_nonpublic_app(self, get_region_mock):
+    def test_filter_by_nonpublic_app(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes',
                               rating=5)
         self.app.update(status=mkt.STATUS_PENDING)
-        get_region_mock.return_value = mkt.regions.USA
         res, data = self._get_filter(
             app=self.app.app_slug, expected_status=403)
-        eq_(data['detail'], 'The app requested is not public or not available '
-                            'in region "us".')
+        eq_(data['detail'], 'The app requested is not public')
 
     def test_filter_by_nonpublic_app_admin(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes',
@@ -281,38 +278,6 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
                               rating=5)
         AddonUser.objects.create(user=self.user, addon=self.app)
         self.app.update(status=mkt.STATUS_PENDING)
-        self._get_filter(app=self.app.app_slug)
-
-    @patch('mkt.ratings.views.get_region')
-    def test_filter_by_app_excluded_in_region(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              rating=5)
-        AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BRA.id)
-        get_region_mock.return_value = mkt.regions.BRA
-        res, data = self._get_filter(
-            app=self.app.app_slug, expected_status=403)
-        eq_(data['detail'], 'The app requested is not public or not available '
-                            'in region "br".')
-
-    @patch('mkt.ratings.views.get_region')
-    def test_filter_by_app_excluded_in_region_admin(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              rating=5)
-        self.grant_permission(self.user, 'Apps:Edit')
-        AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BRA.id)
-        get_region_mock.return_value = mkt.regions.BRA
-        self._get_filter(app=self.app.app_slug)
-
-    @patch('mkt.ratings.views.get_region')
-    def test_filter_by_app_excluded_in_region_owner(self, get_region_mock):
-        Review.objects.create(addon=self.app, user=self.user, body='yes',
-                              rating=5)
-        AddonUser.objects.create(user=self.user, addon=self.app)
-        AddonExcludedRegion.objects.create(addon=self.app,
-                                           region=mkt.regions.BRA.id)
-        get_region_mock.return_value = mkt.regions.BRA
         self._get_filter(app=self.app.app_slug)
 
     def test_anonymous_get_list_without_app(self):
