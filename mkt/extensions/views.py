@@ -1,15 +1,18 @@
 import json
 from zipfile import BadZipfile, ZipFile
 
+from django.db.transaction import non_atomic_requests
 from django.forms import ValidationError
 from django.http import Http404
 
 import commonware
 from rest_framework import status
 from rest_framework.exceptions import ParseError, PermissionDenied
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
                                    RetrieveModelMixin)
 from rest_framework.parsers import FileUploadParser
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
@@ -20,9 +23,13 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
                                  AllowReviewerReadOnly, AnyOf)
+from mkt.api.paginator import ESPaginator
+from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension
-from mkt.extensions.serializers import ExtensionSerializer
+from mkt.extensions.serializers import (ExtensionSerializer,
+                                        ESExtensionSerializer)
 from mkt.files.models import FileUpload
+from mkt.search.filters import PublicContentFilter
 from mkt.site.decorators import use_master
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
 
@@ -120,3 +127,28 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateModelMixin,
         log.info('Extension created: %s' % obj.pk)
         serializer = self.get_serializer(obj)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
+    """
+    Base extension search view returning only public content (and not allowing
+    any search query at the moment).
+    """
+    cors_allowed_methods = ['get']
+    authentication_classes = [RestSharedSecretAuthentication,
+                              RestOAuthAuthentication]
+    permission_classes = [AllowAny]
+    filter_backends = [PublicContentFilter]  # No search query for now.
+    serializer_class = ESExtensionSerializer
+    paginator_class = ESPaginator
+
+    def get_queryset(self):
+        return ExtensionIndexer.search()
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        # Make all search views non_atomic: they should not need the db, or
+        # at least they should not need to make db writes, so they don't need
+        # to be wrapped in transactions.
+        view = super(ExtensionSearchView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)

@@ -14,26 +14,26 @@ How to submit an Add-on
 =======================
 
 Like apps, submitting a Firefox OS Add-on involves a few steps. The client must
-be logged in for all these steps and the user submitting the addon must have
+be logged in for all these steps and the user submitting the add-on must have
 accepted the terms of use.
 
-1. :ref:`Validate your addon <addon_validation-post-label>`. The validation
+1. :ref:`Validate your add-on <addon_validation-post-label>`. The validation
    will return a validation id.
 2. :ref:`Post your app <addon-post-label>` using the validation id.
-   This will create an addon and populate the data with the
+   This will create an add-on and populate the data with the
    contents of the manifest. It will return the current app data.
-3. :ref:`Update your addon <addon-patch-label>` if necessary. **NOT IMPLEMENTED YET**
+3. :ref:`Update your add-on <addon-patch-label>` if necessary. **NOT IMPLEMENTED YET**
 4. :ref:`Ask for a review <addon-status-patch-label>`. All addons need to be
    reviewed, this will add it to the review queue. **NOT IMPLEMENTED YET**
 
 .. _addon_validation:
 
-Addon Validation
-================
+Add-on Validation
+=================
 
 .. note:: The validation API does not require you to be authenticated, however
-    you cannot create addons from those validations. To validate and then
-    submit an addon you must be authenticated with the same account for both
+    you cannot create add-ons from those validations. To validate and then
+    submit an add-on you must be authenticated with the same account for both
     steps.
 
 .. _addon_validation-post-label:
@@ -77,8 +77,8 @@ Addon Validation
 
 .. _addon_creation:
 
-Addon Creation
-==============
+Add-on Creation
+===============
 
 .. _addon-post-label:
 
@@ -89,11 +89,11 @@ Addon Creation
     **Request**
 
     :param upload: the id of the :ref:`validation result <addon_validation>`
-        for your addon.
+        for your add-on.
     :type upload: string
 
     **Response**
 
-    An :ref:`addon <addon-response-label>`.
+    An :ref:`add-on <addon-response-label>`.
 
     :status: 201 successfully created.

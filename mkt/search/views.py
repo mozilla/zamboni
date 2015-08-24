@@ -18,7 +18,7 @@ from mkt.operators.permissions import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm
 from mkt.search.indexers import BaseIndexer
 from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
-                                ProfileFilter, PublicAppsFilter,
+                                ProfileFilter, PublicContentFilter,
                                 PublicSearchFormFilter, RegionFilter,
                                 SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
@@ -41,7 +41,7 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [DeviceTypeFilter, ProfileFilter, PublicAppsFilter,
+    filter_backends = [DeviceTypeFilter, ProfileFilter, PublicContentFilter,
                        PublicSearchFormFilter, RegionFilter, SearchQueryFilter,
                        SortingFilter]
 
@@ -185,7 +185,7 @@ class NoRegionSearchView(SearchView):
                                 GroupPermission('OperatorDashboard', '*'),
                                 IsOperatorPermission)]
     filter_backends = [SearchQueryFilter, PublicSearchFormFilter,
-                       PublicAppsFilter, DeviceTypeFilter,
+                       PublicContentFilter, DeviceTypeFilter,
                        ProfileFilter, SortingFilter]
 
 

@@ -682,12 +682,13 @@ ES_DEFAULT_NUM_SHARDS = 5
 ES_HOSTS = [os.environ.get('ES_HOST', '127.0.0.1:9200')]
 ES_INDEXES = {
     'webapp': 'apps',
+    'extension': 'extensions',
     'mkt_feed_app': 'feed_apps',
     'mkt_feed_brand': 'feed_brands',
     'mkt_feed_collection': 'feed_collections',
     'mkt_feed_shelf': 'feed_shelves',
     'mkt_feed_item': 'feed_items',
-    'website': 'websites'
+    'website': 'websites',
     # Adding an index? Also add the index to reindex.py.
 }
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]

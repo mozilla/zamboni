@@ -3,13 +3,14 @@ import os.path
 
 from django.conf import settings
 from django.db import models
-from django.utils.functional import lazy
+from django.dispatch import receiver
 
 import commonware.log
 from django_extensions.db.fields.json import JSONField
 
 from mkt.constants.base import (STATUS_CHOICES, STATUS_NULL, STATUS_PENDING,
                                 STATUS_PUBLIC)
+from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.utils import ExtensionParser
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
@@ -21,14 +22,6 @@ from mkt.webapps.models import clean_slug
 
 
 log = commonware.log.getLogger('z.extensions')
-
-
-def _make_language_choices(languages):
-    return [(to_language(lang_code), lang_name)
-            for lang_code, lang_name in languages.items()]
-
-
-LANGUAGE_CHOICES = lazy(_make_language_choices, list)(settings.LANGUAGES)
 
 
 class Extension(ModelBase):
@@ -104,6 +97,10 @@ class Extension(ModelBase):
         # Class method needed by the translations app.
         return cls._meta.get_field('default_language')
 
+    @classmethod
+    def get_indexer(self):
+        return ExtensionIndexer
+
     def get_minifest_contents(self, force=False):
         raise NotImplementedError
 
@@ -147,6 +144,20 @@ class Extension(ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
+
+
+# Maintain ElasticSearch index.
+@receiver(models.signals.post_save, sender=Extension,
+          dispatch_uid='extension_index')
+def update_search_index(sender, instance, **kw):
+    instance.get_indexer().index_ids([instance.id])
+
+
+# Delete from ElasticSearch index on delete.
+@receiver(models.signals.post_delete, sender=Extension,
+          dispatch_uid='extension_unindex')
+def delete_search_index(sender, instance, **kw):
+    instance.get_indexer().unindex(instance.id)
 
 
 # Save translations before saving Extensions instances with translated fields.

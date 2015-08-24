@@ -15,7 +15,7 @@ from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import GroupPermission
 from mkt.reviewers.forms import ReviewersWebsiteSearchForm
-from mkt.search.filters import (PublicAppsFilter, WebsiteSearchFormFilter,
+from mkt.search.filters import (PublicContentFilter, WebsiteSearchFormFilter,
                                 RegionFilter, ReviewerWebsiteSearchFormFilter,
                                 SearchQueryFilter, SortingFilter)
 from mkt.search.forms import SimpleSearchForm
@@ -45,8 +45,8 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicAppsFilter, WebsiteSearchFormFilter, RegionFilter,
-                       SearchQueryFilter, SortingFilter]
+    filter_backends = [PublicContentFilter, WebsiteSearchFormFilter,
+                       RegionFilter, SearchQueryFilter, SortingFilter]
     serializer_class = ESWebsiteSerializer
     paginator_class = ESPaginator
     form_class = SimpleSearchForm

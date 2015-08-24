@@ -12,7 +12,7 @@ import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
 from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
-                                ProfileFilter, PublicAppsFilter,
+                                ProfileFilter, PublicContentFilter,
                                 PublicSearchFormFilter, RegionFilter,
                                 SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
@@ -222,9 +222,9 @@ class TestFormFilter(FilterTestsBase):
         ok_('filtered' not in qs['query'].keys())
 
 
-class TestPublicAppsFilter(FilterTestsBase):
+class TestPublicContentFilter(FilterTestsBase):
 
-    filter_classes = [PublicAppsFilter]
+    filter_classes = [PublicContentFilter]
 
     def test_status(self):
         qs = self._filter(self.req)
@@ -384,7 +384,7 @@ class TestCombinedFilter(FilterTestsBase):
 
     """
     filter_classes = [SearchQueryFilter, PublicSearchFormFilter,
-                      PublicAppsFilter, SortingFilter]
+                      PublicContentFilter, SortingFilter]
 
     def test_combined(self):
         qs = self._filter(data={'q': 'test', 'cat': 'games',
