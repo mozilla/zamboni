@@ -29,11 +29,13 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
 from mkt.reviewers.models import AdditionalReview, RereviewQueue
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import (copy_to_storage, local_storage,
+                                    private_storage)
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
 from mkt.webapps.models import AddonUser, AppManifest, Preview, Webapp
+
 
 adjectives = [u'Exquisite', u'Delicious', u'Elegant', u'Swanky', u'Spicy',
               u'Food Truck', u'Artisanal', u'Tasty', u'Questionable', u'Drôle']
@@ -393,6 +395,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         generate_previews(app, num_previews)
     if video_files:
         for i, f in enumerate(video_files):
+            copy_to_storage(f, f, src_storage=local_storage,
+                            dst_storage=private_storage)
             p = Preview.objects.create(addon=app, filetype="video/webm",
                                        thumbtype="image/png",
                                        caption="video " + str(i),
