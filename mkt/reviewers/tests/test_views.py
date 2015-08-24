@@ -44,8 +44,7 @@ from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify, isotime
-from mkt.site.storage_utils import (copy_stored_file, public_storage,
-                                    private_storage)
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
 from mkt.site.utils import app_factory, make_game, paginate, version_factory
@@ -1239,7 +1238,8 @@ class TestReviewTransaction(AttachmentManagementMixin,
         self.version = self.app.latest_version
         self.version.files.all().update(status=mkt.STATUS_PENDING)
 
-        with private_storage.open(self.version.files.all()[0].file_path, 'w') as f:
+        with private_storage.open(
+                self.version.files.all()[0].file_path, 'w') as f:
             f.write('.')
         public_storage.delete(self.version.files.all()[0].file_path)
         self.app.update(status=mkt.STATUS_PENDING, is_packaged=True,
