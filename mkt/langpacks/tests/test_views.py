@@ -514,7 +514,9 @@ class TestLangPackNonAPIViews(TestCase):
         expected_etag.update(unicode(self.langpack.file_version))
         return '"%s"' % expected_etag.hexdigest()
 
-    @override_settings(XSENDFILE=True)
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
     def test_download(self):
         ok_(self.langpack.download_url)
         response = self.client.get(self.langpack.download_url)
@@ -528,6 +530,12 @@ class TestLangPackNonAPIViews(TestCase):
         response = self.client.get(self.langpack.download_url)
         eq_(response.status_code, 200)
 
+    def test_download_storage(self):
+        ok_(self.langpack.download_url)
+        response = self.client.get(self.langpack.download_url)
+        path = public_storage.url(self.langpack.file_path)
+        self.assert3xx(response, path)
+
     def test_download_inactive(self):
         self.langpack.update(active=False)
         ok_(self.langpack.download_url)
@@ -538,7 +546,9 @@ class TestLangPackNonAPIViews(TestCase):
         response = self.client.get(self.langpack.download_url)
         eq_(response.status_code, 404)
 
-    @override_settings(XSENDFILE=True)
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
     def test_download_inactive_has_perm(self):
         self.langpack.update(active=False)
         self.grant_permission(self.user, 'LangPacks:Admin')
