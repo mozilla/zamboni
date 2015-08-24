@@ -15,7 +15,8 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import copy_to_storage, public_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 from mkt.site.tests import formset, initial, MktPaths, TestCase, user_factory
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.submit.decorators import read_dev_agreement_required
@@ -464,12 +465,16 @@ class SetupFilesMixin(MktPaths):
         assert self.file.filename
 
         # Original packaged file.
-        copy_to_storage(self.packaged_app_path(filename),
-                        self.file.file_path)
+        copy_stored_file(self.packaged_app_path(filename),
+                         self.file.file_path,
+                         src_storage=local_storage,
+                         dest_storage=private_storage)
 
         # Signed packaged file.
-        copy_to_storage(self.packaged_app_path(filename),
-                        self.file.signed_file_path)
+        copy_stored_file(self.packaged_app_path(filename),
+                         self.file.signed_file_path,
+                         src_storage=local_storage,
+                         dest_storage=public_storage)
 
 
 class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadAddon,
