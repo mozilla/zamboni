@@ -213,26 +213,26 @@ class TestGarbage(mkt.site.tests.TestCase):
         public_mock.modified_time.return_value = self.days_ago(1000)
 
         mkt_gc()
-        assert public_mock.remove.called
-        assert not private_mock.remove.called
-        assert public_mock.remove.call_args_list[0][0][0].endswith('lol')
+        assert public_mock.delete.called
+        assert not private_mock.delete.called
+        assert public_mock.delete.call_args_list[0][0][0].endswith('lol')
 
     def test_dump_delete_private(self, public_mock, private_mock):
         private_mock.listdir.return_value = (['dirlol'], ['lol'])
         private_mock.modified_time.return_value = self.days_ago(1000)
 
         mkt_gc()
-        assert private_mock.remove.called
-        assert not public_mock.remove.called
-        assert private_mock.remove.call_args_list[0][0][0].endswith('lol')
+        assert private_mock.delete.called
+        assert not public_mock.delete.called
+        assert private_mock.delete.call_args_list[0][0][0].endswith('lol')
 
     def test_new_no_delete(self, public_mock, private_mock):
         public_mock.listdir.return_value = (['dirlol'], ['lol'])
         public_mock.modified_time.return_value = self.days_ago(1)
 
         mkt_gc()
-        assert not public_mock.remove.called
-        assert not private_mock.remove.called
+        assert not public_mock.delete.called
+        assert not private_mock.delete.called
 
     def test_old_and_new(self, public_mock, private_mock):
         fu_new = FileUpload.objects.create(path='/tmp/bar', name='bar')
@@ -243,9 +243,9 @@ class TestGarbage(mkt.site.tests.TestCase):
         mkt_gc()
 
         eq_(FileUpload.objects.count(), 1)
-        assert private_mock.remove.called
-        assert not public_mock.remove.called
-        eq_(private_mock.remove.call_args[0][0], fu_old.path)
+        assert private_mock.delete.called
+        assert not public_mock.delete.called
+        eq_(private_mock.delete.call_args[0][0], fu_old.path)
 
     def test_old_no_path(self, public_mock, private_mock):
         fu_old = FileUpload.objects.create(path='', name='foo')
@@ -254,8 +254,8 @@ class TestGarbage(mkt.site.tests.TestCase):
         mkt_gc()
 
         eq_(FileUpload.objects.count(), 0)
-        assert not private_mock.remove.called
-        assert not public_mock.remove.called
+        assert not private_mock.delete.called
+        assert not public_mock.delete.called
 
 
 class TestUpdateInstalls(mkt.site.tests.TestCase):
