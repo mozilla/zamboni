@@ -172,9 +172,9 @@ class TestSignApps(mkt.site.tests.TestCase):
         v2 = self.app2.current_version
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]
-        with public_storage.open(file1.file_path, 'w') as f:
+        with private_storage.open(file1.file_path, 'w') as f:
             f.write('.')
-        with public_storage.open(file2.file_path, 'w') as f:
+        with private_storage.open(file2.file_path, 'w') as f:
             f.write('.')
         call_command('sign_apps')
         eq_(len(sign_mock.mock_calls), 2)

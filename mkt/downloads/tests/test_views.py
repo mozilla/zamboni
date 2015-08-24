@@ -10,7 +10,8 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
-from mkt.site.storage_utils import private_storage, public_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 
 
 class TestDownload(BasePackagedAppTest):
@@ -93,6 +94,10 @@ class TestDownload(BasePackagedAppTest):
     def test_disabled_but_owner(self):
         self.login('steamcube@mozilla.com')
         self.file.update(status=mkt.STATUS_DISABLED)
+        copy_stored_file(self.packaged_app_path('mozball.zip'),
+                         self.file.file_path,
+                         src_storage=local_storage,
+                         dest_storage=private_storage)
         path = private_storage.url(self.file.file_path)
         res = self.client.get(self.url)
         self.assert3xx(res, path)
@@ -104,6 +109,10 @@ class TestDownload(BasePackagedAppTest):
     def test_disabled_but_admin(self):
         self.login('admin@mozilla.com')
         self.file.update(status=mkt.STATUS_DISABLED)
+        copy_stored_file(self.packaged_app_path('mozball.zip'),
+                         self.file.file_path,
+                         src_storage=local_storage,
+                         dest_storage=private_storage)
         path = private_storage.url(self.file.file_path)
         res = self.client.get(self.url)
         self.assert3xx(res, path)
