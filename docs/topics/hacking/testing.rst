@@ -57,11 +57,10 @@ you to re-run only the tests failed from the previous run::
 Database Setup
 ~~~~~~~~~~~~~~
 
-Our test runner will try as hard as it can to skip creating a fresh database
-every time.  If you really want to make a new database (e.g. when models have
-changed), set the environment variable ``FORCE_DB``. ::
+If you want to re-use your database instead of making a new one every time you
+run tests, set the environment variable ``REUSE_DB``. ::
 
-    FORCE_DB=true python manage.py test
+    REUSE_DB=1 python manage.py test
 
 
 Writing Tests
@@ -104,20 +103,6 @@ are not in the normal path so should not show up unless you add them to the
 need to recompile the .mo files manually, for example::
 
     msgfmt --check-format -o django.mo django.po
-
-.. _`javascript-testing`:
-
-
-API Tests
----------
-
-To run all Marketplace API tests, pass an additional `--config` flag to the test
-runner::
-
-  ./manage.py test --config=mkt/api/tests/nose.cfg
-
-If adding new test modules related to the API, ensure that you add them to the
-list at `mkt/api/tests/nose.cfg`.
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
