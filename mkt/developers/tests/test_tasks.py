@@ -185,7 +185,8 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
                         lambda *a, **k: tmp_src):
             rval = tasks.pngcrush_image(self.img_path)
             # pngcrush_image copies the stored file to a local tempfile.
-            eq_(open(tmp_src.name).read(), public_storage.open(self.img_path).read())
+            eq_(open(tmp_src.name).read(),
+                public_storage.open(self.img_path).read())
 
         expected_cmd = ['pngcrush', '-q', '-rem', 'alla', '-brute', '-reduce',
                         '-e', expected_suffix, tmp_src.name]
