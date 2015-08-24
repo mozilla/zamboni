@@ -25,7 +25,7 @@ from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
 from lib.constants import ALL_CURRENCIES
 from mkt.account.helpers import fxa_auth_info
 from mkt.api.authentication import RestOAuthAuthentication
-from mkt.api.authorization import AllowAppOwner, GroupPermission
+from mkt.api.permissions import AllowAppOwner, GroupPermission
 from mkt.api.base import cors_api_view, CORSMixin, MarketplaceView
 from mkt.api.fields import SlugChoiceField
 from mkt.api.serializers import (CarrierSerializer, CategorySerializer,

@@ -11,12 +11,12 @@ from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                   AllowReviewerReadOnly, AnyOf,
-                                   GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.forms import IconJSONForm
+from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
+                                 AllowReviewerReadOnly, AnyOf,
+                                 GroupPermission)
 from mkt.developers import tasks
 from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
 from mkt.files.models import FileUpload

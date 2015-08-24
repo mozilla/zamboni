@@ -5,8 +5,8 @@ from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
 from mkt.access.middleware import ACLMiddleware
-from mkt.operators.authorization import IsOperatorPermission
 from mkt.operators.models import OperatorPermission
+from mkt.operators.permissions import IsOperatorPermission
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile

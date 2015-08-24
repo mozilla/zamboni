@@ -7,7 +7,7 @@ from mkt.access import acl
 log = commonware.log.getLogger('mkt.feed')
 
 
-class FeedAuthorization(BasePermission):
+class FeedPermission(BasePermission):
     """
     Permission class governing ability to interact with Feed-related
     APIs.

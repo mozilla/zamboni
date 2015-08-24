@@ -23,7 +23,7 @@ import mkt.constants.lookup as lkp
 from lib.pay_server import client
 from mkt.access import acl
 from mkt.account.utils import purchase_list
-from mkt.api.authorization import GroupPermission
+from mkt.api.permissions import GroupPermission
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_LOOKUP, SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount

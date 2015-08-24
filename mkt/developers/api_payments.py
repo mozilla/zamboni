@@ -20,8 +20,8 @@ import mkt
 from lib.pay_server import get_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import MarketplaceView
+from mkt.api.permissions import AllowAppOwner, GroupPermission
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.constants.payments import PROVIDER_BANGO
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,

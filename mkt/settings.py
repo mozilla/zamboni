@@ -1002,7 +1002,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         # By default no-one gets anything. You will have to override this
         # in each resource to match your needs.
-        'mkt.api.authorization.AllowNone',
+        'mkt.api.permissions.AllowNone',
     ),
     'DEFAULT_PAGINATION_SERIALIZER_CLASS':
         'mkt.api.paginator.CustomPaginationSerializer',

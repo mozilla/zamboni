@@ -6,9 +6,9 @@ import mkt
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowReadOnlyIfPublic, AllowRelatedAppOwner,
-                                   AnyOf, GroupPermission)
 from mkt.api.base import CORSMixin
+from mkt.api.permissions import (AllowReadOnlyIfPublic, AllowRelatedAppOwner,
+                                 AnyOf, GroupPermission)
 from mkt.constants import APP_FEATURES
 from mkt.versions.models import Version
 from mkt.versions.serializers import FileStatusSerializer, VersionSerializer

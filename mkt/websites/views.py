@@ -11,9 +11,9 @@ from rest_framework.views import APIView
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
+from mkt.api.permissions import GroupPermission
 from mkt.reviewers.forms import ReviewersWebsiteSearchForm
 from mkt.search.filters import (PublicAppsFilter, WebsiteSearchFormFilter,
                                 RegionFilter, ReviewerWebsiteSearchFormFilter,

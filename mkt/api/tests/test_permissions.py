@@ -5,10 +5,10 @@ from mock import Mock
 from nose.tools import eq_, ok_
 from rest_framework.permissions import AllowAny, BasePermission
 
-from mkt.api.authorization import (AllowAppOwner, AllowAuthor, AllowNone,
-                                   AllowOwner, AllowReadOnlyIfPublic,
-                                   AllowRelatedAppOwner, AllowSelf, AnyOf,
-                                   ByHttpMethod, flag, GroupPermission, switch)
+from mkt.api.permissions import (AllowAppOwner, AllowAuthor, AllowNone,
+                                 AllowOwner, AllowReadOnlyIfPublic,
+                                 AllowRelatedAppOwner, AllowSelf, AnyOf,
+                                 ByHttpMethod, flag, GroupPermission, switch)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
@@ -36,7 +36,7 @@ class TestWaffle(TestCase):
         ok_(not switch('foo')().has_permission(self.request, ''))
 
 
-class TestAllowSelfAuthorization(TestCase):
+class TestAllowSelfPermission(TestCase):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
