@@ -15,6 +15,8 @@ from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog
 from mkt.site.fixtures import fixture
+from mkt.site.storage_utils import (copy_to_storage, local_storage,
+                                    private_storage)
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview, Webapp
@@ -170,11 +172,24 @@ class TestTask(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
+        super(TestTask, self).setUp()
         waffle.models.Switch.objects.create(name='video-encode', active=True)
         self.app = Webapp.objects.get(pk=337141)
         self.preview = Preview.objects.create(
             addon=self.app, thumbnail_path=tempfile.mkstemp()[1],
             image_path=tempfile.mkstemp()[1])
+        # Copy files to private storage where `resize_video` expects it.
+        self.tmp_good = tempfile.NamedTemporaryFile(suffix='.webm').name
+        self.tmp_bad = tempfile.NamedTemporaryFile(suffix='.png').name
+        copy_to_storage(files['good'], self.tmp_good,
+                        src_storage=local_storage, dst_storage=private_storage)
+        copy_to_storage(files['bad'], self.tmp_bad, src_storage=local_storage,
+                        dst_storage=private_storage)
+
+    def tearDown(self):
+        private_storage.delete(self.tmp_good)
+        private_storage.delete(self.tmp_bad)
+        super(TestTask, self).tearDown()
 
     @patch('lib.video.tasks.Preview.delete')
     @patch('lib.video.tasks._resize_video')
@@ -182,7 +197,7 @@ class TestTask(mkt.site.tests.TestCase):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.side_effect = ValueError
         with self.assertRaises(ValueError):
-            resize_video(files['good'], self.preview.pk, user_pk=user.pk,
+            resize_video(self.tmp_good, self.preview.pk, user_pk=user.pk,
                          lib=dummy.Video)
         assert _preview_delete.called
         assert UserLog.objects.filter(
@@ -193,7 +208,7 @@ class TestTask(mkt.site.tests.TestCase):
     def test_resize_failed(self, _resize_video, _preview_delete):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.return_value = None
-        resize_video(files['good'], self.preview.pk, user_pk=user.pk,
+        resize_video(self.tmp_good, self.preview.pk, user_pk=user.pk,
                      lib=dummy.Video)
         assert _preview_delete.called
 
@@ -201,7 +216,7 @@ class TestTask(mkt.site.tests.TestCase):
     @patch('lib.video.ffmpeg.Video.get_encoded')
     def test_resize_video_no_encode(self, get_encoded, _preview_save):
         waffle.models.Switch.objects.update(name='video-encode', active=False)
-        resize_video(files['good'], self.preview.pk, lib=dummy.Video)
+        resize_video(self.tmp_good, self.preview.pk, lib=dummy.Video)
         assert not get_encoded.called
         assert _preview_save.called
 
@@ -210,13 +225,11 @@ class TestTask(mkt.site.tests.TestCase):
     def test_resize_video(self, get_encoded, _preview_save):
         name = tempfile.mkstemp()[1]
         get_encoded.return_value = name
-        resize_video(files['good'], self.preview.pk, lib=dummy.Video)
-        mode = oct(os.stat(self.preview.image_path)[stat.ST_MODE])
-        assert mode.endswith('644'), mode
+        resize_video(self.tmp_good, self.preview.pk, lib=dummy.Video)
         assert _preview_save.called
 
     @patch('lib.video.tasks.Preview.save')
     def test_resize_image(self, _preview_save):
-        resize_video(files['bad'], self.preview.pk, lib=dummy.Video)
+        resize_video(self.tmp_bad, self.preview.pk, lib=dummy.Video)
         eq_(self.preview.sizes, {})
         assert not _preview_save.called

@@ -1,6 +1,4 @@
 import logging
-import os
-import shutil
 
 from django.conf import settings
 
@@ -9,11 +7,12 @@ from celery import task
 
 import mkt
 from lib.video import library
-from mkt.files.helpers import copyfileobj
 from mkt.site.decorators import set_modified_on
+from mkt.site.storage_utils import (copy_stored_file, copy_to_storage,
+                                    local_storage, private_storage,
+                                    public_storage)
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview
-from mkt.site.storage_utils import public_storage
 
 
 log = logging.getLogger('z.devhub.task')
@@ -28,13 +27,8 @@ def resize_video(src, pk, user_pk=None, **kw):
     instance = Preview.objects.get(pk=pk)
     user = UserProfile.objects.get(pk=user_pk) if user_pk else None
     try:
-        if not os.path.exists(src):
-            # We're probably using S3 in this case.
-            try:
-                os.makedirs(os.path.dirname(src))
-            except OSError:  # already exists
-                pass
-            copyfileobj(public_storage.open(src), open(src, 'w'))
+        copy_stored_file(src, src, src_storage=private_storage,
+                         dest_storage=local_storage)
         result = _resize_video(src, instance, **kw)
     except Exception, err:
         log.error('Error on processing video: %s' % err)
@@ -90,26 +84,27 @@ def _resize_video(src, instance, lib=None, **kw):
         # encoded successfully, or something has gone wrong in which case
         # we don't want the file around anyway.
         if waffle.switch_is_active('video-encode'):
-            os.remove(video_file)
+            local_storage.delete(video_file)
         log.info('Error making thumbnail for %s' % instance.pk, exc_info=True)
         return
 
-    for path in (instance.thumbnail_path, instance.image_path):
-        dirs = os.path.dirname(path)
-        if not os.path.exists(dirs):
-            os.makedirs(dirs)
-
-    shutil.move(thumbnail_file, instance.thumbnail_path)
+    copy_to_storage(thumbnail_file, instance.thumbnail_path,
+                    src_storage=local_storage, dst_storage=public_storage)
     if waffle.switch_is_active('video-encode'):
         # Move the file over, removing the temp file.
-        shutil.move(video_file, instance.image_path)
+        copy_to_storage(video_file, instance.image_path,
+                        src_storage=local_storage, dst_storage=public_storage)
     else:
         # We didn't re-encode the file.
-        shutil.copyfile(src, instance.image_path)
+        copy_to_storage(src, instance.image_path,
+                        src_storage=local_storage, dst_storage=public_storage)
+        #
+    # Now remove local files.
+    local_storage.delete(thumbnail_file)
+    if waffle.switch_is_active('video-encode'):
+        local_storage.delete(video_file)
 
     # Ensure everyone has read permission on the file.
-    os.chmod(instance.image_path, 0644)
-    os.chmod(instance.thumbnail_path, 0644)
     instance.sizes = {'thumbnail': mkt.ADDON_PREVIEW_SIZES[0],
                       'image': mkt.ADDON_PREVIEW_SIZES[1]}
     instance.save()
