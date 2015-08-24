@@ -7,7 +7,8 @@ from django.http import Http404
 import commonware
 from rest_framework import status
 from rest_framework.exceptions import ParseError, PermissionDenied
-from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin
+from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
+                                   RetrieveModelMixin)
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -74,8 +75,8 @@ class ValidationViewSet(SubmitValidationViewSet):
                 _("'manifest.json' in the archive is not a valid JSON file."))
 
 
-class ExtensionViewSet(CORSMixin, MarketplaceView,
-                       CreateModelMixin, RetrieveModelMixin, GenericViewSet):
+class ExtensionViewSet(CORSMixin, MarketplaceView, CreateModelMixin,
+                       ListModelMixin, RetrieveModelMixin, GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -84,6 +85,15 @@ class ExtensionViewSet(CORSMixin, MarketplaceView,
                                 AllowReadOnlyIfPublic)]
     queryset = Extension.objects.all()
     serializer_class = ExtensionSerializer
+
+    def filter_queryset(self, qs):
+        if self.action == 'list':
+            # The listing API only allows you to see extensions you've
+            # developed.
+            if not self.request.user.is_authenticated():
+                raise PermissionDenied('Anonymous listing not allowed.')
+            qs = qs.filter(authors=self.request.user)
+        return qs
 
     def create(self, request, *args, **kwargs):
         upload_pk = request.DATA.get('upload', '')

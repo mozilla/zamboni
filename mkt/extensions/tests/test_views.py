@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.constants.base import STATUS_PENDING
+from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC
 from mkt.extensions.models import Extension
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
@@ -116,11 +116,11 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
         eq_(response.json['valid'], True)
 
 
-class TestExtensionViewSet(UploadTest, RestOAuth):
+class TestExtensionViewSetPost(UploadTest, RestOAuth):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
-        super(TestExtensionViewSet, self).setUp()
+        super(TestExtensionViewSetPost, self).setUp()
         self.list_url = reverse('api-v2:extension-list')
         self.user = UserProfile.objects.get(pk=2519)
 
@@ -134,7 +134,7 @@ class TestExtensionViewSet(UploadTest, RestOAuth):
         data = response.json
         eq_(data['version'], '0.1')
         eq_(data['name'], {"en-US": u"My Lîttle Extension"})
-        eq_(data['status'], STATUS_PENDING)
+        eq_(data['status'], 'pending')
         ok_(data['slug'])
         eq_(Extension.objects.count(), 1)
         extension = Extension.objects.get(pk=data['id'])
@@ -179,3 +179,63 @@ class TestExtensionViewSet(UploadTest, RestOAuth):
                                     json.dumps({'upload': upload.pk}))
         eq_(response.status_code, 400)
         ok_(u'manifest.json' in response.json['detail'])
+
+
+class TestExtensionViewSetGet(UploadTest, RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        super(TestExtensionViewSetGet, self).setUp()
+        self.list_url = reverse('api-v2:extension-list')
+        self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=999)
+        self.extension = Extension.objects.create(name=u'Mŷ Extension',
+                                                  status=STATUS_PENDING)
+        self.extension.authors.add(self.user)
+        self.extension2 = Extension.objects.create(name=u'NOT Mŷ Extension',
+                                                   status=STATUS_PENDING)
+        self.extension2.authors.add(self.user2)
+        self.url = reverse('api-v2:extension-detail',
+                           kwargs={'pk': self.extension.pk})
+        self.url2 = reverse('api-v2:extension-detail',
+                            kwargs={'pk': self.extension2.pk})
+
+    def test_list_anonymous(self):
+        response = self.anon.get(self.list_url)
+        eq_(response.status_code, 403)
+
+    def test_list_logged_in(self):
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 200)
+        meta = response.json['meta']
+        eq_(meta['total_count'], 1)
+        eq_(len(response.json['objects']), 1)
+        data = response.json['objects'][0]
+        eq_(data['id'], self.extension.id)
+        eq_(data['status'], 'pending')
+        eq_(data['name'], {"en-US": self.extension.name})
+
+    def test_detail_anonymous(self):
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
+        self.extension.update(status=STATUS_PUBLIC)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.id)
+        eq_(data['status'], 'public')
+        eq_(data['name'], {'en-US': self.extension.name})
+
+    def test_detail_logged_in(self):
+        response = self.client.get(self.url2)
+        eq_(response.status_code, 403)
+
+        # user is the owner, he can access the extension even if it's not
+        # public.
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.id)
+        eq_(data['status'], 'pending')
+        eq_(data['name'], {'en-US': self.extension.name})
