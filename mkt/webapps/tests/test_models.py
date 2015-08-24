@@ -26,8 +26,6 @@ from mock import patch
 from nose.tools import eq_, ok_, raises
 
 import mkt
-from lib.crypto import packaged
-from lib.crypto.tests import mock_sign
 from lib.utils import static_url
 from mkt.constants import apps, MANIFEST_CONTENT_TYPE
 from mkt.constants.applications import DEVICE_TYPES
