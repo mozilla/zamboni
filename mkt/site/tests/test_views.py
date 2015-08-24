@@ -174,6 +174,14 @@ class TestOpensearch(mkt.site.tests.TestCase):
         eq_(e.attrib['template'], wanted)
 
 
+class TestSecure(mkt.site.tests.TestCase):
+    def test_content_nosniff(self):
+        # Test that django-secure is properly installed and configured
+        # according to our needs.
+        response = self.client.get('/')
+        eq_(response['x-content-type-options'], 'nosniff')
+
+
 @mock.patch('mkt.site.views.log_cef')
 class TestCSP(mkt.site.tests.TestCase):
 

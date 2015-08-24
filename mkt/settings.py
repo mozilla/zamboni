@@ -170,6 +170,7 @@ INSTALLED_APPS = (
     'mkt.webpay',
     'mkt.websites',
     'mkt.zadmin',
+    'djangosecure',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -204,7 +205,10 @@ MIDDLEWARE_CLASSES = (
     # a middleware causes a redirect, then other middleware stops processing.
     'mkt.site.middleware.RemoveSlashMiddleware',
     'mkt.site.middleware.CommonMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
 )
+# Prevent the browser from guessing the content type.
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 LANGUAGE_CODE = 'en-US'
 LOCALE_PATHS = (path('locale'),)
