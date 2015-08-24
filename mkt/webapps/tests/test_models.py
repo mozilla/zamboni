@@ -1776,7 +1776,6 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
 
-    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_package_path(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
