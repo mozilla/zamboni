@@ -517,8 +517,9 @@ class TestDumpApps(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def test_dump_app(self):
-        fn = dump_app(337141)
-        result = json.load(open(fn, 'r'))
+        path = dump_app(337141)
+        with private_storage.open(path, 'r') as fd:
+            result = json.load(fd)
         eq_(result['id'], 337141)
 
 
