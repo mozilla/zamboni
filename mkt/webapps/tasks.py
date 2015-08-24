@@ -384,12 +384,17 @@ def export_data(name=None):
         name = today
 
     # Clean up the path where we'll store the individual json files from each
-    # app dump.
-    for dirpath, dirnames, filenames in walk_storage(
-            settings.DUMPED_APPS_PATH, storage=private_storage):
-        for filename in filenames:
-            private_storage.delete(os.path.join(dirpath, filename))
+    # app dump (which are in apps/ inside DUMPED_APPS_PATH).
+    path_to_cleanup = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
     task_log.info('Cleaning up path {0}'.format(settings.DUMPED_APPS_PATH))
+    try:
+        for dirpath, dirnames, filenames in walk_storage(
+                path_to_cleanup, storage=private_storage):
+            for filename in filenames:
+                private_storage.delete(os.path.join(dirpath, filename))
+    except OSError:
+        # Ignore if the directory does not exist.
+        pass
 
     # Run all dump_apps task in parallel, and once it's done, add extra files
     # and run compression.

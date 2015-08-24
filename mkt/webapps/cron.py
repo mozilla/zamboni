@@ -501,12 +501,17 @@ def dump_user_installs_cron():
                    .values_list('user', flat=True))
 
     # Clean up the path where we'll store the individual json files from each
-    # user installs dump.
-    for dirpath, dirnames, filenames in walk_storage(
-            settings.DUMPED_USERS_PATH, storage=private_storage):
-        for filename in filenames:
-            private_storage.delete(os.path.join(dirpath, filename))
-    task_log.info('Cleaning up path {0}'.format(settings.DUMPED_USERS_PATH))
+    # user installs dump (which are in users/ in DUMPED_USERS_PATH).
+    path_to_cleanup = os.path.join(settings.DUMPED_USERS_PATH, 'users')
+    task_log.info('Cleaning up path {0}'.format(path_to_cleanup))
+    try:
+        for dirpath, dirnames, filenames in walk_storage(
+                path_to_cleanup, storage=private_storage):
+            for filename in filenames:
+                private_storage.delete(os.path.join(dirpath, filename))
+    except OSError:
+        # Ignore if the directory does not exist.
+        pass
 
     grouping = []
     for chunk in chunked(user_ids, chunk_size):
@@ -526,20 +531,20 @@ def _remove_stale_files(path, max_age_seconds, msg, storage):
         file_path = os.path.join(path, file_name)
         age = now() - storage.modified_time(file_path)
         if age.total_seconds() > max_age_seconds:
-            log.debug(msg.format(file_path))
-            storage.remove(file_path)
+            log.info(msg.format(file_path))
+            storage.delete(file_path)
 
 
 @cronjobs.register
 def mkt_gc(**kw):
     """Site-wide garbage collections."""
-    log.debug('Collecting data to delete')
+    log.info('Collecting data to delete')
     logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
             .exclude(action__in=mkt.LOG_KEEP).values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         chunk.sort()
-        log.debug('Deleting log entries: %s' % str(chunk))
+        log.info('Deleting log entries: %s' % str(chunk))
         delete_logs.delay(chunk)
 
     # Clear oauth nonce rows. These expire after 10 minutes but we're just
@@ -575,7 +580,7 @@ def mkt_gc(**kw):
                   .format(uuid=fu.uuid, path=fu.path))
         if fu.path:
             try:
-                private_storage.remove(fu.path)
+                private_storage.delete(fu.path)
             except OSError:
                 pass
         fu.delete()

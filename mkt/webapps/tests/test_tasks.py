@@ -641,6 +641,10 @@ class TestExportData(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.export_directory = mkdtemp()
+        self.existing_tarball = os.path.join(
+            self.export_directory, 'tarballs', '2004-08-15')
+        with public_storage.open(self.existing_tarball, 'w') as fd:
+            fd.write('.')
         self.app_path = 'apps/337/337141.json'
         self.tarfile_file = None
         self.tarfile = None
@@ -673,6 +677,9 @@ class TestExportData(mkt.site.tests.TestCase):
         actual_files = tarball.getnames()
         for expected_file in expected_files:
             assert expected_file in actual_files, expected_file
+
+        # Make sure we didn't touch old tarballs by accident.
+        assert public_storage.exists(self.existing_tarball)
 
     @mock.patch('mkt.webapps.tasks.dump_app')
     def test_not_public(self, dump_app):
