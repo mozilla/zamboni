@@ -62,6 +62,11 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
                                   content_type='application/zip', **headers)
         eq_(response.status_code, 400)
 
+    def test_cors(self):
+        response = self.anon.post(self.list_url)
+        self.assertCORS(response, 'get', 'post',
+                        headers=['Content-Disposition', 'Content-Type'])
+
     def test_create_missing_content_disposition(self):
         headers = {
             'HTTP_CONTENT_TYPE': 'application/zip',

@@ -34,6 +34,7 @@ class ValidationViewSet(SubmitValidationViewSet):
     # Typical usage:
     # cat /tmp/extension.zip | curling -X POST --data-binary '@-' \
     # http://localhost:8000/api/v2/extensions/validation/
+    cors_allowed_headers = ('Content-Disposition', 'Content-Type')
     parser_classes = (FileUploadParser,)
 
     @use_master
