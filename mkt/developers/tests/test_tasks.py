@@ -179,12 +179,13 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         expected_suffix = '.opti.png'
         tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
         tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
-        open(tmp_dest, 'w').write(open(self.img_path).read())
+        copy_stored_file(self.img_path, tmp_dest, src_storage=public_storage,
+                         dest_storage=local_storage)
         with mock.patch('tempfile.NamedTemporaryFile',
                         lambda *a, **k: tmp_src):
             rval = tasks.pngcrush_image(self.img_path)
             # pngcrush_image copies the stored file to a local tempfile.
-            eq_(open(tmp_src.name).read(), open(self.img_path).read())
+            eq_(open(tmp_src.name).read(), public_storage.open(self.img_path).read())
 
         expected_cmd = ['pngcrush', '-q', '-rem', 'alla', '-brute', '-reduce',
                         '-e', expected_suffix, tmp_src.name]
@@ -206,7 +207,8 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         expected_suffix = '.opti.png'
         tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
         tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
-        open(tmp_dest, 'w').write(open(self.img_path).read())
+        copy_stored_file(self.img_path, tmp_dest, src_storage=public_storage,
+                         dest_storage=local_storage)
         with mock.patch('tempfile.NamedTemporaryFile',
                         lambda *a, **k: tmp_src):
             obj = app_factory()
