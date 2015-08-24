@@ -29,7 +29,7 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
 from mkt.reviewers.models import AdditionalReview, RereviewQueue
-from mkt.site.storage_utils import private_storage, public_storage
+from mkt.site.storage_utils import private_storage
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
@@ -265,11 +265,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
         f = v.files.all()[0]
         f.update(filename=f.generate_filename())
         fp = os.path.join(app.latest_version.path_prefix, f.filename)
-        if st in mkt.LISTED_STATUSES:
-            storage = public_storage
-        else:
-            storage = private_storage
-        with storage.open(fp, 'w') as out:
+        with private_storage.open(fp, 'w') as out:
             generate_app_package(app, out, vspec.get("type", apptype),
                                  vspec.get("permissions", permissions),
                                  namedict, version=v)
