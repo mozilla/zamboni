@@ -19,10 +19,10 @@ from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowAppOwner, AllowRelatedAppOwner, AnyOf,
-                                   GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.forms import NewPackagedForm, PreviewJSONForm
+from mkt.api.permissions import (AllowAppOwner, AllowRelatedAppOwner, AnyOf,
+                                 GroupPermission)
 from mkt.constants import PLATFORMS_NAMES
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required

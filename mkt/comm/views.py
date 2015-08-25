@@ -23,12 +23,12 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
-from mkt.comm.authorization import (AttachmentPermission,
-                                    EmailCreationPermission, NotePermission,
-                                    ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
                              user_has_perm_app)
+from mkt.comm.permissions import (AttachmentPermission,
+                                  EmailCreationPermission, NotePermission,
+                                  ThreadPermission)
 from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
                                   ThreadSerializerV2, ThreadSimpleSerializer)
 from mkt.comm.tasks import consume_email

@@ -15,9 +15,9 @@ from mkt.access.acl import check_addon_ownership
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowOwner, AllowRelatedAppOwner, AnyOf,
-                                   ByHttpMethod, GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.permissions import (AllowOwner, AllowRelatedAppOwner, AnyOf,
+                                 ByHttpMethod, GroupPermission)
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
 from mkt.webapps.models import Webapp
 from mkt.ratings.models import Review, ReviewFlag

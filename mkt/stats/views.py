@@ -12,9 +12,9 @@ import mkt
 from lib.metrics import get_monolith_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import ServiceUnavailable
+from mkt.api.permissions import AllowAppOwner, AnyOf, GroupPermission
 from mkt.purchase.models import Contribution
 from mkt.webapps.models import Webapp
 

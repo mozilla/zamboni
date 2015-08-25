@@ -9,8 +9,8 @@ from rest_framework.response import Response
 
 from mkt.abuse.models import AbuseReport
 from mkt.api.authentication import RestOAuthAuthentication
-from mkt.api.authorization import GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.permissions import GroupPermission
 from mkt.ratings.models import Review
 
 from .forms import MonolithForm

@@ -38,8 +38,8 @@ from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.permissions import AllowSelf, AllowOwner
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import log_cef

@@ -11,10 +11,10 @@ from rest_framework.response import Response
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
-from mkt.operators.authorization import IsOperatorPermission
+from mkt.api.permissions import AnyOf, GroupPermission
+from mkt.operators.permissions import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm
 from mkt.search.indexers import BaseIndexer
 from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,

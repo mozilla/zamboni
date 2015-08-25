@@ -18,8 +18,8 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.api.authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                   AllowReviewerReadOnly, AnyOf)
+from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
+                                 AllowReviewerReadOnly, AnyOf)
 from mkt.extensions.models import Extension
 from mkt.extensions.serializers import ExtensionSerializer
 from mkt.files.models import FileUpload

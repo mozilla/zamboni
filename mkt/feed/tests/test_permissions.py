@@ -5,18 +5,18 @@ from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
 from mkt.access.middleware import ACLMiddleware
-from mkt.feed.authorization import FeedAuthorization
+from mkt.feed.permissions import FeedPermission
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
 
 
-class TestFeedAuthorization(TestCase):
-    auth_class = FeedAuthorization
+class TestFeedPermission(TestCase):
+    auth_class = FeedPermission
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestFeedAuthorization, self).setUp()
+        super(TestFeedPermission, self).setUp()
         self.auth = self.auth_class()
         self.user = UserProfile.objects.get(pk=2519)
         self.profile = self.user

@@ -13,8 +13,8 @@ from mkt.access.acl import action_allowed
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowReadOnlyIfPublic, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.permissions import AllowReadOnlyIfPublic, AnyOf, GroupPermission
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.langpacks.models import LangPack
 from mkt.langpacks.serializers import (LangPackSerializer,

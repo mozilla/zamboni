@@ -43,8 +43,8 @@ from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AnyOf, ByHttpMethod, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
+from mkt.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment

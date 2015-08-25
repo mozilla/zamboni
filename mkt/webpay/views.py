@@ -21,8 +21,8 @@ from lib.cef_loggers import app_pay_cef
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.permissions import AllowReadOnly, AnyOf, GroupPermission
 from mkt.constants.regions import RESTOFWORLD
 from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_inapp_receipt

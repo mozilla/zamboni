@@ -26,9 +26,9 @@ from mkt.access import acl
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
+from mkt.api.permissions import AllowReadOnly, AnyOf, GroupPermission
 from mkt.constants.carriers import CARRIER_MAP
 from mkt.constants.regions import REGIONS_DICT
 from mkt.developers.tasks import pngcrush_image
@@ -43,9 +43,9 @@ from mkt.webapps.models import Webapp
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.serializers import ESWebsiteSerializer
 
-from .authorization import FeedAuthorization
 from .fields import DataURLImageField, ImageURLField
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
+from .permissions import FeedPermission
 from .serializers import (FeedAppESSerializer, FeedAppSerializer,
                           FeedBrandESSerializer, FeedBrandSerializer,
                           FeedCollectionESSerializer, FeedCollectionSerializer,
@@ -128,7 +128,7 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     serializer_class = None
     queryset = None
     cors_allowed_methods = ('get', 'post', 'delete', 'patch', 'put')
-    permission_classes = [FeedAuthorization]
+    permission_classes = [FeedPermission]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]

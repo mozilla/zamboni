@@ -12,9 +12,9 @@ import commonware.log
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAuthor, ByHttpMethod
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.filters import MktFilterBackend
+from mkt.api.permissions import AllowAuthor, ByHttpMethod
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductSerializer
 from mkt.prices.models import Price
