@@ -530,6 +530,8 @@ class TestLangPackNonAPIViews(TestCase):
         response = self.client.get(self.langpack.download_url)
         eq_(response.status_code, 200)
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
     def test_download_storage(self):
         ok_(self.langpack.download_url)
         response = self.client.get(self.langpack.download_url)
