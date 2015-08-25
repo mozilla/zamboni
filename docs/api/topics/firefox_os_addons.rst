@@ -24,7 +24,7 @@ Add-on
     depending on the query. See :ref:`translations <overview-translations>`.
 
 
-.. http:get:: /api/v2/extension/extension/
+.. http:get:: /api/v2/extensions/extension/
 
     .. note:: Requires authentication.
 
@@ -70,7 +70,7 @@ Add-on
     :status 403: not allowed to access this object.
     :status 404: not found.
 
-Add-on search
+Add-on Search
 =============
 
 .. _addon-search-label:
@@ -91,3 +91,9 @@ Add-on search
     :type objects: array
 
     :status 200: successfully completed.
+
+
+Add-on Review
+=============
+
+See the dedicated :ref:`Firefox OS Add-on Review <addons_review>` topic.

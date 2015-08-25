@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC
+from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC, STATUS_REJECTED
 from mkt.extensions.models import Extension
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
@@ -206,6 +206,14 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         self.url2 = reverse('api-v2:extension-detail',
                             kwargs={'pk': self.extension2.pk})
 
+    def test_has_cors(self):
+        self.assertCORS(
+            self.anon.get(self.list_url),
+            'get', 'patch', 'put', 'post', 'delete')
+        self.assertCORS(
+            self.anon.get(self.url),
+            'get', 'patch', 'put', 'post', 'delete')
+
     def test_list_anonymous(self):
         response = self.anon.get(self.list_url)
         eq_(response.status_code, 403)
@@ -236,6 +244,11 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
         eq_(data['version'], self.extension.version)
+
+    def test_detail_with_slug(self):
+        self.url = reverse('api-v2:extension-detail',
+                           kwargs={'pk': self.extension.slug})
+        self.test_detail_anonymous()
 
     def test_detail_logged_in(self):
         response = self.client.get(self.url2)
@@ -305,3 +318,135 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
             response = self.anon.get(self.url)
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 0)
+
+
+class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestReviewersExtensionViewSetGet, self).setUp()
+        self.list_url = reverse('api-v2:extension-queue-list')
+        self.user = UserProfile.objects.get(pk=2519)
+        self.extension = Extension.objects.create(name=u'Än Extension',
+                                                  status=STATUS_PENDING,
+                                                  version='4.8.15.16.23.42')
+        Extension.objects.create(name=u'Anothër Extension',
+                                 status=STATUS_PUBLIC)
+        self.url = reverse('api-v2:extension-queue-detail',
+                           kwargs={'pk': self.extension.pk})
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.list_url), 'get', 'post')
+        self.assertCORS(self.anon.get(self.url), 'get', 'post')
+
+    def test_list_anonymous(self):
+        response = self.anon.get(self.list_url)
+        eq_(response.status_code, 403)
+
+    def test_list_logged_in_no_rights(self):
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 403)
+
+    def test_list_logged_in_with_rights_status(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
+    def test_list_logged_in_with_rights(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 200)
+        data = response.json['objects'][0]
+        eq_(data['id'], self.extension.id)
+        eq_(data['name'], {'en-US': self.extension.name})
+        eq_(data['slug'], self.extension.slug)
+        eq_(data['status'], 'pending')
+        eq_(data['version'], self.extension.version)
+
+    def test_detail_anonymous(self):
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_detail_logged_in_no_rights(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_detail_logged_in_with_rights_status_public(self):
+        self.extension.update(status=STATUS_PUBLIC)
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 404)
+
+    def test_detail_logged_in_with_rights(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.id)
+        eq_(data['name'], {'en-US': self.extension.name})
+        eq_(data['slug'], self.extension.slug)
+        eq_(data['status'], 'pending')
+        eq_(data['version'], self.extension.version)
+
+    def test_detail_with_slug(self):
+        self.url = reverse('api-v2:extension-queue-detail',
+                           kwargs={'pk': self.extension.slug})
+        self.test_detail_logged_in_with_rights()
+
+
+class TestReviewersExtensionViewSetPost(UploadTest, RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestReviewersExtensionViewSetPost, self).setUp()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.extension = Extension.objects.create(name=u'Än Extension',
+                                                  status=STATUS_PENDING,
+                                                  version='4.8.15.16.23.42')
+        self.url = reverse('api-v2:extension-queue-detail',
+                           kwargs={'pk': self.extension.pk})
+        self.publish_url = reverse('api-v2:extension-queue-publish',
+                                   kwargs={'pk': self.extension.pk})
+        self.reject_url = reverse('api-v2:extension-queue-reject',
+                                  kwargs={'pk': self.extension.pk})
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.publish_url), 'get', 'post')
+        self.assertCORS(self.anon.get(self.reject_url), 'get', 'post')
+
+    def test_post_anonymous(self):
+        response = self.anon.post(self.url)
+        eq_(response.status_code, 403)
+        response = self.anon.post(self.publish_url)
+        eq_(response.status_code, 403)
+        response = self.anon.post(self.reject_url)
+        eq_(response.status_code, 403)
+
+    def test_post_logged_in_no_rights(self):
+        response = self.client.post(self.url)
+        eq_(response.status_code, 403)
+        response = self.anon.post(self.publish_url)
+        eq_(response.status_code, 403)
+        response = self.anon.post(self.reject_url)
+        eq_(response.status_code, 403)
+
+    def test_post_logged_in_with_rights_not_implemented(self):
+        # Make sure we can only POST to reject/publish endpoints.
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.post(self.url)
+        eq_(response.status_code, 405)
+
+    def test_publish(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.post(self.publish_url)
+        eq_(response.status_code, 202)
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_PUBLIC)
+
+    def test_reject(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.post(self.reject_url)
+        eq_(response.status_code, 202)
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_REJECTED)

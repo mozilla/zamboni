@@ -10,8 +10,8 @@ Firefox OS Add-on Submission
     production. This API is not ready for public consumption yet and can change
     at any moment.
 
-How to submit an Add-on
-=======================
+How To
+======
 
 Like apps, submitting a Firefox OS Add-on involves a few steps. The client must
 be logged in for all these steps and the user submitting the add-on must have
