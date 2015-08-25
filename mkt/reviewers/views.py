@@ -877,7 +877,7 @@ def get_signed_packaged(request, addon, version_id):
     log.info('Returning signed package addon: %s, version: %s, path: %s' %
              (addon.pk, version_id, path))
     return get_file_response(request, path, content_type='application/zip',
-                             etag=file.hash.split(':')[-1])
+                             etag=file.hash.split(':')[-1], public=False)
 
 
 @reviewer_required(moderator=True)

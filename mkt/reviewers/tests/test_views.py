@@ -3575,12 +3575,26 @@ class TestGetSigned(BasePackagedAppTest, mkt.site.tests.TestCase):
         self.login(user_factory())
         eq_(self.client.get(self.url).status_code, 403)
 
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
     @mock.patch('lib.crypto.packaged.sign')
-    def test_reviewer_sign_arguments(self, sign_mock):
+    def test_reviewer_sign_arguments_local(self, sign_mock):
+        sign_mock.side_effect = mock_sign
         self.setup_files()
         res = self.client.get(self.url)
-        eq_(res.status_code, 200)
         sign_mock.assert_called_with(self.version.pk, reviewer=True)
+        eq_(res.status_code, 200)
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    @mock.patch('lib.crypto.packaged.sign')
+    def test_reviewer_sign_arguments_storage(self, sign_mock):
+        sign_mock.side_effect = mock_sign
+        self.setup_files()
+        res = self.client.get(self.url)
+        sign_mock.assert_called_with(self.version.pk, reviewer=True)
+        self.assert3xx(res, private_storage.url(
+            self.file.signed_reviewer_file_path))
 
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_reviewer(self):

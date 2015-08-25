@@ -1774,16 +1774,30 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['icons'], manifest['icons'])
         eq_(data['locales'], manifest['locales'])
 
-    def test_package_path(self):
+    def _createPackage(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         webapp.update(status=mkt.STATUS_PUBLIC)
         version = webapp.latest_version
         file = version.all_files[0]
         file.update(status=mkt.STATUS_PUBLIC)
+        return file
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_package_path_local(self):
+        file = self._createPackage()
         res = self.client.get(file.get_url_path('manifest'))
         eq_(res.status_code, 200)
         eq_(res['content-type'], 'application/zip')
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    def test_package_path_storage(self):
+        file = self._createPackage()
+        file.version.addon.get_cached_manifest(force=True)
+        res = self.client.get(file.get_url_path('manifest'))
+        self.assert3xx(res, public_storage.url(file.signed_file_path))
 
     def test_packaged_with_BOM(self):
         # Exercise separate code paths to loading the packaged app manifest.

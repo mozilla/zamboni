@@ -115,12 +115,3 @@ class TestStorageClasses(TestCase):
         assert not storage_is_remote()
         eq_(get_private_storage().__class__.__name__, 'LocalFileStorage')
         eq_(get_public_storage().__class__.__name__, 'LocalFileStorage')
-
-    @override_settings(
-        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
-    def test_simple_lazy_object(self):
-        from mkt.site.storage_utils import private_storage, public_storage
-
-        assert not storage_is_remote()
-        eq_(private_storage.__class__.__name__, 'LocalFileStorage')
-        eq_(public_storage.__class__.__name__, 'LocalFileStorage')
