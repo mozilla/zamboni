@@ -45,10 +45,4 @@ up-to-date::
 
     cd docs && make loop
 
-Indices and tables
-~~~~~~~~~~~~~~~~~~
-
-* :ref:`genindex`
-* :ref:`modindex`
-
 .. _`Marketplace Documentation`: https://marketplace.readthedocs.org
