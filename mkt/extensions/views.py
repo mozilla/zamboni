@@ -7,6 +7,7 @@ from django.http import Http404
 
 import commonware
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
@@ -20,9 +21,10 @@ from tower import ugettext as _
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                 AllowReviewerReadOnly, AnyOf)
+                                 AllowReviewerReadOnly, AnyOf, ByHttpMethod,
+                                 GroupPermission)
 from mkt.api.paginator import ESPaginator
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension
@@ -83,12 +85,13 @@ class ValidationViewSet(SubmitValidationViewSet):
                 _("'manifest.json' in the archive is not a valid JSON file."))
 
 
-class ExtensionViewSet(CORSMixin, MarketplaceView, CreateModelMixin,
-                       ListModelMixin, RetrieveModelMixin, GenericViewSet):
+class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                       CreateModelMixin, ListModelMixin, RetrieveModelMixin,
+                       GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
-    cors_allowed_methods = ('get', 'put', 'post', 'delete')
+    cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
     permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
                                 AllowReadOnlyIfPublic)]
     queryset = Extension.objects.all()
@@ -152,3 +155,33 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
         # to be wrapped in transactions.
         view = super(ExtensionSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                                ListModelMixin, RetrieveModelMixin,
+                                GenericViewSet):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+    cors_allowed_methods = ('get', 'post')
+    permission_classes = (ByHttpMethod({
+        'options': AllowAny,
+        'post': GroupPermission('Extensions', 'Review'),
+        'get': GroupPermission('Extensions', 'Review'),
+    }),)
+    queryset = Extension.objects.pending()
+    serializer_class = ExtensionSerializer
+
+    @action()
+    def publish(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.publish()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @action()
+    def reject(self, request, *args, **kwargs):
+        # FIXME: we need to define what happens to rejected add-ons and how a
+        # developer can re-submit them.
+        obj = self.get_object()
+        obj.reject()
+        return Response(status=status.HTTP_202_ACCEPTED)

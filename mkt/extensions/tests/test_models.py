@@ -4,6 +4,8 @@ from nose.tools import eq_, ok_
 
 from django.forms import ValidationError
 
+from mkt.constants.base import (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
+                                STATUS_REJECTED)
 from mkt.extensions.models import Extension
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.storage_utils import private_storage
@@ -125,3 +127,29 @@ class TestExtensionESIndexation(TestCase):
         eq_(count, 3)
         Extension.objects.all().delete()
         eq_(delete_mock.call_count, count)
+
+
+class TestExtensionMethods(TestCase):
+    def test_publish(self):
+        extension = Extension.objects.create()
+        eq_(extension.status, STATUS_NULL)
+        extension.publish()
+        extension = Extension.objects.get(pk=extension.pk)
+        eq_(extension.status, STATUS_PUBLIC)
+
+    def test_reject(self):
+        extension = Extension.objects.create()
+        eq_(extension.status, STATUS_NULL)
+        extension.reject()
+        extension = Extension.objects.get(pk=extension.pk)
+        eq_(extension.status, STATUS_REJECTED)
+
+
+class TestExtensionManager(TestCase):
+    def test_pending(self):
+        extension1 = Extension.objects.create(status=STATUS_PENDING)
+        extension2 = Extension.objects.create(status=STATUS_PENDING)
+        Extension.objects.create(status=STATUS_PUBLIC)
+        Extension.objects.create(status=STATUS_NULL)
+
+        eq_(list(Extension.objects.pending()), [extension1, extension2])

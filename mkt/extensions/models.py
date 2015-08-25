@@ -9,19 +9,24 @@ import commonware.log
 from django_extensions.db.fields.json import JSONField
 
 from mkt.constants.base import (STATUS_CHOICES, STATUS_NULL, STATUS_PENDING,
-                                STATUS_PUBLIC)
+                                STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.utils import ExtensionParser
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.translations.utils import to_language
-from mkt.site.models import ModelBase
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.storage_utils import copy_stored_file, private_storage
 from mkt.site.utils import smart_path
 from mkt.webapps.models import clean_slug
 
 
 log = commonware.log.getLogger('z.extensions')
+
+
+class ExtensionManager(ManagerBase):
+    def pending(self):
+        return self.filter(status=STATUS_PENDING).order_by('id')
 
 
 class Extension(ModelBase):
@@ -38,6 +43,8 @@ class Extension(ModelBase):
     slug = models.CharField(max_length=35, unique=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), db_index=True, default=STATUS_NULL)
+
+    objects = ExtensionManager()
 
     def clean_slug(self):
         return clean_slug(self, slug_field='slug')
@@ -136,6 +143,15 @@ class Extension(ModelBase):
     @property
     def path_prefix(self):
         return os.path.join(settings.ADDONS_PATH, 'extensions', str(self.pk))
+
+    def publish(self):
+        """Publish this add-on to public."""
+        # FIXME: sign and move file to public storage.
+        self.update(status=STATUS_PUBLIC)
+
+    def reject(self):
+        """Reject this add-on."""
+        self.update(status=STATUS_REJECTED)
 
     def save(self, *args, **kwargs):
         if not self.slug:
