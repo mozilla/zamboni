@@ -12,7 +12,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
-                                PublicAppsFilter, RegionFilter)
+                                PublicContentFilter, RegionFilter)
 from mkt.search.views import SearchView
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.serializers import SimpleESAppSerializer
@@ -27,7 +27,7 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
     serializer_class = SimpleESAppSerializer
-    filter_backends = [PublicAppsFilter, DeviceTypeFilter, RegionFilter,
+    filter_backends = [PublicContentFilter, DeviceTypeFilter, RegionFilter,
                        ProfileFilter]
 
     def _popular(self):

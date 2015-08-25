@@ -12,7 +12,7 @@ from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
 from mkt.site.storage_utils import private_storage
-from mkt.site.tests import MktPaths
+from mkt.site.tests import ESTestCase, MktPaths
 from mkt.users.models import UserProfile
 
 
@@ -195,7 +195,8 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=999)
         self.extension = Extension.objects.create(name=u'Mŷ Extension',
-                                                  status=STATUS_PENDING)
+                                                  status=STATUS_PENDING,
+                                                  version='0.42')
         self.extension.authors.add(self.user)
         self.extension2 = Extension.objects.create(name=u'NOT Mŷ Extension',
                                                    status=STATUS_PENDING)
@@ -217,8 +218,10 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(len(response.json['objects']), 1)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
         eq_(data['name'], {"en-US": self.extension.name})
+        eq_(data['version'], self.extension.version)
 
     def test_detail_anonymous(self):
         response = self.anon.get(self.url)
@@ -229,8 +232,10 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
-        eq_(data['status'], 'public')
         eq_(data['name'], {'en-US': self.extension.name})
+        eq_(data['slug'], self.extension.slug)
+        eq_(data['status'], 'public')
+        eq_(data['version'], self.extension.version)
 
     def test_detail_logged_in(self):
         response = self.client.get(self.url2)
@@ -242,5 +247,61 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
-        eq_(data['status'], 'pending')
         eq_(data['name'], {'en-US': self.extension.name})
+        eq_(data['slug'], self.extension.slug)
+        eq_(data['status'], 'pending')
+        eq_(data['version'], self.extension.version)
+
+
+class TestExtensionSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.extension = Extension.objects.create(**{
+            'name': u'Mŷ Extension',
+            'status': STATUS_PUBLIC,
+        })
+        self.url = reverse('api-v2:extension-search')
+        super(TestExtensionSearchView, self).setUp()
+        self.refresh('extension')
+
+    def tearDown(self):
+        Extension.get_indexer().unindexer(_all=True)
+        super(TestExtensionSearchView, self).tearDown()
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
+
+    def test_basic(self):
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+        data = response.json['objects'][0]
+        eq_(data['id'], self.extension.id)
+        eq_(data['name'], {'en-US': self.extension.name})
+        eq_(data['slug'], self.extension.slug)
+        eq_(data['status'], 'public')
+        eq_(data['version'], self.extension.version)
+
+    def test_list(self):
+        self.extension2 = Extension.objects.create(**{
+            'name': u'Mŷ Second Extension',
+            'status': STATUS_PUBLIC,
+        })
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 2)
+
+    def test_not_public(self):
+        self.extension.update(status=STATUS_PENDING)
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 0)

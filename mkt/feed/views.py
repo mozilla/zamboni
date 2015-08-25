@@ -35,7 +35,7 @@ from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.models import OperatorPermission
 from mkt.search.filters import (DeviceTypeFilter, ProfileFilter,
-                                PublicAppsFilter, RegionFilter)
+                                PublicContentFilter, RegionFilter)
 from mkt.site.storage_utils import public_storage
 from mkt.site.utils import get_file_response
 from mkt.webapps.indexers import WebappIndexer
@@ -569,7 +569,7 @@ class FeedShelfLandingImageViewSet(FeedShelfPermissionMixin,
 
 
 class BaseFeedESView(CORSMixin, APIView):
-    filter_backends = [PublicAppsFilter, DeviceTypeFilter, RegionFilter,
+    filter_backends = [PublicContentFilter, DeviceTypeFilter, RegionFilter,
                        ProfileFilter]
 
     def __init__(self, *args, **kw):

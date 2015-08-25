@@ -101,8 +101,7 @@ class TestExtensionDeletion(TestCase):
         being present."""
         extension = Extension.objects.create(version='0.1')
         filename = extension.file_path
-        assert (not private_storage.exists(filename),
-                'File exists at: %s' % filename)
+        assert not private_storage.exists(filename)
         extension.delete()
 
     def test_delete_signal(self):
@@ -110,3 +109,19 @@ class TestExtensionDeletion(TestCase):
         field being empty."""
         extension = Extension.objects.create()
         extension.delete()
+
+
+class TestExtensionESIndexation(TestCase):
+    @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
+    def test_update_search_index(self, update_mock):
+        extension = Extension.objects.create()
+        update_mock.assert_called_once_with([extension.pk])
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.unindex')
+    def test_delete_search_index(self, delete_mock):
+        for x in xrange(3):
+            Extension.objects.create()
+        count = Extension.objects.count()
+        eq_(count, 3)
+        Extension.objects.all().delete()
+        eq_(delete_mock.call_count, count)

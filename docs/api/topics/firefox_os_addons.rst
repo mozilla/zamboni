@@ -10,13 +10,13 @@ Firefox OS Add-ons
     production. This API is not ready for public consumption yet and can change
     at any moment.
 
-Addon Submission
-================
+Add-on Submission
+=================
 
-See the dedicated :ref:`Firefox OS Addon Submission <addon_submission>` topic.
+See the dedicated :ref:`Firefox OS Add-on Submission <addon_submission>` topic.
 
-Addon
-=====
+Add-on
+======
 
 .. note::
 
@@ -28,7 +28,7 @@ Addon
 
     .. note:: Requires authentication.
 
-    Returns a list of addons you have submitted.
+    Returns a list of add-ons you have submitted.
 
     **Request**
 
@@ -38,25 +38,30 @@ Addon
 
     :param meta: :ref:`meta-response-label`.
     :type meta: object
-    :param objects: A :ref:`listing <objects-response-label>` of :ref:`addons <addon-response-label>`.
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`add-ons <addon-response-label>`.
     :type objects: array
+
+    :status 200: successfully completed.
+    :status 403: not authenticated.
 
 .. _addon-response-label:
 
 .. http:get:: /api/v2/extensions/extension/(int:id)|(string:slug)/
 
-    .. note:: Does not require authentication if your addon is public.
+    .. note:: Non public add-ons can only be viewed by their authors.
+
+    Returns a single add-on.
 
     **Response**
 
-    :param name: The addon name.
+    :param name: The add-on name.
     :type name: string|object
-    :param slug: The addon slug (unique string identifier that can be used
-        instead of the id to retrieve an addon).
+    :param slug: The add-on slug (unique string identifier that can be used
+        instead of the id to retrieve an add-on).
     :type slug: string
-    :param version: The addon current version number.
+    :param version: The add-on current version number.
     :type version: string
-    :param status: The addon current status.
+    :param status: The add-on current status.
         Can be "incomplete", "pending" or "public".
     :type status: string
     
@@ -64,3 +69,25 @@ Addon
     :status 200: successfully completed.
     :status 403: not allowed to access this object.
     :status 404: not found.
+
+Add-on search
+=============
+
+.. _addon-search-label:
+
+.. http:get:: /api/v2/extensions/search/
+
+    .. note:: Only returns public add-ons. Search query is ignored for now.
+
+    **Request**
+
+    The standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`add-ons <addon-response-label>`.
+    :type objects: array
+
+    :status 200: successfully completed.

@@ -199,7 +199,7 @@ class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['keywords', 'category', 'device', 'status', 'is_disabled']
 
 
-class PublicAppsFilter(BaseFilterBackend):
+class PublicContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only public items --
     those with PUBLIC status and not disabled.
