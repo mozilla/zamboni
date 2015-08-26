@@ -94,7 +94,7 @@ class TestLangPackUpload(UploadCreationMixin, UploadTest):
         'role': 'langpack',
         'languages-provided': {
             'de': {
-                'version': '201411051234',
+                'revision': 201411051234,
                 'apps': {
                     'app://calendar.gaiamobile.org/manifest.webapp':
                     '/de/calendar',
