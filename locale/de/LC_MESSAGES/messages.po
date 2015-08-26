@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-12 16:23+0000\n"
+"PO-Revision-Date: 2015-08-26 18:51+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439396591.0\n"
+"X-POOTLE-MTIME: 1440615093.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1277,15 +1277,15 @@ msgstr "Stufe 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Stufe 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Stufe 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Stufe 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2886,6 +2886,8 @@ msgstr "OAuth-Beispiel"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Beispiel für die Verwendung einer Python-Bibliothek für die Kommandozeile "
+"auf Mac OS X/Linux mit Ihren OAuth-Informationen:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5131,58 +5133,62 @@ msgstr "Mozilla Web-Apps (Brasilianisches Portugiesisch)"
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
 msgstr ""
+"Die Datei „manifest.json“ wurde im Wurzelverzeichnis des Zip-Archivs nicht "
+"gefunden."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Add-ons müssen in ein gültiges Zip-Archiv gepackt werden."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Add-on-Manifest-Datei konnte nicht dekodiert werden. Überprüfen Sie, ob Ihre "
+"Manifest-Datei Sonderzeichen enthält, die nicht zu UTF-8 gehören."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "Das Add-on-Manifest ist kein gültiges JSON."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "Das Feld „%s“ im Add-on-Manifest fehlt oder ist leer."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Fehlende Datei in Anfrage."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Die gesendete Datei hat einen nicht-unterstützten Content-Type."
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Die gesendete Datei ist keine gültige Zip-Datei."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "Das Archiv enthält keine „manifest.json“-Datei."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "„manifest.json“ im Archiv ist keine gültige JSON-Datei."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Kein Upload-Identifikator angegeben."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Sie müssen authentifiziert sein, um diese Aktion durchzuführen."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Upload existiert nicht."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "Der angegebene Upload hat die Überprüfung nicht bestanden."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
