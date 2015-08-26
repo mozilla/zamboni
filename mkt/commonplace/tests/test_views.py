@@ -59,10 +59,10 @@ class TestCommonplace(CommonplaceTestMixin):
         self.assertNotContains(res, 'splash.css')
         eq_(res['Cache-Control'], 'max-age=180')
 
-    def test_submission(self):
-        res = self._test_url('/submission/')
+    def test_content_tools(self):
+        res = self._test_url('/content/')
         self.assertTemplateUsed(res, 'commonplace/index_react.html')
-        self.assertEquals(res.context['repo'], 'marketplace-submission')
+        self.assertEquals(res.context['repo'], 'marketplace-content-tools')
         eq_(res['Cache-Control'], 'max-age=180')
 
     @mock.patch('mkt.commonplace.views.fxa_auth_info')
