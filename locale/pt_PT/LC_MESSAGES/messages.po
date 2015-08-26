@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-12 21:57+0000\n"
+"PO-Revision-Date: 2015-08-26 22:29+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439416659.0\n"
+"X-POOTLE-MTIME: 1440628148.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1278,15 +1278,15 @@ msgstr "Nível 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Nível 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Nível 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Nível 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2895,6 +2895,8 @@ msgstr "Exemplo OAuth"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemplo utilizando uma biblioteca Python para a linha de comandos no Mac "
+"OS X/Linux utilizando as suas credenciais OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5140,59 +5142,61 @@ msgstr "Aplicações Web da Mozilla (em Português Brasileiro)"
 
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
-msgstr ""
+msgstr "O ficheiro \"manifest.json\" não foi encontrado na raiz do arquivo zip."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Os extras precisam de ser empacotados num arquivo zip válido."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Não foi possível descodificar o ficheiro de manifesto do extra. Confirme se "
+"não tem carateres especiais não-utf-8 no seu ficheiro de manifesto."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "O manifesto do extra não apresenta um formato JSON válido."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "O campo \"%s\" está em falta ou está vazio no manifesto do extra."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Ficheiro em falta no pedido."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "O ficheiro enviado tinha um tipo de conteúdo não suportado"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "O ficheiro enviado não é um ficheiro ZIP válido."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "O arquivo não contem um ficheiro 'manifest.json'."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "'manifest.json' no arquivo não é um ficheiro JSON válido."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Não foi especificado um identificador do carregamento."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Precisa de estar autenticado para executar esta ação."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Sem tal carregamento."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "O carregamento especificado não passou na validação."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
