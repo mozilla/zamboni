@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-12 11:52-0400\n"
+"PO-Revision-Date: 2015-08-26 16:53-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1281,15 +1281,15 @@ msgstr "レベル 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "レベル 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "レベル 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "レベル 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2886,7 +2886,7 @@ msgstr "OAuth サンプル"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
-msgstr ""
+msgstr "<p>OAuth 認証情報を使用し、Mac OS X あるいは Linux 上でコマンドライン用の Python ライブラリを使った例:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5103,59 +5103,59 @@ msgstr "Mozilla Web apps (ブラジル、ポルトガル語)"
 
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
-msgstr ""
+msgstr "ZIP アーカイブのルートディレクトリに「manifest.json」ファイルが見つかりませんでした。"
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "アドオンは有効な ZIP アーカイブにパッケージする必要があります。"
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "アドオンマニフェストファイルをデコードできませんでした。UTF-8 に該当しない特別な文字が含まれていないか確認してください。"
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "アドオンマニフェストが有効な JSON 形式ではありません。"
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "アドオンマニフェストの項目「%s」が欠けているか空欄となっています。"
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "リクエスト内のファイルが見つかりません。"
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "送信されたファイルは未対応のコンテンツタイプです。"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "送信されたファイルは有効な ZIP ファイルではありません。"
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "アーカイブに「manifest.json」ファイルが含まれていません。"
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "アーカイブ内の「manifest.json」が有効な JSON 形式ではありません。"
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "アップロード識別子が指定されていません。"
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "このアクションを実行するにはユーザ認証を行う必要があります。"
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "該当するアップロードが見当たりません。"
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "指定されたアップロードは検証をパスしていません。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
