@@ -4,6 +4,7 @@ from rest_framework import fields, serializers
 
 import mkt
 from mkt.access import acl
+from mkt.access.models import Group
 from mkt.api.serializers import PotatoCaptchaSerializer
 from mkt.users.models import UserProfile
 
@@ -144,3 +145,11 @@ class UserSerializer(AccountSerializer):
     class Meta:
         model = UserProfile
         fields = ('display_name', 'resource_uri')
+
+
+class GroupsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Group
+        fields = ('id', 'name', 'restricted')
+        read_only_fields = ('id', 'name', 'restricted')

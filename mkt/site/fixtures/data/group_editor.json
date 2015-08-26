@@ -6,7 +6,8 @@
             "rules": "Apps:Review,Reviews:Edit",
             "modified": "2012-01-27 13:32:08",
             "name": "App Reviewers",
-            "created": "2012-01-27 12:41:00"
+            "created": "2012-01-27 12:41:00",
+            "restricted": false
         }
     }
 ]

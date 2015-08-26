@@ -51,6 +51,76 @@ require(['prefetchManifest']);
         $(this).next('button').removeClass('disabled');
     });
 
+    $('.add-group button').click(_pd(function() {
+        var button = $(this);
+        var select = button.parents('tr.add-group').find('select')[0];
+        var group = select.options[select.selectedIndex].value;
+        var group_name = select.options[select.selectedIndex].textContent;
+        var secret = require('login').userToken();
+
+        $.ajax({
+            url: button.data('api-url') + '?_user=' + encodeURIComponent(secret),
+            data: {
+                group: group
+            },
+            type: button.data('api-method'),
+            dataType: 'text'
+        }).done(function() {
+            notification({
+                message: format(gettext('Group membership "{0}" added'), group_name),
+                timeout: 2000
+            });
+            button.addClass('disabled');
+            select.selectedIndex = 0;
+            // add row for newly added group
+            var blankrow = $('.remove-group-blank');
+            var clone = blankrow.clone(true, true);
+            clone.attr('class', 'remove-group');
+            blankrow.before(clone);
+            clone.find('td:contains("$group_name")')[0].textContent = group_name;
+            clone.find('button').attr('data-api-group', group);
+        }).fail(function() {
+            notification({
+                message: format(gettext('Could not add group "{0}"'), group_name),
+                timeout: 2000
+            });
+        });
+    }));
+
+    $('.remove-group button, .remove-group-blank button').click(_pd(function() {
+        var button = $(this);
+        var group = button.data('api-group');
+        var parent_row = button.parents('tr.remove-group')
+        var group_name = parent_row.find('td')[0].textContent;
+        var secret = require('login').userToken();
+
+        button.addClass('disabled');
+
+        $.ajax({
+            url: button.data('api-url') + '?_user=' + encodeURIComponent(secret),
+            data: {
+                group: group
+            },
+            type: button.data('api-method'),
+            dataType: 'json'
+        }).done(function() {
+            notification({
+                message: format(gettext('Group membership "{0}" removed'), group_name),
+                timeout: 2000
+            });
+            parent_row.remove();
+        }).fail(function() {
+            notification({
+                message: format(gettext('Could not remove group "{0}"'), group_name),
+                timeout: 2000
+            });
+        });
+    }));
+
+    $('.add-group select').change(function() {
+        $(this).parents('tr.add-group').find('button').removeClass('disabled');
+    });
+
     // Delete user button.
     $('#delete-user button').click(function() {
         $('#delete-user .modal-delete').show().find('textarea').focus();
@@ -63,6 +133,7 @@ require(['prefetchManifest']);
     $('#account-search').searchSuggestions($('#account-search-suggestions'), processResults);
     $('#app-search').searchSuggestions($('#app-search-suggestions'), processResults);
     $('#website-search').searchSuggestions($('#website-search-suggestions'), processResults);
+    $('#group-search').searchSuggestions($('#group-search-suggestions'), processResults);
 
     // Show All Results.
     var searchTerm = '';

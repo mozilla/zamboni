@@ -16,4 +16,7 @@
   {% if action_allowed('WebsiteLookup', 'View') %}
     {% include 'lookup/includes/website_search.html' %}
   {% endif %}
+  {% if action_allowed('AccountLookup', 'View') %}
+    {% include 'lookup/includes/group_search.html' %}
+  {% endif %}
 {% endblock %}

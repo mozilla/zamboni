@@ -1,8 +1,8 @@
 from django.conf.urls import include, patterns, url
 
 from mkt.account.views import (AccountView, FeedbackView, FxALoginView,
-                               InstalledViewSet, LoginView, LogoutView,
-                               NewsletterView, PermissionsView)
+                               GroupsViewSet, InstalledViewSet, LoginView,
+                               LogoutView, NewsletterView, PermissionsView)
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
@@ -26,6 +26,10 @@ drf_patterns = patterns(
         name='account-settings'),
     url(r'^shelves/$', FeedShelfViewSet.as_view(
         {'get': 'mine'}), name='feedshelves-mine'),
+    url('^groups/(?P<pk>[^/]+)/$',
+        GroupsViewSet.as_view({'get': 'list', 'post': 'create',
+                               'delete': 'destroy'}),
+        name='account-groups'),
 )
 
 api_patterns = patterns(

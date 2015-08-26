@@ -16,6 +16,7 @@ from nose.tools import eq_, ok_
 
 import mkt
 from mkt.account.views import MineMixin
+from mkt.access.models import Group, GroupUser
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
@@ -841,3 +842,96 @@ class TestNewsletter(RestOAuth):
             self.VALID_EMAIL, 'mozilla-and-you,marketplace-desktop',
             lang='en-US', country='', trigger_welcome='Y',
             optin='Y', format='H')
+
+
+class TestGroupsViewSet(RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.target_user = UserProfile.objects.get(pk=999)
+        cls.normal_group = Group.objects.create(name=u'NGr\u00F4up', rules="")
+        cls.restricted_group = Group.objects.create(
+            name=u'\u0158Group', rules="", restricted=True)
+        cls.url = reverse('account-groups', kwargs={'pk': 999})
+
+    def setUp(self):
+        super(TestGroupsViewSet, self).setUp()
+        self.grant_permission(self.user, 'Admin:%')
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'get', 'delete', 'post')
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ('get', 'delete', 'post'))
+
+    def test_anon(self):
+        eq_(self.anon.get(self.url).status_code, 403)
+
+    def test_non_admin(self):
+        self.remove_permission(self.user, 'Admin:%')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_list(self):
+        GroupUser.objects.create(group=self.normal_group,
+                                 user=self.target_user)
+        GroupUser.objects.create(group=self.restricted_group,
+                                 user=self.target_user)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200, res.content)
+        data = json.loads(res.content)
+        # Check target has those two groups.
+        eq_(data[0]['id'], self.normal_group.pk)
+        eq_(data[0]['name'], self.normal_group.name)
+        eq_(data[0]['restricted'], self.normal_group.restricted)
+        eq_(data[1]['id'], self.restricted_group.pk)
+        eq_(data[1]['name'], self.restricted_group.name)
+        eq_(data[1]['restricted'], self.restricted_group.restricted)
+
+    def test_list_invalid_user_id(self):
+        url = reverse('account-groups', kwargs={'pk': 54321})
+        eq_(self.client.get(url).status_code, 400)
+
+    def do_post(self, group_id):
+        return self.client.post(self.url, data=json.dumps({'group': group_id}))
+
+    def do_delete(self, group_id):
+        return self.client.delete(self.url, data={'group': group_id})
+
+    def test_add_group_valid(self):
+        res = self.do_post(self.normal_group.pk)
+        eq_(res.status_code, 201, res.content)
+
+    def test_add_group_fail_admin(self):
+        res = self.do_post(self.restricted_group.pk)
+        eq_(res.status_code, 400, res.content)
+
+    def test_add_group_fail_already_member(self):
+        GroupUser.objects.create(group=self.normal_group,
+                                 user=self.target_user)
+        res = self.do_post(self.normal_group.pk)
+        eq_(res.status_code, 400, res.content)
+
+    def test_add_group_fail_no_group(self):
+        res = self.do_post(123456)
+        eq_(res.status_code, 400, res.content)
+
+    def test_remove_group_valid(self):
+        GroupUser.objects.create(group=self.normal_group,
+                                 user=self.target_user)
+        res = self.do_delete(self.normal_group.pk)
+        eq_(res.status_code, 204, res.content)
+
+    def test_remove_group_fail_admin(self):
+        GroupUser.objects.create(group=self.restricted_group,
+                                 user=self.target_user)
+        res = self.do_delete(self.restricted_group.pk)
+        eq_(res.status_code, 400, res.content)
+
+    def test_remove_group_fail_not_member(self):
+        res = self.do_delete(self.normal_group.pk)
+        eq_(res.status_code, 400, res.content)
+
+    def test_remove_group_fail_no_group(self):
+        res = self.do_delete(123456)
+        eq_(res.status_code, 400, res.content)

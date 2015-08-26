@@ -210,9 +210,6 @@ def mkt_admin_site_links():
         'addons': [
             ('Fake mail', reverse('zadmin.mail')),
         ],
-        'users': [
-            ('Configure groups', reverse('admin:access_group_changelist')),
-        ],
         'settings': [
             ('View site settings', reverse('zadmin.settings')),
             ('Django admin pages', reverse('zadmin.home')),

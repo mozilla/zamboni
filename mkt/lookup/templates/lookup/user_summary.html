@@ -23,10 +23,31 @@
         <dt>UGC</dt>
         <dd>?</dd>
         <dt>{{ _('Groups') }}</dt>
-        <dd>
+        <dd class="group-memberships">
+          <table>
         {% for group in account.groups.all() %}
-          <div>{{ group }}</div>
+          <tr class="remove-group">
+            <td><a href="{{ url('lookup.group_summary', group_id=group.id) }}">{{ group }}</a></td>
+            {% if action_allowed('Admin', '%') %}
+              {% if not group.restricted %}
+                <td><button data-api-url="{{ url('account-groups', pk=account.id) }}" data-api-method="DELETE" data-api-group="{{ group.pk }}" class="remove button">{{ _('-') }}</button></td>
+              {% else %}
+                <td><button class="button disabled">&nbsp;</button></td>
+              {% endif %}
+            {% endif %}
+          </tr>
         {% endfor %}
+        {% if action_allowed('Admin', '%') %}
+          <tr class="remove-group-blank hidden">
+            <td>$group_name</td>
+            <td><button data-api-url="{{ url('account-groups', pk=account.id) }}" data-api-method="DELETE" data-api-group="$group_pk" class="remove button">-</button></td>
+          </tr>
+          <tr class="add-group">
+            <td>{{ group_membership_formset.empty_form.group }}</td>
+            <td><button data-api-url="{{ url('account-groups', pk=account.id) }}" data-api-method="POST" class="add button disabled">+</button></div></td>
+          </tr>
+        {% endif %}
+          </table>
         </dd>
       </dl>
     </section>

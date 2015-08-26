@@ -8,6 +8,7 @@ from django import http
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
+from django.db import IntegrityError
 from django.utils.datastructures import MultiValueDictKeyError
 
 import basket
@@ -20,7 +21,7 @@ from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed, ParseError
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
                                      RetrieveAPIView, RetrieveUpdateAPIView)
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import DestroyModelMixin, ListModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -28,18 +29,20 @@ from rest_framework.viewsets import GenericViewSet
 
 import mkt
 from lib.metrics import record_action
+from mkt.access.models import Group, GroupUser
 from mkt.users.models import UserProfile
 from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
-                                     FxALoginSerializer, LoginSerializer,
+                                     FxALoginSerializer, GroupsSerializer,
+                                     LoginSerializer,
                                      NewsletterSerializer,
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.api.permissions import AllowSelf, AllowOwner
+from mkt.api.permissions import AllowSelf, AllowOwner, GroupPermission
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
 from mkt.site.utils import log_cef
@@ -389,3 +392,57 @@ class PermissionsView(CORSMixin, MineMixin, RetrieveAPIView):
     permission_classes = (AllowSelf,)
     model = UserProfile
     serializer_class = PermissionsSerializer
+
+
+class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
+                    GenericViewSet):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    cors_allowed_methods = ['get', 'post', 'delete']
+    serializer_class = GroupsSerializer
+    permission_classes = [GroupPermission('Admin', '%')]
+
+    def paginate_queryset(self, queryset, page_size=None):
+        return None
+
+    def get_queryset(self):
+        return self.get_user().groups.all()
+
+    def get_user(self):
+        try:
+            return UserProfile.objects.get(pk=self.kwargs.get('pk'))
+        except UserProfile.DoesNotExist:
+            raise ParseError('User must exist.')
+
+    def get_group(self):
+        try:
+            group = (self.request.DATA.get('group') or
+                     self.request.QUERY_PARAMS.get('group'))
+            return Group.objects.get(pk=group)
+        except Group.DoesNotExist:
+            raise ParseError('Group does not exist.')
+
+    def get_object(self):
+        user = self.get_user()
+        group = self.get_group()
+        try:
+            obj = GroupUser.objects.get(user=user, group=group)
+        except GroupUser.DoesNotExist, e:
+            raise ParseError('User isn\'t in that group? %s' % e)
+        return obj
+
+    def pre_delete(self, instance):
+        if instance.group.restricted:
+            raise ParseError('Restricted groups can\'t be unset via the API.')
+
+    def create(self, request, **kwargs):
+        user = self.get_user()
+        group = self.get_group()
+        if group.restricted:
+            raise ParseError('Restricted groups can\'t be set via the API.')
+        try:
+            GroupUser.objects.create(user=user, group=group)
+        except IntegrityError, e:
+            raise ParseError('User is already in that group? %s' % e)
+
+        return Response(status=status.HTTP_201_CREATED)
