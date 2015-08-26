@@ -13,8 +13,8 @@ from django_statsd.clients import statsd
 from signing_clients.apps import JarExtractor
 
 from mkt.versions.models import Version
-from mkt.site.storage_utils import (local_storage, private_storage,
-                                    public_storage)
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 
 
 log = commonware.log.getLogger('z.crypto')
@@ -102,9 +102,9 @@ def _sign_app(src, dest, ids, reviewer, tempname, local=False):
     elif local:
         storage = local_storage
 
-    with local_storage.open(tempname) as temp_f, \
-            storage.open(dest, 'w') as dst_f:
-        shutil.copyfileobj(temp_f, dst_f)
+    copy_stored_file(
+        tempname, dest,
+        src_storage=local_storage, dst_storage=storage)
 
 
 def _get_endpoint(reviewer=False):
@@ -130,6 +130,7 @@ def _no_sign(src, dst_path):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
+
     with public_storage.open(dst_path, 'w') as dst_f:
         shutil.copyfileobj(src, dst_f)
 

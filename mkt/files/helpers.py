@@ -461,15 +461,6 @@ class DiffHelper(object):
         return True
 
 
-def copyfileobj(fsrc, fdst, length=64 * 1024):
-    """copy data from file-like object fsrc to file-like object fdst"""
-    while True:
-        buf = fsrc.read(length)
-        if not buf:
-            break
-        fdst.write(buf)
-
-
 def rmtree(prefix):
     dirs, files = private_storage.listdir(prefix)
     for fname in files:

@@ -27,7 +27,6 @@ import mkt
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
-from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, use_master
@@ -122,9 +121,9 @@ def run_validator(file_path, url=None):
     # Make a copy of the file since we can't assume the
     # uploaded file is on the local filesystem.
     temp_path = tempfile.mktemp()
-    with open(temp_path, 'wb') as local_f:
-        with private_storage.open(file_path) as remote_f:
-            copyfileobj(remote_f, local_f)
+    copy_stored_file(
+        file_path, temp_path,
+        src_storage=private_storage, dst_storage=local_storage)
 
     with statsd.timer('mkt.developers.validator'):
         is_packaged = zipfile.is_zipfile(temp_path)

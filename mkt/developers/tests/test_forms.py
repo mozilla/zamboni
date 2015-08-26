@@ -16,9 +16,9 @@ import mkt.site.tests
 from lib.post_request_task import task as post_request_task
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
-from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage)
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
@@ -51,8 +51,9 @@ class TestPreviewForm(mkt.site.tests.TestCase):
     def test_preview_size(self):
         name = 'non-animated.gif'
         form = forms.PreviewForm({'upload_hash': name, 'position': 1})
-        with private_storage.open(os.path.join(self.dest, name), 'wb') as f:
-            copyfileobj(open(get_image_path(name)), f)
+        copy_stored_file(
+            get_image_path(name), os.path.join(self.dest, name),
+            src_storage=local_storage, dst_storage=private_storage)
         assert form.is_valid(), form.errors
         form.save(self.addon)
         # Since the task is a post-request-task and we are outside the normal

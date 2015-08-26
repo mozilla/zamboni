@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import shutil
 import zipfile
 
 from django.conf import settings  # For mocking.
@@ -29,10 +28,15 @@ def mock_sign(version_id, reviewer=False):
     """
     version = Version.objects.get(pk=version_id)
     file_obj = version.all_files[0]
-    path = (file_obj.signed_reviewer_file_path if reviewer else
-            file_obj.signed_file_path)
-    with private_storage.open(path, 'w') as dst_f:
-        shutil.copyfileobj(private_storage.open(file_obj.file_path), dst_f)
+    if reviewer:
+        path = file_obj.signed_reviewer_file_path
+        storage = private_storage
+    else:
+        path = file_obj.signed_file_path
+        storage = public_storage
+    copy_stored_file(
+        file_obj.file_path, path,
+        src_storage=private_storage, dst_storage=storage)
     return path
 
 

@@ -301,9 +301,8 @@ class TestResizePreview(mkt.site.tests.TestCase):
         """
         src = get_image_path(filename)
         dst = os.path.join(settings.TMP_PATH, 'preview', filename)
-        with open(src) as local_f:
-            with private_storage.open(dst, 'w') as remote_f:
-                shutil.copyfileobj(local_f, remote_f)
+        copy_stored_file(
+            src, dst, src_storage=local_storage, dst_storage=private_storage)
         return dst
 
     def test_preview(self):
