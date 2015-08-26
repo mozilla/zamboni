@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import json
 import mock
+import os.path
 from nose.tools import eq_, ok_
 
+from django.conf import settings
 from django.forms import ValidationError
 
+from lib.crypto.packaged import SigningError
 from mkt.constants.base import (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
                                 STATUS_REJECTED)
 from mkt.extensions.models import Extension
@@ -45,6 +49,12 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         extension = self.create_extension(name=u'Mŷ Ëxtension')
         eq_(extension.slug, u'mŷ-ëxtension')
 
+    def test_auto_create_uuid(self):
+        extension = self.create_extension()
+        ok_(extension.uuid)
+        extension2 = self.create_extension()
+        ok_(extension.uuid != extension2.uuid)
+
     def test_upload_new(self):
         eq_(Extension.objects.count(), 0)
         upload = self.upload('extension')
@@ -56,7 +66,6 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(extension.slug, u'my-lîttle-extension')
         eq_(extension.filename, 'extension-%s.zip' % extension.version)
         ok_(extension.filename in extension.file_path)
-        ok_(extension.file_path.startswith(extension.path_prefix))
         ok_(private_storage.exists(extension.file_path))
         eq_(extension.manifest, self.expected_manifest)
         eq_(Extension.objects.count(), 1)
@@ -129,18 +138,93 @@ class TestExtensionESIndexation(TestCase):
         eq_(delete_mock.call_count, count)
 
 
-class TestExtensionMethods(TestCase):
-    def test_publish(self):
+class TestExtensionMethodsAndProperties(TestCase):
+    def test_file_paths(self):
+        extension = Extension(pk=42, version='0.42.0')
+        eq_(extension.filename, 'extension-0.42.0.zip')
+        eq_(extension.file_path,
+            os.path.join(settings.ADDONS_PATH, 'extensions', str(extension.pk),
+                         extension.filename))
+        eq_(extension.signed_file_path,
+            os.path.join(settings.ADDONS_PATH, 'extensions-signed',
+                         str(extension.pk), extension.filename))
+
+    def test_file_version(self):
+        # When we implement updates, change this test to test that the version
+        # is increased when updates are added.
+        eq_(Extension().file_version, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch.object(Extension, 'remove_signed_file')
+    def test_sign_and_move_file(self, remove_signed_file_mock,
+                                private_storage_mock, sign_app_mock):
+        extension = Extension(uuid='fakeuuid')
+        extension.sign_and_move_file()
+        expected_args = (
+            private_storage_mock.open.return_value,
+            extension.signed_file_path,
+            json.dumps({
+                'id': extension.uuid,
+                'version': 0
+            })
+        )
+        eq_(sign_app_mock.call_args[0], expected_args)
+        eq_(remove_signed_file_mock.call_count, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_sign_and_move_file_no_uuid(self, private_storage_mock,
+                                        sign_app_mock):
+        extension = Extension(uuid='')
+        with self.assertRaises(SigningError):
+            extension.sign_and_move_file()
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch.object(Extension, 'remove_signed_file')
+    def test_sign_and_move_file_error(self, remove_signed_file_mock,
+                                      private_storage_mock, sign_app_mock):
+        extension = Extension(uuid='fakeuuid')
+        sign_app_mock.side_effect = SigningError
+        with self.assertRaises(SigningError):
+            extension.sign_and_move_file()
+        eq_(remove_signed_file_mock.call_count, 1)
+
+    @mock.patch('mkt.extensions.models.public_storage')
+    def test_remove_signed_file(self, mocked_public_storage):
+        extension = Extension(pk=42, slug='mocked_ext')
+        mocked_public_storage.exists.return_value = True
+        extension.remove_signed_file()
+        eq_(mocked_public_storage.exists.call_args[0][0],
+            extension.signed_file_path)
+        eq_(mocked_public_storage.delete.call_args[0][0],
+            extension.signed_file_path)
+
+    @mock.patch('mkt.extensions.models.public_storage')
+    def test_remove_signed_file_not_exists(self, public_storage_mock):
+        extension = Extension(pk=42, slug='mocked_ext')
+        public_storage_mock.exists.return_value = False
+        extension.remove_signed_file()
+        eq_(public_storage_mock.exists.call_args[0][0],
+            extension.signed_file_path)
+        eq_(public_storage_mock.delete.call_count, 0)
+
+    @mock.patch.object(Extension, 'sign_and_move_file')
+    def test_publish(self, mocked_sign_and_move_file):
         extension = Extension.objects.create()
         eq_(extension.status, STATUS_NULL)
         extension.publish()
+        eq_(mocked_sign_and_move_file.call_count, 1)
         extension = Extension.objects.get(pk=extension.pk)
         eq_(extension.status, STATUS_PUBLIC)
 
-    def test_reject(self):
+    @mock.patch.object(Extension, 'remove_signed_file')
+    def test_reject(self, mocked_remove_signed_file):
         extension = Extension.objects.create()
         eq_(extension.status, STATUS_NULL)
         extension.reject()
+        eq_(mocked_remove_signed_file.call_count, 1)
         extension = Extension.objects.get(pk=extension.pk)
         eq_(extension.status, STATUS_REJECTED)
 

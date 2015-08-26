@@ -139,8 +139,10 @@ class LangPack(ModelBase):
 
     def sign_and_move_file(self, upload):
         ids = json.dumps({
-            # 'id' needs to be unique for a given langpack, but should not
-            # change when there is an update.
+            # 'id' needs to be an unique identifier not shared with anything
+            # else (other langpacks, webapps, extensions...), but should not
+            # change when there is an update. Since our PKs are uuid it's the
+            # best choice.
             'id': self.pk,
             # 'version' should be an integer and should be monotonically
             # increasing.

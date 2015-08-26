@@ -62,7 +62,7 @@ Add-on
     :param version: The add-on current version number.
     :type version: string
     :param status: The add-on current status.
-        Can be "incomplete", "pending" or "public".
+        Can be "incomplete", "pending", "public" or "rejected".
     :type status: string
     
 

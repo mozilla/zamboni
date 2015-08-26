@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os.path
 
 from django.conf import settings
@@ -7,7 +8,10 @@ from django.dispatch import receiver
 
 import commonware.log
 from django_extensions.db.fields.json import JSONField
+from django_statsd.clients import statsd
+from uuidfield.fields import UUIDField
 
+from lib.crypto.packaged import sign_app, SigningError
 from mkt.constants.base import (STATUS_CHOICES, STATUS_NULL, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
@@ -16,7 +20,8 @@ from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.translations.utils import to_language
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.site.storage_utils import copy_stored_file, private_storage
+from mkt.site.storage_utils import (copy_stored_file, private_storage,
+                                    public_storage)
 from mkt.site.utils import smart_path
 from mkt.webapps.models import clean_slug
 
@@ -30,6 +35,8 @@ class ExtensionManager(ManagerBase):
 
 
 class Extension(ModelBase):
+    uuid = UUIDField(auto=True)
+
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
@@ -59,7 +66,15 @@ class Extension(ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(self.path_prefix, nfd_str(self.filename))
+        prefix = os.path.join(settings.ADDONS_PATH, 'extensions', str(self.pk))
+        return os.path.join(prefix, nfd_str(self.filename))
+
+    @property
+    def file_version(self):
+        """Version number used in signing. Must be an integer and should be
+        monotonically increasing for each new version. Currently set to 0 since
+        we don't support updates yet."""
+        return 0
 
     @classmethod
     def from_upload(cls, upload, user=None, instance=None):
@@ -140,18 +155,52 @@ class Extension(ModelBase):
     def manifest_url(self):
         raise NotImplementedError
 
-    @property
-    def path_prefix(self):
-        return os.path.join(settings.ADDONS_PATH, 'extensions', str(self.pk))
-
     def publish(self):
         """Publish this add-on to public."""
-        # FIXME: sign and move file to public storage.
+        self.sign_and_move_file()
         self.update(status=STATUS_PUBLIC)
 
     def reject(self):
         """Reject this add-on."""
         self.update(status=STATUS_REJECTED)
+        self.remove_signed_file()
+
+    def remove_signed_file(self):
+        if public_storage.exists(self.signed_file_path):
+            public_storage.delete(self.signed_file_path)
+
+    def sign_and_move_file(self):
+        """Sign and move extension file from the unsigned path (`file_path`) on
+        private storage to the signed path (`signed_file_path`) on public
+        storage."""
+        if not self.uuid:
+            raise SigningError('Need uuid to be set to sign')
+
+        ids = json.dumps({
+            # 'id' needs to be an unique identifier not shared with anything
+            # else (other extensions, langpacks, webapps...), but should not
+            # change when there is an update.
+            'id': self.uuid,
+            # 'version' should be an integer and should be monotonically
+            # increasing.
+            'version': self.file_version
+        })
+        with statsd.timer('extensions.sign'):
+            try:
+                # This will read the file from self.file_path, generate a
+                # signature and write the signed file to self.signed_file_path.
+                sign_app(private_storage.open(self.file_path),
+                         self.signed_file_path, ids)
+            except SigningError:
+                log.info('[Extension:%s] Signing failed' % self.pk)
+                self.remove_signed_file()  # Clean up.
+                raise
+
+    @property
+    def signed_file_path(self):
+        prefix = os.path.join(settings.ADDONS_PATH, 'extensions-signed',
+                              str(self.pk))
+        return os.path.join(prefix, nfd_str(self.filename))
 
     def save(self, *args, **kwargs):
         if not self.slug:

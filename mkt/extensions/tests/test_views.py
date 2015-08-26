@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import mock
 
 from django.core.urlresolvers import reverse
 
@@ -437,16 +438,20 @@ class TestReviewersExtensionViewSetPost(UploadTest, RestOAuth):
         response = self.client.post(self.url)
         eq_(response.status_code, 405)
 
-    def test_publish(self):
+    @mock.patch('mkt.extensions.models.Extension.sign_and_move_file')
+    def test_publish(self, sign_and_move_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
         response = self.client.post(self.publish_url)
         eq_(response.status_code, 202)
+        eq_(sign_and_move_file_mock.call_count, 1)
         self.extension.reload()
         eq_(self.extension.status, STATUS_PUBLIC)
 
-    def test_reject(self):
+    @mock.patch('mkt.extensions.models.Extension.remove_signed_file')
+    def test_reject(self, remove_signed_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
         response = self.client.post(self.reject_url)
         eq_(response.status_code, 202)
+        eq_(remove_signed_file_mock.call_count, 1)
         self.extension.reload()
         eq_(self.extension.status, STATUS_REJECTED)
