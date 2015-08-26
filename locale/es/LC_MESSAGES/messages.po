@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-08-26 09:24-0700\n"
 "PO-Revision-Date: 2014-10-17 12:14+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -50,15 +50,15 @@ msgstr "El campo debe tener una longitud de al menos {num} caracteres."
 msgid "The language code {lang_code} is invalid."
 msgstr "El código de idioma {lang_code} no es válido."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:216
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:217 mkt/submit/forms.py:330
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "Sí"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:218 mkt/submit/forms.py:331
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:331
 msgid "No"
 msgstr "No"
 
@@ -1283,6 +1283,18 @@ msgstr "Nivel 5"
 msgid "Level 6"
 msgstr "Nivel 6"
 
+#: mkt/constants/base.py:279
+msgid "Level 7"
+msgstr ""
+
+#: mkt/constants/base.py:280
+msgid "Level 8"
+msgstr ""
+
+#: mkt/constants/base.py:281
+msgid "Level 9"
+msgstr ""
+
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
 msgstr ""
@@ -1399,7 +1411,7 @@ msgstr "Prohibida"
 msgid "Reviewer comment"
 msgstr ""
 
-#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Remitida por incidencias"
 
@@ -2611,35 +2623,35 @@ msgstr "Versión {0}"
 msgid "Reference Implementation"
 msgstr "Implementación de referencia"
 
-#: mkt/developers/tasks.py:454
+#: mkt/developers/tasks.py:468
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "No se encontró el archivo manifest en esa URL. Comprueba la dirección y prueba de nuevo."
 
-#: mkt/developers/tasks.py:460
+#: mkt/developers/tasks.py:474
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Los archivos manifest deben servirse con el encabezado HTTP \"Content-Type: : application/x-web-app-manifest+json\". Consulta %s si necesitas más información."
 
-#: mkt/developers/tasks.py:469
+#: mkt/developers/tasks.py:483
 msgid "Your manifest must be less than %s bytes."
 msgstr "Tu archivo manifest debe tener menos de %s bytes."
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:491
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "El archivo manifest de tu archivo no se codificó como UTF-8 válido."
 
-#: mkt/developers/tasks.py:488
+#: mkt/developers/tasks.py:502
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "La codificación del archivo manifest no coincide con el conjunto de caracteres proporcionado en el tipo de contenido HTTP."
 
-#: mkt/developers/tasks.py:519 mkt/developers/tasks.py:525 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:533 mkt/developers/tasks.py:539 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "y"
 
-#: mkt/developers/tasks.py:539
+#: mkt/developers/tasks.py:553
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Región {region} agregada a Firefox Marketplace"
 
-#: mkt/developers/tasks.py:543
+#: mkt/developers/tasks.py:557
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Nuevas regiones agregadas al Firefox Marketplace"
 
@@ -2713,7 +2725,7 @@ msgstr "App enviada correctamente."
 msgid "New version successfully added."
 msgstr "Nueva versión agregada correctamente."
 
-#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:698
 msgid "Changes successfully saved."
 msgstr "Cambios guardados correctamente."
 
@@ -2882,8 +2894,8 @@ msgid "OAuth Example"
 msgstr "Ejemplo de OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
-msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr "<p>Ejemplo usando una biblioteca Python para línea de comandos en Mac OS X con tus credenciales OAuth:</p>"
+msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
+msgstr ""
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -2922,7 +2934,7 @@ msgid "Update Message of the Day"
 msgstr "Actualizar mensaje del día"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:227
+#: mkt/reviewers/templates/reviewers/review.html:211
 msgid "Save"
 msgstr "Guardar"
 
@@ -3203,8 +3215,8 @@ msgstr "Estado y versiones"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:70 mkt/lookup/forms.py:75 mkt/lookup/templates/lookup/app_summary.html:61
-#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:191
-#: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:182
+#: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Estado"
@@ -5129,6 +5141,62 @@ msgstr "Apps web Mozilla (inglés)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Apps web Mozilla (portugués brasileño)"
 
+#: mkt/extensions/utils.py:32
+msgid "The file \"manifest.json\" was not found at the root of the zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:36
+msgid "Addons need to be packaged into a valid zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:52
+msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
+msgstr ""
+
+#: mkt/extensions/utils.py:60
+msgid "The addon manifest is not valid JSON."
+msgstr ""
+
+#: mkt/extensions/utils.py:72
+msgid "The \"%s\" field is missing or empty in the add-on manifest."
+msgstr ""
+
+#: mkt/extensions/views.py:53
+msgid "Missing file in request."
+msgstr ""
+
+#: mkt/extensions/views.py:72
+msgid "The file sent has an unsupported content-type"
+msgstr ""
+
+#: mkt/extensions/views.py:77
+msgid "The file sent is not a valid ZIP file."
+msgstr ""
+
+#: mkt/extensions/views.py:80
+msgid "The archive does not contain a 'manifest.json' file."
+msgstr ""
+
+#: mkt/extensions/views.py:85
+msgid "'manifest.json' in the archive is not a valid JSON file."
+msgstr ""
+
+#: mkt/extensions/views.py:112
+msgid "No upload identifier specified."
+msgstr ""
+
+#: mkt/extensions/views.py:116
+msgid "You need to be authenticated to perform this action."
+msgstr ""
+
+#: mkt/extensions/views.py:121
+msgid "No such upload."
+msgstr ""
+
+#: mkt/extensions/views.py:124
+msgid "The specified upload has not passed validation."
+msgstr ""
+
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
 msgstr "URL no válida %(url)s"
@@ -5145,24 +5213,24 @@ msgstr "No pudo analizarse imagen desde %(url)s"
 msgid "Cannot diff a version against itself"
 msgstr "No se puede comparar una versión consigo misma"
 
-#: mkt/files/helpers.py:164
+#: mkt/files/helpers.py:170
 msgid "That file no longer exists."
 msgstr "Este archivo ya no existe."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:173
+#: mkt/files/helpers.py:179
 msgid "File size is over the limit of {0}."
 msgstr "El tamaño del archivo sobrepasa el límite de {0}."
 
-#: mkt/files/helpers.py:187
+#: mkt/files/helpers.py:193
 msgid "Problems decoding {0}."
 msgstr "Problemas al decodificar {0}."
 
-#: mkt/files/helpers.py:225
+#: mkt/files/helpers.py:231
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "No es posible ver este archivo en línea. Por favor, descárgalo para ver los contenidos."
 
-#: mkt/files/helpers.py:233
+#: mkt/files/helpers.py:239
 msgid "This file is a directory."
 msgstr "El archivo es un directorio."
 
@@ -5174,47 +5242,47 @@ msgstr "Hubo un error al acceder al archivo %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Hubo un error al acceder al archivo %s."
 
-#: mkt/files/utils.py:74
+#: mkt/files/utils.py:77
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "El archivo \"manifest.webapp\" no se encontró en la raíz del archivo de la app empaquetada."
 
-#: mkt/files/utils.py:96
+#: mkt/files/utils.py:100
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "No se pudo descifrar el archivo manifest de la app web. Comprueba si el archivo manifest tiene caracteres especiales no utf."
 
-#: mkt/files/utils.py:104
+#: mkt/files/utils.py:108
 msgid "The webapp manifest is not valid JSON."
 msgstr "El archivo manifest de la app web no es un JSON válido."
 
-#: mkt/files/utils.py:111
+#: mkt/files/utils.py:115
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr ""
 
-#: mkt/files/utils.py:119
+#: mkt/files/utils.py:123
 msgid "Your specified app locales are not in the correct format."
 msgstr "Los idiomas especificados para tu app no están en el formato correcto."
 
-#: mkt/files/utils.py:136
+#: mkt/files/utils.py:140
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "El nombre del desarrollador es obligatorio en el archivo manifest para que pueda mostrarse en el listado de apps."
 
-#: mkt/files/utils.py:186
+#: mkt/files/utils.py:190
 msgid "Invalid file name in archive: {0}"
 msgstr "Nombre de archivo no válido en archivo: {0}"
 
-#: mkt/files/utils.py:194
+#: mkt/files/utils.py:198
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Archivo excede límite de tamaño en archivo: {0}"
 
-#: mkt/files/utils.py:227
+#: mkt/files/utils.py:231
 msgid "Invalid archive."
 msgstr "Archivo no válido."
 
-#: mkt/files/views.py:44
+#: mkt/files/views.py:45
 msgid "Back to review"
 msgstr "Volver a la revisión"
 
-#: mkt/files/views.py:49
+#: mkt/files/views.py:50
 msgid "Back to app"
 msgstr "Volver a app"
 
@@ -5832,7 +5900,7 @@ msgid "No preload candidates found"
 msgstr "No se han encontrado candidatos para la precarga"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: mkt/prices/models.py:87
+#: mkt/prices/models.py:77
 msgid "Tier %s"
 msgstr "Franja %s"
 
@@ -6020,31 +6088,23 @@ msgstr "Comentarios"
 msgid "Device Type Override:"
 msgstr "Sustitución del tipo de dispositivo:"
 
-#: mkt/reviewers/forms.py:126
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Enviarme un aviso la próxima vez que se actualice el archivo manifest (no se enviarán más correos en las siguientes actualizaciones)."
-
-#: mkt/reviewers/forms.py:130
-msgid "This app works on Tarako devices."
-msgstr "Esta app es compatible con los dispositivos Tarako."
-
-#: mkt/reviewers/forms.py:137
+#: mkt/reviewers/forms.py:131
 msgid "Choose a canned response..."
 msgstr "Selecciona una respuesta predefinida..."
 
-#: mkt/reviewers/forms.py:194
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "Tiene comentarios de un editor"
 
-#: mkt/reviewers/forms.py:198
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "Se necesita más información"
 
-#: mkt/reviewers/forms.py:206
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Aprobada para Tarako"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -6215,48 +6275,48 @@ msgstr "Prohibir app"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Prohíbe la app de Marketplace. Es parecido a Rechazar, pero el autor (o autores) no podrá volver a enviarla. Esta acción solo debe ser utilizada en casos extremos."
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:139
 msgid "New Apps (Under 5 days)"
 msgstr "Apps nuevas (menos de 5 días)"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:140
 msgid "Passable (5 to 10 days)"
 msgstr "Recientes (5 a 10 días)"
 
-#: mkt/reviewers/views.py:143
+#: mkt/reviewers/views.py:141
 msgid "Overdue (Over 10 days)"
 msgstr "Atrasadas (Más de 10 días)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Las autorrevisiones no están permitidas."
 
-#: mkt/reviewers/views.py:262
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Solo los revisores experimentados pueden revisar las apps de la lista bloqueadas."
 
-#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340 mkt/submit/forms.py:33 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:338 mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "Agregados {0}"
 
-#: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341 mkt/submit/forms.py:35 mkt/submit/forms.py:44
+#: mkt/reviewers/views.py:316 mkt/reviewers/views.py:339 mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "Eliminados {0}"
 
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:319
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispositivo(s) cambiado(s) por el revisor: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:343
+#: mkt/reviewers/views.py:341
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Requisitos modificados por el revisor: {0}"
 
-#: mkt/reviewers/views.py:370
+#: mkt/reviewers/views.py:357
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" se han procesado correctamente (+ {1} puntos, {2} total)."
 
-#: mkt/reviewers/views.py:372
+#: mkt/reviewers/views.py:359
 msgid "Review successfully processed."
 msgstr "Revisión procesada correctamente."
 
@@ -6592,11 +6652,11 @@ msgstr "Adjuntar otro archivo"
 msgid "Device Override:"
 msgstr "Sustitución del dispositivo:"
 
-#: mkt/reviewers/templates/reviewers/review.html:204
+#: mkt/reviewers/templates/reviewers/review.html:197
 msgid "Minimum Requirements Override:"
 msgstr "Anulación de requisitos mínimos:"
 
-#: mkt/reviewers/templates/reviewers/review.html:223
+#: mkt/reviewers/templates/reviewers/review.html:207
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>¡Atención!</strong> Otro usuario estuvo mirando esta página antes que tú."
 

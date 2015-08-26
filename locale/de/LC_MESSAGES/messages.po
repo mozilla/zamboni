@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-08-26 09:24-0700\n"
 "PO-Revision-Date: 2015-08-12 16:23+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,15 +42,15 @@ msgstr "Dieses Feld muss mindestens {num} Zeichen lang sein."
 msgid "The language code {lang_code} is invalid."
 msgstr "Der Sprachcode {lang_code} ist ungültig."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:216
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:217 mkt/submit/forms.py:330
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "Ja"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:218 mkt/submit/forms.py:331
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:331
 msgid "No"
 msgstr "Nein"
 
@@ -1275,6 +1275,18 @@ msgstr "Stufe 5"
 msgid "Level 6"
 msgstr "Stufe 6"
 
+#: mkt/constants/base.py:279
+msgid "Level 7"
+msgstr ""
+
+#: mkt/constants/base.py:280
+msgid "Level 8"
+msgstr ""
+
+#: mkt/constants/base.py:281
+msgid "Level 9"
+msgstr ""
+
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
 msgstr "Bücher & Comics"
@@ -1391,7 +1403,7 @@ msgstr "Gesperrt"
 msgid "Reviewer comment"
 msgstr "Kommentar des Überprüfers"
 
-#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Weitergegeben"
 
@@ -2220,9 +2232,7 @@ msgstr "Gehostete URL:"
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
-msgstr ""
-"Eine URL, hinter der Ihre App im Internet gehostet wird, falls vorhanden. "
-"Damit können Benutzer Ihre App vor der Installation ausprobieren."
+msgstr "Eine URL, hinter der Ihre App im Internet gehostet wird, falls vorhanden. Damit können Benutzer Ihre App vor der Installation ausprobieren."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2603,35 +2613,35 @@ msgstr "Version {0}"
 msgid "Reference Implementation"
 msgstr "Beispielimplementierung"
 
-#: mkt/developers/tasks.py:454
+#: mkt/developers/tasks.py:468
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Unter dieser URL wurde kein Manifest gefunden. Überprüfen Sie die Adresse und versuchen Sie es erneut."
 
-#: mkt/developers/tasks.py:460
+#: mkt/developers/tasks.py:474
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifeste müssen mit dem HTTP-Header „Content-Type: application/x-web-app-manifest+json“ ausgeliefert werden. Unter %s erhalten Sie weitere Informationen."
 
-#: mkt/developers/tasks.py:469
+#: mkt/developers/tasks.py:483
 msgid "Your manifest must be less than %s bytes."
 msgstr "Ihr Manifest muss weniger als %s Byte groß sein."
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:491
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Ihre Manifest-Datei war nicht als gültiges UTF-8 kodiert."
 
-#: mkt/developers/tasks.py:488
+#: mkt/developers/tasks.py:502
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Die Kodierung des Manifests passte nicht zum Zeichensatz, den der HTTP-Content-Type angibt."
 
-#: mkt/developers/tasks.py:519 mkt/developers/tasks.py:525 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:533 mkt/developers/tasks.py:539 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "und"
 
-#: mkt/developers/tasks.py:539
+#: mkt/developers/tasks.py:553
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Region {region} zum Firefox Marketplace hinzugefügt"
 
-#: mkt/developers/tasks.py:543
+#: mkt/developers/tasks.py:557
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Neue Regionen wurden dem Firefox Marketplace hinzugefügt"
 
@@ -2705,7 +2715,7 @@ msgstr "App erfolgreich erneut eingereicht."
 msgid "New version successfully added."
 msgstr "Neue Version erfolgreich hinzugefügt."
 
-#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:698
 msgid "Changes successfully saved."
 msgstr "Änderungen erfolgreich gespeichert."
 
@@ -2874,8 +2884,8 @@ msgid "OAuth Example"
 msgstr "OAuth-Beispiel"
 
 #: mkt/developers/templates/developers/api.html:92
-msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr "<p>Beispiel mit einer Python-Bibliothek für die Kommandozeile auf Mac OS X mit Ihren OAuth-Zugangsdaten:</p>"
+msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
+msgstr ""
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -2914,7 +2924,7 @@ msgid "Update Message of the Day"
 msgstr "Nachricht des Tages aktualisieren"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:227
+#: mkt/reviewers/templates/reviewers/review.html:211
 msgid "Save"
 msgstr "Speichern"
 
@@ -3195,8 +3205,8 @@ msgstr "Status & Versionen"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:70 mkt/lookup/forms.py:75 mkt/lookup/templates/lookup/app_summary.html:61
-#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:191
-#: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:182
+#: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Status"
@@ -3694,10 +3704,7 @@ msgstr "Gehostete URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
-msgstr ""
-"Wenn Ihre App eine URL hat, hinter der sie gehostet wird, können Sie diese "
-"für die Benutzer angeben, die Ihre App vor der Installation ausprobieren "
-"möchten."
+msgstr "Wenn Ihre App eine URL hat, hinter der sie gehostet wird, können Sie diese für die Benutzer angeben, die Ihre App vor der Installation ausprobieren möchten."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -5121,6 +5128,62 @@ msgstr "Mozilla Web-Apps (Englisch)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Mozilla Web-Apps (Brasilianisches Portugiesisch)"
 
+#: mkt/extensions/utils.py:32
+msgid "The file \"manifest.json\" was not found at the root of the zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:36
+msgid "Addons need to be packaged into a valid zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:52
+msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
+msgstr ""
+
+#: mkt/extensions/utils.py:60
+msgid "The addon manifest is not valid JSON."
+msgstr ""
+
+#: mkt/extensions/utils.py:72
+msgid "The \"%s\" field is missing or empty in the add-on manifest."
+msgstr ""
+
+#: mkt/extensions/views.py:53
+msgid "Missing file in request."
+msgstr ""
+
+#: mkt/extensions/views.py:72
+msgid "The file sent has an unsupported content-type"
+msgstr ""
+
+#: mkt/extensions/views.py:77
+msgid "The file sent is not a valid ZIP file."
+msgstr ""
+
+#: mkt/extensions/views.py:80
+msgid "The archive does not contain a 'manifest.json' file."
+msgstr ""
+
+#: mkt/extensions/views.py:85
+msgid "'manifest.json' in the archive is not a valid JSON file."
+msgstr ""
+
+#: mkt/extensions/views.py:112
+msgid "No upload identifier specified."
+msgstr ""
+
+#: mkt/extensions/views.py:116
+msgid "You need to be authenticated to perform this action."
+msgstr ""
+
+#: mkt/extensions/views.py:121
+msgid "No such upload."
+msgstr ""
+
+#: mkt/extensions/views.py:124
+msgid "The specified upload has not passed validation."
+msgstr ""
+
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
 msgstr "Ungültige URL %(url)s"
@@ -5137,24 +5200,24 @@ msgstr "Grafik von %(url)s konnte nicht geparst werden"
 msgid "Cannot diff a version against itself"
 msgstr "Eine Version kann nicht mit sich selbst verglichen werden"
 
-#: mkt/files/helpers.py:164
+#: mkt/files/helpers.py:170
 msgid "That file no longer exists."
 msgstr "Diese Datei existiert nicht mehr."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:173
+#: mkt/files/helpers.py:179
 msgid "File size is over the limit of {0}."
 msgstr "Dateigröße liegt über der Grenze von {0}."
 
-#: mkt/files/helpers.py:187
+#: mkt/files/helpers.py:193
 msgid "Problems decoding {0}."
 msgstr "Probleme beim dekodieren von {0}."
 
-#: mkt/files/helpers.py:225
+#: mkt/files/helpers.py:231
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Diese Datei lässt sich nicht online betrachten. Bitte laden Sie die Datei herunter, um ihre Inhalte zu sehen."
 
-#: mkt/files/helpers.py:233
+#: mkt/files/helpers.py:239
 msgid "This file is a directory."
 msgstr "Diese Datei ist ein Verzeichnis."
 
@@ -5166,47 +5229,47 @@ msgstr "Beim Zugriff auf die Datei %s ist ein Fehler aufgetreten. %s"
 msgid "There was an error accessing file %s."
 msgstr "Beim Zugriff auf die Datei %s ist ein Fehler aufgetreten."
 
-#: mkt/files/utils.py:74
+#: mkt/files/utils.py:77
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "Die Datei „manifest.webapp“ wurde nicht im Wurzelverzeichnis des App-Archivs gefunden."
 
-#: mkt/files/utils.py:96
+#: mkt/files/utils.py:100
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "Webapp-Manifest-Datei konnte nicht dekodiert werden. Überprüfen Sie, ob Ihre Manifest-Datei besondere Nicht-UTF-8-Zeichen enthält."
 
-#: mkt/files/utils.py:104
+#: mkt/files/utils.py:108
 msgid "The webapp manifest is not valid JSON."
 msgstr "Das Webapp-Manifest ist kein gültiges JSON."
 
-#: mkt/files/utils.py:111
+#: mkt/files/utils.py:115
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr "Die „langpack“-Rolle ist für Web-Apps ungültig. Bitte übermitteln Sie diese App stattdessen als Sprachpaket."
 
-#: mkt/files/utils.py:119
+#: mkt/files/utils.py:123
 msgid "Your specified app locales are not in the correct format."
 msgstr "Ihre angegebenen Sprachen für die Apps befinden sich nicht im korrekten Format."
 
-#: mkt/files/utils.py:136
+#: mkt/files/utils.py:140
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "Entwicklername muss im Manifest stehen, um ihn im Listeneintrag der App anzuzeigen."
 
-#: mkt/files/utils.py:186
+#: mkt/files/utils.py:190
 msgid "Invalid file name in archive: {0}"
 msgstr "Ungültiger Dateiname im Archiv: {0}"
 
-#: mkt/files/utils.py:194
+#: mkt/files/utils.py:198
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Datei überschreitet Größenbeschränkung im Archiv: {0}"
 
-#: mkt/files/utils.py:227
+#: mkt/files/utils.py:231
 msgid "Invalid archive."
 msgstr "Ungültiges Archiv."
 
-#: mkt/files/views.py:44
+#: mkt/files/views.py:45
 msgid "Back to review"
 msgstr "Zurück zur Überprüfung"
 
-#: mkt/files/views.py:49
+#: mkt/files/views.py:50
 msgid "Back to app"
 msgstr "Zurück zur App"
 
@@ -5819,7 +5882,7 @@ msgid "No preload candidates found"
 msgstr "Keine Kandidaten für Vorabinstallation gefunden"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: mkt/prices/models.py:87
+#: mkt/prices/models.py:77
 msgid "Tier %s"
 msgstr "Preisstufe %s"
 
@@ -6007,31 +6070,23 @@ msgstr "Kommentare:"
 msgid "Device Type Override:"
 msgstr "Überschreiben des Gerätetyps:"
 
-#: mkt/reviewers/forms.py:126
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Mich beim nächsten Mal benachrichtigen, wenn dieses Manifest aktualisiert wird (folgende Updates werden keine E-Mail erzeugen)"
-
-#: mkt/reviewers/forms.py:130
-msgid "This app works on Tarako devices."
-msgstr "Diese App funktioniert auf Tarako-Geräten."
-
-#: mkt/reviewers/forms.py:137
+#: mkt/reviewers/forms.py:131
 msgid "Choose a canned response..."
 msgstr "Eine fertige Antwort auswählen …"
 
-#: mkt/reviewers/forms.py:194
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "Hat Kommentar eines Redakteurs"
 
-#: mkt/reviewers/forms.py:198
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "Weitere Infos angefordert"
 
-#: mkt/reviewers/forms.py:206
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Bereit für Tarako"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
 msgid "Device"
 msgstr "Gerät"
 
@@ -6173,9 +6228,8 @@ msgstr "Erneute Überprüfung anfordern"
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
 msgstr ""
-"Diese App zur Warteschlange für erneute Überprüfungen hinzufügen. Sämtliche "
-"hier geschriebenen Kommentare sind nicht für den/die Autor(en) sichtbar und "
-"es wird auch keine Benachrichtigung verschickt."
+"Diese App zur Warteschlange für erneute Überprüfungen hinzufügen. Sämtliche hier geschriebenen Kommentare sind nicht für den/die Autor(en) sichtbar und es wird auch keine Benachrichtigung "
+"verschickt."
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -6201,48 +6255,48 @@ msgstr "App sperren"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Die App im Marketplace sperren. Ähnlich wie „Ablehnen“ aber der/die Autor(en) können sie nicht erneut einreichen. Nur für Extremfälle."
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:139
 msgid "New Apps (Under 5 days)"
 msgstr "Neue Apps (unter 5 Tage)"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:140
 msgid "Passable (5 to 10 days)"
 msgstr "Annehmbar (5 bis 10 Tage)"
 
-#: mkt/reviewers/views.py:143
+#: mkt/reviewers/views.py:141
 msgid "Overdue (Over 10 days)"
 msgstr "Überfällig (Über 10 Tage)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Selbstüberprüfungen sind nicht erlaubt."
 
-#: mkt/reviewers/views.py:262
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Nur Senior-Überprüfer können Apps auf der Blockliste überprüfen."
 
-#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340 mkt/submit/forms.py:33 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:338 mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "Hinzugefügt am {0}"
 
-#: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341 mkt/submit/forms.py:35 mkt/submit/forms.py:44
+#: mkt/reviewers/views.py:316 mkt/reviewers/views.py:339 mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "Entfernt am {0}"
 
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:319
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Vom Überprüfer geänderte(s) Gerät(e): {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:343
+#: mkt/reviewers/views.py:341
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Anforderungen vom Überprüfer geändert: {0}"
 
-#: mkt/reviewers/views.py:370
+#: mkt/reviewers/views.py:357
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "„{0}“ erfolgreich verarbeitet (+{1} Punkte, {2} insgesamt)."
 
-#: mkt/reviewers/views.py:372
+#: mkt/reviewers/views.py:359
 msgid "Review successfully processed."
 msgstr "Überprüfung erfolgreich verarbeitet."
 
@@ -6578,11 +6632,11 @@ msgstr "Eine weitere Datei hinzufügen"
 msgid "Device Override:"
 msgstr "Überschreiben des Geräts:"
 
-#: mkt/reviewers/templates/reviewers/review.html:204
+#: mkt/reviewers/templates/reviewers/review.html:197
 msgid "Minimum Requirements Override:"
 msgstr "Überbrücken minimaler Anforderungen:"
 
-#: mkt/reviewers/templates/reviewers/review.html:223
+#: mkt/reviewers/templates/reviewers/review.html:207
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnung!</strong> Ein anderer Benutzer hat vor Ihnen diese Seite angesehen."
 
@@ -7396,9 +7450,7 @@ msgstr "Automatische Weitergabe an nächsthöhere Stelle von Apps zur Vorab-Ver�
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
-"{addon} erneut überprüft, wegen überprüfungsbedürftiger "
-"Missbrauchsmeldungen."
+msgstr "{addon} erneut überprüft, wegen überprüfungsbedürftiger Missbrauchsmeldungen."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-08-26 09:24-0700\n"
 "PO-Revision-Date: 2015-08-15 16:25+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1439655954.0\n"
 
@@ -44,15 +43,15 @@ msgstr "Câmpul trebuie să aibă lungimea de cel puțin {num} caractere."
 msgid "The language code {lang_code} is invalid."
 msgstr "Codul de limbă {lang_code} este invalid."
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:216
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:217 mkt/submit/forms.py:330
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:208 mkt/submit/forms.py:330
 msgid "Yes"
 msgstr "Da"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:218 mkt/submit/forms.py:331
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:57 mkt/reviewers/forms.py:209 mkt/submit/forms.py:331
 msgid "No"
 msgstr "Nu"
 
@@ -1280,6 +1279,18 @@ msgstr "Nivelul 5"
 msgid "Level 6"
 msgstr "Nivelul 6"
 
+#: mkt/constants/base.py:279
+msgid "Level 7"
+msgstr ""
+
+#: mkt/constants/base.py:280
+msgid "Level 8"
+msgstr ""
+
+#: mkt/constants/base.py:281
+msgid "Level 9"
+msgstr ""
+
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
 msgstr "Cărți și benzi desenate"
@@ -1396,7 +1407,7 @@ msgstr "Interzis"
 msgid "Reviewer comment"
 msgstr "Comentariu de la recenzent"
 
-#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:202 mkt/site/log.py:198
+#: mkt/constants/comm.py:50 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
 msgstr "Escaladat"
 
@@ -2226,9 +2237,7 @@ msgstr "URL găzduit:"
 
 #: mkt/developers/forms.py:525
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
-msgstr ""
-"Un URL cu locația în care este găzduită aplicația pe web, dacă există. Asta "
-"permite utilizatorilor să încerce aplicația înainte de a o instala."
+msgstr "Un URL cu locația în care este găzduită aplicația pe web, dacă există. Asta permite utilizatorilor să încerce aplicația înainte de a o instala."
 
 #: mkt/developers/forms.py:530
 msgid "Provide a detailed description of your app"
@@ -2610,38 +2619,36 @@ msgstr "Versiune {0}"
 msgid "Reference Implementation"
 msgstr "Implementare de referință"
 
-#: mkt/developers/tasks.py:454
+#: mkt/developers/tasks.py:468
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Nu a fost găsit un manifest la acel URL. Verificați adresa și reîncercați."
 
-#: mkt/developers/tasks.py:460
+#: mkt/developers/tasks.py:474
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
-msgstr ""
-"Manifestul trebuie servit cu un header HTTP „Content-Type: application/x"
-"-web-app-manifest+json”. Vezi %s pentru mai multe informații."
+msgstr "Manifestul trebuie servit cu un header HTTP „Content-Type: application/x-web-app-manifest+json”. Vezi %s pentru mai multe informații."
 
-#: mkt/developers/tasks.py:469
+#: mkt/developers/tasks.py:483
 msgid "Your manifest must be less than %s bytes."
 msgstr "Manifestul trebuie să fie mai mic de %s bytes."
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:491
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Manifestul nu este codat valid ca UTF-8."
 
 # charset și Content-Type nu trebuie traduși
-#: mkt/developers/tasks.py:488
+#: mkt/developers/tasks.py:502
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Codificarea manifestului nu se potrivește cu charset-ul din headerul HTTP Content-Type."
 
-#: mkt/developers/tasks.py:519 mkt/developers/tasks.py:525 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:533 mkt/developers/tasks.py:539 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "și"
 
-#: mkt/developers/tasks.py:539
+#: mkt/developers/tasks.py:553
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Regiunea {region} a fost adăugată la Firefox Marketplace"
 
-#: mkt/developers/tasks.py:543
+#: mkt/developers/tasks.py:557
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Noi regiuni au fost adăugate la Firefox Marketplace"
 
@@ -2715,7 +2722,7 @@ msgstr "Aplicație repropusă cu succes."
 msgid "New version successfully added."
 msgstr "Noua versiune a fost adăugată cu succes."
 
-#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:698
 msgid "Changes successfully saved."
 msgstr "Schimbările au fost salvate cu succes."
 
@@ -2884,10 +2891,8 @@ msgid "OAuth Example"
 msgstr "Exemplu OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
-msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
+msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
-"<p>Exemplu folosind o bibliotecă Python pentru linia de comandă pe Mac OS X "
-"folosind coordonatele OAuth ale tale:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -2926,7 +2931,7 @@ msgid "Update Message of the Day"
 msgstr "Actualizați mesajul zilei"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:227
+#: mkt/reviewers/templates/reviewers/review.html:211
 msgid "Save"
 msgstr "Salvare"
 
@@ -3074,9 +3079,7 @@ msgstr "Validare"
 
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
-msgstr ""
-"<strong>Nu uitați de protocol!</strong> Încercați să adăugați fie <a "
-"href=\"#\">%(http)s</a> sau <a href=\"#\">%(https)s</a>."
+msgstr "<strong>Nu uitați de protocol!</strong> Încercați să adăugați fie <a href=\"#\">%(http)s</a> sau <a href=\"#\">%(https)s</a>."
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
@@ -3210,8 +3213,8 @@ msgstr "Stare și versiuni"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:70 mkt/lookup/forms.py:75 mkt/lookup/templates/lookup/app_summary.html:61
-#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:191
-#: mkt/reviewers/forms.py:240 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:182
+#: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Stare"
@@ -3454,9 +3457,7 @@ msgstr "Delistare aplicație"
 
 #: mkt/developers/templates/developers/apps/status.html:397
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr ""
-"Listarea aplicației este dezactivată și aceasta nu va apărea pe Firefox "
-"Marketplace. O puteți relista în orice moment."
+msgstr "Listarea aplicației este dezactivată și aceasta nu va apărea pe Firefox Marketplace. O puteți relista în orice moment."
 
 #: mkt/developers/templates/developers/apps/status.html:402
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
@@ -3702,10 +3703,8 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
-"Încercați să nu schimbați URL-ul manifestului prea des. Dacă schimbați URL-"
-"ul manifestului, utilizatorii existenți nu vor putea fi actualizați pentru a "
-"folosi noul URL de manifest. Mai multe informații la <a href=\"%(doc_url)s\" "
-"target=\"_blank\">documentația pentru actualizarea aplicațiilor</a>."
+"Încercați să nu schimbați URL-ul manifestului prea des. Dacă schimbați URL-ul manifestului, utilizatorii existenți nu vor putea fi actualizați pentru a folosi noul URL de manifest. Mai multe "
+"informații la <a href=\"%(doc_url)s\" target=\"_blank\">documentația pentru actualizarea aplicațiilor</a>."
 
 # Poate fi și „URL gazdă”
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
@@ -3714,9 +3713,7 @@ msgstr "URL găzduit"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
-msgstr ""
-"Dacă aplicația are un URL unde este găzduită, puteți să setați pentru a "
-"permite utilizatorului să testeze aplicația înainte de a o instala."
+msgstr "Dacă aplicația are un URL unde este găzduită, puteți să setați pentru a permite utilizatorului să testeze aplicația înainte de a o instala."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
@@ -4756,9 +4753,7 @@ msgstr "Aflați cum să proiectați aplicații care oferă o experiență optimi
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
-"Toate uneltele, documentele și referințele de care aveți nevoie în "
-"dezvoltarea și testarea aplicației"
+msgstr "Toate uneltele, documentele și referințele de care aveți nevoie în dezvoltarea și testarea aplicației"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
@@ -4843,9 +4838,8 @@ msgstr "Firefox Apps &amp; Hacks"
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
-"Înscrie-te pentru buletinul informativ lunar despre Firefox OS, Marketplace "
-"și restul ecosistemului de aplicații. <a href=\"%(dev_phone_url)s\">Aruncă o "
-"privire peste telefoanele pentru dezvoltatori</a>"
+"Înscrie-te pentru buletinul informativ lunar despre Firefox OS, Marketplace și restul ecosistemului de aplicații. <a href=\"%(dev_phone_url)s\">Aruncă o privire peste telefoanele pentru "
+"dezvoltatori</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -4974,10 +4968,7 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">Propune acum</a> <span>sau</
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr ""
-"Cu o puternică platformă web, un magazin de aplicații deschis și parteneri "
-"precum dumneavoastră, suntem gata să întâmpinăm următorii 2 miliarde de "
-"utilizatori online"
+msgstr "Cu o puternică platformă web, un magazin de aplicații deschis și parteneri precum dumneavoastră, suntem gata să întâmpinăm următorii 2 miliarde de utilizatori online"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
@@ -4989,10 +4980,7 @@ msgstr "<strong>Procese fluide de plăți</strong> &ndash; cu modele multiple de
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr ""
-"<strong>O audiență masivă</strong> &ndash; peste 450 de milioane de "
-"utilizatori se simt ca acasă în Firefox, puneți-vă aplicațiile la dispoziția "
-"lor chiar azi."
+msgstr "<strong>O audiență masivă</strong> &ndash; peste 450 de milioane de utilizatori se simt ca acasă în Firefox, puneți-vă aplicațiile la dispoziția lor chiar azi."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -5000,15 +4988,11 @@ msgstr "Alăturați-vă celor mai mari și mai buni"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr ""
-"Cele mai populare branduri ale lumii și toate aplicațiile favorite care se "
-"bazează pe experiența acestora sunt pe Firefox Marketplace."
+msgstr "Cele mai populare branduri ale lumii și toate aplicațiile favorite care se bazează pe experiența acestora sunt pe Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr ""
-"Un adevărat cămin care funcționează pe mai multe platforme, dispozitive și "
-"neproprietar pentru cele mai bune aplicații globale și locale HTML5."
+msgstr "Un adevărat cămin care funcționează pe mai multe platforme, dispozitive și neproprietar pentru cele mai bune aplicații globale și locale HTML5."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5061,10 +5045,7 @@ msgstr "Insigna nu trebuie modificată în nici un fel"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr ""
-"Când este folosit împreună cu sigle pentru alte piețe („Obține pe Google "
-"Play” sau „Descarcă pe App Store”), insigna Firefox Marketplace ar trebui să "
-"fie mai mare sau de aceeași mărime"
+msgstr "Când este folosit împreună cu sigle pentru alte piețe („Obține pe Google Play” sau „Descarcă pe App Store”), insigna Firefox Marketplace ar trebui să fie mai mare sau de aceeași mărime"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -5142,6 +5123,62 @@ msgstr "Aplicații Web Mozilla (Engleză)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Aplicații Web Mozilla (Portugheză braziliană)"
 
+#: mkt/extensions/utils.py:32
+msgid "The file \"manifest.json\" was not found at the root of the zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:36
+msgid "Addons need to be packaged into a valid zip archive."
+msgstr ""
+
+#: mkt/extensions/utils.py:52
+msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
+msgstr ""
+
+#: mkt/extensions/utils.py:60
+msgid "The addon manifest is not valid JSON."
+msgstr ""
+
+#: mkt/extensions/utils.py:72
+msgid "The \"%s\" field is missing or empty in the add-on manifest."
+msgstr ""
+
+#: mkt/extensions/views.py:53
+msgid "Missing file in request."
+msgstr ""
+
+#: mkt/extensions/views.py:72
+msgid "The file sent has an unsupported content-type"
+msgstr ""
+
+#: mkt/extensions/views.py:77
+msgid "The file sent is not a valid ZIP file."
+msgstr ""
+
+#: mkt/extensions/views.py:80
+msgid "The archive does not contain a 'manifest.json' file."
+msgstr ""
+
+#: mkt/extensions/views.py:85
+msgid "'manifest.json' in the archive is not a valid JSON file."
+msgstr ""
+
+#: mkt/extensions/views.py:112
+msgid "No upload identifier specified."
+msgstr ""
+
+#: mkt/extensions/views.py:116
+msgid "You need to be authenticated to perform this action."
+msgstr ""
+
+#: mkt/extensions/views.py:121
+msgid "No such upload."
+msgstr ""
+
+#: mkt/extensions/views.py:124
+msgid "The specified upload has not passed validation."
+msgstr ""
+
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
 msgstr "URL invalid %(url)s"
@@ -5158,24 +5195,24 @@ msgstr "Imaginea de la %(url)s nu a putut fi parsată"
 msgid "Cannot diff a version against itself"
 msgstr "Nu se poate crea un diff contra aceleiași versiuni"
 
-#: mkt/files/helpers.py:164
+#: mkt/files/helpers.py:170
 msgid "That file no longer exists."
 msgstr "Fișierul nu mai există."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: mkt/files/helpers.py:173
+#: mkt/files/helpers.py:179
 msgid "File size is over the limit of {0}."
 msgstr "Mărimea fișierului este peste limita de {0}."
 
-#: mkt/files/helpers.py:187
+#: mkt/files/helpers.py:193
 msgid "Problems decoding {0}."
 msgstr "Probleme la decodarea {0}."
 
-#: mkt/files/helpers.py:225
+#: mkt/files/helpers.py:231
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Acest fișier nu este vizibil online. Puteți să-l descărcați pentru a vizualiza conținutul."
 
-#: mkt/files/helpers.py:233
+#: mkt/files/helpers.py:239
 msgid "This file is a directory."
 msgstr "Fișierul este un director."
 
@@ -5187,49 +5224,47 @@ msgstr "S-a produs o eroare în accesarea fișierului %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "S-a produs o eroare în accesarea fișierului %s."
 
-#: mkt/files/utils.py:74
+#: mkt/files/utils.py:77
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr ""
-"Fișierul „manifest.webapp” nu a fost găsit la rădăcina arhivei aplicației "
-"împachetate."
+msgstr "Fișierul „manifest.webapp” nu a fost găsit la rădăcina arhivei aplicației împachetate."
 
-#: mkt/files/utils.py:96
+#: mkt/files/utils.py:100
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "Nu s-a reușit decodificarea fișierului de manifest. Verificați ca manifestul să nu conțină caractere speciale non-utf8."
 
-#: mkt/files/utils.py:104
+#: mkt/files/utils.py:108
 msgid "The webapp manifest is not valid JSON."
 msgstr "Manifestul aplicației nu este JSON valid."
 
-#: mkt/files/utils.py:111
+#: mkt/files/utils.py:115
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
 msgstr "Rolul „langpack” este invalid pentru aplicații Web. În loc de aplicație Web puteți propune aplicația ca pachet lingvistic."
 
-#: mkt/files/utils.py:119
+#: mkt/files/utils.py:123
 msgid "Your specified app locales are not in the correct format."
 msgstr "Locale-urile specificate pentru aplicație nu sunt în formatul corect."
 
-#: mkt/files/utils.py:136
+#: mkt/files/utils.py:140
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "Este necesar numele dezvoltatorului în manifest pentru ca aceasta să poată fi afișată în listarea aplicației."
 
-#: mkt/files/utils.py:186
+#: mkt/files/utils.py:190
 msgid "Invalid file name in archive: {0}"
 msgstr "Nume de fișier invalid în arhiva: {0}"
 
-#: mkt/files/utils.py:194
+#: mkt/files/utils.py:198
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier peste limită în arhiva: {0}"
 
-#: mkt/files/utils.py:227
+#: mkt/files/utils.py:231
 msgid "Invalid archive."
 msgstr "Arhivă invalidă."
 
-#: mkt/files/views.py:44
+#: mkt/files/views.py:45
 msgid "Back to review"
 msgstr "Înapoi la recenzie"
 
-#: mkt/files/views.py:49
+#: mkt/files/views.py:50
 msgid "Back to app"
 msgstr "Înapoi la aplicație"
 
@@ -5608,9 +5643,7 @@ msgstr "Cereri anulate"
 #: mkt/lookup/templates/lookup/transaction_summary.html:105
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
-"Dacă o cerere manuală de rambursare a fost procesată de un furnizor de "
-"plăți, bifați această căsuță. Aceasta o va marca drept rambursată pe "
-"serverele Mozilla, dar nu va contacta furnizorul de plăți."
+"Dacă o cerere manuală de rambursare a fost procesată de un furnizor de plăți, bifați această căsuță. Aceasta o va marca drept rambursată pe serverele Mozilla, dar nu va contacta furnizorul de plăți."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:111
 msgid "Refund this transaction"
@@ -5845,7 +5878,7 @@ msgid "No preload candidates found"
 msgstr "Nu s-au găsit candidați pentru preîncărcare"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: mkt/prices/models.py:87
+#: mkt/prices/models.py:77
 msgid "Tier %s"
 msgstr "Nivel %s"
 
@@ -6033,31 +6066,23 @@ msgstr "Comentarii:"
 msgid "Device Type Override:"
 msgstr "Ignorare tip dispozitiv:"
 
-#: mkt/reviewers/forms.py:126
-msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
-msgstr "Trimite-mi o notificare data viitoare când este actualizat manifestul. (Actualizările ulterioare nu vor genera un e-mail)"
-
-#: mkt/reviewers/forms.py:130
-msgid "This app works on Tarako devices."
-msgstr "Aplicația funcționează pe dispozitive Tarako."
-
-#: mkt/reviewers/forms.py:137
+#: mkt/reviewers/forms.py:131
 msgid "Choose a canned response..."
 msgstr "Alegeți un răspuns standard..."
 
-#: mkt/reviewers/forms.py:194
+#: mkt/reviewers/forms.py:185
 msgid "Has Editor Comment"
 msgstr "Are comentariu editor"
 
-#: mkt/reviewers/forms.py:198
+#: mkt/reviewers/forms.py:189
 msgid "More Info Requested"
 msgstr "Sunt necesare mai multe informații"
 
-#: mkt/reviewers/forms.py:206
+#: mkt/reviewers/forms.py:197
 msgid "Tarako-ready"
 msgstr "Tarako-ready"
 
-#: mkt/reviewers/forms.py:210 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:45 mkt/search/forms.py:100
 msgid "Device"
 msgstr "Dispozitiv"
 
@@ -6198,9 +6223,7 @@ msgstr "Solicită rerecenzie"
 
 #: mkt/reviewers/utils.py:436
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
-msgstr ""
-"Adăugați aplicația în coada de rerecenzie. Orice comentarii de aici nu vor "
-"fi vizibile pentru autor(i) și ei nu vor primi notificări în acest sens."
+msgstr "Adăugați aplicația în coada de rerecenzie. Orice comentarii de aici nu vor fi vizibile pentru autor(i) și ei nu vor primi notificări în acest sens."
 
 #: mkt/reviewers/utils.py:442
 msgid "Clear Escalation"
@@ -6216,9 +6239,7 @@ msgstr "Anulează rerecenzia"
 
 #: mkt/reviewers/utils.py:451
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr ""
-"Scoate aplicația din coada de rerecenzie. Autorii nu vor primi e-mail și nu "
-"vor vedea comentariile de aici."
+msgstr "Scoate aplicația din coada de rerecenzie. Autorii nu vor primi e-mail și nu vor vedea comentariile de aici."
 
 #: mkt/reviewers/utils.py:456
 msgid "Ban app"
@@ -6228,48 +6249,48 @@ msgstr "Interzice aplicația"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Interziceți aplicația pe Marketplace. Asemănător cu butonul Respingere, dar autorii o pot repropune. Folosiți doar în cazuri extreme."
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:139
 msgid "New Apps (Under 5 days)"
 msgstr "Aplicații noi (sub 5 zile)"
 
-#: mkt/reviewers/views.py:142
+#: mkt/reviewers/views.py:140
 msgid "Passable (5 to 10 days)"
 msgstr "În grafic (de la 5 la 10 zile)"
 
-#: mkt/reviewers/views.py:143
+#: mkt/reviewers/views.py:141
 msgid "Overdue (Over 10 days)"
 msgstr "Întârziate (peste 10 zile)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:254
 msgid "Self-reviews are not allowed."
 msgstr "Auto-recenziile nu sunt permise."
 
-#: mkt/reviewers/views.py:262
+#: mkt/reviewers/views.py:260
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Doar recenzenții seniori pot recenza aplicații blocklistate."
 
-#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:340 mkt/submit/forms.py:33 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:338 mkt/submit/forms.py:33 mkt/submit/forms.py:43
 msgid "Added {0}"
 msgstr "Adăugate {0}"
 
-#: mkt/reviewers/views.py:318 mkt/reviewers/views.py:341 mkt/submit/forms.py:35 mkt/submit/forms.py:44
+#: mkt/reviewers/views.py:316 mkt/reviewers/views.py:339 mkt/submit/forms.py:35 mkt/submit/forms.py:44
 msgid "Removed {0}"
 msgstr "Eliminate {0}"
 
-#: mkt/reviewers/views.py:321
+#: mkt/reviewers/views.py:319
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispozitive schimbate de recenzent: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:343
+#: mkt/reviewers/views.py:341
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Cerințe schimbate de recenzent: {0}"
 
-#: mkt/reviewers/views.py:370
+#: mkt/reviewers/views.py:357
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" procesate cu succes (+{1} puncte, {2} total)."
 
-#: mkt/reviewers/views.py:372
+#: mkt/reviewers/views.py:359
 msgid "Review successfully processed."
 msgstr "Recenzie procesată cu succes."
 
@@ -6610,11 +6631,11 @@ msgstr "Atașează un alt fișier"
 msgid "Device Override:"
 msgstr "Ignorare dispozitiv:"
 
-#: mkt/reviewers/templates/reviewers/review.html:204
+#: mkt/reviewers/templates/reviewers/review.html:197
 msgid "Minimum Requirements Override:"
 msgstr "Ignorare cerințe minime:"
 
-#: mkt/reviewers/templates/reviewers/review.html:223
+#: mkt/reviewers/templates/reviewers/review.html:207
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Atenție!</strong> Un alt utilizator vizualiza această pagină mai devreme."
 
@@ -7428,8 +7449,7 @@ msgstr "Auto-escaladare prerelease"
 
 #: mkt/site/log.py:545
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
-"{addon} rerecenzat din cauza unor rapoarte de abuz care trebuie investigate."
+msgstr "{addon} rerecenzat din cauza unor rapoarte de abuz care trebuie investigate."
 
 #: mkt/site/log.py:554
 msgid "{addon} manually flagged for re-review."
@@ -7563,8 +7583,7 @@ msgstr "Ați încercat să faceți ceva pentru care nu aveți permisiuni."
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
-msgstr ""
-"Încearcă să revii la pagina anterioară, să reîmprospătezi și să reîncerci."
+msgstr "Încearcă să revii la pagina anterioară, să reîmprospătezi și să reîncerci."
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
@@ -7669,14 +7688,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"O politică de confidențialitate explică cum se folosește data obținută prin "
-"aplicație. De exemplu, ce fel de date primiți? Cum le folosiți? Cui "
-"altcineva mai trimiteți datele? Primiți informații personale? Utilizați "
-"măsuri de anonimizare a datelor? Ce opțiuni le oferiți utilizatorilor pentru "
-"a-și controla datele pe care le primiți sau care sunt trimise altcuiva? "
-"Introduceți un link sau scrieți textul mai sus. Dacă nu aveți o politică de "
-"confidențialitate, <a href=\"{url}\" target=\"_blank\">aflați cum să scrieți "
-"una.</a>"
+"O politică de confidențialitate explică cum se folosește data obținută prin aplicație. De exemplu, ce fel de date primiți? Cum le folosiți? Cui altcineva mai trimiteți datele? Primiți informații "
+"personale? Utilizați măsuri de anonimizare a datelor? Ce opțiuni le oferiți utilizatorilor pentru a-și controla datele pe care le primiți sau care sunt trimise altcuiva? Introduceți un link sau "
+"scrieți textul mai sus. Dacă nu aveți o politică de confidențialitate, <a href=\"{url}\" target=\"_blank\">aflați cum să scrieți una.</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -7779,10 +7793,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
-msgstr ""
-"Înainte ca aplicația să fie activă, trebuie să furnizați informații pentru "
-"plată. După ce ați adăugat un cont de plăți și un preț, aplicația va fi "
-"propusă pentru recenzie."
+msgstr "Înainte ca aplicația să fie activă, trebuie să furnizați informații pentru plată. După ce ați adăugat un cont de plăți și un preț, aplicația va fi propusă pentru recenzie."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
@@ -7859,10 +7870,8 @@ msgstr "Solicitați ca aplicația să fie afișată pe dispozitive cu memorie sc
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
-"După ce a fost recenzată aplicația va trebui să o publicați manual de la <a "
-"href=\"%(url)s\">Gestiune stare</a>. După aceasta aplicația se va găsi pe "
-"paginile de listare și în rezultatele de căutare pentru ca și alții să se "
-"bucure de ea."
+"După ce a fost recenzată aplicația va trebui să o publicați manual de la <a href=\"%(url)s\">Gestiune stare</a>. După aceasta aplicația se va găsi pe paginile de listare și în rezultatele de "
+"căutare pentru ca și alții să se bucure de ea."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
@@ -7890,11 +7899,8 @@ msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
-"Suntem bucuroși că ați construit o aplicație folosind tehnologii web! "
-"Propunerea aplicației pe Firefox Marketplace este cea mai bună metodă pentru "
-"ca utilizatorii să o descopere și să se bucure de ea pe toate dispozitivele "
-"lor. Mai întâi trebuie să vă alăturați Programului de Dezvoltatori pentru "
-"Marketplace mai jos."
+"Suntem bucuroși că ați construit o aplicație folosind tehnologii web! Propunerea aplicației pe Firefox Marketplace este cea mai bună metodă pentru ca utilizatorii să o descopere și să se bucure de "
+"ea pe toate dispozitivele lor. Mai întâi trebuie să vă alăturați Programului de Dezvoltatori pentru Marketplace mai jos."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -7959,10 +7965,8 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
-"Cu excepția cazurilor <a href=\"%(legal_url)s\">altfel</a> specificate, "
-"conținutul de pe acest sait este licențiat sub <a href=\"%(cc_url)s\">Creative "
-"Commons Attribution Share-Alike License v3.0</a> sau orice versiune "
-"ulterioară."
+"Cu excepția cazurilor <a href=\"%(legal_url)s\">altfel</a> specificate, conținutul de pe acest sait este licențiat sub <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</"
+"a> sau orice versiune ulterioară."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -8105,9 +8109,7 @@ msgstr "Nu există utilizator cu acea adresă de e-mail."
 
 #: mkt/users/views.py:48
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr ""
-"Nu există utilizator cu acea adresă sau utilizatorul nu a fost de acord cu "
-"acordul de dezvoltare."
+msgstr "Nu există utilizator cu acea adresă sau utilizatorul nu a fost de acord cu acordul de dezvoltare."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
