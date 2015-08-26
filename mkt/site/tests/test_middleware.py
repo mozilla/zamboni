@@ -13,7 +13,7 @@ from mkt.site.middleware import lang_from_accept_header
 from mkt.users.models import UserProfile
 
 
-_langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
+_langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT', 'sr-Latn']
 
 
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
@@ -171,8 +171,8 @@ class TestLocaleMiddlewarePersistence(mkt.site.tests.TestCase):
 
     def test_save_lang(self):
         self.login('regular@mozilla.com')
-        self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='de')
-        eq_(UserProfile.objects.get(pk=999).lang, 'de')
+        self.client.get('/robots.txt', HTTP_ACCEPT_LANGUAGE='sr-Latn')
+        eq_(UserProfile.objects.get(pk=999).lang, 'sr-Latn')
 
 
 class TestVaryMiddleware(mkt.site.tests.TestCase):
