@@ -60,7 +60,7 @@ class FilesBase(object):
                 target = private_storage
             copy_stored_file(src, file_obj.file_path,
                              src_storage=local_storage,
-                             dest_storage=target)
+                             dst_storage=target)
 
         self.file_viewer = FileViewer(self.file)
 

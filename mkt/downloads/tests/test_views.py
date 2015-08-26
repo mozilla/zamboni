@@ -97,7 +97,7 @@ class TestDownload(BasePackagedAppTest):
         copy_stored_file(self.packaged_app_path('mozball.zip'),
                          self.file.file_path,
                          src_storage=local_storage,
-                         dest_storage=private_storage)
+                         dst_storage=private_storage)
         path = private_storage.url(self.file.file_path)
         res = self.client.get(self.url)
         self.assert3xx(res, path)
@@ -112,7 +112,7 @@ class TestDownload(BasePackagedAppTest):
         copy_stored_file(self.packaged_app_path('mozball.zip'),
                          self.file.file_path,
                          src_storage=local_storage,
-                         dest_storage=private_storage)
+                         dst_storage=private_storage)
         path = private_storage.url(self.file.file_path)
         res = self.client.get(self.url)
         self.assert3xx(res, path)

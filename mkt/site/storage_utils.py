@@ -150,41 +150,30 @@ def walk_storage(path, topdown=True, onerror=None, followlinks=False,
         roots[:] = new_roots
 
 
-def copy_to_storage(src_path, dst_path, src_storage=local_storage,
-                    dst_storage=private_storage):
+def copy_stored_file(src_path, dst_path, src_storage=private_storage,
+                     dst_storage=private_storage):
     """
     Copy a path (src_path) from a storage (src_storage) to a path (dst_path)
     on a different storage (dst_storage).
 
-    Defaults to copying from the local storage to the private storage.
+    Defaults to copying from and to private storage.
     """
-    copy_stored_file(src_path, dst_path, src_storage=src_storage,
-                     dest_storage=dst_storage)
-
-
-def copy_stored_file(src_path, dest_path, src_storage=private_storage,
-                     dest_storage=private_storage):
-    """
-    Copy one storage path to another storage path.
-
-    Each path will be managed by the same storage implementation.
-    """
-    if src_path == dest_path and src_storage == dest_storage:
+    if src_path == dst_path and src_storage == dst_storage:
         return
     with src_storage.open(src_path, 'rb') as src, \
-            dest_storage.open(dest_path, 'wb') as dest:
+            dst_storage.open(dst_path, 'wb') as dest:
         shutil.copyfileobj(src, dest)
 
 
-def move_stored_file(src_path, dest_path, src_storage=private_storage,
-                     dest_storage=private_storage):
+def move_stored_file(src_path, dst_path, src_storage=private_storage,
+                     dst_storage=private_storage):
     """
-    Move a storage path to another storage path.
+    Move a path (src_path) from a storage (src_storage) to a path (dst_path)
+    on a different storage (dst_storage), by copying and then deleting the
+    source.
 
-    The source file will be copied to the new path then deleted.
-    This attempts to be compatible with a wide range of storage backends
-    rather than attempt to be optimized for each individual one.
+    Defaults to moving from and to private storage.
     """
-    copy_stored_file(src_path, dest_path,
-                     src_storage=src_storage, dest_storage=dest_storage)
+    copy_stored_file(src_path, dst_path,
+                     src_storage=src_storage, dst_storage=dst_storage)
     src_storage.delete(src_path)

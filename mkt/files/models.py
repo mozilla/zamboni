@@ -163,13 +163,13 @@ class File(OnChangeMixin, ModelBase):
         return os.path.splitext(self.filename)[-1]
 
     @classmethod
-    def mv(cls, src, dst, msg, src_storage, dest_storage):
+    def mv(cls, src, dst, msg, src_storage, dst_storage):
         """Move a file from src to dst."""
         try:
             if src_storage.exists(src):
                 log.info(msg % (src, dst))
                 move_stored_file(src, dst, src_storage=src_storage,
-                                 dest_storage=dest_storage)
+                                 dst_storage=dst_storage)
         except UnicodeEncodeError:
             log.error('Move Failure: %s %s' % (smart_str(src), smart_str(dst)))
 
@@ -179,7 +179,7 @@ class File(OnChangeMixin, ModelBase):
             return
         src, dst = self.approved_file_path, self.guarded_file_path
         self.mv(src, dst, 'Moving disabled file: %s => %s',
-                src_storage=public_storage, dest_storage=private_storage)
+                src_storage=public_storage, dst_storage=private_storage)
 
     def unhide_disabled_file(self):
         """Move a public file from the guarded file path."""
@@ -187,7 +187,7 @@ class File(OnChangeMixin, ModelBase):
             return
         src, dst = self.guarded_file_path, self.approved_file_path
         self.mv(src, dst, 'Moving undisabled file: %s => %s',
-                src_storage=private_storage, dest_storage=public_storage)
+                src_storage=private_storage, dst_storage=public_storage)
 
 
 @use_master

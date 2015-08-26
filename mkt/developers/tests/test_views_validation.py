@@ -67,7 +67,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('mozball.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
@@ -84,7 +84,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('mozBOM.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
@@ -98,7 +98,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('no-manifest-at-root.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         with self.assertRaises(forms.ValidationError) as exc:
             WebAppParser().parse(private_storage.open(path))
         m = exc.exception.messages[0]

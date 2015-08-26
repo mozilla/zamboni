@@ -30,7 +30,7 @@ class UploadCreationMixin(object):
             raise ValueError('The file %s does not exist :(', fname)
         if not private_storage.exists(fname):
             copy_stored_file(fname, fname, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         data = {
             'path': fname,
             'name': name,

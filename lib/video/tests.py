@@ -15,7 +15,7 @@ from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import (copy_to_storage, local_storage,
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage)
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
@@ -181,10 +181,12 @@ class TestTask(mkt.site.tests.TestCase):
         # Copy files to private storage where `resize_video` expects it.
         self.tmp_good = tempfile.NamedTemporaryFile(suffix='.webm').name
         self.tmp_bad = tempfile.NamedTemporaryFile(suffix='.png').name
-        copy_to_storage(files['good'], self.tmp_good,
-                        src_storage=local_storage, dst_storage=private_storage)
-        copy_to_storage(files['bad'], self.tmp_bad, src_storage=local_storage,
-                        dst_storage=private_storage)
+        copy_stored_file(files['good'], self.tmp_good,
+                         src_storage=local_storage,
+                         dst_storage=private_storage)
+        copy_stored_file(files['bad'], self.tmp_bad,
+                         src_storage=local_storage,
+                         dst_storage=private_storage)
 
     def tearDown(self):
         private_storage.delete(self.tmp_good)

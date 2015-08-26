@@ -32,7 +32,7 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.site.storage_utils import (copy_to_storage, local_storage,
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage,
                                     walk_storage)
 from mkt.site.utils import JSONEncoder, chunked
@@ -439,7 +439,7 @@ def compress_export(tarball_name, date):
             src_path = os.path.join(dirpath, filename)
             dst_path = os.path.join(
                 local_source_dir, 'apps', os.path.basename(dirpath), filename)
-            copy_to_storage(
+            copy_stored_file(
                 src_path, dst_path, src_storage=private_storage,
                 dst_storage=local_storage)
 
@@ -461,8 +461,8 @@ def compress_export(tarball_name, date):
     # Now copy the local tgz to the public storage.
     remote_target_filename = os.path.join(
         settings.DUMPED_APPS_PATH, 'tarballs', '%s.tgz' % tarball_name)
-    copy_to_storage(local_target_file.name, remote_target_filename,
-                    dst_storage=public_storage)
+    copy_stored_file(local_target_file.name, remote_target_filename,
+                     dst_storage=public_storage)
 
     # Clean-up.
     local_target_file.close()
@@ -538,7 +538,7 @@ def zip_users(*args, **kw):
             src_path = os.path.join(dirpath, filename)
             dst_path = os.path.join(
                 local_source_dir, 'users', os.path.basename(dirpath), filename)
-            copy_to_storage(
+            copy_stored_file(
                 src_path, dst_path, src_storage=private_storage,
                 dst_storage=local_storage)
 
@@ -566,8 +566,8 @@ def zip_users(*args, **kw):
     # Now copy the local tgz to the public storage.
     remote_target_filename = os.path.join(
         settings.DUMPED_USERS_PATH, 'tarballs', '%s.tgz' % tarball_name)
-    copy_to_storage(local_target_file.name, remote_target_filename,
-                    dst_storage=private_storage)
+    copy_stored_file(local_target_file.name, remote_target_filename,
+                     dst_storage=private_storage)
 
     # Clean-up.
     local_target_file.close()

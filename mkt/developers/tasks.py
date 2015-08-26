@@ -155,7 +155,7 @@ def _hash_file(fd):
 @post_request_task
 @set_modified_on
 def resize_icon(src, dst, sizes, src_storage=private_storage,
-                dest_storage=public_storage, **kw):
+                dst_storage=public_storage, **kw):
     """Resizes addon/websites icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
 
@@ -163,8 +163,8 @@ def resize_icon(src, dst, sizes, src_storage=private_storage,
         for s in sizes:
             size_dst = '%s-%s.png' % (dst, s)
             resize_image(src, size_dst, (s, s), remove_src=False,
-                         src_storage=src_storage, dst_storage=dest_storage)
-            pngcrush_image.delay(size_dst, storage=dest_storage, **kw)
+                         src_storage=src_storage, dst_storage=dst_storage)
+            pngcrush_image.delay(size_dst, storage=dst_storage, **kw)
         with src_storage.open(src) as fd:
             icon_hash = _hash_file(fd)
         src_storage.delete(src)
@@ -233,7 +233,7 @@ def pngcrush_image(src, hash_field='image_hash', storage=public_storage, **kw):
             image_hash = _hash_file(fd)
 
         copy_stored_file(tmp_path, src, src_storage=local_storage,
-                         dest_storage=storage)
+                         dst_storage=storage)
         log.info('Image optimization completed for: %s' % src)
         os.remove(tmp_path)
         tmp_src.close()
@@ -336,7 +336,7 @@ def save_icon(obj, icon_content):
     remove_icons(destination)
     icon_hash = resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
                             set_modified_on=[obj], src_storage=public_storage,
-                            dest_storage=public_storage)
+                            dst_storage=public_storage)
 
     # Need to set icon type so .get_icon_url() works normally
     # submit step 4 does it through AppFormMedia, but we want to beat them to

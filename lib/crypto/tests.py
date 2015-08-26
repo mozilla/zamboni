@@ -13,9 +13,10 @@ from requests import Timeout
 import mkt.site.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
-from mkt.site.storage_utils import copy_to_storage
+from mkt.site.storage_utils import copy_stored_file
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import public_storage, private_storage
+from mkt.site.storage_utils import (local_storage, public_storage,
+                                    private_storage)
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 
@@ -30,8 +31,8 @@ def mock_sign(version_id, reviewer=False):
     file_obj = version.all_files[0]
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
-    with private_storage.open(path, 'w') as dest_f:
-        shutil.copyfileobj(private_storage.open(file_obj.file_path), dest_f)
+    with private_storage.open(path, 'w') as dst_f:
+        shutil.copyfileobj(private_storage.open(file_obj.file_path), dst_f)
     return path
 
 
@@ -100,8 +101,9 @@ class PackagedApp(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
 
         # Make sure the source file is there.
         if not private_storage.exists(self.file.file_path):
-            copy_to_storage(self.packaged_app_path('mozball.zip'),
-                            self.file.file_path)
+            copy_stored_file(self.packaged_app_path('mozball.zip'),
+                             self.file.file_path, src_storage=local_storage,
+                             dst_storage=private_storage)
 
 
 @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)

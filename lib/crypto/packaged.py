@@ -103,8 +103,8 @@ def _sign_app(src, dest, ids, reviewer, tempname, local=False):
         storage = local_storage
 
     with local_storage.open(tempname) as temp_f, \
-            storage.open(dest, 'w') as dest_f:
-        shutil.copyfileobj(temp_f, dest_f)
+            storage.open(dest, 'w') as dst_f:
+        shutil.copyfileobj(temp_f, dst_f)
 
 
 def _get_endpoint(reviewer=False):
@@ -126,12 +126,12 @@ def _get_endpoint(reviewer=False):
         return server + '/1.0/sign_app'
 
 
-def _no_sign(src, dest_path):
+def _no_sign(src, dst_path):
     # If this is a local development instance, just copy the file around
     # so that everything seems to work locally.
     log.info('Not signing the app, no signing server is active.')
-    with public_storage.open(dest_path, 'w') as dest_f:
-        shutil.copyfileobj(src, dest_f)
+    with public_storage.open(dst_path, 'w') as dst_f:
+        shutil.copyfileobj(src, dst_f)
 
 
 @task
