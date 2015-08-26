@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-13 20:34+0000\n"
+"PO-Revision-Date: 2015-08-26 18:24+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439498075.0\n"
+"X-POOTLE-MTIME: 1440613455.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1282,15 +1282,15 @@ msgstr "Niveau 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2891,6 +2891,8 @@ msgstr "OAuth-voorbeeld"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Voorbeeld met gebruik van een Python-bibliotheek voor de opdrachtregel op "
+"Mac OS X/Linux en uw OAuth-referenties:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5123,58 +5125,62 @@ msgstr "Mozilla Web apps (Braziliaans Portugees)"
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
 msgstr ""
+"Het bestand ‘manifest.json’ is niet gevonden in de hoofdmap van het zip-"
+"archiefbestand."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Add-ons dienen in een geldig zip-archief te worden verpakt."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Kon het add-on-manifestbestand niet decoderen. Controleer of uw "
+"manifestbestand speciale niet-utf-8-tekens bevat."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "Het add-on-manifest is geen geldige JSON."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "Het veld ‘%s’ ontbreekt of is leeg in het add-on-manifest."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Ontbrekend bestand in aanvraag."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Het verzonden bestand heeft een niet-ondersteund inhoudstype"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Het verzonden bestand is geen geldig ZIP-bestand."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "Het archiefbestand bevat geen ‘manifest.json’-bestand."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "‘manifest.json’ in het archief is geen geldig JSON-bestand."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Geen upload-identificatie opgegeven."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "U dient te zijn geauthenticeerd om deze actie uit te voeren."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Upload bestaat niet."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "De opgegeven upload heeft de validatie niet doorstaan."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -5950,7 +5956,7 @@ msgstr "Misplaatst bugrapport of ondersteuningsverzoek"
 
 #: mkt/ratings/models.py:152
 msgid "Other (please specify)"
-msgstr "Overig (specificeer deze)"
+msgstr "Overig (geef deze op)"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
