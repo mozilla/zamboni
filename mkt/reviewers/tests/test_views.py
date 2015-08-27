@@ -33,12 +33,13 @@ from mkt.abuse.models import AbuseReport
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
-from mkt.constants import comm, MANIFEST_CONTENT_TYPE
-from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
+from mkt.constants import MANIFEST_CONTENT_TYPE, comm
+from mkt.developers.models import ActivityLog, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.reviewers.models import (CannedResponse, EscalationQueue,
-                                  RereviewQueue, ReviewerScore, QUEUE_TARAKO)
+from mkt.reviewers.models import (QUEUE_TARAKO, CannedResponse,
+                                  EscalationQueue, RereviewQueue,
+                                  ReviewerScore)
 from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
@@ -1994,27 +1995,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         data.update(self._testedon_management_form())
         self.post(data)
         eq_(save_mock.called, False, save_mock.call_args_list)
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch(settings.DEFAULT_FILE_STORAGE + '.save')
-    def test_attachment(self, save_mock):
-        """ Test addition of an attachment """
-        """
-        Test that an attachment object is successfully created by the
-        appropriate form submission. Tests this in two ways:
-
-        1) Ensuring that the form is submitted correctly.
-        2) Checking that the appropriate number of objects are created.
-        """
-        old_attachment_count = ActivityLogAttachment.objects.all().count()
-        data = self._attachment_form_data(num=1)
-        data.update(self._testedon_management_form())
-        self.post(data)
-        new_attachment_count = ActivityLogAttachment.objects.all().count()
-        eq_(new_attachment_count - old_attachment_count, 1,
-            'AcitvityLog objects not being created')
-        eq_(save_mock.call_args_list[0],
-            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     def test_idn_app_domain(self):
         response = self.client.get(self.url)
@@ -4010,52 +3990,6 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
         self.login_as_editor()
         res = self.client.get(self.url)
         eq_(len(res.context['apps']), 2)
-
-
-class TestAttachmentDownload(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def _attachment(self, log):
-        return ActivityLogAttachment.objects.create(activity_log=log,
-                                                    filepath='bacon.jpg',
-                                                    mimetype='image/jpeg')
-
-    def _response(self, params={}, **kwargs):
-        url = self.ala.get_absolute_url()
-        return self.client.get(url, params, **kwargs)
-
-    def setUp(self):
-        super(TestAttachmentDownload, self).setUp()
-        editor = user_factory(email='editor')
-        self.grant_permission(editor, 'Apps:Review')
-        self.app = Webapp.objects.get(pk=337141)
-        self.version = self.app.latest_version
-        self.al = mkt.log(mkt.LOG.COMMENT_VERSION, self.app,
-                          self.version, user=editor)
-        self.ala = self._attachment(self.al)
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_permissions_editor(self):
-        self.login('editor@mozilla.com')
-        response = self._response()
-        eq_(response.status_code, 200, 'Editor cannot access attachment')
-
-    def test_permissions_regular(self):
-        self.login(user_factory())
-        response = self._response()
-        eq_(response.status_code, 403, 'Regular user can access attachment')
-
-    @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    def test_headers(self):
-        self.login('editor@mozilla.com')
-        response = self._response()
-        eq_(response._headers['content-type'][1], 'application/force-download',
-            'Attachment not served as application/force-download')
-        eq_(response._headers['content-disposition'][1],
-            'attachment; filename=bacon.jpg',
-            'Attachment not served with correct Content-Disposition header')
-        eq_(response._headers['content-length'][1], '130737',
-            'Attachment not served with correct Content-Length header')
 
 
 class TestLeaderboard(AppReviewerTest):
