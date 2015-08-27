@@ -79,7 +79,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     is_verified = models.BooleanField(default=True)
     region = models.CharField(max_length=11, null=True, blank=True,
                               editable=False)
-    lang = models.CharField(max_length=5, null=True, blank=True,
+    lang = models.CharField(max_length=10, null=True, blank=True,
                             editable=False)
     enable_recommendations = models.BooleanField(default=True)
 
