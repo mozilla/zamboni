@@ -50,7 +50,7 @@ Add-ons Queue
 Publishing Or Rejecting Add-ons
 ===============================
 
-.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/publish
+.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/publish/
 
     Publish an add-on. Its file will be signed, its status updated to "public"
     and it will become available through :ref:`add-ons search <addon-search-label>`.
@@ -61,19 +61,20 @@ Publishing Or Rejecting Add-ons
     :status 403: not allowed to access this object.
     :status 404: add-on not found in the review queue.
 
-.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/reject
+.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/reject/
 
     Reject an add-on. Its status will be updated to "rejected". The developer
     will have to re-submit it once they fix the issues.
 
-    **WORK IN PROGRESS** Since versioning and re-submitting a rejected add-on
-    are not defined yet, this action is still a work in progress and should
-    not be used.
+    .. warning::
+
+        Since versioning and re-submitting a rejected add-on are not defined yet,
+        developers have no way of submitting back for review a rejected add-on.
 
     **Request**
 
     :param comment: a comment from the reviewer
-    :type: string
+    :type comment: string
 
     **Response**
 
