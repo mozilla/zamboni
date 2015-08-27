@@ -57,6 +57,7 @@ class ExtensionIndexer(BaseIndexer):
                     },
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
+                    'guid': cls.string_not_analyzed(),
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
                     'version': cls.string_not_indexed(),
@@ -91,6 +92,7 @@ class ExtensionIndexer(BaseIndexer):
         # set to True at the moment, and not present in the model.
         doc['is_disabled'] = False
         doc['name_sort'] = unicode(obj.name).lower()
+        doc['guid'] = unicode(obj.uuid)
 
         # Handle localized fields. This adds both the field used for search and
         # the one with all translations for the API.

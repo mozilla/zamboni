@@ -1,9 +1,11 @@
+import hashlib
 import json
 from zipfile import BadZipfile, ZipFile
 
 from django.db.transaction import non_atomic_requests
 from django.forms import ValidationError
-from django.http import Http404
+from django.http import Http404, JsonResponse
+from django.shortcuts import get_object_or_404
 
 import commonware
 from rest_framework import status
@@ -32,7 +34,8 @@ from mkt.extensions.serializers import (ExtensionSerializer,
                                         ESExtensionSerializer)
 from mkt.files.models import FileUpload
 from mkt.search.filters import PublicContentFilter
-from mkt.site.decorators import use_master
+from mkt.site.decorators import allow_cross_site_request, use_master
+from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
 
 
@@ -185,3 +188,32 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         obj = self.get_object()
         obj.reject()
         return Response(status=status.HTTP_202_ACCEPTED)
+
+
+@allow_cross_site_request
+def download(request, uuid, **kwargs):
+    extension = get_object_or_404(Extension, uuid=uuid)
+
+    if extension.is_public():
+        log.info('Downloading add-on: %s from %s' % (
+                 extension.pk, extension.signed_file_path))
+        extension_etag = hashlib.sha256()
+        extension_etag.update(unicode(extension.uuid))
+        extension_etag.update(unicode(extension.file_version))
+        return get_file_response(request, extension.signed_file_path,
+                                 content_type='application/zip',
+                                 etag=extension_etag.hexdigest(), public=True)
+    else:
+        raise Http404
+
+
+@allow_cross_site_request
+def mini_manifest(request, uuid, **kwargs):
+    extension = get_object_or_404(Extension, uuid=uuid)
+
+    if extension.is_public():
+        # Let ETag/Last-Modified be handled by the generic middleware for now.
+        # If that turns out to be a problem, we'll set them manually.
+        return JsonResponse(extension.mini_manifest)
+    else:
+        raise Http404
