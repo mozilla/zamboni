@@ -37,11 +37,11 @@ from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.constants.payments import PROVIDER_REFERENCE
-from mkt.files.helpers import copyfileobj
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage)
 from mkt.site.utils import app_factory, website_factory  # NOQA
 from mkt.translations.hold import clean_translations
 from mkt.translations.models import Translation
@@ -741,8 +741,9 @@ class MktPaths(object):
                             'mkt/submit/tests/webapps/%s' % name)
 
     def manifest_copy_over(self, dest, name):
-        with private_storage.open(dest, 'wb') as f:
-            copyfileobj(open(self.manifest_path(name)), f)
+        copy_stored_file(
+            self.manifest_path(name), dest,
+            src_storage=local_storage, dst_storage=private_storage)
 
     @staticmethod
     def sample_key():
@@ -762,8 +763,9 @@ class MktPaths(object):
             settings.ROOT, 'mkt/submit/tests/packaged/%s' % name)
 
     def packaged_copy_over(self, dest, name):
-        with private_storage.open(dest, 'wb') as f:
-            copyfileobj(open(self.packaged_app_path(name)), f)
+        copy_stored_file(
+            self.packaged_app_path(name), dest,
+            src_storage=local_storage, dst_storage=private_storage)
 
 
 def assert_no_validation_errors(validation):

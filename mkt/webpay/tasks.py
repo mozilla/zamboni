@@ -54,7 +54,7 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
         return
 
     tmp_dest = tempfile.NamedTemporaryFile(delete=False)
-    tmp_dest_path = tmp_dest.name
+    tmp_dst_path = tmp_dest.name
     try:
         res = requests.get(url, timeout=5)
         res.raise_for_status()
@@ -75,7 +75,7 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
         if valid:
             if resize:
                 log.info('resizing in-app image for URL %s' % url)
-                tmp_dest_path = _resize_image(tmp_dest, size)
+                tmp_dst_path = _resize_image(tmp_dest, size)
 
             # Save the image to the db.
             attr = dict(ext_size=ext_size, size=size, ext_url=url,
@@ -85,11 +85,11 @@ def fetch_product_icon(url, ext_size, size, read_size=100000, **kw):
             else:
                 cached_im = ProductIcon.objects.create(**attr)
             log.info('saving image from URL %s' % url)
-            copy_stored_file(tmp_dest_path, cached_im.storage_path(),
+            copy_stored_file(tmp_dst_path, cached_im.storage_path(),
                              src_storage=local_storage,
-                             dest_storage=public_storage)
+                             dst_storage=public_storage)
     finally:
-        os.unlink(tmp_dest_path)
+        os.unlink(tmp_dst_path)
 
 
 def _check_image(im_path, abs_url):

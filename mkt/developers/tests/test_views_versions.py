@@ -16,7 +16,8 @@ from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import copy_to_storage, storage_is_remote
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, storage_is_remote)
 from mkt.site.tests import req_factory_factory, user_factory
 from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -554,7 +555,9 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         blocklist_zip_path = os.path.join(settings.MEDIA_ROOT,
                                           'packaged-apps', 'blocklisted.zip')
         if storage_is_remote():
-            copy_to_storage(blocklist_zip_path, blocklist_zip_path)
+            copy_stored_file(blocklist_zip_path, blocklist_zip_path,
+                             src_storage=local_storage,
+                             dst_storage=private_storage)
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'),
             'Apps:Configure')

@@ -8,9 +8,8 @@ from celery import task
 import mkt
 from lib.video import library
 from mkt.site.decorators import set_modified_on
-from mkt.site.storage_utils import (copy_stored_file, copy_to_storage,
-                                    local_storage, private_storage,
-                                    public_storage)
+from mkt.site.storage_utils import (copy_stored_file, local_storage,
+                                    private_storage, public_storage)
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview
 
@@ -28,7 +27,7 @@ def resize_video(src, pk, user_pk=None, **kw):
     user = UserProfile.objects.get(pk=user_pk) if user_pk else None
     try:
         copy_stored_file(src, src, src_storage=private_storage,
-                         dest_storage=local_storage)
+                         dst_storage=local_storage)
         result = _resize_video(src, instance, **kw)
     except Exception, err:
         log.error('Error on processing video: %s' % err)
@@ -88,16 +87,17 @@ def _resize_video(src, instance, lib=None, **kw):
         log.info('Error making thumbnail for %s' % instance.pk, exc_info=True)
         return
 
-    copy_to_storage(thumbnail_file, instance.thumbnail_path,
-                    src_storage=local_storage, dst_storage=public_storage)
+    copy_stored_file(thumbnail_file, instance.thumbnail_path,
+                     src_storage=local_storage, dst_storage=public_storage)
     if waffle.switch_is_active('video-encode'):
         # Move the file over, removing the temp file.
-        copy_to_storage(video_file, instance.image_path,
-                        src_storage=local_storage, dst_storage=public_storage)
+        copy_stored_file(video_file, instance.image_path,
+                         src_storage=local_storage,
+                         dst_storage=public_storage)
     else:
         # We didn't re-encode the file.
-        copy_to_storage(src, instance.image_path,
-                        src_storage=local_storage, dst_storage=public_storage)
+        copy_stored_file(src, instance.image_path, src_storage=local_storage,
+                         dst_storage=public_storage)
         #
     # Now remove local files.
     local_storage.delete(thumbnail_file)

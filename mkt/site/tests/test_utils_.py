@@ -11,9 +11,9 @@ from django.core.validators import ValidationError
 import mock
 from nose.tools import assert_raises, eq_, raises
 
-from mkt.site.storage_utils import (LocalFileStorage, copy_to_storage,
-                                    local_storage, public_storage,
-                                    storage_is_remote)
+from mkt.site.storage_utils import (LocalFileStorage, copy_stored_file,
+                                    local_storage, private_storage,
+                                    public_storage, storage_is_remote)
 from mkt.site.tests import TestCase
 from mkt.site.utils import (ImageCheck, cache_ns_key, escape_all, resize_image,
                             rm_local_tmp_dir, slug_validator, slugify)
@@ -89,7 +89,8 @@ def test_resize_transparency():
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     if storage_is_remote():
-        copy_to_storage(src, src, src_storage=local_storage)
+        copy_stored_file(src, src, src_storage=local_storage,
+                         dst_storage=private_storage)
     try:
         resize_image(src, dest, (32, 32), remove_src=False)
         with public_storage.open(dest) as dfh:

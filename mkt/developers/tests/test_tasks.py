@@ -74,12 +74,12 @@ def _uploader(resize_size, final_size):
     original_size = (339, 128)
 
     for rsize, fsize in zip(resize_size, final_size):
-        dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
+        dst_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
         copy_stored_file(img, src.name, src_storage=local_storage,
-                         dest_storage=private_storage)
+                         dst_storage=private_storage)
 
         # Sanity check.
         with private_storage.open(src.name) as fp:
@@ -87,23 +87,23 @@ def _uploader(resize_size, final_size):
             src_image.load()
         eq_(src_image.size, original_size)
 
-        val = tasks.resize_icon(src.name, dest_name, resize_size)
+        val = tasks.resize_icon(src.name, dst_name, resize_size)
         eq_(val, {'icon_hash': 'bb362450'})
-        dest_image_filename = '%s-%s.png' % (dest_name, rsize)
-        with public_storage.open(dest_image_filename) as fp:
-            dest_image = Image.open(fp)
-            dest_image.load()
+        dst_image_filename = '%s-%s.png' % (dst_name, rsize)
+        with public_storage.open(dst_image_filename) as fp:
+            dst_image = Image.open(fp)
+            dst_image.load()
 
         # Assert that the width is always identical.
-        eq_(dest_image.size[0], fsize[0])
+        eq_(dst_image.size[0], fsize[0])
         # Assert that the height can be a wee bit fuzzy.
-        assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
+        assert -1 <= dst_image.size[1] - fsize[1] <= 1, (
             'Got width %d, expected %d' % (
-                fsize[1], dest_image.size[1]))
+                fsize[1], dst_image.size[1]))
 
-        if public_storage.exists(dest_image_filename):
-            public_storage.delete(dest_image_filename)
-        assert not public_storage.exists(dest_image_filename)
+        if public_storage.exists(dst_image_filename):
+            public_storage.delete(dst_image_filename)
+        assert not public_storage.exists(dst_image_filename)
 
     assert not private_storage.exists(src.name)
 
@@ -121,35 +121,35 @@ def _promo_img_uploader(resize_size, final_size):
     original_size = (1050, 591)
 
     for rsize, fsize in zip(resize_size, final_size):
-        dest_name = os.path.join(settings.WEBAPP_PROMO_IMG_PATH, '1234')
+        dst_name = os.path.join(settings.WEBAPP_PROMO_IMG_PATH, '1234')
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.jpg',
                                           delete=False)
         # resize_icon removes the original, copy it to a tempfile and use that.
         copy_stored_file(img, src.name, src_storage=local_storage,
-                         dest_storage=private_storage)
+                         dst_storage=private_storage)
         # Sanity check.
         with private_storage.open(src.name) as fp:
             src_image = Image.open(fp)
             src_image.load()
         eq_(src_image.size, original_size)
 
-        val = tasks.resize_promo_imgs(src.name, dest_name, resize_size)
+        val = tasks.resize_promo_imgs(src.name, dst_name, resize_size)
         eq_(val, {'promo_img_hash': '215dd2a2'})
-        dest_img_name = '%s-%s.png' % (dest_name, rsize)
-        with public_storage.open(dest_img_name) as fp:
-            dest_image = Image.open(fp)
-            dest_image.load()
+        dst_img_name = '%s-%s.png' % (dst_name, rsize)
+        with public_storage.open(dst_img_name) as fp:
+            dst_image = Image.open(fp)
+            dst_image.load()
 
         # Assert that the width is always identical.
-        eq_(dest_image.size[0], fsize[0])
+        eq_(dst_image.size[0], fsize[0])
         # Assert that the height can be a wee bit fuzzy.
-        assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
+        assert -1 <= dst_image.size[1] - fsize[1] <= 1, (
             'Got width %d, expected %d' % (
-                fsize[1], dest_image.size[1]))
+                fsize[1], dst_image.size[1]))
 
-        if public_storage.exists(dest_img_name):
-            public_storage.delete(dest_img_name)
-        assert not public_storage.exists(dest_img_name)
+        if public_storage.exists(dst_img_name):
+            public_storage.delete(dst_img_name)
+        assert not public_storage.exists(dst_img_name)
 
     assert not private_storage.exists(src.name)
 
@@ -161,7 +161,7 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         copy_stored_file(get_image_path('mozilla.png'),
                          self.img_path,
                          src_storage=local_storage,
-                         dest_storage=public_storage)
+                         dst_storage=public_storage)
         patcher = mock.patch('subprocess.Popen')
         self.mock_popen = patcher.start()
         attrs = {
@@ -180,7 +180,7 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
         tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
         copy_stored_file(self.img_path, tmp_dest, src_storage=public_storage,
-                         dest_storage=local_storage)
+                         dst_storage=local_storage)
         with mock.patch('tempfile.NamedTemporaryFile',
                         lambda *a, **k: tmp_src):
             rval = tasks.pngcrush_image(self.img_path)
@@ -197,7 +197,7 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
             stdout=subprocess.PIPE)
         # The output file is then copied back to storage.
         mock_move.assert_called_once_with(tmp_dest, self.img_path,
-                                          dest_storage=public_storage,
+                                          dst_storage=public_storage,
                                           src_storage=local_storage)
         eq_(rval, {'image_hash': 'bb362450'})
 
@@ -209,7 +209,7 @@ class TestPngcrushImage(mkt.site.tests.TestCase):
         tmp_src = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
         tmp_dest = os.path.splitext(tmp_src.name)[0] + expected_suffix
         copy_stored_file(self.img_path, tmp_dest, src_storage=public_storage,
-                         dest_storage=local_storage)
+                         dst_storage=local_storage)
         with mock.patch('tempfile.NamedTemporaryFile',
                         lambda *a, **k: tmp_src):
             obj = app_factory()
@@ -301,9 +301,8 @@ class TestResizePreview(mkt.site.tests.TestCase):
         """
         src = get_image_path(filename)
         dst = os.path.join(settings.TMP_PATH, 'preview', filename)
-        with open(src) as local_f:
-            with private_storage.open(dst, 'w') as remote_f:
-                shutil.copyfileobj(local_f, remote_f)
+        copy_stored_file(
+            src, dst, src_storage=local_storage, dst_storage=private_storage)
         return dst
 
     def test_preview(self):

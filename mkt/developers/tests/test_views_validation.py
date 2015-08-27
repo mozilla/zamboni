@@ -13,7 +13,6 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from mkt.developers.views import standalone_hosted_upload, trap_duplicate
-from mkt.files.helpers import copyfileobj
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
@@ -30,10 +29,9 @@ class TestWebApps(TestCase, MktPaths):
 
     def setUp(self):
         self.webapp_path = tempfile.mktemp(suffix='.webapp')
-        with private_storage.open(self.webapp_path, 'wb') as f:
-            copyfileobj(open(os.path.join(os.path.dirname(__file__),
-                                          'addons', 'mozball.webapp')),
-                        f)
+        copy_stored_file(
+            self.manifest_path('mozball.webapp'), self.webapp_path,
+            src_storage=local_storage, dst_storage=private_storage)
         self.tmp_files = []
         self.manifest = dict(name=u'Ivan Krsti\u0107', version=u'1.0',
                              description=u'summary',
@@ -67,7 +65,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('mozball.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
@@ -84,7 +82,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('mozBOM.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         wp = WebAppParser().parse(private_storage.open(path))
         eq_(wp['guid'], None)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
@@ -98,7 +96,7 @@ class TestWebApps(TestCase, MktPaths):
         path = self.packaged_app_path('no-manifest-at-root.zip')
         if storage_is_remote():
             copy_stored_file(path, path, src_storage=local_storage,
-                             dest_storage=private_storage)
+                             dst_storage=private_storage)
         with self.assertRaises(forms.ValidationError) as exc:
             WebAppParser().parse(private_storage.open(path))
         m = exc.exception.messages[0]

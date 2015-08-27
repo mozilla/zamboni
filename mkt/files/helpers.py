@@ -107,7 +107,7 @@ class FileViewer(object):
                     file_dest = os.path.join(storage_root, fname)
                     copy_stored_file(file_src, file_dest,
                                      src_storage=local_storage,
-                                     dest_storage=private_storage)
+                                     dst_storage=private_storage)
         except Exception, err:
             task_log.error('Error (%s) extracting %s' % (err, self.src))
             raise
@@ -459,15 +459,6 @@ class DiffHelper(object):
             if obj.is_directory():
                 return False
         return True
-
-
-def copyfileobj(fsrc, fdst, length=64 * 1024):
-    """copy data from file-like object fsrc to file-like object fdst"""
-    while True:
-        buf = fsrc.read(length)
-        if not buf:
-            break
-        fdst.write(buf)
 
 
 def rmtree(prefix):

@@ -77,7 +77,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
                                    src_storage=m_storage,
-                                   dest_storage=private_storage)
+                                   dst_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
@@ -92,7 +92,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
                                    src_storage=m_storage,
-                                   dest_storage=private_storage)
+                                   dst_storage=private_storage)
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
@@ -107,7 +107,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         mv_mock.assert_called_with(self.f1.file_path,
                                    self.f1.guarded_file_path, self.msg,
                                    src_storage=public_storage,
-                                   dest_storage=m_storage)
+                                   dst_storage=m_storage)
         eq_(mv_mock.call_count, 1)
 
     @mock.patch('mkt.files.models.File.mv')

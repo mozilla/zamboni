@@ -468,13 +468,13 @@ class SetupFilesMixin(MktPaths):
         copy_stored_file(self.packaged_app_path(filename),
                          self.file.file_path,
                          src_storage=local_storage,
-                         dest_storage=private_storage)
+                         dst_storage=private_storage)
 
         # Signed packaged file.
         copy_stored_file(self.packaged_app_path(filename),
                          self.file.signed_file_path,
                          src_storage=local_storage,
-                         dest_storage=public_storage)
+                         dst_storage=public_storage)
 
 
 class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadAddon,
