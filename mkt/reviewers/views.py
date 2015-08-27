@@ -3,10 +3,8 @@ import datetime
 import functools
 import HTMLParser
 import json
-import os
 import sys
 import traceback
-import urllib
 
 from django import http
 from django.conf import settings
@@ -47,7 +45,7 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
-from mkt.developers.models import ActivityLog, ActivityLogAttachment
+from mkt.developers.models import ActivityLog
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
@@ -935,27 +933,6 @@ def apps_reviewing(request):
                   context(request,
                           **{'tab': 'reviewing',
                              'apps': AppsReviewing(request).get_apps()}))
-
-
-@reviewer_required
-def attachment(request, attachment):
-    """
-    Serve an attachment directly to the user.
-    """
-    try:
-        a = ActivityLogAttachment.objects.get(pk=attachment)
-        full_path = os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
-                                 a.filepath)
-        fsock = open(full_path, 'r')
-    except (ActivityLogAttachment.DoesNotExist, IOError,):
-        response = http.HttpResponseNotFound()
-    else:
-        filename = urllib.quote(a.filename())
-        response = http.HttpResponse(fsock,
-                                     content_type='application/force-download')
-        response['Content-Disposition'] = 'attachment; filename=%s' % filename
-        response['Content-Length'] = os.path.getsize(full_path)
-    return response
 
 
 def _retrieve_translation(text, language):

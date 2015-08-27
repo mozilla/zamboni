@@ -1,6 +1,4 @@
-import imghdr
 import json
-import os.path
 import posixpath
 import string
 import uuid
@@ -11,9 +9,7 @@ from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.safestring import mark_safe
 
-import bleach
 import commonware.log
 import jinja2
 from tower import ugettext as _
@@ -519,50 +515,3 @@ class ActivityLog(ModelBase):
 
     def __html__(self):
         return self
-
-
-# TODO: remove once we migrate to CommAtttachment (ngoke).
-class ActivityLogAttachment(ModelBase):
-    """
-    Model for an attachment to an ActivityLog instance. Used by the Marketplace
-    reviewer tools, where reviewers can attach files to comments made during
-    the review process.
-    """
-    activity_log = models.ForeignKey('ActivityLog')
-    filepath = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, blank=True)
-    mimetype = models.CharField(max_length=255, blank=True)
-
-    class Meta:
-        db_table = 'log_activity_attachment'
-        ordering = ('id',)
-
-    def get_absolute_url(self):
-        return reverse('reviewers.apps.review.attachment', args=[self.pk])
-
-    def filename(self):
-        """
-        Returns the attachment's file name.
-        """
-        return os.path.basename(self.filepath)
-
-    def full_path(self):
-        """
-        Returns the full filesystem path of the attachment.
-        """
-        return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH, self.filepath)
-
-    def display_name(self):
-        """
-        Returns a string describing the attachment suitable for front-end
-        display.
-        """
-        display = self.description if self.description else self.filename()
-        return mark_safe(bleach.clean(display))
-
-    def is_image(self):
-        """
-        Returns a boolean indicating whether the attached file is an image of a
-        format recognizable by the stdlib imghdr module.
-        """
-        return imghdr.what(self.full_path()) is not None

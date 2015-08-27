@@ -43,8 +43,6 @@ url_patterns = patterns(
     url(r'^app/%s/$' % mkt.APP_SLUG, views.app_review),
     url(r'^apps/review/%s/manifest$' % mkt.APP_SLUG, views.app_view_manifest,
         name='reviewers.apps.review.manifest'),
-    url(r'^apps/review/attachment/(\d+)$', views.attachment,
-        name='reviewers.apps.review.attachment'),
     url(r'^apps/review/%s/abuse$' % mkt.APP_SLUG, views.app_abuse,
         name='reviewers.apps.review.abuse'),
 

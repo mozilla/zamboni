@@ -120,8 +120,7 @@ class ReviewBase(object):
 
         # ActivityLog (ye olde).
         mkt.log(action, self.addon, self.version, user=self.user,
-                created=datetime.now(), details=details,
-                attachments=self.attachment_formset)
+                created=datetime.now(), details=details)
 
     def get_tested(self):
         """
