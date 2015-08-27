@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
 import os.path
+from copy import deepcopy
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.dispatch import receiver
 
@@ -19,6 +21,7 @@ from mkt.extensions.utils import ExtensionParser
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.translations.utils import to_language
+from mkt.site.helpers import absolutify
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.storage_utils import (copy_stored_file, private_storage,
                                     public_storage)
@@ -58,10 +61,16 @@ class Extension(ModelBase):
 
     @property
     def download_url(self):
-        raise NotImplementedError
+        return absolutify(reverse(
+            'extension.download',
+            kwargs={'uuid': self.uuid, 'filename': self.filename}))
 
     @property
     def filename(self):
+        """Filename to use when storing the file in storage."""
+        # The filename needs to be unique for a given version, but not sensible
+        # to other fields that can be changed to make our lifes easier. So it
+        # does not depend on the slug.
         return 'extension-%s.zip' % self.version
 
     @property
@@ -123,12 +132,6 @@ class Extension(ModelBase):
     def get_indexer(self):
         return ExtensionIndexer
 
-    def get_minifest_contents(self, force=False):
-        raise NotImplementedError
-
-    def get_package_path(self):
-        raise NotImplementedError
-
     def handle_file_operations(self, upload):
         """Copy the file attached to a FileUpload to the Extension instance."""
         upload.path = smart_path(nfd_str(upload.path))
@@ -153,7 +156,19 @@ class Extension(ModelBase):
 
     @property
     def manifest_url(self):
-        raise NotImplementedError
+        return absolutify(reverse('extension.manifest',
+                                  kwargs={'uuid': self.uuid}))
+
+    @property
+    def mini_manifest(self):
+        """Mini-manifest used for install/update in dict form.
+
+        Actually a maxi-manifest for the moment. Must contain `package_path`,
+        that points to the extension download absolute URL."""
+
+        mini_manifest = deepcopy(self.manifest)
+        mini_manifest['package_path'] = self.download_url
+        return mini_manifest
 
     def publish(self):
         """Publish this add-on to public."""

@@ -6,6 +6,7 @@ from nose.tools import eq_, ok_
 
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.utils import override_settings
 
 from lib.crypto.packaged import SigningError
 from mkt.constants.base import (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
@@ -139,6 +140,14 @@ class TestExtensionESIndexation(TestCase):
 
 
 class TestExtensionMethodsAndProperties(TestCase):
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_download_url(self):
+        extension = Extension(pk=41, version='0.41.0',
+                              uuid='abcdef78123456781234567812345678')
+        eq_(extension.download_url,
+            'https://marketpace.example.com/downloads/extension/'
+            'abcdef78123456781234567812345678/extension-0.41.0.zip')
+
     def test_file_paths(self):
         extension = Extension(pk=42, version='0.42.0')
         eq_(extension.filename, 'extension-0.42.0.zip')
@@ -154,12 +163,34 @@ class TestExtensionMethodsAndProperties(TestCase):
         # is increased when updates are added.
         eq_(Extension().file_version, 0)
 
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_manifest_url(self):
+        extension = Extension(pk=43, version='0.43.0',
+                              uuid='12345678123456781234567812abcdef')
+        eq_(extension.manifest_url,
+            'https://marketpace.example.com/extension/'
+            '12345678123456781234567812abcdef/manifest.json')
+
+    def test_mini_manifest(self):
+        manifest = {'foo': {'bar': 1}}
+        extension = Extension(pk=44, version='0.44.0', manifest=manifest,
+                              uuid='abcdefabcdefabcdefabcdefabcdef12')
+        expected_manifest = {
+            'foo': {'bar': 1},
+            'package_path': extension.download_url,
+        }
+        eq_(extension.mini_manifest, expected_manifest)
+
+        # Make sure that mini_manifest is a deepcopy.
+        extension.mini_manifest['foo']['bar'] = 42
+        eq_(extension.manifest['foo']['bar'], 1)
+
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch.object(Extension, 'remove_signed_file')
     def test_sign_and_move_file(self, remove_signed_file_mock,
                                 private_storage_mock, sign_app_mock):
-        extension = Extension(uuid='fakeuuid')
+        extension = Extension(uuid='12345678123456781234567812345678')
         extension.sign_and_move_file()
         expected_args = (
             private_storage_mock.open.return_value,
@@ -185,7 +216,7 @@ class TestExtensionMethodsAndProperties(TestCase):
     @mock.patch.object(Extension, 'remove_signed_file')
     def test_sign_and_move_file_error(self, remove_signed_file_mock,
                                       private_storage_mock, sign_app_mock):
-        extension = Extension(uuid='fakeuuid')
+        extension = Extension(uuid='12345678123456781234567812345678')
         sign_app_mock.side_effect = SigningError
         with self.assertRaises(SigningError):
             extension.sign_and_move_file()
