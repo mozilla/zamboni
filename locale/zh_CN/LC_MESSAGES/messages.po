@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-13 09:31+0000\n"
+"PO-Revision-Date: 2015-08-27 21:26+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439458291.0\n"
+"X-POOTLE-MTIME: 1440710797.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1277,15 +1277,15 @@ msgstr "第6级"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "第7级"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "第8级"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "第9级"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2879,7 +2879,7 @@ msgstr "OAuth 范例"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
-msgstr ""
+msgstr "<p>在 Mac OS X/Linux 上使用您的 OAuth 凭据使用一个 Python 库的例子：</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5080,59 +5080,59 @@ msgstr "Mozilla 网络应用（巴西葡萄牙语）"
 
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
-msgstr ""
+msgstr "zip 文件的根目录中未找到“manifest.json”文件。"
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "附加组件必须打包为一个有效的 zip 压缩文件。"
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "无法解码附加组件的清单文件（manifest）。请检查您的清单文件是否含有非 UTF-8 的特殊字符编码。"
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "附加组件清单文件（manifest）不是有效的 JSON。"
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "附加组件清单文件中的“%s”字段缺失或者为空。"
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "请求中缺少文件。"
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "发送的文件存在不支持的 content-type"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "发送的文件不是有效的 ZIP 文件。"
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "压缩文件中未包含“manifest.json”文件。"
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "压缩文件中的“manifest.json”不是一个有效的 JSON 文件。"
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "没有指定上传标识符。"
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "您需要经过身份验证后才能执行此操作。"
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "无此上传。"
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "指定的上传尚未通过验证。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
