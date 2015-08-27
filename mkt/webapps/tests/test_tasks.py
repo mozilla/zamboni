@@ -173,9 +173,9 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         eq_(file_, old_file, 'File created')
 
         path = FileUpload.objects.all()[0].path
-        _copy_stored_file.assert_called_with(path,
-                                             os.path.join(version.path_prefix,
-                                                          file_.filename))
+        _copy_stored_file.assert_called_with(
+            path, os.path.join(version.path_prefix, file_.filename),
+            src_storage=private_storage, dst_storage=private_storage)
         _manifest_json.assert_called_with(file_)
 
     @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)

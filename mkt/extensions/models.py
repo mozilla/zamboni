@@ -131,7 +131,9 @@ class Extension(ModelBase):
 
         # Copy file from fileupload. This uses private_storage for now as the
         # unreviewed, unsigned filename is private.
-        copy_stored_file(upload.path, self.file_path)
+        copy_stored_file(
+            upload.path, self.file_path,
+            src_storage=private_storage, dst_storage=private_storage)
 
     def is_public(self):
         return self.status == STATUS_PUBLIC
