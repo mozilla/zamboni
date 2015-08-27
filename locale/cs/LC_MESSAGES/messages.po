@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-19 07:42+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-08-27 10:56+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439970162.0\n"
+"X-POOTLE-MTIME: 1440672992.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -315,7 +315,7 @@ msgstr "Vánoční ostrov"
 
 #: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
-msgstr "Kokosové ostrovy"
+msgstr "Kokosové (Keelingovy) ostrovy"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
@@ -391,7 +391,7 @@ msgstr "Egypt"
 
 #: mkt/constants/bango.py:85 mkt/constants/regions.py:267
 msgid "El Salvador"
-msgstr "El Salvador"
+msgstr "Salvador"
 
 #: mkt/constants/bango.py:86 mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
@@ -419,7 +419,7 @@ msgstr "Faerské ostrovy"
 
 #: mkt/constants/bango.py:92 mkt/constants/regions.py:142
 msgid "Fiji"
-msgstr "Fiji"
+msgstr "Fidži"
 
 #: mkt/constants/bango.py:93 mkt/constants/regions.py:141
 msgid "Finland"
@@ -515,7 +515,7 @@ msgstr "Heardův ostrov a McDonaldovy ostrovy"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr "Vatikán"
+msgstr "Vatikán (Městský stát Vatikán)"
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
@@ -555,7 +555,7 @@ msgstr "Irsko"
 
 #: mkt/constants/bango.py:126 mkt/constants/regions.py:172
 msgid "Isle of Man"
-msgstr "Man (ostrov)"
+msgstr "Ostrov Man"
 
 #: mkt/constants/bango.py:127 mkt/constants/regions.py:178
 msgid "Israel"
@@ -695,7 +695,7 @@ msgstr "Mauritánie"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:223
 msgid "Mauritius"
-msgstr "Mauritius"
+msgstr "Mauricius"
 
 #: mkt/constants/bango.py:162 mkt/constants/regions.py:226
 msgid "Mayotte"
@@ -783,7 +783,7 @@ msgstr "Niue"
 
 #: mkt/constants/bango.py:183 mkt/constants/regions.py:230
 msgid "Norfolk Island"
-msgstr "Norfolk (ostrov)"
+msgstr "Ostrov Norfolk"
 
 #: mkt/constants/bango.py:184 mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
@@ -883,7 +883,7 @@ msgstr "Svatá Lucie"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Martin"
-msgstr "Saint Martin"
+msgstr "Svatý Martin"
 
 #: mkt/constants/bango.py:209 mkt/constants/regions.py:270
 msgid "Saint Pierre and Miquelon"
@@ -931,7 +931,7 @@ msgstr "Sierra Leone"
 
 #: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
-msgstr "Singapore"
+msgstr "Singapur"
 
 #: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
@@ -1479,7 +1479,7 @@ msgstr "Opětovná kontrola z důvodu hodnocení obsahu"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr "Požadavek na opětovnou ruční  kontrolu podán"
+msgstr "Požadavek na opětovnou ruční kontrolu podán"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -1595,7 +1595,7 @@ msgstr "Aplikace vyžaduje platformu, která podporuje IndexedDB."
 
 #: mkt/constants/features.py:84
 msgid "Geolocation"
-msgstr "Geolocation"
+msgstr "Geolokace"
 
 #: mkt/constants/features.py:85
 msgid "The app requires the platform to support the `navigator.geolocation` API."
@@ -1811,7 +1811,7 @@ msgstr "Aplikace vyžaduje od platformy, aby jí povolila zaznamenávání mluve
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
-msgstr "Uzamčení kurzoru (Pointer Lock)"
+msgstr "Pointer Lock"
 
 #: mkt/constants/features.py:271
 msgid "The app requires the platform to provide additional information and control about the pointer."
@@ -2122,7 +2122,7 @@ msgstr "Tanzánie"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr "Vatikán (Holy See)"
+msgstr "Vatikán (Městský stát Vatikán)"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -2214,7 +2214,9 @@ msgstr "Jejda, zdá se, že jste již přidali manifest pro %s, jenž je aktuál
 
 #: mkt/developers/forms.py:223
 msgid "An app already exists on this domain; only one app per domain is allowed."
-msgstr "Aplikace již pro tuto doménu existuje. Pro doménu je povolena pouze jedna aplikace."
+msgstr ""
+"Aplikace již pro tuto doménu existuje, pro doménu je povolena pouze jedna "
+"aplikace."
 
 #: mkt/developers/forms.py:339 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
@@ -2230,7 +2232,7 @@ msgstr "Zabalená aplikace je příliš velká pro odeslání. Balíčky musí b
 
 #: mkt/developers/forms.py:456
 msgid "Error extracting manifest from zip file."
-msgstr "Chyba při rozbalování manifestu ze souboru ve formátu ZIP."
+msgstr "Chyba při rozbalování manifestu z archivu zip."
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
@@ -2266,7 +2268,7 @@ msgstr "URL nemůže být \"%s\". Zvolte prosím jiné."
 
 #: mkt/developers/forms.py:622
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr "Odkaz na manifest byl změněn z {before_url} na {after_url}"
+msgstr "Manifest URL byla změněna z {before_url} na {after_url}"
 
 #: mkt/developers/forms.py:659
 msgid "Please specify your app's Privacy Policy"
@@ -2290,7 +2292,9 @@ msgstr "<b>Publikováno</b>: Viditelné pro každého na Marketplace včetně v�
 
 #: mkt/developers/forms.py:795
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr "<b>Není v seznamu</b>: Viditelné pouze pro lidi, kteří znají URL. Není viditelné ve výsledcích vyhledávání a stránek se seznamy."
+msgstr ""
+"<b>Není v seznamu</b>: Viditelné pouze pro lidi, kteří znají URL, a není "
+"viditelné ve výsledcích vyhledávání a stránek se seznamy."
 
 #: mkt/developers/forms.py:811
 msgid "App Visibility:"
@@ -2413,7 +2417,7 @@ msgstr "Soubor je příliš velký. Velikost musí být pod %s. Aktuální velik
 
 #: mkt/developers/forms.py:1234
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr "Neplatný typ souboru ({0}). Jsou povoleny pouze soubory {1}."
+msgstr "Neplatný typ souboru {0}. Jsou povoleny pouze soubory {1}."
 
 #: mkt/developers/forms.py:1258
 msgid "Please enter a valid submission ID."
@@ -2521,7 +2525,7 @@ msgstr "Preferovaný způsob plateb"
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
-msgstr "Daňové identifikační číslo"
+msgstr "Číslo DIČ"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Bank Account Number"
@@ -3287,7 +3291,9 @@ msgstr "Vaše aplikace byla <b>schválena</b> a aktuálně <b>není v seznamu</b
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr "Tuto aplikaci mohou vidět a instalovat pouze ti, kteří znají následující adresu:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgstr ""
+"Tuto aplikaci mohou vidět a instalovat pouze ti, kteří znají následující URL "
+"adresu:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
@@ -3572,7 +3578,10 @@ msgstr "Poznámky pro redaktora"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "Volitelně zadejte libovolné informace, které mohou být užitečné pro redaktora, který bude aplikaci zkoušet. Může se jednat například o účet potřebný pro otestování aplikace."
+msgstr ""
+"Volitelně zadejte libovolné informace, které mohou být užitečné pro "
+"redaktora, který bude aplikaci zkoušet - může se jednat například o účet "
+"potřebný pro otestování aplikace."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Minimum Requirements"
@@ -3992,7 +4001,7 @@ msgstr "Pokračovat"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr "Smazat doplněk"
+msgstr "Smazat tento doplněk."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -4755,7 +4764,9 @@ msgstr "Všechny nástroje, dokumentace a reference, které budete potřebovat p
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Zjistěte si, jak distribuovat své aplikace pomocí otevřeného obchodu, který dává uživatele a vývojáře na první místo."
+msgstr ""
+"Zjistěte si, jak distribuovat své aplikace pomocí otevřeného obchodu, který "
+"dává uživatele a vývojáře na první místo"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -4794,8 +4805,9 @@ msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
-"S pomocí otevřených webových standardů a API navržených Mozillou mohou být skvělé aplikace dostupné pro více platforem, zařízení a operačních systémů. Poprvé se tak smazává rozdíl mezi webem a "
-"nativními aplikacemi."
+"S pomocí otevřených webových standardů a API navržených Mozillou mohou být "
+"skvělé aplikace dostupné pro více platforem, zařízení a operačních systémů "
+"&mdash; poprvé se tak smazává rozdíl mezi webem a nativními aplikacemi."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -4833,7 +4845,10 @@ msgstr "Aplikace pro Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "Přihlaste si odběr našeho měsíčního zpravodaje o Firefox OS, Marketplace a o ekosystému aplikací. <a href=\"%(dev_phone_url)s\">Podívejte se na telefony pro vývojáře</a>."
+msgstr ""
+"Přihlaste si odběr našeho měsíčního zpravodaje o Firefox OS, Marketplace a o "
+"ekosystému aplikací. <a href=\"%(dev_phone_url)s\">Podívejte se na telefony "
+"pro vývojáře</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -4885,7 +4900,7 @@ msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:97
 msgid "General Notes"
-msgstr "General Notes"
+msgstr "Obecné poznámky"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:109
 msgid "Intro to Manifests"
@@ -4966,11 +4981,16 @@ msgstr "Se sílou webové platformy, otevřeným obchodem a partnery, jako jste 
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr "<strong>Web je platformou</strong> &ndash; napište jednou svou aplikaci v HTML5 a distribuujte ji napříč celým webem"
+msgstr ""
+"<strong>Web je platformou</strong> &ndash; napište jednou svou aplikaci v "
+"HTML5 a distribuujte ji napříč celým webem."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr "<strong>Snadné platby</strong> &ndash; s více platebními modely a integrovanými platbami vám přinášíme snadný způsob, jak vydělat na své aplikaci"
+msgstr ""
+"<strong>Snadné platby</strong> &ndash; s více platebními modely a "
+"integrovanými platbami vám přinášíme snadný způsob, jak vydělat na své "
+"aplikaci."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
@@ -5034,11 +5054,14 @@ msgstr "Průvodci"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr "Bannery byste neměli žádným způsobem měnit."
+msgstr "Bannery byste neměli žádným způsobem měnit"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr "Když je banner použit spolu s odkazy na jiné obchody (\"Get it on Google Play\", \"Download on the App Store\"), měla by být ikona Firefox Marketplace stejně velká (či větší)"
+msgstr ""
+"Když je banner použit spolu s odkazy na jiné obchody (\"Get it on Google "
+"Play\", \"Download on the App Store\"), měla by být ikona Firefox Marketplace "
+"stejně velká či větší"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -5078,7 +5101,7 @@ msgstr "Jak mohu do Firefox Marketplace nahrát aplikaci?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr "Potřebuji pomoc s manifestem aplikace"
+msgstr "Potřebuji pomoc s manifestem aplikace."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
@@ -5098,7 +5121,10 @@ msgstr "Stále máte otázku?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
-msgstr "Pracujeme na vytvoření kanálů pro pomoc s vašimi problémy. Pro zodpovězení všech vašich otázek související s vývojem webových aplikací můžete aktuálně použít StackOverflow."
+msgstr ""
+"Pracujeme na vytvoření kanálů pro pomoc s vašimi problémy - mezitím můžete "
+"pro zodpovězení všech vašich otázek související s vývojem webových aplikací "
+"použít StackOverflow."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
@@ -5110,11 +5136,11 @@ msgstr "Pokud se chcete střetnout s jinými vývojáři, připojte se k naší 
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
-msgstr "Mozilla Web apps (English)"
+msgstr "Mozilla Web apps (anglicky)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr "Mozilla Web apps (Brazilian Portuguese)"
+msgstr "Mozilla Web apps (brazilská portugalština)"
 
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
@@ -6390,9 +6416,9 @@ msgstr[2] "{num} aktualizací"
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] "{c} nezkontrolovaná přidaná aplikace v tomto týdnu"
-msgstr[1] "{c} nezkontrolované přidané aplikace v tomto týdnu"
-msgstr[2] "{c} nezkontrolovaných přidaných aplikacích v tomto týdnu"
+msgstr[0] "{c} nezkontrolovaná přidaná aplikace v tomto týdnu."
+msgstr[1] "{c} nezkontrolované přidané aplikace v tomto týdnu."
+msgstr[2] "{c} nezkontrolovaných přidaných aplikací v tomto týdnu."
 
 #: mkt/reviewers/templates/reviewers/home.html:46
 msgid "Current waiting times:"
@@ -6509,7 +6535,7 @@ msgstr "Alive"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr "Undelete"
+msgstr "Zrušit smazání"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -6889,7 +6915,7 @@ msgstr "Obdrželi jste <span>{0}</span> bodů."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr "Nebyly nalezeny žádné výsledky."
+msgstr "Nebyly nalezeny žádné výsledky"
 
 #: mkt/search/forms.py:14
 msgid "Relevance"
@@ -7684,9 +7710,13 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"Zásady ochrany soukromí vysvětlují, jak je pracováno s daty, s kterými se manipuluje ve vaší aplikaci. Například: jaká data obdržíte? Jak s nimi pracujete? S kým je sdílíte? Získáváte osobní "
-"informace? Činíte je anonymní? Jaké možnosti volby mají uživatelé nad kontrolou, jaká data vy a ostatní obdržíte? Vložte výše odkaz na vaše zásady ochrany soukromí nebo vložte celý text. Pokud "
-"nemáte zásady ochrany soukromí, pak si <a href=\"{url}\" target=\"_blank\">přečtěte více o tom, jak je napsat</a>."
+"Zásady ochrany soukromí vysvětlují, jak je pracováno s daty, s kterými se "
+"manipuluje ve vaší aplikaci. Například: jaká data obdržíte? Jak s nimi "
+"pracujete? S kým je sdílíte? Získáváte osobní informace? Činíte je anonymní? "
+"Jaké možnosti volby mají uživatelé nad kontrolou, jaká data vy a ostatní "
+"obdržíte? Vložte výše odkaz na vaše zásady ochrany soukromí nebo vložte celý "
+"text. Pokud nemáte zásady ochrany soukromí, pak si <a href=\"{url}\" "
+"target=\"_blank\">přečtěte více o tom, jak je napsat.</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -7786,8 +7816,11 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Vaše aplikace byla uložena a je připravena! Aktuálně čeká na kontrolu a jakmile bude zkontrolována, budete ji moci ručně povolit na stránce <a href=\"%(url)s\">Správa stavů</a>. Poté bude k "
-"dispozici na stránkách s aplikacemi a ve vyhledávání. Do té doby můžete informace a nastavení aplikace libovolně upravovat."
+"Vaše aplikace byla uložena a je připravena! Aktuálně čeká na kontrolu a "
+"jakmile bude zkontrolována, budete moci na stránce <a href=\"%(url)s\">Správa "
+"stavů</a> ručně povolit její zobrazení na stránkách s aplikacemi a ve "
+"vyhledávání. Do té doby můžete informace a nastavení aplikace libovolně "
+"upravovat."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -7895,8 +7928,10 @@ msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
-"Jsme rádi, že jste se rozhodli vytvořit aplikaci pomocí webových technologií. Její přidání do Firefox Marketplace je nejlepší způsob, jakým o ní dáte vědět uživatelům napříč zařízeními. Prvně "
-"musíte odsouhlasit podmínky programu Marketplace pro vývojáře, které jsou uvedeny níže."
+"Jsme rádi, že jste se rozhodli vytvořit aplikaci pomocí webových "
+"technologií. Její přidání do Firefox Marketplace je nejlepší způsob, jakým o "
+"ní dáte vědět uživatelům napříč zařízeními, ale nejprve musíte odsouhlasit "
+"podmínky programu Marketplace pro vývojáře, které jsou uvedeny níže."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -8109,7 +8144,7 @@ msgstr "Uživatel se zvolenou e-mailovou adresou neexistuje nebo dosud neodsouhl
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr "Native FxA authentication failure."
+msgstr "Nativní autentizace FxA selhala."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
