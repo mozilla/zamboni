@@ -114,7 +114,8 @@ class FileViewer(object):
 
     def cleanup(self):
         try:
-            for root, dirs, files in walk_storage(self.dest):
+            for root, dirs, files in walk_storage(
+                    self.dest, storage=private_storage):
                 for fname in files:
                     private_storage.delete(os.path.join(root, fname))
         except OSError as e:
