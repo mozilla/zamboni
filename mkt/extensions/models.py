@@ -36,6 +36,9 @@ class ExtensionManager(ManagerBase):
     def pending(self):
         return self.filter(status=STATUS_PENDING).order_by('id')
 
+    def public(self):
+        return self.filter(status=STATUS_PUBLIC).order_by('id')
+
 
 class Extension(ModelBase):
     uuid = UUIDField(auto=True)
@@ -62,7 +65,7 @@ class Extension(ModelBase):
     @property
     def download_url(self):
         return absolutify(reverse(
-            'extension.download',
+            'extension.download_signed',
             kwargs={'uuid': self.uuid, 'filename': self.filename}))
 
     @property
@@ -226,6 +229,12 @@ class Extension(ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
+
+    @property
+    def unsigned_download_url(self):
+        return absolutify(reverse(
+            'extension.download_unsigned',
+            kwargs={'uuid': self.uuid, 'filename': self.filename}))
 
 
 # Maintain ElasticSearch index.
