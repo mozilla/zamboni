@@ -12,11 +12,13 @@ class ExtensionSerializer(ModelSerializer):
     manifest_url = CharField(source='manifest_url', read_only=True)
     name = TranslationSerializerField()
     status = ReverseChoiceField(choices_dict=STATUS_CHOICES_API_v2)
+    unsigned_download_url = CharField(source='unsigned_download_url',
+                                      read_only=True)
 
     class Meta:
         model = Extension
         fields = ['id', 'download_url', 'manifest_url', 'name', 'slug',
-                  'status', 'version']
+                  'status', 'unsigned_download_url', 'version']
 
 
 class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
