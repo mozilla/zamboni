@@ -705,8 +705,8 @@ class TestPreloadSubmit(mkt.site.tests.TestCase):
         req = req_factory_factory(self.url, user=self.user)
         r = status(req, self.webapp.app_slug)
         doc = pq(r.content)
-        eq_(doc('.test-plan-download').attr('href'),
-            pdf.preload_test_plan_url)
+        eq_(doc('.test-plan-download').attr('href').split('?')[0],
+            pdf.preload_test_plan_url.split('?')[0])
 
     @mock.patch.object(settings, 'PREINSTALL_TEST_PLAN_LATEST',
                        datetime.datetime.now() + datetime.timedelta(days=1))
