@@ -9,7 +9,7 @@ from mkt.search.serializers import BaseESSerializer
 
 class ExtensionSerializer(ModelSerializer):
     download_url = CharField(source='download_url', read_only=True)
-    manifest_url = CharField(source='manifest_url', read_only=True)
+    mini_manifest_url = CharField(source='mini_manifest_url', read_only=True)
     name = TranslationSerializerField()
     status = ReverseChoiceField(choices_dict=STATUS_CHOICES_API_v2)
     unsigned_download_url = CharField(source='unsigned_download_url',
@@ -17,7 +17,7 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'download_url', 'manifest_url', 'name', 'slug',
+        fields = ['id', 'download_url', 'mini_manifest_url', 'name', 'slug',
                   'status', 'unsigned_download_url', 'version']
 
 

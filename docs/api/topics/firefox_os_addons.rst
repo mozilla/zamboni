@@ -58,8 +58,8 @@ Add-on
     :type download_url: string
     :param name: The add-on name.
     :type name: string|object
-    :param manifest_url: The (absolute) URL to the mini-manifest for that add-on. That URL may be a 404 if the add-on is not public.
-    :type manifest_url: string
+    :param mini_manifest_url: The (absolute) URL to the `mini-manifest <https://developer.mozilla.org/docs/Mozilla/Marketplace/Options/Packaged_apps#Publishing_on_Firefox_Marketplace>`_ for that add-on. That URL may be a 404 if the add-on is not public.
+    :type mini_manifest_url: string
     :param slug: The add-on slug (unique string identifier that can be used
         instead of the id to retrieve an add-on).
     :type slug: string

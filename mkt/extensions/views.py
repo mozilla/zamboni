@@ -30,6 +30,7 @@ from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
                                  AllowReviewerReadOnly, AnyOf, ByHttpMethod,
                                  GroupPermission)
 from mkt.api.paginator import ESPaginator
+from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension
 from mkt.extensions.serializers import (ExtensionSerializer,
@@ -236,6 +237,7 @@ def mini_manifest(request, uuid, **kwargs):
     if extension.is_public():
         # Let ETag/Last-Modified be handled by the generic middleware for now.
         # If that turns out to be a problem, we'll set them manually.
-        return JsonResponse(extension.mini_manifest)
+        return JsonResponse(extension.mini_manifest,
+                            content_type=MANIFEST_CONTENT_TYPE)
     else:
         raise Http404

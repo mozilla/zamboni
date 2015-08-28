@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import os.path
-from copy import deepcopy
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -160,19 +159,37 @@ class Extension(ModelBase):
         return self.status == STATUS_PUBLIC
 
     @property
-    def manifest_url(self):
-        return absolutify(reverse('extension.manifest',
+    def mini_manifest_url(self):
+        return absolutify(reverse('extension.mini_manifest',
                                   kwargs={'uuid': self.uuid}))
 
     @property
     def mini_manifest(self):
-        """Mini-manifest used for install/update in dict form.
+        """Mini-manifest used for install/update on FxOS devices, in dict form.
 
-        Actually a maxi-manifest for the moment. Must contain `package_path`,
-        that points to the extension download absolute URL."""
-
-        mini_manifest = deepcopy(self.manifest)
-        mini_manifest['package_path'] = self.download_url
+        It follows the Mozilla App Manifest format (because that's what FxOS
+        requires to install/update add-ons), *not* the Web Extension manifest
+        format.
+        """
+        # Platform "translates" back the mini-manifest into an app manifest and
+        # verifies that some specific key properties in the real manifest match
+        # what's found in the mini-manifest. To prevent manifest mismatch
+        # errors, we need to copy those properties from the real manifest:
+        # name, description and author. To be on the safe side we also copy
+        # version. We don't bother with locales at the moment, this probably
+        # breaks extensions using https://developer.chrome.com/extensions/i18n
+        # but we'll deal with that later.
+        mini_manifest = {
+            'name': self.manifest['name'],
+            'package_path': self.download_url,
+            'version': self.manifest['version']
+        }
+        if 'author' in self.manifest:
+            mini_manifest['developer'] = {
+                'name': self.manifest['author']
+            }
+        if 'description' in self.manifest:
+            mini_manifest['description'] = self.manifest['description']
         return mini_manifest
 
     def publish(self):
