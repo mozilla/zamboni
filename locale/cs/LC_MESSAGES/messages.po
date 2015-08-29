@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-27 12:43+0000\n"
+"PO-Revision-Date: 2015-08-29 21:42+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440679399.0\n"
+"X-POOTLE-MTIME: 1440884545.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5144,23 +5144,25 @@ msgstr "Mozilla Web apps (brazilská portugalština)"
 
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
-msgstr ""
+msgstr "V kořenové složce zip archivu nebyl nalezen soubor \"manifest.json\"."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Doplňky musí být zabaleny do validního zip archivu."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"manifest soubor nelze dekódovat. Zkontrolujte jej na přítomnost znaků z "
+"jiných znakových sad než utf-8."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "Manifest doplňku není validní JSON."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "Položka \"%s\" v manifestu chybí nebo je prázdná."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
@@ -5168,27 +5170,27 @@ msgstr ""
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Odeslaný soubor má nepodporovaný content-type"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Odeslaný soubor není validní ZIP archiv."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "Archiv neobsahuje soubor 'manifest.json'."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "Soubor 'manifest.json' v archivu není validní JSON soubor."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Nahrávací identifikátor nebyl specifikován."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "K provedení této akce musíte být přihlášen."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
