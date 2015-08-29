@@ -54,17 +54,22 @@ Add-on
 
     **Response**
 
+    :param download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
+    :type download_url: string
     :param name: The add-on name.
     :type name: string|object
+    :param manifest_url: The (absolute) URL to the mini-manifest for that add-on. That URL may be a 404 if the add-on is not public.
+    :type manifest_url: string
     :param slug: The add-on slug (unique string identifier that can be used
         instead of the id to retrieve an add-on).
     :type slug: string
-    :param version: The add-on current version number.
-    :type version: string
     :param status: The add-on current status.
         Can be "incomplete", "pending", "public" or "rejected".
     :type status: string
-    
+    :param unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
+    :type unsigned_download_url: string
+    :param version: The add-on current version number.
+    :type version: string
 
     :status 200: successfully completed.
     :status 403: not allowed to access this object.

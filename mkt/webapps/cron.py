@@ -96,7 +96,7 @@ def clean_old_signed(seconds=60 * 60):
     root = settings.SIGNED_APPS_REVIEWER_PATH
     # Local storage uses local time for file modification. S3 uses UTC time.
     now = datetime.utcnow if storage_is_remote() else datetime.now
-    for nextroot, dirs, files in walk_storage(root):
+    for nextroot, dirs, files in walk_storage(root, storage=private_storage):
         for fn in files:
             full = os.path.join(nextroot, fn)
             age = now() - private_storage.modified_time(full)

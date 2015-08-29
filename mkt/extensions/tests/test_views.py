@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 import mock
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 
@@ -12,8 +15,8 @@ from mkt.extensions.models import Extension
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
-from mkt.site.tests import ESTestCase, MktPaths
+from mkt.site.storage_utils import private_storage, public_storage
+from mkt.site.tests import ESTestCase, MktPaths, TestCase
 from mkt.users.models import UserProfile
 
 
@@ -138,10 +141,10 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
                                     json.dumps({'upload': upload.pk}))
         eq_(response.status_code, 201)
         data = response.json
-        eq_(data['version'], '0.1')
         eq_(data['name'], {"en-US": u"My Lîttle Extension"})
+        eq_(data['slug'], u'my-lîttle-extension')
         eq_(data['status'], 'pending')
-        ok_(data['slug'])
+        eq_(data['version'], '0.1')
         eq_(Extension.objects.count(), 1)
         extension = Extension.objects.get(pk=data['id'])
         eq_(extension.status, STATUS_PENDING)
@@ -227,9 +230,13 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(len(response.json['objects']), 1)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['name'], {"en-US": self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
-        eq_(data['name'], {"en-US": self.extension.name})
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
     def test_detail_anonymous(self):
@@ -241,9 +248,13 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
     def test_detail_with_slug(self):
@@ -261,9 +272,13 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
 
@@ -296,9 +311,13 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 1)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
     def test_list(self):
@@ -360,9 +379,13 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
     def test_detail_anonymous(self):
@@ -385,9 +408,13 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
+        eq_(data['download_url'], self.extension.download_url)
+        eq_(data['manifest_url'], self.extension.manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['unsigned_download_url'],
+            self.extension.unsigned_download_url)
         eq_(data['version'], self.extension.version)
 
     def test_detail_with_slug(self):
@@ -455,3 +482,167 @@ class TestReviewersExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(remove_signed_file_mock.call_count, 1)
         self.extension.reload()
         eq_(self.extension.status, STATUS_REJECTED)
+
+
+class TestExtensionNonAPIViews(TestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestExtensionNonAPIViews, self).setUp()
+        self.fake_manifest = {
+            'name': u'Fake Extënsion',
+        }
+        self.extension = Extension.objects.create(
+            version='0.1', status=STATUS_PUBLIC,
+            manifest=self.fake_manifest)
+        self.user = UserProfile.objects.get(pk=2519)
+        self.extension.authors.add(self.user)
+        with public_storage.open(self.extension.signed_file_path, 'w') as f:
+            f.write('fake signed zip file\n')
+
+    def _expected_etag(self):
+        expected_etag = hashlib.sha256()
+        expected_etag.update(unicode(self.extension.uuid))
+        expected_etag.update(unicode(self.extension.file_version))
+        return '"%s"' % expected_etag.hexdigest()
+
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_download_signed(self):
+        ok_(self.extension.download_url)
+        response = self.client.get(self.extension.download_url)
+
+        eq_(response.status_code, 200)
+        eq_(response[settings.XSENDFILE_HEADER],
+            self.extension.signed_file_path)
+        eq_(response['Content-Type'], 'application/zip')
+        eq_(response['ETag'], self._expected_etag())
+
+        self.login(self.user)
+        response = self.client.get(self.extension.download_url)
+        eq_(response.status_code, 200)
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    @mock.patch('mkt.site.utils.public_storage')
+    def test_download_signed_storage(self, public_storage_mock):
+        expected_path = 'https://s3.pub/%s' % self.extension.signed_file_path
+        public_storage_mock.url = lambda path: 'https://s3.pub/%s' % path
+        ok_(self.extension.download_url)
+        response = self.client.get(self.extension.download_url)
+        self.assert3xx(response, expected_path)
+
+    def test_download_signed_not_public(self):
+        self.extension.update(status=STATUS_PENDING)
+        ok_(self.extension.download_url)
+        response = self.client.get(self.extension.download_url)
+        eq_(response.status_code, 404)
+
+        self.login(self.user)
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.extension.download_url)
+        # Even authors and reviewers can't access it: it doesn't exist.
+        eq_(response.status_code, 404)
+
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_download_unsigned(self):
+        ok_(self.extension.unsigned_download_url)
+        response = self.client.get(self.extension.unsigned_download_url)
+        eq_(response.status_code, 403)
+
+        self.login(self.user)  # Log in as author.
+        response = self.client.get(self.extension.unsigned_download_url)
+        eq_(response.status_code, 200)
+
+        eq_(response[settings.XSENDFILE_HEADER],
+            self.extension.file_path)
+        eq_(response['Content-Type'], 'application/zip')
+        eq_(response['ETag'], self._expected_etag())
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    @mock.patch('mkt.site.utils.private_storage')
+    def test_download_unsigned_storage(self, private_storage_mock):
+        expected_path = 'https://s3.private/%s' % self.extension.file_path
+        private_storage_mock.url = lambda path: 'https://s3.private/%s' % path
+        self.login(self.user)  # Log in as author.
+        ok_(self.extension.unsigned_download_url)
+        response = self.client.get(self.extension.unsigned_download_url)
+        self.assert3xx(response, expected_path)
+
+    @override_settings(
+        XSENDFILE=True,
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    def test_download_unsigned_reviewer(self):
+        ok_(self.extension.unsigned_download_url)
+        self.extension.authors.remove(self.user)
+        self.login(self.user)
+        response = self.client.get(self.extension.unsigned_download_url)
+        eq_(response.status_code, 403)
+
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.extension.unsigned_download_url)
+        eq_(response.status_code, 200)
+
+        eq_(response[settings.XSENDFILE_HEADER],
+            self.extension.file_path)
+        eq_(response['Content-Type'], 'application/zip')
+        eq_(response['ETag'], self._expected_etag())
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
+    @mock.patch('mkt.site.utils.private_storage')
+    def test_download_unsigned_reviewer_storage(self, private_storage_mock):
+        expected_path = 'https://s3.private/%s' % self.extension.file_path
+        private_storage_mock.url = lambda path: 'https://s3.private/%s' % path
+
+        ok_(self.extension.unsigned_download_url)
+        self.extension.authors.remove(self.user)
+        self.login(self.user)
+        response = self.client.get(self.extension.unsigned_download_url)
+        eq_(response.status_code, 403)
+
+        self.grant_permission(self.user, 'Extensions:Review')
+        response = self.client.get(self.extension.unsigned_download_url)
+        self.assert3xx(response, expected_path)
+
+    def test_manifest(self):
+        ok_(self.extension.manifest_url)
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 200)
+        eq_(response['Content-Type'], 'application/json')
+        eq_(json.loads(response.content), self.extension.mini_manifest)
+
+    def test_manifest_etag(self):
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 200)
+        original_etag = response['ETag']
+        ok_(original_etag)
+
+        # Test that the etag is the same if we just re-save the extension
+        # without changing the manifest.
+        self.extension.save()
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 200)
+        eq_(original_etag, response['ETag'])
+
+        # Test that the etag is different if the extension manifest changes.
+        self.extension.manifest['version'] = '9001'
+        self.extension.save()
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 200)
+        ok_(original_etag != response['ETag'])
+
+    def test_manifest_not_public(self):
+        self.extension.update(status=STATUS_PENDING)
+        # manifest_url exists but is a 404 when the extension is not public.
+        ok_(self.extension.manifest_url)
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 404)
+
+        self.login(self.user)  # Even logged in you can't access it for now.
+        response = self.client.get(self.extension.manifest_url)
+        eq_(response.status_code, 404)

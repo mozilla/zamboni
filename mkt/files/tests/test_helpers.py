@@ -44,7 +44,9 @@ class TestFileHelper(TestCase):
     def setUp(self):
         fn = get_file('dictionary-test.xpi')
         if storage_is_remote():
-            copy_stored_file(fn, fn, src_storage=local_storage)
+            copy_stored_file(
+                fn, fn,
+                src_storage=local_storage, dst_storage=private_storage)
         self.viewer = FileViewer(make_file(1, fn))
 
     def tearDown(self):
@@ -185,7 +187,9 @@ class TestDiffHelper(TestCase, MktPaths):
     def setUp(self):
         src = self.packaged_app_path('signed.zip')
         if storage_is_remote():
-            copy_stored_file(src, src, src_storage=local_storage)
+            copy_stored_file(
+                src, src,
+                src_storage=local_storage, dst_storage=private_storage)
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):

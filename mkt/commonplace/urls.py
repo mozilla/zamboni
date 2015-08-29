@@ -79,10 +79,10 @@ urlpatterns = patterns(
         {'repo': 'marketplace-operator-dashboard'},
         name='commonplace.operatordashboard'),
 
-    # Submission:
-    url('^submission/.*$', views.commonplace,
-        {'repo': 'marketplace-submission'},
-        name='commonplace.submission'),
+    # Content Tools:
+    url('^content/.*$', views.commonplace,
+        {'repo': 'marketplace-content-tools'},
+        name='commonplace.content'),
 )
 
 if settings.DEBUG:

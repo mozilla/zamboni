@@ -1,14 +1,17 @@
+import hashlib
 import json
 from zipfile import BadZipfile, ZipFile
 
+from django.core.exceptions import PermissionDenied
 from django.db.transaction import non_atomic_requests
 from django.forms import ValidationError
-from django.http import Http404
+from django.http import Http404, JsonResponse
+from django.shortcuts import get_object_or_404
 
 import commonware
+from rest_framework import exceptions
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
                                    RetrieveModelMixin)
@@ -18,6 +21,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
 
+from mkt.access.acl import action_allowed
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -32,7 +36,8 @@ from mkt.extensions.serializers import (ExtensionSerializer,
                                         ESExtensionSerializer)
 from mkt.files.models import FileUpload
 from mkt.search.filters import PublicContentFilter
-from mkt.site.decorators import use_master
+from mkt.site.decorators import allow_cross_site_request, use_master
+from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
 
 
@@ -50,7 +55,7 @@ class ValidationViewSet(SubmitValidationViewSet):
     def create(self, request, *args, **kwargs):
         file_obj = request.FILES.get('file', None)
         if not file_obj:
-            raise ParseError(_('Missing file in request.'))
+            raise exceptions.ParseError(_('Missing file in request.'))
 
         self.validate_upload(file_obj)  # Will raise exceptions if appropriate.
         user = request.user if request.user.is_authenticated() else None
@@ -68,20 +73,21 @@ class ValidationViewSet(SubmitValidationViewSet):
         # Be careful to keep this as in-memory zip reading.
         if file_obj.content_type not in ('application/octet-stream',
                                          'application/zip'):
-            raise ParseError(
+            raise exceptions.ParseError(
                 _('The file sent has an unsupported content-type'))
         try:
             with ZipFile(file_obj, 'r') as z:
                 manifest = z.read('manifest.json')
         except BadZipfile:
-            raise ParseError(_('The file sent is not a valid ZIP file.'))
+            raise exceptions.ParseError(
+                _('The file sent is not a valid ZIP file.'))
         except KeyError:
-            raise ParseError(
+            raise exceptions.ParseError(
                 _("The archive does not contain a 'manifest.json' file."))
         try:
             json.loads(manifest)
         except ValueError:
-            raise ParseError(
+            raise exceptions.ParseError(
                 _("'manifest.json' in the archive is not a valid JSON file."))
 
 
@@ -102,17 +108,18 @@ class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             # The listing API only allows you to see extensions you've
             # developed.
             if not self.request.user.is_authenticated():
-                raise PermissionDenied('Anonymous listing not allowed.')
+                raise exceptions.PermissionDenied(
+                    'Anonymous listing not allowed.')
             qs = qs.filter(authors=self.request.user)
         return qs
 
     def create(self, request, *args, **kwargs):
         upload_pk = request.DATA.get('upload', '')
         if not upload_pk:
-            raise ParseError(_('No upload identifier specified.'))
+            raise exceptions.ParseError(_('No upload identifier specified.'))
 
         if not request.user.is_authenticated():
-            raise PermissionDenied(
+            raise exceptions.PermissionDenied(
                 _('You need to be authenticated to perform this action.'))
 
         try:
@@ -120,13 +127,13 @@ class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         except FileUpload.DoesNotExist:
             raise Http404(_('No such upload.'))
         if not upload.valid:
-            raise ParseError(
+            raise exceptions.ParseError(
                 _('The specified upload has not passed validation.'))
 
         try:
             obj = Extension.from_upload(upload, user=request.user)
         except ValidationError as e:
-            raise ParseError(unicode(e))
+            raise exceptions.ParseError(unicode(e))
         log.info('Extension created: %s' % obj.pk)
         serializer = self.get_serializer(obj)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -185,3 +192,50 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         obj = self.get_object()
         obj.reject()
         return Response(status=status.HTTP_202_ACCEPTED)
+
+
+@allow_cross_site_request
+def _download(request, extension, path, public=True):
+    extension_etag = hashlib.sha256()
+    extension_etag.update(unicode(extension.uuid))
+    extension_etag.update(unicode(extension.file_version))
+    return get_file_response(request, path,
+                             content_type='application/zip',
+                             etag=extension_etag.hexdigest(), public=public)
+
+
+def download_signed(request, uuid, **kwargs):
+    extension = get_object_or_404(Extension.objects.public(), uuid=uuid)
+
+    log.info('Downloading add-on: %s from %s' % (
+             extension.pk, extension.signed_file_path))
+    return _download(request, extension, extension.signed_file_path)
+
+
+def download_unsigned(request, uuid, **kwargs):
+    extension = get_object_or_404(Extension, uuid=uuid)
+
+    def is_author():
+        return extension.authors.filter(pk=request.user.pk).exists()
+
+    def is_reviewer():
+        return action_allowed(request, 'Extensions', 'Review')
+
+    if request.user.is_authenticated() and (is_author() or is_reviewer()):
+        log.info('Downloading unsigned add-on: %s from %s' % (
+                 extension.pk, extension.file_path))
+        return _download(request, extension, extension.file_path, public=False)
+    else:
+        raise PermissionDenied
+
+
+@allow_cross_site_request
+def mini_manifest(request, uuid, **kwargs):
+    extension = get_object_or_404(Extension, uuid=uuid)
+
+    if extension.is_public():
+        # Let ETag/Last-Modified be handled by the generic middleware for now.
+        # If that turns out to be a problem, we'll set them manually.
+        return JsonResponse(extension.mini_manifest)
+    else:
+        raise Http404

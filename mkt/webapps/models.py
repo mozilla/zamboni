@@ -1315,8 +1315,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         file.save()
 
         # Move the uploaded file from the temp location.
-        copy_stored_file(path, os.path.join(version.path_prefix,
-                                            nfd_str(file.filename)))
+        copy_stored_file(
+            path, os.path.join(version.path_prefix, nfd_str(file.filename)),
+            src_storage=private_storage, dst_storage=private_storage)
         log.info('[Webapp:%s] Copied updated manifest to %s' % (
             self, version.path_prefix))
 

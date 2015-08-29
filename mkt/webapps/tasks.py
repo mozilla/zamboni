@@ -462,6 +462,7 @@ def compress_export(tarball_name, date):
     remote_target_filename = os.path.join(
         settings.DUMPED_APPS_PATH, 'tarballs', '%s.tgz' % tarball_name)
     copy_stored_file(local_target_file.name, remote_target_filename,
+                     src_storage=local_storage,
                      dst_storage=public_storage)
 
     # Clean-up.
@@ -567,6 +568,7 @@ def zip_users(*args, **kw):
     remote_target_filename = os.path.join(
         settings.DUMPED_USERS_PATH, 'tarballs', '%s.tgz' % tarball_name)
     copy_stored_file(local_target_file.name, remote_target_filename,
+                     src_storage=local_storage,
                      dst_storage=private_storage)
 
     # Clean-up.

@@ -86,8 +86,12 @@ class File(OnChangeMixin, ModelBase):
         log.debug('New file: %r from %r' % (f, upload))
 
         # Move the uploaded file from the temp location.
-        copy_stored_file(upload.path, os.path.join(version.path_prefix,
-                                                   nfd_str(f.filename)))
+        copy_stored_file(
+            upload.path,
+            os.path.join(version.path_prefix, nfd_str(f.filename)),
+            src_storage=private_storage,
+            dst_storage=private_storage)
+
         if upload.validation:
             FileValidation.from_json(f, upload.validation)
 
