@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-13 17:48+0000\n"
+"PO-Revision-Date: 2015-08-30 07:52+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439488115.0\n"
+"X-POOTLE-MTIME: 1440921138.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1282,15 +1282,15 @@ msgstr "Livello 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Livello 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Livello 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Livello 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2891,6 +2891,8 @@ msgstr "Esempio OAuth"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Esempio dell’utilizzo di una libreria Python dalla riga di comando di Mac "
+"OS X o Linux con le proprie credenziali OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5139,58 +5141,66 @@ msgstr "App web di Mozilla (portoghese brasiliano)"
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
 msgstr ""
+"Impossibile trovare il file “manifest.json” nella cartella principale "
+"dell’archivio zip."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
 msgstr ""
+"I componenti aggiuntivi devono essere compressi in un archivio zip valido."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Impossibile decodificare il file manifesto del componente aggiuntivo. "
+"Verifica la presenza di eventuali caratteri speciali non codificati con la "
+"codifica UTF-8."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "Il formato JSON del manifesto del componente aggiuntivo non è valido."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "Il campo “%s” del manifesto risulta mancante o non compilato."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Nessun file allegato alla richiesta."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Il content-type del file inviato non è supportato"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Il file inviato non è un archivio ZIP valido."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "L’archivio non contiene un file ‘manifest.json’."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr ""
+"Il formato JSON del file ‘manifest.json’ contenuto nell’archivio non è "
+"valido."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Nessun identificatore di caricamento specificato."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Per eseguire questa azione occorre essere autenticati."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Nessun file corrispondente."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "Il file specificato non ha superato il processo di validazione."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
