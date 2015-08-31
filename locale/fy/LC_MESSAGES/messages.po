@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-19 15:18+0000\n"
+"PO-Revision-Date: 2015-08-31 11:35+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439997538.0\n"
+"X-POOTLE-MTIME: 1441020946.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1282,15 +1282,15 @@ msgstr "Niveau 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Nivo 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Nivo 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Nivo 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2891,6 +2891,8 @@ msgstr "OAuth-voorbeeld"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Foarbyld mei gebrûk fan in Python-biblioteek foar de opdrachtrigel op Mac "
+"OS X/Linux en jo OAuth-referinsjes:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5124,58 +5126,61 @@ msgstr "Mozilla Web apps (Braziliaans Portugees)"
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
 msgstr ""
+"It bestân ‘manifest.json’ is net fûn yn de haadmap fan it zip-argyfbestân."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Add-ons moatte yn in jildich zip-argyf ferpakt wurde."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Koe it add-on-manifestbestân net dekodearje. Kontrolearje oft jo "
+"manifestbestân spesjale net-utf-8-tekens befettet."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "It add-on-manifest is gjin jildige JSON."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "It fjild ‘%s’ ûntbrekt of is leech yn it add-on-manifest."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Untbrekkend bestân yn oanfraach."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "It ferstjoerde bestân hat in net-stipe ynhâldstype"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "It Ferstjoerde bestân is gjin jildich ZIP-bestân."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "It argyfbestân befettet gjin ‘manifest.json’-bestân."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "‘manifest.json’ yn it argyf is gjin jildich JSON-bestân."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Gjin oplaad-identifikaasje opjûn."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Jo moatte autentisearre wêze om dizze aksje út te fieren."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Oplaad bestiet net."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "De opjûne oplaad hat de falidaasje net trochstien."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
