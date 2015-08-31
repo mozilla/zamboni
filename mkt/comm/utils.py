@@ -1,11 +1,11 @@
 import logging
 
 from django.conf import settings
-from django.core.files.storage import get_storage_class
 
 from mkt.comm import utils_mail
 from mkt.constants import comm
 from mkt.users.models import UserProfile
+from mkt.site.storage_utils import private_storage
 
 
 log = logging.getLogger('z.comm')
@@ -83,7 +83,6 @@ def post_create_comm_note(note):
 def create_attachments(note, formset):
     """Create attachments from CommAttachmentFormSet onto note."""
     errors = []
-    storage = get_storage_class()()
 
     for form in formset:
         if not form.is_valid():
@@ -96,8 +95,8 @@ def create_attachments(note, formset):
 
         attachment = data['attachment']
         attachment_name = _save_attachment(
-            storage, attachment,
-            '%s/%s' % (settings.REVIEWER_ATTACHMENTS_PATH, attachment.name))
+            attachment, '%s/%s' % (settings.REVIEWER_ATTACHMENTS_PATH,
+                                   attachment.name))
 
         note.attachments.create(
             description=data.get('description'), filepath=attachment_name,
@@ -106,8 +105,8 @@ def create_attachments(note, formset):
     return errors
 
 
-def _save_attachment(storage, attachment, filepath):
+def _save_attachment(attachment, filepath):
     """Saves an attachment and returns the filename."""
-    filepath = storage.save(filepath, attachment)
+    filepath = private_storage.save(filepath, attachment)
     # In case of duplicate filename, storage suffixes filename.
     return filepath.split('/')[-1]

@@ -455,7 +455,7 @@ class TestAttachments(NoteSetupMixin):
         eq_(res.status_code, 400)
         self.assertCORS(res, 'get', 'post')
 
-    def _save_attachment_mock(self, storage, attachment, filepath):
+    def _save_attachment_mock(self, attachment, filepath):
         if 'jpg' in filepath:
             return 'bacon.jpg'
         return 'bacon.txt'
