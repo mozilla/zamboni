@@ -429,7 +429,7 @@ def preload_submit(request, addon_id, addon):
 
             # Timestamp.
             filename = filename % str(time.time()).split('.')[0]
-            save_test_plan(request.FILES['test_plan'], filename, addon)
+            save_test_plan(test_plan, filename, addon)
 
             # Log test plan.
             PreloadTestPlan.objects.filter(addon=addon).update(

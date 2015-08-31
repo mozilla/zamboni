@@ -1,5 +1,5 @@
 import json
-import posixpath
+import os
 import string
 import uuid
 from copy import copy
@@ -18,10 +18,11 @@ import mkt
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access.models import Group
-from mkt.constants.payments import ACCESS_SIMULATE
-from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
+from mkt.constants.payments import (ACCESS_SIMULATE, PROVIDER_BANGO,
+                                    PROVIDER_CHOICES)
 from mkt.ratings.models import Review
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.storage_utils import private_storage, storage_is_remote
 from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
@@ -204,9 +205,17 @@ class PreloadTestPlan(ModelBase):
 
     @property
     def preload_test_plan_url(self):
-        host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                else settings.LOCAL_MIRROR_URL)
-        return posixpath.join(host, str(self.addon.id), self.filename)
+        if storage_is_remote():
+            return private_storage.url(self.preload_test_plan_path)
+        else:
+            host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
+                    else settings.LOCAL_MIRROR_URL)
+            return os.path.join(host, str(self.addon.id), self.filename)
+
+    @property
+    def preload_test_plan_path(self):
+        return os.path.join(settings.ADDONS_PATH, str(self.addon_id),
+                            self.filename)
 
 
 # When an app is deleted we need to remove the preload test plan.

@@ -586,9 +586,8 @@ def region_exclude(ids, region_ids, **kw):
 
 @task
 def save_test_plan(f, filename, addon):
-    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
-    dst = os.path.join(dst_root, filename)
-    with open(dst, 'wb+') as destination:
+    path = os.path.join(settings.ADDONS_PATH, str(addon.id), filename)
+    with private_storage.open(path, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
