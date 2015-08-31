@@ -10,6 +10,7 @@ from django.test.utils import override_settings
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC, STATUS_REJECTED
 from mkt.extensions.models import Extension
 from mkt.files.models import FileUpload
@@ -231,7 +232,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {"en-US": self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
@@ -249,7 +250,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
@@ -273,7 +274,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
@@ -312,7 +313,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
@@ -380,7 +381,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
@@ -409,7 +410,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['download_url'], self.extension.download_url)
-        eq_(data['manifest_url'], self.extension.manifest_url)
+        eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
@@ -491,6 +492,7 @@ class TestExtensionNonAPIViews(TestCase):
         super(TestExtensionNonAPIViews, self).setUp()
         self.fake_manifest = {
             'name': u'Fake Extënsion',
+            'version': '0.1',
         }
         self.extension = Extension.objects.create(
             version='0.1', status=STATUS_PUBLIC,
@@ -610,14 +612,14 @@ class TestExtensionNonAPIViews(TestCase):
         self.assert3xx(response, expected_path)
 
     def test_manifest(self):
-        ok_(self.extension.manifest_url)
-        response = self.client.get(self.extension.manifest_url)
+        ok_(self.extension.mini_manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 200)
-        eq_(response['Content-Type'], 'application/json')
+        eq_(response['Content-Type'], MANIFEST_CONTENT_TYPE)
         eq_(json.loads(response.content), self.extension.mini_manifest)
 
     def test_manifest_etag(self):
-        response = self.client.get(self.extension.manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 200)
         original_etag = response['ETag']
         ok_(original_etag)
@@ -625,24 +627,25 @@ class TestExtensionNonAPIViews(TestCase):
         # Test that the etag is the same if we just re-save the extension
         # without changing the manifest.
         self.extension.save()
-        response = self.client.get(self.extension.manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 200)
         eq_(original_etag, response['ETag'])
 
         # Test that the etag is different if the extension manifest changes.
         self.extension.manifest['version'] = '9001'
         self.extension.save()
-        response = self.client.get(self.extension.manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 200)
         ok_(original_etag != response['ETag'])
 
     def test_manifest_not_public(self):
         self.extension.update(status=STATUS_PENDING)
-        # manifest_url exists but is a 404 when the extension is not public.
-        ok_(self.extension.manifest_url)
-        response = self.client.get(self.extension.manifest_url)
+        # `mini_manifest_url` exists but is a 404 when the extension is not
+        # public.
+        ok_(self.extension.mini_manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 404)
 
         self.login(self.user)  # Even logged in you can't access it for now.
-        response = self.client.get(self.extension.manifest_url)
+        response = self.client.get(self.extension.mini_manifest_url)
         eq_(response.status_code, 404)

@@ -164,26 +164,37 @@ class TestExtensionMethodsAndProperties(TestCase):
         eq_(Extension().file_version, 0)
 
     @override_settings(SITE_URL='https://marketpace.example.com/')
-    def test_manifest_url(self):
+    def test_mini_manifest_url(self):
         extension = Extension(pk=43, version='0.43.0',
                               uuid='12345678123456781234567812abcdef')
-        eq_(extension.manifest_url,
+        eq_(extension.mini_manifest_url,
             'https://marketpace.example.com/extension/'
             '12345678123456781234567812abcdef/manifest.json')
 
     def test_mini_manifest(self):
-        manifest = {'foo': {'bar': 1}}
+        manifest = {
+            'author': 'Me',
+            'description': 'Blah',
+            'manifest_version': 2,
+            'name': u'Ëxtension',
+            'version': '0.44',
+        }
         extension = Extension(pk=44, version='0.44.0', manifest=manifest,
                               uuid='abcdefabcdefabcdefabcdefabcdef12')
         expected_manifest = {
-            'foo': {'bar': 1},
+            'description': 'Blah',
+            'developer': {
+                'name': 'Me'
+            },
+            'name': u'Ëxtension',
             'package_path': extension.download_url,
+            'version': '0.44',
         }
         eq_(extension.mini_manifest, expected_manifest)
 
         # Make sure that mini_manifest is a deepcopy.
-        extension.mini_manifest['foo']['bar'] = 42
-        eq_(extension.manifest['foo']['bar'], 1)
+        extension.mini_manifest['name'] = u'Faîl'
+        eq_(extension.manifest['name'], u'Ëxtension')
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')

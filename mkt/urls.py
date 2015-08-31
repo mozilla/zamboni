@@ -40,7 +40,7 @@ urlpatterns = patterns(
     url('^langpack/%s/manifest.webapp$' % mkt.ADDON_UUID,
         mini_langpack_manifest, name='langpack.manifest'),
     url('^extension/(?P<uuid>[0-9a-f]{32})/manifest.json$',
-        mini_extension_manifest, name='extension.manifest'),
+        mini_extension_manifest, name='extension.mini_manifest'),
 
     # Dev Ecosystem
     ('^developers/', include('mkt.ecosystem.urls')),
