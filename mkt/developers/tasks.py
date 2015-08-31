@@ -152,6 +152,7 @@ def _hash_file(fd):
 
 
 @post_request_task
+@use_master
 @set_modified_on
 def resize_icon(src, dst, sizes, src_storage=private_storage,
                 dst_storage=public_storage, **kw):
@@ -175,6 +176,7 @@ def resize_icon(src, dst, sizes, src_storage=private_storage,
 
 
 @post_request_task
+@use_master
 @set_modified_on
 def resize_promo_imgs(src, dst, sizes, **kw):
     """Resizes webapp/website promo imgs."""
@@ -197,6 +199,7 @@ def resize_promo_imgs(src, dst, sizes, **kw):
 
 
 @task
+@use_master
 @set_modified_on
 def pngcrush_image(src, hash_field='image_hash', storage=public_storage, **kw):
     """
@@ -246,6 +249,7 @@ def pngcrush_image(src, hash_field='image_hash', storage=public_storage, **kw):
 
 
 @post_request_task
+@use_master
 @set_modified_on
 def resize_preview(src, pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
