@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 import datetime
 import hashlib
@@ -92,10 +91,14 @@ def generate_previews(app, n=1):
                                    thumbtype="image/png",
                                    caption="screenshot " + str(i),
                                    position=i)
-        f = tempfile.NamedTemporaryFile(suffix='.png')
-        f.write(img)
-        f.flush()
-        resize_preview(f.name, p.pk)
+        fn = tempfile.mktemp()
+        try:
+            f = private_storage.open(fn, 'w')
+            f.write(img)
+            f.close()
+            resize_preview(fn, p.pk)
+        finally:
+            private_storage.delete(fn)
 
 
 lang_prefixes = {
@@ -408,6 +411,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                                        thumbtype="image/png",
                                        caption="screenshot " + str(i),
                                        position=i + len(video_files))
+            copy_stored_file(f, f, src_storage=local_storage,
+                             dst_storage=private_storage)
             resize_preview(f, p.pk)
     generate_ratings(app, num_ratings)
     app.name = names
