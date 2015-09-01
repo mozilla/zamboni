@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-29 21:45+0000\n"
+"PO-Revision-Date: 2015-09-01 13:20+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.12.0\n"
-"X-POOTLE-MTIME: 1440884702.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1441113617.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -2684,7 +2684,7 @@ msgstr "Chyba při rozbalování manifestu z archivu zip."
 
 #: mkt/developers/forms.py:524
 msgid "Hosted URL:"
-msgstr ""
+msgstr "Hostovaná URL:"
 
 #: mkt/developers/forms.py:525
 msgid ""
@@ -4598,7 +4598,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "Hostovaná URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
@@ -6453,7 +6453,7 @@ msgstr "Položka \"%s\" v manifestu chybí nebo je prázdná."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "V požadavku chybí soubor."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
@@ -6481,7 +6481,7 @@ msgstr "K provedení této akce musíte být přihlášen."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Žádné nahrávání."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
