@@ -7,6 +7,7 @@ from django.core.mail import (EmailMessage, EmailMultiAlternatives,
 import commonware.log
 from celery import task
 
+from mkt.site.decorators import use_master
 from mkt.translations.models import PurifiedTranslation
 
 
@@ -42,6 +43,7 @@ def send_email(recipient, subject, message, real_email, from_email=None,
 
 
 @task
+@use_master
 def set_modified_on_object(app_label, model_name, pk, **kw):
     """Sets modified on one object at a time."""
     model = apps.get_model(app_label, model_name)
