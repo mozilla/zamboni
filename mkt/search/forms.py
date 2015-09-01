@@ -62,6 +62,9 @@ REDIRECTED_CATEGORY_CHOICES = [(old, CATEGORY_CHOICES_DICT[new])
 
 CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 
+# Tag to allow websites to be featured only in Colombia.
+COLOMBIA_WEBSITE = 'website-region-co'
+
 # Tags are only available to admins. They are free-form, and we expose them in
 # the API, but they are not supposed to be manipulated by users atm, so we only
 # allow to search for specific, allowed ones.
@@ -72,6 +75,7 @@ TAG_CHOICES = [
     ('featured-game-adventure', 'featured-game-adventure'),
     ('featured-game-puzzle', 'featured-game-puzzle'),
     ('featured-game-strategy', 'featured-game-strategy'),
+    (COLOMBIA_WEBSITE, COLOMBIA_WEBSITE),
     ('featured-website', 'featured-website'),
 ]
 TAG_CHOICES += [('featured-website-%s' % r, 'featured-website-%s' % r) for

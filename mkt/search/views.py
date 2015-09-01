@@ -5,17 +5,19 @@ import json
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse
 
+from elasticsearch_dsl import filter as es_filter
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+import mkt
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import AnyOf, GroupPermission
 from mkt.operators.permissions import IsOperatorPermission
-from mkt.search.forms import ApiSearchForm
+from mkt.search.forms import ApiSearchForm, COLOMBIA_WEBSITE
 from mkt.search.indexers import BaseIndexer
 from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
                                 ProfileFilter, PublicContentFilter,
@@ -67,6 +69,7 @@ class MultiSearchView(SearchView):
     results list (e.g., apps + sites). Can take a `doc_type` param to filter by
     `app`s only or `site`s only.
     """
+    allow_colombia = False
     serializer_class = DynamicSearchSerializer
 
     def _get_doc_types(self):
@@ -101,13 +104,23 @@ class MultiSearchView(SearchView):
         }
         return context
 
+    def _get_colombia_filter(self):
+        if self.allow_colombia and self.request.REGION == mkt.regions.COL:
+            return None
+        co_filter = es_filter.Term(tags=COLOMBIA_WEBSITE)
+        return es_filter.F(es_filter.Bool(must_not=[co_filter]),)
+
     def get_queryset(self):
         excluded_fields = list(set(WebappIndexer.hidden_fields +
                                    WebsiteIndexer.hidden_fields))
-        return (Search(using=BaseIndexer.get_es(),
-                       index=self._get_indices(),
-                       doc_type=self._get_doc_types())
-                .extra(_source={'exclude': excluded_fields}))
+        co_filters = self._get_colombia_filter()
+        qs = (Search(using=BaseIndexer.get_es(),
+                     index=self._get_indices(),
+                     doc_type=self._get_doc_types())
+              .extra(_source={'exclude': excluded_fields}))
+        if co_filters:
+            return qs.filter(co_filters)
+        return qs
 
 
 class FeaturedSearchView(SearchView):
