@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-07-31 05:33:57.821921\n"
+"PO-Revision-Date: 2015-09-01 08:16\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1312,15 +1312,15 @@ msgstr "Nível 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Nível 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Nível 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Nível 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1510,7 +1510,7 @@ msgstr "Nova revisão devido a classificaçao de conteúdo para adulto"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Solicitada reavaliação manual"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -6231,11 +6231,11 @@ msgstr ""
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "O arquivo enviado não é um arquivo ZIP válido."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "O arquivo não contém um arquivo 'manifest.json'."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6547,11 +6547,11 @@ msgstr "Motivo da exclusão"
 
 #: mkt/lookup/forms.py:80
 msgid "Promo Image"
-msgstr ""
+msgstr "Imagem promocional"
 
 #: mkt/lookup/forms.py:81
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Tamanho mínimo: {0}x{1}"
 
 #: mkt/lookup/views.py:196
 msgid "A refund has already been processed."
@@ -7040,7 +7040,7 @@ msgstr "Pesquisar"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Salvar imagem promocional"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -7473,7 +7473,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:434
 msgid "Request Re-review"
-msgstr ""
+msgstr "Solicitação de reavaliação"
 
 #: mkt/reviewers/utils.py:436
 msgid ""
