@@ -24,6 +24,7 @@ from mkt.operators.models import OperatorPermission
 from mkt.prices.models import Price
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.filters import SortingFilter
+from mkt.search.forms import COLOMBIA_WEBSITE
 from mkt.search.views import SearchView
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -1382,6 +1383,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         Webapp.get_indexer().unindexer(_all=True)
         self.refresh(('webapp', 'website'))
 
+    def _add_co_tag(self, website):
+        co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
+        website.keywords.add(co)
+        self.reindex(Website)
+
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])
 
@@ -1512,6 +1518,15 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         res = self.anon.get(self.url, data={'tag': 'featured-game'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 2)
+
+    def test_colombia(self):
+        self._add_co_tag(self.website)
+        res = self.client.get(self.url, {'doc_type': 'website',
+                                         'region': 'mx'})
+        eq_(res.json['meta']['total_count'], 0)
+        res_co = self.client.get(self.url, {'doc_type': 'website',
+                                            'region': 'co'})
+        eq_(res_co.json['meta']['total_count'], 0)
 
 
 class TestOpenMobileACLSearchView(RestOAuth, ESTestCase):

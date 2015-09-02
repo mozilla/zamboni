@@ -13,8 +13,10 @@ from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceWebsiteSerializer)
+from mkt.search.forms import COLOMBIA_WEBSITE
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
+from mkt.tags.models import Tag
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.websites.models import Website, WebsitePopularity
 from mkt.websites.utils import website_factory
@@ -172,6 +174,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         Website.get_indexer().unindexer(_all=True)
         super(TestMultiSearchView, self).tearDown()
 
+    def _add_co_tag(self, website):
+        co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
+        website.keywords.add(co)
+        self.reindex(Website)
+
     def test_get_multi(self):
         res = self.client.get(self.url)
         objects = res.json['objects']
@@ -180,6 +187,17 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
         eq_(objects[1]['doc_type'], 'webapp')
         assert_fireplace_app(objects[1])
+
+    def test_get_multi_colombia(self):
+        self._add_co_tag(self.website)
+        res = self.client.get(self.url, {'doc_type': 'website',
+                                         'region': 'mx'})
+        eq_(res.json['meta']['total_count'], 0)
+        res_co = self.client.get(self.url, {'doc_type': 'website',
+                                            'region': 'co'})
+        eq_(res_co.json['meta']['total_count'], 1)
+        ok_(COLOMBIA_WEBSITE in res_co.json['objects'][0]['keywords'])
+        assert_fireplace_website(res_co.json['objects'][0])
 
     def test_icons(self):
         res = self.client.get(self.url)

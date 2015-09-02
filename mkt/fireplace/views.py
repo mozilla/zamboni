@@ -26,6 +26,8 @@ class SearchView(BaseSearchView):
 
 
 class MultiSearchView(BaseMultiSearchView):
+    allow_colombia = True
+
     def get_serializer_context(self):
         context = super(MultiSearchView, self).get_serializer_context()
         context['serializer_classes'] = {
