@@ -37,7 +37,7 @@ from mkt.constants import MANIFEST_CONTENT_TYPE, comm
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.reviewers.models import (QUEUE_TARAKO, CannedResponse,
+from mkt.reviewers.models import (QUEUE_TARAKO, SHOWCASE_TAG, CannedResponse,
                                   EscalationQueue, RereviewQueue,
                                   ReviewerScore)
 from mkt.reviewers.utils import ReviewersQueuesHelper
@@ -50,6 +50,7 @@ from mkt.site.tests import (check_links, days_ago, formset, initial,
                             req_factory_factory, user_factory)
 from mkt.site.utils import app_factory, make_game, paginate, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
@@ -2027,6 +2028,42 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         data.update(self._testedon_management_form())
         self.post(data)
         eq_(self.get_app().priority_review, True)
+
+    def test_is_showcase_checkbox(self):
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#id_is_showcase:checked').length, 0)
+        app = self.get_app()
+        Tag(tag_text=SHOWCASE_TAG).save_tag(app)
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#id_is_showcase:checked').length, 1)
+
+    def test_is_showcase_on(self):
+        # Note: Using action=comment b/c it does less and keeps test faster.
+        data = {'action': 'comment', 'comments': 'blah', 'is_showcase': 'on'}
+        data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
+        self.post(data)
+        tags = self.get_app().tags.values_list('tag_text', flat=True)
+        assert SHOWCASE_TAG in tags
+        # Check email is sent to curation board.
+        msg = self._get_mail('appcurationboard')
+        eq_(msg.to, [settings.APP_CURATION_BOARD_EMAIL])
+        eq_(msg.subject,
+            u'App [%s] nominated to be featured' % self.get_app().name)
+
+    def test_is_showcase_off(self):
+        # Clearing contact so we don't get a superflous email below.
+        self.app.update(mozilla_contact='')
+        # Note: Using action=comment b/c it does less and keeps test faster.
+        # Note: `is_showcase` isn't passed b/c checkboxes.
+        data = {'action': 'comment', 'comments': 'blah'}
+        data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
+        self.post(data)
+        tags = self.get_app().tags.values_list('tag_text', flat=True)
+        assert SHOWCASE_TAG not in tags
+        # Check no email is sent.
+        eq_(len(mail.outbox), 0)
 
     def test_versions_history_pagination(self):
         self.app.update(is_packaged=True)

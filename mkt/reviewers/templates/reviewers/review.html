@@ -192,6 +192,13 @@
         {{ form.device_override }}
         {{ form.device_override.errors}}
       </div>
+      <div class="review-actions-section">
+        {{ form.is_showcase }}
+        <label for="id_is_showcase">
+          {{ form.is_showcase.label }}
+        </label>
+        {{ form.is_showcase.errors }}
+      </div>
       {% if appfeatures_form %}
       <div class="review-actions-section review-actions-options review-actions-features-override data-toggle" data-value="public">
         <strong>{{ _('Minimum Requirements Override:') }}</strong>
