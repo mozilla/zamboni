@@ -16,6 +16,8 @@ if [ $? -ne 0 ]; then
     python manage.py reindex
     echo "Creating fake apps."
     python manage.py generate_feed
+else
+    python manage.py migrate --noinput
 fi
 
 python manage.py runserver 0.0.0.0:2600
