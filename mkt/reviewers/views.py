@@ -52,7 +52,7 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm, TestedOnFormSet)
-from mkt.reviewers.models import (QUEUE_TARAKO, AdditionalReview,
+from mkt.reviewers.models import (QUEUE_TARAKO, SHOWCASE_TAG, AdditionalReview,
                                   CannedResponse, ReviewerScore)
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
@@ -67,10 +67,12 @@ from mkt.search.filters import (ReviewerSearchFormFilter, SearchQueryFilter,
 from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
+from mkt.site.mail import send_mail
 from mkt.site.utils import (JSONEncoder, days_ago, escape_all,
                             get_file_response, paginate, redirect_for_login,
                             smart_decode)
 from mkt.submit.forms import AppFeaturesForm
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view, app_view_factory
 from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
@@ -342,6 +344,19 @@ def _review(request, addon, version):
                                     mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
+
+        if form.cleaned_data.get('is_showcase'):
+            if not addon.tags.filter(tag_text=SHOWCASE_TAG).exists():
+                Tag(tag_text=SHOWCASE_TAG).save_tag(addon)
+                recipient_list = (settings.APP_CURATION_BOARD_EMAIL,)
+                subject = u'App [%s] nominated to be featured' % addon.name
+                msg = (u'The Marketplace reviewer %s thinks %s (%s%s) is'
+                       u'good enough to be a featured app.\n\n' % (
+                           request.user, addon.name, settings.SITE_URL,
+                           addon.get_url_path()))
+                send_mail(subject, msg, recipient_list=recipient_list)
+        else:
+            Tag(tag_text=SHOWCASE_TAG).remove_tag(addon)
 
         # Success message.
         if score:

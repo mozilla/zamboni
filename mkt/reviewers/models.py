@@ -21,6 +21,7 @@ from mkt.websites.models import Website
 
 user_log = commonware.log.getLogger('z.users')
 QUEUE_TARAKO = 'tarako'
+SHOWCASE_TAG = 'nominated'
 
 
 class CannedResponse(ModelBase):

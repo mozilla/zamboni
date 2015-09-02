@@ -10,7 +10,7 @@ from tower import ugettext_lazy as _lazy
 
 import mkt
 from mkt.api.forms import CustomNullBooleanSelect
-from mkt.reviewers.models import CannedResponse
+from mkt.reviewers.models import CannedResponse, SHOWCASE_TAG
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm, SimpleSearchForm
 from mkt.webapps.models import AddonDeviceType
@@ -122,6 +122,8 @@ class ReviewAppForm(happyforms.Form):
         choices=[(k, v.name) for k, v in mkt.DEVICE_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
+    is_showcase = forms.BooleanField(
+        required=False, label=_lazy(u'Nominate this app to be featured.'))
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
@@ -153,6 +155,8 @@ class ReviewAppForm(happyforms.Form):
             addon=self.helper.addon).values_list('device_type', flat=True)
         if device_types:
             self.initial['device_override'] = device_types
+        self.initial['is_showcase'] = (
+            self.helper.addon.tags.filter(tag_text=SHOWCASE_TAG).exists())
 
     def is_valid(self):
         result = super(ReviewAppForm, self).is_valid()
