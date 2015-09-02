@@ -297,6 +297,7 @@ USE_I18N = True
 ###########################################
 # Team Emails
 ABUSE_EMAIL = 'Firefox Marketplace Staff <marketplace-staff+ivebeenappused@mozilla.org>'  # noqa
+APP_CURATION_BOARD_EMAIL = 'appcurationboard@mozilla.org'
 APP_DELETION_EMAIL = 'marketplace-staff+deletions@mozilla.org'
 SUPPORT_GROUP = 'https://groups.google.com/forum/#!forum/mozilla.appreview'
 MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
