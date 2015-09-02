@@ -259,7 +259,7 @@ class FeedCollection(GroupedAppsMixin, BaseFeedCollection,
                                    related_name='app_feed_collections')
     color = models.CharField(max_length=20, null=True, blank=True)
     name = TranslatedField()
-    description = PurifiedField(blank=True, null=True)
+    description = TranslatedField()
     type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,
                             null=True)
 
@@ -305,7 +305,7 @@ class FeedShelf(GroupedAppsMixin, BaseFeedCollection, BaseFeedImage):
     _apps = models.ManyToManyField(Webapp, through=FeedShelfMembership,
                                    related_name='app_shelves')
     carrier = models.IntegerField(choices=mkt.carriers.CARRIER_CHOICES)
-    description = PurifiedField(null=True)
+    description = TranslatedField(null=True)
     name = TranslatedField()
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID)
@@ -342,7 +342,7 @@ class FeedApp(BaseFeedImage, ModelBase):
     and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
-    description = PurifiedField()
+    description = TranslatedField()
     slug = models.CharField(max_length=30, unique=True)
     color = models.CharField(max_length=20, null=True, blank=True)
     type = models.CharField(choices=FEEDAPP_TYPE_CHOICES, max_length=30)
@@ -355,7 +355,7 @@ class FeedApp(BaseFeedImage, ModelBase):
                                              blank=True)
     pullquote_rating = models.PositiveSmallIntegerField(
         null=True, blank=True, validators=[validate_rating])
-    pullquote_text = PurifiedField(null=True)
+    pullquote_text = TranslatedField(null=True)
 
     # Deprecated.
     background_color = ColorField(null=True)
