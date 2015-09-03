@@ -11,7 +11,6 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from django.conf import settings
 
 import pydenticon
-import requests
 
 from lib.video.tasks import resize_video
 
@@ -24,6 +23,7 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    UserInappKey)
 from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
+from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
@@ -253,6 +253,13 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
     f.update(filename=f.generate_filename())
     fp = os.path.join(app.latest_version.path_prefix, f.filename)
     if package_file:
+        package_file_file = open(package_file)
+        manifest = WebAppParser().get_json_data(package_file_file)
+        AppManifest.objects.create(
+            version=app.latest_version, manifest=json.dumps(manifest))
+        # copy package_file to storage like a normal app.
+        private_storage.save(fp, package_file_file)
+        app.update_version()
         return app
     with private_storage.open(fp, 'w') as out:
         generate_app_package(app, out, apptype,
@@ -399,22 +406,24 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
         generate_previews(app, num_previews)
     if video_files:
         for i, f in enumerate(video_files):
-            copy_stored_file(f, f, src_storage=local_storage,
+            t = tempfile.mktemp()
+            copy_stored_file(f, t, src_storage=local_storage,
                              dst_storage=private_storage)
             p = Preview.objects.create(addon=app, filetype="video/webm",
                                        thumbtype="image/png",
                                        caption="video " + str(i),
                                        position=i)
-            resize_video(f, p.pk)
+            resize_video(t, p.pk)
     if preview_files:
         for i, f in enumerate(preview_files):
             p = Preview.objects.create(addon=app, filetype="image/png",
                                        thumbtype="image/png",
                                        caption="screenshot " + str(i),
                                        position=i + len(video_files))
-            copy_stored_file(f, f, src_storage=local_storage,
+            t = tempfile.mktemp()
+            copy_stored_file(f, t, src_storage=local_storage,
                              dst_storage=private_storage)
-            resize_preview(f, p.pk)
+            resize_preview(t, p.pk)
     generate_ratings(app, num_ratings)
     app.name = names
     if not description:
