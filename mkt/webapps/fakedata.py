@@ -347,9 +347,10 @@ def generate_apps_from_specs(orig_specs, specdir, repeats=0, prefix=''):
             repeat_specs[i] = ss
 
     specs = orig_specs + repeat_specs
-    GENERIC_DESCRIPTION = requests.get('http://baconipsum.com/api/'
-                                       '?type=meat-and-filler&paras=2'
-                                       '&start-with-lorem=1').json()[0]
+    GENERIC_DESCRIPTION = """Lorem ipsum dolor sit amet, the Internet is a
+ global public resource that must remain open and accessible.
+ Individuals’ security and privacy on the Internet are fundamental and must
+ not be treated as optional."""
     existing = [unicode(w.name) for w in Webapp.with_deleted.all()]
     data = zip(specs, generate_app_data(len(specs), skip_names=existing))
     for spec, (appname, cat_slug) in data:
