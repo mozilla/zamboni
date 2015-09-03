@@ -3,7 +3,6 @@ import json
 import mimetypes
 import os
 from datetime import datetime
-from zipfile import ZipFile
 
 from django import forms
 from django.conf import settings
@@ -36,7 +35,7 @@ from mkt.constants import (CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE,
                            ratingsbodies)
 from mkt.developers.utils import prioritize_app
 from mkt.files.models import FileUpload
-from mkt.files.utils import WebAppParser
+from mkt.files.utils import SafeUnzip, WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
@@ -449,13 +448,23 @@ class NewPackagedAppForm(happyforms.Form):
         manifest = None
         try:
             # Be careful to keep this as in-memory zip reading.
-            manifest = ZipFile(upload, 'r').read('manifest.webapp')
+            safe_zip = SafeUnzip(upload, 'r')
+            safe_zip.is_valid()  # Will throw ValidationError if necessary.
+            manifest = safe_zip.extract_path('manifest.webapp')
+        except forms.ValidationError as e:
+            errors.append({
+                'type': 'error',
+                'message': ''.join(e.messages),
+                'tier': 1,
+            })
         except Exception as e:
             errors.append({
                 'type': 'error',
                 'message': _('Error extracting manifest from zip file.'),
                 'tier': 1,
             })
+        finally:
+            safe_zip.close()
 
         origin = None
         if manifest:
