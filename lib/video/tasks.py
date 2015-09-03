@@ -1,13 +1,13 @@
+import datetime
 import logging
 
 from django.conf import settings
 
 import waffle
-from celery import task
 
 import mkt
+from lib.post_request_task.task import task as post_request_task
 from lib.video import library
-from mkt.site.decorators import set_modified_on
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage)
 from mkt.users.models import UserProfile
@@ -19,8 +19,8 @@ time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
 
 
 # Video decoding can take a while, so let's increase these limits.
-@task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
-@set_modified_on
+@post_request_task(time_limit=time_limits['hard'],
+                   soft_time_limit=time_limits['soft'])
 def resize_video(src, pk, user_pk=None, **kw):
     """Try and resize a video and cope if it fails."""
     instance = Preview.objects.get(pk=pk)
@@ -39,7 +39,9 @@ def resize_video(src, pk, user_pk=None, **kw):
         _resize_error(src, instance, user)
 
     log.info('Video resize complete.')
-    return
+
+    # Updated modified stamp on the addon.
+    instance.update(modified=datetime.datetime.now())
 
 
 def _resize_error(src, instance, user):

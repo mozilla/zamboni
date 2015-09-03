@@ -254,8 +254,7 @@ class PreviewForm(happyforms.ModelForm):
                 if filetype in mkt.VIDEO_TYPES:
                     self.instance.update(filetype=filetype)
                     vtasks.resize_video.delay(upload_path, self.instance.pk,
-                                              user_pk=mkt.get_user().pk,
-                                              set_modified_on=[self.instance])
+                                              user_pk=mkt.get_user().pk)
                 else:
                     self.instance.update(filetype='image/png')
                     tasks.resize_preview.delay(upload_path, self.instance.pk,

@@ -6,12 +6,13 @@ import unittest
 from django.core.files.base import ContentFile
 from django.test.utils import override_settings
 
+import mock
 from nose.tools import eq_
 
 from mkt.site.storage_utils import (copy_stored_file, get_private_storage,
-                                    get_public_storage, move_stored_file,
-                                    private_storage, storage_is_remote,
-                                    walk_storage)
+                                    get_public_storage, local_storage,
+                                    move_stored_file, private_storage,
+                                    storage_is_remote, walk_storage)
 from mkt.site.tests import TestCase
 from mkt.site.utils import rm_local_tmp_dir
 
@@ -124,3 +125,13 @@ class TestStorageClasses(TestCase):
         assert not storage_is_remote()
         eq_(get_private_storage().__class__.__name__, 'LocalFileStorage')
         eq_(get_public_storage().__class__.__name__, 'LocalFileStorage')
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.LocalFileStorage')
+    @mock.patch('mkt.site.storage_utils.shutil.copyfileobj')
+    def test_copy_stored_file_when_local(self, mock):
+        tmp = tempfile.mkstemp()[1]
+        copy_stored_file(tmp, tmp, src_storage=local_storage,
+                         dst_storage=private_storage)
+        assert mock.not_called
+        local_storage.delete(tmp)
