@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:25-0700\n"
-"PO-Revision-Date: 2015-07-21 13:13+0200\n"
+"PO-Revision-Date: 2015-09-04 12:45+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
+msgstr "Lloji i kartelës që ngarkuat s’është i pranueshëm."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
@@ -34,7 +34,8 @@ msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 
@@ -68,7 +69,8 @@ msgstr "Po ngarkohet {0}"
 msgid "Error with {0}"
 msgstr "Gabim me {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimi."
@@ -80,7 +82,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325
+#: media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
@@ -335,12 +339,18 @@ msgstr[1] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pa
 msgid "{appName} payment accounts:"
 msgstr "Llogari pagesash për {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Gabim"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Pati një problem gjatë lidhjes me shërbyesin e pagesave."
 
@@ -379,11 +389,13 @@ msgstr[1] "edhe {0} shenja."
 msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Këto prova nuk u xhiruan."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Prova"
 
@@ -531,11 +543,13 @@ msgstr "Falas"
 msgid "Any"
 msgstr "Çfarëdo"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Aplikacion i miratuar: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Aplikacion i hedhur tej: {app}"
 
@@ -563,3 +577,4 @@ msgstr "Na ndjeni! Patëm një gabim në prurjen e historikut të shqyrtimeve. J
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Nga {0} më {1}"
+
