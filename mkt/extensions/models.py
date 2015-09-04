@@ -82,10 +82,10 @@ class Extension(ModelBase):
 
     @property
     def file_version(self):
-        """Version number used in signing. Must be an integer and should be
-        monotonically increasing for each new version. Currently set to 0 since
-        we don't support updates yet."""
-        return 0
+        """Version number used in signing. Must be a positive integer and
+        should be monotonically increasing for each new version. Currently set
+        to 1 since we don't support updates yet."""
+        return 1
 
     @classmethod
     def from_upload(cls, upload, user=None, instance=None):
