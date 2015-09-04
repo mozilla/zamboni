@@ -61,9 +61,9 @@ CELERY_ALWAYS_EAGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 NETAPP_STORAGE = env('NETAPP_STORAGE_ROOT') + '/shared_storage'
-GUARDED_ADDONS_PATH = env('NETAPP_STORAGE_ROOT') + '/guarded-addons'
+GUARDED_WEBAPPS_PATH = env('NETAPP_STORAGE_ROOT') + '/guarded-webapps'
 UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
+WEBAPP_ICONS_PATH = UPLOADS_PATH + '/webapp_icons'
 WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 FEED_COLLECTION_BG_PATH = UPLOADS_PATH + '/feed_collection_background'
@@ -91,7 +91,7 @@ LOGGING['loggers'].update({
 })
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-ADDONS_PATH = env('NETAPP_STORAGE_ROOT') + '/files'
+WEBAPPS_PATH = env('NETAPP_STORAGE_ROOT') + '/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 csp = 'csp.middleware.CSPMiddleware'
