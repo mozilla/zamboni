@@ -42,5 +42,10 @@ ENV SOLITUDE_URL http://solitude:2602
 ENV STYLUS_BIN /srv/zamboni-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_BIN /srv/zamboni-node/node_modules/uglify-js/bin/uglifyjs
 ENV ZAMBONI_DATABASE mysql://root:@mysql:3306/zamboni
+ENV CELERY_BROKER_URL redis://redis:6379/1
+ENV CELERY_RESULT_BACKEND redis://redis:6379/2
+# Required to run celery as root using pickle serialization.
+# TODO: Remove when we move to json serialization.
+ENV C_FORCE_ROOT 1
 
 EXPOSE 2600

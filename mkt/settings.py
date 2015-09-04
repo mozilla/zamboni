@@ -103,8 +103,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 DEFAULT_FROM_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
 
 # The host currently running the site, used for browserid and other lookups.
-DOMAIN = urlparse(os.environ.get('MARKETPLACE_URL',
-                                 'http://localhost')).netloc
+DOMAIN = urlparse(os.getenv('MARKETPLACE_URL', 'http://localhost')).netloc
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -403,13 +402,13 @@ WEBAPPS_RECEIPT_URL = '/receipt-verifier/'
 
 ###########################################
 # Celery
-BROKER_URL = 'amqp://zamboni:zamboni@{0}:5672/zamboni'.format(
-             os.environ.get('RABBIT_HOST', 'localhost'))
+BROKER_URL = os.getenv('CELERY_BROKER_URL',
+                       'amqp://zamboni:zamboni@localhost:5672/zamboni')
 BROKER_CONNECTION_TIMEOUT = 0.1
 
 CEF_PRODUCT = 'mkt'
 
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
@@ -417,7 +416,7 @@ CELERY_DISABLE_RATE_LIMITS = True
 CELERY_IGNORE_RESULT = True
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
                   'lib.es.management.commands.reindex')
-CELERY_RESULT_BACKEND = 'amqp'
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'amqp')
 CELERY_ACCEPT_CONTENT = ['pickle']
 CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_RESULT_SERIALIZER = 'pickle'
@@ -592,8 +591,8 @@ except ImportError:
     build_id = ""
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
-                              path('node_modules/clean-css/bin/cleancss'))
+CLEANCSS_BIN = os.getenv('CLEANCSS_BIN',
+                         path('node_modules/clean-css/bin/cleancss'))
 
 # Name of our frontend repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
@@ -684,7 +683,7 @@ ENGAGE_ROBOTS = True
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
-ES_HOSTS = [os.environ.get('ES_HOST', '127.0.0.1:9200')]
+ES_HOSTS = [os.getenv('ES_HOST', '127.0.0.1:9200')]
 ES_INDEXES = {
     'webapp': 'apps',
     'extension': 'extensions',
@@ -754,7 +753,7 @@ FXA_SECRETS = {
         'e9c1237312e141a0294715c2fac6855ff06ab4f5103b9cfa394cc83ea6653f26',
 }
 
-FXA_CLIENT_ID = os.environ.get('FXA_CLIENT_ID', '6b00a7db54f9efee')
+FXA_CLIENT_ID = os.getenv('FXA_CLIENT_ID', '6b00a7db54f9efee')
 FXA_CLIENT_SECRET = FXA_SECRETS[FXA_CLIENT_ID]
 
 # Development environments don't use HTTPS, so we disable oauthlib's URL check.
@@ -920,7 +919,7 @@ MINIFY_BUNDLES = {
 MINIFY_MOZMARKET = True
 
 # Monolith settings.
-MONOLITH_SERVER = os.environ.get('MONOLITH_URL', 'http://localhost:9200')
+MONOLITH_SERVER = os.getenv('MONOLITH_URL', 'http://localhost:9200')
 MONOLITH_INDEX = 'time_*'
 MONOLITH_MAX_DATE_RANGE = 365
 
@@ -1064,7 +1063,7 @@ SIGNED_APPS_SERVER_TIMEOUT = 10
 SIGNED_APPS_OMIT_PER_FILE_SIGS = True
 
 # This is the signing REST server for signing receipts.
-SIGNING_SERVER = os.environ.get('SIGNING_SERVER', '')
+SIGNING_SERVER = os.getenv('SIGNING_SERVER', '')
 
 # Turn on/off the use of the signing server and all the related things. This
 # is a temporary flag that we will remove.
@@ -1081,7 +1080,7 @@ SLAVE_DATABASES = []
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.
-SOLITUDE_HOSTS = (os.environ.get('SOLITUDE_URL', 'http://localhost:2602'),)
+SOLITUDE_HOSTS = (os.getenv('SOLITUDE_URL', 'http://localhost:2602'),)
 
 # The oAuth key and secret that solitude needs.
 SOLITUDE_KEY = 'marketplace'
@@ -1119,8 +1118,7 @@ STATSD_RECORD_KEYS = [
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
 # Path to stylus (to compile .styl files).
-STYLUS_BIN = os.environ.get('STYLUS_BIN',
-                            path('node_modules/stylus/bin/stylus'))
+STYLUS_BIN = os.getenv('STYLUS_BIN', path('node_modules/stylus/bin/stylus'))
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
@@ -1140,8 +1138,8 @@ TOWER_KEYWORDS = {
 TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = os.environ.get('UGLIFY_BIN',
-                            path('node_modules/uglify-js/bin/uglifyjs'))
+UGLIFY_BIN = os.getenv('UGLIFY_BIN',
+                       path('node_modules/uglify-js/bin/uglifyjs'))
 
 # Feature flags
 UNLINK_SITE_STATS = True
