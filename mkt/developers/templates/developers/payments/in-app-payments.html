@@ -2,16 +2,16 @@
 {% from 'developers/includes/macros.html' import required %}
 
 {% set title = _('In-App Payments') %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
-{% set can_edit = check_addon_ownership(request, addon) %}
+{% set can_edit = check_webapp_ownership(request, webapp) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 
@@ -31,7 +31,7 @@
           {% endtrans %}
         </p>
         <p class="listing-footer">
-          <a href="{{ addon.get_dev_url('in_app_products') }}"><button>{{ _('Configure In-App Products') }}</button></a>
+          <a href="{{ webapp.get_dev_url('in_app_products') }}"><button>{{ _('Configure In-App Products') }}</button></a>
         </p>
       </div>
     {% endif %}
@@ -57,7 +57,7 @@
       </p>
 
       <p class="listing-footer">
-        <a href="{{ addon.get_dev_url('in_app_config') }}"><button>{{ _('Configure In-App Keys') }}</button></a>
+        <a href="{{ webapp.get_dev_url('in_app_config') }}"><button>{{ _('Configure In-App Keys') }}</button></a>
       </p>
     </div>
   </section>

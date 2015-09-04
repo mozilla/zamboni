@@ -73,7 +73,7 @@ def manifest(request):
             'url': 'http://mozilla.org',
         },
         'icons': {
-            # Using the default addon image until we get a marketplace logo.
+            # Using the default webapp image until we get a marketplace logo.
             '128': media(ctx, 'img/mkt/logos/128.png'),
             '64': media(ctx, 'img/mkt/logos/64.png'),
             '32': media(ctx, 'img/mkt/logos/32.png'),

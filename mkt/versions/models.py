@@ -41,7 +41,7 @@ class VersionManager(ManagerBase):
 
 
 class Version(ModelBase):
-    addon = models.ForeignKey('webapps.Webapp', related_name='versions')
+    webapp = models.ForeignKey('webapps.Webapp', related_name='versions')
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
     version = models.CharField(max_length=255, default='0.1')
@@ -82,11 +82,11 @@ class Version(ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, send_signal=True):
-        data = utils.parse_addon(upload, addon)
+    def from_upload(cls, upload, webapp, send_signal=True):
+        data = utils.parse_webapp(upload, webapp)
         max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
         developer = data.get('developer_name', '')[:max_len]
-        v = cls.objects.create(addon=addon, version=data['version'],
+        v = cls.objects.create(webapp=webapp, version=data['version'],
                                _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
 
@@ -103,7 +103,7 @@ class Version(ModelBase):
         # Update supported locales from manifest.
         # Note: This needs to happen after we call `File.from_upload`.
         update_supported_locales_single.apply_async(
-            args=[addon.id], kwargs={'latest': True},
+            args=[webapp.id], kwargs={'latest': True},
             eta=datetime.datetime.now() +
             datetime.timedelta(seconds=settings.NFS_LAG_DELAY)
         )
@@ -115,25 +115,25 @@ class Version(ModelBase):
             version_uploaded.send(sender=v)
 
         # If packaged app and app is blocked, put in escalation queue.
-        if addon.is_packaged and addon.status == mkt.STATUS_BLOCKED:
+        if webapp.is_packaged and webapp.status == mkt.STATUS_BLOCKED:
             # To avoid circular import.
             from mkt.reviewers.models import EscalationQueue
-            EscalationQueue.objects.create(addon=addon)
+            EscalationQueue.objects.create(webapp=webapp)
 
         return v
 
     @property
     def path_prefix(self):
-        return os.path.join(settings.ADDONS_PATH, str(self.addon_id))
+        return os.path.join(settings.WEBAPPS_PATH, str(self.webapp_id))
 
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
-        mkt.log(mkt.LOG.DELETE_VERSION, self.addon, str(self.version))
+        mkt.log(mkt.LOG.DELETE_VERSION, self.webapp, str(self.version))
 
         models.signals.pre_delete.send(sender=Version, instance=self)
 
         was_current = False
-        if self == self.addon.current_version:
+        if self == self.webapp.current_version:
             was_current = True
 
         self.update(deleted=True)
@@ -146,11 +146,11 @@ class Version(ModelBase):
         # If version deleted was the current version and there now exists
         # another current_version, we need to call some extra methods to update
         # various bits for packaged apps.
-        if was_current and self.addon.current_version:
-            self.addon.update_name_from_package_manifest()
-            self.addon.update_supported_locales()
+        if was_current and self.webapp.current_version:
+            self.webapp.update_name_from_package_manifest()
+            self.webapp.update_supported_locales()
 
-        if self.addon.is_packaged:
+        if self.webapp.is_packaged:
             # Unlink signed packages if packaged app.
             public_storage.delete(f.signed_file_path)
             log.info(u'Unlinked file: %s' % f.signed_file_path)
@@ -187,9 +187,9 @@ class Version(ModelBase):
 
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public
-        # addon, and all its attached files must have public status.
+        # webapp, and all its attached files must have public status.
         try:
-            return (not self.deleted and self.addon.is_public() and
+            return (not self.deleted and self.webapp.is_public() and
                     all(f.status == mkt.STATUS_PUBLIC for f in self.all_files))
         except ObjectDoesNotExist:
             return False
@@ -240,7 +240,7 @@ class Version(ModelBase):
             version.all_activity = al_dict.get(v_id, [])
 
     def disable_old_files(self):
-        qs = File.objects.filter(version__addon=self.addon_id,
+        qs = File.objects.filter(version__webapp=self.webapp_id,
                                  version__lt=self.id,
                                  version__deleted=False,
                                  status__in=[mkt.STATUS_PENDING])
@@ -255,7 +255,7 @@ class Version(ModelBase):
     @cached_property(writable=True)
     def is_privileged(self):
         """
-        Return whether the corresponding addon is privileged by looking at
+        Return whether the corresponding webapp is privileged by looking at
         the manifest file.
 
         This is a cached property, to avoid going in the manifest more than
@@ -264,9 +264,9 @@ class Version(ModelBase):
         not already and want to pass the instance to some code that will use
         that property.
         """
-        if not self.addon.is_packaged or not self.all_files:
+        if not self.webapp.is_packaged or not self.all_files:
             return False
-        data = self.addon.get_manifest_json(file_obj=self.all_files[0])
+        data = self.webapp.get_manifest_json(file_obj=self.all_files[0])
         return data.get('type') == 'privileged'
 
     @cached_property
@@ -286,9 +286,9 @@ class Version(ModelBase):
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
-            instance.addon.reload()
-            instance.addon.update_status()
-            instance.addon.update_version()
+            instance.webapp.reload()
+            instance.webapp.update_status()
+            instance.webapp.update_version()
         except models.ObjectDoesNotExist:
             log.info('Got ObjectDoesNotExist processing Version change signal',
                      exc_info=True)
@@ -299,22 +299,22 @@ def inherit_nomination(sender, instance, **kw):
     """Inherit nomination date for new packaged app versions."""
     if kw.get('raw'):
         return
-    addon = instance.addon
-    if addon.is_packaged:
+    webapp = instance.webapp
+    if webapp.is_packaged:
         # If prior version's file is pending, inherit nomination. Otherwise,
         # set nomination to now.
-        last_ver = (Version.objects.filter(addon=addon)
+        last_ver = (Version.objects.filter(webapp=webapp)
                                    .exclude(pk=instance.pk)
                                    .order_by('-nomination'))
         if (last_ver.exists() and
                 last_ver[0].all_files[0].status == mkt.STATUS_PENDING):
             instance.update(nomination=last_ver[0].nomination, _signal=False)
             log.debug('[Webapp:%s] Inheriting nomination from prior pending '
-                      'version' % addon.id)
-        elif (addon.status in mkt.WEBAPPS_APPROVED_STATUSES and
+                      'version' % webapp.id)
+        elif (webapp.status in mkt.WEBAPPS_APPROVED_STATUSES and
               not instance.nomination):
             log.debug('[Webapp:%s] Setting nomination date to now for new '
-                      'version.' % addon.id)
+                      'version.' % webapp.id)
             instance.update(nomination=datetime.datetime.now(), _signal=False)
 
 

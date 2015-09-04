@@ -17,7 +17,7 @@ from mkt.site.storage_utils import public_storage
 from mkt.site.tests import MktPaths
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 
 
 def fake_fetch_manifest(url, upload_pk=None, **kw):
@@ -218,7 +218,7 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
     def setUp(self):
         super(TestAppStatusHandler, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
-        AddonUser.objects.create(addon=self.app, user=self.user)
+        WebappUser.objects.create(webapp=self.app, user=self.user)
         self.get_url = reverse('app-status-detail', kwargs={'pk': self.app.pk})
 
     def get(self, expected_status=200):
@@ -261,7 +261,7 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         eq_(data['disabled_by_user'], True)
 
     def test_status_not_mine(self):
-        AddonUser.objects.get(user=self.user).delete()
+        WebappUser.objects.get(user=self.user).delete()
         res = self.client.get(self.get_url)
         eq_(res.status_code, 403)
 
@@ -277,7 +277,7 @@ class TestAppStatusHandler(RestOAuth, MktPaths):
         eq_(self.app.status, mkt.STATUS_PUBLIC)  # Unchanged, doesn't matter.
 
     def test_disable_not_mine(self):
-        AddonUser.objects.get(user=self.user).delete()
+        WebappUser.objects.get(user=self.user).delete()
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'disabled_by_user': True}))
         eq_(res.status_code, 403)
@@ -367,7 +367,7 @@ class TestPreviewHandler(RestOAuth, MktPaths):
         super(TestPreviewHandler, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
-        AddonUser.objects.create(user=self.user, addon=self.app)
+        WebappUser.objects.create(user=self.user, webapp=self.app)
         self.file = base64.b64encode(
             open(get_image_path('preview.jpg'), 'r').read())
         self.list_url = reverse('app-preview',
@@ -462,7 +462,7 @@ class TestIconUpdate(RestOAuth, MktPaths):
         super(TestIconUpdate, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=2519)
-        AddonUser.objects.create(user=self.user, addon=self.app)
+        WebappUser.objects.create(user=self.user, webapp=self.app)
         self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
         self.url = reverse('app-icon', kwargs={'pk': self.app.pk})
         self.data = {'file': {'data': self.file, 'type': 'image/png'}}

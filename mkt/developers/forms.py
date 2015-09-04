@@ -41,7 +41,7 @@ from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fields import SeparatedValuesField
-from mkt.site.forms import AddonChoiceField
+from mkt.site.forms import WebappChoiceField
 from mkt.site.utils import remove_icons, slug_validator, slugify
 from mkt.tags.models import Tag
 from mkt.tags.utils import can_edit_restricted_tags, clean_tags
@@ -50,7 +50,7 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.models import (AddonUser, BlockedSlug, IARCInfo, Preview,
+from mkt.webapps.models import (WebappUser, BlockedSlug, IARCInfo, Preview,
                                 Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
                                update_manifests)
@@ -100,14 +100,14 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
 
         if status == mkt.STATUS_PUBLIC:
             # Reviewer approved for it to be in China.
-            aer = app.addonexcludedregion.filter(region=region.id)
+            aer = app.webappexcludedregion.filter(region=region.id)
             if aer.exists():
                 aer.delete()
                 log.info(u'[Webapp:%s] App included in new special '
                          u'region (%s).' % (app, region.slug))
         else:
             # Developer requested for it to be in China.
-            aer, created = app.addonexcludedregion.get_or_create(
+            aer, created = app.webappexcludedregion.get_or_create(
                 region=region.id)
             if created:
                 log.info(u'[Webapp:%s] App excluded from new special '
@@ -126,8 +126,8 @@ class AuthorForm(happyforms.ModelForm):
         return user
 
     class Meta:
-        model = AddonUser
-        exclude = ('addon',)
+        model = WebappUser
+        exclude = ('webapp',)
 
 
 class BaseModelFormSet(BaseModelFormSet):
@@ -161,7 +161,7 @@ class BaseAuthorFormSet(BaseModelFormSet):
                 _('A team member can only be listed once.'))
 
 
-AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
+AuthorFormSet = modelformset_factory(WebappUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
 
 
@@ -174,12 +174,12 @@ class DeleteForm(happyforms.Form):
 
 def trap_duplicate(request, manifest_url):
     # See if this user has any other apps with the same manifest.
-    owned = (request.user.addonuser_set
-             .filter(addon__manifest_url=manifest_url))
+    owned = (request.user.webappuser_set
+             .filter(webapp__manifest_url=manifest_url))
     if not owned:
         return
     try:
-        app = owned[0].addon
+        app = owned[0].webapp
     except Webapp.DoesNotExist:
         return
     error_url = app.get_dev_url()
@@ -234,9 +234,9 @@ class PreviewForm(happyforms.ModelForm):
     unsaved_image_type = forms.CharField(required=False,
                                          widget=forms.HiddenInput)
 
-    def save(self, addon, commit=True):
+    def save(self, webapp, commit=True):
         if self.cleaned_data:
-            self.instance.addon = addon
+            self.instance.webapp = webapp
             if self.cleaned_data.get('DELETE'):
                 # Existing preview.
                 if self.instance.id:
@@ -297,16 +297,16 @@ class AdminSettingsForm(PreviewForm):
         fields = ('file_upload', 'upload_hash', 'position')
 
     def __init__(self, *args, **kw):
-        # Note that this form is not inheriting from AddonFormBase, so we have
+        # Note that this form is not inheriting from WebappFormBase, so we have
         # to get rid of 'version' ourselves instead of letting the parent class
         # do it.
         kw.pop('version', None)
 
         # Get the object for the app's promo `Preview` and pass it to the form.
         if kw.get('instance'):
-            addon = kw.pop('instance')
-            self.instance = addon
-            self.promo = addon.get_promo()
+            webapp = kw.pop('instance')
+            self.instance = webapp
+            self.promo = webapp.get_promo()
 
         self.request = kw.pop('request', None)
 
@@ -314,14 +314,14 @@ class AdminSettingsForm(PreviewForm):
         # object.
         super(AdminSettingsForm, self).__init__(*args, **kw)
 
-        self.initial['vip_app'] = addon.vip_app
-        self.initial['priority_review'] = addon.priority_review
+        self.initial['vip_app'] = webapp.vip_app
+        self.initial['priority_review'] = webapp.priority_review
 
         if self.instance:
-            self.initial['mozilla_contact'] = addon.mozilla_contact
+            self.initial['mozilla_contact'] = webapp.mozilla_contact
 
-        self.initial['banner_regions'] = addon.geodata.banner_regions or []
-        self.initial['banner_message'] = addon.geodata.banner_message_id
+        self.initial['banner_regions'] = webapp.geodata.banner_regions or []
+        self.initial['banner_message'] = webapp.geodata.banner_message_id
 
     @property
     def regions_by_id(self):
@@ -345,14 +345,14 @@ class AdminSettingsForm(PreviewForm):
             return u''
         return contact
 
-    def save(self, addon, commit=True):
+    def save(self, webapp, commit=True):
         if (self.cleaned_data.get('DELETE') and
                 'upload_hash' not in self.changed_data and self.promo.id):
             self.promo.delete()
         elif self.promo and 'upload_hash' in self.changed_data:
             self.promo.delete()
         elif self.cleaned_data.get('upload_hash'):
-            super(AdminSettingsForm, self).save(addon, True)
+            super(AdminSettingsForm, self).save(webapp, True)
 
         updates = {
             'vip_app': self.cleaned_data.get('vip_app'),
@@ -361,27 +361,27 @@ class AdminSettingsForm(PreviewForm):
         if contact is not None:
             updates['mozilla_contact'] = contact
         if (self.cleaned_data.get('priority_review') and
-                not addon.priority_review):
-            # addon.priority_review gets updated within prioritize_app().
-            prioritize_app(addon, self.request.user)
+                not webapp.priority_review):
+            # webapp.priority_review gets updated within prioritize_app().
+            prioritize_app(webapp, self.request.user)
         else:
             updates['priority_review'] = self.cleaned_data.get(
                 'priority_review')
-        addon.update(**updates)
+        webapp.update(**updates)
 
-        geodata = addon.geodata
+        geodata = webapp.geodata
         geodata.banner_regions = self.cleaned_data.get('banner_regions')
         geodata.banner_message = self.cleaned_data.get('banner_message')
         geodata.save()
 
         uses_flash = self.cleaned_data.get('flash')
-        af = addon.get_latest_file()
+        af = webapp.get_latest_file()
         if af is not None:
             af.update(uses_flash=bool(uses_flash))
 
-        index_webapps.delay([addon.id])
+        index_webapps.delay([webapp.id])
 
-        return addon
+        return webapp
 
 
 class BasePreviewFormSet(BaseModelFormSet):
@@ -425,7 +425,7 @@ class NewPackagedAppForm(happyforms.Form):
     def __init__(self, *args, **kwargs):
         self.max_size = kwargs.pop('max_size', MAX_PACKAGED_APP_SIZE)
         self.user = kwargs.pop('user', get_user())
-        self.addon = kwargs.pop('addon', None)
+        self.webapp = kwargs.pop('webapp', None)
         self.file_upload = None
         super(NewPackagedAppForm, self).__init__(*args, **kwargs)
 
@@ -469,7 +469,7 @@ class NewPackagedAppForm(happyforms.Form):
 
         if origin:
             try:
-                verify_app_domain(origin, packaged=True, exclude=self.addon)
+                verify_app_domain(origin, packaged=True, exclude=self.webapp)
             except forms.ValidationError, e:
                 errors.append({
                     'type': 'error',
@@ -503,19 +503,19 @@ class NewPackagedAppForm(happyforms.Form):
         return forms.ValidationError(' '.join(e['message'] for e in errors))
 
 
-class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+class WebappFormBase(TranslationFormMixin, happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
         self.version = kw.pop('version', None)
-        super(AddonFormBase, self).__init__(*args, **kw)
+        super(WebappFormBase, self).__init__(*args, **kw)
 
     class Meta:
         models = Webapp
         fields = ('name', 'slug')
 
 
-class AppFormBasic(AddonFormBase):
+class AppFormBasic(WebappFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField()
@@ -559,11 +559,11 @@ class AppFormBasic(AddonFormBase):
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
-    def get_tags(self, addon):
+    def get_tags(self, webapp):
         if can_edit_restricted_tags(self.request):
-            return list(addon.tags.values_list('tag_text', flat=True))
+            return list(webapp.tags.values_list('tag_text', flat=True))
         else:
-            return list(addon.tags.filter(restricted=False)
+            return list(webapp.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
 
     def _post_clean(self):
@@ -602,11 +602,11 @@ class AppFormBasic(AddonFormBase):
             verify_app_domain(manifest_url, exclude=self.instance)
         return manifest_url
 
-    def save(self, addon, commit=False):
+    def save(self, webapp, commit=False):
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
-        addonform = super(AppFormBasic, self).save(commit=False)
-        addonform.save()
+        webappform = super(AppFormBasic, self).save(commit=False)
+        webappform.save()
 
         if 'manifest_url' in self.changed_data:
             before_url = self.old_manifest_url
@@ -627,27 +627,27 @@ class AppFormBasic(AddonFormBase):
 
             # Refetch the new manifest.
             log.info('Manifest %s refreshed for %s'
-                     % (addon.manifest_url, addon))
+                     % (webapp.manifest_url, webapp))
             update_manifests.delay([self.instance.id])
 
         tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+        tags_old = [slugify(t, spaces=True) for t in self.get_tags(webapp)]
 
         add_tags = set(tags_new) - set(tags_old)
         del_tags = set(tags_old) - set(tags_new)
 
         # Add new tags.
         for t in add_tags:
-            Tag(tag_text=t).save_tag(addon)
+            Tag(tag_text=t).save_tag(webapp)
 
         # Remove old tags.
         for t in del_tags:
-            Tag(tag_text=t).remove_tag(addon)
+            Tag(tag_text=t).remove_tag(webapp)
 
-        return addonform
+        return webappform
 
 
-class AppFormDetails(AddonFormBase):
+class AppFormDetails(WebappFormBase):
     LOCALES = [(translation.to_locale(k).replace('_', '-'), v)
                for k, v in do_dictsort(settings.LANGUAGES)]
 
@@ -682,7 +682,7 @@ class AppFormDetails(AddonFormBase):
         return data
 
 
-class AppFormMedia(AddonFormBase):
+class AppFormMedia(WebappFormBase):
     icon_upload_hash = forms.CharField(required=False)
     unsaved_icon_data = forms.CharField(required=False,
                                         widget=forms.HiddenInput)
@@ -691,18 +691,18 @@ class AppFormMedia(AddonFormBase):
         model = Webapp
         fields = ('icon_upload_hash', 'icon_type')
 
-    def save(self, addon, commit=True):
+    def save(self, webapp, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']
             upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
 
-            dirname = addon.get_icon_dir()
-            destination = os.path.join(dirname, '%s' % addon.id)
+            dirname = webapp.get_icon_dir()
+            destination = os.path.join(dirname, '%s' % webapp.id)
 
             remove_icons(destination)
             tasks.resize_icon.delay(upload_path, destination,
                                     mkt.CONTENT_ICON_SIZES,
-                                    set_modified_on=[addon])
+                                    set_modified_on=[webapp])
 
         return super(AppFormMedia, self).save(commit)
 
@@ -745,7 +745,7 @@ class AppSupportFormMixin(object):
         return cleaned_data
 
 
-class AppFormSupport(AppSupportFormMixin, AddonFormBase):
+class AppFormSupport(AppSupportFormMixin, WebappFormBase):
     support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
@@ -813,13 +813,13 @@ class PublishForm(happyforms.Form):
             u'<b>Limit to my team</b>: Visible to only Team Members.'))
 
     def __init__(self, *args, **kwargs):
-        self.addon = kwargs.pop('addon')
+        self.webapp = kwargs.pop('webapp')
         super(PublishForm, self).__init__(*args, **kwargs)
 
         limited = False
-        publish = self.PUBLISH_MAPPING.get(self.addon.status,
+        publish = self.PUBLISH_MAPPING.get(self.webapp.status,
                                            mkt.PUBLISH_IMMEDIATE)
-        if self.addon.status == mkt.STATUS_APPROVED:
+        if self.webapp.status == mkt.STATUS_APPROVED:
             # Special case if app is currently private.
             limited = True
             publish = mkt.PUBLISH_HIDDEN
@@ -839,17 +839,17 @@ class PublishForm(happyforms.Form):
             publish = mkt.PUBLISH_PRIVATE
 
         status = self.STATUS_MAPPING[publish]
-        self.addon.update(status=status)
+        self.webapp.update(status=status)
 
-        mkt.log(mkt.LOG.CHANGE_STATUS, self.addon.get_status_display(),
-                self.addon)
+        mkt.log(mkt.LOG.CHANGE_STATUS, self.webapp.get_status_display(),
+                self.webapp)
         # Call update_version, so various other bits of data update.
-        self.addon.update_version()
+        self.webapp.update_version()
         # Call to update names and locales if changed.
-        self.addon.update_name_from_package_manifest()
-        self.addon.update_supported_locales()
+        self.webapp.update_name_from_package_manifest()
+        self.webapp.update_supported_locales()
 
-        set_storefront_data.delay(self.addon.pk)
+        set_storefront_data.delay(self.webapp.pk)
 
 
 class RegionForm(forms.Form):
@@ -880,7 +880,7 @@ class RegionForm(forms.Form):
         # want the user's choices to be altered by external
         # exclusions e.g. payments availability.
         user_exclusions = list(
-            self.product.addonexcludedregion.values_list('region', flat=True)
+            self.product.webappexcludedregion.values_list('region', flat=True)
         )
 
         # If we have excluded regions, uncheck those.
@@ -950,8 +950,8 @@ class RegionForm(forms.Form):
         return value if value in ('free', 'paid') else False
 
     def _product_is_paid(self):
-        return (self.product.premium_type in mkt.ADDON_PREMIUMS or
-                self.product.premium_type == mkt.ADDON_FREE_INAPP)
+        return (self.product.premium_type in mkt.WEBAPP_PREMIUMS or
+                self.product.premium_type == mkt.WEBAPP_FREE_INAPP)
 
     def clean_regions(self):
         regions = self.cleaned_data['regions']
@@ -981,7 +981,7 @@ class RegionForm(forms.Form):
             # Add new region exclusions.
             to_add = before - after
             for region in to_add:
-                aer, created = self.product.addonexcludedregion.get_or_create(
+                aer, created = self.product.webappexcludedregion.get_or_create(
                     region=region)
                 if created:
                     log.info(u'[Webapp:%s] Excluded from new region (%s).'
@@ -990,7 +990,7 @@ class RegionForm(forms.Form):
             # Remove old region exclusions.
             to_remove = after - before
             for region in to_remove:
-                self.product.addonexcludedregion.filter(
+                self.product.webappexcludedregion.filter(
                     region=region).delete()
                 log.info(u'[Webapp:%s] No longer excluded from region (%s).'
                          % (self.product, region))
@@ -1008,7 +1008,7 @@ class RegionForm(forms.Form):
             # If not restricted, set `enable_new_regions` to True and remove
             # currently excluded regions.
             self.product.update(enable_new_regions=True)
-            self.product.addonexcludedregion.all().delete()
+            self.product.webappexcludedregion.all().delete()
             log.info(u'[Webapp:%s] App marked as unrestricted.' % self.product)
 
         self.product.geodata.update(restricted=restricted)
@@ -1098,7 +1098,7 @@ class DevNewsletterForm(happyforms.Form):
         self.fields['country'].initial = 'us'
 
 
-class AppFormTechnical(AddonFormBase):
+class AppFormTechnical(WebappFormBase):
     flash = forms.BooleanField(required=False)
     is_offline = forms.BooleanField(required=False)
 
@@ -1111,7 +1111,7 @@ class AppFormTechnical(AddonFormBase):
         if self.version.all_files:
             self.initial['flash'] = self.version.all_files[0].uses_flash
 
-    def save(self, addon, commit=False):
+    def save(self, webapp, commit=False):
         uses_flash = self.cleaned_data.get('flash')
         self.instance = super(AppFormTechnical, self).save(commit=True)
         if self.version.all_files:
@@ -1120,7 +1120,7 @@ class AppFormTechnical(AddonFormBase):
 
 
 class TransactionFilterForm(happyforms.Form):
-    app = AddonChoiceField(queryset=None, required=False, label=_lazy(u'App'))
+    app = WebappChoiceField(queryset=None, required=False, label=_lazy(u'App'))
     transaction_type = forms.ChoiceField(
         required=False, label=_lazy(u'Transaction Type'),
         choices=[(None, '')] + mkt.MKT_TRANSACTION_CONTRIB_TYPES.items())
@@ -1177,7 +1177,7 @@ class AppVersionForm(happyforms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AppVersionForm, self).__init__(*args, **kwargs)
         self.fields['publish_immediately'].initial = (
-            self.instance.addon.publish_type == mkt.PUBLISH_IMMEDIATE)
+            self.instance.webapp.publish_type == mkt.PUBLISH_IMMEDIATE)
 
     def save(self, *args, **kwargs):
         rval = super(AppVersionForm, self).save(*args, **kwargs)
@@ -1187,7 +1187,7 @@ class AppVersionForm(happyforms.ModelForm):
                 publish_type = mkt.PUBLISH_IMMEDIATE
             else:
                 publish_type = mkt.PUBLISH_PRIVATE
-            self.instance.addon.update(publish_type=publish_type)
+            self.instance.webapp.update(publish_type=publish_type)
         return rval
 
 
@@ -1267,7 +1267,7 @@ class IARCGetAppInfoForm(happyforms.Form):
 
         if (not settings.IARC_ALLOW_CERT_REUSE and
             IARCInfo.objects.filter(submission_id=iarc_id)
-                            .exclude(addon=app).exists()):
+                            .exclude(webapp=app).exists()):
             del cleaned_data['submission_id']
             raise forms.ValidationError(
                 _('This IARC certificate is already being used for another '

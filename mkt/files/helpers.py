@@ -73,7 +73,7 @@ class FileViewer(object):
 
     def __init__(self, file_obj):
         self.file = file_obj
-        self.addon = self.file.version.addon
+        self.webapp = self.file.version.webapp
         self.src = (file_obj.guarded_file_path
                     if file_obj.status == mkt.STATUS_DISABLED
                     else file_obj.file_path)
@@ -250,7 +250,7 @@ class FileViewer(object):
     def get_files(self):
         """
         Returns an OrderedDict, ordered by the filename of all the files in the
-        addon-file. Full of all the useful information you'll need to serve
+        webapp-file. Full of all the useful information you'll need to serve
         this file, build templates etc.
         """
         if self._files:
@@ -366,7 +366,7 @@ class DiffHelper(object):
     def __init__(self, left, right):
         self.left = FileViewer(left)
         self.right = FileViewer(right)
-        self.addon = self.left.addon
+        self.webapp = self.left.webapp
         self.key = None
 
     def __str__(self):

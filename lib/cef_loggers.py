@@ -33,7 +33,7 @@ class CEFLogger:
             Typically a Django request object. It can also be
             a plain dict.
         **app**
-            An app/addon object.
+            A webapp object.
         **msg**
             A short message about the incident.
         **longer**

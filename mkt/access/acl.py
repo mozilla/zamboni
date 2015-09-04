@@ -48,10 +48,10 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
     return False
 
 
-def check_addon_ownership(request, addon, viewer=False, dev=False,
-                          support=False, admin=True, ignore_disabled=False):
+def check_webapp_ownership(request, webapp, viewer=False, dev=False,
+                           support=False, admin=True, ignore_disabled=False):
     """
-    Check request.user's permissions for the addon.
+    Check request.user's permissions for the webapp.
 
     If user is an admin they can do anything.
     If the app is disabled only admins have permission.
@@ -64,15 +64,15 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     if not request.user.is_authenticated():
         return False
     # Deleted apps can't be edited at all.
-    if addon.is_deleted:
+    if webapp.is_deleted:
         return False
     # Users with 'Apps:Edit' can do anything.
     if admin and action_allowed(request, 'Apps', 'Edit'):
         return True
-    # Only admins can edit banned addons.
-    if addon.status == mkt.STATUS_DISABLED and not ignore_disabled:
+    # Only admins can edit banned webapps.
+    if webapp.status == mkt.STATUS_DISABLED and not ignore_disabled:
         return False
-    # Addon owners can do everything else.
+    # Webapp owners can do everything else.
     roles = (mkt.AUTHOR_ROLE_OWNER,)
     if dev:
         roles += (mkt.AUTHOR_ROLE_DEV,)
@@ -83,8 +83,8 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     # Support can do support.
     elif support:
         roles += (mkt.AUTHOR_ROLE_SUPPORT,)
-    return addon.authors.filter(pk=request.user.pk,
-                                addonuser__role__in=roles).exists()
+    return webapp.authors.filter(pk=request.user.pk,
+                                 webappuser__role__in=roles).exists()
 
 
 def check_reviewer(request, region=None):

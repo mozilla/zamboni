@@ -40,21 +40,21 @@ log = commonware.log.getLogger('z.devhub')
 
 @dev_required
 @require_POST
-def disable_payments(request, addon_id, addon):
-    return redirect(addon.get_dev_url('payments'))
+def disable_payments(request, webapp_id, webapp):
+    return redirect(webapp.get_dev_url('payments'))
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def payments(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True)
+def payments(request, webapp_id, webapp):
     premium_form = forms_payments.PremiumForm(
-        request.POST or None, request=request, addon=addon,
+        request.POST or None, request=request, webapp=webapp,
         user=request.user)
 
     region_form = forms.RegionForm(
-        request.POST or None, product=addon, request=request)
+        request.POST or None, product=webapp, request=request)
 
     upsell_form = forms_payments.UpsellForm(
-        request.POST or None, addon=addon, user=request.user)
+        request.POST or None, webapp=webapp, user=request.user)
 
     providers = get_providers()
 
@@ -65,7 +65,7 @@ def payments(request, addon_id, addon, webapp=False):
     account_list_formset = forms_payments.AccountListFormSet(
         data=formset_data,
         provider_data=[
-            {'addon': addon, 'user': request.user, 'provider': provider}
+            {'webapp': webapp, 'user': request.user, 'provider': provider}
             for provider in providers])
 
     if request.method == 'POST':
@@ -89,8 +89,8 @@ def payments(request, addon_id, addon, webapp=False):
                                u'payment server.'))
                 raise  # We want to see these exceptions!
 
-            is_free_inapp = addon.premium_type == mkt.ADDON_FREE_INAPP
-            is_now_paid = (addon.premium_type in mkt.ADDON_PREMIUMS or
+            is_free_inapp = webapp.premium_type == mkt.WEBAPP_FREE_INAPP
+            is_now_paid = (webapp.premium_type in mkt.WEBAPP_PREMIUMS or
                            is_free_inapp)
 
             # If we haven't changed to a free app, check the upsell.
@@ -111,7 +111,7 @@ def payments(request, addon_id, addon, webapp=False):
         # If everything happened successfully, give the user a pat on the back.
         if success:
             messages.success(request, _('Changes successfully saved.'))
-            return redirect(addon.get_dev_url('payments'))
+            return redirect(webapp.get_dev_url('payments'))
 
     # TODO: refactor this (bug 945267)
     android_pay = waffle.flag_is_active(request, 'android-payments')
@@ -132,7 +132,7 @@ def payments(request, addon_id, addon, webapp=False):
         invalid_paid_platform_state += [('desktop', True)]
 
     cannot_be_paid = (
-        addon.premium_type == mkt.ADDON_FREE and
+        webapp.premium_type == mkt.WEBAPP_FREE and
         any(premium_form.device_data['free-%s' % x] == y
             for x, y in invalid_paid_platform_state))
 
@@ -157,15 +157,16 @@ def payments(request, addon_id, addon, webapp=False):
         provider_regions = tier_zero.provider_regions()
 
     return render(request, 'developers/payments/premium.html',
-                  {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
+                  {'webapp': webapp, 'webapp': webapp,
+                   'premium': webapp.premium,
                    'form': premium_form, 'upsell_form': upsell_form,
                    'tier_zero_id': tier_zero_id, 'region_form': region_form,
                    'PLATFORMS_NAMES': PLATFORMS_NAMES,
-                   'is_paid': (addon.premium_type in mkt.ADDON_PREMIUMS or
-                               addon.premium_type == mkt.ADDON_FREE_INAPP),
+                   'is_paid': (webapp.premium_type in mkt.WEBAPP_PREMIUMS or
+                               webapp.premium_type == mkt.WEBAPP_FREE_INAPP),
                    'cannot_be_paid': cannot_be_paid,
                    'paid_platform_names': paid_platform_names,
-                   'is_packaged': addon.is_packaged,
+                   'is_packaged': webapp.is_packaged,
                    # Bango values
                    'account_list_forms': account_list_formset.forms,
                    'account_list_formset': account_list_formset,
@@ -182,7 +183,7 @@ def payments(request, addon_id, addon, webapp=False):
                    'provider_regions': provider_regions,
                    'enabled_provider_ids':
                        [acct.payment_account.provider
-                           for acct in addon.all_payment_accounts()]
+                           for acct in webapp.all_payment_accounts()]
                    })
 
 
@@ -206,10 +207,10 @@ def payment_accounts(request):
                              for acc in app.all_payment_accounts()]
             return (unicode(app.name), account_names)
 
-        addon_payment_accounts = acc.addonpaymentaccount_set.all()
-        associated_apps = [apa.addon
-                           for apa in addon_payment_accounts
-                           if hasattr(apa, 'addon')]
+        webapp_payment_accounts = acc.webapppaymentaccount_set.all()
+        associated_apps = [apa.webapp
+                           for apa in webapp_payment_accounts
+                           if hasattr(apa, 'webapp')]
         app_names = u', '.join(unicode(app.name) for app in associated_apps)
         app_payment_accounts = json.dumps(dict([payment_account_names(app)
                                                 for app in associated_apps]))
@@ -243,7 +244,7 @@ def payment_accounts_form(request):
     provider = get_provider(name=request.GET.get('provider'))
     account_list_formset = forms_payments.AccountListFormSet(
         provider_data=[
-            {'user': request.user, 'addon': webapp, 'provider': p}
+            {'user': request.user, 'webapp': webapp, 'provider': p}
             for p in get_providers()])
     account_list_form = next(form for form in account_list_formset.forms
                              if form.provider.name == provider.name)
@@ -357,47 +358,47 @@ def in_app_key_secret(request, pk):
 
 def require_in_app_payments(render_view):
     @functools.wraps(render_view)
-    def inner(request, addon_id, addon, *args, **kwargs):
+    def inner(request, webapp_id, webapp, *args, **kwargs):
         setup_url = reverse('mkt.developers.apps.payments',
-                            args=[addon.app_slug])
-        if addon.premium_type not in mkt.ADDON_INAPPS:
+                            args=[webapp.app_slug])
+        if webapp.premium_type not in mkt.WEBAPP_INAPPS:
             messages.error(
                 request,
                 _('Your app is not configured for in-app payments.'))
             return redirect(setup_url)
-        if not addon.has_payment_account():
+        if not webapp.has_payment_account():
             messages.error(request, _('No payment account for this app.'))
             return redirect(setup_url)
 
         # App is set up for payments; render the view.
-        return render_view(request, addon_id, addon, *args, **kwargs)
+        return render_view(request, webapp_id, webapp, *args, **kwargs)
     return inner
 
 
 @login_required
-@dev_required(webapp=True)
+@dev_required
 @require_in_app_payments
-def in_app_payments(request, addon_id, addon, webapp=True, account=None):
+def in_app_payments(request, webapp_id, webapp, account=None):
     return render(request, 'developers/payments/in-app-payments.html',
-                  {'addon': addon})
+                  {'webapp': webapp})
 
 
 @waffle_switch('in-app-products')
 @login_required
-@dev_required(webapp=True)
+@dev_required
 @require_in_app_payments
-def in_app_products(request, addon_id, addon, webapp=True, account=None):
-    owner = acl.check_addon_ownership(request, addon)
-    products = addon.inappproduct_set.all()
-    new_product = InAppProduct(webapp=addon)
+def in_app_products(request, webapp_id, webapp, account=None):
+    owner = acl.check_webapp_ownership(request, webapp)
+    products = webapp.inappproduct_set.all()
+    new_product = InAppProduct(webapp=webapp)
     form = InAppProductForm()
 
-    if addon.origin:
-        inapp_origin = addon.origin
-    elif addon.guid:
+    if webapp.origin:
+        inapp_origin = webapp.origin
+    elif webapp.guid:
         # Derive a marketplace specific origin out of the GUID.
         # This is for apps that do not specify a custom origin.
-        inapp_origin = 'marketplace:{}'.format(addon.guid)
+        inapp_origin = 'marketplace:{}'.format(webapp.guid)
     else:
         # Theoretically this is highly unlikely. A hosted app will
         # always have a domain and a packaged app will always have
@@ -413,7 +414,7 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
                                                   'guid': "{guid}"}))
 
     return render(request, 'developers/payments/in-app-products.html',
-                  {'addon': addon, 'form': form, 'new_product': new_product,
+                  {'webapp': webapp, 'form': form, 'new_product': new_product,
                    'owner': owner, 'products': products, 'form': form,
                    'list_url': list_url, 'detail_url': detail_url,
                    'active_lang': request.LANG.lower()})
@@ -432,15 +433,15 @@ def _fix_origin_link(link):
 
 
 @login_required
-@dev_required(owner_for_post=True, webapp=True)
+@dev_required(owner_for_post=True)
 @require_in_app_payments
-def in_app_config(request, addon_id, addon, webapp=True):
+def in_app_config(request, webapp_id, webapp):
     """
     Allows developers to get a key/secret for doing in-app payments.
     """
-    config = get_inapp_config(addon)
+    config = get_inapp_config(webapp)
 
-    owner = acl.check_addon_ownership(request, addon)
+    owner = acl.check_webapp_ownership(request, webapp)
     if request.method == 'POST':
         # Reset the in-app secret for the app.
         (client.api.generic
@@ -448,60 +449,60 @@ def in_app_config(request, addon_id, addon, webapp=True):
                .patch(data={'secret': generate_key(48)}))
         messages.success(request, _('Changes successfully saved.'))
         return redirect(reverse('mkt.developers.apps.in_app_config',
-                                args=[addon.app_slug]))
+                                args=[webapp.app_slug]))
 
     return render(request, 'developers/payments/in-app-config.html',
-                  {'addon': addon, 'owner': owner,
+                  {'webapp': webapp, 'owner': owner,
                    'seller_config': config})
 
 
 @login_required
-@dev_required(webapp=True)
+@dev_required
 @require_in_app_payments
-def in_app_secret(request, addon_id, addon, webapp=True):
-    config = get_inapp_config(addon)
+def in_app_secret(request, webapp_id, webapp):
+    config = get_inapp_config(webapp)
     return http.HttpResponse(config['secret'])
 
 
-def get_inapp_config(addon):
+def get_inapp_config(webapp):
     """
     Returns a generic Solitude product, the app's in-app configuration.
 
     We use generic products in Solitude to represent an "app" that is
     enabled for in-app purchases.
     """
-    if not addon.solitude_public_id:
+    if not webapp.solitude_public_id:
         # If the view accessing this method uses all the right
         # decorators then this error won't be raised.
         raise ValueError('The app {a} has not yet been configured '
-                         'for payments'.format(a=addon))
+                         'for payments'.format(a=webapp))
     return client.api.generic.product.get_object(
-        public_id=addon.solitude_public_id)
+        public_id=webapp.solitude_public_id)
 
 
-@dev_required(webapp=True)
-def bango_portal_from_addon(request, addon_id, addon, webapp=True):
+@dev_required
+def bango_portal_from_webapp(request, webapp_id, webapp):
     try:
-        bango = addon.payment_account(PROVIDER_BANGO)
-    except addon.PayAccountDoesNotExist:
+        bango = webapp.payment_account(PROVIDER_BANGO)
+    except webapp.PayAccountDoesNotExist:
         log.error('Bango portal not available for app {app} '
                   'with accounts {acct}'
-                  .format(app=addon,
-                          acct=list(addon.all_payment_accounts())))
+                  .format(app=webapp,
+                          acct=list(webapp.all_payment_accounts())))
         return http.HttpResponseForbidden()
     else:
         account = bango.payment_account
 
-    if not ((addon.authors.filter(
+    if not ((webapp.authors.filter(
              pk=request.user.pk,
-             addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()) and
+             webappuser__role=mkt.AUTHOR_ROLE_OWNER).exists()) and
             (account.solitude_seller.user.id == request.user.id)):
         log.error(('User not allowed to reach the Bango portal; '
                    'pk=%s') % request.user.pk)
         return http.HttpResponseForbidden()
 
     return _redirect_to_bango_portal(account.account_id,
-                                     'addon_id: %s' % addon_id)
+                                     'webapp_id: %s' % webapp_id)
 
 
 def _redirect_to_bango_portal(package_id, source):

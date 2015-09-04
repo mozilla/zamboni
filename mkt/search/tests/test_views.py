@@ -18,7 +18,7 @@ from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.operators.models import OperatorPermission
 from mkt.prices.models import Price
@@ -33,7 +33,7 @@ from mkt.tags.models import Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, AddonUpsell, Webapp
+from mkt.webapps.models import WebappDeviceType, WebappUpsell, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.websites.models import Website
 from mkt.websites.utils import website_factory
@@ -306,7 +306,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         get_excluded_region_ids.return_value = []
         upsell = app_factory()
         self.make_premium(upsell)
-        AddonUpsell.objects.create(free=self.webapp, premium=upsell)
+        WebappUpsell.objects.create(free=self.webapp, premium=upsell)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -327,7 +327,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         unindex_webapps([upsell.id])
 
     def test_dehydrate_regions(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.webapp.webappexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -339,7 +339,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(len(regions), len(mkt.regions.ALL_REGION_IDS) - 1)
 
     def test_region_filtering(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.webapp.webappexcludedregion.create(region=mkt.regions.BRA.id)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -602,8 +602,8 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_device(self):
-        AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
+        WebappDeviceType.objects.create(
+            webapp=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
         self.reindex(Webapp)
         res = self.anon.get(self.url, data={'dev': 'desktop'})
         eq_(res.status_code, 200)
@@ -611,8 +611,8 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_on_firefoxos(self):
-        AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['firefoxos'])
+        WebappDeviceType.objects.create(
+            webapp=self.webapp, device_type=DEVICE_CHOICES_IDS['firefoxos'])
         f = self.webapp.get_latest_file()
         f.uses_flash = True
         f.save()
@@ -645,15 +645,15 @@ class TestSearchView(RestOAuth, ESTestCase):
         self.account = PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
             solitude_seller=self.seller, account_id=123)
-        AddonPaymentAccount.objects.create(
-            addon=self.webapp, account_uri='foo',
+        WebappPaymentAccount.objects.create(
+            webapp=self.webapp, account_uri='foo',
             payment_account=self.account, product_uri='bpruri')
 
         # Reindex once we have everything.
         self.reindex(Webapp)
 
-        # There should (sadly) be 2 queries: one for the AddonPremium model and
-        # price, and one for the AddonPaymentAccount.
+        # There should (sadly) be 2 queries: one for the WebappPremium model
+        # and price, and one for the WebappPaymentAccount.
         with self.assertNumQueries(2):
             res = self.anon.get(self.url, data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
@@ -908,7 +908,7 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
+        self.webapp.webappdevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Pick a few common device features.
         self.features = FeatureProfile(
             apps=True, audio=True, fullscreen=True, geolocation=True,
@@ -1145,7 +1145,7 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
             eq_(len(res.json['objects']), 0)
 
     def test_not_finds_excluded_region(self):
-        self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.app2.webappexcludedregion.create(region=mkt.regions.USA.id)
         self.reindex(Webapp)
         res = self.client.get(self.url, data={
             'q': 'second', 'lang': 'en-US', 'region': 'us'
@@ -1168,7 +1168,7 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
                                 created=self.days_ago(3))
         # Exclude the app in the region we are going to send. It should not
         # matter.
-        self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.app2.webappexcludedregion.create(region=mkt.regions.USA.id)
         self.grant_permission(self.profile, 'Feed:Curate')
         self.reindex(Webapp)
 
@@ -1231,7 +1231,7 @@ class TestRocketbarView(ESTestCase):
         self.client = RestOAuthClient(None)
         self.profile = UserProfile.objects.get(pk=2519)
         self.app1 = Webapp.objects.get(pk=337141)
-        self.app1.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
+        self.app1.webappdevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.app1.save()
 
         self.app2 = app_factory(name=u'Something Second Something Something',
@@ -1240,7 +1240,7 @@ class TestRocketbarView(ESTestCase):
                                 icon_hash='fakehash',
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
-        self.app2.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
+        self.app2.webappdevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         # Add some installs so this app is boosted higher than app1.
         self.app2.popularity.create(region=0, value=1000.0)
         self.app2.save()
@@ -1308,7 +1308,7 @@ class TestRocketbarView(ESTestCase):
                         'slug': self.app1.app_slug})
 
     def test_suggestion_non_gaia_apps(self):
-        AddonDeviceType.objects.all().delete()
+        WebappDeviceType.objects.all().delete()
         self.app1.save()
         self.app2.save()
         self.refresh('webapp')

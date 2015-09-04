@@ -9,15 +9,15 @@ from mkt.webapps.models import Webapp
 
 
 def test_ordering():
-    """Given a specific set of primary keys, assure that we return addons
+    """Given a specific set of primary keys, assure that we return webapps
     in that order."""
 
     app1id = app_factory().id
     app2id = app_factory().id
     app3id = app_factory().id
     semi_arbitrary_order = [app2id, app3id, app1id]
-    addons = manual_order(Webapp.objects.all(), semi_arbitrary_order)
-    eq_(semi_arbitrary_order, [addon.id for addon in addons])
+    webapps = manual_order(Webapp.objects.all(), semi_arbitrary_order)
+    eq_(semi_arbitrary_order, [webapp.id for webapp in webapps])
 
 
 def test_use_master():
@@ -55,36 +55,36 @@ class TestModelBase(TestCase):
         eq_(len(models._on_change_callbacks[Webapp]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
-        for create_addon in (Webapp, Webapp.objects.create):
-            addon = create_addon(public_stats=False)
-            addon.public_stats = True
-            addon.save()
+        for create_webapp in (Webapp, Webapp.objects.create):
+            webapp = create_webapp(public_stats=False)
+            webapp.public_stats = True
+            webapp.save()
             assert self.cb.called
             kw = self.cb.call_args[1]
             eq_(kw['sender'], Webapp)
-            eq_(kw['instance'].id, addon.id)
+            eq_(kw['instance'].id, webapp.id)
             eq_(kw['old_attr']['public_stats'], False)
             eq_(kw['new_attr']['public_stats'], True)
 
     def test_change_called_on_update(self):
-        addon = self.testapp
-        addon.update(public_stats=False)
+        webapp = self.testapp
+        webapp.update(public_stats=False)
         assert self.cb.called
         kw = self.cb.call_args[1]
         eq_(kw['old_attr']['public_stats'], True)
         eq_(kw['new_attr']['public_stats'], False)
-        eq_(kw['instance'].id, addon.id)
+        eq_(kw['instance'].id, webapp.id)
         eq_(kw['sender'], Webapp)
 
     def test_change_called_on_save(self):
-        addon = self.testapp
-        addon.public_stats = False
-        addon.save()
+        webapp = self.testapp
+        webapp.public_stats = False
+        webapp.save()
         assert self.cb.called
         kw = self.cb.call_args[1]
         eq_(kw['old_attr']['public_stats'], True)
         eq_(kw['new_attr']['public_stats'], False)
-        eq_(kw['instance'].id, addon.id)
+        eq_(kw['instance'].id, webapp.id)
         eq_(kw['sender'], Webapp)
 
     def test_change_is_not_recursive(self):
@@ -101,8 +101,8 @@ class TestModelBase(TestCase):
 
         Webapp.on_change(callback)
 
-        addon = self.testapp
-        addon.save()
+        webapp = self.testapp
+        webapp.save()
         assert fn.called
         # No exception = pass
 
@@ -115,7 +115,7 @@ class TestModelBase(TestCase):
         eq_(a, b)
 
     def test_deleted_updated(self):
-        addon = self.testapp
-        addon.delete()
-        addon.update(public_stats=False)
-        assert not addon.public_stats, 'addon.public_stats should be False'
+        webapp = self.testapp
+        webapp.delete()
+        webapp.update(public_stats=False)
+        assert not webapp.public_stats, 'webapp.public_stats should be False'

@@ -32,8 +32,8 @@ from mkt.site.utils import app_factory
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonExcludedRegion as AER
-from mkt.webapps.models import AddonDeviceType, AddonUser, Webapp
+from mkt.webapps.models import WebappExcludedRegion as AER
+from mkt.webapps.models import WebappDeviceType, WebappUser, Webapp
 
 
 response_mock = mock.Mock()
@@ -56,8 +56,8 @@ response_mock.headers = {'Content-Type':
                          'application/x-web-app-manifest+json'}
 
 
-def get_section_url(addon, section, edit=False):
-    args = [addon.app_slug, section]
+def get_section_url(webapp, section, edit=False):
+    args = [webapp.app_slug, section]
     if edit:
         args.append('edit')
     return reverse('mkt.developers.apps.section', args=args)
@@ -172,8 +172,8 @@ class TestEditBasic(TestEdit):
         self.cat = 'games'
         self.dtype = mkt.DEVICE_TYPES.keys()[0]
         self.webapp.update(categories=['games'])
-        AddonDeviceType.objects.create(addon=self.webapp,
-                                       device_type=self.dtype)
+        WebappDeviceType.objects.create(webapp=self.webapp,
+                                        device_type=self.dtype)
         self.url = self.get_url('basic')
         self.edit_url = self.get_url('basic', edit=True)
 
@@ -391,8 +391,8 @@ class TestEditBasic(TestEdit):
         # Make sure we get errors when they are just regular users.
         eq_(r.status_code, 403)
 
-        AddonUser.objects.create(addon=self.webapp, user_id=999,
-                                 role=mkt.AUTHOR_ROLE_DEV)
+        WebappUser.objects.create(webapp=self.webapp, user_id=999,
+                                  role=mkt.AUTHOR_ROLE_DEV)
         r = self.client.post(self.edit_url, data)
         eq_(r.status_code, 200)
         webapp = self.get_webapp()
@@ -587,7 +587,7 @@ class TestEditMedia(TestEdit):
         self.icon_upload = self.webapp.get_dev_url('upload_icon')
         self.preview_upload = self.webapp.get_dev_url('upload_preview')
         patches = {
-            'ADDON_ICONS_PATH': tempfile.mkdtemp(),
+            'WEBAPP_ICONS_PATH': tempfile.mkdtemp(),
             'PREVIEW_THUMBNAIL_PATH': tempfile.mkstemp()[1] + '%s/%d.png',
         }
         for k, v in patches.iteritems():
@@ -664,7 +664,7 @@ class TestEditMedia(TestEdit):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded.
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(settings.WEBAPP_ICONS_PATH,
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % webapp.id)
 
@@ -699,14 +699,14 @@ class TestEditMedia(TestEdit):
         webapp = self.get_webapp()
 
         # Unfortunate hardcoding of URL.
-        addon_url = webapp.get_icon_url(64).split('?')[0]
+        webapp_url = webapp.get_icon_url(64).split('?')[0]
         end = '/%s/%s-64.png' % (webapp.id / 1000, webapp.id)
-        assert addon_url.endswith(end), 'Unexpected path: %r' % addon_url
+        assert webapp_url.endswith(end), 'Unexpected path: %r' % webapp_url
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded.
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(settings.WEBAPP_ICONS_PATH,
                                '%s' % (webapp.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % webapp.id)
 
@@ -1078,13 +1078,13 @@ class TestEditDetails(TestEdit):
         self.assertFormError(r, 'form', 'homepage', 'Enter a valid URL.')
 
     def test_games_already_excluded_in_brazil(self):
-        AER.objects.create(addon=self.webapp, region=mkt.regions.BRA.id)
+        AER.objects.create(webapp=self.webapp, region=mkt.regions.BRA.id)
         games = 'games'
 
         r = self.client.post(
             self.edit_url, self.get_dict(categories=[games]))
         self.assertNoFormErrors(r)
-        eq_(list(AER.objects.filter(addon=self.webapp)
+        eq_(list(AER.objects.filter(webapp=self.webapp)
                             .values_list('region', flat=True)),
             [mkt.regions.BRA.id])
 
@@ -1192,7 +1192,7 @@ class TestEditTechnical(TestEdit):
         data_on = {'has_contacts': True}
         data_off = {'has_contacts': False}
 
-        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert not RereviewQueue.objects.filter(webapp=self.webapp).exists()
 
         # Turn contacts on.
         r = self.client.post(self.edit_url, formset(**data_on))
@@ -1205,7 +1205,7 @@ class TestEditTechnical(TestEdit):
         self.compare_features(data_off)
 
         # Changing features must trigger re-review.
-        assert RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert RereviewQueue.objects.filter(webapp=self.webapp).exists()
 
     def test_features_hosted_app_rejected(self):
         # Reject the app.
@@ -1214,7 +1214,7 @@ class TestEditTechnical(TestEdit):
         app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
         app.update_version()
 
-        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert not RereviewQueue.objects.filter(webapp=self.webapp).exists()
 
         data_on = {'has_contacts': True}
         data_off = {'has_contacts': False}
@@ -1241,7 +1241,7 @@ class TestEditTechnical(TestEdit):
         self.compare_features(data_off, version=app.latest_version)
 
         # Changing features on a rejected app must NOT trigger re-review.
-        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert not RereviewQueue.objects.filter(webapp=self.webapp).exists()
 
 
 class TestAdmin(TestEdit):
@@ -1350,7 +1350,7 @@ class TestAdminSettings(TestAdmin):
         self.compare({'priority_review': True})
         log_action = mkt.LOG.PRIORITY_REVIEW_REQUESTED
         assert AppLog.objects.filter(
-            addon=self.get_webapp(),
+            webapp=self.get_webapp(),
             activity_log__action=log_action.id).exists(), (
                 "Didn't find `%s` action in logs." % log_action.short)
 
@@ -1403,7 +1403,7 @@ class TestAdminSettings(TestAdmin):
         geodata.banner_message = u'Exclusive message ! Only for AR/BR !'
         geodata.banner_regions = [mkt.regions.BRA.id, mkt.regions.ARG.id]
         geodata.save()
-        AER.objects.create(addon=self.webapp, region=mkt.regions.USA.id)
+        AER.objects.create(webapp=self.webapp, region=mkt.regions.USA.id)
 
         res = self.client.get(self.edit_url)
         eq_(res.status_code, 200)
@@ -1529,7 +1529,7 @@ class TestEditVersion(TestEdit):
 
     @mock.patch('mkt.webapps.tasks.index_webapps.delay')
     def test_new_features(self, index_webapps):
-        assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert not RereviewQueue.objects.filter(webapp=self.webapp).exists()
         index_webapps.reset_mock()
         old_modified = self.webapp.modified
 
@@ -1538,9 +1538,9 @@ class TestEditVersion(TestEdit):
         ok_(version.features.has_audio)
         ok_(not version.features.has_apps)
 
-        # Addon modified date must have changed.
-        addon = self.get_webapp()
-        ok_(addon.modified > old_modified)
+        # Webapp modified date must have changed.
+        webapp = self.get_webapp()
+        ok_(webapp.modified > old_modified)
         old_modified = self.webapp.modified
 
         index_webapps.reset_mock()
@@ -1551,11 +1551,11 @@ class TestEditVersion(TestEdit):
         ok_(not version.features.has_apps)
 
         # Changing features must trigger re-review.
-        assert RereviewQueue.objects.filter(addon=self.webapp).exists()
+        assert RereviewQueue.objects.filter(webapp=self.webapp).exists()
 
-        # Addon modified date must have changed.
-        addon = self.get_webapp()
-        ok_(addon.modified > old_modified)
+        # Webapp modified date must have changed.
+        webapp = self.get_webapp()
+        ok_(webapp.modified > old_modified)
 
         # Changing features must trigger a reindex.
         eq_(index_webapps.call_count, 1)

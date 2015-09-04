@@ -2,62 +2,62 @@
 {% from 'developers/includes/macros.html' import queue_position with context %}
 {% from 'detail/includes/price.html' import price %}
 
-{% for addon in addons %}
-  <div class="item addon" data-addonid="{{ addon.id }}">
+{% for webapp in webapps %}
+  <div class="item addon" data-addonid="{{ webapp.id }}">
     <div class="info">
-      {{ dev_heading(addon, mkt) }}
+      {{ dev_heading(webapp, mkt) }}
 
-      {% if addon.has_incomplete_status() %}
-        {% set next_step = addon.next_step() %}
+      {% if webapp.has_incomplete_status() %}
+        {% set next_step = webapp.next_step() %}
         <p class="incomplete">{{ next_step['description'] }}</p>
       {% else %}
         <ul class="item-details">
           {# L10n: {0} is a date. #}
           <li class="date-created">
             <strong>{{ _('Created:') }}</strong>
-            {{ addon.created|datetime }}
+            {{ webapp.created|datetime }}
           </li>
           <li class="version-status-item">
             <strong>{{ _('Status:') }}</strong>
-            <a href="{{ addon.get_dev_url('versions') }}">
-              {% if addon.disabled_by_user %}
-                <span class="{{ mkt_status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
+            <a href="{{ webapp.get_dev_url('versions') }}">
+              {% if webapp.disabled_by_user %}
+                <span class="{{ mkt_status_class(webapp) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
-                <span class="{{ mkt_status_class(addon) }}">
-                  <b>{{ mkt.STATUS_CHOICES[addon.status] }}</b></span>
+                <span class="{{ mkt_status_class(webapp) }}">
+                  <b>{{ mkt.STATUS_CHOICES[webapp.status] }}</b></span>
               {% endif %}
             </a>
           </li>
-          {% if addon.is_packaged %}
+          {% if webapp.is_packaged %}
             <li class="item-current-version">
               <strong>{{ _('Packaged App Version:') }}</strong>
-              {{ addon.current_version }}
+              {{ webapp.current_version }}
             </li>
-            {% if addon.is_pending() or addon.current_version != addon.latest_version %}
+            {% if webapp.is_pending() or webapp.current_version != webapp.latest_version %}
               <li class="item-latest-version">
                 <strong>{{ _('Pending Version:') }}</strong>
-                {{ addon.latest_version }}
+                {{ webapp.latest_version }}
               </li>
             {% endif %}
           {% endif %}
-          {% if addon.is_pending() or addon.current_version != addon.latest_version %}
-            {{ queue_position(addon, 'li') }}
+          {% if webapp.is_pending() or webapp.current_version != webapp.latest_version %}
+            {{ queue_position(webapp, 'li') }}
           {% endif %}
           <li class="payments">
             <strong>{{ _('Price:') }}</strong>
-            {{ price(request, addon) }}
-            {% if addon.is_premium() and not addon.has_payment_account() %}
-              <a href="{{ addon.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
+            {{ price(request, webapp) }}
+            {% if webapp.is_premium() and not webapp.has_payment_account() %}
+              <a href="{{ webapp.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
             {% endif %}
           </li>
           <li class="item-devices">
-            {{ device_list(addon) }}
-            <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
+            {{ device_list(webapp) }}
+            <a href="{{ webapp.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
           </li>
 
-          {% if not addon.is_rated() and addon.is_public() or addon.is_approved() %}
+          {% if not webapp.is_rated() and webapp.is_public() or webapp.is_approved() %}
             <li class="ratings">
-              {% trans rating_url=addon.get_dev_url('ratings') %}
+              {% trans rating_url=webapp.get_dev_url('ratings') %}
                 <a href="{{ rating_url }}">Set up Content Ratings</a>
               {% endtrans %}
             </li>

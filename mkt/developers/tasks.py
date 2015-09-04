@@ -36,7 +36,7 @@ from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage)
 from mkt.site.utils import (remove_icons, remove_promo_imgs, resize_image,
                             strip_bom)
-from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
+from mkt.webapps.models import WebappExcludedRegion, Preview, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 
 
@@ -55,7 +55,7 @@ REQUESTS_HEADERS = {
 @post_request_task
 @use_master
 def validator(upload_id, **kw):
-    if not settings.VALIDATE_ADDONS:
+    if not settings.VALIDATE_WEBAPPS:
         return None
     log.info(u'[FileUpload:%s] Validating app.' % upload_id)
     try:
@@ -100,7 +100,7 @@ def validator(upload_id, **kw):
 @task
 @use_master
 def file_validator(file_id, **kw):
-    if not settings.VALIDATE_ADDONS:
+    if not settings.VALIDATE_WEBAPPS:
         return None
     log.info(u'[File:%s] Validating file.' % file_id)
     try:
@@ -110,7 +110,8 @@ def file_validator(file_id, **kw):
         return
     # Unlike upload validation, let the validator raise an exception if there
     # is one.
-    result = run_validator(file.file_path, url=file.version.addon.manifest_url)
+    result = run_validator(file.file_path,
+                           url=file.version.webapp.manifest_url)
     return FileValidation.from_json(file, result)
 
 
@@ -156,7 +157,7 @@ def _hash_file(fd):
 @set_modified_on
 def resize_icon(src, dst, sizes, src_storage=private_storage,
                 dst_storage=public_storage, **kw):
-    """Resizes addon/websites icons."""
+    """Resizes webapp/websites icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
 
     try:
@@ -584,13 +585,13 @@ def region_exclude(ids, region_ids, **kw):
                  (id_, region_names))
         for region in regions:
             # Already excluded? Swag!
-            AddonExcludedRegion.objects.get_or_create(addon_id=id_,
-                                                      region=region.id)
+            WebappExcludedRegion.objects.get_or_create(webapp_id=id_,
+                                                       region=region.id)
 
 
 @task
 def save_test_plan(f, filename, addon):
-    path = os.path.join(settings.ADDONS_PATH, str(addon.id), filename)
+    path = os.path.join(settings.WEBAPPS_PATH, str(addon.id), filename)
     with private_storage.open(path, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)

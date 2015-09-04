@@ -91,7 +91,7 @@ class TestFFmpegVideo(mkt.site.tests.TestCase):
         raise SkipTest
         self.video.get_meta()
         try:
-            screenshot = self.video.get_screenshot(mkt.ADDON_PREVIEW_SIZES[0])
+            screenshot = self.video.get_screenshot(mkt.WEBAPP_PREVIEW_SIZES[0])
             assert os.stat(screenshot)[stat.ST_SIZE]
         finally:
             os.remove(screenshot)
@@ -100,7 +100,7 @@ class TestFFmpegVideo(mkt.site.tests.TestCase):
         raise SkipTest
         self.video.get_meta()
         try:
-            video = self.video.get_encoded(mkt.ADDON_PREVIEW_SIZES[0])
+            video = self.video.get_encoded(mkt.WEBAPP_PREVIEW_SIZES[0])
             assert os.stat(video)[stat.ST_SIZE]
         finally:
             os.remove(video)
@@ -123,11 +123,11 @@ class TestBadFFmpegVideo(mkt.site.tests.TestCase):
 
     def test_screenshot(self):
         self.assertRaises(AssertionError, self.video.get_screenshot,
-                          mkt.ADDON_PREVIEW_SIZES[0])
+                          mkt.WEBAPP_PREVIEW_SIZES[0])
 
     def test_encoded(self):
         self.assertRaises(AssertionError, self.video.get_encoded,
-                          mkt.ADDON_PREVIEW_SIZES[0])
+                          mkt.WEBAPP_PREVIEW_SIZES[0])
 
 
 class TestTotemVideo(mkt.site.tests.TestCase):
@@ -176,7 +176,7 @@ class TestTask(mkt.site.tests.TestCase):
         waffle.models.Switch.objects.create(name='video-encode', active=True)
         self.app = Webapp.objects.get(pk=337141)
         self.preview = Preview.objects.create(
-            addon=self.app, thumbnail_path=tempfile.mkstemp()[1],
+            webapp=self.app, thumbnail_path=tempfile.mkstemp()[1],
             image_path=tempfile.mkstemp()[1])
         # Copy files to private storage where `resize_video` expects it.
         self.tmp_good = tempfile.NamedTemporaryFile(suffix='.webm').name

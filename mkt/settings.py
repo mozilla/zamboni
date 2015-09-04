@@ -324,7 +324,7 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 
-ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
+WEBAPP_ICONS_PATH = UPLOADS_PATH + '/webapp_icons'
 WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 
 WEBAPP_PROMO_IMG_PATH = UPLOADS_PATH + '/webapp_promo_imgs'
@@ -332,7 +332,7 @@ WEBSITE_PROMO_IMG_PATH = UPLOADS_PATH + '/website_promo_imgs'
 
 #  File path for storing XPI/JAR files (or any files associated with an
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
-ADDONS_PATH = NETAPP_STORAGE + '/addons'
+WEBAPPS_PATH = NETAPP_STORAGE + '/addons'
 CA_CERT_BUNDLE_PATH = path('mkt/site/certificates/roots.pem')
 
 # Where dumped apps will be written too.
@@ -344,9 +344,9 @@ FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 FEED_COLLECTION_BG_PATH = UPLOADS_PATH + '/feed_collection_background'
 FEED_SHELF_BG_PATH = UPLOADS_PATH + '/feed_shelf_background'
 
-# Like ADDONS_PATH but protected by the app. Used for storing files that should
-# not be publicly accessible (like disabled add-ons).
-GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
+# Like WEBAPPS_PATH but protected by the app. Used for storing files that
+# should not be publicly accessible (like disabled add-ons).
+GUARDED_WEBAPPS_PATH = NETAPP_STORAGE + '/guarded-webapps'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 
 # File path for add-on files that get rsynced to mirrors.
@@ -379,8 +379,8 @@ STATIC_URL = SITE_URL + '/'
 
 ICONS_DEFAULT_URL = 'img/hub'
 
-# Directory must match ADDON_ICONS_PATH and WEBSITE_ICONS_PATH, respectively.
-ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+# Directory must match WEBAPP_ICONS_PATH and WEBSITE_ICONS_PATH, respectively.
+WEBAPP_ICON_URL = 'img/uploads/webapp_icons/%s/%s-%s.png?modified=%s'
 WEBSITE_ICON_URL = 'img/uploads/website_icons/%s/%s-%s.png?modified=%s'
 
 WEBAPP_PROMO_IMG_URL = (
@@ -791,7 +791,7 @@ HEKA_CONF = {
     'plugins': {
         'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
-            'syslog_ident': 'http_app_addons_marketplace',
+            'syslog_ident': 'http_app_webapps_marketplace',
             'syslog_priority': 'ALERT',
         }),
     },
@@ -1151,7 +1151,7 @@ URL_FORMAT_OVERRIDE = 'format'
 
 USE_HEKA_FOR_CEF = False
 
-VALIDATE_ADDONS = True
+VALIDATE_WEBAPPS = True
 
 # Allowed `installs_allowed_from` values for manifest validator.
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']

@@ -27,8 +27,8 @@ from mkt.site.fixtures import fixture
 from mkt.site.tests import MktPaths, app_factory, TestCase
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
-                                AddonUpsell, AddonUser, Preview, Webapp)
+from mkt.webapps.models import (WebappDeviceType, WebappExcludedRegion,
+                                WebappUpsell, WebappUser, Preview, Webapp)
 
 
 class CreateHandler(RestOAuth):
@@ -137,7 +137,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         app = self.create_app()
         upsell = app_factory()
         self.make_premium(upsell)
-        AddonUpsell.objects.create(free=app, premium=upsell)
+        WebappUpsell.objects.create(free=app, premium=upsell)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         obj = json.loads(res.content)['upsell']
@@ -175,8 +175,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_get_device(self):
         app = self.create_app()
-        AddonDeviceType.objects.create(addon=app,
-                                       device_type=mkt.DEVICE_DESKTOP.id)
+        WebappDeviceType.objects.create(webapp=app,
+                                        device_type=mkt.DEVICE_DESKTOP.id)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         content = json.loads(res.content)
@@ -197,7 +197,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         app = self.create_app()
         res = self.client.get(self.get_url)
         eq_(len(json.loads(res.content)['previews']), 0)
-        Preview.objects.create(addon=app)
+        Preview.objects.create(webapp=app)
         res = self.client.get(self.get_url)
         eq_(len(json.loads(res.content)['previews']), 1)
 
@@ -335,8 +335,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
     def test_ratings(self):
         app = self.create_app()
         rater = UserProfile.objects.get(pk=999)
-        Review.objects.create(addon=app, user=self.user, body='yes', rating=3)
-        Review.objects.create(addon=app, user=rater, body='no', rating=2)
+        Review.objects.create(webapp=app, user=self.user, body='yes', rating=3)
+        Review.objects.create(webapp=app, user=rater, body='no', rating=2)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -411,7 +411,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(str(app.get_price(region=regions.USA.id)), '1.07')
-        eq_(app.premium_type, mkt.ADDON_PREMIUM_INAPP)
+        eq_(app.premium_type, mkt.WEBAPP_PREMIUM_INAPP)
 
     def test_put_bad_price(self):
         self.create_app()
@@ -573,7 +573,7 @@ class TestListHandler(CreateHandler, MktPaths):
     def create(self, users):
         app = Webapp.objects.create()
         for user in users:
-            AddonUser.objects.create(user=user, addon=app)
+            WebappUser.objects.create(user=user, webapp=app)
         return app
 
     def create_apps(self, *all_owners):
@@ -639,7 +639,7 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 404)
 
     def test_nonregion(self):
-        self.app.addonexcludedregion.create(region=regions.BRA.id)
+        self.app.webappexcludedregion.create(region=regions.BRA.id)
         self.app.support_url = u'http://www.example.com/fake_support_url'
         self.app.save()
         res = self.client.get(self.get_url, data={'region': 'br'})
@@ -650,9 +650,9 @@ class TestAppDetail(RestOAuth):
         eq_(data['support_url'], 'http://www.example.com/fake_support_url')
 
     def test_owner_nonregion(self):
-        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
-        AddonExcludedRegion.objects.create(addon_id=337141,
-                                           region=regions.BRA.id)
+        WebappUser.objects.create(webapp_id=337141, user_id=self.user.pk)
+        WebappExcludedRegion.objects.create(webapp_id=337141,
+                                            region=regions.BRA.id)
         res = self.client.get(self.get_url, data={'region': 'br'})
         eq_(res.status_code, 200)
 
@@ -664,7 +664,7 @@ class TestAppDetail(RestOAuth):
 
     def test_get_upsold(self):
         free = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
-        AddonUpsell.objects.create(premium_id=337141, free=free)
+        WebappUpsell.objects.create(premium_id=337141, free=free)
         res = self.client.get(self.get_url)
         eq_(res.json['upsold'],
             reverse('app-detail', kwargs={'pk': free.pk}))
@@ -791,21 +791,21 @@ class TestRefreshManifest(RestOAuth):
         content.headers = {
             'Content-Type': 'application/x-web-app-manifest+json'}
         fetch.return_value = content
-        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
+        WebappUser.objects.create(webapp_id=337141, user_id=self.user.pk)
         res = self.client.post(self.url)
         eq_(res.status_code, 204)
         assert fetch.called
 
     def test_failed_refresh(self, validator, fetch):
         fetch.side_effect = Exception
-        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
+        WebappUser.objects.create(webapp_id=337141, user_id=self.user.pk)
         res = self.client.post(self.url)
         eq_(res.status_code, 204)
         assert fetch.called
         assert not validator.called
 
     def test_no_packaged(self, validator, fetch):
-        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
+        WebappUser.objects.create(webapp_id=337141, user_id=self.user.pk)
         Webapp.objects.filter(pk=337141).update(is_packaged=True)
         res = self.client.post(self.url)
         eq_(res.status_code, 400)

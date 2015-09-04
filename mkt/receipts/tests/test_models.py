@@ -15,7 +15,7 @@ from mkt.receipts.utils import create_receipt, get_key
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import app_factory
-from mkt.webapps.models import AddonUser, Installed, Webapp
+from mkt.webapps.models import WebappUser, Installed, Webapp
 from mkt.users.models import UserProfile
 
 
@@ -36,7 +36,7 @@ class TestReceipt(mkt.site.tests.TestCase):
     def create_install(self, user, webapp):
         webapp.update(manifest_url='http://somesite.com/')
         return Installed.objects.safer_get_or_create(user=user,
-                                                     addon=webapp)[0]
+                                                     webapp=webapp)[0]
 
     def test_get_or_create(self):
         install = self.create_install(self.user, self.app)
@@ -56,8 +56,8 @@ class TestReceipt(mkt.site.tests.TestCase):
         assert (create_receipt(self.app, self.user, 'some-uuid') !=
                 create_receipt(self.app, self.other_user, 'other-uuid'))
 
-    def test_addon_premium(self):
-        for type_ in mkt.ADDON_PREMIUMS:
+    def test_webapp_premium(self):
+        for type_ in mkt.WEBAPP_PREMIUMS:
             self.app.update(premium_type=type_)
             assert create_receipt(self.app, self.user, 'some-uuid')
 
@@ -66,7 +66,7 @@ class TestReceipt(mkt.site.tests.TestCase):
         assert install.uuid.startswith(str(install.pk))
 
     def test_install_not_premium(self):
-        for type_ in mkt.ADDON_FREES:
+        for type_ in mkt.WEBAPP_FREES:
             self.app.update(premium_type=type_)
             Installed.objects.all().delete()
             install = self.create_install(self.user,
@@ -74,7 +74,7 @@ class TestReceipt(mkt.site.tests.TestCase):
             eq_(install.premium_type, type_)
 
     def test_install_premium(self):
-        for type_ in mkt.ADDON_PREMIUMS:
+        for type_ in mkt.WEBAPP_PREMIUMS:
             self.app.update(premium_type=type_)
             Installed.objects.all().delete()
             install = self.create_install(self.user, self.app)
@@ -119,7 +119,7 @@ class TestReceipt(mkt.site.tests.TestCase):
 
     def test_receipt_data_reviewer(self):
         user = UserProfile.objects.get(pk=999)
-        AddonUser.objects.create(addon=self.app, user=user)
+        WebappUser.objects.create(webapp=self.app, user=user)
         receipt = self.for_user(self.app, user, 'reviewer')
         assert receipt['exp'] > (calendar.timegm(time.gmtime()) +
                                  (60 * 60 * 24) - TEST_LEEWAY)

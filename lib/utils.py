@@ -58,7 +58,7 @@ def static_url(url):
     """
     prefix = {
         'ICONS_DEFAULT_URL': settings.MEDIA_URL,
-        'ADDON_ICON_URL': settings.STATIC_URL,
+        'WEBAPP_ICON_URL': settings.STATIC_URL,
         'PREVIEW_THUMBNAIL_URL': settings.STATIC_URL,
         'PREVIEW_FULL_URL': settings.STATIC_URL,
         'PRODUCT_ICON_URL': settings.MEDIA_URL,

@@ -16,7 +16,7 @@
           {{ review.action }}
         </div>
         <h3>
-          <a href="{{ review.instance.addon.get_url_path() }}">{{ review.instance.addon.name }}</a>
+          <a href="{{ review.instance.webapp.get_url_path() }}">{{ review.instance.webapp.name }}</a>
           <span>{%- if review.instance.title %}: {{ review.instance.title }}{% endif %}</span>
         </h3>
         <p>
@@ -29,7 +29,7 @@
           {% endtrans %}
           {% if waffle.switch('reviews-translate') %}
           - <a class="translate reviewers-desktop" rel="nofollow" target="_blank"
-               href="{{ url('reviewers.review_translate', review.instance.addon.app_slug, review.instance.id, LANG) }}">
+               href="{{ url('reviewers.review_translate', review.instance.webapp.app_slug, review.instance.id, LANG) }}">
                {{ _('translate') }}
             </a>
           {% endif %}

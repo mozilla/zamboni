@@ -267,8 +267,8 @@ class Verify:
         Verifies that the app has been purchased by the user.
         """
         self.setup_db()
-        sql = """SELECT type FROM addon_purchase
-                 WHERE addon_id = %(app_id)s
+        sql = """SELECT type FROM webapp_purchase
+                 WHERE webapp_id = %(app_id)s
                  AND uuid = %(uuid)s LIMIT 1;"""
         self.cursor.execute(sql, {'app_id': self.get_app_id(),
                                   'uuid': self.get_user()})

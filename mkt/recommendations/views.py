@@ -65,7 +65,7 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
 
             # Get list of installed apps and remove from app_ids.
             installed = list(
-                request.user.installed_set.values_list('addon_id', flat=True))
+                request.user.installed_set.values_list('webapp_id', flat=True))
             app_ids = filter(lambda a: a not in installed, app_ids)
 
             queryset = self.filter_queryset(self.get_queryset())

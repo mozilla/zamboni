@@ -20,7 +20,7 @@ from mkt.site.decorators import permission_required
 from mkt.site.mail import FakeEmailBackend
 from mkt.site.utils import chunked
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 from mkt.webapps.tasks import update_manifests
 
 from . import tasks
@@ -85,32 +85,32 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        qs = (AddonUser.objects.filter(role__in=(mkt.AUTHOR_ROLE_DEV,
-                                                 mkt.AUTHOR_ROLE_OWNER))
-                               .exclude(user__email=None))
+        qs = (WebappUser.objects.filter(role__in=(mkt.AUTHOR_ROLE_DEV,
+                                                  mkt.AUTHOR_ROLE_OWNER))
+              .exclude(user__email=None))
 
         if data['recipients'] in ('payments', 'desktop_apps'):
-            qs = qs.exclude(addon__status=mkt.STATUS_DELETED)
+            qs = qs.exclude(webapp__status=mkt.STATUS_DELETED)
         else:
-            qs = qs.filter(addon__status__in=mkt.LISTED_STATUSES)
+            qs = qs.filter(webapp__status__in=mkt.LISTED_STATUSES)
 
         if data['recipients'] in ('payments', 'payments_region_enabled',
                                   'payments_region_disabled'):
-            qs = qs.exclude(addon__premium_type__in=(mkt.ADDON_FREE,
-                                                     mkt.ADDON_OTHER_INAPP))
+            qs = qs.exclude(webapp__premium_type__in=(mkt.WEBAPP_FREE,
+                                                      mkt.WEBAPP_OTHER_INAPP))
             if data['recipients'] == 'payments_region_enabled':
-                qs = qs.filter(addon__enable_new_regions=True)
+                qs = qs.filter(webapp__enable_new_regions=True)
             elif data['recipients'] == 'payments_region_disabled':
-                qs = qs.filter(addon__enable_new_regions=False)
+                qs = qs.filter(webapp__enable_new_regions=False)
         elif data['recipients'] in ('apps', 'free_apps_region_enabled',
                                     'free_apps_region_disabled'):
             if data['recipients'] == 'free_apps_region_enabled':
-                qs = qs.filter(addon__enable_new_regions=True)
+                qs = qs.filter(webapp__enable_new_regions=True)
             elif data['recipients'] == 'free_apps_region_disabled':
-                qs = qs.filter(addon__enable_new_regions=False)
+                qs = qs.filter(webapp__enable_new_regions=False)
         elif data['recipients'] == 'desktop_apps':
             qs = (qs.filter(
-                addon__addondevicetype__device_type=mkt.DEVICE_DESKTOP.id))
+                webapp__webappdevicetype__device_type=mkt.DEVICE_DESKTOP.id))
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')

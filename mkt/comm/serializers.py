@@ -79,8 +79,8 @@ class CommAppSerializer(ModelSerializer):
 
 
 class ThreadSerializer(ModelSerializer):
-    addon = SerializerMethodField('get_addon')
-    addon_meta = CommAppSerializer(source='addon', read_only=True)
+    webapp = SerializerMethodField('get_webapp')
+    webapp_meta = CommAppSerializer(source='webapp', read_only=True)
     notes_count = SerializerMethodField('get_notes_count')
     recent_notes = SerializerMethodField('get_recent_notes')
     version = SerializerMethodField('get_version')
@@ -89,12 +89,12 @@ class ThreadSerializer(ModelSerializer):
 
     class Meta:
         model = CommunicationThread
-        fields = ('id', 'addon', 'addon_meta', 'created', 'modified',
+        fields = ('id', 'webapp', 'webapp_meta', 'created', 'modified',
                   'notes_count', 'modified', 'recent_notes', 'version',
                   'version_number', 'version_is_obsolete')
 
-    def get_addon(self, obj):
-        return obj.addon.id
+    def get_webapp(self, obj):
+        return obj.webapp.id
 
     def get_version(self, obj):
         version = obj.version
@@ -132,7 +132,7 @@ class CommVersionSerializer(ModelSerializer):
 
 
 class ThreadSerializerV2(ThreadSerializer):
-    app = CommAppSerializer(source='addon', read_only=True)
+    app = CommAppSerializer(source='webapp', read_only=True)
     version = CommVersionSerializer(source='version', read_only=True)
 
     class Meta(ThreadSerializer.Meta):

@@ -12,21 +12,21 @@ from mkt.site.helpers import mkt_breadcrumbs, page_title
 from mkt.webapps.helpers import new_context
 
 
-register.function(acl.check_addon_ownership)
+register.function(acl.check_webapp_ownership)
 
 
 @register.inclusion_tag('developers/apps/listing/items.html')
 @jinja2.contextfunction
-def hub_addon_listing_items(context, addons, src=None, notes=None):
+def hub_webapp_listing_items(context, webapps, src=None, notes=None):
     return new_context(**locals())
 
 
 @register.function
 @jinja2.contextfunction
-def hub_page_title(context, title=None, addon=None):
+def hub_page_title(context, title=None, webapp=None):
     """Wrapper for developer page titles."""
-    if addon:
-        title = u'%s | %s' % (title, addon.name)
+    if webapp:
+        title = u'%s | %s' % (title, webapp.name)
     else:
         devhub = _('Developers')
         title = '%s | %s' % (title, devhub) if title else devhub
@@ -35,13 +35,13 @@ def hub_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
-def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
+def hub_breadcrumbs(context, webapp=None, items=None, add_default=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Developers' breadcrumb.
 
     **items**
         list of [(url, label)] to be inserted after Add-on.
-    **addon**
+    **webapp**
         Adds the Add-on name to the end of the trail.  If items are
         specified then the Add-on will be linked.
     **add_default**
@@ -51,18 +51,18 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
     title = _('My Submissions')
     link = reverse('mkt.developers.apps')
 
-    if addon:
-        if not addon and not items:
+    if webapp:
+        if not webapp and not items:
             # We are at the end of the crumb trail.
             crumbs.append((None, title))
         else:
             crumbs.append((link, title))
         if items:
-            url = addon.get_dev_url()
+            url = webapp.get_dev_url()
         else:
-            # The Addon is the end of the trail.
+            # The Webapp is the end of the trail.
             url = None
-        crumbs.append((url, addon.name))
+        crumbs.append((url, webapp.name))
     if items:
         crumbs.extend(items)
 
@@ -73,17 +73,17 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
 
 
 @register.function
-def mkt_status_class(addon):
-    if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED:
+def mkt_status_class(webapp):
+    if webapp.disabled_by_user and webapp.status != mkt.STATUS_DISABLED:
         cls = 'disabled'
     else:
-        cls = mkt.STATUS_CHOICES_API.get(addon.status, 'none')
+        cls = mkt.STATUS_CHOICES_API.get(webapp.status, 'none')
     return 'status-' + cls
 
 
 @register.function
-def mkt_file_status_class(addon, version):
-    if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED:
+def mkt_file_status_class(webapp, version):
+    if webapp.disabled_by_user and webapp.status != mkt.STATUS_DISABLED:
         cls = 'disabled'
     else:
         file = version.all_files[0]

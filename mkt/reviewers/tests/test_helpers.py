@@ -50,7 +50,7 @@ class TestGetPosition(mkt.site.tests.TestCase):
     def test_packaged_app(self):
         self.public_app.update(is_packaged=True)
         version = version_factory(
-            addon=self.public_app, file_kw={'status': mkt.STATUS_PENDING})
+            webapp=self.public_app, file_kw={'status': mkt.STATUS_PENDING})
         self.public_app.reload()
         eq_(self.public_app.latest_version, version)
         self._test_position(self.public_app)

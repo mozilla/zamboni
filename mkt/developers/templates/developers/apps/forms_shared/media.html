@@ -27,7 +27,7 @@
             <div id="icon_preview">
               <div class="icon_preview_box">
                 <div class="icon_preview" id="icon_preview_128">
-                  <img src="{{ addon.get_icon_url(128) }}">
+                  <img src="{{ webapp.get_icon_url(128) }}">
                 </div>
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
@@ -37,7 +37,7 @@
               </div>
               <div class="icon_preview_box">
                 <div class="icon_preview" id="icon_preview_64">
-                  <img src="{{ addon.get_icon_url(64) }}">
+                  <img src="{{ webapp.get_icon_url(64) }}">
                 </div>
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
@@ -47,7 +47,7 @@
               </div>
               <div class="icon_preview_box">
                 <div class="icon_preview" id="icon_preview_32">
-                  <img src="{{ addon.get_icon_url(32) }}">
+                  <img src="{{ webapp.get_icon_url(32) }}">
                 </div>
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
@@ -66,7 +66,7 @@
               <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
               <input type="file" id="id_icon_upload" name="icon_upload"
                      data-allowed-types="image/jpeg|image/png"
-                     data-upload-url="{{ addon.get_dev_url('upload_icon') }}">
+                     data-upload-url="{{ webapp.get_dev_url('upload_icon') }}">
             </div>
             <div class="js-hidden">
               {{ form.icon_upload_hash }}
@@ -80,11 +80,11 @@
               <li id="edit-icon-error"></li>
             </ul>
           {% else %}
-            {% call empty_unless(addon.icon_type) %}
+            {% call empty_unless(webapp.icon_type) %}
               <div id="icon_preview_readonly">
-                <img src="{{ addon.get_icon_url(128) }}">
-                <img src="{{ addon.get_icon_url(64) }}">
-                <img src="{{ addon.get_icon_url(32) }}">
+                <img src="{{ webapp.get_icon_url(128) }}">
+                <img src="{{ webapp.get_icon_url(64) }}">
+                <img src="{{ webapp.get_icon_url(32) }}">
               </div>
             {% endcall %}
           {% endif %}
@@ -139,14 +139,14 @@
                 <a class="button" href="#">{{ _('Add a Screenshot or Video...') }}</a>
                 <input type="file" class="screenshot_upload" name="uploads" multiple
                        data-allowed-types="image/jpeg|image/png|video/webm"
-                       data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
+                       data-upload-url="{{ webapp.get_dev_url('upload_preview') }}">
                 <p>{{ _('Screenshots and videos must be at least 320px by 480px. '
                         'Media proportional to 320px by 480px is optimal. '
                         'Video must be encoded as WebM.') }}</p>
               </div>
             {% endif %}
           {% else %}
-            {% set previews = addon.get_previews() %}
+            {% set previews = webapp.get_previews() %}
             {% call empty_unless(previews) %}
               {% for preview in previews %}
                 <div class="preview-thumb{% if preview.is_landscape %} preview-thumb-landscape{% endif%}" data-url="{{ preview.thumbnail_url }}"
@@ -162,7 +162,7 @@
   {% if editable and context == 'edit' %}
   <div class="edit-media-button listing-footer">
     <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ addon.get_dev_url('section', ['media']) }}"
+      <a href="{{ webapp.get_dev_url('section', ['media']) }}"
          class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
   {% elif context == 'submit' %}

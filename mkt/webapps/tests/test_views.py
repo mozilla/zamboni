@@ -8,7 +8,7 @@ import mkt.site.tests
 from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.constants import APP_FEATURES
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import user_factory
@@ -66,8 +66,8 @@ class TestSimpleAppSerializer(mkt.site.tests.TestCase):
         acct = PaymentAccount.objects.create(
             solitude_seller=SolitudeSeller.objects.create(user=user),
             provider=provider, user=user)
-        AddonPaymentAccount.objects.create(addon=self.webapp,
-                                           payment_account=acct)
+        WebappPaymentAccount.objects.create(webapp=self.webapp,
+                                            payment_account=acct)
         return acct
 
     def test_regions_present(self):
@@ -101,7 +101,7 @@ class TestAppTagViewSet(RestOAuth):
     def setUp(self):
         super(TestAppTagViewSet, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
-        self.app.addonuser_set.create(user=self.profile)
+        self.app.webappuser_set.create(user=self.profile)
         self.add_tag('other')
         self.add_tag('tarako')
 
@@ -115,7 +115,7 @@ class TestAppTagViewSet(RestOAuth):
         Tag(tag_text=tag_text).remove_tag(self.app)
 
     def remove_author(self):
-        self.app.addonuser_set.filter(user=self.profile).delete()
+        self.app.webappuser_set.filter(user=self.profile).delete()
 
     def url(self, tag_text):
         return reverse('app-tags-detail', args=[self.app.app_slug, tag_text])

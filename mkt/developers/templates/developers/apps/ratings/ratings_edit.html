@@ -2,17 +2,17 @@
 {% from 'developers/includes/macros.html' import required, tip %}
 
 {% set title = _('Content Ratings') %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
 {% block content %}
   <header>
-    {% if addon.is_rated() %}
+    {% if webapp.is_rated() %}
       {{ hub_breadcrumbs(
-             addon, items=[(addon.get_dev_url('ratings'), _('Content Ratings')),
+             webapp, items=[(webapp.get_dev_url('ratings'), _('Content Ratings')),
                            (None, _('Edit'))]) }}
     {% else %}
       {# For unrated apps, there is only the Edit page. No summary page. #}
-      {{ hub_breadcrumbs(addon, items=[(None, _('Content Ratings'))]) }}
+      {{ hub_breadcrumbs(webapp, items=[(None, _('Content Ratings'))]) }}
     {% endif %}
     <h1>{{ title }}</h1>
   </header>
@@ -40,7 +40,7 @@
           {% endtrans %}
         </p>
         <p class="done hidden">
-          {% trans ratings_url=addon.get_dev_url('ratings') %}
+          {% trans ratings_url=webapp.get_dev_url('ratings') %}
             IARC content rating process complete, you will be redirected to
             your app's <a href="{{ ratings_url }}">content ratings page</a>.
           {% endtrans %}
@@ -57,12 +57,12 @@
           <input type="hidden" name="appname" value="{{ app_name }}">
           <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
           <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
-          <input type="hidden" name="token" value="{{ addon.iarc_token() }}">
-          <input type="hidden" name="pingbackurl" value="{{ url('content-ratings-pingback', addon.app_slug)|absolutify }}">
+          <input type="hidden" name="token" value="{{ webapp.iarc_token() }}">
+          <input type="hidden" name="pingbackurl" value="{{ url('content-ratings-pingback', webapp.app_slug)|absolutify }}">
           <p class="listing-footer">
             <button type="submit" class="create-iarc-rating button"
-                    data-api-url="{{ url('content-ratings-list', addon.app_slug)|urlparams(since=now) }}"
-                    data-redirect-url="{{ addon.get_dev_url('ratings') }}">
+                    data-api-url="{{ url('content-ratings-list', webapp.app_slug)|urlparams(since=now) }}"
+                    data-redirect-url="{{ webapp.get_dev_url('ratings') }}">
               {{ _('Create an IARC Ratings Certificate') }}</button>
           </p>
         </form>

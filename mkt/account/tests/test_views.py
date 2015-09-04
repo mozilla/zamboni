@@ -284,29 +284,29 @@ class TestInstalled(RestOAuth):
         eq_(self.anon.get(self.list_url).status_code, 403)
 
     def test_installed(self):
-        ins = Installed.objects.create(user=self.user, addon_id=337141)
+        ins = Installed.objects.create(user=self.user, webapp_id=337141)
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200, res.content)
         data = json.loads(res.content)
         eq_(data['meta']['total_count'], 1)
-        eq_(data['objects'][0]['id'], ins.addon.pk)
+        eq_(data['objects'][0]['id'], ins.webapp.pk)
         eq_(data['objects'][0]['user'],
             {'developed': False, 'purchased': False, 'installed': True})
 
     def test_installed_pagination(self):
-        ins1 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins1 = Installed.objects.create(user=self.user, webapp=app_factory())
         ins1.update(created=self.days_ago(1))
-        ins2 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins2 = Installed.objects.create(user=self.user, webapp=app_factory())
         ins2.update(created=self.days_ago(2))
-        ins3 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins3 = Installed.objects.create(user=self.user, webapp=app_factory())
         ins3.update(created=self.days_ago(3))
         res = self.client.get(self.list_url, {'limit': 2})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
 
         eq_(len(data['objects']), 2)
-        eq_(data['objects'][0]['id'], ins1.addon.id)
-        eq_(data['objects'][1]['id'], ins2.addon.id)
+        eq_(data['objects'][0]['id'], ins1.webapp.id)
+        eq_(data['objects'][1]['id'], ins2.webapp.id)
         eq_(data['meta']['total_count'], 3)
         eq_(data['meta']['limit'], 2)
         eq_(data['meta']['previous'], None)
@@ -320,7 +320,7 @@ class TestInstalled(RestOAuth):
         data = json.loads(res.content)
 
         eq_(len(data['objects']), 1)
-        eq_(data['objects'][0]['id'], ins3.addon.id)
+        eq_(data['objects'][0]['id'], ins3.webapp.id)
         eq_(data['meta']['total_count'], 3)
         eq_(data['meta']['limit'], 2)
         prev = urlparse(data['meta']['previous'])
@@ -331,16 +331,16 @@ class TestInstalled(RestOAuth):
 
     def test_installed_order(self):
         # Should be reverse chronological order.
-        ins1 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins1 = Installed.objects.create(user=self.user, webapp=app_factory())
         ins1.update(created=self.days_ago(1))
-        ins2 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins2 = Installed.objects.create(user=self.user, webapp=app_factory())
         ins2.update(created=self.days_ago(2))
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(len(data['objects']), 2)
-        eq_(data['objects'][0]['id'], ins1.addon.id)
-        eq_(data['objects'][1]['id'], ins2.addon.id)
+        eq_(data['objects'][0]['id'], ins1.webapp.id)
+        eq_(data['objects'][1]['id'], ins2.webapp.id)
 
     def not_there(self):
         res = self.client.get(self.list_url)
@@ -349,11 +349,11 @@ class TestInstalled(RestOAuth):
         eq_(data['meta']['total_count'], 0)
 
     def test_installed_other(self):
-        Installed.objects.create(user_id=10482, addon_id=337141)
+        Installed.objects.create(user_id=10482, webapp_id=337141)
         self.not_there()
 
     def test_installed_reviewer(self):
-        Installed.objects.create(user=self.user, addon_id=337141,
+        Installed.objects.create(user=self.user, webapp_id=337141,
                                  install_type=INSTALL_TYPE_REVIEWER)
         self.not_there()
 
@@ -374,22 +374,22 @@ class TestInstalled(RestOAuth):
         eq_(self.client.get(self.remove_app_url).status_code, 405)
 
     def test_installed_remove_app(self):
-        Installed.objects.create(user=self.user, addon_id=337141)
+        Installed.objects.create(user=self.user, webapp_id=337141)
         app = app_factory()
-        Installed.objects.create(user=self.user, addon=app)
+        Installed.objects.create(user=self.user, webapp=app)
         data = {'app': app.pk}
         res = self.client.post(self.remove_app_url, json.dumps(data))
         eq_(res.status_code, 202)
         # Make sure there are still 2 apps, but we removed one from the
         # installed list...
         eq_(Webapp.objects.count(), 2)
-        eq_(list(self.user.installed_set.values_list('addon_id', flat=True)),
+        eq_(list(self.user.installed_set.values_list('webapp_id', flat=True)),
             [337141])
 
     def test_installed_remove_app_not_user_installed(self):
-        Installed.objects.create(user=self.user, addon_id=337141)
+        Installed.objects.create(user=self.user, webapp_id=337141)
         app = app_factory()
-        Installed.objects.create(user=self.user, addon=app,
+        Installed.objects.create(user=self.user, webapp=app,
                                  install_type=INSTALL_TYPE_REVIEWER)
         data = {'app': app.pk}
         res = self.client.post(self.remove_app_url, json.dumps(data))
@@ -464,7 +464,7 @@ class TestLoginHandler(TestCase):
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()
-        developed_app.addonuser_set.create(user=profile)
+        developed_app.webappuser_set.create(user=profile)
         installed_app = app_factory()
         installed_app.installed.create(user=profile)
 
@@ -582,7 +582,7 @@ class TestFxaLoginHandler(TestCase):
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()
-        developed_app.addonuser_set.create(user=profile)
+        developed_app.webappuser_set.create(user=profile)
         installed_app = app_factory()
         installed_app.installed.create(user=profile)
 

@@ -1,7 +1,7 @@
-{% macro price(request, addon) %}
-  <span class="vital price {% if addon.is_premium() %}premium{% endif %}">
-    {% if addon.is_premium() %}
-      {{ addon.get_tier_name() }}
+{% macro price(request, webapp) %}
+  <span class="vital price {% if webapp.is_premium() %}premium{% endif %}">
+    {% if webapp.is_premium() %}
+      {{ webapp.get_tier_name() }}
     {% else %}
       {{ _('Free') }}
     {% endif %}

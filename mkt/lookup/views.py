@@ -27,7 +27,7 @@ from mkt.account.utils import purchase_list
 from mkt.api.permissions import GroupPermission
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_LOOKUP, SOLITUDE_REFUND_STATUSES)
-from mkt.developers.models import ActivityLog, AddonPaymentAccount
+from mkt.developers.models import ActivityLog, WebappPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import prioritize_app
 from mkt.developers.views_payments import _redirect_to_bango_portal
@@ -36,7 +36,7 @@ from mkt.lookup.forms import (APIFileStatusForm, APIGroupMembershipFormSet,
                               TransactionRefundForm, TransactionSearchForm,
                               PromoImgForm)
 from mkt.lookup.serializers import AppLookupSerializer, WebsiteLookupSerializer
-from mkt.prices.models import AddonPaymentData, Refund
+from mkt.prices.models import WebappPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.search.filters import SearchQueryFilter
@@ -72,11 +72,11 @@ def user_summary(request, user_id):
     appr = req.filter(status=mkt.REFUND_APPROVED_INSTANT)
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
-    user_addons = user.addons.order_by('-created')
-    user_addons = paginate(request, user_addons, per_page=15)
+    user_webapps = user.webapps.order_by('-created')
+    user_webapps = paginate(request, user_webapps, per_page=15)
 
-    payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
-                    .values(*AddonPaymentData.address_fields())
+    payment_data = (WebappPaymentData.objects.filter(webapp__authors=user)
+                    .values(*WebappPaymentData.address_fields())
                     .distinct())
 
     # If the user is deleted, get the log detailing the delete.
@@ -93,7 +93,7 @@ def user_summary(request, user_id):
                   {'account': user, 'app_summary': app_summary,
                    'delete_form': DeleteUserForm(), 'delete_log': delete_log,
                    'is_admin': is_admin, 'refund_summary': refund_summary,
-                   'user_addons': user_addons, 'payment_data': payment_data,
+                   'user_webapps': user_webapps, 'payment_data': payment_data,
                    'provider_portals': provider_portals,
                    'group_membership_formset': group_membership_formset})
 
@@ -178,7 +178,7 @@ def _transaction_summary(tx_uuid):
         'timestamp': pay.get('created'),
 
         # Zamboni data.
-        'app': contrib.addon,
+        'app': contrib.webapp,
         'contrib': contrib,
         'related': contrib.related,
         'type': mkt.CONTRIB_TYPES.get(contrib.type, _('Incomplete')),
@@ -264,11 +264,11 @@ def transaction_refund(request, tx_uuid):
 
 
 @permission_required([('AppLookup', 'View')])
-def app_summary(request, addon_id):
-    if unicode(addon_id).isdigit():
-        query = {'pk': addon_id}
+def app_summary(request, webapp_id):
+    if unicode(webapp_id).isdigit():
+        query = {'pk': webapp_id}
     else:
-        query = {'app_slug': addon_id}
+        query = {'app_slug': webapp_id}
     app = get_object_or_404(Webapp.with_deleted, **query)
 
     if request.FILES:
@@ -285,8 +285,8 @@ def app_summary(request, addon_id):
     if 'prioritize' in request.POST and not app.priority_review:
         prioritize_app(app, request.user)
 
-    authors = (app.authors.filter(addonuser__role__in=(mkt.AUTHOR_ROLE_DEV,
-                                                       mkt.AUTHOR_ROLE_OWNER))
+    authors = (app.authors.filter(webappuser__role__in=(mkt.AUTHOR_ROLE_DEV,
+                                                        mkt.AUTHOR_ROLE_OWNER))
                .order_by('display_name'))
 
     if app.premium and app.premium.price:
@@ -328,8 +328,8 @@ def app_summary(request, addon_id):
 
 
 @permission_required([('WebsiteLookup', 'View')])
-def website_summary(request, addon_id):
-    website = get_object_or_404(Website, pk=addon_id)
+def website_summary(request, webapp_id):
+    website = get_object_or_404(Website, pk=webapp_id)
 
     if request.FILES:
         promo_img_form = PromoImgForm(request.POST, request.FILES)
@@ -350,8 +350,8 @@ def website_summary(request, addon_id):
 
 
 @permission_required([('WebsiteLookup', 'View')])
-def website_edit(request, addon_id):
-    website = get_object_or_404(Website, pk=addon_id)
+def website_edit(request, webapp_id):
+    website = get_object_or_404(Website, pk=webapp_id)
     form = WebsiteForm(request.POST or None, request=request, instance=website)
 
     if request.method == 'POST' and form.is_valid():
@@ -367,9 +367,9 @@ def website_edit(request, addon_id):
 
 
 @permission_required([('AccountLookup', 'View')])
-def app_activity(request, addon_id):
+def app_activity(request, webapp_id):
     """Shows the app activity age for single app."""
-    app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
+    app = get_object_or_404(Webapp.with_deleted, pk=webapp_id)
 
     user_items = ActivityLog.objects.for_apps([app]).exclude(
         action__in=mkt.LOG_HIDE_DEVELOPER)
@@ -534,13 +534,13 @@ def _app_summary(user_id):
     return summary
 
 
-def _app_purchases_and_refunds(addon):
+def _app_purchases_and_refunds(webapp):
     purchases = {}
     now = datetime.now()
     base_qs = (Contribution.objects.values('currency')
                            .annotate(total=Count('id'),
                                      amount=Sum('amount'))
-                           .filter(addon=addon)
+                           .filter(webapp=webapp)
                            .exclude(type__in=[mkt.CONTRIB_REFUND,
                                               mkt.CONTRIB_CHARGEBACK,
                                               mkt.CONTRIB_PENDING]))
@@ -557,7 +557,7 @@ def _app_purchases_and_refunds(addon):
                                       for s in sums if s['currency']]}
     refunds = {}
     rejected_q = Q(status=mkt.REFUND_DECLINED) | Q(status=mkt.REFUND_FAILED)
-    qs = Refund.objects.filter(contribution__addon=addon)
+    qs = Refund.objects.filter(contribution__webapp=webapp)
 
     refunds['requested'] = qs.exclude(rejected_q).count()
     percent = 0.0
@@ -588,20 +588,20 @@ def get_payment_provider_portals(app=None, user=None):
     """
     provider_portals = []
     if app:
-        q = dict(addon=app)
+        q = dict(webapp=app)
     elif user:
         q = dict(payment_account__user=user)
     else:
         raise ValueError('user or app is required')
 
-    for acct in (AddonPaymentAccount.objects.filter(**q)
+    for acct in (WebappPaymentAccount.objects.filter(**q)
                  .select_related('payment_account')):
         provider = get_provider(id=acct.payment_account.provider)
-        portal_url = provider.get_portal_url(acct.addon.app_slug)
+        portal_url = provider.get_portal_url(acct.webapp.app_slug)
         if portal_url:
             provider_portals.append({
                 'provider': provider,
-                'app': acct.addon,
+                'app': acct.webapp,
                 'portal_url': portal_url,
                 'payment_account': acct.payment_account
             })

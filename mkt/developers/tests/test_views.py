@@ -30,7 +30,7 @@ from mkt.developers.views import (_filter_transactions, _get_transactions,
                                   content_ratings, content_ratings_edit)
 from mkt.files.models import File, FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
-from mkt.prices.models import AddonPremium, Price
+from mkt.prices.models import WebappPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -42,7 +42,8 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonDeviceType, AddonUpsell, AddonUser, Webapp
+from mkt.webapps.models import (WebappDeviceType, WebappUpsell, WebappUser,
+                                Webapp)
 from mkt.zadmin.models import get_config, set_config
 
 
@@ -54,14 +55,15 @@ class AppHubTest(mkt.site.tests.TestCase):
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.login(self.user.email)
 
-    def clone_addon(self, num, addon_id=337141):
+    def clone_webapp(self, num, webapp_id=337141):
         ids = []
         for i in xrange(num):
-            addon = Webapp.objects.get(id=addon_id)
-            new_addon = Webapp.objects.create(
-                status=addon.status, name='cloned-addon-%s-%s' % (addon_id, i))
-            AddonUser.objects.create(user=self.user, addon=new_addon)
-            ids.append(new_addon.id)
+            webapp = Webapp.objects.get(id=webapp_id)
+            new_webapp = Webapp.objects.create(
+                status=webapp.status, name='cloned-addon-%s-%s' % (webapp_id,
+                                                                   i))
+            WebappUser.objects.create(user=self.user, webapp=new_webapp)
+            ids.append(new_webapp.id)
         return ids
 
     def get_app(self):
@@ -147,7 +149,7 @@ class TestAppDashboard(AppHubTest):
 
     def test_packaged_version(self):
         app = self.get_app()
-        version = Version.objects.create(addon=app, version='1.23')
+        version = Version.objects.create(webapp=app, version='1.23')
         app.update(_current_version=version, is_packaged=True)
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.item[data-addonid="%s"] .item-current-version' % app.id
@@ -160,7 +162,7 @@ class TestAppDashboard(AppHubTest):
 
         app = self.get_app()
         app.update(is_packaged=True)
-        Version.objects.create(addon=app, version='1.24')
+        Version.objects.create(webapp=app, version='1.24')
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.item[data-addonid="%s"] .item-latest-version' % app.id
                 ).text(),
@@ -170,7 +172,7 @@ class TestAppDashboard(AppHubTest):
         self.create_switch('view-transactions')
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,
-                   premium_type=mkt.ADDON_PREMIUM_INAPP)
+                   premium_type=mkt.WEBAPP_PREMIUM_INAPP)
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
@@ -203,14 +205,14 @@ class TestAppDashboardSorting(AppHubTest):
 
     def setUp(self):
         super(TestAppDashboardSorting, self).setUp()
-        self.my_apps = self.user.addons
+        self.my_apps = self.user.webapps
         self.url = reverse('mkt.developers.apps')
         self.clone(3)
 
     def clone(self, num=3):
         for x in xrange(num):
             app = app_factory()
-            AddonUser.objects.create(addon=app, user=self.user)
+            WebappUser.objects.create(webapp=app, user=self.user)
 
     def test_pagination(self):
         doc = pq(self.client.get(self.url).content)('#dashboard')
@@ -236,7 +238,7 @@ class TestAppDashboardSorting(AppHubTest):
         sel = pq(r.content)('#sorter ul > li.selected')
         eq_(sel.find('a').attr('class'), sel_class)
         eq_(r.context['sorting'], sort)
-        a = list(r.context['addons'].object_list)
+        a = list(r.context['webapps'].object_list)
         if key:
             eq_(a, sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
         return a
@@ -265,7 +267,7 @@ class TestDevRequired(AppHubTest):
         self.post_url = self.webapp.get_dev_url('payments.disable')
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.login(self.user.email)
-        self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
+        self.au = WebappUser.objects.get(user=self.user, webapp=self.webapp)
         eq_(self.au.role, mkt.AUTHOR_ROLE_OWNER)
         self.make_price()
 
@@ -307,11 +309,11 @@ class TestMarketplace(mkt.site.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Webapp.objects.get(id=337141)
-        self.addon.update(status=mkt.STATUS_PUBLIC,
-                          highest_status=mkt.STATUS_PUBLIC)
+        self.webapp = Webapp.objects.get(id=337141)
+        self.webapp.update(status=mkt.STATUS_PUBLIC,
+                           highest_status=mkt.STATUS_PUBLIC)
 
-        self.url = self.addon.get_dev_url('payments')
+        self.url = self.webapp.get_dev_url('payments')
         self.login('steamcube@mozilla.com')
 
     def get_price_regions(self, price):
@@ -320,12 +322,13 @@ class TestMarketplace(mkt.site.tests.TestCase):
     def setup_premium(self):
         self.price = Price.objects.get(pk=1)
         self.price_two = Price.objects.get(pk=3)
-        self.other_addon = Webapp.objects.create(premium_type=mkt.ADDON_FREE)
-        self.other_addon.update(status=mkt.STATUS_PUBLIC)
-        AddonUser.objects.create(addon=self.other_addon,
-                                 user=self.addon.authors.all()[0])
-        AddonPremium.objects.create(addon=self.addon, price_id=self.price.pk)
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.other_webapp = Webapp.objects.create(premium_type=mkt.WEBAPP_FREE)
+        self.other_webapp.update(status=mkt.STATUS_PUBLIC)
+        WebappUser.objects.create(webapp=self.other_webapp,
+                                  user=self.webapp.authors.all()[0])
+        WebappPremium.objects.create(webapp=self.webapp,
+                                     price_id=self.price.pk)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         self.paid_regions = self.get_price_regions(self.price)
         self.paid_regions_two = self.get_price_regions(self.price_two)
 
@@ -335,15 +338,15 @@ class TestMarketplace(mkt.site.tests.TestCase):
             'form-INITIAL_FORMS': 0,
             'form-MAX_NUM_FORMS': 0,
             'price': self.price.pk,
-            'upsell_of': self.other_addon.pk,
+            'upsell_of': self.other_webapp.pk,
             'regions': mkt.regions.REGION_IDS,
         }
         data.update(kw)
         return data
 
     def test_initial_free(self):
-        AddonDeviceType.objects.create(
-            addon=self.addon, device_type=mkt.DEVICE_GAIA.id)
+        WebappDeviceType.objects.create(
+            webapp=self.webapp, device_type=mkt.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert 'Change to Paid' in res.content
@@ -361,40 +364,41 @@ class TestMarketplace(mkt.site.tests.TestCase):
             self.url, data=self.get_data(price=self.price_two.pk,
                                          regions=self.paid_regions_two))
         eq_(res.status_code, 302)
-        self.addon = Webapp.objects.get(pk=self.addon.pk)
-        eq_(self.addon.addonpremium.price, self.price_two)
+        self.webapp = Webapp.objects.get(pk=self.webapp.pk)
+        eq_(self.webapp.webapppremium.price, self.price_two)
 
     def test_set_upsell(self):
         self.setup_premium()
         res = self.client.post(self.url,
                                data=self.get_data(regions=self.paid_regions))
         eq_(res.status_code, 302)
-        eq_(len(self.addon._upsell_to.all()), 1)
+        eq_(len(self.webapp._upsell_to.all()), 1)
 
     def test_remove_upsell(self):
         self.setup_premium()
-        upsell = AddonUpsell.objects.create(
-            free=self.other_addon, premium=self.addon)
-        eq_(self.addon._upsell_to.all()[0], upsell)
+        upsell = WebappUpsell.objects.create(
+            free=self.other_webapp, premium=self.webapp)
+        eq_(self.webapp._upsell_to.all()[0], upsell)
         self.client.post(self.url,
                          data=self.get_data(upsell_of='',
                                             regions=self.paid_regions))
-        eq_(len(self.addon._upsell_to.all()), 0)
+        eq_(len(self.webapp._upsell_to.all()), 0)
 
     def test_replace_upsell(self):
         self.setup_premium()
         # Make this add-on an upsell of some free add-on.
-        upsell = AddonUpsell.objects.create(free=self.other_addon,
-                                            premium=self.addon)
+        upsell = WebappUpsell.objects.create(free=self.other_webapp,
+                                             premium=self.webapp)
         # And this will become our new upsell, replacing the one above.
-        new = Webapp.objects.create(premium_type=mkt.ADDON_FREE,
+        new = Webapp.objects.create(premium_type=mkt.WEBAPP_FREE,
                                     status=mkt.STATUS_PUBLIC)
-        AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
+        WebappUser.objects.create(webapp=new,
+                                  user=self.webapp.authors.all()[0])
 
-        eq_(self.addon._upsell_to.all()[0], upsell)
+        eq_(self.webapp._upsell_to.all()[0], upsell)
         self.client.post(self.url, self.get_data(upsell_of=new.id,
                                                  regions=self.paid_regions))
-        upsell = self.addon._upsell_to.all()
+        upsell = self.webapp._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
 
@@ -424,7 +428,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         })
 
     def test_logout(self):
-        File.objects.filter(version__addon=self.app).update(
+        File.objects.filter(version__webapp=self.app).update(
             status=mkt.STATUS_APPROVED)
         self.client.logout()
         res = self.post()
@@ -444,7 +448,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         """ Test publishing the latest, approved version when the app is
         already public, with a current version also already public. """
         eq_(self.app.status, mkt.STATUS_PUBLIC)
-        ver = version_factory(addon=self.app, version='2.0',
+        ver = version_factory(webapp=self.app, version='2.0',
                               file_kw=dict(status=mkt.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
         ok_(self.app.current_version != ver)
@@ -473,7 +477,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         """ Test publishing the latest, approved version when the app is
         unlisted, with a current version also already public. """
         self.app.update(status=mkt.STATUS_UNLISTED)
-        ver = version_factory(addon=self.app, version='2.0',
+        ver = version_factory(webapp=self.app, version='2.0',
                               file_kw=dict(status=mkt.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
         ok_(self.app.current_version != ver)
@@ -534,7 +538,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         """ Test publishing when the only version of the app is approved
         doesn't change the app status. """
         self.app.update(status=mkt.STATUS_APPROVED)
-        File.objects.filter(version__addon=self.app).update(
+        File.objects.filter(version__webapp=self.app).update(
             status=mkt.STATUS_APPROVED)
         eq_(self.app.current_version, self.app.latest_version)
 
@@ -563,7 +567,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         """ Test publishing a version of an unlisted app when the only
         version of the app is approved. """
         self.app.update(status=mkt.STATUS_UNLISTED, _current_version=None)
-        File.objects.filter(version__addon=self.app).update(
+        File.objects.filter(version__webapp=self.app).update(
             status=mkt.STATUS_APPROVED)
 
         index_webapps.delay.reset_mock()
@@ -589,7 +593,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
     def test_publicise_version_pending(self, update_name, update_locales,
                                        update_cached_manifests, index_webapps):
         """ Test publishing a pending version isn't allowed. """
-        ver = version_factory(addon=self.app, version='2.0',
+        ver = version_factory(webapp=self.app, version='2.0',
                               file_kw=dict(status=mkt.STATUS_PENDING))
         res = self.post()
         eq_(res.status_code, 302)
@@ -599,7 +603,7 @@ class TestPubliciseVersion(mkt.site.tests.TestCase):
         assert not update_locales.called
 
     def test_status(self):
-        File.objects.filter(version__addon=self.app).update(
+        File.objects.filter(version__webapp=self.app).update(
             status=mkt.STATUS_APPROVED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
@@ -673,11 +677,11 @@ class TestResumeStep(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.webapp = self.get_addon()
+        self.webapp = self.get_webapp()
         self.url = reverse('submit.app.resume', args=[self.webapp.app_slug])
         self.login('steamcube@mozilla.com')
 
-    def get_addon(self):
+    def get_webapp(self):
         return Webapp.objects.get(pk=337141)
 
     def test_no_step_redirect(self):
@@ -685,14 +689,14 @@ class TestResumeStep(mkt.site.tests.TestCase):
         self.assert3xx(r, self.webapp.get_dev_url('edit'), 302)
 
     def test_step_redirects(self):
-        AppSubmissionChecklist.objects.create(addon=self.webapp,
+        AppSubmissionChecklist.objects.create(webapp=self.webapp,
                                               terms=True, manifest=True)
         r = self.client.get(self.url, follow=True)
         self.assert3xx(r, reverse('submit.app.details',
                                   args=[self.webapp.app_slug]))
 
     def test_no_resume_when_done(self):
-        AppSubmissionChecklist.objects.create(addon=self.webapp,
+        AppSubmissionChecklist.objects.create(webapp=self.webapp,
                                               terms=True, manifest=True,
                                               details=True)
         r = self.client.get(self.webapp.get_dev_url('edit'), follow=True)
@@ -882,7 +886,7 @@ class TestUploadDetail(BaseUploadTest):
     @contextmanager
     def file(self, name):
         fn = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                          'addons', name)
+                          'webapps', name)
         with open(fn, 'rb') as fp:
             yield fp
 
@@ -1244,14 +1248,14 @@ class TestTransactionList(mkt.site.tests.TestCase):
         self.apps = [app_factory(), app_factory()]
         self.user = UserProfile.objects.get(id=999)
         for app in self.apps:
-            AddonUser.objects.create(addon=app, user=self.user)
+            WebappUser.objects.create(webapp=app, user=self.user)
 
         # Set up transactions.
-        tx0 = Contribution.objects.create(addon=self.apps[0],
+        tx0 = Contribution.objects.create(webapp=self.apps[0],
                                           type=mkt.CONTRIB_PURCHASE,
                                           user=self.user,
                                           uuid=12345)
-        tx1 = Contribution.objects.create(addon=self.apps[1],
+        tx1 = Contribution.objects.create(webapp=self.apps[1],
                                           type=mkt.CONTRIB_REFUND,
                                           user=self.user,
                                           uuid=67890)
@@ -1269,7 +1273,7 @@ class TestTransactionList(mkt.site.tests.TestCase):
         r = RequestFactory().get(self.url)
         r.user = self.user
         transactions = _get_transactions(r)[1]
-        self.assertSetEqual([tx.addon for tx in transactions], self.apps)
+        self.assertSetEqual([tx.webapp for tx in transactions], self.apps)
 
     def test_filter(self):
         """For each field in the form, run it through view and check results.
@@ -1280,8 +1284,8 @@ class TestTransactionList(mkt.site.tests.TestCase):
         self.do_filter(self.txs)
         self.do_filter(self.txs, transaction_type='None', app='oshawott')
 
-        self.do_filter([tx0], app=tx0.addon.id)
-        self.do_filter([tx1], app=tx1.addon.id)
+        self.do_filter([tx0], app=tx0.webapp.id)
+        self.do_filter([tx1], app=tx1.webapp.id)
 
         self.do_filter([tx0], transaction_type=tx0.type)
         self.do_filter([tx1], transaction_type=tx1.type)

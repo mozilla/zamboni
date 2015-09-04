@@ -34,7 +34,7 @@ def get_product_jwt(product, contribution):
     if not simulation and not product_data.get('public_id'):
         raise ValueError(
             'Cannot create JWT without a cached public_id for '
-            'app {a}'.format(a=product.addon()))
+            'app {a}'.format(a=product.webapp()))
 
     token_data = {
         'iss': settings.APP_PURCHASE_KEY,
@@ -76,59 +76,59 @@ class WebAppProduct(object):
     """Binding layer to pass a web app into a JWT producer"""
 
     def __init__(self, webapp):
-        self.webapp = webapp
+        self._webapp = webapp
 
     def id(self):
-        return self.webapp.pk
+        return self._webapp.pk
 
     def external_id(self):
-        return make_external_id(self.webapp)
+        return make_external_id(self._webapp)
 
     def name(self):
-        return self.webapp.name
+        return self._webapp.name
 
     def default_locale(self):
-        return self.webapp.default_locale
+        return self._webapp.default_locale
 
     def localized_properties(self):
         props = {}
 
         for attr in ('name', 'description'):
-            tr_object = getattr(self.webapp, attr)
+            tr_object = getattr(self._webapp, attr)
             for tr in Translation.objects.filter(id=tr_object.id):
                 props.setdefault(tr.locale, {})
                 props[tr.locale][attr] = tr.localized_string
 
         return props
 
-    def addon(self):
-        return self.webapp
+    def webapp(self):
+        return self._webapp
 
     def simulation(self):
         return None
 
     def price(self):
-        return self.webapp.premium.price
+        return self._webapp.premium.price
 
     def icons(self):
         icons = {}
         for size in mkt.CONTENT_ICON_SIZES:
-            icons[str(size)] = absolutify(self.webapp.get_icon_url(size))
+            icons[str(size)] = absolutify(self._webapp.get_icon_url(size))
 
         return icons
 
     def description(self):
-        return self.webapp.description
+        return self._webapp.description
 
     def application_size(self):
-        return self.webapp.current_version.all_files[0].size
+        return self._webapp.current_version.all_files[0].size
 
     def product_data(self, contribution):
         data = {
-            'addon_id': self.webapp.pk,
+            'webapp_id': self._webapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
-            'public_id': self.addon().solitude_public_id,
+            'public_id': self.webapp().solitude_public_id,
         }
         if contribution.user:
             data['buyer_email'] = contribution.user.email
@@ -159,7 +159,7 @@ class InAppProduct(object):
         # TODO: implement localization for in-app products. bug 972886
         return {}
 
-    def addon(self):
+    def webapp(self):
         return self.inapp.webapp
 
     def simulation(self):
@@ -187,11 +187,11 @@ class InAppProduct(object):
 
     def product_data(self, contribution):
         return {
-            'addon_id': self.inapp.webapp.pk,
+            'webapp_id': self.inapp.webapp.pk,
             'inapp_id': self.inapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
-            'public_id': self.addon().solitude_public_id,
+            'public_id': self.webapp().solitude_public_id,
         }
 
 
@@ -202,7 +202,7 @@ class SimulatedInAppProduct(InAppProduct):
         if not self.inapp.simulate:
             raise ValueError('This product cannot be simulated')
 
-    def addon(self):
+    def webapp(self):
         return None
 
     def description(self):

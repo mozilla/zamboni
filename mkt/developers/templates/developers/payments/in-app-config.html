@@ -2,16 +2,16 @@
 {% from 'developers/includes/macros.html' import required %}
 
 {% set title = _('In-App Payments Keys') %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
-{% set can_edit = check_addon_ownership(request, addon) %}
+{% set can_edit = check_webapp_ownership(request, webapp) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('in_app_payments'), _('In-App Payments')), (None, title)]) }}
+    {{ hub_breadcrumbs(webapp, items=[(webapp.get_dev_url('in_app_payments'), _('In-App Payments')), (None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 
@@ -39,7 +39,7 @@
             <th class="label">{{ _('Application Secret') }}</th>
             {% if seller_config %}
               <td>
-                <button data-url="{{ url('mkt.developers.apps.in_app_secret', addon.app_slug) }}"
+                <button data-url="{{ url('mkt.developers.apps.in_app_secret', webapp.app_slug) }}"
                         class="generator">{{ _('Show secret') }}</button>
                 <input type="text" class="secret" type="text" value="" readonly>
               </td>

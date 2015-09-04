@@ -32,7 +32,7 @@ class Command(BaseCommand):
     help = HELP
 
     def handle(self, *args, **kwargs):
-        files = File.objects.filter(version__addon__is_packaged=True)
+        files = File.objects.filter(version__webapp__is_packaged=True)
         if kwargs.get('status'):
             files = files.filter(status=statuses[kwargs['status']])
 
