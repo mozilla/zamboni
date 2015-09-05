@@ -2,8 +2,8 @@
    but we're still using legacy styles. One step at a time. #}
 {% extends 'base.html' %}
 
-{% if addon %}
-  {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+{% if webapp %}
+  {% set editable = "no-edit" if not check_webapp_ownership(request, webapp, dev=True) %}
 {% endif %}
 {% block bodyclass %}apps {{ editable }}{% endblock %}
 
@@ -11,7 +11,7 @@
 {% set hide_header = True %}
 
 {% block bodyattrs %}
-{% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
+{% if webapp %}data-default-locale="{{ webapp.default_locale|lower }}"{% endif %}
 {% endblock %}
 
 {% block title %}{{ hub_page_title() }}{% endblock %}

@@ -1,6 +1,6 @@
 <script type="text/template" id="account-list-template">
   <section class="account-list loading"
-           data-accounts-url="{{ url('mkt.developers.provider.payment_accounts') }}?app-slug={{ addon.app_slug }}">
+           data-accounts-url="{{ url('mkt.developers.provider.payment_accounts') }}?app-slug={{ webapp.app_slug }}">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Payment Accounts') }}</h2>

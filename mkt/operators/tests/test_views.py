@@ -26,7 +26,7 @@ class TestPreloadCandidates(mkt.site.tests.TestCase):
         self.app = app_factory()
 
     def _preload_factory(self):
-        return PreloadTestPlan.objects.create(addon=app_factory(),
+        return PreloadTestPlan.objects.create(webapp=app_factory(),
                                               filename='tstpn')
 
     def test_preloads(self):

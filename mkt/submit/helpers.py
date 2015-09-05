@@ -22,7 +22,7 @@ def del_by_key(data, delete):
 
 
 @register.function
-def progress(request, addon, step):
+def progress(request, webapp, step):
     steps = list(mkt.APP_STEPS)
 
     completed = []
@@ -31,9 +31,9 @@ def progress(request, addon, step):
     # if request.user.read_dev_agreement:
     #    steps = del_by_key(steps, 'terms')
 
-    if addon:
+    if webapp:
         try:
-            completed = addon.appsubmissionchecklist.get_completed()
+            completed = webapp.appsubmissionchecklist.get_completed()
         except AppSubmissionChecklist.DoesNotExist:
             pass
 

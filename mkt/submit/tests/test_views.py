@@ -25,7 +25,8 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserNotification, UserProfile
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import AddonDeviceType, AddonUser, AppFeatures, Webapp
+from mkt.webapps.models import (WebappDeviceType, WebappUser, AppFeatures,
+                                Webapp)
 
 
 class TestSubmit(TestCase):
@@ -229,7 +230,7 @@ class TestManifest(TestSubmit):
         self._test_progress_display(['terms'], 'manifest')
 
 
-class UploadAddon(object):
+class UploadWebapp(object):
 
     def post(self, expect_errors=False, data=None):
         if data is None:
@@ -244,7 +245,7 @@ class UploadAddon(object):
         return response
 
 
-class BaseWebAppTest(BaseUploadTest, UploadAddon, TestCase):
+class BaseWebAppTest(BaseUploadTest, UploadWebapp, TestCase):
     fixtures = fixture('user_999', 'user_10482')
 
     def setUp(self):
@@ -257,7 +258,7 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, TestCase):
         self.url = reverse('submit.app')
         self.login('regular@mozilla.com')
 
-    def post_addon(self, data=None):
+    def post_webapp(self, data=None):
         eq_(Webapp.objects.count(), 0)
         self.post(data=data)
         return Webapp.objects.get()
@@ -275,7 +276,7 @@ class TestCreateWebApp(BaseWebAppTest):
             'The fetch_icon task was expected to be called')
 
     def test_no_hint(self):
-        self.post_addon()
+        self.post_webapp()
         self.upload = self.get_upload(abspath=self.manifest)
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
                              dict(manifest=self.manifest_url), follow=True)
@@ -302,7 +303,7 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_hint_for_same_manifest(self):
         self.create_switch(name='webapps-unique-by-domain')
-        self.post_addon()
+        self.post_webapp()
         self.upload = self.get_upload(abspath=self.manifest)
         r = self.client.post(reverse('mkt.developers.upload_manifest'),
                              dict(manifest=self.manifest_url))
@@ -312,7 +313,7 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_no_hint_for_same_manifest_different_author(self):
         self.create_switch(name='webapps-unique-by-domain')
-        self.post_addon()
+        self.post_webapp()
 
         # Submit same manifest as different user.
         self.login('clouserw@mozilla.com')
@@ -326,59 +327,59 @@ class TestCreateWebApp(BaseWebAppTest):
             'allowed.')
 
     def test_app_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.is_packaged, False)
-        assert addon.guid is not None, (
+        webapp = self.post_webapp()
+        eq_(webapp.is_packaged, False)
+        assert webapp.guid is not None, (
             'Expected app to have a UUID assigned to guid')
-        eq_(unicode(addon.name), u'MozillaBall ょ')
-        eq_(addon.app_slug, u'mozillaball-ょ')
-        eq_(addon.description, u'Exciting Open Web development action!')
-        eq_(addon.manifest_url, u'http://allizom.org/mozball.webapp')
-        eq_(addon.app_domain, u'http://allizom.org')
-        eq_(Translation.objects.get(id=addon.description.id, locale='it'),
+        eq_(unicode(webapp.name), u'MozillaBall ょ')
+        eq_(webapp.app_slug, u'mozillaball-ょ')
+        eq_(webapp.description, u'Exciting Open Web development action!')
+        eq_(webapp.manifest_url, u'http://allizom.org/mozball.webapp')
+        eq_(webapp.app_domain, u'http://allizom.org')
+        eq_(Translation.objects.get(id=webapp.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        eq_(addon.latest_version.developer_name, 'Mozilla Labs')
-        eq_(addon.latest_version.manifest,
+        eq_(webapp.latest_version.developer_name, 'Mozilla Labs')
+        eq_(webapp.latest_version.manifest,
             json.loads(open(self.manifest).read()))
 
     def test_manifest_with_any_extension(self):
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
-                                     'tests', 'addons', 'mozball.owa')
+                                     'tests', 'webapps', 'mozball.owa')
         self.upload = self.get_upload(abspath=self.manifest,
                                       user=UserProfile.objects.get(pk=999))
-        addon = self.post_addon()
-        ok_(addon.id)
+        webapp = self.post_webapp()
+        ok_(webapp.id)
 
     def test_version_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        eq_(addon.latest_version.version, '1.0')
+        webapp = self.post_webapp()
+        eq_(webapp.latest_version.version, '1.0')
 
     def test_file_from_uploaded_manifest(self):
-        addon = self.post_addon()
-        files = addon.latest_version.files.all()
+        webapp = self.post_webapp()
+        files = webapp.latest_version.files.all()
         eq_(len(files), 1)
         eq_(files[0].status, mkt.STATUS_PENDING)
 
     def test_set_platform(self):
-        app = self.post_addon(
+        app = self.post_webapp(
             {'free_platforms': ['free-android-tablet', 'free-desktop']})
         self.assertSetEqual(app.device_types,
                             [mkt.DEVICE_TABLET, mkt.DEVICE_DESKTOP])
 
     def test_free(self):
-        app = self.post_addon({'free_platforms': ['free-firefoxos']})
+        app = self.post_webapp({'free_platforms': ['free-firefoxos']})
         self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
-        eq_(app.premium_type, mkt.ADDON_FREE)
+        eq_(app.premium_type, mkt.WEBAPP_FREE)
 
     def test_premium(self):
-        app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
+        app = self.post_webapp({'paid_platforms': ['paid-firefoxos']})
         self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
-        eq_(app.premium_type, mkt.ADDON_PREMIUM)
+        eq_(app.premium_type, mkt.WEBAPP_PREMIUM)
 
     def test_supported_locales(self):
-        addon = self.post_addon()
-        eq_(addon.default_locale, 'en-US')
-        eq_(addon.versions.latest().supported_locales, 'es,it')
+        webapp = self.post_webapp()
+        eq_(webapp.default_locale, 'en-US')
+        eq_(webapp.versions.latest().supported_locales, 'es,it')
 
     def test_short_locale(self):
         # This manifest has a locale code of "zh" which is in the
@@ -386,9 +387,9 @@ class TestCreateWebApp(BaseWebAppTest):
         self.manifest = self.manifest_path('short-locale.webapp')
         self.upload = self.get_upload(abspath=self.manifest,
                                       user=UserProfile.objects.get(pk=999))
-        addon = self.post_addon()
-        eq_(addon.default_locale, 'zh-CN')
-        eq_(addon.versions.latest().supported_locales, 'es')
+        webapp = self.post_webapp()
+        eq_(webapp.default_locale, 'zh-CN')
+        eq_(webapp.versions.latest().supported_locales, 'es')
 
     def test_unsupported_detail_locale(self):
         # This manifest has a locale code of "en-CA" which is unsupported, so
@@ -396,16 +397,16 @@ class TestCreateWebApp(BaseWebAppTest):
         self.manifest = self.manifest_path('unsupported-default-locale.webapp')
         self.upload = self.get_upload(abspath=self.manifest,
                                       user=UserProfile.objects.get(pk=999))
-        addon = self.post_addon()
-        eq_(addon.default_locale, 'en-US')
-        eq_(addon.versions.latest().supported_locales, 'es,it')
+        webapp = self.post_webapp()
+        eq_(webapp.default_locale, 'en-US')
+        eq_(webapp.versions.latest().supported_locales, 'es,it')
 
     def test_appfeatures_creation(self):
-        addon = self.post_addon(data={
+        webapp = self.post_webapp(data={
             'free_platforms': ['free-desktop'],
             'has_contacts': 'on'
         })
-        features = addon.latest_version.features
+        features = webapp.latest_version.features
         ok_(isinstance(features, AppFeatures))
         field_names = [f.name for f in AppFeaturesForm().all_fields()]
         for field in field_names:
@@ -477,7 +478,7 @@ class SetupFilesMixin(MktPaths):
                          dst_storage=public_storage)
 
 
-class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadAddon,
+class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadWebapp,
                           TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
@@ -500,7 +501,7 @@ class BasePackagedAppTest(SetupFilesMixin, BaseUploadTest, UploadAddon,
     def package(self):
         return self.packaged_app_path('mozball.zip')
 
-    def post_addon(self, data=None):
+    def post_webapp(self, data=None):
         eq_(Webapp.objects.count(), 1)
         self.post(data=data)
         return Webapp.objects.order_by('-id')[0]
@@ -554,20 +555,20 @@ class TestCreatePackagedApp(BasePackagedAppTest):
     @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
     @mock.patch('mkt.submit.forms.verify_app_domain')
     def test_app_from_uploaded_package(self, _verify, _mock):
-        addon = self.post_addon(
+        webapp = self.post_webapp(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
-        eq_(addon.latest_version.version, '1.0')
-        eq_(addon.is_packaged, True)
-        assert addon.guid is not None, (
+        eq_(webapp.latest_version.version, '1.0')
+        eq_(webapp.is_packaged, True)
+        assert webapp.guid is not None, (
             'Expected app to have a UUID assigned to guid')
-        eq_(unicode(addon.name), u'Packaged MozillaBall ょ')
-        eq_(addon.app_slug, u'packaged-mozillaball-ょ')
-        eq_(addon.description, u'Exciting Open Web development action!')
-        eq_(addon.manifest_url, None)
-        eq_(addon.app_domain, 'app://hy.fr')
-        eq_(Translation.objects.get(id=addon.description.id, locale='it'),
+        eq_(unicode(webapp.name), u'Packaged MozillaBall ょ')
+        eq_(webapp.app_slug, u'packaged-mozillaball-ょ')
+        eq_(webapp.description, u'Exciting Open Web development action!')
+        eq_(webapp.manifest_url, None)
+        eq_(webapp.app_domain, 'app://hy.fr')
+        eq_(Translation.objects.get(id=webapp.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        eq_(addon.latest_version.developer_name, 'Mozilla Labs')
+        eq_(webapp.latest_version.developer_name, 'Mozilla Labs')
 
         assert _verify.called, (
             '`verify_app_domain` should be called for packaged apps with '
@@ -620,16 +621,16 @@ class TestDetails(TestSubmit):
     def _step(self):
         self.user.update(read_dev_agreement=datetime.datetime.now())
         self.cl = AppSubmissionChecklist.objects.create(
-            addon=self.webapp,
+            webapp=self.webapp,
             terms=True, manifest=True)
 
         # Associate app with user.
-        AddonUser.objects.create(addon=self.webapp, user=self.user)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user)
 
         # Associate device type with app.
         self.dtype = DEVICE_TYPES.values()[0]
-        AddonDeviceType.objects.create(addon=self.webapp,
-                                       device_type=self.dtype.id)
+        WebappDeviceType.objects.create(webapp=self.webapp,
+                                        device_type=self.dtype.id)
         self.device_types = [self.dtype]
 
         # Associate category with app.
@@ -700,7 +701,7 @@ class TestDetails(TestSubmit):
     def check_dict(self, data=None, expected=None):
         if data is None:
             data = self.get_dict()
-        addon = self.get_webapp()
+        webapp = self.get_webapp()
 
         # Build a dictionary of expected results.
         expected_data = {
@@ -714,11 +715,11 @@ class TestDetails(TestSubmit):
             expected_data.update(expected)
 
         uses_flash = expected_data.pop('uses_flash')
-        eq_(addon.latest_version.all_files[0].uses_flash, uses_flash)
-        self.assertSetEqual(addon.device_types, self.device_types)
+        eq_(webapp.latest_version.all_files[0].uses_flash, uses_flash)
+        self.assertSetEqual(webapp.device_types, self.device_types)
 
         for field, expected in expected_data.iteritems():
-            got = unicode(getattr(addon, field))
+            got = unicode(getattr(webapp, field))
             expected = unicode(expected)
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
@@ -760,7 +761,7 @@ class TestDetails(TestSubmit):
         """
         self._step()
 
-        AddonDeviceType.objects.all().delete()
+        WebappDeviceType.objects.all().delete()
         self.device_types = mkt.DEVICE_TYPES.values()
 
         data = self.get_dict()
@@ -997,11 +998,11 @@ class TestDone(TestSubmit):
         return Webapp.objects.get(id=337141)
 
     def _step(self, **kw):
-        data = dict(addon=self.webapp, terms=True, manifest=True,
+        data = dict(webapp=self.webapp, terms=True, manifest=True,
                     details=True)
         data.update(kw)
         self.cl = AppSubmissionChecklist.objects.create(**data)
-        AddonUser.objects.create(addon=self.webapp, user=self.user)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user)
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -1029,11 +1030,11 @@ class TestNextSteps(TestCase):
         self.url = reverse('submit.app.done', args=[self.webapp.app_slug])
 
     def test_200(self, **kw):
-        data = dict(addon=self.webapp, terms=True, manifest=True,
+        data = dict(webapp=self.webapp, terms=True, manifest=True,
                     details=True)
         data.update(kw)
         self.cl = AppSubmissionChecklist.objects.create(**data)
-        AddonUser.objects.create(addon=self.webapp, user=self.user)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user)
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

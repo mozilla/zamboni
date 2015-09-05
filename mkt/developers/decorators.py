@@ -20,11 +20,12 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
         @app_view
         @login_required
         @functools.wraps(f)
-        def wrapper(request, addon, *args, **kw):
+        def wrapper(request, webapp, *args, **kw):
             from mkt.submit.views import _resume
 
             def fun():
-                return f(request, addon_id=addon.id, addon=addon, *args, **kw)
+                return f(request, webapp_id=webapp.id, webapp=webapp,
+                         *args, **kw)
 
             if allow_editors and acl.check_reviewer(request):
                 return fun()
@@ -36,31 +37,33 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
 
             if support:
                 # Let developers and support people do their thangs.
-                if (acl.check_addon_ownership(request, addon, support=True) or
-                        acl.check_addon_ownership(request, addon, dev=True)):
+                if (acl.check_webapp_ownership(request, webapp,
+                                               support=True) or
+                    acl.check_webapp_ownership(request, webapp,
+                                               dev=True)):
                     return fun()
             else:
                 # Require an owner or dev for POST requests.
                 if request.method == 'POST':
 
-                    if acl.check_addon_ownership(request, addon,
-                                                 dev=not owner_for_post):
+                    if acl.check_webapp_ownership(request, webapp,
+                                                  dev=not owner_for_post):
                         return fun()
 
                 # Ignore disabled so they can view their add-on.
-                elif acl.check_addon_ownership(request, addon, viewer=True,
-                                               ignore_disabled=True):
+                elif acl.check_webapp_ownership(request, webapp, viewer=True,
+                                                ignore_disabled=True):
                     if not skip_submit_check:
                         try:
                             # If it didn't go through the app submission
                             # checklist. Don't die. This will be useful for
                             # creating apps with an API later.
-                            step = addon.appsubmissionchecklist.get_next()
+                            step = webapp.appsubmissionchecklist.get_next()
                         except ObjectDoesNotExist:
                             step = None
                         # Redirect to the submit flow if they're not done.
                         if not getattr(f, 'submitting', False) and step:
-                            return _resume(addon, step)
+                            return _resume(webapp, step)
                     return fun()
 
             raise PermissionDenied

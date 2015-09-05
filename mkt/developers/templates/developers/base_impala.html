@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
-{% if addon %}
+{% if webapp %}
   {% set editable = "no-edit"
-     if not check_addon_ownership(request, addon, dev=True) and
+     if not check_webapp_ownership(request, webapp, dev=True) and
         not action_allowed('Apps', 'Configure') %}
-  {% set next_step = addon.next_step() %}
+  {% set next_step = webapp.next_step() %}
 {% endif %}
 {% block bodyclass %}developer-hub apps gutter {{ editable }}{% endblock %}
 
 {% block bodyattrs %}
-{% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
+{% if webapp %}data-default-locale="{{ webapp.default_locale|lower }}"{% endif %}
 {% endblock %}
 
 {% block title %}{{ hub_page_title() }}{% endblock %}
@@ -21,7 +21,7 @@
     {% if next_step %}
       <div class="notification-box">
         <p>
-          {% if addon.has_incomplete_status() %}
+          {% if webapp.has_incomplete_status() %}
             {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
             {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
               You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.

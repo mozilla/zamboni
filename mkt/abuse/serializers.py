@@ -38,9 +38,9 @@ class UserAbuseSerializer(BaseAbuseSerializer):
 
 class AppAbuseSerializer(BaseAbuseSerializer):
     app = SplitField(
-        SlugOrPrimaryKeyRelatedField(source='addon', slug_field='app_slug',
+        SlugOrPrimaryKeyRelatedField(source='webapp', slug_field='app_slug',
                                      queryset=Webapp.objects.all()),
-        SimpleAppSerializer(source='addon'))
+        SimpleAppSerializer(source='webapp'))
 
     class Meta(BaseAbuseSerializer.Meta):
         fields = BaseAbuseSerializer.Meta.fields + ('app',)

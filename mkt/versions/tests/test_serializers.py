@@ -28,12 +28,12 @@ class TestVersionSerializer(TestCase):
         ok_(all(k not in native for k in removed_keys))
         ok_(all(k in native for k in added_keys))
 
-    def test_addon(self):
+    def test_webapp(self):
         eq_(self.native()['app'], reverse('app-detail',
                                           kwargs={'pk': self.app.pk}))
 
     def test_is_current_version(self):
-        old_version = Version.objects.create(addon=self.app, version='0.1')
+        old_version = Version.objects.create(webapp=self.app, version='0.1')
         ok_(self.native()['is_current_version'])
         ok_(not self.native(obj=old_version)['is_current_version'])
 

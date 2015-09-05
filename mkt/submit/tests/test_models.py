@@ -11,7 +11,7 @@ class TestAppSubmissionChecklist(TestCase):
 
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
-        self.cl = AppSubmissionChecklist.objects.create(addon=self.webapp)
+        self.cl = AppSubmissionChecklist.objects.create(webapp=self.webapp)
 
     def test_default(self):
         eq_(self.cl.get_completed(), [])

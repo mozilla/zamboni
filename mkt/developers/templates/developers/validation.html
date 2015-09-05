@@ -6,11 +6,11 @@
 {% else %}
   {% set title = _('Validation Results') %}
 {% endif %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
 {% block content %}
 <header>
-  {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+  {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
 

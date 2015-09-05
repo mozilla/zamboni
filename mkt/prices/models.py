@@ -271,8 +271,8 @@ def update_price_currency(sender, instance, **kw):
         return
 
     try:
-        ids = list(instance.tier.addonpremium_set
-                           .values_list('addon_id', flat=True))
+        ids = list(instance.tier.webapppremium_set
+                           .values_list('webapp_id', flat=True))
     except Price.DoesNotExist:
         return
 
@@ -285,8 +285,8 @@ def update_price_currency(sender, instance, **kw):
         index_webapps.delay(ids)
 
 
-class AddonPurchase(ModelBase):
-    addon = models.ForeignKey('webapps.Webapp')
+class WebappPurchase(ModelBase):
+    webapp = models.ForeignKey('webapps.Webapp')
     type = models.PositiveIntegerField(default=mkt.CONTRIB_PURCHASE,
                                        choices=do_dictsort(mkt.CONTRIB_TYPES),
                                        db_index=True)
@@ -294,14 +294,14 @@ class AddonPurchase(ModelBase):
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
 
     class Meta:
-        db_table = 'addon_purchase'
-        unique_together = ('addon', 'user')
+        db_table = 'webapp_purchase'
+        unique_together = ('webapp', 'user')
 
     def __unicode__(self):
-        return u'%s: %s' % (self.addon, self.user)
+        return u'%s: %s' % (self.webapp, self.user)
 
 
-@receiver(models.signals.post_save, sender=AddonPurchase)
+@receiver(models.signals.post_save, sender=WebappPurchase)
 def add_uuid(sender, **kw):
     if not kw.get('raw'):
         record = kw['instance']
@@ -312,12 +312,12 @@ def add_uuid(sender, **kw):
 
 @use_master
 @receiver(models.signals.post_save, sender=Contribution,
-          dispatch_uid='create_addon_purchase')
-def create_addon_purchase(sender, instance, **kw):
+          dispatch_uid='create_webapp_purchase')
+def create_webapp_purchase(sender, instance, **kw):
     """
     When the contribution table is updated with the data from PayPal,
-    update the addon purchase table. Will figure out if we need to add to or
-    delete from the AddonPurchase table.
+    update the webapp purchase table. Will figure out if we need to add to or
+    delete from the WebappPurchase table.
     """
     if (kw.get('raw') or
         instance.type not in [mkt.CONTRIB_PURCHASE, mkt.CONTRIB_REFUND,
@@ -325,9 +325,9 @@ def create_addon_purchase(sender, instance, **kw):
         # Filter the types we care about. Forget about the rest.
         return
 
-    log.info('Processing addon purchase type: {t}, addon {a}, user {u}'
+    log.info('Processing webapp purchase type: {t}, webapp {a}, user {u}'
              .format(t=unicode(mkt.CONTRIB_TYPES[instance.type]),
-                     a=instance.addon and instance.addon.pk,
+                     a=instance.webapp and instance.webapp.pk,
                      u=instance.user and instance.user.pk))
 
     if instance.is_inapp_simulation():
@@ -338,69 +338,70 @@ def create_addon_purchase(sender, instance, **kw):
         return
 
     if instance.type == mkt.CONTRIB_PURCHASE:
-        log.debug('Creating addon purchase: addon %s, user %s'
-                  % (instance.addon.pk, instance.user.pk))
+        log.debug('Creating webapp purchase: webapp %s, user %s'
+                  % (instance.webapp.pk, instance.user.pk))
 
-        data = {'addon': instance.addon, 'user': instance.user}
-        purchase, created = AddonPurchase.objects.safer_get_or_create(**data)
+        data = {'webapp': instance.webapp, 'user': instance.user}
+        purchase, created = WebappPurchase.objects.safer_get_or_create(**data)
         purchase.update(type=mkt.CONTRIB_PURCHASE)
         from mkt.webapps.models import Installed  # Circular import
         # Ensure that devs have the correct installed object found
         # or created.
         #
-        is_dev = instance.addon.has_author(
+        is_dev = instance.webapp.has_author(
             instance.user, (mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV))
         install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
                         else apps.INSTALL_TYPE_USER)
         Installed.objects.safer_get_or_create(
-            user=instance.user, addon=instance.addon,
+            user=instance.user, webapp=instance.webapp,
             install_type=install_type)
 
     elif instance.type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
-        purchases = AddonPurchase.objects.filter(addon=instance.addon,
-                                                 user=instance.user)
+        purchases = WebappPurchase.objects.filter(webapp=instance.webapp,
+                                                  user=instance.user)
         for p in purchases:
-            log.debug('Changing addon purchase: %s, addon %s, user %s'
-                      % (p.pk, instance.addon.pk, instance.user.pk))
+            log.debug('Changing webapp purchase: %s, webapp %s, user %s'
+                      % (p.pk, instance.webapp.pk, instance.user.pk))
             p.update(type=instance.type)
 
     cache.delete(memoize_key('users:purchase-ids', instance.user.pk))
 
 
-class AddonPremium(ModelBase):
+class WebappPremium(ModelBase):
     """Additions to the Webapp model that only apply to Premium add-ons."""
-    addon = models.OneToOneField('webapps.Webapp')
+    webapp = models.OneToOneField('webapps.Webapp')
     price = models.ForeignKey(Price, blank=True, null=True)
 
     class Meta:
-        db_table = 'addons_premium'
+        db_table = 'webapps_premium'
 
     def __unicode__(self):
-        return u'Premium %s: %s' % (self.addon, self.price)
+        return u'Premium %s: %s' % (self.webapp, self.price)
 
     def is_complete(self):
-        return bool(self.addon and self.price and self.addon.support_email)
+        return bool(self.webapp and self.price and self.webapp.support_email)
 
 
 class RefundManager(ManagerBase):
 
-    def by_addon(self, addon):
-        return self.filter(contribution__addon=addon)
+    def by_webapp(self, webapp):
+        return self.filter(contribution__webapp=webapp)
 
-    def pending(self, addon=None):
-        return self.by_addon(addon).filter(status=mkt.REFUND_PENDING)
+    def pending(self, webapp=None):
+        return self.by_webapp(webapp).filter(status=mkt.REFUND_PENDING)
 
-    def approved(self, addon):
-        return self.by_addon(addon).filter(status=mkt.REFUND_APPROVED)
+    def approved(self, webapp):
+        return self.by_webapp(webapp).filter(status=mkt.REFUND_APPROVED)
 
-    def instant(self, addon):
-        return self.by_addon(addon).filter(status=mkt.REFUND_APPROVED_INSTANT)
+    def instant(self, webapp):
+        return self.by_webapp(webapp).filter(
+            status=mkt.REFUND_APPROVED_INSTANT)
 
-    def declined(self, addon):
-        return self.by_addon(addon).filter(status=mkt.REFUND_DECLINED)
+    def declined(self, webapp):
+        return self.by_webapp(webapp).filter(status=mkt.REFUND_DECLINED)
 
-    def failed(self, addon):
-        return self.by_addon(addon).filter(status=mkt.REFUND_FAILED)
+    def failed(self, webapp):
+        return self.by_webapp(webapp).filter(status=mkt.REFUND_FAILED)
 
 
 class Refund(ModelBase):
@@ -435,7 +436,7 @@ class Refund(ModelBase):
         return u'%s (%s)' % (self.contribution, self.get_status_display())
 
 
-class AddonPaymentData(ModelBase):
+class WebappPaymentData(ModelBase):
     # Store information about the app. This can be entered manually
     # or got from PayPal. At the moment, I'm just capturing absolutely
     # everything from PayPal and that's what these fields are.
@@ -444,7 +445,8 @@ class AddonPaymentData(ModelBase):
     #
     # I've no idea what the biggest lengths of these are, so making
     # up some aribtrary lengths.
-    addon = models.OneToOneField('webapps.Webapp', related_name='payment_data')
+    webapp = models.OneToOneField('webapps.Webapp',
+                                  related_name='payment_data')
     # Basic.
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
@@ -462,7 +464,7 @@ class AddonPaymentData(ModelBase):
     phone = models.CharField(max_length=32, blank=True)
 
     class Meta:
-        db_table = 'addon_payment_data'
+        db_table = 'webapp_payment_data'
 
     @classmethod
     def address_fields(cls):
@@ -470,4 +472,4 @@ class AddonPaymentData(ModelBase):
                 if isinstance(field, (models.CharField, models.EmailField))]
 
     def __unicode__(self):
-        return u'%s: %s' % (self.pk, self.addon)
+        return u'%s: %s' % (self.pk, self.webapp)

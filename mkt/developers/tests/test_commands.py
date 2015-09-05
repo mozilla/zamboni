@@ -9,7 +9,7 @@ from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 migrate_geodata,
                                                 refresh_iarc_ratings)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion, AddonPremium, IARCInfo,
+from mkt.webapps.models import (WebappExcludedRegion, WebappPremium, IARCInfo,
                                 RatingDescriptors, Webapp)
 
 
@@ -19,16 +19,16 @@ class TestCommandViews(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
 
-    def test_cleanup_addonpremium(self):
+    def test_cleanup_webapppremium(self):
         self.make_premium(self.webapp)
-        eq_(AddonPremium.objects.all().count(), 1)
+        eq_(WebappPremium.objects.all().count(), 1)
 
         cleanup_addon_premium.Command().handle()
-        eq_(AddonPremium.objects.all().count(), 1)
+        eq_(WebappPremium.objects.all().count(), 1)
 
-        self.webapp.update(premium_type=mkt.ADDON_FREE)
+        self.webapp.update(premium_type=mkt.WEBAPP_FREE)
         cleanup_addon_premium.Command().handle()
-        eq_(AddonPremium.objects.all().count(), 0)
+        eq_(WebappPremium.objects.all().count(), 0)
 
 
 class TestMigrateGeodata(mkt.site.tests.TestCase):
@@ -39,36 +39,36 @@ class TestMigrateGeodata(mkt.site.tests.TestCase):
 
     def test_restricted_no_migration_of_paid_apps_exclusions(self):
         self.make_premium(self.webapp)
-        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.webapp.webappexcludedregion.create(region=mkt.regions.USA.id)
         eq_(self.webapp.geodata.reload().restricted, False)
 
         migrate_geodata.Command().handle()
 
-        eq_(self.webapp.reload().addonexcludedregion.count(), 1)
+        eq_(self.webapp.reload().webappexcludedregion.count(), 1)
         eq_(self.webapp.geodata.reload().restricted, True)
 
     def test_unrestricted_migration_of_free_apps_exclusions(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
+        self.webapp.webappexcludedregion.create(region=mkt.regions.USA.id)
         eq_(self.webapp.geodata.reload().restricted, False)
 
         migrate_geodata.Command().handle()
 
-        eq_(self.webapp.reload().addonexcludedregion.count(), 0)
+        eq_(self.webapp.reload().webappexcludedregion.count(), 0)
         eq_(self.webapp.geodata.reload().restricted, False)
 
     def test_migration_of_regional_content(self):
         # Exclude in everywhere except Brazil.
         regions = list(mkt.regions.REGIONS_CHOICES_ID_DICT)
         regions.remove(mkt.regions.BRA.id)
-        AddonExcludedRegion.objects.bulk_create(
-            [AddonExcludedRegion(region=region, addon=self.webapp) for region
+        WebappExcludedRegion.objects.bulk_create(
+            [WebappExcludedRegion(region=region, webapp=self.webapp) for region
              in regions])
 
         eq_(self.webapp.geodata.reload().popular_region, None)
 
         migrate_geodata.Command().handle()
 
-        self.assertSetEqual(self.webapp.reload().addonexcludedregion
+        self.assertSetEqual(self.webapp.reload().webappexcludedregion
                                 .values_list('region', flat=True),
                             [mkt.regions.CHN.id])
         eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BRA.slug)
@@ -142,7 +142,7 @@ class TestRefreshIARCRatings(mkt.site.tests.TestCase):
 
     def test_refresh_create(self):
         IARCInfo.objects.create(
-            addon=self.webapp, submission_id=52, security_code='FZ32CU8')
+            webapp=self.webapp, submission_id=52, security_code='FZ32CU8')
         refresh_iarc_ratings.Command().handle()
 
         ok_(self.webapp.rating_descriptors)
@@ -151,9 +151,9 @@ class TestRefreshIARCRatings(mkt.site.tests.TestCase):
 
     def test_refresh_update(self):
         IARCInfo.objects.create(
-            addon=self.webapp, submission_id=52, security_code='FZ32CU8')
+            webapp=self.webapp, submission_id=52, security_code='FZ32CU8')
         rd = RatingDescriptors.objects.create(
-            addon=self.webapp, has_usk_violence=True)
+            webapp=self.webapp, has_usk_violence=True)
         refresh_iarc_ratings.Command().handle()
 
         ok_(rd.reload().has_esrb_strong_lang)
@@ -165,6 +165,6 @@ class TestRefreshIARCRatings(mkt.site.tests.TestCase):
 
     def test_single_app(self):
         IARCInfo.objects.create(
-            addon=self.webapp, submission_id=52, security_code='FZ32CU8')
+            webapp=self.webapp, submission_id=52, security_code='FZ32CU8')
         refresh_iarc_ratings.Command().handle(apps=unicode(self.webapp.id))
         ok_(self.webapp.content_ratings.count())

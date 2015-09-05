@@ -44,7 +44,7 @@ class TestSendMailComm(TestCase, CommTestMixin):
                               'Senior App Reviewers')
 
         self.app = app_factory()
-        self.app.addonuser_set.create(user=self.developer)
+        self.app.webappuser_set.create(user=self.developer)
         self.app.update(mozilla_contact=self.mozilla_contact.email)
 
     def _create(self, note_type, author=None):
@@ -188,7 +188,7 @@ class TestEmailReplySaving(TestCase):
         self.app = app_factory(name='Antelope', status=mkt.STATUS_PENDING)
         self.profile = UserProfile.objects.get(pk=999)
         t = CommunicationThread.objects.create(
-            _addon=self.app, _version=self.app.current_version,
+            _webapp=self.app, _version=self.app.current_version,
             read_permission_reviewer=True)
 
         self.token = CommunicationThreadToken.objects.create(
@@ -202,7 +202,7 @@ class TestEmailReplySaving(TestCase):
         eq_(note.body, 'test note 5\n')
 
     def test_developer_comment(self):
-        self.profile.addonuser_set.create(addon=self.app)
+        self.profile.webappuser_set.create(webapp=self.app)
         note = save_from_email_reply(self.email_base64)
         eq_(note.note_type, comm.DEVELOPER_COMMENT)
 

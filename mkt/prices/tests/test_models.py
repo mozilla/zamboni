@@ -12,11 +12,11 @@ from mkt.constants import apps
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import (
     ALL_REGION_IDS, BRA, ESP, HUN, RESTOFWORLD, USA)
-from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
+from mkt.prices.models import WebappPremium, Price, PriceCurrency, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 
 
 class TestPremium(mkt.site.tests.TestCase):
@@ -24,11 +24,11 @@ class TestPremium(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
-        self.addon = Webapp.objects.get(pk=337141)
+        self.webapp = Webapp.objects.get(pk=337141)
 
     def test_is_complete(self):
-        self.addon.support_email = 'foo@example.com'
-        ap = AddonPremium(addon=self.addon)
+        self.webapp.support_email = 'foo@example.com'
+        ap = WebappPremium(webapp=self.webapp)
         assert not ap.is_complete()
         ap.price = self.tier_one
         assert ap.is_complete()
@@ -180,38 +180,38 @@ class TestPrice(mkt.site.tests.TestCase):
 class TestPriceCurrencyChanges(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.addon = mkt.site.tests.app_factory()
-        self.make_premium(self.addon)
-        self.currency = self.addon.premium.price.pricecurrency_set.all()[0]
+        self.webapp = mkt.site.tests.app_factory()
+        self.make_premium(self.webapp)
+        self.currency = self.webapp.premium.price.pricecurrency_set.all()[0]
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_save(self, index_webapps):
         self.currency.save()
-        eq_(index_webapps.delay.call_args[0][0], [self.addon.pk])
+        eq_(index_webapps.delay.call_args[0][0], [self.webapp.pk])
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_delete(self, index_webapps):
         self.currency.delete()
-        eq_(index_webapps.delay.call_args[0][0], [self.addon.pk])
+        eq_(index_webapps.delay.call_args[0][0], [self.webapp.pk])
 
 
 class ContributionMixin(object):
 
     def setUp(self):
-        self.addon = Webapp.objects.get(pk=337141)
+        self.webapp = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=999)
 
     def create(self, type):
-        return Contribution.objects.create(type=type, addon=self.addon,
+        return Contribution.objects.create(type=type, webapp=self.webapp,
                                            user=self.user)
 
     def purchased(self):
-        return (self.addon.addonpurchase_set
-                          .filter(user=self.user, type=mkt.CONTRIB_PURCHASE)
-                          .exists())
+        return (self.webapp.webapppurchase_set
+                .filter(user=self.user, type=mkt.CONTRIB_PURCHASE)
+                .exists())
 
     def type(self):
-        return self.addon.addonpurchase_set.get(user=self.user).type
+        return self.webapp.webapppurchase_set.get(user=self.user).type
 
 
 class TestContribution(ContributionMixin, mkt.site.tests.TestCase):
@@ -256,15 +256,16 @@ class TestContribution(ContributionMixin, mkt.site.tests.TestCase):
     def test_other_user(self):
         other = UserProfile.objects.get(email='admin@mozilla.com')
         Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
-                                    addon=self.addon, user=other)
+                                    webapp=self.webapp, user=other)
         self.create(mkt.CONTRIB_PURCHASE)
         self.create(mkt.CONTRIB_REFUND)
-        eq_(self.addon.addonpurchase_set.filter(user=other).count(), 1)
+        eq_(self.webapp.webapppurchase_set.filter(user=other).count(), 1)
 
     def set_role(self, role):
-        AddonUser.objects.create(addon=self.addon, user=self.user, role=role)
+        WebappUser.objects.create(webapp=self.webapp, user=self.user,
+                                  role=role)
         self.create(mkt.CONTRIB_PURCHASE)
-        installed = self.user.installed_set.filter(addon=self.addon)
+        installed = self.user.installed_set.filter(webapp=self.webapp)
         eq_(installed.count(), 1)
         eq_(installed[0].install_type, apps.INSTALL_TYPE_DEVELOPER)
 
@@ -276,26 +277,26 @@ class TestContribution(ContributionMixin, mkt.site.tests.TestCase):
 
     def test_user_installed_dev(self):
         self.create(mkt.CONTRIB_PURCHASE)
-        eq_(self.user.installed_set.filter(addon=self.addon).count(), 1)
+        eq_(self.user.installed_set.filter(webapp=self.webapp).count(), 1)
 
     def test_user_not_purchased(self):
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         eq_(list(self.user.purchase_ids()), [])
 
     def test_user_purchased(self):
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
-        self.addon.addonpurchase_set.create(user=self.user)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.webapp.webapppurchase_set.create(user=self.user)
         eq_(list(self.user.purchase_ids()), [337141L])
 
     def test_user_refunded(self):
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
-        self.addon.addonpurchase_set.create(user=self.user,
-                                            type=mkt.CONTRIB_REFUND)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.webapp.webapppurchase_set.create(user=self.user,
+                                              type=mkt.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
 
     def test_user_cache(self):
         # Tests that the purchase_ids caches.
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         eq_(list(self.user.purchase_ids()), [])
         self.create(mkt.CONTRIB_PURCHASE)
         eq_(list(self.user.purchase_ids()), [337141L])
@@ -397,11 +398,11 @@ class TestRefundManager(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def setUp(self):
-        self.addon = Webapp.objects.get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.user = UserProfile.objects.get(id=999)
         self.expected = {}
         for status in mkt.REFUND_STATUSES.keys():
-            c = Contribution.objects.create(addon=self.addon, user=self.user,
+            c = Contribution.objects.create(webapp=self.webapp, user=self.user,
                                             type=mkt.CONTRIB_PURCHASE)
             self.expected[status] = Refund.objects.create(contribution=c,
                                                           status=status,
@@ -412,24 +413,24 @@ class TestRefundManager(mkt.site.tests.TestCase):
             sorted(e.id for e in self.expected.values()))
 
     def test_pending(self):
-        eq_(list(Refund.objects.pending(self.addon)),
+        eq_(list(Refund.objects.pending(self.webapp)),
             [self.expected[mkt.REFUND_PENDING]])
 
     def test_approved(self):
-        eq_(list(Refund.objects.approved(self.addon)),
+        eq_(list(Refund.objects.approved(self.webapp)),
             [self.expected[mkt.REFUND_APPROVED]])
 
     def test_instant(self):
-        eq_(list(Refund.objects.instant(self.addon)),
+        eq_(list(Refund.objects.instant(self.webapp)),
             [self.expected[mkt.REFUND_APPROVED_INSTANT]])
 
     def test_declined(self):
-        eq_(list(Refund.objects.declined(self.addon)),
+        eq_(list(Refund.objects.declined(self.webapp)),
             [self.expected[mkt.REFUND_DECLINED]])
 
-    def test_by_addon(self):
+    def test_by_webapp(self):
         other = Webapp.objects.create()
-        c = Contribution.objects.create(addon=other, user=self.user,
+        c = Contribution.objects.create(webapp=other, user=self.user,
                                         type=mkt.CONTRIB_PURCHASE)
         ref = Refund.objects.create(contribution=c, status=mkt.REFUND_DECLINED,
                                     user=self.user)
@@ -438,6 +439,6 @@ class TestRefundManager(mkt.site.tests.TestCase):
         eq_(sorted(r.id for r in declined),
             sorted(r.id for r in [self.expected[mkt.REFUND_DECLINED], ref]))
 
-        eq_(sorted(r.id for r in Refund.objects.by_addon(addon=self.addon)),
+        eq_(sorted(r.id for r in Refund.objects.by_webapp(webapp=self.webapp)),
             sorted(r.id for r in self.expected.values()))
-        eq_(list(Refund.objects.by_addon(addon=other)), [ref])
+        eq_(list(Refund.objects.by_webapp(webapp=other)), [ref])

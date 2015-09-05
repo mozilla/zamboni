@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedshelf',
             name='description',
-            field=mkt.translations.fields.PurifiedField(related_name='FeedShelf_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.PurifiedTranslation, short=True, require_locale=True, unique=True),
+            field=mkt.translations.fields.TranslatedField(related_name='FeedShelf_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.Translation, short=True, require_locale=True, unique=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -115,7 +115,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedcollection',
             name='description',
-            field=mkt.translations.fields.PurifiedField(related_name='FeedCollection_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.PurifiedTranslation, short=True, require_locale=True, unique=True),
+            field=mkt.translations.fields.TranslatedField(related_name='FeedCollection_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.Translation, short=True, require_locale=True, unique=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -155,7 +155,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedapp',
             name='description',
-            field=mkt.translations.fields.PurifiedField(related_name='FeedApp_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.PurifiedTranslation, short=True, require_locale=True, unique=True),
+            field=mkt.translations.fields.TranslatedField(related_name='FeedApp_description_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'description', to_field=b'id', blank=True, to=mkt.translations.models.Translation, short=True, require_locale=True, unique=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -167,7 +167,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feedapp',
             name='pullquote_text',
-            field=mkt.translations.fields.PurifiedField(related_name='FeedApp_pullquote_text_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'pullquote_text', to_field=b'id', blank=True, to=mkt.translations.models.PurifiedTranslation, short=True, require_locale=True, unique=True),
+            field=mkt.translations.fields.TranslatedField(related_name='FeedApp_pullquote_text_set+', null=True, on_delete=django.db.models.deletion.SET_NULL, db_column=b'pullquote_text', to_field=b'id', blank=True, to=mkt.translations.models.Translation, short=True, require_locale=True, unique=True),
             preserve_default=True,
         ),
     ]

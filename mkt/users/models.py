@@ -127,7 +127,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def my_apps(self, n=8):
         """Returns n apps"""
-        return order_by_translation(self.addons.all(), 'name')[:n]
+        return order_by_translation(self.webapps.all(), 'name')[:n]
 
     @property
     def recommendation_hash(self):
@@ -136,7 +136,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @cached_property
     def is_developer(self):
-        return self.addonuser_set.exists()
+        return self.webappuser_set.exists()
 
     @property
     def name(self):
@@ -176,14 +176,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         cache empty queries on an as need basis.
         """
         # Circular import
-        from mkt.prices.models import AddonPurchase
+        from mkt.prices.models import WebappPurchase
 
         @memoize(prefix='users:purchase-ids')
         def ids(pk):
-            return (AddonPurchase.objects.filter(user=pk)
-                                 .values_list('addon_id', flat=True)
-                                 .filter(type=mkt.CONTRIB_PURCHASE)
-                                 .order_by('pk'))
+            return (WebappPurchase.objects.filter(user=pk)
+                                  .values_list('webapp_id', flat=True)
+                                  .filter(type=mkt.CONTRIB_PURCHASE)
+                                  .order_by('pk'))
         return ids(self.pk)
 
     @contextmanager

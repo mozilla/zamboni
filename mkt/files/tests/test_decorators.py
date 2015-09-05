@@ -23,10 +23,10 @@ class AllowedTest(mkt.site.tests.TestCase):
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
     @patch.object(acl, 'check_reviewer', lambda x: False)
-    def test_addon_not_found(self):
+    def test_webapp_not_found(self):
         class MockVersion():
             @property
-            def addon(self):
+            def webapp(self):
                 raise ObjectDoesNotExist
         self.file.version = MockVersion()
         self.assertRaises(http.Http404, allowed, self.request, self.file)

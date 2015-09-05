@@ -53,7 +53,7 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 def post_create_comm_note(note):
     """Stuff to do after creating note, also used in comm api's post_save."""
     thread = note.thread
-    app = thread.addon
+    app = thread.webapp
 
     # Add developer to thread.
     for developer in app.authors.all():

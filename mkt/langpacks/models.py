@@ -68,7 +68,7 @@ class LangPack(ModelBase):
 
     @property
     def path_prefix(self):
-        return os.path.join(settings.ADDONS_PATH, 'langpacks', str(self.pk))
+        return os.path.join(settings.WEBAPPS_PATH, 'langpacks', str(self.pk))
 
     @property
     def file_path(self):

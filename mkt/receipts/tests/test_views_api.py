@@ -15,7 +15,7 @@ from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 
 
 class TestAPI(RestOAuth):
@@ -23,9 +23,9 @@ class TestAPI(RestOAuth):
 
     def setUp(self):
         super(TestAPI, self).setUp()
-        self.addon = Webapp.objects.get(pk=337141)
+        self.webapp = Webapp.objects.get(pk=337141)
         self.url = reverse('receipt.install')
-        self.data = json.dumps({'app': self.addon.pk})
+        self.data = json.dumps({'app': self.webapp.pk})
         self.profile = self.user
 
     def test_has_cors(self):
@@ -41,7 +41,7 @@ class TestAPI(RestOAuth):
         eq_(self.post().status_code, 400)
 
     def test_app_slug(self):
-        self.data = json.dumps({'app': self.addon.app_slug})
+        self.data = json.dumps({'app': self.webapp.app_slug})
         eq_(self.post().status_code, 201)
 
     def test_record_logged_out(self):
@@ -61,7 +61,7 @@ class TestAPI(RestOAuth):
         eq_(res.status_code, 201)
         record_action.assert_called_with(
             'install', mock.ANY, {'app-domain': u'http://micropipes.com',
-                                  'app-id': self.addon.pk,
+                                  'app-id': self.webapp.pk,
                                   'region': 'restofworld',
                                   'anonymous': False})
 
@@ -69,19 +69,20 @@ class TestAPI(RestOAuth):
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.
-        self.addon.update(is_packaged=True, manifest_url=None, app_domain=None)
+        self.webapp.update(is_packaged=True, manifest_url=None,
+                           app_domain=None)
         res = self.post()
         eq_(res.status_code, 201)
         record_action.assert_called_with(
-            'install', mock.ANY, {'app-domain': None, 'app-id': self.addon.pk,
+            'install', mock.ANY, {'app-domain': None, 'app-id': self.webapp.pk,
                                   'region': 'restofworld', 'anonymous': False})
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_log_metrics(self, cef):
         eq_(self.post().status_code, 201)
-        logs = AppLog.objects.filter(addon=self.addon)
+        logs = AppLog.objects.filter(webapp=self.webapp)
         eq_(logs.count(), 1)
-        eq_(logs[0].activity_log.action, mkt.LOG.INSTALL_ADDON.id)
+        eq_(logs[0].activity_log.action, mkt.LOG.INSTALL_WEBAPP.id)
 
 
 class TestDevhubAPI(RestOAuth):
@@ -115,8 +116,8 @@ class TestReceipt(RestOAuth):
 
     def setUp(self):
         super(TestReceipt, self).setUp()
-        self.addon = Webapp.objects.get(pk=337141)
-        self.data = json.dumps({'app': self.addon.pk})
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.data = json.dumps({'app': self.webapp.pk})
         self.profile = UserProfile.objects.get(pk=2519)
         self.url = reverse('receipt.install')
 
@@ -125,51 +126,51 @@ class TestReceipt(RestOAuth):
         return client.post(self.url, data=self.data)
 
     def test_pending_free_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.profile)
-        self.addon.update(status=mkt.STATUS_PENDING)
+        WebappUser.objects.create(webapp=self.webapp, user=self.profile)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         eq_(self.post().status_code, 201)
 
     def test_pending_free_for_anonymous(self):
-        self.addon.update(status=mkt.STATUS_PENDING)
+        self.webapp.update(status=mkt.STATUS_PENDING)
         self.anon.post(self.url)
         eq_(self.post(anon=True).status_code, 403)
 
     def test_pending_paid_for_developer(self):
-        AddonUser.objects.create(addon=self.addon, user=self.profile)
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        WebappUser.objects.create(webapp=self.webapp, user=self.profile)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.post().status_code, 201)
         eq_(self.profile.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_DEVELOPER)
 
     def test_pending_paid_for_anonymous(self):
-        self.addon.update(status=mkt.STATUS_PENDING,
-                          premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(status=mkt.STATUS_PENDING,
+                           premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.post(anon=True).status_code, 403)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         r = self.post()
         eq_(r.status_code, 201)
 
     def test_own_payments(self):
-        self.addon.update(premium_type=mkt.ADDON_OTHER_INAPP)
+        self.webapp.update(premium_type=mkt.WEBAPP_OTHER_INAPP)
         eq_(self.post().status_code, 201)
 
     def test_no_charge(self):
-        self.make_premium(self.addon, '0.00')
+        self.make_premium(self.webapp, '0.00')
         eq_(self.post().status_code, 201)
         eq_(self.profile.installed_set.all()[0].install_type,
             apps.INSTALL_TYPE_USER)
-        eq_(self.profile.addonpurchase_set.all()[0].type,
+        eq_(self.profile.webapppurchase_set.all()[0].type,
             CONTRIB_NO_CHARGE)
 
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_not_paid(self, has_purchased):
         has_purchased.return_value = False
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         eq_(self.post().status_code, 402)
 
     @mock.patch('mkt.receipts.views.receipt_cef.log')
@@ -197,9 +198,9 @@ class TestReissue(TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=2519)
-        self.addon = Webapp.objects.get(pk=337141)
+        self.webapp = Webapp.objects.get(pk=337141)
         self.url = reverse('receipt.reissue')
-        self.data = json.dumps({'app': self.addon.pk})
+        self.data = json.dumps({'app': self.webapp.pk})
 
         verify = mock.patch('mkt.receipts.views.Verify.check_full')
         self.verify = verify.start()
@@ -222,7 +223,7 @@ class TestReissue(TestCase):
         ok_(data['status'], 'valid')
 
     def test_expired(self):
-        receipt = create_receipt(self.addon, self.user, 'some-uuid')
+        receipt = create_receipt(self.webapp, self.user, 'some-uuid')
         self.verify.return_value = {'status': 'expired'}
         res = self.client.post(self.url, data=receipt,
                                content_type='text/plain')

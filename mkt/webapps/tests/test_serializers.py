@@ -14,7 +14,7 @@ import mkt.site.tests
 from mkt.constants import ratingsbodies, regions
 from mkt.constants.payments import PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.prices.models import PriceCurrency
 from mkt.regions.middleware import RegionMiddleware
@@ -22,7 +22,7 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, Installed, Preview, Webapp
+from mkt.webapps.models import WebappDeviceType, Installed, Preview, Webapp
 from mkt.webapps.serializers import (AppSerializer, ESAppSerializer,
                                      SimpleESAppSerializer)
 
@@ -79,7 +79,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
     def test_with_preview(self):
         obj = Preview.objects.create(**{
             'filetype': 'image/png', 'thumbtype': 'image/png',
-            'addon': self.app})
+            'webapp': self.app})
         preview = self.serialize(self.app)['previews'][0]
         self.assertSetEqual(preview, ['filetype', 'id', 'image_url',
                                       'thumbnail_url', 'resource_uri'])
@@ -105,12 +105,12 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.check_profile(res['user'], installed=True)
 
     def test_purchased(self):
-        self.app.addonpurchase_set.create(user=self.profile)
+        self.app.webapppurchase_set.create(user=self.profile)
         res = self.serialize(self.app, profile=self.profile)
         self.check_profile(res['user'], purchased=True)
 
     def test_owned(self):
-        self.app.addonuser_set.create(user=self.profile)
+        self.app.webappuser_set.create(user=self.profile)
         res = self.serialize(self.app, profile=self.profile)
         self.check_profile(res['user'], developed=True)
 
@@ -140,7 +140,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
                             res['versions'].keys())
 
     def test_versions_multiple(self):
-        ver = Version.objects.create(addon=self.app, version='1.9')
+        ver = Version.objects.create(webapp=self.app, version='1.9')
         self.app.update(_current_version=ver, _latest_version=ver)
         res = self.serialize(self.app)
         eq_(res['current_version'], ver.version)
@@ -243,7 +243,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         upsell = mkt.site.tests.app_factory()
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
-        upsell.addonexcludedregion.create(region=mkt.regions.USA.id)
+        upsell.webappexcludedregion.create(region=mkt.regions.USA.id)
 
         res = self.serialize(self.app)
         eq_(res['upsell'], False)
@@ -253,7 +253,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
 
-        upsell.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        upsell.webappexcludedregion.create(region=mkt.regions.BRA.id)
         self.request.REGION = mkt.regions.BRA
 
         res = self.serialize(self.app)
@@ -264,7 +264,7 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.app = mkt.site.tests.app_factory(premium_type=mkt.ADDON_PREMIUM)
+        self.app = mkt.site.tests.app_factory(premium_type=mkt.WEBAPP_PREMIUM)
         self.profile = UserProfile.objects.get(pk=2519)
         self.create_flag('override-app-purchase', everyone=True)
         self.request = RequestFactory().get('/')
@@ -300,7 +300,7 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
 
     def test_fallback_excluded(self):
         self.make_premium(self.app, price='0.99')
-        self.app.addonexcludedregion.create(region=RESTOFWORLD.id)
+        self.app.webappexcludedregion.create(region=RESTOFWORLD.id)
         res = self.serialize(self.app, region=regions.POL)
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
@@ -341,7 +341,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         self.app.update(categories=['books', 'social'])
         Preview.objects.all().delete()
         self.preview = Preview.objects.create(filetype='image/png',
-                                              addon=self.app, position=0)
+                                              webapp=self.app, position=0)
         self.app.description = {
             'en-US': u'XSS attempt <script>alert(1)</script>',
             'fr': u'Déscriptîon in frènch'
@@ -497,8 +497,8 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             ['has_classind_shocking'])
 
     def test_devices(self):
-        AddonDeviceType.objects.create(addon=self.app,
-                                       device_type=mkt.DEVICE_GAIA.id)
+        WebappDeviceType.objects.create(webapp=self.app,
+                                        device_type=mkt.DEVICE_GAIA.id)
         self.app.save()
         self.refresh('webapp')
 
@@ -506,9 +506,9 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         eq_(res['device_types'], ['firefoxos'])
 
     def test_user(self):
-        self.app.addonuser_set.create(user=self.profile)
-        self.profile.installed_set.create(addon=self.app)
-        self.app.addonpurchase_set.create(user=self.profile)
+        self.app.webappuser_set.create(user=self.profile)
+        self.profile.installed_set.create(webapp=self.app)
+        self.app.webapppurchase_set.create(user=self.profile)
         self.app.save()
         self.refresh('webapp')
 
@@ -517,8 +517,8 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             {'developed': True, 'installed': True, 'purchased': True})
 
     def test_user_not_mine(self):
-        Installed.objects.create(addon=self.app, user_id=31337)
-        self.app.addonpurchase_set.create(user_id=31337)
+        Installed.objects.create(webapp=self.app, user_id=31337)
+        self.app.webapppurchase_set.create(user_id=31337)
         self.app.save()
         self.refresh('webapp')
 
@@ -571,8 +571,8 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         account = PaymentAccount.objects.create(
             user=self.profile, uri='asdf', name='test', inactive=False,
             solitude_seller=seller, account_id=123)
-        AddonPaymentAccount.objects.create(
-            addon=self.app, account_uri='foo', payment_account=account,
+        WebappPaymentAccount.objects.create(
+            webapp=self.app, account_uri='foo', payment_account=account,
             product_uri='bpruri')
         self.app.save()
         self.refresh('webapp')
@@ -643,7 +643,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_upsell_excluded_from_region(self):
         upsell = mkt.site.tests.app_factory()
-        upsell.addonexcludedregion.create(region=mkt.regions.USA.id)
+        upsell.webappexcludedregion.create(region=mkt.regions.USA.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -653,7 +653,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_upsell_region_without_payments(self):
         upsell = mkt.site.tests.app_factory()
-        upsell.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        upsell.webappexcludedregion.create(region=mkt.regions.BRA.id)
         self.make_premium(upsell)
         self.app._upsell_from.create(premium=upsell)
         self.refresh('webapp')
@@ -664,7 +664,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
 
     def test_developer_name_empty(self):
         self.app.current_version.update(_developer_name='')
-        self.app.addonuser_set.update(listed=False)
+        self.app.webappuser_set.update(listed=False)
         self.app.save()
         self.refresh('webapp')
         res = self.serialize()

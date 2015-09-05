@@ -11,7 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 import mkt
 from lib.metrics import record_action
-from mkt.access.acl import check_addon_ownership
+from mkt.access.acl import check_webapp_ownership
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -73,7 +73,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         match_lang = self.request.GET.get('match_lang')
         if app:
             self.app = self.get_app(app)
-            filters &= Q(addon=self.app)
+            filters &= Q(webapp=self.app)
         if user:
             filters &= Q(user=self.get_user(user))
         elif lang and match_lang == '1':
@@ -99,7 +99,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         except Webapp.DoesNotExist:
             raise Http404
 
-        if not app.is_public() and not check_addon_ownership(
+        if not app.is_public() and not check_webapp_ownership(
                 self.request, app):
             # App owners and admin can see the app even if it's not public.
             # Regular users or anonymous users can't.
@@ -117,17 +117,17 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
-        mkt.log(mkt.LOG.DELETE_REVIEW, obj.addon, obj,
+        mkt.log(mkt.LOG.DELETE_REVIEW, obj.webapp, obj,
                 details=dict(title=unicode(obj.title),
                              body=unicode(obj.body),
-                             addon_id=obj.addon.id,
-                             addon_title=unicode(obj.addon.name)))
+                             webapp_id=obj.webapp.id,
+                             webapp_title=unicode(obj.webapp.name)))
         log.debug('[Review:%s] Deleted by %s' %
                   (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)
 
     def post_save(self, obj, created=False):
-        app = obj.addon
+        app = obj.webapp
         if created:
             mkt.log(mkt.LOG.ADD_REVIEW, app, obj)
             log.debug('[Review:%s] Created by user %s ' %
@@ -154,7 +154,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                 can_rate = not app.has_author(user)
 
             filters = {
-                'addon': app,
+                'webapp': app,
                 'user': user
             }
             if app.is_packaged:

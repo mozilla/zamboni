@@ -18,8 +18,8 @@ class Command(BaseCommand):
                     help='Marketplace secret for signature verification'),
         make_option('--contrib', action='store',
                     help='Contribution UUID'),
-        make_option('--addon', action='store',
-                    help='ID of addon that was purchased'),
+        make_option('--webapp', action='store',
+                    help='ID of webapp that was purchased'),
         make_option('--url', action='store',
                     help='Postback URL. Default: %default',
                     default='http://localhost:8001/services/bluevia/postback'),
@@ -27,10 +27,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         assert 'contrib' in options, 'require --contrib'
-        assert 'addon' in options, 'require --addon'
+        assert 'webapp' in options, 'require --webapp'
         issued_at = calendar.timegm(time.gmtime())
         prod_data = urlencode({'contrib_uuid': options['contrib'],
-                               'addon_id': options['addon']})
+                               'webapp_id': options['webapp']})
         purchase = {'iss': 'tu.com',
                     'aud': 'marketplace.mozilla.org',
                     'typ': 'tu.com/payments/inapp/v1',

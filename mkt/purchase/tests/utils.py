@@ -3,10 +3,10 @@ from decimal import Decimal
 import mock
 
 import mkt
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.inapp.models import InAppProduct
-from mkt.prices.models import AddonPremium, Price, PriceCurrency
+from mkt.prices.models import WebappPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.users.models import UserProfile
@@ -28,13 +28,13 @@ class PurchaseTest(TestCase):
         self.setup_public_id()
 
     def setup_base(self):
-        self.addon = Webapp.objects.get(pk=337141)
-        self.addon.update(premium_type=mkt.ADDON_PREMIUM)
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
         self.price = Price.objects.get(pk=1)
-        AddonPremium.objects.create(addon=self.addon, price=self.price)
+        WebappPremium.objects.create(webapp=self.webapp, price=self.price)
 
-        # Refetch addon from the database to populate addon.premium field.
-        self.addon = Webapp.objects.get(pk=self.addon.pk)
+        # Refetch webapp from the database to populate webapp.premium field.
+        self.webapp = Webapp.objects.get(pk=self.webapp.pk)
 
     def setup_package(self):
         self.seller = SolitudeSeller.objects.create(
@@ -42,8 +42,8 @@ class PurchaseTest(TestCase):
         self.account = PaymentAccount.objects.create(
             user=self.user, uri='asdf', name='test', inactive=False,
             solitude_seller=self.seller, account_id=123)
-        AddonPaymentAccount.objects.create(
-            addon=self.addon, account_uri='foo',
+        WebappPaymentAccount.objects.create(
+            webapp=self.webapp, account_uri='foo',
             payment_account=self.account, product_uri='bpruri')
 
     def setup_mock_generic_product(self):
@@ -54,7 +54,7 @@ class PurchaseTest(TestCase):
 
     def setup_public_id(self):
         self.public_id = 'public-id-set-in-devhub'
-        self.addon.update(solitude_public_id=self.public_id)
+        self.webapp.update(solitude_public_id=self.public_id)
 
 
 class InAppPurchaseTest(PurchaseTest):
@@ -63,4 +63,4 @@ class InAppPurchaseTest(PurchaseTest):
         super(InAppPurchaseTest, self).setup_base()
         self.inapp = InAppProduct.objects.create(
             logo_url='logo.png', name=u'Ivan Krsti\u0107',
-            price=self.price, webapp=self.addon)
+            price=self.price, webapp=self.webapp)

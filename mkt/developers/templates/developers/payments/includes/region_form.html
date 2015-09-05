@@ -20,7 +20,7 @@
       {{ _('Learn about low-memory devices.') }}
     </a>
     {{ _('You must <a href="{status_page}">request a review</a> to have your app shown on low-memory devices.')
-       |fe(status_page=url('mkt.developers.apps.versions', addon.app_slug) + '#low-memory-devices') }}
+       |fe(status_page=url('mkt.developers.apps.versions', webapp.app_slug) + '#low-memory-devices') }}
   </p>
 {% endif %}
 <div class="other-regions{{ ' restricted' if not is_paid }}">

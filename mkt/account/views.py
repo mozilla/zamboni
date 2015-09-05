@@ -55,10 +55,10 @@ log = commonware.log.getLogger('z.account')
 
 def user_relevant_apps(user):
     return {
-        'developed': list(user.addonuser_set.filter(
-            role=mkt.AUTHOR_ROLE_OWNER).values_list('addon_id', flat=True)),
+        'developed': list(user.webappuser_set.filter(
+            role=mkt.AUTHOR_ROLE_OWNER).values_list('webapp_id', flat=True)),
         'installed': list(user.installed_set.values_list(
-            'addon_id', flat=True)),
+            'webapp_id', flat=True)),
         'purchased': list(user.purchase_ids()),
     }
 
@@ -95,7 +95,7 @@ class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
             raise ParseError(detail='`app` does not exist.')
         try:
             installed = request.user.installed_set.get(
-                install_type=INSTALL_TYPE_USER, addon_id=to_remove.pk)
+                install_type=INSTALL_TYPE_USER, webapp_id=to_remove.pk)
             installed.delete()
         except Installed.DoesNotExist:
             raise ParseError(detail='`app` is not installed or not removable.')

@@ -18,7 +18,7 @@ class TestUtils(TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create()
-        self.addon = Webapp.objects.create()
+        self.webapp = Webapp.objects.create()
 
     def test_uid(self):
         eq_(model_to_uid(self.user), 'testy:users:%s' % self.user.pk)

@@ -506,10 +506,10 @@ class PurifiedTranslationTest(TestCase):
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_internal_link(self):
-        s = u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>'
+        s = u'<b>markup</b> <a href="http://webapps.mozilla.org/foo">bar</a>'
         x = PurifiedTranslation(localized_string=s)
         eq_(x.__html__(),
-            u'<b>markup</b> <a href="http://addons.mozilla.org/foo">bar</a>')
+            u'<b>markup</b> <a href="http://webapps.mozilla.org/foo">bar</a>')
 
     @patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
     def test_external_link(self):
@@ -914,7 +914,7 @@ class TestAttachTransDict(TestCase):
         ok_(isinstance(obj.translations, collections.defaultdict))
         translations = dict(obj.translations)
 
-        # addon.translations is a defaultdict.
+        # webapp.translations is a defaultdict.
         eq_(obj.translations['whatever'], [])
 
         # No-translated fields should be absent.

@@ -12,7 +12,7 @@ from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
                                   region_exclude)
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.utils import chunked
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import WebappExcludedRegion, Webapp
 
 
 log = logging.getLogger('z.mkt.developers.cron')
@@ -28,9 +28,9 @@ def _region_email(ids, region_ids):
 def send_new_region_emails(regions):
     """Email app developers notifying them of new regions added."""
     region_ids = [r.id for r in regions]
-    excluded = (AddonExcludedRegion.objects
+    excluded = (WebappExcludedRegion.objects
                 .filter(region__in=region_ids)
-                .values_list('addon', flat=True))
+                .values_list('webapp', flat=True))
     ids = (Webapp.objects.exclude(id__in=excluded)
            .filter(enable_new_regions=True)
            .values_list('id', flat=True))
@@ -49,9 +49,9 @@ def exclude_new_region(regions):
     Update blocked regions based on a list of regions to exclude.
     """
     region_ids = [r.id for r in regions]
-    excluded = set(AddonExcludedRegion.objects
+    excluded = set(WebappExcludedRegion.objects
                    .filter(region__in=region_ids)
-                   .values_list('addon', flat=True))
+                   .values_list('webapp', flat=True))
     ids = (Webapp.objects.exclude(id__in=excluded)
            .filter(enable_new_regions=False)
            .values_list('id', flat=True))

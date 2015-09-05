@@ -8,7 +8,7 @@ import mkt
 from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
 from mkt.developers.api_payments import (
-    AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
+    WebappPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, UpsellViewSet)
 from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
@@ -52,7 +52,7 @@ app_detail_patterns = patterns(
      reverse('mkt.developers.apps.edit', args=[app_slug]))),
     url('^edit$', views.edit, name='mkt.developers.apps.edit'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
-        views.addons_section, name='mkt.developers.apps.section'),
+        views.webapps_section, name='mkt.developers.apps.section'),
     url('^refresh_manifest$', views.refresh_manifest,
         name='mkt.developers.apps.refresh_manifest'),
     url('^ownership$', views.ownership, name='mkt.developers.apps.owner'),
@@ -85,8 +85,8 @@ app_detail_patterns = patterns(
         name='mkt.developers.apps.payments'),
     url('^payments/disable$', views_payments.disable_payments,
         name='mkt.developers.apps.payments.disable'),
-    url('^payments/bango-portal$', views_payments.bango_portal_from_addon,
-        name='mkt.developers.apps.payments.bango_portal_from_addon'),
+    url('^payments/bango-portal$', views_payments.bango_portal_from_webapp,
+        name='mkt.developers.apps.payments.bango_portal_from_webapp'),
     # in-app payments.
     url('^in-app-payments/$', views_payments.in_app_payments,
         name='mkt.developers.apps.in_app_payments'),
@@ -114,10 +114,10 @@ app_detail_patterns = patterns(
     url('^file/(?P<file_id>[^/]+)/validation.json$',
         views.json_file_validation,
         name='mkt.developers.apps.json_file_validation'),
-    url('^upload$', views.upload_for_addon,
-        name='mkt.developers.upload_for_addon'),
-    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
-        name='mkt.developers.upload_detail_for_addon'),
+    url('^upload$', views.upload_for_webapp,
+        name='mkt.developers.upload_for_webapp'),
+    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_webapp,
+        name='mkt.developers.upload_detail_for_webapp'),
 )
 
 # These will all start with /ajax/app/<app_slug>/
@@ -133,7 +133,7 @@ urlpatterns = decorate(use_master, patterns(
     ('^apps/\d+/.*',
      lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
 
-    # Redirect to /addons/ at the base.
+    # Redirect to /webapps/ at the base.
     url('^submissions$', views.dashboard, name='mkt.developers.apps'),
     url('^upload$', views.upload_new, name='mkt.developers.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
@@ -186,7 +186,7 @@ api_payments = SimpleRouter()
 api_payments.register(r'account', PaymentAccountViewSet,
                       base_name='payment-account')
 api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
-api_payments.register(r'app', AddonPaymentAccountViewSet,
+api_payments.register(r'app', WebappPaymentAccountViewSet,
                       base_name='app-payment-account')
 api_payments.register(r'stub-in-app-products', StubInAppProductViewSet,
                       base_name='stub-in-app-products')

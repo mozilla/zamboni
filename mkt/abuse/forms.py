@@ -39,7 +39,7 @@ class BaseAbuseViewFormSet(BaseModelFormSet):
                 for report in inst.abuse_reports.all().filter(read=False):
                     report.read = True
                     report.save()
-                    app = report.addon
+                    app = report.webapp
                     site = report.website
                     user = report.user
                     if report.message:
@@ -48,8 +48,8 @@ class BaseAbuseViewFormSet(BaseModelFormSet):
                         mkt.log(mkt.LOG.APP_ABUSE_MARKREAD, app, report,
                                 details=dict(
                                     body=unicode(report.message),
-                                    addon_id=app.id,
-                                    addon_title=unicode(app.name)
+                                    webapp_id=app.id,
+                                    webapp_title=unicode(app.name)
                                 ))
                     elif user:
                         # Not possible on Marketplace currently.
@@ -64,7 +64,7 @@ class BaseAbuseViewFormSet(BaseModelFormSet):
                                 ))
                 if app or site:
                     ReviewerScore.award_mark_abuse_points(
-                        self.request.user, addon=app, website=site)
+                        self.request.user, webapp=app, website=site)
                 if app and action == ABUSE_REPORT_FLAG:
                     message = _('Abuse reports needing investigation: %s' %
                                 (', '.join(texts)))

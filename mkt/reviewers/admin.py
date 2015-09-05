@@ -15,10 +15,10 @@ class CannedResponseAdmin(admin.ModelAdmin):
 
 class ReviewerScoreAdmin(admin.ModelAdmin):
     list_display = ('user', 'score', 'note_key', 'note', 'created')
-    raw_id_fields = ('user', 'addon')
+    raw_id_fields = ('user', 'webapp')
     fieldsets = (
         (None, {
-            'fields': ('user', 'addon', 'score', 'note'),
+            'fields': ('user', 'webapp', 'score', 'note'),
         }),
     )
     list_filter = ('note_key',)

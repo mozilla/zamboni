@@ -23,14 +23,14 @@ from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_REFERENCE,
                                     SOLITUDE_REFUND_STATUSES)
-from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
+from mkt.developers.models import (ActivityLog, WebappPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
 from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
-from mkt.prices.models import AddonPaymentData, Refund
+from mkt.prices.models import WebappPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
@@ -39,7 +39,7 @@ from mkt.site.tests import (ESTestCase, req_factory_factory, TestCase,
 from mkt.site.utils import app_factory, file_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import AddonUser, Webapp
+from mkt.webapps.models import WebappUser, Webapp
 from mkt.websites.utils import website_factory
 
 
@@ -57,8 +57,8 @@ class SummaryTest(TestCase):
                 provider=provider,
                 seller_uri=uri, uri=uri,
                 agreed_tos=True, account_id='not-important')
-            AddonPaymentAccount.objects.create(
-                addon=app,
+            WebappPaymentAccount.objects.create(
+                webapp=app,
                 product_uri='product-{p}'.format(p=provider),
                 account_uri=payment.uri,
                 payment_account=payment
@@ -96,7 +96,7 @@ class TestAcctSummary(SummaryTest):
             else:
                 curr = 'USD'
             amount = Decimal('2.00')
-            Contribution.objects.create(addon=self.steamcube,
+            Contribution.objects.create(webapp=self.steamcube,
                                         type=contrib_type,
                                         currency=curr,
                                         amount=amount,
@@ -155,7 +155,7 @@ class TestAcctSummary(SummaryTest):
     def test_requested_refunds(self):
         contrib = Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
                                               user_id=self.user.pk,
-                                              addon=self.steamcube,
+                                              webapp=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
         Refund.objects.create(contribution=contrib, user=self.user)
@@ -166,7 +166,7 @@ class TestAcctSummary(SummaryTest):
     def test_approved_refunds(self):
         contrib = Contribution.objects.create(type=mkt.CONTRIB_PURCHASE,
                                               user_id=self.user.pk,
-                                              addon=self.steamcube,
+                                              webapp=self.steamcube,
                                               currency='USD',
                                               amount='0.99')
         Refund.objects.create(contribution=contrib,
@@ -179,12 +179,12 @@ class TestAcctSummary(SummaryTest):
     def test_app_created(self):
         res = self.summary()
         # Number of apps/add-ons belonging to this user.
-        eq_(len(res.context['user_addons']), 1)
+        eq_(len(res.context['user_webapps']), 1)
 
     def test_payment_data(self):
         payment_data = self.payment_data()
-        AddonPaymentData.objects.create(addon=self.steamcube,
-                                        **payment_data)
+        WebappPaymentData.objects.create(webapp=self.steamcube,
+                                         **payment_data)
         res = self.summary()
         pd = res.context['payment_data'][0]
         for key, value in payment_data.iteritems():
@@ -195,15 +195,15 @@ class TestAcctSummary(SummaryTest):
         eq_(len(res.context['payment_data']), 0)
 
     def test_no_duplicate_payment_data(self):
-        role = AddonUser.objects.create(user=self.user,
-                                        addon=self.otherapp,
-                                        role=mkt.AUTHOR_ROLE_DEV)
-        self.otherapp.addonuser_set.add(role)
+        role = WebappUser.objects.create(user=self.user,
+                                         webapp=self.otherapp,
+                                         role=mkt.AUTHOR_ROLE_DEV)
+        self.otherapp.webappuser_set.add(role)
         payment_data = self.payment_data()
-        AddonPaymentData.objects.create(addon=self.steamcube,
-                                        **payment_data)
-        AddonPaymentData.objects.create(addon=self.otherapp,
-                                        **payment_data)
+        WebappPaymentData.objects.create(webapp=self.steamcube,
+                                         **payment_data)
+        WebappPaymentData.objects.create(webapp=self.otherapp,
+                                         **payment_data)
         res = self.summary()
         eq_(len(res.context['payment_data']), 1)
         pd = res.context['payment_data'][0]
@@ -305,7 +305,7 @@ class TestBangoRedirect(TestCase):
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
         self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
-        self.steamcube.update(premium_type=mkt.ADDON_PREMIUM)
+        self.steamcube.update(premium_type=mkt.WEBAPP_PREMIUM)
         self.account = setup_payment_account(self.steamcube, self.user)
         self.portal_url = reverse(
             'lookup.bango_portal_from_package',
@@ -451,7 +451,7 @@ class TestTransactionSummary(TestCase):
 
         self.app = app_factory()
         self.contrib = Contribution.objects.create(
-            addon=self.app, uuid=self.uuid, user=self.user,
+            webapp=self.app, uuid=self.uuid, user=self.user,
             transaction_id=self.transaction_id)
 
         self.url = reverse('lookup.transaction_summary', args=[self.uuid])
@@ -460,7 +460,7 @@ class TestTransactionSummary(TestCase):
     @mock.patch.object(settings, 'TASK_USER_ID', 999)
     def create_test_refund(self):
         refund_contrib = Contribution.objects.create(
-            addon=self.app, related=self.contrib, type=mkt.CONTRIB_REFUND,
+            webapp=self.app, related=self.contrib, type=mkt.CONTRIB_REFUND,
             transaction_id='testtransactionid', user=self.user)
         refund_contrib.enqueue_refund(mkt.REFUND_PENDING, self.user)
 
@@ -561,11 +561,11 @@ class TestTransactionRefund(TestCase):
         self.url = reverse('lookup.transaction_refund', args=[self.uuid])
         self.app = app_factory()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        AddonUser.objects.create(addon=self.app, user=self.user)
+        WebappUser.objects.create(webapp=self.app, user=self.user)
 
         self.req = self.request({'refund_reason': 'text'})
         self.contrib = Contribution.objects.create(
-            addon=self.app, user=self.user, uuid=self.uuid,
+            webapp=self.app, user=self.user, uuid=self.uuid,
             type=mkt.CONTRIB_PURCHASE, amount=1, transaction_id='123')
         # Fix Django 1.4 RequestFactory bug with MessageMiddleware.
         setattr(self.req, 'session', 'session')
@@ -620,7 +620,7 @@ class TestTransactionRefund(TestCase):
 
         # Do refund.
         res = transaction_refund(self.req, self.uuid)
-        refund = Refund.objects.filter(contribution__addon=self.app)
+        refund = Refund.objects.filter(contribution__webapp=self.app)
         refund_contribs = self.contrib.get_refund_contribs()
 
         # Check Refund created.
@@ -836,7 +836,7 @@ class TestAppSummary(AppSummaryTest):
 
     def test_packaged_app_deleted(self):
         self.app.update(is_packaged=True)
-        ver = version_factory(addon=self.app)
+        ver = version_factory(webapp=self.app)
         file_factory(version=ver)
         self.app.delete()
         self.summary()
@@ -880,17 +880,17 @@ class TestAppSummary(AppSummaryTest):
         assert textb in pq(res.content)('.column-b dd').eq(6).text()
 
     def test_visible_authors(self):
-        AddonUser.objects.all().delete()
+        WebappUser.objects.all().delete()
         for role in (mkt.AUTHOR_ROLE_DEV,
                      mkt.AUTHOR_ROLE_OWNER,
                      mkt.AUTHOR_ROLE_VIEWER,
                      mkt.AUTHOR_ROLE_SUPPORT):
             role_name = unicode(mkt.AUTHOR_CHOICES_NAMES[role])
             user = user_factory(display_name=role_name)
-            role = AddonUser.objects.create(user=user,
-                                            addon=self.app,
-                                            role=role)
-            self.app.addonuser_set.add(role)
+            role = WebappUser.objects.create(user=user,
+                                             webapp=self.app,
+                                             role=role)
+            self.app.webappuser_set.add(role)
         res = self.summary()
 
         eq_(sorted([u.display_name for u in res.context['authors']]),
@@ -900,7 +900,7 @@ class TestAppSummary(AppSummaryTest):
     def test_details(self):
         res = self.summary()
         eq_(res.context['app'].manifest_url, self.app.manifest_url)
-        eq_(res.context['app'].premium_type, mkt.ADDON_FREE)
+        eq_(res.context['app'].premium_type, mkt.WEBAPP_FREE)
         eq_(res.context['price'], None)
 
     def test_price(self):
@@ -910,7 +910,7 @@ class TestAppSummary(AppSummaryTest):
 
     def test_abuse_reports(self):
         for i in range(2):
-            AbuseReport.objects.create(addon=self.app,
+            AbuseReport.objects.create(webapp=self.app,
                                        ip_address='10.0.0.1',
                                        message='spam and porn everywhere')
         res = self.summary()
@@ -1006,7 +1006,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
     def purchase(self, created=None, typ=mkt.CONTRIB_PURCHASE):
         for curr, amount in (('USD', '2.00'), ('EUR', '1.00')):
             for i in range(3):
-                c = Contribution.objects.create(addon=self.app,
+                c = Contribution.objects.create(webapp=self.app,
                                                 user=self.user,
                                                 amount=Decimal(amount),
                                                 currency=curr,
@@ -1064,7 +1064,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
         self.contrib4 = self.purchase()
 
     def purchase(self):
-        return Contribution.objects.create(addon=self.app,
+        return Contribution.objects.create(webapp=self.app,
                                            user=self.user,
                                            amount=Decimal('0.99'),
                                            currency='USD',
@@ -1138,7 +1138,7 @@ class TestPurchases(mkt.site.tests.TestCase):
         eq_(pq(res.content)('p.notice').length, 1)
 
     def test_purchase_shows_up(self):
-        Contribution.objects.create(user=self.user, addon=self.app,
+        Contribution.objects.create(user=self.user, webapp=self.app,
                                     amount=1, type=mkt.CONTRIB_PURCHASE)
         self.login(self.reviewer)
         res = self.client.get(self.url)
@@ -1149,7 +1149,7 @@ class TestPurchases(mkt.site.tests.TestCase):
 
     def test_no_support_link(self):
         for type_ in [mkt.CONTRIB_PURCHASE]:
-            Contribution.objects.create(user=self.user, addon=self.app,
+            Contribution.objects.create(user=self.user, webapp=self.app,
                                         amount=1, type=type_)
         self.login(self.reviewer)
         res = self.client.get(self.url)
@@ -1190,7 +1190,7 @@ class TestActivity(mkt.site.tests.TestCase):
         eq_(log_item.user, self.user)
 
     def test_display(self):
-        mkt.log(mkt.LOG.PURCHASE_ADDON, self.app, user=self.user)
+        mkt.log(mkt.LOG.PURCHASE_WEBAPP, self.app, user=self.user)
         mkt.log(mkt.LOG.ADMIN_USER_EDITED, self.user, 'spite', user=self.user)
         self.login(self.reviewer)
         res = self.client.get(self.url)

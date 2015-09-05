@@ -23,14 +23,14 @@ class TestAbuse(mkt.site.tests.TestCase):
         assert mail.outbox[0].subject.startswith('[User]')
         eq_(mail.outbox[0].to, [settings.ABUSE_EMAIL])
 
-    def test_addon(self):
-        AbuseReport(addon=self.app).send()
+    def test_webapp(self):
+        AbuseReport(webapp=self.app).send()
         assert mail.outbox[0].subject.startswith('[App]')
         eq_(mail.outbox[0].to, [settings.ABUSE_EMAIL])
 
-    def test_addon_fr(self):
+    def test_webapp_fr(self):
         with self.activate(locale='fr'):
-            AbuseReport(addon=self.app).send()
+            AbuseReport(webapp=self.app).send()
         assert mail.outbox[0].subject.startswith('[App]')
         eq_(mail.outbox[0].to, [settings.ABUSE_EMAIL])
 

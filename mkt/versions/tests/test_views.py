@@ -69,13 +69,13 @@ class TestVersionViewSet(RestOAuth):
 
     def test_get_owner_non_public(self):
         self.app.update(status=mkt.STATUS_PENDING)
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 200)
 
     def test_get_updated_data(self):
-        version = Version.objects.create(addon=self.app, version='1.2')
+        version = Version.objects.create(webapp=self.app, version='1.2')
         version.features.update(has_mp3=True, has_fm=True)
         self.app.update(_latest_version=version, _current_version=version)
 
@@ -93,14 +93,14 @@ class TestVersionViewSet(RestOAuth):
         return data, res
 
     def test_patch(self):
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         data, res = self.patch()
         eq_(res.status_code, 200)
         self.assertSetEqual(self.version.features.to_keys(),
                             ['has_' + f for f in data['features']])
 
     def test_patch_bad_features(self):
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         data, res = self.patch(features=['bad'])
         eq_(res.status_code, 400)
 
@@ -155,7 +155,7 @@ class TestVersionStatusViewSet(RestOAuth):
         eq_(res.status_code, 403)
 
     def test_patch_owner_but_no_permissions(self):
-        self.app.addonuser_set.create(user=self.user)
+        self.app.webappuser_set.create(user=self.user)
         data, res = self.do_patch()
         eq_(res.status_code, 403)
 

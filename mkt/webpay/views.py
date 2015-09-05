@@ -83,7 +83,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
             app.pk, request._request.user))
 
         contribution = Contribution.objects.create(
-            addon_id=app.pk,
+            webapp_id=app.pk,
             amount=app.get_price(region=request._request.REGION.id),
             paykey=None,
             price_tier=app.premium.price,
@@ -132,7 +132,7 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
         log.debug('Starting purchase of in app: {0}'.format(inapp.pk))
 
         contribution = Contribution.objects.create(
-            addon_id=inapp.webapp and inapp.webapp.pk,
+            webapp_id=inapp.webapp and inapp.webapp.pk,
             inapp_product=inapp,
             # In-App payments are unauthenticated so we have no user
             # and therefore can't determine a meaningful region.
@@ -214,7 +214,7 @@ class FailureNotificationView(MarketplaceView, GenericAPIView):
                           transaction_id=obj.uuid)),
             'url': form.cleaned_data['url'],
             'retries': form.cleaned_data['attempts']}
-        owners = obj.addon.authors.values_list('email', flat=True)
+        owners = obj.webapp.authors.values_list('email', flat=True)
         send_mail_jinja('Payment notification failure.',
                         'webpay/failure.txt',
                         data, recipient_list=owners)

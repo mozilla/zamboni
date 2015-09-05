@@ -28,60 +28,60 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         eq_(version.developer_name, u'M€lâ')
         eq_(Version(_developer_name=u'M€lâ').developer_name, u'M€lâ')
 
-    @mock.patch('mkt.files.utils.parse_addon')
-    def test_developer_name_from_upload(self, parse_addon):
-        parse_addon.return_value = {
+    @mock.patch('mkt.files.utils.parse_webapp')
+    def test_developer_name_from_upload(self, parse_webapp):
+        parse_webapp.return_value = {
             'version': '42.0',
             'developer_name': u'Mýself'
         }
-        addon = Webapp.objects.get(pk=337141)
+        webapp = Webapp.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
-        # using its contents since we are mocking parse_addon().
+        # using its contents since we are mocking parse_webapp().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                            'addons', 'mozball.webapp')
+                            'webapps', 'mozball.webapp')
         upload = self.get_upload(abspath=path)
-        version = Version.from_upload(upload, addon)
+        version = Version.from_upload(upload, webapp)
         eq_(version.version, '42.0')
         eq_(version.developer_name, u'Mýself')
 
-    @mock.patch('mkt.files.utils.parse_addon')
-    def test_long_developer_name_from_upload(self, parse_addon):
+    @mock.patch('mkt.files.utils.parse_webapp')
+    def test_long_developer_name_from_upload(self, parse_webapp):
         truncated_developer_name = u'ý' * 255
         long_developer_name = truncated_developer_name + u'àààà'
-        parse_addon.return_value = {
+        parse_webapp.return_value = {
             'version': '42.1',
             'developer_name': long_developer_name
         }
-        addon = Webapp.objects.get(pk=337141)
+        webapp = Webapp.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
-        # using its contents since we are mocking parse_addon().
+        # using its contents since we are mocking parse_webapp().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                            'addons', 'mozball.webapp')
+                            'webapps', 'mozball.webapp')
         upload = self.get_upload(abspath=path)
-        version = Version.from_upload(upload, addon)
+        version = Version.from_upload(upload, webapp)
         eq_(version.version, '42.1')
         eq_(version.developer_name, truncated_developer_name)
 
     def test_is_privileged_hosted_app(self):
-        addon = Webapp.objects.get(pk=337141)
-        eq_(addon.current_version.is_privileged, False)
+        webapp = Webapp.objects.get(pk=337141)
+        eq_(webapp.current_version.is_privileged, False)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_is_privileged_app(self, get_manifest_json):
         get_manifest_json.return_value = {
             'type': 'privileged'
         }
-        addon = Webapp.objects.get(pk=337141)
-        addon.update(is_packaged=True)
-        eq_(addon.current_version.is_privileged, True)
+        webapp = Webapp.objects.get(pk=337141)
+        webapp.update(is_packaged=True)
+        eq_(webapp.current_version.is_privileged, True)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     def test_is_privileged_non_privileged_app(self, get_manifest_json):
         get_manifest_json.return_value = {
         }
-        addon = Webapp.objects.get(pk=337141)
-        addon.update(is_packaged=True)
-        eq_(addon.current_version.is_privileged, False)
+        webapp = Webapp.objects.get(pk=337141)
+        webapp.update(is_packaged=True)
+        eq_(webapp.current_version.is_privileged, False)
 
     def test_delete(self):
         version = Version.objects.all()[0]
@@ -112,23 +112,23 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
     @mock.patch('mkt.versions.models.public_storage')
     def test_version_delete(self, storage_mock):
         self.version.delete()
-        addon = Webapp.objects.get(pk=337141)
-        assert addon
+        webapp = Webapp.objects.get(pk=337141)
+        assert webapp
 
-        assert not Version.objects.filter(addon=addon).exists()
-        assert Version.with_deleted.filter(addon=addon).exists()
+        assert not Version.objects.filter(webapp=webapp).exists()
+        assert Version.with_deleted.filter(webapp=webapp).exists()
 
         assert not storage_mock.delete.called
 
     @mock.patch('mkt.versions.models.public_storage')
     def test_packaged_version_delete(self, storage_mock):
-        addon = Webapp.objects.get(pk=337141)
-        addon.update(is_packaged=True)
-        version = addon.current_version
+        webapp = Webapp.objects.get(pk=337141)
+        webapp.update(is_packaged=True)
+        version = webapp.current_version
         version.delete()
 
-        assert not Version.objects.filter(addon=addon).exists()
-        assert Version.with_deleted.filter(addon=addon).exists()
+        assert not Version.objects.filter(webapp=webapp).exists()
+        assert Version.with_deleted.filter(webapp=webapp).exists()
 
         assert storage_mock.delete.called
 
@@ -139,16 +139,16 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
 
     @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
-        addon = Webapp.objects.get(pk=337141)
+        webapp = Webapp.objects.get(pk=337141)
         # The status doesn't change for public files.
-        qs = File.objects.filter(version=addon.current_version)
+        qs = File.objects.filter(version=webapp.current_version)
         eq_(qs.all()[0].status, mkt.STATUS_PUBLIC)
-        Version.objects.create(addon=addon)
+        Version.objects.create(webapp=webapp)
         eq_(qs.all()[0].status, mkt.STATUS_PUBLIC)
         assert not hide_mock.called
 
         qs.update(status=mkt.STATUS_PENDING)
-        version = Version.objects.create(addon=addon)
+        version = Version.objects.create(webapp=webapp)
         version.disable_old_files()
         eq_(qs.all()[0].status, mkt.STATUS_DISABLED)
         assert hide_mock.called
@@ -158,8 +158,8 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         version.deleted = False
 
     def test_version_is_public(self):
-        addon = Webapp.objects.get(id=337141)
-        version = version_factory(addon=addon)
+        webapp = Webapp.objects.get(id=337141)
+        version = version_factory(webapp=webapp)
 
         # Base test. Everything is in order, the version should be public.
         eq_(version.is_public(), True)
@@ -174,14 +174,14 @@ class TestVersion(BaseUploadTest, mkt.site.tests.TestCase):
         version.deleted = True
         eq_(version.is_public(), False)
 
-        # Non-public addon.
+        # Non-public webapp.
         self._reset_version(version)
         with mock.patch('mkt.webapps.models.Webapp.is_public') \
-                as is_addon_public:
-            is_addon_public.return_value = False
+                as is_webapp_public:
+            is_webapp_public.return_value = False
             eq_(version.is_public(), False)
 
     def test_app_feature_creation_app(self):
         app = Webapp.objects.create()
-        ver = Version.objects.create(addon=app)
+        ver = Version.objects.create(webapp=app)
         assert ver.features, 'AppFeatures was not created with version.'

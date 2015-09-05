@@ -13,34 +13,34 @@ log = commonware.log.getLogger('mkt.purchase')
 
 def has_purchased(f):
     """
-    If the addon is premium, require a purchase.
-    Must be called after addon_view decorator.
+    If the webapp is premium, require a purchase.
+    Must be called after webapp_view decorator.
     """
     @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
-        if addon.is_premium() and not addon.has_purchased(request.user):
-            log.info('Not purchased: %d' % addon.pk)
+    def wrapper(request, webapp, *args, **kw):
+        if webapp.is_premium() and not webapp.has_purchased(request.user):
+            log.info('Not purchased: %d' % webapp.pk)
             raise PermissionDenied
-        return f(request, addon, *args, **kw)
+        return f(request, webapp, *args, **kw)
     return wrapper
 
 
 def can_become_premium(f):
-    """Check that the addon can become premium."""
+    """Check that the webapp can become premium."""
     @functools.wraps(f)
-    def wrapper(request, addon_id, addon, *args, **kw):
-        if not addon.can_become_premium():
-            log.info('Cannot become premium: %d' % addon.pk)
+    def wrapper(request, webapp_id, webapp, *args, **kw):
+        if not webapp.can_become_premium():
+            log.info('Cannot become premium: %d' % webapp.pk)
             raise PermissionDenied
-        return f(request, addon_id, addon, *args, **kw)
+        return f(request, webapp_id, webapp, *args, **kw)
     return wrapper
 
 
 def app_view(f, qs=Webapp.objects.all):
     @functools.wraps(f)
     def wrapper(request, app_slug, *args, **kw):
-        addon = get_object_or_404(qs(), app_slug=app_slug)
-        return f(request, addon, *args, **kw)
+        webapp = get_object_or_404(qs(), app_slug=app_slug)
+        return f(request, webapp, *args, **kw)
     return wrapper
 
 

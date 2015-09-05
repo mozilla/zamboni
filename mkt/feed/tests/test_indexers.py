@@ -41,7 +41,7 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
             pullquote_rating=4, pullquote_text=self._get_test_l10n(),
             app_type=feed.FEEDAPP_QUOTE)
         self.obj.update(preview=Preview.objects.create(
-            addon=self.app, sizes={'thumbnail': [50, 50]}))
+            webapp=self.app, sizes={'thumbnail': [50, 50]}))
 
         self.indexer = self.obj.get_indexer()()
         self.model = FeedApp

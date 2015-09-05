@@ -12,14 +12,14 @@ log = logging.getLogger('z.task')
 class Command(BaseCommand):
     """
     Backfill Webapp Geodata by inferring regional popularity from
-    AddonExcludedRegion objects (or lack thereof).
-    Remove AddonExcludedRegion objects for free apps.
+    WebappExcludedRegion objects (or lack thereof).
+    Remove WebappExcludedRegion objects for free apps.
     """
 
     def handle(self, *args, **options):
         from mkt.webapps.models import Webapp
 
-        paid_types = mkt.ADDON_PREMIUMS + (mkt.ADDON_FREE_INAPP,)
+        paid_types = mkt.WEBAPP_PREMIUMS + (mkt.WEBAPP_FREE_INAPP,)
 
         apps = Webapp.objects.all()
         for app in apps:
@@ -40,7 +40,7 @@ class Command(BaseCommand):
             if app.premium_type in paid_types:
                 geodata['restricted'] = True
             else:
-                exclusions = app.addonexcludedregion.exclude(
+                exclusions = app.webappexcludedregion.exclude(
                     region__in=SPECIAL_REGION_IDS)
                 for exclusion in exclusions:
                     log.info('[App %s - %s] Removed exclusion: %s'

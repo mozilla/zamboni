@@ -75,7 +75,7 @@ from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view, app_view_factory
-from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
+from mkt.webapps.models import WebappDeviceType, WebappUser, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.websites.decorators import website_view
 from mkt.websites.models import Website
@@ -246,15 +246,15 @@ def context(request, **kw):
     return ctx
 
 
-def _review(request, addon, version):
+def _review(request, webapp, version):
 
     if (not settings.ALLOW_SELF_REVIEWS and
         not acl.action_allowed(request, 'Admin', '%') and
-            addon.has_author(request.user)):
+            webapp.has_author(request.user)):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
-    if (addon.status == mkt.STATUS_BLOCKED and
+    if (webapp.status == mkt.STATUS_BLOCKED and
             not acl.action_allowed(request, 'Apps', 'ReviewEscalated')):
         messages.warning(
             request, _('Only senior reviewers can review blocklisted apps.'))
@@ -267,7 +267,7 @@ def _review(request, addon, version):
                                        prefix='testedon')
     form = forms.get_review_form(data=request.POST or None,
                                  files=request.FILES or None, request=request,
-                                 addon=addon, version=version,
+                                 webapp=webapp, version=version,
                                  attachment_formset=attachment_formset,
                                  testedon_formset=testedon_formset)
     postdata = request.POST if request.method == 'POST' else None
@@ -288,7 +288,7 @@ def _review(request, addon, version):
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
         if form.cleaned_data.get('action') == 'public':
-            old_types = set(o.id for o in addon.device_types)
+            old_types = set(o.id for o in webapp.device_types)
             new_types = set(form.cleaned_data.get('device_override'))
 
             old_features = set(features_list)
@@ -298,13 +298,13 @@ def _review(request, addon, version):
             if old_types != new_types:
                 # The reviewer overrode the device types. We need to not
                 # publish this app immediately.
-                if addon.publish_type == mkt.PUBLISH_IMMEDIATE:
-                    addon.update(publish_type=mkt.PUBLISH_PRIVATE)
+                if webapp.publish_type == mkt.PUBLISH_IMMEDIATE:
+                    webapp.update(publish_type=mkt.PUBLISH_PRIVATE)
 
                 # And update the device types to what the reviewer set.
-                AddonDeviceType.objects.filter(addon=addon).delete()
+                WebappDeviceType.objects.filter(webapp=webapp).delete()
                 for device in form.cleaned_data.get('device_override'):
-                    addon.addondevicetype_set.create(device_type=device)
+                    webapp.webappdevicetype_set.create(device_type=device)
 
                 # Log that the reviewer changed the device types.
                 added_devices = new_types - old_types
@@ -319,14 +319,14 @@ def _review(request, addon, version):
                 msg = _(u'Device(s) changed by '
                         u'reviewer: {0}').format(', '.join(msg_list))
 
-                log_reviewer_action(addon, request.user, msg,
+                log_reviewer_action(webapp, request.user, msg,
                                     mkt.LOG.REVIEW_DEVICE_OVERRIDE)
 
             if old_features != new_features:
                 # The reviewer overrode the requirements. We need to not
                 # publish this app immediately.
-                if addon.publish_type == mkt.PUBLISH_IMMEDIATE:
-                    addon.update(publish_type=mkt.PUBLISH_PRIVATE)
+                if webapp.publish_type == mkt.PUBLISH_IMMEDIATE:
+                    webapp.update(publish_type=mkt.PUBLISH_PRIVATE)
 
                 appfeatures_form.save(mark_for_rereview=False)
 
@@ -340,23 +340,23 @@ def _review(request, addon, version):
                 # L10n: {0} is the list of requirements changes.
                 msg = _(u'Requirements changed by reviewer: {0}').format(fmt)
 
-                log_reviewer_action(addon, request.user, msg,
+                log_reviewer_action(webapp, request.user, msg,
                                     mkt.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
 
         if form.cleaned_data.get('is_showcase'):
-            if not addon.tags.filter(tag_text=SHOWCASE_TAG).exists():
-                Tag(tag_text=SHOWCASE_TAG).save_tag(addon)
+            if not webapp.tags.filter(tag_text=SHOWCASE_TAG).exists():
+                Tag(tag_text=SHOWCASE_TAG).save_tag(webapp)
                 recipient_list = (settings.APP_CURATION_BOARD_EMAIL,)
-                subject = u'App [%s] nominated to be featured' % addon.name
+                subject = u'App [%s] nominated to be featured' % webapp.name
                 msg = (u'The Marketplace reviewer %s thinks %s (%s%s) is'
                        u'good enough to be a featured app.\n\n' % (
-                           request.user, addon.name, settings.SITE_URL,
-                           addon.get_url_path()))
+                           request.user, webapp.name, settings.SITE_URL,
+                           webapp.get_url_path()))
                 send_mail(subject, msg, recipient_list=recipient_list)
         else:
-            Tag(tag_text=SHOWCASE_TAG).remove_tag(addon)
+            Tag(tag_text=SHOWCASE_TAG).remove_tag(webapp)
 
         # Success message.
         if score:
@@ -380,11 +380,11 @@ def _review(request, addon, version):
     try:
         if not version:
             raise Version.DoesNotExist
-        show_diff = (addon.versions.exclude(id=version.id)
-                                   .filter(files__isnull=False,
-                                           created__lt=version.created,
-                                           files__status=mkt.STATUS_PUBLIC)
-                                   .latest())
+        show_diff = (webapp.versions.exclude(id=version.id)
+                     .filter(files__isnull=False,
+                             created__lt=version.created,
+                             files__status=mkt.STATUS_PUBLIC)
+                     .latest())
     except Version.DoesNotExist:
         show_diff = None
 
@@ -394,16 +394,16 @@ def _review(request, addon, version):
     # We only allow the user to check/uncheck files for "pending"
     allow_unchecking_files = form.helper.review_type == "pending"
 
-    versions = (Version.with_deleted.filter(addon=addon)
+    versions = (Version.with_deleted.filter(webapp=webapp)
                                     .order_by('-created')
                                     .transform(Version.transformer_activity)
                                     .transform(Version.transformer))
 
     product_attrs = {
         'product': json.dumps(
-            product_as_dict(request, addon, False, 'reviewer'),
+            product_as_dict(request, webapp, False, 'reviewer'),
             cls=JSONEncoder),
-        'manifest_url': addon.manifest_url,
+        'manifest_url': webapp.manifest_url,
     }
 
     pager = paginate(request, versions, 10)
@@ -411,7 +411,7 @@ def _review(request, addon, version):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
-    ctx = context(request, version=version, product=addon, pager=pager,
+    ctx = context(request, version=version, product=webapp, pager=pager,
                   num_pages=num_pages, count=count,
                   form=form, canned=canned, is_admin=is_admin,
                   status_types=mkt.STATUS_CHOICES, show_diff=show_diff,
@@ -430,16 +430,16 @@ def _review(request, addon, version):
 
 @reviewer_required
 @app_view_with_deleted
-def app_review(request, addon):
-    version = addon.latest_version
+def app_review(request, webapp):
+    version = webapp.latest_version
     resp = None
     try:
         with transaction.atomic():
-            resp = _review(request, addon, version)
+            resp = _review(request, webapp, version)
     except SigningError, exc:
         messages.error(request, 'Signing Error: %s' % exc)
         return redirect(
-            reverse('reviewers.apps.review', args=[addon.app_slug]))
+            reverse('reviewers.apps.review', args=[webapp.app_slug]))
     # We (hopefully) have been avoiding sending send post_save and
     # version_changed signals in the review process till now (_review()
     # uses ReviewHelper which should have done all of its update() calls
@@ -450,11 +450,11 @@ def app_review(request, addon):
     # them to index the app or call update_version() if that wasn't done
     # before already.
     if request.method == 'POST':
-        post_save.send(sender=Webapp, instance=addon, created=False)
+        post_save.send(sender=Webapp, instance=webapp, created=False)
         post_save.send(sender=Version, instance=version, created=False)
-        if getattr(addon, 'resend_version_changed_signal', False):
-            version_changed.send(sender=addon)
-            del addon.resend_version_changed_signal
+        if getattr(webapp, 'resend_version_changed_signal', False):
+            version_changed.send(sender=webapp)
+            del webapp.resend_version_changed_signal
     if resp:
         return resp
     raise
@@ -471,7 +471,7 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created',
     pager = paginate(request, apps, per_page)
 
     ctx = {
-        'addons': pager.object_list,
+        'webapps': pager.object_list,
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
@@ -689,8 +689,8 @@ def logs(request):
             term = data['search']
             approvals = approvals.filter(
                 Q(commentlog__comments__icontains=term) |
-                Q(applog__addon__name__localized_string__icontains=term) |
-                Q(applog__addon__app_slug__icontains=term) |
+                Q(applog__webapp__name__localized_string__icontains=term) |
+                Q(applog__webapp__app_slug__icontains=term) |
                 Q(user__display_name__icontains=term) |
                 Q(user__email__icontains=term)).distinct()
 
@@ -729,29 +729,29 @@ def _get_permissions(manifest):
     return permissions
 
 
-def _get_manifest_json(addon):
-    return addon.get_manifest_json(addon.versions.latest().all_files[0])
+def _get_manifest_json(webapp):
+    return webapp.get_manifest_json(webapp.versions.latest().all_files[0])
 
 
 @permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
 @app_view_with_deleted
 @json_view
-def app_view_manifest(request, addon):
+def app_view_manifest(request, webapp):
     headers = {}
     manifest = {}
     success = False
 
-    if addon.is_packaged:
-        manifest = _get_manifest_json(addon)
+    if webapp.is_packaged:
+        manifest = _get_manifest_json(webapp)
         content = json.dumps(manifest, indent=4)
         success = True
 
     else:  # Show the hosted manifest_url.
         content, headers = u'', {}
-        if addon.manifest_url:
+        if webapp.manifest_url:
             try:
                 req = requests.get(
-                    addon.manifest_url, verify=False,
+                    webapp.manifest_url, verify=False,
                     headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
                 content, headers = req.content, req.headers
                 success = True
@@ -783,15 +783,15 @@ def app_view_manifest(request, addon):
 
 def reviewer_or_token_required(f):
     @functools.wraps(f)
-    def wrapper(request, addon, *args, **kw):
+    def wrapper(request, webapp, *args, **kw):
         # If there is a 'token' in request.GET we either return 200 or 403.
         # Otherwise we treat it like a normal django view and redirect to a
         # login page or check for Apps:Review permissions.
         allowed = False
         token = request.GET.get('token')
 
-        if token and Token.pop(token, data={'app_id': addon.id}):
-            log.info('Token for app:%s was successfully used' % addon.id)
+        if token and Token.pop(token, data={'app_id': webapp.id}):
+            log.info('Token for app:%s was successfully used' % webapp.id)
             allowed = True
         elif not token and not request.user.is_authenticated():
             return redirect_for_login(request)
@@ -801,18 +801,18 @@ def reviewer_or_token_required(f):
         if allowed:
             if token:
                 log.info('Token provided for app:%s and all was happy'
-                         % addon.id)
+                         % webapp.id)
             else:
                 log.info('Apps:Review (no token) all happy for app:%s'
-                         % addon.id)
-            return f(request, addon, *args, **kw)
+                         % webapp.id)
+            return f(request, webapp, *args, **kw)
         else:
             if token:
                 log.info('Token provided for app:%s but was not valid'
-                         % addon.id)
+                         % webapp.id)
             else:
                 log.info('Apps:Review permissions not met for app:%s'
-                         % addon.id)
+                         % webapp.id)
             raise PermissionDenied
 
     return wrapper
@@ -820,26 +820,26 @@ def reviewer_or_token_required(f):
 
 @app_view
 @reviewer_or_token_required
-def mini_manifest(request, addon, version_id):
+def mini_manifest(request, webapp, version_id):
     token = request.GET.get('token')
-    return http.HttpResponse(_mini_manifest(addon, version_id, token),
+    return http.HttpResponse(_mini_manifest(webapp, version_id, token),
                              content_type=MANIFEST_CONTENT_TYPE)
 
 
-def _mini_manifest(addon, version_id, token=None):
-    if not addon.is_packaged:
+def _mini_manifest(webapp, version_id, token=None):
+    if not webapp.is_packaged:
         raise http.Http404
 
-    version = get_object_or_404(addon.versions, pk=version_id)
+    version = get_object_or_404(webapp.versions, pk=version_id)
     file_ = version.all_files[0]
-    manifest = addon.get_manifest_json(file_)
+    manifest = webapp.get_manifest_json(file_)
 
     package_path = absolutify(
-        reverse('reviewers.signed', args=[addon.app_slug, version.id]))
+        reverse('reviewers.signed', args=[webapp.app_slug, version.id]))
 
     if token:
         # Generate a fresh token.
-        token = Token(data={'app_id': addon.id})
+        token = Token(data={'app_id': webapp.id})
         token.save()
         package_path = urlparams(package_path, token=token.token)
 
@@ -859,12 +859,12 @@ def _mini_manifest(addon, version_id, token=None):
 
 @permission_required([('Apps', 'ReadAbuse'), ('Apps', 'Review')])
 @app_view
-def app_abuse(request, addon):
-    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
+def app_abuse(request, webapp):
+    reports = AbuseReport.objects.filter(webapp=webapp).order_by('-created')
     total = reports.count()
     reports = paginate(request, reports, count=total)
     return render(request, 'reviewers/abuse.html',
-                  context(request, item=addon, reports=reports,
+                  context(request, item=webapp, reports=reports,
                           total=total))
 
 
@@ -881,14 +881,14 @@ def website_abuse(request, website):
 
 @app_view
 @reviewer_or_token_required
-def get_signed_packaged(request, addon, version_id):
-    version = get_object_or_404(addon.versions, pk=version_id)
+def get_signed_packaged(request, webapp, version_id):
+    version = get_object_or_404(webapp.versions, pk=version_id)
     file = version.all_files[0]
-    path = addon.sign_if_packaged(version.pk, reviewer=True)
+    path = webapp.sign_if_packaged(version.pk, reviewer=True)
     if not path:
         raise http.Http404
-    log.info('Returning signed package addon: %s, version: %s, path: %s' %
-             (addon.pk, version_id, path))
+    log.info('Returning signed package webapp: %s, version: %s, path: %s' %
+             (webapp.pk, version_id, path))
     return get_file_response(request, path, content_type='application/zip',
                              etag=file.hash.split(':')[-1], public=False)
 
@@ -971,7 +971,7 @@ def _retrieve_translation(text, language):
 @waffle_switch('reviews-translate')
 @permission_required([('Apps', 'ModerateReview')])
 def review_translate(request, app_slug, review_pk, language):
-    review = get_object_or_404(Review, addon__app_slug=app_slug, pk=review_pk)
+    review = get_object_or_404(Review, webapp__app_slug=app_slug, pk=review_pk)
 
     if '-' in language:
         language = language.split('-')[0]
@@ -1003,7 +1003,7 @@ def review_translate(request, app_slug, review_pk, language):
 def abuse_report_translate(request, report_pk, language, app_slug=None,
                            website_pk=None):
     if app_slug:
-        report = get_object_or_404(AbuseReport, addon__app_slug=app_slug,
+        report = get_object_or_404(AbuseReport, webapp__app_slug=app_slug,
                                    pk=report_pk)
     else:
         report = get_object_or_404(AbuseReport, website__id=website_pk,
@@ -1194,7 +1194,7 @@ class AppOwnerPermission(BasePermission):
         return Webapp.objects.filter(pk=app_id).exists()
 
     def user_is_author(self, app_id, user):
-        return AddonUser.objects.filter(user=user, addon_id=app_id).exists()
+        return WebappUser.objects.filter(user=user, webapp_id=app_id).exists()
 
     def has_permission(self, request, view):
         app_id = request.DATA.get('app')
@@ -1250,14 +1250,14 @@ class GenerateToken(SlugOrIdMixin, CreateAPIView):
 @json_view
 @reviewer_required
 def review_viewing(request):
-    if 'addon_id' not in request.POST:
+    if 'webapp_id' not in request.POST:
         return {}
 
-    addon_id = request.POST['addon_id']
+    webapp_id = request.POST['webapp_id']
     user_id = request.user.id
     current_name = ''
     is_user = 0
-    key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+    key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, webapp_id)
     interval = mkt.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
@@ -1274,7 +1274,7 @@ def review_viewing(request):
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
 
-    AppsReviewing(request).add(addon_id)
+    AppsReviewing(request).add(webapp_id)
 
     return {'current': currently_viewing, 'current_name': current_name,
             'is_user': is_user, 'interval_seconds': interval}
@@ -1284,20 +1284,20 @@ def review_viewing(request):
 @json_view
 @reviewer_required
 def queue_viewing(request):
-    if 'addon_ids' not in request.POST:
+    if 'webapp_ids' not in request.POST:
         return {}
 
     viewing = {}
     user_id = request.user.id
 
-    for addon_id in request.POST['addon_ids'].split(','):
-        addon_id = addon_id.strip()
-        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+    for webapp_id in request.POST['webapp_ids'].split(','):
+        webapp_id = webapp_id.strip()
+        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, webapp_id)
         currently_viewing = cache.get(key)
         if currently_viewing and currently_viewing != user_id:
-            viewing[addon_id] = (UserProfile.objects
-                                            .get(id=currently_viewing)
-                                            .display_name)
+            viewing[webapp_id] = (UserProfile.objects
+                                             .get(id=currently_viewing)
+                                             .display_name)
 
     return viewing
 
@@ -1365,7 +1365,7 @@ def moderatelog_detail(request, eventlog_id):
             else:
                 raise PermissionDenied
         ReviewerScore.award_moderation_points(
-            log.user, review.addon, review.id, undo=True)
+            log.user, review.webapp, review.id, undo=True)
         review.undelete()
         return redirect('reviewers.apps.moderatelog.detail', eventlog_id)
     data = context(request, log=log, form=form, review=review,

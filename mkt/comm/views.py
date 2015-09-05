@@ -88,7 +88,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
                                 status=status.HTTP_403_FORBIDDEN)
 
             queryset = CommunicationThread.objects.filter(
-                _addon=form.cleaned_data['app'])
+                _webapp=form.cleaned_data['app'])
 
             # Thread IDs and version numbers from same app.
             data['app_threads'] = list(queryset.order_by('_version__version')
@@ -114,7 +114,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 
         # Thread IDs and version numbers from same app.
         res.data['app_threads'] = list(
-            CommunicationThread.objects.filter(_addon_id=res.data['addon'])
+            CommunicationThread.objects.filter(_webapp_id=res.data['webapp'])
             .order_by('_version__version').values('id', '_version__version'))
         for app_thread in res.data['app_threads']:
             app_thread['version__version'] = app_thread.pop(
@@ -162,8 +162,8 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         note_type = form.cleaned_data['note_type']
 
         if (note_type == comm.DEVELOPER_COMMENT and not
-            request.user.addonuser_set.filter(
-                addon=thread.addon).exists()):
+            request.user.webappuser_set.filter(
+                webapp=thread.webapp).exists()):
             # Developer comment only for developers.
             return Response('Only developers can make developer comments',
                             status=status.HTTP_403_FORBIDDEN)
@@ -175,7 +175,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
         # Create notes.
         thread, note = create_comm_note(
-            thread.addon, thread.version, self.request.user,
+            thread.webapp, thread.version, self.request.user,
             form.cleaned_data['body'], note_type=note_type)
 
         return Response(
@@ -304,7 +304,7 @@ class CommAppListView(SilentListModelMixin, CommViewSet):
             self.serializer_class = ThreadSimpleSerializer
 
         self.queryset = CommunicationThread.objects.filter(
-            _addon=form.cleaned_data['app']).order_by('_version__version')
+            _webapp=form.cleaned_data['app']).order_by('_version__version')
 
         return SilentListModelMixin.list(self, request)
 

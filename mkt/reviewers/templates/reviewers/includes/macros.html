@@ -83,9 +83,9 @@
   {% endif %}
   {# If this is an Elasticsearch hit `app_type` (from the index) is an integer, otherwise it is a string from the Webapp property. #}
   {# TODO: Remove the strings when removing the 'reviewer-tools-elasticsearch' waffle. #}
-  {% if app.app_type in (mkt.ADDON_WEBAPP_PACKAGED, mkt.ADDON_WEBAPP_PRIVILEGED, 'packaged', 'privileged') %}
+  {% if app.app_type in (mkt.WEBAPP_PACKAGED, mkt.WEBAPP_PRIVILEGED, 'packaged', 'privileged') %}
     <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
-    {% if app.app_type in (mkt.ADDON_WEBAPP_PRIVILEGED, 'privileged') %}
+    {% if app.app_type in (mkt.WEBAPP_PRIVILEGED, 'privileged') %}
       <div class="sprite-reviewer sprite-reviewer-privileged-app" title="{{ _('Privileged App') }}"></div>
     {% endif %}
   {% endif %}
@@ -93,11 +93,11 @@
     <div class="sprite-reviewer sprite-reviewer-blocked" title="{{ _('Blocklisted App') }}"></div>
   {% endif %}
 
-  {% if app.premium_type == mkt.ADDON_PREMIUM_INAPP %}
+  {% if app.premium_type == mkt.WEBAPP_PREMIUM_INAPP %}
     <div class="sprite-reviewer sprite-reviewer-premium inapp" title="{{ _('Premium with In-App') }}"></div>
-  {% elif app.premium_type == mkt.ADDON_FREE_INAPP %}
+  {% elif app.premium_type == mkt.WEBAPP_FREE_INAPP %}
     <div class="sprite-reviewer sprite-reviewer-premium free inapp" title="{{ _('Free with In-App') }}"></div>
-  {% elif app.premium_type == mkt.ADDON_PREMIUM %}
+  {% elif app.premium_type == mkt.WEBAPP_PREMIUM %}
     <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
   {% endif %}
 

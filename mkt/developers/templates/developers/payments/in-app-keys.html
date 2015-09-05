@@ -2,11 +2,11 @@
 {% from 'developers/includes/macros.html' import required %}
 
 {% set title = _('Test In-App Payments') %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
 {% block content %}
 <header>
-  {{ hub_breadcrumbs(addon, items=[(url('mkt.developers.apps.testing'), _('Testing')), (None, title)]) }}
+  {{ hub_breadcrumbs(webapp, items=[(url('mkt.developers.apps.testing'), _('Testing')), (None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
 

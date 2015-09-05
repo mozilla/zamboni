@@ -37,7 +37,7 @@ from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.constants.payments import PROVIDER_REFERENCE
-from mkt.prices.models import AddonPremium, Price, PriceCurrency
+from mkt.prices.models import WebappPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
@@ -64,7 +64,7 @@ class DynamicBoolFieldsTestMixin():
         """
         Create an instance of the DynamicBoolFields model and call super
         on the inheriting setUp.
-        (e.g. RatingDescriptors.objects.create(addon=self.app))
+        (e.g. RatingDescriptors.objects.create(webapp=self.app))
         """
         self.app = app_factory()
         self.model = None
@@ -112,7 +112,7 @@ class DynamicBoolFieldsTestMixin():
         self._check(self._get_related_bool_obj().to_dict())
 
     def test_default_false(self):
-        obj = self.model(addon=self.app)
+        obj = self.model(webapp=self.app)
         eq_(getattr(obj, 'has_%s' % self.flags[0].lower()), False)
 
 
@@ -428,8 +428,8 @@ class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
         # XXX See if we can remove this when we switch to Django 1.8.
         # Some crud from the migration system gets stuck here and we have to
         # kick it loose manually.
-        from mkt.webapps.models import AddonUser
-        UserProfile.addonuser_set.related.model = AddonUser
+        from mkt.webapps.models import WebappUser
+        UserProfile.webappuser_set.related.model = WebappUser
 
         # Clean the slate.
         cache.clear()
@@ -669,14 +669,14 @@ class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
         Price.transformer([])
         return price_obj
 
-    def make_premium(self, addon, price='1.00'):
+    def make_premium(self, webapp, price='1.00'):
         price_obj = self.make_price(price=Decimal(price))
-        addon.update(premium_type=mkt.ADDON_PREMIUM)
-        addon._premium = AddonPremium.objects.create(addon=addon,
-                                                     price=price_obj)
+        webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
+        webapp._premium = WebappPremium.objects.create(webapp=webapp,
+                                                       price=price_obj)
         if hasattr(Price, '_currencies'):
             del Price._currencies
-        return addon._premium
+        return webapp._premium
 
     def create_sample(self, name=None, db=False, **kw):
         if name is not None:
@@ -756,7 +756,7 @@ class MktPaths(object):
 
     def mozball_image(self):
         return os.path.join(settings.ROOT,
-                            'mkt/developers/tests/addons/mozball-128.png')
+                            'mkt/developers/tests/webapps/mozball-128.png')
 
     def packaged_app_path(self, name):
         return os.path.join(
@@ -771,7 +771,7 @@ class MktPaths(object):
 def assert_no_validation_errors(validation):
     """Assert that the validation (JSON) does not contain a traceback.
 
-    Note that this does not test whether the addon passed
+    Note that this does not test whether the webapp passed
     validation or not.
     """
     if hasattr(validation, 'task_error'):

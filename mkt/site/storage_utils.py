@@ -158,7 +158,7 @@ def copy_stored_file(src_path, dst_path, src_storage=private_storage,
 
     Defaults to copying from and to private storage.
     """
-    if src_path == dst_path and src_storage == dst_storage:
+    if src_path == dst_path and src_storage.__class__ == dst_storage.__class__:
         return
     with src_storage.open(src_path, 'rb') as src, \
             dst_storage.open(dst_path, 'wb') as dest:

@@ -15,7 +15,7 @@ from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
-from mkt.files.utils import parse_addon
+from mkt.files.utils import parse_webapp
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.utils import slug_validator
 from mkt.tags.models import Tag
@@ -28,21 +28,22 @@ from mkt.users.notifications import app_surveys
 from mkt.webapps.models import AppFeatures, BlockedSlug, Webapp
 
 
-def mark_for_rereview(addon, added_devices, removed_devices):
+def mark_for_rereview(webapp, added_devices, removed_devices):
     msg = _(u'Device(s) changed: {0}').format(', '.join(
         [_(u'Added {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
          for d in added_devices] +
         [_(u'Removed {0}').format(unicode(mkt.DEVICE_TYPES[d].name))
          for d in removed_devices]))
-    RereviewQueue.flag(addon, mkt.LOG.REREVIEW_DEVICES_ADDED, msg)
+    RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_DEVICES_ADDED, msg)
 
 
-def mark_for_rereview_features_change(addon, added_features, removed_features):
+def mark_for_rereview_features_change(webapp, added_features,
+                                      removed_features):
     # L10n: {0} is the list of requirements changes.
     msg = _(u'Requirements changed: {0}').format(', '.join(
         [_(u'Added {0}').format(f) for f in added_features] +
         [_(u'Removed {0}').format(f) for f in removed_features]))
-    RereviewQueue.flag(addon, mkt.LOG.REREVIEW_FEATURES_CHANGED, msg)
+    RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_FEATURES_CHANGED, msg)
 
 
 class DeviceTypeForm(happyforms.Form):
@@ -56,25 +57,25 @@ class DeviceTypeForm(happyforms.Form):
     paid_platforms = forms.MultipleChoiceField(
         choices=PAID_PLATFORMS(), required=False)
 
-    def save(self, addon, is_paid):
+    def save(self, webapp, is_paid):
         data = self.cleaned_data[
             'paid_platforms' if is_paid else 'free_platforms']
         submitted_data = self.get_devices(t.split('-', 1)[1] for t in data)
 
         new_types = set(dev.id for dev in submitted_data)
-        old_types = set(mkt.DEVICE_TYPES[x.id].id for x in addon.device_types)
+        old_types = set(mkt.DEVICE_TYPES[x.id].id for x in webapp.device_types)
 
         added_devices = new_types - old_types
         removed_devices = old_types - new_types
 
         for d in added_devices:
-            addon.addondevicetype_set.create(device_type=d)
+            webapp.webappdevicetype_set.create(device_type=d)
         for d in removed_devices:
-            addon.addondevicetype_set.filter(device_type=d).delete()
+            webapp.webappdevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
-        if added_devices and addon.status in mkt.WEBAPPS_APPROVED_STATUSES:
-            mark_for_rereview(addon, added_devices, removed_devices)
+        if added_devices and webapp.status in mkt.WEBAPPS_APPROVED_STATUSES:
+            mark_for_rereview(webapp, added_devices, removed_devices)
 
     def _add_error(self, msg):
         self._errors['free_platforms'] = self._errors['paid_platforms'] = (
@@ -122,7 +123,7 @@ class DeviceTypeForm(happyforms.Form):
 
         """
 
-        return mkt.ADDON_PREMIUM if self.is_paid() else mkt.ADDON_FREE
+        return mkt.WEBAPP_PREMIUM if self.is_paid() else mkt.WEBAPP_FREE
 
 
 class DevAgreementForm(happyforms.Form):
@@ -162,7 +163,7 @@ class NewWebappVersionForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         kw.pop('request', None)
-        self.addon = kw.pop('addon', None)
+        self.webapp = kw.pop('webapp', None)
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
@@ -177,7 +178,7 @@ class NewWebappVersionForm(happyforms.Form):
             # clean_packaged needs to be processed first.
 
             try:
-                pkg = parse_addon(data['upload'], self.addon)
+                pkg = parse_webapp(data['upload'], self.webapp)
             except forms.ValidationError, e:
                 self._errors['upload'] = self.error_class(e.messages)
                 return
@@ -186,19 +187,19 @@ class NewWebappVersionForm(happyforms.Form):
             errors = []
 
             ver = pkg.get('version')
-            if (ver and self.addon and
-                    self.addon.versions.filter(version=ver).exists()):
+            if (ver and self.webapp and
+                    self.webapp.versions.filter(version=ver).exists()):
                 errors.append(_(u'Version %s already exists.') % ver)
 
             origin = pkg.get('origin')
             if origin:
                 try:
                     verify_app_domain(origin, packaged=True,
-                                      exclude=self.addon)
+                                      exclude=self.webapp)
                 except forms.ValidationError, e:
                     errors.append(e.message)
 
-                if self.addon and origin != self.addon.app_domain:
+                if self.webapp and origin != self.webapp.app_domain:
                     errors.append(_('Changes to "origin" are not allowed.'))
 
             if errors:
@@ -443,16 +444,16 @@ class AppFeaturesForm(happyforms.ModelForm):
 
     def save(self, *args, **kwargs):
         mark_for_rereview = kwargs.pop('mark_for_rereview', True)
-        addon = self.instance.version.addon
+        webapp = self.instance.version.webapp
         rval = super(AppFeaturesForm, self).save(*args, **kwargs)
-        # Also save the addon to update modified date and trigger a reindex.
-        addon.save(update_fields=['modified'])
+        # Also save the webapp to update modified date and trigger a reindex.
+        webapp.save(update_fields=['modified'])
         # Trigger a re-review if necessary.
         if (self.instance and mark_for_rereview and
-                addon.status in mkt.WEBAPPS_APPROVED_STATUSES and
+                webapp.status in mkt.WEBAPPS_APPROVED_STATUSES and
                 sorted(self.instance.to_keys()) != self.initial_features):
             added_features, removed_features = self._changed_features()
-            mark_for_rereview_features_change(addon,
+            mark_for_rereview_features_change(webapp,
                                               added_features,
                                               removed_features)
         return rval

@@ -42,7 +42,7 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
 
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
-    addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
+    webapp = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
     website = models.ForeignKey(Website, blank=True, null=True,
                                 related_name='+')
     score = models.SmallIntegerField()
@@ -68,24 +68,24 @@ class ReviewerScore(ModelBase):
             return '%s:%s' % (ns_key, key)
 
     @classmethod
-    def get_event(cls, addon, status, **kwargs):
+    def get_event(cls, webapp, status, **kwargs):
         """Return the review event type constant.
 
-        This is determined by the app type and the queue the addon is
+        This is determined by the app type and the queue the webapp is
         currently in (which is determined from the status).
 
-        Note: We're not using addon.status because this is called after the
+        Note: We're not using webapp.status because this is called after the
         status has been updated by the reviewer action.
 
         """
-        if addon.is_packaged:
+        if webapp.is_packaged:
             if status in mkt.WEBAPPS_APPROVED_STATUSES:
-                if addon.app_type_id == mkt.ADDON_WEBAPP_PRIVILEGED:
+                if webapp.app_type_id == mkt.WEBAPP_PRIVILEGED:
                     return mkt.REVIEWED_WEBAPP_PRIVILEGED_UPDATE
                 else:
                     return mkt.REVIEWED_WEBAPP_UPDATE
             else:  # If it's not PUBLIC, assume it's a new submission.
-                if addon.app_type_id == mkt.ADDON_WEBAPP_PRIVILEGED:
+                if webapp.app_type_id == mkt.WEBAPP_PRIVILEGED:
                     return mkt.REVIEWED_WEBAPP_PRIVILEGED
                 else:
                     return mkt.REVIEWED_WEBAPP_PACKAGED
@@ -97,7 +97,7 @@ class ReviewerScore(ModelBase):
                 return mkt.REVIEWED_WEBAPP_HOSTED
 
     @classmethod
-    def get_extra_platform_points(cls, addon, status):
+    def get_extra_platform_points(cls, webapp, status):
         """Gives extra points to reviews of apps that are compatible with
         multiple platforms, to reflect the extra effort involved.  Only new
         submissions get extra points (for now).
@@ -107,63 +107,65 @@ class ReviewerScore(ModelBase):
             return 0
         event = mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA
         platform_bonus = mkt.REVIEWED_SCORES.get(event)
-        devices_count = len(addon.device_types)
+        devices_count = len(webapp.device_types)
         if devices_count < 2:
             return 0
         else:
             return (devices_count - 1) * platform_bonus
 
     @classmethod
-    def award_points(cls, user, addon, status, **kwargs):
+    def award_points(cls, user, webapp, status, **kwargs):
         """Awards points to user based on an event and the queue.
 
         `event` is one of the `REVIEWED_` keys in constants.
         `status` is one of the `STATUS_` keys in constants.
 
         """
-        event = cls.get_event(addon, status, **kwargs)
+        event = cls.get_event(webapp, status, **kwargs)
         score = mkt.REVIEWED_SCORES.get(event)
         if score:
-            score += cls.get_extra_platform_points(addon, status)
-            cls.objects.create(user=user, addon=addon, score=score,
+            score += cls.get_extra_platform_points(webapp, status)
+            cls.objects.create(user=user, webapp=webapp, score=score,
                                note_key=event)
             cls.get_key(invalidate=True)
             user_log.info(
-                (u'Awarding %s points to user %s for "%s" for addon %s'
-                 % (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
+                (u'Awarding %s points to user %s for "%s" for webapp %s'
+                 % (score, user, mkt.REVIEWED_CHOICES[event], webapp.id))
                 .encode('utf-8'))
         return score
 
     @classmethod
-    def award_moderation_points(cls, user, addon, review_id, undo=False):
+    def award_moderation_points(cls, user, webapp, review_id, undo=False):
         """Awards points to user based on moderated review."""
         event = (mkt.REVIEWED_APP_REVIEW if not undo else
                  mkt.REVIEWED_APP_REVIEW_UNDO)
         score = mkt.REVIEWED_SCORES.get(event)
 
-        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
+        cls.objects.create(user=user, webapp=webapp, score=score,
+                           note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
             u'Awarding %s points to user %s for "%s" for review %s' % (
                 score, user, mkt.REVIEWED_CHOICES[event], review_id))
 
     @classmethod
-    def award_additional_review_points(cls, user, addon, queue):
+    def award_additional_review_points(cls, user, webapp, queue):
         """Awards points to user based on additional (Tarako) review."""
         # TODO: generalize with other additional reviews queues
         event = mkt.REVIEWED_WEBAPP_TARAKO
         score = mkt.REVIEWED_SCORES.get(event)
 
-        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
+        cls.objects.create(user=user, webapp=webapp, score=score,
+                           note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
-            u'Awarding %s points to user %s for "%s" for addon %s' %
-            (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
+            u'Awarding %s points to user %s for "%s" for webapp %s' %
+            (score, user, mkt.REVIEWED_CHOICES[event], webapp.id))
 
     @classmethod
-    def award_mark_abuse_points(cls, user, addon=None, website=None):
+    def award_mark_abuse_points(cls, user, webapp=None, website=None):
         """Awards points to user based on reading abuse reports."""
-        if addon:
+        if webapp:
             event = mkt.REVIEWED_APP_ABUSE_REPORT
         elif website:
             event = mkt.REVIEWED_WEBSITE_ABUSE_REPORT
@@ -172,7 +174,7 @@ class ReviewerScore(ModelBase):
             return
         score = mkt.REVIEWED_SCORES.get(event)
 
-        cls.objects.create(user=user, addon=addon, website=website,
+        cls.objects.create(user=user, webapp=webapp, website=website,
                            score=score, note_key=event)
         cls.get_key(invalidate=True)
         user_log.info(
@@ -222,7 +224,7 @@ class ReviewerScore(ModelBase):
              SELECT `reviewer_scores`.*,
                     SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
-             LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
+             LEFT JOIN `webapps` ON (reviewer_scores.webapp_id=webapps.id)
              WHERE `reviewer_scores`.`user_id` = %s
              ORDER BY `total` DESC
         """
@@ -245,7 +247,7 @@ class ReviewerScore(ModelBase):
              SELECT `reviewer_scores`.*,
                     SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
-             LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
+             LEFT JOIN `webapps` ON (reviewer_scores.webapp_id=webapps.id)
              WHERE `reviewer_scores`.`user_id` = %s AND
                    `reviewer_scores`.`created` >= %s
              ORDER BY `total` DESC
@@ -380,31 +382,31 @@ ReviewerScore._meta.get_field('created').db_index = True
 
 
 class EscalationQueue(ModelBase):
-    addon = models.ForeignKey(Webapp)
+    webapp = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'escalation_queue'
 
 
 class RereviewQueue(ModelBase):
-    addon = models.ForeignKey(Webapp)
+    webapp = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'rereview_queue'
 
     @classmethod
-    def flag(cls, addon, event, message=None):
-        cls.objects.get_or_create(addon=addon)
-        version = addon.current_version or addon.latest_version
+    def flag(cls, webapp, event, message=None):
+        cls.objects.get_or_create(webapp=webapp)
+        version = webapp.current_version or webapp.latest_version
         if message:
-            mkt.log(event, addon, version, details={'comments': message})
+            mkt.log(event, webapp, version, details={'comments': message})
         else:
-            mkt.log(event, addon, version)
+            mkt.log(event, webapp, version)
 
         # TODO: if we ever get rid of ActivityLog for reviewer notes, replace
         # all flag calls to use the comm constant and not have to use
         # ACTION_MAP.
-        create_comm_note(addon, version, None, message,
+        create_comm_note(webapp, version, None, message,
                          note_type=comm.ACTION_MAP(event))
 
 
@@ -497,16 +499,16 @@ class AdditionalReview(ModelBase):
 
 
 def cleanup_queues(sender, instance, **kwargs):
-    RereviewQueue.objects.filter(addon=instance).delete()
-    EscalationQueue.objects.filter(addon=instance).delete()
+    RereviewQueue.objects.filter(webapp=instance).delete()
+    EscalationQueue.objects.filter(webapp=instance).delete()
 
 
 models.signals.post_delete.connect(cleanup_queues, sender=Webapp,
-                                   dispatch_uid='queue-addon-cleanup')
+                                   dispatch_uid='queue-webapp-cleanup')
 
 
 def update_search_index(sender, instance, **kwargs):
-    WebappIndexer.index_ids([instance.addon_id])
+    WebappIndexer.index_ids([instance.webapp_id])
 
 
 for model in (RereviewQueue, EscalationQueue):

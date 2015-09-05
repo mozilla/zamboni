@@ -60,22 +60,22 @@ STATS = {
     'apps_added_by_package': {
         'metric': 'apps_added_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', mkt.ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', mkt.WEBAPP_TYPES.values()),
     },
     'apps_added_by_premium': {
         'metric': 'apps_added_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', mkt.ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', mkt.WEBAPP_PREMIUM_API.values()),
     },
     'apps_available_by_package': {
         'metric': 'apps_available_package_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('package_type', mkt.ADDON_WEBAPP_TYPES.values()),
+        'lines': lines('package_type', mkt.WEBAPP_TYPES.values()),
     },
     'apps_available_by_premium': {
         'metric': 'apps_available_premium_count',
         'dimensions': {'region': 'us'},
-        'lines': lines('premium_type', mkt.ADDON_PREMIUM_API.values()),
+        'lines': lines('premium_type', mkt.WEBAPP_PREMIUM_API.values()),
     },
     'apps_installed': {
         'metric': 'app_installs',
@@ -393,7 +393,7 @@ class TransactionAPI(CORSMixin, APIView):
 
         data = {
             'id': transaction_id,
-            'app_id': contrib.addon_id,
+            'app_id': contrib.webapp_id,
             'amount_USD': contrib.price_tier.price,
             'type': mkt.CONTRIB_TYPES[contrib.type],
         }

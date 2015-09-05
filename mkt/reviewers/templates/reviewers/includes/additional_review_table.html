@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-    {% for qa in addons %}
+    {% for qa in webapps %}
       {% set row_class=loop.cycle('odd', 'even') %}
       <tr id="addon-{{ qa.app.id }}" class="addon-row {{ row_class }}"
           data-addon="{{ qa.app.id }}" data-action-url="{{ qa.action_url }}">
@@ -42,7 +42,7 @@
         <td class="flags">{{ app_flags(qa.app) }}</td>
         <td class="waiting-time">{{ qa.date_field|timelabel }}</td>
         <td>{{ device_list(qa.app) }}</td>
-        <td class="payments">{{ mkt.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+        <td class="payments">{{ mkt.WEBAPP_PREMIUM_TYPES[qa.app.premium_type] }}</td>
         {% if not comments %}
           <td class="action">
             <a class="button approve" data-action="approve">{{ approve_text or _("Approve") }}</a>

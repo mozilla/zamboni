@@ -1,20 +1,20 @@
 <h2>{{ _('Country and Language') }}</h2>
 <div class="item island">
   <table>
-    {# L10n: {0} is an add-on name. #}
-    <caption>{{ _('Country and Language Details for {0}')|fe(addon.name) }}</caption>
+    {# L10n: {0} is a webapp name. #}
+    <caption>{{ _('Country and Language Details for {0}')|fe(webapp.name) }}</caption>
     <tbody>
       <tr>
         <th>
           <span class="label">{{ _('Country') }}</span>
         </th>
         <td>
-          {% for region in addon.get_regions(sort_by='name') %}
+          {% for region in webapp.get_regions(sort_by='name') %}
             {{- region.name -}}
             {{- ', ' if not loop.last -}}
           {% endfor %}
           <small>
-            <a href="{{ addon.get_dev_url('payments') }}">
+            <a href="{{ webapp.get_dev_url('payments') }}">
               {{ _('Edit country on the Compatibility Page') }}</a>
           </small>
         </td>
@@ -24,7 +24,7 @@
           <span class="label">{{ _('Language') }}</span>
         </th>
         <td>
-          {% with locales=addon.supported_locales %}
+          {% with locales=webapp.supported_locales %}
             {{- locales[0] }} ({{ _('default') }}){% if locales[1] %}, {{ locales[1]|join(', ') -}}{% endif -%}
           {% endwith %}
           <small>

@@ -27,7 +27,7 @@ class ContributionError(Exception):
 
 
 class Contribution(ModelBase):
-    addon = models.ForeignKey('webapps.Webapp', blank=True, null=True)
+    webapp = models.ForeignKey('webapps.Webapp', blank=True, null=True)
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
                                       blank=True, null=True)
@@ -63,7 +63,7 @@ class Contribution(ModelBase):
 
     def __unicode__(self):
         return (u'<{cls} {pk}; app: {app}; in-app: {inapp}; amount: {amount}>'
-                .format(app=self.addon, amount=self.amount, pk=self.pk,
+                .format(app=self.webapp, amount=self.amount, pk=self.pk,
                         inapp=self.inapp_product, cls=self.__class__.__name__))
 
     @property
@@ -79,7 +79,7 @@ class Contribution(ModelBase):
         if self.source_locale:
             lang = self.source_locale
         else:
-            lang = self.addon.default_locale
+            lang = self.webapp.default_locale
         tower.activate(lang)
         return Locale(translation.to_locale(lang))
 
@@ -130,7 +130,7 @@ class Contribution(ModelBase):
                                        locale=locale)
 
     def get_refund_url(self):
-        return urlparams(self.addon.get_dev_url('issue_refund'),
+        return urlparams(self.webapp.get_dev_url('issue_refund'),
                          transaction_id=self.transaction_id)
 
     def get_absolute_refund_url(self):

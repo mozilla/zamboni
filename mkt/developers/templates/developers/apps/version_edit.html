@@ -2,16 +2,16 @@
 {% from 'developers/includes/macros.html' import some_html_tip, tip, upload_webapp_features with context %}
 
 {% set title = _('Version {0}')|f(version.version) %}
-{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
 
 {% macro status(msg) %}
-  <strong class="status {{ mkt_status_class(addon) }}">{{ msg }}</strong>
+  <strong class="status {{ mkt_status_class(webapp) }}">{{ msg }}</strong>
 {% endmacro %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
-    {{ l10n_menu(addon.default_locale) }}
+    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
+    {{ l10n_menu(webapp.default_locale) }}
     <h1>{{ title }}</h1>
   </header>
 
@@ -70,7 +70,7 @@
         </table>
         <div class="listing-footer">
           <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-          <a href="{{ addon.get_dev_url('versions') }}">{{ _('Cancel') }}</a>
+          <a href="{{ webapp.get_dev_url('versions') }}">{{ _('Cancel') }}</a>
         </div>
       </form>
     </div>

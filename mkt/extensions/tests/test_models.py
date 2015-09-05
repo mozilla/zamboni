@@ -161,7 +161,7 @@ class TestExtensionMethodsAndProperties(TestCase):
     def test_file_version(self):
         # When we implement updates, change this test to test that the version
         # is increased when updates are added.
-        eq_(Extension().file_version, 0)
+        eq_(Extension().file_version, 1)
 
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_mini_manifest_url(self):
@@ -208,7 +208,7 @@ class TestExtensionMethodsAndProperties(TestCase):
             extension.signed_file_path,
             json.dumps({
                 'id': extension.uuid,
-                'version': 0
+                'version': 1
             })
         )
         eq_(sign_app_mock.call_args[0], expected_args)
