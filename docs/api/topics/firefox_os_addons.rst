@@ -10,8 +10,8 @@ Firefox OS Add-ons
     production. This API is not ready for public consumption yet and can change
     at any moment.
 
-Add-on Submission
-=================
+Add-on and Add-on Version Submission
+====================================
 
 See the dedicated :ref:`Firefox OS Add-on Submission <addon_submission>` topic.
 
@@ -54,8 +54,12 @@ Add-on
 
     **Response**
 
-    :param download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
-    :type download_url: string
+    :param description: The add-on description.
+    :type description: string|object
+    :param latest_public_version: The latest *public* :ref:`add-on version <addon-version-response-label>` available for this extension.
+    :type latest_public_version: object
+    :param latest_version: The latest :ref:`add-on version <addon-version-response-label>` available for this extension.
+    :type latest_version: object
     :param name: The add-on name.
     :type name: string|object
     :param mini_manifest_url: The (absolute) URL to the `mini-manifest <https://developer.mozilla.org/docs/Mozilla/Marketplace/Options/Packaged_apps#Publishing_on_Firefox_Marketplace>`_ for that add-on. That URL may be a 404 if the add-on is not public.
@@ -66,8 +70,6 @@ Add-on
     :param status: The add-on current status.
         Can be "incomplete", "pending", "public" or "rejected".
     :type status: string
-    :param unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
-    :type unsigned_download_url: string
     :param version: The add-on current version number.
     :type version: string
 
@@ -97,6 +99,54 @@ Add-on Search
 
     :status 200: successfully completed.
 
+
+Add-on Versions
+===============
+
+.. http:get:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/
+
+    .. note:: Non public add-ons versions can only be viewed by their authors.
+
+    Returns a list of versions attached to an add-on.
+
+    **Request**
+
+    The standard :ref:`list-query-params-label`.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of :ref:`add-on versions <addon-version-response-label>`.
+    :type objects: array
+
+    :status 200: successfully completed.
+    :status 403: not allowed.
+    :status 404: add-on not found.
+
+.. _addon-version-response-label:
+
+.. http:get:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/
+
+    .. note:: Non public add-ons versions can only be viewed by their authors.
+
+    Returns a single add-on version.
+
+    **Response**
+
+    :param download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
+    :type download_url: string
+    :param status: The add-on version current status.
+        Can be "pending", "public" or "rejected".
+    :type status: string
+    :param unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
+    :type unsigned_download_url: string
+    :param version: The version number for this add-on version.
+    :type version: string
+
+    :status 200: successfully completed.
+    :status 403: not allowed to access this object.
+    :status 404: not found.
 
 Add-on Review
 =============

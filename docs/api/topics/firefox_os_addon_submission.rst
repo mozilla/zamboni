@@ -22,9 +22,6 @@ accepted the terms of use.
 2. :ref:`Post your app <addon-post-label>` using the validation id.
    This will create an add-on and populate the data with the
    contents of the manifest. It will return the current app data.
-3. :ref:`Update your add-on <addon-patch-label>` if necessary. **NOT IMPLEMENTED YET**
-4. :ref:`Ask for a review <addon-status-patch-label>`. All addons need to be
-   reviewed, this will add it to the review queue. **NOT IMPLEMENTED YET**
 
 .. _addon_validation:
 
@@ -88,12 +85,34 @@ Add-on Creation
 
     **Request**
 
-    :param upload: the id of the :ref:`validation result <addon_validation>`
+    :param validation_id: the id of the :ref:`validation result <addon_validation>`
         for your add-on.
     :type upload: string
 
     **Response**
 
-    An :ref:`add-on <addon-response-label>`.
+    The newly created :ref:`add-on <addon-response-label>`. Note that an add-on
+    version is created automatically for you.
+
+    :status: 201 successfully created.
+
+Add-on Version Creation
+=======================
+
+.. _addon-version-post-label:
+
+.. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/
+
+    .. note:: Requires authentication, ownership of the add-on and a successful validation result.
+
+    **Request**
+
+    :param validation_id: the id of the :ref:`validation result <addon_validation>`
+        for your add-on.
+    :type upload: string
+
+    **Response**
+
+    The newly created :ref:`add-on version <addon-version-response-label>`.
 
     :status: 201 successfully created.

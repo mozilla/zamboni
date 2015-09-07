@@ -24,7 +24,7 @@ cookies==2.2.1
 cssselect==0.9.1
 # cssutils is required by app-validator
 cssutils==0.9.7b3
-curling==0.4
+curling==0.5.1
 # defusedxml is required by djangorestframework
 defusedxml==0.4.1
 dennis==0.4.2
@@ -47,6 +47,7 @@ django-statsd-mozilla==0.3.10
 django-storages-redux==1.2.3
 django-waffle==0.10
 drf-compound-fields==0.2.2
+drf-nested-routers==0.10.0
 easy-thumbnails==2.2
 elasticsearch==1.4.0
 email-reply-parser==0.2.0

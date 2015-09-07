@@ -17,7 +17,9 @@ Add-ons Queue
 
     .. note:: Requires authentication and the Extensions:Review permission.
 
-    Returns the list of add-ons in the review queue.
+    Returns the list of add-ons in the review queue. Any add-on with at least
+    one pending version is shown in the queue, even if the add-on itself is
+    currently public.
 
     **Request**
 
@@ -33,27 +35,17 @@ Add-ons Queue
     :status 200: successfully completed.
     :status 403: not authenticated.
 
-
-.. http:get:: /api/v2/extensions/extension/(int:id)|(string:slug)/
-
-    Returns a particular add-on from the review queue.
-
-    **Response**
-
-    An :ref:`add-on <addon-response-label>`.
-
-    :status 200: successfully completed.
-    :status 403: not allowed to access this object.
-    :status 404: add-on not found in the review queue.
-
-
 Publishing Or Rejecting Add-ons
 ===============================
 
-.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/publish/
+Add-on are not directly published or rejected, versions are. Usually the
+add-on ``latest_version`` is the version that needs to be reviewed.
 
-    Publish an add-on. Its file will be signed, its status updated to "public"
-    and it will become available through :ref:`add-ons search <addon-search-label>`.
+.. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/publish/
+
+    Publish an add-on version. Its file will be signed, its status updated to
+    "public". The corresponding add-on will inherit that status and will
+    become available through :ref:`add-ons search <addon-search-label>`.
 
     **Response**
 
@@ -61,15 +53,14 @@ Publishing Or Rejecting Add-ons
     :status 403: not allowed to access this object.
     :status 404: add-on not found in the review queue.
 
-.. http:post:: /api/v2/extensions/queue/(int:id)|(string:slug)/reject/
+.. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/reject/
 
-    Reject an add-on. Its status will be updated to "rejected". The developer
-    will have to re-submit it once they fix the issues.
+    Reject an add-on version. Its status will be updated to "rejected". The developer
+    will have to submit it a new version with the issues fixed. 
 
-    .. warning::
-
-        Since versioning and re-submitting a rejected add-on are not defined yet,
-        developers have no way of submitting back for review a rejected add-on.
+    If the add-on has one ore more other versions that are public versions, it
+    will stay "public". If it had no other public versions but had one or more
+    pending versions, it will stay "pending". Otherwise, it will become "incomplete".
 
     **Request**
 

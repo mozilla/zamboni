@@ -14,10 +14,11 @@ urlpatterns = patterns(
     url(r'^langpack/(?P<langpack_id>[0-9a-f]{32})'
         '(?:/type:(?P<type>\w+))?(?:/.*)?',
         download_langpack, name='langpack.download'),
-    url(r'^extension/(?P<uuid>[0-9a-f]{32})/(?P<filename>[^/<>"\']+)$',
+    url(r'^extension/(?P<uuid>[0-9a-f]{32})/(?P<version_id>\d+)/'
+        r'(?P<filename>[^/<>"\']+)$',
         extensions_views.download_signed,
         name='extension.download_signed'),
-    url(r'^extension/unsigned/(?P<uuid>[0-9a-f]{32})/'
+    url(r'^extension/unsigned/(?P<uuid>[0-9a-f]{32})/(?P<version_id>\d+)/'
         r'(?P<filename>[^/<>"\']+)$',
         extensions_views.download_unsigned,
         name='extension.download_unsigned'),
