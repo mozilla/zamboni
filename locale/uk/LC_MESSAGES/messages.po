@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-07-24 04:06:14.127166\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-09-06 21:39+0000\n"
+"Last-Translator: andrij.kuryk <andrij.kuryk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -24,19 +24,19 @@ msgstr ""
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Скарги потребують розгляду: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
-msgstr ""
+msgstr "Пропустити цього разу"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Позначити всі звіти як прочитані"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Відмітити для повторного перегляду"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -44,7 +44,7 @@ msgstr ""
 
 #: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Поле повинно містити щонайменше {num} символів."
 
 #: mkt/api/fields.py:91
 msgid "The language code {lang_code} is invalid."
@@ -101,6 +101,7 @@ msgstr "Mozilla"
 msgid ""
 "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"Firefox Marketplace є офіційним постачальником застосунків для веб-платформ."
 
 #: mkt/constants/applications.py:6
 #: mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:45
@@ -535,7 +536,7 @@ msgstr "Острови Херд і Макдональд"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Папський Престол (місто-держава Ватикан)"
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
@@ -1177,7 +1178,7 @@ msgstr "Відхилено"
 
 #: mkt/constants/base.py:34 mkt/constants/comm.py:53 mkt/site/log.py:377
 msgid "Approved but private"
-msgstr ""
+msgstr "Підтверджений, але приватний"
 
 #: mkt/constants/base.py:35
 msgid "Blocked"
@@ -1242,7 +1243,7 @@ msgstr ""
 
 #: mkt/constants/base.py:229
 msgid "Web App Review"
-msgstr ""
+msgstr "Перегляд веб-застосунку"
 
 #: mkt/constants/base.py:230
 msgid "Packaged App Review"
@@ -1254,7 +1255,7 @@ msgstr ""
 
 #: mkt/constants/base.py:232
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Повторний перегляд веб-застосунку"
 
 #: mkt/constants/base.py:233
 msgid "Updated Packaged App Review"
@@ -1310,15 +1311,15 @@ msgstr "Рівень 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Рівень 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Рівень 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Рівень 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -8485,15 +8486,15 @@ msgstr ""
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
-msgstr ""
+msgstr "Домашня сторінка:"
 
 #: mkt/submit/forms.py:310
 msgid "If your app has another homepage, enter its address here."
-msgstr ""
+msgstr "Якщо ваш застосунок має іншу домашню сторінку, введіть її адресу."
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr ""
+msgstr "Сайт:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
@@ -8534,7 +8535,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr ""
+msgstr "Редагувати подробиці про застосунок"
 
 #: mkt/submit/templates/submit/details.html:16
 #: mkt/submit/templates/submit/done.html:8
@@ -8571,7 +8572,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:136
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Необхідно вказати хоча б один."
 
 #: mkt/submit/templates/submit/details.html:176
 msgid ""
@@ -8629,7 +8630,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
-msgstr ""
+msgstr "Опубліковано!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
@@ -8733,7 +8734,7 @@ msgstr ""
 
 #: mkt/submit/tests/test_forms.py:321
 msgid "Héllo"
-msgstr ""
+msgstr "Привіт"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/tags/utils.py:29
@@ -8772,15 +8773,15 @@ msgstr[2] ""
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Змінити налаштування облікового запису"
 
 #: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Повернутися до Marketplace"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
-msgstr ""
+msgstr "Вийти"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
@@ -8795,24 +8796,24 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Повідомити про зловживання торговою маркою"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Стерти"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Розгорнути"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Локалізувати для: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: mkt/translations/templates/translations/trans-menu.html:16
 #: mkt/translations/templates/translations/trans-menu.html:29
@@ -8993,21 +8994,21 @@ msgstr ""
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2709
 msgid "awaiting approval"
-msgstr ""
+msgstr "очікує схвалення"
 
 #. L10n: An app is rejected for a particular region.
 #: mkt/webapps/models.py:2711
 msgid "rejected"
-msgstr ""
+msgstr "відхилено"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2713
 msgid "requires additional review"
-msgstr ""
+msgstr "потребує додаткового перегляду"
 
 #: mkt/webapps/models.py:2764
 msgid "{region} approval status"
-msgstr ""
+msgstr "{region} стан затвердження"
 
 #: mkt/webapps/models.py:2773
 msgid "{region} nomination date"
@@ -9027,7 +9028,7 @@ msgstr "Створено"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Обрано неприпустимий(і) пристрій(ої)."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
@@ -9035,7 +9036,7 @@ msgstr "Вийти"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Реєстрація"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -9043,7 +9044,7 @@ msgstr "потрібно"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Обов'язкові поля"
 
 #: templates/includes/forms.html:10
 msgid "(optional)"
