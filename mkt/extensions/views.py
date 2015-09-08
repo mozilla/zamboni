@@ -1,6 +1,4 @@
 import hashlib
-import json
-from zipfile import BadZipfile, ZipFile
 
 from django.core.exceptions import PermissionDenied
 from django.db.transaction import non_atomic_requests
@@ -35,6 +33,7 @@ from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension
 from mkt.extensions.serializers import (ExtensionSerializer,
                                         ESExtensionSerializer)
+from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
 from mkt.search.filters import PublicContentFilter
 from mkt.site.decorators import allow_cross_site_request, use_master
@@ -58,7 +57,9 @@ class ValidationViewSet(SubmitValidationViewSet):
         if not file_obj:
             raise exceptions.ParseError(_('Missing file in request.'))
 
-        self.validate_upload(file_obj)  # Will raise exceptions if appropriate.
+        # Will raise exceptions if appropriate.
+        ExtensionValidator(file_obj).validate()
+
         user = request.user if request.user.is_authenticated() else None
         upload = FileUpload.from_post(
             file_obj, file_obj.name, file_obj.size, user=user)
@@ -68,28 +69,6 @@ class ValidationViewSet(SubmitValidationViewSet):
         upload.update(valid=True)
         serializer = self.get_serializer(upload)
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-
-    def validate_upload(self, file_obj):
-        # Do a basic check : is it a zipfile, and does it contain a manifest ?
-        # Be careful to keep this as in-memory zip reading.
-        if file_obj.content_type not in ('application/octet-stream',
-                                         'application/zip'):
-            raise exceptions.ParseError(
-                _('The file sent has an unsupported content-type'))
-        try:
-            with ZipFile(file_obj, 'r') as z:
-                manifest = z.read('manifest.json')
-        except BadZipfile:
-            raise exceptions.ParseError(
-                _('The file sent is not a valid ZIP file.'))
-        except KeyError:
-            raise exceptions.ParseError(
-                _("The archive does not contain a 'manifest.json' file."))
-        try:
-            json.loads(manifest)
-        except ValueError:
-            raise exceptions.ParseError(
-                _("'manifest.json' in the archive is not a valid JSON file."))
 
 
 class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
