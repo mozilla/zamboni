@@ -71,6 +71,8 @@ SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
+EXTENSIONS_PATH = NETAPP_STORAGE + '/extensions'
+SIGNED_EXTENSIONS_PATH = NETAPP_STORAGE + '/signed-extensions'
 
 LOGGING['loggers'].update({
     'z.task': {'level': logging.DEBUG},

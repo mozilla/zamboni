@@ -208,8 +208,7 @@ class ExtensionVersion(ModelBase):
 
     @property
     def file_path(self):
-        prefix = os.path.join(
-            settings.ADDONS_PATH, 'extensions', str(self.extension.pk))
+        prefix = os.path.join(settings.EXTENSIONS_PATH, str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
 
     @classmethod
@@ -317,7 +316,7 @@ class ExtensionVersion(ModelBase):
 
     @property
     def signed_file_path(self):
-        prefix = os.path.join(settings.ADDONS_PATH, 'extensions-signed',
+        prefix = os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                               str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
 

@@ -351,10 +351,10 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         version = ExtensionVersion(extension=extension, version='0.42.0')
         eq_(version.filename, 'extension-0.42.0.zip')
         eq_(version.file_path,
-            os.path.join(settings.ADDONS_PATH, 'extensions', str(extension.pk),
+            os.path.join(settings.EXTENSIONS_PATH, str(extension.pk),
                          version.filename))
         eq_(version.signed_file_path,
-            os.path.join(settings.ADDONS_PATH, 'extensions-signed',
+            os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                          str(extension.pk), version.filename))
 
     @override_settings(SITE_URL='https://marketpace.example.com/')

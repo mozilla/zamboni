@@ -369,6 +369,10 @@ SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
 # Special reviewer signed ones for special people.
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
 
+# Used for storing extensions.
+EXTENSIONS_PATH = NETAPP_STORAGE + '/extensions'
+SIGNED_EXTENSIONS_PATH = NETAPP_STORAGE + '/signed-extensions'
+
 ###########################################
 # URLs
 #

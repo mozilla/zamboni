@@ -81,6 +81,8 @@ WEBAPP_PROMO_IMG_PATH = UPLOADS_PATH + '/webapp_promo_imgs'
 WEBSITE_PROMO_IMG_PATH = UPLOADS_PATH + '/website_promo_imgs'
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
+EXTENSIONS_PATH = NETAPP_STORAGE + '/extensions'
+SIGNED_EXTENSIONS_PATH = NETAPP_STORAGE + '/signed-extensions'
 
 LOG_LEVEL = logging.DEBUG
 
