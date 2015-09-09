@@ -24,12 +24,12 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                 AllowReviewerReadOnly, AnyOf, ByHttpMethod,
-                                 GroupPermission)
+                                 AnyOf, ByHttpMethod, GroupPermission)
 from mkt.api.paginator import ESPaginator
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
+from mkt.extensions.permissions import AllowExtensionReviewerReadOnly
 from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionSerializer,
                                         ExtensionVersionSerializer)
@@ -112,7 +112,7 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
     model = Extension
-    permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
+    permission_classes = [AnyOf(AllowAppOwner, AllowExtensionReviewerReadOnly,
                                 AllowReadOnlyIfPublic)]
     queryset = Extension.objects.all()
     serializer_class = ExtensionSerializer
