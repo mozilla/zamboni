@@ -178,7 +178,7 @@ htmlhelp_basename = 'zambonidoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'zamboni.tex', u'zamboni Documentation',
-   u'Jeff Balogh', 'manual'),
+   u'Marketplace developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -229,3 +229,6 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 import sphinxcontrib.httpdomain as httpdomain
 httpdomain.HTTP_STATUS_CODES[429] = 'Rate Limit Exceeded'
 httpdomain.HTTP_STATUS_CODES[451] = 'Unavailable For Legal Reasons'
+
+# Also add Content-Disposition header that it does not know at the moment.
+httpdomain.HEADER_REFS['Content-Disposition'] = httpdomain.RFC2616Ref(19.5)

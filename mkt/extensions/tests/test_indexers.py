@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 
-from mkt.constants.base import STATUS_PENDING
+from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.extensions.indexers import ExtensionIndexer
-from mkt.extensions.models import Extension
+from mkt.extensions.models import Extension, ExtensionVersion
 
 
-class TestWebsiteIndexer(TestCase):
+class TestExtensionIndexer(TestCase):
 
     def setUp(self):
         self.indexer = Extension.get_indexer()()
 
-    def _extension_factory(self):
-        return Extension.objects.create(**{
-            'name': u'Test Êxtension',
-            'slug': u'test-ëxtension',
-            'status': STATUS_PENDING,
-            'version': '0.42',
-        })
+    def _extension_factory(self, status=STATUS_PENDING):
+        extension = Extension.objects.create(
+            name=u'Test Êxtension', slug=u'test-ëxtension')
+        version = ExtensionVersion.objects.create(
+            extension=extension, status=status, version='0.1')
+        return extension, version
 
     def test_model(self):
         eq_(self.indexer.get_model(), Extension)
@@ -37,32 +36,40 @@ class TestWebsiteIndexer(TestCase):
         eq_(mapping.keys(), ['extension'])
         eq_(mapping['extension']['_all'], {'enabled': False})
 
-    def _get_doc(self):
-        return self.indexer.extract_document(self.obj.pk, self.obj)
+    def _get_doc(self, extension):
+        return self.indexer.extract_document(extension.pk, extension)
 
-    def test_extract(self):
-        self.obj = self._extension_factory()
-        doc = self._get_doc()
-        eq_(doc['id'], self.obj.id)
-        eq_(doc['created'], self.obj.created)
-        eq_(doc['default_language'], self.obj.default_language)
-        eq_(doc['modified'], self.obj.modified)
-        eq_(doc['name'], [unicode(self.obj.name)])
+    def test_extract_not_public(self):
+        extension, version = self._extension_factory()
+        doc = self._get_doc(extension)
+        eq_(doc['id'], extension.id)
+        eq_(doc['status'], extension.status)
+        eq_(doc['latest_public_version'], None)
+
+    def test_extract_public(self):
+        extension, version = self._extension_factory(STATUS_PUBLIC)
+        doc = self._get_doc(extension)
+        eq_(doc['id'], extension.id)
+        eq_(doc['created'], extension.created)
+        eq_(doc['default_language'], extension.default_language)
+        eq_(doc['modified'], extension.modified)
+        eq_(doc['name'], [unicode(extension.name)])
         eq_(doc['name_translations'], [{
-            'lang': u'en-US', 'string': unicode(self.obj.name)}])
-        eq_(doc['slug'], self.obj.slug)
-        eq_(doc['status'], self.obj.status)
-        eq_(doc['version'], self.obj.version)
+            'lang': u'en-US', 'string': unicode(extension.name)}])
+        eq_(doc['slug'], extension.slug)
+        eq_(doc['status'], extension.status)
+        eq_(doc['latest_public_version'],
+            {'id': version.pk, 'version': '0.1', })
 
     def test_extract_with_translations(self):
-        self.obj = self._extension_factory()
+        extension, version = self._extension_factory()
         name = {
             'en-US': u'Namé Extension',
             'fr': u"Nom de l'Ëxtension",
         }
-        self.obj.name = name
-        self.obj.save()
-        doc = self._get_doc()
+        extension.name = name
+        extension.save()
+        doc = self._get_doc(extension)
 
         eq_(sorted(doc['name']), [name['en-US'], name['fr']])
         eq_(sorted(doc['name_translations']),
@@ -73,9 +80,9 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['name_sort'], name['en-US'].lower())
 
 
-class TestExcludedFields(ESTestCase):
+class TestExtensionIndexerExcludedFields(ESTestCase):
     def setUp(self):
-        super(TestExcludedFields, self).setUp()
+        super(TestExtensionIndexerExcludedFields, self).setUp()
         self.extension = Extension.objects.create()
         self.refresh('extension')
 
@@ -91,3 +98,17 @@ class TestExcludedFields(ESTestCase):
         ok_('name_l10n_english' not in obj)
         ok_('name_sort' not in obj)
         ok_('name.raw' not in obj)
+
+
+class TestExtensionIndexerBasicSearch(ESTestCase):
+    def test_search_basic(self, status=STATUS_PENDING):
+        extension = Extension.objects.create(
+            name=u'Test Êxtension', slug=u'test-ëxtension')
+        ExtensionVersion.objects.create(
+            extension=extension, status=status, version='0.1')
+        self.reindex(Extension)
+
+        qs = ExtensionIndexer.search()
+        results = qs.execute().hits
+        eq_(len(results), 1)
+        eq_(results.hits[0]['_id'], unicode(extension.pk))

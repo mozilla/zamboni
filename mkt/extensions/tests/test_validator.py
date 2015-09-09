@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from rest_framework.exceptions import ParseError
 
 from mkt.site.tests import TestCase

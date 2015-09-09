@@ -1,6 +1,6 @@
 import hashlib
 
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db.transaction import non_atomic_requests
 from django.forms import ValidationError
 from django.http import Http404, JsonResponse
@@ -9,10 +9,9 @@ from django.shortcuts import get_object_or_404
 import commonware
 from rest_framework import exceptions
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import detail_route
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
-                                   RetrieveModelMixin)
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -25,14 +24,15 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                 AllowReviewerReadOnly, AnyOf, ByHttpMethod,
-                                 GroupPermission)
+                                 AnyOf, ByHttpMethod, GroupPermission)
 from mkt.api.paginator import ESPaginator
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.extensions.indexers import ExtensionIndexer
-from mkt.extensions.models import Extension
-from mkt.extensions.serializers import (ExtensionSerializer,
-                                        ESExtensionSerializer)
+from mkt.extensions.models import Extension, ExtensionVersion
+from mkt.extensions.permissions import AllowExtensionReviewerReadOnly
+from mkt.extensions.serializers import (ESExtensionSerializer,
+                                        ExtensionSerializer,
+                                        ExtensionVersionSerializer)
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
 from mkt.search.filters import PublicContentFilter
@@ -42,6 +42,39 @@ from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
 
 
 log = commonware.log.getLogger('extensions.views')
+
+
+class CreateExtensionMixin(object):
+    def create(self, request, *args, **kwargs):
+        upload_pk = request.DATA.get('validation_id', '')
+        if not upload_pk:
+            raise exceptions.ParseError(_('No validation_id specified.'))
+
+        if not request.user.is_authenticated():
+            raise exceptions.PermissionDenied(
+                _('You need to be authenticated to perform this action.'))
+
+        try:
+            upload = FileUpload.objects.get(pk=upload_pk, user=request.user)
+        except FileUpload.DoesNotExist:
+            raise Http404(_('No such upload.'))
+        if not upload.valid:
+            raise exceptions.ParseError(
+                _('The specified upload has not passed validation.'))
+
+        if 'extension_pk' in self.kwargs:
+            # We are creating a new ExtensionVersion.
+            params = {'parent': self.get_extension_object()}
+        else:
+            # We are creating a new Extension
+            params = {'user': request.user}
+        try:
+            obj = self.model.from_upload(upload, **params)
+        except ValidationError as e:
+            raise exceptions.ParseError(unicode(e))
+        log.info('%s created: %s' % (self.model, self.model.pk))
+        serializer = self.get_serializer(obj)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ValidationViewSet(SubmitValidationViewSet):
@@ -71,14 +104,15 @@ class ValidationViewSet(SubmitValidationViewSet):
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
-class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
-                       CreateModelMixin, ListModelMixin, RetrieveModelMixin,
+class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
+                       SlugOrIdMixin, ListModelMixin, RetrieveModelMixin,
                        GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
-    permission_classes = [AnyOf(AllowAppOwner, AllowReviewerReadOnly,
+    model = Extension
+    permission_classes = [AnyOf(AllowAppOwner, AllowExtensionReviewerReadOnly,
                                 AllowReadOnlyIfPublic)]
     queryset = Extension.objects.all()
     serializer_class = ExtensionSerializer
@@ -92,31 +126,6 @@ class ExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                     'Anonymous listing not allowed.')
             qs = qs.filter(authors=self.request.user)
         return qs
-
-    def create(self, request, *args, **kwargs):
-        upload_pk = request.DATA.get('upload', '')
-        if not upload_pk:
-            raise exceptions.ParseError(_('No upload identifier specified.'))
-
-        if not request.user.is_authenticated():
-            raise exceptions.PermissionDenied(
-                _('You need to be authenticated to perform this action.'))
-
-        try:
-            upload = FileUpload.objects.get(pk=upload_pk, user=request.user)
-        except FileUpload.DoesNotExist:
-            raise Http404(_('No such upload.'))
-        if not upload.valid:
-            raise exceptions.ParseError(
-                _('The specified upload has not passed validation.'))
-
-        try:
-            obj = Extension.from_upload(upload, user=request.user)
-        except ValidationError as e:
-            raise exceptions.ParseError(unicode(e))
-        log.info('Extension created: %s' % obj.pk)
-        serializer = self.get_serializer(obj)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
@@ -159,26 +168,85 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     queryset = Extension.objects.pending()
     serializer_class = ExtensionSerializer
 
-    @action()
+
+class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
+                              ListModelMixin, RetrieveModelMixin,
+                              GenericViewSet):
+    authentication_classes = ExtensionViewSet.authentication_classes
+    cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
+    model = ExtensionVersion
+    # Note: In this viewset, permissions are checked against the parent
+    # extension.
+    permission_classes = ExtensionViewSet.permission_classes
+    queryset = ExtensionVersion.objects.all()
+    serializer_class = ExtensionVersionSerializer
+
+    def check_permissions(self, request):
+        """Check permissions as normal, but also check that we can access the
+        parent extension."""
+        super(ExtensionVersionViewSet, self).check_permissions(request)
+
+        extension = self.get_extension_object()
+        super(ExtensionVersionViewSet, self).check_object_permissions(
+            request, extension)
+
+    def check_object_permissions(self, request, obj):
+        """Check object permissions against the extension, not the version."""
+        super(ExtensionVersionViewSet, self).check_object_permissions(
+            request, obj.extension)
+
+    def filter_extension_queryset(self, qs, filter_prefix=''):
+        """Filter queryset passed in argument to find the parent Extension
+        by slug or pk."""
+        extension_pk = self.kwargs.get('extension_pk')
+        if not extension_pk:
+            raise ImproperlyConfigured(
+                'extension_pk should be passed to ExtensionVersionViewSet.')
+        if extension_pk.isdigit():
+            filters = {'%spk' % filter_prefix: extension_pk}
+        else:
+            filters = {'%sslug' % filter_prefix: extension_pk}
+        return qs.filter(**filters)
+
+    def get_extension_object(self):
+        """Return the parent Extension object directly."""
+        try:
+            extension = self.filter_extension_queryset(
+                ExtensionViewSet.queryset).get()
+        except Extension.DoesNotExist:
+            raise Http404
+        return extension
+
+    def get_queryset(self):
+        """Return the ExtensionVersion queryset, filtered to only consider the
+        children of the parent Extension."""
+        qs = super(ExtensionVersionViewSet, self).get_queryset()
+        return self.filter_extension_queryset(qs, filter_prefix='extension__')
+
+    @detail_route(
+        methods=['post'],
+        cors_allowed_methods=['post'],
+        permission_classes=ReviewersExtensionViewSet.permission_classes)
     def publish(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.publish()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @action()
+    @detail_route(
+        methods=['post'],
+        cors_allowed_methods=['post'],
+        permission_classes=ReviewersExtensionViewSet.permission_classes)
     def reject(self, request, *args, **kwargs):
-        # FIXME: we need to define what happens to rejected add-ons and how a
-        # developer can re-submit them.
         obj = self.get_object()
         obj.reject()
         return Response(status=status.HTTP_202_ACCEPTED)
 
 
 @allow_cross_site_request
-def _download(request, extension, path, public=True):
+def _download(request, extension, version, path, public=True):
     extension_etag = hashlib.sha256()
     extension_etag.update(unicode(extension.uuid))
-    extension_etag.update(unicode(extension.file_version))
+    extension_etag.update(unicode(version.pk))
     return get_file_response(request, path,
                              content_type='application/zip',
                              etag=extension_etag.hexdigest(), public=public)
@@ -186,14 +254,16 @@ def _download(request, extension, path, public=True):
 
 def download_signed(request, uuid, **kwargs):
     extension = get_object_or_404(Extension.objects.public(), uuid=uuid)
+    version = extension.versions.get(pk=kwargs['version_id'])
 
-    log.info('Downloading add-on: %s from %s' % (
-             extension.pk, extension.signed_file_path))
-    return _download(request, extension, extension.signed_file_path)
+    log.info('Downloading add-on: %s version %s from %s' % (
+             extension.pk, version.pk, version.signed_file_path))
+    return _download(request, extension, version, version.signed_file_path)
 
 
 def download_unsigned(request, uuid, **kwargs):
     extension = get_object_or_404(Extension, uuid=uuid)
+    version = extension.versions.get(pk=kwargs['version_id'])
 
     def is_author():
         return extension.authors.filter(pk=request.user.pk).exists()
@@ -202,9 +272,10 @@ def download_unsigned(request, uuid, **kwargs):
         return action_allowed(request, 'Extensions', 'Review')
 
     if request.user.is_authenticated() and (is_author() or is_reviewer()):
-        log.info('Downloading unsigned add-on: %s from %s' % (
-                 extension.pk, extension.file_path))
-        return _download(request, extension, extension.file_path, public=False)
+        log.info('Downloading unsigned add-on: %s version %s from %s' % (
+                 extension.pk, version.pk, version.file_path))
+        return _download(request, extension, version, version.file_path,
+                         public=False)
     else:
         raise PermissionDenied
 
